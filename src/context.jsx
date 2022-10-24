@@ -1,24 +1,15 @@
 import { createContext } from "react";
 
+const Context = createContext({});
 
-class PolicyEngineContext {
-    household = null;
-    policy = null;
-
-    getCountry() {
-        // The country code is stored in the URL, e.g. https://policyengine.org/uk/...
-        const url = window.location.pathname;
-        const country = url.split("/")[1];
-        if(country === "uk") {
-            return "uk";
-        } else if(country === "us") {
-            return "us";
-        } else {
-            return null;
-        }
+export function getCountry(location) {
+    if (location === "/uk") {
+        return "uk";
     }
+    if (location === "/us") {
+        return "us";
+    }
+    return null;
 }
-
-const Context = createContext(new PolicyEngineContext());
 
 export default Context;

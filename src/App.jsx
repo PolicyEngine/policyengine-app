@@ -2,30 +2,36 @@ import './style/App.css';
 import Header from './header';
 import Posts from './posts';
 import React, {
-  useContext,
+  useContext, useState,
 } from 'react';
-import ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
+  Navigate,
+  useLocation,
 } from "react-router-dom";
 import Context from './context';
 
 function App() {
   const context = useContext(Context);
+  const [contextData, setContextData] = useState({});
+  context.state = contextData;
+  context.setState = setContextData;
   const router = createBrowserRouter([
     {
+      path: "/uk",
+      element: <><Header /><Posts /></>,
+    },
+    {
+      path: "/us",
+      element: <><Header /><Posts /></>,
+    },
+    {
       path: "/",
-      element: <Posts />,
+      element: <Navigate to="/uk" />,
     },
   ]);
-  return (
-    <div>
-      <Header />
-      <RouterProvider router={router} />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

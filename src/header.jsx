@@ -1,6 +1,7 @@
 import BlueLogo from "./images/logo_blue.png";
-import React, { useContext } from 'react';
-import Context from "./context";
+import React from 'react';
+import { useLocation } from "react-router-dom";
+import { getCountry } from "./context";
 
 function PolicyEngineLogo() {
   return <img src={BlueLogo} alt="PolicyEngine logo" style={{height: 75, paddingLeft: 15}} />;
@@ -71,7 +72,7 @@ function Policy() {
 
 
 export default function Header() {
-  const context = useContext(Context);
+  const location = useLocation();
   return (
     <div style={{
         width: "100%",
@@ -85,7 +86,7 @@ export default function Header() {
         <RightAlignBarrier />
         <Household />
         <Policy />
-        <HeaderNavigationItem style={{marginRight: 20}} label={context.getCountry()} />
+        <HeaderNavigationItem style={{marginRight: 20}} label={getCountry(location.pathname)} />
     </div>
   );
 }
