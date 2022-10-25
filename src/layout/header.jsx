@@ -1,13 +1,13 @@
-import BlueLogo from "./images/logo_blue.png";
+import BlueLogo from "../images/logo_blue.png";
 import React from 'react';
-import { useLocation } from "react-router-dom";
-import { getCountry } from "./context";
+import { useNavigate } from "react-router-dom";
 
 function PolicyEngineLogo() {
   return <img src={BlueLogo} alt="PolicyEngine logo" style={{height: 75, paddingLeft: 15}} />;
 }
 
 function HeaderNavigationItem(props) {
+  const navigate = useNavigate();
   return <h3 style={{
     paddingLeft: 15, 
     paddingRight: 15, 
@@ -16,20 +16,23 @@ function HeaderNavigationItem(props) {
     justifyContent: "center",
     alignItems: "center",
     textAlign: "center",
+    cursor: "pointer",
     ...props.style,
-  }}>{props.label}</h3>
+  }} onClick={() => navigate(props.href)}>{props.label}</h3>
 }
 
 function RightAlignBarrier() {
   return <div style={{marginRight: "auto"}} />
 }
 
-function Household() {
+function Household(props) {
+  const navigate = useNavigate();
   return <div style={{
     display: "flex",
     alignItems: "center",
     marginRight: 10,
-  }}>
+    cursor: "pointer",
+  }} onClick={() => navigate(`/${props.country}/household/edit`)}>
     <div style={{
       backgroundColor: "#F2F2F2",
       borderTopLeftRadius: 30,
@@ -43,16 +46,19 @@ function Household() {
       borderBottomRightRadius: 30,
       paddingLeft: 5,
       paddingRight: 5,
-    }}><h5 style={{margin: 0, padding: 10, whiteSpace: "nowrap"}}>UK average</h5></div>
+    }}><h5 style={{margin: 0, padding: 10, whiteSpace: "nowrap"}}>{props.label}</h5></div>
   </div>
 }
 
 
-function Policy() {
+function Policy(props) {
+  const navigate = useNavigate();
   return <div style={{
     display: "flex",
     alignItems: "center",
-  }}>
+    marginRight: 10,
+    cursor: "pointer",
+  }} onClick={() => navigate(`/${props.country}/policy`)}>
     <div style={{
       backgroundColor: "#F2F2F2",
       borderTopLeftRadius: 30,
@@ -66,13 +72,21 @@ function Policy() {
       borderBottomRightRadius: 30,
       paddingLeft: 5,
       paddingRight: 5,
-    }}><h5 style={{margin: 0, padding: 10, whiteSpace: "nowrap"}}>Current law</h5></div>
+    }}><h5 style={{margin: 0, padding: 10, whiteSpace: "nowrap"}}>{props.label}</h5></div>
   </div>
 }
 
 
-export default function Header() {
-  const location = useLocation();
+export default function Header(props) {
+  let householdLabel = "Loading..."
+  if(props.household) {
+    householdLabel = props.household.label;
+  }
+
+  let policyLabel = "Loading..."
+  if(props.policy) {
+    policyLabel = props.policy.label;
+  }
   return (
     <div style={{
         width: "100%",
@@ -80,13 +94,13 @@ export default function Header() {
         display: "flex",
     }}>
         <PolicyEngineLogo />
-        <HeaderNavigationItem label="Home" />
-        <HeaderNavigationItem label="Household" />
-        <HeaderNavigationItem label="Economy" />
+        <HeaderNavigationItem label="Home" href={`/${props.country}`} />
+        <HeaderNavigationItem label="Household" href={`/${props.country}/household`} />
+        <HeaderNavigationItem label="Economy" href={`/${props.country}/economy`} />
         <RightAlignBarrier />
-        <Household />
-        <Policy />
-        <HeaderNavigationItem style={{marginRight: 20}} label={getCountry(location.pathname)} />
+        <Household country={props.country} label={householdLabel} />
+        <Policy country={props.country} label={policyLabel} />
+        <HeaderNavigationItem style={{marginRight: 20}} label={props.country} />
     </div>
   );
 }
