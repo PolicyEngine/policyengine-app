@@ -13,8 +13,8 @@ export default function Post(props) {
         <div style={{
             marginTop: "auto",
         }}>
-            <h1>{props.header}</h1>
-            <h3>{props.subheader}</h3>
+            <h3>{props.header}</h3>
+            <h5>{props.subheader}</h5>
         </div>
     </div>
 }

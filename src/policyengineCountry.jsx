@@ -9,42 +9,36 @@ import PolicyPage from "./pages/policy";
 import HouseholdPage from "./pages/household";
 import EconomyPage from "./pages/economy";
 import { useState } from "react";
+import PolicyEngineContext from "./countries/PolicyEngine";
+import PolicyEngineUK from "./countries/PolicyEngineUK";
+import PolicyEngineUS from "./countries/PolicyEngineUS";
+import PostPage from "./pages/post";
 
 export default function PolicyEngineCountry(props) {
-    const [householdId, setHouseholdId] = useState("single-adult");
-    const [policyId, setPolicyId] = useState("current-law");
+    const [PolicyEngine, setPolicyEngineState] = useState({
+        state: (props.country === "us" ? 
+            new PolicyEngineUS() : 
+            new PolicyEngineUK())
+    });
 
-    const [household, setHousehold] = useState(null);
-    const [policy, setPolicy] = useState(null);
 
-    if(household === null) {
-        fetch(
-            `http://127.0.0.1:5000/${props.country}/household/${householdId}`,
-        ).then(
-            (response) => response.json(),
-        ).then(
-            (data) => setHousehold({...data, householdId: householdId}),
-        );
+    if (!PolicyEngine.state.initialised) {
+        PolicyEngine.state.initialise(setPolicyEngineState);
     }
 
-    if(policy === null) {
-        fetch(
-            `http://127.0.0.1:5000/${props.country}/policy/${policyId}`,
-        ).then(
-            (response) => response.json(),
-        ).then(
-            (data) => setPolicy({...data, policyId: policyId}),
-        );
-    }
+    const blogPostPages = PolicyEngine.state.countryRelevantBlogPosts.map((blogPost) => (
+        <Route key={blogPost.url} path={"/blog/" + blogPost.url} element={<PostPage post={blogPost} />} />
+    ));
 
-    return <>
-        <Header country={props.country} household={household} policy={policy} />
+    return <PolicyEngineContext.Provider value={PolicyEngine.state}>
+        <Header />
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/household/edit" element={<HouseholdEditPage />} />
-            <Route path="/household" element={<HouseholdPage household={household} policy={policy} />} />
+            <Route path="/household" element={<HouseholdPage />} />
             <Route path="/policy" element={<PolicyPage />} />
             <Route path="/economy" element={<EconomyPage />} />
+            {blogPostPages}
         </Routes>
-    </>
+    </PolicyEngineContext.Provider>
 }
