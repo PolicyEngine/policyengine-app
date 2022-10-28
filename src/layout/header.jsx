@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import PolicyEngineContext from "../countries/PolicyEngine";
 
 function PolicyEngineLogo() {
+  const navigate = useNavigate();
   return <img 
     src={BlueLogo} 
     alt="PolicyEngine logo" 
-    style={{height: 75, paddingLeft: 15}} 
+    style={{height: 75, paddingLeft: 15, cursor: "pointer"}}
+    onClick={() => navigate("/")}
   />;
 }
 

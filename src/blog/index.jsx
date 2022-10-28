@@ -8,6 +8,7 @@ const blogPosts = [
         markdown: "mini-budget.md",
         country: "uk",
         interactive: true,
+        policy: "current-law",
         reformPolicy: "mini-budget",
     },
     {
@@ -29,6 +30,8 @@ const blogPosts = [
         markdown: "new-york.md",
         country: "us",
         interactive: true,
+        policy: "current-law",
+        reformPolicy: "current-law",
     },
 ];
 
