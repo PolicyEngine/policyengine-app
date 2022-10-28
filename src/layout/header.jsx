@@ -91,7 +91,9 @@ function Policy(props) {
         {
           !PolicyEngine.initialised ?
             "Loading..." :
-            PolicyEngine.policy.label
+              PolicyEngine.policyId === PolicyEngine.reformPolicyId ?
+                PolicyEngine.policy.label :
+                `${PolicyEngine.policy.label} > ${PolicyEngine.reformPolicy.label}`
         }
       </h5></div>
   </div>
@@ -107,9 +109,8 @@ export default function Header() {
         display: "flex",
     }}>
         <PolicyEngineLogo />
-        <HeaderNavigationItem label="Home" href={PolicyEngine.getCountryLink("/")} />
-        <HeaderNavigationItem label="Household" href={PolicyEngine.getCountryLink("/household")} />
-        <HeaderNavigationItem label="Economy" href={PolicyEngine.getCountryLink("/economy")} />
+        <HeaderNavigationItem label="About" href={PolicyEngine.getCountryLink("/")} />
+        <HeaderNavigationItem label="Contact" href={PolicyEngine.getCountryLink("/household")} />
         <RightAlignBarrier />
         <Household />
         <Policy />

@@ -39,8 +39,24 @@ export class PolicyEngine {
             this.apiURL = "https://api.policyengine.org";
         }
 
-        this.countryRelevantBlogPosts = blogPosts.filter((post) => post.country === country | post.country === "global");
+        this.countryRelevantBlogPosts = blogPosts
+            .filter((post) => post.country === country | post.country === "global")
+            .map((post) => {
+                // Create a new URL for each blog post
+                const url = new URL(`/${country}/blog/${post.key}`, window.location);
+                // Set search parameters for the policy and reform policy
+                if (post.reformPolicy) {
+                    url.searchParams.set("reform", post.reformPolicy);
+                }
+                if (post.policy) {
+                    url.searchParams.set("policy", post.policy);
+                }
+                post.url = url.pathname + url.search;
+                return post;
+            });
     }
+
+
 
     apiCall(endpoint) {
         return fetch(`${this.apiURL}${endpoint}`)
@@ -65,7 +81,7 @@ export class PolicyEngine {
 
     initialise(setHolderState) {
         this.setState = (data, callback) => {
-            setHolderState({state: Object.assign(this, data)}, callback);
+            setHolderState({state: Object.assign(this, data)});
         };
         const endpoints = [
             `/household/${this.householdId}`,
@@ -84,6 +100,32 @@ export class PolicyEngine {
             state.initialised = true;
             this.setState(state);
         });
+    }
+
+    setPolicy(policyId) {
+        this.countryApiCall(`/policy/${policyId}`).then((policy) => {
+            this.setState({policyId: policyId, policy: policy});
+        });
+    }
+
+    navigateToPolicy(policyId) {
+        // Add query parameter policy={...} to URL
+        const url = new URL(window.location);
+        url.searchParams.set("policy", policyId);
+        window.history.pushState({}, "", url);
+    }
+
+    setReformPolicy(reformPolicyId) {
+        this.countryApiCall(`/policy/${reformPolicyId}`).then((reformPolicy) => {
+            this.setState({reformPolicyId: reformPolicyId, reformPolicy: reformPolicy});
+        });
+    }
+
+    navigateToReformPolicy(reformPolicyId) {
+        // Add query parameter reformPolicy={...} to URL
+        const url = new URL(window.location);
+        url.searchParams.set("reform", reformPolicyId);
+        window.history.pushState({}, "", url);
     }
 
     getCountryLink(path) {
