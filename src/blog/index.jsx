@@ -10,6 +10,7 @@ const blogPosts = [
         interactive: true,
         policy: "current-law",
         reformPolicy: "mini-budget",
+        image: "kwarteng.jpeg",
     },
     {
         title: "New site",

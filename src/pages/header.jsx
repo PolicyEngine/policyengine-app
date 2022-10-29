@@ -5,11 +5,12 @@ import PolicyEngineContext from "../countries/PolicyEngine";
 
 function PolicyEngineLogo() {
   const navigate = useNavigate();
+  const PolicyEngine = useContext(PolicyEngineContext);
   return <img 
     src={BlueLogo} 
     alt="PolicyEngine logo" 
     style={{height: 75, paddingLeft: 15, cursor: "pointer"}}
-    onClick={() => navigate("/")}
+    onClick={() => navigate(PolicyEngine.getCountryLink("/"))}
   />;
 }
 
@@ -111,8 +112,8 @@ export default function Header() {
         display: "flex",
     }}>
         <PolicyEngineLogo />
-        <HeaderNavigationItem label="About" href={PolicyEngine.getCountryLink("/")} />
-        <HeaderNavigationItem label="Contact" href={PolicyEngine.getCountryLink("/household")} />
+        <HeaderNavigationItem label="About" href={PolicyEngine.getCountryLink("/about")} />
+        <HeaderNavigationItem label="Contact" href={PolicyEngine.getCountryLink("/contact")} />
         <RightAlignBarrier />
         <Household />
         <Policy />

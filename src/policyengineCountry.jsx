@@ -1,10 +1,10 @@
-import Header from "./layout/header"
+import Header from "./pages/header"
 import {
     Routes,
     Route,
     useLocation,
 } from "react-router-dom";
-import HouseholdEditPage from "./pages/household_edit";
+import HouseholdEditPage from "./pages/householdEdit";
 import HomePage from "./pages/home";
 import PolicyPage from "./pages/policy";
 import HouseholdPage from "./pages/household";
@@ -14,6 +14,8 @@ import PolicyEngineContext from "./countries/PolicyEngine";
 import PolicyEngineUK from "./countries/PolicyEngineUK";
 import PolicyEngineUS from "./countries/PolicyEngineUS";
 import PostPage from "./pages/post";
+import AboutPage from "./pages/about";
+import ContactPage from "./pages/contact";
 
 export default function PolicyEngineCountry(props) {
     const [PolicyEngine, setPolicyEngineState] = useState({
@@ -76,6 +78,8 @@ export default function PolicyEngineCountry(props) {
         <Header />
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/household/edit" element={<HouseholdEditPage />} />
             <Route path="/household" element={<HouseholdPage />} />
             <Route path="/policy" element={<PolicyPage />} />

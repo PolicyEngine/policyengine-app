@@ -1,20 +1,32 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import PolicyEngineContext from "../../countries/PolicyEngine";
+import { useContext, useState } from "react";
+import PolicyEngineContext from "../countries/PolicyEngine";
+import { useEffect } from "react";
 
 function Post(props) {
   const navigate = useNavigate();
-  const PolicyEngine = useContext(PolicyEngineContext);
+  const [imageUrl, setImageUrl] = useState(null);
+  useEffect(() => {
+    if(props.metadata.image) {
+      import(`../images/${props.metadata.image}`).then((image) => {
+        setImageUrl(image.default);
+      });
+    }
+  });
   return <div style={{
       backgroundColor: "#F2F2F2",
-      padding: 15,
+      backgroundImage: `url(${imageUrl})`,
+      padding: 0,
       display: "flex",
       cursor: "pointer",
-      height: 300,
+      height: props.height || 300,
   }} onClick={() => navigate(props.metadata.url)}>
       <div style={{
           marginTop: "auto",
+          backgroundColor: "#F2F2F2",
+          width: "100%",
+          padding: 15,
       }}>
           <h2>{props.metadata.title}</h2>
           <h4>{props.metadata.description}</h4>
@@ -60,7 +72,7 @@ export default function HomePage() {
           </Row>
           <Row>
             <Col md={12} style={{minHeight: 300, padding: 10, marginBottom: 10}}>
-              <Post metadata={firstPost} />
+              <Post metadata={firstPost} height={400} />
             </Col>
             {restPosts.map((post) => (
               <Col key={post.url} style={{height: 300, padding: 10, marginTop: 10, marginBottom: 10}} md={4}><Post metadata={post} /></Col>
