@@ -30,6 +30,8 @@ export class PolicyEngine {
     apiURL = null;
     initialised = false;
 
+    householdNeedsSaving = false; // After a household is edited, this flag is set to true to indicate that the household stored on PolicyEngine's servers is outdated compared to the new locally-defined household.
+
     countryRelevantBlogPosts = [];
 
     constructor(country) {
@@ -89,8 +91,9 @@ export class PolicyEngine {
             `/policy/${this.reformPolicyId}`,
             "/parameters",
             "/variables",
+            "/entities",
         ];
-        const keys = ["household", "policy", "reformPolicy", "parameters", "variables"];
+        const keys = ["household", "policy", "reformPolicy", "parameters", "variables", "entities"];
         const promises = endpoints.map((endpoint) => this.countryApiCall(endpoint));
         return Promise.all(promises).then((data) => {
             const state = {};
@@ -129,7 +132,39 @@ export class PolicyEngine {
     }
 
     getCountryLink(path) {
-        return `/${this.country}${path}`;
+        // Add current query parameters to URL
+        return `/${this.country}${path}${window.location.search}`;
+    }
+
+    setHouseholdData(householdData) {
+        let newHousehold = JSON.parse(JSON.stringify(this.household));
+        newHousehold.household = householdData;
+        this.setState({household: newHousehold, householdNeedsSaving: true});
+    }
+
+    setHouseholdVariableValue(variableName, entityName, timePeriod, value) {
+        let newHousehold = JSON.parse(JSON.stringify(this.household));
+        const entityPlural = this.entities[this.variables[variableName].entity].plural;
+        newHousehold.household[entityPlural][entityName][variableName][timePeriod] = value;
+        this.setState({household: newHousehold, householdNeedsSaving: true});
+    }
+
+    saveHousehold() {
+        // Save the household to the server
+        fetch(`${this.apiURL}/${this.country}/household`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.household.household),
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+        }).then((data) => {
+            this.countryApiCall(`/household/${data.household_id}`).then((household) => {
+                this.setState({householdId: data.household_id, household: household, householdNeedsSaving: false});
+        })});
     }
 
 }

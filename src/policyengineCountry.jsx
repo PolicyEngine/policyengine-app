@@ -65,6 +65,7 @@ export default function PolicyEngineCountry(props) {
 
     if (!PolicyEngine.state.initialised) {
         PolicyEngine.state.initialise(setPolicyEngineState);
+        return <></>;
     }
 
     const blogPostPages = PolicyEngine.state.countryRelevantBlogPosts.map((blogPost) => {

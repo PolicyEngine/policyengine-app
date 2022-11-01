@@ -2,6 +2,7 @@ import BlueLogo from "../images/logo_blue.png";
 import React, { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import PolicyEngineContext from "../countries/PolicyEngine";
+import { DARK_GRAY, LIGHT_GRAY } from "../style";
 
 function PolicyEngineLogo() {
   const navigate = useNavigate();
@@ -43,15 +44,15 @@ function Household() {
     cursor: "pointer",
   }} onClick={() => navigate(PolicyEngine.getCountryLink("/household/edit"))}>
     <div style={{
-      backgroundColor: "#F2F2F2",
+      backgroundColor: LIGHT_GRAY,
       borderTopLeftRadius: 30,
       borderBottomLeftRadius: 30,
       paddingLeft: 5,
       paddingRight: 5,
-      borderRight: "2px solid #D2D2D2",
+      borderRight: "2px solid" + DARK_GRAY,
     }}><h5 style={{margin: 0, padding: 10}}>🏠</h5></div>
     <div style={{
-      backgroundColor: "#F2F2F2",
+      backgroundColor: LIGHT_GRAY,
       borderTopRightRadius: 30,
       borderBottomRightRadius: 30,
       paddingLeft: 5,
@@ -77,15 +78,15 @@ function Policy(props) {
     cursor: "pointer",
   }} onClick={() => navigate(PolicyEngine.getCountryLink("/policy"))}>
     <div style={{
-      backgroundColor: "#F2F2F2",
+      backgroundColor: LIGHT_GRAY,
       borderTopLeftRadius: 30,
       borderBottomLeftRadius: 30,
       paddingLeft: 5,
       paddingRight: 5,
-      borderRight: "2px solid #D2D2D2",
+      borderRight: "2px solid" + DARK_GRAY,
     }}><h5 style={{margin: 0, padding: 10}}>⚙️</h5></div>
     <div style={{
-      backgroundColor: "#F2F2F2",
+      backgroundColor: LIGHT_GRAY,
       borderTopRightRadius: 30,
       borderBottomRightRadius: 30,
       paddingLeft: 5,
