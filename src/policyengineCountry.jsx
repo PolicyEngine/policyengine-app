@@ -4,10 +4,10 @@ import {
     Route,
     useLocation,
 } from "react-router-dom";
-import HouseholdEditPage from "./pages/householdEdit";
+import HouseholdEditPage from "./pages/HouseholdEdit";
 import HomePage from "./pages/home";
 import PolicyPage from "./pages/policy";
-import HouseholdPage from "./pages/household";
+import HouseholdPage from "./pages/Household";
 import EconomyPage from "./pages/economy";
 import { useState } from "react";
 import PolicyEngineContext from "./countries/PolicyEngine";

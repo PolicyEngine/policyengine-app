@@ -8,7 +8,7 @@ const categoryData = {
         "label": "Income",
     },
     "demographic": {
-        "label": "Demographic",
+        "label": "Demographics",
     },
 }
 

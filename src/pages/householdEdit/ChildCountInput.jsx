@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import PolicyEngineContext from "../../countries/PolicyEngine";
-import RadioButton from "./radioButton";
+import RadioButton from "./RadioButton";
 
 function getChildCount(householdData, country) {
     if (country === "uk") {

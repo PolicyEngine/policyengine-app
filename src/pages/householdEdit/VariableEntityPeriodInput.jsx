@@ -28,7 +28,7 @@ export default function VariableEntityPeriodInput(props) {
                         variableName,
                         entityName,
                         props.period,
-                        e.target.value
+                        +e.target.value
                     );
                 }}
             />

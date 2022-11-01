@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import PolicyEngineContext from "../../countries/PolicyEngine";
-import RadioButton from "./radioButton";
+import RadioButton from "./RadioButton";
 
 function getMaritalStatus(householdData, country) {
     if (country === "uk") {
@@ -56,7 +56,7 @@ function addUKPartner(householdData) {
     const newPartner = {
         age: { 2022: 30 },
         employment_income: { 2022: 0 },
-        self_emplyment_income: { 2022: 0 },
+        self_employment_income: { 2022: 0 },
         pension_income: { 2022: 0 },
         property_income: { 2022: 0 },
         savings_interest_income: { 2022: 0 },

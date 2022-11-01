@@ -31,6 +31,7 @@ export class PolicyEngine {
     initialised = false;
 
     householdNeedsSaving = false; // After a household is edited, this flag is set to true to indicate that the household stored on PolicyEngine's servers is outdated compared to the new locally-defined household.
+    householdUnderPolicyCache = {};
 
     countryRelevantBlogPosts = [];
 
@@ -165,6 +166,14 @@ export class PolicyEngine {
             this.countryApiCall(`/household/${data.household_id}`).then((household) => {
                 this.setState({householdId: data.household_id, household: household, householdNeedsSaving: false});
         })});
+    }
+
+    getHouseholdUnderPolicy(policyId) {
+        return this.countryApiCall(`/household/${this.householdId}/${policyId}`)
+            .then((household) => {
+                this.householdUnderPolicyCache[policyId] = household;
+                return household;
+            });
     }
 
 }
