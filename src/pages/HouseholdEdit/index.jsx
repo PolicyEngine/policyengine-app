@@ -12,7 +12,6 @@ export default function HouseholdEditPage() {
     return (
         <Container>
         <h1>Household Edit</h1>
-        <button onClick={() => PolicyEngine.saveHousehold()}>Save</button>
         <p>Describe your household in as much detail as you'd like. Then, <u><a style={{cursor: "pointer"}} onClick={() => navigate(PolicyEngine.getCountryLink("/household"))}>see your taxes and benefits</a></u>.</p>
        <HouseholdStructureInput />
        <VariableCategory category="income" />

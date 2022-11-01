@@ -2,10 +2,24 @@ import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import PolicyEngineContext from "../../countries/PolicyEngine";
+import EarningsVariation from "./EarningsVariation";
 import HouseholdResult from "./HouseholdResult";
 
 export default function HouseholdPage(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
+
+    if (PolicyEngine.householdNeedsSaving) {
+        PolicyEngine.saveHousehold();
+    }
+
+    if (!PolicyEngine.householdUnderPolicyCache[PolicyEngine.policyId]) {
+        PolicyEngine.countryApiCall(`/household/${PolicyEngine.householdId}/${PolicyEngine.policyId}`)
+            .then((data) => {
+                let cache = PolicyEngine.householdUnderPolicyCache;
+                cache[PolicyEngine.policyId] = data;
+                PolicyEngine.setState({householdUnderPolicyCache: cache});
+            });
+    }
     
     return (
         <Container>
@@ -39,11 +53,11 @@ export default function HouseholdPage(props) {
             <Col>
             <h4>
                 <HouseholdResult
-                variable="employment_income"
+                variable="household_market_income"
                 period="2022"
-                entity="You"
+                entity="Your household"
                 />{" "}
-                employment income
+                market income
             </h4>
             </Col>
         </Row>
@@ -80,7 +94,7 @@ export default function HouseholdPage(props) {
                 variable="household_benefits"
                 period="2022"
                 entity="Your household"
-                />0</h1>
+                /></h1>
             <h5 style={{ paddingLeft: 25 }}>Benefits</h5>
             </Col>
             <Col>
@@ -103,24 +117,7 @@ export default function HouseholdPage(props) {
             <Col></Col>
         </Row>
         <Row style={{ paddingTop: 30 }}>
-            <h4>
-            Your marginal tax rate is{" "}
-            <b>
-                <u>30%</u>
-            </b>
-            .
-            </h4>
-            <p>
-            If your employment income increased by $1, your household net income
-            would increase by 30c.
-            </p>
-        </Row>
-        <Row>
-            <h2>How your earnings affect your net income</h2>
-            <p>
-            If your earnings varied between $0 and $100,000, here's how your net
-            income would respond.
-            </p>
+            <EarningsVariation />
         </Row>
         </Container>
     );

@@ -61,6 +61,7 @@ function addUKPartner(householdData) {
         property_income: { 2022: 0 },
         savings_interest_income: { 2022: 0 },
         dividend_income: { 2022: 0 },
+        marginal_tax_rate: { 2022: null },
     };
     newHouseholdData.people["Your spouse"] = newPartner;
     newHouseholdData.benunits["Your benefit unit"].members.push("Your spouse");
