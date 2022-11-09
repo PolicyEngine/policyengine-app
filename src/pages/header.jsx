@@ -111,6 +111,12 @@ export default function Header() {
         width: "100%",
         height: 75,
         display: "flex",
+        position: "fixed",
+        backgroundColor: "white",
+        borderBottomColor: DARK_GRAY,
+        borderBottomWidth: 2,
+        borderBottomStyle: "solid",
+        zIndex: 100,
     }}>
         <PolicyEngineLogo />
         <HeaderNavigationItem label="About" href={PolicyEngine.getCountryLink("/about")} />

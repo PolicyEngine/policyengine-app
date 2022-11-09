@@ -2,20 +2,33 @@ import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
 import PolicyEngineContext from "../../countries/PolicyEngine";
+import Page from "../Layout/Page";
+import TableOfContents from "../Layout/TableOfContents";
 import HouseholdStructureInput from "./HouseholdStructureInput";
-import VariableCategory from "./VariableCategory";
+import Variables from "./Variables";
 
 
 export default function HouseholdEditPage() {
     const PolicyEngine = useContext(PolicyEngineContext);
-    const navigate = useNavigate();
+
+    let tree = [
+        {
+            title: "Your household",
+            key: "your_household",
+            children: [],
+        }
+    ]
+
+    tree = tree.concat(PolicyEngine.variableModuleTree);
+
     return (
-        <Container>
-        <h1>Household Edit</h1>
-        <p>Describe your household in as much detail as you'd like. Then, <u><a style={{cursor: "pointer"}} onClick={() => navigate(PolicyEngine.getCountryLink("/household"))}>see your taxes and benefits</a></u>.</p>
-       <HouseholdStructureInput />
-       <VariableCategory category="income" />
-       <VariableCategory category="demographic" />
-        </Container>
+        <Page
+            title="Household"
+            subtitle="Edit household structure and variables"
+            leftContent={<TableOfContents tree={tree} />}
+        >
+            <HouseholdStructureInput />
+            <Variables />
+        </Page>
     );
 }

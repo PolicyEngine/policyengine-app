@@ -35,6 +35,7 @@ export class PolicyEngine {
   householdUnderAxesPolicyCache = {};
 
   countryRelevantBlogPosts = [];
+  pageTreeParentChildRelations = {};
 
   constructor(country) {
     if (this.debug) {
@@ -96,17 +97,13 @@ export class PolicyEngine {
       `/household/${this.householdId}`,
       `/policy/${this.policyId}`,
       `/policy/${this.reformPolicyId}`,
-      "/parameters",
-      "/variables",
-      "/entities",
+      "/metadata",
     ];
     const keys = [
       "household",
       "policy",
       "reformPolicy",
-      "parameters",
-      "variables",
-      "entities",
+      "metadata",
     ];
     const promises = endpoints.map((endpoint) => this.countryApiCall(endpoint));
     return Promise.all(promises).then((data) => {
@@ -114,6 +111,11 @@ export class PolicyEngine {
       data.forEach((item, index) => {
         state[keys[index]] = item;
       });
+      state.parameters = state.metadata.parameters;
+      state.variables = state.metadata.variables;
+      state.entities = state.metadata.entities;
+      state.variableModules = state.metadata.variableModules;
+      state.variableModuleTree = this.getVariableModuleTree(state.variableModules);
       state.initialised = true;
       this.setState(state);
     });
@@ -235,6 +237,37 @@ export class PolicyEngine {
             });
     });
     return {};
+  }
+
+  getVariableModuleTree(variableModules) {
+    let variableNode = {children: []}
+
+    for (let [key, value] of Object.entries(variableModules)) {
+        let path = key.split(".");
+        let current = variableNode;
+        for (let i = 0; i < path.length; i++) {
+            let found = false;
+            for (let j = 0; j < current.children.length; j++) {
+                if (current.children[j].key === path[i]) {
+                    current = current.children[j];
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                let newChild = {
+                    title: value.title,
+                    subtitle: value.description,
+                    key: key,
+                    children: [],
+                }
+                current.children.push(newChild);
+                current = newChild;
+            }
+        }
+    }
+
+    return variableNode.children.filter((child) => child.key === "input");
   }
 }
 

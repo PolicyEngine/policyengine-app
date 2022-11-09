@@ -11,8 +11,8 @@ export default function VariableEntityPeriodInput(props) {
     const variable = PolicyEngine.variables[variableName];
     const entityPlural = PolicyEngine.entities[variable.entity].plural;
 
-    return <div style={{display: "flex", alignItems: "center"}}>
-            <p style={{paddingLeft: 100, margin: 0, paddingRight: 10, textAlign: "center"}}>{entityName}, in {props.period}: </p>
+    return <div style={{display: "flex", alignItems: "center", paddingTop: 20, paddingBottom: 20}}>
+            <p style={{paddingLeft: 10, margin: 0, paddingRight: 10, textAlign: "center"}}>{entityName}, in {props.period}: </p>
             <p style={{fontSize: 30, margin: 0}}><VariablePrefix variable={variableName} /></p>
             <input
                 type="number"

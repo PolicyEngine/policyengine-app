@@ -77,15 +77,17 @@ export default function PolicyEngineCountry(props) {
 
     return <PolicyEngineContext.Provider value={PolicyEngine.state}>
         <Header />
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/household/edit" element={<HouseholdEditPage />} />
-            <Route path="/household" element={<HouseholdPage />} />
-            <Route path="/policy" element={<PolicyPage />} />
-            <Route path="/economy" element={<EconomyPage />} />
-            {blogPostPages}
-        </Routes>
+        <div style={{paddingTop: 75}}>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/household/edit" element={<HouseholdEditPage />} />
+                <Route path="/household" element={<HouseholdPage />} />
+                <Route path="/policy" element={<PolicyPage />} />
+                <Route path="/economy" element={<EconomyPage />} />
+                {blogPostPages}
+            </Routes>
+        </div>
     </PolicyEngineContext.Provider>
 }

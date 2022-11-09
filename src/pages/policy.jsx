@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import PolicyEngineContext from "../countries/PolicyEngine";
+import Page from "./Layout/Page";
+import PageSection from "./Layout/PageSection";
 
 
 export default function PolicyPage() {
     const PolicyEngine = useContext(PolicyEngineContext);
-    return (
-        <Container>
-        <h1>Policy</h1>
-        <p>Country: {PolicyEngine.country}</p>
-        <p>Household: {PolicyEngine.householdId}</p>
-        <p>Policy: {JSON.stringify(PolicyEngine.policy)}</p>
-        <p>Reform policy: {JSON.stringify(PolicyEngine.policy)}</p>
-        </Container>
-    );
+    return <Page 
+        title="Design the tax-benefit system" 
+        subtitle="Change parameters for taxes and benefits from their default values below." 
+    >
+        <PageSection title="Income tax">
+            <PageSection title="Tax rates" />
+            <PageSection title="Tax brackets" />
+        </PageSection>
+    </Page>
     }

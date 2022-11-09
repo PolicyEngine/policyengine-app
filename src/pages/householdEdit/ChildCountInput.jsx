@@ -105,7 +105,7 @@ export default function ChildCountInput(props) {
         }}
         title="How many children do you have?"
         keys={[0, 1, 2, 3]}
-        labels={["No children", "1", "2", "3"]}
+        labels={["None", "1", "2", "3"]}
     />
   );
 }
