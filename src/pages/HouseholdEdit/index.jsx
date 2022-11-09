@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Container } from "react-bootstrap";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PolicyEngineContext from "../../countries/PolicyEngine";
 import Page from "../Layout/Page";
 import TableOfContents from "../Layout/TableOfContents";
@@ -10,6 +10,7 @@ import Variables from "./Variables";
 
 export default function HouseholdEditPage() {
     const PolicyEngine = useContext(PolicyEngineContext);
+    const navigate = useNavigate();
 
     let tree = [
         {
@@ -26,6 +27,12 @@ export default function HouseholdEditPage() {
             title="Household"
             subtitle="Edit household structure and variables"
             leftContent={<TableOfContents tree={tree} />}
+            rightContent={<>
+                <h4 
+                    onClick={() => navigate(PolicyEngine.getCountryLink("/household"))}
+                    style={{cursor: "pointer", textDecoration: "underline"}}
+                >Compute my net income</h4>
+            </>}
         >
             <HouseholdStructureInput />
             <Variables />

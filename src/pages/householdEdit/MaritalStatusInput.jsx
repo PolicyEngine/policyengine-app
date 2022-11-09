@@ -22,24 +22,24 @@ function getUSMaritalStatus(householdData) {
     return; // TODO
 }
 
-function setMaritalStatus(householdData, maritalStatus, country) {
+function setMaritalStatus(householdData, maritalStatus, country, variables) {
     let newHouseholdData = JSON.parse(JSON.stringify(householdData));
     const currentStatus = getMaritalStatus(newHouseholdData, country);
     if (currentStatus === maritalStatus) {
         return newHouseholdData;
     } else if (maritalStatus === "married") {
-        newHouseholdData = addPartner(newHouseholdData, country);
+        newHouseholdData = addPartner(newHouseholdData, country, variables);
     } else if (maritalStatus === "single") {
         newHouseholdData = removePartner(newHouseholdData, country);
     }
     return newHouseholdData;
 }
 
-function addPartner(householdData, country) {
+function addPartner(householdData, country, variables) {
     if (country === "uk") {
-        return addUKPartner(householdData);
+        return addUKPartner(householdData, variables);
     } else if (country === "us") {
-        return addUSPartner(householdData);
+        return addUSPartner(householdData, variables);
     }
 }
 
@@ -51,18 +51,30 @@ function removePartner(householdData, country) {
     }
 }
 
-function addUKPartner(householdData) {
+function addUKPartner(householdData, variables) {
     const newHouseholdData = JSON.parse(JSON.stringify(householdData));
-    const newPartner = {
-        age: { 2022: 30 },
-        employment_income: { 2022: 0 },
-        self_employment_income: { 2022: 0 },
-        pension_income: { 2022: 0 },
-        property_income: { 2022: 0 },
-        savings_interest_income: { 2022: 0 },
-        dividend_income: { 2022: 0 },
+    const inputVariables = Object.values(variables).filter((variable) => (
+        (variable.isInputVariable)
+        && (variable.definitionPeriod == "year")
+        && (variable.valueType == "float")
+        && (variable.entity == "person")
+    ));
+    const outputVariables = Object.values(variables).filter((variable) => (
+        (!variable.isInputVariable)
+        && (variable.definitionPeriod == "year")
+        && (variable.valueType == "float")
+        && (variable.entity == "person")
+    ));
+    let newPartner = {
         marginal_tax_rate: { 2022: null },
     };
+    for (let variable of inputVariables) {
+        newPartner[variable.name] = { 2022: variable.defaultValue };
+    }
+    for (let variable of outputVariables) {
+        newPartner[variable.name] = { 2022: null };
+    }
+
     newHouseholdData.people["Your spouse"] = newPartner;
     newHouseholdData.benunits["Your benefit unit"].members.push("Your spouse");
     newHouseholdData.households["Your household"].members.push("Your spouse");
@@ -82,7 +94,7 @@ function removeUKPartner(householdData) {
     return newHouseholdData;
 }
 
-function addUSPartner(householdData) {
+function addUSPartner(householdData, variables) {
     return; // TODO
 }
 
@@ -96,7 +108,7 @@ export default function MaritalStatusInput(props) {
     <RadioButton
         selected={getMaritalStatus(PolicyEngine.household.household, PolicyEngine.country)}
         onSelect={(status) => {
-            PolicyEngine.setHouseholdData(setMaritalStatus(PolicyEngine.household.household, status, PolicyEngine.country));
+            PolicyEngine.setHouseholdData(setMaritalStatus(PolicyEngine.household.household, status, PolicyEngine.country, PolicyEngine.variables));
         }}
         title="What is your marital status?"
         keys={["single", "married"]}

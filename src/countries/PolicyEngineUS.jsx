@@ -5,8 +5,9 @@ export default class PolicyEngineUS extends PolicyEngine {
         super("uk");
 
         this.country = "us";
-        this.householdId = "default";
-        this.policyId = "current-law";
-        this.reformPolicyId = "current-law";
+    }
+
+    initialiseCountry() {
+        
     }
 }

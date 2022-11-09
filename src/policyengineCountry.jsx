@@ -30,17 +30,13 @@ export default function PolicyEngineCountry(props) {
     let searchParamsToAdd = {};
     // Get policy ID if present in query parameters under policy=...
     const policyId = search.get("policy");
-    if (policyId && (policyId !== PolicyEngine.state.policyId)) {
+    if ((policyId !== null) && (policyId !== PolicyEngine.state.policyId)) {
         PolicyEngine.state.setPolicy(policyId);
-    } else if (!policyId) {
-        searchParamsToAdd["policy"] = PolicyEngine.state.policyId;
     }
 
     const reformPolicyId = search.get("reform");
     if (reformPolicyId && (reformPolicyId !== PolicyEngine.state.reformPolicyId)) {
         PolicyEngine.state.setReformPolicy(reformPolicyId);
-    } else if (!reformPolicyId) {
-        searchParamsToAdd["reform"] = PolicyEngine.state.reformPolicyId;
     }
 
     // If policy and/or reform policy are not in the URL, add them.

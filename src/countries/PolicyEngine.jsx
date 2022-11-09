@@ -94,17 +94,17 @@ export class PolicyEngine {
       setHolderState({ state: Object.assign(this, data) });
     };
     const endpoints = [
-      `/household/${this.householdId}`,
-      `/policy/${this.policyId}`,
-      `/policy/${this.reformPolicyId}`,
+      this.householdId ? `/household/${this.householdId}` : null,
+      this.policyId ? `/policy/${this.policyId}` : null,
+      this.reformPolicyId ? `/policy/${this.reformPolicyId}` : null,
       "/metadata",
-    ];
+    ].filter((endpoint) => endpoint !== null);
     const keys = [
-      "household",
-      "policy",
-      "reformPolicy",
+      this.householdId ? "household" : null,
+      this.policyId ? "policy" : null,
+      this.reformPolicyId ? "reformPolicy" : null,
       "metadata",
-    ];
+    ].filter((key) => key !== null);
     const promises = endpoints.map((endpoint) => this.countryApiCall(endpoint));
     return Promise.all(promises).then((data) => {
       const state = {};
@@ -117,6 +117,23 @@ export class PolicyEngine {
       state.variableModules = state.metadata.variableModules;
       state.variableModuleTree = this.getVariableModuleTree(state.variableModules);
       state.initialised = true;
+      if (!this.householdId) {
+        state.household = {
+          country_id: this.country,
+          household: this.getDefaultHousehold(state.variables),
+          label: "Default household",
+        };
+      }
+      if (!this.policy) {
+        state.policy = {
+          country_id: this.country,
+          label: "Current law",
+          policy: [],
+        };
+      }
+      if (!this.reformPolicy) {
+        state.reformPolicy = JSON.parse(JSON.stringify(state.policy));
+      }
       this.setState(state);
     });
   }
