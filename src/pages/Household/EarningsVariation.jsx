@@ -8,14 +8,14 @@ import { BLUE } from "../../style";
 export default function EarningsVariation(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
 
-    const household = PolicyEngine.getHouseholdUnderAxesPolicy("current-law", [[{name: "employment_income", min: 0, max: 200_000, count: 501}]], "earnings");
-
+    const household = PolicyEngine.getHouseholdUnderAxesPolicy("current-law", "employment_income", 2022, 0, 200_000, 101);
+    console.log(household)
     if (!household.households) {
         return JSON.stringify(household);
     }
     return <>
         <Row>
-            <h2>How your earnings affect your net income</h2>
+            <h2 id="earnings_variation">How your earnings affect your net income</h2>
             <p>
             If your earnings varied between £0 and £200,000, here's how your net
             income would respond.
@@ -23,6 +23,7 @@ export default function EarningsVariation(props) {
         </Row>
         <Row>
             <Col>
+                <h3 id="earnings_variation_net_income">Net income by earnings</h3>
                 <Plot data={[
                     {
                         x: household.households["Your household"].household_market_income[2022],
@@ -49,16 +50,11 @@ export default function EarningsVariation(props) {
                     }}
                 />
             </Col>
-            <Col>
-                <h4>Net income by market income</h4>
-            </Col>
         </Row>
         
         <Row>
             <Col>
-                <h4>Your marginal tax rate by earnings</h4>
-            </Col>
-            <Col>
+                <h3 id="earnings_variation_marginal_tax_rate">Marginal tax rate by earnings</h3>
                 <Plot data={[
                     {
                         x: household.households["Your household"].household_market_income[2022],

@@ -57,7 +57,10 @@ export default function PolicyEngineCountry(props) {
         sortedSearchParams.set(key, searchParams.get(key));
     });
     url.search = sortedSearchParams.toString();
-    window.history.replaceState({}, "", url);
+    // Only update the URL if it has changed
+    if (url.toString() !== window.location.toString()) {
+        window.history.replaceState({}, "", url);
+    }
 
     if (!PolicyEngine.state.initialised) {
         PolicyEngine.state.initialise(setPolicyEngineState);

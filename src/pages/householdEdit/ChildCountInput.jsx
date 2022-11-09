@@ -57,13 +57,13 @@ function addUKChild(householdData, variables) {
   const inputVariables = Object.values(variables).filter((variable) => (
     (variable.isInputVariable)
     && (variable.definitionPeriod == "year")
-    && (variable.valueType == "float")
+    && (["float", "int"].includes(variable.valueType))
     && (variable.entity == "person")
   ));
   const outputVariables = Object.values(variables).filter((variable) => (
     (!variable.isInputVariable)
     && (variable.definitionPeriod == "year")
-    && (variable.valueType == "float")
+    && (["float", "int"].includes(variable.valueType))
     && (variable.entity == "person")
   ));
 

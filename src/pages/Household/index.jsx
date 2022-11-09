@@ -2,17 +2,21 @@ import { useEffect } from "react";
 import { useContext, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import PolicyEngineContext from "../../countries/PolicyEngine";
+import Page from "../Layout/Page";
+import Breakdown from "./Breakdown";
 import EarningsVariation from "./EarningsVariation";
 import HouseholdResult from "./HouseholdResult";
 
 export default function HouseholdPage(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
+    const household = variable => PolicyEngine.getHouseholdValue(variable);
+    const householdStr = variable => PolicyEngine.getFormattedHouseholdValue(variable);
 
     if (PolicyEngine.householdNeedsSaving) {
         PolicyEngine.saveHousehold();
     }
 
-    if (!PolicyEngine.householdUnderPolicyCache[PolicyEngine.policyId]) {
+    if (!PolicyEngine.householdNeedsSaving && !PolicyEngine.householdUnderPolicyCache[PolicyEngine.policyId]) {
         PolicyEngine.countryApiCall(`/household/${PolicyEngine.householdId}/${PolicyEngine.policyId}`)
             .then((data) => {
                 let cache = PolicyEngine.householdUnderPolicyCache;
@@ -20,105 +24,36 @@ export default function HouseholdPage(props) {
                 PolicyEngine.setState({householdUnderPolicyCache: cache});
             });
     }
+
+    const tree = [
+        {
+            title: "How we computed your income",
+            key: "breakdown",
+        },
+        {
+            title: "How earnings affect your net income",
+            key: "earnings_variation",
+            children: [
+                {
+                    title: "Net income by earnings",
+                    key: "earnings_variation_net_income",
+                },
+                {
+                    title: "Marginal tax rate by earnings",
+                    key: "earnings_variation_marginal_tax_rate",
+                }
+            ]
+        }
+    ]
     
     return (
-        <Container>
-        <h5>Household</h5>
-        <h1>
-            Your household net income is{" "}
-            <b>
-            <HouseholdResult
-                variable="household_net_income"
-                period="2022"
-                entity="Your household"
-            />
-            </b>
-            .
-        </h1>
-        <p>
-            This is your household's remaining income after subtracting taxes and
-            adding eligible benefits.
-        </p>
-        <Row style={{ paddingTop: 30 }}>
-            <Col>
-            <h1 style={{ paddingLeft: 25 }}>
-                <HouseholdResult
-                variable="household_market_income"
-                period="2022"
-                entity="Your household"
-                />
-            </h1>
-            <h5 style={{ paddingLeft: 25 }}>Market income</h5>
-            </Col>
-            <Col>
-            <h4>
-                <HouseholdResult
-                variable="household_market_income"
-                period="2022"
-                entity="Your household"
-                />{" "}
-                market income
-            </h4>
-            </Col>
-        </Row>
-        <Row style={{ paddingTop: 30 }}>
-            <Col>
-            <h1>-<HouseholdResult
-                variable="household_tax"
-                period="2022"
-                entity="Your household"
-                /></h1>
-            <h5 style={{ paddingLeft: 25 }}>Taxes</h5>
-            </Col>
-            <Col>
-            <h4><HouseholdResult
-                variable="income_tax"
-                period="2022"
-                entity="You"
-                /> in Income Tax</h4>
-            <h4>+ <HouseholdResult
-                variable="tv_licence"
-                period="2022"
-                entity="Your household"
-                /> in TV licences</h4>
-            <h4>= <HouseholdResult
-                variable="household_tax"
-                period="2022"
-                entity="Your household"
-                /></h4>
-            </Col>
-        </Row>
-        <Row style={{ paddingTop: 30 }}>
-            <Col>
-            <h1>+<HouseholdResult
-                variable="household_benefits"
-                period="2022"
-                entity="Your household"
-                /></h1>
-            <h5 style={{ paddingLeft: 25 }}>Benefits</h5>
-            </Col>
-            <Col>
-            <h4><HouseholdResult
-                variable="universal_credit"
-                period="2022"
-                entity="Your benefit unit"
-                /> from Universal Credit</h4>
-            </Col>
-        </Row>
-        <Row style={{ paddingTop: 30 }}>
-            <Col>
-            <h1>=<HouseholdResult
-                variable="household_net_income"
-                period="2022"
-                entity="Your household"
-                /></h1>
-            <h5 style={{ paddingLeft: 25 }}>Net income</h5>
-            </Col>
-            <Col></Col>
-        </Row>
-        <Row style={{ paddingTop: 30 }}>
+        <Page
+            title={`Your household net income is ${householdStr('household_net_income')}`}
+            subtitle="See the details of your household's taxes and benefits below"
+            tree={tree}
+        >
+            <Breakdown />
             <EarningsVariation />
-        </Row>
-        </Container>
+        </Page>
     );
 }

@@ -30,7 +30,7 @@ export class PolicyEngine {
   apiURL = null;
   initialised = false;
 
-  householdNeedsSaving = false; // After a household is edited, this flag is set to true to indicate that the household stored on PolicyEngine's servers is outdated compared to the new locally-defined household.
+  householdNeedsSaving = true; // After a household is edited, this flag is set to true to indicate that the household stored on PolicyEngine's servers is outdated compared to the new locally-defined household.
   householdUnderPolicyCache = {};
   householdUnderAxesPolicyCache = {};
 
@@ -130,9 +130,11 @@ export class PolicyEngine {
           label: "Current law",
           policy: [],
         };
+        state.policyId = "current-law";
       }
       if (!this.reformPolicy) {
         state.reformPolicy = JSON.parse(JSON.stringify(state.policy));
+        state.reformPolicyId = "current-law";
       }
       this.setState(state);
     });
@@ -189,7 +191,7 @@ export class PolicyEngine {
 
   saveHousehold() {
     // Save the household to the server
-    fetch(`${this.apiURL}/${this.country}/household`, {
+    return fetch(`${this.apiURL}/${this.country}/household${this.householdId ? '/' + this.householdId : ''}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -217,9 +219,14 @@ export class PolicyEngine {
   }
 
   getHouseholdUnderPolicy(policyId) {
+    if (this.householdNeedsSaving) {
+      return {};
+    }
     if (this.householdUnderPolicyCache[policyId]) {
         return this.householdUnderPolicyCache[policyId];
     };
+    this.householdUnderPolicyCache[policyId] = {};
+    this.setState({ householdUnderPolicyCache: this.householdUnderPolicyCache });
     return this.countryApiCall(
       `/household/${this.householdId}/${policyId}`
     ).then((household) => {
@@ -228,30 +235,26 @@ export class PolicyEngine {
     });
   }
 
-  getHouseholdUnderAxesPolicy(policyId, axes, name) {
-    const newId = `${policyId}-${name}`;
-    if (this.householdUnderAxesPolicyCache[newId]) {
-        return this.householdUnderAxesPolicyCache[newId];
+  getHouseholdUnderAxesPolicy(policyId, variable, period, min, max, count) {
+    if (this.householdNeedsSaving) {
+      return {};
+    }
+    const key = `${policyId}-${variable}-${period}-${min}-${max}-${count}`;
+    if (this.householdUnderAxesPolicyCache[key]) {
+        return this.householdUnderAxesPolicyCache[key];
     };
-    let householdData = JSON.parse(JSON.stringify(this.household.household));
-    householdData["axes"] = axes;
-    fetch(`${this.apiURL}/${this.country}/household/${newId}`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(householdData),
+    this.householdUnderAxesPolicyCache[key] = {};
+    this.setState({ householdUnderAxesPolicyCache: this.householdUnderAxesPolicyCache });
+    fetch(`${this.apiURL}/${this.country}/household/${this.householdId}/${policyId}?axis_variable=${variable}&axis_period=${period}&axis_min=${min}&axis_max=${max}&axis_count=${count}`, {
+        method: "GET",
     }).then((response) => {
         if (response.ok) {
             return response.json();
         }
-    }).then((data) => {
-        this.countryApiCall(`/household/${newId}/${policyId}`).then(
-            (household) => {
-                this.householdUnderAxesPolicyCache[newId] = household;
-                this.setState({ householdUnderAxesPolicyCache: this.householdUnderAxesPolicyCache });
-                return household;
-            });
+    }).then((household) => {
+        this.householdUnderAxesPolicyCache[key] = household;
+        this.setState({ householdUnderAxesPolicyCache: this.householdUnderAxesPolicyCache });
+        return household;
     });
     return {};
   }
@@ -286,6 +289,112 @@ export class PolicyEngine {
 
     return variableNode.children.filter((child) => child.key === "input");
   }
+
+  getHouseholdValue(variableName, timePeriod, entityName, policyId) {
+    if (Array.isArray(variableName)) {
+      if (variableName.length === 0) {
+        return null;
+      }
+      let sum = 0;
+      for (let i = 0; i < variableName.length; i++) {
+        sum += this.getHouseholdValue(
+          variableName[i],
+          timePeriod,
+          entityName,
+          policyId
+        );
+      }
+      return sum;
+    }
+    if (policyId == null) {
+      policyId = this.policyId;
+    }
+    const cache = this.householdUnderPolicyCache[policyId];
+    if (cache == null) {
+      return null;
+    }
+
+    const entityPlural = this.entities[this.variables[variableName].entity].plural;
+
+    if (!cache[entityPlural]) {
+      return null;
+    }
+
+    if (entityName == null) {
+      const possibleEntities = Object.keys(cache[entityPlural]);
+      let sum = 0;
+      for (let i = 0; i < possibleEntities.length; i++) {
+        sum += this.getHouseholdValue(variableName, timePeriod, possibleEntities[i], policyId);
+      }
+      return sum;
+    }
+
+    if (!cache[entityPlural][entityName] || !cache[entityPlural][entityName][variableName]) {
+      return null;
+    }
+
+    if (timePeriod == null) {
+      const possibleTimePeriods = Object.keys(cache[entityPlural][entityName][variableName]);
+      let sum = 0;
+      for (let i = 0; i < possibleTimePeriods.length; i++) {
+        sum += this.getHouseholdValue(variableName, possibleTimePeriods[i], entityName, policyId);
+      }
+      return sum;
+    }
+
+    return cache[entityPlural][entityName][variableName][timePeriod];
+
+  }
+
+  getFormattedHouseholdValue(variableName, timePeriod, entityName, policyId) {
+    const value = this.getHouseholdValue(variableName, timePeriod, entityName, policyId);
+    if (value == null) {
+      return null;
+    }
+    // If variableName is an array, use the first to decide on formatting.
+    if (Array.isArray(variableName)) {
+      variableName = variableName[0];
+    }
+    return this.formatValue(variableName, value);
+  }
+
+  formatValue(variableName, value) {
+    const variable = this.variables[variableName];
+    let formatter;
+    if (variable.unit === "currency-GBP") {
+      formatter = new Intl.NumberFormat("en-UK", {
+        style: "currency",
+        currency: "GBP",
+      });
+      return formatter.format(value);
+    } else if (variable.unit === "currency-USD") {
+      formatter = new Intl.NumberFormat("en-UK", {
+        style: "currency",
+        currency: "GBP",
+      });
+      return formatter.format(value);
+    }
+  }
+
+  formatListOfVariables(variableNames, typeName, typeNamePlural) {
+    // Format a list of variable names, e.g.:
+    // ["income_tax", "national_insurance", "council_tax"] -> "Income Tax, National Insurance and 1 other tax"
+    // ["income_tax", "national_insurance"] -> "Income Tax and National Insurance"
+    // ["income_tax", "national_insurance", "council_tax", "vat"] -> "Income Tax, National Insurance and 2 other taxes"
+
+    if (variableNames.length === 0) {
+      return "";
+    } else if (variableNames.length === 1) {
+      return this.variables[variableNames[0]].label;
+    } else if (variableNames.length === 2) {
+      return `${this.variables[variableNames[0]].label} and ${this.variables[variableNames[1]].label}`;
+    } else {
+      return `${this.variables[variableNames[0]].label}, ${this.variables[variableNames[1]].label} and ${variableNames.length - 2} other ${variableNames.length - 2 === 1 ? typeName : typeNamePlural}`;
+    }
+
+
+  }
+
 }
 
 const PolicyEngineContext = createContext(null);

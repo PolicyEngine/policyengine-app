@@ -11,7 +11,7 @@ export default function Page(props) {
         </Row>
         <Row>
             <Col md={3} style={{position: "fixed"}}>
-                {props.leftContent}
+                {props.leftContent || <TableOfContents tree={props.tree} />}
             </Col>
             <Col md={6} style={{marginLeft: "25%"}}>
                 {props.children}
