@@ -5,7 +5,6 @@ import PolicyEngineContext from "../../countries/PolicyEngine";
 import Page from "../Layout/Page";
 import Breakdown from "./Breakdown";
 import EarningsVariation from "./EarningsVariation";
-import HouseholdResult from "./HouseholdResult";
 
 export default function HouseholdPage(props) {
     const PolicyEngine = useContext(PolicyEngineContext);

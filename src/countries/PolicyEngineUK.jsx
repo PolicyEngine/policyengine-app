@@ -5,6 +5,8 @@ export default class PolicyEngineUK extends PolicyEngine {
         super("uk");
 
         this.country = "uk";
+        this.employment_income = "employment_income";
+        this.household_net_income = "household_net_income";
     }
 
     getDefaultHousehold(variables) {
