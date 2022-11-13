@@ -1,11 +1,7 @@
+import colors from "./colors";
+import spacing from "./spacing";
 
-const WHITE = "#FFF"
-const BLUE = "#5091cc"
-const GRAY = "#BDBDBD"
-const DARK_GRAY = "#D2D2D2"
-const LIGHT_GRAY = "#F2F2F2"
-const LIGHT_GREEN = "#C5E1A5"
-const DARK_GREEN = "#558B2F"
-
-
-export { WHITE, BLUE, GRAY, DARK_GRAY, LIGHT_GRAY, LIGHT_GREEN, DARK_GREEN };
+export default {
+    colors,
+    spacing,
+}
