@@ -63,7 +63,7 @@ export default function CountChildren(props) {
             PolicyEngine.metadata.variables,
             PolicyEngine.metadata.entities,
         );
-        PolicyEngine.setState({household: newHousehold});
+        PolicyEngine.setState({household: newHousehold, earningsVariationIsOutdated: true});
         PolicyEngine.simulateHousehold(newHousehold);
     };
     const radioButtonComponent = <RadioButton

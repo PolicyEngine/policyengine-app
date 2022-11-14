@@ -13,6 +13,7 @@ function HouseholdVariableEntityInput(props) {
         newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
         PolicyEngine.setState({
             household: newHousehold,
+            earningsVariationIsOutdated: true,
         });
         PolicyEngine.simulateHousehold(newHousehold);
 

@@ -20,6 +20,7 @@ export class PolicyEngineContextClass {
 
   page = "structure.maritalStatus"
   variableNames = {};
+  earningsVariationIsOutdated = true;
 
   constructor(country) {
     this.country = country;
@@ -31,10 +32,21 @@ export class PolicyEngineContextClass {
     if (country === "uk") {
       this.variableNames = {
         netIncome: "household_net_income",
+        marketIncome: "household_market_income",
+        taxes: "household_tax",
+        benefits: "household_benefits",
+        earnings: "employment_income",
+        mtr: "marginal_tax_rate",
       }
     } else if (country === "us") {
       this.variableNames = {
         netIncome: "spm_unit_net_income",
+        marketIncome: "spm_unit_market_income",
+        taxes: "spm_unit_taxes",
+        benefits: "spm_unit_benefits",
+        refundableTaxCredits: "refundable_tax_credits",
+        earnings: "employment_income",
+        mtr: "marginal_tax_rate",
       }
     }
   }
@@ -97,7 +109,10 @@ export class PolicyEngineContextClass {
       });
   }
 
-  getSimulatedValue(variable, timePeriod, entityName) {
+  getSimulatedValue(variable, timePeriod, entityName, household) {
+    if (!household) {
+      household = this.simulatedHousehold;
+    }
     const entityPlural = this.metadata.entities[this.metadata.variables[variable].entity].plural;
     if (!this.simulatedHousehold) {
       return null;

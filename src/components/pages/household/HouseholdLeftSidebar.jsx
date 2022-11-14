@@ -37,11 +37,10 @@ function SidebarItemGroup(props) {
     const label = props.label;
     const groupChildren = props.groupChildren;
     const itemChildren = props.itemChildren;
-    const selectedVariableIfExists = PolicyEngine.metadata.variables[PolicyEngine.page];
+    const selectedVariableIfExists = (PolicyEngine.metadata.variables[PolicyEngine.page] || {}).moduleName || PolicyEngine.page;
     const [expanded, setExpanded] = useState(
         props.expanded || (
-            selectedVariableIfExists !== undefined
-            && selectedVariableIfExists.moduleName.includes(name)
+            selectedVariableIfExists.includes(name)
         )
     );
 
@@ -131,12 +130,11 @@ function VariableHierarchy(props) {
         key => key.includes("input") && key !== "input"
     )
 
-    // Should fade out at the bottom
-
     return <div
         style={{
-            height: "50%",
-            overflow: "auto",
+            height: "30%",
+            overflow: "hidden",
+            overflowY: "scroll",
             borderBottomWidth: 3,
             borderBottomStyle: "solid",
             borderBottomColor: style.colors.DARK_GRAY,
@@ -176,7 +174,7 @@ function VariableSearch() {
         <div
             style={{
                 height: "40%",
-                overflow: "auto",
+                overflow: "scroll",
                 paddingTop: 10,
             }}
         >
@@ -200,26 +198,66 @@ function VariableSearch() {
     
 }
 
+function InputMenuSidebar(props) {
+    return <AnimatePresence>
+        <motion.div
+            initial={{opacity: 0, x: -10}}
+            animate={{opacity: 1, x: 0}}
+            exit={{opacity: 0, x: -10}}
+            enter={{opacity: 1, x: 0}}
+        >
+            <SidebarItemGroup
+                name="structure"
+                label="Household"
+                groupChildren={[
+                    <SidebarItem key="marital" name="structure.maritalStatus" label="Marital status" />,
+                    <SidebarItem key="children" name="structure.children" label="Children" />,
+                ]}
+            />
+            <VariableHierarchy />
+            <VariableSearch />
+        </motion.div>
+    </AnimatePresence>
+}
+
+function OutputMenuSidebar(props) {
+    return <AnimatePresence>
+        <motion.div
+            initial={{opacity: 0, x: -10}}
+            animate={{opacity: 1, x: 0}}
+            exit={{opacity: 0, x: -10}}
+            enter={{opacity: 1, x: 0}}
+        >
+            <SidebarItem
+                name="householdOutput.netIncome"
+                label="Net income"
+            />
+            <SidebarItem
+                name="householdOutput.earnings"
+                label="Varying your earnings"
+            />
+            <SidebarItem
+                name="householdOutput.mtr"
+                label="Your marginal tax rate"
+            />
+        </motion.div>
+    </AnimatePresence>
+}
+
 
 export default function HouseholdLeftSidebar(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
+    const isExpanded = PolicyEngine.page.startsWith("householdOutput.");
     return <div
         style={{
             height: `calc(100vh - ${style.spacing.HEADER_SIZE}px - 80px)`,
-            overflowY: "hidden",
+            overflowY: "scroll",
 
         }}
     >
         <h2 style={{marginBottom: 50}}>Household</h2>
-        <SidebarItemGroup
-            name="structure"
-            label="Household"
-            groupChildren={[
-                <SidebarItem key="marital" name="structure.maritalStatus" label="Marital status" />,
-                <SidebarItem key="children" name="structure.children" label="Children" />,
-            ]}
-        />
-        <VariableHierarchy />
-        <VariableSearch />
+        {
+            isExpanded ? <OutputMenuSidebar /> : <InputMenuSidebar />
+        }
     </div>
 }

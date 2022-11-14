@@ -102,16 +102,13 @@ export default function Household() {
                 width: "60%",
                 backgroundColor: "#f5f5f5",
             }}>
-                <AnimatePresence>
-                    <motion.div 
-                        style={{padding: 20}}
-                        initial={{x: -100, opacity: 0}}
-                        animate={{x: 0, opacity: 1}}
-                        exit={{x: 100, opacity: 0}}
-                    >
-                        {mainComponent}
-                    </motion.div>
-                </AnimatePresence>
+                <div 
+                    style={{
+                        padding: 20,
+                    }}
+                >
+                    {mainComponent}
+                </div>
                 <OutputPanel />
             </div>
             <div style={{
