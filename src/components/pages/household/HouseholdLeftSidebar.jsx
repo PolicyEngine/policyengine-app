@@ -7,7 +7,7 @@ import Menu from "../../layout/Menu";
 
 export default function HouseholdLeftSidebar(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
-    const isExpanded = PolicyEngine.page.startsWith("householdOutput.");
+    const isExpanded = PolicyEngine.householdPage.startsWith("householdOutput.");
     if (!PolicyEngine.metadata) {
         return null;
     }
@@ -36,8 +36,8 @@ export default function HouseholdLeftSidebar(props) {
     return <>
         <Menu
             tree={tree}
-            selected={PolicyEngine.page}
-            onSelect={(name) => PolicyEngine.setState({page: name})}
+            selected={PolicyEngine.householdPage}
+            onSelect={(name) => PolicyEngine.setState({householdPage: name})}
         />
         <div style={{
             borderBottomWidth: 3,
@@ -48,8 +48,8 @@ export default function HouseholdLeftSidebar(props) {
         }} />
         <Menu
             tree={outputMenuTree}
-            selected={PolicyEngine.page}
-            onSelect={(name) => PolicyEngine.setState({page: name})}
+            selected={PolicyEngine.householdPage}
+            onSelect={(name) => PolicyEngine.setState({householdPage: name})}
         />
     </>
 }

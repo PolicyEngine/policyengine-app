@@ -73,7 +73,7 @@ function HouseholdVariableEntity(props) {
 
 export default function HouseholdVariablePage(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
-    const variableName = PolicyEngine.page.split(".")[PolicyEngine.page.split(".").length - 1];
+    const variableName = PolicyEngine.householdPage.split(".")[PolicyEngine.householdPage.split(".").length - 1];
     const selectedVariable = PolicyEngine.metadata.variables[variableName];
     const entityPlural = PolicyEngine.metadata.entities[selectedVariable.entity].plural;
     const variablesInOrder = PolicyEngine.variablesInOrder;
@@ -115,7 +115,7 @@ export default function HouseholdVariablePage(props) {
                         color: style.colors.BLACK,
                         cursor: "pointer",
                     }}
-                    onClick={() => PolicyEngine.setState({page: nextVariable.moduleName + "." + nextVariable.name})}
+                    onClick={() => PolicyEngine.setState({householdPage: nextVariable.moduleName + "." + nextVariable.name})}
                 >&#8594; {capitalize(nextVariable.label)}</h4>
             }
         </div>

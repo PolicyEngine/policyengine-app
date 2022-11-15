@@ -91,7 +91,7 @@ export default function CountChildren(props) {
                     color: style.colors.BLACK,
                     cursor: "pointer",
                 }}
-                onClick={() => PolicyEngine.setState({page: nextVariable.moduleName + "." + nextVariable.name})}
+                onClick={() => PolicyEngine.setState({householdPage: nextVariable.moduleName + "." + nextVariable.name})}
             >&#8594; {capitalize(PolicyEngine.metadata.variables[variablesInOrder[0]].label)}</h4>
         </motion.div>
     </>

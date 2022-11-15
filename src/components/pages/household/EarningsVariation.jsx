@@ -32,7 +32,7 @@ export function EarningsVariation(props) {
     const earningsVariable = PolicyEngine.metadata.variables[PolicyEngine.variableNames.earnings];
     const netIncomeVariable = PolicyEngine.metadata.variables[PolicyEngine.variableNames.netIncome];
     return <div style={{padding: 20, paddingLeft: 40}}>
-        <h4 onClick={() => PolicyEngine.setState({page: "structure.maritalStatus"})}> &#8592; Back</h4>
+        <h4 onClick={() => PolicyEngine.setState({householdPage: "structure.maritalStatus"})}> &#8592; Back</h4>
         <h1 style={{marginTop: 50}}>Varying your earnings</h1>
         <p>The below chart shows your household's net income as your employment income varies.</p>
         <Plot

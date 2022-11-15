@@ -20,7 +20,7 @@ function MenuItem(props) {
             whileHover={{x: 5}}
         >
             {selected.includes(name) && <span style={{marginRight: 10}}>&#8594;</span>}
-            {label}
+            {label || name.split(".").pop()}
         </motion.h5>
     </motion.div>
 }
@@ -105,7 +105,7 @@ function MenuItemGroup(props) {
             whileHover={{x: 5}}
             transition={{duration: 0.25}}
             style={{fontSize: 18}}
-        >{label}</motion.h5>
+        >{label || name.split(".").pop()}</motion.h5>
         {expandedComponentSpace}
     </motion.div>
 }

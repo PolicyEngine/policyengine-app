@@ -2,12 +2,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useContext, useState } from "react"
 import PolicyEngineContext from "../../../logic/PolicyEngineContext";
 import style from "../../../style";
+import Menu from "../../layout/Menu";
 
 function SidebarItem(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
     const name = props.name;
     const label = props.label;
-    const selected = PolicyEngine.page === name;
+    const selected = PolicyEngine.householdPage === name;
 
     // If selected, display a Unicode right arrow to the left of the label
 
@@ -18,7 +19,7 @@ function SidebarItem(props) {
         paddingTop: 5,
         paddingBottom: 5,
     }}
-    onClick={() => PolicyEngine.setState({page: name})}
+    onClick={() => PolicyEngine.setState({policyPage: name})}
     >
         <motion.h5 
             style={{fontSize: 18}}
@@ -37,7 +38,7 @@ function SidebarItemGroup(props) {
     const label = props.label;
     const groupChildren = props.groupChildren;
     const itemChildren = props.itemChildren;
-    const selectedVariableIfExists = (PolicyEngine.metadata.variables[PolicyEngine.page] || {}).moduleName || PolicyEngine.page;
+    const selectedVariableIfExists = (PolicyEngine.metadata.variables[PolicyEngine.householdPage] || {}).moduleName || PolicyEngine.householdPage;
     const [expanded, setExpanded] = useState(
         props.expanded || (
             selectedVariableIfExists.includes(name)
@@ -112,7 +113,7 @@ function ParameterHierarchy(props) {
                 label={parameters[name].label || name} 
                 groupChildren={childNodes.map(createTreeFromModule)} 
                 itemChildren={childParameters.map(createTreeFromModule)} 
-                expanded={parameters[PolicyEngine.page] && name.includes(parameters[PolicyEngine.page].parameter)}
+                expanded={parameters[PolicyEngine.householdPage] && name.includes(parameters[PolicyEngine.householdPage].parameter)}
             />
         }
 
@@ -195,20 +196,6 @@ function ParameterSearch() {
     
 }
 
-function InputMenuSidebar(props) {
-    return <AnimatePresence>
-        <motion.div
-            initial={{opacity: 0, x: -10}}
-            animate={{opacity: 1, x: 0}}
-            exit={{opacity: 0, x: -10}}
-            enter={{opacity: 1, x: 0}}
-        >
-            <ParameterHierarchy />
-            <ParameterSearch />
-        </motion.div>
-    </AnimatePresence>
-}
-
 function OutputMenuSidebar(props) {
     return <AnimatePresence>
         <motion.div
@@ -236,7 +223,8 @@ function OutputMenuSidebar(props) {
 
 export default function PolicyLeftSidebar(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
-    const isExpanded = PolicyEngine.page.startsWith("policyOutput.");
+    const isExpanded = PolicyEngine.householdPage.startsWith("policyOutput.");
+    const tree = PolicyEngine.parameterTree;
     return <div
         style={{
             height: `calc(100vh - ${style.spacing.HEADER_SIZE}px - 80px)`,
@@ -245,8 +233,10 @@ export default function PolicyLeftSidebar(props) {
         }}
     >
         <h2 style={{marginBottom: 50}}>Household</h2>
-        {
-            isExpanded ? <OutputMenuSidebar /> : <InputMenuSidebar />
-        }
+        <Menu
+            tree={tree}
+            selected={PolicyEngine.policyPage}
+            onSelect={(name) => PolicyEngine.setState({policyPage: name})}
+        />
     </div>
 }

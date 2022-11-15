@@ -10,6 +10,7 @@ export default function Policy() {
     if (!PolicyEngine.metadata) {
         return null;
     }
+    const parametersInOrder = PolicyEngine.parametersInOrder;
     return <div style={{
         height: `calc(100vh - ${style.spacing.HEADER_SIZE}px)`,
         display: "flex",
@@ -40,7 +41,7 @@ export default function Policy() {
             }}>
                 <h3>Overview</h3>
                 {
-                    PolicyEngine.page
+                    PolicyEngine.householdPage
                 }
             </div>
     </div>

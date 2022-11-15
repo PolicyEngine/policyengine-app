@@ -82,10 +82,10 @@ export default function Household() {
         return null;
     }
     let mainComponent;
-    const lastPartOfPage = PolicyEngine.page.split(".").slice(-1)[0];
-    if (PolicyEngine.page == "structure.maritalStatus" || !PolicyEngine.page) {
+    const lastPartOfPage = PolicyEngine.householdPage.split(".").slice(-1)[0];
+    if (PolicyEngine.householdPage == "structure.maritalStatus" || !PolicyEngine.householdPage) {
         mainComponent = <MaritalStatus />;
-    } else if (PolicyEngine.page == "structure.children") {
+    } else if (PolicyEngine.householdPage == "structure.children") {
         mainComponent = <CountChildren />;
     } else if (Object.keys(PolicyEngine.metadata.variables).includes(lastPartOfPage)) {
         mainComponent = <HouseholdVariablePage />;
@@ -98,6 +98,6 @@ export default function Household() {
                 <OutputPanel />
             </>
         }
-        right={<>{PolicyEngine.page}</>}
+        right={<>{PolicyEngine.householdPage}</>}
     />
 }

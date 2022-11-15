@@ -98,7 +98,7 @@ export default function MaritalStatus(props) {
                     color: style.colors.BLACK,
                     cursor: "pointer",
                 }}
-                onClick={() => PolicyEngine.setState({page: "structure.children"})}
+                onClick={() => PolicyEngine.setState({householdPage: "structure.children"})}
             >&#8594; Children</h4>
         </div>
     </>

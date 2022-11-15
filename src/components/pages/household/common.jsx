@@ -35,7 +35,7 @@ export function addYearlyVariables(situation, variables, entities) {
     return situation;
 }
 
-const findInTree = (tree, path) => {
+export function findInTree(tree, path) {
     // path is in the format "x.y.z"
     let node = tree;
     try {
@@ -117,9 +117,9 @@ export function buildVariableTree(variables, variableModules) {
     ]
 }
 
-export function getVariablesInOrder(variableTree) {
+export function getTreeLeavesInOrder(tree) {
     // Traverses the variable tree in order, returning the list of variable names.
-    let variables = [];
+    let leaves = [];
     const traverse = (node) => {
         if (node.children) {
             node.children.sort((a, b) => a.index - b.index);
@@ -130,9 +130,9 @@ export function getVariablesInOrder(variableTree) {
             const fullName = node.name;
             // Get the name after the last period
             const name = fullName.split(".").slice(-1)[0];
-            variables.push(name);
+            leaves.push(name);
         }
     }
-    variableTree.map(node => traverse(node));
-    return variables.slice(2);
+    tree.map(node => traverse(node));
+    return leaves;
 }

@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import { buildVariableTree, getVariablesInOrder } from "../components/pages/household/common";
+import { buildVariableTree, getTreeLeavesInOrder, getVariablesInOrder } from "../components/pages/household/common";
+import { buildParameterTree } from "../components/pages/policy/common";
 import { formatVariableValue } from "./variableValues";
 
 export class PolicyEngineContextClass {
@@ -19,7 +20,8 @@ export class PolicyEngineContextClass {
   isFetchingMetadata = false;
   metadata = null;
 
-  page = "structure.maritalStatus"
+  householdPage = "structure.maritalStatus"
+  policyPage = "";
   variableNames = {};
   earningsVariationIsOutdated = true;
 
@@ -92,12 +94,17 @@ export class PolicyEngineContextClass {
       this.apiCall("/metadata")
         .then((response) => response.json())
         .then((data) => {
-          const variableTree = buildVariableTree(data.variables, data.variableModules)
+          const variableTree = buildVariableTree(data.variables, data.variableModules);
+          const parameterTree = buildParameterTree(data.parameters);
+          const parametersInOrder = getTreeLeavesInOrder(parameterTree);
           this.setState({
             metadata: data,
             isFetchingMetadata: false,
             variableTree: variableTree,
-            variablesInOrder: getVariablesInOrder(variableTree),
+            variablesInOrder: getTreeLeavesInOrder(variableTree).slice(2),
+            parametersInOrder: parametersInOrder,
+            parameterTree: parameterTree,
+            policyPage: parametersInOrder[0],
           });
         });
     }

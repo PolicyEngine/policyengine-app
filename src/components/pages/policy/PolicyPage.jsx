@@ -8,7 +8,7 @@ import ParameterOverTime from "./ParameterOverTime";
 
 export default function PolicyPage() {
     const PolicyEngine = useContext(PolicyEngineContext);
-    const page = PolicyEngine.page;
+    const page = PolicyEngine.householdPage;
     const parameters = PolicyEngine.metadata.parameters;
     if (!parameters[page]) {
         return null;

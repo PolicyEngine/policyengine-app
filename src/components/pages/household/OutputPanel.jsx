@@ -10,8 +10,8 @@ export default function OutputPanel() {
     const PolicyEngine = useContext(PolicyEngineContext);
     const netIncome = PolicyEngine.getSimulatedValue(PolicyEngine.variableNames.netIncome);
     const netIncomeFormatted = PolicyEngine.getFormattedSimulatedValue(PolicyEngine.variableNames.netIncome);
-    const isExpanded = PolicyEngine.page.startsWith("householdOutput.")
-    const page = PolicyEngine.page;
+    const isExpanded = PolicyEngine.householdPage.startsWith("householdOutput.")
+    const page = PolicyEngine.householdPage;
     return <div
         style={{
             color: style.colors.BLACK,
@@ -27,7 +27,7 @@ export default function OutputPanel() {
         onClick={() => {
             if (!isExpanded && PolicyEngine.simulatedHousehold) {
                 PolicyEngine.setState({
-                    page: "householdOutput.netIncome",
+                    householdPage: "householdOutput.netIncome",
                 });
             }
         }}

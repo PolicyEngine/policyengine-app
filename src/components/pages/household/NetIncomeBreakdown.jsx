@@ -10,7 +10,7 @@ export default function NetIncomeBreakdown(props) {
     const countNonzeroVariablesOfCategory = category => variablesOfCategory(category).filter(variable => household(variable) !== 0).length;
     const categoryHasNonzeroVariables = category => countNonzeroVariablesOfCategory(category) > 0;
     return <div style={{padding: 20, paddingLeft: 40}}>
-        <h4 onClick={() => PolicyEngine.setState({page: "structure.maritalStatus"})}> &#8592; Back</h4>
+        <h4 onClick={() => PolicyEngine.setState({householdPage: "structure.maritalStatus"})}> &#8592; Back</h4>
         <h1 style={{marginTop: 50}}>Your net income is {householdStr(PolicyEngine.variableNames.netIncome)}</h1>
         <p>Here's how we calculated your household's net income. Click on a section to see more details.</p>
         <div style={{paddingTop: 100}}>
