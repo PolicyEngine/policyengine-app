@@ -12,20 +12,20 @@ export default function ThreeColumnPage(props) {
             backgroundColor: style.colors.LIGHT_GRAY,
             padding: 20,
         }}>
-            {props.left}
+            {left}
         </div>
         <div style={{
             width: "60%",
             backgroundColor: style.colors.WHITE,
         }}>
-            {props.middle}
+            {middle}
         </div>
         <div style={{
             width: "20%",
             backgroundColor: style.colors.LIGHT_GRAY,
             padding: 20,
         }}>
-            {props.right}
+            {right}
         </div>
     </div>
 }

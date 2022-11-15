@@ -24,6 +24,7 @@ export class PolicyEngineContextClass {
   policyPage = "";
   variableNames = {};
   earningsVariationIsOutdated = true;
+  policyReform = {};
 
   constructor(country) {
     this.country = country;

@@ -27,10 +27,10 @@ export function EarningsVariation(props) {
 
     const household = PolicyEngine.simulatedEarningsVariationHousehold;
 
-    const earningsArray = household.households["your household"].household_market_income["2022"]
-    const netIncomeArray = household.households["your household"].household_net_income["2022"]
     const earningsVariable = PolicyEngine.metadata.variables[PolicyEngine.variableNames.earnings];
     const netIncomeVariable = PolicyEngine.metadata.variables[PolicyEngine.variableNames.netIncome];
+    const earningsArray = PolicyEngine.getSimulatedValue(PolicyEngine.variableNames.earnings, "2022", "you", household);
+    const netIncomeArray = PolicyEngine.getSimulatedValue(PolicyEngine.variableNames.netIncome, "2022", "your household", household);
     return <div style={{padding: 20, paddingLeft: 40}}>
         <h4 onClick={() => PolicyEngine.setState({householdPage: "structure.maritalStatus"})}> &#8592; Back</h4>
         <h1 style={{marginTop: 50}}>Varying your earnings</h1>

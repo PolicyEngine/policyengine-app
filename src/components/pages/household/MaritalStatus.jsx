@@ -32,7 +32,7 @@ function setUKMaritalStatus(situation, status, variables, entities) {
 
 function getUSMaritalStatus(situation) {
     const partnerName = "your partner";
-    if (partnerName in situation.people) {
+    if (Object.keys(situation.people).includes(partnerName)) {
         return "married";
     } else {
         return "single";
