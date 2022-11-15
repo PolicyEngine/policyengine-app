@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import { buildVariableTree, getVariablesInOrder } from "../components/pages/household/common";
 import { formatVariableValue } from "./variableValues";
 
 export class PolicyEngineContextClass {
@@ -91,9 +92,12 @@ export class PolicyEngineContextClass {
       this.apiCall("/metadata")
         .then((response) => response.json())
         .then((data) => {
+          const variableTree = buildVariableTree(data.variables, data.variableModules)
           this.setState({
             metadata: data,
             isFetchingMetadata: false,
+            variableTree: variableTree,
+            variablesInOrder: getVariablesInOrder(variableTree),
           });
         });
     }

@@ -44,8 +44,6 @@ export function EarningsVariation(props) {
                 },
             ]}
             layout={{
-                plot_bgcolor: style.colors.LIGHT_GRAY,
-                paper_bgcolor: style.colors.LIGHT_GRAY,
                 xaxis: {
                     title: `Your ${earningsVariable.label}`,
                     tickprefix: earningsVariable.unit == "currency-GBP" ? 

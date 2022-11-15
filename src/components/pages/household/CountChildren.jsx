@@ -56,6 +56,7 @@ export default function CountChildren(props) {
     const getCountChildren = PolicyEngine.country == "uk" ? getUKCountChildren : getUSCountChildren;
     const setCountChildrenInHousehold = PolicyEngine.country == "uk" ? setUKCountChildren : setUSCountChildren;
     const variablesInOrder = PolicyEngine.variablesInOrder;
+    const nextVariable = PolicyEngine.metadata.variables[variablesInOrder[0]];
     const setCountChildren = (countChildren) => {
         let newHousehold = setCountChildrenInHousehold(
             PolicyEngine.household,
@@ -90,7 +91,7 @@ export default function CountChildren(props) {
                     color: style.colors.BLACK,
                     cursor: "pointer",
                 }}
-                onClick={() => PolicyEngine.setState({page: variablesInOrder[0]})}
+                onClick={() => PolicyEngine.setState({page: nextVariable.moduleName + "." + nextVariable.name})}
             >&#8594; {capitalize(PolicyEngine.metadata.variables[variablesInOrder[0]].label)}</h4>
         </motion.div>
     </>

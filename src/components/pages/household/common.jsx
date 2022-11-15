@@ -34,3 +34,105 @@ export function addYearlyVariables(situation, variables, entities) {
     }
     return situation;
 }
+
+const findInTree = (tree, path) => {
+    // path is in the format "x.y.z"
+    let node = tree;
+    try {
+        let cumulativePath = "";
+        for (const key of path.split(".")) {
+            cumulativePath += key;
+            node = node.children.find(child => child.name == cumulativePath);
+            cumulativePath += ".";
+        }
+    } catch (e) {
+        return null;
+    }
+    return node;
+}
+
+export function buildVariableTree(variables, variableModules) {
+    // Build a tree of variables, based on their module and indexInModule.
+    // variables is a dictionary of variables, in the format:
+    // { variable_name: { name: variable_name, label: variable_label, moduleName: variable_module, indexInModule: variable_indexInModule } }
+    // variableModules is a dictionary of variable modules, in the format:
+    // { module_name: { title: module_title, index: module_index } }
+    // The tree is a dictionary of variable modules, in the format:
+    // { module_name: { title: module_title, index: module_index, children: [variable_or_module_name, ...] } }
+
+    let tree = {};
+    for (const variable of Object.values(variables)) {
+        const nodeToInsert = {
+            name: variable.moduleName + "." + variable.name,
+            label: variable.label,
+            index: variable.indexInModule,
+        };
+        let parentNode = findInTree(tree, variable.moduleName);
+        if (!parentNode) {
+            // For a given path "x.y.z.a", create the nodes x, x.y and x.y.z if they don't exist.
+            const path = variable.moduleName.split(".");
+            let currentNode = tree;
+            let cumulativePath = "";
+            for (const key of path) {
+                cumulativePath += key;
+                if (!currentNode.children) {
+                    currentNode.children = [];
+                }
+                if (!(currentNode.children.find(child => child.name === cumulativePath))) {
+                    const moduleData = variableModules[cumulativePath] || {};
+                    currentNode.children.push({
+                        label: moduleData.title || key,
+                        name: cumulativePath,
+                        index: module.index || 0,
+                        children: [],
+                    });
+                }
+                currentNode = currentNode.children.find(child => child.name === cumulativePath);
+                cumulativePath += ".";
+            }
+            parentNode = findInTree(tree, variable.moduleName);
+        }
+        parentNode.children.push(nodeToInsert);
+    }
+    const inputModule = tree.children.find(child => child.name === "input").children;
+    return [
+        {
+            name: "structure",
+            label: "Household",
+            index: 0,
+            children: [
+                {
+                    name: "structure.maritalStatus",
+                    label: "Marital status",
+                    index: 0,
+                },
+                {
+                    name: "structure.children",
+                    label: "Children",
+                    index: 1,
+                },
+            ],
+        },
+        ...inputModule.reverse(),
+    ]
+}
+
+export function getVariablesInOrder(variableTree) {
+    // Traverses the variable tree in order, returning the list of variable names.
+    let variables = [];
+    const traverse = (node) => {
+        if (node.children) {
+            node.children.sort((a, b) => a.index - b.index);
+            for (const child of node.children) {
+                traverse(child);
+            }
+        } else {
+            const fullName = node.name;
+            // Get the name after the last period
+            const name = fullName.split(".").slice(-1)[0];
+            variables.push(name);
+        }
+    }
+    variableTree.map(node => traverse(node));
+    return variables.slice(2);
+}

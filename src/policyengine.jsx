@@ -14,7 +14,7 @@ function PolicyEngine() {
       <Routes>
         <Route path="/uk/*" element={<PolicyEngineCountry country="uk" />} />
         <Route path="/us/*" element={<PolicyEngineCountry country="us" />} />
-        <Route path="/" element={<Navigate to="/uk" />} />
+        <Route exact path="/" element={<Navigate to="/uk" />} />
       </Routes>
     </Router>;
 }

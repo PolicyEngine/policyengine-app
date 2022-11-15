@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useContext, useState } from "react";
 import PolicyEngineContext from "../../../logic/PolicyEngineContext";
 import style from "../../../style";
+import ThreeColumnPage from "../../layout/ThreeColumnPage";
 import { addYearlyVariables } from "./common";
 import CountChildren from "./CountChildren";
 import HouseholdLeftSidebar from "./HouseholdLeftSidebar";
@@ -69,58 +70,34 @@ export default function Household() {
         return null;
     }
     if (!PolicyEngine.household) {
+        let household = createDefaultHousehold(
+            PolicyEngine.country,
+            PolicyEngine.metadata.variables,
+            PolicyEngine.metadata.entities,
+        );
         PolicyEngine.setState({
-            household: createDefaultHousehold(
-                PolicyEngine.country,
-                PolicyEngine.metadata.variables,
-                PolicyEngine.metadata.entities,
-            ),
-        })
+            household: household,
+        });
+        PolicyEngine.simulateHousehold(household);
         return null;
     }
     let mainComponent;
+    const lastPartOfPage = PolicyEngine.page.split(".").slice(-1)[0];
     if (PolicyEngine.page == "structure.maritalStatus" || !PolicyEngine.page) {
         mainComponent = <MaritalStatus />;
     } else if (PolicyEngine.page == "structure.children") {
         mainComponent = <CountChildren />;
-    } else if (Object.keys(PolicyEngine.metadata.variables).includes(PolicyEngine.page)) {
+    } else if (Object.keys(PolicyEngine.metadata.variables).includes(lastPartOfPage)) {
         mainComponent = <HouseholdVariablePage />;
     }
-    return <>
-        <div style={{
-            height: `calc(100vh - ${style.spacing.HEADER_SIZE}px)`,
-            display: "flex",
-        }}>
-            <div style={{
-                width: "20%",
-                backgroundColor: "white",
-                padding: 20,
-            }}>
-                <HouseholdLeftSidebar />
-            </div>
-            <div style={{
-                width: "60%",
-                backgroundColor: "#f5f5f5",
-            }}>
-                <div 
-                    style={{
-                        padding: 20,
-                    }}
-                >
-                    {mainComponent}
-                </div>
+    return <ThreeColumnPage
+        left={<HouseholdLeftSidebar />}
+        middle={
+            <>
+                {mainComponent}
                 <OutputPanel />
-            </div>
-            <div style={{
-                width: "20%",
-                backgroundColor: "white",
-                padding: 20,
-            }}>
-                <h3>Overview</h3>
-                {
-                    PolicyEngine.page
-                }
-            </div>
-        </div>
-    </>
+            </>
+        }
+        right={<>{PolicyEngine.page}</>}
+    />
 }

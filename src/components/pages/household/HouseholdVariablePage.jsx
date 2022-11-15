@@ -73,11 +73,12 @@ function HouseholdVariableEntity(props) {
 
 export default function HouseholdVariablePage(props) {
     const PolicyEngine = useContext(PolicyEngineContext);
-    const selectedVariable = PolicyEngine.metadata.variables[PolicyEngine.page];
+    const variableName = PolicyEngine.page.split(".")[PolicyEngine.page.split(".").length - 1];
+    const selectedVariable = PolicyEngine.metadata.variables[variableName];
     const entityPlural = PolicyEngine.metadata.entities[selectedVariable.entity].plural;
     const variablesInOrder = PolicyEngine.variablesInOrder;
-    const index = variablesInOrder.indexOf(PolicyEngine.page);
-    const nextVariable = variablesInOrder[index + 1];
+    const index = variablesInOrder.indexOf(variableName);
+    const nextVariable = PolicyEngine.metadata.variables[variablesInOrder[index + 1]];
     const isSimulated = !selectedVariable.isInputVariable;
     const possibleEntities = Object.keys(PolicyEngine.household[entityPlural])
         .filter(
@@ -114,8 +115,8 @@ export default function HouseholdVariablePage(props) {
                         color: style.colors.BLACK,
                         cursor: "pointer",
                     }}
-                    onClick={() => PolicyEngine.setState({page: nextVariable})}
-                >&#8594; {capitalize(PolicyEngine.metadata.variables[nextVariable].label)}</h4>
+                    onClick={() => PolicyEngine.setState({page: nextVariable.moduleName + "." + nextVariable.name})}
+                >&#8594; {capitalize(nextVariable.label)}</h4>
             }
         </div>
     </>

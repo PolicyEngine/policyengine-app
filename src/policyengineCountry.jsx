@@ -8,7 +8,7 @@ import style from "./style";
 
 export default function PolicyEngineCountry(props) {
     const [PolicyEngine, setPolicyEngineState] = useState({
-        state: new PolicyEngineContextClass("uk")
+        state: new PolicyEngineContextClass(props.country),
     });
 
     PolicyEngine.state.initialiseIfNeeded(setPolicyEngineState);

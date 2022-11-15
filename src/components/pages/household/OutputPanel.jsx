@@ -14,7 +14,6 @@ export default function OutputPanel() {
     const page = PolicyEngine.page;
     return <div
         style={{
-            backgroundColor: style.colors.LIGHT_GRAY,
             color: style.colors.BLACK,
             width: "60%",
             position: "fixed",
