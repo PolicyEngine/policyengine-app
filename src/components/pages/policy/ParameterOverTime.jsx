@@ -64,7 +64,9 @@ export default function ParameterOverTime(props) {
 
     }
 
-    return <Plot
+    return <>
+        
+    <Plot
         data={[
             {
                 x: Object.keys(values),
@@ -79,9 +81,12 @@ export default function ParameterOverTime(props) {
                 name: "Current law",
             },
             reformLine,
-        ]}
+        ].filter(x => x)}
         layout={{
             yaxis: getPlotlyAxisFormat(metadata.unit),
+            xaxis: {
+                range: ["2000-01-01", "2025-01-01"],
+            }
         }}
         style={{
             width: "100%",
@@ -91,5 +96,5 @@ export default function ParameterOverTime(props) {
         config={{
             displayModeBar: false,
         }}
-    />
+    /></>
 }

@@ -19,6 +19,7 @@ export default function Header(props) {
             paddingLeft: 10,
             position: "fixed",
             width: "100%",
+            zIndex: 100,
         }}>
             <img 
                 src={PolicyEngineLogo} 

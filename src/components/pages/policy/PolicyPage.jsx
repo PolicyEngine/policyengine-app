@@ -6,6 +6,8 @@ import style from "../../../style";
 import { motion } from "framer-motion";
 import ParameterOverTime from "./ParameterOverTime";
 import { getFormattedParameterAtInstant, getParameterAtInstant, getReformedParameter } from "../../../logic/parameterValues";
+import { formatVariableValue } from "../../../logic/variableValues";
+import OutputPanel from "./OutputPanel";
 
 function PolicyParameterInput(props) {
     const { parameter } = props;
@@ -14,11 +16,14 @@ function PolicyParameterInput(props) {
     const reformedParameter = getReformedParameter(metadata, PolicyEngine.policyReform);
     const currentValue = getParameterAtInstant(reformedParameter, "2022-01-01");
     const submitValue = value => {
+        if (metadata.unit === "/1") {
+            value = value / 100;
+        }
         let policyReform = PolicyEngine.policyReform;
         if (!policyReform[parameter]) {
             policyReform[parameter] = {};
         }
-        policyReform[parameter]["2022-01-01.2022-12-31"] = +value;
+        policyReform[parameter]["2022-01-01.2029-12-31"] = +value;
         PolicyEngine.setState({ policyReform: policyReform });
     }
 
@@ -41,7 +46,7 @@ function PolicyParameterInput(props) {
                 submitValue(value);
             }
         }}
-        placeholder={currentValue}
+        placeholder={metadata.unit === "/1" ? formatVariableValue(metadata, currentValue) : formatVariableValue(metadata, currentValue)}
     />
 }
 
@@ -57,14 +62,30 @@ export default function PolicyPage() {
     // value is in the format: {"1999-01-01": 0.5, "2000-01-01": 0.6, ...}
     // We want to show a line chart with the values over time.
 
-    return <div
-        style={{
-            padding: 50,
-        }}
-    >
-        <h1>{parameter.label}</h1>
-        <h5>{parameter.description}</h5>
-        <PolicyParameterInput parameter={page} />
-        <ParameterOverTime parameter={page} />
-    </div>
+    return <>
+        <div
+            style={{
+                padding: 50,
+            }}
+        >
+
+                <h1>What is the {parameter.label}?</h1>
+                <h5>{parameter.description}</h5>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    paddingTop: 20,
+                    paddingBottom: 20,
+                }}
+                >
+                <PolicyParameterInput parameter={page} />
+                <h5>from 2022</h5>
+                </div>
+            <ParameterOverTime parameter={page} />
+        </div>
+        <OutputPanel />
+    </>
 }

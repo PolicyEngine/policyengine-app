@@ -157,6 +157,8 @@ export class PolicyEngineContextClass {
     return formatVariableValue(this.metadata.variables[variable], value);
   }
 
+  getEconomicImpact
+
 }
 
 const PolicyEngineContext = createContext(null);
