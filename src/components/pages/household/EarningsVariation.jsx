@@ -43,9 +43,9 @@ export function EarningsVariation(props) {
   const netIncomeVariable =
     PolicyEngine.metadata.variables[PolicyEngine.variableNames.netIncome];
   const earningsArray = PolicyEngine.getSimulatedValue(
-    PolicyEngine.variableNames.earnings,
+    PolicyEngine.variableNames.marketIncome,
     "2022",
-    "you",
+    "your household",
     household
   );
   const netIncomeArray = PolicyEngine.getSimulatedValue(

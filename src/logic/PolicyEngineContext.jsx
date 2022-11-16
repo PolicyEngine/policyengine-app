@@ -148,7 +148,7 @@ export class PolicyEngineContextClass {
       return total;
     }
     const timePeriodValues =
-      this.simulatedHousehold[entityPlural][entityName][variable];
+      household[entityPlural][entityName][variable];
     if (!timePeriod) {
       const possibleTimePeriods = Object.keys(timePeriodValues);
       let total = 0;
