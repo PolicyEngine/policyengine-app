@@ -1,5 +1,9 @@
 import { createContext } from "react";
-import { buildVariableTree, getTreeLeavesInOrder, getVariablesInOrder } from "../components/pages/household/common";
+import {
+  buildVariableTree,
+  getTreeLeavesInOrder,
+  getVariablesInOrder,
+} from "../components/pages/household/common";
 import { buildParameterTree } from "../components/pages/policy/common";
 import { formatVariableValue } from "./variableValues";
 
@@ -20,7 +24,7 @@ export class PolicyEngineContextClass {
   isFetchingMetadata = false;
   metadata = null;
 
-  householdPage = "structure.maritalStatus"
+  householdPage = "structure.maritalStatus";
   policyPage = "";
   variableNames = {};
   earningsVariationIsOutdated = true;
@@ -41,7 +45,7 @@ export class PolicyEngineContextClass {
         benefits: "household_benefits",
         earnings: "employment_income",
         mtr: "marginal_tax_rate",
-      }
+      };
     } else if (country === "us") {
       this.variableNames = {
         netIncome: "spm_unit_net_income",
@@ -51,7 +55,7 @@ export class PolicyEngineContextClass {
         refundableTaxCredits: "refundable_tax_credits",
         earnings: "employment_income",
         mtr: "marginal_tax_rate",
-      }
+      };
     }
   }
 
@@ -81,7 +85,7 @@ export class PolicyEngineContextClass {
 
       this.setState({
         initialised: true,
-      })
+      });
     }
   }
 
@@ -95,7 +99,10 @@ export class PolicyEngineContextClass {
       this.apiCall("/metadata")
         .then((response) => response.json())
         .then((data) => {
-          const variableTree = buildVariableTree(data.variables, data.variableModules);
+          const variableTree = buildVariableTree(
+            data.variables,
+            data.variableModules
+          );
           const parameterTree = buildParameterTree(data.parameters);
           const parametersInOrder = getTreeLeavesInOrder(parameterTree);
           this.setState({
@@ -125,19 +132,23 @@ export class PolicyEngineContextClass {
     if (!household) {
       household = this.simulatedHousehold;
     }
-    const entityPlural = this.metadata.entities[this.metadata.variables[variable].entity].plural;
+    const entityPlural =
+      this.metadata.entities[this.metadata.variables[variable].entity].plural;
     if (!this.simulatedHousehold) {
       return null;
     }
     if (!entityName) {
-      const possibleEntities = Object.keys(this.simulatedHousehold[entityPlural]);
+      const possibleEntities = Object.keys(
+        this.simulatedHousehold[entityPlural]
+      );
       let total = 0;
       for (let entity of possibleEntities) {
         total += this.getSimulatedValue(variable, timePeriod, entity);
       }
       return total;
     }
-    const timePeriodValues = this.simulatedHousehold[entityPlural][entityName][variable];
+    const timePeriodValues =
+      this.simulatedHousehold[entityPlural][entityName][variable];
     if (!timePeriod) {
       const possibleTimePeriods = Object.keys(timePeriodValues);
       let total = 0;
@@ -157,8 +168,7 @@ export class PolicyEngineContextClass {
     return formatVariableValue(this.metadata.variables[variable], value);
   }
 
-  getEconomicImpact
-
+  getEconomicImpact;
 }
 
 const PolicyEngineContext = createContext(null);
