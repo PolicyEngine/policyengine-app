@@ -13,6 +13,8 @@ import CountChildren from "./household/input/CountChildren";
 import BiPanel from "../layout/BiPanel";
 import NetIncomeBreakdown from "./household/output/NetIncomeBreakdown";
 import EarningsVariation from "./household/output/EarningsVariation";
+import MarginalTaxRates from "./household/output/MarginalTaxRates";
+import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -69,6 +71,7 @@ function HouseholdLeftSidebar(props) {
       }
       leftTitle="Inputs"
       rightTitle="Outputs"
+      leftNavigatedSelected={!(searchParams.get("focus") || "").startsWith("householdOutput")}
     />
   );
 }
@@ -187,6 +190,8 @@ export default function HouseholdPage(props) {
     middle = <NetIncomeBreakdown metadata={metadata} household={household} />;
   } else if (focus === "householdOutput.earnings") {
     middle = <EarningsVariation metadata={metadata} household={household} />;
+  } else if (focus === "householdOutput.mtr") {
+    middle = <MarginalTaxRates metadata={metadata} household={household} />;
   } else {
     middle = <LoadingCentered />;
   }
@@ -194,7 +199,11 @@ export default function HouseholdPage(props) {
     <ThreeColumnPage
       left={<HouseholdLeftSidebar metadata={metadata} />}
       middle={middle}
-      right={<BiPanel leftTitle="Household" rightTitle="Policy" />}
+      right={<BiPanel 
+        leftTitle="Household" 
+        rightTitle="Policy" 
+        left={<HouseholdRightSidebar metadata={metadata} household={household} />} 
+      />}
     />
   );
 }

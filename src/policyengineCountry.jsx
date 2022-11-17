@@ -37,14 +37,7 @@ export default function PolicyEngineCountry(props) {
       });
   }, [countryId]);
 
-  let mainPage;
-
-  if (error) {
-    mainPage = (
-      <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." />
-    );
-  } else {
-    mainPage = (
+  const mainPage = (
       <Routes>
         <Route path="/" element={<HomePage countryId={countryId} />} />
         <Route
@@ -53,13 +46,14 @@ export default function PolicyEngineCountry(props) {
             metadata ? (
               <HouseholdPage metadata={metadata} />
             ) : (
-              <LoadingCentered />
+              error ?
+                <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." /> :
+                <LoadingCentered />
             )
           }
         />
       </Routes>
     );
-  }
 
   return (
     <>

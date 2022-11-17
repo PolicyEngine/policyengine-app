@@ -13,6 +13,8 @@ export default function ThreeColumnPage(props) {
         style={{
           width: "20%",
           backgroundColor: style.colors.LIGHT_GRAY,
+          height: "100%",
+          overflowY: "scroll",
           padding: 20,
         }}
       >
@@ -22,6 +24,8 @@ export default function ThreeColumnPage(props) {
         style={{
           width: "60%",
           backgroundColor: style.colors.WHITE,
+          height: "100%",
+          overflowY: "scroll",
         }}
       >
         {middle}
@@ -30,6 +34,8 @@ export default function ThreeColumnPage(props) {
         style={{
           width: "20%",
           backgroundColor: style.colors.LIGHT_GRAY,
+          height: "100%",
+          overflowY: "scroll",
           padding: 20,
         }}
       >

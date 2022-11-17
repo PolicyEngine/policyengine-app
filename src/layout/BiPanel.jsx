@@ -4,8 +4,14 @@ import style from "../style";
 
 export default function BiPanel(props) {
   // A panel with a switch at the top to switch between two views.
-  const { left, right, leftTitle, rightTitle } = props;
+  const { left, right, leftTitle, rightTitle, leftNavigatedSelected } = props;
   const [leftSelected, setLeftSelected] = useState(true);
+  const [leftNavigatedSelectedWhenLastToggled, setLeftNavigatedSelectedWhenLastToggled] = useState();
+
+  if (leftNavigatedSelectedWhenLastToggled !== leftNavigatedSelected) {
+    setLeftSelected(leftNavigatedSelected);
+    setLeftNavigatedSelectedWhenLastToggled(leftNavigatedSelected);
+  }
 
   return (
     <div
@@ -23,7 +29,10 @@ export default function BiPanel(props) {
           marginBottom: 10,
           cursor: "pointer",
         }}
-        onClick={() => setLeftSelected(!leftSelected)}
+        onClick={() => {
+          setLeftSelected(!leftSelected);
+          setLeftNavigatedSelectedWhenLastToggled(leftNavigatedSelected);
+        }}
       >
         <h5 style={{ marginRight: "auto" }}>{leftTitle}</h5>
         <Switch
@@ -32,7 +41,14 @@ export default function BiPanel(props) {
         />
         <h5 style={{ marginLeft: "auto" }}>{rightTitle}</h5>
       </div>
-      {leftSelected ? left : right}
+      <div
+        style={{
+          height: "100%",
+          overflowY: "scroll",
+        }}
+      >
+        {leftSelected ? left : right}
+      </div>
     </div>
   );
 }
