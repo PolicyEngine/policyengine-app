@@ -139,7 +139,7 @@ export default function Menu(props) {
           key={item.name}
           name={item.name}
           label={item.label}
-          selected={selected}
+          selected={selected || ""}
           children={item.children}
           onSelect={onSelect}
         />
@@ -150,7 +150,7 @@ export default function Menu(props) {
           key={item.name}
           name={item.name}
           label={item.label}
-          selected={selected}
+          selected={selected || ""}
           onSelect={onSelect}
         />
       );

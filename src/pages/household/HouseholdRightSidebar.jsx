@@ -29,7 +29,7 @@ export default function HouseholdRightSidebar(props) {
     const { household, metadata } = props;
     const [searchParams, setSearchParams] = useSearchParams();
 
-    if (!household.computed) {
+    if (!household || !household.computed) {
         return null;
     }
 

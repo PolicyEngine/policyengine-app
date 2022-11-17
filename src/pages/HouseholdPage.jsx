@@ -76,7 +76,7 @@ function HouseholdLeftSidebar(props) {
   );
 }
 
-function createHousehold(id, countryId, metadata) {
+export function createHousehold(id, countryId, metadata) {
   // Fetches the household with the given ID if it exists, otherwise creates a new one.
   if (id) {
     return apiCall(`/${countryId}/household/${id}`)
@@ -98,67 +98,21 @@ function createHousehold(id, countryId, metadata) {
 }
 
 export default function HouseholdPage(props) {
-  const { metadata } = props;
-
-  const [household, setHouseholdData] = useState({
-    input: null,
-    computed: null,
-    id: null,
-  });
+  const { metadata, household, setHousehold, policy, setPolicy } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const [errorCreatingHousehold, setErrorCreatingHousehold] = useState(false);
-  // Updating the household should update the household=id URL parameter
-  const setHousehold = (newHousehold) => {
-    setHouseholdData({
-      input: newHousehold,
-      computed: household.computed,
-      id: household.id,
-    });
-    apiCall(`/${metadata.countryId}/calculate`, newHousehold)
-      .then((res) => res.json())
-      .then((data) => {
-        setHouseholdData({
-          input: newHousehold,
-          computed: data,
-          id: data.household_id,
-        });
-        let newSearch = { household: data.household_id };
-        if (searchParams.get("focus")) {
-          newSearch.focus = searchParams.get("focus");
-        }
-        setSearchParams(newSearch);
-      })
-      .catch((err) => {
-        setErrorCreatingHousehold(true);
-      });
-  };
-
-  useEffect(() => {
-    if (!household.input && !errorCreatingHousehold) {
-      createHousehold(
-        searchParams.get("household"),
-        metadata.countryId,
-        metadata
-      ).then((household) => {
-        setHousehold(household);
-      });
-    }
-    if (!searchParams.get("focus")) {
-      setSearchParams({
-        focus: "structure.maritalStatus",
-        household: searchParams.get("household"),
-      });
-    }
-  });
 
   let middle;
   const focus = searchParams.get("focus") || "";
 
-  if (errorCreatingHousehold) {
-    return (
-      <ErrorPage message="We couldn't create a new household. Please try again later." />
-    );
-  }
+  useEffect(() => {
+  if (!focus) {
+    let newSearch = {};
+    for (const [key, value] of searchParams) {
+        newSearch[key] = value;
+    }
+    newSearch.focus = "structure.maritalStatus";
+    setSearchParams(newSearch);
+  }});
 
   if (!household.input || !household.computed) {
     middle = <LoadingCentered />;

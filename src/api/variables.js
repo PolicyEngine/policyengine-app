@@ -273,7 +273,7 @@ export function getValueFromHousehold(
     }
     let total = 0;
     for (let entity of possibleEntities) {
-      total += getValueFromHousehold(
+      total += +getValueFromHousehold(
         variable,
         timePeriod,
         entity,

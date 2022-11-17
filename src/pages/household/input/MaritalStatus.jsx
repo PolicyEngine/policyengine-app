@@ -20,6 +20,7 @@ function setUKMaritalStatus(situation, status, variables, entities) {
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
+    situation.benunits["your immediate family"].is_married["2022"] = true;
     situation.households["your household"].members.push(partnerName);
     situation = addYearlyVariables(situation, variables, entities);
   } else if (status === "single" && currentStatus === "married") {
