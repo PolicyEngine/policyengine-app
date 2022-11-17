@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { apiCall } from "../api/call";
 import BiPanel from "../layout/BiPanel";
 import Menu from "../layout/Menu";
+import ResultsPanel from "../layout/ResultsPanel";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
+import ParameterEditor from "./policy/input/ParameterEditor";
 
 const POLICY_OUTPUT_TREE = [{
     name: "policyOutput",
@@ -62,6 +63,13 @@ function PolicyLeftSidebar(props) {
     />;
 }
 
+function HelpPage() {
+    return <ResultsPanel
+        title="Create a new policy"
+        description="Create a new policy by selecting a parameter from the left menu and changing its value."
+    />;
+}
+
 
 export default function PolicyPage(props) {
     const { metadata, policy, setPolicy } = props;
@@ -79,9 +87,22 @@ export default function PolicyPage(props) {
           setSearchParams(newSearch);
         }});
 
+    let middle = null;
+
+    if (focus === "policy") {
+        middle = <HelpPage />;
+    } else if (Object.keys(metadata.parameters).includes(focus)) {
+        middle = <ParameterEditor
+            parameterName={focus}
+            metadata={metadata}
+            policy={policy.policy}
+            setPolicy={setPolicy}
+            />;
+    }
+
     return <ThreeColumnPage
         left={<PolicyLeftSidebar metadata={metadata} />}
-        middle="Policy"
+        middle={middle}
         right={<BiPanel 
             leftTitle="Household" 
             rightTitle="Policy" 

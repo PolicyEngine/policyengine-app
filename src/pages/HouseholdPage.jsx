@@ -1,13 +1,11 @@
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
 import { createDefaultHousehold } from "../api/variables";
 import { apiCall } from "../api/call";
 import { useEffect } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
-import ErrorPage from "../layout/Error";
 import MaritalStatus from "./household/input/MaritalStatus";
 import CountChildren from "./household/input/CountChildren";
 import BiPanel from "../layout/BiPanel";
@@ -98,7 +96,7 @@ export function createHousehold(id, countryId, metadata) {
 }
 
 export default function HouseholdPage(props) {
-  const { metadata, household, setHousehold, policy, setPolicy } = props;
+  const { metadata, household, setHousehold } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
   let middle;

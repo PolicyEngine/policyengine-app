@@ -232,21 +232,39 @@ export function formatVariableValue(variable, value, precision = 2) {
   }
 }
 
-export function getPlotlyAxisFormat(unit) {
+export function getPlotlyAxisFormat(unit, values) {
   // Possible units: currency-GBP, currency-USD, /1
+  // If values (an array) is passed, we need to calculate the
+  // appropriate number of decimal places to use.
+  let precision;
+  if (values) {
+    precision = 0;
+    for (const value of values) {
+      const decimalPlaces = value.toString().split(".")[1]?.length || 0;
+      if (decimalPlaces > precision) {
+        precision = decimalPlaces;
+      }
+    }
+    if (Math.max(...values) / 2 < 1) {
+      precision = 2;
+    }
+  }
   if (unit === "currency-GBP") {
     return {
-      tickformat: ",.0f",
+      tickformat: `,.${precision}f`,
       tickprefix: "£",
+      range: [0, 2 * Math.max(...values)],
     };
   } else if (unit === "currency-USD") {
     return {
-      tickformat: ",.0f",
+      tickformat: `,.${precision}f`,
       tickprefix: "$",
+      range: [0, 2 * Math.max(...values)],
     };
   } else if (unit === "/1") {
     return {
-      tickformat: ",.2%",
+      tickformat: `,.${precision - 2}%`,
+      range: [0, Math.max(1, 2 * Math.max(...values))],
     };
   }
 }

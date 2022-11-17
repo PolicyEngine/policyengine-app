@@ -6,7 +6,7 @@ import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
 import MobileView from "./layout/MobileView";
 import HouseholdPage, { createHousehold } from "./pages/HouseholdPage";
-import { buildVariableTree, createDefaultHousehold, getTreeLeavesInOrder } from "./api/variables";
+import { buildVariableTree, getTreeLeavesInOrder } from "./api/variables";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import PolicyPage from "./pages/PolicyPage";
@@ -144,7 +144,7 @@ export default function PolicyEngineCountry(props) {
           });
         }
       });
-  }, [countryId]);
+  }, [countryId, policy, setPolicy, household, setHousehold, searchParams]);
 
   const mainPage = (
       <Routes>
