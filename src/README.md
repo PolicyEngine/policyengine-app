@@ -1,9 +1,10 @@
-# src/
+# policyengine.org
 
-This folder contains the main source code for the front end app.
+PolicyEngine React commandments:
 
-- /blog - Contains the blog posts in markdown format
-- /components - Contains the React components
-- /images - Contains the images used in the blog posts
-- /logic - Contains any logic for managing PolicyEngine data not specific to a component
-- /style - Contains the CSS for the app, as well as general style variables (colors, fonts, etc.)
+- All components must be functional components.
+- No React.Context (unless _absolutely_ necessary).
+- Add _at least_ a docstring to every component.
+- Add graceful error handling to every component. Don't assume that the data you're getting is correct.
+- Add new rules to this list as you begin to follow them.
+- Keep functions less than 150 lines after formatting.

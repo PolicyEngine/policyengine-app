@@ -7,7 +7,7 @@ const LIGHT_GREEN = "#C5E1A5";
 const DARK_GREEN = "#558B2F";
 const BLACK = "#000";
 
-const colors = {
+export default {
   WHITE,
   BLUE,
   GRAY,
@@ -17,5 +17,3 @@ const colors = {
   DARK_GREEN,
   BLACK,
 };
-
-export default colors;

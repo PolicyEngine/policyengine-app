@@ -1,9 +1,7 @@
 import colors from "./colors";
 import spacing from "./spacing";
 
-const style = {
+export default {
   colors,
   spacing,
 };
-
-export default style;

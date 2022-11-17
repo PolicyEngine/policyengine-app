@@ -1,5 +1,4 @@
 import "./style/App.css";
-import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,16 +7,14 @@ import {
 } from "react-router-dom";
 import PolicyEngineCountry from "./PolicyEngineCountry";
 
-function PolicyEngine() {
+export default function PolicyEngine() {
   return (
     <Router>
       <Routes>
-        <Route path="/uk/*" element={<PolicyEngineCountry country="uk" />} />
-        <Route path="/us/*" element={<PolicyEngineCountry country="us" />} />
+        <Route path="/uk/*" element={<PolicyEngineCountry countryId="uk" />} />
+        <Route path="/us/*" element={<PolicyEngineCountry countryId="us" />} />
         <Route exact path="/" element={<Navigate to="/uk" />} />
       </Routes>
     </Router>
   );
 }
-
-export default PolicyEngine;

@@ -1,36 +1,75 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header";
-import { Home, Household, Policy } from "./components/pages";
-import Sidebar from "./components/Sidebar";
-import PolicyEngineContext, {
-  PolicyEngineContextClass,
-} from "./logic/PolicyEngineContext";
-import style from "./style";
+import { countryApiCall } from "./api/call";
+import Header from "./Header";
+import DesktopView from "./layout/DesktopView";
+import HomePage from "./pages/HomePage";
+import MobileView from "./layout/MobileView";
+import HouseholdPage from "./pages/HouseholdPage";
+import { buildVariableTree, getTreeLeavesInOrder } from "./api/variables";
+import LoadingCentered from "./layout/LoadingCentered";
+import ErrorPage from "./layout/Error";
 
 export default function PolicyEngineCountry(props) {
-  const [PolicyEngine, setPolicyEngineState] = useState({
-    state: new PolicyEngineContextClass(props.country),
-  });
+  // When loaded, fetch the PolicyEngine metadata for the country.
+  // Fail gracefully if the country is not supported.
+  const { countryId } = props;
+  const [metadata, setMetadata] = useState(null);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    countryApiCall(countryId, "/metadata")
+      .then((res) => res.json())
+      .then((data) => {
+        const variableTree = buildVariableTree(
+          data.variables,
+          data.variableModules
+        );
+        const variablesInOrder = getTreeLeavesInOrder(variableTree);
+        setMetadata({
+          ...data,
+          variableTree: variableTree,
+          variablesInOrder: variablesInOrder,
+          countryId: countryId,
+        });
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, [countryId]);
 
-  PolicyEngine.state.initialiseIfNeeded(setPolicyEngineState);
+  let mainPage;
 
-  PolicyEngine.state.storeCountryMetadataIfNeeded();
+  if (error) {
+    mainPage = (
+      <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." />
+    );
+  } else {
+    mainPage = (
+      <Routes>
+        <Route path="/" element={<HomePage countryId={countryId} />} />
+        <Route
+          path="/household/*"
+          element={
+            metadata ? (
+              <HouseholdPage metadata={metadata} />
+            ) : (
+              <LoadingCentered />
+            )
+          }
+        />
+      </Routes>
+    );
+  }
 
   return (
-    <PolicyEngineContext.Provider value={PolicyEngine.state}>
-      <Header />
-      <div
-        style={{
-          marginLeft: 0,
-        }}
-      >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/household" element={<Household />} />
-          <Route path="/policy" element={<Policy />} />
-        </Routes>
-      </div>
-    </PolicyEngineContext.Provider>
+    <>
+      <DesktopView>
+        <Header countryId={countryId} />
+        {mainPage}
+      </DesktopView>
+      <MobileView>
+        <h3>Currently not supported on mobile.</h3>
+      </MobileView>
+    </>
   );
 }
