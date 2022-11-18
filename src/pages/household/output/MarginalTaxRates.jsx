@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
 import {
-    formatVariableValue,
+  formatVariableValue,
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../api/variables";
@@ -90,7 +90,7 @@ export default function MarginalTaxRates(props) {
               name: "Marginal tax rate",
               line: {
                 shape: "hv",
-              }
+              },
             },
             {
               x: [currentEarnings, currentEarnings],
@@ -109,9 +109,7 @@ export default function MarginalTaxRates(props) {
             },
             yaxis: {
               title: "Marginal tax rate",
-              ...getPlotlyAxisFormat(
-                metadata.variables.marginal_tax_rate.unit
-              ),
+              ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
             },
           }}
           config={{
@@ -131,11 +129,17 @@ export default function MarginalTaxRates(props) {
     "you",
     household.computed,
     metadata
-    );
+  );
 
   return (
     <ResultsPanel
-      title={`Your marginal tax rate is ${mtr !== null ? formatVariableValue(metadata.variables.marginal_tax_rate, mtr) : <Spinner />}`}
+      title={`Your marginal tax rate is ${
+        mtr !== null ? (
+          formatVariableValue(metadata.variables.marginal_tax_rate, mtr)
+        ) : (
+          <Spinner />
+        )
+      }`}
       description="Your marginal tax rate is the tax rate you pay on your next dollar of income. The chart below shows how your marginal tax rate changes as your income changes."
     >
       {plot}

@@ -1,26 +1,27 @@
 import style from "../style";
 
-
 export default function Button(props) {
-    const { text, onClick } = props;
+  const { text, onClick } = props;
 
-    return <div
-        style={{
-            backgroundColor: style.colors.BLUE,
-            color: style.colors.WHITE,
-            padding: 10,
-            paddingLeft: 20,
-            paddingRight: 20,
-            borderRadius: 25,
-            cursor: "pointer",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            fontSize: 16,
-            ...props.style,
-        }}
-        onClick={onClick}
+  return (
+    <div
+      style={{
+        backgroundColor: style.colors.BLUE,
+        color: style.colors.WHITE,
+        padding: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        borderRadius: 25,
+        cursor: "pointer",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: 16,
+        ...props.style,
+      }}
+      onClick={onClick}
     >
-        {text}
+      {text}
     </div>
+  );
 }

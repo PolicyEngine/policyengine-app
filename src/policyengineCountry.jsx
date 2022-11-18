@@ -14,33 +14,38 @@ import { buildParameterTree } from "./api/parameters";
 
 function getMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
-  .then((res) => res.json())
-  .then((data) => {
-    const variableTree = buildVariableTree(
-      data.variables,
-      data.variableModules
-    );
-    const parameterTree = buildParameterTree(
-      data.parameters,
-    )
-    const variablesInOrder = getTreeLeavesInOrder(variableTree);
-    const metadata = {
-      ...data,
-      variableTree: variableTree,
-      variablesInOrder: variablesInOrder,
-      parameterTree: parameterTree,
-      countryId: countryId,
-    }
-    setMetadata(metadata);
-    return metadata;
-  })
-  .catch((error) => {
-    setError(error);
-    return {};
-  });
+    .then((res) => res.json())
+    .then((data) => {
+      const variableTree = buildVariableTree(
+        data.variables,
+        data.variableModules
+      );
+      const parameterTree = buildParameterTree(data.parameters);
+      const variablesInOrder = getTreeLeavesInOrder(variableTree);
+      const metadata = {
+        ...data,
+        variableTree: variableTree,
+        variablesInOrder: variablesInOrder,
+        parameterTree: parameterTree,
+        countryId: countryId,
+      };
+      setMetadata(metadata);
+      return metadata;
+    })
+    .catch((error) => {
+      setError(error);
+      return {};
+    });
 }
 
-function getSetHousehold(countryId, household, setHouseholdData, searchParams, setSearchParams, setErrorCreatingHousehold) {
+function getSetHousehold(
+  countryId,
+  household,
+  setHouseholdData,
+  searchParams,
+  setSearchParams,
+  setErrorCreatingHousehold
+) {
   return (newHousehold) => {
     setHouseholdData({
       input: newHousehold,
@@ -57,7 +62,7 @@ function getSetHousehold(countryId, household, setHouseholdData, searchParams, s
         });
         let newSearch = {};
         for (const [key, value] of searchParams) {
-            newSearch[key] = value;
+          newSearch[key] = value;
         }
         newSearch.household = data.household_id;
         setSearchParams(newSearch);
@@ -68,29 +73,36 @@ function getSetHousehold(countryId, household, setHouseholdData, searchParams, s
   };
 }
 
-function getSetPolicy(countryId, policy, setPolicyData, searchParams, setSearchParams, setErrorCreatingPolicy) {
+function getSetPolicy(
+  countryId,
+  policy,
+  setPolicyData,
+  searchParams,
+  setSearchParams,
+  setErrorCreatingPolicy
+) {
   return (newPolicy) => {
     setPolicyData({
-        policy: newPolicy,
-        id: policy.id,
+      policy: newPolicy,
+      id: policy.id,
     });
     apiCall(`/${countryId}/policy`, newPolicy)
-        .then((res) => res.json())
-        .then((data) => {
-            setPolicyData({
-                policy: newPolicy,
-                id: data.policy_id,
-            });
-            let newSearch = {};
-            for (const [key, value] of searchParams) {
-                newSearch[key] = value;
-            }
-            newSearch.policy = data.policy_id;
-            setSearchParams(newSearch);
-        })
-        .catch((err) => {
-            setErrorCreatingPolicy(true);
+      .then((res) => res.json())
+      .then((data) => {
+        setPolicyData({
+          policy: newPolicy,
+          id: data.policy_id,
         });
+        let newSearch = {};
+        for (const [key, value] of searchParams) {
+          newSearch[key] = value;
+        }
+        newSearch.policy = data.policy_id;
+        setSearchParams(newSearch);
+      })
+      .catch((err) => {
+        setErrorCreatingPolicy(true);
+      });
   };
 }
 
@@ -106,88 +118,109 @@ export default function PolicyEngineCountry(props) {
     computed: null,
     id: null,
   });
-  const setHousehold = getSetHousehold(countryId, household, setHouseholdData, searchParams, setSearchParams, setError);
+  const setHousehold = getSetHousehold(
+    countryId,
+    household,
+    setHouseholdData,
+    searchParams,
+    setSearchParams,
+    setError
+  );
   const [policy, setPolicyData] = useState({
     policy: {},
     id: null,
   });
-  const setPolicy = getSetPolicy(countryId, policy, setPolicyData, searchParams, setSearchParams, setError);
-  
+  const setPolicy = getSetPolicy(
+    countryId,
+    policy,
+    setPolicyData,
+    searchParams,
+    setSearchParams,
+    setError
+  );
+
   useEffect(() => {
     // First, get the country metadata.
     if (!error) {
-      getMetadata(countryId, setMetadata, setError)
-        .then(metadata => {
-          // Then, create the policy object (taking from the URL if it exists).
-          try {
-            if (!policy.id) {
-              if (searchParams.get("policy")) {
-                countryApiCall(countryId, `/policy/${searchParams.get("policy")}`)
-                  .then((res) => res.json())
-                  .then((data) => {
-                      setPolicy(data);
-                  })
-                  .catch((err) => {
-                      setError(true);
-                  });
-              }
+      getMetadata(countryId, setMetadata, setError).then((metadata) => {
+        // Then, create the policy object (taking from the URL if it exists).
+        try {
+          if (!policy.id) {
+            if (searchParams.get("policy")) {
+              countryApiCall(countryId, `/policy/${searchParams.get("policy")}`)
+                .then((res) => res.json())
+                .then((data) => {
+                  setPolicy(data);
+                })
+                .catch((err) => {
+                  setError(true);
+                });
             }
-            // Then, create the household object (taking from the URL if it exists).
-            if (!household.id) {
-              createHousehold(
-                searchParams.get("household"),
-                metadata.countryId,
-                metadata
-              ).then((household) => {
-                setHousehold(household);
-              });
-            }
-          } catch (err) {
-            setError(true);
           }
-        });
+          // Then, create the household object (taking from the URL if it exists).
+          if (!household.id) {
+            createHousehold(
+              searchParams.get("household"),
+              metadata.countryId,
+              metadata
+            ).then((household) => {
+              setHousehold(household);
+            });
+          }
+        } catch (err) {
+          setError(true);
+        }
+      });
     }
-  }, [countryId, error, household, policy, searchParams, setHousehold, setPolicy]);
+  }, [
+    countryId,
+    error,
+    household,
+    policy,
+    searchParams,
+    setHousehold,
+    setPolicy,
+  ]);
 
   const mainPage = (
-      <Routes>
-        <Route path="/" element={<HomePage countryId={countryId} />} />
-        <Route
-          path="/household/*"
-          element={
-            metadata ? (
-              <HouseholdPage 
-                metadata={metadata} 
-                household={household} 
-                setHousehold={setHousehold}
-                policy={policy}
-              />
-            ) : (
-              error ?
-                <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." /> :
-                <LoadingCentered />
-            )
-          }
-        />
-        <Route
-          path="/policy/*"
-          element={
-            metadata ? (
-              <PolicyPage 
-                metadata={metadata}
-                policy={policy}
-                setPolicy={setPolicy}
-                household={household}
-              />
-            ) : (
-              error ?
-                <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." /> :
-                <LoadingCentered />
-            )
-          }
-        />
-      </Routes>
-    );
+    <Routes>
+      <Route path="/" element={<HomePage countryId={countryId} />} />
+      <Route
+        path="/household/*"
+        element={
+          metadata ? (
+            <HouseholdPage
+              metadata={metadata}
+              household={household}
+              setHousehold={setHousehold}
+              policy={policy}
+            />
+          ) : error ? (
+            <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." />
+          ) : (
+            <LoadingCentered />
+          )
+        }
+      />
+      <Route
+        path="/policy/*"
+        element={
+          metadata ? (
+            <PolicyPage
+              metadata={metadata}
+              policy={policy}
+              setPolicy={setPolicy}
+              household={household}
+            />
+          ) : error ? (
+            <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." />
+          ) : (
+            <LoadingCentered />
+          )
+        }
+      />
+    </Routes>
+  );
 
   return (
     <>

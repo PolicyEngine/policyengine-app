@@ -1,4 +1,3 @@
-
 export function buildParameterTree(parameters) {
   let tree = {};
 
@@ -20,7 +19,9 @@ export function buildParameterTree(parameters) {
         currentNode.children = [];
       }
       if (
-        !currentNode.children.find((child) => child.name === fixedCumulativePath)
+        !currentNode.children.find(
+          (child) => child.name === fixedCumulativePath
+        )
       ) {
         currentNode.children.push({
           label: key,

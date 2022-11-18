@@ -70,7 +70,9 @@ function HouseholdLeftSidebar(props) {
       }
       leftTitle="Inputs"
       rightTitle="Outputs"
-      leftNavigatedSelected={!(searchParams.get("focus") || "").startsWith("householdOutput")}
+      leftNavigatedSelected={
+        !(searchParams.get("focus") || "").startsWith("householdOutput")
+      }
     />
   );
 }
@@ -104,14 +106,15 @@ export default function HouseholdPage(props) {
   const focus = searchParams.get("focus") || "";
 
   useEffect(() => {
-  if (!focus) {
-    let newSearch = {};
-    for (const [key, value] of searchParams) {
+    if (!focus) {
+      let newSearch = {};
+      for (const [key, value] of searchParams) {
         newSearch[key] = value;
+      }
+      newSearch.focus = "structure.maritalStatus";
+      setSearchParams(newSearch);
     }
-    newSearch.focus = "structure.maritalStatus";
-    setSearchParams(newSearch);
-  }});
+  });
 
   if (!household.input || !household.computed) {
     middle = <LoadingCentered />;
@@ -152,13 +155,17 @@ export default function HouseholdPage(props) {
     <ThreeColumnPage
       left={<HouseholdLeftSidebar metadata={metadata} />}
       middle={middle}
-      right={<BiPanel 
-        leftTitle="Household" 
-        rightTitle="Policy" 
-        left={<HouseholdRightSidebar metadata={metadata} household={household} />} 
-        right={<PolicyRightSidebar metadata={metadata} policy={policy} />}
-        leftNavigatedSelected={true}
-      />}
+      right={
+        <BiPanel
+          leftTitle="Household"
+          rightTitle="Policy"
+          left={
+            <HouseholdRightSidebar metadata={metadata} household={household} />
+          }
+          right={<PolicyRightSidebar metadata={metadata} policy={policy} />}
+          leftNavigatedSelected={true}
+        />
+      }
     />
   );
 }

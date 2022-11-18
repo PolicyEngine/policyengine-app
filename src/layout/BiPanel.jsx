@@ -6,7 +6,10 @@ export default function BiPanel(props) {
   // A panel with a switch at the top to switch between two views.
   const { left, right, leftTitle, rightTitle, leftNavigatedSelected } = props;
   const [leftSelected, setLeftSelected] = useState(true);
-  const [leftNavigatedSelectedWhenLastToggled, setLeftNavigatedSelectedWhenLastToggled] = useState();
+  const [
+    leftNavigatedSelectedWhenLastToggled,
+    setLeftNavigatedSelectedWhenLastToggled,
+  ] = useState();
 
   if (leftNavigatedSelectedWhenLastToggled !== leftNavigatedSelected) {
     setLeftSelected(leftNavigatedSelected);

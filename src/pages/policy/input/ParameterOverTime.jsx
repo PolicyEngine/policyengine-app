@@ -3,12 +3,11 @@ import { getReformedParameter } from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import style from "../../../style";
 
-
 export default function ParameterOverTime(props) {
   const { parameter, policy } = props;
   let values = parameter.values;
   if (!values) {
-    return null
+    return null;
   }
 
   // Ensure the line doesn't go back on itself.
@@ -36,7 +35,6 @@ export default function ParameterOverTime(props) {
     reformedX.push("2099-12-31");
     reformedY.push(reformedY[reformedY.length - 1]);
   }
-
 
   return (
     <>
@@ -66,9 +64,14 @@ export default function ParameterOverTime(props) {
             },
             name: "Reform",
           },
-        ].reverse().filter(x => x)}
+        ]
+          .reverse()
+          .filter((x) => x)}
         layout={{
-          yaxis: getPlotlyAxisFormat(parameter.unit, Object.values(parameter.values)),
+          yaxis: getPlotlyAxisFormat(
+            parameter.unit,
+            Object.values(parameter.values)
+          ),
           xaxis: {
             range: ["2000-01-01", "2025-01-01"],
           },
