@@ -253,18 +253,18 @@ export function getPlotlyAxisFormat(unit, values) {
     return {
       tickformat: `,.${precision}f`,
       tickprefix: "£",
-      range: [0, 2 * Math.max(...values)],
+      ...(values && { range: [0, Math.max(...values) * 1.5] }),
     };
   } else if (unit === "currency-USD") {
     return {
       tickformat: `,.${precision}f`,
       tickprefix: "$",
-      range: [0, 2 * Math.max(...values)],
+      ...(values && { range: [0, Math.max(...values) * 1.5] }),
     };
   } else if (unit === "/1") {
     return {
       tickformat: `,.${precision - 2}%`,
-      range: [0, Math.max(1, 2 * Math.max(...values))],
+      ...(values && { range: [0, Math.max(1, Math.max(...values) * 1.5)] }),
     };
   }
 }

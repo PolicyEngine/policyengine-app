@@ -115,36 +115,39 @@ export default function PolicyEngineCountry(props) {
   
   useEffect(() => {
     // First, get the country metadata.
-    getMetadata(countryId, setMetadata, setError)
-      .then(metadata => {
-        console.log(`Got metadata`);
-        // Then, create the policy object (taking from the URL if it exists).
-        if (!policy.id) {
-          if (searchParams.get("policy")) {
-            countryApiCall(countryId, `/policy/${searchParams.get("policy")}`)
-              .then((res) => res.json())
-              .then((data) => {
-                  setPolicy(data);
-              })
-              .catch((err) => {
-                  setError(true);
+    if (!error) {
+      getMetadata(countryId, setMetadata, setError)
+        .then(metadata => {
+          // Then, create the policy object (taking from the URL if it exists).
+          try {
+            if (!policy.id) {
+              if (searchParams.get("policy")) {
+                countryApiCall(countryId, `/policy/${searchParams.get("policy")}`)
+                  .then((res) => res.json())
+                  .then((data) => {
+                      setPolicy(data);
+                  })
+                  .catch((err) => {
+                      setError(true);
+                  });
+              }
+            }
+            // Then, create the household object (taking from the URL if it exists).
+            if (!household.id) {
+              createHousehold(
+                searchParams.get("household"),
+                metadata.countryId,
+                metadata
+              ).then((household) => {
+                setHousehold(household);
               });
-          } else {
-            setPolicy({});
+            }
+          } catch (err) {
+            setError(true);
           }
-        }
-        // Then, create the household object (taking from the URL if it exists).
-        if (!household.id) {
-          createHousehold(
-            searchParams.get("household"),
-            metadata.countryId,
-            metadata
-          ).then((household) => {
-            setHousehold(household);
-          });
-        }
-      });
-  }, [countryId, policy, setPolicy, household, setHousehold, searchParams]);
+        });
+    }
+  }, [countryId, error, household, policy, searchParams, setHousehold, setPolicy]);
 
   const mainPage = (
       <Routes>
@@ -157,6 +160,7 @@ export default function PolicyEngineCountry(props) {
                 metadata={metadata} 
                 household={household} 
                 setHousehold={setHousehold}
+                policy={policy}
               />
             ) : (
               error ?
@@ -173,6 +177,7 @@ export default function PolicyEngineCountry(props) {
                 metadata={metadata}
                 policy={policy}
                 setPolicy={setPolicy}
+                household={household}
               />
             ) : (
               error ?

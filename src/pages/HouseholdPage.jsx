@@ -13,6 +13,7 @@ import NetIncomeBreakdown from "./household/output/NetIncomeBreakdown";
 import EarningsVariation from "./household/output/EarningsVariation";
 import MarginalTaxRates from "./household/output/MarginalTaxRates";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
+import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -96,7 +97,7 @@ export function createHousehold(id, countryId, metadata) {
 }
 
 export default function HouseholdPage(props) {
-  const { metadata, household, setHousehold } = props;
+  const { metadata, household, setHousehold, policy } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
   let middle;
@@ -155,6 +156,8 @@ export default function HouseholdPage(props) {
         leftTitle="Household" 
         rightTitle="Policy" 
         left={<HouseholdRightSidebar metadata={metadata} household={household} />} 
+        right={<PolicyRightSidebar metadata={metadata} policy={policy} />}
+        leftNavigatedSelected={true}
       />}
     />
   );

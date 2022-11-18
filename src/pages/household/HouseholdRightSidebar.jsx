@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { formatVariableValue, getValueFromHousehold } from "../../api/variables";
 import Button from "../../controls/Button";
 import Divider from "../../layout/Divider";
@@ -28,9 +28,29 @@ function Figure(props) {
 export default function HouseholdRightSidebar(props) {
     const { household, metadata } = props;
     const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
 
     if (!household || !household.computed) {
-        return null;
+        return <div
+            style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                marginTop: "60%",
+            }}
+        >
+            <h4 style={{marginBottom: 20}}>No household specified</h4>
+            <Button text="Create a household" onClick={() => {
+                // Navigate to /<country>/household, preserving URL parameters
+                const country = metadata.countryId;
+                const newSearchParams = {};
+                for (const [key, value] of searchParams) {
+                    newSearchParams[key] = value;
+                }
+                newSearchParams.focus = "structure.maritalStatus";
+                navigate(`/${country}/household`, { state: { newSearchParams } });
+            }} />
+        </div>
     }
 
     const countPeople = Object.keys(household.input.people).length;

@@ -14,8 +14,8 @@ export function buildParameterTree(parameters) {
     let currentNode = tree;
     let cumulativePath = "";
     for (const key of pathComponents.slice(0, -1)) {
-      const fixedCumulativePath = cumulativePath;
       cumulativePath += key;
+      const fixedCumulativePath = cumulativePath;
       if (!currentNode.children) {
         currentNode.children = [];
       }

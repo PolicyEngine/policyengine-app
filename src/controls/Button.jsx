@@ -9,6 +9,8 @@ export default function Button(props) {
             backgroundColor: style.colors.BLUE,
             color: style.colors.WHITE,
             padding: 10,
+            paddingLeft: 20,
+            paddingRight: 20,
             borderRadius: 25,
             cursor: "pointer",
             display: "flex",
