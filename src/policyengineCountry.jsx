@@ -143,6 +143,7 @@ export default function PolicyEngineCountry(props) {
     // First, get the country metadata.
     if (!error) {
       getMetadata(countryId, setMetadata, setError).then((metadata) => {
+        console.log(metadata);
         // Then, create the policy object (taking from the URL if it exists).
         try {
           if (!policy.id) {
@@ -172,15 +173,8 @@ export default function PolicyEngineCountry(props) {
         }
       });
     }
-  }, [
-    countryId,
-    error,
-    household,
-    policy,
-    searchParams,
-    setHousehold,
-    setPolicy,
-  ]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryId]);
 
   const mainPage = (
     <Routes>
