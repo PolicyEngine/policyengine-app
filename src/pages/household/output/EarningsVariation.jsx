@@ -37,7 +37,8 @@ export default function EarningsVariation(props) {
       .catch((err) => {
         setError(err);
       });
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (error) {
     return (

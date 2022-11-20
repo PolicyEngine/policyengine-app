@@ -1,8 +1,20 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Button from "../../controls/Button";
+import InputField from "../../controls/InputField";
+
+function PolicyNamer(props) {
+  const { policy, setPolicy, metadata } = props;
+  const label = policy.label || `Policy #${policy.id}`;
+
+  return <div style={{ display: "flex", alignItems: "center" }}>
+    <InputField placeholder={label} padding={10} width="100%" onChange={name => {
+      setPolicy(policy.policy, name);
+    }} />
+  </div>;
+}
 
 export default function PolicyRightSidebar(props) {
-  const { policy, metadata } = props;
+  const { policy, setPolicy, metadata } = props;
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -33,5 +45,7 @@ export default function PolicyRightSidebar(props) {
       </div>
     );
   }
-  return <></>;
+  return <div style={{paddingTop: 10 }}>
+    <PolicyNamer policy={policy} metadata={metadata} setPolicy={setPolicy} />
+  </div>
 }

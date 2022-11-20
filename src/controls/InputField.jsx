@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 
 export default function InputField(props) {
-  const { placeholder, onChange } = props;
+  const { placeholder, onChange, padding, width } = props;
   return (
     <motion.input
       pattern="[0-9]*"
       style={{
-        padding: 20,
-        marginLeft: 20,
-        marginRight: 20,
-        width: 200,
+        padding: padding || 20,
+        marginLeft: padding || 20,
+        marginRight: padding || 20,
+        width: width || 200,
       }}
       whileFocus={{ scale: 1.05 }}
       onKeyUp={(e) => {

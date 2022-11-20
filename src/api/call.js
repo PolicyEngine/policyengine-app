@@ -10,6 +10,26 @@ export function apiCall(path, body) {
   });
 }
 
+export function asyncApiCall(path, body, interval = 1000) {
+  // Call an API endpoint which may respond with a {status: computing} response.
+  // If so, poll until the response is ready.
+  return new Promise((resolve, reject) => {
+    const poll = () => {
+      apiCall(path, body)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "computing") {
+            setTimeout(poll, interval);
+          } else {
+            resolve(data);
+          }
+        })
+        .catch((error) => reject(error));
+    };
+    poll();
+  });
+}
+
 export function countryApiCall(country, path, body) {
   return apiCall(`/${country}${path}`, body);
 }

@@ -6,6 +6,7 @@ import ResultsPanel from "../layout/ResultsPanel";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import ParameterEditor from "./policy/input/ParameterEditor";
+import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 
 const POLICY_OUTPUT_TREE = [
@@ -115,6 +116,8 @@ export default function PolicyPage(props) {
         setPolicy={setPolicy}
       />
     );
+  } else if (focus.includes("policyOutput.")) {
+    middle = <PolicyOutput metadata={metadata} policy={policy} />;
   }
 
   return (
@@ -128,7 +131,7 @@ export default function PolicyPage(props) {
           left={
             <HouseholdRightSidebar metadata={metadata} household={household} />
           }
-          right={<PolicyRightSidebar metadata={metadata} policy={policy} />}
+          right={<PolicyRightSidebar metadata={metadata} policy={policy} setPolicy={setPolicy} />}
           leftNavigatedSelected={false}
         />
       }

@@ -1,6 +1,7 @@
-import { LoadingOutlined } from "@ant-design/icons";
+import Spinner from "./Spinner";
 
-export default function LoadingCentered() {
+export default function LoadingCentered(props) {
+  const { message, size } = props;
   return (
     <div
       style={{
@@ -10,7 +11,12 @@ export default function LoadingCentered() {
         alignItems: "center",
       }}
     >
-      <LoadingOutlined />
+      <div style={{display: "block", textAlign: "center"}}>
+      {
+        message && <h4>{message}<br></br></h4>
+      }
+      <Spinner size={size} />
+      </div>
     </div>
   );
 }

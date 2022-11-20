@@ -28,6 +28,7 @@ function getMetadata(countryId, setMetadata, setError) {
         variablesInOrder: variablesInOrder,
         parameterTree: parameterTree,
         countryId: countryId,
+        currency: countryId === "us" ? "$" : "£",
       };
       setMetadata(metadata);
       return metadata;
@@ -79,19 +80,21 @@ function getSetPolicy(
   setPolicyData,
   searchParams,
   setSearchParams,
-  setErrorCreatingPolicy
+  setErrorCreatingPolicy,
 ) {
-  return (newPolicy) => {
+  return (newPolicy, label) => {
     setPolicyData({
       policy: newPolicy,
       id: policy.id,
+      label: label,
     });
-    apiCall(`/${countryId}/policy`, newPolicy)
+    apiCall(`/${countryId}/policy`, {...newPolicy, label: label})
       .then((res) => res.json())
       .then((data) => {
         setPolicyData({
           policy: newPolicy,
           id: data.policy_id,
+          label: data.label,
         });
         let newSearch = {};
         for (const [key, value] of searchParams) {
@@ -118,6 +121,7 @@ export default function PolicyEngineCountry(props) {
     computed: null,
     id: null,
   });
+  // Define functions to set household and policy data
   const setHousehold = getSetHousehold(
     countryId,
     household,
@@ -139,11 +143,11 @@ export default function PolicyEngineCountry(props) {
     setError
   );
 
+  // Run this effect once, when the country is known.
   useEffect(() => {
     // First, get the country metadata.
     if (!error) {
       getMetadata(countryId, setMetadata, setError).then((metadata) => {
-        console.log(metadata);
         // Then, create the policy object (taking from the URL if it exists).
         try {
           if (!policy.id) {
