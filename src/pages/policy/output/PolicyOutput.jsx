@@ -8,8 +8,10 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import PolicySearch from "../PolicySearch";
 import BudgetaryImpact from "./BudgetaryImpact";
-import DistributionalImpact from "./DistributionalImpact";
+import DistributionalImpact from "./RelativeImpactByDecile";
 import PovertyImpact from "./PovertyImpact";
+import RelativeImpactByDecile from "./RelativeImpactByDecile";
+import AverageImpactByDecile from "./AverageImpactByDecile";
 
 function RegionSelector(props) {
     const { metadata } = props;
@@ -70,7 +72,11 @@ export default function PolicyOutput(props) {
             setError(null);
             asyncApiCall(url, null, 3_000)
                 .then((data) => {
-                    setImpact(data.result);
+                    if (data.status === "error") {
+                        setError(data.message);
+                    } else {
+                        setImpact(data.result);
+                    }
                 })
                 .catch((err) => {
                     setError(err);
@@ -118,8 +124,10 @@ export default function PolicyOutput(props) {
         pane = <LoadingCentered message="Simulating your policy"/>;
     } else if (focus === "policyOutput.netIncome") {
         pane = <BudgetaryImpact metadata={metadata} impact={impact} policyLabel={policyLabel} />;
-    } else if (focus === "policyOutput.distributionalImpact") {
-        pane = <DistributionalImpact metadata={metadata} impact={impact} policyLabel={policyLabel} />;
+    } else if (focus === "policyOutput.decileRelativeImpact") {
+        pane = <RelativeImpactByDecile metadata={metadata} impact={impact} policyLabel={policyLabel} />;
+    } else if (focus === "policyOutput.decileAverageImpact") {
+        pane = <AverageImpactByDecile metadata={metadata} impact={impact} policyLabel={policyLabel} />;
     } else if (focus === "policyOutput.povertyImpact") {
         pane = <PovertyImpact metadata={metadata} impact={impact} policyLabel={policyLabel} />;
     }

@@ -1,18 +1,19 @@
 import Plot from "react-plotly.js";
+import { formatVariableValue, getPlotlyAxisFormat } from "../../../api/variables";
 import style from "../../../style";
 
 
-export default function DistributionalImpact(props) {
+export default function AverageImpactByDecile(props) {
     const { impact, policyLabel, metadata } = props;
     // Decile bar chart. Bars are grey if negative, green if positive.
     const chart = <Plot
         data={[
             {
-                x: Object.keys(impact.decile),
-                y: Object.values(impact.decile),
+                x: Object.keys(impact.decile.average),
+                y: Object.values(impact.decile.average),
                 type: "bar",
                 marker: {
-                    color: Object.values(impact.decile).map((value) => value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN),
+                    color: Object.values(impact.decile.average).map((value) => value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN),
                 },
             }
         ]}
@@ -22,7 +23,8 @@ export default function DistributionalImpact(props) {
             },
             yaxis: {
                 title: "Relative change",
-                tickformat: ",.1%",
+                tickprefix: metadata.countryId === "uk" ? "£" : "",
+                tickformat: metadata.countryId === "uk" ? ",.0f" : ",.0s",
             },
             showlegend: false,
         }}
@@ -34,8 +36,10 @@ export default function DistributionalImpact(props) {
         }}
     />;
 
+    const averageChange = (Object.values(impact.decile.average)).reduce((a, b) => a + b, 0) / Object.values(impact.decile.average).length;
+
     return <>
-        <h2>{policyLabel} across income deciles</h2>
+        <h2>{policyLabel} {averageChange >= 0 ? "increases" : "decreases"} the average household's net income by {formatVariableValue(metadata.variables.household_net_income, Math.abs(averageChange), 0)}</h2>
         <p>The chart below shows the relative change in income for each income decile.</p>
         {chart}
         <p>Households are sorted into ten equally-populated groups according to their equivalised household net income.</p>

@@ -239,6 +239,7 @@ export function getPlotlyAxisFormat(unit, values) {
   // If values (an array) is passed, we need to calculate the
   // appropriate number of decimal places to use.
   let precision;
+  const sortRange = (range) => range.sort((a, b) => a - b);
   if (values) {
     precision = 0;
     for (const value of values) {
@@ -255,18 +256,18 @@ export function getPlotlyAxisFormat(unit, values) {
     return {
       tickformat: `,.${precision}f`,
       tickprefix: "£",
-      ...(values && { range: [0, Math.max(...values) * 1.5] }),
+      ...(values && { range: [Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5] }),
     };
   } else if (unit === "currency-USD") {
     return {
       tickformat: `,.${precision}f`,
       tickprefix: "$",
-      ...(values && { range: [0, Math.max(...values) * 1.5] }),
+      ...(values && { range: sortRange([Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5]) }),
     };
   } else if (unit === "/1") {
     return {
       tickformat: `,.${precision - 2}%`,
-      ...(values && { range: [0, Math.max(1, Math.max(...values) * 1.5)] }),
+      ...(values && { range: sortRange([Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5]) }),
     };
   }
 }

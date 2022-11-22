@@ -65,7 +65,7 @@ export default function BudgetaryImpact(props) {
 
 
     return <>
-        <h2>{policyLabel} <u>{budgetaryImpact > 0 ? "raises" : "costs"} {aggregateCurrency(budgetaryImpact, metadata)}</u></h2>
+        <h2>{policyLabel} {budgetaryImpact > 0 ? "raises" : "costs"} {aggregateCurrency(budgetaryImpact, metadata)}</h2>
         <p>The chart below shows how this is broken down between tax and benefit measures.</p>
         {chart}
     </>

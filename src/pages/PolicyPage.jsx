@@ -20,8 +20,12 @@ const POLICY_OUTPUT_TREE = [
         label: "Budgetary impact",
       },
       {
-        name: "policyOutput.distributionalImpact",
-        label: "Distributional impact",
+        name: "policyOutput.decileRelativeImpact",
+        label: "Relative impact by decile",
+      },
+      {
+        name: "policyOutput.decileAverageImpact",
+        label: "Average impact by decile",
       },
       {
         name: "policyOutput.povertyImpact",
