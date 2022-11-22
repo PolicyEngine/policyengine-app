@@ -18,11 +18,59 @@ function VariableArithmetic(props) {
       household.baseline,
       metadata
     );
-  const valueStr =
-    (value >= 0 ? "+  " : "-  ") +
-    formatVariableValue(metadata.variables[variableName], Math.abs(value), 0);
-  const [expanded, setExpanded] = useState(defaultExpanded);
+  let valueStr;
+  let shouldShowVariable;
+  const hasReform = household.reform !== null;
   const variable = metadata.variables[variableName];
+  if (hasReform) {
+    // Write the result in the form: £y (+£(y-x))
+    const reformValue =
+      (inverted ? -1 : 1) *
+      getValueFromHousehold(
+        variableName,
+        null,
+        null,
+        household.reform,
+        metadata
+      );
+    const diff = reformValue - value;
+    valueStr = (value >= 0 ? "+  " : "-  ")
+      + `${formatVariableValue(variable, Math.abs(reformValue), 0)}`
+      + ` (${(inverted ? diff < 0 : diff >= 0) ? "+" : "-"}`
+      + `${formatVariableValue(variable, Math.abs(diff), 0)})`;
+    shouldShowVariable = variableName => {
+      const isNonZeroInBaseline = getValueFromHousehold(
+        variableName,
+        null,
+        null,
+        household.baseline,
+        metadata
+      ) !== 0;
+      const isNonZeroInReform = getValueFromHousehold(
+        variableName,
+        null,
+        null,
+        household.reform,
+        metadata
+      ) !== 0;
+      return isNonZeroInBaseline || isNonZeroInReform;
+    }
+  } else {
+    valueStr =
+      (value >= 0 ? "+  " : "-  ") +
+      formatVariableValue(variable, Math.abs(value), 0);
+    shouldShowVariable = variableName => {
+      return getValueFromHousehold(
+        variableName,
+        null,
+        null,
+        household.baseline,
+        metadata
+      ) !== 0;
+    }
+  }
+    
+  const [expanded, setExpanded] = useState(defaultExpanded);
   const adds = variable.adds || [];
   const subtracts = variable.subtracts || [];
   const expandable = adds.length + subtracts.length > 0;
@@ -60,16 +108,7 @@ function VariableArithmetic(props) {
           }}
         >
           {adds
-            .filter(
-              (variable) =>
-                getValueFromHousehold(
-                  variable,
-                  null,
-                  null,
-                  household.baseline,
-                  metadata
-                ) > 0
-            )
+            .filter(shouldShowVariable)
             .map((variable) => (
               <VariableArithmetic
                 variableName={variable}
@@ -80,16 +119,7 @@ function VariableArithmetic(props) {
               />
             ))}
           {subtracts
-            .filter(
-              (variable) =>
-                getValueFromHousehold(
-                  variable,
-                  null,
-                  null,
-                  household.baseline,
-                  metadata
-                ) > 0
-            )
+            .filter(shouldShowVariable)
             .map((variable) => (
               <VariableArithmetic
                 variableName={variable}
@@ -106,7 +136,7 @@ function VariableArithmetic(props) {
 }
 
 export default function NetIncomeBreakdown(props) {
-  const { metadata, household } = props;
+  const { metadata, household, policyLabel } = props;
   const hasReform = household.reform !== null;
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, household.baseline, metadata);
@@ -120,9 +150,9 @@ export default function NetIncomeBreakdown(props) {
   if (hasReform) {
     const difference = getReformValue("household_net_income") - getValue("household_net_income");
     if (Math.abs(difference) < 0.01) {
-      title = "Your net income doesn't change";
+      title = `${policyLabel} doesn't change your net income`;
     } else {
-      title = `Your net income ${difference > 0 ? "increases" : "decreases"} by ${formatVariableValue(metadata.variables.household_net_income, Math.abs(difference), 0)}`;
+      title = `${policyLabel} ${difference > 0 ? "increases" : "decreases"} your net income by ${formatVariableValue(metadata.variables.household_net_income, Math.abs(difference), 0)}`;
     }
   } else {
     title = `Your net income is ${getValueStr("household_net_income")}`;

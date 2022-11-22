@@ -15,6 +15,7 @@ import MarginalTaxRates from "./household/output/MarginalTaxRates";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import HouseholdIntro from "./household/HouseholdIntro";
+import HouseholdOutput from "./household/output/HouseholdOutput";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -115,6 +116,20 @@ export default function HouseholdPage(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!household.input]);
 
+  const reformPolicyId = searchParams.get("reform");
+  const baselinePolicyId = searchParams.get("baseline");
+  let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
+  let baselineLabel = policy.baseline.label || `Policy #${baselinePolicyId}`;
+  if (!baselinePolicyId) {
+    baselineLabel = "Current law";
+  }
+  let policyLabel;
+    if (reformLabel !== "Current law" && baselineLabel === "Current law") {
+        policyLabel = reformLabel;
+    } else {
+        policyLabel = `${baselineLabel} → ${reformLabel}`;
+    }
+
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
   } else if (focus.startsWith("input.")) {
@@ -141,12 +156,8 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
-  } else if (focus === "householdOutput.netIncome") {
-    middle = <NetIncomeBreakdown metadata={metadata} household={household} />;
-  } else if (focus === "householdOutput.earnings") {
-    middle = <EarningsVariation metadata={metadata} household={household} />;
-  } else if (focus === "householdOutput.mtr") {
-    middle = <MarginalTaxRates metadata={metadata} household={household} />;
+  } else if (focus.startsWith("householdOutput.")) {
+    middle = <HouseholdOutput metadata={metadata} household={household} policy={policy} />;
   } else if (focus === "intro") {
     middle = <HouseholdIntro />;
   } else {

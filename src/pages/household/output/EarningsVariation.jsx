@@ -9,10 +9,13 @@ import ErrorPage from "../../../layout/Error";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import FadeIn from "../../../layout/FadeIn";
+import { useSearchParams } from "react-router-dom";
 
 export default function EarningsVariation(props) {
   const { household, metadata } = props;
-  const [result, setResult] = useState(null);
+  const [baselineNetIncome, setBaselineNetIncome] = useState(null);
+  const [searchParams] = useSearchParams();
+  const [reformNetIncome, setReformNetIncome] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -32,7 +35,7 @@ export default function EarningsVariation(props) {
     apiCall(`/${metadata.countryId}/calculate`, {household: householdData})
       .then((res) => res.json())
       .then((data) => {
-        setResult(data.result);
+        setBaselineNetIncome(data.result);
       })
       .catch((err) => {
         setError(err);
@@ -48,19 +51,19 @@ export default function EarningsVariation(props) {
 
   let plot;
 
-  if (result) {
+  if (baselineNetIncome && !reformNetIncome) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
       "2022",
       "you",
-      result,
+      baselineNetIncome,
       metadata
     );
     const netIncomeArray = getValueFromHousehold(
       "household_net_income",
       "2022",
       null,
-      result,
+      baselineNetIncome,
       metadata
     );
     const currentEarnings = getValueFromHousehold(
@@ -123,7 +126,7 @@ export default function EarningsVariation(props) {
 
   return (
     <ResultsPanel
-      title="Your net income changes under different earnings"
+      title="How your net income changes with your earnings"
       description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
     >
       {plot}

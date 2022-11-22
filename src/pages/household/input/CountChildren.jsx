@@ -70,7 +70,7 @@ export default function CountChildren(props) {
     getNewHouseholdId(metadata.countryId, newHousehold)
       .then((householdId) => {
         let newSearch = copySearchParams(searchParams);
-        newSearch.set("householdId", householdId);
+        newSearch.set("household", householdId);
         setSearchParams(newSearch);
       });
   };
