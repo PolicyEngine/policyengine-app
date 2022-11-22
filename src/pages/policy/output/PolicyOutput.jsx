@@ -9,6 +9,7 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import PolicySearch from "../PolicySearch";
 import BudgetaryImpact from "./BudgetaryImpact";
 import DistributionalImpact from "./DistributionalImpact";
+import PovertyImpact from "./PovertyImpact";
 
 function RegionSelector(props) {
     const { metadata } = props;
@@ -119,6 +120,8 @@ export default function PolicyOutput(props) {
         pane = <BudgetaryImpact metadata={metadata} impact={impact} policyLabel={policyLabel} />;
     } else if (focus === "policyOutput.distributionalImpact") {
         pane = <DistributionalImpact metadata={metadata} impact={impact} policyLabel={policyLabel} />;
+    } else if (focus === "policyOutput.povertyImpact") {
+        pane = <PovertyImpact metadata={metadata} impact={impact} policyLabel={policyLabel} />;
     }
 
     return <>

@@ -23,6 +23,10 @@ const POLICY_OUTPUT_TREE = [
         name: "policyOutput.distributionalImpact",
         label: "Distributional impact",
       },
+      {
+        name: "policyOutput.povertyImpact",
+        label: "Poverty impact",
+      }
     ],
   },
 ];

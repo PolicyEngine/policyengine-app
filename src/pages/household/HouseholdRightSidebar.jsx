@@ -66,7 +66,11 @@ export default function HouseholdRightSidebar(props) {
               newSearchParams[key] = value;
             }
             newSearchParams.focus = "structure.maritalStatus";
-            navigate(`/${country}/household`, { state: { newSearchParams } });
+            let url = `/${country}/household`;
+            if (Object.keys(newSearchParams).length > 0) {
+              url += `?${new URLSearchParams(newSearchParams)}`;
+            }
+            navigate(url);
           }}
         />
       </div>
