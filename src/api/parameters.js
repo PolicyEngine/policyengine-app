@@ -1,3 +1,5 @@
+import { countryApiCall } from "./call";
+
 export function buildParameterTree(parameters) {
   let tree = {};
 
@@ -99,4 +101,12 @@ export function getReformedParameter(parameter, reforms) {
     }
   }
   return newParameter;
+}
+
+export function getNewPolicyId(countryId, newPolicyData) {
+  return countryApiCall(countryId, "/policy", { data: newPolicyData }, "POST")
+    .then((response) => response.json())
+    .then((data) => {
+      return data.result.policy_id;
+    });
 }

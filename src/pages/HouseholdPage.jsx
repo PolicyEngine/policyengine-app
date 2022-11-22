@@ -2,7 +2,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
 import { createDefaultHousehold } from "../api/variables";
-import { apiCall, countryApiCall } from "../api/call";
+import { countryApiCall } from "../api/call";
 import { useEffect } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
@@ -105,6 +105,7 @@ export default function HouseholdPage(props) {
       newSearch.focus = "intro";
       setSearchParams(newSearch);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 
   // If we've landed on the page without a household, create a new one.
@@ -121,6 +122,7 @@ export default function HouseholdPage(props) {
         }
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!household.input]);
 
   if (!household.input || !household.baseline) {

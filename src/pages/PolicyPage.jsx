@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import BiPanel from "../layout/BiPanel";
+import LoadingCentered from "../layout/LoadingCentered";
 import Menu from "../layout/Menu";
 import ResultsPanel from "../layout/ResultsPanel";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
@@ -97,16 +98,33 @@ export default function PolicyPage(props) {
     }
   });
 
+  // If we've landed on the page without a reform policy, create a new one.
+  useEffect(() => {
+    if (!policy.reform.data && !searchParams.get("reform")) {
+      let newSearch = {};
+      for (const [key, value] of searchParams) {
+        newSearch[key] = value;
+      }
+      newSearch.reform = 1;
+      setSearchParams(newSearch);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [!!policy.reform.data]);
+
   let middle = null;
 
-  if (focus === "policy") {
+  console.log(policy)
+
+  if (!policy.reform.data) {
+    middle = <LoadingCentered />;
+  } else if (focus === "policy") {
     middle = <HelpPage />;
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     middle = (
       <ParameterEditor
         parameterName={focus}
         metadata={metadata}
-        policy={policy.policy}
+        policy={policy}
         setPolicy={setPolicy}
       />
     );

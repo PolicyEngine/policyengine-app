@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { apiCall, countryApiCall } from "./api/call";
+import { countryApiCall } from "./api/call";
 import Header from "./Header";
 import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
 import MobileView from "./layout/MobileView";
-import HouseholdPage, { createHousehold } from "./pages/HouseholdPage";
-import { buildVariableTree, createDefaultHousehold, getTreeLeavesInOrder } from "./api/variables";
+import HouseholdPage from "./pages/HouseholdPage";
+import { buildVariableTree, getTreeLeavesInOrder } from "./api/variables";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import PolicyPage from "./pages/PolicyPage";
@@ -97,12 +97,66 @@ export default function PolicyEngineCountry(props) {
         setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), ...results));
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId]);
 
-  // Update the policy state when:
-  // - the metadata changes (e.g. the user changes the country)
-  // - the reformPolicyId changes (e.g. the user changes the reform policy)
-  // - the baselinePolicyId changes (e.g. the user changes the baseline policy)
+  // When the baseline policy ID changes, update the baseline data and the baseline policy.
+
+  useEffect(() => {
+    let requests = [];
+    if (!baselinePolicyId) {
+      // We can mock the policy lookup for current law because it's always going to be the same.
+      requests.push(Promise.resolve({data: {}, label: "Current law"}));
+    } else {
+      requests.push(countryApiCall(countryId, `/policy/${baselinePolicyId}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          return {policy: {data: dataHolder.result.policy_json, label: dataHolder.result.label}};
+        }));
+    }
+    if (householdId) {
+      requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${baselinePolicyId || "current-law"}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          return {household: {baseline: dataHolder.result}};
+        }));
+    }
+    Promise.all(requests).then((results) => {
+      const combinedResults = Object.assign({}, ...results);
+      setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), {baseline: combinedResults.policy}));
+      if (householdId) {
+        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), {baseline: combinedResults.household.baseline}));
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryId, baselinePolicyId]);
+
+  // When the reform policy ID changes, update the reform data and the reform policy.
+  useEffect(() => {
+    let requests = [];
+    if (reformPolicyId) {
+      requests.push(countryApiCall(countryId, `/policy/${reformPolicyId}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          return {policy: {data: dataHolder.result.policy_json, label: dataHolder.result.label}};
+        }));
+      if (householdId) {
+        requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${reformPolicyId}`)
+          .then((res) => res.json())
+          .then((dataHolder) => {
+            return {household: {reform: dataHolder.result}};
+          }));
+      }
+    }
+    Promise.all(requests).then((results) => {
+      const combinedResults = Object.assign({}, ...results);
+      setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), combinedResults.policy));
+      if (householdId) {
+        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), combinedResults.household));
+      }
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryId, reformPolicyId]);
 
   // Generally, how things go on the site:
   // - The user does something to change the household/reform policy/baseline policy.
@@ -112,6 +166,7 @@ export default function PolicyEngineCountry(props) {
   // - It then fires off an API call to fetch the new household/reform policy/baseline policy, and updates the state with the new data.
   //   This does of course involve one redundant API call, but it keeps the logic simple and avoids having to do a lot of work to keep the state in sync.
   //   Plus, the server isn't doing any big openfisca calculations for the call, since the results are cached.
+  console.log(household, policy)
 
   const mainPage = (
     <Routes>

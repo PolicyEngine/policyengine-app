@@ -101,7 +101,6 @@ function HouseholdVariableEntityInput(props) {
   const {
     metadata,
     household,
-    setHousehold,
     variable,
     entityPlural,
     entityName,

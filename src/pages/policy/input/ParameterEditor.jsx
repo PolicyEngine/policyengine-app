@@ -4,18 +4,24 @@ import { DatePicker } from "antd";
 import moment from "moment";
 import InputField from "../../../controls/InputField";
 import {
+  getNewPolicyId,
   getParameterAtInstant,
   getReformedParameter,
 } from "../../../api/parameters";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 const { RangePicker } = DatePicker;
 
 export default function ParameterEditor(props) {
-  const { metadata, policy, setPolicy, parameterName } = props;
+  const { metadata, policy, parameterName } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  console.log(metadata.parameters[parameterName])
 
   const parameter = metadata.parameters[parameterName];
-  const reformedParameter = getReformedParameter(parameter, policy);
+  console.log(policy)
+  const reformedParameter = getReformedParameter(parameter, policy.reform.data);
 
   const [startDate, setStartDate] = useState("2022-01-01");
   const [endDate, setEndDate] = useState("2027-12-31");
@@ -39,8 +45,16 @@ export default function ParameterEditor(props) {
             ...newPolicy[parameterName],
             [`${startDate}.${endDate}`]: value,
           };
-          setPolicy(newPolicy);
-        }}
+          getNewPolicyId(newPolicy).then((newPolicyId) => {
+            let newSearch = {};
+            for (const [key, value] of searchParams) {
+              newSearch[key] = value;
+            }
+            newSearch.reform = newPolicyId;
+            setSearchParams(newSearch);
+            });
+          }
+        }
       />
     </div>
   );
