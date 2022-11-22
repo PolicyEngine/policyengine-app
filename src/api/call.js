@@ -37,3 +37,11 @@ export function asyncApiCall(path, body, interval = 1000, firstInterval = 200) {
 export function countryApiCall(country, path, body, method) {
   return apiCall(`/${country}${path}`, body, method);
 }
+
+export function copySearchParams(searchParams) {
+  const newSearch = new URLSearchParams();
+  for (let [key, value] of searchParams) {
+    newSearch.set(key, value);
+  }
+  return newSearch;
+}

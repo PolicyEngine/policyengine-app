@@ -2,7 +2,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
 import { createDefaultHousehold } from "../api/variables";
-import { countryApiCall } from "../api/call";
+import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
@@ -48,11 +48,9 @@ function HouseholdLeftSidebar(props) {
           tree={metadata.variableTree}
           selected={searchParams.get("focus") || ""}
           onSelect={(focus) => {
-            let newSearchParams = { focus: focus };
-            if (searchParams.get("household")) {
-              newSearchParams.household = searchParams.get("household");
-            }
-            setSearchParams(newSearchParams);
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", focus);
+            setSearchParams(newSearch);
           }}
         />
       }
@@ -61,11 +59,9 @@ function HouseholdLeftSidebar(props) {
           tree={HOUSEHOLD_OUTPUT_TREE}
           selected={searchParams.get("focus") || ""}
           onSelect={(focus) => {
-            let newSearchParams = { focus: focus };
-            if (searchParams.get("household")) {
-              newSearchParams.household = searchParams.get("household");
-            }
-            setSearchParams(newSearchParams);
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", focus);
+            setSearchParams(newSearch);
           }}
         />
       }
@@ -98,11 +94,8 @@ export default function HouseholdPage(props) {
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
     if (!focus) {
-      let newSearch = {};
-      for (const [key, value] of searchParams) {
-        newSearch[key] = value;
-      }
-      newSearch.focus = "intro";
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("focus", "intro");
       setSearchParams(newSearch);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -113,11 +106,8 @@ export default function HouseholdPage(props) {
     if (!household.input && !searchParams.get("household")) {
       getDefaultHouseholdId(metadata).then(
         (householdId) => {
-          let newSearch = {};
-          for (const [key, value] of searchParams) {
-            newSearch[key] = value;
-          }
-          newSearch.household = householdId;
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("household", householdId);
           setSearchParams(newSearch);
         }
       );

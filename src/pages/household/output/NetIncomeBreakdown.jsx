@@ -107,14 +107,30 @@ function VariableArithmetic(props) {
 
 export default function NetIncomeBreakdown(props) {
   const { metadata, household } = props;
+  const hasReform = household.reform !== null;
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, household.baseline, metadata);
+  const getReformValue = (variable) =>
+    getValueFromHousehold(variable, null, null, household.reform, metadata);
   const getValueStr = (variable) =>
     formatVariableValue(metadata.variables[variable], getValue(variable), 0);
 
+  let title;
+
+  if (hasReform) {
+    const difference = getReformValue("household_net_income") - getValue("household_net_income");
+    if (Math.abs(difference) < 0.01) {
+      title = "Your net income doesn't change";
+    } else {
+      title = `Your net income ${difference > 0 ? "increases" : "decreases"} by ${formatVariableValue(metadata.variables.household_net_income, Math.abs(difference), 0)}`;
+    }
+  } else {
+    title = `Your net income is ${getValueStr("household_net_income")}`;
+  }
+
   return (
     <ResultsPanel
-      title={`Your net income is ${getValueStr("household_net_income")}`}
+      title={title}
       description="Here's how we calculated your household's net income. Click on a section to see more details."
     >
       <VariableArithmetic

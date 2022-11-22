@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { copySearchParams } from "../api/call";
 import BiPanel from "../layout/BiPanel";
 import LoadingCentered from "../layout/LoadingCentered";
 import Menu from "../layout/Menu";
@@ -48,12 +49,9 @@ function PolicyLeftSidebar(props) {
           tree={tree}
           selected={searchParams.get("focus")}
           onSelect={(focus) => {
-            let newSearchParams = {};
-            for (const [key, value] of searchParams) {
-              newSearchParams[key] = value;
-            }
-            newSearchParams.focus = focus;
-            setSearchParams(newSearchParams);
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", focus);
+            setSearchParams(newSearch);
           }}
         />
       }
@@ -63,12 +61,9 @@ function PolicyLeftSidebar(props) {
           tree={POLICY_OUTPUT_TREE}
           selected={searchParams.get("focus")}
           onSelect={(focus) => {
-            let newSearchParams = {};
-            for (const [key, value] of searchParams) {
-              newSearchParams[key] = value;
-            }
-            newSearchParams.focus = focus;
-            setSearchParams(newSearchParams);
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", focus);
+            setSearchParams(newSearch);
           }}
         />
       }
@@ -97,11 +92,8 @@ export default function PolicyPage(props) {
 
   useEffect(() => {
     if (!focus) {
-      let newSearch = {};
-      for (const [key, value] of searchParams) {
-        newSearch[key] = value;
-      }
-      newSearch.focus = "policy";
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("focus", "policy");
       setSearchParams(newSearch);
     }
   });
@@ -109,11 +101,8 @@ export default function PolicyPage(props) {
   // If we've landed on the page without a reform policy, create a new one.
   useEffect(() => {
     if (!policy.reform.data && !searchParams.get("reform")) {
-      let newSearch = {};
-      for (const [key, value] of searchParams) {
-        newSearch[key] = value;
-      }
-      newSearch.reform = 1;
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("reform", 1)
       setSearchParams(newSearch);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

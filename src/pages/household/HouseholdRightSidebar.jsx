@@ -1,4 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { copySearchParams } from "../../api/call";
 import {
   formatVariableValue,
   getValueFromHousehold,
@@ -136,12 +137,9 @@ export default function HouseholdRightSidebar(props) {
       <Button
         text="See details"
         onClick={() => {
-          let newSearchParams = {};
-          for (let [key, value] of searchParams) {
-            newSearchParams[key] = value;
-          }
-          newSearchParams["focus"] = "householdOutput.netIncome";
-          setSearchParams(newSearchParams);
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("focus", "householdOutput.netIncome");
+          setSearchParams(newSearch);
         }}
         style={{
           marginTop: 10,

@@ -1,7 +1,7 @@
 import { AutoComplete } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { asyncApiCall } from "../../../api/call";
+import { asyncApiCall, copySearchParams } from "../../../api/call";
 import SearchOptions from "../../../controls/SearchOptions";
 import ErrorPage from "../../../layout/Error";
 import LoadingCentered from "../../../layout/LoadingCentered";
@@ -23,11 +23,8 @@ function RegionSelector(props) {
         options={options}
         defaultValue={value}
         onSelect={(value) => {
-            let newSearch = {};
-            for (const [key, value] of searchParams) {
-                newSearch[key] = value;
-            }
-            newSearch["region"] = value;
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("region", value);
             setSearchParams(newSearch);
         }}
         />;
@@ -43,11 +40,8 @@ function TimePeriodSelector(props) {
         options={options}
         defaultValue={value}
         onSelect={(value) => {
-            let newSearch = {};
-            for (const [key, value] of searchParams) {
-                newSearch[key] = value;
-            }
-            newSearch["timePeriod"] = value;
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("timePeriod", value);
             setSearchParams(newSearch);
         }}
         />;
@@ -82,16 +76,11 @@ export default function PolicyOutput(props) {
                 });
         } else {
             const defaults = {region: "uk", timePeriod: 2022, baseline: "current-law"};
+            let newSearch = copySearchParams(searchParams);
             // Set missing query parameters to their defaults.
-            const newSearch = {};
-            for (const [key, value] of searchParams) {
-                newSearch[key] = value;
-            }
-            for (const [key, value] of Object.entries(defaults)) {
-                if (!newSearch[key]) {
-                    newSearch[key] = value;
-                }
-            }
+            newSearch.set("region", searchParams.get("region") || defaults.region);
+            newSearch.set("timePeriod", searchParams.get("timePeriod") || defaults.timePeriod);
+            newSearch.set("baseline", searchParams.get("baseline") || defaults.baseline);
             setSearchParams(newSearch);
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps

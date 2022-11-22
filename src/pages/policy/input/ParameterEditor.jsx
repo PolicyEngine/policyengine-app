@@ -10,6 +10,7 @@ import {
 } from "../../../api/parameters";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { copySearchParams } from "../../../api/call";
 
 const { RangePicker } = DatePicker;
 
@@ -40,14 +41,11 @@ export default function ParameterEditor(props) {
           let newPolicy = { ...policy.reform.data };
           newPolicy[parameterName] = {
             ...newPolicy[parameterName],
-            [`${startDate}.${endDate}`]: value,
+            [`${startDate}.${endDate}`]: +value,
           };
           getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
-            let newSearch = {};
-            for (const [key, value] of searchParams) {
-              newSearch[key] = value;
-            }
-            newSearch.reform = newPolicyId;
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("reform", newPolicyId);
             setSearchParams(newSearch);
             });
           }

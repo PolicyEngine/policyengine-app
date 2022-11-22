@@ -2,6 +2,7 @@ import RadioButton from "../../../controls/RadioButton";
 import { addYearlyVariables, getNewHouseholdId, removePerson } from "../../../api/variables";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
+import { copySearchParams } from "../../../api/call";
 
 function getUKMaritalStatus(situation) {
   const partnerName = "your partner";
@@ -78,11 +79,8 @@ export default function MaritalStatus(props) {
     );
     getNewHouseholdId(metadata.countryId, newHousehold)
       .then((householdId) => {
-        let newSearch = {};
-        for (const [key, value] of searchParams) {
-          newSearch[key] = value;
-        }
-        newSearch.household = householdId;
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("household", householdId); 
         setSearchParams(newSearch);
       });
   };

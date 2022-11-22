@@ -7,6 +7,7 @@ import {
 } from "../../../api/variables";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import InputField from "../../../controls/InputField";
+import { copySearchParams } from "../../../api/call";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -111,11 +112,8 @@ function HouseholdVariableEntityInput(props) {
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     getNewHouseholdId(metadata.countryId, newHousehold)
       .then((householdId) => {
-        let newSearch = {};
-        for (const [key, value] of searchParams) {
-          newSearch[key] = value;
-        }
-        newSearch.household = householdId;
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("household", householdId);
         setSearchParams(newSearch);
       });
   };

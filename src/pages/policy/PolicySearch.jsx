@@ -1,7 +1,7 @@
 import { AutoComplete } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { apiCall, countryApiCall } from "../../api/call";
+import { apiCall, copySearchParams, countryApiCall } from "../../api/call";
 
 
 export default function PolicySearch(props) {
@@ -40,11 +40,8 @@ export default function PolicySearch(props) {
     return <AutoComplete
         options={policies || [{ value: defaultId, label: defaultLabel }]}
         onSelect={(value) => {
-            let newSearch = {};
-            for (const [key, value] of searchParams) {
-                newSearch[key] = value;
-            }
-            newSearch[target] = value;
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set(target, value);
             setSearchParams(newSearch);
         }}
         onSearch={onSearch}

@@ -1,5 +1,6 @@
 import moment from "moment";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { copySearchParams } from "../../api/call";
 import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import Button from "../../controls/Button";
@@ -14,11 +15,8 @@ function PolicyNamer(props) {
   return <div style={{ display: "flex", alignItems: "center" }}>
     <InputField placeholder={label} padding={10} width="100%" onChange={name => {
       getNewPolicyId(metadata.countryId, policy.reform.data, name).then(() => {
-        let newSearch = {};
-        for (const [key, value] of searchParams) {
-          newSearch[key] = value;
-        }
-        newSearch.renamed = true;
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("renamed", true)
         setSearchParams(newSearch);
       });
     }} />
@@ -62,7 +60,7 @@ function PolicyItem(props) {
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
   return <div style={{paddingTop: 20, paddingLeft: 10, paddingRight: 10}}>
-    {Object.keys(policy.reform.data).map(parameterName => <PolicyItem metadata={metadata} parameterName={parameterName} reformData={policy.reform.data} />)}
+    {Object.keys(policy.reform.data).map(parameterName => <PolicyItem key={parameterName} metadata={metadata} parameterName={parameterName} reformData={policy.reform.data} />)}
   </div>;
 }
 

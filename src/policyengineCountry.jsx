@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { countryApiCall } from "./api/call";
+import { copySearchParams, countryApiCall } from "./api/call";
 import Header from "./Header";
 import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
@@ -182,12 +182,8 @@ export default function PolicyEngineCountry(props) {
         .then((res) => res.json())
         .then((dataHolder) => {
           setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), {reform: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}));
-          let newSearch = {};
-          for (const [key, value] of searchParams.entries()) {
-            if (key !== "renamed") {
-              newSearch[key] = value;
-            }
-          }
+          let newSearch = copySearchParams(searchParams);
+          newSearch.delete("renamed");
           setSearchParams(newSearch);
         });
     }
