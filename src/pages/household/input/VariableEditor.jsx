@@ -110,12 +110,11 @@ function HouseholdVariableEntityInput(props) {
   const submitValue = (value) => {
     let newHousehold = JSON.parse(JSON.stringify(household.input));
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
-    getNewHouseholdId(metadata.countryId, newHousehold)
-      .then((householdId) => {
-        let newSearch = copySearchParams(searchParams);
-        newSearch.set("household", householdId);
-        setSearchParams(newSearch);
-      });
+    getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("household", householdId);
+      setSearchParams(newSearch);
+    });
   };
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(

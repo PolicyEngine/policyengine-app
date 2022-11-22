@@ -31,7 +31,7 @@ const POLICY_OUTPUT_TREE = [
       {
         name: "policyOutput.povertyImpact",
         label: "Poverty impact",
-      }
+      },
     ],
   },
 ];
@@ -102,10 +102,10 @@ export default function PolicyPage(props) {
   useEffect(() => {
     if (!policy.reform.data && !searchParams.get("reform")) {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("reform", 1)
+      newSearch.set("reform", 1);
       setSearchParams(newSearch);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!policy.reform.data]);
 
   let middle = null;
@@ -138,7 +138,13 @@ export default function PolicyPage(props) {
           left={
             <HouseholdRightSidebar metadata={metadata} household={household} />
           }
-          right={<PolicyRightSidebar metadata={metadata} policy={policy} setPolicy={setPolicy} />}
+          right={
+            <PolicyRightSidebar
+              metadata={metadata}
+              policy={policy}
+              setPolicy={setPolicy}
+            />
+          }
           leftNavigatedSelected={false}
         />
       }

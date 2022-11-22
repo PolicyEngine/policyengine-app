@@ -77,8 +77,17 @@ function HouseholdLeftSidebar(props) {
 
 export function getDefaultHouseholdId(metadata) {
   // Creates the default household for the country, returning the household ID.
-  const defaultHousehold = createDefaultHousehold(metadata.countryId, metadata.variables, metadata.entities);
-  return countryApiCall(metadata.countryId, "/household", {data: defaultHousehold}, "POST")
+  const defaultHousehold = createDefaultHousehold(
+    metadata.countryId,
+    metadata.variables,
+    metadata.entities
+  );
+  return countryApiCall(
+    metadata.countryId,
+    "/household",
+    { data: defaultHousehold },
+    "POST"
+  )
     .then((res) => res.json())
     .then((dataHolder) => {
       return dataHolder.result.household_id;
@@ -99,21 +108,19 @@ export default function HouseholdPage(props) {
       newSearch.set("focus", "intro");
       setSearchParams(newSearch);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
 
   // If we've landed on the page without a household, create a new one.
   useEffect(() => {
     if (!household.input && !searchParams.get("household")) {
-      getDefaultHouseholdId(metadata).then(
-        (householdId) => {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("household", householdId);
-          setSearchParams(newSearch);
-        }
-      );
+      getDefaultHouseholdId(metadata).then((householdId) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("household", householdId);
+        setSearchParams(newSearch);
+      });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!household.input]);
 
   const reformPolicyId = searchParams.get("reform");
@@ -124,11 +131,11 @@ export default function HouseholdPage(props) {
     baselineLabel = "Current law";
   }
   let policyLabel;
-    if (reformLabel !== "Current law" && baselineLabel === "Current law") {
-        policyLabel = reformLabel;
-    } else {
-        policyLabel = `${baselineLabel} → ${reformLabel}`;
-    }
+  if (reformLabel !== "Current law" && baselineLabel === "Current law") {
+    policyLabel = reformLabel;
+  } else {
+    policyLabel = `${baselineLabel} → ${reformLabel}`;
+  }
 
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
@@ -157,7 +164,13 @@ export default function HouseholdPage(props) {
       />
     );
   } else if (focus.startsWith("householdOutput.")) {
-    middle = <HouseholdOutput metadata={metadata} household={household} policy={policy} />;
+    middle = (
+      <HouseholdOutput
+        metadata={metadata}
+        household={household}
+        policy={policy}
+      />
+    );
   } else if (focus === "intro") {
     middle = <HouseholdIntro />;
   } else {

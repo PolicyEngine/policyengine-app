@@ -29,8 +29,7 @@ function updateMetadata(countryId, setMetadata, setError) {
         variablesInOrder: variablesInOrder,
         parameterTree: parameterTree,
         countryId: countryId,
-        currency: countryId === "us" ? 
-          "$" : "£",
+        currency: countryId === "us" ? "$" : "£",
       };
       setMetadata(metadata);
       return metadata;
@@ -76,27 +75,43 @@ export default function PolicyEngineCountry(props) {
   useEffect(() => {
     let requests = [];
     if (householdId) {
-      requests.push(countryApiCall(countryId, `/household/${householdId}`)
-        .then((res) => res.json())
-        .then((dataHolder) => {
-          return {input: dataHolder.result.household_json};
-        }));
-      requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${baselinePolicyId || "current-law"}`)
-        .then((res) => res.json())
-        .then((dataHolder) => {
-          return {baseline: dataHolder.result};
-        }));
-      if (reformPolicyId) {
-        requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${reformPolicyId}`)
+      requests.push(
+        countryApiCall(countryId, `/household/${householdId}`)
           .then((res) => res.json())
           .then((dataHolder) => {
-            return {reform: dataHolder.result};
-          }));
+            return { input: dataHolder.result.household_json };
+          })
+      );
+      requests.push(
+        countryApiCall(
+          countryId,
+          `/household/${householdId}/policy/${
+            baselinePolicyId || "current-law"
+          }`
+        )
+          .then((res) => res.json())
+          .then((dataHolder) => {
+            return { baseline: dataHolder.result };
+          })
+      );
+      if (reformPolicyId) {
+        requests.push(
+          countryApiCall(
+            countryId,
+            `/household/${householdId}/policy/${reformPolicyId}`
+          )
+            .then((res) => res.json())
+            .then((dataHolder) => {
+              return { reform: dataHolder.result };
+            })
+        );
       } else {
-        requests.push(Promise.resolve({reform: null}));
+        requests.push(Promise.resolve({ reform: null }));
       }
       Promise.all(requests).then((results) => {
-        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), ...results));
+        setHousehold(
+          Object.assign(JSON.parse(JSON.stringify(household)), ...results)
+        );
       });
     } else {
       setHousehold({
@@ -105,7 +120,7 @@ export default function PolicyEngineCountry(props) {
         reform: null,
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId]);
 
   // When the baseline policy ID changes, update the baseline data and the baseline policy.
@@ -114,63 +129,115 @@ export default function PolicyEngineCountry(props) {
     let requests = [];
     if (!baselinePolicyId) {
       // We can mock the policy lookup for current law because it's always going to be the same.
-      requests.push(Promise.resolve({data: {}, label: "Current law"}));
+      requests.push(Promise.resolve({ data: {}, label: "Current law" }));
     } else {
-      requests.push(countryApiCall(countryId, `/policy/${baselinePolicyId}`)
-        .then((res) => res.json())
-        .then((dataHolder) => {
-          return {policy: {baseline: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}};
-        }));
+      requests.push(
+        countryApiCall(countryId, `/policy/${baselinePolicyId}`)
+          .then((res) => res.json())
+          .then((dataHolder) => {
+            return {
+              policy: {
+                baseline: {
+                  data: dataHolder.result.policy_json,
+                  label: dataHolder.result.label,
+                },
+              },
+            };
+          })
+      );
     }
     if (householdId) {
-      requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${baselinePolicyId || "current-law"}`)
-        .then((res) => res.json())
-        .then((dataHolder) => {
-          return {household: {baseline: dataHolder.result}};
-        }));
+      requests.push(
+        countryApiCall(
+          countryId,
+          `/household/${householdId}/policy/${
+            baselinePolicyId || "current-law"
+          }`
+        )
+          .then((res) => res.json())
+          .then((dataHolder) => {
+            return { household: { baseline: dataHolder.result } };
+          })
+      );
     } else {
-      requests.push(Promise.resolve({household: {baseline: null}}));
+      requests.push(Promise.resolve({ household: { baseline: null } }));
     }
     Promise.all(requests).then((results) => {
       const combinedResults = Object.assign({}, ...results);
-      setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), combinedResults.policy));
+      setPolicy(
+        Object.assign(
+          JSON.parse(JSON.stringify(policy)),
+          combinedResults.policy
+        )
+      );
       if (householdId) {
-        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), combinedResults.household));
+        setHousehold(
+          Object.assign(
+            JSON.parse(JSON.stringify(household)),
+            combinedResults.household
+          )
+        );
       }
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, baselinePolicyId]);
 
   // When the reform policy ID changes, update the reform data and the reform policy.
   useEffect(() => {
     let requests = [];
     if (reformPolicyId) {
-      requests.push(countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => res.json())
-        .then((dataHolder) => {
-          return {policy: {reform: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}};
-        }));
-      if (householdId) {
-        requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${reformPolicyId}`)
+      requests.push(
+        countryApiCall(countryId, `/policy/${reformPolicyId}`)
           .then((res) => res.json())
           .then((dataHolder) => {
-            return {household: {reform: dataHolder.result}};
-          }));
+            return {
+              policy: {
+                reform: {
+                  data: dataHolder.result.policy_json,
+                  label: dataHolder.result.label,
+                },
+              },
+            };
+          })
+      );
+      if (householdId) {
+        requests.push(
+          countryApiCall(
+            countryId,
+            `/household/${householdId}/policy/${reformPolicyId}`
+          )
+            .then((res) => res.json())
+            .then((dataHolder) => {
+              return { household: { reform: dataHolder.result } };
+            })
+        );
       }
     } else {
-      requests.push(Promise.resolve({policy: {reform: {data: null, label: null}}}));
+      requests.push(
+        Promise.resolve({ policy: { reform: { data: null, label: null } } })
+      );
       if (householdId) {
-        requests.push(Promise.resolve({household: {reform: null}}));
+        requests.push(Promise.resolve({ household: { reform: null } }));
       }
     }
     Promise.all(requests).then((results) => {
       const combinedResults = Object.assign({}, ...results);
-      setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), combinedResults.policy));
+      setPolicy(
+        Object.assign(
+          JSON.parse(JSON.stringify(policy)),
+          combinedResults.policy
+        )
+      );
       if (householdId) {
-        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), combinedResults.household));
+        setHousehold(
+          Object.assign(
+            JSON.parse(JSON.stringify(household)),
+            combinedResults.household
+          )
+        );
       }
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, reformPolicyId]);
 
   // When we've renamed a policy, the ID won't have changed, but we still need to update the policy.
@@ -181,18 +248,25 @@ export default function PolicyEngineCountry(props) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
         .then((res) => res.json())
         .then((dataHolder) => {
-          setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), {reform: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}));
+          setPolicy(
+            Object.assign(JSON.parse(JSON.stringify(policy)), {
+              reform: {
+                data: dataHolder.result.policy_json,
+                label: dataHolder.result.label,
+              },
+            })
+          );
           let newSearch = copySearchParams(searchParams);
           newSearch.delete("renamed");
           setSearchParams(newSearch);
         });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, searchParams.get("renamed")]);
 
   // Generally, how things go on the site:
   // - The user does something to change the household/reform policy/baseline policy.
-  // - Further down the logic in the app, an API call is fired off to store the new household/reform policy/baseline policy in the database, 
+  // - Further down the logic in the app, an API call is fired off to store the new household/reform policy/baseline policy in the database,
   //   and we get back a new household/reform policy/baseline policy ID. We then update the URL query parameters to include the new ID.
   // - This top-level component we're in now is watching for changes to those query parameters, and notices that they've changed.
   // - It then fires off an API call to fetch the new household/reform policy/baseline policy, and updates the state with the new data.

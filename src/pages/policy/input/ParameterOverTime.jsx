@@ -29,7 +29,10 @@ export default function ParameterOverTime(props) {
   let reformedY;
 
   if (policy.reform.data[parameter.parameter]) {
-    let reformedValues = getReformedParameter(parameter, policy.reform.data).values;
+    let reformedValues = getReformedParameter(
+      parameter,
+      policy.reform.data
+    ).values;
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
     reformedX.push("2099-12-31");

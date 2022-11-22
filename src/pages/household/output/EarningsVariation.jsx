@@ -32,7 +32,7 @@ export default function EarningsVariation(props) {
         },
       ],
     ];
-    apiCall(`/${metadata.countryId}/calculate`, {household: householdData})
+    apiCall(`/${metadata.countryId}/calculate`, { household: householdData })
       .then((res) => res.json())
       .then((data) => {
         setBaselineNetIncome(data.result);
@@ -40,7 +40,7 @@ export default function EarningsVariation(props) {
       .catch((err) => {
         setError(err);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (error) {

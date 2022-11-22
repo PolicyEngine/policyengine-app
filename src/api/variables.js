@@ -256,18 +256,30 @@ export function getPlotlyAxisFormat(unit, values) {
     return {
       tickformat: `,.${precision}f`,
       tickprefix: "£",
-      ...(values && { range: [Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5] }),
+      ...(values && {
+        range: [Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5],
+      }),
     };
   } else if (unit === "currency-USD") {
     return {
       tickformat: `,.${precision}f`,
       tickprefix: "$",
-      ...(values && { range: sortRange([Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5]) }),
+      ...(values && {
+        range: sortRange([
+          Math.min(0, ...values) * 1.5,
+          Math.max(...values) * 1.5,
+        ]),
+      }),
     };
   } else if (unit === "/1") {
     return {
       tickformat: `,.${precision - 2}%`,
-      ...(values && { range: sortRange([Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5]) }),
+      ...(values && {
+        range: sortRange([
+          Math.min(0, ...values) * 1.5,
+          Math.max(...values) * 1.5,
+        ]),
+      }),
     };
   }
 }
@@ -323,7 +335,12 @@ export function getValueFromHousehold(
 }
 
 export function getNewHouseholdId(countryId, newHouseholdData) {
-  return countryApiCall(countryId, "/household", { data: newHouseholdData }, "POST")
+  return countryApiCall(
+    countryId,
+    "/household",
+    { data: newHouseholdData },
+    "POST"
+  )
     .then((response) => response.json())
     .then((data) => {
       return data.result.household_id;

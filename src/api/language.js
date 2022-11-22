@@ -4,19 +4,24 @@ export function capitalize(string) {
 
 export function aggregateNumber(number) {
   // e.g. 12.3bn, 301m, 1.2k
-  let suffix = '';
+  let suffix = "";
   const absNumber = Math.abs(number);
   if (absNumber >= 1e9) {
     number /= 1e9;
-    suffix = 'bn';
+    suffix = "bn";
   } else if (absNumber >= 1e6) {
     number /= 1e6;
-    suffix = 'm';
+    suffix = "m";
   } else if (absNumber >= 1e3) {
     number /= 1e3;
-    suffix = 'k';
+    suffix = "k";
   }
-  return Math.abs(number).toLocaleString(undefined, { maximumFractionDigits: 1, minimumFractionDigits: 1 }) + suffix;
+  return (
+    Math.abs(number).toLocaleString(undefined, {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    }) + suffix
+  );
 }
 
 export function aggregateCurrency(number, metadata) {

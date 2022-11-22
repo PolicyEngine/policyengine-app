@@ -11,11 +11,14 @@ export default function LoadingCentered(props) {
         alignItems: "center",
       }}
     >
-      <div style={{display: "block", textAlign: "center"}}>
-      {
-        message && <h4>{message}<br></br></h4>
-      }
-      <Spinner size={size} />
+      <div style={{ display: "block", textAlign: "center" }}>
+        {message && (
+          <h4>
+            {message}
+            <br></br>
+          </h4>
+        )}
+        <Spinner size={size} />
       </div>
     </div>
   );

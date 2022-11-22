@@ -47,9 +47,8 @@ export default function ParameterEditor(props) {
             let newSearch = copySearchParams(searchParams);
             newSearch.set("reform", newPolicyId);
             setSearchParams(newSearch);
-            });
-          }
-        }
+          });
+        }}
       />
     </div>
   );
