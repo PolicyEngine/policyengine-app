@@ -39,7 +39,6 @@ function TimePeriodSelector(props) {
     const options = metadata.economy_options.time_period.map(time_period => {return {value: time_period.name, label: time_period.label}});
     const [value] = useState(searchParams.get("timePeriod") || options[0].value);
 
-    console.log(value, options);
     return <SearchOptions
         options={options}
         defaultValue={value}

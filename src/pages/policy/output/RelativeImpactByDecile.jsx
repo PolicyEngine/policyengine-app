@@ -35,8 +35,6 @@ export default function RelativeImpactByDecile(props) {
         }}
     />;
 
-    console.log(getPlotlyAxisFormat(metadata.variables.household_net_income.unit, Object.values(impact.decile.relative)));
-
     const averageRelChange = (Object.values(impact.decile.relative)).reduce((a, b) => a + b, 0) / Object.values(impact.decile.relative).length;
 
     return <>
