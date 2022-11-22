@@ -103,8 +103,12 @@ export function getReformedParameter(parameter, reforms) {
   return newParameter;
 }
 
-export function getNewPolicyId(countryId, newPolicyData) {
-  return countryApiCall(countryId, "/policy", { data: newPolicyData }, "POST")
+export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
+  let submission = { data: newPolicyData };
+  if (newPolicyLabel) {
+    submission.label = newPolicyLabel;
+  }
+  return countryApiCall(countryId, "/policy", submission, "POST")
     .then((response) => response.json())
     .then((data) => {
       return data.result.policy_id;

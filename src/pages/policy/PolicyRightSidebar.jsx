@@ -1,14 +1,23 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { getNewPolicyId } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
 
 function PolicyNamer(props) {
   const { policy, setPolicy, metadata } = props;
-  const label = policy.label || `Policy #${policy.id}`;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
 
   return <div style={{ display: "flex", alignItems: "center" }}>
     <InputField placeholder={label} padding={10} width="100%" onChange={name => {
-      setPolicy(policy.policy, name);
+      getNewPolicyId(metadata.countryId, policy.reform.data, name).then(() => {
+        let newSearch = {};
+        for (const [key, value] of searchParams) {
+          newSearch[key] = value;
+        }
+        newSearch.renamed = true;
+        setSearchParams(newSearch);
+      });
     }} />
   </div>;
 }
@@ -18,7 +27,7 @@ export default function PolicyRightSidebar(props) {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  if (!policy || !policy.id) {
+  if (!policy.reform.data) {
     return (
       <div
         style={{

@@ -44,7 +44,7 @@ export default function PolicyEngineCountry(props) {
   // When loaded, fetch the PolicyEngine metadata for the country.
   // Fail gracefully if the country is not supported.
   const { countryId } = props;
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
@@ -111,7 +111,7 @@ export default function PolicyEngineCountry(props) {
       requests.push(countryApiCall(countryId, `/policy/${baselinePolicyId}`)
         .then((res) => res.json())
         .then((dataHolder) => {
-          return {policy: {data: dataHolder.result.policy_json, label: dataHolder.result.label}};
+          return {policy: {baseline: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}};
         }));
     }
     if (householdId) {
@@ -123,9 +123,9 @@ export default function PolicyEngineCountry(props) {
     }
     Promise.all(requests).then((results) => {
       const combinedResults = Object.assign({}, ...results);
-      setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), {baseline: combinedResults.policy}));
+      setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), combinedResults.policy));
       if (householdId) {
-        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), {baseline: combinedResults.household.baseline}));
+        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), combinedResults.household));
       }
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -138,7 +138,7 @@ export default function PolicyEngineCountry(props) {
       requests.push(countryApiCall(countryId, `/policy/${reformPolicyId}`)
         .then((res) => res.json())
         .then((dataHolder) => {
-          return {policy: {data: dataHolder.result.policy_json, label: dataHolder.result.label}};
+          return {policy: {reform: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}};
         }));
       if (householdId) {
         requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${reformPolicyId}`)
@@ -158,6 +158,27 @@ export default function PolicyEngineCountry(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, reformPolicyId]);
 
+  // When we've renamed a policy, the ID won't have changed, but we still need to update the policy.
+  // To do this, the policy renamer will have added a { renamed: true } search parameter. When this is
+  // added, we need to refresh the reform policy and remove the parameter.
+  useEffect(() => {
+    if (searchParams.get("renamed") && reformPolicyId) {
+      countryApiCall(countryId, `/policy/${reformPolicyId}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          setPolicy(Object.assign(JSON.parse(JSON.stringify(policy)), {reform: {data: dataHolder.result.policy_json, label: dataHolder.result.label}}));
+          let newSearch = {};
+          for (const [key, value] of searchParams.entries()) {
+            if (key !== "renamed") {
+              newSearch[key] = value;
+            }
+          }
+          setSearchParams(newSearch);
+        });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryId, searchParams.get("renamed")]);
+
   // Generally, how things go on the site:
   // - The user does something to change the household/reform policy/baseline policy.
   // - Further down the logic in the app, an API call is fired off to store the new household/reform policy/baseline policy in the database, 
@@ -166,7 +187,6 @@ export default function PolicyEngineCountry(props) {
   // - It then fires off an API call to fetch the new household/reform policy/baseline policy, and updates the state with the new data.
   //   This does of course involve one redundant API call, but it keeps the logic simple and avoids having to do a lot of work to keep the state in sync.
   //   Plus, the server isn't doing any big openfisca calculations for the call, since the results are cached.
-  console.log(household, policy)
 
   const mainPage = (
     <Routes>

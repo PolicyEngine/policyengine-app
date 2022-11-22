@@ -28,8 +28,8 @@ export default function ParameterOverTime(props) {
   let reformedX;
   let reformedY;
 
-  if (policy[parameter.parameter]) {
-    let reformedValues = getReformedParameter(parameter, policy).values;
+  if (policy.reform.data[parameter.parameter]) {
+    let reformedValues = getReformedParameter(parameter, policy.reform.data).values;
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
     reformedX.push("2099-12-31");
@@ -52,7 +52,7 @@ export default function ParameterOverTime(props) {
             },
             name: "Current law",
           },
-          policy[parameter.parameter] && {
+          policy.reform.data[parameter.parameter] && {
             x: reformedX,
             y: reformedY,
             type: "line",

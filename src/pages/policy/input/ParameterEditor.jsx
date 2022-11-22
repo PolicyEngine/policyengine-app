@@ -17,10 +17,7 @@ export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
-  console.log(metadata.parameters[parameterName])
-
   const parameter = metadata.parameters[parameterName];
-  console.log(policy)
   const reformedParameter = getReformedParameter(parameter, policy.reform.data);
 
   const [startDate, setStartDate] = useState("2022-01-01");
@@ -40,12 +37,12 @@ export default function ParameterEditor(props) {
       <InputField
         placeholder={getParameterAtInstant(reformedParameter, startDate)}
         onChange={(value) => {
-          let newPolicy = { ...policy };
+          let newPolicy = { ...policy.reform.data };
           newPolicy[parameterName] = {
             ...newPolicy[parameterName],
             [`${startDate}.${endDate}`]: value,
           };
-          getNewPolicyId(newPolicy).then((newPolicyId) => {
+          getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
             let newSearch = {};
             for (const [key, value] of searchParams) {
               newSearch[key] = value;
