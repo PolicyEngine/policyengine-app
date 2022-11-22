@@ -45,7 +45,7 @@ export default function HouseholdRightSidebar(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  if (!household || !household.computed) {
+  if (!household || !household.baseline) {
     return (
       <div
         style={{
@@ -78,14 +78,14 @@ export default function HouseholdRightSidebar(props) {
     "household_net_income",
     null,
     null,
-    household.computed,
+    household.baseline,
     metadata
   );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2022",
     "you",
-    household.computed,
+    household.baseline,
     metadata
   );
   const household_net_income = metadata.variables.household_net_income;
@@ -118,7 +118,7 @@ export default function HouseholdRightSidebar(props) {
           variableId,
           null,
           null,
-          household.computed,
+          household.baseline,
           metadata
         );
         return (

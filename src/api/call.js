@@ -1,8 +1,8 @@
 const POLICYENGINE_API = "http://127.0.0.1:5000";
 
-export function apiCall(path, body) {
+export function apiCall(path, body, method) {
   return fetch(POLICYENGINE_API + path, {
-    method: body ? "POST" : "GET",
+    method: method || (body ? "POST" : "GET"),
     headers: {
       "Content-Type": "application/json",
     },
@@ -30,6 +30,6 @@ export function asyncApiCall(path, body, interval = 1000) {
   });
 }
 
-export function countryApiCall(country, path, body) {
-  return apiCall(`/${country}${path}`, body);
+export function countryApiCall(country, path, body, method) {
+  return apiCall(`/${country}${path}`, body, method);
 }

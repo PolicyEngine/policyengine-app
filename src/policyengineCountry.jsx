@@ -6,16 +6,17 @@ import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
 import MobileView from "./layout/MobileView";
 import HouseholdPage, { createHousehold } from "./pages/HouseholdPage";
-import { buildVariableTree, getTreeLeavesInOrder } from "./api/variables";
+import { buildVariableTree, createDefaultHousehold, getTreeLeavesInOrder } from "./api/variables";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import PolicyPage from "./pages/PolicyPage";
 import { buildParameterTree } from "./api/parameters";
 
-function getMetadata(countryId, setMetadata, setError) {
+function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
-    .then((data) => {
+    .then((dataHolder) => {
+      const data = dataHolder.result;
       const variableTree = buildVariableTree(
         data.variables,
         data.variableModules
@@ -28,157 +29,89 @@ function getMetadata(countryId, setMetadata, setError) {
         variablesInOrder: variablesInOrder,
         parameterTree: parameterTree,
         countryId: countryId,
-        currency: countryId === "us" ? "$" : "£",
+        currency: countryId === "us" ? 
+          "$" : "£",
       };
       setMetadata(metadata);
       return metadata;
     })
     .catch((error) => {
       setError(error);
-      return {};
     });
-}
-
-function getSetHousehold(
-  countryId,
-  household,
-  setHouseholdData,
-  searchParams,
-  setSearchParams,
-  setErrorCreatingHousehold
-) {
-  return (newHousehold) => {
-    setHouseholdData({
-      input: newHousehold,
-      computed: household.computed,
-      id: household.id,
-    });
-    apiCall(`/${countryId}/calculate`, newHousehold)
-      .then((res) => res.json())
-      .then((data) => {
-        setHouseholdData({
-          input: newHousehold,
-          computed: data,
-          id: data.household_id,
-        });
-        let newSearch = {};
-        for (const [key, value] of searchParams) {
-          newSearch[key] = value;
-        }
-        newSearch.household = data.household_id;
-        setSearchParams(newSearch);
-      })
-      .catch((err) => {
-        setErrorCreatingHousehold(true);
-      });
-  };
-}
-
-function getSetPolicy(
-  countryId,
-  policy,
-  setPolicyData,
-  searchParams,
-  setSearchParams,
-  setErrorCreatingPolicy,
-) {
-  return (newPolicy, label) => {
-    setPolicyData({
-      policy: newPolicy,
-      id: policy.id,
-      label: label,
-    });
-    apiCall(`/${countryId}/policy`, {...newPolicy, label: label})
-      .then((res) => res.json())
-      .then((data) => {
-        setPolicyData({
-          policy: newPolicy,
-          id: data.policy_id,
-          label: data.label,
-        });
-        let newSearch = {};
-        for (const [key, value] of searchParams) {
-          newSearch[key] = value;
-        }
-        newSearch.policy = data.policy_id;
-        setSearchParams(newSearch);
-      })
-      .catch((err) => {
-        setErrorCreatingPolicy(true);
-      });
-  };
 }
 
 export default function PolicyEngineCountry(props) {
   // When loaded, fetch the PolicyEngine metadata for the country.
   // Fail gracefully if the country is not supported.
   const { countryId } = props;
+  const [searchParams] = useSearchParams();
+  const householdId = searchParams.get("household");
+  const reformPolicyId = searchParams.get("reform");
+  const baselinePolicyId = searchParams.get("baseline");
+
   const [metadata, setMetadata] = useState(null);
   const [error, setError] = useState(null);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [household, setHouseholdData] = useState({
+  const [household, setHousehold] = useState({
     input: null,
-    computed: null,
-    id: null,
+    baseline: null,
+    reform: null,
   });
-  // Define functions to set household and policy data
-  const setHousehold = getSetHousehold(
-    countryId,
-    household,
-    setHouseholdData,
-    searchParams,
-    setSearchParams,
-    setError
-  );
-  const [policy, setPolicyData] = useState({
-    policy: {},
-    id: null,
+  const [policy, setPolicy] = useState({
+    baseline: {
+      data: null,
+      label: null,
+    },
+    reform: {
+      data: null,
+      label: null,
+    },
   });
-  const setPolicy = getSetPolicy(
-    countryId,
-    policy,
-    setPolicyData,
-    searchParams,
-    setSearchParams,
-    setError
-  );
 
-  // Run this effect once, when the country is known.
+  // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
-    // First, get the country metadata.
-    if (!error) {
-      getMetadata(countryId, setMetadata, setError).then((metadata) => {
-        // Then, create the policy object (taking from the URL if it exists).
-        try {
-          if (!policy.id) {
-            if (searchParams.get("policy")) {
-              countryApiCall(countryId, `/policy/${searchParams.get("policy")}`)
-                .then((res) => res.json())
-                .then((data) => {
-                  setPolicy(data);
-                })
-                .catch((err) => {
-                  setError(true);
-                });
-            }
-          }
-          // Then, create the household object (taking from the URL if it exists).
-          if (!household.id) {
-            createHousehold(
-              searchParams.get("household"),
-              metadata.countryId,
-              metadata
-            ).then((household) => {
-              setHousehold(household);
-            });
-          }
-        } catch (err) {
-          setError(true);
-        }
+    updateMetadata(countryId, setMetadata, setError);
+  }, [countryId]);
+
+  // When the household ID changes, update the input and baseline data (and the reform data if a reform is selected).
+  useEffect(() => {
+    let requests = [];
+    if (householdId) {
+      requests.push(countryApiCall(countryId, `/household/${householdId}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          return {input: dataHolder.result.household_json};
+        }));
+      requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${baselinePolicyId || "current-law"}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          return {baseline: dataHolder.result};
+        }));
+      if (reformPolicyId) {
+        requests.push(countryApiCall(countryId, `/household/${householdId}/policy/${reformPolicyId}`)
+          .then((res) => res.json())
+          .then((dataHolder) => {
+            return {reform: dataHolder.result};
+          }));
+      }
+      Promise.all(requests).then((results) => {
+        setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), ...results));
       });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId]);
+  }, [countryId, householdId]);
+
+  // Update the policy state when:
+  // - the metadata changes (e.g. the user changes the country)
+  // - the reformPolicyId changes (e.g. the user changes the reform policy)
+  // - the baselinePolicyId changes (e.g. the user changes the baseline policy)
+
+  // Generally, how things go on the site:
+  // - The user does something to change the household/reform policy/baseline policy.
+  // - Further down the logic in the app, an API call is fired off to store the new household/reform policy/baseline policy in the database, 
+  //   and we get back a new household/reform policy/baseline policy ID. We then update the URL query parameters to include the new ID.
+  // - This top-level component we're in now is watching for changes to those query parameters, and notices that they've changed.
+  // - It then fires off an API call to fetch the new household/reform policy/baseline policy, and updates the state with the new data.
+  //   This does of course involve one redundant API call, but it keeps the logic simple and avoids having to do a lot of work to keep the state in sync.
+  //   Plus, the server isn't doing any big openfisca calculations for the call, since the results are cached.
 
   const mainPage = (
     <Routes>
@@ -190,7 +123,6 @@ export default function PolicyEngineCountry(props) {
             <HouseholdPage
               metadata={metadata}
               household={household}
-              setHousehold={setHousehold}
               policy={policy}
             />
           ) : error ? (

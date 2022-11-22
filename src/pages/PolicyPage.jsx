@@ -30,13 +30,7 @@ function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const tree = [
-    {
-      name: "policy",
-      label: "Policy",
-    },
-    ...metadata.parameterTree,
-  ];
+  const tree = metadata.parameterTree;
 
   return (
     <BiPanel

@@ -2,6 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { capitalize } from "../../../api/language";
 import {
   formatVariableValue,
+  getNewHouseholdId,
   getValueFromHousehold,
 } from "../../../api/variables";
 import LoadingCentered from "../../../layout/LoadingCentered";
@@ -96,6 +97,7 @@ function HouseholdVariableEntity(props) {
 }
 
 function HouseholdVariableEntityInput(props) {
+  const [searchParams, setSearchParams] = useSearchParams();
   const {
     metadata,
     household,
@@ -106,9 +108,17 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
   } = props;
   const submitValue = (value) => {
-    let newHousehold = household.input;
+    let newHousehold = JSON.parse(JSON.stringify(household.input));
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
-    setHousehold(newHousehold);
+    getNewHouseholdId(metadata.countryId, newHousehold)
+      .then((householdId) => {
+        let newSearch = {};
+        for (const [key, value] of searchParams) {
+          newSearch[key] = value;
+        }
+        newSearch.household = householdId;
+        setSearchParams(newSearch);
+      });
   };
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(

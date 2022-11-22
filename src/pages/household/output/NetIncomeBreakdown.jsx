@@ -15,7 +15,7 @@ function VariableArithmetic(props) {
       variableName,
       null,
       null,
-      household.computed,
+      household.baseline,
       metadata
     );
   const valueStr =
@@ -66,7 +66,7 @@ function VariableArithmetic(props) {
                   variable,
                   null,
                   null,
-                  household.computed,
+                  household.baseline,
                   metadata
                 ) > 0
             )
@@ -86,7 +86,7 @@ function VariableArithmetic(props) {
                   variable,
                   null,
                   null,
-                  household.computed,
+                  household.baseline,
                   metadata
                 ) > 0
             )
@@ -108,7 +108,7 @@ function VariableArithmetic(props) {
 export default function NetIncomeBreakdown(props) {
   const { metadata, household } = props;
   const getValue = (variable) =>
-    getValueFromHousehold(variable, null, null, household.computed, metadata);
+    getValueFromHousehold(variable, null, null, household.baseline, metadata);
   const getValueStr = (variable) =>
     formatVariableValue(metadata.variables[variable], getValue(variable), 0);
 

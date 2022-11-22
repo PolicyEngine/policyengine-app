@@ -29,10 +29,10 @@ export default function EarningsVariation(props) {
         },
       ],
     ];
-    apiCall(`/${metadata.countryId}/calculate`, householdData)
+    apiCall(`/${metadata.countryId}/calculate`, {household: householdData})
       .then((res) => res.json())
       .then((data) => {
-        setResult(data);
+        setResult(data.result);
       })
       .catch((err) => {
         setError(err);
@@ -74,7 +74,7 @@ export default function EarningsVariation(props) {
       "household_net_income",
       "2022",
       null,
-      household.computed,
+      household.baseline,
       metadata
     );
     // Add the main line, then add a 'you are here' line

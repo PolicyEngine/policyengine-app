@@ -12,3 +12,8 @@ PolicyEngine React commandments:
 ## Running locally
 
 `npm install` and then `npm start`.
+
+## Tips from things I've learned
+
+- If you're modifying a state, you *must* set it to a new object. Otherwise, React won't re-render. For example, do `setState(JSON.parse(JSON.stringify(state)))` instead of `setState(state)`.
+- React.useEffect takes the second argument of the list of dependencies (variables whose change causes useEffect()). There's different behaviour if you pass an empty list instead of not passing anything: the former will only run once, the latter will run every time the component re-renders. If you're not sure, use the empty list. The latter can often cause infinite loops. (if you are finding infinite loops, check the useEffect() dependencies)

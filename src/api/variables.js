@@ -1,3 +1,5 @@
+import { countryApiCall } from "./call";
+
 export function removePerson(situation, name) {
   // Remove a person from the situation
   delete situation.people[name];
@@ -317,4 +319,12 @@ export function getValueFromHousehold(
     return total;
   }
   return timePeriodValues[timePeriod];
+}
+
+export function getNewHouseholdId(countryId, newHouseholdData) {
+  return countryApiCall(countryId, "/household", { data: newHouseholdData }, "POST")
+    .then((response) => response.json())
+    .then((data) => {
+      return data.result.household_id;
+    });
 }

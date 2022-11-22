@@ -1,6 +1,7 @@
 import RadioButton from "../../../controls/RadioButton";
-import { addYearlyVariables, removePerson } from "../../../api/variables";
+import { addYearlyVariables, getNewHouseholdId, removePerson } from "../../../api/variables";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
+import { useSearchParams } from "react-router-dom";
 
 function getUKMaritalStatus(situation) {
   const partnerName = "your partner";
@@ -59,7 +60,8 @@ function setUSMaritalStatus(situation, status, variables, entities) {
 }
 
 export default function MaritalStatus(props) {
-  const { metadata, household, setHousehold } = props;
+  const { metadata, household } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
   const getMaritalStatus = { uk: getUKMaritalStatus, us: getUSMaritalStatus }[
     metadata.countryId
   ];
@@ -74,13 +76,21 @@ export default function MaritalStatus(props) {
       metadata.variables,
       metadata.entities
     );
-    setHousehold(newHousehold);
+    getNewHouseholdId(metadata.countryId, newHousehold)
+      .then((householdId) => {
+        let newSearch = {};
+        for (const [key, value] of searchParams) {
+          newSearch[key] = value;
+        }
+        newSearch.household = householdId;
+        setSearchParams(newSearch);
+      });
   };
   const radioButtonComponent = (
     <RadioButton
       keys={["single", "married"]}
       labels={["Single", "Married"]}
-      value={household.computed && getMaritalStatus(household.input)}
+      value={household.baseline && getMaritalStatus(household.input)}
       onChange={setMaritalStatus}
     />
   );

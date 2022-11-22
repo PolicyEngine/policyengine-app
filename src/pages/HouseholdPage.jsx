@@ -2,7 +2,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
 import { createDefaultHousehold } from "../api/variables";
-import { apiCall } from "../api/call";
+import { apiCall, countryApiCall } from "../api/call";
 import { useEffect } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
@@ -14,6 +14,7 @@ import EarningsVariation from "./household/output/EarningsVariation";
 import MarginalTaxRates from "./household/output/MarginalTaxRates";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
+import HouseholdIntro from "./household/HouseholdIntro";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -77,25 +78,14 @@ function HouseholdLeftSidebar(props) {
   );
 }
 
-export function createHousehold(id, countryId, metadata) {
-  // Fetches the household with the given ID if it exists, otherwise creates a new one.
-  if (id) {
-    return apiCall(`/${countryId}/household/${id}`)
-      .then((res) => res.json())
-      .catch((err) => {
-        return createDefaultHousehold(
-          countryId,
-          metadata.variables,
-          metadata.entities
-        );
-      });
-  } else {
-    return new Promise((resolve) =>
-      resolve(
-        createDefaultHousehold(countryId, metadata.variables, metadata.entities)
-      )
-    );
-  }
+export function getDefaultHouseholdId(metadata) {
+  // Creates the default household for the country, returning the household ID.
+  const defaultHousehold = createDefaultHousehold(metadata.countryId, metadata.variables, metadata.entities);
+  return countryApiCall(metadata.countryId, "/household", {data: defaultHousehold}, "POST")
+    .then((res) => res.json())
+    .then((dataHolder) => {
+      return dataHolder.result.household_id;
+    });
 }
 
 export default function HouseholdPage(props) {
@@ -105,18 +95,35 @@ export default function HouseholdPage(props) {
   let middle;
   const focus = searchParams.get("focus") || "";
 
+  // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
     if (!focus) {
       let newSearch = {};
       for (const [key, value] of searchParams) {
         newSearch[key] = value;
       }
-      newSearch.focus = "structure.maritalStatus";
+      newSearch.focus = "intro";
       setSearchParams(newSearch);
     }
-  });
+  }, [focus]);
 
-  if (!household.input || !household.computed) {
+  // If we've landed on the page without a household, create a new one.
+  useEffect(() => {
+    if (!household.input && !searchParams.get("household")) {
+      getDefaultHouseholdId(metadata).then(
+        (householdId) => {
+          let newSearch = {};
+          for (const [key, value] of searchParams) {
+            newSearch[key] = value;
+          }
+          newSearch.household = householdId;
+          setSearchParams(newSearch);
+        }
+      );
+    }
+  }, [!!household.input]);
+
+  if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
   } else if (focus.startsWith("input.")) {
     middle = (
@@ -148,6 +155,8 @@ export default function HouseholdPage(props) {
     middle = <EarningsVariation metadata={metadata} household={household} />;
   } else if (focus === "householdOutput.mtr") {
     middle = <MarginalTaxRates metadata={metadata} household={household} />;
+  } else if (focus === "intro") {
+    middle = <HouseholdIntro />;
   } else {
     middle = <LoadingCentered />;
   }

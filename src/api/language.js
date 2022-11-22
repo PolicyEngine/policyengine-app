@@ -20,7 +20,6 @@ export function aggregateNumber(number) {
 }
 
 export function aggregateCurrency(number, metadata) {
-  console.log(metadata)
   const currency = metadata.currency;
   return currency + aggregateNumber(number);
 }
