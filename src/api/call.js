@@ -10,23 +10,27 @@ export function apiCall(path, body, method) {
   });
 }
 
-export function asyncApiCall(path, body, interval = 1000) {
+export function asyncApiCall(path, body, interval = 1000, firstInterval = 200) {
   // Call an API endpoint which may respond with a {status: computing} response.
   // If so, poll until the response is ready.
+  // The timeline is: call, wait 200ms, call, wait 1000ms, call, wait 1000ms, ...
+  // The reason we have a separate firstInterval is that the first call is
+  // likely to be a cache miss, and we want to give the server a chance to
+  // compute the result before we start polling.
   return new Promise((resolve, reject) => {
-    const poll = () => {
+    const poll = (isFirst) => {
       apiCall(path, body)
         .then((response) => response.json())
         .then((data) => {
           if (data.status === "computing") {
-            setTimeout(poll, interval);
+            setTimeout(() => poll(false), isFirst ? firstInterval : interval);
           } else {
             resolve(data);
           }
         })
         .catch((error) => reject(error));
     };
-    poll();
+    poll(true);
   });
 }
 

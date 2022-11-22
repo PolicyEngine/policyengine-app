@@ -92,9 +92,17 @@ export default function PolicyEngineCountry(props) {
           .then((dataHolder) => {
             return {reform: dataHolder.result};
           }));
+      } else {
+        requests.push(Promise.resolve({reform: null}));
       }
       Promise.all(requests).then((results) => {
         setHousehold(Object.assign(JSON.parse(JSON.stringify(household)), ...results));
+      });
+    } else {
+      setHousehold({
+        input: null,
+        baseline: null,
+        reform: null,
       });
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -120,6 +128,8 @@ export default function PolicyEngineCountry(props) {
         .then((dataHolder) => {
           return {household: {baseline: dataHolder.result}};
         }));
+    } else {
+      requests.push(Promise.resolve({household: {baseline: null}}));
     }
     Promise.all(requests).then((results) => {
       const combinedResults = Object.assign({}, ...results);
@@ -146,6 +156,11 @@ export default function PolicyEngineCountry(props) {
           .then((dataHolder) => {
             return {household: {reform: dataHolder.result}};
           }));
+      }
+    } else {
+      requests.push(Promise.resolve({policy: {reform: {data: null, label: null}}}));
+      if (householdId) {
+        requests.push(Promise.resolve({household: {reform: null}}));
       }
     }
     Promise.all(requests).then((results) => {
