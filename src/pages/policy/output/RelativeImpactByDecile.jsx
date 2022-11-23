@@ -1,12 +1,11 @@
 import Plot from "react-plotly.js";
 import {
   formatVariableValue,
-  getPlotlyAxisFormat,
 } from "../../../api/variables";
 import style from "../../../style";
 
 export default function RelativeImpactByDecile(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel } = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
   const chart = (
     <Plot

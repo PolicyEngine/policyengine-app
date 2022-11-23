@@ -3,7 +3,7 @@ import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
 
 export default function PovertyImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel } = props;
   const childPovertyChange =
     impact.poverty.child.reform / impact.poverty.child.baseline - 1;
   const adultPovertyChange =

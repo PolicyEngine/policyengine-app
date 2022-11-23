@@ -1,7 +1,7 @@
 import { AutoComplete } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { apiCall, copySearchParams, countryApiCall } from "../../api/call";
+import { copySearchParams, countryApiCall } from "../../api/call";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy } = props;

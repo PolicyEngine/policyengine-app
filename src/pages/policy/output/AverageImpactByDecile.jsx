@@ -1,7 +1,6 @@
 import Plot from "react-plotly.js";
 import {
   formatVariableValue,
-  getPlotlyAxisFormat,
 } from "../../../api/variables";
 import style from "../../../style";
 
