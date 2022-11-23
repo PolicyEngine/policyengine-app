@@ -39,19 +39,24 @@ export default function HouseholdOutput(props) {
     pane = <MarginalTaxRates metadata={metadata} household={household} />;
   }
 
+  let comparisonHeader;
+  if (reformPolicyId) {
+    comparisonHeader = <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      <h4>Comparing</h4>
+      <PolicySearch metadata={metadata} policy={policy} target="reform" />
+      <h4>against</h4>
+      <PolicySearch metadata={metadata} policy={policy} target="baseline" />
+    </div>;
+  }
+
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <h4>Comparing</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="reform" />
-        <h4>against</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="baseline" />
-      </div>
+      {comparisonHeader}
       <ResultsPanel>{pane}</ResultsPanel>
     </>
   );

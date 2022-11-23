@@ -46,7 +46,7 @@ export default function HouseholdRightSidebar(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
-  if (!household || !household.baseline) {
+  if (!household || !household.baseline || !household.input) {
     return (
       <div
         style={{

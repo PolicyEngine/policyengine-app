@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { copySearchParams, countryApiCall } from "./api/call";
+import { copySearchParams, countryApiCall, deepAssign, deepAssignFromMultiple } from "./api/call";
 import Header from "./Header";
 import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
@@ -50,21 +50,20 @@ export default function PolicyEngineCountry(props) {
 
   const [metadata, setMetadata] = useState(null);
   const [error, setError] = useState(null);
-  const [household, setHousehold] = useState({
-    input: null,
-    baseline: null,
-    reform: null,
-  });
-  const [policy, setPolicy] = useState({
-    baseline: {
-      data: null,
-      label: null,
-    },
-    reform: {
-      data: null,
-      label: null,
-    },
-  });
+  const [householdInput, setHouseholdInput] = useState(null);
+  const [householdBaseline, setHouseholdBaseline] = useState(null);
+  const [householdReform, setHouseholdReform] = useState(null);
+  const [baselinePolicy, setBaselinePolicy] = useState({data: null, label: null});
+  const [reformPolicy, setReformPolicy] = useState({data: null, label: null});
+  const household = {
+    input: householdInput,
+    baseline: householdBaseline,
+    reform: householdReform,
+  }
+  const policy = {
+    baseline: baselinePolicy,
+    reform: reformPolicy,
+  }
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
@@ -106,19 +105,24 @@ export default function PolicyEngineCountry(props) {
             })
         );
       } else {
-        requests.push(Promise.resolve({ reform: null }));
+        requests.push(Promise.resolve({}));
       }
       Promise.all(requests).then((results) => {
-        setHousehold(
-          Object.assign(JSON.parse(JSON.stringify(household)), ...results)
-        );
+        const combined = Object.assign({}, ...results);
+        if (combined.input) {
+          setHouseholdInput(combined.input);
+        }
+        if (combined.baseline) {
+          setHouseholdBaseline(combined.baseline);
+        }
+        if (combined.reform) {
+          setHouseholdReform(combined.reform);
+        }
       });
     } else {
-      setHousehold({
-        input: null,
-        baseline: null,
-        reform: null,
-      });
+      setHouseholdInput(null);
+      setHouseholdBaseline(null);
+      setHouseholdReform(null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId]);
@@ -163,20 +167,16 @@ export default function PolicyEngineCountry(props) {
       requests.push(Promise.resolve({ household: { baseline: null } }));
     }
     Promise.all(requests).then((results) => {
-      const combinedResults = Object.assign({}, ...results);
-      setPolicy(
-        Object.assign(
-          JSON.parse(JSON.stringify(policy)),
-          combinedResults.policy
-        )
-      );
+      const combined = Object.assign({}, ...results);
+      const policyUpdates = combined.policy || {};
+      if (policyUpdates.baseline) {
+        setBaselinePolicy(policyUpdates.baseline);
+      }
       if (householdId) {
-        setHousehold(
-          Object.assign(
-            JSON.parse(JSON.stringify(household)),
-            combinedResults.household
-          )
-        );
+        const householdUpdates = combined.household || {};
+        if (householdUpdates.baseline) {
+          setHouseholdBaseline(householdUpdates.baseline);
+        }
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -222,19 +222,15 @@ export default function PolicyEngineCountry(props) {
     }
     Promise.all(requests).then((results) => {
       const combinedResults = Object.assign({}, ...results);
-      setPolicy(
-        Object.assign(
-          JSON.parse(JSON.stringify(policy)),
-          combinedResults.policy
-        )
-      );
+      const policyUpdates = combinedResults.policy || {};
+      if (policyUpdates.reform) {
+        setReformPolicy(policyUpdates.reform);
+      }
       if (householdId) {
-        setHousehold(
-          Object.assign(
-            JSON.parse(JSON.stringify(household)),
-            combinedResults.household
-          )
-        );
+        const householdUpdates = combinedResults.household || {};
+        if (householdUpdates.reform) {
+          setHouseholdReform(householdUpdates.reform);
+        }
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -248,14 +244,10 @@ export default function PolicyEngineCountry(props) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
         .then((res) => res.json())
         .then((dataHolder) => {
-          setPolicy(
-            Object.assign(JSON.parse(JSON.stringify(policy)), {
-              reform: {
-                data: dataHolder.result.policy_json,
-                label: dataHolder.result.label,
-              },
-            })
-          );
+          setReformPolicy({
+            data: dataHolder.result.policy_json,
+            label: dataHolder.result.label,
+          });
           let newSearch = copySearchParams(searchParams);
           newSearch.delete("renamed");
           setSearchParams(newSearch);
@@ -299,7 +291,6 @@ export default function PolicyEngineCountry(props) {
             <PolicyPage
               metadata={metadata}
               policy={policy}
-              setPolicy={setPolicy}
               household={household}
             />
           ) : error ? (
