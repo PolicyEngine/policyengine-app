@@ -39,9 +39,18 @@ export default function Header(props) {
         }}
       >
         <TopLeftLogo countryId={countryId} />
-        {loading && <div style={{paddingLeft: 20, height: "100%", display: "flex", alignItems: "center"}}>
-          <Spinner style={{color: "white", fontSize: 30}} />
-        </div>}
+        {loading && (
+          <div
+            style={{
+              paddingLeft: 20,
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Spinner style={{ color: "white", fontSize: 30 }} />
+          </div>
+        )}
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>

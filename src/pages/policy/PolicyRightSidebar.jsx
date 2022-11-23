@@ -6,6 +6,7 @@ import { formatVariableValue } from "../../api/variables";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
 import style from "../../style";
+import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -127,7 +128,9 @@ export default function PolicyRightSidebar(props) {
               newSearchParams[key] = value;
             }
             newSearchParams.focus = "policy";
-            const newUrl = `/${country}/policy?${new URLSearchParams(newSearchParams)}`;
+            const newUrl = `/${country}/policy?${new URLSearchParams(
+              newSearchParams
+            )}`;
             navigate(newUrl);
           }}
         />
@@ -138,6 +141,46 @@ export default function PolicyRightSidebar(props) {
     <div style={{ paddingTop: 10 }}>
       <PolicyNamer policy={policy} metadata={metadata} setPolicy={setPolicy} />
       <PolicyDisplay policy={policy} metadata={metadata} />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "right",
+          alignItems: "center",
+          marginTop: 20,
+        }}
+      >
+        <h6 style={{ margin: 0 }}>in</h6>
+        <RegionSelector metadata={metadata} />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "right",
+          alignItems: "center",
+          marginTop: 10,
+        }}
+      >
+        <h6 style={{ margin: 0 }}>over</h6>
+        <TimePeriodSelector metadata={metadata} />
+      </div>
+      <Button
+        text="See details"
+        style={{ marginTop: 30 }}
+        onClick={() => {
+          // Navigate to /<country>/household, preserving URL parameters
+          const country = metadata.countryId;
+          const newSearchParams = {};
+          for (const [key, value] of searchParams) {
+            newSearchParams[key] = value;
+          }
+          newSearchParams.focus = "policyOutput.netIncome";
+          let url = `/${country}/policy`;
+          if (Object.keys(newSearchParams).length > 0) {
+            url += `?${new URLSearchParams(newSearchParams)}`;
+          }
+          navigate(url);
+        }}
+      />
     </div>
   );
 }

@@ -29,6 +29,10 @@ const POLICY_OUTPUT_TREE = [
         label: "Average impact by decile",
       },
       {
+        name: "policyOutput.intraDecileImpact",
+        label: "Outcomes by income decile",
+      },
+      {
         name: "policyOutput.povertyImpact",
         label: "Poverty impact",
       },

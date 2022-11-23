@@ -79,7 +79,7 @@ export function getDefaultHouseholdId(metadata) {
     metadata.variables,
     metadata.entities
   );
-  console.log(defaultHousehold)
+  console.log(defaultHousehold);
   return countryApiCall(
     metadata.countryId,
     "/household",

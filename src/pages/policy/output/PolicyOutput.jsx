@@ -1,4 +1,3 @@
-import { AutoComplete } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
@@ -8,12 +7,13 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import PolicySearch from "../PolicySearch";
 import BudgetaryImpact from "./BudgetaryImpact";
-import DistributionalImpact from "./RelativeImpactByDecile";
 import PovertyImpact from "./PovertyImpact";
 import RelativeImpactByDecile from "./RelativeImpactByDecile";
 import AverageImpactByDecile from "./AverageImpactByDecile";
+import { SwapOutlined } from "@ant-design/icons";
+import IntraDecileImpact from "./IntraDecileImpact";
 
-function RegionSelector(props) {
+export function RegionSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = metadata.economy_options.region.map((region) => {
@@ -34,7 +34,7 @@ function RegionSelector(props) {
   );
 }
 
-function TimePeriodSelector(props) {
+export function TimePeriodSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = metadata.economy_options.time_period.map((time_period) => {
@@ -83,9 +83,9 @@ export default function PolicyOutput(props) {
         });
     } else {
       const defaults = {
-        region: "uk",
-        timePeriod: 2022,
-        baseline: "current-law",
+        region: metadata.economy_options.region[0].name,
+        timePeriod: metadata.economy_options.time_period[0].name,
+        baseline: metadata.current_law_id,
       };
       let newSearch = copySearchParams(searchParams);
       // Set missing query parameters to their defaults.
@@ -153,6 +153,14 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
+  } else if (focus === "policyOutput.intraDecileImpact") {
+    pane = (
+      <IntraDecileImpact
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
   } else if (focus === "policyOutput.povertyImpact") {
     pane = (
       <PovertyImpact
@@ -169,23 +177,32 @@ export default function PolicyOutput(props) {
         style={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <h4>Comparing</h4>
+        <h4 style={{ margin: 0 }}>Comparing</h4>
         <PolicySearch metadata={metadata} policy={policy} target="reform" />
-        <h4>against</h4>
+        <h4 style={{ margin: 0 }}>against</h4>
         <PolicySearch metadata={metadata} policy={policy} target="baseline" />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <h4>in</h4>
-        <RegionSelector metadata={metadata} />
-        <h4>over</h4>
-        <TimePeriodSelector metadata={metadata} />
+        <SwapOutlined
+          style={{
+            fontSize: 15,
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            const newSearch = copySearchParams(searchParams);
+            newSearch.set(
+              "reform",
+              baselinePolicyId || metadata.current_law_id
+            );
+            if (!reformPolicyId) {
+              newSearch.delete("baseline");
+            } else {
+              newSearch.set("baseline", reformPolicyId);
+            }
+            setSearchParams(newSearch);
+          }}
+        />
       </div>
       <ResultsPanel>{pane}</ResultsPanel>
     </>

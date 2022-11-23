@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
 import {
+  formatVariableValue,
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../api/variables";
@@ -14,16 +15,18 @@ import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 
 export default function MarginalTaxRates(props) {
-  const { household, metadata } = props;
+  const { household, metadata, policyLabel } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
-  const baselinePolicyId = searchParams.get("baseline") || "current-law";
+  const baselinePolicyId =
+    searchParams.get("baseline") || metadata.current_law_id;
   const [reformMtr, setReformMtr] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
+  let title;
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));
@@ -40,23 +43,33 @@ export default function MarginalTaxRates(props) {
       ],
     ];
     let requests = [];
-    requests.push(apiCall(`/${metadata.countryId}/calculate`, { household: householdData, policy_id: baselinePolicyId })
-      .then((res) => res.json())
-      .then((data) => {
-        setBaselineMtr(data.result);
+    requests.push(
+      apiCall(`/${metadata.countryId}/calculate`, {
+        household: householdData,
+        policy_id: baselinePolicyId,
       })
-      .catch((err) => {
-        setError(err);
-      }));
-    if (reformPolicyId) {
-      requests.push(apiCall(`/${metadata.countryId}/calculate`, { household: householdData, policy_id: reformPolicyId })
         .then((res) => res.json())
         .then((data) => {
-          setReformMtr(data.result);
+          setBaselineMtr(data.result);
         })
         .catch((err) => {
           setError(err);
-        }));
+        })
+    );
+    if (reformPolicyId) {
+      requests.push(
+        apiCall(`/${metadata.countryId}/calculate`, {
+          household: householdData,
+          policy_id: reformPolicyId,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setReformMtr(data.result);
+          })
+          .catch((err) => {
+            setError(err);
+          })
+      );
     }
     Promise.all(requests).then(() => {
       setLoading(false);
@@ -94,13 +107,18 @@ export default function MarginalTaxRates(props) {
       household.input,
       metadata
     );
-    const currentNetIncome = getValueFromHousehold(
+    const currentMtr = getValueFromHousehold(
       "marginal_tax_rate",
       "2022",
       "you",
       household.baseline,
       metadata
     );
+    title = `Your current marginal tax rate is ${formatVariableValue(
+      { unit: "/1" },
+      currentMtr,
+      0
+    )}`;
     // Add the main line, then add a 'you are here' line
     plot = (
       <FadeIn>
@@ -114,7 +132,7 @@ export default function MarginalTaxRates(props) {
             },
             {
               x: [currentEarnings, currentEarnings],
-              y: [0, currentNetIncome],
+              y: [0, currentMtr],
               type: "line",
               name: "Your current MTR",
               line: {
@@ -130,9 +148,7 @@ export default function MarginalTaxRates(props) {
             },
             yaxis: {
               title: "Marginal tax rate",
-              ...getPlotlyAxisFormat(
-                metadata.variables.marginal_tax_rate.unit
-              ),
+              ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
               tickformat: ".0%",
             },
           }}
@@ -188,6 +204,17 @@ export default function MarginalTaxRates(props) {
       household.baseline,
       metadata
     );
+    if (currentMtr !== baselineMtrValue) {
+      title = `${policyLabel} ${
+        currentMtr > baselineMtrValue ? "increases" : "decreases"
+      } your marginal tax rate from ${formatVariableValue(
+        { unit: "/1" },
+        baselineMtrValue,
+        0
+      )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
+    } else {
+      title = `${policyLabel} doesn't change your marginal tax rate`;
+    }
     // Add the main line, then add a 'you are here' line
     let data;
     if (showDelta) {
@@ -210,7 +237,7 @@ export default function MarginalTaxRates(props) {
           type: "line",
           name: "Your current MTR difference",
           line: {
-            color: style.colors.DARK_GRAY,
+            color: style.colors.MEDIUM_DARK_GRAY,
             shape: "hv",
           },
         },
@@ -233,7 +260,7 @@ export default function MarginalTaxRates(props) {
           type: "line",
           name: "Baseline MTR",
           line: {
-            color: style.colors.DARK_GRAY,
+            color: style.colors.MEDIUM_DARK_GRAY,
             shape: "hv",
           },
         },
@@ -253,9 +280,7 @@ export default function MarginalTaxRates(props) {
     plot = (
       <FadeIn>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <span style={{ marginRight: 10 }}>
-            Show baseline and reform
-          </span>
+          <span style={{ marginRight: 10 }}>Show baseline and reform</span>
           <Switch
             checked={showDelta}
             onChange={(checked) => setShowDelta(checked)}
@@ -269,15 +294,19 @@ export default function MarginalTaxRates(props) {
           layout={{
             xaxis: {
               title: "Employment income",
-              ...getPlotlyAxisFormat(metadata.variables.employment_income.unit, 0),
+              ...getPlotlyAxisFormat(
+                metadata.variables.employment_income.unit,
+                0
+              ),
               tickformat: ",.0f",
             },
             yaxis: {
               title: "Marginal tax rate",
               ...getPlotlyAxisFormat(
-                metadata.variables.marginal_tax_rate.unit, 0
+                metadata.variables.marginal_tax_rate.unit,
+                0
               ),
-              tickformat: ".0%",
+              tickformat: (showDelta ? "+" : "") + ".0%",
             },
           }}
           config={{
@@ -293,14 +322,16 @@ export default function MarginalTaxRates(props) {
 
   return (
     <ResultsPanel
-      title="How your marginal tax rate changes with your earnings"
+      title={title}
       description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
     >
-      {
-        loading ?
-          <div style={{height: 300}}><LoadingCentered /></div> :
-          plot
-      }
+      {loading ? (
+        <div style={{ height: 300 }}>
+          <LoadingCentered />
+        </div>
+      ) : (
+        plot
+      )}
     </ResultsPanel>
   );
 }

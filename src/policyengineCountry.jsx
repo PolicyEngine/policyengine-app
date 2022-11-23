@@ -53,18 +53,21 @@ export default function PolicyEngineCountry(props) {
   const [householdInput, setHouseholdInput] = useState(null);
   const [householdBaseline, setHouseholdBaseline] = useState(null);
   const [householdReform, setHouseholdReform] = useState(null);
-  const [baselinePolicy, setBaselinePolicy] = useState({data: null, label: null});
-  const [reformPolicy, setReformPolicy] = useState({data: null, label: null});
+  const [baselinePolicy, setBaselinePolicy] = useState({
+    data: null,
+    label: null,
+  });
+  const [reformPolicy, setReformPolicy] = useState({ data: null, label: null });
   const [loading, setLoading] = useState(false);
   const household = {
     input: householdInput,
     baseline: householdBaseline,
     reform: householdReform,
-  }
+  };
   const policy = {
     baseline: baselinePolicy,
     reform: reformPolicy,
-  }
+  };
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
@@ -86,7 +89,7 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
-            baselinePolicyId || "current-law"
+            baselinePolicyId || metadata.current_law_id
           }`
         )
           .then((res) => res.json())
@@ -94,7 +97,7 @@ export default function PolicyEngineCountry(props) {
             return { baseline: dataHolder.result };
           })
       );
-      if (reformPolicyId) {
+      if (reformPolicyId && reformPolicyId !== baselinePolicyId) {
         requests.push(
           countryApiCall(
             countryId,
@@ -158,7 +161,7 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
-            baselinePolicyId || "current-law"
+            baselinePolicyId || metadata.current_law_id
           }`
         )
           .then((res) => res.json())

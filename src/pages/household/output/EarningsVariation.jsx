@@ -19,7 +19,8 @@ export default function EarningsVariation(props) {
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
-  const baselinePolicyId = searchParams.get("baseline") || "current-law";
+  const baselinePolicyId =
+    searchParams.get("baseline") || metadata.current_law_id;
   const [reformNetIncome, setReformNetIncome] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -41,23 +42,33 @@ export default function EarningsVariation(props) {
     ];
     setLoading(true);
     let requests = [];
-    requests.push(apiCall(`/${metadata.countryId}/calculate`, { household: householdData, policy_id: baselinePolicyId })
-      .then((res) => res.json())
-      .then((data) => {
-        setBaselineNetIncome(data.result);
+    requests.push(
+      apiCall(`/${metadata.countryId}/calculate`, {
+        household: householdData,
+        policy_id: baselinePolicyId,
       })
-      .catch((err) => {
-        setError(err);
-      }));
-    if (reformPolicyId) {
-      requests.push(apiCall(`/${metadata.countryId}/calculate`, { household: householdData, policy_id: reformPolicyId })
         .then((res) => res.json())
         .then((data) => {
-          setReformNetIncome(data.result);
+          setBaselineNetIncome(data.result);
         })
         .catch((err) => {
           setError(err);
-        }));
+        })
+    );
+    if (reformPolicyId) {
+      requests.push(
+        apiCall(`/${metadata.countryId}/calculate`, {
+          household: householdData,
+          policy_id: reformPolicyId,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setReformNetIncome(data.result);
+          })
+          .catch((err) => {
+            setError(err);
+          })
+      );
     }
     Promise.all(requests).then(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,7 +128,7 @@ export default function EarningsVariation(props) {
               type: "line",
               name: "Your current net income",
               line: {
-                color: style.colors.DARK_GRAY,
+                color: style.colors.MEDIUM_DARK_GRAY,
               },
             },
           ]}
@@ -209,7 +220,7 @@ export default function EarningsVariation(props) {
           type: "line",
           name: "Your current net income delta",
           line: {
-            color: style.colors.DARK_GRAY,
+            color: style.colors.MEDIUM_DARK_GRAY,
           },
         },
       ];
@@ -230,7 +241,7 @@ export default function EarningsVariation(props) {
           type: "line",
           name: "Baseline net income",
           line: {
-            color: style.colors.DARK_GRAY,
+            color: style.colors.MEDIUM_DARK_GRAY,
           },
         },
         {
@@ -239,7 +250,7 @@ export default function EarningsVariation(props) {
           type: "line",
           name: "Your current net income",
           line: {
-            color: style.colors.DARK_GRAY,
+            color: style.colors.MEDIUM_DARK_GRAY,
           },
         },
       ];
@@ -248,9 +259,7 @@ export default function EarningsVariation(props) {
     plot = (
       <FadeIn>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <span style={{ marginRight: 10 }}>
-            Show baseline and reform
-          </span>
+          <span style={{ marginRight: 10 }}>Show baseline and reform</span>
           <Switch
             checked={showDelta}
             onChange={(checked) => setShowDelta(checked)}
@@ -264,15 +273,19 @@ export default function EarningsVariation(props) {
           layout={{
             xaxis: {
               title: "Employment income",
-              ...getPlotlyAxisFormat(metadata.variables.employment_income.unit, 0),
+              ...getPlotlyAxisFormat(
+                metadata.variables.employment_income.unit,
+                0
+              ),
               tickformat: ",.0f",
             },
             yaxis: {
               title: "Net income",
               ...getPlotlyAxisFormat(
-                metadata.variables.household_net_income.unit, 0
+                metadata.variables.household_net_income.unit,
+                0
               ),
-              tickformat: ",.0f",
+              tickformat: (showDelta ? "+" : "") + ",.0f",
             },
           }}
           config={{
@@ -291,11 +304,13 @@ export default function EarningsVariation(props) {
       title="How your net income changes with your earnings"
       description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
     >
-      {
-        loading ?
-          <div style={{height: 300}}><LoadingCentered /></div> :
-          plot
-      }
+      {loading ? (
+        <div style={{ height: 300 }}>
+          <LoadingCentered />
+        </div>
+      ) : (
+        plot
+      )}
     </ResultsPanel>
   );
 }
