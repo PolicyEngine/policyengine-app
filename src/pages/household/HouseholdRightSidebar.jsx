@@ -43,7 +43,7 @@ function Figure(props) {
 
 export default function HouseholdRightSidebar(props) {
   const { household, metadata } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
   if (!household || !household.baseline || !household.input) {
@@ -139,7 +139,8 @@ export default function HouseholdRightSidebar(props) {
         onClick={() => {
           let newSearch = copySearchParams(searchParams);
           newSearch.set("focus", "householdOutput.netIncome");
-          setSearchParams(newSearch);
+          const newUrl = `/${metadata.countryId}/household?${newSearch}`;
+          navigate(newUrl);
         }}
         style={{
           marginTop: 10,

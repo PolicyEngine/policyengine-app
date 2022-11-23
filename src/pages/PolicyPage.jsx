@@ -102,7 +102,7 @@ export default function PolicyPage(props) {
   useEffect(() => {
     if (!policy.reform.data && !searchParams.get("reform")) {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("reform", 1);
+      newSearch.set("reform", metadata.countryId === "us" ? 2 : 1);
       setSearchParams(newSearch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

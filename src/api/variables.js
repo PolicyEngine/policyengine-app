@@ -234,7 +234,7 @@ export function formatVariableValue(variable, value, precision = 2) {
   }
 }
 
-export function getPlotlyAxisFormat(unit, values) {
+export function getPlotlyAxisFormat(unit, values, precisionOverride) {
   // Possible units: currency-GBP, currency-USD, /1
   // If values (an array) is passed, we need to calculate the
   // appropriate number of decimal places to use.
@@ -251,6 +251,9 @@ export function getPlotlyAxisFormat(unit, values) {
     if (Math.max(...values) / 2 < 1) {
       precision = 2;
     }
+  }
+  if (precisionOverride) {
+    precision = precisionOverride;
   }
   if (unit === "currency-GBP") {
     return {
@@ -291,8 +294,13 @@ export function getValueFromHousehold(
   household,
   metadata
 ) {
-  const entityPlural =
-    metadata.entities[metadata.variables[variable].entity].plural;
+  let entityPlural;
+  try {
+    entityPlural =
+      metadata.entities[metadata.variables[variable].entity].plural;
+  } catch (e) {
+    console.log("Error getting variable value", variable, e);
+  }
   if (!entityName) {
     const possibleEntities = Object.keys(household[entityPlural]);
     if (possibleEntities.length === 1) {

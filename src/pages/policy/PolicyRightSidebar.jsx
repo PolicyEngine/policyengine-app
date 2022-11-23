@@ -8,7 +8,7 @@ import InputField from "../../controls/InputField";
 import style from "../../style";
 
 function PolicyNamer(props) {
-  const { policy, setPolicy, metadata } = props;
+  const { policy, metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
 
@@ -127,7 +127,8 @@ export default function PolicyRightSidebar(props) {
               newSearchParams[key] = value;
             }
             newSearchParams.focus = "policy";
-            navigate(`/${country}/policy`, { state: { newSearchParams } });
+            const newUrl = `/${country}/policy?${new URLSearchParams(newSearchParams)}`;
+            navigate(newUrl);
           }}
         />
       </div>

@@ -25,6 +25,7 @@ export default function RelativeImpactByDecile(props) {
       layout={{
         xaxis: {
           title: "Income decile",
+          tickvals: Object.keys(impact.decile.relative),
         },
         yaxis: {
           title: "Relative change",

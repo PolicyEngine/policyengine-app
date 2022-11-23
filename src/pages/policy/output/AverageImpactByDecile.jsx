@@ -25,11 +25,12 @@ export default function AverageImpactByDecile(props) {
       layout={{
         xaxis: {
           title: "Income decile",
+          tickvals: Object.keys(impact.decile.average),
         },
         yaxis: {
-          title: "Relative change",
-          tickprefix: metadata.countryId === "uk" ? "£" : "",
-          tickformat: metadata.countryId === "uk" ? ",.0f" : ",.0s",
+          title: "Average change",
+          tickprefix: metadata.countryId === "uk" ? "£" : "$",
+          tickformat: ",.0f",
         },
         showlegend: false,
       }}

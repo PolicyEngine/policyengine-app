@@ -9,9 +9,6 @@ import LoadingCentered from "../layout/LoadingCentered";
 import MaritalStatus from "./household/input/MaritalStatus";
 import CountChildren from "./household/input/CountChildren";
 import BiPanel from "../layout/BiPanel";
-import NetIncomeBreakdown from "./household/output/NetIncomeBreakdown";
-import EarningsVariation from "./household/output/EarningsVariation";
-import MarginalTaxRates from "./household/output/MarginalTaxRates";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import HouseholdIntro from "./household/HouseholdIntro";
@@ -82,6 +79,7 @@ export function getDefaultHouseholdId(metadata) {
     metadata.variables,
     metadata.entities
   );
+  console.log(defaultHousehold)
   return countryApiCall(
     metadata.countryId,
     "/household",
@@ -123,22 +121,8 @@ export default function HouseholdPage(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!household.input]);
 
-  const reformPolicyId = searchParams.get("reform");
-  const baselinePolicyId = searchParams.get("baseline");
-  let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
-  let baselineLabel = policy.baseline.label || `Policy #${baselinePolicyId}`;
-  if (!baselinePolicyId) {
-    baselineLabel = "Current law";
-  }
-  let policyLabel;
-  if (reformLabel !== "Current law" && baselineLabel === "Current law") {
-    policyLabel = reformLabel;
-  } else {
-    policyLabel = `${baselineLabel} → ${reformLabel}`;
-  }
-
   if (!household.input || !household.baseline) {
-    middle = <LoadingCentered message={`household.input = ${!!household.input}, household.baseline = ${!!household.baseline}`}/>;
+    middle = <LoadingCentered />;
   } else if (focus.startsWith("input.")) {
     middle = (
       <VariableEditor

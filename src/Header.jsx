@@ -1,7 +1,7 @@
 import style from "./style";
 import PolicyEngineLogo from "./images/logos/policyengine/white.png";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import Spinner from "./layout/Spinner";
 
 export const HEADER_HEIGHT = 75;
 
@@ -21,37 +21,9 @@ function TopLeftLogo(props) {
   );
 }
 
-function TopSearchBar() {
-  // Placed in the center of the header
-  return (
-    <motion.input
-      style={{
-        backgroundColor: style.colors.DARK_GRAY,
-        position: "absolute",
-        left: "35%",
-        width: "30%",
-        border: "none",
-        height: HEADER_HEIGHT - 20,
-        padding: 10,
-        paddingLeft: 30,
-        top: 10,
-      }}
-      whileHover={{
-        scale: 1.05,
-        backgroundColor: style.colors.WHITE,
-      }}
-      whileTap={{
-        scale: 0.95,
-        backgroundColor: style.colors.WHITE,
-      }}
-      placeholder="Search"
-    ></motion.input>
-  );
-}
-
 export default function Header(props) {
   // The top header bar, with the logo, search bar and social links
-  const { countryId } = props;
+  const { countryId, loading } = props;
   return (
     <>
       <div
@@ -62,10 +34,14 @@ export default function Header(props) {
           position: "fixed",
           width: "100%",
           zIndex: 100,
+          display: "flex",
+          alignItems: "center",
         }}
       >
         <TopLeftLogo countryId={countryId} />
-        <TopSearchBar />
+        {loading && <div style={{paddingLeft: 20, height: "100%", display: "flex", alignItems: "center"}}>
+          <Spinner style={{color: "white", fontSize: 30}} />
+        </div>}
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>

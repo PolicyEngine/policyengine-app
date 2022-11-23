@@ -7,7 +7,10 @@ export default function PolicySearch(props) {
   const { metadata, target, policy } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultId = searchParams.get(target);
-  const defaultLabel = policy[target].label || `Policy #${defaultId}`;
+  let defaultLabel = policy[target].label || `Policy #${defaultId}`;
+  if (target === "baseline" && !defaultId) {
+    defaultLabel = "Current law";
+  }
   const [value, setValue] = useState(defaultLabel);
 
   const [policies, setPolicies] = useState([]);

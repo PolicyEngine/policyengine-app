@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { copySearchParams, countryApiCall, deepAssign, deepAssignFromMultiple } from "./api/call";
+import { copySearchParams, countryApiCall } from "./api/call";
 import Header from "./Header";
 import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
@@ -55,6 +55,7 @@ export default function PolicyEngineCountry(props) {
   const [householdReform, setHouseholdReform] = useState(null);
   const [baselinePolicy, setBaselinePolicy] = useState({data: null, label: null});
   const [reformPolicy, setReformPolicy] = useState({data: null, label: null});
+  const [loading, setLoading] = useState(false);
   const household = {
     input: householdInput,
     baseline: householdBaseline,
@@ -107,6 +108,7 @@ export default function PolicyEngineCountry(props) {
       } else {
         requests.push(Promise.resolve({}));
       }
+      setLoading(true);
       Promise.all(requests).then((results) => {
         const combined = Object.assign({}, ...results);
         if (combined.input) {
@@ -118,6 +120,7 @@ export default function PolicyEngineCountry(props) {
         if (combined.reform) {
           setHouseholdReform(combined.reform);
         }
+        setLoading(false);
       });
     } else {
       setHouseholdInput(null);
@@ -166,6 +169,7 @@ export default function PolicyEngineCountry(props) {
     } else {
       requests.push(Promise.resolve({ household: { baseline: null } }));
     }
+    setLoading(true);
     Promise.all(requests).then((results) => {
       const combined = Object.assign({}, ...results);
       const policyUpdates = combined.policy || {};
@@ -178,6 +182,7 @@ export default function PolicyEngineCountry(props) {
           setHouseholdBaseline(householdUpdates.baseline);
         }
       }
+      setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, baselinePolicyId]);
@@ -220,6 +225,7 @@ export default function PolicyEngineCountry(props) {
         requests.push(Promise.resolve({ household: { reform: null } }));
       }
     }
+    setLoading(true);
     Promise.all(requests).then((results) => {
       const combinedResults = Object.assign({}, ...results);
       const policyUpdates = combinedResults.policy || {};
@@ -232,6 +238,7 @@ export default function PolicyEngineCountry(props) {
           setHouseholdReform(householdUpdates.reform);
         }
       }
+      setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, reformPolicyId]);
@@ -306,7 +313,7 @@ export default function PolicyEngineCountry(props) {
   return (
     <>
       <DesktopView>
-        <Header countryId={countryId} />
+        <Header countryId={countryId} loading={loading} />
         {mainPage}
       </DesktopView>
       <MobileView>
