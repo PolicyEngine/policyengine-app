@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
+import SearchOptions from "../controls/SearchOptions";
 import BiPanel from "../layout/BiPanel";
+import Divider from "../layout/Divider";
 import LoadingCentered from "../layout/LoadingCentered";
 import Menu from "../layout/Menu";
 import ResultsPanel from "../layout/ResultsPanel";
@@ -40,24 +42,64 @@ const POLICY_OUTPUT_TREE = [
   },
 ];
 
+function ParameterSearch(props) {
+  const { metadata } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const options = Object.values(metadata.parameters)
+    .filter(parameter => parameter.type === "parameter")
+    .map((parameter) => ({
+      value: parameter.parameter,
+      label: parameter.label,
+    })).filter(option => !!option.label && !!option.value);
+  return <SearchOptions
+    options={options}
+    defaultValue={null}
+    style={{margin: 0, width: "100%"}}
+    placeholder="Search for a parameter"
+    onSelect={(value) => {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("focus", value);
+      setSearchParams(newSearch);
+    }}
+    />
+}
+
 function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
   const tree = metadata.parameterTree;
-
+  // The menu, then the search bar anchored to the bottom
   return (
     <BiPanel
       left={
-        <Menu
-          tree={tree}
-          selected={searchParams.get("focus")}
-          onSelect={(focus) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", focus);
-            setSearchParams(newSearch);
-          }}
-        />
+        <>
+          <div
+            style={{
+              overflow: "scroll",
+              height: "80%",
+            }}
+          >
+            <Menu
+              tree={tree}
+              selected={searchParams.get("focus")}
+              onSelect={(focus) => {
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("focus", focus);
+                setSearchParams(newSearch);
+              }}
+            />
+          </div>
+          <div style={{
+            position: "absolute",
+            bottom: 20,
+            width: "calc(20% - 40px)",
+            zIndex: 100,
+          }}>
+            <Divider />
+            <ParameterSearch metadata={metadata} />
+          </div>
+        </>
       }
       leftTitle="Parameters"
       right={

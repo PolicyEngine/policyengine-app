@@ -8,6 +8,8 @@ import {
 import LoadingCentered from "../../../layout/LoadingCentered";
 import InputField from "../../../controls/InputField";
 import { copySearchParams } from "../../../api/call";
+import { Switch } from "antd";
+import SearchOptions from "../../../controls/SearchOptions";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -39,13 +41,13 @@ export default function VariableEditor(props) {
           paddingRight: 50,
         }}
       >
-        <h1 style={{ marginBottom: 20 }}>What is your {variable.label}?</h1>
+        <h1 style={{ marginBottom: 20 }}>What {variable.label.endsWith("s") ? "are" : "is"} your {variable.label}?</h1>
         <h4>{variable.documentation}</h4>
         {isSimulated && (
-          <h5>
+          <p>
             This variable is calculated from other variables you've entered.
             Editing it will override the simulated value.
-          </h5>
+          </p>
         )}
         {possibleEntities.map((entity) => {
           return (
@@ -121,9 +123,30 @@ function HouseholdVariableEntityInput(props) {
     variable.name,
     timePeriod,
     entityName,
-    household.simulated || household.input,
+    household.baseline || household.input,
     metadata
   );
+  let control;
+  if (variable.valueType === "float" || variable.valueType === "int") {
+    control = <InputField
+      onChange={submitValue}
+      placeholder={formatValue(simulatedValue)}
+      autofocus={true}
+    />;
+  } else if (variable.valueType === "bool") {
+    control = <div style={{margin: 20}}><Switch
+      onChange={submitValue}
+      checked={simulatedValue}
+      checkedChildren="Yes"
+      unCheckedChildren="No"
+    /></div>;
+  } else if (variable.valueType === "Enum") {
+    control = <SearchOptions
+      options={variable.possibleValues}
+      defaultValue={simulatedValue}
+      onSelect={submitValue}
+    />;
+  }
   // The input field should hide its arrows
   return (
     <div
@@ -133,15 +156,11 @@ function HouseholdVariableEntityInput(props) {
         alignItems: "center",
       }}
     >
-      <h5 style={{ width: 200, textAlign: "right" }}>
+      <h5 style={{ width: 200, textAlign: "right", margin: 0 }}>
         {capitalize(entityName)}:{" "}
       </h5>
-      <InputField
-        onChange={submitValue}
-        placeholder={formatValue(simulatedValue)}
-      />
-
-      <h5>in {timePeriod}</h5>
+        {control}
+      <h5 style={{margin: 0}}>in {timePeriod}</h5>
     </div>
   );
 }

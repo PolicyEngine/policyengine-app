@@ -35,6 +35,7 @@ function updateMetadata(countryId, setMetadata, setError) {
       return metadata;
     })
     .catch((error) => {
+      console.log(error)
       setError(error);
     });
 }
@@ -89,7 +90,7 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
-            baselinePolicyId || metadata.current_law_id
+            baselinePolicyId || (metadata ? metadata.current_law_id : "current-law")
           }`
         )
           .then((res) => res.json())
@@ -161,7 +162,7 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
-            baselinePolicyId || metadata.current_law_id
+            baselinePolicyId || (metadata ? metadata.current_law_id : "current-law")
           }`
         )
           .then((res) => res.json())
@@ -288,7 +289,7 @@ export default function PolicyEngineCountry(props) {
               policy={policy}
             />
           ) : error ? (
-            <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." />
+            <ErrorPage message={`We couldn't talk to PolicyEngine's servers. Please try again in a few minutes. The full error is: ${error}`} />
           ) : (
             <LoadingCentered />
           )
@@ -312,12 +313,15 @@ export default function PolicyEngineCountry(props) {
       />
     </Routes>
   );
+  
 
   return (
     <>
       <DesktopView>
         <Header countryId={countryId} loading={loading} />
-        {mainPage}
+        <div style={{minHeight: "50%"}}>
+          {mainPage}
+        </div>
       </DesktopView>
       <MobileView>
         <h3>Currently not supported on mobile.</h3>

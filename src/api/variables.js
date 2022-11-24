@@ -1,4 +1,5 @@
 import { countryApiCall } from "./call";
+import { capitalize } from "./language";
 
 export function removePerson(situation, name) {
   // Remove a person from the situation
@@ -122,7 +123,7 @@ export function buildVariableTree(variables, variableModules) {
   for (const variable of Object.values(variables)) {
     const nodeToInsert = {
       name: variable.moduleName + "." + variable.name,
-      label: variable.label,
+      label: capitalize(variable.label),
       index: variable.indexInModule,
     };
     let parentNode = findInTree(tree, variable.moduleName);
@@ -230,6 +231,7 @@ export function formatVariableValue(variable, value, precision = 2) {
       return value.toLocaleString();
     }
   } catch (e) {
+    console.log(e)
     return JSON.stringify(value) + " (error formatting)";
   }
 }

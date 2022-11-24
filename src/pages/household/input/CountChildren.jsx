@@ -47,10 +47,43 @@ function setUKCountChildren(situation, countChildren, variables, entities) {
 }
 
 function getUSCountChildren(situation) {
-  return null;
+  return Object.values(situation.people).filter(
+    person => person.is_tax_unit_dependent["2022"]
+  ).length;
+}
+
+function addUSChild(situation) {
+  const defaultChild = {
+    age: { 2022: 10 },
+    is_tax_unit_dependent: { 2022: true },
+  };
+  const childName = getUSChildName(getUSCountChildren(situation));
+  situation.people[childName] = defaultChild;
+  situation.tax_units["your tax unit"].members.push(childName);
+  situation.families["your family"].members.push(childName);
+  situation.spm_units["your household"].members.push(childName);
+  situation.households["your household"].members.push(childName);
+  return situation;
+}
+
+function getUSChildName(index) {
+  // 'your first child', 'your second child', etc.
+  return (
+    "your " + ["first", "second", "third", "fourth", "fifth"][index] + " dependent"
+  );
 }
 
 function setUSCountChildren(situation, countChildren, variables, entities) {
+  while (getUSCountChildren(situation) < countChildren) {
+    situation = addUSChild(situation);
+  }
+  while (getUSCountChildren(situation) > countChildren) {
+    situation = removePerson(
+      situation,
+      getUSChildName(getUSCountChildren(situation) - 1)
+    );
+  }
+  situation = addYearlyVariables(situation, variables, entities);
   return situation;
 }
 
@@ -87,7 +120,7 @@ export default function CountChildren(props) {
   );
   return (
     <CenteredMiddleColumn
-      title="How many children do you have?"
+      title={`How many ${metadata.countryId === "uk" ? "children" : "dependents"} do you have?`}
       children={radioButtonComponent}
     />
   );

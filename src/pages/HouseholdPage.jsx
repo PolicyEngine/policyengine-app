@@ -13,6 +13,8 @@ import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import HouseholdIntro from "./household/HouseholdIntro";
 import HouseholdOutput from "./household/output/HouseholdOutput";
+import SearchOptions from "../controls/SearchOptions";
+import Divider from "../layout/Divider";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -35,6 +37,26 @@ const HOUSEHOLD_OUTPUT_TREE = [
   },
 ];
 
+function VariableSearch(props) {
+  const { metadata } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const options = Object.values(metadata.variables).map((variable) => ({
+      value: variable.moduleName + "." + variable.name,
+      label: variable.label,
+    })).filter(option => !!option.label && !!option.value);
+  return <SearchOptions
+    options={options}
+    defaultValue={null}
+    style={{margin: 0, width: "100%"}}
+    placeholder="Search for a variable"
+    onSelect={(value) => {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("focus", value);
+      setSearchParams(newSearch);
+    }}
+    />
+}
+
 function HouseholdLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -42,6 +64,13 @@ function HouseholdLeftSidebar(props) {
   return (
     <BiPanel
       left={
+        <>
+        <div
+            style={{
+              overflow: "scroll",
+              height: "80%",
+            }}
+          >
         <Menu
           tree={metadata.variableTree}
           selected={searchParams.get("focus") || ""}
@@ -50,7 +79,18 @@ function HouseholdLeftSidebar(props) {
             newSearch.set("focus", focus);
             setSearchParams(newSearch);
           }}
-        />
+          />
+        </div>
+        <div style={{
+            position: "absolute",
+            bottom: 20,
+            width: "calc(20% - 40px)",
+            zIndex: 100,
+          }}>
+            <Divider />
+            <VariableSearch metadata={metadata} />
+          </div>
+        </>
       }
       right={
         <Menu
@@ -123,7 +163,7 @@ export default function HouseholdPage(props) {
 
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
-  } else if (focus.startsWith("input.")) {
+  } else if (focus.startsWith("input.") || focus.startsWith("gov.") || focus.startsWith("household.")) {
     middle = (
       <VariableEditor
         metadata={metadata}

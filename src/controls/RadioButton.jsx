@@ -21,7 +21,7 @@ export default function RadioButton(props) {
           <div
             key={key}
             style={{
-              backgroundColor: checked ? style.colors.BLUE : style.colors.GRAY,
+              backgroundColor: checked ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY,
               color: checked ? style.colors.WHITE : style.colors.BLACK,
               cursor: "pointer",
               padding: 10,
@@ -29,7 +29,9 @@ export default function RadioButton(props) {
               paddingRight: 20,
               borderWidth: 1,
               borderStyle: "solid",
-              borderColor: style.colors.DARK_GRAY,
+              marginRight: 5,
+              borderRadius: 25,
+              borderColor: style.colors.MEDIUM_DARK_GRAY,
             }}
             onClick={() => onChange(key)}
           >

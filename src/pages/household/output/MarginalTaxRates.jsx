@@ -129,6 +129,10 @@ export default function MarginalTaxRates(props) {
               y: mtrArray,
               type: "line",
               name: "Marginal tax rate",
+              line: {
+                color: style.colors.BLUE,
+                shape: "hv",
+              }
             },
             {
               x: [currentEarnings, currentEarnings],
