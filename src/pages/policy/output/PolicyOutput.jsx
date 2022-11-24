@@ -12,6 +12,7 @@ import RelativeImpactByDecile from "./RelativeImpactByDecile";
 import AverageImpactByDecile from "./AverageImpactByDecile";
 import { SwapOutlined } from "@ant-design/icons";
 import IntraDecileImpact from "./IntraDecileImpact";
+import Reproducibility from "./PolicyReproducibility";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -169,6 +170,8 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
+  } else if (focus === "policyOutput.codeReproducibility") {
+    pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
 
   return (

@@ -38,6 +38,10 @@ const POLICY_OUTPUT_TREE = [
         name: "policyOutput.povertyImpact",
         label: "Poverty impact",
       },
+      {
+        name: "policyOutput.codeReproducibility",
+        label: "Reproduce in Python",
+      }
     ],
   },
 ];

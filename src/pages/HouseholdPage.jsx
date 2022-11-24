@@ -33,6 +33,10 @@ const HOUSEHOLD_OUTPUT_TREE = [
         name: "householdOutput.mtr",
         label: "Marginal tax rates",
       },
+      {
+        name: "householdOutput.pythonReproducibility",
+        label: "Reproduce in Python",
+      }
     ],
   },
 ];

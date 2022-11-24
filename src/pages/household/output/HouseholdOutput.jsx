@@ -4,6 +4,7 @@ import { copySearchParams } from "../../../api/call";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import PolicySearch from "../../policy/PolicySearch";
 import EarningsVariation from "./EarningsVariation";
+import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
 
@@ -45,6 +46,8 @@ export default function HouseholdOutput(props) {
         policyLabel={policyLabel}
       />
     );
+  } else if (focus === "householdOutput.pythonReproducibility") {
+    pane = <HouseholdReproducibility metadata={metadata} policy={policy} household={household} />;
   }
 
   let comparisonHeader;

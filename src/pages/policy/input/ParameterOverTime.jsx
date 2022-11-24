@@ -39,13 +39,25 @@ export default function ParameterOverTime(props) {
     reformedY.push(reformedY[reformedY.length - 1]);
   }
 
+  let yAxisFormat = getPlotlyAxisFormat(
+    parameter.unit,
+    Object.values(parameter.values)
+  );
+  let yAxisTickVals;
+  let yAxisTickLabels;
+  if (parameter.unit === "bool" || parameter.unit === "abolition") {
+    yAxisFormat = null;
+    yAxisTickVals = [0, 1];
+    yAxisTickLabels = ["False", "True"];
+  }
+
   return (
     <>
       <Plot
         data={[
           {
             x: x,
-            y: y,
+            y: y.map((y) => +y),
             type: "line",
             line: {
               shape: "hv",
@@ -57,7 +69,7 @@ export default function ParameterOverTime(props) {
           },
           policy.reform.data[parameter.parameter] && {
             x: reformedX,
-            y: reformedY,
+            y: reformedY.map(y => +y),
             type: "line",
             line: {
               shape: "hv",
@@ -71,13 +83,14 @@ export default function ParameterOverTime(props) {
           .reverse()
           .filter((x) => x)}
         layout={{
-          yaxis: getPlotlyAxisFormat(
-            parameter.unit,
-            Object.values(parameter.values)
-          ),
           xaxis: {
             range: ["2000-01-01", "2025-01-01"],
           },
+          yaxis: {
+            ...yAxisFormat,
+            tickvals: yAxisTickVals || null,
+            ticktext: yAxisTickLabels || null,
+          }
         }}
         style={{
           width: "100%",
