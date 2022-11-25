@@ -127,20 +127,19 @@ export default function CliffImpact(props) {
     />
   );
 
-  const title = `${policyLabel} ${
-    cliff_share_change === 0 || cliff_gap_change === 0
+  const title = `${policyLabel} ${cliff_share_change === 0 || cliff_gap_change === 0
       ? "does not affect cliffs"
       : (cliff_share_change > 0) & (cliff_gap_change > 0)
-      ? "makes cliffs more prevalent"
-      : (cliff_share_change < 0) & (cliff_gap_change < 0)
-      ? "makes cliffs less prevalent"
-      : "has an ambiguous effect on cliffs"
-  }`;
+        ? "makes cliffs more prevalent"
+        : (cliff_share_change < 0) & (cliff_gap_change < 0)
+          ? "makes cliffs less prevalent"
+          : "has an ambiguous effect on cliffs"
+    }`;
 
   return (
     <ResultsPanel
       title={title}
-      description="The cliff rate is the share of adults who would be worse off if their employment income increased by $2,000. The cliff gap is the sum of the losses incurred by everyone on a cliff if their income rose in this way."
+      description="The cliff rate is the share of households whose net income falls if each adult earned an additional £2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way."
     >
       {chart}
     </ResultsPanel>
