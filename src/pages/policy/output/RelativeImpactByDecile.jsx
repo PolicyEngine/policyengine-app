@@ -1,7 +1,5 @@
 import Plot from "react-plotly.js";
-import {
-  formatVariableValue,
-} from "../../../api/variables";
+import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
 
 export default function RelativeImpactByDecile(props) {
@@ -19,8 +17,11 @@ export default function RelativeImpactByDecile(props) {
               value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
             ),
           },
-          text: Object.values(impact.decile.relative).map((value) =>
-            (value >= 0 ? "+" : "") + (value * 100).toFixed(0).toString() + "%"
+          text: Object.values(impact.decile.relative).map(
+            (value) =>
+              (value >= 0 ? "+" : "") +
+              (value * 100).toFixed(0).toString() +
+              "%"
           ),
           textangle: 0,
         },

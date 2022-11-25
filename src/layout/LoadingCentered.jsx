@@ -19,7 +19,7 @@ export default function LoadingCentered(props) {
             <br></br>
           </h4>
         )}
-        <Spinner style={{fontSize: size || 30, color: style.colors.BLUE}} />
+        <Spinner style={{ fontSize: size || 30, color: style.colors.BLUE }} />
       </div>
     </div>
   );

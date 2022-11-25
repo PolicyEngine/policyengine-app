@@ -41,7 +41,10 @@ export default function VariableEditor(props) {
           paddingRight: 50,
         }}
       >
-        <h1 style={{ marginBottom: 20 }}>What {variable.label.endsWith("s") ? "are" : "is"} your {variable.label}?</h1>
+        <h1 style={{ marginBottom: 20 }}>
+          What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
+          {variable.label}?
+        </h1>
         <h4>{variable.documentation}</h4>
         {isSimulated && (
           <p>
@@ -128,24 +131,32 @@ function HouseholdVariableEntityInput(props) {
   );
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
-    control = <InputField
-      onChange={submitValue}
-      placeholder={formatValue(simulatedValue)}
-      autofocus={true}
-    />;
+    control = (
+      <InputField
+        onChange={submitValue}
+        placeholder={formatValue(simulatedValue)}
+        autofocus={true}
+      />
+    );
   } else if (variable.valueType === "bool") {
-    control = <div style={{margin: 20}}><Switch
-      onChange={submitValue}
-      checked={simulatedValue}
-      checkedChildren="Yes"
-      unCheckedChildren="No"
-    /></div>;
+    control = (
+      <div style={{ margin: 20 }}>
+        <Switch
+          onChange={submitValue}
+          checked={simulatedValue}
+          checkedChildren="Yes"
+          unCheckedChildren="No"
+        />
+      </div>
+    );
   } else if (variable.valueType === "Enum") {
-    control = <SearchOptions
-      options={variable.possibleValues}
-      defaultValue={simulatedValue}
-      onSelect={submitValue}
-    />;
+    control = (
+      <SearchOptions
+        options={variable.possibleValues}
+        defaultValue={simulatedValue}
+        onSelect={submitValue}
+      />
+    );
   }
   // The input field should hide its arrows
   return (
@@ -159,8 +170,8 @@ function HouseholdVariableEntityInput(props) {
       <h5 style={{ width: 200, textAlign: "right", margin: 0 }}>
         {capitalize(entityName)}:{" "}
       </h5>
-        {control}
-      <h5 style={{margin: 0}}>in {timePeriod}</h5>
+      {control}
+      <h5 style={{ margin: 0 }}>in {timePeriod}</h5>
     </div>
   );
 }

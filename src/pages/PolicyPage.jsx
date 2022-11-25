@@ -45,7 +45,7 @@ const POLICY_OUTPUT_TREE = [
       {
         name: "policyOutput.codeReproducibility",
         label: "Reproduce in Python",
-      }
+      },
     ],
   },
 ];
@@ -54,22 +54,25 @@ function ParameterSearch(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = Object.values(metadata.parameters)
-    .filter(parameter => parameter.type === "parameter")
+    .filter((parameter) => parameter.type === "parameter")
     .map((parameter) => ({
       value: parameter.parameter,
       label: parameter.label,
-    })).filter(option => !!option.label && !!option.value);
-  return <SearchOptions
-    options={options}
-    defaultValue={null}
-    style={{margin: 0, width: "100%"}}
-    placeholder="Search for a parameter"
-    onSelect={(value) => {
-      let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", value);
-      setSearchParams(newSearch);
-    }}
+    }))
+    .filter((option) => !!option.label && !!option.value);
+  return (
+    <SearchOptions
+      options={options}
+      defaultValue={null}
+      style={{ margin: 0, width: "100%" }}
+      placeholder="Search for a parameter"
+      onSelect={(value) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("focus", value);
+        setSearchParams(newSearch);
+      }}
     />
+  );
 }
 
 function PolicyLeftSidebar(props) {
@@ -98,12 +101,14 @@ function PolicyLeftSidebar(props) {
               }}
             />
           </div>
-          <div style={{
-            position: "absolute",
-            bottom: 20,
-            width: "calc(20% - 40px)",
-            zIndex: 100,
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 20,
+              width: "calc(20% - 40px)",
+              zIndex: 100,
+            }}
+          >
             <Divider />
             <ParameterSearch metadata={metadata} />
           </div>

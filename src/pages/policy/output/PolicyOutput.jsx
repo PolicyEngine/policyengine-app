@@ -172,12 +172,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.cliffImpact") {
-    pane = (
-      <CliffImpact
-        metadata={metadata}
-        policyLabel={policyLabel}
-      />
-    );
+    pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }

@@ -69,7 +69,7 @@ export default function ParameterOverTime(props) {
           },
           policy.reform.data[parameter.parameter] && {
             x: reformedX,
-            y: reformedY.map(y => +y),
+            y: reformedY.map((y) => +y),
             type: "line",
             line: {
               shape: "hv",
@@ -90,7 +90,7 @@ export default function ParameterOverTime(props) {
             ...yAxisFormat,
             tickvals: yAxisTickVals || null,
             ticktext: yAxisTickLabels || null,
-          }
+          },
         }}
         style={{
           width: "100%",

@@ -48,7 +48,7 @@ function setUKCountChildren(situation, countChildren, variables, entities) {
 
 function getUSCountChildren(situation) {
   return Object.values(situation.people).filter(
-    person => person.is_tax_unit_dependent["2022"]
+    (person) => person.is_tax_unit_dependent["2022"]
   ).length;
 }
 
@@ -69,7 +69,9 @@ function addUSChild(situation) {
 function getUSChildName(index) {
   // 'your first child', 'your second child', etc.
   return (
-    "your " + ["first", "second", "third", "fourth", "fifth"][index] + " dependent"
+    "your " +
+    ["first", "second", "third", "fourth", "fifth"][index] +
+    " dependent"
   );
 }
 
@@ -120,7 +122,9 @@ export default function CountChildren(props) {
   );
   return (
     <CenteredMiddleColumn
-      title={`How many ${metadata.countryId === "uk" ? "children" : "dependents"} do you have?`}
+      title={`How many ${
+        metadata.countryId === "uk" ? "children" : "dependents"
+      } do you have?`}
       children={radioButtonComponent}
     />
   );

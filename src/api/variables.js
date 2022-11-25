@@ -231,7 +231,7 @@ export function formatVariableValue(variable, value, precision = 2) {
       return value.toLocaleString();
     }
   } catch (e) {
-    console.log(e)
+    console.log(e);
     return JSON.stringify(value) + " (error formatting)";
   }
 }

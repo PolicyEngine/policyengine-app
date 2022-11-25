@@ -132,7 +132,7 @@ export default function MarginalTaxRates(props) {
               line: {
                 color: style.colors.BLUE,
                 shape: "hv",
-              }
+              },
             },
             {
               x: [currentEarnings, currentEarnings],

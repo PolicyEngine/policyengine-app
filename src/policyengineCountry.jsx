@@ -36,7 +36,7 @@ function updateMetadata(countryId, setMetadata, setError) {
       return metadata;
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
       setError(error);
     });
 }
@@ -91,7 +91,8 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
-            baselinePolicyId || (metadata ? metadata.current_law_id : "current-law")
+            baselinePolicyId ||
+            (metadata ? metadata.current_law_id : "current-law")
           }`
         )
           .then((res) => res.json())
@@ -163,7 +164,8 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
-            baselinePolicyId || (metadata ? metadata.current_law_id : "current-law")
+            baselinePolicyId ||
+            (metadata ? metadata.current_law_id : "current-law")
           }`
         )
           .then((res) => res.json())
@@ -290,7 +292,9 @@ export default function PolicyEngineCountry(props) {
               policy={policy}
             />
           ) : error ? (
-            <ErrorPage message={`We couldn't talk to PolicyEngine's servers. Please try again in a few minutes. The full error is: ${error}`} />
+            <ErrorPage
+              message={`We couldn't talk to PolicyEngine's servers. Please try again in a few minutes. The full error is: ${error}`}
+            />
           ) : (
             <LoadingCentered />
           )
@@ -314,15 +318,12 @@ export default function PolicyEngineCountry(props) {
       />
     </Routes>
   );
-  
 
   return (
     <>
       <DesktopView>
         <Header countryId={countryId} loading={loading} />
-        <div style={{minHeight: "50%"}}>
-          {mainPage}
-        </div>
+        <div style={{ minHeight: "50%" }}>{mainPage}</div>
       </DesktopView>
       <MobileView>
         <MobileHeader countryId={countryId} loading={loading} />

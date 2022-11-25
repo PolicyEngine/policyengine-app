@@ -32,8 +32,11 @@ export default function PovertyImpact(props) {
               value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
             ),
           },
-          text: povertyChanges.map((value) =>
-            (value >= 0 ? "+" : "") + (value * 100).toFixed(0).toString() + "%"
+          text: povertyChanges.map(
+            (value) =>
+              (value >= 0 ? "+" : "") +
+              (value * 100).toFixed(0).toString() +
+              "%"
           ),
           textangle: 0,
         },

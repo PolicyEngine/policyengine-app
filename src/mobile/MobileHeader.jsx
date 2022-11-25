@@ -2,7 +2,6 @@ import { TopLeftLogo, HEADER_HEIGHT } from "../Header";
 import style from "../style";
 import Spinner from "../layout/Spinner";
 
-
 export default function MobileHeader(props) {
   // The top header bar, with the logo, search bar and social links
   const { countryId, loading } = props;

@@ -47,7 +47,13 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.pythonReproducibility") {
-    pane = <HouseholdReproducibility metadata={metadata} policy={policy} household={household} />;
+    pane = (
+      <HouseholdReproducibility
+        metadata={metadata}
+        policy={policy}
+        household={household}
+      />
+    );
   }
 
   let comparisonHeader;

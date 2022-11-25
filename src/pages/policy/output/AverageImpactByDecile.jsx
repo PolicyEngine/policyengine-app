@@ -1,7 +1,5 @@
 import Plot from "react-plotly.js";
-import {
-  formatVariableValue,
-} from "../../../api/variables";
+import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
 
 export default function AverageImpactByDecile(props) {
@@ -19,8 +17,10 @@ export default function AverageImpactByDecile(props) {
               value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
             ),
           },
-          text: Object.values(impact.decile.average).map((value) =>
-            metadata.currency + value.toLocaleString("en-GB", { maximumFractionDigits: 0 })
+          text: Object.values(impact.decile.average).map(
+            (value) =>
+              metadata.currency +
+              value.toLocaleString("en-GB", { maximumFractionDigits: 0 })
           ),
           textangle: 0,
         },
@@ -39,7 +39,7 @@ export default function AverageImpactByDecile(props) {
         uniformtext: {
           mode: "hide",
           minsize: 8,
-        }
+        },
       }}
       config={{
         displayModeBar: false,

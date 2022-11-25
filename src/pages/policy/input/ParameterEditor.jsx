@@ -27,24 +27,30 @@ export default function ParameterEditor(props) {
   let control;
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
-    control = 
-      <div style={{padding: 10}}><Switch
-      checked={getParameterAtInstant(reformedParameter, startDate)}
-      onChange={(value) => {
-        let newPolicy = { ...policy.reform.data };
-        newPolicy[parameterName] = {
-          ...newPolicy[parameterName],
-          [`${startDate}.${endDate}`]: !!value,
-        };
-        getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("reform", newPolicyId);
-          setSearchParams(newSearch);
-        });
-      }}
-    /></div>;
+    control = (
+      <div style={{ padding: 10 }}>
+        <Switch
+          checked={getParameterAtInstant(reformedParameter, startDate)}
+          onChange={(value) => {
+            let newPolicy = { ...policy.reform.data };
+            newPolicy[parameterName] = {
+              ...newPolicy[parameterName],
+              [`${startDate}.${endDate}`]: !!value,
+            };
+            getNewPolicyId(metadata.countryId, newPolicy).then(
+              (newPolicyId) => {
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("reform", newPolicyId);
+                setSearchParams(newSearch);
+              }
+            );
+          }}
+        />
+      </div>
+    );
   } else {
-    control = <InputField
+    control = (
+      <InputField
         placeholder={getParameterAtInstant(reformedParameter, startDate)}
         onChange={(value) => {
           let newPolicy = { ...policy.reform.data };
@@ -59,9 +65,17 @@ export default function ParameterEditor(props) {
           });
         }}
       />
+    );
   }
   const editControl = (
-    <div style={{display: "flex", justifyContent: "center", alignItems: "center", paddingTop: 20}}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 20,
+      }}
+    >
       <RangePicker
         defaultValue={[moment(startDate), moment(endDate)]}
         onChange={(_, dateStrings) => {
