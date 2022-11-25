@@ -93,6 +93,7 @@ export default function HouseholdOutput(props) {
     );
   }
 
+  return <ResultsPanel>{pane}</ResultsPanel>;
   return (
     <>
       {comparisonHeader}
