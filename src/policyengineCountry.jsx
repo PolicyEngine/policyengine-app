@@ -11,6 +11,7 @@ import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import PolicyPage from "./pages/PolicyPage";
 import { buildParameterTree } from "./api/parameters";
+import MobileHeader from "./mobile/MobileHeader";
 
 function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
@@ -324,6 +325,7 @@ export default function PolicyEngineCountry(props) {
         </div>
       </DesktopView>
       <MobileView>
+        <MobileHeader countryId={countryId} loading={loading} />
         <h3>Currently not supported on mobile.</h3>
       </MobileView>
     </>

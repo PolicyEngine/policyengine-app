@@ -13,6 +13,7 @@ import AverageImpactByDecile from "./AverageImpactByDecile";
 import { SwapOutlined } from "@ant-design/icons";
 import IntraDecileImpact from "./IntraDecileImpact";
 import Reproducibility from "./PolicyReproducibility";
+import CliffImpact from "./CliffImpact";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -167,6 +168,13 @@ export default function PolicyOutput(props) {
       <PovertyImpact
         metadata={metadata}
         impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.cliffImpact") {
+    pane = (
+      <CliffImpact
+        metadata={metadata}
         policyLabel={policyLabel}
       />
     );

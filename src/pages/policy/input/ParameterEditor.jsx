@@ -82,7 +82,6 @@ export default function ParameterEditor(props) {
       title={parameter.label}
       description={parameter.description}
     >
-      {JSON.stringify(parameter)}
       {editControl}
       <ParameterOverTime parameter={parameter} policy={policy} />
     </CenteredMiddleColumn>

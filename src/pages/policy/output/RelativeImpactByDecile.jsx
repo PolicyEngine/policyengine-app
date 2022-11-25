@@ -19,6 +19,10 @@ export default function RelativeImpactByDecile(props) {
               value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
             ),
           },
+          text: Object.values(impact.decile.relative).map((value) =>
+            (value >= 0 ? "+" : "") + (value * 100).toFixed(0).toString() + "%"
+          ),
+          textangle: 0,
         },
       ]}
       layout={{
@@ -28,7 +32,11 @@ export default function RelativeImpactByDecile(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickformat: ",.0%",
+          tickformat: "+,.1%",
+        },
+        uniformtext: {
+          mode: "hide",
+          minsize: 8,
         },
         showlegend: false,
       }}

@@ -32,6 +32,10 @@ export default function PovertyImpact(props) {
               value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
             ),
           },
+          text: povertyChanges.map((value) =>
+            (value >= 0 ? "+" : "") + (value * 100).toFixed(0).toString() + "%"
+          ),
+          textangle: 0,
         },
       ]}
       layout={{
@@ -40,9 +44,13 @@ export default function PovertyImpact(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickformat: ",.1%",
+          tickformat: "+,.1%",
         },
         showlegend: false,
+        uniformtext: {
+          mode: "hide",
+          minsize: 8,
+        },
       }}
       config={{
         displayModeBar: false,

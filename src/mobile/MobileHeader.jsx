@@ -1,27 +1,9 @@
-import style from "./style";
-import PolicyEngineLogo from "./images/logos/policyengine/white.png";
-import { useNavigate } from "react-router-dom";
-import Spinner from "./layout/Spinner";
+import { TopLeftLogo, HEADER_HEIGHT } from "../Header";
+import style from "../style";
+import Spinner from "../layout/Spinner";
 
-export const HEADER_HEIGHT = 75;
 
-export function TopLeftLogo(props) {
-  const { countryId } = props;
-  const navigate = useNavigate();
-  return (
-    <img
-      src={PolicyEngineLogo}
-      alt="PolicyEngine logo"
-      style={{
-        cursor: "pointer",
-      }}
-      height="100%"
-      onClick={() => navigate(`/${countryId}`)}
-    />
-  );
-}
-
-export default function Header(props) {
+export default function MobileHeader(props) {
   // The top header bar, with the logo, search bar and social links
   const { countryId, loading } = props;
   return (
@@ -36,6 +18,7 @@ export default function Header(props) {
           zIndex: 100,
           display: "flex",
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <TopLeftLogo countryId={countryId} />

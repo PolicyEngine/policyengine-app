@@ -39,6 +39,10 @@ const POLICY_OUTPUT_TREE = [
         label: "Poverty impact",
       },
       {
+        name: "policyOutput.cliffImpact",
+        label: "Cliff impact",
+      },
+      {
         name: "policyOutput.codeReproducibility",
         label: "Reproduce in Python",
       }

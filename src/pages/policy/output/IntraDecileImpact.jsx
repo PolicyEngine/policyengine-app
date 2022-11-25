@@ -19,6 +19,11 @@ export default function IntraDecileImpact(props) {
         color: style.colors.DARK_GREEN,
       },
       orientation: "h",
+      text: deciles["Gain more than 5%"].map((value) =>
+        (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
     },
     {
       type: "bar",
@@ -29,6 +34,11 @@ export default function IntraDecileImpact(props) {
         color: style.colors.LIGHT_GREEN,
       },
       orientation: "h",
+      text: deciles["Gain less than 5%"].map((value) =>
+        (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
     },
     {
       type: "bar",
@@ -39,6 +49,11 @@ export default function IntraDecileImpact(props) {
         color: style.colors.LIGHT_GRAY,
       },
       orientation: "h",
+      text: deciles["No change"].map((value) =>
+        (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
     },
     {
       type: "bar",
@@ -49,6 +64,11 @@ export default function IntraDecileImpact(props) {
         color: style.colors.GRAY,
       },
       orientation: "h",
+      text: deciles["Lose less than 5%"].map((value) =>
+        (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
     },
     {
       type: "bar",
@@ -59,6 +79,11 @@ export default function IntraDecileImpact(props) {
         color: style.colors.DARK_GRAY,
       },
       orientation: "h",
+      text: deciles["Lose more than 5%"].map((value) =>
+        (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
     },
   ];
 
@@ -75,6 +100,10 @@ export default function IntraDecileImpact(props) {
         xaxis: {
           title: "Population share",
           tickformat: ".0%",
+        },
+        uniformtext: {
+          mode: "hide",
+          minsize: 8,
         },
       }}
       config={{

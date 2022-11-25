@@ -19,6 +19,10 @@ export default function AverageImpactByDecile(props) {
               value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
             ),
           },
+          text: Object.values(impact.decile.average).map((value) =>
+            metadata.currency + value.toLocaleString("en-GB", { maximumFractionDigits: 0 })
+          ),
+          textangle: 0,
         },
       ]}
       layout={{
@@ -32,6 +36,10 @@ export default function AverageImpactByDecile(props) {
           tickformat: ",.0f",
         },
         showlegend: false,
+        uniformtext: {
+          mode: "hide",
+          minsize: 8,
+        }
       }}
       config={{
         displayModeBar: false,
