@@ -2,6 +2,7 @@ import style from "./style";
 import PolicyEngineLogo from "./images/logos/policyengine/white.png";
 import { useNavigate } from "react-router-dom";
 import Spinner from "./layout/Spinner";
+import ResponsiveComponent from "./layout/ResponsiveComponent";
 
 export const HEADER_HEIGHT = 75;
 
@@ -21,7 +22,44 @@ export function TopLeftLogo(props) {
   );
 }
 
-export default function Header(props) {
+function MobileHeader(props) {
+  // The top header bar, with the logo, search bar and social links
+  const { countryId, loading } = props;
+  return (
+    <>
+      <div
+        style={{
+          backgroundColor: style.colors.BLUE,
+          height: HEADER_HEIGHT,
+          paddingLeft: 10,
+          position: "fixed",
+          width: "100%",
+          zIndex: 100,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <TopLeftLogo countryId={countryId} />
+        {loading && (
+          <div
+            style={{
+              paddingLeft: 20,
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Spinner style={{ color: "white", fontSize: 30 }} />
+          </div>
+        )}
+      </div>
+      <div style={{ height: HEADER_HEIGHT }} />
+    </>
+  );
+}
+
+function DesktopHeader(props) {
   // The top header bar, with the logo, search bar and social links
   const { countryId, loading } = props;
   return (
@@ -55,4 +93,12 @@ export default function Header(props) {
       <div style={{ height: HEADER_HEIGHT }} />
     </>
   );
+}
+
+
+export default function Header(props) {
+  return <ResponsiveComponent
+    mobile={<MobileHeader {...props} />}
+    desktop={<DesktopHeader {...props} />}
+  />
 }

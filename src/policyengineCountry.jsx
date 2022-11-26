@@ -2,16 +2,13 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "./api/call";
 import Header from "./Header";
-import DesktopView from "./layout/DesktopView";
 import HomePage from "./pages/HomePage";
-import MobileView from "./layout/MobileView";
 import HouseholdPage from "./pages/HouseholdPage";
 import { buildVariableTree, getTreeLeavesInOrder } from "./api/variables";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import PolicyPage from "./pages/PolicyPage";
 import { buildParameterTree } from "./api/parameters";
-import MobileHeader from "./mobile/MobileHeader";
 
 function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
@@ -321,14 +318,8 @@ export default function PolicyEngineCountry(props) {
 
   return (
     <>
-      <DesktopView>
-        <Header countryId={countryId} loading={loading} />
-        <div style={{ minHeight: "50%" }}>{mainPage}</div>
-      </DesktopView>
-      <MobileView>
-        <MobileHeader countryId={countryId} loading={loading} />
-        <h3>Currently not supported on mobile.</h3>
-      </MobileView>
+      <Header countryId={countryId} loading={loading} />
+      <div style={{ minHeight: "50%" }}>{mainPage}</div>
     </>
   );
 }

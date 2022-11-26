@@ -10,9 +10,11 @@ import InputField from "../../../controls/InputField";
 import { copySearchParams } from "../../../api/call";
 import { Switch } from "antd";
 import SearchOptions from "../../../controls/SearchOptions";
+import useMobile from "../../../layout/Responsive";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
+  const mobile = useMobile();
   const { metadata, household, setHousehold } = props;
   if (!household.input) {
     return <LoadingCentered />;
@@ -39,6 +41,7 @@ export default function VariableEditor(props) {
           marginTop: "15%",
           paddingLeft: 50,
           paddingRight: 50,
+          maxWidth: mobile && "80%",
         }}
       >
         <h1 style={{ marginBottom: 20 }}>
@@ -121,6 +124,7 @@ function HouseholdVariableEntityInput(props) {
       setSearchParams(newSearch);
     });
   };
+  const mobile = useMobile();
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(
     variable.name,

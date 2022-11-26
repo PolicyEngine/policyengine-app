@@ -2,16 +2,27 @@ import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
+import useMobile from "../layout/Responsive";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
   const navigate = useNavigate();
+  const mobile = useMobile();
+
+  const boxWidth = mobile ? 250 : 300;
 
   return (
-    <div style={{ paddingTop: 20, display: "flex" }}>
+    <div style={{ 
+      paddingTop: 20, 
+      display: "flex",
+      overflowX: "scroll",
+      paddingLeft: mobile && 50,
+      paddingRight: mobile && 50,
+    }}>
       <motion.div
         style={{
-          width: 300,
+          minWidth: boxWidth,
+          maxWidth: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
           marginRight: 20,
@@ -28,7 +39,8 @@ function HouseholdPolicyOptions(props) {
       </motion.div>
       <motion.div
         style={{
-          width: 300,
+          minWidth: boxWidth,
+          maxWidth: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
           cursor: "pointer",
@@ -69,12 +81,30 @@ function WidePanelHalf(props) {
 
 function WidePanel(props) {
   const { left, right, direction, backgroundColor } = props;
+  const mobile = useMobile();
+
+  if (mobile) {
+    return (
+      <div
+        style={{
+          backgroundColor: backgroundColor,
+          height: !mobile && 600,
+          marginTop: 50,
+        }}
+      >
+        <Container style={{ paddingTop: 100, paddingBottom: 100 }}>
+          <WidePanelHalf direction={direction}>{left}</WidePanelHalf>
+          <WidePanelHalf direction={direction}>{right}</WidePanelHalf>
+        </Container>
+      </div>
+    );
+  }
 
   return (
     <div
       style={{
         backgroundColor: backgroundColor,
-        height: 600,
+        height: !mobile && 600,
         marginTop: 50,
       }}
     >
@@ -94,21 +124,33 @@ function WidePanel(props) {
 
 export default function HomePage(props) {
   const { countryId } = props;
+  const mobile = useMobile();
   // Items are centered horizontally, and placed in order vertically.
   return (
     <>
       <div
         style={{
-          paddingLeft: 50,
-          paddingRight: 100,
-          paddingTop: 70,
+          ...(!mobile ? {
+              paddingLeft: 50,
+            paddingRight: 100,
+            paddingTop: 70,
+          } : {
+            paddingLeft: 0,
+            paddingRight: 0,
+            paddingTop: 50,
+          }),
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          alignItems: !mobile && "center",
         }}
       >
-        <h1>We compute the impact of public policy.</h1>
-        <h4>PolicyEngine's free, open-source software turns law into code.</h4>
+        <div style={{
+          paddingRight: mobile && 50,
+          paddingLeft: mobile && 50,
+        }}>
+          <h1>We compute the impact of public policy.</h1>
+          <h4>PolicyEngine's free, open-source software turns law into code.</h4>
+        </div>
         <HouseholdPolicyOptions countryId={countryId} />
       </div>
       <WidePanel
