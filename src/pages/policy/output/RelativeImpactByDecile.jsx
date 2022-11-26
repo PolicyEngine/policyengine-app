@@ -20,7 +20,7 @@ export default function RelativeImpactByDecile(props) {
           text: Object.values(impact.decile.relative).map(
             (value) =>
               (value >= 0 ? "+" : "") +
-              (value * 100).toFixed(0).toString() +
+              (value * 100).toFixed(1).toString() +
               "%"
           ),
           textangle: 0,

@@ -177,6 +177,7 @@ export default function PolicyOutput(props) {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
 
+  return <ResultsPanel>{pane}</ResultsPanel>;
   return (
     <>
       <div
