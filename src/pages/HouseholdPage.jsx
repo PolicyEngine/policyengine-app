@@ -22,6 +22,7 @@ import useWindowHeight from "../layout/WindowHeight";
 import Button from "../controls/Button";
 import style from "../style";
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
+import MarkdownPage from "../layout/MarkdownPage";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -318,6 +319,12 @@ function MobileHouseholdPage(props) {
   </>
 }
 
+function HouseholdFolderPage(props) {
+  return <div>
+    <h1>Household</h1>
+  </div>
+}
+
 export default function HouseholdPage(props) {
   const { metadata, household, setHousehold, policy } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -351,9 +358,7 @@ export default function HouseholdPage(props) {
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
   } else if (
-    focus.startsWith("input.") ||
-    focus.startsWith("gov.") ||
-    focus.startsWith("household.")
+    metadata.variablesInOrder.includes(focus)
   ) {
     middle = (
       <VariableEditor
@@ -362,7 +367,13 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
-  } else if (focus === "structure.maritalStatus") {
+  } else if (Object.keys(metadata.variableModules).includes(focus)) {
+    middle = <MarkdownPage
+      title={metadata.variableModules[focus].label}
+      >
+        {metadata.variableModules[focus].description}
+      </MarkdownPage>
+    } else if (focus === "structure.maritalStatus") {
     middle = (
       <MaritalStatus
         metadata={metadata}
@@ -378,6 +389,8 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
+  } else if (focus === "structure") {
+    middle = <HouseholdFolderPage />;
   } else if (focus.startsWith("householdOutput.")) {
     middle = (
       <HouseholdOutput

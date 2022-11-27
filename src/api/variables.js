@@ -185,7 +185,7 @@ export function buildVariableTree(variables, variableModules) {
   ];
 }
 
-export function getTreeLeavesInOrder(tree, full = false) {
+export function getTreeLeavesInOrder(tree) {
   // Traverses the variable tree in order, returning the list of variable names.
   let leaves = [];
   const traverse = (node) => {
@@ -195,10 +195,7 @@ export function getTreeLeavesInOrder(tree, full = false) {
         traverse(child);
       }
     } else {
-      const fullName = node.name;
-      // Get the name after the last period
-      const name = fullName.split(".").slice(-1)[0];
-      leaves.push(full ? name : fullName);
+      leaves.push(node.name);
     }
   };
   tree.map((node) => traverse(node));

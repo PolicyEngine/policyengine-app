@@ -21,7 +21,7 @@ function MenuItem(props) {
         initial={{ x: 0 }}
         whileHover={{ x: 5 }}
       >
-        {selected.includes(name) && (
+        {selected === name && (
           <span style={{ marginRight: 10 }}>&#8594;</span>
         )}
         {label || name.split(".").pop()}
@@ -41,7 +41,10 @@ function MenuItemGroup(props) {
   const [selectedWhenExpandedLastToggled, setSelectedWhenExpandedLastToggled] =
     useState(selected);
 
-  const toggleExpanded = () => setExpanded(!expanded);
+  const toggleExpanded = () => {
+    onSelect(name);
+    setExpanded(!expanded);
+  };
 
   if (selectedWhenExpandedLastToggled !== selected) {
     setExpanded(selected.includes(name));
@@ -117,6 +120,9 @@ function MenuItemGroup(props) {
         transition={{ duration: 0.25 }}
         style={{ fontSize: 18 }}
       >
+        {selected === name && (
+          <span style={{ marginRight: 10 }}>&#8594;</span>
+        )}
         {label || name.split(".").pop()}
       </motion.h5>
       {expandedComponentSpace}
