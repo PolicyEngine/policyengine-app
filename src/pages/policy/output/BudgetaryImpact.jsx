@@ -44,7 +44,7 @@ export default function BudgetaryImpact(props) {
           title: "",
         },
         yaxis: {
-          title: "Budgetary impact (billions)",
+          title: "Budgetary impact (bn)",
           tickprefix: metadata.currency,
           tickformat: ",.1f",
         },

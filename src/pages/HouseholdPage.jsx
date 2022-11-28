@@ -15,6 +15,7 @@ import style from "../style";
 import FolderPage from "../layout/FolderPage";
 import StackedMenu from "../layout/StackedMenu";
 import NavigationButton from "../controls/NavigationButton";
+import HouseholdIntro from "./household/HouseholdIntro";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -284,7 +285,10 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
-  } else if (focus === "input.household.children") {
+    } else if (focus === "intro") {
+      middle = <HouseholdIntro />;
+
+    } else if (focus === "input.household.children") {
     middle = (
       <CountChildren
         metadata={metadata}
