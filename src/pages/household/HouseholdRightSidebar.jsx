@@ -106,15 +106,11 @@ export default function HouseholdRightSidebar(props) {
       />
       <Figure
         left={formatVariableValue(
-          metadata.variables.household_net_income,
+          metadata.variables.household_market_income,
           netIncome,
           0
         )}
-        right={"net income"}
-      />
-      <Figure
-        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
-        right={"marginal tax rate"}
+        right={"market income"}
       />
       <Divider />
       {netIncomeComponents.map((variableId) => {
@@ -134,6 +130,10 @@ export default function HouseholdRightSidebar(props) {
           />
         );
       })}
+      <Figure
+        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
+        right={"marginal tax rate"}
+      />
       <Button
         text="See details"
         onClick={() => {

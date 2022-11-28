@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 
 const DisplaySize = {
     Mobile: 0,
-    Desktop: 768,
+    Desktop: 1200,
   }
 
 const determineDisplayCategory = (width) => {
