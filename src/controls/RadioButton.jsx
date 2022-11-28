@@ -1,7 +1,7 @@
 import style from "../style";
 
 export default function RadioButton(props) {
-  const { keys, labels, onChange, value } = props;
+  const { keys, labels, onChange, value, defaultValue } = props;
 
   // Items are displayed in gray boxes horizontally
 
@@ -17,6 +17,7 @@ export default function RadioButton(props) {
       {keys.map((key, index) => {
         const label = labels[index];
         const checked = value === key;
+        const defaultChecked = defaultValue === key;
         return (
           <div
             key={key}

@@ -240,7 +240,7 @@ export default function HouseholdPage(props) {
   useEffect(() => {
     if (focus === "") {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", "input");
+      newSearch.set("focus", "intro");
       setSearchParams(newSearch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
