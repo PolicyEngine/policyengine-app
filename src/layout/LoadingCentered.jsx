@@ -7,6 +7,7 @@ export default function LoadingCentered(props) {
     <div
       style={{
         height: "100%",
+        minHeight: "50vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

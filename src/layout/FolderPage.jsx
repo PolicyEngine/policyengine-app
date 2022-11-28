@@ -12,14 +12,12 @@ export default function FolderPage(props) {
     const mobile = useMobile();
     
     return <ResultsPanel
-        title={label}
-        description={description}
         >
             <div style={{
                 display: "flex",
                 width: "100%",
                 flexWrap: "wrap",
-                justifyContent: "center",
+                justifyContent: mobile ? "center": "left",
             }}
             >{children.map(child => (
                 <motion.div

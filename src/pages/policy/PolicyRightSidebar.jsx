@@ -7,6 +7,7 @@ import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
+import NavigationButton from "../../controls/NavigationButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
@@ -117,6 +118,8 @@ export default function PolicyRightSidebar(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+  const focus = searchParams.get("focus") || "";
+  const hasReform = reformPolicyId !== null;
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -228,24 +231,18 @@ export default function PolicyRightSidebar(props) {
           }}
         />
       </div>
-      <Button
-        text="Calculate economic impact"
-        style={{ margin: 30 }}
-        onClick={() => {
-          // Navigate to /<country>/household, preserving URL parameters
-          const country = metadata.countryId;
-          const newSearchParams = {};
-          for (const [key, value] of searchParams) {
-            newSearchParams[key] = value;
-          }
-          newSearchParams.focus = "policyOutput.netIncome";
-          let url = `/${country}/policy`;
-          if (Object.keys(newSearchParams).length > 0) {
-            url += `?${new URLSearchParams(newSearchParams)}`;
-          }
-          navigate(url);
-        }}
-      />
+      {
+        focus && focus.startsWith("policyOutput") && <NavigationButton text="Edit my policy" focus="gov" />
+      }
+      {
+        focus && !focus.startsWith("policyOutput") && <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
+      }
+      {
+        !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />
+      }
+      {
+        hasReform && <NavigationButton text="Edit my household" focus="input" target={`/${metadata.countryId}/household`} />
+      }
     </div>
   );
 }

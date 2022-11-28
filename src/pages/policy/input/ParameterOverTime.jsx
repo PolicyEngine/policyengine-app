@@ -91,6 +91,11 @@ export default function ParameterOverTime(props) {
             tickvals: yAxisTickVals || null,
             ticktext: yAxisTickLabels || null,
           },
+          legend: {
+            // Position above the plot
+            y: 1.1,
+            orientation: "h",
+          }
         }}
         style={{
           width: "100%",

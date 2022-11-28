@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 import { findInTree } from "../api/variables";
+import NavigationButton from "../controls/NavigationButton";
 import SearchOptions from "../controls/SearchOptions";
 import BiPanel from "../layout/BiPanel";
 import Divider from "../layout/Divider";
@@ -19,6 +20,10 @@ import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 
 const POLICY_OUTPUT_TREE = [
+  {
+    name: "policyOutput",
+    label: "Policy impact",
+    children: [
       {
         name: "policyOutput.netIncome",
         label: "Budgetary impact",
@@ -47,7 +52,8 @@ const POLICY_OUTPUT_TREE = [
         name: "policyOutput.codeReproducibility",
         label: "Reproduce in Python",
       },
-    ];
+    ],
+  }];
 
 function ParameterSearch(props) {
   const { metadata } = props;
@@ -93,7 +99,7 @@ function PolicyLeftSidebar(props) {
         firstTree={metadata.parameterTree.children}
         selected={selected}
         onSelect={onSelect}
-        secondTree={POLICY_OUTPUT_TREE}
+        secondTree={POLICY_OUTPUT_TREE[0].children}
       />
     </div>
   );
@@ -104,7 +110,12 @@ function MobileTreeNavigationHolder(props) {
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
-  let currentNode = {children: [metadata.parameterTree]};
+  let currentNode;
+  if (focus && focus.startsWith("policyOutput")) {
+    currentNode = { children: POLICY_OUTPUT_TREE };
+  } else {
+    currentNode = {children: [metadata.parameterTree]};
+  }
   let breadcrumbs = [];
   try {
     let stem = "";
@@ -124,7 +135,14 @@ function MobileTreeNavigationHolder(props) {
   if (!currentNode) {
     content = <h5>Select an input</h5>
   }
-  return <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%", padding: 15, backgroundColor: style.colors.LIGHT_GRAY}}>
+  return <div style={{
+      display: "flex",
+      justifyContent: "center", 
+      alignItems: "center", 
+      height: "100%", 
+      padding: 15, 
+      backgroundColor: style.colors.LIGHT_GRAY,
+    }}>
       {breadcrumbs.map((breadcrumb, i) => (
         <h5
           key={breadcrumb.name}
@@ -145,6 +163,37 @@ function MobileTreeNavigationHolder(props) {
     </div>
 }
 
+
+function MobileBottomMenu(props) {
+  const { metadata, policy } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const hasReform = searchParams.get("reform") !== null;
+  const focus = searchParams.get("focus") || "";
+  return <div style={{
+    padding: 20,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "20vh",
+  }}>
+    <div>
+    {
+      focus && focus.startsWith("policyOutput") && <NavigationButton text="Edit my policy" focus="gov" />
+    }
+    {
+      focus && !focus.startsWith("policyOutput") && <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
+    }
+    {
+      !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />
+    }
+    {
+      hasReform && <NavigationButton text="Edit my household" focus="input" target={`/${metadata.countryId}/household`} />
+    }
+
+    </div>
+  </div>
+}
+
 function MobilePolicyPage(props) {
   const { mainContent, metadata } = props;
   return <>
@@ -152,11 +201,12 @@ function MobilePolicyPage(props) {
       overflow: "scroll",
       width: "100%",
       padding: 20,
-      height: "50vh",
+      height: "60vh",
     }}>
       {mainContent}
     </div>
     <MobileTreeNavigationHolder title="Your reform" metadata={metadata}/>
+    <MobileBottomMenu metadata={metadata}/>
   </>
 }
 
@@ -204,6 +254,11 @@ export default function PolicyPage(props) {
       label={node.label}
       children={node.children}
       />
+  } else if (focus === "policyOutput") {
+    middle = <FolderPage
+      label="Policy impact"
+      children={POLICY_OUTPUT_TREE[0].children}
+    />;
   } else if (focus.includes("policyOutput.")) {
     middle = <PolicyOutput metadata={metadata} policy={policy} />;
   }

@@ -133,7 +133,7 @@ export default function HomePage(props) {
       <div
         style={{
           paddingLeft: 50,
-          paddingRight: 100,
+          paddingRight: 50,
           paddingTop: 70,
           display: "flex",
           flexDirection: "column",

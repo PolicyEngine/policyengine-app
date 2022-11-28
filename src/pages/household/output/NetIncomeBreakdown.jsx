@@ -80,7 +80,7 @@ function VariableArithmetic(props) {
   return (
     <div
       style={{
-        paddingBottom: 20,
+        paddingBottom: 0,
       }}
     >
       <div
@@ -96,14 +96,14 @@ function VariableArithmetic(props) {
         <h2 style={{display: "flex"}}>
           {valueStr}
         </h2>
-        <h5>{variable.documentation}</h5>
+        {variable.documentation ? <h5>{variable.documentation}</h5> : null}
       </div>
       {expanded && (
         <div
           style={{
-            margin: 20,
+            margin: 10,
             marginBottom: 0,
-            padding: 20,
+            padding: 10,
             paddingBottom: 0,
             borderLeftWidth: 2,
             borderLeftStyle: "solid",
@@ -169,6 +169,7 @@ export default function NetIncomeBreakdown(props) {
       title={title}
       description="Here's how we calculated your household's net income. Click on a section to see more details."
     >
+      <div style={{height: 10}} />
       <VariableArithmetic
         variableName="household_net_income"
         household={household}

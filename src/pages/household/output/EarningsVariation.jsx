@@ -12,6 +12,7 @@ import FadeIn from "../../../layout/FadeIn";
 import { useSearchParams } from "react-router-dom";
 import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
+import useMobile from "../../../layout/Responsive";
 
 export default function EarningsVariation(props) {
   const { household, metadata } = props;
@@ -25,6 +26,7 @@ export default function EarningsVariation(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
+  const mobile = useMobile();
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));
@@ -139,12 +141,19 @@ export default function EarningsVariation(props) {
               tickformat: ",.0f",
             },
             yaxis: {
-              title: "Net income",
+              title: {
+                text: "Net income",
+              },
               ...getPlotlyAxisFormat(
                 metadata.variables.household_net_income.unit
               ),
               tickformat: ",.0f",
             },
+            legend: {
+              // Position above the plot
+              y: 1.1,
+              orientation: "h",
+            }
           }}
           config={{
             displayModeBar: false,
@@ -286,6 +295,11 @@ export default function EarningsVariation(props) {
               ),
               tickformat: (showDelta ? "+" : "") + ",.0f",
             },
+            legend: {
+              // Position above the plot
+              y: 1.1,
+              orientation: "h",
+            }
           }}
           config={{
             displayModeBar: false,

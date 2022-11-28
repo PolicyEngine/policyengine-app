@@ -4,7 +4,6 @@ export default function InputField(props) {
   const { placeholder, onChange, padding, width } = props;
   return (
     <motion.input
-      pattern="[0-9]*"
       style={{
         padding: padding || 20,
         marginLeft: padding || 20,

@@ -155,6 +155,11 @@ export default function MarginalTaxRates(props) {
               ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
               tickformat: ".0%",
             },
+            legend: {
+              // Position above the plot
+              y: 1.1,
+              orientation: "h",
+            }
           }}
           config={{
             displayModeBar: false,
@@ -312,6 +317,11 @@ export default function MarginalTaxRates(props) {
               ),
               tickformat: (showDelta ? "+" : "") + ".0%",
             },
+            legend: {
+              // Position above the plot
+              y: 1.1,
+              orientation: "h",
+            }
           }}
           config={{
             displayModeBar: false,
