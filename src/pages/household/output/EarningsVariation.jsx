@@ -12,7 +12,6 @@ import FadeIn from "../../../layout/FadeIn";
 import { useSearchParams } from "react-router-dom";
 import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import useMobile from "../../../layout/Responsive";
 
 export default function EarningsVariation(props) {
   const { household, metadata } = props;
@@ -26,7 +25,6 @@ export default function EarningsVariation(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
-  const mobile = useMobile();
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));

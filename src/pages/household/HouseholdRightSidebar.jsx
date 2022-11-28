@@ -1,10 +1,8 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { copySearchParams } from "../../api/call";
+import { useSearchParams } from "react-router-dom";
 import {
   formatVariableValue,
   getValueFromHousehold,
 } from "../../api/variables";
-import Button from "../../controls/Button";
 import NavigationButton from "../../controls/NavigationButton";
 import Divider from "../../layout/Divider";
 
@@ -45,9 +43,12 @@ function Figure(props) {
 export default function HouseholdRightSidebar(props) {
   const { household, metadata } = props;
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
+
+  if (!household.input) {
+    return <></>
+  }
 
   const countPeople = Object.keys(household.input.people).length;
   const netIncome = getValueFromHousehold(

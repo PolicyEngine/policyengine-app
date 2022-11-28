@@ -1,32 +1,19 @@
 import ThreeColumnPage from "../layout/ThreeColumnPage";
-import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
 import { createDefaultHousehold, findInTree, formatVariableValue, getValueFromHousehold } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
 import MaritalStatus from "./household/input/MaritalStatus";
 import CountChildren from "./household/input/CountChildren";
-import BiPanel from "../layout/BiPanel";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
-import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-import HouseholdIntro from "./household/HouseholdIntro";
 import HouseholdOutput from "./household/output/HouseholdOutput";
 import SearchOptions from "../controls/SearchOptions";
-import Divider from "../layout/Divider";
 import useMobile from "../layout/Responsive";
-import { HEADER_HEIGHT } from "../style/spacing";
-import { AnimatePresence, motion } from "framer-motion";
-import useWindowHeight from "../layout/WindowHeight";
-import Button from "../controls/Button";
 import style from "../style";
-import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
-import MarkdownPage from "../layout/MarkdownPage";
-import ResultsPanel from "../layout/ResultsPanel";
 import FolderPage from "../layout/FolderPage";
 import StackedMenu from "../layout/StackedMenu";
-import BottomCarousel from "../layout/BottomCarousel";
 import NavigationButton from "../controls/NavigationButton";
 
 const HOUSEHOLD_OUTPUT_TREE = [
@@ -121,41 +108,8 @@ export function getDefaultHouseholdId(metadata) {
     });
 }
 
-function MobileTreeNavigationLayer(props) {
-  const { subtree, onExpand } = props;
-  return <div
-    style={{
-      display: "flex",
-      overflowX: "scroll",
-    }}
-  >
-    {Object.values(subtree).map((node) => (
-      <div
-        key={node.name}
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          height: 100,
-          minWidth: 100,
-          maxWidth: 100,
-          backgroundColor: style.colors.DARK_GRAY,
-          margin: 10,
-          borderRadius: 10,
-          padding: 10,
-          cursor: "pointer",
-        }}
-        onClick={() => onExpand(node.name)}
-      >
-        <h6 style={{margin: 0, color: "white"}}>{node.label}</h6>
-      </div>
-    ))}
-  </div>
-}
-
 function MobileTreeNavigationHolder(props) {
-  const { expanded, setExpanded, metadata, title } = props;
+  const { metadata } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
@@ -170,7 +124,8 @@ function MobileTreeNavigationHolder(props) {
     let stem = "";
     for (let name of focus.split(".")) {
       stem += name;
-      currentNode = currentNode.children.find((node) => node.name === stem);
+      const fixedStem = stem;
+      currentNode = currentNode.children.find((node) => node.name === fixedStem);
       breadcrumbs.push({
         name: stem,
         label: currentNode.label,

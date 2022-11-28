@@ -7,7 +7,7 @@ import useMobile from "./Responsive";
 
 
 export default function FolderPage(props) {
-    const { label, children, description } = props;
+    const { children } = props;
     const [searchParams, setSearchParams] = useSearchParams();
     const mobile = useMobile();
     
