@@ -92,13 +92,19 @@ export function createDefaultHousehold(country, variables, entities) {
   return situation;
 }
 
-export function findInTree(tree, path) {
+export function findInTree(tree, path, handleInput = false) {
   // path is in the format "x.y.z"
   let node = tree;
   let cumulativePath;
   try {
     cumulativePath = "";
     for (const key of path.split(".")) {
+      if (handleInput && key === "input") {
+        // Skip - special case
+        cumulativePath += key;
+        cumulativePath += ".";
+        continue;
+      }
       cumulativePath += key;
       const fixedCumulativePath = cumulativePath;
       node = node.children.find((child) => child.name === fixedCumulativePath);

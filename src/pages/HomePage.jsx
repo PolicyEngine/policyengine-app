@@ -15,7 +15,8 @@ function HouseholdPolicyOptions(props) {
     <div style={{ 
       paddingTop: 20, 
       display: "flex",
-      overflowX: "scroll",
+      flexDirection: mobile ? "column" : "row",
+      alignItems: "center",
       paddingLeft: 0,
       paddingRight: 0,
     }}>
@@ -24,9 +25,11 @@ function HouseholdPolicyOptions(props) {
           width: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
-          marginRight: 20,
           cursor: "pointer",
+          marginRight: mobile ? 0 : 20,
+          marginBottom: mobile ? 20 : 0,
         }}
+        whileHover={{ scale: 1.05 }}
         onClick={() => navigate(`/${countryId}/household`)}
       >
         <h2>Compute my household income</h2>
@@ -42,6 +45,7 @@ function HouseholdPolicyOptions(props) {
           padding: 20,
           cursor: "pointer",
         }}
+        whileHover={{ scale: 1.05 }}
         onClick={() => navigate(`/${countryId}/policy`)}
       >
         <h2>Compute the impact of policy reforms</h2>

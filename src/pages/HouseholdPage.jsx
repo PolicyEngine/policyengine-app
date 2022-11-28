@@ -1,7 +1,7 @@
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
-import { createDefaultHousehold } from "../api/variables";
+import { createDefaultHousehold, findInTree } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect, useState } from "react";
 import VariableEditor from "./household/input/VariableEditor";
@@ -23,6 +23,8 @@ import Button from "../controls/Button";
 import style from "../style";
 import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import MarkdownPage from "../layout/MarkdownPage";
+import ResultsPanel from "../layout/ResultsPanel";
+import FolderPage from "../layout/FolderPage";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -137,7 +139,6 @@ export function getDefaultHouseholdId(metadata) {
     metadata.variables,
     metadata.entities
   );
-  console.log(defaultHousehold);
   return countryApiCall(
     metadata.countryId,
     "/household",
@@ -189,7 +190,6 @@ function MobileTreeNavigation(props) {
   const [selectedNames, setSelectedNames] = useState([]);
   let subLevels = [];
   let currentNode = tree;
-  console.log(selectedNames);
   for (let i = 0; i < selectedNames.length; i++) {
     let children;
     if (currentNode.children) {
@@ -320,9 +320,10 @@ function MobileHouseholdPage(props) {
 }
 
 function HouseholdFolderPage(props) {
-  return <div>
-    <h1>Household</h1>
-  </div>
+  return <ResultsPanel
+    title="Household"
+    >
+    </ResultsPanel>
 }
 
 export default function HouseholdPage(props) {
@@ -368,11 +369,8 @@ export default function HouseholdPage(props) {
       />
     );
   } else if (Object.keys(metadata.variableModules).includes(focus)) {
-    middle = <MarkdownPage
-      title={metadata.variableModules[focus].label}
-      >
-        {metadata.variableModules[focus].description}
-      </MarkdownPage>
+    const node = findInTree({children: metadata.variableTree}, focus, true);
+    middle = <FolderPage label={node.label} children={node.children} />;
     } else if (focus === "structure.maritalStatus") {
     middle = (
       <MaritalStatus

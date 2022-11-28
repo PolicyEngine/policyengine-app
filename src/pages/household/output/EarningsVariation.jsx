@@ -156,7 +156,6 @@ export default function EarningsVariation(props) {
       </FadeIn>
     );
   } else if (baselineNetIncome && reformNetIncome) {
-    console.log(baselineNetIncome, reformNetIncome);
     const earningsArray = getValueFromHousehold(
       "employment_income",
       "2022",
