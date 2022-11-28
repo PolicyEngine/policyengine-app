@@ -92,19 +92,13 @@ export function createDefaultHousehold(country, variables, entities) {
   return situation;
 }
 
-export function findInTree(tree, path, handleInput = false) {
+export function findInTree(tree, path) {
   // path is in the format "x.y.z"
   let node = tree;
   let cumulativePath;
   try {
     cumulativePath = "";
     for (const key of path.split(".")) {
-      if (handleInput && key === "input") {
-        // Skip - special case
-        cumulativePath += key;
-        cumulativePath += ".";
-        continue;
-      }
       cumulativePath += key;
       const fixedCumulativePath = cumulativePath;
       node = node.children.find((child) => child.name === fixedCumulativePath);
@@ -169,26 +163,30 @@ export function buildVariableTree(variables, variableModules) {
   const inputModule = tree.children.find(
     (child) => child.name === "input"
   ).children;
-  return [
-    {
-      name: "structure",
-      label: "Household",
-      index: 0,
-      children: [
-        {
-          name: "structure.maritalStatus",
-          label: "Marital status",
-          index: 0,
-        },
-        {
-          name: "structure.children",
-          label: "Children",
-          index: 1,
-        },
-      ],
-    },
-    ...inputModule.reverse(),
-  ];
+  return {
+    name: "input",
+    label: "Input",
+    children: [
+      {
+        name: "input.household",
+        label: "Household",
+        index: 0,
+        children: [
+          {
+            name: "input.household.maritalStatus",
+            label: "Marital status",
+            index: 0,
+          },
+          {
+            name: "input.household.children",
+            label: "Children",
+            index: 1,
+          },
+        ],
+      },
+      ...inputModule.reverse(),
+    ]
+  };
 }
 
 export function getTreeLeavesInOrder(tree) {
@@ -204,7 +202,7 @@ export function getTreeLeavesInOrder(tree) {
       leaves.push(node.name);
     }
   };
-  tree.map((node) => traverse(node));
+  traverse(tree);
   return leaves;
 }
 
