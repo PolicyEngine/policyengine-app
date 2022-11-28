@@ -7,7 +7,7 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
 function VariableArithmetic(props) {
-  const { variableName, household, metadata, inverted, defaultExpanded } =
+  const { variableName, household, metadata, inverted, defaultExpanded, childrenOnly } =
     props;
   const value =
     (inverted ? -1 : 1) *
@@ -77,10 +77,44 @@ function VariableArithmetic(props) {
   const adds = variable.adds || [];
   const subtracts = variable.subtracts || [];
   const expandable = adds.length + subtracts.length > 0;
+  const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
+    <VariableArithmetic
+      variableName={variable}
+      household={household}
+      metadata={metadata}
+      key={variable}
+      inverted={inverted}
+    />
+  ))
+  const childSubtractNodes = subtracts.filter(shouldShowVariable).map((variable) => (
+    <VariableArithmetic
+      variableName={variable}
+      household={household}
+      metadata={metadata}
+      inverted={!inverted}
+      key={variable}
+    />
+  ))
+  const childNodes = childAddNodes.concat(childSubtractNodes);
+  if (childrenOnly) {
+    return <div
+    style={{
+      margin: 10,
+      marginBottom: 0,
+      padding: 10,
+      paddingBottom: 0,
+      borderLeftWidth: 2,
+      borderLeftStyle: "solid",
+      borderLeftColor: style.colors.DARK_GRAY,
+    }}
+  >
+    {childNodes}
+  </div>
+  }
   return (
     <div
       style={{
-        paddingBottom: 0,
+        paddingBottom: 20,
       }}
     >
       <div
@@ -110,24 +144,7 @@ function VariableArithmetic(props) {
             borderLeftColor: style.colors.DARK_GRAY,
           }}
         >
-          {adds.filter(shouldShowVariable).map((variable) => (
-            <VariableArithmetic
-              variableName={variable}
-              household={household}
-              metadata={metadata}
-              key={variable}
-              inverted={inverted}
-            />
-          ))}
-          {subtracts.filter(shouldShowVariable).map((variable) => (
-            <VariableArithmetic
-              variableName={variable}
-              household={household}
-              metadata={metadata}
-              inverted={!inverted}
-              key={variable}
-            />
-          ))}
+          {childNodes}
         </div>
       )}
     </div>
@@ -175,6 +192,7 @@ export default function NetIncomeBreakdown(props) {
         household={household}
         metadata={metadata}
         defaultExpanded={true}
+        childrenOnly
       />
     </ResultsPanel>
   );

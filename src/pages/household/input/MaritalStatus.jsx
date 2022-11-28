@@ -7,6 +7,8 @@ import {
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
+import { useState } from "react";
+import NavigationButton from "../../../controls/NavigationButton";
 
 function getUKMaritalStatus(situation) {
   const partnerName = "your partner";
@@ -74,6 +76,7 @@ export default function MaritalStatus(props) {
     uk: setUKMaritalStatus,
     us: setUSMaritalStatus,
   }[metadata.countryId];
+  const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {
     let newHousehold = setMaritalStatusInHousehold(
       household.input,
@@ -91,14 +94,26 @@ export default function MaritalStatus(props) {
     <RadioButton
       keys={["single", "married"]}
       labels={["Single", "Married"]}
-      value={household.baseline && getMaritalStatus(household.input)}
-      onChange={setMaritalStatus}
+      defaultValue={household.baseline && getMaritalStatus(household.input)}
+      value={value}
+      onChange={status => {
+        setMaritalStatus(status);
+        setValue(status);
+      }}
     />
   );
   return (
     <CenteredMiddleColumn
       title="What is your marital status?"
-      children={radioButtonComponent}
+      children={
+        <>
+          {radioButtonComponent}
+          <NavigationButton
+            text="Next"
+            focus="input.household.children"
+          />
+        </>
+      }
     />
   );
 }

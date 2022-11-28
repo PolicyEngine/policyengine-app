@@ -12,6 +12,7 @@ export default function RadioButton(props) {
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "center",
+        justifyContent: "center",
       }}
     >
       {keys.map((key, index) => {
@@ -26,6 +27,7 @@ export default function RadioButton(props) {
                 ? style.colors.BLUE
                 : style.colors.MEDIUM_DARK_GRAY,
               color: checked ? style.colors.WHITE : style.colors.BLACK,
+              marginBottom: 10,
               cursor: "pointer",
               padding: 10,
               paddingLeft: 20,
@@ -34,7 +36,7 @@ export default function RadioButton(props) {
               borderStyle: "solid",
               marginRight: 5,
               borderRadius: 25,
-              borderColor: style.colors.MEDIUM_DARK_GRAY,
+              borderColor: defaultChecked ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY,
             }}
             onClick={() => onChange(key)}
           >

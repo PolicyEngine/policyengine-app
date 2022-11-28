@@ -1,13 +1,13 @@
 import style from "../style";
 
 export default function Button(props) {
-  const { text, onClick } = props;
+  const { text, onClick, primary } = props;
 
   return (
     <div
       style={{
-        backgroundColor: style.colors.BLUE,
-        color: style.colors.WHITE,
+        backgroundColor: primary ? style.colors.BLUE : style.colors.LIGHT_GRAY,
+        color: primary ? style.colors.WHITE : style.colors.BLACK,
         padding: 10,
         paddingLeft: 20,
         paddingRight: 20,

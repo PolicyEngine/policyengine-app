@@ -4,11 +4,11 @@ import Button from "./Button";
 
 
 export default function NavigationButton(props) {
-    const { text, focus, target, style } = props;
+    const { text, focus, target, style, primary } = props;
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
 
-    return <Button text={text} style={{...style, margin: 20}} onClick={() => {
+    return <Button primary={primary} text={text} style={{...style, margin: 20}} onClick={() => {
         let newSearch = copySearchParams(searchParams);
         newSearch.set("focus", focus);
         if (target) {

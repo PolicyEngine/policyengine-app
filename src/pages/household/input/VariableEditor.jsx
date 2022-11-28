@@ -11,6 +11,7 @@ import { copySearchParams } from "../../../api/call";
 import { Switch } from "antd";
 import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
+import NavigationButton from "../../../controls/NavigationButton";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -38,19 +39,18 @@ export default function VariableEditor(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: "15%",
-          paddingLeft: 50,
-          paddingRight: 50,
-          maxWidth: mobile && "80%",
+          marginTop: mobile ? 10 : "15%",
+          paddingLeft: mobile ? 10 : 50,
+          paddingRight: mobile ? 10 : 50,
         }}
       >
-        <h1 style={{ marginBottom: 20 }}>
+        <h1 style={{ marginBottom: 20, textAlign: "center" }}>
           What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
           {variable.label}?
         </h1>
-        <h4>{variable.documentation}</h4>
+        <h4 style={{textAlign: "center"}}>{variable.documentation}</h4>
         {isSimulated && (
-          <p>
+          <p style={{textAlign: "center"}}>
             This variable is calculated from other variables you've entered.
             Editing it will override the simulated value.
           </p>
@@ -124,7 +124,6 @@ function HouseholdVariableEntityInput(props) {
       setSearchParams(newSearch);
     });
   };
-  const mobile = useMobile();
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(
     variable.name,
@@ -163,7 +162,10 @@ function HouseholdVariableEntityInput(props) {
     );
   }
   // The input field should hide its arrows
+  const variableNames = metadata.variablesInOrder;
+  const nextVariable = variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
   return (
+    <>
     <div
       style={{
         display: "flex",
@@ -171,11 +173,20 @@ function HouseholdVariableEntityInput(props) {
         alignItems: "center",
       }}
     >
-      <h5 style={{ width: 200, textAlign: "right", margin: 0 }}>
+      <h5 style={{ width: "25%", textAlign: "right", margin: 0 }}>
         {capitalize(entityName)}:{" "}
       </h5>
       {control}
       <h5 style={{ margin: 0 }}>in {timePeriod}</h5>
+      
     </div>
+    {nextVariable && (
+        <NavigationButton
+          text="Next"
+          focus={nextVariable}
+          primary
+        />
+      )}
+    </>
   );
 }
