@@ -135,10 +135,6 @@ function MobileTreeNavigationHolder(props) {
   } catch (e) {
     currentNode = null;
   }
-  let content = null;
-  if (!currentNode) {
-    content = <h5>Select an input</h5>
-  }
   return <div style={{display: "flex", overflowX: "scroll", justifyContent: "center", alignItems: "center", height: "100%", padding: 15, backgroundColor: style.colors.LIGHT_GRAY}}>
       {breadcrumbs.map((breadcrumb, i) => (
         <h5
@@ -162,7 +158,7 @@ function MobileTreeNavigationHolder(props) {
 
 function MobileBottomMenu(props) {
   const { metadata, household } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
   const getValue = (variable) =>

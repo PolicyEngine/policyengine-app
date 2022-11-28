@@ -4,17 +4,12 @@ import { copySearchParams } from "../api/call";
 import { findInTree } from "../api/variables";
 import NavigationButton from "../controls/NavigationButton";
 import SearchOptions from "../controls/SearchOptions";
-import BiPanel from "../layout/BiPanel";
-import Divider from "../layout/Divider";
 import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../layout/LoadingCentered";
-import Menu from "../layout/Menu";
 import useMobile from "../layout/Responsive";
-import ResultsPanel from "../layout/ResultsPanel";
 import StackedMenu from "../layout/StackedMenu";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import style from "../style";
-import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
@@ -83,8 +78,6 @@ function ParameterSearch(props) {
 function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const tree = metadata.parameterTree.children;
   const selected = searchParams.get("focus") || "";
   const onSelect = (name) => {
     let newSearch = copySearchParams(searchParams);
@@ -106,7 +99,7 @@ function PolicyLeftSidebar(props) {
 }
 
 function MobileTreeNavigationHolder(props) {
-  const { expanded, setExpanded, metadata, title } = props;
+  const { metadata } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
@@ -121,7 +114,8 @@ function MobileTreeNavigationHolder(props) {
     let stem = "";
     for (let name of focus.split(".")) {
       stem += name;
-      currentNode = currentNode.children.find((node) => node.name === stem);
+      const fixedStem = stem;
+      currentNode = currentNode.children.find((node) => node.name === fixedStem);
       breadcrumbs.push({
         name: stem,
         label: currentNode.label,
@@ -130,10 +124,6 @@ function MobileTreeNavigationHolder(props) {
     }
   } catch (e) {
     currentNode = null;
-  }
-  let content = null;
-  if (!currentNode) {
-    content = <h5>Select an input</h5>
   }
   return <div style={{
       display: "flex",
@@ -165,8 +155,8 @@ function MobileTreeNavigationHolder(props) {
 
 
 function MobileBottomMenu(props) {
-  const { metadata, policy } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
+  const { metadata } = props;
+  const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
   return <div style={{
@@ -211,7 +201,7 @@ function MobilePolicyPage(props) {
 }
 
 export default function PolicyPage(props) {
-  const { metadata, policy, setPolicy, household } = props;
+  const { metadata, policy, setPolicy } = props;
   const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
