@@ -358,7 +358,7 @@ export default function HouseholdPage(props) {
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
   } else if (
-    metadata.variablesInOrder.includes(focus)
+    Object.keys(metadata.variables).includes(focus.split(".")[focus.split(".").length - 1])
   ) {
     middle = (
       <VariableEditor

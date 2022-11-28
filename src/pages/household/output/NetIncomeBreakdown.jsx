@@ -34,13 +34,12 @@ function VariableArithmetic(props) {
         metadata
       );
     const diff = reformValue - value;
-    valueStr = 
-      <div style={{ display: "flex", alignItems: "center" }}>
-      <span>{(value >= 0 ? "+  " : "-  ")}</span>
-      <span>{`${formatVariableValue(variable, Math.abs(reformValue), 0)}`}</span>
-      <span style={{fontSize: 18, paddingLeft: 10, paddingTop: 10, color: style.colors.DARK_GREEN}}>{`${(inverted ? diff < 0 : diff >= 0) ? "+" : "-"}`}</span>
-      <span style={{fontSize: 18, paddingRight: 10,paddingTop: 10, color: style.colors.DARK_GREEN}}>{`${formatVariableValue(variable, Math.abs(diff), 0)}`}</span></div>
-    shouldShowVariable = (variableName) => {
+    valueStr = diff > 0 ?
+        `Your ${variable.label} rises by ${formatVariableValue(variable, diff, 0)}` :
+        diff < 0 ?
+          `Your ${variable.label} falls by ${formatVariableValue(variable, -diff, 0)}` :
+          `Your ${variable.label} doesn't change`;
+      shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
         getValueFromHousehold(
           variableName,
@@ -60,9 +59,7 @@ function VariableArithmetic(props) {
       return isNonZeroInBaseline || isNonZeroInReform;
     };
   } else {
-    valueStr =
-      (value >= 0 ? "+  " : "-  ") +
-      formatVariableValue(variable, Math.abs(value), 0);
+    valueStr = `Your ${variable.label} ${variable.label.endsWith("s") ? "are" : "is"} ${formatVariableValue(variable, Math.abs(value), 0)}`;
     shouldShowVariable = (variableName) => {
       return (
         getValueFromHousehold(
@@ -97,7 +94,7 @@ function VariableArithmetic(props) {
         }}
       >
         <h2 style={{display: "flex"}}>
-          {valueStr} in {variable.label}
+          {valueStr}
         </h2>
         <h5>{variable.documentation}</h5>
       </div>

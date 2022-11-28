@@ -30,7 +30,6 @@ function updateMetadata(countryId, setMetadata, setError) {
         currency: countryId === "us" ? "$" : "£",
       };
       setMetadata(metadata);
-      console.log(variablesInOrder)
       return metadata;
     })
     .catch((error) => {

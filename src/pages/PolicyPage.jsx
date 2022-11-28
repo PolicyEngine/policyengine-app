@@ -173,7 +173,7 @@ export default function PolicyPage(props) {
     middle = <LoadingCentered />;
   } else if (focus === "policy") {
     middle = <HelpPage />;
-  } else if (Object.keys(metadata.parameters).includes(focus)) {
+  } else if (Object.keys(metadata.parameters).includes(focus) && metadata.parameters[focus].type === "parameter") {
     middle = (
       <ParameterEditor
         parameterName={focus}
