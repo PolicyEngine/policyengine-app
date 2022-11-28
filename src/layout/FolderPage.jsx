@@ -3,11 +3,13 @@ import { copySearchParams } from "../api/call";
 import style from "../style";
 import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
+import useMobile from "./Responsive";
 
 
 export default function FolderPage(props) {
     const { label, children, description } = props;
     const [searchParams, setSearchParams] = useSearchParams();
+    const mobile = useMobile();
     
     return <ResultsPanel
         title={label}
@@ -17,13 +19,14 @@ export default function FolderPage(props) {
                 display: "flex",
                 width: "100%",
                 flexWrap: "wrap",
+                justifyContent: "center",
             }}
             >{children.map(child => (
                 <motion.div
                     key={child.name}
                     style={{
-                        width: 150,
-                        height: 150,
+                        width: mobile ? 100 : 150,
+                        height: mobile ? 100 : 150,
                         backgroundColor: style.colors.LIGHT_GRAY,
                         margin: 10,
                         padding: 10,

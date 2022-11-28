@@ -25,12 +25,9 @@ import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
 import MarkdownPage from "../layout/MarkdownPage";
 import ResultsPanel from "../layout/ResultsPanel";
 import FolderPage from "../layout/FolderPage";
+import StackedMenu from "../layout/StackedMenu";
 
 const HOUSEHOLD_OUTPUT_TREE = [
-  {
-    name: "householdOutput",
-    label: "Results",
-    children: [
       {
         name: "householdOutput.netIncome",
         label: "Net income",
@@ -47,8 +44,6 @@ const HOUSEHOLD_OUTPUT_TREE = [
         name: "householdOutput.pythonReproducibility",
         label: "Reproduce in Python",
       },
-    ],
-  },
 ];
 
 function VariableSearch(props) {
@@ -78,57 +73,23 @@ function VariableSearch(props) {
 function HouseholdLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
+  const selected = searchParams.get("focus") || "";
+  const onSelect = (name) => {
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("focus", name);
+    setSearchParams(newSearch);
+  };
 
   return (
-    <BiPanel
-      left={
-        <>
-          <div
-            style={{
-              overflow: "scroll",
-              height: "80%",
-            }}
-          >
-            <Menu
-              tree={metadata.variableTree}
-              selected={searchParams.get("focus") || ""}
-              onSelect={(focus) => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("focus", focus);
-                setSearchParams(newSearch);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              bottom: 20,
-              width: "calc(20% - 40px)",
-              zIndex: 100,
-            }}
-          >
-            <Divider />
-            <VariableSearch metadata={metadata} />
-          </div>
-        </>
-      }
-      right={
-        <Menu
-          tree={HOUSEHOLD_OUTPUT_TREE}
-          selected={searchParams.get("focus") || ""}
-          onSelect={(focus) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", focus);
-            setSearchParams(newSearch);
-          }}
-        />
-      }
-      leftTitle="Inputs"
-      rightTitle="Outputs"
-      leftNavigatedSelected={
-        !(searchParams.get("focus") || "").startsWith("householdOutput")
-      }
-    />
+    <div>
+      <div style={{padding: 10}}><VariableSearch metadata={metadata} /></div>
+      <StackedMenu
+        firstTree={metadata.variableTree.children}
+        selected={selected}
+        onSelect={onSelect}
+        secondTree={HOUSEHOLD_OUTPUT_TREE}
+      />
+    </div>
   );
 }
 
@@ -184,86 +145,16 @@ function MobileTreeNavigationLayer(props) {
   </div>
 }
 
-function MobileTreeNavigation(props) {
-  const { tree, setExpanded } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedNames, setSelectedNames] = useState([]);
-  let subLevels = [];
-  let currentNode = tree;
-  for (let i = 0; i < selectedNames.length; i++) {
-    let children;
-    if (currentNode.children) {
-      children = currentNode.children;
-    } else {
-      children = currentNode;
-    }
-    currentNode = children.find((node) => node.name === selectedNames[i]);
-    let onExpand;
-    if (currentNode.children) {
-      onExpand = (name) => {
-        if (!currentNode.children.find(node => node.name === name).children) {
-          // If the node is a leaf, don't expand it.
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("focus", name);
-          setSearchParams(newSearch);
-          setExpanded(false);
-        } else if (selectedNames.includes(name)) {
-          setSelectedNames(selectedNames.slice(0, selectedNames.indexOf(name)));
-        } else {
-          setSelectedNames(selectedNames.slice(0, i + 1).concat([name]));
-        }
-      };
-    } else {
-      onExpand = () => {};
-    }
-    subLevels.push(
-      <motion.div
-        key={currentNode.name}
-        initial={{ height: 0 }}
-        animate={{ height: 120 }}
-        exit={{ height: 0 }}
-        style={{
-          overflow: "hidden",
-        }}
-      >
-        <MobileTreeNavigationLayer
-          key={i}
-          subtree={currentNode.children}
-          onExpand={onExpand}
-        />
-      </motion.div>
-    )
-  }
-  return <div>
-    <MobileTreeNavigationLayer subtree={tree} onExpand={(name) => {
-        if (selectedNames.includes(name)) {
-          setSelectedNames(selectedNames.slice(0, selectedNames.indexOf(name)));
-        } else {
-          setSelectedNames([name]);
-        }
-      }} />
-    <AnimatePresence
-      mode="wait"
-    >
-    {subLevels}
-    </AnimatePresence>
-  </div>
-}
-
 function MobileTreeNavigationHolder(props) {
   const { expanded, setExpanded, metadata, title } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
-  let currentNode = {children: metadata.variableTree};
+  let currentNode = {children: [metadata.variableTree]};
   let breadcrumbs = [];
   try {
     let stem = "";
     for (let name of focus.split(".")) {
-      if (name == "input") {
-        stem += "input.";
-        continue;
-      }
       stem += name;
       currentNode = currentNode.children.find((node) => node.name === stem);
       breadcrumbs.push({
@@ -315,13 +206,6 @@ function MobileHouseholdPage(props) {
   </>
 }
 
-function HouseholdFolderPage(props) {
-  return <ResultsPanel
-    title="Household"
-    >
-    </ResultsPanel>
-}
-
 export default function HouseholdPage(props) {
   const { metadata, household, setHousehold, policy } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -332,7 +216,7 @@ export default function HouseholdPage(props) {
 
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
-    if (!focus) {
+    if (focus === "") {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("focus", "input");
       setSearchParams(newSearch);
@@ -366,7 +250,11 @@ export default function HouseholdPage(props) {
     );
   } else if (Object.keys(metadata.variableModules).includes(focus) || ["input", "input.household"].includes(focus)) {
     const node = findInTree({ children: [metadata.variableTree]}, focus);
-    middle = <FolderPage label={node.label} children={node.children} />;
+    middle = <FolderPage 
+      label={node.label} 
+      children={node.children} 
+      description={metadata.variableModules[focus] && metadata.variableModules[focus].description}
+    />;
     } else if (focus === "input.household.maritalStatus") {
     middle = (
       <MaritalStatus

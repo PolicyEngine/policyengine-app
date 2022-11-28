@@ -25,6 +25,7 @@ export function RegionSelector(props) {
 
   return (
     <SearchOptions
+      style={{width: 250, marginRight: 10, marginLeft: 10}}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -40,12 +41,13 @@ export function TimePeriodSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = metadata.economy_options.time_period.map((time_period) => {
-    return { value: time_period.name, label: time_period.label };
+    return { value: time_period.name.toString(), label: time_period.label };
   });
-  const [value] = useState(searchParams.get("timePeriod") || options[0].value);
+  const [value] = useState((searchParams.get("timePeriod") || "").toString() || options[0].value);
 
   return (
     <SearchOptions
+    style={{width: 250, marginRight: 10, marginLeft: 10}}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -178,40 +180,4 @@ export default function PolicyOutput(props) {
   }
 
   return <ResultsPanel>{pane}</ResultsPanel>;
-  return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h4 style={{ margin: 0 }}>Comparing</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="reform" />
-        <h4 style={{ margin: 0 }}>against</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="baseline" />
-        <SwapOutlined
-          style={{
-            fontSize: 15,
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            const newSearch = copySearchParams(searchParams);
-            newSearch.set(
-              "reform",
-              baselinePolicyId || metadata.current_law_id
-            );
-            if (!reformPolicyId) {
-              newSearch.delete("baseline");
-            } else {
-              newSearch.set("baseline", reformPolicyId);
-            }
-            setSearchParams(newSearch);
-          }}
-        />
-      </div>
-      <ResultsPanel>{pane}</ResultsPanel>
-    </>
-  );
 }

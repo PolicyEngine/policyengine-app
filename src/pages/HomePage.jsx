@@ -23,6 +23,7 @@ function HouseholdPolicyOptions(props) {
       <motion.div
         style={{
           width: boxWidth,
+          height: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
           cursor: "pointer",
@@ -41,6 +42,7 @@ function HouseholdPolicyOptions(props) {
       <motion.div
         style={{
           width: boxWidth,
+          height: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
           cursor: "pointer",
