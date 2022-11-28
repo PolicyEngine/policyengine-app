@@ -104,6 +104,14 @@ function MobileTreeNavigationHolder(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
   let currentNode;
+  useEffect(() => {
+    // On load, scroll the current breadcrumb into view.
+    const breadcrumb = document.getElementById("current-breadcrumb");
+    // Smoothly scroll the breadcrumb into view, with padding.
+    if (breadcrumb) {
+      breadcrumb.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    }
+  }, [focus]);
   if (focus && focus.startsWith("policyOutput")) {
     currentNode = { children: POLICY_OUTPUT_TREE };
   } else {
@@ -127,18 +135,26 @@ function MobileTreeNavigationHolder(props) {
   }
   return <div style={{
       display: "flex",
-      justifyContent: "center", 
-      alignItems: "center", 
-      height: "100%", 
+      flexDirection: "row",
       padding: 15, 
       backgroundColor: style.colors.LIGHT_GRAY,
+      overflowX: "scroll",
+      height: 50,
+      alignItems: "center",
     }}>
       {breadcrumbs.map((breadcrumb, i) => (
         <h5
           key={breadcrumb.name}
+          id={i === breadcrumbs.length - 1 ? "current-breadcrumb" : null}
           style={{
-            margin: 0,
             cursor: "pointer",
+            fontSize: 18,
+            maxHeight: 20,
+            maxWidth: 200,
+            paddingLeft: 10,
+            paddingRight: 10,
+            whiteSpace: "nowrap",
+            margin: 0,
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
@@ -147,7 +163,7 @@ function MobileTreeNavigationHolder(props) {
           }}
         >
           {breadcrumb.label}
-          {i < breadcrumbs.length - 1 && <span style={{color: style.colors.DARK_GRAY, paddingRight: 5}}> &gt; </span>}
+          {i < breadcrumbs.length - 1 && <span style={{color: style.colors.DARK_GRAY, paddingRight: 5, paddingLeft: 10}}> &gt; </span>}
         </h5>
       ))}
     </div>
