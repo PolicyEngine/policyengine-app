@@ -2,12 +2,12 @@ import style from "../style";
 import Spinner from "./Spinner";
 
 export default function LoadingCentered(props) {
-  const { message, size } = props;
+  const { message, size, minHeight } = props;
   return (
     <div
       style={{
         height: "100%",
-        minHeight: "50vh",
+        minHeight: minHeight || "50vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
