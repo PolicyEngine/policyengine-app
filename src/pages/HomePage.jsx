@@ -92,6 +92,7 @@ function WidePanel(props) {
           backgroundColor: backgroundColor,
           height: !mobile && 600,
           marginTop: 50,
+          overflowX: "hidden",
         }}
       >
         <Container style={{ paddingTop: 100, paddingBottom: 100 }}>

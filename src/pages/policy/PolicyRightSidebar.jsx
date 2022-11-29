@@ -21,6 +21,8 @@ function PolicyNamer(props) {
     <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
       <InputField
         placeholder={label}
+        type="text"
+        inputmode="text"
         padding={10}
         width="100%"
         onChange={(name) => {

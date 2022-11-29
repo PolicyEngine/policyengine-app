@@ -2,14 +2,12 @@ import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
 
 export default function InputField(props) {
-  const { placeholder, onChange, padding, width } = props;
+  const { placeholder, onChange, padding, width, type, inputmode } = props;
   const mobile = useMobile();
   const onInput = (e) => {
-    if (e.target.value !== null) {
       let value = e.target.value;
       e.target.value = null;
       onChange(value);
-    }
   }
   return (
       <motion.input
@@ -20,7 +18,7 @@ export default function InputField(props) {
           marginRight: padding || 20,
           width: width || 200,
         }}
-        type="tel" inputmode='decimal'
+        type={type || "tel"} inputmode={inputmode || 'decimal'}
         whileFocus={{ scale: 1.05 }}
         onBlur={onInput}
         onKeyUp={(e) => {
