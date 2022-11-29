@@ -66,9 +66,11 @@ export default function HouseholdRightSidebar(props) {
     metadata
   );
   const household_net_income = metadata.variables.household_net_income;
-  const netIncomeComponents = household_net_income.adds.concat(
+  let netIncomeComponents = household_net_income.adds.concat(
     household_net_income.subtracts
   );
+  netIncomeComponents = netIncomeComponents.filter(component => component !== "household_market_income");
+  netIncomeComponents = ["household_net_income"].concat(netIncomeComponents);
 
   return (
     <>
@@ -82,7 +84,7 @@ export default function HouseholdRightSidebar(props) {
           netIncome,
           0
         )}
-        right={"net income"}
+        right={"market income"}
       />
       <Divider />
       {netIncomeComponents.map((variableId) => {
