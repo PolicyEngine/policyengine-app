@@ -128,7 +128,7 @@ export default function CliffImpact(props) {
   );
 
   const title = `${policyLabel} ${cliff_share_change === 0 || cliff_gap_change === 0
-      ? "does not affect cliffs"
+      ? "doesn't affect cliffs"
       : (cliff_share_change > 0) & (cliff_gap_change > 0)
         ? "makes cliffs more prevalent"
         : (cliff_share_change < 0) & (cliff_gap_change < 0)

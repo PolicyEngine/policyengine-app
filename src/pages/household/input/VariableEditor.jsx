@@ -17,7 +17,7 @@ export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
   const mobile = useMobile();
   const { metadata, household, setHousehold, loading } = props;
-  if (!household.input || loading) {
+  if (!household.input) {
     return <LoadingCentered />;
   }
   let variableName;
@@ -75,6 +75,7 @@ export default function VariableEditor(props) {
               text="Next"
               focus={nextVariable}
               primary
+              disabled={loading}
             />
           )}
       </div>

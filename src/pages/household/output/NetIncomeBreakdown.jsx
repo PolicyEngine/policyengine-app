@@ -10,7 +10,6 @@ function VariableArithmetic(props) {
   const { variableName, household, metadata, inverted, defaultExpanded, childrenOnly } =
     props;
   const value =
-    (inverted ? -1 : 1) *
     getValueFromHousehold(
       variableName,
       null,
@@ -25,7 +24,6 @@ function VariableArithmetic(props) {
   if (hasReform) {
     // Write the result in the form: £y (+£(y-x))
     const reformValue =
-      (inverted ? -1 : 1) *
       getValueFromHousehold(
         variableName,
         null,
@@ -35,9 +33,9 @@ function VariableArithmetic(props) {
       );
     const diff = reformValue - value;
     valueStr = diff > 0 ?
-        `Your ${variable.label} rises by ${formatVariableValue(variable, diff, 0)}` :
+        `Your ${variable.label} rise${variable.label.endsWith('s') ? "" : "s"} by ${formatVariableValue(variable, diff, 0)}` :
         diff < 0 ?
-          `Your ${variable.label} falls by ${formatVariableValue(variable, -diff, 0)}` :
+          `Your ${variable.label} fall${variable.label.endsWith('s') ? "" : "s"} by ${formatVariableValue(variable, -diff, 0)}` :
           `Your ${variable.label} doesn't change`;
       shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =

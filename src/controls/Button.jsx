@@ -1,12 +1,12 @@
 import style from "../style";
 
 export default function Button(props) {
-  const { text, onClick, primary } = props;
+  const { text, onClick, primary, disabled } = props;
 
   return (
     <div
       style={{
-        backgroundColor: primary ? style.colors.BLUE : style.colors.LIGHT_GRAY,
+        backgroundColor: primary && !disabled ? style.colors.BLUE : style.colors.LIGHT_GRAY,
         color: primary ? style.colors.WHITE : style.colors.BLACK,
         padding: 10,
         paddingLeft: 20,
@@ -19,7 +19,7 @@ export default function Button(props) {
         fontSize: 16,
         ...props.style,
       }}
-      onClick={onClick}
+      onClick={disabled ? () => {} : onClick}
     >
       {text}
     </div>

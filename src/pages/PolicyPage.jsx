@@ -228,7 +228,7 @@ function MobileBottomMenu(props) {
           alignItems: "center",
         }}
         >
-          <NavigationButton text="Edit my policy" focus="gov" />
+          <NavigationButton primary text="Edit my policy" focus="gov" />
           <Button
             style={{
               margin: 20,
@@ -246,7 +246,7 @@ function MobileBottomMenu(props) {
           alignItems: "center",
         }}
         >
-          <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
+          <NavigationButton primary text="Calculate economic impact" focus="policyOutput.netIncome" />
           <Button
             style={{
               margin: 20,

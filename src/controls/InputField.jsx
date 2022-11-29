@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
+import style from "../style";
 
 export default function InputField(props) {
   const { placeholder, onChange, padding, width, type, inputmode } = props;
@@ -7,7 +8,9 @@ export default function InputField(props) {
   const onInput = (e) => {
       let value = e.target.value;
       e.target.value = null;
-      onChange(value);
+      if (value !== "") {
+        onChange(value);
+      }
   }
   return (
       <motion.input
@@ -17,6 +20,9 @@ export default function InputField(props) {
           marginLeft: padding || 20,
           marginRight: padding || 20,
           width: width || 200,
+          borderWidth: 1,
+          borderStyle: "solid",
+          borderColor: style.colors.GRAY,
         }}
         type={type || "tel"} inputmode={inputmode || 'decimal'}
         whileFocus={{ scale: 1.05 }}
