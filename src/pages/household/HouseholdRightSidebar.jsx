@@ -110,7 +110,7 @@ export default function HouseholdRightSidebar(props) {
         focus && focus.startsWith("householdOutput") && <NavigationButton primary text="Edit my household" focus="input" />
       }
       {
-        focus && !focus.startsWith("householdOutput") && <NavigationButton primary text="See my household details" focus="householdOutput.netIncome" />
+        focus && !focus.startsWith("householdOutput") && <NavigationButton primary text="See my household details" focus="householdOutput" />
       }
       {
         !hasReform && <NavigationButton text="Create a reform" focus="gov" target={`/${metadata.countryId}/policy`} />
