@@ -58,6 +58,13 @@ export default function HouseholdRightSidebar(props) {
     household.baseline,
     metadata
   );
+  const marketIncome = getValueFromHousehold(
+    "household_market_income",
+    null,
+    null,
+    household.baseline,
+    metadata
+  );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2022",
@@ -81,7 +88,7 @@ export default function HouseholdRightSidebar(props) {
       <Figure
         left={formatVariableValue(
           metadata.variables.household_market_income,
-          netIncome,
+          marketIncome,
           0
         )}
         right={"market income"}
