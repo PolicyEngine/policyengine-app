@@ -8,7 +8,7 @@ export default function NavigationButton(props) {
     const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
 
-    return <Button primary={primary} disabled={disabled} text={text} style={{...style, margin: 20}} onClick={() => {
+    return <Button primary={primary} disabled={disabled} text={text} style={{...style, margin: 10}} onClick={() => {
         let newSearch = copySearchParams(searchParams);
         newSearch.set("focus", focus);
         if (target) {

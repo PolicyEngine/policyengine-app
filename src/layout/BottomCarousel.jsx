@@ -28,24 +28,16 @@ export default function BottomCarousel(props) {
         <div style={{
             flex: 1,
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: "flex-end",
             padding: 10,
         }}>
         {previous.label && (
             <NavigationButton
                 focus={previous.name}
-                text={"← " + previous.label}
-                style={{ width: mobile ? 100 : 200, fontSize: mobile ? 10 : 16 }}
+                text={"←"}
+                style={{ width: mobile ? 25 : 50, fontSize: mobile ? 10 : 16 }}
             />
         )}
-        </div>
-        <div style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
-            padding: 10,
-        }}>
-            {current.label}
         </div>
         <div style={{
             flex: 1,
@@ -56,8 +48,8 @@ export default function BottomCarousel(props) {
             {next.label && (
                 <NavigationButton
                     focus={next.name}
-                    text={next.label + " →"}
-                    style={{width: mobile ? 100 : 200, fontSize: mobile ? 10 : 16 }}
+                    text={"→"}
+                    style={{width: mobile ? 25 : 50, fontSize: mobile ? 10 : 16 }}
                 />
             )}
         </div>

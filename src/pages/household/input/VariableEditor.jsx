@@ -72,7 +72,7 @@ export default function VariableEditor(props) {
         })}
         {nextVariable && (
             <NavigationButton
-              text="Next"
+              text="Enter"
               focus={nextVariable}
               primary
               disabled={loading}

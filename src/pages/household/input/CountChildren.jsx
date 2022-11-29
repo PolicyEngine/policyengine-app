@@ -127,7 +127,7 @@ export default function CountChildren(props) {
       }}
     />
     <NavigationButton
-      text="Next"
+      text="Enter"
       focus="input.income.employment_income"
     />
   </>;

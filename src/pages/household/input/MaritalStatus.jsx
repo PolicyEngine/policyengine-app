@@ -109,7 +109,7 @@ export default function MaritalStatus(props) {
         <>
           {radioButtonComponent}
           <NavigationButton
-            text="Next"
+            text="Enter"
             focus="input.household.children"
           />
         </>

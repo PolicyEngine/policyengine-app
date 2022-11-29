@@ -237,7 +237,7 @@ export default function PolicyRightSidebar(props) {
         !hideButtons && focus && focus.startsWith("policyOutput") && <NavigationButton primary text="Edit my policy" focus="gov" />
       }
       {
-        !hideButtons && focus && !focus.startsWith("policyOutput") && <NavigationButton primary text="Calculate economic impact" focus="policyOutput.netIncome" />
+        !hideButtons && focus && !focus.startsWith("policyOutput") && <NavigationButton primary text="Calculate economic impact" focus="policyOutput" />
       }
       {
         !hideButtons && !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />

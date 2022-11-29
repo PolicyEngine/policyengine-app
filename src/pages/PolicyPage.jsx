@@ -107,6 +107,8 @@ function PolicyLeftSidebar(props) {
 function MobileMiddleBar(props) {
   const { metadata } = props;
   const [searchMode, setSearchMode] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const focus = searchParams.get("focus");
   return <div style={{display: "flex"}}>
     <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
       !searchMode ?
@@ -212,7 +214,6 @@ function MobileBottomMenu(props) {
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
   const [policyDrawerOpen, setPolicyDrawerOpen] = useState(false);
-  console.log(policyDrawerOpen)
   return <div style={{
     padding: 20,
     display: "flex",
@@ -232,7 +233,7 @@ function MobileBottomMenu(props) {
           <NavigationButton primary text="Edit my policy" focus="gov" />
           <Button
             style={{
-              margin: 20,
+              margin: 5,
             }}
             text={<BookOutlined />}
             onClick={() => setPolicyDrawerOpen(true)}
@@ -247,10 +248,10 @@ function MobileBottomMenu(props) {
           alignItems: "center",
         }}
         >
-          <NavigationButton primary text="Calculate economic impact" focus="policyOutput.netIncome" />
+          <NavigationButton primary text="Calculate economic impact" focus="policyOutput" />
           <Button
             style={{
-              margin: 20,
+              margin: 5,
             }}
             text={<BookOutlined />}
             onClick={() => setPolicyDrawerOpen(true)}
