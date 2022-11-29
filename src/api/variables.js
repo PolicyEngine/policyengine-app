@@ -227,13 +227,14 @@ export function formatVariableValue(variable, value, precision = 2) {
       );
     } else if (variable.unit === "/1") {
       // Format as x.1%
-      console.log(value)
       return (Math.round(value * 10000) / 100).toString() + "%";
     } else {
       return value.toLocaleString();
     }
   } catch (e) {
-    console.log(e);
+    if (value === null) {
+      return formatVariableValue(variable, 0);
+    }
     return JSON.stringify(value) + " (error formatting)";
   }
 }

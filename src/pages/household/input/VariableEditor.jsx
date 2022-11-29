@@ -71,7 +71,7 @@ export default function VariableEditor(props) {
             Editing it will override the simulated value.
           </p>
         )}
-        {loading ? <LoadingCentered minHeight="15vh" /> : entityInputs}
+        {entityInputs}
         {nextVariable && (
           <NavigationButton
             text="Enter"
