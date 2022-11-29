@@ -327,7 +327,12 @@ export function getValueFromHousehold(
     }
     return total;
   }
-  const timePeriodValues = household[entityPlural][entityName][variable];
+  let timePeriodValues;
+  try {
+    timePeriodValues = household[entityPlural][entityName][variable];
+  } catch(e) {
+    return null;
+  }
   if (!timePeriod) {
     const possibleTimePeriods = Object.keys(timePeriodValues);
     let total = 0;

@@ -34,6 +34,19 @@ export default function VariableEditor(props) {
   );
   const variableNames = metadata.variablesInOrder;
   const nextVariable = variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
+  const entityInputs = possibleEntities.map((entity) => {
+    return (
+      <HouseholdVariableEntity
+        variable={variable}
+        household={household}
+        entityPlural={entityPlural}
+        entityName={entity}
+        setHousehold={setHousehold}
+        metadata={metadata}
+        key={entity}
+      />
+    );
+  });
   return (
     <>
       <div
@@ -57,19 +70,11 @@ export default function VariableEditor(props) {
             Editing it will override the simulated value.
           </p>
         )}
-        {possibleEntities.map((entity) => {
-          return (
-            <HouseholdVariableEntity
-              variable={variable}
-              household={household}
-              entityPlural={entityPlural}
-              entityName={entity}
-              setHousehold={setHousehold}
-              metadata={metadata}
-              key={entity}
-            />
-          );
-        })}
+        {
+          loading ?
+          <LoadingCentered /> :
+          entityInputs
+        }
         {nextVariable && (
             <NavigationButton
               text="Enter"
@@ -179,13 +184,15 @@ function HouseholdVariableEntityInput(props) {
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        width: "100%",
+        marginBottom: 10,
       }}
     >
-      <h5 style={{ width: "25%", textAlign: "right", margin: 0 }}>
+      <h5 style={{ width: "100%", textAlign: "right", margin: 0 }}>
         {capitalize(entityName)}:{" "}
       </h5>
-      {control}
-      <h5 style={{ margin: 0 }}>in {timePeriod}</h5>
+      <div style={{width: "180%", display: "flex", justifyContent: "center"}}>{control}</div>
+      <h5 style={{ margin: 0, width: "100%" }}>in {timePeriod}</h5>
       
     </div>
     </>
