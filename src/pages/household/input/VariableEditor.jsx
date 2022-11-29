@@ -33,7 +33,21 @@ export default function VariableEditor(props) {
     (entity) => household.input[entityPlural][entity][variable.name]
   );
   const variableNames = metadata.variablesInOrder;
-  const nextVariable = variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
+  const nextVariable =
+    variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
+  const entityInputs = possibleEntities.map((entity) => {
+    return (
+      <HouseholdVariableEntity
+        variable={variable}
+        household={household}
+        entityPlural={entityPlural}
+        entityName={entity}
+        setHousehold={setHousehold}
+        metadata={metadata}
+        key={entity}
+      />
+    );
+  });
   return (
     <>
       <div
@@ -50,34 +64,22 @@ export default function VariableEditor(props) {
           What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
           {variable.label}?
         </h1>
-        <h4 style={{textAlign: "center"}}>{variable.documentation}</h4>
+        <h4 style={{ textAlign: "center" }}>{variable.documentation}</h4>
         {isSimulated && (
-          <p style={{textAlign: "center"}}>
+          <p style={{ textAlign: "center" }}>
             This variable is calculated from other variables you've entered.
             Editing it will override the simulated value.
           </p>
         )}
-        {possibleEntities.map((entity) => {
-          return (
-            <HouseholdVariableEntity
-              variable={variable}
-              household={household}
-              entityPlural={entityPlural}
-              entityName={entity}
-              setHousehold={setHousehold}
-              metadata={metadata}
-              key={entity}
-            />
-          );
-        })}
+        {loading ? <LoadingCentered minHeight="15vh" /> : entityInputs}
         {nextVariable && (
-            <NavigationButton
-              text="Enter"
-              focus={nextVariable}
-              primary
-              disabled={loading}
-            />
-          )}
+          <NavigationButton
+            text="Enter"
+            focus={nextVariable}
+            primary
+            disabled={loading}
+          />
+        )}
       </div>
     </>
   );
@@ -174,20 +176,25 @@ function HouseholdVariableEntityInput(props) {
   // The input field should hide its arrows
   return (
     <>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      }}
-    >
-      <h5 style={{ width: "25%", textAlign: "right", margin: 0 }}>
-        {capitalize(entityName)}:{" "}
-      </h5>
-      {control}
-      <h5 style={{ margin: 0 }}>in {timePeriod}</h5>
-      
-    </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          width: "100%",
+          marginBottom: 10,
+        }}
+      >
+        <h5 style={{ width: "100%", textAlign: "right", margin: 0 }}>
+          {capitalize(entityName)}:{" "}
+        </h5>
+        <div
+          style={{ width: "180%", display: "flex", justifyContent: "center" }}
+        >
+          {control}
+        </div>
+        <h5 style={{ margin: 0, width: "100%" }}>in {timePeriod}</h5>
+      </div>
     </>
   );
 }

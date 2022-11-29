@@ -65,8 +65,11 @@ export default function BudgetaryImpact(props) {
   return (
     <>
       <h2>
-        {policyLabel}{" would "}{budgetaryImpact > 0 ? "raise " : "cost "}
-        {aggregateCurrency(budgetaryImpact, metadata)}{" this year"}
+        {policyLabel}
+        {" would "}
+        {budgetaryImpact > 0 ? "raise " : "cost "}
+        {aggregateCurrency(budgetaryImpact, metadata)}
+        {" this year"}
       </h2>
       <p>
         The chart below shows how this is broken down between tax and benefit

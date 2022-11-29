@@ -6,7 +6,8 @@ export default function Button(props) {
   return (
     <div
       style={{
-        backgroundColor: primary && !disabled ? style.colors.BLUE : style.colors.LIGHT_GRAY,
+        backgroundColor:
+          primary && !disabled ? style.colors.BLUE : style.colors.LIGHT_GRAY,
         color: primary ? style.colors.WHITE : style.colors.BLACK,
         padding: 10,
         paddingLeft: 20,

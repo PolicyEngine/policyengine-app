@@ -64,18 +64,20 @@ export default function PovertyImpact(props) {
     />
   );
 
-  const povertyRateChange = formatVariableValue({ unit: "/1" }, Math.abs(totalPovertyChange));
+  const povertyRateChange = formatVariableValue(
+    { unit: "/1" },
+    Math.abs(totalPovertyChange)
+  );
 
   return (
     <>
       <h2>
-        {policyLabel} {
-          totalPovertyChange > 0 ?
-            `raises the poverty rate by ${povertyRateChange}` : 
-            totalPovertyChange < 0 ?
-            `reduces the poverty rate by ${povertyRateChange}` :
-            "doesn't change the poverty rate"
-        }
+        {policyLabel}{" "}
+        {totalPovertyChange > 0
+          ? `raises the poverty rate by ${povertyRateChange}`
+          : totalPovertyChange < 0
+          ? `reduces the poverty rate by ${povertyRateChange}`
+          : "doesn't change the poverty rate"}
       </h2>
       <p>
         The chart below shows the relative change in the poverty rate for each

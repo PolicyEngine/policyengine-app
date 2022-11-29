@@ -95,7 +95,15 @@ function PolicyItem(props) {
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
   return (
-    <div style={{ paddingTop: 20, paddingLeft: 25, paddingRight: 25, maxHeight: "20vh", overflow: "scroll" }}>
+    <div
+      style={{
+        paddingTop: 20,
+        paddingLeft: 25,
+        paddingRight: 25,
+        maxHeight: "20vh",
+        overflow: "scroll",
+      }}
+    >
       {Object.keys(policy.reform.data).map((parameterName) => (
         <PolicyItem
           key={parameterName}
@@ -104,10 +112,9 @@ function PolicyDisplay(props) {
           reformData={policy.reform.data}
         />
       ))}
-      {
-        Object.keys(policy.reform.data).length === 0 &&
-        <h6 style={{textAlign: "center"}}>Your reform is empty</h6>
-      }
+      {Object.keys(policy.reform.data).length === 0 && (
+        <h6 style={{ textAlign: "center" }}>Your reform is empty</h6>
+      )}
     </div>
   );
 }
@@ -233,18 +240,30 @@ export default function PolicyRightSidebar(props) {
           }}
         />
       </div>
-      {
-        !hideButtons && focus && focus.startsWith("policyOutput") && <NavigationButton primary text="Edit my policy" focus="gov" />
-      }
-      {
-        !hideButtons && focus && !focus.startsWith("policyOutput") && <NavigationButton primary text="Calculate economic impact" focus="policyOutput" />
-      }
-      {
-        !hideButtons && !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />
-      }
-      {
-        !hideButtons && hasReform && <NavigationButton text="Edit my household" focus="input" target={`/${metadata.countryId}/household`} />
-      }
+      {!hideButtons && focus && focus.startsWith("policyOutput") && (
+        <NavigationButton primary text="Edit my policy" focus="gov" />
+      )}
+      {!hideButtons && focus && !focus.startsWith("policyOutput") && (
+        <NavigationButton
+          primary
+          text="Calculate economic impact"
+          focus="policyOutput"
+        />
+      )}
+      {!hideButtons && !hasReform && (
+        <NavigationButton
+          text="Enter my household"
+          focus="input"
+          target={`/${metadata.countryId}/household`}
+        />
+      )}
+      {!hideButtons && hasReform && (
+        <NavigationButton
+          text="Edit my household"
+          focus="input"
+          target={`/${metadata.countryId}/household`}
+        />
+      )}
     </div>
   );
 }

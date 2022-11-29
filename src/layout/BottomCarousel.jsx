@@ -2,18 +2,18 @@ import NavigationButton from "../controls/NavigationButton";
 import style from "../style";
 import useMobile from "./Responsive";
 
-
 export default function BottomCarousel(props) {
-    const { selected, options } = props;
-    const mobile = useMobile();
-    const currentIndex = options.map(option => option.name).indexOf(selected);
-    const current = options[currentIndex] || {};
-    const previous = options[currentIndex - 1] || {};
-    const next = options[currentIndex + 1] || {};
+  const { selected, options } = props;
+  const mobile = useMobile();
+  const currentIndex = options.map((option) => option.name).indexOf(selected);
+  const previous = options[currentIndex - 1] || {};
+  const next = options[currentIndex + 1] || {};
 
-    // Show the previous to the left, the current in the middle, and the next to the right
+  // Show the previous to the left, the current in the middle, and the next to the right
 
-    return <div style={{
+  return (
+    <div
+      style={{
         position: !mobile && "absolute",
         bottom: !mobile && 0,
         display: "flex",
@@ -24,34 +24,37 @@ export default function BottomCarousel(props) {
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
         padding: 5,
-    }}>
-        <div style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-            padding: 10,
-        }}>
-        {previous.label && (
-            <NavigationButton
-                focus={previous.name}
-                text={"←"}
-                style={{ width: mobile ? 25 : 50, fontSize: mobile ? 10 : 16 }}
-            />
+        justifyContent: mobile ? "center" : "right",
+      }}
+    >
+      <div
+        style={{
+          flex: 1,
+          display: "flex",
+          justifyContent: mobile ? "center" : "right",
+          padding: 10,
+        }}
+      >
+        {previous.label ? (
+          <NavigationButton
+            focus={previous.name}
+            text={"←"}
+            style={{ width: 50, fontSize: 16 }}
+          />
+        ) : (
+          <div style={{ width: 50 }} />
         )}
-        </div>
-        <div style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-            padding: 10,
-        }}>
-            {next.label && (
-                <NavigationButton
-                    focus={next.name}
-                    text={"→"}
-                    style={{width: mobile ? 25 : 50, fontSize: mobile ? 10 : 16 }}
-                />
-            )}
-        </div>
+        {}
+        {next.label ? (
+          <NavigationButton
+            focus={next.name}
+            text={"→"}
+            style={{ width: 50, fontSize: 16 }}
+          />
+        ) : (
+          <div style={{ width: 50 }} />
+        )}
+      </div>
     </div>
+  );
 }

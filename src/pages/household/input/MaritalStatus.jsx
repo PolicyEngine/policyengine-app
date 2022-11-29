@@ -87,6 +87,7 @@ export default function MaritalStatus(props) {
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("household", householdId);
+      newSearch.set("focus", "input.household.children");
       setSearchParams(newSearch);
     });
   };
@@ -96,7 +97,7 @@ export default function MaritalStatus(props) {
       labels={["Single", "Married"]}
       defaultValue={household.baseline && getMaritalStatus(household.input)}
       value={value}
-      onChange={status => {
+      onChange={(status) => {
         setMaritalStatus(status);
         setValue(status);
       }}
@@ -108,10 +109,7 @@ export default function MaritalStatus(props) {
       children={
         <>
           {radioButtonComponent}
-          <NavigationButton
-            text="Enter"
-            focus="input.household.children"
-          />
+          <NavigationButton text="Enter" focus="input.household.children" />
         </>
       }
     />

@@ -21,9 +21,7 @@ function MenuItem(props) {
         initial={{ x: 0 }}
         whileHover={{ x: 5 }}
       >
-        {selected === name && (
-          <span style={{ marginRight: 10 }}>&#8594;</span>
-        )}
+        {selected === name && <span style={{ marginRight: 10 }}>&#8594;</span>}
         {label || name.split(".").pop()}
       </motion.h5>
     </motion.div>
@@ -120,9 +118,7 @@ function MenuItemGroup(props) {
         transition={{ duration: 0.25 }}
         style={{ fontSize: 18 }}
       >
-        {selected === name && (
-          <span style={{ marginRight: 10 }}>&#8594;</span>
-        )}
+        {selected === name && <span style={{ marginRight: 10 }}>&#8594;</span>}
         {label || name.split(".").pop()}
       </motion.h5>
       {expandedComponentSpace}

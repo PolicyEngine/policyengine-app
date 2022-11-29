@@ -185,7 +185,7 @@ export function buildVariableTree(variables, variableModules) {
         ],
       },
       ...inputModule.reverse(),
-    ]
+    ],
   };
 }
 
@@ -227,7 +227,8 @@ export function formatVariableValue(variable, value, precision = 2) {
       );
     } else if (variable.unit === "/1") {
       // Format as x.1%
-      return (value * 100).toFixed(1) + "%";
+      console.log(value)
+      return (Math.round(value * 10000) / 100).toString() + "%";
     } else {
       return value.toLocaleString();
     }
@@ -305,7 +306,12 @@ export function getValueFromHousehold(
     console.log("Error getting variable value", variable, e);
   }
   if (!entityName) {
-    const possibleEntities = Object.keys(household[entityPlural]);
+    let possibleEntities;
+    try {
+      possibleEntities = Object.keys(household[entityPlural]);
+    } catch (e) {
+      return null;
+    }
     if (possibleEntities.length === 1) {
       return getValueFromHousehold(
         variable,
@@ -327,7 +333,12 @@ export function getValueFromHousehold(
     }
     return total;
   }
-  const timePeriodValues = household[entityPlural][entityName][variable];
+  let timePeriodValues;
+  try {
+    timePeriodValues = household[entityPlural][entityName][variable];
+  } catch (e) {
+    return null;
+  }
   if (!timePeriod) {
     const possibleTimePeriods = Object.keys(timePeriodValues);
     let total = 0;
