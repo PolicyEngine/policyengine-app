@@ -7,6 +7,7 @@ import { findInTree } from "../api/variables";
 import Button from "../controls/Button";
 import NavigationButton from "../controls/NavigationButton";
 import SearchOptions from "../controls/SearchOptions";
+import BottomCarousel from "../layout/BottomCarousel";
 import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../layout/LoadingCentered";
 import useMobile from "../layout/Responsive";
@@ -345,7 +346,10 @@ export default function PolicyPage(props) {
       children={POLICY_OUTPUT_TREE[0].children}
     />;
   } else if (focus.includes("policyOutput.")) {
-    middle = <PolicyOutput metadata={metadata} policy={policy} />;
+    middle = <>
+      <PolicyOutput metadata={metadata} policy={policy} />
+      {!mobile && <BottomCarousel selected={focus} options={POLICY_OUTPUT_TREE[0].children}/>}
+    </>
   }
 
   if (mobile) {

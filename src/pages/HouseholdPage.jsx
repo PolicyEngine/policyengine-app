@@ -17,6 +17,7 @@ import StackedMenu from "../layout/StackedMenu";
 import NavigationButton from "../controls/NavigationButton";
 import HouseholdIntro from "./household/HouseholdIntro";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import BottomCarousel from "../layout/BottomCarousel";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -186,6 +187,14 @@ function MobileTreeNavigationHolder(props) {
 function MobileMiddleBar(props) {
   const { metadata } = props;
   const [searchMode, setSearchMode] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const focus = searchParams.get("focus");
+  if (focus.startsWith("householdOutput.")) {
+    return <BottomCarousel
+      selected={focus}
+      options={HOUSEHOLD_OUTPUT_TREE[0].children}
+      />
+  }
   return <div style={{display: "flex"}}>
     <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
       !searchMode ?
@@ -279,7 +288,7 @@ function MobileHouseholdPage(props) {
       overflow: "scroll",
       width: "100%",
       padding: 20,
-      height: "50vh",
+      height: "55vh",
     }}>
       {mainContent}
     </div>
@@ -359,11 +368,14 @@ export default function HouseholdPage(props) {
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
     middle = (
-      <HouseholdOutput
-        metadata={metadata}
-        household={household}
-        policy={policy}
-      />
+      <>
+        <HouseholdOutput
+          metadata={metadata}
+          household={household}
+          policy={policy}
+        />
+        {!mobile && <BottomCarousel selected={focus} options={HOUSEHOLD_OUTPUT_TREE[0].children}/>}
+      </>
     );
   } else if (focus === "householdOutput") {
     middle = <FolderPage
