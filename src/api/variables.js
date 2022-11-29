@@ -227,7 +227,8 @@ export function formatVariableValue(variable, value, precision = 2) {
       );
     } else if (variable.unit === "/1") {
       // Format as x.1%
-      return (value * 100).toFixed(1) + "%";
+      console.log(value)
+      return (Math.round(value * 10000) / 100).toString() + "%";
     } else {
       return value.toLocaleString();
     }
