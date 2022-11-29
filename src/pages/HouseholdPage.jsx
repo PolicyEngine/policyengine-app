@@ -189,7 +189,7 @@ function MobileMiddleBar(props) {
   const [searchMode, setSearchMode] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
-  if (focus.startsWith("householdOutput.")) {
+  if (focus && focus.startsWith("householdOutput.")) {
     return <BottomCarousel
       selected={focus}
       options={HOUSEHOLD_OUTPUT_TREE[0].children}
