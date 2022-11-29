@@ -278,7 +278,7 @@ function MobileBottomMenu(props) {
         )}
         {hasReform && (
           <NavigationButton
-            text="Edit my household"
+            text="Calculate my household impact"
             focus="input"
             target={`/${metadata.countryId}/household`}
           />
