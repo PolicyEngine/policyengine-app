@@ -2,7 +2,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import { useSearchParams } from "react-router-dom";
 import { createDefaultHousehold, findInTree, formatVariableValue, getValueFromHousehold } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
 import MaritalStatus from "./household/input/MaritalStatus";
@@ -16,6 +16,7 @@ import FolderPage from "../layout/FolderPage";
 import StackedMenu from "../layout/StackedMenu";
 import NavigationButton from "../controls/NavigationButton";
 import HouseholdIntro from "./household/HouseholdIntro";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 
 const HOUSEHOLD_OUTPUT_TREE = [
   {
@@ -120,6 +121,14 @@ function MobileTreeNavigationHolder(props) {
   } else {
     currentNode = {children: [metadata.variableTree]};
   }
+  useEffect(() => {
+    // On load, scroll the current breadcrumb into view.
+    const breadcrumb = document.getElementById("current-breadcrumb");
+    // Smoothly scroll the breadcrumb into view, with padding.
+    if (breadcrumb) {
+      breadcrumb.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+    }
+  }, [focus]);
   let breadcrumbs = [];
   try {
     let stem = "";
@@ -136,13 +145,30 @@ function MobileTreeNavigationHolder(props) {
   } catch (e) {
     currentNode = null;
   }
-  return <div style={{display: "flex", overflowX: "scroll", justifyContent: "center", alignItems: "center", height: "100%", padding: 15, backgroundColor: style.colors.LIGHT_GRAY}}>
+  return <div 
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        padding: 15, 
+        backgroundColor: style.colors.LIGHT_GRAY,
+        overflowX: "scroll",
+        height: 50,
+        alignItems: "center",
+        width: "100%",
+      }}>
       {breadcrumbs.map((breadcrumb, i) => (
         <h5
           key={breadcrumb.name}
+          id={i === breadcrumbs.length - 1 ? "current-breadcrumb" : null}
           style={{
-            margin: 0,
             cursor: "pointer",
+            fontSize: 18,
+            maxHeight: 20,
+            maxWidth: 200,
+            paddingLeft: 10,
+            paddingRight: 10,
+            whiteSpace: "nowrap",
+            margin: 0,
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
@@ -151,10 +177,39 @@ function MobileTreeNavigationHolder(props) {
           }}
         >
           {breadcrumb.label}
-          {i < breadcrumbs.length - 1 && <span style={{color: style.colors.DARK_GRAY, paddingRight: 5}}> &gt; </span>}
+          {i < breadcrumbs.length - 1 && <span style={{color: style.colors.DARK_GRAY, paddingRight: 5, paddingLeft: 10}}> &gt; </span>}
         </h5>
       ))}
     </div>
+}
+
+function MobileMiddleBar(props) {
+  const { metadata } = props;
+  const [searchMode, setSearchMode] = useState(false);
+  return <div style={{display: "flex"}}>
+    <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
+      !searchMode ?
+        <MobileTreeNavigationHolder metadata={metadata} /> :
+        <VariableSearch metadata={metadata} />
+    }</div>
+    <div style={{width: "15%", backgroundColor: style.colors.LIGHT_GRAY, display: "flex", justifyContent: "center", alignItems: "center"}}>
+    {
+        !searchMode ?
+          <SearchOutlined style={{
+            fontSize: 20,
+            color: style.colors.BLACK,
+          }} 
+          onClick={() => setSearchMode(!searchMode)}
+          /> :
+          <CloseOutlined style={{
+            fontSize: 20,
+            color: style.colors.BLACK,
+          }}
+          onClick={() => setSearchMode(!searchMode)}
+          />
+    }
+    </div>
+  </div>
 }
 
 function MobileBottomMenu(props) {
@@ -228,7 +283,7 @@ function MobileHouseholdPage(props) {
     }}>
       {mainContent}
     </div>
-    <MobileTreeNavigationHolder title="Your inputs" metadata={metadata}/>
+    <MobileMiddleBar metadata={metadata} />
     { household.input && <MobileBottomMenu metadata={metadata} household={household} /> }
   </>
 }

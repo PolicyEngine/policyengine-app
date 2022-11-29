@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { BookOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { Drawer } from "antd";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 import { findInTree } from "../api/variables";
+import Button from "../controls/Button";
 import NavigationButton from "../controls/NavigationButton";
 import SearchOptions from "../controls/SearchOptions";
 import FolderPage from "../layout/FolderPage";
@@ -98,6 +101,37 @@ function PolicyLeftSidebar(props) {
   );
 }
 
+
+
+function MobileMiddleBar(props) {
+  const { metadata } = props;
+  const [searchMode, setSearchMode] = useState(false);
+  return <div style={{display: "flex"}}>
+    <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
+      !searchMode ?
+        <MobileTreeNavigationHolder metadata={metadata} /> :
+        <ParameterSearch metadata={metadata} />
+    }</div>
+    <div style={{width: "15%", backgroundColor: style.colors.LIGHT_GRAY, display: "flex", justifyContent: "center", alignItems: "center"}}>
+    {
+        !searchMode ?
+          <SearchOutlined style={{
+            fontSize: 20,
+            color: style.colors.BLACK,
+          }} 
+          onClick={() => setSearchMode(!searchMode)}
+          /> :
+          <CloseOutlined style={{
+            fontSize: 20,
+            color: style.colors.BLACK,
+          }}
+          onClick={() => setSearchMode(!searchMode)}
+          />
+    }
+    </div>
+  </div>
+}
+
 function MobileTreeNavigationHolder(props) {
   const { metadata } = props;
   // Try to find the current focus in the tree.
@@ -141,6 +175,7 @@ function MobileTreeNavigationHolder(props) {
       overflowX: "scroll",
       height: 50,
       alignItems: "center",
+      width: "100%",
     }}>
       {breadcrumbs.map((breadcrumb, i) => (
         <h5
@@ -171,10 +206,12 @@ function MobileTreeNavigationHolder(props) {
 
 
 function MobileBottomMenu(props) {
-  const { metadata } = props;
+  const { metadata, policy } = props;
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
+  const [policyDrawerOpen, setPolicyDrawerOpen] = useState(false);
+  console.log(policyDrawerOpen)
   return <div style={{
     padding: 20,
     display: "flex",
@@ -184,10 +221,40 @@ function MobileBottomMenu(props) {
   }}>
     <div>
     {
-      focus && focus.startsWith("policyOutput") && <NavigationButton text="Edit my policy" focus="gov" />
+      focus && focus.startsWith("policyOutput") && 
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        >
+          <NavigationButton text="Edit my policy" focus="gov" />
+          <Button
+            style={{
+              margin: 20,
+            }}
+            text={<BookOutlined />}
+            onClick={() => setPolicyDrawerOpen(true)}
+          />
+        </div>
     }
     {
-      focus && !focus.startsWith("policyOutput") && <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
+      focus && !focus.startsWith("policyOutput") && hasReform && 
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        >
+          <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
+          <Button
+            style={{
+              margin: 20,
+            }}
+            text={<BookOutlined />}
+            onClick={() => setPolicyDrawerOpen(true)}
+          />
+        </div>
     }
     {
       !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />
@@ -195,13 +262,25 @@ function MobileBottomMenu(props) {
     {
       hasReform && <NavigationButton text="Edit my household" focus="input" target={`/${metadata.countryId}/household`} />
     }
-
+    <Drawer
+      open={policyDrawerOpen}
+      onClose={() => setPolicyDrawerOpen(false)}
+      placement="bottom"
+      title="Your policy"
+      height="60vh"
+      >
+        <PolicyRightSidebar
+          metadata={metadata}
+          policy={policy}
+          hideButtons
+        />
+      </Drawer>
     </div>
   </div>
 }
 
 function MobilePolicyPage(props) {
-  const { mainContent, metadata } = props;
+  const { mainContent, metadata, policy } = props;
   return <>
     <div style={{
       overflow: "scroll",
@@ -211,8 +290,8 @@ function MobilePolicyPage(props) {
     }}>
       {mainContent}
     </div>
-    <MobileTreeNavigationHolder title="Your reform" metadata={metadata}/>
-    <MobileBottomMenu metadata={metadata}/>
+    <MobileMiddleBar metadata={metadata} />
+    <MobileBottomMenu metadata={metadata} policy={policy}/>
   </>
 }
 
@@ -270,7 +349,7 @@ export default function PolicyPage(props) {
   }
 
   if (mobile) {
-    return <MobilePolicyPage mainContent={middle} metadata={metadata} />
+    return <MobilePolicyPage mainContent={middle} metadata={metadata} policy={policy} />
   }
 
   return (

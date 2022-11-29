@@ -1,9 +1,17 @@
 import { motion } from "framer-motion";
+import useMobile from "../layout/Responsive";
 
 export default function InputField(props) {
   const { placeholder, onChange, padding, width } = props;
+  const mobile = useMobile();
+  const onInput = (e) => {
+    if (e.target.value !== null) {
+      let value = e.target.value;
+      e.target.value = null;
+      onChange(value);
+    }
+  }
   return (
-    <form action="" id="form">
       <motion.input
         // On iOS, should show a keyboard with a blue "Go" button
         style={{
@@ -14,23 +22,19 @@ export default function InputField(props) {
         }}
         type="tel" inputmode='decimal'
         whileFocus={{ scale: 1.05 }}
-        onBlur={(e) => {
-          let value = e.target.value;
-          e.target.value = null;
-          onChange(value);
-        }}
+        onBlur={onInput}
         onKeyUp={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
-            e.target.blur();
             let value = e.target.value;
-            e.target.value = null;
             onChange(value);
+            e.target.value = null;
+            if (!mobile) {
+              e.target.blur();
+            }
           }
         }}
         placeholder={placeholder}
-      />
-      <input type="submit" style={{ visibility: "hidden", position: "absolute" }} value="" />
-    </form>
+    />
   );
 }

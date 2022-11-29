@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
+import useMobile from "../../../layout/Responsive";
 
 const { RangePicker } = DatePicker;
 
@@ -62,15 +63,18 @@ export default function ParameterEditor(props) {
             let newSearch = copySearchParams(searchParams);
             newSearch.set("reform", newPolicyId);
             setSearchParams(newSearch);
+            console.log(newSearch);
           });
         }}
       />
     );
   }
+  const mobile = useMobile();
   const editControl = (
     <div
       style={{
         display: "flex",
+        flexDirection: mobile ? "column" : "row",
         justifyContent: "center",
         alignItems: "center",
         paddingTop: 20,
@@ -83,7 +87,7 @@ export default function ParameterEditor(props) {
           setEndDate(dateStrings[1]);
         }}
         separator="→"
-        style={{ padding: 20 }}
+        style={{ padding: 20, marginBottom: 10 }}
       />
       {control}
     </div>

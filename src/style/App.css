@@ -16,3 +16,18 @@ a {
 .ant-switch.ant-switch-checked {
   background-color: #2c6496;
 }
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: 50px;
+}
+
+.ant-select-selection-search {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.ant-select-selection-placeholder {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}

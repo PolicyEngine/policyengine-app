@@ -93,7 +93,7 @@ function PolicyItem(props) {
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
   return (
-    <div style={{ paddingTop: 20, paddingLeft: 25, paddingRight: 25 }}>
+    <div style={{ paddingTop: 20, paddingLeft: 25, paddingRight: 25, maxHeight: "20vh", overflow: "scroll" }}>
       {Object.keys(policy.reform.data).map((parameterName) => (
         <PolicyItem
           key={parameterName}
@@ -111,7 +111,7 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata } = props;
+  const { policy, setPolicy, metadata, hideButtons } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const region = searchParams.get("region");
@@ -232,16 +232,16 @@ export default function PolicyRightSidebar(props) {
         />
       </div>
       {
-        focus && focus.startsWith("policyOutput") && <NavigationButton text="Edit my policy" focus="gov" />
+        !hideButtons && focus && focus.startsWith("policyOutput") && <NavigationButton text="Edit my policy" focus="gov" />
       }
       {
-        focus && !focus.startsWith("policyOutput") && <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
+        !hideButtons && focus && !focus.startsWith("policyOutput") && <NavigationButton text="Calculate economic impact" focus="policyOutput.netIncome" />
       }
       {
-        !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />
+        !hideButtons && !hasReform && <NavigationButton text="Enter my household" focus="input" target={`/${metadata.countryId}/household`} />
       }
       {
-        hasReform && <NavigationButton text="Edit my household" focus="input" target={`/${metadata.countryId}/household`} />
+        !hideButtons && hasReform && <NavigationButton text="Edit my household" focus="input" target={`/${metadata.countryId}/household`} />
       }
     </div>
   );
