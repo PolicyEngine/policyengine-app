@@ -17,42 +17,7 @@ import style from "../style";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-
-const POLICY_OUTPUT_TREE = [
-  {
-    name: "policyOutput",
-    label: "Policy impact",
-    children: [
-      {
-        name: "policyOutput.netIncome",
-        label: "Budgetary impact",
-      },
-      {
-        name: "policyOutput.decileRelativeImpact",
-        label: "Relative impact by decile",
-      },
-      {
-        name: "policyOutput.decileAverageImpact",
-        label: "Average impact by decile",
-      },
-      {
-        name: "policyOutput.intraDecileImpact",
-        label: "Outcomes by income decile",
-      },
-      {
-        name: "policyOutput.povertyImpact",
-        label: "Poverty impact",
-      },
-      {
-        name: "policyOutput.cliffImpact",
-        label: "Cliff impact",
-      },
-      {
-        name: "policyOutput.codeReproducibility",
-        label: "Reproduce in Python",
-      },
-    ],
-  }];
+import POLICY_OUTPUT_TREE from "./policy/output/tree";
 
 function ParameterSearch(props) {
   const { metadata } = props;
@@ -349,7 +314,6 @@ export default function PolicyPage(props) {
   } else if (focus.includes("policyOutput.")) {
     middle = <>
       <PolicyOutput metadata={metadata} policy={policy} />
-      {!mobile && <BottomCarousel selected={focus} options={POLICY_OUTPUT_TREE[0].children}/>}
     </>
   }
 

@@ -12,6 +12,8 @@ import AverageImpactByDecile from "./AverageImpactByDecile";
 import IntraDecileImpact from "./IntraDecileImpact";
 import Reproducibility from "./PolicyReproducibility";
 import CliffImpact from "./CliffImpact";
+import BottomCarousel from "../../../layout/BottomCarousel";
+import POLICY_OUTPUT_TREE from "./tree";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -176,6 +178,11 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
+
+  pane = <>
+    {pane}
+    <BottomCarousel selected={focus} options={POLICY_OUTPUT_TREE[0].children}/>
+  </>
 
   return <ResultsPanel>{pane}</ResultsPanel>;
 }

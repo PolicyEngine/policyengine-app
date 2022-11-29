@@ -1,12 +1,14 @@
 import { SwapOutlined } from "@ant-design/icons";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
+import BottomCarousel from "../../../layout/BottomCarousel";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import PolicySearch from "../../policy/PolicySearch";
 import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
+import HOUSEHOLD_OUTPUT_TREE from "./tree";
 
 export default function HouseholdOutput(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,6 +58,12 @@ export default function HouseholdOutput(props) {
     );
   }
 
+  pane = <>
+    {pane}
+
+    <BottomCarousel selected={focus} options={HOUSEHOLD_OUTPUT_TREE[0].children}/>
+  </>
+
   let comparisonHeader;
   if (reformPolicyId) {
     comparisonHeader = (
@@ -94,10 +102,4 @@ export default function HouseholdOutput(props) {
   }
 
   return <ResultsPanel>{pane}</ResultsPanel>;
-  return (
-    <>
-      {comparisonHeader}
-      <ResultsPanel>{pane}</ResultsPanel>
-    </>
-  );
 }

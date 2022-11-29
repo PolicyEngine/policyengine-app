@@ -7,7 +7,6 @@ export default function BottomCarousel(props) {
     const { selected, options } = props;
     const mobile = useMobile();
     const currentIndex = options.map(option => option.name).indexOf(selected);
-    const current = options[currentIndex] || {};
     const previous = options[currentIndex - 1] || {};
     const next = options[currentIndex + 1] || {};
 
@@ -24,34 +23,33 @@ export default function BottomCarousel(props) {
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
         padding: 5,
+        justifyContent: mobile ? "center" : "right",
     }}>
         <div style={{
             flex: 1,
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: mobile ? "center" : "right",
             padding: 10,
         }}>
-        {previous.label && (
+        {previous.label ? (
             <NavigationButton
                 focus={previous.name}
                 text={"←"}
-                style={{ width: mobile ? 25 : 50, fontSize: mobile ? 10 : 16 }}
+                style={{ width: 50, fontSize: 16 }}
             />
-        )}
-        </div>
-        <div style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "flex-end",
-            padding: 10,
-        }}>
-            {next.label && (
-                <NavigationButton
-                    focus={next.name}
-                    text={"→"}
-                    style={{width: mobile ? 25 : 50, fontSize: mobile ? 10 : 16 }}
-                />
-            )}
+        )
+            : <div style={{ width: 50 }} />}
+        {
+
+        }
+        {next.label ? (
+            <NavigationButton
+                focus={next.name}
+                text={"→"}
+                style={{width: 50, fontSize: 16 }}
+            />
+        )
+            : <div style={{ width: 50 }} />}
         </div>
     </div>
 }

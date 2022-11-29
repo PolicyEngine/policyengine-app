@@ -18,32 +18,7 @@ import NavigationButton from "../controls/NavigationButton";
 import HouseholdIntro from "./household/HouseholdIntro";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import BottomCarousel from "../layout/BottomCarousel";
-
-const HOUSEHOLD_OUTPUT_TREE = [
-  {
-    name: "householdOutput",
-    label: "Your household",
-    children: [
-      {
-        name: "householdOutput.netIncome",
-        label: "Net income",
-      },
-      {
-        name: "householdOutput.earnings",
-        label: "Varying your earnings",
-      },
-      {
-        name: "householdOutput.mtr",
-        label: "Marginal tax rates",
-      },
-      {
-        name: "householdOutput.pythonReproducibility",
-        label: "Reproduce in Python",
-      },
-    ],
-  }
-      
-];
+import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 
 function VariableSearch(props) {
   const { metadata } = props;
@@ -187,14 +162,6 @@ function MobileTreeNavigationHolder(props) {
 function MobileMiddleBar(props) {
   const { metadata } = props;
   const [searchMode, setSearchMode] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const focus = searchParams.get("focus");
-  if (focus && focus.startsWith("householdOutput.")) {
-    return <BottomCarousel
-      selected={focus}
-      options={HOUSEHOLD_OUTPUT_TREE[0].children}
-      />
-  }
   return <div style={{display: "flex"}}>
     <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
       !searchMode ?
@@ -374,7 +341,6 @@ export default function HouseholdPage(props) {
           household={household}
           policy={policy}
         />
-        {!mobile && <BottomCarousel selected={focus} options={HOUSEHOLD_OUTPUT_TREE[0].children}/>}
       </>
     );
   } else if (focus === "householdOutput") {

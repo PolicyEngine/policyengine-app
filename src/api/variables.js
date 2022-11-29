@@ -305,7 +305,12 @@ export function getValueFromHousehold(
     console.log("Error getting variable value", variable, e);
   }
   if (!entityName) {
-    const possibleEntities = Object.keys(household[entityPlural]);
+    let possibleEntities;
+    try {
+      possibleEntities = Object.keys(household[entityPlural]);
+    } catch (e) {
+      return null;
+    }
     if (possibleEntities.length === 1) {
       return getValueFromHousehold(
         variable,
