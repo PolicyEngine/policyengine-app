@@ -51,13 +51,6 @@ export default function HouseholdRightSidebar(props) {
   }
 
   const countPeople = Object.keys(household.input.people).length;
-  const netIncome = getValueFromHousehold(
-    "household_net_income",
-    null,
-    null,
-    household.baseline,
-    metadata
-  );
   const marketIncome = getValueFromHousehold(
     "household_market_income",
     null,
