@@ -7,7 +7,6 @@ import { findInTree } from "../api/variables";
 import Button from "../controls/Button";
 import NavigationButton from "../controls/NavigationButton";
 import SearchOptions from "../controls/SearchOptions";
-import BottomCarousel from "../layout/BottomCarousel";
 import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../layout/LoadingCentered";
 import useMobile from "../layout/Responsive";
@@ -72,8 +71,6 @@ function PolicyLeftSidebar(props) {
 function MobileMiddleBar(props) {
   const { metadata } = props;
   const [searchMode, setSearchMode] = useState(false);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const focus = searchParams.get("focus");
   return <div style={{display: "flex"}}>
     <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
       !searchMode ?

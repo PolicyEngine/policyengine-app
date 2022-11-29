@@ -1,6 +1,5 @@
 import NavigationButton from "../../controls/NavigationButton";
 import CenteredMiddleColumn from "../../layout/CenteredMiddleColumn";
-import ResultsPanel from "../../layout/ResultsPanel";
 
 export default function HouseholdIntro() {
   return (

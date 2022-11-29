@@ -17,7 +17,6 @@ import StackedMenu from "../layout/StackedMenu";
 import NavigationButton from "../controls/NavigationButton";
 import HouseholdIntro from "./household/HouseholdIntro";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import BottomCarousel from "../layout/BottomCarousel";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 
 function VariableSearch(props) {

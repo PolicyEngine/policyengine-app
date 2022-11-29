@@ -1,9 +1,6 @@
-import { SwapOutlined } from "@ant-design/icons";
 import { useSearchParams } from "react-router-dom";
-import { copySearchParams } from "../../../api/call";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import PolicySearch from "../../policy/PolicySearch";
 import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
@@ -11,7 +8,7 @@ import NetIncomeBreakdown from "./NetIncomeBreakdown";
 import HOUSEHOLD_OUTPUT_TREE from "./tree";
 
 export default function HouseholdOutput(props) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const focus = searchParams.get("focus");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
@@ -62,44 +59,7 @@ export default function HouseholdOutput(props) {
     {pane}
 
     <BottomCarousel selected={focus} options={HOUSEHOLD_OUTPUT_TREE[0].children}/>
-  </>
-
-  let comparisonHeader;
-  if (reformPolicyId) {
-    comparisonHeader = (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h4 style={{ margin: 0 }}>Comparing</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="reform" />
-        <h4 style={{ margin: 0 }}>against</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="baseline" />
-        <SwapOutlined
-          style={{
-            fontSize: 15,
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            const newSearch = copySearchParams(searchParams);
-            newSearch.set(
-              "reform",
-              baselinePolicyId || metadata.current_law_id
-            );
-            if (!reformPolicyId) {
-              newSearch.delete("baseline");
-            } else {
-              newSearch.set("baseline", reformPolicyId);
-            }
-            setSearchParams(newSearch);
-          }}
-        />
-      </div>
-    );
-  }
+  </>;
 
   return <ResultsPanel>{pane}</ResultsPanel>;
 }
