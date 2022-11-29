@@ -289,7 +289,7 @@ function MobileHouseholdPage(props) {
 }
 
 export default function HouseholdPage(props) {
-  const { metadata, household, setHousehold, policy } = props;
+  const { metadata, household, setHousehold, policy, loading } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const mobile = useMobile();
 
@@ -328,6 +328,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         household={household}
         setHousehold={setHousehold}
+        loading={loading}
       />
     );
   } else if (Object.keys(metadata.variableModules).includes(focus) || ["input", "input.household"].includes(focus)) {

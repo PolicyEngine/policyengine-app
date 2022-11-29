@@ -16,8 +16,8 @@ import NavigationButton from "../../../controls/NavigationButton";
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
   const mobile = useMobile();
-  const { metadata, household, setHousehold } = props;
-  if (!household.input) {
+  const { metadata, household, setHousehold, loading } = props;
+  if (!household.input || loading) {
     return <LoadingCentered />;
   }
   let variableName;
@@ -32,6 +32,8 @@ export default function VariableEditor(props) {
   const possibleEntities = Object.keys(household.input[entityPlural]).filter(
     (entity) => household.input[entityPlural][entity][variable.name]
   );
+  const variableNames = metadata.variablesInOrder;
+  const nextVariable = variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
   return (
     <>
       <div
@@ -68,6 +70,13 @@ export default function VariableEditor(props) {
             />
           );
         })}
+        {nextVariable && (
+            <NavigationButton
+              text="Next"
+              focus={nextVariable}
+              primary
+            />
+          )}
       </div>
     </>
   );
@@ -162,8 +171,6 @@ function HouseholdVariableEntityInput(props) {
     );
   }
   // The input field should hide its arrows
-  const variableNames = metadata.variablesInOrder;
-  const nextVariable = variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
   return (
     <>
     <div
@@ -180,13 +187,6 @@ function HouseholdVariableEntityInput(props) {
       <h5 style={{ margin: 0 }}>in {timePeriod}</h5>
       
     </div>
-    {nextVariable && (
-        <NavigationButton
-          text="Next"
-          focus={nextVariable}
-          primary
-        />
-      )}
     </>
   );
 }
