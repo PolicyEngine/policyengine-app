@@ -127,14 +127,15 @@ export default function CliffImpact(props) {
     />
   );
 
-  const title = `${policyLabel} ${cliff_share_change === 0 || cliff_gap_change === 0
+  const title = `${policyLabel} ${
+    cliff_share_change === 0 || cliff_gap_change === 0
       ? "doesn't affect cliffs"
       : (cliff_share_change > 0) & (cliff_gap_change > 0)
-        ? "makes cliffs more prevalent"
-        : (cliff_share_change < 0) & (cliff_gap_change < 0)
-          ? "makes cliffs less prevalent"
-          : "has an ambiguous effect on cliffs"
-    }`;
+      ? "makes cliffs more prevalent"
+      : (cliff_share_change < 0) & (cliff_gap_change < 0)
+      ? "makes cliffs less prevalent"
+      : "has an ambiguous effect on cliffs"
+  }`;
 
   return (
     <ResultsPanel

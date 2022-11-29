@@ -1,6 +1,11 @@
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import { useSearchParams } from "react-router-dom";
-import { createDefaultHousehold, findInTree, formatVariableValue, getValueFromHousehold } from "../api/variables";
+import {
+  createDefaultHousehold,
+  findInTree,
+  formatVariableValue,
+  getValueFromHousehold,
+} from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect, useState } from "react";
 import VariableEditor from "./household/input/VariableEditor";
@@ -55,7 +60,9 @@ function HouseholdLeftSidebar(props) {
 
   return (
     <div>
-      <div style={{padding: 10}}><VariableSearch metadata={metadata} /></div>
+      <div style={{ padding: 10 }}>
+        <VariableSearch metadata={metadata} />
+      </div>
       <StackedMenu
         firstTree={metadata.variableTree.children}
         selected={selected}
@@ -94,14 +101,18 @@ function MobileTreeNavigationHolder(props) {
   if (focus && focus.startsWith("householdOutput")) {
     currentNode = { children: HOUSEHOLD_OUTPUT_TREE };
   } else {
-    currentNode = {children: [metadata.variableTree]};
+    currentNode = { children: [metadata.variableTree] };
   }
   useEffect(() => {
     // On load, scroll the current breadcrumb into view.
     const breadcrumb = document.getElementById("current-breadcrumb");
     // Smoothly scroll the breadcrumb into view, with padding.
     if (breadcrumb) {
-      breadcrumb.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+      breadcrumb.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
     }
   }, [focus]);
   let breadcrumbs = [];
@@ -110,7 +121,9 @@ function MobileTreeNavigationHolder(props) {
     for (let name of focus.split(".")) {
       stem += name;
       const fixedStem = stem;
-      currentNode = currentNode.children.find((node) => node.name === fixedStem);
+      currentNode = currentNode.children.find(
+        (node) => node.name === fixedStem
+      );
       breadcrumbs.push({
         name: stem,
         label: currentNode.label,
@@ -120,17 +133,19 @@ function MobileTreeNavigationHolder(props) {
   } catch (e) {
     currentNode = null;
   }
-  return <div 
+  return (
+    <div
       style={{
         display: "flex",
         flexDirection: "row",
-        padding: 15, 
+        padding: 15,
         backgroundColor: style.colors.LIGHT_GRAY,
         overflowX: "scroll",
         height: 50,
         alignItems: "center",
         width: "100%",
-      }}>
+      }}
+    >
       {breadcrumbs.map((breadcrumb, i) => (
         <h5
           key={breadcrumb.name}
@@ -152,39 +167,73 @@ function MobileTreeNavigationHolder(props) {
           }}
         >
           {breadcrumb.label}
-          {i < breadcrumbs.length - 1 && <span style={{color: style.colors.DARK_GRAY, paddingRight: 5, paddingLeft: 10}}> &gt; </span>}
+          {i < breadcrumbs.length - 1 && (
+            <span
+              style={{
+                color: style.colors.DARK_GRAY,
+                paddingRight: 5,
+                paddingLeft: 10,
+              }}
+            >
+              {" "}
+              &gt;{" "}
+            </span>
+          )}
         </h5>
       ))}
     </div>
+  );
 }
 
 function MobileMiddleBar(props) {
   const { metadata } = props;
   const [searchMode, setSearchMode] = useState(false);
-  return <div style={{display: "flex"}}>
-    <div style={{width: "85%", height: 50, display: "flex", justifyContent: "center", alignItems: "center"}}>{
-      !searchMode ?
-        <MobileTreeNavigationHolder metadata={metadata} /> :
-        <VariableSearch metadata={metadata} />
-    }</div>
-    <div style={{width: "15%", backgroundColor: style.colors.LIGHT_GRAY, display: "flex", justifyContent: "center", alignItems: "center"}}>
-    {
-        !searchMode ?
-          <SearchOutlined style={{
-            fontSize: 20,
-            color: style.colors.BLACK,
-          }} 
-          onClick={() => setSearchMode(!searchMode)}
-          /> :
-          <CloseOutlined style={{
-            fontSize: 20,
-            color: style.colors.BLACK,
-          }}
-          onClick={() => setSearchMode(!searchMode)}
+  return (
+    <div style={{ display: "flex" }}>
+      <div
+        style={{
+          width: "85%",
+          height: 50,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {!searchMode ? (
+          <MobileTreeNavigationHolder metadata={metadata} />
+        ) : (
+          <VariableSearch metadata={metadata} />
+        )}
+      </div>
+      <div
+        style={{
+          width: "15%",
+          backgroundColor: style.colors.LIGHT_GRAY,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {!searchMode ? (
+          <SearchOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+            onClick={() => setSearchMode(!searchMode)}
           />
-    }
+        ) : (
+          <CloseOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+            onClick={() => setSearchMode(!searchMode)}
+          />
+        )}
+      </div>
     </div>
-  </div>
+  );
 }
 
 function MobileBottomMenu(props) {
@@ -196,8 +245,8 @@ function MobileBottomMenu(props) {
     getValueFromHousehold(variable, null, null, household.baseline, metadata);
   const getReformValue = (variable) =>
     getValueFromHousehold(variable, null, null, household.reform, metadata);
-    const getValueStr = (variable) =>
-      formatVariableValue(metadata.variables[variable], getValue(variable), 0);
+  const getValueStr = (variable) =>
+    formatVariableValue(metadata.variables[variable], getValue(variable), 0);
   let text;
   if (hasReform) {
     const difference =
@@ -216,30 +265,45 @@ function MobileBottomMenu(props) {
   } else {
     text = `Your net income is ${getValueStr("household_net_income")}`;
   }
-  return <div style={{
-    padding: 20,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "30vh",
-  }}>
-    <div>
-    <h5 style={{marginBottom: 20}}>{text}</h5>
-    {
-      focus && focus.startsWith("householdOutput") && <NavigationButton primary text="Edit my household" focus="input" />
-    }
-    {
-      focus && !focus.startsWith("householdOutput") && <NavigationButton primary text="See my household details" focus="householdOutput" />
-    }
-    {
-      !hasReform && <NavigationButton text="Create a reform" focus="gov" target={`/${metadata.countryId}/policy`} />
-    }
-    {
-      hasReform && <NavigationButton text="Edit my reform" focus="gov" target={`/${metadata.countryId}/policy`} />
-    }
-
+  return (
+    <div
+      style={{
+        padding: 20,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "30vh",
+      }}
+    >
+      <div>
+        <h5 style={{ marginBottom: 20 }}>{text}</h5>
+        {focus && focus.startsWith("householdOutput") && (
+          <NavigationButton primary text="Edit my household" focus="input" />
+        )}
+        {focus && !focus.startsWith("householdOutput") && (
+          <NavigationButton
+            primary
+            text="See my household details"
+            focus="householdOutput"
+          />
+        )}
+        {!hasReform && (
+          <NavigationButton
+            text="Create a reform"
+            focus="gov"
+            target={`/${metadata.countryId}/policy`}
+          />
+        )}
+        {hasReform && (
+          <NavigationButton
+            text="Edit my reform"
+            focus="gov"
+            target={`/${metadata.countryId}/policy`}
+          />
+        )}
+      </div>
     </div>
-  </div>
+  );
 }
 
 function MobileHouseholdPage(props) {
@@ -249,18 +313,24 @@ function MobileHouseholdPage(props) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [focus]);
-  return <>
-    <div style={{
-      overflow: "scroll",
-      width: "100%",
-      padding: 20,
-      height: "55vh",
-    }}>
-      {mainContent}
-    </div>
-    <MobileMiddleBar metadata={metadata} />
-    { household.input && <MobileBottomMenu metadata={metadata} household={household} /> }
-  </>
+  return (
+    <>
+      <div
+        style={{
+          overflow: "scroll",
+          width: "100%",
+          padding: 20,
+          height: "55vh",
+        }}
+      >
+        {mainContent}
+      </div>
+      <MobileMiddleBar metadata={metadata} />
+      {household.input && (
+        <MobileBottomMenu metadata={metadata} household={household} />
+      )}
+    </>
+  );
 }
 
 export default function HouseholdPage(props) {
@@ -296,7 +366,9 @@ export default function HouseholdPage(props) {
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
   } else if (
-    Object.keys(metadata.variables).includes(focus.split(".")[focus.split(".").length - 1])
+    Object.keys(metadata.variables).includes(
+      focus.split(".")[focus.split(".").length - 1]
+    )
   ) {
     middle = (
       <VariableEditor
@@ -306,14 +378,22 @@ export default function HouseholdPage(props) {
         loading={loading}
       />
     );
-  } else if (Object.keys(metadata.variableModules).includes(focus) || ["input", "input.household"].includes(focus)) {
-    const node = findInTree({ children: [metadata.variableTree]}, focus);
-    middle = <FolderPage 
-      label={node.label} 
-      children={node.children} 
-      description={metadata.variableModules[focus] && metadata.variableModules[focus].description}
-    />;
-    } else if (focus === "input.household.maritalStatus") {
+  } else if (
+    Object.keys(metadata.variableModules).includes(focus) ||
+    ["input", "input.household"].includes(focus)
+  ) {
+    const node = findInTree({ children: [metadata.variableTree] }, focus);
+    middle = (
+      <FolderPage
+        label={node.label}
+        children={node.children}
+        description={
+          metadata.variableModules[focus] &&
+          metadata.variableModules[focus].description
+        }
+      />
+    );
+  } else if (focus === "input.household.maritalStatus") {
     middle = (
       <MaritalStatus
         metadata={metadata}
@@ -321,10 +401,9 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
-    } else if (focus === "intro") {
-      middle = <HouseholdIntro />;
-
-    } else if (focus === "input.household.children") {
+  } else if (focus === "intro") {
+    middle = <HouseholdIntro />;
+  } else if (focus === "input.household.children") {
     middle = (
       <CountChildren
         metadata={metadata}
@@ -343,15 +422,23 @@ export default function HouseholdPage(props) {
       </>
     );
   } else if (focus === "householdOutput") {
-    middle = <FolderPage
-      label="Household results"
-      children={HOUSEHOLD_OUTPUT_TREE[0].children}
-    />;
+    middle = (
+      <FolderPage
+        label="Household results"
+        children={HOUSEHOLD_OUTPUT_TREE[0].children}
+      />
+    );
   } else {
     middle = <LoadingCentered />;
   }
   if (mobile) {
-    return <MobileHouseholdPage mainContent={middle} metadata={metadata} household={household} />
+    return (
+      <MobileHouseholdPage
+        mainContent={middle}
+        metadata={metadata}
+        household={household}
+      />
+    );
   }
   return (
     <ThreeColumnPage

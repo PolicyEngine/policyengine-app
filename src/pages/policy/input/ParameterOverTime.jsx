@@ -95,7 +95,7 @@ export default function ParameterOverTime(props) {
             // Position above the plot
             y: 1.1,
             orientation: "h",
-          }
+          },
         }}
         style={{
           width: "100%",

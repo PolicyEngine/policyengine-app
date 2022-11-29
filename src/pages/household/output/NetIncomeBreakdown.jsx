@@ -7,37 +7,46 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
 function VariableArithmetic(props) {
-  const { variableName, household, metadata, inverted, defaultExpanded, childrenOnly } =
-    props;
-  const value =
-    getValueFromHousehold(
-      variableName,
-      null,
-      null,
-      household.baseline,
-      metadata
-    );
+  const {
+    variableName,
+    household,
+    metadata,
+    inverted,
+    defaultExpanded,
+    childrenOnly,
+  } = props;
+  const value = getValueFromHousehold(
+    variableName,
+    null,
+    null,
+    household.baseline,
+    metadata
+  );
   let valueStr;
   let shouldShowVariable;
   const hasReform = household.reform !== null;
   const variable = metadata.variables[variableName];
   if (hasReform) {
     // Write the result in the form: £y (+£(y-x))
-    const reformValue =
-      getValueFromHousehold(
-        variableName,
-        null,
-        null,
-        household.reform,
-        metadata
-      );
+    const reformValue = getValueFromHousehold(
+      variableName,
+      null,
+      null,
+      household.reform,
+      metadata
+    );
     const diff = reformValue - value;
-    valueStr = diff > 0 ?
-        `Your ${variable.label} rise${variable.label.endsWith('s') ? "" : "s"} by ${formatVariableValue(variable, diff, 0)}` :
-        diff < 0 ?
-          `Your ${variable.label} fall${variable.label.endsWith('s') ? "" : "s"} by ${formatVariableValue(variable, -diff, 0)}` :
-          `Your ${variable.label} doesn't change`;
-      shouldShowVariable = (variableName) => {
+    valueStr =
+      diff > 0
+        ? `Your ${variable.label} rise${
+            variable.label.endsWith("s") ? "" : "s"
+          } by ${formatVariableValue(variable, diff, 0)}`
+        : diff < 0
+        ? `Your ${variable.label} fall${
+            variable.label.endsWith("s") ? "" : "s"
+          } by ${formatVariableValue(variable, -diff, 0)}`
+        : `Your ${variable.label} doesn't change`;
+    shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
         getValueFromHousehold(
           variableName,
@@ -57,7 +66,9 @@ function VariableArithmetic(props) {
       return isNonZeroInBaseline || isNonZeroInReform;
     };
   } else {
-    valueStr = `Your ${variable.label} ${variable.label.endsWith("s") ? "are" : "is"} ${formatVariableValue(variable, Math.abs(value), 0)}`;
+    valueStr = `Your ${variable.label} ${
+      variable.label.endsWith("s") ? "are" : "is"
+    } ${formatVariableValue(variable, Math.abs(value), 0)}`;
     shouldShowVariable = (variableName) => {
       return (
         getValueFromHousehold(
@@ -75,39 +86,45 @@ function VariableArithmetic(props) {
   const adds = variable.adds || [];
   const subtracts = variable.subtracts || [];
   const expandable = adds.length + subtracts.length > 0;
-  const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
-    <VariableArithmetic
-      variableName={variable}
-      household={household}
-      metadata={metadata}
-      key={variable}
-      inverted={inverted}
-    />
-  ))
-  const childSubtractNodes = subtracts.filter(shouldShowVariable).map((variable) => (
-    <VariableArithmetic
-      variableName={variable}
-      household={household}
-      metadata={metadata}
-      inverted={!inverted}
-      key={variable}
-    />
-  ))
+  const childAddNodes = adds
+    .filter(shouldShowVariable)
+    .map((variable) => (
+      <VariableArithmetic
+        variableName={variable}
+        household={household}
+        metadata={metadata}
+        key={variable}
+        inverted={inverted}
+      />
+    ));
+  const childSubtractNodes = subtracts
+    .filter(shouldShowVariable)
+    .map((variable) => (
+      <VariableArithmetic
+        variableName={variable}
+        household={household}
+        metadata={metadata}
+        inverted={!inverted}
+        key={variable}
+      />
+    ));
   const childNodes = childAddNodes.concat(childSubtractNodes);
   if (childrenOnly) {
-    return <div
-    style={{
-      margin: 10,
-      marginBottom: 0,
-      padding: 10,
-      paddingBottom: 0,
-      borderLeftWidth: 2,
-      borderLeftStyle: "solid",
-      borderLeftColor: style.colors.DARK_GRAY,
-    }}
-  >
-    {childNodes}
-  </div>
+    return (
+      <div
+        style={{
+          margin: 10,
+          marginBottom: 0,
+          padding: 10,
+          paddingBottom: 0,
+          borderLeftWidth: 2,
+          borderLeftStyle: "solid",
+          borderLeftColor: style.colors.DARK_GRAY,
+        }}
+      >
+        {childNodes}
+      </div>
+    );
   }
   return (
     <div
@@ -125,9 +142,7 @@ function VariableArithmetic(props) {
           }
         }}
       >
-        <h2 style={{display: "flex"}}>
-          {valueStr}
-        </h2>
+        <h2 style={{ display: "flex" }}>{valueStr}</h2>
         {variable.documentation ? <h5>{variable.documentation}</h5> : null}
       </div>
       {expanded && (
@@ -184,7 +199,7 @@ export default function NetIncomeBreakdown(props) {
       title={title}
       description="Here's how we calculated your household's net income. Click on a section to see more details."
     >
-      <div style={{height: 10}} />
+      <div style={{ height: 10 }} />
       <VariableArithmetic
         variableName="household_net_income"
         household={household}

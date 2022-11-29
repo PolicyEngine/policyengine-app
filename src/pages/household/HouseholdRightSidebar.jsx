@@ -47,7 +47,7 @@ export default function HouseholdRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
 
   if (!household.input) {
-    return <></>
+    return <></>;
   }
 
   const countPeople = Object.keys(household.input.people).length;
@@ -106,18 +106,30 @@ export default function HouseholdRightSidebar(props) {
         left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
         right={"marginal tax rate"}
       />
-      {
-        focus && focus.startsWith("householdOutput") && <NavigationButton primary text="Edit my household" focus="input" />
-      }
-      {
-        focus && !focus.startsWith("householdOutput") && <NavigationButton primary text="See my household details" focus="householdOutput" />
-      }
-      {
-        !hasReform && <NavigationButton text="Create a reform" focus="gov" target={`/${metadata.countryId}/policy`} />
-      }
-      {
-        hasReform && <NavigationButton text="Edit my reform" focus="gov" target={`/${metadata.countryId}/policy`} />
-      }
+      {focus && focus.startsWith("householdOutput") && (
+        <NavigationButton primary text="Edit my household" focus="input" />
+      )}
+      {focus && !focus.startsWith("householdOutput") && (
+        <NavigationButton
+          primary
+          text="See my household details"
+          focus="householdOutput"
+        />
+      )}
+      {!hasReform && (
+        <NavigationButton
+          text="Create a reform"
+          focus="gov"
+          target={`/${metadata.countryId}/policy`}
+        />
+      )}
+      {hasReform && (
+        <NavigationButton
+          text="Edit my reform"
+          focus="gov"
+          target={`/${metadata.countryId}/policy`}
+        />
+      )}
     </>
   );
 }

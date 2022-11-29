@@ -55,11 +55,16 @@ export default function HouseholdOutput(props) {
     );
   }
 
-  pane = <>
-    {pane}
+  pane = (
+    <>
+      {pane}
 
-    <BottomCarousel selected={focus} options={HOUSEHOLD_OUTPUT_TREE[0].children}/>
-  </>;
+      <BottomCarousel
+        selected={focus}
+        options={HOUSEHOLD_OUTPUT_TREE[0].children}
+      />
+    </>
+  );
 
   return <ResultsPanel>{pane}</ResultsPanel>;
 }

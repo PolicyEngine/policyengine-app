@@ -116,22 +116,21 @@ export default function CountChildren(props) {
     });
   };
   const [value, setValue] = useState(null);
-  const radioButtonComponent = <>
-    <RadioButton
-      keys={[0, 1, 2, 3, 4, 5]}
-      labels={["None", "1", "2", "3", "4", "5"]}
-      defaultValue={getCountChildren(household.input)}
-      value={value}
-      onChange={children => {
-        setValue(children);
-        setCountChildren(children);
-      }}
-    />
-    <NavigationButton
-      text="Enter"
-      focus="input.income.employment_income"
-    />
-  </>;
+  const radioButtonComponent = (
+    <>
+      <RadioButton
+        keys={[0, 1, 2, 3, 4, 5]}
+        labels={["None", "1", "2", "3", "4", "5"]}
+        defaultValue={getCountChildren(household.input)}
+        value={value}
+        onChange={(children) => {
+          setValue(children);
+          setCountChildren(children);
+        }}
+      />
+      <NavigationButton text="Enter" focus="input.income.employment_income" />
+    </>
+  );
   return (
     <CenteredMiddleColumn
       title={`How many ${

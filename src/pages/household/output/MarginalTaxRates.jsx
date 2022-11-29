@@ -159,7 +159,7 @@ export default function MarginalTaxRates(props) {
               // Position above the plot
               y: 1.1,
               orientation: "h",
-            }
+            },
           }}
           config={{
             displayModeBar: false,
@@ -321,7 +321,7 @@ export default function MarginalTaxRates(props) {
               // Position above the plot
               y: 1.1,
               orientation: "h",
-            }
+            },
           }}
           config={{
             displayModeBar: false,

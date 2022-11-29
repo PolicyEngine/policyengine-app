@@ -36,7 +36,9 @@ export default function RadioButton(props) {
               borderStyle: "solid",
               marginRight: 5,
               borderRadius: 25,
-              borderColor: defaultChecked ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY,
+              borderColor: defaultChecked
+                ? style.colors.BLUE
+                : style.colors.MEDIUM_DARK_GRAY,
             }}
             onClick={() => onChange(key)}
           >

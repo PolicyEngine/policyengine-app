@@ -185,7 +185,7 @@ export function buildVariableTree(variables, variableModules) {
         ],
       },
       ...inputModule.reverse(),
-    ]
+    ],
   };
 }
 
@@ -335,7 +335,7 @@ export function getValueFromHousehold(
   let timePeriodValues;
   try {
     timePeriodValues = household[entityPlural][entityName][variable];
-  } catch(e) {
+  } catch (e) {
     return null;
   }
   if (!timePeriod) {

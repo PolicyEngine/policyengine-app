@@ -151,7 +151,7 @@ export default function EarningsVariation(props) {
               // Position above the plot
               y: 1.1,
               orientation: "h",
-            }
+            },
           }}
           config={{
             displayModeBar: false,
@@ -297,7 +297,7 @@ export default function EarningsVariation(props) {
               // Position above the plot
               y: 1.1,
               orientation: "h",
-            }
+            },
           }}
           config={{
             displayModeBar: false,

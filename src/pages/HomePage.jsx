@@ -12,14 +12,16 @@ function HouseholdPolicyOptions(props) {
   const boxWidth = 300;
 
   return (
-    <div style={{ 
-      paddingTop: 20, 
-      display: "flex",
-      flexDirection: mobile ? "column" : "row",
-      alignItems: "center",
-      paddingLeft: 0,
-      paddingRight: 0,
-    }}>
+    <div
+      style={{
+        paddingTop: 20,
+        display: "flex",
+        flexDirection: mobile ? "column" : "row",
+        alignItems: "center",
+        paddingLeft: 0,
+        paddingRight: 0,
+      }}
+    >
       <motion.div
         style={{
           width: boxWidth,
@@ -141,12 +143,16 @@ export default function HomePage(props) {
           alignItems: !mobile && "center",
         }}
       >
-        <div style={{
-          paddingRight: 0,
-          paddingLeft: 0,
-        }}>
+        <div
+          style={{
+            paddingRight: 0,
+            paddingLeft: 0,
+          }}
+        >
           <h1>We compute the impact of public policy.</h1>
-          <h4>PolicyEngine's free, open-source software turns law into code.</h4>
+          <h4>
+            PolicyEngine's free, open-source software turns law into code.
+          </h4>
         </div>
         <HouseholdPolicyOptions countryId={countryId} />
       </div>

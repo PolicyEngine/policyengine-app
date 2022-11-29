@@ -25,7 +25,7 @@ export function RegionSelector(props) {
 
   return (
     <SearchOptions
-      style={{width: 250, marginRight: 10, marginLeft: 10}}
+      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -43,11 +43,13 @@ export function TimePeriodSelector(props) {
   const options = metadata.economy_options.time_period.map((time_period) => {
     return { value: time_period.name.toString(), label: time_period.label };
   });
-  const [value] = useState((searchParams.get("timePeriod") || "").toString() || options[0].value);
+  const [value] = useState(
+    (searchParams.get("timePeriod") || "").toString() || options[0].value
+  );
 
   return (
     <SearchOptions
-    style={{width: 250, marginRight: 10, marginLeft: 10}}
+      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -179,10 +181,15 @@ export default function PolicyOutput(props) {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
 
-  pane = <>
-    {pane}
-    <BottomCarousel selected={focus} options={POLICY_OUTPUT_TREE[0].children}/>
-  </>
+  pane = (
+    <>
+      {pane}
+      <BottomCarousel
+        selected={focus}
+        options={POLICY_OUTPUT_TREE[0].children}
+      />
+    </>
+  );
 
   return <ResultsPanel>{pane}</ResultsPanel>;
 }
