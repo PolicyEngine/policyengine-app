@@ -111,6 +111,7 @@ export default function CountChildren(props) {
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("household", householdId);
+      newSearch.set("focus", "input.income.employment_income");
       setSearchParams(newSearch);
     });
   };

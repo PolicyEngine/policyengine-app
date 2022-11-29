@@ -87,6 +87,7 @@ export default function MaritalStatus(props) {
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("household", householdId);
+      newSearch.set("focus", "input.household.children");
       setSearchParams(newSearch);
     });
   };
