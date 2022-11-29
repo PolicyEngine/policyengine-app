@@ -82,7 +82,7 @@ export default function HouseholdRightSidebar(props) {
           netIncome,
           0
         )}
-        right={"market income"}
+        right={"net income"}
       />
       <Divider />
       {netIncomeComponents.map((variableId) => {
