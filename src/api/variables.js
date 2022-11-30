@@ -132,7 +132,7 @@ export function buildVariableTree(variables, variableModules) {
     let parentNode = findInTree(tree, variable.moduleName);
     if (!parentNode) {
       // For a given path "x.y.z.a", create the nodes x, x.y and x.y.z if they don't exist.
-      const path = variable.moduleName.split(".");
+      let path = variable.moduleName.split(".");
       let currentNode = tree;
       let cumulativePath = "";
       for (const key of path) {
