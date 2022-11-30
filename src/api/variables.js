@@ -121,6 +121,9 @@ export function buildVariableTree(variables, variableModules) {
 
   let tree = {};
   for (const variable of Object.values(variables)) {
+    if (!variable.moduleName) {
+      continue;
+    }
     const nodeToInsert = {
       name: variable.moduleName + "." + variable.name,
       label: capitalize(variable.label),
