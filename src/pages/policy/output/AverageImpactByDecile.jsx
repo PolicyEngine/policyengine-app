@@ -43,6 +43,7 @@ export default function AverageImpactByDecile(props) {
       }}
       config={{
         displayModeBar: false,
+        responsive: true,
       }}
       style={{
         width: "100%",

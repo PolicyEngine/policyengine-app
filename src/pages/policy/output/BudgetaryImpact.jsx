@@ -55,6 +55,7 @@ export default function BudgetaryImpact(props) {
       }}
       config={{
         displayModeBar: false,
+        responsive: true,
       }}
       style={{
         width: "100%",

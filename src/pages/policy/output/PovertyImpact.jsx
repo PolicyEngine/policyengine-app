@@ -57,6 +57,7 @@ export default function PovertyImpact(props) {
       }}
       config={{
         displayModeBar: false,
+        responsive: true,
       }}
       style={{
         width: "100%",

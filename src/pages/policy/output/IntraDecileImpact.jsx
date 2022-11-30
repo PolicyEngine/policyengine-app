@@ -108,6 +108,7 @@ export default function IntraDecileImpact(props) {
       }}
       config={{
         displayModeBar: false,
+        responsive: true,
       }}
       style={{
         width: "100%",

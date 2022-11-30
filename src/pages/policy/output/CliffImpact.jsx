@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
+import { aggregateCurrency } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -74,9 +75,9 @@ export default function CliffImpact(props) {
 
   // The chart shows two bars: one for the relative change in the cliff share and one for the relative change in the cliff gap.
 
-  const cliff_gap_change =
-    impact.reform.cliff_share / impact.baseline.cliff_share - 1;
   const cliff_share_change =
+    impact.reform.cliff_share / impact.baseline.cliff_share - 1;
+  const cliff_gap_change =
     impact.reform.cliff_gap / impact.baseline.cliff_gap - 1;
 
   const chart = (
@@ -85,6 +86,11 @@ export default function CliffImpact(props) {
         {
           x: ["Cliff rate", "Cliff gap"],
           y: [cliff_share_change, cliff_gap_change],
+          customdata: [
+            `The cliff rate falls from ${Math.round( impact.baseline.cliff_share * 10000 ) / 100}% to ${Math.round( impact.reform.cliff_share * 10000 ) / 100}%`,
+            `The cliff gap falls from ${aggregateCurrency(impact.baseline.cliff_gap, metadata)} to ${aggregateCurrency(impact.reform.cliff_gap, metadata)}`,
+          ],
+          hovertemplate: "%{customdata}<extra></extra>",
           type: "bar",
           marker: {
             color: [
@@ -120,6 +126,7 @@ export default function CliffImpact(props) {
       }}
       config={{
         displayModeBar: false,
+        responsive: true,
       }}
       style={{
         width: "100%",

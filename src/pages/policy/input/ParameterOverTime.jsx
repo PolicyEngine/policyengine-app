@@ -104,6 +104,7 @@ export default function ParameterOverTime(props) {
         }}
         config={{
           displayModeBar: false,
+          responsive: true,
         }}
       />
     </>

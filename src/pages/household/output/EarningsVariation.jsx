@@ -155,6 +155,7 @@ export default function EarningsVariation(props) {
           }}
           config={{
             displayModeBar: false,
+            responsive: true,
           }}
           style={{
             width: "100%",
@@ -301,6 +302,7 @@ export default function EarningsVariation(props) {
           }}
           config={{
             displayModeBar: false,
+            responsive: true,
           }}
           style={{
             width: "100%",
