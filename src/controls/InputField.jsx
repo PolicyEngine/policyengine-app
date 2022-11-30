@@ -32,7 +32,9 @@ export default function InputField(props) {
         if (e.key === "Enter") {
           e.preventDefault();
           let value = e.target.value;
-          onChange(value);
+          if (value !== "") {
+            onChange(value);
+          }
           e.target.value = null;
           if (!mobile) {
             e.target.blur();

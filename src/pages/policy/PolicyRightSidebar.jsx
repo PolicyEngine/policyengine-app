@@ -259,7 +259,7 @@ export default function PolicyRightSidebar(props) {
       )}
       {!hideButtons && hasReform && (
         <NavigationButton
-          text="Edit my household"
+          text="Calculate my household impact"
           focus="input"
           target={`/${metadata.countryId}/household`}
         />

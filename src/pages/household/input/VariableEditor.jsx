@@ -45,6 +45,7 @@ export default function VariableEditor(props) {
         setHousehold={setHousehold}
         metadata={metadata}
         key={entity}
+        isSimulated={isSimulated}
       />
     );
   });
@@ -93,6 +94,7 @@ function HouseholdVariableEntity(props) {
     entityName,
     setHousehold,
     metadata,
+    isSimulated,
   } = props;
   const possibleTimePeriods = Object.keys(
     household.input[entityPlural][entityName][variable.name]
@@ -110,6 +112,7 @@ function HouseholdVariableEntity(props) {
             key={timePeriod}
             setHousehold={setHousehold}
             metadata={metadata}
+            isSimulated={isSimulated}
           />
         );
       })}
@@ -126,9 +129,10 @@ function HouseholdVariableEntityInput(props) {
     entityPlural,
     entityName,
     timePeriod,
+    isSimulated,
   } = props;
   const submitValue = (value) => {
-    let newHousehold = JSON.parse(JSON.stringify(household.input));
+    let newHousehold = household.input;
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = copySearchParams(searchParams);
@@ -141,7 +145,7 @@ function HouseholdVariableEntityInput(props) {
     variable.name,
     timePeriod,
     entityName,
-    household.baseline || household.input,
+    isSimulated ? household.baseline : household.input,
     metadata
   );
   let control;
