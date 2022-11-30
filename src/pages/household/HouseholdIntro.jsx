@@ -1,10 +1,16 @@
-import ResultsPanel from "../../layout/ResultsPanel";
+import NavigationButton from "../../controls/NavigationButton";
+import CenteredMiddleColumn from "../../layout/CenteredMiddleColumn";
 
 export default function HouseholdIntro() {
   return (
-    <ResultsPanel
+    <CenteredMiddleColumn
       title="Enter your household details"
-      description="Select a page from the menu on the left to get started."
-    />
+      description="Tell us about your household to calculate your net income after taxes and benefits."
+    >
+      <NavigationButton
+        text="Enter my household"
+        focus="input.household.maritalStatus"
+      />
+    </CenteredMiddleColumn>
   );
 }

@@ -139,11 +139,18 @@ export default function EarningsVariation(props) {
               tickformat: ",.0f",
             },
             yaxis: {
-              title: "Net income",
+              title: {
+                text: "Net income",
+              },
               ...getPlotlyAxisFormat(
                 metadata.variables.household_net_income.unit
               ),
               tickformat: ",.0f",
+            },
+            legend: {
+              // Position above the plot
+              y: 1.1,
+              orientation: "h",
             },
           }}
           config={{
@@ -156,7 +163,6 @@ export default function EarningsVariation(props) {
       </FadeIn>
     );
   } else if (baselineNetIncome && reformNetIncome) {
-    console.log(baselineNetIncome, reformNetIncome);
     const earningsArray = getValueFromHousehold(
       "employment_income",
       "2022",
@@ -286,6 +292,11 @@ export default function EarningsVariation(props) {
                 0
               ),
               tickformat: (showDelta ? "+" : "") + ",.0f",
+            },
+            legend: {
+              // Position above the plot
+              y: 1.1,
+              orientation: "h",
             },
           }}
           config={{

@@ -17,15 +17,17 @@ a {
   background-color: #2c6496;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: 50px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(90, 90, 90, 0);
+.ant-select-selection-search {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0);
+.ant-select-selection-placeholder {
+  height: 50px;
+  display: flex;
+  align-items: center;
 }

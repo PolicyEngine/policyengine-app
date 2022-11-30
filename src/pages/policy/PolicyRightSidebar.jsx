@@ -1,12 +1,16 @@
+import { SwapOutlined } from "@ant-design/icons";
 import moment from "moment";
+import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../api/call";
 import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
+import NavigationButton from "../../controls/NavigationButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
+import PolicySearch from "./PolicySearch";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -14,9 +18,11 @@ function PolicyNamer(props) {
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
 
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
       <InputField
         placeholder={label}
+        type="text"
+        inputmode="text"
         padding={10}
         width="100%"
         onChange={(name) => {
@@ -89,7 +95,15 @@ function PolicyItem(props) {
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
   return (
-    <div style={{ paddingTop: 20, paddingLeft: 10, paddingRight: 10 }}>
+    <div
+      style={{
+        paddingTop: 20,
+        paddingLeft: 25,
+        paddingRight: 25,
+        maxHeight: "20vh",
+        overflow: "scroll",
+      }}
+    >
       {Object.keys(policy.reform.data).map((parameterName) => (
         <PolicyItem
           key={parameterName}
@@ -98,14 +112,45 @@ function PolicyDisplay(props) {
           reformData={policy.reform.data}
         />
       ))}
+      {Object.keys(policy.reform.data).length === 0 && (
+        <h6 style={{ textAlign: "center" }}>Your reform is empty</h6>
+      )}
     </div>
   );
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata } = props;
-  const [searchParams] = useSearchParams();
+  const { policy, setPolicy, metadata, hideButtons } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const region = searchParams.get("region");
+  const timePeriod = searchParams.get("timePeriod");
+  const reformPolicyId = searchParams.get("reform");
+  const baselinePolicyId = searchParams.get("baseline");
+  const focus = searchParams.get("focus") || "";
+  const hasReform = reformPolicyId !== null;
+  useEffect(() => {
+    if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
+      const defaults = {
+        region: metadata.economy_options.region[0].name,
+        timePeriod: metadata.economy_options.time_period[0].name,
+        baseline: metadata.current_law_id,
+      };
+      let newSearch = copySearchParams(searchParams);
+      // Set missing query parameters to their defaults.
+      newSearch.set("region", searchParams.get("region") || defaults.region);
+      newSearch.set(
+        "timePeriod",
+        searchParams.get("timePeriod") || defaults.timePeriod
+      );
+      newSearch.set(
+        "baseline",
+        searchParams.get("baseline") || defaults.baseline
+      );
+      setSearchParams(newSearch);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
   if (!policy.reform.data) {
     return (
@@ -127,7 +172,7 @@ export default function PolicyRightSidebar(props) {
             for (const [key, value] of searchParams) {
               newSearchParams[key] = value;
             }
-            newSearchParams.focus = "policy";
+            newSearchParams.focus = "gov";
             const newUrl = `/${country}/policy?${new URLSearchParams(
               newSearchParams
             )}`;
@@ -163,24 +208,62 @@ export default function PolicyRightSidebar(props) {
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
       </div>
-      <Button
-        text="See details"
-        style={{ marginTop: 30 }}
-        onClick={() => {
-          // Navigate to /<country>/household, preserving URL parameters
-          const country = metadata.countryId;
-          const newSearchParams = {};
-          for (const [key, value] of searchParams) {
-            newSearchParams[key] = value;
-          }
-          newSearchParams.focus = "policyOutput.netIncome";
-          let url = `/${country}/policy`;
-          if (Object.keys(newSearchParams).length > 0) {
-            url += `?${new URLSearchParams(newSearchParams)}`;
-          }
-          navigate(url);
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "right",
+          alignItems: "center",
+          marginTop: 10,
         }}
-      />
+      >
+        <h6 style={{ margin: 0 }}>against</h6>
+        <PolicySearch metadata={metadata} policy={policy} target="baseline" />
+        <SwapOutlined
+          style={{
+            fontSize: 15,
+            cursor: "pointer",
+            marginRight: 25,
+            marginLeft: 10,
+          }}
+          onClick={() => {
+            const newSearch = copySearchParams(searchParams);
+            newSearch.set(
+              "reform",
+              baselinePolicyId || metadata.current_law_id
+            );
+            if (!reformPolicyId) {
+              newSearch.delete("baseline");
+            } else {
+              newSearch.set("baseline", reformPolicyId);
+            }
+            setSearchParams(newSearch);
+          }}
+        />
+      </div>
+      {!hideButtons && focus && focus.startsWith("policyOutput") && (
+        <NavigationButton primary text="Edit my policy" focus="gov" />
+      )}
+      {!hideButtons && focus && !focus.startsWith("policyOutput") && (
+        <NavigationButton
+          primary
+          text="Calculate economic impact"
+          focus="policyOutput"
+        />
+      )}
+      {!hideButtons && !hasReform && (
+        <NavigationButton
+          text="Enter my household"
+          focus="input"
+          target={`/${metadata.countryId}/household`}
+        />
+      )}
+      {!hideButtons && hasReform && (
+        <NavigationButton
+          text="Calculate my household impact"
+          focus="input"
+          target={`/${metadata.countryId}/household`}
+        />
+      )}
     </div>
   );
 }

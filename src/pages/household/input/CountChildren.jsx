@@ -7,6 +7,8 @@ import {
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
+import { useState } from "react";
+import NavigationButton from "../../../controls/NavigationButton";
 
 function getUKCountChildren(situation) {
   return Object.values(situation.people).filter(
@@ -109,16 +111,25 @@ export default function CountChildren(props) {
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("household", householdId);
+      newSearch.set("focus", "input.income.employment_income");
       setSearchParams(newSearch);
     });
   };
+  const [value, setValue] = useState(null);
   const radioButtonComponent = (
-    <RadioButton
-      keys={[0, 1, 2, 3, 4, 5]}
-      labels={["None", "1", "2", "3", "4", "5"]}
-      value={getCountChildren(household.input)}
-      onChange={setCountChildren}
-    />
+    <>
+      <RadioButton
+        keys={[0, 1, 2, 3, 4, 5]}
+        labels={["None", "1", "2", "3", "4", "5"]}
+        defaultValue={getCountChildren(household.input)}
+        value={value}
+        onChange={(children) => {
+          setValue(children);
+          setCountChildren(children);
+        }}
+      />
+      <NavigationButton text="Enter" focus="input.income.employment_income" />
+    </>
   );
   return (
     <CenteredMiddleColumn

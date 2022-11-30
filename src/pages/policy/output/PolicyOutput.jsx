@@ -5,15 +5,15 @@ import SearchOptions from "../../../controls/SearchOptions";
 import ErrorPage from "../../../layout/Error";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import PolicySearch from "../PolicySearch";
 import BudgetaryImpact from "./BudgetaryImpact";
 import PovertyImpact from "./PovertyImpact";
 import RelativeImpactByDecile from "./RelativeImpactByDecile";
 import AverageImpactByDecile from "./AverageImpactByDecile";
-import { SwapOutlined } from "@ant-design/icons";
 import IntraDecileImpact from "./IntraDecileImpact";
 import Reproducibility from "./PolicyReproducibility";
 import CliffImpact from "./CliffImpact";
+import BottomCarousel from "../../../layout/BottomCarousel";
+import POLICY_OUTPUT_TREE from "./tree";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -25,6 +25,7 @@ export function RegionSelector(props) {
 
   return (
     <SearchOptions
+      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -40,12 +41,15 @@ export function TimePeriodSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = metadata.economy_options.time_period.map((time_period) => {
-    return { value: time_period.name, label: time_period.label };
+    return { value: time_period.name.toString(), label: time_period.label };
   });
-  const [value] = useState(searchParams.get("timePeriod") || options[0].value);
+  const [value] = useState(
+    (searchParams.get("timePeriod") || "").toString() || options[0].value
+  );
 
   return (
     <SearchOptions
+      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -177,41 +181,15 @@ export default function PolicyOutput(props) {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
 
-  return <ResultsPanel>{pane}</ResultsPanel>;
-  return (
+  pane = (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <h4 style={{ margin: 0 }}>Comparing</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="reform" />
-        <h4 style={{ margin: 0 }}>against</h4>
-        <PolicySearch metadata={metadata} policy={policy} target="baseline" />
-        <SwapOutlined
-          style={{
-            fontSize: 15,
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            const newSearch = copySearchParams(searchParams);
-            newSearch.set(
-              "reform",
-              baselinePolicyId || metadata.current_law_id
-            );
-            if (!reformPolicyId) {
-              newSearch.delete("baseline");
-            } else {
-              newSearch.set("baseline", reformPolicyId);
-            }
-            setSearchParams(newSearch);
-          }}
-        />
-      </div>
-      <ResultsPanel>{pane}</ResultsPanel>
+      {pane}
+      <BottomCarousel
+        selected={focus}
+        options={POLICY_OUTPUT_TREE[0].children}
+      />
     </>
   );
+
+  return <ResultsPanel>{pane}</ResultsPanel>;
 }

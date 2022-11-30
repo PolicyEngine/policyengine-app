@@ -1,54 +1,22 @@
-import { useEffect } from "react";
+import { BookOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { Drawer } from "antd";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
+import { findInTree } from "../api/variables";
+import Button from "../controls/Button";
+import NavigationButton from "../controls/NavigationButton";
 import SearchOptions from "../controls/SearchOptions";
-import BiPanel from "../layout/BiPanel";
-import Divider from "../layout/Divider";
+import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../layout/LoadingCentered";
-import Menu from "../layout/Menu";
-import ResultsPanel from "../layout/ResultsPanel";
+import useMobile from "../layout/Responsive";
+import StackedMenu from "../layout/StackedMenu";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
-import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
+import style from "../style";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-
-const POLICY_OUTPUT_TREE = [
-  {
-    name: "policyOutput",
-    label: "Results",
-    children: [
-      {
-        name: "policyOutput.netIncome",
-        label: "Budgetary impact",
-      },
-      {
-        name: "policyOutput.decileRelativeImpact",
-        label: "Relative impact by decile",
-      },
-      {
-        name: "policyOutput.decileAverageImpact",
-        label: "Average impact by decile",
-      },
-      {
-        name: "policyOutput.intraDecileImpact",
-        label: "Outcomes by income decile",
-      },
-      {
-        name: "policyOutput.povertyImpact",
-        label: "Poverty impact",
-      },
-      {
-        name: "policyOutput.cliffImpact",
-        label: "Cliff impact",
-      },
-      {
-        name: "policyOutput.codeReproducibility",
-        label: "Reproduce in Python",
-      },
-    ],
-  },
-];
+import POLICY_OUTPUT_TREE from "./policy/output/tree";
 
 function ParameterSearch(props) {
   const { metadata } = props;
@@ -78,73 +46,280 @@ function ParameterSearch(props) {
 function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const tree = metadata.parameterTree;
+  const selected = searchParams.get("focus") || "";
+  const onSelect = (name) => {
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("focus", name);
+    setSearchParams(newSearch);
+  };
   // The menu, then the search bar anchored to the bottom
   return (
-    <BiPanel
-      left={
-        <>
-          <div
-            style={{
-              overflow: "scroll",
-              height: "80%",
-            }}
-          >
-            <Menu
-              tree={tree}
-              selected={searchParams.get("focus")}
-              onSelect={(focus) => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("focus", focus);
-                setSearchParams(newSearch);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              bottom: 20,
-              width: "calc(20% - 40px)",
-              zIndex: 100,
-            }}
-          >
-            <Divider />
-            <ParameterSearch metadata={metadata} />
-          </div>
-        </>
-      }
-      leftTitle="Parameters"
-      right={
-        <Menu
-          tree={POLICY_OUTPUT_TREE}
-          selected={searchParams.get("focus")}
-          onSelect={(focus) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", focus);
-            setSearchParams(newSearch);
-          }}
-        />
-      }
-      rightTitle="Impact"
-      leftNavigatedSelected={
-        !(searchParams.get("focus") || "").includes("policyOutput.")
-      }
-    />
+    <div>
+      <div style={{ padding: 10 }}>
+        <ParameterSearch metadata={metadata} />
+      </div>
+      <StackedMenu
+        firstTree={metadata.parameterTree.children}
+        selected={selected}
+        onSelect={onSelect}
+        secondTree={POLICY_OUTPUT_TREE[0].children}
+      />
+    </div>
   );
 }
 
-function HelpPage() {
+function MobileMiddleBar(props) {
+  const { metadata } = props;
+  const [searchMode, setSearchMode] = useState(false);
   return (
-    <ResultsPanel
-      title="Create a new policy"
-      description="Create a new policy by selecting a parameter from the left menu and changing its value."
-    />
+    <div style={{ display: "flex" }}>
+      <div
+        style={{
+          width: "85%",
+          height: 50,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {!searchMode ? (
+          <MobileTreeNavigationHolder metadata={metadata} />
+        ) : (
+          <ParameterSearch metadata={metadata} />
+        )}
+      </div>
+      <div
+        style={{
+          width: "15%",
+          backgroundColor: style.colors.LIGHT_GRAY,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {!searchMode ? (
+          <SearchOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+            onClick={() => setSearchMode(!searchMode)}
+          />
+        ) : (
+          <CloseOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+            onClick={() => setSearchMode(!searchMode)}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MobileTreeNavigationHolder(props) {
+  const { metadata } = props;
+  // Try to find the current focus in the tree.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const focus = searchParams.get("focus");
+  let currentNode;
+  useEffect(() => {
+    // On load, scroll the current breadcrumb into view.
+    const breadcrumb = document.getElementById("current-breadcrumb");
+    // Smoothly scroll the breadcrumb into view, with padding.
+    if (breadcrumb) {
+      breadcrumb.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
+  }, [focus]);
+  if (focus && focus.startsWith("policyOutput")) {
+    currentNode = { children: POLICY_OUTPUT_TREE };
+  } else {
+    currentNode = { children: [metadata.parameterTree] };
+  }
+  let breadcrumbs = [];
+  try {
+    let stem = "";
+    for (let name of focus.split(".")) {
+      stem += name;
+      const fixedStem = stem;
+      currentNode = currentNode.children.find(
+        (node) => node.name === fixedStem
+      );
+      breadcrumbs.push({
+        name: stem,
+        label: currentNode.label,
+      });
+      stem += ".";
+    }
+  } catch (e) {
+    currentNode = null;
+  }
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        padding: 15,
+        backgroundColor: style.colors.LIGHT_GRAY,
+        overflowX: "scroll",
+        height: 50,
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      {breadcrumbs.map((breadcrumb, i) => (
+        <h5
+          key={breadcrumb.name}
+          id={i === breadcrumbs.length - 1 ? "current-breadcrumb" : null}
+          style={{
+            cursor: "pointer",
+            fontSize: 18,
+            maxHeight: 20,
+            maxWidth: 200,
+            paddingLeft: 10,
+            paddingRight: 10,
+            whiteSpace: "nowrap",
+            margin: 0,
+          }}
+          onClick={() => {
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", breadcrumb.name);
+            setSearchParams(newSearch);
+          }}
+        >
+          {breadcrumb.label}
+          {i < breadcrumbs.length - 1 && (
+            <span
+              style={{
+                color: style.colors.DARK_GRAY,
+                paddingRight: 5,
+                paddingLeft: 10,
+              }}
+            >
+              {" "}
+              &gt;{" "}
+            </span>
+          )}
+        </h5>
+      ))}
+    </div>
+  );
+}
+
+function MobileBottomMenu(props) {
+  const { metadata, policy } = props;
+  const [searchParams] = useSearchParams();
+  const hasReform = searchParams.get("reform") !== null;
+  const focus = searchParams.get("focus") || "";
+  const [policyDrawerOpen, setPolicyDrawerOpen] = useState(false);
+  return (
+    <div
+      style={{
+        padding: 20,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "20vh",
+      }}
+    >
+      <div>
+        {focus && focus.startsWith("policyOutput") && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <NavigationButton primary text="Edit my policy" focus="gov" />
+            <Button
+              style={{
+                margin: 5,
+              }}
+              text={<BookOutlined />}
+              onClick={() => setPolicyDrawerOpen(true)}
+            />
+          </div>
+        )}
+        {focus && !focus.startsWith("policyOutput") && hasReform && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <NavigationButton
+              primary
+              text="Calculate economic impact"
+              focus="policyOutput"
+            />
+            <Button
+              style={{
+                margin: 5,
+              }}
+              text={<BookOutlined />}
+              onClick={() => setPolicyDrawerOpen(true)}
+            />
+          </div>
+        )}
+        {!hasReform && (
+          <NavigationButton
+            text="Enter my household"
+            focus="input"
+            target={`/${metadata.countryId}/household`}
+          />
+        )}
+        {hasReform && (
+          <NavigationButton
+            text="Calculate my household impact"
+            focus="input"
+            target={`/${metadata.countryId}/household`}
+          />
+        )}
+        <Drawer
+          open={policyDrawerOpen}
+          onClose={() => setPolicyDrawerOpen(false)}
+          placement="bottom"
+          title="Your policy"
+          height="60vh"
+        >
+          <PolicyRightSidebar metadata={metadata} policy={policy} hideButtons />
+        </Drawer>
+      </div>
+    </div>
+  );
+}
+
+function MobilePolicyPage(props) {
+  const { mainContent, metadata, policy } = props;
+  return (
+    <>
+      <div
+        style={{
+          overflow: "scroll",
+          width: "100%",
+          padding: 20,
+          height: "60vh",
+        }}
+      >
+        {mainContent}
+      </div>
+      <MobileMiddleBar metadata={metadata} />
+      <MobileBottomMenu metadata={metadata} policy={policy} />
+    </>
   );
 }
 
 export default function PolicyPage(props) {
-  const { metadata, policy, setPolicy, household } = props;
+  const { metadata, policy, setPolicy } = props;
+  const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
@@ -152,7 +327,7 @@ export default function PolicyPage(props) {
   useEffect(() => {
     if (!focus) {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", "policy");
+      newSearch.set("focus", "gov");
       setSearchParams(newSearch);
     }
   });
@@ -171,9 +346,10 @@ export default function PolicyPage(props) {
 
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
-  } else if (focus === "policy") {
-    middle = <HelpPage />;
-  } else if (Object.keys(metadata.parameters).includes(focus)) {
+  } else if (
+    Object.keys(metadata.parameters).includes(focus) &&
+    metadata.parameters[focus].type === "parameter"
+  ) {
     middle = (
       <ParameterEditor
         parameterName={focus}
@@ -182,8 +358,32 @@ export default function PolicyPage(props) {
         setPolicy={setPolicy}
       />
     );
+  } else if (Object.keys(metadata.parameters).includes(focus)) {
+    const node = findInTree({ children: [metadata.parameterTree] }, focus);
+    middle = <FolderPage label={node.label} children={node.children} />;
+  } else if (focus === "policyOutput") {
+    middle = (
+      <FolderPage
+        label="Policy impact"
+        children={POLICY_OUTPUT_TREE[0].children}
+      />
+    );
   } else if (focus.includes("policyOutput.")) {
-    middle = <PolicyOutput metadata={metadata} policy={policy} />;
+    middle = (
+      <>
+        <PolicyOutput metadata={metadata} policy={policy} />
+      </>
+    );
+  }
+
+  if (mobile) {
+    return (
+      <MobilePolicyPage
+        mainContent={middle}
+        metadata={metadata}
+        policy={policy}
+      />
+    );
   }
 
   return (
@@ -191,20 +391,10 @@ export default function PolicyPage(props) {
       left={<PolicyLeftSidebar metadata={metadata} />}
       middle={middle}
       right={
-        <BiPanel
-          leftTitle="Household"
-          rightTitle="Policy"
-          left={
-            <HouseholdRightSidebar metadata={metadata} household={household} />
-          }
-          right={
-            <PolicyRightSidebar
-              metadata={metadata}
-              policy={policy}
-              setPolicy={setPolicy}
-            />
-          }
-          leftNavigatedSelected={false}
+        <PolicyRightSidebar
+          metadata={metadata}
+          policy={policy}
+          setPolicy={setPolicy}
         />
       }
     />

@@ -1,52 +1,28 @@
 import ThreeColumnPage from "../layout/ThreeColumnPage";
-import Menu from "../layout/Menu";
 import { useSearchParams } from "react-router-dom";
-import { createDefaultHousehold } from "../api/variables";
+import {
+  createDefaultHousehold,
+  findInTree,
+  formatVariableValue,
+  getValueFromHousehold,
+} from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect, useState } from "react";
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
 import MaritalStatus from "./household/input/MaritalStatus";
 import CountChildren from "./household/input/CountChildren";
-import BiPanel from "../layout/BiPanel";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
-import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-import HouseholdIntro from "./household/HouseholdIntro";
 import HouseholdOutput from "./household/output/HouseholdOutput";
 import SearchOptions from "../controls/SearchOptions";
-import Divider from "../layout/Divider";
 import useMobile from "../layout/Responsive";
-import { HEADER_HEIGHT } from "../style/spacing";
-import { AnimatePresence, motion } from "framer-motion";
-import useWindowHeight from "../layout/WindowHeight";
-import Button from "../controls/Button";
 import style from "../style";
-import { CaretDownOutlined, CaretUpOutlined } from "@ant-design/icons";
-
-const HOUSEHOLD_OUTPUT_TREE = [
-  {
-    name: "householdOutput",
-    label: "Results",
-    children: [
-      {
-        name: "householdOutput.netIncome",
-        label: "Net income",
-      },
-      {
-        name: "householdOutput.earnings",
-        label: "Varying your earnings",
-      },
-      {
-        name: "householdOutput.mtr",
-        label: "Marginal tax rates",
-      },
-      {
-        name: "householdOutput.pythonReproducibility",
-        label: "Reproduce in Python",
-      },
-    ],
-  },
-];
+import FolderPage from "../layout/FolderPage";
+import StackedMenu from "../layout/StackedMenu";
+import NavigationButton from "../controls/NavigationButton";
+import HouseholdIntro from "./household/HouseholdIntro";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 
 function VariableSearch(props) {
   const { metadata } = props;
@@ -75,57 +51,25 @@ function VariableSearch(props) {
 function HouseholdLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
+  const selected = searchParams.get("focus") || "";
+  const onSelect = (name) => {
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("focus", name);
+    setSearchParams(newSearch);
+  };
 
   return (
-    <BiPanel
-      left={
-        <>
-          <div
-            style={{
-              overflow: "scroll",
-              height: "80%",
-            }}
-          >
-            <Menu
-              tree={metadata.variableTree}
-              selected={searchParams.get("focus") || ""}
-              onSelect={(focus) => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("focus", focus);
-                setSearchParams(newSearch);
-              }}
-            />
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              bottom: 20,
-              width: "calc(20% - 40px)",
-              zIndex: 100,
-            }}
-          >
-            <Divider />
-            <VariableSearch metadata={metadata} />
-          </div>
-        </>
-      }
-      right={
-        <Menu
-          tree={HOUSEHOLD_OUTPUT_TREE}
-          selected={searchParams.get("focus") || ""}
-          onSelect={(focus) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", focus);
-            setSearchParams(newSearch);
-          }}
-        />
-      }
-      leftTitle="Inputs"
-      rightTitle="Outputs"
-      leftNavigatedSelected={
-        !(searchParams.get("focus") || "").startsWith("householdOutput")
-      }
-    />
+    <div>
+      <div style={{ padding: 10 }}>
+        <VariableSearch metadata={metadata} />
+      </div>
+      <StackedMenu
+        firstTree={metadata.variableTree.children}
+        selected={selected}
+        onSelect={onSelect}
+        secondTree={HOUSEHOLD_OUTPUT_TREE[0].children}
+      />
+    </div>
   );
 }
 
@@ -136,7 +80,6 @@ export function getDefaultHouseholdId(metadata) {
     metadata.variables,
     metadata.entities
   );
-  console.log(defaultHousehold);
   return countryApiCall(
     metadata.countryId,
     "/household",
@@ -149,177 +92,249 @@ export function getDefaultHouseholdId(metadata) {
     });
 }
 
-function MobileTreeNavigationLayer(props) {
-  const { subtree, onExpand } = props;
-  return <div
-    style={{
-      display: "flex",
-      overflowX: "scroll",
-    }}
-  >
-    {Object.values(subtree).map((node) => (
-      <div
-        key={node.name}
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          height: 100,
-          minWidth: 100,
-          maxWidth: 100,
-          backgroundColor: style.colors.DARK_GRAY,
-          margin: 10,
-          borderRadius: 10,
-          padding: 10,
-          cursor: "pointer",
-        }}
-        onClick={() => onExpand(node.name)}
-      >
-        <h6 style={{margin: 0, color: "white"}}>{node.label}</h6>
-      </div>
-    ))}
-  </div>
-}
-
-function MobileTreeNavigation(props) {
-  const { tree, setExpanded } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedNames, setSelectedNames] = useState([]);
-  let subLevels = [];
-  let currentNode = tree;
-  console.log(selectedNames);
-  for (let i = 0; i < selectedNames.length; i++) {
-    let children;
-    if (currentNode.children) {
-      children = currentNode.children;
-    } else {
-      children = currentNode;
-    }
-    currentNode = children.find((node) => node.name === selectedNames[i]);
-    let onExpand;
-    if (currentNode.children) {
-      onExpand = (name) => {
-        if (!currentNode.children.find(node => node.name === name).children) {
-          // If the node is a leaf, don't expand it.
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("focus", name);
-          setSearchParams(newSearch);
-          setExpanded(false);
-        } else if (selectedNames.includes(name)) {
-          setSelectedNames(selectedNames.slice(0, selectedNames.indexOf(name)));
-        } else {
-          setSelectedNames(selectedNames.slice(0, i + 1).concat([name]));
-        }
-      };
-    } else {
-      onExpand = () => {};
-    }
-    subLevels.push(
-      <motion.div
-        key={currentNode.name}
-        initial={{ height: 0 }}
-        animate={{ height: 120 }}
-        exit={{ height: 0 }}
-        style={{
-          overflow: "hidden",
-        }}
-      >
-        <MobileTreeNavigationLayer
-          key={i}
-          subtree={currentNode.children}
-          onExpand={onExpand}
-        />
-      </motion.div>
-    )
-  }
-  return <div>
-    <MobileTreeNavigationLayer subtree={tree} onExpand={(name) => {
-        if (selectedNames.includes(name)) {
-          setSelectedNames(selectedNames.slice(0, selectedNames.indexOf(name)));
-        } else {
-          setSelectedNames([name]);
-        }
-      }} />
-    <AnimatePresence
-      mode="wait"
-    >
-    {subLevels}
-    </AnimatePresence>
-  </div>
-}
-
 function MobileTreeNavigationHolder(props) {
-  const { expanded, setExpanded, metadata, title } = props;
+  const { metadata } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
-  let currentNode = {children: metadata.variableTree};
+  let currentNode;
+  if (focus && focus.startsWith("householdOutput")) {
+    currentNode = { children: HOUSEHOLD_OUTPUT_TREE };
+  } else {
+    currentNode = { children: [metadata.variableTree] };
+  }
+  useEffect(() => {
+    // On load, scroll the current breadcrumb into view.
+    const breadcrumb = document.getElementById("current-breadcrumb");
+    // Smoothly scroll the breadcrumb into view, with padding.
+    if (breadcrumb) {
+      breadcrumb.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
+  }, [focus]);
+  let breadcrumbs = [];
   try {
     let stem = "";
     for (let name of focus.split(".")) {
       stem += name;
-      currentNode = currentNode.children.find((node) => node.name === stem);
+      const fixedStem = stem;
+      currentNode = currentNode.children.find(
+        (node) => node.name === fixedStem
+      );
+      breadcrumbs.push({
+        name: stem,
+        label: currentNode.label,
+      });
       stem += ".";
     }
   } catch (e) {
     currentNode = null;
   }
-  const currentLabel = currentNode ? currentNode.label : "Select an input";
-  if (expanded) {
-    return <div style={{
-      padding: 10,
-    }}>
-      <div style={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={() => setExpanded(false)}>
-        <h2 style={{margin: 0, paddingLeft: 10}}>{title}</h2>
-        <CaretDownOutlined style={{marginLeft: "auto", marginTop: 5, fontSize: 20}} />
-      </div>
-      <MobileTreeNavigation tree={metadata.variableTree} setExpanded={setExpanded} />
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        padding: 15,
+        backgroundColor: style.colors.LIGHT_GRAY,
+        overflowX: "scroll",
+        height: 50,
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      {breadcrumbs.map((breadcrumb, i) => (
+        <h5
+          key={breadcrumb.name}
+          id={i === breadcrumbs.length - 1 ? "current-breadcrumb" : null}
+          style={{
+            cursor: "pointer",
+            fontSize: 18,
+            maxHeight: 20,
+            maxWidth: 200,
+            paddingLeft: 10,
+            paddingRight: 10,
+            whiteSpace: "nowrap",
+            margin: 0,
+          }}
+          onClick={() => {
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", breadcrumb.name);
+            setSearchParams(newSearch);
+          }}
+        >
+          {breadcrumb.label}
+          {i < breadcrumbs.length - 1 && (
+            <span
+              style={{
+                color: style.colors.DARK_GRAY,
+                paddingRight: 5,
+                paddingLeft: 10,
+              }}
+            >
+              {" "}
+              &gt;{" "}
+            </span>
+          )}
+        </h5>
+      ))}
     </div>
-  } else {
-    return <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100%", padding: 5}}>
-        <h5 style={{margin: 0}}>{currentLabel}</h5>
-        <CaretUpOutlined style={{marginLeft: "auto", fontSize: 20}} />
+  );
+}
+
+function MobileMiddleBar(props) {
+  const { metadata } = props;
+  const [searchMode, setSearchMode] = useState(false);
+  return (
+    <div style={{ display: "flex" }}>
+      <div
+        style={{
+          width: "85%",
+          height: 50,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {!searchMode ? (
+          <MobileTreeNavigationHolder metadata={metadata} />
+        ) : (
+          <VariableSearch metadata={metadata} />
+        )}
       </div>
+      <div
+        style={{
+          width: "15%",
+          backgroundColor: style.colors.LIGHT_GRAY,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {!searchMode ? (
+          <SearchOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+            onClick={() => setSearchMode(!searchMode)}
+          />
+        ) : (
+          <CloseOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+            onClick={() => setSearchMode(!searchMode)}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function MobileBottomMenu(props) {
+  const { metadata, household } = props;
+  const [searchParams] = useSearchParams();
+  const hasReform = searchParams.get("reform") !== null;
+  const focus = searchParams.get("focus") || "";
+  const getValue = (variable) =>
+    getValueFromHousehold(variable, null, null, household.baseline, metadata);
+  const getReformValue = (variable) =>
+    getValueFromHousehold(variable, null, null, household.reform, metadata);
+  const getValueStr = (variable) =>
+    formatVariableValue(metadata.variables[variable], getValue(variable), 0);
+  let text;
+  if (hasReform) {
+    const difference =
+      getReformValue("household_net_income") - getValue("household_net_income");
+    if (Math.abs(difference) < 0.01) {
+      text = `Your net income doesn't change`;
+    } else {
+      text = `Your net income ${
+        difference > 0 ? "increases" : "decreases"
+      } by ${formatVariableValue(
+        metadata.variables.household_net_income,
+        Math.abs(difference),
+        0
+      )}`;
+    }
+  } else {
+    text = `Your net income is ${getValueStr("household_net_income")}`;
   }
+  return (
+    <div
+      style={{
+        padding: 20,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "30vh",
+      }}
+    >
+      <div>
+        <h5 style={{ marginBottom: 20 }}>{text}</h5>
+        {focus && focus.startsWith("householdOutput") && (
+          <NavigationButton primary text="Edit my household" focus="input" />
+        )}
+        {focus && !focus.startsWith("householdOutput") && (
+          <NavigationButton
+            primary
+            text="See my household details"
+            focus="householdOutput"
+          />
+        )}
+        {!hasReform && (
+          <NavigationButton
+            text="Create a reform"
+            focus="gov"
+            target={`/${metadata.countryId}/policy`}
+          />
+        )}
+        {hasReform && (
+          <NavigationButton
+            text="Edit my reform"
+            focus="gov"
+            target={`/${metadata.countryId}/policy`}
+          />
+        )}
+      </div>
+    </div>
+  );
 }
 
 function MobileHouseholdPage(props) {
-  const { mainContent, metadata } = props;
-  const windowHeight = useWindowHeight();
-  const [navigationExpanded, setNavigationExpanded] = useState(false);
-  return <>
-    <div style={{
-      position: "absolute",
-      top: HEADER_HEIGHT,
-      maxHeight: windowHeight * 0.6,
-      overflow: "scroll",
-      width: "100%",
-    }}>
-      {mainContent}
-    </div>
-    <motion.div style={{
-        position: "absolute",
-        backgroundColor: style.colors.LIGHT_GRAY,
-        width: "100%",
-      }}
-      animate={{
-        height: navigationExpanded ? windowHeight * 0.6 : 50,
-        top: HEADER_HEIGHT + !navigationExpanded * windowHeight * 0.6,
-      }}
-      onClick={
-        !navigationExpanded ?
-        () => setNavigationExpanded(true) :
-        null
-      }
+  const { metadata, household, mainContent } = props;
+  const [searchParams] = useSearchParams();
+  const focus = searchParams.get("focus");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [focus]);
+  return (
+    <>
+      <div
+        style={{
+          overflow: "scroll",
+          width: "100%",
+          padding: 20,
+          height: "55vh",
+        }}
       >
-      <MobileTreeNavigationHolder title="Your inputs" metadata={metadata} expanded={navigationExpanded} setExpanded={setNavigationExpanded} />
-    </motion.div>
-  </>
+        {mainContent}
+      </div>
+      <MobileMiddleBar metadata={metadata} />
+      {household.input && (
+        <MobileBottomMenu metadata={metadata} household={household} />
+      )}
+    </>
+  );
 }
 
 export default function HouseholdPage(props) {
-  const { metadata, household, setHousehold, policy } = props;
+  const { metadata, household, setHousehold, policy, loading } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const mobile = useMobile();
 
@@ -328,7 +343,7 @@ export default function HouseholdPage(props) {
 
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
-    if (!focus) {
+    if (focus === "") {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("focus", "intro");
       setSearchParams(newSearch);
@@ -351,18 +366,34 @@ export default function HouseholdPage(props) {
   if (!household.input || !household.baseline) {
     middle = <LoadingCentered />;
   } else if (
-    focus.startsWith("input.") ||
-    focus.startsWith("gov.") ||
-    focus.startsWith("household.")
+    Object.keys(metadata.variables).includes(
+      focus.split(".")[focus.split(".").length - 1]
+    )
   ) {
     middle = (
       <VariableEditor
         metadata={metadata}
         household={household}
         setHousehold={setHousehold}
+        loading={loading}
       />
     );
-  } else if (focus === "structure.maritalStatus") {
+  } else if (
+    Object.keys(metadata.variableModules).includes(focus) ||
+    ["input", "input.household"].includes(focus)
+  ) {
+    const node = findInTree({ children: [metadata.variableTree] }, focus);
+    middle = (
+      <FolderPage
+        label={node.label}
+        children={node.children}
+        description={
+          metadata.variableModules[focus] &&
+          metadata.variableModules[focus].description
+        }
+      />
+    );
+  } else if (focus === "input.household.maritalStatus") {
     middle = (
       <MaritalStatus
         metadata={metadata}
@@ -370,7 +401,9 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
-  } else if (focus === "structure.children") {
+  } else if (focus === "intro") {
+    middle = <HouseholdIntro />;
+  } else if (focus === "input.household.children") {
     middle = (
       <CountChildren
         metadata={metadata}
@@ -378,36 +411,41 @@ export default function HouseholdPage(props) {
         setHousehold={setHousehold}
       />
     );
-  } else if (focus.startsWith("householdOutput.")) {
+  } else if (focus && focus.startsWith("householdOutput.")) {
     middle = (
-      <HouseholdOutput
-        metadata={metadata}
-        household={household}
-        policy={policy}
+      <>
+        <HouseholdOutput
+          metadata={metadata}
+          household={household}
+          policy={policy}
+        />
+      </>
+    );
+  } else if (focus === "householdOutput") {
+    middle = (
+      <FolderPage
+        label="Household results"
+        children={HOUSEHOLD_OUTPUT_TREE[0].children}
       />
     );
-  } else if (focus === "intro") {
-    middle = <HouseholdIntro />;
   } else {
     middle = <LoadingCentered />;
   }
   if (mobile) {
-    return <MobileHouseholdPage mainContent={middle} metadata={metadata} />
+    return (
+      <MobileHouseholdPage
+        mainContent={middle}
+        metadata={metadata}
+        household={household}
+      />
+    );
   }
   return (
     <ThreeColumnPage
       left={<HouseholdLeftSidebar metadata={metadata} />}
       middle={middle}
       right={
-        <BiPanel
-          leftTitle="Household"
-          rightTitle="Policy"
-          left={
-            <HouseholdRightSidebar metadata={metadata} household={household} />
-          }
-          right={<PolicyRightSidebar metadata={metadata} policy={policy} />}
-          leftNavigatedSelected={true}
-        />
+        <HouseholdRightSidebar metadata={metadata} household={household} />
       }
     />
   );

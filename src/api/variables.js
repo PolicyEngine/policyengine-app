@@ -121,6 +121,9 @@ export function buildVariableTree(variables, variableModules) {
 
   let tree = {};
   for (const variable of Object.values(variables)) {
+    if (!variable.moduleName) {
+      continue;
+    }
     const nodeToInsert = {
       name: variable.moduleName + "." + variable.name,
       label: capitalize(variable.label),
@@ -163,29 +166,33 @@ export function buildVariableTree(variables, variableModules) {
   const inputModule = tree.children.find(
     (child) => child.name === "input"
   ).children;
-  return [
-    {
-      name: "structure",
-      label: "Household",
-      index: 0,
-      children: [
-        {
-          name: "structure.maritalStatus",
-          label: "Marital status",
-          index: 0,
-        },
-        {
-          name: "structure.children",
-          label: "Children",
-          index: 1,
-        },
-      ],
-    },
-    ...inputModule.reverse(),
-  ];
+  return {
+    name: "input",
+    label: "Input",
+    children: [
+      {
+        name: "input.household",
+        label: "Household",
+        index: 0,
+        children: [
+          {
+            name: "input.household.maritalStatus",
+            label: "Marital status",
+            index: 0,
+          },
+          {
+            name: "input.household.children",
+            label: "Children",
+            index: 1,
+          },
+        ],
+      },
+      ...inputModule.reverse(),
+    ],
+  };
 }
 
-export function getTreeLeavesInOrder(tree, full = false) {
+export function getTreeLeavesInOrder(tree) {
   // Traverses the variable tree in order, returning the list of variable names.
   let leaves = [];
   const traverse = (node) => {
@@ -195,13 +202,10 @@ export function getTreeLeavesInOrder(tree, full = false) {
         traverse(child);
       }
     } else {
-      const fullName = node.name;
-      // Get the name after the last period
-      const name = fullName.split(".").slice(-1)[0];
-      leaves.push(full ? name : fullName);
+      leaves.push(node.name);
     }
   };
-  tree.map((node) => traverse(node));
+  traverse(tree);
   return leaves;
 }
 
@@ -226,12 +230,14 @@ export function formatVariableValue(variable, value, precision = 2) {
       );
     } else if (variable.unit === "/1") {
       // Format as x.1%
-      return (value * 100).toFixed(1) + "%";
+      return (Math.round(value * 10000) / 100).toString() + "%";
     } else {
       return value.toLocaleString();
     }
   } catch (e) {
-    console.log(e);
+    if (value === null) {
+      return formatVariableValue(variable, 0);
+    }
     return JSON.stringify(value) + " (error formatting)";
   }
 }
@@ -304,7 +310,12 @@ export function getValueFromHousehold(
     console.log("Error getting variable value", variable, e);
   }
   if (!entityName) {
-    const possibleEntities = Object.keys(household[entityPlural]);
+    let possibleEntities;
+    try {
+      possibleEntities = Object.keys(household[entityPlural]);
+    } catch (e) {
+      return null;
+    }
     if (possibleEntities.length === 1) {
       return getValueFromHousehold(
         variable,
@@ -326,7 +337,12 @@ export function getValueFromHousehold(
     }
     return total;
   }
-  const timePeriodValues = household[entityPlural][entityName][variable];
+  let timePeriodValues;
+  try {
+    timePeriodValues = household[entityPlural][entityName][variable];
+  } catch (e) {
+    return null;
+  }
   if (!timePeriod) {
     const possibleTimePeriods = Object.keys(timePeriodValues);
     let total = 0;

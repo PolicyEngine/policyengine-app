@@ -287,6 +287,7 @@ export default function PolicyEngineCountry(props) {
               metadata={metadata}
               household={household}
               policy={policy}
+              loading={loading}
             />
           ) : error ? (
             <ErrorPage

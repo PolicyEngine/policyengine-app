@@ -11,11 +11,12 @@ import { copySearchParams } from "../../../api/call";
 import { Switch } from "antd";
 import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
+import NavigationButton from "../../../controls/NavigationButton";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
   const mobile = useMobile();
-  const { metadata, household, setHousehold } = props;
+  const { metadata, household, setHousehold, loading } = props;
   if (!household.input) {
     return <LoadingCentered />;
   }
@@ -31,6 +32,23 @@ export default function VariableEditor(props) {
   const possibleEntities = Object.keys(household.input[entityPlural]).filter(
     (entity) => household.input[entityPlural][entity][variable.name]
   );
+  const variableNames = metadata.variablesInOrder;
+  const nextVariable =
+    variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
+  const entityInputs = possibleEntities.map((entity) => {
+    return (
+      <HouseholdVariableEntity
+        variable={variable}
+        household={household}
+        entityPlural={entityPlural}
+        entityName={entity}
+        setHousehold={setHousehold}
+        metadata={metadata}
+        key={entity}
+        isSimulated={isSimulated}
+      />
+    );
+  });
   return (
     <>
       <div
@@ -38,36 +56,31 @@ export default function VariableEditor(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: "15%",
-          paddingLeft: 50,
-          paddingRight: 50,
-          maxWidth: mobile && "80%",
+          marginTop: mobile ? 10 : "15%",
+          paddingLeft: mobile ? 10 : 50,
+          paddingRight: mobile ? 10 : 50,
         }}
       >
-        <h1 style={{ marginBottom: 20 }}>
+        <h1 style={{ marginBottom: 20, textAlign: "center" }}>
           What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
           {variable.label}?
         </h1>
-        <h4>{variable.documentation}</h4>
+        <h4 style={{ textAlign: "center" }}>{variable.documentation}</h4>
         {isSimulated && (
-          <p>
+          <p style={{ textAlign: "center" }}>
             This variable is calculated from other variables you've entered.
             Editing it will override the simulated value.
           </p>
         )}
-        {possibleEntities.map((entity) => {
-          return (
-            <HouseholdVariableEntity
-              variable={variable}
-              household={household}
-              entityPlural={entityPlural}
-              entityName={entity}
-              setHousehold={setHousehold}
-              metadata={metadata}
-              key={entity}
-            />
-          );
-        })}
+        {entityInputs}
+        {nextVariable && (
+          <NavigationButton
+            text="Enter"
+            focus={nextVariable}
+            primary
+            disabled={loading}
+          />
+        )}
       </div>
     </>
   );
@@ -81,6 +94,7 @@ function HouseholdVariableEntity(props) {
     entityName,
     setHousehold,
     metadata,
+    isSimulated,
   } = props;
   const possibleTimePeriods = Object.keys(
     household.input[entityPlural][entityName][variable.name]
@@ -98,6 +112,7 @@ function HouseholdVariableEntity(props) {
             key={timePeriod}
             setHousehold={setHousehold}
             metadata={metadata}
+            isSimulated={isSimulated}
           />
         );
       })}
@@ -114,9 +129,10 @@ function HouseholdVariableEntityInput(props) {
     entityPlural,
     entityName,
     timePeriod,
+    isSimulated,
   } = props;
   const submitValue = (value) => {
-    let newHousehold = JSON.parse(JSON.stringify(household.input));
+    let newHousehold = household.input;
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = copySearchParams(searchParams);
@@ -124,13 +140,12 @@ function HouseholdVariableEntityInput(props) {
       setSearchParams(newSearch);
     });
   };
-  const mobile = useMobile();
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(
     variable.name,
     timePeriod,
     entityName,
-    household.baseline || household.input,
+    isSimulated ? household.baseline : household.input,
     metadata
   );
   let control;
@@ -164,18 +179,26 @@ function HouseholdVariableEntityInput(props) {
   }
   // The input field should hide its arrows
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      }}
-    >
-      <h5 style={{ width: 200, textAlign: "right", margin: 0 }}>
-        {capitalize(entityName)}:{" "}
-      </h5>
-      {control}
-      <h5 style={{ margin: 0 }}>in {timePeriod}</h5>
-    </div>
+    <>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          width: "100%",
+          marginBottom: 10,
+        }}
+      >
+        <h5 style={{ width: "100%", textAlign: "right", margin: 0 }}>
+          {capitalize(entityName)}:{" "}
+        </h5>
+        <div
+          style={{ width: "180%", display: "flex", justifyContent: "center" }}
+        >
+          {control}
+        </div>
+        <h5 style={{ margin: 0, width: "100%" }}>in {timePeriod}</h5>
+      </div>
+    </>
   );
 }

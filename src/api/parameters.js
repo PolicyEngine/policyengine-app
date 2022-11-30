@@ -6,7 +6,7 @@ export function buildParameterTree(parameters) {
   for (const parameter of Object.values(parameters)) {
     const nodeToInsert = {
       name: parameter.parameter,
-      label: parameter.label,
+      label: parameter.label || parameter.parameter.split(".").pop(),
       index: parameter.indexInModule,
     };
     const pathComponents = parameter.parameter.split(".");
@@ -46,7 +46,7 @@ export function buildParameterTree(parameters) {
       console.log("Error inserting node", nodeToInsert, "into", currentNode);
     }
   }
-  return tree.children.find((child) => child.name === "gov").children;
+  return tree.children.find((child) => child.name === "gov");
 }
 
 export function getParameterAtInstant(parameter, instant) {

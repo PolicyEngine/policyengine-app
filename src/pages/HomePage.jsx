@@ -9,24 +9,28 @@ function HouseholdPolicyOptions(props) {
   const navigate = useNavigate();
   const mobile = useMobile();
 
-  const boxWidth = mobile ? 250 : 300;
+  const boxWidth = 300;
 
   return (
-    <div style={{ 
-      paddingTop: 20, 
-      display: "flex",
-      overflowX: "scroll",
-      paddingLeft: mobile && 50,
-      paddingRight: mobile && 50,
-    }}>
+    <div
+      style={{
+        paddingTop: 20,
+        display: "flex",
+        flexDirection: mobile ? "column" : "row",
+        alignItems: "center",
+        paddingLeft: 0,
+        paddingRight: 0,
+      }}
+    >
       <motion.div
         style={{
-          minWidth: boxWidth,
-          maxWidth: boxWidth,
+          width: boxWidth,
+          height: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
-          marginRight: 20,
           cursor: "pointer",
+          marginRight: mobile ? 0 : 20,
+          marginBottom: mobile ? 20 : 0,
         }}
         whileHover={{ scale: 1.05 }}
         onClick={() => navigate(`/${countryId}/household`)}
@@ -39,8 +43,8 @@ function HouseholdPolicyOptions(props) {
       </motion.div>
       <motion.div
         style={{
-          minWidth: boxWidth,
-          maxWidth: boxWidth,
+          width: boxWidth,
+          height: boxWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
           cursor: "pointer",
@@ -90,6 +94,7 @@ function WidePanel(props) {
           backgroundColor: backgroundColor,
           height: !mobile && 600,
           marginTop: 50,
+          overflowX: "hidden",
         }}
       >
         <Container style={{ paddingTop: 100, paddingBottom: 100 }}>
@@ -130,26 +135,24 @@ export default function HomePage(props) {
     <>
       <div
         style={{
-          ...(!mobile ? {
-              paddingLeft: 50,
-            paddingRight: 100,
-            paddingTop: 70,
-          } : {
-            paddingLeft: 0,
-            paddingRight: 0,
-            paddingTop: 50,
-          }),
+          paddingLeft: 50,
+          paddingRight: 50,
+          paddingTop: 70,
           display: "flex",
           flexDirection: "column",
           alignItems: !mobile && "center",
         }}
       >
-        <div style={{
-          paddingRight: mobile && 50,
-          paddingLeft: mobile && 50,
-        }}>
+        <div
+          style={{
+            paddingRight: 0,
+            paddingLeft: 0,
+          }}
+        >
           <h1>We compute the impact of public policy.</h1>
-          <h4>PolicyEngine's free, open-source software turns law into code.</h4>
+          <h4>
+            PolicyEngine's free, open-source software turns law into code.
+          </h4>
         </div>
         <HouseholdPolicyOptions countryId={countryId} />
       </div>

@@ -95,10 +95,11 @@ function DesktopHeader(props) {
   );
 }
 
-
 export default function Header(props) {
-  return <ResponsiveComponent
-    mobile={<MobileHeader {...props} />}
-    desktop={<DesktopHeader {...props} />}
-  />
+  return (
+    <ResponsiveComponent
+      mobile={<MobileHeader {...props} />}
+      desktop={<DesktopHeader {...props} />}
+    />
+  );
 }

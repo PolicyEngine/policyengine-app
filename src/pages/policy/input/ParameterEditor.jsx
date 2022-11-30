@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
+import useMobile from "../../../layout/Responsive";
 
 const { RangePicker } = DatePicker;
 
@@ -24,19 +25,22 @@ export default function ParameterEditor(props) {
   const [startDate, setStartDate] = useState("2022-01-01");
   const [endDate, setEndDate] = useState("2027-12-31");
 
+  const [value, setValue] = useState(getParameterAtInstant(reformedParameter, startDate));
+
   let control;
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     control = (
       <div style={{ padding: 10 }}>
         <Switch
-          checked={getParameterAtInstant(reformedParameter, startDate)}
+          checked={value || getParameterAtInstant(reformedParameter, startDate)}
           onChange={(value) => {
             let newPolicy = { ...policy.reform.data };
             newPolicy[parameterName] = {
               ...newPolicy[parameterName],
               [`${startDate}.${endDate}`]: !!value,
             };
+            setValue(value);
             getNewPolicyId(metadata.countryId, newPolicy).then(
               (newPolicyId) => {
                 let newSearch = copySearchParams(searchParams);
@@ -51,26 +55,30 @@ export default function ParameterEditor(props) {
   } else {
     control = (
       <InputField
-        placeholder={getParameterAtInstant(reformedParameter, startDate)}
+        placeholder={value || getParameterAtInstant(reformedParameter, startDate)}
         onChange={(value) => {
           let newPolicy = { ...policy.reform.data };
           newPolicy[parameterName] = {
             ...newPolicy[parameterName],
             [`${startDate}.${endDate}`]: +value,
           };
+          setValue(value);
           getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
             let newSearch = copySearchParams(searchParams);
             newSearch.set("reform", newPolicyId);
             setSearchParams(newSearch);
+            console.log(newSearch);
           });
         }}
       />
     );
   }
+  const mobile = useMobile();
   const editControl = (
     <div
       style={{
         display: "flex",
+        flexDirection: mobile ? "column" : "row",
         justifyContent: "center",
         alignItems: "center",
         paddingTop: 20,
@@ -83,7 +91,7 @@ export default function ParameterEditor(props) {
           setEndDate(dateStrings[1]);
         }}
         separator="→"
-        style={{ padding: 20 }}
+        style={{ padding: 20, marginBottom: 10 }}
       />
       {control}
     </div>

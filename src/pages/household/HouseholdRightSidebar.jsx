@@ -1,10 +1,9 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { copySearchParams } from "../../api/call";
+import { useSearchParams } from "react-router-dom";
 import {
   formatVariableValue,
   getValueFromHousehold,
 } from "../../api/variables";
-import Button from "../../controls/Button";
+import NavigationButton from "../../controls/NavigationButton";
 import Divider from "../../layout/Divider";
 
 function Figure(props) {
@@ -44,43 +43,16 @@ function Figure(props) {
 export default function HouseholdRightSidebar(props) {
   const { household, metadata } = props;
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const hasReform = searchParams.get("reform") !== null;
+  const focus = searchParams.get("focus") || "";
 
-  if (!household || !household.baseline || !household.input) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginTop: "60%",
-        }}
-      >
-        <h4 style={{ marginBottom: 20 }}>No household specified</h4>
-        <Button
-          text="Create a household"
-          onClick={() => {
-            // Navigate to /<country>/household, preserving URL parameters
-            const country = metadata.countryId;
-            const newSearchParams = {};
-            for (const [key, value] of searchParams) {
-              newSearchParams[key] = value;
-            }
-            newSearchParams.focus = "structure.maritalStatus";
-            let url = `/${country}/household`;
-            if (Object.keys(newSearchParams).length > 0) {
-              url += `?${new URLSearchParams(newSearchParams)}`;
-            }
-            navigate(url);
-          }}
-        />
-      </div>
-    );
+  if (!household.input) {
+    return <></>;
   }
 
   const countPeople = Object.keys(household.input.people).length;
-  const netIncome = getValueFromHousehold(
-    "household_net_income",
+  const marketIncome = getValueFromHousehold(
+    "household_market_income",
     null,
     null,
     household.baseline,
@@ -94,9 +66,11 @@ export default function HouseholdRightSidebar(props) {
     metadata
   );
   const household_net_income = metadata.variables.household_net_income;
-  const netIncomeComponents = household_net_income.adds.concat(
+  let netIncomeComponents = household_net_income.adds.concat(
     household_net_income.subtracts
   );
+  netIncomeComponents = netIncomeComponents.filter(component => component !== "household_market_income");
+  netIncomeComponents = ["household_net_income"].concat(netIncomeComponents);
 
   return (
     <>
@@ -106,15 +80,11 @@ export default function HouseholdRightSidebar(props) {
       />
       <Figure
         left={formatVariableValue(
-          metadata.variables.household_net_income,
-          netIncome,
+          metadata.variables.household_market_income,
+          marketIncome,
           0
         )}
-        right={"net income"}
-      />
-      <Figure
-        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
-        right={"marginal tax rate"}
+        right={"market income"}
       />
       <Divider />
       {netIncomeComponents.map((variableId) => {
@@ -134,18 +104,34 @@ export default function HouseholdRightSidebar(props) {
           />
         );
       })}
-      <Button
-        text="See details"
-        onClick={() => {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("focus", "householdOutput.netIncome");
-          const newUrl = `/${metadata.countryId}/household?${newSearch}`;
-          navigate(newUrl);
-        }}
-        style={{
-          marginTop: 10,
-        }}
+      <Figure
+        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
+        right={"marginal tax rate"}
       />
+      {focus && focus.startsWith("householdOutput") && (
+        <NavigationButton primary text="Edit my household" focus="input" />
+      )}
+      {focus && !focus.startsWith("householdOutput") && (
+        <NavigationButton
+          primary
+          text="See my household details"
+          focus="householdOutput"
+        />
+      )}
+      {!hasReform && (
+        <NavigationButton
+          text="Create a reform"
+          focus="gov"
+          target={`/${metadata.countryId}/policy`}
+        />
+      )}
+      {hasReform && (
+        <NavigationButton
+          text="Edit my reform"
+          focus="gov"
+          target={`/${metadata.countryId}/policy`}
+        />
+      )}
     </>
   );
 }
