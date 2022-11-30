@@ -1,5 +1,8 @@
+import useMobile from "../layout/Responsive";
+
 export default function CenteredMiddleColumn(props) {
   const { title, description, marginTop, marginBottom, children } = props;
+  const mobile = useMobile();
   return (
     <div
       style={{
@@ -15,7 +18,7 @@ export default function CenteredMiddleColumn(props) {
       </h1>
       {description && (
         <h4
-          style={{ paddingLeft: 100, paddingRight: 100, textAlign: "center" }}
+          style={{ paddingLeft: mobile ? 20 : 100, paddingRight: mobile ? 20 : 100, textAlign: "center" }}
         >
           {description}
         </h4>
