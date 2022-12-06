@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
+import BlogPostHolder from "../layout/BlogPostHolder";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -92,8 +93,8 @@ function WidePanel(props) {
       <div
         style={{
           backgroundColor: backgroundColor,
-          height: !mobile && 600,
-          marginTop: 50,
+          marginTop: 25,
+          marginBottom: 25,
           overflowX: "hidden",
         }}
       >
@@ -110,7 +111,8 @@ function WidePanel(props) {
       style={{
         backgroundColor: backgroundColor,
         height: !mobile && 600,
-        marginTop: 50,
+        marginTop: 25,
+        marginBottom: 25,
       }}
     >
       <Container style={{ paddingTop: 100, paddingBottom: 100 }}>
@@ -141,6 +143,7 @@ export default function HomePage(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: !mobile && "center",
+          marginBottom: 50,
         }}
       >
         <div
@@ -156,10 +159,11 @@ export default function HomePage(props) {
         </div>
         <HouseholdPolicyOptions countryId={countryId} />
       </div>
+      <BlogPostHolder countryId={countryId} />
       <WidePanel
-        direction="left"
-        backgroundColor={style.colors.LIGHT_GRAY}
-        left={
+        direction="right"
+        backgroundColor={style.colors.WHITE}
+        right={
           <>
             <h1 style={{ paddingBottom: 30 }}>
               Simulate the full tax-benefit system on any household
@@ -173,9 +177,9 @@ export default function HomePage(props) {
         }
       />
       <WidePanel
-        direction="right"
-        backgroundColor={style.colors.WHITE}
-        right={
+        direction="left"
+        backgroundColor={style.colors.LIGHT_GRAY}
+        left={
           <>
             <h1 style={{ paddingBottom: 30 }}>Design custom policy reforms</h1>
             <h5>
@@ -187,9 +191,9 @@ export default function HomePage(props) {
         }
       />
       <WidePanel
-        direction="left"
-        backgroundColor={style.colors.LIGHT_GRAY}
-        left={
+        direction="right"
+        backgroundColor={style.colors.WHITE}
+        right={
           <>
             <h1 style={{ paddingBottom: 30 }}>
               See how reforms affect households

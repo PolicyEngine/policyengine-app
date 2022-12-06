@@ -1,8 +1,9 @@
-import style from "./style";
-import PolicyEngineLogo from "./images/logos/policyengine/white.png";
+import style from "../style";
+import PolicyEngineLogo from "../images/logos/policyengine/white.png";
 import { useNavigate } from "react-router-dom";
-import Spinner from "./layout/Spinner";
-import ResponsiveComponent from "./layout/ResponsiveComponent";
+import Spinner from "./Spinner";
+import ResponsiveComponent from "./ResponsiveComponent";
+import SocialLinks from "./SocialLinks";
 
 export const HEADER_HEIGHT = 75;
 
@@ -89,6 +90,7 @@ function DesktopHeader(props) {
             <Spinner style={{ color: "white", fontSize: 30 }} />
           </div>
         )}
+       <div style={{marginLeft: "auto", marginRight: 20}}><SocialLinks color="white" /></div>
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>

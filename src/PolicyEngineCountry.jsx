@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "./api/call";
-import Header from "./Header";
+import Header from "./layout/Header";
 import HomePage from "./pages/HomePage";
 import HouseholdPage from "./pages/HouseholdPage";
 import { buildVariableTree, getTreeLeavesInOrder } from "./api/variables";
@@ -9,6 +9,8 @@ import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import PolicyPage from "./pages/PolicyPage";
 import { buildParameterTree } from "./api/parameters";
+import BlogPostPage from "./pages/BlogPage";
+import Footer from "./layout/Footer";
 
 function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
@@ -314,6 +316,10 @@ export default function PolicyEngineCountry(props) {
           )
         }
       />
+      <Route
+        path="/blog/*"
+        element={<BlogPostPage />}
+      />
     </Routes>
   );
 
@@ -321,6 +327,7 @@ export default function PolicyEngineCountry(props) {
     <>
       <Header countryId={countryId} loading={loading} />
       <div style={{ minHeight: "50%" }}>{mainPage}</div>
+      <Footer />
     </>
   );
 }
