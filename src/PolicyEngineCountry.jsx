@@ -323,7 +323,7 @@ export default function PolicyEngineCountry(props) {
   return (
     <>
       <Header countryId={countryId} loading={loading} />
-      <div style={{ minHeight: "50%" }}>{mainPage}</div>
+      <div style={{ minHeight: "90%" }}>{mainPage}</div>
       <Footer />
     </>
   );

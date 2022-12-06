@@ -2,6 +2,7 @@ import postJson from "../posts/posts.json";
 import ReactMarkdown from "react-markdown";
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import useMobile from "../layout/Responsive";
 
 export default function BlogPostPage(props) {
   // The URL will be in the format /uk/blog/post-name
@@ -15,6 +16,7 @@ export default function BlogPostPage(props) {
   const imageSrc = require(`../images/posts/${image}`);
   const markdownFile = require(`../posts/${filename}`);
   const [markdown, setMarkdown] = useState("");
+  const mobile = useMobile();
   useEffect(() => {
     fetch(markdownFile)
       .then((response) => response.text())
@@ -24,10 +26,12 @@ export default function BlogPostPage(props) {
   }, [markdownFile]);
 
   return (
-    <Container>
-      <div style={{ margin: 75 }}>
-        <h1>{title}</h1>
-        <h5>{description}</h5>
+    <Container style={{padding: mobile && 0}}>
+      <div style={{ margin: mobile ? 0 : 75, marginTop: mobile ? 20 : 75 }}>
+        <div style={{ padding: mobile && 20 }}>
+          <h1>{title}</h1>
+          <h5>{description}</h5>
+        </div>
         <img
           src={imageSrc}
           style={{
@@ -40,7 +44,9 @@ export default function BlogPostPage(props) {
           }}
           alt="Background"
         />
-        <ReactMarkdown>{markdown}</ReactMarkdown>
+        <div style={{ padding: mobile && 20 }}>
+          <ReactMarkdown>{markdown}</ReactMarkdown>
+        </div>
       </div>
     </Container>
   );
