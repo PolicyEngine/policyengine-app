@@ -18,7 +18,11 @@ export default function CenteredMiddleColumn(props) {
       </h1>
       {description && (
         <h4
-          style={{ paddingLeft: mobile ? 20 : 100, paddingRight: mobile ? 20 : 100, textAlign: "center" }}
+          style={{
+            paddingLeft: mobile ? 20 : 100,
+            paddingRight: mobile ? 20 : 100,
+            textAlign: "center",
+          }}
         >
           {description}
         </h4>

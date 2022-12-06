@@ -1,42 +1,42 @@
 [
-    {
-        "title": "Hello, World!",
-        "description": "This is a test post.",
-        "date": "2018-01-01",
-        "tags": ["test", "hello"],
-        "filename": "hello-world.md",
-        "image": "hello-world.jpg"
-    },
-    {
-        "title": "Hello, World!",
-        "description": "This is a test post.",
-        "date": "2018-01-01",
-        "tags": ["test", "hello"],
-        "filename": "hello-world.md",
-        "image": "hello-world.jpg"
-    },
-    {
-        "title": "Hello, World!",
-        "description": "This is a test post.",
-        "date": "2018-01-01",
-        "tags": ["test", "hello"],
-        "filename": "hello-world.md",
-        "image": "hello-world.jpg"
-    },
-    {
-        "title": "Hello, World!",
-        "description": "This is a test post.",
-        "date": "2018-01-01",
-        "tags": ["test", "hello"],
-        "filename": "hello-world.md",
-        "image": "hello-world.jpg"
-    },
-    {
-        "title": "Hello, World!",
-        "description": "This is a test post.",
-        "date": "2018-01-01",
-        "tags": ["test", "hello"],
-        "filename": "hello-world.md",
-        "image": "hello-world.jpg"
-    }
+  {
+    "title": "Hello, World!",
+    "description": "This is a test post.",
+    "date": "2018-01-01",
+    "tags": ["test", "hello"],
+    "filename": "hello-world.md",
+    "image": "hello-world.jpg"
+  },
+  {
+    "title": "Hello, World!",
+    "description": "This is a test post.",
+    "date": "2018-01-01",
+    "tags": ["test", "hello"],
+    "filename": "hello-world.md",
+    "image": "hello-world.jpg"
+  },
+  {
+    "title": "Hello, World!",
+    "description": "This is a test post.",
+    "date": "2018-01-01",
+    "tags": ["test", "hello"],
+    "filename": "hello-world.md",
+    "image": "hello-world.jpg"
+  },
+  {
+    "title": "Hello, World!",
+    "description": "This is a test post.",
+    "date": "2018-01-01",
+    "tags": ["test", "hello"],
+    "filename": "hello-world.md",
+    "image": "hello-world.jpg"
+  },
+  {
+    "title": "Hello, World!",
+    "description": "This is a test post.",
+    "date": "2018-01-01",
+    "tags": ["test", "hello"],
+    "filename": "hello-world.md",
+    "image": "hello-world.jpg"
+  }
 ]

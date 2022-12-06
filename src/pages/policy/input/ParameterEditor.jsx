@@ -25,7 +25,9 @@ export default function ParameterEditor(props) {
   const [startDate, setStartDate] = useState("2022-01-01");
   const [endDate, setEndDate] = useState("2027-12-31");
 
-  const [value, setValue] = useState(getParameterAtInstant(reformedParameter, startDate));
+  const [value, setValue] = useState(
+    getParameterAtInstant(reformedParameter, startDate)
+  );
 
   let control;
 
@@ -55,7 +57,9 @@ export default function ParameterEditor(props) {
   } else {
     control = (
       <InputField
-        placeholder={value || getParameterAtInstant(reformedParameter, startDate)}
+        placeholder={
+          value || getParameterAtInstant(reformedParameter, startDate)
+        }
         onChange={(value) => {
           let newPolicy = { ...policy.reform.data };
           newPolicy[parameterName] = {

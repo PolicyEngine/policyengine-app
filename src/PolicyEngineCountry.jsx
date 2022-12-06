@@ -316,10 +316,7 @@ export default function PolicyEngineCountry(props) {
           )
         }
       />
-      <Route
-        path="/blog/*"
-        element={<BlogPostPage />}
-      />
+      <Route path="/blog/*" element={<BlogPostPage />} />
     </Routes>
   );
 

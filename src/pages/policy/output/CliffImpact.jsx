@@ -87,8 +87,13 @@ export default function CliffImpact(props) {
           x: ["Cliff rate", "Cliff gap"],
           y: [cliff_share_change, cliff_gap_change],
           customdata: [
-            `The cliff rate falls from ${Math.round( impact.baseline.cliff_share * 10000 ) / 100}% to ${Math.round( impact.reform.cliff_share * 10000 ) / 100}%`,
-            `The cliff gap falls from ${aggregateCurrency(impact.baseline.cliff_gap, metadata)} to ${aggregateCurrency(impact.reform.cliff_gap, metadata)}`,
+            `The cliff rate falls from ${
+              Math.round(impact.baseline.cliff_share * 10000) / 100
+            }% to ${Math.round(impact.reform.cliff_share * 10000) / 100}%`,
+            `The cliff gap falls from ${aggregateCurrency(
+              impact.baseline.cliff_gap,
+              metadata
+            )} to ${aggregateCurrency(impact.reform.cliff_gap, metadata)}`,
           ],
           hovertemplate: "%{customdata}<extra></extra>",
           type: "bar",
@@ -137,9 +142,9 @@ export default function CliffImpact(props) {
   const title = `${policyLabel} ${
     cliff_share_change === 0 && cliff_gap_change === 0
       ? "doesn't affect cliffs"
-      : (cliff_share_change >= 0) && (cliff_gap_change >= 0)
+      : cliff_share_change >= 0 && cliff_gap_change >= 0
       ? "makes cliffs more prevalent"
-      : (cliff_share_change <= 0) && (cliff_gap_change <= 0)
+      : cliff_share_change <= 0 && cliff_gap_change <= 0
       ? "makes cliffs less prevalent"
       : "has an ambiguous effect on cliffs"
   }`;

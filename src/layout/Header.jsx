@@ -90,7 +90,9 @@ function DesktopHeader(props) {
             <Spinner style={{ color: "white", fontSize: 30 }} />
           </div>
         )}
-       <div style={{marginLeft: "auto", marginRight: 20}}><SocialLinks color="white" /></div>
+        <div style={{ marginLeft: "auto", marginRight: 20 }}>
+          <SocialLinks color="white" />
+        </div>
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>

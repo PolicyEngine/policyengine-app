@@ -69,7 +69,9 @@ export default function HouseholdRightSidebar(props) {
   let netIncomeComponents = household_net_income.adds.concat(
     household_net_income.subtracts
   );
-  netIncomeComponents = netIncomeComponents.filter(component => component !== "household_market_income");
+  netIncomeComponents = netIncomeComponents.filter(
+    (component) => component !== "household_market_income"
+  );
   netIncomeComponents = ["household_net_income"].concat(netIncomeComponents);
 
   return (

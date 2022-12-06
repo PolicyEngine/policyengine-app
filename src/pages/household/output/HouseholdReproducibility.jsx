@@ -112,7 +112,10 @@ export default function HouseholdReproducibility(props) {
   return (
     <>
       <h2>Reproduce these results</h2>
-      <p>Run the code below into a Python notebook to reproduce the microsimulation results.</p>
+      <p>
+        Run the code below into a Python notebook to reproduce the
+        microsimulation results.
+      </p>
       <PythonCodeBlock lines={initialLines} />
       <div
         style={{
