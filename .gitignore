@@ -26,3 +26,4 @@ yarn-error.log*
 /app.yaml
 /main.py
 /requirements.txt
+**/__pycache__

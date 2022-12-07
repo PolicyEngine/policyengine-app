@@ -280,7 +280,7 @@ export default function PolicyEngineCountry(props) {
 
   const mainPage = (
     <Routes>
-      <Route path="/" element={<HomePage countryId={countryId} />} />
+      <Route path="/" element={<><HomePage countryId={countryId} /><Footer /></>} />
       <Route
         path="/household/*"
         element={
@@ -292,11 +292,11 @@ export default function PolicyEngineCountry(props) {
               loading={loading}
             />
           ) : error ? (
-            <ErrorPage
+            <><ErrorPage
               message={`We couldn't talk to PolicyEngine's servers. Please try again in a few minutes. The full error is: ${error}`}
-            />
+            /><Footer /></>
           ) : (
-            <LoadingCentered />
+            <><LoadingCentered /><Footer /></>
           )
         }
       />
@@ -310,9 +310,10 @@ export default function PolicyEngineCountry(props) {
               household={household}
             />
           ) : error ? (
-            <ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." />
+            <><ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." /><Footer /></>
           ) : (
-            <LoadingCentered />
+            <><LoadingCentered />
+            <Footer /></>
           )
         }
       />
@@ -323,8 +324,7 @@ export default function PolicyEngineCountry(props) {
   return (
     <>
       <Header countryId={countryId} loading={loading} />
-      <div style={{ minHeight: "90%" }}>{mainPage}</div>
-      <Footer />
+      <div style={{ minHeight: "90vh" }}>{mainPage}</div>
     </>
   );
 }
