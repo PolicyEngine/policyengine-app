@@ -4,6 +4,7 @@ import style from "../style";
 import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
+import { capitalize } from "../api/language";
 
 export default function FolderPage(props) {
   const { children } = props;
@@ -42,7 +43,7 @@ export default function FolderPage(props) {
               setSearchParams(newSearch);
             }}
           >
-            <h6 style={{ textAlign: "center" }}>{child.label}</h6>
+            <h6 style={{ textAlign: "center" }}>{capitalize(child.label)}</h6>
           </motion.div>
         ))}
       </div>

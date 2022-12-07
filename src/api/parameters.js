@@ -6,10 +6,13 @@ export function buildParameterTree(parameters) {
   for (const parameter of Object.values(parameters)) {
     const nodeToInsert = {
       name: parameter.parameter,
-      label: parameter.label || parameter.parameter.split(".").pop(),
+      label: parameter.label || parameter.parameter.split(/\.|\[/).pop(),
       index: parameter.indexInModule,
     };
-    const pathComponents = parameter.parameter.split(".");
+    // Split based on . or [
+    const pathComponents = parameter.parameter.split(/\.|\[/);
+    // Keep track of the delimiters, so that we can reconstruct the path later.
+    const delimiters = parameter.parameter.match(/\.|\[/g);
     // For a given path "x.y.z.a", create the nodes x, x.y and x.y.z if they don't exist.
 
     let currentNode = tree;
@@ -35,7 +38,10 @@ export function buildParameterTree(parameters) {
       currentNode = currentNode.children.find(
         (child) => child.name === fixedCumulativePath
       );
-      cumulativePath += ".";
+      // Re-add the delimiter to the cumulative path
+      if (delimiters) {
+        cumulativePath += delimiters.shift();
+      }
     }
     try {
       if (!currentNode.children) {

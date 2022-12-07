@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { capitalize } from "../api/language";
 import style from "../style";
 
 function MenuItem(props) {
@@ -61,7 +62,7 @@ function MenuItemGroup(props) {
           <MenuItemGroup
             key={child.name}
             name={child.name}
-            label={child.label}
+            label={capitalize(child.label)}
             selected={selected}
             children={child.children}
             onSelect={onSelect}
@@ -72,7 +73,7 @@ function MenuItemGroup(props) {
           <MenuItem
             key={child.name}
             name={child.name}
-            label={child.label}
+            label={capitalize(child.label)}
             selected={selected}
             onSelect={onSelect}
           />

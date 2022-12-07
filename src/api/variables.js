@@ -96,15 +96,27 @@ export function findInTree(tree, path) {
   // path is in the format "x.y.z"
   let node = tree;
   let cumulativePath;
+  console.log(`Finding ${path} in tree`)
   try {
     cumulativePath = "";
-    for (const key of path.split(".")) {
+    // Square brackets are not allowed in the URL, so we need to decode them.
+    // Replace %5B with [ and %5D with ].
+    path = path.replace("%5B", "[").replace("%5D", "]");
+    const pathParts = path.split(/(\.|\[)/);
+    const names = pathParts.filter((part) => part !== "." && part !== "[");
+    const delimiters = pathParts.filter((part) => part === "." || part === "[");
+    for (const key of names) {
       cumulativePath += key;
+      // If a [ in the path but no ] (or vice versa), add a ].
+      if (cumulativePath.includes("[") && !cumulativePath.includes("]")) {
+        cumulativePath += "]";
+      }
       const fixedCumulativePath = cumulativePath;
       node = node.children.find((child) => child.name === fixedCumulativePath);
-      cumulativePath += ".";
+      cumulativePath += delimiters.shift() || "";
     }
   } catch (e) {
+    console.log(`Error while finding ${path} in tree: ${e}`);
     return null;
   }
   return node;

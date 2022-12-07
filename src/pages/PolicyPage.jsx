@@ -344,6 +344,8 @@ export default function PolicyPage(props) {
 
   let middle = null;
 
+  console.log(focus, Object.keys(metadata.parameters).includes(focus))
+
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
   } else if (

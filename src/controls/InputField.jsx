@@ -23,6 +23,7 @@ export default function InputField(props) {
         borderWidth: 1,
         borderStyle: "solid",
         borderColor: style.colors.GRAY,
+        marginTop: mobile ? 0 : -10,
       }}
       type={type || "tel"}
       inputmode={inputmode || "decimal"}

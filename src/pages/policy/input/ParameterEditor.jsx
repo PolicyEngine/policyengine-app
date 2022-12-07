@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
+import { capitalize } from "../../../api/language";
 
 const { RangePicker } = DatePicker;
 
@@ -101,11 +102,13 @@ export default function ParameterEditor(props) {
     </div>
   );
 
+  console.log(parameter)
+
   return (
     <CenteredMiddleColumn
       marginTop="5%"
       marginBottom={0}
-      title={parameter.label}
+      title={capitalize(parameter.label)}
       description={parameter.description}
     >
       {editControl}
