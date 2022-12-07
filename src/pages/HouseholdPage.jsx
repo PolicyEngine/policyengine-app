@@ -308,11 +308,6 @@ function MobileBottomMenu(props) {
 
 function MobileHouseholdPage(props) {
   const { metadata, household, mainContent } = props;
-  const [searchParams] = useSearchParams();
-  const focus = searchParams.get("focus");
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [focus]);
   return (
     <>
       <div

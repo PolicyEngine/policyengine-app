@@ -1,4 +1,4 @@
-const POLICYENGINE_API = "https://policyengine-api.uc.r.appspot.com";
+const POLICYENGINE_API = "https://api.policyengine.org";
 
 export function apiCall(path, body, method) {
   return fetch(POLICYENGINE_API + path, {
