@@ -96,7 +96,6 @@ export function findInTree(tree, path) {
   // path is in the format "x.y.z"
   let node = tree;
   let cumulativePath;
-  console.log(`Finding ${path} in tree`)
   try {
     cumulativePath = "";
     // Square brackets are not allowed in the URL, so we need to decode them.
@@ -116,7 +115,6 @@ export function findInTree(tree, path) {
       cumulativePath += delimiters.shift() || "";
     }
   } catch (e) {
-    console.log(`Error while finding ${path} in tree: ${e}`);
     return null;
   }
   return node;

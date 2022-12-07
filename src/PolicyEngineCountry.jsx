@@ -277,7 +277,6 @@ export default function PolicyEngineCountry(props) {
   // - It then fires off an API call to fetch the new household/reform policy/baseline policy, and updates the state with the new data.
   //   This does of course involve one redundant API call, but it keeps the logic simple and avoids having to do a lot of work to keep the state in sync.
   //   Plus, the server isn't doing any big openfisca calculations for the call, since the results are cached.
-  console.log(metadata)
   const mainPage = (
     <Routes>
       <Route path="/" element={<><HomePage countryId={countryId} /><Footer /></>} />

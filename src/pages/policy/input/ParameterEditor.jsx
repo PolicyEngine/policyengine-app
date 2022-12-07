@@ -72,7 +72,6 @@ export default function ParameterEditor(props) {
             let newSearch = copySearchParams(searchParams);
             newSearch.set("reform", newPolicyId);
             setSearchParams(newSearch);
-            console.log(newSearch);
           });
         }}
       />
@@ -101,8 +100,6 @@ export default function ParameterEditor(props) {
       {control}
     </div>
   );
-
-  console.log(parameter)
 
   return (
     <CenteredMiddleColumn
