@@ -7,8 +7,10 @@ debug:
 deploy:
 	cp gcp/.gcloudignore ./.gcloudignore
 	cp gcp/app.yaml ./app.yaml
-	cp gcp/app.py ./app.py
+	cp gcp/main.py ./main.py
+	cp gcp/requirements.txt ./requirements.txt
 	y | gcloud app deploy --project policyengine-app
 	rm app.yaml
 	rm .gcloudignore
-	rm app.py
+	rm main.py
+	rm requirements.txt
