@@ -22,7 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.gcloudignore
-app.yaml
-main.py
-requirements.txt
+/.gcloudignore
+/app.yaml
+/main.py
+/requirements.txt
