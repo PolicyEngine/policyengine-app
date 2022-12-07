@@ -34,7 +34,7 @@ function SpacedLinks(props) {
   return (
     <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
       {links.map((link, i) => (
-        <a href={link} style={{ marginRight: 10, marginLeft: 10 }}>
+        <a key={i} href={link} style={{ marginRight: 10, marginLeft: 10 }}>
           {labels[i]}
         </a>
       ))}

@@ -56,7 +56,7 @@ export default function BlogPostHolder(props) {
   let posts = [];
   for (let i = 0; i < postJson.length; i++) {
     posts.push(
-      <BlogPostPreviewRegular {...postJson[i]} countryId={countryId} />
+      <BlogPostPreviewRegular key={i} {...postJson[i]} countryId={countryId} />
     );
   }
 
