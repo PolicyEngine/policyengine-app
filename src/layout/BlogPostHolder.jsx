@@ -29,7 +29,8 @@ function BlogPostPreviewRegular(props) {
         style={{
           width: 300,
           height: 200,
-          objectFit: "cover",
+          // Fit inside without stretching
+          objectFit: "contain",
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
         }}

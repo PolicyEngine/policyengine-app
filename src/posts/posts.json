@@ -1,42 +1,10 @@
 [
   {
-    "title": "Hello, World!",
-    "description": "This is a test post.",
-    "date": "2018-01-01",
-    "tags": ["test", "hello"],
-    "filename": "hello-world.md",
-    "image": "hello-world.jpg"
-  },
-  {
-    "title": "Hello, World!",
-    "description": "This is a test post.",
-    "date": "2018-01-01",
-    "tags": ["test", "hello"],
-    "filename": "hello-world.md",
-    "image": "hello-world.jpg"
-  },
-  {
-    "title": "Hello, World!",
-    "description": "This is a test post.",
-    "date": "2018-01-01",
-    "tags": ["test", "hello"],
-    "filename": "hello-world.md",
-    "image": "hello-world.jpg"
-  },
-  {
-    "title": "Hello, World!",
-    "description": "This is a test post.",
-    "date": "2018-01-01",
-    "tags": ["test", "hello"],
-    "filename": "hello-world.md",
-    "image": "hello-world.jpg"
-  },
-  {
-    "title": "Hello, World!",
-    "description": "This is a test post.",
-    "date": "2018-01-01",
-    "tags": ["test", "hello"],
-    "filename": "hello-world.md",
-    "image": "hello-world.jpg"
+    "title": "How charitable contributions affect Americans’ taxes",
+    "description": "PolicyEngine estimates the tax impact of your donations for free.",
+    "date": "2022-11-29",
+    "tags": ["us"],
+    "filename": "charitable-contributions.md",
+    "image": "charitable-contributions.png"
   }
 ]

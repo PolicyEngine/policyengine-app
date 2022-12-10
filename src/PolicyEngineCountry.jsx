@@ -143,6 +143,9 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(countryId, `/policy/${baselinePolicyId}`)
           .then((res) => res.json())
           .then((dataHolder) => {
+            if (dataHolder.result.label === "None") {
+              dataHolder.result.label = null;
+            }
             return {
               policy: {
                 baseline: {
@@ -197,6 +200,9 @@ export default function PolicyEngineCountry(props) {
         countryApiCall(countryId, `/policy/${reformPolicyId}`)
           .then((res) => res.json())
           .then((dataHolder) => {
+            if (dataHolder.result.label === "None") {
+              dataHolder.result.label = null;
+            }
             return {
               policy: {
                 reform: {
@@ -312,7 +318,10 @@ export default function PolicyEngineCountry(props) {
           )
         }
       />
-      <Route path="/blog/*" element={<BlogPostPage />} />
+      <Route path="/blog/*" element={<>
+        <BlogPostPage />
+        <Footer />
+      </>} />
     </Routes>
   );
 
