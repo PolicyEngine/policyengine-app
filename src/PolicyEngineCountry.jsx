@@ -84,6 +84,8 @@ export default function PolicyEngineCountry(props) {
           .then((res) => res.json())
           .then((dataHolder) => {
             return { input: dataHolder.result.household_json };
+          }).then((dataHolder) => {
+            setHouseholdInput(dataHolder.input);
           })
       );
       requests.push(
@@ -97,6 +99,8 @@ export default function PolicyEngineCountry(props) {
           .then((res) => res.json())
           .then((dataHolder) => {
             return { baseline: dataHolder.result };
+          }).then((dataHolder) => {
+            setHouseholdBaseline(dataHolder.baseline);
           })
       );
       if (reformPolicyId && reformPolicyId !== baselinePolicyId) {
@@ -108,6 +112,8 @@ export default function PolicyEngineCountry(props) {
             .then((res) => res.json())
             .then((dataHolder) => {
               return { reform: dataHolder.result };
+            }).then((dataHolder) => {
+              setHouseholdReform(dataHolder.reform);
             })
         );
       } else {
@@ -115,16 +121,6 @@ export default function PolicyEngineCountry(props) {
       }
       setLoading(true);
       Promise.all(requests).then((results) => {
-        const combined = Object.assign({}, ...results);
-        if (combined.input) {
-          setHouseholdInput(combined.input);
-        }
-        if (combined.baseline) {
-          setHouseholdBaseline(combined.baseline);
-        }
-        if (combined.reform) {
-          setHouseholdReform(combined.reform);
-        }
         setLoading(false);
       });
     } else {
