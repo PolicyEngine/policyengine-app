@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
 import rehypeRaw from 'rehype-raw'
+import style from "../style";
 
 function MarkdownP(props) {
   return <p style={{ fontSize: 20, marginBottom: 20, paddingLeft: 50, paddingRight: 50 }}>{props.children}</p>;
@@ -67,6 +68,17 @@ export default function BlogPostPage(props) {
                     }}
                   />
                 </div>
+              ),
+              i: ({ children }) => (
+                <i style={{ fontStyle: "italic" }}>{children}</i>
+              ),
+              a: ({ href, children }) => (
+                <a
+                  href={href}
+                  style={{ color: style.colors.BLUE }}
+                >
+                  {children}
+                </a>
               ),
             }}
           >{markdown}</ReactMarkdown>

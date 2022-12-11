@@ -8,8 +8,8 @@ Federal taxes comprise 88% of this impact.
 
 ![](https://cdn-images-1.medium.com/max/3896/1*OwWwU6RgotGi4g6pXsIINA.png)
 
-To estimate how charitable giving would affect your own household, visit [**policyengine.org](https://policyengine.org/)**.
+To estimate how charitable giving would affect your own household, visit [**policyengine.org**](https://policyengine.org/).
 
-If you’d like to support our work making free, open source tax and benefit software, you can [**make a tax-deductible gift to the PSL Foundation](https://opencollective.com/psl)**, our fiscal sponsor. Please let us know at [hello@policyengine.org](mailto:hello@policyengine.org) so we can direct your gift to our operations.
+If you’d like to support our work making free, open source tax and benefit software, you can [**make a tax-deductible gift to the PSL Foundation**](https://opencollective.com/psl), our fiscal sponsor. Please let us know at [hello@policyengine.org](mailto:hello@policyengine.org) so we can direct your gift to our operations.
 
 *PolicyEngine estimates do not constitute exact tax liabilities or financial advice. This example is for New York state in 2022 and does not include New York City taxes. PolicyEngine currently estimates state income taxes in Maryland, Massachusetts, New York, Oregon, Pennsylvania, and Washington.*
