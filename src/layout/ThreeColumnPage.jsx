@@ -2,7 +2,7 @@ import { HEADER_HEIGHT } from "../layout/Header";
 import style from "../style";
 
 export default function ThreeColumnPage(props) {
-  const { left, middle, right } = props;
+  const { left, middle, right, noMiddleScroll } = props;
   return (
     <div
       style={{
@@ -24,7 +24,7 @@ export default function ThreeColumnPage(props) {
           width: "50%",
           backgroundColor: style.colors.WHITE,
           padding: 20,
-          overflowY: "scroll",
+          overflowY: !noMiddleScroll && "scroll",
         }}
       >
         {middle}

@@ -7,7 +7,11 @@ import rehypeRaw from 'rehype-raw'
 import style from "../style";
 
 function MarkdownP(props) {
-  return <p style={{ fontSize: 20, marginBottom: 20, paddingLeft: 50, paddingRight: 50 }}>{props.children}</p>;
+  const mobile = useMobile();
+  const pStyle = mobile ?
+    { fontSize: 16, marginBottom: 20, paddingLeft: 10, paddingRight: 20 } :
+    { fontSize: 20, marginBottom: 20, paddingLeft: 50, paddingRight: 50 };
+  return <p style={pStyle}>{props.children}</p>;
 }
 
 export default function BlogPostPage(props) {
@@ -33,7 +37,7 @@ export default function BlogPostPage(props) {
 
   return (
     <Container style={{padding: mobile && 0}}>
-      <div style={{ margin: mobile ? 0 : 75, marginTop: mobile ? 20 : 75, marginLeft: mobile ? 20 : 150, marginRight: mobile ? 20 : 150 }}>
+      <div style={{ margin: mobile ? 0 : 75, marginTop: mobile ? 20 : 75, marginLeft: mobile ? 0 : 150, marginRight: mobile ? 0 : 150 }}>
         <div style={{ padding: mobile && 20 }}>
           <h1>{title}</h1>
           <h5>{description}</h5>
@@ -50,7 +54,7 @@ export default function BlogPostPage(props) {
           }}
           alt="Background"
         />
-        <div style={{ padding: mobile && 20 }}>
+        <div style={{ padding: mobile && 10 }}>
           <ReactMarkdown
             rehypePlugins={[rehypeRaw]}
             components={{ 

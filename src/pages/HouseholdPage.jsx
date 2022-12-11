@@ -442,6 +442,7 @@ export default function HouseholdPage(props) {
       right={
         <HouseholdRightSidebar metadata={metadata} household={household} />
       }
+      noMiddleScroll={!mobile && focus && focus.startsWith("householdOutput.")}
     />
   );
 }

@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import BottomCarousel from "../../../layout/BottomCarousel";
+import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";
@@ -13,6 +14,7 @@ export default function HouseholdOutput(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const { metadata, policy, household } = props;
+  const mobile = useMobile();
 
   let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
   let baselineLabel = policy.baseline.label || `Policy #${baselinePolicyId}`;
@@ -53,6 +55,17 @@ export default function HouseholdOutput(props) {
         household={household}
       />
     );
+  }
+
+  if (!mobile) {
+    pane = <div
+      style={{
+        height: `calc(100vh - 200px)`,
+        overflow: "scroll",
+      }}
+    >
+      {pane}
+    </div>;
   }
 
   pane = (
