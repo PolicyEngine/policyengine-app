@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
 import BlogPostHolder from "../layout/BlogPostHolder";
+import householdBaseline from "../images/home/householdBaseline.png";
+import policyImpact from "../images/home/policyImpact.png";
+import policyScore from "../images/home/policyScore.png";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -175,6 +178,17 @@ export default function HomePage(props) {
             </h5>
           </>
         }
+        left={
+          <img
+            src={householdBaseline}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+            alt="Household baseline"
+          />
+        }
       />
       <WidePanel
         direction="left"
@@ -188,6 +202,17 @@ export default function HomePage(props) {
               compute their taxes, benefits, marginal tax rates and more.
             </h5>
           </>
+        }
+        right={
+          <img
+            src={policyScore}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+            alt="Policy score"
+          />
         }
       />
       <WidePanel
@@ -204,6 +229,17 @@ export default function HomePage(props) {
               compute their taxes, benefits, marginal tax rates and more.
             </h5>
           </>
+        }
+        left={
+          <img
+            src={policyImpact}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+            alt="Policy impact"
+          />
         }
       />
     </>
