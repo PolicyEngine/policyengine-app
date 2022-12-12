@@ -27,9 +27,15 @@ export function addYearlyVariables(situation, variables, entities) {
         possibleEntities = Object.keys(situation[entityPlural]);
         for (const entity of possibleEntities) {
           if (!(variable.name in situation[entityPlural][entity])) {
-            situation[entityPlural][entity][variable.name] = {
-              2022: variable.isInputVariable ? variable.defaultValue : null,
-            };
+            if (variable.isInputVariable) {
+              situation[entityPlural][entity][variable.name] = {
+                2022: variable.defaultValue,
+              };
+            } else {
+              situation[entityPlural][entity][variable.name] = {
+                2022: null,
+              };
+            }
           }
         }
       }

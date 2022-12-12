@@ -27,7 +27,7 @@ import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 function VariableSearch(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const options = Object.values(metadata.variables)
+  const options = Object.values(metadata.variables).filter(variable => !variable.hidden_input)
     .map((variable) => ({
       value: variable.moduleName + "." + variable.name,
       label: variable.label,

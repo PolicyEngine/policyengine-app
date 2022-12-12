@@ -99,6 +99,7 @@ function HouseholdVariableEntity(props) {
   const possibleTimePeriods = Object.keys(
     household.input[entityPlural][entityName][variable.name]
   );
+  console.log(possibleTimePeriods)
   return (
     <div>
       {possibleTimePeriods.map((timePeriod) => {
@@ -169,6 +170,7 @@ function HouseholdVariableEntityInput(props) {
       </div>
     );
   } else if (variable.valueType === "Enum") {
+    console.log("it's an enum")
     control = (
       <SearchOptions
         options={variable.possibleValues}

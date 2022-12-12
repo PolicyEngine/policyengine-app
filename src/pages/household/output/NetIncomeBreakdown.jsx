@@ -45,7 +45,7 @@ function VariableArithmetic(props) {
         ? `Your ${variable.label} fall${
             variable.label.endsWith("s") ? "" : "s"
           } by ${formatVariableValue(variable, -diff, 0)}`
-        : `Your ${variable.label} doesn't change`;
+        : `Your ${variable.label} ${variable.label.endsWith('s') ? 'don\'t' : 'doesn\'t'} change`;
     shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
         getValueFromHousehold(
@@ -68,7 +68,7 @@ function VariableArithmetic(props) {
   } else {
     valueStr = `Your ${variable.label} ${
       variable.label.endsWith("s") ? "are" : "is"
-    } ${formatVariableValue(variable, Math.abs(value), 0)}`;
+    } ${formatVariableValue(variable, value, 0)}`;
     shouldShowVariable = (variableName) => {
       return (
         getValueFromHousehold(
@@ -142,8 +142,8 @@ function VariableArithmetic(props) {
           }
         }}
       >
-        <h2 style={{ display: "flex" }}>{valueStr}</h2>
-        {variable.documentation ? <h5>{variable.documentation}</h5> : null}
+        <h2 style={{ display: "flex", fontSize: 22 }}>{valueStr}</h2>
+        {variable.documentation ? <h5 style={{fontSize: 18}}>{variable.documentation}</h5> : null}
       </div>
       {expanded && (
         <div
