@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import BottomCarousel from "../../../layout/BottomCarousel";
+import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import EarningsVariation from "./EarningsVariation";
@@ -13,7 +14,7 @@ export default function HouseholdOutput(props) {
   const focus = searchParams.get("focus");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
-  const { metadata, policy, household } = props;
+  const { metadata, policy, household, loading } = props;
   const mobile = useMobile();
 
   let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
@@ -28,8 +29,9 @@ export default function HouseholdOutput(props) {
     policyLabel = `${baselineLabel} → ${reformLabel}`;
   }
   let pane;
-
-  if (focus === "householdOutput.netIncome") {
+  if (loading) {
+    pane = <LoadingCentered message="Computing your household's taxes and benefits" />;
+  } else if (focus === "householdOutput.netIncome") {
     pane = (
       <NetIncomeBreakdown
         metadata={metadata}

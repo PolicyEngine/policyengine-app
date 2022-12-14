@@ -120,7 +120,8 @@ function HouseholdVariableEntity(props) {
 }
 
 function HouseholdVariableEntityInput(props) {
-  const [setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
   const {
     metadata,
     household,

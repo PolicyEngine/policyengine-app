@@ -425,6 +425,7 @@ export default function HouseholdPage(props) {
           metadata={metadata}
           household={household}
           policy={policy}
+          loading={loading}
         />
       </>
     );

@@ -194,18 +194,17 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
           {
             name: "input.household.maritalStatus",
             label: "Marital status",
-            index: 0,
+            index: -2,
           },
           {
             name: "input.household.children",
             label: "Children",
-            index: 1,
+            index: -1,
           },
           ...basicInputs.map(variableName => {
             return {
               name: "input.household." + variableName,
               label: capitalize(variables[variableName].label),
-              index: 2,
             };
           })
         ],
