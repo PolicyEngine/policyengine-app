@@ -329,7 +329,7 @@ function MobileHouseholdPage(props) {
 }
 
 export default function HouseholdPage(props) {
-  const { metadata, household, setHousehold, policy, loading } = props;
+  const { metadata, household, setHousehold, policy, loading, setHouseholdInput } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const mobile = useMobile();
 
@@ -358,19 +358,29 @@ export default function HouseholdPage(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!household.input]);
 
-  if (!household.input || !household.baseline) {
+  if (!household.input) {
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.variables).includes(
       focus.split(".")[focus.split(".").length - 1]
     )
   ) {
+    const variableNames = focus.includes("input.household.") ?
+      metadata.basicInputs.map(variable => `input.household.${variable}`) :
+      metadata.variablesInOrder;
+    let nextVariable =
+      variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
+    if (!nextVariable) {
+      nextVariable = "householdOutput.netIncome";
+    }
     middle = (
       <VariableEditor
         metadata={metadata}
         household={household}
         setHousehold={setHousehold}
         loading={loading}
+        setHouseholdInput={setHouseholdInput}
+        nextVariable={nextVariable}
       />
     );
   } else if (
@@ -394,6 +404,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         household={household}
         setHousehold={setHousehold}
+        setHouseholdInput={setHouseholdInput}
       />
     );
   } else if (focus === "intro") {
@@ -404,6 +415,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         household={household}
         setHousehold={setHousehold}
+        setHouseholdInput={setHouseholdInput}
       />
     );
   } else if (focus && focus.startsWith("householdOutput.")) {

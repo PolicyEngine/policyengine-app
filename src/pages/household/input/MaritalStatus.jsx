@@ -67,7 +67,7 @@ function setUSMaritalStatus(situation, status, variables, entities) {
 }
 
 export default function MaritalStatus(props) {
-  const { metadata, household } = props;
+  const { metadata, household, setHouseholdInput } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getMaritalStatus = { uk: getUKMaritalStatus, us: getUSMaritalStatus }[
     metadata.countryId
@@ -84,10 +84,13 @@ export default function MaritalStatus(props) {
       metadata.variables,
       metadata.entities
     );
+    setHouseholdInput(newHousehold);
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("focus", "input.household.children");
+    setSearchParams(newSearch);
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
-      let newSearch = copySearchParams(searchParams);
+      let newSearch = new URLSearchParams(window.location.search);
       newSearch.set("household", householdId);
-      newSearch.set("focus", "input.household.children");
       setSearchParams(newSearch);
     });
   };

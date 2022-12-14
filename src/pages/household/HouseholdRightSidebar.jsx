@@ -22,6 +22,7 @@ function Figure(props) {
           flex: 1,
           textAlign: "right",
           paddingRight: 5,
+          paddingLeft: 15,
           fontSize: 24,
         }}
       >
@@ -31,6 +32,7 @@ function Figure(props) {
         style={{
           flex: 1,
           paddingLeft: 5,
+          paddingRight: 15,
           fontSize: 18,
         }}
       >
@@ -111,7 +113,7 @@ export default function HouseholdRightSidebar(props) {
         right={"marginal tax rate"}
       />
       {focus && focus.startsWith("householdOutput") && (
-        <NavigationButton primary text="Edit my household" focus="input" />
+        <NavigationButton primary text="Add more household details" focus="input" />
       )}
       {focus && !focus.startsWith("householdOutput") && (
         <NavigationButton

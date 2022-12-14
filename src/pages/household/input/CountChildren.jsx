@@ -92,7 +92,7 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
 }
 
 export default function CountChildren(props) {
-  const { metadata, household } = props;
+  const { metadata, household, setHouseholdInput } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getCountChildren = { uk: getUKCountChildren, us: getUSCountChildren }[
     metadata.countryId
@@ -108,10 +108,13 @@ export default function CountChildren(props) {
       metadata.variables,
       metadata.entities
     );
+    setHouseholdInput(newHousehold);
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("focus", `input.household.${metadata.basicInputs[0]}`);
+    setSearchParams(newSearch);
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
-      let newSearch = copySearchParams(searchParams);
+      let newSearch = new URLSearchParams(window.location.search);
       newSearch.set("household", householdId);
-      newSearch.set("focus", "input.income.employment_income");
       setSearchParams(newSearch);
     });
   };
@@ -128,7 +131,7 @@ export default function CountChildren(props) {
           setCountChildren(children);
         }}
       />
-      <NavigationButton text="Enter" focus="input.income.employment_income" />
+      <NavigationButton text="Enter" focus={`input.household.${metadata.basicInputs[0]}`} />
     </>
   );
   return (

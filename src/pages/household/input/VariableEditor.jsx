@@ -7,7 +7,6 @@ import {
 } from "../../../api/variables";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import InputField from "../../../controls/InputField";
-import { copySearchParams } from "../../../api/call";
 import { Switch } from "antd";
 import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
@@ -16,7 +15,7 @@ import NavigationButton from "../../../controls/NavigationButton";
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
   const mobile = useMobile();
-  const { metadata, household, setHousehold, loading } = props;
+  const { metadata, household, setHousehold, setHouseholdInput, nextVariable } = props;
   if (!household.input) {
     return <LoadingCentered />;
   }
@@ -32,9 +31,6 @@ export default function VariableEditor(props) {
   const possibleEntities = Object.keys(household.input[entityPlural]).filter(
     (entity) => household.input[entityPlural][entity][variable.name]
   );
-  const variableNames = metadata.variablesInOrder;
-  const nextVariable =
-    variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity
@@ -46,6 +42,7 @@ export default function VariableEditor(props) {
         metadata={metadata}
         key={entity}
         isSimulated={isSimulated}
+        setHouseholdInput={setHouseholdInput}
       />
     );
   });
@@ -78,7 +75,6 @@ export default function VariableEditor(props) {
             text="Enter"
             focus={nextVariable}
             primary
-            disabled={loading}
           />
         )}
       </div>
@@ -95,6 +91,7 @@ function HouseholdVariableEntity(props) {
     setHousehold,
     metadata,
     isSimulated,
+    setHouseholdInput,
   } = props;
   const possibleTimePeriods = Object.keys(
     household.input[entityPlural][entityName][variable.name]
@@ -114,6 +111,7 @@ function HouseholdVariableEntity(props) {
             setHousehold={setHousehold}
             metadata={metadata}
             isSimulated={isSimulated}
+            setHouseholdInput={setHouseholdInput}
           />
         );
       })}
@@ -122,7 +120,7 @@ function HouseholdVariableEntity(props) {
 }
 
 function HouseholdVariableEntityInput(props) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [setSearchParams] = useSearchParams();
   const {
     metadata,
     household,
@@ -131,12 +129,14 @@ function HouseholdVariableEntityInput(props) {
     entityName,
     timePeriod,
     isSimulated,
+    setHouseholdInput,
   } = props;
   const submitValue = (value) => {
     let newHousehold = household.input;
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
+    setHouseholdInput(newHousehold);
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
-      let newSearch = copySearchParams(searchParams);
+      let newSearch = new URLSearchParams(window.location.search);
       newSearch.set("household", householdId);
       setSearchParams(newSearch);
     });

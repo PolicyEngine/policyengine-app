@@ -135,7 +135,7 @@ export default function Menu(props) {
   // Child keys must include the keys of their parent.
 
   let menuItems = [];
-  for (const item of tree) {
+  for (const item of tree.sort((a, b) => b.index - a.index).reverse()) {
     if (item.children) {
       menuItems.push(
         <MenuItemGroup

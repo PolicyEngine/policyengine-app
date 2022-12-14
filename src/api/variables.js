@@ -126,7 +126,7 @@ export function findInTree(tree, path) {
   return node;
 }
 
-export function buildVariableTree(variables, variableModules) {
+export function buildVariableTree(variables, variableModules, basicInputs) {
   // Build a tree of variables, based on their module and indexInModule.
   // variables is a dictionary of variables, in the format:
   // { variable_name: { name: variable_name, label: variable_label, moduleName: variable_module, indexInModule: variable_indexInModule } }
@@ -166,7 +166,7 @@ export function buildVariableTree(variables, variableModules) {
           currentNode.children.push({
             label: moduleData.label || key,
             name: fixedCumulativePath,
-            index: module.index || 0,
+            index: moduleData.index || 0,
             children: [],
           });
         }
@@ -189,7 +189,7 @@ export function buildVariableTree(variables, variableModules) {
       {
         name: "input.household",
         label: "Household",
-        index: 0,
+        index: -10,
         children: [
           {
             name: "input.household.maritalStatus",
@@ -201,6 +201,13 @@ export function buildVariableTree(variables, variableModules) {
             label: "Children",
             index: 1,
           },
+          ...basicInputs.map(variableName => {
+            return {
+              name: "input.household." + variableName,
+              label: capitalize(variables[variableName].label),
+              index: 2,
+            };
+          })
         ],
       },
       ...inputModule.reverse(),

@@ -19,7 +19,8 @@ function updateMetadata(countryId, setMetadata, setError) {
       const data = dataHolder.result;
       const variableTree = buildVariableTree(
         data.variables,
-        data.variableModules
+        data.variableModules,
+        data.basicInputs,
       );
       const parameterTree = buildParameterTree(data.parameters);
       const variablesInOrder = getTreeLeavesInOrder(variableTree);
@@ -69,6 +70,7 @@ export default function PolicyEngineCountry(props) {
     baseline: baselinePolicy,
     reform: reformPolicy,
   };
+  console.log(metadata)
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
@@ -79,15 +81,17 @@ export default function PolicyEngineCountry(props) {
   useEffect(() => {
     let requests = [];
     if (householdId) {
-      requests.push(
-        countryApiCall(countryId, `/household/${householdId}`)
-          .then((res) => res.json())
-          .then((dataHolder) => {
-            return { input: dataHolder.result.household_json };
-          }).then((dataHolder) => {
-            setHouseholdInput(dataHolder.input);
-          })
-      );
+      if (!householdInput) {
+        requests.push(
+          countryApiCall(countryId, `/household/${householdId}`)
+            .then((res) => res.json())
+            .then((dataHolder) => {
+              return { input: dataHolder.result.household_json };
+            }).then((dataHolder) => {
+              setHouseholdInput(dataHolder.input);
+            })
+        );
+      }
       requests.push(
         countryApiCall(
           countryId,
@@ -291,6 +295,8 @@ export default function PolicyEngineCountry(props) {
               household={household}
               policy={policy}
               loading={loading}
+              householdInput={householdInput}
+              setHouseholdInput={setHouseholdInput}
             />
           ) : error ? (
             <><ErrorPage
