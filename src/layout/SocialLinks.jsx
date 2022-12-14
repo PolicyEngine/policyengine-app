@@ -6,6 +6,7 @@ import {
   InstagramOutlined,
   TwitterOutlined,
   GithubOutlined,
+  MailOutlined,
 } from "@ant-design/icons";
 
 import LinkedInLogo from "../images/logos/linkedin_logo.png";
@@ -35,6 +36,9 @@ export default function SocialLinks(props) {
       </a>
       <a href="https://github.com/PolicyEngine">
         <GithubOutlined style={iconStyle} />
+      </a>
+      <a href="mailto:hello@policyengine.org">
+        <MailOutlined style={iconStyle} />
       </a>
     </div>
   );

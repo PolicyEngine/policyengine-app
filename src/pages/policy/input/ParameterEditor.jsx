@@ -36,7 +36,7 @@ export default function ParameterEditor(props) {
     control = (
       <div style={{ padding: 10 }}>
         <Switch
-          checked={value || getParameterAtInstant(reformedParameter, startDate)}
+          checked={getParameterAtInstant(reformedParameter, startDate)}
           onChange={(value) => {
             let newPolicy = { ...policy.reform.data };
             newPolicy[parameterName] = {
@@ -59,7 +59,7 @@ export default function ParameterEditor(props) {
     control = (
       <InputField
         placeholder={
-          value || getParameterAtInstant(reformedParameter, startDate)
+          getParameterAtInstant(reformedParameter, startDate)
         }
         onChange={(value) => {
           let newPolicy = { ...policy.reform.data };
