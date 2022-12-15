@@ -71,7 +71,6 @@ export default function PolicyEngineCountry(props) {
     baseline: baselinePolicy,
     reform: reformPolicy,
   };
-  console.log(metadata)
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
