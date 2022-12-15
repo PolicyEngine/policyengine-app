@@ -95,7 +95,7 @@ export default function EarningsVariation(props) {
         defaultValue={variable}
         options={Object.values(metadata.variables).map((variable) => ({
           value: variable.name,
-          label: capitalize(variable.label),
+          label: capitalize(variable.label || ""),
           }))}
         onSelect={(value) => setVariable(value)}
         style={{
