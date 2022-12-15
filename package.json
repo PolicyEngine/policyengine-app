@@ -2,6 +2,7 @@
   "name": "policyengine-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://beta.policyengine.org",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "antd": "^4.24.2",
