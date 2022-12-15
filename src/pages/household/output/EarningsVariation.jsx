@@ -12,6 +12,8 @@ import FadeIn from "../../../layout/FadeIn";
 import { useSearchParams } from "react-router-dom";
 import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
+import SearchOptions from "../../../controls/SearchOptions";
+import { capitalize } from "../../../api/language";
 
 export default function EarningsVariation(props) {
   const { household, metadata } = props;
@@ -25,6 +27,7 @@ export default function EarningsVariation(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
+  const [variable, setVariable] = useState("household_net_income");
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));
@@ -80,7 +83,29 @@ export default function EarningsVariation(props) {
     );
   }
 
+  let yAxisSelector = <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: 20,
+    }}>
+      <SearchOptions
+        defaultValue={variable}
+        options={Object.values(metadata.variables).map((variable) => ({
+          value: variable.name,
+          label: capitalize(variable.label),
+          }))}
+        onSelect={(value) => setVariable(value)}
+        style={{
+          width: 400,
+        }}
+        />
+    </div>
+
   let plot;
+
+  try {
 
   if (baselineNetIncome && !reformNetIncome) {
     const earningsArray = getValueFromHousehold(
@@ -91,7 +116,7 @@ export default function EarningsVariation(props) {
       metadata
     );
     const netIncomeArray = getValueFromHousehold(
-      "household_net_income",
+      variable,
       "2022",
       null,
       baselineNetIncome,
@@ -105,28 +130,33 @@ export default function EarningsVariation(props) {
       metadata
     );
     const currentNetIncome = getValueFromHousehold(
-      "household_net_income",
+      variable,
       "2022",
       null,
       household.baseline,
       metadata
     );
+    // Check if netIncomeArray is a scalar (like 0) or a string
+    if ((typeof netIncomeArray === "string") || (netIncomeArray === 0)) {
+      throw new Error("No net income");
+    }
     // Add the main line, then add a 'you are here' line
     plot = (
-      <FadeIn>
+      <FadeIn key="baseline">
         <Plot
+          key="baseline"
           data={[
             {
               x: earningsArray,
               y: netIncomeArray,
               type: "line",
-              name: "Net income",
+              name: capitalize(metadata.variables[variable].label),
             },
             {
               x: [currentEarnings, currentEarnings],
               y: [0, currentNetIncome],
               type: "line",
-              name: "Your current net income",
+              name: `Your current ${metadata.variables[variable].label}`,
               line: {
                 color: style.colors.MEDIUM_DARK_GRAY,
               },
@@ -140,16 +170,16 @@ export default function EarningsVariation(props) {
             },
             yaxis: {
               title: {
-                text: "Net income",
+                text: capitalize(metadata.variables[variable].label),
               },
               ...getPlotlyAxisFormat(
-                metadata.variables.household_net_income.unit
+                metadata.variables[variable].unit
               ),
               tickformat: ",.0f",
             },
             legend: {
               // Position above the plot
-              y: 1.1,
+              y: 1.2,
               orientation: "h",
             },
           }}
@@ -172,14 +202,14 @@ export default function EarningsVariation(props) {
       metadata
     );
     const baselineNetIncomeArray = getValueFromHousehold(
-      "household_net_income",
+      variable,
       "2022",
       null,
       baselineNetIncome,
       metadata
     );
     const reformNetIncomeArray = getValueFromHousehold(
-      "household_net_income",
+      variable,
       "2022",
       null,
       reformNetIncome,
@@ -193,30 +223,34 @@ export default function EarningsVariation(props) {
       metadata
     );
     const currentNetIncome = getValueFromHousehold(
-      "household_net_income",
+      variable,
       "2022",
       null,
       household.reform,
       metadata
     );
     const baselineNetIncomeValue = getValueFromHousehold(
-      "household_net_income",
+      variable,
       "2022",
       null,
       household.baseline,
       metadata
     );
+    // Check if netIncomeArray is a scalar (like 0) or a string
+    if ((typeof reformNetIncomeArray === "string") || (reformNetIncomeArray === 0)) {
+      throw new Error("No net income");
+    }
     // Add the main line, then add a 'you are here' line
-    let data;
+    let plotObject;
     if (showDelta) {
-      data = [
+      let data = [
         {
           x: earningsArray,
           y: reformNetIncomeArray.map(
             (value, index) => value - baselineNetIncomeArray[index]
           ),
           type: "line",
-          name: "Net income difference",
+          name: `Change in ${metadata.variables[variable].label}`,
           line: {
             color: style.colors.BLUE,
           },
@@ -225,58 +259,21 @@ export default function EarningsVariation(props) {
           x: [currentEarnings, currentEarnings],
           y: [0, currentNetIncome - baselineNetIncomeValue],
           type: "line",
-          name: "Your current net income delta",
+          name: `Your current change in ${metadata.variables[variable].label}`,
           line: {
             color: style.colors.MEDIUM_DARK_GRAY,
           },
         },
+        {
+          x: [0],
+          y: [0],
+          type: "scatter",
+          mode: "markers",
+        }
       ];
-    } else {
-      data = [
-        {
-          x: earningsArray,
-          y: reformNetIncomeArray,
-          type: "line",
-          name: "Reform net income",
-          line: {
-            color: style.colors.BLUE,
-          },
-        },
-        {
-          x: earningsArray,
-          y: baselineNetIncomeArray,
-          type: "line",
-          name: "Baseline net income",
-          line: {
-            color: style.colors.MEDIUM_DARK_GRAY,
-          },
-        },
-        {
-          x: [currentEarnings, currentEarnings],
-          y: [0, currentNetIncome],
-          type: "line",
-          name: "Your current net income",
-          line: {
-            color: style.colors.MEDIUM_DARK_GRAY,
-          },
-        },
-      ];
-    }
-
-    plot = (
-      <FadeIn>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <span style={{ marginRight: 10 }}>Show baseline and reform</span>
-          <Switch
-            checked={showDelta}
-            onChange={(checked) => setShowDelta(checked)}
-          />
-          <span style={{ marginLeft: 10 }}>
-            Show difference between baseline and reform
-          </span>
-        </div>
-        <Plot
+      plotObject = <Plot
           data={data}
+          key="reform"
           layout={{
             xaxis: {
               title: "Employment income",
@@ -287,16 +284,16 @@ export default function EarningsVariation(props) {
               tickformat: ",.0f",
             },
             yaxis: {
-              title: "Net income",
+              title: `Change in ${metadata.variables[variable].label}`,
               ...getPlotlyAxisFormat(
                 metadata.variables.household_net_income.unit,
                 0
               ),
-              tickformat: (showDelta ? "+" : "") + ",.0f",
+              tickformat: ",.0f",
             },
             legend: {
               // Position above the plot
-              y: 1.1,
+              y: 1.2,
               orientation: "h",
             },
           }}
@@ -308,8 +305,93 @@ export default function EarningsVariation(props) {
             width: "100%",
           }}
         />
+    } else {
+      let data = [
+        {
+          x: earningsArray,
+          y: baselineNetIncomeArray,
+          type: "line",
+          name: `Baseline ${metadata.variables[variable].label}`,
+          line: {
+            color: style.colors.MEDIUM_DARK_GRAY,
+          },
+        },
+        {
+          x: earningsArray,
+          y: reformNetIncomeArray,
+          type: "line",
+          name: `Reform ${metadata.variables[variable].label}`,
+          line: {
+            color: style.colors.BLUE,
+          },
+        },
+        {
+          x: [currentEarnings, currentEarnings],
+          y: [0, currentNetIncome],
+          type: "line",
+          name: `Your current ${metadata.variables[variable].label}`,
+          line: {
+            color: style.colors.MEDIUM_DARK_GRAY,
+          },
+        },
+      ];
+      plotObject = <Plot
+        data={data}
+        key="reform"
+        layout={{
+          xaxis: {
+            title: "Employment income",
+            ...getPlotlyAxisFormat(
+              metadata.variables.employment_income.unit,
+              0
+            ),
+            tickformat: ",.0f",
+          },
+          yaxis: {
+            title: capitalize(metadata.variables[variable].label),
+            ...getPlotlyAxisFormat(
+              metadata.variables.household_net_income.unit,
+              0
+            ),
+            tickformat: ",.0f",
+          },
+          legend: {
+            // Position above the plot
+            y: 1.2,
+            orientation: "h",
+          },
+        }}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+        style={{
+          width: "100%",
+        }}
+      />
+    }
+
+    plot = (
+      <FadeIn key="reform">
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <span style={{ marginRight: 10 }}>Show baseline and reform</span>
+          <Switch
+            checked={showDelta}
+            onChange={(checked) => setShowDelta(checked)}
+          />
+          <span style={{ marginLeft: 10 }}>
+            Show difference
+          </span>
+        </div>
+        {plotObject}
       </FadeIn>
     );
+  }
+
+  } catch (e) {
+    plot = <ErrorPage
+      message={`We couldn't plot the variable ${metadata.variables[variable].label}.`}
+      />
   }
 
   return (
@@ -322,7 +404,10 @@ export default function EarningsVariation(props) {
           <LoadingCentered />
         </div>
       ) : (
-        plot
+        <>
+          {yAxisSelector}
+          {plot}
+        </>
       )}
     </ResultsPanel>
   );

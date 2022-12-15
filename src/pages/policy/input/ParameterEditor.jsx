@@ -26,7 +26,8 @@ export default function ParameterEditor(props) {
   const [startDate, setStartDate] = useState("2022-01-01");
   const [endDate, setEndDate] = useState("2027-12-31");
 
-  const [value, setValue] = useState(
+  // eslint-disable-next-line no-unused-vars
+  const [_, setValue] = useState(
     getParameterAtInstant(reformedParameter, startDate)
   );
 
