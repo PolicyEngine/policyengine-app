@@ -265,12 +265,6 @@ export default function EarningsVariation(props) {
             color: style.colors.MEDIUM_DARK_GRAY,
           },
         },
-        {
-          x: [0],
-          y: [0],
-          type: "scatter",
-          mode: "markers",
-        }
       ];
       plotObject = <Plot
           data={data}
