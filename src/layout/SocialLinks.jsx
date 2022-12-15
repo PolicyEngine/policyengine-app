@@ -17,27 +17,27 @@ export default function SocialLinks(props) {
   const importedIconStyle = {
     height: "14px",
     marginLeft: 15,
-    marginTop: 4,
     filter: props.color === "black" ? "" : "invert(1)",
   };
+  const aStyle = { alignItems: "center", display: "flex"}
   return (
-    <div className="d-flex justify-content-center">
-      <a href="https://twitter.com/ThePolicyEngine">
+    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <a href="https://twitter.com/ThePolicyEngine" style={aStyle}>
         <TwitterOutlined style={iconStyle} />
       </a>
-      <a href="https://facebook.com/PolicyEngine">
+      <a href="https://facebook.com/PolicyEngine" style={aStyle}>
         <img src={FacebookLogo} style={importedIconStyle} alt="Facebook logo" />
       </a>
-      <a href="https://linkedin.com/company/ThePolicyEngine">
+      <a href="https://linkedin.com/company/ThePolicyEngine" style={aStyle}>
         <img src={LinkedInLogo} style={importedIconStyle} alt="LinkedIn logo" />
       </a>
-      <a href="https://instagram.com/PolicyEngine">
+      <a href="https://instagram.com/PolicyEngine" style={aStyle}>
         <InstagramOutlined style={iconStyle} />
       </a>
-      <a href="https://github.com/PolicyEngine">
+      <a href="https://github.com/PolicyEngine" style={aStyle}>
         <GithubOutlined style={iconStyle} />
       </a>
-      <a href="mailto:hello@policyengine.org">
+      <a href="mailto:hello@policyengine.org" style={aStyle}>
         <MailOutlined style={iconStyle} />
       </a>
     </div>

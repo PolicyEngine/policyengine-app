@@ -56,6 +56,7 @@ export default function BlogPostHolder(props) {
 
   let posts = [];
   for (let i = 0; i < postJson.length; i++) {
+    if (postJson[i].tags.includes(countryId) || postJson[i].tags.includes("global"))
     posts.push(
       <BlogPostPreviewRegular key={i} {...postJson[i]} countryId={countryId} />
     );

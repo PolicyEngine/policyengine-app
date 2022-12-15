@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 import ResponsiveComponent from "./ResponsiveComponent";
 import SocialLinks from "./SocialLinks";
+import CountrySelector from "./CountrySelector";
 
 export const HEADER_HEIGHT = 75;
 
@@ -91,7 +92,12 @@ function DesktopHeader(props) {
           </div>
         )}
         <div style={{ marginLeft: "auto", marginRight: 20 }}>
-          <SocialLinks color="white" />
+          <div style={{
+            display: "flex",
+          }}>
+            <CountrySelector countryId={countryId} />
+            <SocialLinks color="white" />
+          </div>
         </div>
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
