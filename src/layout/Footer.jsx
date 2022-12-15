@@ -2,11 +2,12 @@ import useMobile from "./Responsive";
 import SocialLinks from "./SocialLinks";
 
 export default function Footer(props) {
+  const { countryId } = props;
   const mobile = useMobile();
   let footer;
   const links = [
     "https://policyengine.org",
-    "/about",
+    `/${countryId}/about`,
     "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
     "https://opencollective.com/psl",
   ];

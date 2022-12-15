@@ -11,6 +11,7 @@ import PolicyPage from "./pages/PolicyPage";
 import { buildParameterTree } from "./api/parameters";
 import BlogPostPage from "./pages/BlogPage";
 import Footer from "./layout/Footer";
+import AboutPage from "./pages/AboutPage";
 
 function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
@@ -285,7 +286,7 @@ export default function PolicyEngineCountry(props) {
   //   Plus, the server isn't doing any big openfisca calculations for the call, since the results are cached.
   const mainPage = (
     <Routes>
-      <Route path="/" element={<><HomePage countryId={countryId} /><Footer /></>} />
+      <Route path="/" element={<><HomePage countryId={countryId} /><Footer countryId={countryId} /></>} />
       <Route
         path="/household/*"
         element={
@@ -301,9 +302,9 @@ export default function PolicyEngineCountry(props) {
           ) : error ? (
             <><ErrorPage
               message={`We couldn't talk to PolicyEngine's servers. Please try again in a few minutes. The full error is: ${error}`}
-            /><Footer /></>
+            /><Footer countryId={countryId} /></>
           ) : (
-            <><LoadingCentered /><Footer /></>
+            <><LoadingCentered /><Footer countryId={countryId} /></>
           )
         }
       />
@@ -320,13 +321,17 @@ export default function PolicyEngineCountry(props) {
             <><ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." /><Footer /></>
           ) : (
             <><LoadingCentered />
-            <Footer /></>
+            <Footer countryId={countryId} /></>
           )
         }
       />
       <Route path="/blog/*" element={<>
         <BlogPostPage />
-        <Footer />
+        <Footer countryId={countryId} />
+      </>} />
+      <Route path="/about" element={<>
+        <AboutPage />
+        <Footer countryId={countryId} />
       </>} />
     </Routes>
   );

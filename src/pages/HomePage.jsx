@@ -87,7 +87,7 @@ function WidePanelHalf(props) {
   );
 }
 
-function WidePanel(props) {
+export function WidePanel(props) {
   const { left, right, direction, backgroundColor } = props;
   const mobile = useMobile();
 
