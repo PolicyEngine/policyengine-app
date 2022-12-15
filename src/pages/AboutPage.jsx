@@ -1,8 +1,9 @@
 import { Container } from "react-bootstrap";
+import useMobile from "../layout/Responsive";
 
 
 export default function AboutPage(props) {
-    return <Container style={{paddingLeft: 300, paddingRight: 300, paddingTop: 100}}>
+    const contents = <>
         <h1>About</h1>
         <div style={{ paddingTop: 20, paddingBottom: 20 }}>
             <h3>Leadership</h3>
@@ -24,5 +25,11 @@ export default function AboutPage(props) {
             <p><b>Linda Gibbs</b>, principal at Bloomberg Associates. Linda previously served New York City as the Deputy Mayor for Health and Human Services and Commissioner of the Department of Homeless Services.</p>
             <p><b>Glenn Hubbard</b>, Dean Emeritus and Professor of Finance and Economics at Columbia University and nonresident senior fellow at the American Enterprise Institute. Glenn previously served as Chairman of the Council of Economic Advisers and Deputy Assistant Treasury Secretary.</p>
         </div>
-    </Container>
+    </>;
+    const mobile = useMobile();
+    if (mobile) {
+        return <Container style={{padding: 20}}>{contents}</Container>;
+    } else {
+        return <Container style={{ maxWidth: 800, paddingTop: 40 }}>{contents}</Container>;
+    }
 }
