@@ -1,4 +1,4 @@
-const POLICYENGINE_API = "http://127.0.0.1:5000";
+const POLICYENGINE_API = "http://api.policyengine.org";
 
 export function apiCall(path, body, method) {
   return fetch(POLICYENGINE_API + path, {
