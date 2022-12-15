@@ -28,6 +28,7 @@ export default function EarningsVariation(props) {
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
   const [variable, setVariable] = useState("household_net_income");
+  const variableLabel = metadata.variables[variable].label || variable;
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));
@@ -150,13 +151,13 @@ export default function EarningsVariation(props) {
               x: earningsArray,
               y: netIncomeArray,
               type: "line",
-              name: capitalize(metadata.variables[variable].label),
+              name: capitalize(variableLabel),
             },
             {
               x: [currentEarnings, currentEarnings],
               y: [0, currentNetIncome],
               type: "line",
-              name: `Your current ${metadata.variables[variable].label}`,
+              name: `Your current ${variableLabel}`,
               line: {
                 color: style.colors.MEDIUM_DARK_GRAY,
               },
@@ -170,7 +171,7 @@ export default function EarningsVariation(props) {
             },
             yaxis: {
               title: {
-                text: capitalize(metadata.variables[variable].label),
+                text: capitalize(variableLabel),
               },
               ...getPlotlyAxisFormat(
                 metadata.variables[variable].unit
@@ -250,7 +251,7 @@ export default function EarningsVariation(props) {
             (value, index) => value - baselineNetIncomeArray[index]
           ),
           type: "line",
-          name: `Change in ${metadata.variables[variable].label}`,
+          name: `Change in ${variableLabel}`,
           line: {
             color: style.colors.BLUE,
           },
@@ -259,7 +260,7 @@ export default function EarningsVariation(props) {
           x: [currentEarnings, currentEarnings],
           y: [0, currentNetIncome - baselineNetIncomeValue],
           type: "line",
-          name: `Your current change in ${metadata.variables[variable].label}`,
+          name: `Your current change in ${variableLabel}`,
           line: {
             color: style.colors.MEDIUM_DARK_GRAY,
           },
@@ -284,7 +285,7 @@ export default function EarningsVariation(props) {
               tickformat: ",.0f",
             },
             yaxis: {
-              title: `Change in ${metadata.variables[variable].label}`,
+              title: `Change in ${variableLabel}`,
               ...getPlotlyAxisFormat(
                 metadata.variables.household_net_income.unit,
                 0
@@ -311,7 +312,7 @@ export default function EarningsVariation(props) {
           x: earningsArray,
           y: baselineNetIncomeArray,
           type: "line",
-          name: `Baseline ${metadata.variables[variable].label}`,
+          name: `Baseline ${variableLabel}`,
           line: {
             color: style.colors.MEDIUM_DARK_GRAY,
           },
@@ -320,7 +321,7 @@ export default function EarningsVariation(props) {
           x: earningsArray,
           y: reformNetIncomeArray,
           type: "line",
-          name: `Reform ${metadata.variables[variable].label}`,
+          name: `Reform ${variableLabel}`,
           line: {
             color: style.colors.BLUE,
           },
@@ -329,7 +330,7 @@ export default function EarningsVariation(props) {
           x: [currentEarnings, currentEarnings],
           y: [0, currentNetIncome],
           type: "line",
-          name: `Your current ${metadata.variables[variable].label}`,
+          name: `Your current ${variableLabel}`,
           line: {
             color: style.colors.MEDIUM_DARK_GRAY,
           },
@@ -348,7 +349,7 @@ export default function EarningsVariation(props) {
             tickformat: ",.0f",
           },
           yaxis: {
-            title: capitalize(metadata.variables[variable].label),
+            title: capitalize(variableLabel),
             ...getPlotlyAxisFormat(
               metadata.variables.household_net_income.unit,
               0
@@ -390,7 +391,7 @@ export default function EarningsVariation(props) {
 
   } catch (e) {
     plot = <ErrorPage
-      message={`We couldn't plot the variable ${metadata.variables[variable].label}.`}
+      message={`We couldn't plot the variable ${variableLabel}.`}
       />
   }
 
