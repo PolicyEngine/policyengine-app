@@ -38,7 +38,7 @@ export default function MarginalTaxRates(props) {
           period: "2022",
           min: 0,
           max: 200_000,
-          count: 101,
+          count: 401,
         },
       ],
     ];
