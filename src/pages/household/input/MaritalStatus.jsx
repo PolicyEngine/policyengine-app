@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import NavigationButton from "../../../controls/NavigationButton";
+import gtag from "../../../api/analytics";
 
 function getUKMaritalStatus(situation) {
   const partnerName = "your partner";
@@ -92,6 +93,10 @@ export default function MaritalStatus(props) {
       let newSearch = new URLSearchParams(window.location.search);
       newSearch.set("household", householdId);
       setSearchParams(newSearch);
+      gtag("event", "household", {
+        event_category: "household",
+        event_label: "Set marital status"
+      });
     });
   };
   const radioButtonComponent = (

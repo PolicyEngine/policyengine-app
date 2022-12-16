@@ -7,6 +7,7 @@ import BlogPostHolder from "../layout/BlogPostHolder";
 import householdBaseline from "../images/home/householdBaseline.png";
 import policyImpact from "../images/home/policyImpact.png";
 import policyScore from "../images/home/policyScore.png";
+import gtag from "../api/analytics";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -37,7 +38,13 @@ function HouseholdPolicyOptions(props) {
           marginBottom: mobile ? 20 : 0,
         }}
         whileHover={{ scale: 1.05 }}
-        onClick={() => navigate(`/${countryId}/household`)}
+        onClick={() => {
+          navigate(`/${countryId}/household`);
+          gtag("event", "navigate", {
+            event_category: "home",
+            event_label: "Home -> Household",
+          });
+        }}
       >
         <h2>Compute my household income</h2>
         <p>
@@ -54,7 +61,13 @@ function HouseholdPolicyOptions(props) {
           cursor: "pointer",
         }}
         whileHover={{ scale: 1.05 }}
-        onClick={() => navigate(`/${countryId}/policy`)}
+        onClick={() => {
+          navigate(`/${countryId}/policy`)
+          gtag("event", "navigate", {
+            event_category: "home",
+            event_label: "Home -> Policy",
+          })
+        }}
       >
         <h2>Compute the impact of policy reforms</h2>
         <p>

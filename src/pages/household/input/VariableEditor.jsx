@@ -11,6 +11,7 @@ import { Switch } from "antd";
 import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
 import NavigationButton from "../../../controls/NavigationButton";
+import gtag from "../../../api/analytics";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -135,6 +136,10 @@ function HouseholdVariableEntityInput(props) {
     let newHousehold = household.input;
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     setHouseholdInput(newHousehold);
+    gtag("event", "input", {
+      event_category: "household",
+      event_label: variable.name,
+    });
     getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
       let newSearch = new URLSearchParams(window.location.search);
       newSearch.set("household", householdId);

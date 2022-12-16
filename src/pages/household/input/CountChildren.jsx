@@ -9,6 +9,7 @@ import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import NavigationButton from "../../../controls/NavigationButton";
+import gtag from "../../../api/analytics";
 
 function getUKCountChildren(situation) {
   return Object.values(situation.people).filter(
@@ -129,6 +130,10 @@ export default function CountChildren(props) {
         onChange={(children) => {
           setValue(children);
           setCountChildren(children);
+          gtag("event", "set_count_children", {
+            event_category: "household",
+            event_label: "Set children",
+          });
         }}
       />
       <NavigationButton text="Enter" focus={`input.household.${metadata.basicInputs[0]}`} />
