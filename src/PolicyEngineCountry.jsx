@@ -211,7 +211,7 @@ export default function PolicyEngineCountry(props) {
         );
       }
     } else {
-      setReformPolicy(null);
+      setReformPolicy({});
       setHouseholdReform(null);
     }
     setLoading(true);
