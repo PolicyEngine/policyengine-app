@@ -1,4 +1,4 @@
-import { AutoComplete, Select } from "antd";
+import { Select } from "antd";
 import { useState } from "react";
 
 export default function SearchOptions(props) {
