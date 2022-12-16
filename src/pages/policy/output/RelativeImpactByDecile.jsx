@@ -1,4 +1,5 @@
 import Plot from "react-plotly.js";
+import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
 
@@ -40,6 +41,7 @@ export default function RelativeImpactByDecile(props) {
           minsize: 8,
         },
         showlegend: false,
+        ...ChartLogo,
       }}
       config={{
         displayModeBar: false,

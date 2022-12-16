@@ -13,6 +13,7 @@ import FadeIn from "../../../layout/FadeIn";
 import { useSearchParams } from "react-router-dom";
 import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
+import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
   const { household, metadata, policyLabel } = props;
@@ -160,6 +161,7 @@ export default function MarginalTaxRates(props) {
               y: 1.1,
               orientation: "h",
             },
+            ...ChartLogo,
           }}
           config={{
             displayModeBar: false,
@@ -323,6 +325,7 @@ export default function MarginalTaxRates(props) {
               y: 1.1,
               orientation: "h",
             },
+            ...ChartLogo,
           }}
           config={{
             displayModeBar: false,

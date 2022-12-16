@@ -1,4 +1,5 @@
 import Plot from "react-plotly.js";
+import { ChartLogo } from "../../../api/charts";
 import { getReformedParameter } from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import style from "../../../style";
@@ -96,6 +97,7 @@ export default function ParameterOverTime(props) {
             y: 1.1,
             orientation: "h",
           },
+          ...ChartLogo,
         }}
         style={{
           width: "100%",

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
+import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
 import LoadingCentered from "../../../layout/LoadingCentered";
@@ -132,6 +133,7 @@ export default function CliffImpact(props) {
           mode: "hide",
           minsize: 8,
         },
+        ...ChartLogo,
       }}
       config={{
         displayModeBar: false,

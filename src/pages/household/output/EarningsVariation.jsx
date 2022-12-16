@@ -14,6 +14,7 @@ import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../api/language";
+import { ChartLogo } from "../../../api/charts";
 
 export default function EarningsVariation(props) {
   const { household, metadata } = props;
@@ -209,6 +210,7 @@ export default function EarningsVariation(props) {
               y: 1.2,
               orientation: "h",
             },
+            ...ChartLogo,
           }}
           config={{
             displayModeBar: false,
@@ -380,6 +382,7 @@ export default function EarningsVariation(props) {
             y: 1.2,
             orientation: "h",
           },
+          ...ChartLogo,
         }}
         config={{
           displayModeBar: false,
@@ -388,6 +391,7 @@ export default function EarningsVariation(props) {
         style={{
           width: "100%",
         }}
+        
       />
     }
 

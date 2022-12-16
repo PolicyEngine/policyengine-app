@@ -1,4 +1,5 @@
 import Plot from "react-plotly.js";
+import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
 import style from "../../../style";
 
@@ -52,6 +53,7 @@ export default function BudgetaryImpact(props) {
           mode: "hide",
           minsize: 12,
         },
+        ...ChartLogo,
       }}
       config={{
         displayModeBar: false,
