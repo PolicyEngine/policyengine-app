@@ -16,5 +16,9 @@
         "linkedin": "https://www.linkedin.com/in/maxghenis/",
         "headshot": "max-ghenis.jpg",
         "bio": "Max is a co-founder and CEO at PolicyEngine."
+    },
+    "kevin-foster": {
+        "name": "Kevin Foster",
+        "headshot": "kevin-foster.jpeg"
     }
 }

@@ -32,15 +32,15 @@ function BlogPostPreviewRegular(props) {
         src={imageSrc}
         style={{
           width: 300,
-          height: 200,
+          height: 150,
           // Fit inside without stretching
-          objectFit: "contain",
+          objectFit: "cover",
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20 }}>
+      <div style={{ padding: 20, marginTop: "auto" }}>
         <h3>{title}</h3>
         <p>{description}</p>
         {authorImages.map((authorImage, index) => {

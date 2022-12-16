@@ -20,6 +20,18 @@ function AuthorSection(props) {
   const { author } = props;
   const authorImage = require(`../images/authors/${author.headshot}`);
   // Image - name/bio - social icons (floating to the right)
+  const mail = <a href={`mailto:${author.email}`} target="_blank" rel="noreferrer">
+    <MailOutlined style={{fontSize: 20, paddingLeft: 10}}/>
+  </a>;
+  const linkedIn = <a href={author.linkedin} target="_blank" rel="noreferrer">
+    <LinkedinOutlined style={{fontSize: 20, paddingLeft: 10}}/>
+  </a>
+  const twitter = <a href={author.twitter} target="_blank" rel="noreferrer">
+    <TwitterOutlined style={{fontSize: 20, paddingLeft: 10}}/>
+  </a>;
+  const github = <a href={author.github} target="_blank" rel="noreferrer">
+    <GithubOutlined style={{fontSize: 20, paddingLeft: 10}}/>
+  </a>;
   return <div style={{ display: "flex", alignItems: "center", marginBottom: 20,
     flexDirection: "row", width: "100%"
   }}>
@@ -39,24 +51,16 @@ function AuthorSection(props) {
       display: "flex", flexDirection: "column", marginRight: 20
     }}>
       <h5><b>{author.name}</b></h5>
-      <p>{author.bio}</p>
+      {author.bio && <p>{author.bio}</p>}
     </div>
     <div style={{
       paddingTop: 15, paddingLeft: 10, alignItems: "center",
       display: "flex", flexDirection: "row", marginLeft: "auto"
     }}>
-      <a href={`mailto:${author.email}`} target="_blank" rel="noreferrer">
-        <MailOutlined style={{fontSize: 20, paddingLeft: 10}}/>
-      </a>
-      <a href={author.linkedin} target="_blank" rel="noreferrer">
-        <LinkedinOutlined style={{fontSize: 20, paddingLeft: 10}}/>
-      </a>
-      <a href={author.twitter} target="_blank" rel="noreferrer">
-        <TwitterOutlined style={{fontSize: 20, paddingLeft: 10}}/>
-      </a>
-      <a href={author.github} target="_blank" rel="noreferrer">
-        <GithubOutlined style={{fontSize: 20, paddingLeft: 10}}/>
-      </a>
+      {author.email && mail}
+      {author.linkedin && linkedIn}
+      {author.twitter && twitter}
+      {author.github && github}
     </div>
   </div>;
 }
