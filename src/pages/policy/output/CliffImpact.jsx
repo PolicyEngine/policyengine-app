@@ -87,10 +87,14 @@ export default function CliffImpact(props) {
           x: ["Cliff rate", "Cliff gap"],
           y: [cliff_share_change, cliff_gap_change],
           customdata: [
-            `The cliff rate falls from ${
+            `The cliff rate ${
+              cliff_share_change >= 0 ? "rises" : "falls"
+            } from ${
               Math.round(impact.baseline.cliff_share * 10000) / 100
             }% to ${Math.round(impact.reform.cliff_share * 10000) / 100}%`,
-            `The cliff gap falls from ${aggregateCurrency(
+            `The cliff gap ${
+              cliff_gap_change >= 0 ? "rises" : "falls"
+            } from ${aggregateCurrency(
               impact.baseline.cliff_gap,
               metadata
             )} to ${aggregateCurrency(impact.reform.cliff_gap, metadata)}`,
