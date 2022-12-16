@@ -2,7 +2,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import UKFlag from "../images/logos/countries/uk.webp";
-import USFlag from "../images/logos/countries/us.webp";
+import USFlag from "../images/logos/countries/us.png";
 
 
 export default function CountrySelector(props) {
@@ -39,10 +39,10 @@ export default function CountrySelector(props) {
         { label: USLogo, onClick: () => navigateToCountry("us") },
     ];
 
-    return <Dropdown menu={{items}}>
+    return <div style={{display: "flex", alignItems: "center"}}><Dropdown menu={{items}}>
         <div style={{display: "flex", alignItems: "center", cursor: "pointer"}}>
             {countryLabel}
             <DownOutlined style={{color: "white"}} />
         </div>
-    </Dropdown>
+    </Dropdown></div>
 }

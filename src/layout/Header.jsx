@@ -29,17 +29,21 @@ function MobileHeader(props) {
   const { countryId, loading } = props;
   return (
     <>
+      <div style={{
+        display: "flex",
+        backgroundColor: style.colors.BLUE,
+        height: HEADER_HEIGHT,
+        paddingLeft: 10,
+        position: "fixed",
+        width: "100%",
+        zIndex: 100,
+        }}>
       <div
         style={{
-          backgroundColor: style.colors.BLUE,
-          height: HEADER_HEIGHT,
-          paddingLeft: 10,
-          position: "fixed",
-          width: "100%",
-          zIndex: 100,
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          width: "100%",
         }}
       >
         <TopLeftLogo countryId={countryId} />
@@ -55,6 +59,10 @@ function MobileHeader(props) {
             <Spinner style={{ color: "white", fontSize: 30 }} />
           </div>
         )}
+      </div>
+      <div style={{marginLeft: "auto", display: "flex", alignItems: "center"}}>
+        <CountrySelector countryId={countryId} />
+      </div>
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>
