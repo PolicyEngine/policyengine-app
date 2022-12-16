@@ -37,7 +37,6 @@ function updateMetadata(countryId, setMetadata, setError) {
       return metadata;
     })
     .catch((error) => {
-      console.log(error);
       setError(error);
     });
 }
@@ -50,6 +49,20 @@ export default function PolicyEngineCountry(props) {
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+
+  if (countryId === "us") {
+    if (reformPolicyId === "1") {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("reform", 2);
+      setSearchParams(newSearch);
+    }
+  } else if (countryId === "uk") {
+    if (reformPolicyId === "2") {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("reform", 1);
+      setSearchParams(newSearch);
+    }
+  }
 
   const [metadata, setMetadata] = useState(null);
   const [error, setError] = useState(null);
@@ -185,19 +198,27 @@ export default function PolicyEngineCountry(props) {
   useEffect(() => {
     let requests = [];
     if (reformPolicyId) {
+      const handleResponse = (dataHolder) => {
+        if (dataHolder.result.label === "None") {
+          dataHolder.result.label = null;
+        }
+        setReformPolicy({
+          data: dataHolder.result.policy_json,
+          label: dataHolder.result.label,
+        });
+      };
       requests.push(
         countryApiCall(countryId, `/policy/${reformPolicyId}`)
           .then((res) => res.json())
-          .then((dataHolder) => {
-            if (dataHolder.result.label === "None") {
-              dataHolder.result.label = null;
-            }
-            setReformPolicy({
-              data: dataHolder.result.policy_json,
-              label: dataHolder.result.label,
-            });
-          })
-      );
+          .then(dataHolder => {
+            if (dataHolder.result === undefined) {
+              // retry
+              return countryApiCall(countryId, `/policy/${reformPolicyId}`)
+                .then((res) => res.json())
+                .then(handleResponse);
+            } else {
+              return handleResponse(dataHolder);
+            }}));
       if (householdId) {
         requests.push(
           countryApiCall(
