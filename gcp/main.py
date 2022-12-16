@@ -1,4 +1,5 @@
 from flask import Flask, send_from_directory, request, redirect
+from pathlib import Path
 
 app = Flask(__name__, static_folder='build')
 
@@ -12,14 +13,9 @@ def before_request():
 
 @app.after_request
 def add_header(r):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     r.headers["Pragma"] = "no-cache"
     r.headers["Expires"] = "0"
-    r.headers['Cache-Control'] = 'public, max-age=0'
     return r
 
 @app.route('/', defaults={'path': ''})
@@ -35,6 +31,12 @@ def serve(path):
 
 @app.errorhandler(404)
 def page_not_found(e):
+    if request.path.startswith('/static/js/main.'):
+        js_file = next(Path(app.static_folder).joinpath('static/js').glob('*.js'))
+        return send_from_directory(js_file.parent, js_file.name)
+    if request.path.startswith('/static/css/main.'):
+        css_file = next(Path(app.static_folder).joinpath('static/css').glob('*.css'))
+        return send_from_directory(css_file.parent, css_file.name)
     return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
