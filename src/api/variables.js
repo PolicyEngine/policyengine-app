@@ -264,7 +264,7 @@ export function formatVariableValue(variable, value, precision = 2) {
   }
 }
 
-export function getPlotlyAxisFormat(unit, values, precisionOverride) {
+export function getPlotlyAxisFormat(unit, values, precisionOverride, valueType) {
   // Possible units: currency-GBP, currency-USD, /1
   // If values (an array) is passed, we need to calculate the
   // appropriate number of decimal places to use.
@@ -313,6 +313,11 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
           Math.max(...values) * 1.5,
         ]),
       }),
+    };
+  } else if (valueType === "bool") {
+    return {
+      tickvals: [0, 1],
+      ticktext: ["No", "Yes"],
     };
   }
 }

@@ -150,14 +150,10 @@ export default function PolicyEngineCountry(props) {
             if (dataHolder.result.label === "None") {
               dataHolder.result.label = null;
             }
-            return {
-              policy: {
-                baseline: {
-                  data: dataHolder.result.policy_json,
-                  label: dataHolder.result.label,
-                },
-              },
-            };
+            setBaselinePolicy({
+              data: dataHolder.result.policy_json,
+              label: dataHolder.result.label,
+            });
           })
       );
     }
@@ -172,25 +168,14 @@ export default function PolicyEngineCountry(props) {
         )
           .then((res) => res.json())
           .then((dataHolder) => {
-            return { household: { baseline: dataHolder.result } };
+            setHouseholdBaseline(dataHolder.result);
           })
       );
     } else {
-      requests.push(Promise.resolve({ household: { baseline: null } }));
+      setHouseholdBaseline(null);
     }
     setLoading(true);
     Promise.all(requests).then((results) => {
-      const combined = Object.assign({}, ...results);
-      const policyUpdates = combined.policy || {};
-      if (policyUpdates.baseline) {
-        setBaselinePolicy(policyUpdates.baseline);
-      }
-      if (householdId) {
-        const householdUpdates = combined.household || {};
-        if (householdUpdates.baseline) {
-          setHouseholdBaseline(householdUpdates.baseline);
-        }
-      }
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -207,14 +192,10 @@ export default function PolicyEngineCountry(props) {
             if (dataHolder.result.label === "None") {
               dataHolder.result.label = null;
             }
-            return {
-              policy: {
-                reform: {
-                  data: dataHolder.result.policy_json,
-                  label: dataHolder.result.label,
-                },
-              },
-            };
+            setReformPolicy({
+              data: dataHolder.result.policy_json,
+              label: dataHolder.result.label,
+            });
           })
       );
       if (householdId) {
@@ -225,31 +206,16 @@ export default function PolicyEngineCountry(props) {
           )
             .then((res) => res.json())
             .then((dataHolder) => {
-              return { household: { reform: dataHolder.result } };
+              setHouseholdReform(dataHolder.result);
             })
         );
       }
     } else {
-      requests.push(
-        Promise.resolve({ policy: { reform: { data: null, label: null } } })
-      );
-      if (householdId) {
-        requests.push(Promise.resolve({ household: { reform: null } }));
-      }
+      setReformPolicy(null);
+      setHouseholdReform(null);
     }
     setLoading(true);
     Promise.all(requests).then((results) => {
-      const combinedResults = Object.assign({}, ...results);
-      const policyUpdates = combinedResults.policy || {};
-      if (policyUpdates.reform) {
-        setReformPolicy(policyUpdates.reform);
-      }
-      if (householdId) {
-        const householdUpdates = combinedResults.household || {};
-        if (householdUpdates.reform) {
-          setHouseholdReform(householdUpdates.reform);
-        }
-      }
       setLoading(false);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

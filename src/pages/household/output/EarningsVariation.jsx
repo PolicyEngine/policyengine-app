@@ -30,6 +30,17 @@ export default function EarningsVariation(props) {
   const [variable, setVariable] = useState("household_net_income");
   const variableLabel = metadata.variables[variable].label || variable;
 
+  // Only show variables whose values are arrays
+
+  let validVariables = [];
+  if (baselineNetIncome) {
+    for (const entityPlural in baselineNetIncome) {
+      const firstEntity = baselineNetIncome[entityPlural][Object.keys(baselineNetIncome[entityPlural])[0]];
+      validVariables = validVariables.concat(Object.keys(firstEntity).filter((variable) => Array.isArray(firstEntity[variable][2022])))
+    }
+  }
+  validVariables = validVariables.map(variable => metadata.variables[variable]);
+
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));
     householdData.people.you.employment_income["2022"] = null;
@@ -93,7 +104,7 @@ export default function EarningsVariation(props) {
     }}>
       <SearchOptions
         defaultValue={variable}
-        options={Object.values(metadata.variables).map((variable) => ({
+        options={validVariables.map((variable) => ({
           value: variable.name,
           label: capitalize(variable.label || ""),
           }))}
@@ -137,8 +148,9 @@ export default function EarningsVariation(props) {
       household.baseline,
       metadata
     );
+    console.log(netIncomeArray, baselineNetIncome)
     // Check if netIncomeArray is a scalar (like 0) or a string
-    if ((typeof netIncomeArray === "string") || (netIncomeArray === 0)) {
+    if (!netIncomeArray) {
       throw new Error("No net income");
     }
     // Add the main line, then add a 'you are here' line
@@ -174,7 +186,7 @@ export default function EarningsVariation(props) {
                 text: capitalize(variableLabel),
               },
               ...getPlotlyAxisFormat(
-                metadata.variables[variable].unit
+                metadata.variables[variable].unit, 0, null, metadata.variables[variable].valueType
               ),
               tickformat: ",.0f",
             },
@@ -238,7 +250,7 @@ export default function EarningsVariation(props) {
       metadata
     );
     // Check if netIncomeArray is a scalar (like 0) or a string
-    if ((typeof reformNetIncomeArray === "string") || (reformNetIncomeArray === 0)) {
+    if (!reformNetIncomeArray) {
       throw new Error("No net income");
     }
     // Add the main line, then add a 'you are here' line
@@ -281,8 +293,7 @@ export default function EarningsVariation(props) {
             yaxis: {
               title: `Change in ${variableLabel}`,
               ...getPlotlyAxisFormat(
-                metadata.variables.household_net_income.unit,
-                0
+                metadata.variables[variable].unit, 0, null, metadata.variables[variable].valueType
               ),
               tickformat: ",.0f",
             },
