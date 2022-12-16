@@ -1,4 +1,4 @@
-import { AutoComplete } from "antd";
+import { AutoComplete, Select } from "antd";
 import { useState } from "react";
 
 export default function SearchOptions(props) {
@@ -13,7 +13,8 @@ export default function SearchOptions(props) {
   // Shouldn't allow selection of an option that doesn't exist in the options list.
 
   return (
-    <AutoComplete
+    <Select
+      showSearch
       options={filteredOptions}
       onSelect={(value) => {
         if (options.find((option) => option.value === value)) {
@@ -35,7 +36,7 @@ export default function SearchOptions(props) {
           ? (options.find((option) => option.value === value) || {}).label
           : placeholder
       }
-      value={searchText === defaultValue ? null : searchText}
+      value={value}
     />
   );
 }

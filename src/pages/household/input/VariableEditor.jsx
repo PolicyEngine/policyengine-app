@@ -106,7 +106,7 @@ function HouseholdVariableEntity(props) {
             entityName={entityName}
             timePeriod={timePeriod}
             household={household}
-            key={timePeriod}
+            key={`${entityName}.${timePeriod}.${variable.name}`}
             setHousehold={setHousehold}
             metadata={metadata}
             isSimulated={isSimulated}
