@@ -1,16 +1,31 @@
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, default as Icon } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
+import UKFlag from "../images/logos/countries/uk.webp";
+import USFlag from "../images/logos/countries/us.webp";
 
 
 export default function CountrySelector(props) {
     const { countryId } = props;
-    const countryLabel = {
-        uk: "UK",
-        us: "US",
-    }[countryId];
     const location = useLocation();
     const navigate = useNavigate();
+
+    // Transparent background for UK flag
+    const UKLogo = <img src={UKFlag} alt="UK flag" style={{ width: 20, height: 20, marginRight: 10,
+        backgroundColor: "transparent",
+    }} />;
+    const USLogo = <img src={USFlag} alt="US flag" style={{ width: 20, height: 20, marginRight: 10,
+        backgroundColor: "transparent",
+    }} />;
+    const countryLabel = {
+        uk: UKLogo,
+        us: USLogo,
+    }[countryId];
+
+    // Only show on the homepage (/uk and /us)
+    if (!location.pathname.match(/^\/[a-z]{2}$/)) {
+        return null;
+    }
 
     const navigateToCountry = (countryId) => {
         // Preserve current path and query string, but go from e.g. /uk/... to /us/...
@@ -20,13 +35,13 @@ export default function CountrySelector(props) {
     };
 
     const items = [
-        { label: "United Kingdom", onClick: () => navigateToCountry("uk") },
-        { label: "United States", onClick: () => navigateToCountry("us") },
+        { label: UKLogo, onClick: () => navigateToCountry("uk") },
+        { label: USLogo, onClick: () => navigateToCountry("us") },
     ];
 
     return <Dropdown menu={{items}}>
         <div style={{display: "flex", alignItems: "center", cursor: "pointer"}}>
-            <h5 style={{color: "white", margin: 0, paddingRight: 5, fontSize: 14}}>{countryLabel}</h5>
+            {countryLabel}
             <DownOutlined style={{color: "white"}} />
         </div>
     </Dropdown>
