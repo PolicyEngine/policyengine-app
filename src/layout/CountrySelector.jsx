@@ -1,4 +1,4 @@
-import { DownOutlined, default as Icon } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import UKFlag from "../images/logos/countries/uk.webp";

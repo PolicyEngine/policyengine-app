@@ -327,8 +327,11 @@ export function getValueFromHousehold(
   timePeriod,
   entityName,
   household,
-  metadata
+  metadata,
+  valueFromFirstOnly = false,
 ) {
+  household = JSON.parse(JSON.stringify(household));
+  console.log("Getting value for", variable, timePeriod, entityName)
   let entityPlural;
   try {
     entityPlural =
@@ -341,9 +344,10 @@ export function getValueFromHousehold(
     try {
       possibleEntities = Object.keys(household[entityPlural]);
     } catch (e) {
+      console.log(e)
       return null;
     }
-    if (possibleEntities.length === 1) {
+    if (possibleEntities.length === 1 || valueFromFirstOnly) {
       return getValueFromHousehold(
         variable,
         timePeriod,
@@ -368,6 +372,7 @@ export function getValueFromHousehold(
   try {
     timePeriodValues = household[entityPlural][entityName][variable];
   } catch (e) {
+    console.log(e)
     return null;
   }
   if (!timePeriod) {
@@ -384,6 +389,7 @@ export function getValueFromHousehold(
     }
     return total;
   }
+  console.log("Returning", timePeriodValues[timePeriod], household)
   return timePeriodValues[timePeriod];
 }
 

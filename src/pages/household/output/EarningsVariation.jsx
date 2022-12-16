@@ -29,6 +29,8 @@ export default function EarningsVariation(props) {
   const [showDelta, setShowDelta] = useState(false);
   const [variable, setVariable] = useState("household_net_income");
   const variableLabel = metadata.variables[variable].label || variable;
+  const possibleEntities = Object.keys(household.input[metadata.entities[metadata.variables[variable].entity].plural])
+  const [selectedEntity, setSelectedEntity] = useState(possibleEntities[0]);
 
   // Only show variables whose values are arrays
 
@@ -39,7 +41,7 @@ export default function EarningsVariation(props) {
       validVariables = validVariables.concat(Object.keys(firstEntity).filter((variable) => Array.isArray(firstEntity[variable][2022])))
     }
   }
-  validVariables = validVariables.map(variable => metadata.variables[variable]);
+  validVariables = validVariables.map(variable => metadata.variables[variable]).filter(variable => !variable.isInputVariable);
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(household.input));
@@ -108,14 +110,31 @@ export default function EarningsVariation(props) {
           value: variable.name,
           label: capitalize(variable.label || ""),
           }))}
-        onSelect={(value) => setVariable(value)}
+        onSelect={
+          (value) => {
+            setVariable(value);
+            setSelectedEntity(possibleEntities[0]);
+          }
+        }
         style={{
           width: 400,
+        }}
+        />
+      <SearchOptions
+        defaultValue={selectedEntity}
+        options={possibleEntities.map((entity) => ({
+          value: entity,
+          label: capitalize(entity),
+          }))}
+        onSelect={(value) => setSelectedEntity(value)}
+        style={{
+          width: 200,
         }}
         />
     </div>
 
   let plot;
+  console.log(selectedEntity)
 
   try {
 
@@ -127,12 +146,14 @@ export default function EarningsVariation(props) {
       baselineNetIncome,
       metadata
     );
+    console.log(`Getting ${variable} for 2022`)
     const netIncomeArray = getValueFromHousehold(
       variable,
       "2022",
       null,
       baselineNetIncome,
-      metadata
+      metadata,
+      true,
     );
     const currentEarnings = getValueFromHousehold(
       "employment_income",
@@ -148,11 +169,7 @@ export default function EarningsVariation(props) {
       household.baseline,
       metadata
     );
-    console.log(netIncomeArray, baselineNetIncome)
-    // Check if netIncomeArray is a scalar (like 0) or a string
-    if (!netIncomeArray) {
-      throw new Error("No net income");
-    }
+    console.log(netIncomeArray)
     // Add the main line, then add a 'you are here' line
     plot = (
       <FadeIn key="baseline">
