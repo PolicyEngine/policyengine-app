@@ -134,7 +134,6 @@ export default function EarningsVariation(props) {
     </div>
 
   let plot;
-  console.log(selectedEntity)
 
   try {
 
@@ -146,7 +145,6 @@ export default function EarningsVariation(props) {
       baselineNetIncome,
       metadata
     );
-    console.log(`Getting ${variable} for 2022`)
     const netIncomeArray = getValueFromHousehold(
       variable,
       "2022",
@@ -169,7 +167,6 @@ export default function EarningsVariation(props) {
       household.baseline,
       metadata
     );
-    console.log(netIncomeArray)
     // Add the main line, then add a 'you are here' line
     plot = (
       <FadeIn key="baseline">
