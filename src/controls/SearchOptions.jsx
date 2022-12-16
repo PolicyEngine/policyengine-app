@@ -5,7 +5,8 @@ export default function SearchOptions(props) {
   const { options, defaultValue, onSelect, onSearch, placeholder, style } =
     props;
   const [value, setValue] = useState(defaultValue);
-  const [searchText, setSearchText] = useState("");
+  // eslint-disable-next-line
+  const [_, setSearchText] = useState("");
   const filteredOptions = options;
 
   return (
