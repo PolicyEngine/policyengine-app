@@ -2,7 +2,7 @@ Today is [Giving Tuesday](https://www.givingtuesday.org/), when many Americans w
 
 This video shows an example of a New York resident with $200,000 in employment income and no other itemized deductions. Without charitable contributions, PolicyEngine estimates that they would owe $64,255. If they donate $20,000, they would instead owe an estimated $58,043. That is, their taxes fall by $6,212, offsetting 31% of their donation.
 
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/G3CEfauQ2SQ" frameborder="0" allowfullscreen></iframe></center>
+<div style="padding-top: 50px; padding-bottom: 50px"><center><iframe width="560" height="315" src="https://www.youtube.com/embed/G3CEfauQ2SQ" frameborder="0" allowfullscreen></iframe></center></div>
 
 Federal taxes comprise 88% of this impact.
 

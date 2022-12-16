@@ -1,13 +1,17 @@
 import postJson from "../posts/posts.json";
+import authorsJson from "../posts/authors.json";
 import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId } = props;
+  const { title, description, image, filename, countryId, authors } = props;
   const name = filename.split(".")[0];
   const imageSrc = require(`../images/posts/${image}`);
   const navigate = useNavigate();
+  const authorImages = authors.map((author) => {
+    return require(`../images/authors/${authorsJson[author].headshot}`);
+  });
 
   return (
     <motion.div
@@ -39,6 +43,26 @@ function BlogPostPreviewRegular(props) {
       <div style={{ padding: 20 }}>
         <h3>{title}</h3>
         <p>{description}</p>
+        {authorImages.map((authorImage, index) => {
+          return (
+            <div style={{display: "flex" }}>
+              <img
+                src={authorImage}
+                style={{
+                  width: 40,
+                  height: 40,
+                  // Fit inside without stretching
+                  objectFit: "cover",
+                  borderRadius: 20,
+                  marginRight: 10,
+                }}
+                alt="Author"
+              />
+              <p style={{marginTop: 5}}>{authorsJson[authors[index]].name}</p>
+            </div>
+          );
+        })
+        }
       </div>
     </motion.div>
   );
