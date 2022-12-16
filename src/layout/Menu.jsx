@@ -56,7 +56,7 @@ function MenuItemGroup(props) {
 
   if (showExpanded) {
     // Sort children by their index property
-    for (let child of children.sort((a, b) => b.index - a.index).reverse()) {
+    for (let child of children) {
       if (child.children) {
         expandedChildren.push(
           <MenuItemGroup
