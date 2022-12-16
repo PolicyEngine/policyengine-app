@@ -426,7 +426,9 @@ export default function EarningsVariation(props) {
       ) : (
         <>
           {yAxisSelector}
+          <div style={{minHeight: 400}}>
           {plot}
+          </div>
         </>
       )}
     </ResultsPanel>

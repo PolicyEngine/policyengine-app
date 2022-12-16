@@ -346,7 +346,9 @@ export default function MarginalTaxRates(props) {
           <LoadingCentered />
         </div>
       ) : (
-        plot
+        <div style={{minHeight: 400}}>
+        {plot}
+        </div>
       )}
     </ResultsPanel>
   );

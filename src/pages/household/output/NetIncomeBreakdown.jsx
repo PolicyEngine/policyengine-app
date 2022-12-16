@@ -1,3 +1,4 @@
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import {
   formatVariableValue,
@@ -142,7 +143,19 @@ function VariableArithmetic(props) {
           }
         }}
       >
-        <h2 style={{ display: "flex", fontSize: 22 }}>{valueStr}</h2>
+        <div style={{display: "flex", alignItems: "center", marginBottom: 10}}>
+          <h2 style={{ display: "flex", fontSize: 22, margin: 0 }}>{valueStr}</h2>
+          {expandable && <PlusCircleOutlined
+            style={{
+              fontSize: 14,
+              marginLeft: 10,
+              color: style.colors.DARK_GRAY,
+              transform: expanded ? "rotate(45deg)" : "rotate(0deg)",
+              transition: "transform 0.2s",
+            }}
+          />
+            }
+        </div>
         {variable.documentation ? <h5 style={{fontSize: 18}}>{variable.documentation}</h5> : null}
       </div>
       {expanded && (

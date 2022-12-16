@@ -73,7 +73,6 @@ export default function HouseholdOutput(props) {
   pane = (
     <>
       {pane}
-
       <BottomCarousel
         selected={focus}
         options={HOUSEHOLD_OUTPUT_TREE[0].children}
