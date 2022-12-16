@@ -60,7 +60,7 @@ function MobileHeader(props) {
           </div>
         )}
       </div>
-      <div style={{marginLeft: "auto", display: "flex", alignItems: "center"}}>
+      <div style={{marginLeft: "auto", display: "flex", alignItems: "center", marginRight: 20}}>
         <CountrySelector countryId={countryId} />
       </div>
       </div>
