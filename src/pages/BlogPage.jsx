@@ -12,7 +12,7 @@ function MarkdownP(props) {
   const mobile = useMobile();
   const pStyle = mobile ?
     { fontSize: 16, marginBottom: 20 } :
-    { fontSize: 20, marginBottom: 20 };
+    { fontSize: 18, marginBottom: 20, fontFamily: "Merriweather" };
   return <p style={pStyle}>{props.children}</p>;
 }
 
@@ -92,8 +92,8 @@ export default function BlogPostPage(props) {
     <Container style={{padding: mobile && 0}}>
       <div style={{ margin: mobile ? 0 : 75, marginTop: mobile ? 20 : 75, marginLeft: mobile ? 0 : 250, marginRight: mobile ? 0 : 250 }}>
         <div style={{ padding: mobile && 20 }}>
-          <h1><b>{title}</b></h1>
-          <h5>{description}</h5>
+          <h1>{title}</h1>
+          <h5 style={{fontFamily: "Merriweather"}}>{description}</h5>
         </div>
         <img
           src={imageSrc}
@@ -126,8 +126,8 @@ export default function BlogPostPage(props) {
                   />
                 </div>
               ),
-              i: ({ children }) => (
-                <i style={{ fontStyle: "italic" }}>{children}</i>
+              strong: ({ children }) => (
+                <b>{children}</b>
               ),
               a: ({ href, children }) => (
                 <a
@@ -137,6 +137,24 @@ export default function BlogPostPage(props) {
                   {children}
                 </a>
               ),
+              header: ({ level, children }) => {
+                const headerStyle = mobile ?
+                  { fontSize: 18, marginBottom: 20 } :
+                  { fontSize: 20, marginBottom: 20, fontFamily: "Merriweather" };
+                if (level === 1) {
+                  return <h1 style={headerStyle}>{children}</h1>;
+                } else if (level === 2) {
+                  return <h2 style={headerStyle}>{children}</h2>;
+                } else if (level === 3) {
+                  return <h3 style={headerStyle}>{children}</h3>;
+                } else if (level === 4) {
+                  return <h4 style={headerStyle}>{children}</h4>;
+                } else if (level === 5) {
+                  return <h5 style={headerStyle}>{children}</h5>;
+                } else if (level === 6) {
+                  return <h6 style={headerStyle}>{children}</h6>;
+                }
+              }
             }}
           >{markdown}</ReactMarkdown>
           <div style={{ display: "flex", alignItems: "center" }}>

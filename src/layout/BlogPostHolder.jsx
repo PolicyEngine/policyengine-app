@@ -17,7 +17,7 @@ function BlogPostPreviewRegular(props) {
     <motion.div
       style={{
         width: 300,
-        height: 400,
+        minHeight: 400,
         backgroundColor: style.colors.WHITE,
         margin: 10,
         display: "flex",

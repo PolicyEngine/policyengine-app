@@ -4,7 +4,7 @@
     "description": "PolicyEngine estimates the tax impact of your donations for free.",
     "date": "2022-11-29",
     "tags": ["global"],
-    "filename": "charitable-contributions.md",
+    "filename": "2022-11-29-charitable-contributions.md",
     "image": "charitable-contributions.png",
     "authors": ["max-ghenis"]
   },
@@ -13,8 +13,26 @@
     "description": "PolicyEngine computes the program’s impact on Maryland and individual households.",
     "date": "2022-11-22",
     "tags": ["us"],
-    "filename": "maryland-standard-deduction.md",
+    "filename": "2022-11-22-maryland-standard-deduction.md",
     "image": "maryland-standard-deduction.png",
+    "authors": ["kevin-foster"]
+  },
+  {
+    "title": "From OpenFisca to PolicyEngine",
+    "description": "OpenFisca has catapulted our progress, and now we’ve forked it into our own microsimulation framework.",
+    "date": "2022-11-10",
+    "tags": ["global"],
+    "filename": "2022-11-10-from-openfisca-to-policyengine.md",
+    "image": "from-openfisca-to-policyengine.png",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Oregon’s Nonrefundable Exemption Credit",
+    "description": "PolicyEngine computes the program’s impact on Oregon and individual households.",
+    "date": "2022-11-04",
+    "tags": ["us"],
+    "filename": "2022-11-04-oregons-nonrefundable-exemption-credit.md",
+    "image": "oregons-nonrefundable-exemption-credit.jpeg",
     "authors": ["kevin-foster"]
   }
 ]
