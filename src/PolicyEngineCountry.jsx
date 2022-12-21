@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { copySearchParams, countryApiCall } from "./api/call";
+import { copySearchParams, countryApiCall, updateMetadata } from "./api/call";
 import Header from "./layout/Header";
 import HomePage from "./pages/HomePage";
 import HouseholdPage from "./pages/HouseholdPage";
@@ -13,56 +13,14 @@ import BlogPostPage from "./pages/BlogPage";
 import Footer from "./layout/Footer";
 import AboutPage from "./pages/AboutPage";
 
-function updateMetadata(countryId, setMetadata, setError) {
-  return countryApiCall(countryId, "/metadata")
-    .then((res) => res.json())
-    .then((dataHolder) => {
-      const data = dataHolder.result;
-      const variableTree = buildVariableTree(
-        data.variables,
-        data.variableModules,
-        data.basicInputs,
-      );
-      const parameterTree = buildParameterTree(data.parameters);
-      const variablesInOrder = getTreeLeavesInOrder(variableTree);
-      const metadata = {
-        ...data,
-        variableTree: variableTree,
-        variablesInOrder: variablesInOrder,
-        parameterTree: parameterTree,
-        countryId: countryId,
-        currency: countryId === "us" ? "$" : "£",
-      };
-      setMetadata(metadata);
-      return metadata;
-    })
-    .catch((error) => {
-      setError(error);
-    });
-}
-
 export default function PolicyEngineCountry(props) {
-  // When loaded, fetch the PolicyEngine metadata for the country.
-  // Fail gracefully if the country is not supported.
   const { countryId } = props;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
-  const reformPolicyId = searchParams.get("reform");
-  const baselinePolicyId = searchParams.get("baseline");
-
-  if (countryId === "us") {
-    if (reformPolicyId === "1") {
-      let newSearch = copySearchParams(searchParams);
-      newSearch.set("reform", 2);
-      setSearchParams(newSearch);
-    }
-  } else if (countryId === "uk") {
-    if (reformPolicyId === "2") {
-      let newSearch = copySearchParams(searchParams);
-      newSearch.set("reform", 1);
-      setSearchParams(newSearch);
-    }
-  }
+  const defaultBaselinePolicy = countryId === "uk" ? 1 : 2;
+  const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
+  const baselinePolicyId = searchParams.get("baseline") || defaultBaselinePolicy;
 
   const [metadata, setMetadata] = useState(null);
   const [error, setError] = useState(null);
@@ -73,8 +31,6 @@ export default function PolicyEngineCountry(props) {
     data: null,
     label: null,
   });
-  const [reformPolicy, setReformPolicy] = useState({ data: null, label: null });
-  const [loading, setLoading] = useState(false);
   const household = {
     input: householdInput,
     baseline: householdBaseline,
@@ -262,69 +218,64 @@ export default function PolicyEngineCountry(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, searchParams.get("renamed")]);
 
-  // Generally, how things go on the site:
-  // - The user does something to change the household/reform policy/baseline policy.
-  // - Further down the logic in the app, an API call is fired off to store the new household/reform policy/baseline policy in the database,
-  //   and we get back a new household/reform policy/baseline policy ID. We then update the URL query parameters to include the new ID.
-  // - This top-level component we're in now is watching for changes to those query parameters, and notices that they've changed.
-  // - It then fires off an API call to fetch the new household/reform policy/baseline policy, and updates the state with the new data.
-  //   This does of course involve one redundant API call, but it keeps the logic simple and avoids having to do a lot of work to keep the state in sync.
-  //   Plus, the server isn't doing any big openfisca calculations for the call, since the results are cached.
-  const mainPage = (
+  const homePage = <HomePage countryId={countryId} />;
+
+  const householdPage = <HouseholdPage
+    metadata={metadata}
+    household={household}
+    policy={policy}
+    loading={loading}
+    householdInput={householdInput}
+    setHouseholdInput={setHouseholdInput}
+  />;
+
+  const errorPage = <ErrorPage />;
+
+  const policyPage = <PolicyPage
+    metadata={metadata}
+    policy={policy}
+    household={household}
+  />;
+
+  const loadingPage = <LoadingCentered />;
+
+  
+  let mainPage = (
     <Routes>
-      <Route path="/" element={<><HomePage countryId={countryId} /><Footer countryId={countryId} /></>} />
+      <Route path="/" element={homePage} />
       <Route
         path="/household/*"
         element={
-          metadata ? (
-            <HouseholdPage
-              metadata={metadata}
-              household={household}
-              policy={policy}
-              loading={loading}
-              householdInput={householdInput}
-              setHouseholdInput={setHouseholdInput}
-            />
-          ) : error ? (
-            <><ErrorPage
-              message={`We couldn't talk to PolicyEngine's servers. Please try again in a few minutes. The full error is: ${error}`}
-            /><Footer countryId={countryId} /></>
-          ) : (
-            <><LoadingCentered /><Footer countryId={countryId} /></>
-          )
+          metadata ?
+            householdPage :
+            error ?
+              errorPage :
+              loadingPage
         }
       />
       <Route
         path="/policy/*"
         element={
-          metadata ? (
-            <PolicyPage
-              metadata={metadata}
-              policy={policy}
-              household={household}
-            />
-          ) : error ? (
-            <><ErrorPage message="We couldn't talk to PolicyEngine's servers. Please try again in a few minutes." /><Footer /></>
-          ) : (
-            <><LoadingCentered />
-            <Footer countryId={countryId} /></>
-          )
+          metadata ?
+            policyPage :
+            error ?
+              errorPage :
+              loadingPage
         }
       />
-      <Route path="/blog/*" element={<>
-        <BlogPostPage />
-        <Footer countryId={countryId} />
-      </>} />
-      <Route path="/about" element={<>
-        <AboutPage />
-        <Footer countryId={countryId} />
-      </>} />
+      <Route path="/blog/*" element={<BlogPostPage />} />
+      <Route path="/about" element={<AboutPage />} />
     </Routes>
   );
 
+  mainPage = <>
+    {mainPage}
+    <Footer countryId={countryId} />
+  </>
+
   return (
     <>
-      <Header countryId={countryId} loading={loading} />
+      <Header countryId={countryId} />
       <div style={{ minHeight: "90vh" }}>{mainPage}</div>
     </>
   );
