@@ -1,3 +1,6 @@
+import { buildParameterTree } from "./parameters";
+import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
+
 const POLICYENGINE_API = "https://api.policyengine.org";
 
 export function apiCall(path, body, method) {
@@ -44,4 +47,33 @@ export function copySearchParams(searchParams) {
     newSearch.set(key, value);
   }
   return newSearch;
+}
+
+
+export function updateMetadata(countryId, setMetadata, setError) {
+  return countryApiCall(countryId, "/metadata")
+    .then((res) => res.json())
+    .then((dataHolder) => {
+      const data = dataHolder.result;
+      const variableTree = buildVariableTree(
+        data.variables,
+        data.variableModules,
+        data.basicInputs,
+      );
+      const parameterTree = buildParameterTree(data.parameters);
+      const variablesInOrder = getTreeLeavesInOrder(variableTree);
+      const metadata = {
+        ...data,
+        variableTree: variableTree,
+        variablesInOrder: variablesInOrder,
+        parameterTree: parameterTree,
+        countryId: countryId,
+        currency: countryId === "us" ? "$" : "£",
+      };
+      setMetadata(metadata);
+      return metadata;
+    })
+    .catch((error) => {
+      setError(error);
+    });
 }
