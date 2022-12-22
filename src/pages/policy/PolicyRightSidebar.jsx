@@ -87,7 +87,7 @@ function PolicyItem(props) {
   }
   return (
     <div>
-      <h6 className="text-capitalize">{parameter.label}</h6>
+      <h6>{parameter.label}</h6>
       <div style={{ paddingLeft: 10 }}>{changes}</div>
     </div>
   );
