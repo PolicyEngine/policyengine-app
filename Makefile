@@ -15,3 +15,5 @@ deploy: deploy-setup build
 	rm .gcloudignore
 	rm main.py
 	rm requirements.txt
+format:
+	black . -l 79
