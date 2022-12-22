@@ -88,7 +88,7 @@ export default function HouseholdOutput(props) {
     pane = (
       <div
         style={{
-          minHeight: `calc(100vh - 100px)`,
+          height: `calc(100vh - 200px)`,
           overflow: "scroll",
         }}
       >

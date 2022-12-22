@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
-import { countryApiCall, updateMetadata } from "./api/call";
+import { copySearchParams, countryApiCall, updateMetadata } from "./api/call";
 import Header from "./layout/Header";
 import HomePage from "./pages/HomePage";
 import HouseholdPage from "./pages/HouseholdPage";
@@ -14,7 +14,7 @@ import AboutPage from "./pages/AboutPage";
 export default function PolicyEngineCountry(props) {
   const { countryId } = props;
 
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const defaultBaselinePolicy = countryId === "uk" ? 1 : 2;
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
@@ -79,6 +79,23 @@ export default function PolicyEngineCountry(props) {
         });
     }
   }, [countryId, reformPolicyId, metadata]);
+
+  useEffect(() => {
+    if (searchParams.get("renamed") && reformPolicyId) {
+      countryApiCall(countryId, `/policy/${reformPolicyId}`)
+        .then((res) => res.json())
+        .then((dataHolder) => {
+          setReformPolicy({
+            data: dataHolder.result.policy_json,
+            label: dataHolder.result.label,
+            id: reformPolicyId,
+          });
+          let newSearch = copySearchParams(searchParams);
+          newSearch.delete("renamed");
+          setSearchParams(newSearch);
+        });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }}, [countryId, searchParams.get("renamed")]);
 
   const homePage = <HomePage countryId={countryId} />;
 
