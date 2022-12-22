@@ -2,6 +2,7 @@ import { SwapOutlined } from "@ant-design/icons";
 import moment from "moment";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
 import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
@@ -94,6 +95,8 @@ function PolicyItem(props) {
 
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
+  const reformLength = Object.keys(policy.reform.data).length;
+
   return (
     <div
       style={{
@@ -104,14 +107,24 @@ function PolicyDisplay(props) {
         overflow: "scroll",
       }}
     >
-      {Object.keys(policy.reform.data).map((parameterName) => (
-        <PolicyItem
-          key={parameterName}
-          metadata={metadata}
-          parameterName={parameterName}
-          reformData={policy.reform.data}
-        />
-      ))}
+      <Carousel 
+        variant="dark" 
+        className="text-center" 
+        indicators={false} 
+        interval={null} 
+        controls={reformLength > 1 ? true : false} 
+        slide={false}>
+        {Object.keys(policy.reform.data).map((parameterName) => (
+          <Carousel.Item>
+            <PolicyItem
+              key={parameterName}
+              metadata={metadata}
+              parameterName={parameterName}
+              reformData={policy.reform.data}
+            />
+          </Carousel.Item>
+        ))}
+      </Carousel>
       {Object.keys(policy.reform.data).length === 0 && (
         <h6 style={{ textAlign: "center" }}>Your reform is empty</h6>
       )}
