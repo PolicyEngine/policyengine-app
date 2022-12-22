@@ -4,6 +4,8 @@ from pathlib import Path
 app = Flask(__name__, static_folder="build")
 
 # Should redirect to https
+
+
 @app.before_request
 def before_request():
     if request.url.startswith("http://"):

@@ -1,4 +1,3 @@
-
 # How PolicyEngine estimates the effects of UK carbon taxes
 
 By fusing datasets with machine learning, we empower anyone to integrate custom carbon taxes with other tax and benefit reforms.
@@ -29,15 +28,15 @@ The following two sections describe how we allocate the consumer and shareholder
 
 We use several data sources to estimate households’ carbon emissions:
 
-* The Family Resources Survey (FRS)
+- The Family Resources Survey (FRS)
 
-* The Living Costs and Food Survey (LCFS)
+- The Living Costs and Food Survey (LCFS)
 
-* Carbon footprint estimates from the Office of National Statistics (ONS)
+- Carbon footprint estimates from the Office of National Statistics (ONS)
 
 The FRS forms the foundation of PolicyEngine because of its detailed data on income, benefits, and demographics. However, it doesn’t contain information on household spending by consumption category; for that, we use the LCFS (which also has less detailed data on income and demographics). Exploiting the common variables across data sets, we build a model from the LCFS that predicts spending given income, and apply that to the FRS households. Specifically, we use our [synthimpute technology](http://github.com/policyengine/synthimpute) to build and train a random forest model to predict the distribution of possible spending values for each category (we do this after [reweighting](https://blog.policyengine.org/how-machine-learning-tools-make-policyengine-more-accurate-17af859cdd97)). We then sample from this distribution, adding a bias to preserve the correct total spending across all FRS households. At the end of this, we have predicted spending by category for each household in the FRS.
 
-We apply a similar method with the ONS carbon footprint statistics. This data reports the total carbon emissions associated with each category of spending (the same categorisation as the LCFS uses). We also know the total spending associated with each category from the Living Costs and Food Survey (and now in the FRS, too). This enables us to estimate the *carbon intensity* of each category: the carbon emissions associated with each pound spent. We can then multiply this intensity directly by the amount spent on each category to find the estimated carbon emissions for a given household.
+We apply a similar method with the ONS carbon footprint statistics. This data reports the total carbon emissions associated with each category of spending (the same categorisation as the LCFS uses). We also know the total spending associated with each category from the Living Costs and Food Survey (and now in the FRS, too). This enables us to estimate the _carbon intensity_ of each category: the carbon emissions associated with each pound spent. We can then multiply this intensity directly by the amount spent on each category to find the estimated carbon emissions for a given household.
 
 ![*Carbon emissions intensity by spending category.*](https://cdn-images-1.medium.com/max/2000/0*GBk5kkc5LsEaYZuf)**Carbon emissions intensity by spending category.**
 
@@ -61,8 +60,8 @@ Increasing the proportion of the carbon tax borne by shareholders makes the carb
 
 PolicyEngine’s household page allows users to enter their spending on various consumption categories to estimate their burden from a carbon tax. For example, since the [Green Party 2019 Manifesto](https://blog.policyengine.org/the-green-party-manifesto-at-policyfest-ee05a2d3b06d) included a carbon tax, entering this information would make the personalised impacts more accurate.
 
-![Where to enter spending by consumption category in the PolicyEngine household screen to estimate carbon tax burdens.](https://cdn-images-1.medium.com/max/5792/1*4RxCk4AAFIEE8iIjkW7SDQ.png)*Where to enter spending by consumption category in the PolicyEngine household screen to estimate carbon tax burdens.*
+![Where to enter spending by consumption category in the PolicyEngine household screen to estimate carbon tax burdens.](https://cdn-images-1.medium.com/max/5792/1*4RxCk4AAFIEE8iIjkW7SDQ.png)_Where to enter spending by consumption category in the PolicyEngine household screen to estimate carbon tax burdens._
 
 By fusing multiple data sources, PolicyEngine UK for the first time empowers anyone to design custom carbon taxes in conjunction with other tax and benefit reforms, and then to compute the population-wide and personalised impacts. If you have any questions or feedback about our model, please [let us know](mailto:contact@policyengine.org).
 
-*Thanks to ​​Inés Fernández Barhumi and Reema Mohanty for their research assistance on our carbon tax model.*
+_Thanks to ​​Inés Fernández Barhumi and Reema Mohanty for their research assistance on our carbon tax model._

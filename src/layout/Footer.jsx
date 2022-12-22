@@ -18,7 +18,7 @@ export default function Footer(props) {
         <SpacedLinks links={links} labels={labels} />
         <div
           className="justify-content-center"
-          style={{ paddingBottom: 10, paddingTop: 20 }}
+          style={{ paddingBottom: 5, paddingTop: 15 }}
         >
           <SocialLinks color="black" />
         </div>
@@ -27,7 +27,7 @@ export default function Footer(props) {
   } else {
     footer = <SpacedLinks links={links} labels={labels} />;
   }
-  return <div style={{ paddingBottom: 20 }}>{footer}</div>;
+  return <div style={{ paddingBottom: mobile ? 5 : 20 }}>{footer}</div>;
 }
 
 function SpacedLinks(props) {

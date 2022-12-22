@@ -10,7 +10,8 @@ import style from "../../../style";
 function VariableArithmetic(props) {
   const {
     variableName,
-    household,
+    householdBaseline,
+    householdReform,
     metadata,
     inverted,
     defaultExpanded,
@@ -20,12 +21,12 @@ function VariableArithmetic(props) {
     variableName,
     null,
     null,
-    household.baseline,
+    householdBaseline,
     metadata
   );
   let valueStr;
   let shouldShowVariable;
-  const hasReform = household.reform !== null;
+  const hasReform = householdReform !== null;
   const variable = metadata.variables[variableName];
   if (hasReform) {
     // Write the result in the form: £y (+£(y-x))
@@ -33,7 +34,7 @@ function VariableArithmetic(props) {
       variableName,
       null,
       null,
-      household.reform,
+      householdReform,
       metadata
     );
     const diff = reformValue - value;
@@ -46,14 +47,16 @@ function VariableArithmetic(props) {
         ? `Your ${variable.label} fall${
             variable.label.endsWith("s") ? "" : "s"
           } by ${formatVariableValue(variable, -diff, 0)}`
-        : `Your ${variable.label} ${variable.label.endsWith('s') ? 'don\'t' : 'doesn\'t'} change`;
+        : `Your ${variable.label} ${
+            variable.label.endsWith("s") ? "don't" : "doesn't"
+          } change`;
     shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
         getValueFromHousehold(
           variableName,
           null,
           null,
-          household.baseline,
+          householdBaseline,
           metadata
         ) !== 0;
       const isNonZeroInReform =
@@ -61,7 +64,7 @@ function VariableArithmetic(props) {
           variableName,
           null,
           null,
-          household.reform,
+          householdReform,
           metadata
         ) !== 0;
       return isNonZeroInBaseline || isNonZeroInReform;
@@ -76,7 +79,7 @@ function VariableArithmetic(props) {
           variableName,
           null,
           null,
-          household.baseline,
+          householdBaseline,
           metadata
         ) !== 0
       );
@@ -92,7 +95,8 @@ function VariableArithmetic(props) {
     .map((variable) => (
       <VariableArithmetic
         variableName={variable}
-        household={household}
+        householdBaseline={householdBaseline}
+        householdReform={householdReform}
         metadata={metadata}
         key={variable}
         inverted={inverted}
@@ -103,7 +107,8 @@ function VariableArithmetic(props) {
     .map((variable) => (
       <VariableArithmetic
         variableName={variable}
-        household={household}
+        householdBaseline={householdBaseline}
+        householdReform={householdReform}
         metadata={metadata}
         inverted={!inverted}
         key={variable}
@@ -143,20 +148,27 @@ function VariableArithmetic(props) {
           }
         }}
       >
-        <div style={{display: "flex", alignItems: "center", marginBottom: 10}}>
-          <h2 style={{ display: "flex", fontSize: 22, margin: 0 }}>{valueStr}</h2>
-          {expandable && <PlusCircleOutlined
-            style={{
-              fontSize: 14,
-              marginLeft: 10,
-              color: style.colors.DARK_GRAY,
-              transform: expanded ? "rotate(45deg)" : "rotate(0deg)",
-              transition: "transform 0.2s",
-            }}
-          />
-            }
+        <div
+          style={{ display: "flex", alignItems: "center", marginBottom: 10 }}
+        >
+          <h2 style={{ display: "flex", fontSize: 22, margin: 0 }}>
+            {valueStr}
+          </h2>
+          {expandable && (
+            <PlusCircleOutlined
+              style={{
+                fontSize: 14,
+                marginLeft: 10,
+                color: style.colors.DARK_GRAY,
+                transform: expanded ? "rotate(45deg)" : "rotate(0deg)",
+                transition: "transform 0.2s",
+              }}
+            />
+          )}
         </div>
-        {variable.documentation ? <h5 style={{fontSize: 18}}>{variable.documentation}</h5> : null}
+        {variable.documentation ? (
+          <h5 style={{ fontSize: 18 }}>{variable.documentation}</h5>
+        ) : null}
       </div>
       {expanded && (
         <div
@@ -178,12 +190,12 @@ function VariableArithmetic(props) {
 }
 
 export default function NetIncomeBreakdown(props) {
-  const { metadata, household, policyLabel } = props;
-  const hasReform = household.reform !== null;
+  const { metadata, householdBaseline, householdReform, policyLabel } = props;
+  const hasReform = !!householdReform;
   const getValue = (variable) =>
-    getValueFromHousehold(variable, null, null, household.baseline, metadata);
+    getValueFromHousehold(variable, null, null, householdBaseline, metadata);
   const getReformValue = (variable) =>
-    getValueFromHousehold(variable, null, null, household.reform, metadata);
+    getValueFromHousehold(variable, null, null, householdReform, metadata);
   const getValueStr = (variable) =>
     formatVariableValue(metadata.variables[variable], getValue(variable), 0);
 
@@ -215,7 +227,8 @@ export default function NetIncomeBreakdown(props) {
       <div style={{ height: 10 }} />
       <VariableArithmetic
         variableName="household_net_income"
-        household={household}
+        householdBaseline={householdBaseline}
+        householdReform={householdReform}
         metadata={metadata}
         defaultExpanded={true}
         childrenOnly

@@ -59,7 +59,7 @@ function PythonCodeBlock({ lines }) {
 }
 
 export default function HouseholdReproducibility(props) {
-  const { policy, metadata, household } = props;
+  const { policy, metadata, householdInput } = props;
 
   let initialLines = [
     "from policyengine_" + metadata.countryId + " import Simulation",
@@ -71,23 +71,25 @@ export default function HouseholdReproducibility(props) {
     );
   }
 
-  let householdInput = JSON.parse(JSON.stringify(household.input));
+  let householdInputCopy = JSON.parse(JSON.stringify(householdInput));
 
-  for (const entityPlural of Object.keys(householdInput)) {
-    for (const entity of Object.keys(householdInput[entityPlural])) {
+  for (const entityPlural of Object.keys(householdInputCopy)) {
+    for (const entity of Object.keys(householdInputCopy[entityPlural])) {
       for (const variable of Object.keys(
-        householdInput[entityPlural][entity]
+        householdInputCopy[entityPlural][entity]
       )) {
         if (variable !== "members") {
-          if (householdInput[entityPlural][entity][variable][2022] === null) {
-            delete householdInput[entityPlural][entity][variable];
+          if (
+            householdInputCopy[entityPlural][entity][variable][2022] === null
+          ) {
+            delete householdInputCopy[entityPlural][entity][variable];
           }
         }
       }
     }
   }
 
-  let householdJson = JSON.stringify(householdInput);
+  let householdJson = JSON.stringify(householdInputCopy);
   // It's Python-safe, so we need to make true -> True and false -> False and null -> None
   householdJson = householdJson
     .replace(/true/g, "True")

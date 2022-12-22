@@ -1,25 +1,24 @@
-
 # Impact of the Chancellor’s Cost of Living Support package
 
 See the analysis in PolicyEngine UK
 
 Today, the Chancellor of the Exchequer [announced a new Cost of Living Support package](https://www.gov.uk/government/news/millions-of-most-vulnerable-households-will-receive-1200-of-help-with-cost-of-living) of cash transfers:
 
-* £650 to households receiving means-tested benefits
+- £650 to households receiving means-tested benefits
 
-* £150 to households receiving non-means-tested disability benefits
+- £150 to households receiving non-means-tested disability benefits
 
-* £300 to households receiving the Winter Fuel Payment (i.e., those with pensioners)
+- £300 to households receiving the Winter Fuel Payment (i.e., those with pensioners)
 
-* £200 to households receiving energy bills, doubling the [Energy Bills Support Scheme rebate announced in February](https://www.gov.uk/government/news/millions-to-receive-350-boost-to-help-with-rising-energy-costs) and removing the need to repay it over five years
+- £200 to households receiving energy bills, doubling the [Energy Bills Support Scheme rebate announced in February](https://www.gov.uk/government/news/millions-to-receive-350-boost-to-help-with-rising-energy-costs) and removing the need to repay it over five years
 
 Alongside a six-month extension of the Household Support Fund, HM Treasury estimated that the package would cost £15.3bn, and be partly offset by £5bn from a new temporary Energy Profits Levy. We’ve added these four payments (not the Household Support Fund or Energy Profits Levy) to PolicyEngine. This post shows how to define the reform in PolicyEngine, compares PolicyEngine’s results to HM Treasury’s, and shows novel impacts on poverty, inequality, and households.
 
 ## Defining the reform in PolicyEngine
 
-*Skip this section to see the results.*
+_Skip this section to see the results._
 
-To accommodate this package, we’ve added a new section to the Benefit menu in the [Policy page](https://policyengine.org/uk/policy), for the *Cost-of-living support payment*. This includes payments to each of the three new household categories: those receiving means tested benefits, those with pensioners (the qualification for receiving Winter Fuel Payment), and those receiving non-means-tested disability benefits. These are set to £0 until they become legislation.
+To accommodate this package, we’ve added a new section to the Benefit menu in the [Policy page](https://policyengine.org/uk/policy), for the _Cost-of-living support payment_. This includes payments to each of the three new household categories: those receiving means tested benefits, those with pensioners (the qualification for receiving Winter Fuel Payment), and those receiving non-means-tested disability benefits. These are set to £0 until they become legislation.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*fKtwMJpHA8ua9nti)
 
@@ -27,7 +26,7 @@ To model the Cost of Living Support package, set these parameters to £650, £30
 
 ![](https://cdn-images-1.medium.com/max/3200/0*niEvXilrDsNIERMK)
 
-Next, navigate to the *Energy bills support* menu. This defaults to £0 because it doesn’t take effect until October. Set it to £400.
+Next, navigate to the _Energy bills support_ menu. This defaults to £0 because it doesn’t take effect until October. Set it to £400.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*-QfroG-AojdZbEiv)
 

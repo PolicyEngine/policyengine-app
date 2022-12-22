@@ -19,9 +19,15 @@ export default function SocialLinks(props) {
     marginLeft: 15,
     filter: props.color === "black" ? "" : "invert(1)",
   };
-  const aStyle = { alignItems: "center", display: "flex"}
+  const aStyle = { alignItems: "center", display: "flex" };
   return (
-    <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       <a href="https://twitter.com/ThePolicyEngine" style={aStyle}>
         <TwitterOutlined style={iconStyle} />
       </a>

@@ -29,7 +29,7 @@ export default function SearchOptions(props) {
         }
       }}
       filterOption={(input, option) =>
-        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+        (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
       }
       style={style || { width: 200, marginLeft: 10, marginRight: 10 }}
       placeholder={

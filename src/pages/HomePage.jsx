@@ -62,11 +62,11 @@ function HouseholdPolicyOptions(props) {
         }}
         whileHover={{ scale: 1.05 }}
         onClick={() => {
-          navigate(`/${countryId}/policy`)
+          navigate(`/${countryId}/policy`);
           gtag("event", "navigate", {
             event_category: "home",
             event_label: "Home -> Policy",
-          })
+          });
         }}
       >
         <h2>Compute the impact of policy reforms</h2>

@@ -1,4 +1,3 @@
-
 # Rishi Sunak’s proposal to cut the basic rate to 16 percent
 
 See the interactive simulation on PolicyEngine
@@ -7,15 +6,15 @@ In a pitch today for Conservatives to elect him Prime Minister, [Rishi Sunak has
 
 PolicyEngine estimates that cutting the basic rate from 20p to 16p in 2022 would:
 
-* Cost £18.8 billion
+- Cost £18.8 billion
 
-* Lower the poverty rate by 1.2 percent
+- Lower the poverty rate by 1.2 percent
 
-* Benefit higher income households more than lower income households
+- Benefit higher income households more than lower income households
 
-* Produce a mixed impact on income inequality
+- Produce a mixed impact on income inequality
 
-[**See the interactive simulation in PolicyEngine here.](https://policyengine.org/uk/population-impact?basic_rate=16)**
+[\*\*See the interactive simulation in PolicyEngine here.](https://policyengine.org/uk/population-impact?basic_rate=16)\*\*
 
 ## Budgetary impact
 

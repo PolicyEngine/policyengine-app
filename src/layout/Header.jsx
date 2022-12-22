@@ -29,40 +29,49 @@ function MobileHeader(props) {
   const { countryId, loading } = props;
   return (
     <>
-      <div style={{
-        display: "flex",
-        backgroundColor: style.colors.BLUE,
-        height: HEADER_HEIGHT,
-        paddingLeft: 10,
-        position: "fixed",
-        width: "100%",
-        zIndex: 100,
-        }}>
       <div
         style={{
           display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          backgroundColor: style.colors.BLUE,
+          height: HEADER_HEIGHT,
+          paddingLeft: 10,
+          position: "fixed",
           width: "100%",
+          zIndex: 100,
         }}
       >
-        <TopLeftLogo countryId={countryId} />
-        {loading && (
-          <div
-            style={{
-              paddingLeft: 20,
-              height: "100%",
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <Spinner style={{ color: "white", fontSize: 30 }} />
-          </div>
-        )}
-      </div>
-      <div style={{marginLeft: "auto", display: "flex", alignItems: "center", marginRight: 20}}>
-        <CountrySelector countryId={countryId} />
-      </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+          }}
+        >
+          <TopLeftLogo countryId={countryId} />
+          {loading && (
+            <div
+              style={{
+                paddingLeft: 20,
+                height: "100%",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <Spinner style={{ color: "white", fontSize: 30 }} />
+            </div>
+          )}
+        </div>
+        <div
+          style={{
+            marginLeft: "auto",
+            display: "flex",
+            alignItems: "center",
+            marginRight: 20,
+          }}
+        >
+          <CountrySelector countryId={countryId} />
+        </div>
       </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>
@@ -100,9 +109,11 @@ function DesktopHeader(props) {
           </div>
         )}
         <div style={{ marginLeft: "auto", marginRight: 20 }}>
-          <div style={{
-            display: "flex",
-          }}>
+          <div
+            style={{
+              display: "flex",
+            }}
+          >
             <CountrySelector countryId={countryId} />
             <SocialLinks color="white" />
           </div>

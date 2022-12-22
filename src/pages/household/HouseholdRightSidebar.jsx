@@ -43,28 +43,28 @@ function Figure(props) {
 }
 
 export default function HouseholdRightSidebar(props) {
-  const { household, metadata } = props;
+  const { householdInput, householdBaseline, metadata, autoCompute } = props;
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
 
-  if (!household.input) {
+  if (!householdInput) {
     return <></>;
   }
 
-  const countPeople = Object.keys(household.input.people).length;
+  const countPeople = Object.keys(householdInput.people).length;
   const marketIncome = getValueFromHousehold(
     "household_market_income",
     null,
     null,
-    household.baseline,
+    householdBaseline,
     metadata
   );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2022",
     "you",
-    household.baseline,
+    householdBaseline,
     metadata
   );
   const household_net_income = metadata.variables.household_net_income;
@@ -76,7 +76,7 @@ export default function HouseholdRightSidebar(props) {
   );
   netIncomeComponents = ["household_net_income"].concat(netIncomeComponents);
 
-  return (
+  const situationOverview = (
     <>
       <Figure
         left={countPeople}
@@ -97,7 +97,7 @@ export default function HouseholdRightSidebar(props) {
           variableId,
           null,
           null,
-          household.baseline,
+          householdBaseline,
           metadata
         );
         return (
@@ -112,8 +112,33 @@ export default function HouseholdRightSidebar(props) {
         left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
         right={"marginal tax rate"}
       />
+    </>
+  );
+  const notEnoughInfo = (
+    <div
+      style={{
+        minHeight: "50vh",
+        padding: 40,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <h5 style={{ textAlign: "center" }}>
+        Tell us more about your household to see your results
+      </h5>
+    </div>
+  );
+
+  return (
+    <>
+      {autoCompute ? situationOverview : notEnoughInfo}
       {focus && focus.startsWith("householdOutput") && (
-        <NavigationButton primary text="Add more household details" focus="input" />
+        <NavigationButton
+          primary
+          text="Add more household details"
+          focus="input"
+        />
       )}
       {focus && !focus.startsWith("householdOutput") && (
         <NavigationButton

@@ -93,7 +93,7 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
 }
 
 export default function CountChildren(props) {
-  const { metadata, household, setHouseholdInput } = props;
+  const { metadata, householdInput, setHouseholdInput } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getCountChildren = { uk: getUKCountChildren, us: getUSCountChildren }[
     metadata.countryId
@@ -104,7 +104,7 @@ export default function CountChildren(props) {
   }[metadata.countryId];
   const setCountChildren = (countChildren) => {
     let newHousehold = setCountChildrenInHousehold(
-      household.input,
+      householdInput,
       countChildren,
       metadata.variables,
       metadata.entities
@@ -125,7 +125,7 @@ export default function CountChildren(props) {
       <RadioButton
         keys={[0, 1, 2, 3, 4, 5]}
         labels={["None", "1", "2", "3", "4", "5"]}
-        defaultValue={getCountChildren(household.input)}
+        defaultValue={getCountChildren(householdInput)}
         value={value}
         onChange={(children) => {
           setValue(children);
@@ -136,7 +136,10 @@ export default function CountChildren(props) {
           });
         }}
       />
-      <NavigationButton text="Enter" focus={`input.household.${metadata.basicInputs[0]}`} />
+      <NavigationButton
+        text="Enter"
+        focus={`input.household.${metadata.basicInputs[0]}`}
+      />
     </>
   );
   return (

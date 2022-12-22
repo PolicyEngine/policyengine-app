@@ -5,6 +5,7 @@ export default function ErrorPage(props) {
       style={{
         paddingTop: "20%",
         paddingLeft: "10%",
+        minHeight: "80vh",
       }}
     >
       <h2>Sorry, something went wrong.</h2>
