@@ -18,7 +18,7 @@ We estimate that Oregon’s exemption credit cost $639 million in 2021, reduced 
 
 Now let’s see how the exemption credit affects specific Oregon households. To see how to define a household, see our [post on the Oregon Earned Income Tax Credit](https://medium.com/policyengine/computing-your-oregon-earned-income-tax-credit-in-policyengine-d911ae29749d).
 
-For a family of four (married with two children) with $100,000 in employment income, the exemption credit lowers taxes by $852 ($213 * 4).
+For a family of four (married with two children) with $100,000 in employment income, the exemption credit lowers taxes by $852 ($213 \* 4).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*TH9xM_JPnfAHbB24)
 

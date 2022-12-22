@@ -49,7 +49,6 @@ export function copySearchParams(searchParams) {
   return newSearch;
 }
 
-
 export function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
@@ -58,7 +57,7 @@ export function updateMetadata(countryId, setMetadata, setError) {
       const variableTree = buildVariableTree(
         data.variables,
         data.variableModules,
-        data.basicInputs,
+        data.basicInputs
       );
       const parameterTree = buildParameterTree(data.parameters);
       const variablesInOrder = getTreeLeavesInOrder(variableTree);

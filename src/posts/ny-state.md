@@ -1,11 +1,10 @@
-
 # PolicyEngine launches in New York state
 
 New Yorkers can now estimate their state income taxes alongside federal taxes and benefits — and change the rules, too.
 
 New York state taxes individual income at rates ranging from 4% to 10.9%. But it also has a slew of income adjustments, supplementary rates, deductions, exemptions, and credits. Short of using tax software in April or hiring a tax accountant, how can you estimate your tax bill?
 
-[**New Yorkers can now use the free PolicyEngine app to find out.](http://policyengine.org)**¹ We capture all those rules, and show your estimated state taxes (including tax credits) in the same view as your federal taxes and benefit programs like the Supplemental Nutrition Assistance Program.
+[\*\*New Yorkers can now use the free PolicyEngine app to find out.](http://policyengine.org)\*\*¹ We capture all those rules, and show your estimated state taxes (including tax credits) in the same view as your federal taxes and benefit programs like the Supplemental Nutrition Assistance Program.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*sqsx67qxDSL6WpYE)
 

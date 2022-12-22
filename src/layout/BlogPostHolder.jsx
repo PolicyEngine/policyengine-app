@@ -45,7 +45,7 @@ function BlogPostPreviewRegular(props) {
         <p>{description}</p>
         {authorImages.map((authorImage, index) => {
           return (
-            <div style={{display: "flex" }}>
+            <div style={{ display: "flex" }}>
               <img
                 src={authorImage}
                 style={{
@@ -58,11 +58,10 @@ function BlogPostPreviewRegular(props) {
                 }}
                 alt="Author"
               />
-              <p style={{marginTop: 5}}>{authorsJson[authors[index]].name}</p>
+              <p style={{ marginTop: 5 }}>{authorsJson[authors[index]].name}</p>
             </div>
           );
-        })
-        }
+        })}
       </div>
     </motion.div>
   );
@@ -80,10 +79,17 @@ export default function BlogPostHolder(props) {
 
   let posts = [];
   for (let i = 0; i < postJson.length; i++) {
-    if (postJson[i].tags.includes(countryId) || postJson[i].tags.includes("global"))
-    posts.push(
-      <BlogPostPreviewRegular key={i} {...postJson[i]} countryId={countryId} />
-    );
+    if (
+      postJson[i].tags.includes(countryId) ||
+      postJson[i].tags.includes("global")
+    )
+      posts.push(
+        <BlogPostPreviewRegular
+          key={i}
+          {...postJson[i]}
+          countryId={countryId}
+        />
+      );
   }
 
   return (

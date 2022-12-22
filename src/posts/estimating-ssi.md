@@ -1,4 +1,3 @@
-
 # Estimating your Supplemental Security Income benefits in PolicyEngine
 
 Enter your household information, and our free web app will estimate your SSI — plus other taxes and benefits.
@@ -9,7 +8,7 @@ In this post, you’ll see how to estimate your own SSI benefits based on your i
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/hqId_2EJy9o" frameborder="0" allowfullscreen></iframe></center>
 
-To start, visit [**policyengine.org](https://policyengine.org/)** and click **Enter PolicyEngine US**.
+To start, visit [\*\*policyengine.org](https://policyengine.org/)** and click **Enter PolicyEngine US\*\*.
 
 Go to the **Your household** tab to enter your household’s info. Let’s say we’re a single parent of one disabled child with $30,000 income. Click **1** in the **Dependents** section.
 
@@ -27,6 +26,6 @@ Now click **Compute your net income. **SSI is in the **Benefits **section of the
 
 ![](https://cdn-images-1.medium.com/max/4220/1*07anufgQuSoobtdMU0DUrQ.png)
 
-To estimate your own SSI benefits, as well as other taxes and benefits, visit [**policyengine.org](https://policyengine.org/)**.
+To estimate your own SSI benefits, as well as other taxes and benefits, visit [\*\*policyengine.org](https://policyengine.org/)\*\*.
 
-*PolicyEngine provides estimates only; they do not confer benefit eligibility.*
+_PolicyEngine provides estimates only; they do not confer benefit eligibility._

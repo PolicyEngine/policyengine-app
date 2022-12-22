@@ -1,4 +1,3 @@
-
 # Electric vehicle tax credits under current law and the Inflation Reduction Act
 
 Use PolicyEngine US to analyze provisions of the potential reconciliation bill.
@@ -11,7 +10,7 @@ While PolicyEngine lets you adjust a range of policy parameters for the current 
 
 Electric vehicle credits are non-refundable, meaning they do not lower a household’s tax liability below zero. As we show in our [model documentation](https://policyengine.github.io/openfisca-us//programs/irs/credits/electric-vehicle-credit.html), this results in lower-income households receiving less net benefit.
 
-![Net impact of a $7,500 electric vehicle credit for an unmarried tax filer](https://cdn-images-1.medium.com/max/3200/0*u9BoRkwb11WE-WS_)*Net impact of a $7,500 electric vehicle credit for an unmarried tax filer*
+![Net impact of a $7,500 electric vehicle credit for an unmarried tax filer](https://cdn-images-1.medium.com/max/3200/0*u9BoRkwb11WE-WS_)_Net impact of a $7,500 electric vehicle credit for an unmarried tax filer_
 
 The Inflation Reduction Act limits the EV credits by household income, changes the formula for new EV credits, and introduces a used EV credit of up to $4,000. PolicyEngine models the impacts of those policies and current law for individual households; we do not yet compute the population impacts.
 

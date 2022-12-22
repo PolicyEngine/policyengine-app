@@ -1,4 +1,3 @@
-
 # PolicyEngine launches in Washington state
 
 Washingtonians can now compute the impacts of the Working Families Tax Credit and federal reforms.

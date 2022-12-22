@@ -27,8 +27,9 @@ export default function BottomCarousel(props) {
         justifyContent: mobile ? "center" : "right",
       }}
     >
-      <p style={{paddingLeft: 50, paddingTop: 20}}>
-        PolicyEngine results may not constitute exact tax liabilities or benefit entitlements.
+      <p style={{ paddingLeft: 50, paddingTop: 20 }}>
+        PolicyEngine results may not constitute exact tax liabilities or benefit
+        entitlements.
       </p>
       <div
         style={{

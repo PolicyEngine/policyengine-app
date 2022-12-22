@@ -201,12 +201,12 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
             label: "Children",
             index: -1,
           },
-          ...basicInputs.map(variableName => {
+          ...basicInputs.map((variableName) => {
             return {
               name: "input.household." + variableName,
               label: capitalize(variables[variableName].label),
             };
-          })
+          }),
         ],
       },
       ...inputModule.reverse(),
@@ -264,7 +264,12 @@ export function formatVariableValue(variable, value, precision = 2) {
   }
 }
 
-export function getPlotlyAxisFormat(unit, values, precisionOverride, valueType) {
+export function getPlotlyAxisFormat(
+  unit,
+  values,
+  precisionOverride,
+  valueType
+) {
   // Possible units: currency-GBP, currency-USD, /1
   // If values (an array) is passed, we need to calculate the
   // appropriate number of decimal places to use.
@@ -328,7 +333,7 @@ export function getValueFromHousehold(
   entityName,
   household,
   metadata,
-  valueFromFirstOnly = false,
+  valueFromFirstOnly = false
 ) {
   household = JSON.parse(JSON.stringify(household));
   let entityPlural;
@@ -399,5 +404,24 @@ export function getNewHouseholdId(countryId, newHouseholdData) {
     .then((response) => response.json())
     .then((data) => {
       return data.result.household_id;
+    });
+}
+
+export function getDefaultHouseholdId(metadata) {
+  // Creates the default household for the country, returning the household ID.
+  const defaultHousehold = createDefaultHousehold(
+    metadata.countryId,
+    metadata.variables,
+    metadata.entities
+  );
+  return countryApiCall(
+    metadata.countryId,
+    "/household",
+    { data: defaultHousehold },
+    "POST"
+  )
+    .then((res) => res.json())
+    .then((dataHolder) => {
+      return dataHolder.result.household_id;
     });
 }

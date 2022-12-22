@@ -1,4 +1,3 @@
-
 # How machine learning tools make PolicyEngine more accurate
 
 Today, we’re launching new survey weights that cut deviations from administrative statistics by 97%.
@@ -7,19 +6,19 @@ When you click “Calculate UK impact” in PolicyEngine, our servers run throug
 
 ![](https://cdn-images-1.medium.com/max/3200/0*0JQZPaICpWesixXJ)
 
-This technique is called *microsimulation*, and its heart is a representative survey — that set of tens of thousands of households. Like five of the six other UK microsimulation models, we use the [Family Resources Survey](https://www.gov.uk/government/collections/family-resources-survey--2) produced by the Department of Work and Pensions. The DWP releases a new FRS each year (the latest is for 2019–20), and reports demographic variables like age, location or disability, as well as financial variables like earnings, benefit receipt or pension income.
+This technique is called _microsimulation_, and its heart is a representative survey — that set of tens of thousands of households. Like five of the six other UK microsimulation models, we use the [Family Resources Survey](https://www.gov.uk/government/collections/family-resources-survey--2) produced by the Department of Work and Pensions. The DWP releases a new FRS each year (the latest is for 2019–20), and reports demographic variables like age, location or disability, as well as financial variables like earnings, benefit receipt or pension income.
 
 ## Standard accuracy improvements fell short
 
 From the start, we’ve adjusted the FRS to make it more useful for microsimulation. Like other microsimulation models, we’ve:
 
-* Replaced reported tax and benefit values with our calculations (for benefit participants)
+- Replaced reported tax and benefit values with our calculations (for benefit participants)
 
-* Uprated population and income from 2019–20 to 2022 using government projections
+- Uprated population and income from 2019–20 to 2022 using government projections
 
-* Assumed that some households claim benefits when eligible, even when they don’t report claiming them, according to government estimates of take-up rates
+- Assumed that some households claim benefits when eligible, even when they don’t report claiming them, according to government estimates of take-up rates
 
-* Moved households from legacy benefits to Universal Credit according to roll-out rates
+- Moved households from legacy benefits to Universal Credit according to roll-out rates
 
 However, even our adjusted FRS failed to match administrative totals on a variety of measures. For example, Income Tax revenue in 2019 was £165bn in the model, compared to £190bn by administrative statistics. Across benefit programs, we were often off by between 10% and 40%.
 
@@ -47,7 +46,7 @@ Could we do better?
 
 ## Enter: gradient descent
 
-To find the “best” weights for the FRS, we first need to define what we mean by “best”. To do this, we define a *loss function*, which reduces an array of household weights into a single number (the *loss*): the lower, the better. We then apply an optimisation procedure to find the array of weights that minimises this loss function.
+To find the “best” weights for the FRS, we first need to define what we mean by “best”. To do this, we define a _loss function_, which reduces an array of household weights into a single number (the _loss_): the lower, the better. We then apply an optimisation procedure to find the array of weights that minimises this loss function.
 
 We compute our loss function as follows:
 
@@ -61,17 +60,17 @@ We compute our loss function as follows:
 
 Having constructed our loss function, we can adjust the weights to minimise the loss via gradient descent:
 
-1. For each survey household, calculate the *gradient* of the loss function with respect to the household’s weight. This is the extent to which the total loss metric would increase if the household’s weight increased: if the gradient with respect to a household is positive, then increasing the weight would worsen accuracy, and vice versa. The larger the absolute gradient is, the more adjusting a household’s weight affects the loss function.
+1. For each survey household, calculate the _gradient_ of the loss function with respect to the household’s weight. This is the extent to which the total loss metric would increase if the household’s weight increased: if the gradient with respect to a household is positive, then increasing the weight would worsen accuracy, and vice versa. The larger the absolute gradient is, the more adjusting a household’s weight affects the loss function.
 
-1. Multiply the gradient by a small number, called the *learning rate*, and subtract it from the initial vector of weights to create a new set of weights.
+1. Multiply the gradient by a small number, called the _learning rate_, and subtract it from the initial vector of weights to create a new set of weights.
 
 1. Recompute the loss with the new weights.
 
-1. Repeat steps 1–3, which constitute an *epoch*, until some stopping criterion is met.
+1. Repeat steps 1–3, which constitute an _epoch_, until some stopping criterion is met.
 
 ## Tuning the model
 
-As with other machine learning models, this iterative approach risks *overfitting*–that is, we might over-optimise for the measures in the loss function, at the expense of other measures we haven’t yet included. Machine learning models often reserve a set of records to validate their predictions on, and tune hyperparameters (e.g., learning rate and number of epochs) to avoid overfitting on the training data at the expense of these out-of-sample predictions. Our analogy to that is reserving a set of validation targets.
+As with other machine learning models, this iterative approach risks _overfitting_–that is, we might over-optimise for the measures in the loss function, at the expense of other measures we haven’t yet included. Machine learning models often reserve a set of records to validate their predictions on, and tune hyperparameters (e.g., learning rate and number of epochs) to avoid overfitting on the training data at the expense of these out-of-sample predictions. Our analogy to that is reserving a set of validation targets.
 
 Specifically, we trained our model five times, each time reserving 20% of the targets for validation, and training on the other 80%. Each 20% was exclusive of the others, such that all metrics were validated against in one of the five validation runs.
 

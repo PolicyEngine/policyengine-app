@@ -1,4 +1,3 @@
-
 # How developers can explore the PolicyEngine API
 
 The UK API explorer and US API explorer describe variables and policy parameters in our models.

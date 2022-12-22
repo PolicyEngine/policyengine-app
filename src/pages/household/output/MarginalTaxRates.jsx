@@ -16,7 +16,13 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
-  const { household, metadata, policyLabel } = props;
+  const {
+    householdInput,
+    householdBaseline,
+    householdReform,
+    metadata,
+    policyLabel,
+  } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -30,7 +36,7 @@ export default function MarginalTaxRates(props) {
   let title;
 
   useEffect(() => {
-    let householdData = JSON.parse(JSON.stringify(household.input));
+    let householdData = JSON.parse(JSON.stringify(householdInput));
     householdData.people.you.employment_income["2022"] = null;
     householdData.axes = [
       [
@@ -105,14 +111,14 @@ export default function MarginalTaxRates(props) {
       "employment_income",
       "2022",
       "you",
-      household.input,
+      householdInput,
       metadata
     );
     const currentMtr = getValueFromHousehold(
       "marginal_tax_rate",
       "2022",
       "you",
-      household.baseline,
+      householdBaseline,
       metadata
     );
     title = `Your current marginal tax rate is ${formatVariableValue(
@@ -199,21 +205,21 @@ export default function MarginalTaxRates(props) {
       "employment_income",
       "2022",
       "you",
-      household.input,
+      householdInput,
       metadata
     );
     const currentMtr = getValueFromHousehold(
       "marginal_tax_rate",
       "2022",
       "you",
-      household.reform,
+      householdReform,
       metadata
     );
     const baselineMtrValue = getValueFromHousehold(
       "marginal_tax_rate",
       "2022",
       "you",
-      household.baseline,
+      householdBaseline,
       metadata
     );
     if (currentMtr !== baselineMtrValue) {
@@ -349,9 +355,7 @@ export default function MarginalTaxRates(props) {
           <LoadingCentered />
         </div>
       ) : (
-        <div style={{minHeight: 400}}>
-        {plot}
-        </div>
+        <div style={{ minHeight: 400 }}>{plot}</div>
       )}
     </ResultsPanel>
   );

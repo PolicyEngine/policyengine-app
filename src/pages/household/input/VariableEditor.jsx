@@ -16,8 +16,14 @@ import gtag from "../../../api/analytics";
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
   const mobile = useMobile();
-  const { metadata, household, setHousehold, setHouseholdInput, nextVariable } = props;
-  if (!household.input) {
+  const {
+    metadata,
+    householdInput,
+    householdBaseline,
+    setHouseholdInput,
+    nextVariable,
+  } = props;
+  if (!householdInput) {
     return <LoadingCentered />;
   }
   let variableName;
@@ -29,17 +35,17 @@ export default function VariableEditor(props) {
   const variable = metadata.variables[variableName];
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
-  const possibleEntities = Object.keys(household.input[entityPlural]).filter(
-    (entity) => household.input[entityPlural][entity][variable.name]
+  const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
+    (entity) => householdInput[entityPlural][entity][variable.name]
   );
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity
         variable={variable}
-        household={household}
+        householdInput={householdInput}
+        householdBaseline={householdBaseline}
         entityPlural={entityPlural}
         entityName={entity}
-        setHousehold={setHousehold}
         metadata={metadata}
         key={entity}
         isSimulated={isSimulated}
@@ -63,7 +69,9 @@ export default function VariableEditor(props) {
           What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
           {variable.label}?
         </h1>
-        <h4 style={{ textAlign: "center" }}>{variable.documentation}</h4>
+        <h4 style={{ textAlign: "center", paddingBottom: 10 }}>
+          {variable.documentation}
+        </h4>
         {isSimulated && (
           <p style={{ textAlign: "center" }}>
             This variable is calculated from other variables you've entered.
@@ -72,11 +80,7 @@ export default function VariableEditor(props) {
         )}
         {entityInputs}
         {nextVariable && (
-          <NavigationButton
-            text="Enter"
-            focus={nextVariable}
-            primary
-          />
+          <NavigationButton text="Enter" focus={nextVariable} primary />
         )}
       </div>
     </>
@@ -86,16 +90,16 @@ export default function VariableEditor(props) {
 function HouseholdVariableEntity(props) {
   const {
     variable,
-    household,
+    householdInput,
+    householdBaseline,
     entityPlural,
     entityName,
-    setHousehold,
     metadata,
     isSimulated,
     setHouseholdInput,
   } = props;
   const possibleTimePeriods = Object.keys(
-    household.input[entityPlural][entityName][variable.name]
+    householdInput[entityPlural][entityName][variable.name]
   );
   return (
     <div>
@@ -106,9 +110,9 @@ function HouseholdVariableEntity(props) {
             entityPlural={entityPlural}
             entityName={entityName}
             timePeriod={timePeriod}
-            household={household}
+            householdInput={householdInput}
+            householdBaseline={householdBaseline}
             key={`${entityName}.${timePeriod}.${variable.name}`}
-            setHousehold={setHousehold}
             metadata={metadata}
             isSimulated={isSimulated}
             setHouseholdInput={setHouseholdInput}
@@ -124,16 +128,17 @@ function HouseholdVariableEntityInput(props) {
   const [_, setSearchParams] = useSearchParams();
   const {
     metadata,
-    household,
+    householdInput,
+    householdBaseline,
     variable,
     entityPlural,
     entityName,
     timePeriod,
-    isSimulated,
     setHouseholdInput,
   } = props;
   const submitValue = (value) => {
-    let newHousehold = household.input;
+    console.log(value);
+    let newHousehold = JSON.parse(JSON.stringify(householdInput));
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     setHouseholdInput(newHousehold);
     gtag("event", "input", {
@@ -151,7 +156,14 @@ function HouseholdVariableEntityInput(props) {
     variable.name,
     timePeriod,
     entityName,
-    isSimulated ? household.baseline : household.input,
+    householdBaseline,
+    metadata
+  );
+  const inputValue = getValueFromHousehold(
+    variable.name,
+    timePeriod,
+    entityName,
+    householdInput,
     metadata
   );
   let control;
@@ -159,7 +171,7 @@ function HouseholdVariableEntityInput(props) {
     control = (
       <InputField
         onChange={submitValue}
-        placeholder={formatValue(simulatedValue)}
+        placeholder={formatValue(inputValue || simulatedValue)}
         autofocus={true}
       />
     );
@@ -168,7 +180,7 @@ function HouseholdVariableEntityInput(props) {
       <div style={{ margin: 20 }}>
         <Switch
           onChange={submitValue}
-          checked={simulatedValue}
+          checked={inputValue || simulatedValue}
           checkedChildren="Yes"
           unCheckedChildren="No"
         />
@@ -178,7 +190,7 @@ function HouseholdVariableEntityInput(props) {
     control = (
       <SearchOptions
         options={variable.possibleValues}
-        defaultValue={simulatedValue}
+        defaultValue={inputValue || simulatedValue}
         onSelect={submitValue}
       />
     );

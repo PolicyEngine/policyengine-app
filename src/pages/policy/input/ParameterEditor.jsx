@@ -59,9 +59,7 @@ export default function ParameterEditor(props) {
   } else {
     control = (
       <InputField
-        placeholder={
-          getParameterAtInstant(reformedParameter, startDate)
-        }
+        placeholder={getParameterAtInstant(reformedParameter, startDate)}
         onChange={(value) => {
           let newPolicy = { ...policy.reform.data };
           newPolicy[parameterName] = {

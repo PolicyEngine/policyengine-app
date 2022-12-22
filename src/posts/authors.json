@@ -1,24 +1,24 @@
 {
-    "nikhil-woodruff": {
-        "name": "Nikhil Woodruff",
-        "email": "nikhil@policyengine.org",
-        "twitter": "https://twitter.com/MaxGhenis",
-        "github": "https://github.com/MaxGhenis",
-        "linkedin": "https://www.linkedin.com/in/nikhil-woodruff/",
-        "headshot": "nikhil-woodruff.jpg",
-        "bio": "Nikhil is a co-founder and CTO at PolicyEngine."
-    },
-    "max-ghenis": {
-        "name": "Max Ghenis",
-        "email": "max@policyengine.org",
-        "twitter": "https://twitter.com/maxghenis",
-        "github": "https://github.com/MaxGhenis",
-        "linkedin": "https://www.linkedin.com/in/maxghenis/",
-        "headshot": "max-ghenis.jpg",
-        "bio": "Max is a co-founder and CEO at PolicyEngine."
-    },
-    "kevin-foster": {
-        "name": "Kevin Foster",
-        "headshot": "kevin-foster.jpeg"
-    }
+  "nikhil-woodruff": {
+    "name": "Nikhil Woodruff",
+    "email": "nikhil@policyengine.org",
+    "twitter": "https://twitter.com/MaxGhenis",
+    "github": "https://github.com/MaxGhenis",
+    "linkedin": "https://www.linkedin.com/in/nikhil-woodruff/",
+    "headshot": "nikhil-woodruff.jpg",
+    "bio": "Nikhil is a co-founder and CTO at PolicyEngine."
+  },
+  "max-ghenis": {
+    "name": "Max Ghenis",
+    "email": "max@policyengine.org",
+    "twitter": "https://twitter.com/maxghenis",
+    "github": "https://github.com/MaxGhenis",
+    "linkedin": "https://www.linkedin.com/in/maxghenis/",
+    "headshot": "max-ghenis.jpg",
+    "bio": "Max is a co-founder and CEO at PolicyEngine."
+  },
+  "kevin-foster": {
+    "name": "Kevin Foster",
+    "headshot": "kevin-foster.jpeg"
+  }
 }
