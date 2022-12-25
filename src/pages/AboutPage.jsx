@@ -56,7 +56,7 @@ export default function AboutPage(props) {
     return <Container style={{ padding: 20 }}>{contents}</Container>;
   } else {
     return (
-      <Container style={{ maxWidth: 800, paddingTop: 40 }}>
+      <Container style={{ maxWidth: 800, paddingTop: 40 }} className="serif">
         {contents}
       </Container>
     );
