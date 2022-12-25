@@ -149,9 +149,6 @@ export default function HouseholdPage(props) {
       variableNames[variableNames.indexOf(searchParams.get("focus")) + 1];
     if (!nextVariable) {
       nextVariable = "householdOutput.netIncome";
-      if (!autoCompute) {
-        setAutoCompute(true);
-      }
     }
     middle = (
       <VariableEditor
