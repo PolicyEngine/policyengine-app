@@ -1,5 +1,4 @@
 import useMobile from "./Responsive";
-import SocialLinks from "./SocialLinks";
 
 export default function Footer(props) {
   const { countryId } = props;
@@ -9,21 +8,11 @@ export default function Footer(props) {
     "https://policyengine.org",
     `/${countryId}/about`,
     "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
-    "https://opencollective.com/psl",
+    `/${countryId}/donate`,
   ];
-  const labels = ["PolicyEngine © 2022", "About", "Feedback", "Donate"];
+  const labels = ["PolicyEngine © 2022", "About", "Contact", "Donate"];
   if (mobile) {
-    footer = (
-      <div>
-        <SpacedLinks links={links} labels={labels} />
-        <div
-          className="justify-content-center"
-          style={{ paddingBottom: 5, paddingTop: 15 }}
-        >
-          <SocialLinks color="black" />
-        </div>
-      </div>
-    );
+    return null;
   } else {
     footer = <SpacedLinks links={links} labels={labels} />;
   }

@@ -37,3 +37,12 @@ a {
   display: flex;
   align-items: center;
 }
+
+a {
+  color: #2c6496;
+  font-weight: bold;
+}
+
+.serif p {
+  font-family: "Merriweather", serif !important;
+}

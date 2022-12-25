@@ -10,6 +10,7 @@ import PolicyPage from "./pages/PolicyPage";
 import BlogPostPage from "./pages/BlogPage";
 import Footer from "./layout/Footer";
 import AboutPage from "./pages/AboutPage";
+import DonatePage from "./pages/DonatePage";
 
 export default function PolicyEngineCountry(props) {
   const { countryId } = props;
@@ -128,6 +129,7 @@ export default function PolicyEngineCountry(props) {
       />
       <Route path="/blog/*" element={<BlogPostPage />} />
       <Route path="/about" element={<AboutPage />} />
+      <Route path="/donate" element={<DonatePage />} />
     </Routes>
   );
 

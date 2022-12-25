@@ -16,7 +16,7 @@ import {
 function MarkdownP(props) {
   const mobile = useMobile();
   const pStyle = mobile
-    ? { fontSize: 16, marginBottom: 20 }
+    ? { fontSize: 16, marginBottom: 20, fontFamily: "Merriweather" }
     : { fontSize: 18, marginBottom: 20, fontFamily: "Merriweather" };
   return <p style={pStyle}>{props.children}</p>;
 }
@@ -124,7 +124,7 @@ export default function BlogPostPage(props) {
   window.scrollTo(0, 0);
 
   return (
-    <Container style={{ padding: mobile && 0 }}>
+    <Container style={{ padding: mobile && 0 }} className="serif">
       <div
         style={{
           margin: mobile ? 0 : 75,
