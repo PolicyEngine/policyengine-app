@@ -10,7 +10,7 @@ export default function Footer(props) {
     "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
     `/${countryId}/donate`,
   ];
-  const labels = ["PolicyEngine © 2022", "About", "Feedback", "Donate"];
+  const labels = ["PolicyEngine © 2022", "About", "Contact", "Donate"];
   if (mobile) {
     return null;
   } else {
