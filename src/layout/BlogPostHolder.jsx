@@ -3,6 +3,7 @@ import authorsJson from "../posts/authors.json";
 import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import EmailSignUp from "./EmailSignup";
 
 function BlogPostPreviewRegular(props) {
   const { title, description, image, filename, countryId, authors } = props;
@@ -106,6 +107,7 @@ export default function BlogPostHolder(props) {
         style={{
           minWidth: 300,
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -113,6 +115,7 @@ export default function BlogPostHolder(props) {
         <div>
           <h3>Blog</h3>
         </div>
+        <EmailSignUp />
       </div>
       {posts}
     </div>
