@@ -1,7 +1,10 @@
+import { useState } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
+import HoverCard from "../../../layout/HoverCard";
+import { cardinal, percent } from "../../../api/language";
 
 export default function IntraDecileImpact(props) {
   const { impact, policyLabel } = props;
@@ -9,8 +12,105 @@ export default function IntraDecileImpact(props) {
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const all = impact.intra_decile.all;
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
-
+  const [hovercard, setHovercard] = useState(null);
   const data = [
+    {
+      type: "bar",
+      y: ["All"],
+      x: [all["Gain more than 5%"]],
+      name: "Gain more than 5%",
+      legendgroup: "Gain more than 5%",
+      offsetgroup: "Gain more than 5%",
+      marker: {
+        color: style.colors.DARK_GREEN,
+      },
+      orientation: "h",
+      text: [all["Gain more than 5%"]].map(
+        (value) => (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
+      xaxis: "x",
+      yaxis: "y",
+      showlegend: false,
+      hoverinfo: "none",
+    },
+    {
+      type: "bar",
+      y: ["All"],
+      x: [all["Gain less than 5%"]],
+      name: "Gain less than 5%",
+      marker: {
+        color: style.colors.LIGHT_GREEN,
+      },
+      orientation: "h",
+      text: [all["Gain less than 5%"]].map(
+        (value) => (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
+      xaxis: "x",
+      yaxis: "y",
+      showlegend: false,
+      hoverinfo: "none",
+    },
+    {
+      type: "bar",
+      y: ["All"],
+      x: [all["No change"]],
+      name: "No change",
+      marker: {
+        color: style.colors.LIGHT_GRAY,
+      },
+      orientation: "h",
+      text: [all["No change"]].map(
+        (value) => (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
+      xaxis: "x",
+      yaxis: "y",
+      showlegend: false,
+      hoverinfo: "none",
+    },
+    {
+      type: "bar",
+      y: ["All"],
+      x: [all["Lose less than 5%"]],
+      name: "Lose less than 5%",
+      marker: {
+        color: style.colors.GRAY,
+      },
+      orientation: "h",
+      text: [all["Lose less than 5%"]].map(
+        (value) => (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
+      xaxis: "x",
+      yaxis: "y",
+      showlegend: false,
+      hoverinfo: "none",
+    },
+    {
+      type: "bar",
+      y: ["All"],
+      x: [all["Lose more than 5%"]],
+      name: "Lose more than 5%",
+      marker: {
+        color: style.colors.DARK_GRAY,
+      },
+      orientation: "h",
+      text: [all["Lose more than 5%"]].map(
+        (value) => (value * 100).toFixed(0).toString() + "%"
+      ),
+      textposition: "inside",
+      textangle: 0,
+      xaxis: "x",
+      yaxis: "y",
+      showlegend: false,
+      hoverinfo: "none",
+    },
     {
       type: "bar",
       y: decileNumbers,
@@ -25,6 +125,9 @@ export default function IntraDecileImpact(props) {
       ),
       textposition: "inside",
       textangle: 0,
+      xaxis: "x2",
+      yaxis: "y2",
+      hoverinfo: "none",
     },
     {
       type: "bar",
@@ -40,6 +143,9 @@ export default function IntraDecileImpact(props) {
       ),
       textposition: "inside",
       textangle: 0,
+      xaxis: "x2",
+      yaxis: "y2",
+      hoverinfo: "none",
     },
     {
       type: "bar",
@@ -55,6 +161,9 @@ export default function IntraDecileImpact(props) {
       ),
       textposition: "inside",
       textangle: 0,
+      xaxis: "x2",
+      yaxis: "y2",
+      hoverinfo: "none",
     },
     {
       type: "bar",
@@ -70,6 +179,9 @@ export default function IntraDecileImpact(props) {
       ),
       textposition: "inside",
       textangle: 0,
+      xaxis: "x2",
+      yaxis: "y2",
+      hoverinfo: "none",
     },
     {
       type: "bar",
@@ -85,6 +197,9 @@ export default function IntraDecileImpact(props) {
       ),
       textposition: "inside",
       textangle: 0,
+      xaxis: "x2",
+      yaxis: "y2",
+      hoverinfo: "none",
     },
   ];
 
@@ -94,18 +209,45 @@ export default function IntraDecileImpact(props) {
       layout={{
         barmode: "stack",
         orientation: "h",
+        grid: {
+          rows: 2,
+          columns: 1,
+        },
         yaxis: {
-          title: "Income decile",
-          tickvals: decileNumbers,
+          title: "",
+          tickvals: ["All"],
+          domain: [0.91, 1],
         },
         xaxis: {
+          title: "",
+          tickformat: ".0%",
+          anchor: "y",
+          matches: "x2",
+          showgrid: false,
+          showticklabels: false,
+        },
+        xaxis2: {
           title: "Population share",
           tickformat: ".0%",
+          anchor: "y2",
+        },
+        yaxis2: {
+          title: "Income decile",
+          tickvals: decileNumbers,
+          anchor: "x2",
+          domain: [0, 0.85],
         },
         uniformtext: {
           mode: "hide",
-          minsize: 8,
+          minsize: 10,
         },
+        legend: {
+          // Position on the top going left
+          x: 0,
+          y: -0.3,
+          orientation: "h",
+        },
+        height: 600,
         ...ChartLogo,
       }}
       config={{
@@ -114,6 +256,24 @@ export default function IntraDecileImpact(props) {
       }}
       style={{
         width: "100%",
+        height: 700,
+      }}
+      onHover={(data) => {
+        const group = data.points[0].y;
+        const title = 
+          group === "All" ?
+            "All households" :
+            `Decile ${group}`;
+        const category = data.points[0].data.name;
+        const value = data.points[0].x;
+        const message = 
+          `${percent(value)} of ${
+            group === "All" ? "all households" : `households in the ${cardinal(group)} decile`
+          } ${category.toLowerCase()}.`
+        setHovercard({
+          title: title,
+          body: message,
+        })
       }}
     />
   );
@@ -124,7 +284,15 @@ export default function IntraDecileImpact(props) {
         {policyLabel} benefits{" "}
         {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
       </h2>
-      {chart}
+      <p>
+        The chart below shows percentage of of people in each household income decile who experience different outcome categories. Households are sorted into ten equally-populated groups according to
+        their equivalised household net income.
+      </p>
+      <HoverCard
+        content={hovercard}
+      >
+        {chart}
+      </HoverCard>
     </>
   );
 }

@@ -40,3 +40,13 @@ export function percent(number) {
     }) + "%"
   );
 }
+
+export function cardinal(number) {
+  // E.g. 1 -> 'first', 2 -> 'second', 3 -> 'third'
+  const suffixes = ["th", "st", "nd", "rd"];
+  const rem = number % 100;
+  return (
+    number +
+    (suffixes[(rem - 20) % 10] || suffixes[rem] || suffixes[0])
+  );
+}

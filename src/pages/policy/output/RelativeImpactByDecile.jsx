@@ -1,10 +1,14 @@
+import { useState } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
+import HoverCard from "../../../layout/HoverCard";
+import { cardinal, percent } from "../../../api/language";
 
 export default function RelativeImpactByDecile(props) {
   const { impact, policyLabel } = props;
+  const [hovercard, setHoverCard] = useState(null);
   // Decile bar chart. Bars are grey if negative, green if positive.
   const chart = (
     <Plot
@@ -25,6 +29,7 @@ export default function RelativeImpactByDecile(props) {
               "%"
           ),
           textangle: 0,
+          hoverinfo: "none",
         },
       ]}
       layout={{
@@ -50,6 +55,20 @@ export default function RelativeImpactByDecile(props) {
       style={{
         width: "100%",
       }}
+      onHover={(data) => {
+        const decile = cardinal(data.points[0].x);
+        const relativeChange = data.points[0].y;
+        const message =
+          relativeChange > 0.001 ?
+            `This reform raises the income of households in the ${decile} decile by an average of ${percent(relativeChange)}.` :
+            relativeChange < -0.001 ?
+              `This reform lowers the income of households in the ${decile} decile by an average of ${percent(-relativeChange)}.` :
+              `This reform has no impact on the income of households in the ${decile} decile.`;
+        setHoverCard({
+          title: `Decile ${data.points[0].x}`,
+          body: message,
+        });
+      }}
     />
   );
 
@@ -66,13 +85,14 @@ export default function RelativeImpactByDecile(props) {
       </h2>
       <p>
         The chart below shows the relative change in income for each income
-        decile.
-      </p>
-      {chart}
-      <p>
-        Households are sorted into ten equally-populated groups according to
+        decile. Households are sorted into ten equally-populated groups according to
         their equivalised household net income.
       </p>
+      <HoverCard
+        content={hovercard}
+      >
+        {chart}
+      </HoverCard>
     </>
   );
 }
