@@ -6,17 +6,17 @@ Using PolicyEngine, we can compute the standard deduction’s impact. We’ll do
 
 ## Defining the reform
 
-From the **Policy** page, navigate to the **Maryland > State income tax > Deductions > Standard** section. Select the **Baseline**, and set the value of **MD standard deduction as a percent of AGI** to zero, as well as **MD maximum standard deduction** for each filing status using the dropdown menu. Finally, set **Simulation > Geography** to **Maryland**. This will produce [**this reform link**](https://policyengine.org/us/policy?md_standard_deduction_rate=15&md_min_standard_deduction_HEAD_OF_HOUSEHOLD=3100&md_min_standard_deduction_JOINT=3100&md_min_standard_deduction_SEPARATE=1550&md_min_standard_deduction_SINGLE=1550&baseline_md_standard_deduction_rate=0&baseline_md_min_standard_deduction_HEAD_OF_HOUSEHOLD=0&baseline_md_min_standard_deduction_JOINT=0&baseline_md_min_standard_deduction_SEPARATE=0&baseline_md_min_standard_deduction_SINGLE=0&baseline_state_specific=MD).
+From the Policy page, navigate to the Maryland > State income tax > Deductions > Standard section. Select the Baseline, and set the value of MD standard deduction as a percent of AGI to zero, as well as MD maximum standard deduction for each filing status using the dropdown menu. Finally, set Simulation > Geography to Maryland. This will produce [this reform link](https://policyengine.org/us/policy?md_standard_deduction_rate=15&md_min_standard_deduction_HEAD_OF_HOUSEHOLD=3100&md_min_standard_deduction_JOINT=3100&md_min_standard_deduction_SEPARATE=1550&md_min_standard_deduction_SINGLE=1550&baseline_md_standard_deduction_rate=0&baseline_md_min_standard_deduction_HEAD_OF_HOUSEHOLD=0&baseline_md_min_standard_deduction_JOINT=0&baseline_md_min_standard_deduction_SEPARATE=0&baseline_md_min_standard_deduction_SINGLE=0&baseline_state_specific=MD).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*Tuukff7dXZRB__70)
 
-By default, the **Reform** page will show the current value listed above.
+By default, the Reform page will show the current value listed above.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*T5b8HKRCyj9-LHGf)
 
 ## Population impact
 
-Selecting **Compute population impact** shows [**this link**](https://policyengine.org/us/population-impact?md_standard_deduction_rate=15&md_min_standard_deduction_HEAD_OF_HOUSEHOLD=3100&md_min_standard_deduction_JOINT=3100&md_min_standard_deduction_SEPARATE=1550&md_min_standard_deduction_SINGLE=1550&md_min_standard_deduction_WIDOW=3100&baseline_md_standard_deduction_rate=0&baseline_md_min_standard_deduction_HEAD_OF_HOUSEHOLD=0&baseline_md_min_standard_deduction_JOINT=0&baseline_md_min_standard_deduction_SEPARATE=0&baseline_md_min_standard_deduction_SINGLE=0&baseline_md_min_standard_deduction_WIDOW=0&baseline_state_specific=MD). PolicyEngine estimates that Maryland’s standard deduction costs $417 million, benefits 90% of the population, has no effect on poverty, and slightly reduces income inequality.
+Selecting Compute population impact shows [this link](https://policyengine.org/us/population-impact?md_standard_deduction_rate=15&md_min_standard_deduction_HEAD_OF_HOUSEHOLD=3100&md_min_standard_deduction_JOINT=3100&md_min_standard_deduction_SEPARATE=1550&md_min_standard_deduction_SINGLE=1550&md_min_standard_deduction_WIDOW=3100&baseline_md_standard_deduction_rate=0&baseline_md_min_standard_deduction_HEAD_OF_HOUSEHOLD=0&baseline_md_min_standard_deduction_JOINT=0&baseline_md_min_standard_deduction_SEPARATE=0&baseline_md_min_standard_deduction_SINGLE=0&baseline_md_min_standard_deduction_WIDOW=0&baseline_state_specific=MD). PolicyEngine estimates that Maryland’s standard deduction costs $417 million, benefits 90% of the population, has no effect on poverty, and slightly reduces income inequality.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*eVayVbOocgUWZl0P)
 
@@ -50,7 +50,7 @@ For a family of four (married with two children) with $100,000 in employment inc
 
 ![](https://cdn-images-1.medium.com/max/3200/0*WXnAsrE2npPKKf-T)
 
-Select **Compute how earnings affect you** to see how the standard deduction affects this household’s net income. Then select the **Difference** button to generate the below chart. The dip around $42,000 results from [Maryland’s earned income tax credit](https://policyengine.github.io/policyengine-us//gov/states/md/tax/income/credits/eitc.html), which is partially nonrefundable and therefore affected by tax liability.
+Select Compute how earnings affect you to see how the standard deduction affects this household’s net income. Then select the Difference button to generate the below chart. The dip around $42,000 results from [Maryland’s earned income tax credit](https://policyengine.github.io/policyengine-us//gov/states/md/tax/income/credits/eitc.html), which is partially nonrefundable and therefore affected by tax liability.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*S9bfltBYrvHgpMx-)
 
@@ -58,4 +58,4 @@ We can similarly see a smoother impact by repealing the Maryland EITC in the bas
 
 ![](https://cdn-images-1.medium.com/max/3200/0*fnz-UD2-g9iOg7dM)
 
-Here we’ve shown the impact of Maryland’s standard deduction, including how it interacts with other tax programs. To compute the impact of other tax and benefit programs, try PolicyEngine US at [**policyengine.org**](https://policyengine.org/).
+Here we’ve shown the impact of Maryland’s standard deduction, including how it interacts with other tax programs. To compute the impact of other tax and benefit programs, try PolicyEngine US at [policyengine.org](https://policyengine.org/).

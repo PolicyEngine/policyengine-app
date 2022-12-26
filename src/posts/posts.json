@@ -34,5 +34,115 @@
     "filename": "2022-11-04-oregons-nonrefundable-exemption-credit.md",
     "image": "oregons-nonrefundable-exemption-credit.jpeg",
     "authors": ["kevin-foster"]
+  },
+  {
+    "title": "Stamp duties in PolicyEngine UK",
+    "date": "2022-09-22",
+    "authors": [
+        "nikhil-woodruff"
+    ],
+    "tags": ["uk"],
+    "description": "The Times reported yesterday that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports\u2026",
+    "filename": "2022-09-22-stamp-duties-in-policyengine-uk.md",
+    "image": "stamp-duties-in-policyengine-uk.jpg"
+  },
+  {
+      "title": "Prime Minister Liz Truss\u2019s energy bill price cap",
+      "date": "2022-09-16",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["uk"],
+      "description": "See the impact in PolicyEngine.",
+      "filename": "2022-09-16-prime-minister-liz-trusss-energy-bill-price-cap.md",
+      "image": "prime-minister-liz-trusss-energy-bill-price-cap.jpg"
+  },
+  {
+      "title": "Raising the marriage allowance from 10% to 100%",
+      "date": "2022-08-29",
+      "authors": [
+          "nikhil-woodruff"
+      ],
+      "tags": ["uk"],
+      "description": "See the reform in PolicyEngine.",
+      "filename": "2022-08-29-raising-the-marriage-allowance-from-10-to-100.md",
+      "image": "raising-the-marriage-allowance-from-10-to-100.jpg"
+  },
+  {
+      "title": "PolicyEngine launches in Washington state",
+      "date": "2022-08-10",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["us"],
+      "description": "Washingtonians can now compute the impacts of the Working Families Tax Credit and federal reforms.",
+      "filename": "2022-08-10-policyengine-launches-in-washington-state.md",
+      "image": "policyengine-launches-in-washington-state.jpg"
+  },
+  {
+      "title": "Electric vehicle tax credits under current law and the Inflation Reduction Act",
+      "date": "2022-08-05",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["us"],
+      "description": "Use PolicyEngine US to analyze provisions of the potential reconciliation bill.",
+      "filename": "2022-08-05-electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act.md",
+      "image": "electric-vehicle-tax-credits-under-current-law-and-the-inflation-reduction-act.jpg"
+  },
+  {
+      "title": "Rishi Sunak\u2019s proposal to cut the basic rate to 16 percent",
+      "date": "2022-08-01",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["uk"],
+      "description": "See the interactive simulation on PolicyEngine",
+      "filename": "2022-08-01-rishi-sunaks-proposal-to-cut-the-basic-rate-to-16-percent.md",
+      "image": "rishi-sunaks-proposal-to-cut-the-basic-rate-to-16-percent.jpg"
+  },
+  {
+      "title": "The new PolicyEngine US Population Impact page",
+      "date": "2022-07-01",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["us"],
+      "description": "You design the policy. We compute the poverty, inequality, and budgetary impacts.",
+      "filename": "2022-07-01-the-new-policyengine-us-population-impact-page.md",
+      "image": "the-new-policyengine-us-population-impact-page.jpg"
+  },
+  {
+      "title": "PolicyEngine at the BIG Conference and the Beeck Center\u2019s Rules as Code Demo Day",
+      "date": "2022-06-09",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["global"],
+      "description": "Register for the BIG Conference June 23\u201325 and the Rules as Code Demo Day June 28",
+      "filename": "2022-06-09-policyengine-at-the-basic-income-guarantee-conference-and-the-beeck-centers-rules-as-code-demo-day.md",
+      "image": "policyengine-at-the-basic-income-guarantee-conference-and-the-beeck-centers-rules-as-code-demo-day.jpg"
+  },
+  {
+      "title": "Impact of the Chancellor\u2019s Cost of Living Support package",
+      "date": "2022-05-26",
+      "authors": [
+          "max-ghenis"
+      ],
+      "tags": ["uk"],
+      "description": "See the analysis in PolicyEngine UK",
+      "filename": "2022-05-26-impact-of-the-chancellors-cost-of-living-support-package.md",
+      "image": "impact-of-the-chancellors-cost-of-living-support-package.jpg"
+  },
+  {
+      "title": "How developers can explore the PolicyEngine API",
+      "date": "2022-04-29",
+      "authors": [
+          "nikhil-woodruff"
+      ],
+      "tags": ["global"],
+      "description": "The UK API explorer and US API explorer describe variables and policy parameters in our models.",
+      "filename": "2022-04-29-how-developers-can-explore-the-policyengine-api.md",
+      "image": "how-developers-can-explore-the-policyengine-api.jpg"
   }
 ]

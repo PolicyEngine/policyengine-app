@@ -1,7 +1,3 @@
-# Electric vehicle tax credits under current law and the Inflation Reduction Act
-
-Use PolicyEngine US to analyze provisions of the potential reconciliation bill.
-
 Today’s tax code provides a credit of up to $7,500 for purchasing a new electric vehicle. The Inflation Reduction Act introduced by Senators Chuck Schumer (D-NY) and Joe Manchin (D-WV) last week would reform this credit and create a new one for purchasing used electric vehicles (EVs). PolicyEngine US now models all of these provisions for households.
 
 While PolicyEngine lets you adjust a range of policy parameters for the current law and Inflation Reduction Act (IRA), the simplest way to explore the IRA is to turn it on. This video shows how to do that and compute the [IRA’s impact on the buyer of a used EV](https://policyengine.org/us/household?inflation_reduction_act_in_effect=1).
@@ -14,4 +10,4 @@ Electric vehicle credits are non-refundable, meaning they do not lower a househo
 
 The Inflation Reduction Act limits the EV credits by household income, changes the formula for new EV credits, and introduces a used EV credit of up to $4,000. PolicyEngine models the impacts of those policies and current law for individual households; we do not yet compute the population impacts.
 
-**To explore electric vehicle tax credits and other customizable policy reforms, [visit PolicyEngine US at policyengine.org/us](http://policyengine.org/us).**
+To explore electric vehicle tax credits and other customizable policy reforms, [visit PolicyEngine US at policyengine.org/us](http://policyengine.org/us).

@@ -4,15 +4,19 @@ import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import EmailSignUp from "./EmailSignup";
+import moment from "moment/moment";
 
 function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, authors } = props;
+  const { title, description, image, filename, countryId, authors, date } = props;
   const name = filename.split(".")[0];
   const imageSrc = require(`../images/posts/${image}`);
   const navigate = useNavigate();
   const authorImages = authors.map((author) => {
     return require(`../images/authors/${authorsJson[author].headshot}`);
   });
+
+  // Date will be like 2022-01-01. Convert it to '3 days ago'
+  const dateString = moment(date).fromNow();
 
   return (
     <motion.div
@@ -41,10 +45,12 @@ function BlogPostPreviewRegular(props) {
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, marginTop: "auto" }}>
+      <div style={{ padding: 20, paddingBottom: 0 }}>
         <h3>{title}</h3>
         <p>{description}</p>
-        {authorImages.map((authorImage, index) => {
+      </div>
+      <div style={{ padding: 20, marginTop: "auto", display: "flex", alignItems: "center"}}>
+      {authorImages.map((authorImage, index) => {
           return (
             <div style={{ display: "flex" }}>
               <img
@@ -63,6 +69,9 @@ function BlogPostPreviewRegular(props) {
             </div>
           );
         })}
+        <p style={{marginLeft: "auto", marginBottom: 10, color: style.colors.DARK_GRAY}}>
+          {dateString}
+        </p>
       </div>
     </motion.div>
   );

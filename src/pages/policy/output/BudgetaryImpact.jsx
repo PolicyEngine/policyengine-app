@@ -1,7 +1,12 @@
+import { Popover } from "antd";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
+import HoverCard from "../../../layout/HoverCard";
 import style from "../../../style";
+import Divider from "../../../layout/Divider";
 
 export default function BudgetaryImpact(props) {
   const { impact, policyLabel, metadata } = props;
@@ -9,6 +14,8 @@ export default function BudgetaryImpact(props) {
   const budgetaryImpact = impact.budget.budgetary_impact;
   const taxImpact = impact.budget.tax_revenue_impact;
   const spendingImpact = impact.budget.benefit_spending_impact;
+
+  const [hovercard, setHoverCard] = useState(null);
 
   // Waterfall chart
   const chart = (
@@ -38,6 +45,7 @@ export default function BudgetaryImpact(props) {
             },
           },
           connector: { line: { color: style.colors.DARK_GRAY } },
+          hoverinfo: "none",
         },
       ]}
       layout={{
@@ -62,6 +70,61 @@ export default function BudgetaryImpact(props) {
       style={{
         width: "100%",
       }}
+      onHover={(data) => {
+        const label = data.points[0].x;
+        const relevantFigure = 
+          label === "Tax revenues" ? -taxImpact :
+            label === "Benefit spending" ? spendingImpact :
+              budgetaryImpact;
+        let body = null;
+        if ((label === "Tax revenues")) {
+          // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
+          body =
+            relevantFigure < 0
+              ? `This reform increases tax revenues by ${aggregateCurrency(
+                  relevantFigure,
+                  metadata
+                )}`
+              : relevantFigure > 0
+              ? `This reform reduces tax revenues by ${aggregateCurrency(
+                  -relevantFigure,
+                  metadata
+                )}`
+              : "This reform has no impact on tax revenues";
+        } else if (label === "Benefit spending") {
+          // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
+          body =
+            relevantFigure > 0
+              ? `This reform increases benefit spending by ${aggregateCurrency(
+                  relevantFigure,
+                  metadata
+                )}`
+              : relevantFigure < 0
+              ? `This reform reduces benefit spending by ${aggregateCurrency(
+                  -relevantFigure,
+                  metadata
+                )}`
+              : "This reform has no impact on benefit spending";
+        } else {
+          // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
+          body =
+            relevantFigure < 0
+              ? `This reform increases the budget deficit by ${aggregateCurrency(
+                  relevantFigure,
+                  metadata
+                )}`
+              : relevantFigure > 0
+              ? `This reform reduces the budget deficit by ${aggregateCurrency(
+                  -relevantFigure,
+                  metadata
+                )}`
+              : "This reform has no impact on the budget deficit";
+        }
+        setHoverCard({
+          title: label,
+          body: body,
+        });
+      }}
     />
   );
 
@@ -78,7 +141,11 @@ export default function BudgetaryImpact(props) {
         The chart below shows how this is broken down between tax and benefit
         measures.
       </p>
-      {chart}
+      <HoverCard
+        content={hovercard}
+      >
+        {chart}
+      </HoverCard>
     </>
   );
 }

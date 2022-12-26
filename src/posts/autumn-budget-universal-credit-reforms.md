@@ -18,13 +18,13 @@ Universal Credit is the central in-work means-tested benefit, currently being ro
 
 Universal Credit payments are paid in respect of a _benefit unit_ (one or two cohabiting adults, plus children). Entitlements are calculated based on three steps: the first, eligibility, requires that the claimant be working-age. The second step calculates the maximum entitlement, by summing any of the following elements that apply.
 
-![*Values of components in Universal Credit, as of 28th October 2021.*](https://cdn-images-1.medium.com/max/2000/1*E5Gdno7MfZgBf6pIQsQVuQ.png)**Values of components in Universal Credit, as of 28th October 2021.**
+![*Values of components in Universal Credit, as of 28th October 2021.*](https://cdn-images-1.medium.com/max/2000/1*E5Gdno7MfZgBf6pIQsQVuQ.png)Values of components in Universal Credit, as of 28th October 2021.
 
 ### Reductions from income
 
 Income received by the claimant reduces their entitlement to Universal Credit. Unearned income (other benefits, pensions and capital income) is treated differently than earned income from employment or self-employment. Income, after deducting taxes and work allowances, reduces UC entitlement in proportion to the taper rate.
 
-![*The means test parameters of Universal Credit, as of 30th October 2021.*](https://cdn-images-1.medium.com/max/2000/1*yLCGkbJixG94IplxwCr0lA.png)**The means test parameters of Universal Credit, as of 30th October 2021.**
+![*The means test parameters of Universal Credit, as of 30th October 2021.*](https://cdn-images-1.medium.com/max/2000/1*yLCGkbJixG94IplxwCr0lA.png)The means test parameters of Universal Credit, as of 30th October 2021.
 
 ## Analysis
 
@@ -48,13 +48,13 @@ Around a third of those affected see an increase in their disposable income of m
 
 This reform excludes unpaid and very-low-paid claimants from any gains, unlike the pandemic-related increases to the standard allowance, as those with earnings under the baseline Work Allowance will be unaffected by changes to the taper rate or allowance. As shown below, the increases to disposable income begin at the baseline work allowance, increase with earnings, and end once UC entitlement reaches zero.
 
-![*How the reform affects net income for a non-renting two-adult, two-child household.*](https://cdn-images-1.medium.com/max/2712/1*8h6Scwp3WFIk2At1_-zQoA.png)**How the reform affects net income for a non-renting two-adult, two-child household.**
+![*How the reform affects net income for a non-renting two-adult, two-child household.*](https://cdn-images-1.medium.com/max/2712/1*8h6Scwp3WFIk2At1_-zQoA.png)How the reform affects net income for a non-renting two-adult, two-child household.
 
 ### Marginal tax rates
 
 The marginal tax rate is the share of an additional pound of income that the government takes, through either taxation or benefit withdrawal. The reform reduces marginal tax rates in the main, but marginal tax rates will increase for some. The table below outlines the circumstances where marginal taxes will change.¹
 
-![*How the UC reform affects marginal tax rates.*](https://cdn-images-1.medium.com/max/2000/1*5vOnR-QCusGaBhvRH_CfQQ.png)**How the UC reform affects marginal tax rates.**
+![*How the UC reform affects marginal tax rates.*](https://cdn-images-1.medium.com/max/2000/1*5vOnR-QCusGaBhvRH_CfQQ.png)How the UC reform affects marginal tax rates.
 
 A couple with two children and no rental costs will see their marginal tax rate fall if they earn between £6,180 and £32,540, and rise if they earn between £29,400 and £37,460, where they would be newly eligible for UC.
 
