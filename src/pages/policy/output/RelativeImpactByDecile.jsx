@@ -60,10 +60,10 @@ export default function RelativeImpactByDecile(props) {
         const relativeChange = data.points[0].y;
         const message =
           relativeChange > 0.001 ?
-            `This reform raises the income of households in the ${decile} decile by an average of ${percent(relativeChange)}` :
+            `This reform raises the income of households in the ${decile} decile by an average of ${percent(relativeChange)}.` :
             relativeChange < -0.001 ?
-              `This reform lowers the income of households in the ${decile} decile by an average of ${percent(-relativeChange)}` :
-              `This reform has no impact on the income of households in the ${decile} decile`;
+              `This reform lowers the income of households in the ${decile} decile by an average of ${percent(-relativeChange)}.` :
+              `This reform has no impact on the income of households in the ${decile} decile.`;
         setHoverCard({
           title: `Decile ${data.points[0].x}`,
           body: message,
