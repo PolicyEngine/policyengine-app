@@ -1,7 +1,3 @@
-# Stamp duties in PolicyEngine UK
-
-An aerial shot of Osborne House.
-
 [The Times reported yesterday](https://www.thetimes.co.uk/article/liz-truss-to-cut-stamp-duty-in-push-for-prosperity-qrh5nxbcd) that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports custom reforms to Stamp Duty and its devolved equivalents, so you can compute the impact of potential cuts or your preferred Stamp Duty reform. We will post estimates of Truss’s cut when she announces it.
 
 ## What is Stamp Duty?
@@ -26,14 +22,14 @@ Any! We’ve added switches to abolish each of the three Stamp Duty policies, as
 
 Here are some examples of Stamp Duty reforms you can compute in PolicyEngine:
 
-- [**Repeal all three policies**
+- [Repeal all three policies
   ](https://policyengine.org/uk/population-impact?abolish_sdlt=1&abolish_ltt=1&abolish_lbtt=1)£16.2 billion cost in 2022
 
-- [**Double Stamp Duty’s first home value exemption from £500,000 to £1,000,000**
+- [Double Stamp Duty’s first home value exemption from £500,000 to £1,000,000
   ](https://policyengine.org/uk/population-impact?sdlt_first_time_buyer_value_limit=1000000)£95 million cost in 2022
 
-- [\*\*Set the rate to a flat 2% on-first primary homes
-  ](https://policyengine.org/uk/population-impact?abolish_lbtt=1&sdlt_on_non_first_home_1_rate=2&sdlt_on_non_first_home_3_rate=2&sdlt_on_non_first_home_4_rate=2&sdlt_on_non_first_home_5_rate=2&ltt_on_secondary_residences_1_rate=2&ltt_on_secondary_residences_2_rate=2&ltt_on_secondary_residences_3_rate=2&ltt_on_secondary_residences_4_rate=2&ltt_on_secondary_residences_5_rate=2&ltt_on_secondary_residences_6_rate=2&lbtt_on_residential_property_1_rate=2&lbtt_on_residential_property_3_rate=2&lbtt_on_residential_property_4_rate=2&lbtt_on_residential_property_5_rate=2)\*\*£3.7 billion cost in 2022
+- [Set the rate to a flat 2% on-first primary homes
+  ](https://policyengine.org/uk/population-impact?abolish_lbtt=1&sdlt_on_non_first_home_1_rate=2&sdlt_on_non_first_home_3_rate=2&sdlt_on_non_first_home_4_rate=2&sdlt_on_non_first_home_5_rate=2&ltt_on_secondary_residences_1_rate=2&ltt_on_secondary_residences_2_rate=2&ltt_on_secondary_residences_3_rate=2&ltt_on_secondary_residences_4_rate=2&ltt_on_secondary_residences_5_rate=2&ltt_on_secondary_residences_6_rate=2&lbtt_on_residential_property_1_rate=2&lbtt_on_residential_property_3_rate=2&lbtt_on_residential_property_4_rate=2&lbtt_on_residential_property_5_rate=2)£3.7 billion cost in 2022
 
 ## Exploring the results
 

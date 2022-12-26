@@ -24,7 +24,7 @@ PolicyEngine shows that the [combined Income Tax reforms](http://policyengine.or
 
 However, because Personal Allowance phases out, Income Tax has six segments instead of four. Income in the Personal Allowance phase-out region (between £100,000 and £125,140), is taxed at a 60% marginal rate, as shown in this PolicyEngine graph.
 
-![*Marginal tax rate schedule from Income Tax alone (PolicyEngine).²*](https://cdn-images-1.medium.com/max/3200/0*ny9SRyI1vvJWQ2XM)**Marginal tax rate schedule from Income Tax alone (PolicyEngine).²**
+![*Marginal tax rate schedule from Income Tax alone (PolicyEngine).²*](https://cdn-images-1.medium.com/max/3200/0*ny9SRyI1vvJWQ2XM)Marginal tax rate schedule from Income Tax alone (PolicyEngine).²
 
 National Insurance and means-tested benefits significantly increase marginal tax rates, especially among low-income people, some of whom face marginal tax rates up to 69%. See [our report on the Autumn Budget Universal Credit reforms](https://blog.policyengine.org/analysing-autumn-budget-universal-credit-reforms-with-policyengine-2ce93f177428) for information and charts depicting those incentive schedules.
 
@@ -48,7 +48,7 @@ This policy benefits anyone with annual income exceeding the Personal Allowance 
 
 For more results such as intra-decile charts, poverty rates by age, and net income of particular households (like your own!), explore the PolicyEngine links.
 
-**Footnotes**
+Footnotes
 
 [1] This analysis is based on policy and data for October 2021, preceding Autumn Budget Universal Credit reforms that took effect last week. We do not adjust Scottish tax bands.
 

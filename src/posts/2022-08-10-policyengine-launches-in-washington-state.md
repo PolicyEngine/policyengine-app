@@ -1,7 +1,3 @@
-# PolicyEngine launches in Washington state
-
-Washingtonians can now compute the impacts of the Working Families Tax Credit and federal reforms.
-
 Washington state hasn’t historically had an income tax. However, in the past year, they’ve enacted a [Working Families Tax Credit](https://workingfamiliescredit.wa.gov/) (modeled after the federal Earned Income Tax Credit) and a [capital gains tax](https://dor.wa.gov/taxes-rates/other-taxes/capital-gains-tax)¹ (which is currently held up in court). With support from the [Center for Growth and Opportunity](http://thecgo.org), we’ve now modeled these policies in PolicyEngine and enabled Washington-specific impacts of federal reforms. This blog post shows a series of examples on using PolicyEngine in Washington.
 
 You can use our [household calculator](http://policyengine.org/us/household) to estimate how much you’ll get from the Washington Working Families Tax Credit under current law.²

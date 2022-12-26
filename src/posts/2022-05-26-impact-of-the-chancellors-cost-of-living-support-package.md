@@ -1,7 +1,3 @@
-# Impact of the Chancellor’s Cost of Living Support package
-
-See the analysis in PolicyEngine UK
-
 Today, the Chancellor of the Exchequer [announced a new Cost of Living Support package](https://www.gov.uk/government/news/millions-of-most-vulnerable-households-will-receive-1200-of-help-with-cost-of-living) of cash transfers:
 
 - £650 to households receiving means-tested benefits
@@ -94,4 +90,4 @@ The placement and size of this “earnings dead zone” (the shaded rectangle) d
 
 PolicyEngine UK now supports payments to households receiving means-tested benefits, non-means-tested disability benefits, and Winter Fuel Payment. You can set these values to mirror the Chancellor’s announcement, or define your own household payment scheme. Our estimates generally fall within 10% of HM Treasury’s, and we’ve also produced the first poverty and inequality analyses of the package, as well as personalised estimates that reveal welfare cliffs.
 
-**To explore the package in more detail, [see our full analysis in PolicyEngine UK](https://policyengine.org/uk/population-impact?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200).**
+To explore the package in more detail, [see our full analysis in PolicyEngine UK](https://policyengine.org/uk/population-impact?col_benefit_payment_amount=650&col_disability_payment_amount=150&col_pensioner_payment_amount=300&ebr_energy_bills_credit=400&baseline_ebr_energy_bills_credit=200).

@@ -95,8 +95,9 @@ export default function PolicyEngineCountry(props) {
           newSearch.delete("renamed");
           setSearchParams(newSearch);
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }}, [countryId, searchParams.get("renamed")]);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryId, searchParams.get("renamed")]);
 
   const homePage = <HomePage countryId={countryId} />;
 

@@ -6,7 +6,7 @@ A carbon tax is a fixed price paid by corporations for every tonne of carbon dio
 
 PolicyEngine allows users to simulate policies implementing carbon taxes in the UK (see the UBI Center policy menu), and adjust the assumptions on their incidence. In this post, we’ll go through how we estimate the effects of the tax.
 
-![*Where to find carbon taxes in the PolicyEngine UK policy screen.*](https://cdn-images-1.medium.com/max/3200/0*mqJzs0Oc0Q53LaRM)**Where to find carbon taxes in the PolicyEngine UK policy screen.**
+![*Where to find carbon taxes in the PolicyEngine UK policy screen.*](https://cdn-images-1.medium.com/max/3200/0*mqJzs0Oc0Q53LaRM)Where to find carbon taxes in the PolicyEngine UK policy screen.
 
 ## Breaking down the carbon tax
 
@@ -38,7 +38,7 @@ The FRS forms the foundation of PolicyEngine because of its detailed data on inc
 
 We apply a similar method with the ONS carbon footprint statistics. This data reports the total carbon emissions associated with each category of spending (the same categorisation as the LCFS uses). We also know the total spending associated with each category from the Living Costs and Food Survey (and now in the FRS, too). This enables us to estimate the _carbon intensity_ of each category: the carbon emissions associated with each pound spent. We can then multiply this intensity directly by the amount spent on each category to find the estimated carbon emissions for a given household.
 
-![*Carbon emissions intensity by spending category.*](https://cdn-images-1.medium.com/max/2000/0*GBk5kkc5LsEaYZuf)**Carbon emissions intensity by spending category.**
+![*Carbon emissions intensity by spending category.*](https://cdn-images-1.medium.com/max/2000/0*GBk5kkc5LsEaYZuf)Carbon emissions intensity by spending category.
 
 This full process then provides estimated carbon emissions for each household in the FRS.
 
@@ -52,7 +52,7 @@ We calculate this at the household level, to integrate it with the rest of our m
 
 As [other](https://www.lse.ac.uk/granthaminstitute/publication/distributional-impacts-of-a-carbon-tax-in-the-uk/) [research](https://www.nber.org/papers/w15239) [has](https://ifs.org.uk/publications/15817) [found](https://www.elibrary.imf.org/view/books/071/21375-9781138825369-en/ch006.xml), we estimate that carbon taxes are regressive: they represent a higher proportion of disposable income for low-income households than high-income households. This is because low-income households spend more of their income on carbon-intensive goods and services like food, transport or housing, while high-income households save proportionately more.
 
-![*Change to net income by equivalised disposable income decile for a £100 carbon tax, assuming 100% consumer incidence.*](https://cdn-images-1.medium.com/max/2334/0*WqMXO8DRE955C9Wn)**Change to net income by equivalised disposable income decile for a £100 carbon tax, assuming 100% consumer incidence.**
+![*Change to net income by equivalised disposable income decile for a £100 carbon tax, assuming 100% consumer incidence.*](https://cdn-images-1.medium.com/max/2334/0*WqMXO8DRE955C9Wn)Change to net income by equivalised disposable income decile for a £100 carbon tax, assuming 100% consumer incidence.
 
 Increasing the proportion of the carbon tax borne by shareholders makes the carbon tax slightly more regressive from an income perspective, though less regressive from a wealth perspective. Many policy proposals include revenue recycling options, such as a per-capita dividend, to address regressivity.
 

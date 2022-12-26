@@ -31,3 +31,12 @@ export function aggregateCurrency(number, metadata) {
   const currency = metadata.currency;
   return currency + aggregateNumber(number);
 }
+
+export function percent(number) {
+  return (
+    (number * 100).toLocaleString(undefined, {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    }) + "%"
+  );
+}

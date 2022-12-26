@@ -24,9 +24,9 @@ However, even our adjusted FRS failed to match administrative totals on a variet
 
 Two possible issues explained our remaining discrepancies:
 
-1. **Measurement error**, in which FRS respondents misreport their financial situation
+1. Measurement error, in which FRS respondents misreport their financial situation
 
-1. **Sampling error**, in which FRS households misrepresent UK households
+1. Sampling error, in which FRS households misrepresent UK households
 
 As we dug further, we found that for many benefits, we could adjust take-up rates to either match official expenditure or official caseloads, but not both. This situation can only occur if the households claiming a benefit in the model are fundamentally different from the households claiming the benefit in reality. So, having exhausted our options to address measurement error, and with evidence on hand that the survey was unrepresentative of the population, we turned to sampling error.
 

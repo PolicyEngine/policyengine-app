@@ -1,7 +1,3 @@
-# Rishi Sunak’s proposal to cut the basic rate to 16 percent
-
-See the interactive simulation on PolicyEngine
-
 In a pitch today for Conservatives to elect him Prime Minister, [Rishi Sunak has proposed](https://www.theguardian.com/politics/2022/jul/31/rishi-sunak-pledges-20-tax-cut-by-end-of-decade-in-last-gasp-pitch-to-members) lowering the basic rate of income tax from 20 percent to 16 percent by the end of the next parliament. The proposal follows his [announcement in March](https://www.independent.co.uk/news/uk/politics/uk-income-tax-cut-2024-rishi-sunak-b2042197.html) (when he was still Chancellor) that the government would cut the basic rate to 19 percent by 2024.
 
 PolicyEngine estimates that cutting the basic rate from 20p to 16p in 2022 would:
@@ -14,7 +10,7 @@ PolicyEngine estimates that cutting the basic rate from 20p to 16p in 2022 would
 
 - Produce a mixed impact on income inequality
 
-[\*\*See the interactive simulation in PolicyEngine here.](https://policyengine.org/uk/population-impact?basic_rate=16)\*\*
+[See the interactive simulation in PolicyEngine here.](https://policyengine.org/uk/population-impact?basic_rate=16)
 
 ## Budgetary impact
 
@@ -54,4 +50,4 @@ For the income range where this household is eligible for Universal Credit, the 
 
 ![](https://cdn-images-1.medium.com/max/2628/0*UDmm9O3KZzHHvERV)
 
-**To compute more impacts of Sunak’s proposed basic rate cut, [see how it would affect your own household](https://policyengine.org/uk/household?basic_rate=16&baseline_basic_rate=20), or create your own version of this reform, [view the simulation on the PolicyEngine.](https://policyengine.org/uk/population-impact?basic_rate=16&baseline_basic_rate=20)**
+To compute more impacts of Sunak’s proposed basic rate cut, [see how it would affect your own household](https://policyengine.org/uk/household?basic_rate=16&baseline_basic_rate=20), or create your own version of this reform, [view the simulation on the PolicyEngine.](https://policyengine.org/uk/population-impact?basic_rate=16&baseline_basic_rate=20)
