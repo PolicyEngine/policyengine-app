@@ -3,8 +3,9 @@ import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency } from "../../../api/language";
+import { aggregateCurrency, percent } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
+import HoverCard from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
@@ -18,6 +19,7 @@ export default function CliffImpact(props) {
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const { metadata, policyLabel } = props;
+  const [hovercard, setHovercard] = useState(null);
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
@@ -87,20 +89,6 @@ export default function CliffImpact(props) {
         {
           x: ["Cliff rate", "Cliff gap"],
           y: [cliff_share_change, cliff_gap_change],
-          customdata: [
-            `The cliff rate ${
-              cliff_share_change >= 0 ? "rises" : "falls"
-            } from ${
-              Math.round(impact.baseline.cliff_share * 10000) / 100
-            }% to ${Math.round(impact.reform.cliff_share * 10000) / 100}%`,
-            `The cliff gap ${
-              cliff_gap_change >= 0 ? "rises" : "falls"
-            } from ${aggregateCurrency(
-              impact.baseline.cliff_gap,
-              metadata
-            )} to ${aggregateCurrency(impact.reform.cliff_gap, metadata)}`,
-          ],
-          hovertemplate: "%{customdata}<extra></extra>",
           type: "bar",
           marker: {
             color: [
@@ -122,6 +110,7 @@ export default function CliffImpact(props) {
           ],
           textposition: "auto",
           textangle: 0,
+          hoverinfo: "none",
         },
       ]}
       layout={{
@@ -142,6 +131,27 @@ export default function CliffImpact(props) {
       style={{
         width: "100%",
       }}
+      onHover={(data) => {
+        const metric = data.points[0].x;
+        const baseline = metric === "Cliff rate" ? impact.baseline.cliff_share : impact.baseline.cliff_gap;
+        const reform = metric === "Cliff rate" ? impact.reform.cliff_share : impact.reform.cliff_gap;
+        const change = reform / baseline - 1;
+        const formatter = 
+          metric === "Cliff rate" ?
+            percent :
+            x => aggregateCurrency(x, metadata);
+        const message = `The ${metric.toLowerCase()} ${
+          change > 0.0001 ?
+            `rises ${percent(change)} from ${formatter(baseline)} to ${formatter(reform)}` :
+            change < -0.0001 ?
+              `falls ${percent(-change)} from ${formatter(baseline)} to ${formatter(reform)}` :
+              `remains at ${percent(baseline)}`
+        }.`;
+        setHovercard({
+          title: data.points[0].x,
+          body: message,
+        })
+      }}
     />
   );
 
@@ -160,7 +170,11 @@ export default function CliffImpact(props) {
       title={title}
       description="The cliff rate is the share of households whose net income falls if each adult earned an additional £2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way."
     >
-      {chart}
+      <HoverCard
+        content={hovercard}
+      >
+        {chart}
+      </HoverCard>
     </ResultsPanel>
   );
 }
