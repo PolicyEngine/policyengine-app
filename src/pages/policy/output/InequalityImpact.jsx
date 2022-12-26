@@ -69,7 +69,7 @@ export default function InequalityImpact(props) {
           const reform = impact.inequality.gini.reform;
           const change = reform / baseline - 1;
           body =
-            change > 0
+            change > 0.001
               ? `This reform increases the Gini coefficient of disposable income from
                   ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
                   ${change.toFixed(3)}.` :
@@ -84,11 +84,11 @@ export default function InequalityImpact(props) {
           const reform = impact.inequality.top_10_pct_share.reform;
           const change = reform / baseline - 1;
           body =
-            change > 0
+            change > 0.001
               ? `This reform increases the share of total disposable income held by people in the top 10% of households from
                   ${percent(baseline)} to ${percent(reform)}, an increase of
                   ${percent(change)}.` :
-                change < 0 ?
+                change < -0.001 ?
                   `This reform reduces the share of total disposable income held by people in the top 10% of households from
                   ${percent(baseline)} to ${percent(reform)}, a reduction of
                   ${percent(-change)}.` :
@@ -99,11 +99,11 @@ export default function InequalityImpact(props) {
           const reform = impact.inequality.top_1_pct_share.reform;
           const change = reform / baseline - 1;
           body =
-            change > 0
+            change > 0.001
               ? `This reform increases the share of total disposable income held by people in the top 1% of households from
                   ${percent(baseline)} to ${percent(reform)}, an increase of
                   ${percent(change)}.` :
-                change < 0 ?
+                change < -0.001 ?
                   `This reform reduces the share of total disposable income held by people in the top 1% of households from
                   ${percent(baseline)} to ${percent(reform)}, a reduction of
                   ${percent(-change)}.` :
