@@ -7,7 +7,8 @@ import EmailSignUp from "./EmailSignup";
 import moment from "moment/moment";
 
 function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, authors, date } = props;
+  const { title, description, image, filename, countryId, authors, date } =
+    props;
   const name = filename.split(".")[0];
   const imageSrc = require(`../images/posts/${image}`);
   const navigate = useNavigate();
@@ -49,8 +50,15 @@ function BlogPostPreviewRegular(props) {
         <h3>{title}</h3>
         <p>{description}</p>
       </div>
-      <div style={{ padding: 20, marginTop: "auto", display: "flex", alignItems: "center"}}>
-      {authorImages.map((authorImage, index) => {
+      <div
+        style={{
+          padding: 20,
+          marginTop: "auto",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {authorImages.map((authorImage, index) => {
           return (
             <div style={{ display: "flex" }}>
               <img
@@ -69,7 +77,13 @@ function BlogPostPreviewRegular(props) {
             </div>
           );
         })}
-        <p style={{marginLeft: "auto", marginBottom: 10, color: style.colors.DARK_GRAY}}>
+        <p
+          style={{
+            marginLeft: "auto",
+            marginBottom: 10,
+            color: style.colors.DARK_GRAY,
+          }}
+        >
           {dateString}
         </p>
       </div>

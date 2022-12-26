@@ -137,7 +137,6 @@ function HouseholdVariableEntityInput(props) {
     setHouseholdInput,
   } = props;
   const submitValue = (value) => {
-    console.log(value);
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     setHouseholdInput(newHousehold);

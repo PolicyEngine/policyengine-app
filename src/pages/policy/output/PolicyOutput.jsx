@@ -14,6 +14,7 @@ import Reproducibility from "./PolicyReproducibility";
 import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import POLICY_OUTPUT_TREE from "./tree";
+import InequalityImpact from "./InequalityImpact";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -170,6 +171,14 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.povertyImpact") {
     pane = (
       <PovertyImpact
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.inequalityImpact") {
+    pane = (
+      <InequalityImpact
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}

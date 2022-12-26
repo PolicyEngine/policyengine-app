@@ -24,6 +24,10 @@ const POLICY_OUTPUT_TREE = [
         label: "Poverty impact",
       },
       {
+        name: "policyOutput.inequalityImpact",
+        label: "Income inequality impact",
+      },
+      {
         name: "policyOutput.cliffImpact",
         label: "Cliff impact",
       },

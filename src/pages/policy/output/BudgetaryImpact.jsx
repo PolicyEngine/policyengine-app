@@ -1,12 +1,9 @@
-import { Popover } from "antd";
-import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import style from "../../../style";
-import Divider from "../../../layout/Divider";
 
 export default function BudgetaryImpact(props) {
   const { impact, policyLabel, metadata } = props;
@@ -84,13 +81,13 @@ export default function BudgetaryImpact(props) {
               ? `This reform increases tax revenues by ${aggregateCurrency(
                   relevantFigure,
                   metadata
-                )}`
+                )}.`
               : relevantFigure > 0
               ? `This reform reduces tax revenues by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
-                )}`
-              : "This reform has no impact on tax revenues";
+                )}.`
+              : "This reform has no impact on tax revenues.";
         } else if (label === "Benefit spending") {
           // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
           body =
@@ -98,13 +95,13 @@ export default function BudgetaryImpact(props) {
               ? `This reform increases benefit spending by ${aggregateCurrency(
                   relevantFigure,
                   metadata
-                )}`
+                )}.`
               : relevantFigure < 0
               ? `This reform reduces benefit spending by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
-                )}`
-              : "This reform has no impact on benefit spending";
+                )}.`
+              : "This reform has no impact on benefit spending.";
         } else {
           // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
           body =
@@ -112,13 +109,13 @@ export default function BudgetaryImpact(props) {
               ? `This reform increases the budget deficit by ${aggregateCurrency(
                   relevantFigure,
                   metadata
-                )}`
+                )}.`
               : relevantFigure > 0
               ? `This reform reduces the budget deficit by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
-                )}`
-              : "This reform has no impact on the budget deficit";
+                )}.`
+              : "This reform has no impact on the budget deficit.";
         }
         setHoverCard({
           title: label,
