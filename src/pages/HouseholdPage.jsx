@@ -21,6 +21,7 @@ import HouseholdIntro from "./household/HouseholdIntro";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileHouseholdPage from "./household/MobileHouseholdPage";
+import { Descriptions, Result } from "antd";
 
 export default function HouseholdPage(props) {
   // const { metadata, household, setHousehold, policy, loading, setHouseholdInput } = props;
@@ -32,6 +33,7 @@ export default function HouseholdPage(props) {
   const [householdBaseline, setHouseholdBaseline] = useState(null);
   const [householdReform, setHouseholdReform] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [autoCompute, setAutoCompute] = useState(false);
 
   let middle;
@@ -93,7 +95,13 @@ export default function HouseholdPage(props) {
         )
           .then((res) => res.json())
           .then((dataHolder) => {
-            return { baseline: dataHolder.result };
+            if(dataHolder.status === "error") {
+              setLoading(false);
+              setError(dataHolder.result);
+              return { baseline: null }
+            } else {
+              return { baseline: dataHolder.result };
+            }
           })
           .then((dataHolder) => {
             setHouseholdBaseline(dataHolder.baseline);
@@ -107,7 +115,13 @@ export default function HouseholdPage(props) {
           )
             .then((res) => res.json())
             .then((dataHolder) => {
-              return { reform: dataHolder.result };
+              if(dataHolder.status === "error") {
+                setLoading(false);
+                setError(dataHolder.message);
+                return { reform: null }
+              } else {
+                return { reform: dataHolder.result };
+              }
             })
             .then((dataHolder) => {
               setHouseholdReform(dataHolder.reform);
@@ -235,6 +249,15 @@ export default function HouseholdPage(props) {
     );
   } else {
     middle = <LoadingCentered />;
+  }
+  if (error) {
+    middle = <Result
+      status="error"
+      title="Something went wrong"
+      subTitle={
+        <p>{error.error}</p>
+      }
+    />
   }
   if (mobile) {
     return (

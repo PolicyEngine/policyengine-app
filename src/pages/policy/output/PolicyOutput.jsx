@@ -15,6 +15,8 @@ import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import POLICY_OUTPUT_TREE from "./tree";
 import InequalityImpact from "./InequalityImpact";
+import { Result, Steps } from "antd";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -80,7 +82,7 @@ export default function PolicyOutput(props) {
       asyncApiCall(url, null, 3_000)
         .then((data) => {
           if (data.status === "error") {
-            setError(data.message);
+            setError(data.result);
           } else {
             setImpact(data.result);
           }
@@ -111,13 +113,48 @@ export default function PolicyOutput(props) {
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
   if (error) {
-    return (
-      <ErrorPage
-        message={`We ran into an issue when trying to simulate your policy. Please try again later. The full message is ${JSON.stringify(
-          error
-        )}`}
-      />
-    );
+    const baselineOK = error.baseline_economy.status === "ok";
+    const reformOK = error.reform_economy.status === "ok";
+    return <Result
+      status="error"
+      title="Something went wrong"
+      subTitle={
+        <div>
+        <Steps
+          direction="vertical"
+        >
+          <Steps.Item
+            title="Baseline economy"
+            description={
+              baselineOK ?
+                "We simulated the baseline economy without error." :
+                error.baseline_economy.message
+            }
+            status={baselineOK ? "finish" : "wait"}
+            icon={
+              baselineOK ?
+                <CheckCircleFilled style={{fontSize: 20, color: "green"}} /> :
+                <CloseCircleFilled style={{fontSize: 20, color: "red"}} />
+            }
+          />
+          <Steps.Item
+            title="Reformed economy"
+            description={
+              reformOK ?
+                "We simulated the reformed economy without error." :
+                error.reform_economy.message
+            }
+            status="wait"
+            icon={
+              baselineOK ?
+                <CheckCircleFilled style={{fontSize: 20, color: "green"}} /> :
+                <CloseCircleFilled style={{fontSize: 20, color: "red"}} />
+            }
+          />
+        </Steps>
+        </div>
+      }
+    />
   }
 
   if (!reformPolicyId) {
