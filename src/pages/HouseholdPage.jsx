@@ -4,6 +4,7 @@ import {
   createDefaultHousehold,
   getDefaultHouseholdId,
   findInTree,
+  getNewHouseholdId,
 } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect, useState } from "react";
@@ -55,19 +56,21 @@ export default function HouseholdPage(props) {
         metadata.entities
       );
       setHouseholdInput(defaultHousehold);
-      getDefaultHouseholdId(metadata).then((householdId) => {
-        let newSearch = new URLSearchParams(window.location.search);
-        newSearch.set("household", householdId);
-        setSearchParams(newSearch);
-      });
+      if (autoCompute) {
+        getDefaultHouseholdId(metadata).then((householdId) => {
+          let newSearch = new URLSearchParams(window.location.search);
+          newSearch.set("household", householdId);
+          setSearchParams(newSearch);
+        });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [!!householdInput, !!householdId]);
+  }, [!!householdInput, !!householdId, autoCompute]);
 
   // If the household input changes, update the household.
   useEffect(() => {
     let requests = [];
-    if (householdId) {
+    if (householdId && autoCompute) {
       if (!householdInput) {
         requests.push(
           countryApiCall(countryId, `/household/${householdId}`)
@@ -126,11 +129,13 @@ export default function HouseholdPage(props) {
         metadata.entities
       );
       setHouseholdInput(defaultHousehold);
-      getDefaultHouseholdId(metadata).then((householdId) => {
-        let newSearch = new URLSearchParams(window.location.search);
-        newSearch.set("household", householdId);
-        setSearchParams(newSearch);
-      });
+      if (autoCompute) {
+        getDefaultHouseholdId(metadata).then((householdId) => {
+          let newSearch = new URLSearchParams(window.location.search);
+          newSearch.set("household", householdId);
+          setSearchParams(newSearch);
+        });
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId]);
@@ -157,6 +162,7 @@ export default function HouseholdPage(props) {
         householdBaseline={householdBaseline}
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
+        autoCompute={autoCompute}
       />
     );
   } else if (
@@ -180,6 +186,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
+        autoCompute={autoCompute}
       />
     );
   } else if (focus === "intro") {
@@ -190,11 +197,22 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
+        autoCompute={autoCompute}
       />
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
     if (!autoCompute) {
       setAutoCompute(true);
+    }
+    if (!householdId && !loading) {
+      getNewHouseholdId(metadata.countryId, householdInput).then(
+        (householdId) => {
+          let newSearch = new URLSearchParams(window.location.search);
+          newSearch.set("household", householdId);
+          setSearchParams(newSearch);
+        }
+      );
+      setLoading(true);
     }
     middle = (
       <>

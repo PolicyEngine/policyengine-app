@@ -68,7 +68,7 @@ function setUSMaritalStatus(situation, status, variables, entities) {
 }
 
 export default function MaritalStatus(props) {
-  const { metadata, householdInput, setHouseholdInput } = props;
+  const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getMaritalStatus = { uk: getUKMaritalStatus, us: getUSMaritalStatus }[
     metadata.countryId
@@ -89,15 +89,17 @@ export default function MaritalStatus(props) {
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", "input.household.children");
     setSearchParams(newSearch);
-    getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
-      let newSearch = new URLSearchParams(window.location.search);
-      newSearch.set("household", householdId);
-      setSearchParams(newSearch);
-      gtag("event", "household", {
-        event_category: "household",
-        event_label: "Set marital status",
+    if(autoCompute) {
+      getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
+        let newSearch = new URLSearchParams(window.location.search);
+        newSearch.set("household", householdId);
+        setSearchParams(newSearch);
+        gtag("event", "household", {
+          event_category: "household",
+          event_label: "Set marital status",
+        });
       });
-    });
+    }
   };
   const radioButtonComponent = (
     <RadioButton

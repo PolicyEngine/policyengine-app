@@ -50,6 +50,7 @@ export default function VariableEditor(props) {
         key={entity}
         isSimulated={isSimulated}
         setHouseholdInput={setHouseholdInput}
+        nextVariable={nextVariable}
       />
     );
   });
@@ -97,6 +98,7 @@ function HouseholdVariableEntity(props) {
     metadata,
     isSimulated,
     setHouseholdInput,
+    nextVariable,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name]
@@ -116,6 +118,7 @@ function HouseholdVariableEntity(props) {
             metadata={metadata}
             isSimulated={isSimulated}
             setHouseholdInput={setHouseholdInput}
+            nextVariable={nextVariable}
           />
         );
       })}
@@ -135,6 +138,8 @@ function HouseholdVariableEntityInput(props) {
     entityName,
     timePeriod,
     setHouseholdInput,
+    autoCompute,
+    nextVariable,
   } = props;
   const submitValue = (value) => {
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
@@ -144,11 +149,13 @@ function HouseholdVariableEntityInput(props) {
       event_category: "household",
       event_label: variable.name,
     });
-    getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
-      let newSearch = new URLSearchParams(window.location.search);
-      newSearch.set("household", householdId);
-      setSearchParams(newSearch);
-    });
+    if(autoCompute || (nextVariable.startsWith("householdOutput."))) {
+      getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
+        let newSearch = new URLSearchParams(window.location.search);
+        newSearch.set("household", householdId);
+        setSearchParams(newSearch);
+      });
+    }
   };
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(
