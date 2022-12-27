@@ -78,6 +78,7 @@ export default function HouseholdRightSidebar(props) {
 
   const situationOverview = (
     <>
+      <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>YOUR INPUTS</h5>
       <Figure
         left={countPeople}
         right={countPeople === 1 ? "person" : "people"}
@@ -91,6 +92,7 @@ export default function HouseholdRightSidebar(props) {
         right={"market income"}
       />
       <Divider />
+      <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>OUR CALCULATION</h5>
       {netIncomeComponents.map((variableId) => {
         const variable = metadata.variables[variableId];
         const value = getValueFromHousehold(

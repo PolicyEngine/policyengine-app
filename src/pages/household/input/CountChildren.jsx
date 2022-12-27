@@ -93,7 +93,7 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
 }
 
 export default function CountChildren(props) {
-  const { metadata, householdInput, setHouseholdInput } = props;
+  const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getCountChildren = { uk: getUKCountChildren, us: getUSCountChildren }[
     metadata.countryId
@@ -113,11 +113,13 @@ export default function CountChildren(props) {
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", `input.household.${metadata.basicInputs[0]}`);
     setSearchParams(newSearch);
-    getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
-      let newSearch = new URLSearchParams(window.location.search);
-      newSearch.set("household", householdId);
-      setSearchParams(newSearch);
-    });
+    if (autoCompute) {
+      getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
+        let newSearch = new URLSearchParams(window.location.search);
+        newSearch.set("household", householdId);
+        setSearchParams(newSearch);
+      });
+    }
   };
   const [value, setValue] = useState(null);
   const radioButtonComponent = (
