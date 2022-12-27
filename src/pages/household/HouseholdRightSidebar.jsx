@@ -134,7 +134,7 @@ export default function HouseholdRightSidebar(props) {
 
   return (
     <>
-      {autoCompute ? situationOverview : notEnoughInfo}
+      {autoCompute && householdBaseline ? situationOverview : notEnoughInfo}
       {focus && focus.startsWith("householdOutput") && (
         <NavigationButton
           primary
