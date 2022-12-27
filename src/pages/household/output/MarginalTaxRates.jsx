@@ -14,6 +14,8 @@ import { useSearchParams } from "react-router-dom";
 import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
+import HoverCard from "../../../layout/HoverCard";
+import { percent } from "../../../api/language";
 
 export default function MarginalTaxRates(props) {
   const {
@@ -34,6 +36,8 @@ export default function MarginalTaxRates(props) {
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
   let title;
+  const [hovercard, setHovercard] = useState(null);
+  const formatCurrency = x => formatVariableValue(metadata.variables.household_market_income, x, 0);
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
@@ -140,6 +144,7 @@ export default function MarginalTaxRates(props) {
                 color: style.colors.BLUE,
                 shape: "hv",
               },
+              hoverinfo: "none",
             },
             {
               x: [currentEarnings, currentEarnings],
@@ -149,6 +154,7 @@ export default function MarginalTaxRates(props) {
               line: {
                 color: style.colors.DARK_GRAY,
               },
+              hoverinfo: "none",
             },
           ]}
           layout={{
@@ -175,6 +181,14 @@ export default function MarginalTaxRates(props) {
           }}
           style={{
             width: "100%",
+          }}
+          onHover={(data) => {
+            const earnings = data.points[0].x;
+            const mtr = data.points[0].y;
+            setHovercard({
+              title: `${formatCurrency(earnings)} in earnings`,
+              body: `With ${formatCurrency(earnings)} in earnings, your marginal tax rate is ${percent(mtr)}`,
+            });
           }}
         />
       </FadeIn>
@@ -248,6 +262,7 @@ export default function MarginalTaxRates(props) {
             color: style.colors.BLUE,
             shape: "hv",
           },
+          hoverinfo: "none",
         },
         {
           x: [currentEarnings, currentEarnings],
@@ -258,6 +273,7 @@ export default function MarginalTaxRates(props) {
             color: style.colors.MEDIUM_DARK_GRAY,
             shape: "hv",
           },
+          hoverinfo: "none",
         },
       ];
     } else {
@@ -271,6 +287,7 @@ export default function MarginalTaxRates(props) {
             color: style.colors.BLUE,
             shape: "hv",
           },
+          hoverinfo: "none",
         },
         {
           x: earningsArray,
@@ -281,6 +298,7 @@ export default function MarginalTaxRates(props) {
             color: style.colors.MEDIUM_DARK_GRAY,
             shape: "hv",
           },
+          hoverinfo: "none",
         },
         {
           x: [currentEarnings, currentEarnings],
@@ -291,6 +309,7 @@ export default function MarginalTaxRates(props) {
             color: style.colors.DARK_GRAY,
             shape: "hv",
           },
+          hoverinfo: "none",
         },
       ];
     }
@@ -340,6 +359,23 @@ export default function MarginalTaxRates(props) {
           style={{
             width: "100%",
           }}
+          onHover={(data) => {
+            const earnings = data.points[0].x;
+            if(showDelta) {
+              const change = data.points[0].y;
+              setHovercard({
+                title: `${formatCurrency(earnings)} in earnings`,
+                body: `With ${formatCurrency(earnings)} in earnings, your marginal tax rate ${change > 0 ? "increases" : "decreases"} by ${Math.abs(change * 100).toFixed(0)}pp.`,
+              });
+            } else {
+              const baselineMtr = data.points[0].y;
+              const reformMtr = data.points[1].y;
+              setHovercard({
+                title: `${formatCurrency(earnings)} in earnings`,
+                body: `With ${formatCurrency(earnings)} in earnings, your marginal tax rate is ${formatVariableValue({ unit: "/1" }, baselineMtr, 0)} under current law and ${formatVariableValue({ unit: "/1" }, reformMtr, 0)} under the reform.`,
+              });
+            }
+          }}
         />
       </FadeIn>
     );
@@ -355,7 +391,13 @@ export default function MarginalTaxRates(props) {
           <LoadingCentered />
         </div>
       ) : (
-        <div style={{ minHeight: 400 }}>{plot}</div>
+        <div style={{ minHeight: 400 }}>
+          <HoverCard
+            content={hovercard}
+          >
+            {plot}
+          </HoverCard>
+        </div>
       )}
     </ResultsPanel>
   );

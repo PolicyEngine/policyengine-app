@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
 import {
+  formatVariableValue,
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../api/variables";
@@ -15,6 +16,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../api/language";
 import { ChartLogo } from "../../../api/charts";
+import HoverCard from "../../../layout/HoverCard";
 
 export default function EarningsVariation(props) {
   const { householdInput, householdBaseline, householdReform, metadata } =
@@ -36,8 +38,10 @@ export default function EarningsVariation(props) {
       metadata.entities[metadata.variables[variable].entity].plural
     ]
   );
+  const [hovercard, setHovercard] = useState(null);
   // eslint-disable-next-line
   const [selectedEntity, setSelectedEntity] = useState(possibleEntities[0]);
+  const formatCurrency = x => formatVariableValue(metadata.variables[variable], x, 0);
 
   // Only show variables whose values are arrays
 
@@ -184,6 +188,7 @@ export default function EarningsVariation(props) {
                 y: netIncomeArray,
                 type: "line",
                 name: capitalize(variableLabel),
+                hoverinfo: "none",
               },
               {
                 x: [currentEarnings, currentEarnings],
@@ -193,6 +198,7 @@ export default function EarningsVariation(props) {
                 line: {
                   color: style.colors.MEDIUM_DARK_GRAY,
                 },
+                hoverinfo: "none",
               },
             ]}
             layout={{
@@ -228,6 +234,14 @@ export default function EarningsVariation(props) {
             }}
             style={{
               width: "100%",
+            }}
+            onHover={(data) => {
+              const earnings = data.points[0].x;
+              const value = data.points[0].y;
+              setHovercard({
+                title: `${formatCurrency(earnings)} in earnings`,
+                body: `With ${formatCurrency(earnings)} in total earnings, your ${variableLabel} is ${formatCurrency(value)}.`,
+              })
             }}
           />
         </FadeIn>
@@ -293,6 +307,7 @@ export default function EarningsVariation(props) {
             line: {
               color: style.colors.BLUE,
             },
+            hoverinfo: "none",
           },
           {
             x: [currentEarnings, currentEarnings],
@@ -302,6 +317,7 @@ export default function EarningsVariation(props) {
             line: {
               color: style.colors.MEDIUM_DARK_GRAY,
             },
+            hoverinfo: "none",
           },
         ];
         plotObject = (
@@ -340,6 +356,14 @@ export default function EarningsVariation(props) {
             style={{
               width: "100%",
             }}
+            onHover={(data) => {
+              const earnings = data.points[0].x;
+              const value = data.points[0].y;
+              setHovercard({
+                title: `${formatCurrency(earnings)} in earnings`,
+                body: `With ${formatCurrency(earnings)} in total earnings, your ${variableLabel} ${value > 0 ? "increases" : "decreases"} by ${formatCurrency(Math.abs(value))}.`,
+              })
+            }}
           />
         );
       } else {
@@ -352,6 +376,7 @@ export default function EarningsVariation(props) {
             line: {
               color: style.colors.MEDIUM_DARK_GRAY,
             },
+            hoverinfo: "none",
           },
           {
             x: earningsArray,
@@ -361,6 +386,7 @@ export default function EarningsVariation(props) {
             line: {
               color: style.colors.BLUE,
             },
+            hoverinfo: "none",
           },
           {
             x: [currentEarnings, currentEarnings],
@@ -370,6 +396,7 @@ export default function EarningsVariation(props) {
             line: {
               color: style.colors.MEDIUM_DARK_GRAY,
             },
+            hoverinfo: "none",
           },
         ];
         plotObject = (
@@ -407,6 +434,14 @@ export default function EarningsVariation(props) {
             style={{
               width: "100%",
             }}
+            onHover={(data) => {
+              const earnings = data.points[0].x;
+              const baselineValue = data.points[0].y;
+              setHovercard({
+                title: `${formatCurrency(earnings)} in earnings`,
+                body: `With ${formatCurrency(earnings)} in total earnings, your ${variableLabel} is ${formatCurrency(baselineValue)}.`,
+              })
+            }}
           />
         );
       }
@@ -443,7 +478,13 @@ export default function EarningsVariation(props) {
       ) : (
         <>
           {yAxisSelector}
-          <div style={{ minHeight: 500 }}>{plot}</div>
+          <div style={{ minHeight: 500 }}>
+            <HoverCard
+              content={hovercard}
+            >
+              {plot}
+            </HoverCard>
+          </div>
         </>
       )}
     </ResultsPanel>
