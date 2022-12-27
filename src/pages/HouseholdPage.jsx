@@ -21,7 +21,7 @@ import HouseholdIntro from "./household/HouseholdIntro";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileHouseholdPage from "./household/MobileHouseholdPage";
-import { Descriptions, Result } from "antd";
+import { Result } from "antd";
 
 export default function HouseholdPage(props) {
   // const { metadata, household, setHousehold, policy, loading, setHouseholdInput } = props;
@@ -72,7 +72,7 @@ export default function HouseholdPage(props) {
   // If the household input changes, update the household.
   useEffect(() => {
     let requests = [];
-    if (householdId && autoCompute) {
+    if (householdId || autoCompute) {
       if (!householdInput) {
         requests.push(
           countryApiCall(countryId, `/household/${householdId}`)
@@ -251,11 +251,12 @@ export default function HouseholdPage(props) {
     middle = <LoadingCentered />;
   }
   if (error) {
+    let errorContent = error.error;
     middle = <Result
       status="error"
       title="Something went wrong"
       subTitle={
-        <p>{error.error}</p>
+        <p>{errorContent}</p>
       }
     />
   }
