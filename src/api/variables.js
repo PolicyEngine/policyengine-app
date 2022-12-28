@@ -251,8 +251,11 @@ export function formatVariableValue(variable, value, precision = 2) {
         })
       );
     } else if (variable.unit === "/1") {
-      // Format as x.1%
-      return (Math.round(value * 10000) / 100).toString() + "%";
+      // Format to the decimal places specified in precision.
+      return (value * 100).toLocaleString(undefined, {
+        minimumFractionDigits: precision,
+        maximumFractionDigits: precision,
+      }) + "%";
     } else {
       return value.toLocaleString();
     }
