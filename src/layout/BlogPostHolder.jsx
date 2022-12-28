@@ -102,6 +102,10 @@ export default function BlogPostHolder(props) {
   // - image: the filename of the image to display with the post
 
   let posts = [];
+  // Sort posts by date
+  postJson.sort((a, b) => {
+    return new Date(b.date) - new Date(a.date);
+  });
   for (let i = 0; i < postJson.length; i++) {
     if (
       postJson[i].tags.includes(countryId) ||
