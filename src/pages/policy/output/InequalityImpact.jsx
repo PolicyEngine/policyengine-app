@@ -6,7 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import style from "../../../style";
 
 export default function InequalityImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel } = props;
 
   const metricChanges = [
     impact.inequality.gini.reform / impact.inequality.gini.baseline - 1,
@@ -44,8 +44,7 @@ export default function InequalityImpact(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickprefix: metadata.currency,
-          tickformat: ",.1f",
+          tickformat: ",.0%",
         },
         uniformtext: {
           mode: "hide",
