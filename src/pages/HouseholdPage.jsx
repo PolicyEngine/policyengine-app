@@ -284,6 +284,7 @@ export default function HouseholdPage(props) {
           householdBaseline={householdBaseline}
           householdInput={householdInput}
           autoCompute={autoCompute}
+          loading={loading}
         />
       }
       noMiddleScroll={!mobile && focus && focus.startsWith("householdOutput.")}

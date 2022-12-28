@@ -23,6 +23,7 @@ export default function VariableEditor(props) {
     householdReform,
     setHouseholdInput,
     nextVariable,
+    autoCompute,
   } = props;
   if (!householdInput) {
     return <LoadingCentered />;
@@ -53,6 +54,7 @@ export default function VariableEditor(props) {
         isSimulated={isSimulated}
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
+        autoCompute={autoCompute}
       />
     );
   });
@@ -102,6 +104,7 @@ function HouseholdVariableEntity(props) {
     isSimulated,
     setHouseholdInput,
     nextVariable,
+    autoCompute,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name]
@@ -123,6 +126,7 @@ function HouseholdVariableEntity(props) {
             isSimulated={isSimulated}
             setHouseholdInput={setHouseholdInput}
             nextVariable={nextVariable}
+            autoCompute={autoCompute}
           />
         );
       })}
@@ -154,6 +158,7 @@ function HouseholdVariableEntityInput(props) {
       event_category: "household",
       event_label: variable.name,
     });
+    console.log(autoCompute)
     if(autoCompute || (nextVariable.startsWith("householdOutput."))) {
       getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
         let newSearch = new URLSearchParams(window.location.search);
