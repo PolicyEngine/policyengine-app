@@ -7,6 +7,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BudgetaryImpact from "./BudgetaryImpact";
 import PovertyImpact from "./PovertyImpact";
+import DeepPovertyImpact from "./DeepPovertyImpact";
 import RelativeImpactByDecile from "./RelativeImpactByDecile";
 import AverageImpactByDecile from "./AverageImpactByDecile";
 import IntraDecileImpact from "./IntraDecileImpact";
@@ -208,6 +209,14 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.povertyImpact") {
     pane = (
       <PovertyImpact
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.deepPovertyImpact") {
+    pane = (
+      <DeepPovertyImpact
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
