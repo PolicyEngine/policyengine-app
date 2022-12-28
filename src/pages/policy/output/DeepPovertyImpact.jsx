@@ -5,16 +5,16 @@ import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import style from "../../../style";
 
-export default function PovertyImpact(props) {
+export default function DeepPovertyImpact(props) {
   const { impact, policyLabel } = props;
   const childPovertyChange =
-    impact.poverty.poverty.child.reform / impact.poverty.poverty.child.baseline - 1;
+    impact.poverty.deep_poverty.child.reform / impact.poverty.deep_poverty.child.baseline - 1;
   const adultPovertyChange =
-    impact.poverty.poverty.adult.reform / impact.poverty.poverty.adult.baseline - 1;
+    impact.poverty.deep_poverty.adult.reform / impact.poverty.deep_poverty.adult.baseline - 1;
   const seniorPovertyChange =
-    impact.poverty.poverty.senior.reform / impact.poverty.poverty.senior.baseline - 1;
+    impact.poverty.deep_poverty.senior.reform / impact.poverty.deep_poverty.senior.baseline - 1;
   const totalPovertyChange =
-    impact.poverty.poverty.all.reform / impact.poverty.poverty.all.baseline - 1;
+    impact.poverty.deep_poverty.all.reform / impact.poverty.deep_poverty.all.baseline - 1;
   const povertyChanges = [
     childPovertyChange,
     adultPovertyChange,
@@ -77,14 +77,14 @@ export default function PovertyImpact(props) {
       onHover={(data) => {
         const group = data.points[0].x;
         const change = data.points[0].y;
-        const baseline = impact.poverty.poverty[labelToKey[group]].baseline;
-        const reform = impact.poverty.poverty[labelToKey[group]].reform;
+        const baseline = impact.poverty.deep_poverty[labelToKey[group]].baseline;
+        const reform = impact.poverty.deep_poverty[labelToKey[group]].reform;
         const message =
           `The percentage of ${
             group === "All" ? 
               "people" : 
               group.toLowerCase()
-          } in absolute poverty before housing costs ${
+          } in absolute deep poverty before housing costs ${
             change < -0.001 ? 
               `falls ${percent(-change)} from ${percent(baseline)} to ${percent(reform)}.` : 
               change > 0.001 ?
@@ -106,13 +106,13 @@ export default function PovertyImpact(props) {
       <h2>
         {policyLabel}{" "}
         {totalPovertyChange > 0
-          ? `raises the poverty rate by ${povertyRateChange}`
+          ? `raises the deep poverty rate by ${povertyRateChange}`
           : totalPovertyChange < 0
-          ? `reduces the poverty rate by ${povertyRateChange}`
-          : "doesn't change the poverty rate"}
+          ? `reduces the deep poverty rate by ${povertyRateChange}`
+          : "doesn't change the deep poverty rate"}
       </h2>
       <p>
-        The chart below shows the relative change in the poverty rate for each
+        The chart below shows the relative change in the deep poverty rate for each
         age group.
       </p>
       <HoverCard
