@@ -148,7 +148,6 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     setHouseholdInput,
     autoCompute,
-    nextVariable,
   } = props;
   const submitValue = (value) => {
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
