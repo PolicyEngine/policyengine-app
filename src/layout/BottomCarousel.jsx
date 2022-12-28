@@ -3,7 +3,7 @@ import style from "../style";
 import useMobile from "./Responsive";
 
 export default function BottomCarousel(props) {
-  const { selected, options } = props;
+  const { selected, options, bottomText } = props;
   const mobile = useMobile();
   const currentIndex = options.map((option) => option.name).indexOf(selected);
   const previous = options[currentIndex - 1] || {};
@@ -28,8 +28,7 @@ export default function BottomCarousel(props) {
       }}
     >
       <p style={{ paddingLeft: 50, paddingTop: 20 }}>
-        PolicyEngine results may not constitute exact tax liabilities or benefit
-        entitlements.
+        {bottomText}
       </p>
       <div
         style={{

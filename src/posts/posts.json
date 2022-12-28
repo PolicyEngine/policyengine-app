@@ -1,5 +1,14 @@
 [
   {
+    "title": "How machine learning tools make PolicyEngine more accurate",
+    "description": "Today, we’re launching new survey weights that cut deviations from administrative statistics by 97%.",
+    "date": "2022-03-07",
+    "tags": ["global"],
+    "filename": "2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate.md",
+    "image": "how-machine-learning-tools-make-policyengine-more-accurate.png",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
     "title": "Enhancing the Current Population Survey for policy analysis",
     "description": "We’ve used modern data science techniques to make PolicyEngine the UK’s most accurate microsimulation model. Here’s how we plan to do the same in the US.",
     "date": "2022-12-28",
