@@ -93,6 +93,7 @@ export default function HouseholdRightSidebar(props) {
       />
       <Divider />
       <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>OUR CALCULATION</h5>
+      {hasReform && <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 5}}>UNDER CURRENT LAW</h5>}
       {netIncomeComponents.map((variableId) => {
         const variable = metadata.variables[variableId];
         const value = getValueFromHousehold(

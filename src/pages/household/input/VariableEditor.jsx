@@ -20,6 +20,7 @@ export default function VariableEditor(props) {
     metadata,
     householdInput,
     householdBaseline,
+    householdReform,
     setHouseholdInput,
     nextVariable,
   } = props;
@@ -44,6 +45,7 @@ export default function VariableEditor(props) {
         variable={variable}
         householdInput={householdInput}
         householdBaseline={householdBaseline}
+        householdReform={householdReform}
         entityPlural={entityPlural}
         entityName={entity}
         metadata={metadata}
@@ -93,6 +95,7 @@ function HouseholdVariableEntity(props) {
     variable,
     householdInput,
     householdBaseline,
+    householdReform,
     entityPlural,
     entityName,
     metadata,
@@ -114,6 +117,7 @@ function HouseholdVariableEntity(props) {
             timePeriod={timePeriod}
             householdInput={householdInput}
             householdBaseline={householdBaseline}
+            householdReform={householdReform}
             key={`${entityName}.${timePeriod}.${variable.name}`}
             metadata={metadata}
             isSimulated={isSimulated}
@@ -133,6 +137,7 @@ function HouseholdVariableEntityInput(props) {
     metadata,
     householdInput,
     householdBaseline,
+    householdReform,
     variable,
     entityPlural,
     entityName,
@@ -172,12 +177,24 @@ function HouseholdVariableEntityInput(props) {
     householdInput,
     metadata
   );
+  const reformValue =
+    householdReform ?
+      getValueFromHousehold(
+        variable.name,
+        timePeriod,
+        entityName,
+        householdReform,
+        metadata
+      ) : null;
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     control = (
       <InputField
         onChange={submitValue}
-        placeholder={formatValue(inputValue || simulatedValue)}
+        placeholder={
+          reformValue ?
+            `${formatValue(inputValue || simulatedValue)} → ${formatValue(reformValue)}` :
+            formatValue(inputValue || simulatedValue)}
         autofocus={true}
       />
     );

@@ -174,6 +174,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         householdInput={householdInput}
         householdBaseline={householdBaseline}
+        householdReform={householdReform}
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
         autoCompute={autoCompute}
