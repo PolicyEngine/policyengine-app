@@ -81,7 +81,7 @@ export default function RelativeImpactByDecile(props) {
       <h2>
         {policyLabel} {averageRelChange >= 0 ? "increases" : "decreases"} the
         average household's net income by{" "}
-        {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange))}
+        {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
       </h2>
       <p>
         The chart below shows the relative change in income for each income
