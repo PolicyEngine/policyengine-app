@@ -18,7 +18,7 @@ import { ChartLogo } from "../../../api/charts";
 
 function getCliffs(netIncomeArray) {
   // Return a list of [(start, end), ...] where the net income does not increase
-
+  if (!netIncomeArray) return [];
   let cliffs = [];
   let inCliff = false;
   let cliffStart = 0;
