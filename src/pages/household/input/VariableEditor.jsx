@@ -192,7 +192,7 @@ function HouseholdVariableEntityInput(props) {
       <InputField
         onChange={submitValue}
         placeholder={
-          reformValue ?
+          reformValue !== null ?
             `${formatValue(inputValue || simulatedValue)} → ${formatValue(reformValue)}` :
             formatValue(inputValue || simulatedValue)}
         autofocus={true}

@@ -277,6 +277,7 @@ export default function EarningsVariation(props) {
       );
       // Check if netIncomeArray is a scalar (like 0) or a string
       if (!reformNetIncomeArray) {
+        console.log(reformNetIncome)
         throw new Error("No net income");
       }
       // Add the main line, then add a 'you are here' line
@@ -426,6 +427,7 @@ export default function EarningsVariation(props) {
       );
     }
   } catch (e) {
+    console.log(e)
     plot = (
       <ErrorPage message={`We couldn't plot the variable ${variableLabel}.`} />
     );
