@@ -159,7 +159,7 @@ function HouseholdVariableEntityInput(props) {
       event_label: variable.name,
     });
     console.log(autoCompute)
-    if(autoCompute || (nextVariable.startsWith("householdOutput."))) {
+    if(autoCompute) {
       getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
         let newSearch = new URLSearchParams(window.location.search);
         newSearch.set("household", householdId);
