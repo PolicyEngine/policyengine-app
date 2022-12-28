@@ -13,6 +13,18 @@ export function removePerson(situation, name) {
       }
     }
   }
+  // Remove empty entities
+  for (const entityPlural of Object.keys(situation)) {
+    let toRemove = [];
+    for (const entity of Object.keys(situation[entityPlural])) {
+      if (situation[entityPlural][entity].members.length === 0) {
+        toRemove.push(entity);
+      }
+    }
+    for (const entity of toRemove) {
+      delete situation[entityPlural][entity];
+    }
+  }
   return situation;
 }
 
