@@ -35,10 +35,11 @@ function PythonCodeBlock({ lines }) {
       >
         {lines.map((line, i) => {
           if (line === "") {
-            return <div style={{ paddingTop: 15 }} />;
+            return <div key={i} style={{ paddingTop: 15 }} />;
           } else {
             return (
               <p
+                key={i}
                 style={{
                   color: style.colors.WHITE,
                   fontFamily: "monospace",
