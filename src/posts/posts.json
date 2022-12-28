@@ -1,5 +1,14 @@
 [
   {
+    "title": "Enhancing the Current Population Survey for policy analysis",
+    "description": "We’ve used modern data science techniques to make PolicyEngine the UK’s most accurate microsimulation model. Here’s how we plan to do the same in the US.",
+    "date": "2022-12-28",
+    "tags": ["us"],
+    "filename": "2022-12-28-enhancing-the-current-population-survey-for-policy-analysis.md",
+    "image": "enhancing-the-current-population-survey-for-policy-analysis.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "How charitable contributions affect Americans’ taxes",
     "description": "PolicyEngine estimates the tax impact of your donations for free.",
     "date": "2022-11-29",
