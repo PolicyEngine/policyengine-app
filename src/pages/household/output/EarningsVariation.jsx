@@ -16,6 +16,48 @@ import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../api/language";
 import { ChartLogo } from "../../../api/charts";
 
+function getCliffs(netIncomeArray) {
+  // Return a list of [(start, end), ...] where the net income does not increase
+
+  let cliffs = [];
+  let inCliff = false;
+  let cliffStart = 0;
+  let cliffEnd = 0;
+  let cliffStartValue = 0;
+  for (let i = 1; i < netIncomeArray.length; i++) {
+    if (!inCliff && (netIncomeArray[i] < cliffStartValue)) {
+      inCliff = true;
+      cliffStart = i - 1;
+      cliffStartValue = netIncomeArray[i];
+    } else if (inCliff && (netIncomeArray[i] >= cliffStartValue)) {
+      inCliff = false;
+      cliffEnd = i;
+      cliffs.push([netIncomeArray[cliffStart], netIncomeArray[cliffEnd]]);
+    } else if (inCliff && (i === netIncomeArray.length - 1)) {
+      cliffEnd = i + 1;
+      cliffs.push([netIncomeArray[cliffStart], netIncomeArray[cliffEnd]]);
+    } else {
+      cliffStartValue = netIncomeArray[i];
+    }
+  }
+
+  console.log(cliffs)
+
+  return cliffs.map(points => { return {
+    x: [points[0], points[0], points[1], points[1], points[0]],
+    y: [0, 200_000, 200_000, 0, 0],
+    fill: "toself",
+    mode: "lines",
+    fillcolor: style.colors.DARK_GRAY,
+    name: "Cliff",
+    text: "",
+    opacity: 0.1,
+    line_width: 0,
+    showlegend: true,
+    type: "scatter",
+  }})
+}
+
 export default function EarningsVariation(props) {
   const { householdInput, householdBaseline, householdReform, metadata } =
     props;
@@ -173,6 +215,7 @@ export default function EarningsVariation(props) {
         householdBaseline,
         metadata
       );
+      console.log(getCliffs(netIncomeArray))
       // Add the main line, then add a 'you are here' line
       plot = (
         <FadeIn key="baseline">
@@ -194,6 +237,7 @@ export default function EarningsVariation(props) {
                   color: style.colors.MEDIUM_DARK_GRAY,
                 },
               },
+              ...(variable === "household_net_income" ? getCliffs(netIncomeArray) : [])
             ]}
             layout={{
               xaxis: {
