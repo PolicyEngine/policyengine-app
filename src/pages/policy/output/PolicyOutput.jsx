@@ -244,7 +244,7 @@ export default function PolicyOutput(props) {
         options={POLICY_OUTPUT_TREE[0].children}
         bottomText={
           metadata.countryId === "us" ?
-            "PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement." :
+            <p>PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement. <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">Read our caveats and data enhancement plan.</a></p> :
             <p>PolicyEngine estimates reform impacts using a static microsimulation over <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">an enhanced version of the 2019 Family Resources Survey</a></p>
         }
       />

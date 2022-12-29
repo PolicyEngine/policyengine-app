@@ -16,7 +16,7 @@ import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../api/language";
 import { ChartLogo } from "../../../api/charts";
 
-function getCliffs(netIncomeArray, earningsArray) {
+function getCliffs(netIncomeArray, earningsArray, isReform = false) {
   // Return a list of [(start, end), ...] where the net income does not increase
   if (!netIncomeArray || !earningsArray) return [];
   let cliffs = [];
@@ -40,7 +40,7 @@ function getCliffs(netIncomeArray, earningsArray) {
     fill: "toself",
     mode: "lines",
     fillcolor: style.colors.DARK_GRAY,
-    name: `Cliff ${i + 1}`,
+    name: `Cliff ${i + 1}${isReform ? " (reform)" : ""}`,
     text: "",
     opacity: 0.1,
     line_width: 0,
@@ -209,7 +209,6 @@ export default function EarningsVariation(props) {
         householdBaseline,
         metadata
       );
-      console.log(getCliffs(netIncomeArray))
       // Add the main line, then add a 'you are here' line
       plot = (
         <FadeIn key="baseline">
@@ -318,7 +317,6 @@ export default function EarningsVariation(props) {
       );
       // Check if netIncomeArray is a scalar (like 0) or a string
       if (!reformNetIncomeArray) {
-        console.log(reformNetIncome)
         throw new Error("No net income");
       }
       // Add the main line, then add a 'you are here' line
@@ -386,6 +384,8 @@ export default function EarningsVariation(props) {
         );
       } else {
         let data = [
+          ...(variable === "household_net_income" ? getCliffs(baselineNetIncomeArray, earningsArray) : []),
+          ...(variable === "household_net_income" ? getCliffs(reformNetIncomeArray, earningsArray, true) : []),
           {
             x: earningsArray,
             y: baselineNetIncomeArray,

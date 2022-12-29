@@ -376,13 +376,24 @@ export function getValueFromHousehold(
     }
     let total = 0;
     for (let entity of possibleEntities) {
-      total += +getValueFromHousehold(
+      let entityData = getValueFromHousehold(
         variable,
         timePeriod,
         entity,
         household,
         metadata
       );
+      // If the entity data is an array, change total to an array and add each element.
+      if (Array.isArray(entityData)) {
+        if (!Array.isArray(total)) {
+          total = Array(entityData.length).fill(0);
+        }
+        for (let i = 0; i < entityData.length; i++) {
+          total[i] += entityData[i];
+        }
+      } else {
+        total += entityData;
+      }
     }
     return total;
   }
