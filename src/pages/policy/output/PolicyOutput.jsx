@@ -83,6 +83,15 @@ export default function PolicyOutput(props) {
       asyncApiCall(url, null, 3_000)
         .then((data) => {
           if (data.status === "error") {
+            if (!data.result.baseline_economy) {
+              data.result.baseline_economy = { status: "error", message: "An error outside the baseline economy computation." };
+            }
+            if (!data.result.reform_economy) {
+              data.result.reform_economy = { status: "error", message: "An error outside the baseline economy computation." };
+            }
+            if(data.message) {
+              data.result.message = data.message;
+            }
             setError(data.result);
           } else {
             setImpact(data.result);
@@ -152,6 +161,16 @@ export default function PolicyOutput(props) {
                 <CloseCircleFilled style={{fontSize: 20, color: "red"}} />
             }
           />
+          {
+            error.message ?
+              <Steps.Item
+                title="Comparison"
+                description={error.message}
+                status="wait"
+                icon={<CloseCircleFilled style={{fontSize: 20, color: "red"}} />}
+              /> :
+              null
+          }
         </Steps>
         </div>
       }
