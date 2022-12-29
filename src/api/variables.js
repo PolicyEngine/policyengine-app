@@ -13,6 +13,18 @@ export function removePerson(situation, name) {
       }
     }
   }
+  // Remove empty entities
+  for (const entityPlural of Object.keys(situation)) {
+    let toRemove = [];
+    for (const entity of Object.keys(situation[entityPlural])) {
+      if (situation[entityPlural][entity].members.length === 0) {
+        toRemove.push(entity);
+      }
+    }
+    for (const entity of toRemove) {
+      delete situation[entityPlural][entity];
+    }
+  }
   return situation;
 }
 
@@ -251,8 +263,11 @@ export function formatVariableValue(variable, value, precision = 2) {
         })
       );
     } else if (variable.unit === "/1") {
-      // Format as x.1%
-      return (Math.round(value * 10000) / 100).toString() + "%";
+      // Format to the decimal places specified in precision.
+      return (value * 100).toLocaleString(undefined, {
+        minimumFractionDigits: precision,
+        maximumFractionDigits: precision,
+      }) + "%";
     } else {
       return value.toLocaleString();
     }

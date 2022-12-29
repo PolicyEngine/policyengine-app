@@ -1,7 +1,3 @@
-# How machine learning tools make PolicyEngine more accurate
-
-Today, we’re launching new survey weights that cut deviations from administrative statistics by 97%.
-
 When you click “Calculate UK impact” in PolicyEngine, our servers run through tens of thousands of UK households, and for each one, they crunch how your policy affects taxes and benefits. Each of those households in turn represents hundreds or thousands of real UK households, such that adding them up produces measures like budgets, poverty, and inequality. By the time the UK impact screen loads, we’ve calculated each of those measures under your policy, compared it to baseline policy, and summarised the results into charts and graphs.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*0JQZPaICpWesixXJ)

@@ -6,7 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import style from "../../../style";
 
 export default function InequalityImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel } = props;
 
   const metricChanges = [
     impact.inequality.gini.reform / impact.inequality.gini.baseline - 1,
@@ -44,8 +44,7 @@ export default function InequalityImpact(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickprefix: metadata.currency,
-          tickformat: ",.1f",
+          tickformat: ",.0%",
         },
         uniformtext: {
           mode: "hide",
@@ -117,21 +116,29 @@ export default function InequalityImpact(props) {
     />
   );
 
+  // Impact is ambiguous if all three metrics are not the same sign (sign can be -ive, zero or +ive). Impact is positive if all three metrics are +ive. Impact is negative if all three metrics are -ive.
+
+  const impactLabel =
+    metricChanges[0] > 0 && metricChanges[1] > 0 && metricChanges[2] > 0
+      ? "positive"
+      : metricChanges[0] < 0 && metricChanges[1] < 0 && metricChanges[2] < 0
+        ? "negative"
+        : "ambiguous";
+
   return (
     <>
       <h2>
         {policyLabel}
         {
-          metricChanges[0] > 0 ?
-            ` increases income inequality by ${(metricChanges[0] * 100).toFixed(1)}%` :
-            metricChanges[0] < 0 ?
-              ` decreases income inequality by ${-(metricChanges[0] * 100).toFixed(1)}%` :
-              ` has no impact on income inequality`
+          impactLabel === "positive"
+            ? " increases inequality"
+            : impactLabel === "negative"
+              ? " reduces inequality"
+              : " has an ambiguous effect on inequality"
         }
       </h2>
       <p>
-        The chart below shows how this is broken down between tax and benefit
-        measures.
+        The chart below shows how this policy reform affects different measures of inequality.
       </p>
       <HoverCard
         content={hovercard}

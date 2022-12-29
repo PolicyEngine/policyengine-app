@@ -7,6 +7,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BudgetaryImpact from "./BudgetaryImpact";
 import PovertyImpact from "./PovertyImpact";
+import DeepPovertyImpact from "./DeepPovertyImpact";
 import RelativeImpactByDecile from "./RelativeImpactByDecile";
 import AverageImpactByDecile from "./AverageImpactByDecile";
 import IntraDecileImpact from "./IntraDecileImpact";
@@ -213,6 +214,14 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
+  } else if (focus === "policyOutput.deepPovertyImpact") {
+    pane = (
+      <DeepPovertyImpact
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
   } else if (focus === "policyOutput.inequalityImpact") {
     pane = (
       <InequalityImpact
@@ -233,6 +242,11 @@ export default function PolicyOutput(props) {
       <BottomCarousel
         selected={focus}
         options={POLICY_OUTPUT_TREE[0].children}
+        bottomText={
+          metadata.countryId === "us" ?
+            "PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement." :
+            <p>PolicyEngine estimates reform impacts using a static microsimulation over <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">an enhanced version of the 2019 Family Resources Survey</a></p>
+        }
       />
     </>
   );

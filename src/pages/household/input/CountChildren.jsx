@@ -66,6 +66,10 @@ function addUSChild(situation) {
   situation.families["your family"].members.push(childName);
   situation.spm_units["your household"].members.push(childName);
   situation.households["your household"].members.push(childName);
+  situation.marital_units[`${childName}'s marital unit`] = {
+    members: [childName],
+    marital_unit_id: { 2022: getUSCountChildren(situation) + 1 },
+  };
   return situation;
 }
 

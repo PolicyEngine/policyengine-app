@@ -20,8 +20,10 @@ export default function VariableEditor(props) {
     metadata,
     householdInput,
     householdBaseline,
+    householdReform,
     setHouseholdInput,
     nextVariable,
+    autoCompute,
   } = props;
   if (!householdInput) {
     return <LoadingCentered />;
@@ -44,6 +46,7 @@ export default function VariableEditor(props) {
         variable={variable}
         householdInput={householdInput}
         householdBaseline={householdBaseline}
+        householdReform={householdReform}
         entityPlural={entityPlural}
         entityName={entity}
         metadata={metadata}
@@ -51,6 +54,7 @@ export default function VariableEditor(props) {
         isSimulated={isSimulated}
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
+        autoCompute={autoCompute}
       />
     );
   });
@@ -93,12 +97,14 @@ function HouseholdVariableEntity(props) {
     variable,
     householdInput,
     householdBaseline,
+    householdReform,
     entityPlural,
     entityName,
     metadata,
     isSimulated,
     setHouseholdInput,
     nextVariable,
+    autoCompute,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name]
@@ -114,11 +120,13 @@ function HouseholdVariableEntity(props) {
             timePeriod={timePeriod}
             householdInput={householdInput}
             householdBaseline={householdBaseline}
+            householdReform={householdReform}
             key={`${entityName}.${timePeriod}.${variable.name}`}
             metadata={metadata}
             isSimulated={isSimulated}
             setHouseholdInput={setHouseholdInput}
             nextVariable={nextVariable}
+            autoCompute={autoCompute}
           />
         );
       })}
@@ -133,13 +141,13 @@ function HouseholdVariableEntityInput(props) {
     metadata,
     householdInput,
     householdBaseline,
+    householdReform,
     variable,
     entityPlural,
     entityName,
     timePeriod,
     setHouseholdInput,
     autoCompute,
-    nextVariable,
   } = props;
   const submitValue = (value) => {
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
@@ -149,7 +157,8 @@ function HouseholdVariableEntityInput(props) {
       event_category: "household",
       event_label: variable.name,
     });
-    if(autoCompute || (nextVariable.startsWith("householdOutput."))) {
+    console.log(autoCompute)
+    if(autoCompute) {
       getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
         let newSearch = new URLSearchParams(window.location.search);
         newSearch.set("household", householdId);
@@ -172,12 +181,24 @@ function HouseholdVariableEntityInput(props) {
     householdInput,
     metadata
   );
+  const reformValue =
+    householdReform ?
+      getValueFromHousehold(
+        variable.name,
+        timePeriod,
+        entityName,
+        householdReform,
+        metadata
+      ) : null;
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     control = (
       <InputField
         onChange={submitValue}
-        placeholder={formatValue(inputValue || simulatedValue)}
+        placeholder={
+          reformValue !== null ?
+            `${formatValue(inputValue || simulatedValue)} → ${formatValue(reformValue)}` :
+            formatValue(inputValue || simulatedValue)}
         autofocus={true}
       />
     );

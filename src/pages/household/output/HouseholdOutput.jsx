@@ -103,6 +103,8 @@ export default function HouseholdOutput(props) {
       <BottomCarousel
         selected={focus}
         options={HOUSEHOLD_OUTPUT_TREE[0].children}
+        bottomText="PolicyEngine results may not constitute exact tax liabilities or benefit
+        entitlements."
       />
     </>
   );

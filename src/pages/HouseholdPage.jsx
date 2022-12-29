@@ -174,6 +174,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         householdInput={householdInput}
         householdBaseline={householdBaseline}
+        householdReform={householdReform}
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
         autoCompute={autoCompute}
@@ -283,6 +284,7 @@ export default function HouseholdPage(props) {
           householdBaseline={householdBaseline}
           householdInput={householdInput}
           autoCompute={autoCompute}
+          loading={loading}
         />
       }
       noMiddleScroll={!mobile && focus && focus.startsWith("householdOutput.")}

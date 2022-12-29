@@ -158,7 +158,7 @@ function MobileMiddleBar(props) {
 function MobileBottomMenu(props) {
   const { metadata, householdBaseline, householdReform, autoCompute } = props;
   const [searchParams] = useSearchParams();
-  const hasReform = searchParams.get("reform") !== null;
+  let hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, householdBaseline, metadata);
@@ -167,6 +167,11 @@ function MobileBottomMenu(props) {
   const getValueStr = (variable) =>
     formatVariableValue(metadata.variables[variable], getValue(variable), 0);
   let text;
+  try {
+    getReformValue("household_net_income")
+  } catch(e) {
+    hasReform = false;
+  }
   if (hasReform && autoCompute) {
     const difference =
       getReformValue("household_net_income") - getValue("household_net_income");

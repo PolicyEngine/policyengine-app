@@ -5,6 +5,7 @@ import {
 } from "../../api/variables";
 import NavigationButton from "../../controls/NavigationButton";
 import Divider from "../../layout/Divider";
+import LoadingCentered from "../../layout/LoadingCentered";
 
 function Figure(props) {
   const { left, right } = props;
@@ -43,7 +44,7 @@ function Figure(props) {
 }
 
 export default function HouseholdRightSidebar(props) {
-  const { householdInput, householdBaseline, metadata, autoCompute } = props;
+  const { householdInput, householdBaseline, metadata, autoCompute, loading } = props;
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
@@ -76,6 +77,32 @@ export default function HouseholdRightSidebar(props) {
   );
   netIncomeComponents = ["household_net_income"].concat(netIncomeComponents);
 
+  const calculationResults = (
+    <>
+      {netIncomeComponents.map((variableId) => {
+      const variable = metadata.variables[variableId];
+      const value = getValueFromHousehold(
+        variableId,
+        null,
+        null,
+        householdBaseline,
+        metadata
+      );
+      return (
+        <Figure
+          key={variableId}
+          left={formatVariableValue(variable, value, 0)}
+          right={variable.label}
+        />
+      );
+    })}
+    <Figure
+      left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
+      right={"marginal tax rate"}
+    />
+    </>
+  )
+
   const situationOverview = (
     <>
       <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>YOUR INPUTS</h5>
@@ -93,27 +120,12 @@ export default function HouseholdRightSidebar(props) {
       />
       <Divider />
       <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>OUR CALCULATION</h5>
-      {netIncomeComponents.map((variableId) => {
-        const variable = metadata.variables[variableId];
-        const value = getValueFromHousehold(
-          variableId,
-          null,
-          null,
-          householdBaseline,
-          metadata
-        );
-        return (
-          <Figure
-            key={variableId}
-            left={formatVariableValue(variable, value, 0)}
-            right={variable.label}
-          />
-        );
-      })}
-      <Figure
-        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
-        right={"marginal tax rate"}
-      />
+      {hasReform && <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 5}}>UNDER CURRENT LAW</h5>}
+      {
+        loading ?
+          <LoadingCentered minHeight="25vh" height="25vh" /> :
+          calculationResults
+      }
     </>
   );
   const notEnoughInfo = (
