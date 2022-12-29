@@ -1,15 +1,14 @@
 import { SwapOutlined } from "@ant-design/icons";
-import moment from "moment";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
 import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
+import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
 import NavigationButton from "../../controls/NavigationButton";
-import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
 
@@ -41,29 +40,26 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value } = props;
+  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } = props;
+  const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
+  const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
-  const startDate = moment(startDateStr).format("LL");
-  const endDate = moment(endDateStr).format("LL");
+
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div
-        style={{
-          width: 200,
-          textAlign: "right",
-          marginRight: 10,
-          flex: 3,
-          paddingRight: 5,
-          borderRightWidth: 2,
-          borderRightStyle: "solid",
-          borderRightColor: style.colors.DARK_GRAY,
-        }}
-      >
-        <div>from {startDate}</div>
-        <div>until {endDate}</div>
+    <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: "column",
+        alignItems: "flex-start",
+        padding: "0 10%" }}
+    >
+      <div style={{ textAlign: "left" }}>
+          {paramLabel} from{' '}
+          <span className="text-secondary fw-bold">{oldValStr}</span> to{' '} 
+          <span className="text-primary fw-bold">{newValueStr}</span>
       </div>
-      <div style={{ width: 200, textAlign: "left", marginRight: 10, flex: 1 }}>
-        {newValueStr}
+      <div style={{ fontStyle: "italic"}}>
+        {startDateStr} to {endDateStr}
       </div>
     </div>
   );
@@ -78,6 +74,7 @@ function PolicyItem(props) {
     changes.push(
       <SinglePolicyChange
         key={timePeriod}
+        paramLabel={parameter.label}
         startDateStr={startDateStr}
         endDateStr={endDateStr}
         parameterMetadata={parameter}
@@ -87,7 +84,6 @@ function PolicyItem(props) {
   }
   return (
     <div>
-      <h6>{parameter.label}</h6>
       <div style={{ paddingLeft: 10 }}>{changes}</div>
     </div>
   );
@@ -101,8 +97,6 @@ function PolicyDisplay(props) {
     <div
       style={{
         paddingTop: 20,
-        paddingLeft: 25,
-        paddingRight: 25,
         maxHeight: "20vh",
         overflow: "scroll",
       }}
