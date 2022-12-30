@@ -202,8 +202,7 @@ function MobileTreeNavigationHolder(props) {
                 paddingLeft: 10,
               }}
             >
-              {" "}
-              &gt;{" "}
+              {"/"}
             </span>
           )}
         </h5>
