@@ -12,6 +12,7 @@ import {
   MailOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
 function MarkdownP(props) {
   const mobile = useMobile();
@@ -100,6 +101,78 @@ function AuthorSection(props) {
   );
 }
 
+function LeftContents(props) {
+  const { markdown } = props;
+
+  // Look for ##, ###, and ### to create a table of contents.
+  // Split the markdown into an array of lines
+  const lines = markdown.split("\n");
+  // Find the lines that start with ##, ###, or ####
+  const headers = lines.filter((line) => line.startsWith("##"));
+  const headerLevels = headers.map((header) => header.split("#").length - 1);
+  const headerTexts = headers.map((header) => header.split(" ").slice(1).join(" "));
+  const headerSlugs = headers.map((header) => header.split(" ").slice(1).join(" ").split(" ").join("-").replace("\\", "").replace(/,/g, ""));
+  const headerStartYs = headerSlugs.map((slug) => {
+    const element = document.getElementById(slug);
+    if (element) {
+      let position = element.getBoundingClientRect().top + window.pageYOffset;
+      // If the distance between the position and the end of the page is less than the screen height,
+      // add the difference since it's not actually possible to scroll that far.
+      const distanceToEnd = document.body.scrollHeight - position;
+      if (distanceToEnd < window.innerHeight) {
+        position -= window.innerHeight - distanceToEnd;
+      }
+      return position;
+    } else {
+      return 1000;
+    }
+  });
+
+  const [currentHeaderSlug, setCurrentHeaderSlug] = useState(headerSlugs[0]);
+  useScrollPosition(({ prevPos, currPos }) => {
+    const scrollPosition = -currPos.y + 100;
+    for (let i = headerSlugs.length - 1; i >= 0; i--) {
+      let startY = headerStartYs[i];
+      const nextY = i === headerSlugs.length - 1 ? document.body.scrollHeight : headerStartYs[i + 1];
+      const inCurrentView = (scrollPosition >= startY) && (scrollPosition < nextY);
+      if (inCurrentView) {
+        setCurrentHeaderSlug(headerSlugs[i]);
+        break;
+      }
+    }
+  });
+
+  let contents = [];
+  for (let i = 0; i < headers.length; i++) {
+    const headerLevel = headerLevels[i];
+    const headerText = headerTexts[i];
+    const startY = headerStartYs[i];
+    const isSelected = currentHeaderSlug === headerSlugs[i];
+    contents.push(
+      <p style={{ fontSize: 16 - 2 * (headerLevel - 2), cursor: "pointer", margin: 5, paddingLeft: 10 * (headerLevel - 2) }}
+        onClick={() => {
+          window.scrollTo({ top: startY - 100, behavior: "smooth" });
+        }}
+        >
+          {isSelected && <>&#8594;</>} {headerText}
+      </p>
+    )
+  }
+
+  if (contents.length === 0) {
+    return null;
+  }
+
+  return (
+    <div style={{position: "fixed", top: 300, left: 20, maxWidth: 300}}>
+      <h5 style={{ marginBottom: 20 }}>
+        <b>Contents</b>
+      </h5>
+      {contents}
+    </div>
+  );
+}
+
 export default function BlogPostPage(props) {
   // The URL will be in the format /uk/blog/post-name
   // We need to extract the countryId and postName from the URL
@@ -124,6 +197,10 @@ export default function BlogPostPage(props) {
   window.scrollTo(0, 0);
 
   return (
+    <>
+    {
+      !mobile && <LeftContents markdown={markdown} />
+    }
     <Container style={{ padding: mobile && 0 }} className="serif">
       <div
         style={{
@@ -180,28 +257,41 @@ export default function BlogPostPage(props) {
                   {children}
                 </a>
               ),
-              header: ({ level, children }) => {
-                const headerStyle = mobile
-                  ? { fontSize: 18, marginBottom: 20 }
-                  : {
-                      fontSize: 20,
-                      marginBottom: 20,
-                      fontFamily: "Merriweather",
-                    };
-                if (level === 1) {
-                  return <h1 style={headerStyle}>{children}</h1>;
-                } else if (level === 2) {
-                  return <h2 style={headerStyle}>{children}</h2>;
-                } else if (level === 3) {
-                  return <h3 style={headerStyle}>{children}</h3>;
-                } else if (level === 4) {
-                  return <h4 style={headerStyle}>{children}</h4>;
-                } else if (level === 5) {
-                  return <h5 style={headerStyle}>{children}</h5>;
-                } else if (level === 6) {
-                  return <h6 style={headerStyle}>{children}</h6>;
-                }
+              h1: ({ children }) => {
+                const headerText = children[0];
+                return <h1
+                  id={headerText.split(" ").join("-").replace(/,/g, "")}
+                >
+                  {children}
+                </h1>
               },
+              h2: ({ children }) => {
+                const headerText = children[0];
+                // Remove slashes and commas, and replace spaces with dashes to create a
+                // unique ID for each header.
+                const slug = headerText.split(" ").join("-").replace("/", "").replace(/,/g, "");
+                return <h2
+                  id={slug}
+                >
+                  {children}
+                </h2>
+              },
+              h3: ({ children }) => {
+                const headerText = children[0];
+                return <h3
+                  id={headerText.split(" ").join("-").replace(/,/g, "")}
+                >
+                  {children}
+                </h3>
+              },
+              h4: ({ children }) => {
+                const headerText = children[0];
+                return <h4
+                  id={headerText.split(" ").join("-").replace(/,/g, "")}
+                >
+                  {children}
+                </h4>
+              }
             }}
           >
             {markdown}
@@ -214,5 +304,6 @@ export default function BlogPostPage(props) {
         </div>
       </div>
     </Container>
+    </>
   );
 }

@@ -1,4 +1,8 @@
-The [PolicyEngine US app](http://policyengine.org/us) uses a microsimulation model to compute the impact of custom tax and benefit reforms on the Current Population Survey (CPS). While the CPS is widely used for policy analysis, it contains inaccuracies that can impact the accuracy of policy simulations. We plan to enhance the CPS by integrating it with IRS tax records and reweighting it to minimize deviations from administrative aggregates. This enhanced dataset will be used in the PolicyEngine microsimulation app and will also be made available as an open resource for other policy research.
+The [PolicyEngine US app](http://policyengine.org/us) uses a microsimulation model to compute the impact of custom tax and benefit reforms on the Current Population Survey (CPS). While the CPS is widely used for policy analysis, it contains inaccuracies that can impact the accuracy of policy simulations.
+
+In 2023, we will enhance the CPS by integrating it with IRS tax records and reweighting it to minimize deviations from administrative aggregates. This enhanced dataset will be used in the PolicyEngine microsimulation app and will also be made available as an open resource for other policy research.
+
+*We’re grateful to Dylan Hirsch-Shell for supporting this project.*
 
 ## Why is the CPS inaccurate?
 
@@ -28,11 +32,11 @@ To address these issues, we plan to integrate several household datasets and tun
 
 1. [Use gradient descent](https://blog.policyengine.org/how-machine-learning-tools-make-policyengine-more-accurate-17af859cdd97) to adjust the household survey weights in the duplicated CPS and minimize the loss.
 
-1. Fuse the reweighted CPS-IRS dataset with the Survey of Consumer Finances and Consumer Expenditure Survey to create a comprehensive household dataset, also with synthimpute .
+1. Integrate the reweighted CPS-IRS dataset with the Survey of Consumer Finances and Consumer Expenditure Survey to create a comprehensive household dataset, also with synthimpute .
 
 1. Repeat steps 3 and 4 for each subnational area (state, congressional district, state legislative district, etc.) to produce weights for those areas.
 
-The diagram below characterizes this procedure.
+The diagram below characterizes this procedure ([see it in higher quality here](https://docs.google.com/drawings/d/1B3EqL43W-Rfbultr6fGMqURtYSiuzg-Y3PkW2vT5lxs/preview)).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*KU357kXuoE888uTy)
 

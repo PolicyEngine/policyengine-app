@@ -5,6 +5,7 @@
   "homepage": "https://beta.policyengine.org",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "antd": "^4.24.2",
     "bootstrap": "^5.2.2",
     "framer-motion": "^7.6.6",
