@@ -41,12 +41,14 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
+  console.log(props);
   const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } = props;
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
-  const prefix  = isNaN(oldVal) && isNaN(value) ? 'Disable/Enable' : 
-                  value > oldVal ? 'Raise' : 'Lower';
+  const prefix  = (parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition") ? 
+                  value ? 'Enable' : 'Disable' 
+                  : value > oldVal ? 'Raise' : 'Lower';
 
   return (
     <div 
