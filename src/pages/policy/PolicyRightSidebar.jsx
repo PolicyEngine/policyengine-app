@@ -9,6 +9,7 @@ import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
 import NavigationButton from "../../controls/NavigationButton";
+import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
 
@@ -44,6 +45,8 @@ function SinglePolicyChange(props) {
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
+  const prefix  = isNaN(oldVal) && isNaN(value) ? 'Disable/Enable' : 
+                  value > oldVal ? 'Raise' : 'Lower';
 
   return (
     <div 
@@ -54,9 +57,15 @@ function SinglePolicyChange(props) {
         padding: "0 10%" }}
     >
       <div style={{ textAlign: "left" }}>
-          {paramLabel} from{' '}
-          <span className="text-secondary fw-bold">{oldValStr}</span> to{' '} 
-          <span className="text-primary fw-bold">{newValueStr}</span>
+          {prefix} {paramLabel} from{' '}
+          <span  style={{ fontWeight : "bold" }}>{oldValStr}</span> to{' '} 
+          <span 
+            style={{ 
+              color: style.colors.BLUE,
+              fontWeight : "bold" }}
+          >
+            {newValueStr}
+          </span>
       </div>
       <div style={{ fontStyle: "italic"}}>
         {startDateStr} to {endDateStr}
@@ -92,7 +101,6 @@ function PolicyItem(props) {
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
   const reformLength = Object.keys(policy.reform.data).length;
-
   return (
     <div
       style={{
@@ -135,7 +143,7 @@ export default function PolicyRightSidebar(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const focus = searchParams.get("focus") || "";
-  const hasHousehold = searchParams.get("household") !== null;
+  const hasReform = reformPolicyId !== null;
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -257,14 +265,14 @@ export default function PolicyRightSidebar(props) {
           focus="policyOutput"
         />
       )}
-      {!hideButtons && !hasHousehold && (
+      {!hideButtons && !hasReform && (
         <NavigationButton
           text="Enter my household"
           focus="intro"
           target={`/${metadata.countryId}/household`}
         />
       )}
-      {!hideButtons && hasHousehold && (
+      {!hideButtons && hasReform && (
         <NavigationButton
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
