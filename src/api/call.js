@@ -23,7 +23,13 @@ export function asyncApiCall(path, body, interval = 1000, firstInterval = 200) {
   return new Promise((resolve, reject) => {
     const poll = (isFirst) => {
       apiCall(path, body)
-        .then((response) => response.json())
+        .then((response) => {
+          if(response.status === 200) {
+            return response.json()
+          } else {
+            return {status: "error", result: "Unknown error."}
+          }
+          })
         .then((data) => {
           if (data.status === "computing") {
             setTimeout(() => poll(false), isFirst ? firstInterval : interval);

@@ -12,6 +12,7 @@ import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
 import NavigationButton from "../../../controls/NavigationButton";
 import gtag from "../../../api/analytics";
+import { useState } from "react";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -25,6 +26,7 @@ export default function VariableEditor(props) {
     nextVariable,
     autoCompute,
   } = props;
+  const [edited, setEdited] = useState(false);
   if (!householdInput) {
     return <LoadingCentered />;
   }
@@ -35,6 +37,9 @@ export default function VariableEditor(props) {
     return null;
   }
   const variable = metadata.variables[variableName];
+  const required = [
+    "state_name",
+  ].includes(variableName);
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
@@ -55,6 +60,7 @@ export default function VariableEditor(props) {
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
         autoCompute={autoCompute}
+        setEdited={setEdited}
       />
     );
   });
@@ -85,7 +91,7 @@ export default function VariableEditor(props) {
         )}
         {entityInputs}
         {nextVariable && (
-          <NavigationButton text="Enter" focus={nextVariable} primary />
+          <NavigationButton text="Enter" focus={nextVariable} primary disabled={required && !edited} />
         )}
       </div>
     </>
@@ -105,6 +111,7 @@ function HouseholdVariableEntity(props) {
     setHouseholdInput,
     nextVariable,
     autoCompute,
+    setEdited,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name]
@@ -127,6 +134,7 @@ function HouseholdVariableEntity(props) {
             setHouseholdInput={setHouseholdInput}
             nextVariable={nextVariable}
             autoCompute={autoCompute}
+            setEdited={setEdited}
           />
         );
       })}
@@ -148,6 +156,7 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     setHouseholdInput,
     autoCompute,
+    setEdited,
   } = props;
   const submitValue = (value) => {
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
@@ -157,7 +166,6 @@ function HouseholdVariableEntityInput(props) {
       event_category: "household",
       event_label: variable.name,
     });
-    console.log(autoCompute)
     if(autoCompute) {
       getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
         let newSearch = new URLSearchParams(window.location.search);
@@ -165,6 +173,7 @@ function HouseholdVariableEntityInput(props) {
         setSearchParams(newSearch);
       });
     }
+    setEdited(true);
   };
   const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(
