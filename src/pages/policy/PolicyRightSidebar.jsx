@@ -1,11 +1,11 @@
 import { SwapOutlined } from "@ant-design/icons";
-import moment from "moment";
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
 import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
+import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
 import NavigationButton from "../../controls/NavigationButton";
@@ -41,29 +41,46 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value } = props;
+  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } = props;
+  const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
+  const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
-  const startDate = moment(startDateStr).format("LL");
-  const endDate = moment(endDateStr).format("LL");
+  const isBool = (parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition");
+  const prefix  = isBool ? 
+                  value ? 'Enable' : 'Disable' 
+                  : value > oldVal ? 'Raise' : 'Lower';
+
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div
-        style={{
-          width: 200,
-          textAlign: "right",
-          marginRight: 10,
-          flex: 3,
-          paddingRight: 5,
-          borderRightWidth: 2,
-          borderRightStyle: "solid",
-          borderRightColor: style.colors.DARK_GRAY,
-        }}
-      >
-        <div>from {startDate}</div>
-        <div>until {endDate}</div>
+    <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "0 10%" }}
+    >
+      <div>
+        <span style={isBool ? {color: style.colors.BLUE, fontWeight : "bold" } : {}}>
+          {prefix}{' '}
+        </span>
+        {paramLabel}
+        {
+          !isBool && 
+            <>
+              {' '}from{' '}
+              <span  style={{ fontWeight : "bold" }}>{oldValStr}</span>
+              {' '} to{' '} 
+              <span 
+                style={{ 
+                  color: style.colors.BLUE,
+                  fontWeight : "bold" }}
+              >
+                {newValueStr}
+              </span>
+            </>
+        }
       </div>
-      <div style={{ width: 200, textAlign: "left", marginRight: 10, flex: 1 }}>
-        {newValueStr}
+      <div style={{ fontStyle: "italic"}}>
+        {startDateStr} to {endDateStr}
       </div>
     </div>
   );
@@ -78,6 +95,7 @@ function PolicyItem(props) {
     changes.push(
       <SinglePolicyChange
         key={timePeriod}
+        paramLabel={parameter.label}
         startDateStr={startDateStr}
         endDateStr={endDateStr}
         parameterMetadata={parameter}
@@ -87,7 +105,6 @@ function PolicyItem(props) {
   }
   return (
     <div>
-      <h6>{parameter.label}</h6>
       <div style={{ paddingLeft: 10 }}>{changes}</div>
     </div>
   );
@@ -96,13 +113,10 @@ function PolicyItem(props) {
 function PolicyDisplay(props) {
   const { policy, metadata } = props;
   const reformLength = Object.keys(policy.reform.data).length;
-
   return (
     <div
       style={{
         paddingTop: 20,
-        paddingLeft: 25,
-        paddingRight: 25,
         maxHeight: "20vh",
         overflow: "scroll",
       }}
@@ -141,7 +155,7 @@ export default function PolicyRightSidebar(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const focus = searchParams.get("focus") || "";
-  const hasHousehold = searchParams.get("household") !== null;
+  const hasReform = reformPolicyId !== null;
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -263,14 +277,14 @@ export default function PolicyRightSidebar(props) {
           focus="policyOutput"
         />
       )}
-      {!hideButtons && !hasHousehold && (
+      {!hideButtons && !hasReform && (
         <NavigationButton
           text="Enter my household"
           focus="intro"
           target={`/${metadata.countryId}/household`}
         />
       )}
-      {!hideButtons && hasHousehold && (
+      {!hideButtons && hasReform && (
         <NavigationButton
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
