@@ -41,12 +41,12 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  console.log(props);
   const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } = props;
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
-  const prefix  = (parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition") ? 
+  const isBool = (parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition");
+  const prefix  = isBool ? 
                   value ? 'Enable' : 'Disable' 
                   : value > oldVal ? 'Raise' : 'Lower';
 
@@ -59,15 +59,25 @@ function SinglePolicyChange(props) {
         padding: "0 10%" }}
     >
       <div style={{ textAlign: "left" }}>
-          {prefix} {paramLabel} from{' '}
-          <span  style={{ fontWeight : "bold" }}>{oldValStr}</span> to{' '} 
-          <span 
-            style={{ 
-              color: style.colors.BLUE,
-              fontWeight : "bold" }}
-          >
-            {newValueStr}
-          </span>
+        <span style={isBool ? {color: style.colors.BLUE, fontWeight : "bold" } : {}}>
+          {prefix}{' '}
+        </span>
+        {paramLabel}
+        {
+          !isBool && 
+            <>
+              {' '}from{' '}
+              <span  style={{ fontWeight : "bold" }}>{oldValStr}</span>
+              {' '} to{' '} 
+              <span 
+                style={{ 
+                  color: style.colors.BLUE,
+                  fontWeight : "bold" }}
+              >
+                {newValueStr}
+              </span>
+            </>
+        }
       </div>
       <div style={{ fontStyle: "italic"}}>
         {startDateStr} to {endDateStr}
