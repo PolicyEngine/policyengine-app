@@ -55,10 +55,10 @@ function SinglePolicyChange(props) {
       style={{ 
         display: "flex", 
         flexDirection: "column",
-        alignItems: "flex-start",
+        alignItems: "center",
         padding: "0 10%" }}
     >
-      <div style={{ textAlign: "left" }}>
+      <div>
         <span style={isBool ? {color: style.colors.BLUE, fontWeight : "bold" } : {}}>
           {prefix}{' '}
         </span>
