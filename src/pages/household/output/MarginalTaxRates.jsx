@@ -37,12 +37,12 @@ export default function MarginalTaxRates(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you.employment_income["2022"] = null;
+    householdData.people.you.employment_income["2023"] = null;
     householdData.axes = [
       [
         {
           name: "employment_income",
-          period: "2022",
+          period: "2023",
           min: 0,
           max: 200_000,
           count: 401,
@@ -95,28 +95,28 @@ export default function MarginalTaxRates(props) {
   if (baselineMtr && !reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
-      "2022",
+      "2023",
       "you",
       baselineMtr,
       metadata
     );
     const mtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      "2022",
+      "2023",
       "you",
       baselineMtr,
       metadata
     );
     const currentEarnings = getValueFromHousehold(
       "employment_income",
-      "2022",
+      "2023",
       "you",
       householdInput,
       metadata
     );
     const currentMtr = getValueFromHousehold(
       "marginal_tax_rate",
-      "2022",
+      "2023",
       "you",
       householdBaseline,
       metadata
@@ -182,42 +182,42 @@ export default function MarginalTaxRates(props) {
   } else if (baselineMtr && reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
-      "2022",
+      "2023",
       "you",
       baselineMtr,
       metadata
     );
     const baselineMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      "2022",
+      "2023",
       "you",
       baselineMtr,
       metadata
     );
     const reformMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      "2022",
+      "2023",
       "you",
       reformMtr,
       metadata
     );
     const currentEarnings = getValueFromHousehold(
       "employment_income",
-      "2022",
+      "2023",
       "you",
       householdInput,
       metadata
     );
     const currentMtr = getValueFromHousehold(
       "marginal_tax_rate",
-      "2022",
+      "2023",
       "you",
       householdReform,
       metadata
     );
     const baselineMtrValue = getValueFromHousehold(
       "marginal_tax_rate",
-      "2022",
+      "2023",
       "you",
       householdBaseline,
       metadata

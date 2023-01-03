@@ -3,6 +3,7 @@ import { Dropdown } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import UKFlag from "../images/logos/countries/uk.webp";
 import USFlag from "../images/logos/countries/us.png";
+import CAFlag from "../images/logos/countries/ca.png";
 
 export default function CountrySelector(props) {
   const { countryId } = props;
@@ -34,9 +35,24 @@ export default function CountrySelector(props) {
       }}
     />
   );
+  const CALogo = (
+    <img
+      src={CAFlag}
+      alt="CA flag"
+      style={{
+        objectFit: "cover",
+        width: 20,
+        height: 20,
+        marginRight: 10,
+        backgroundColor: "transparent",
+      }}
+    />
+  );
+
   const countryLabel = {
     uk: UKLogo,
     us: USLogo,
+    ca: CALogo,
   }[countryId];
 
   // Only show on the homepage (/uk and /us)
@@ -54,6 +70,7 @@ export default function CountrySelector(props) {
   const items = [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
     { label: USLogo, onClick: () => navigateToCountry("us") },
+    { label: CALogo, onClick: () => navigateToCountry("ca")}
   ];
 
   return (

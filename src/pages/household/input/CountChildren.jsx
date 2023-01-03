@@ -13,7 +13,7 @@ import gtag from "../../../api/analytics";
 
 function getUKCountChildren(situation) {
   return Object.values(situation.people).filter(
-    (person) => person.age["2022"] < 18
+    (person) => person.age["2023"] < 18
   ).length;
 }
 
@@ -26,7 +26,7 @@ function getUKChildName(index) {
 
 function addUKChild(situation) {
   const defaultChild = {
-    age: { 2022: 10 },
+    age: { 2023: 10 },
   };
   const childName = getUKChildName(getUKCountChildren(situation));
   situation.people[childName] = defaultChild;
@@ -51,14 +51,14 @@ function setUKCountChildren(situation, countChildren, variables, entities) {
 
 function getUSCountChildren(situation) {
   return Object.values(situation.people).filter(
-    (person) => person.is_tax_unit_dependent["2022"]
+    (person) => person.is_tax_unit_dependent["2023"]
   ).length;
 }
 
 function addUSChild(situation) {
   const defaultChild = {
-    age: { 2022: 10 },
-    is_tax_unit_dependent: { 2022: true },
+    age: { 2023: 10 },
+    is_tax_unit_dependent: { 2023: true },
   };
   const childName = getUSChildName(getUSCountChildren(situation));
   situation.people[childName] = defaultChild;
@@ -68,7 +68,7 @@ function addUSChild(situation) {
   situation.households["your household"].members.push(childName);
   situation.marital_units[`${childName}'s marital unit`] = {
     members: [childName],
-    marital_unit_id: { 2022: getUSCountChildren(situation) + 1 },
+    marital_unit_id: { 2023: getUSCountChildren(situation) + 1 },
   };
   return situation;
 }
@@ -96,15 +96,53 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
   return situation;
 }
 
+function getCACountChildren(situation) {
+  return Object.values(situation.people).filter(
+    (person) => person.age["2023"] < 18
+  ).length;
+}
+
+function addCAChild(situation) {
+  const defaultChild = {
+    age: { 2023: 10 },
+  };
+  const childName = getUKChildName(getCACountChildren(situation));
+  situation.people[childName] = defaultChild;
+  situation.households["your household"].members.push(childName);
+  return situation;
+}
+
+function getCAChildName(index) {
+  // 'your first child', 'your second child', etc.
+  return (
+    "your " + ["first", "second", "third", "fourth", "fifth"][index] + " child"
+  );
+}
+
+function setCACountChildren(situation, countChildren, variables, entities) {
+  while (getCACountChildren(situation) < countChildren) {
+    situation = addCAChild(situation);
+  }
+  while (getCACountChildren(situation) > countChildren) {
+    situation = removePerson(
+      situation,
+      getCAChildName(getCACountChildren(situation) - 1)
+    );
+  }
+  situation = addYearlyVariables(situation, variables, entities);
+  return situation;
+}
+
 export default function CountChildren(props) {
   const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const getCountChildren = { uk: getUKCountChildren, us: getUSCountChildren }[
+  const getCountChildren = { uk: getUKCountChildren, us: getUSCountChildren, ca: getCACountChildren }[
     metadata.countryId
   ];
   const setCountChildrenInHousehold = {
     uk: setUKCountChildren,
     us: setUSCountChildren,
+    ca: setCACountChildren,
   }[metadata.countryId];
   const setCountChildren = (countChildren) => {
     let newHousehold = setCountChildrenInHousehold(
@@ -151,7 +189,7 @@ export default function CountChildren(props) {
   return (
     <CenteredMiddleColumn
       title={`How many ${
-        metadata.countryId === "uk" ? "children" : "dependents"
+        metadata.countryId !== "us" ? "children" : "dependents"
       } do you have?`}
       children={radioButtonComponent}
     />

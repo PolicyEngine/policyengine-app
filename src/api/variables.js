@@ -41,11 +41,11 @@ export function addYearlyVariables(situation, variables, entities) {
           if (!(variable.name in situation[entityPlural][entity])) {
             if (variable.isInputVariable) {
               situation[entityPlural][entity][variable.name] = {
-                2022: variable.defaultValue,
+                2023: variable.defaultValue,
               };
             } else {
               situation[entityPlural][entity][variable.name] = {
-                2022: null,
+                2023: null,
               };
             }
           }
@@ -98,6 +98,17 @@ export function createDefaultHousehold(country, variables, entities) {
         "your household": {
           members: ["you"],
         },
+      },
+      households: {
+        "your household": {
+          members: ["you"],
+        },
+      },
+    };
+  } else if (country === "ca") {
+    situation = {
+      people: {
+        you: {},
       },
       households: {
         "your household": {
@@ -255,6 +266,14 @@ export function formatVariableValue(variable, value, precision = 2) {
         })
       );
     } else if (variable.unit === "currency-USD") {
+      return (
+        "$" +
+        value.toLocaleString(undefined, {
+          minimumFractionDigits: precision,
+          maximumFractionDigits: precision,
+        })
+      );
+    } else if (variable.unit === "currency-CAD") {
       return (
         "$" +
         value.toLocaleString(undefined, {

@@ -73,7 +73,7 @@ export function updateMetadata(countryId, setMetadata, setError) {
         variablesInOrder: variablesInOrder,
         parameterTree: parameterTree,
         countryId: countryId,
-        currency: countryId === "us" ? "$" : "£",
+        currency: countryId === "uk" ? "£" : "$",
       };
       setMetadata(metadata);
       return metadata;

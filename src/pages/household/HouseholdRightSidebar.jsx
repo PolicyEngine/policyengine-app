@@ -63,7 +63,7 @@ export default function HouseholdRightSidebar(props) {
   );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
-    "2022",
+    "2023",
     "you",
     householdBaseline,
     metadata
