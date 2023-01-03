@@ -1,56 +1,13 @@
 import { useEffect, useState } from "react";
-import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
-import {
-  getPlotlyAxisFormat,
-  getValueFromHousehold,
-} from "../../../api/variables";
 import ErrorPage from "../../../layout/Error";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import style from "../../../style";
-import FadeIn from "../../../layout/FadeIn";
 import { useSearchParams } from "react-router-dom";
-import { Switch } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../api/language";
-import { ChartLogo } from "../../../api/charts";
-
-function getCliffs(netIncomeArray, earningsArray, isReform = false) {
-  // Return a list of [(start, end), ...] where the net income does not increase
-  if (!netIncomeArray || !earningsArray) return [];
-  let cliffs = [];
-  let inCliff = false;
-  let cliffStart = 0;
-  for (let i = 1; i < netIncomeArray.length; i++) {
-    if (netIncomeArray[i] - netIncomeArray[i - 1] <= 0) {
-      if (!inCliff) {
-        cliffStart = i - 1;
-        inCliff = true;
-      }
-    } else if (inCliff && ((netIncomeArray[i] > netIncomeArray[cliffStart]) || i === netIncomeArray.length - 1)) {
-      cliffs.push([earningsArray[cliffStart], earningsArray[i]]);
-      inCliff = false;
-    }
-  }
-
-  return cliffs.map((points, i) => { return {
-    x: [points[0], points[0], points[1], points[1], points[0]],
-    y: [0, 200_000, 200_000, 0, 0],
-    fill: "toself",
-    mode: "lines",
-    fillcolor: style.colors.DARK_GRAY,
-    name: `Cliff ${i + 1}${isReform ? " (reform)" : ""}`,
-    text: "",
-    opacity: 0.1,
-    line_width: 0,
-    showlegend: true,
-    type: "scatter",
-    line: {
-      color: style.colors.DARK_GRAY,
-    },
-  }})
-}
+import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";
+import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
 
 export default function EarningsVariation(props) {
   const { householdInput, householdBaseline, householdReform, metadata } =
@@ -64,7 +21,6 @@ export default function EarningsVariation(props) {
   const [reformNetIncome, setReformNetIncome] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showDelta, setShowDelta] = useState(false);
   const [variable, setVariable] = useState("household_net_income");
   const variableLabel = metadata.variables[variable].label || variable;
   const possibleEntities = Object.keys(
@@ -176,302 +132,26 @@ export default function EarningsVariation(props) {
     </div>
   );
 
-  let plot;
+  let mainChart;
 
-  try {
-    if (baselineNetIncome && !reformNetIncome) {
-      const earningsArray = getValueFromHousehold(
-        "employment_income",
-        "2022",
-        "you",
-        baselineNetIncome,
-        metadata
-      );
-      const netIncomeArray = getValueFromHousehold(
-        variable,
-        "2022",
-        null,
-        baselineNetIncome,
-        metadata,
-        true
-      );
-      const currentEarnings = getValueFromHousehold(
-        "employment_income",
-        "2022",
-        "you",
-        householdInput,
-        metadata
-      );
-      const currentNetIncome = getValueFromHousehold(
-        variable,
-        "2022",
-        null,
-        householdBaseline,
-        metadata
-      );
-      // Add the main line, then add a 'you are here' line
-      plot = (
-        <FadeIn key="baseline">
-          <Plot
-            key="baseline"
-            data={[
-              ...(variable === "household_net_income" ? getCliffs(netIncomeArray, earningsArray) : []),
-              {
-                x: earningsArray,
-                y: netIncomeArray,
-                type: "line",
-                name: capitalize(variableLabel),
-                line: {
-                  color: style.colors.BLUE,
-                },
-              },
-              {
-                x: [currentEarnings, currentEarnings],
-                y: [0, currentNetIncome],
-                type: "line",
-                name: `Your current ${variableLabel}`,
-                line: {
-                  color: style.colors.MEDIUM_DARK_GRAY,
-                },
-              },
-            ]}
-            layout={{
-              xaxis: {
-                title: "Employment income",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit
-                ),
-                tickformat: ",.0f",
-              },
-              yaxis: {
-                title: {
-                  text: capitalize(variableLabel),
-                },
-                ...getPlotlyAxisFormat(
-                  metadata.variables[variable].unit,
-                  0,
-                  null,
-                  metadata.variables[variable].valueType
-                ),
-                tickformat: ",.0f",
-              },
-              legend: {
-                // Position above the plot
-                y: 1.2,
-                orientation: "h",
-              },
-              ...ChartLogo,
-            }}
-            config={{
-              displayModeBar: false,
-              responsive: true,
-            }}
-            style={{
-              width: "100%",
-            }}
-          />
-        </FadeIn>
-      );
-    } else if (baselineNetIncome && reformNetIncome) {
-      const earningsArray = getValueFromHousehold(
-        "employment_income",
-        "2022",
-        "you",
-        baselineNetIncome,
-        metadata
-      );
-      const baselineNetIncomeArray = getValueFromHousehold(
-        variable,
-        "2022",
-        null,
-        baselineNetIncome,
-        metadata
-      );
-      const reformNetIncomeArray = getValueFromHousehold(
-        variable,
-        "2022",
-        null,
-        reformNetIncome,
-        metadata
-      );
-      const currentEarnings = getValueFromHousehold(
-        "employment_income",
-        "2022",
-        "you",
-        householdInput,
-        metadata
-      );
-      const currentNetIncome = getValueFromHousehold(
-        variable,
-        "2022",
-        null,
-        householdReform,
-        metadata
-      );
-      const baselineNetIncomeValue = getValueFromHousehold(
-        variable,
-        "2022",
-        null,
-        householdBaseline,
-        metadata
-      );
-      // Check if netIncomeArray is a scalar (like 0) or a string
-      if (!reformNetIncomeArray) {
-        throw new Error("No net income");
-      }
-      // Add the main line, then add a 'you are here' line
-      let plotObject;
-      if (showDelta) {
-        let data = [
-          {
-            x: earningsArray,
-            y: reformNetIncomeArray.map(
-              (value, index) => value - baselineNetIncomeArray[index]
-            ),
-            type: "line",
-            name: `Change in ${variableLabel}`,
-            line: {
-              color: style.colors.BLUE,
-            },
-          },
-          {
-            x: [currentEarnings, currentEarnings],
-            y: [0, currentNetIncome - baselineNetIncomeValue],
-            type: "line",
-            name: `Your current change in ${variableLabel}`,
-            line: {
-              color: style.colors.MEDIUM_DARK_GRAY,
-            },
-          },
-        ];
-        plotObject = (
-          <Plot
-            data={data}
-            key="reform"
-            layout={{
-              xaxis: {
-                title: "Employment income",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit,
-                  0
-                ),
-                tickformat: ",.0f",
-              },
-              yaxis: {
-                title: `Change in ${variableLabel}`,
-                ...getPlotlyAxisFormat(
-                  metadata.variables[variable].unit,
-                  0,
-                  null,
-                  metadata.variables[variable].valueType
-                ),
-                tickformat: ",.0f",
-              },
-              legend: {
-                // Position above the plot
-                y: 1.2,
-                orientation: "h",
-              },
-            }}
-            config={{
-              displayModeBar: false,
-              responsive: true,
-            }}
-            style={{
-              width: "100%",
-            }}
-          />
-        );
-      } else {
-        let data = [
-          ...(variable === "household_net_income" ? getCliffs(baselineNetIncomeArray, earningsArray) : []),
-          ...(variable === "household_net_income" ? getCliffs(reformNetIncomeArray, earningsArray, true) : []),
-          {
-            x: earningsArray,
-            y: baselineNetIncomeArray,
-            type: "line",
-            name: `Baseline ${variableLabel}`,
-            line: {
-              color: style.colors.MEDIUM_DARK_GRAY,
-            },
-          },
-          {
-            x: earningsArray,
-            y: reformNetIncomeArray,
-            type: "line",
-            name: `Reform ${variableLabel}`,
-            line: {
-              color: style.colors.BLUE,
-            },
-          },
-          {
-            x: [currentEarnings, currentEarnings],
-            y: [0, currentNetIncome],
-            type: "line",
-            name: `Your current ${variableLabel}`,
-            line: {
-              color: style.colors.MEDIUM_DARK_GRAY,
-            },
-          },
-        ];
-        plotObject = (
-          <Plot
-            data={data}
-            key="reform"
-            layout={{
-              xaxis: {
-                title: "Employment income",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit,
-                  0
-                ),
-                tickformat: ",.0f",
-              },
-              yaxis: {
-                title: capitalize(variableLabel),
-                ...getPlotlyAxisFormat(
-                  metadata.variables.household_net_income.unit,
-                  0
-                ),
-                tickformat: ",.0f",
-              },
-              legend: {
-                // Position above the plot
-                y: 1.2,
-                orientation: "h",
-              },
-              ...ChartLogo,
-            }}
-            config={{
-              displayModeBar: false,
-              responsive: true,
-            }}
-            style={{
-              width: "100%",
-            }}
-          />
-        );
-      }
-
-      plot = (
-        <FadeIn key="reform">
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <span style={{ marginRight: 10 }}>Show baseline and reform</span>
-            <Switch
-              checked={showDelta}
-              onChange={(checked) => setShowDelta(checked)}
-            />
-            <span style={{ marginLeft: 10 }}>Show difference</span>
-          </div>
-          {plotObject}
-        </FadeIn>
-      );
-    }
-  } catch (e) {
-    console.log(e)
-    plot = (
-      <ErrorPage message={`We couldn't plot the variable ${variableLabel}.`} />
-    );
+  if (baselineNetIncome && !reformNetIncome) {
+    mainChart = <BaselineOnlyChart
+      householdBaseline={householdBaseline}
+      householdBaselineVariation={baselineNetIncome}
+      metadata={metadata}
+      variable={variable}
+      variableLabel={variableLabel}
+    />
+  } else if (baselineNetIncome) {
+    mainChart = <BaselineAndReformChart
+      householdBaseline={householdBaseline}
+      householdBaselineVariation={baselineNetIncome}
+      householdReform={householdReform}
+      householdReformVariation={reformNetIncome}
+      metadata={metadata}
+      variable={variable}
+      variableLabel={variableLabel}
+    />
   }
 
   return (
@@ -486,7 +166,7 @@ export default function EarningsVariation(props) {
       ) : (
         <>
           {yAxisSelector}
-          <div style={{ minHeight: 500 }}>{plot}</div>
+          {mainChart}
         </>
       )}
     </ResultsPanel>
