@@ -17,7 +17,11 @@ export default function PolicyEngineCountry(props) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
-  const defaultBaselinePolicy = countryId === "uk" ? 1 : 2;
+  const defaultBaselinePolicy = countryId === "uk" ? 
+    1 :
+    countryId === "us" ?
+      2 :
+      3
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;

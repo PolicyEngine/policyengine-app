@@ -30,42 +30,42 @@ export default function BaselineAndReformChart(props) {
     </div>
     const earningsArray = getValueFromHousehold(
         "employment_income",
-        "2022",
+        "2023",
         "you",
         householdBaselineVariation,
         metadata
       );
     const baselineArray = getValueFromHousehold(
         variable,
-        "2022",
+        "2023",
         null,
         householdBaselineVariation,
         metadata
       );
     const reformArray = getValueFromHousehold(
         variable,
-        "2022",
+        "2023",
         null,
         householdReformVariation,
         metadata
       );
     const currentEarnings = getValueFromHousehold(
         "employment_income",
-        "2022",
+        "2023",
         "you",
         householdBaseline,
         metadata
       );
     const currentValue = getValueFromHousehold(
         variable,
-        "2022",
+        "2023",
         null,
         householdReform,
         metadata
       );
     const baselineValue = getValueFromHousehold(
         variable,
-        "2022",
+        "2023",
         null,
         householdBaseline,
         metadata

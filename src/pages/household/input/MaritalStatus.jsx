@@ -23,13 +23,13 @@ function getUKMaritalStatus(situation) {
 function setUKMaritalStatus(situation, status, variables, entities) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2022: 30 },
+    age: { 2023: 30 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
-    situation.benunits["your immediate family"].is_married["2022"] = true;
+    situation.benunits["your immediate family"].is_married["2023"] = true;
     situation.households["your household"].members.push(partnerName);
     situation = addYearlyVariables(situation, variables, entities);
   } else if (status === "single" && currentStatus === "married") {
@@ -50,7 +50,7 @@ function getUSMaritalStatus(situation) {
 function setUSMaritalStatus(situation, status, variables, entities) {
   const currentStatus = getUSMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2022: 30 },
+    age: { 2023: 30 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -67,15 +67,41 @@ function setUSMaritalStatus(situation, status, variables, entities) {
   return situation;
 }
 
+function getCAMaritalStatus(situation) {
+  const partnerName = "your partner";
+  if (Object.keys(situation.people).includes(partnerName)) {
+    return "married";
+  } else {
+    return "single";
+  }
+}
+
+function setCAMaritalStatus(situation, status, variables, entities) {
+  const currentStatus = getCAMaritalStatus(situation);
+  const defaultPartner = {
+    age: { 2023: 30 },
+  };
+  const partnerName = "your partner";
+  if (status === "married" && currentStatus === "single") {
+    situation.people[partnerName] = defaultPartner;
+    situation.households["your household"].members.push(partnerName);
+    situation = addYearlyVariables(situation, variables, entities);
+  } else if (status === "single" && currentStatus === "married") {
+    situation = removePerson(situation, partnerName);
+  }
+  return situation;
+}
+
 export default function MaritalStatus(props) {
   const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const getMaritalStatus = { uk: getUKMaritalStatus, us: getUSMaritalStatus }[
+  const getMaritalStatus = { uk: getUKMaritalStatus, us: getUSMaritalStatus, ca: getCAMaritalStatus }[
     metadata.countryId
   ];
   const setMaritalStatusInHousehold = {
     uk: setUKMaritalStatus,
     us: setUSMaritalStatus,
+    ca: setCAMaritalStatus,
   }[metadata.countryId];
   const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {

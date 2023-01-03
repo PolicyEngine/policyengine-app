@@ -42,7 +42,7 @@ export default function EarningsVariation(props) {
         ];
       validVariables = validVariables.concat(
         Object.keys(firstEntity).filter((variable) =>
-          Array.isArray(firstEntity[variable][2022])
+          Array.isArray(firstEntity[variable][2023])
         )
       );
     }
@@ -53,12 +53,12 @@ export default function EarningsVariation(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you.employment_income["2022"] = null;
+    householdData.people.you.employment_income["2023"] = null;
     householdData.axes = [
       [
         {
           name: "employment_income",
-          period: "2022",
+          period: "2023",
           min: 0,
           max: 200_000,
           count: 401,
@@ -74,6 +74,7 @@ export default function EarningsVariation(props) {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           setBaselineNetIncome(data.result);
         })
         .catch((err) => {

@@ -155,7 +155,7 @@ export default function PolicyRightSidebar(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const focus = searchParams.get("focus") || "";
-  const hasReform = reformPolicyId !== null;
+  const hasHousehold = searchParams.get("household") === null;
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -277,14 +277,14 @@ export default function PolicyRightSidebar(props) {
           focus="policyOutput"
         />
       )}
-      {!hideButtons && !hasReform && (
+      {!hideButtons && !hasHousehold && (
         <NavigationButton
           text="Enter my household"
           focus="intro"
           target={`/${metadata.countryId}/household`}
         />
       )}
-      {!hideButtons && hasReform && (
+      {!hideButtons && hasHousehold && (
         <NavigationButton
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
