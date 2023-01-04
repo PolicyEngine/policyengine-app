@@ -1,4 +1,4 @@
-import { redirect, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { capitalize } from "../../../api/language";
 import {
   formatVariableValue,
