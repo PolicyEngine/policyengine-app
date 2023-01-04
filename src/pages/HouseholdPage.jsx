@@ -25,7 +25,7 @@ import { Result } from "antd";
 
 export default function HouseholdPage(props) {
   // const { metadata, household, setHousehold, policy, loading, setHouseholdInput } = props;
-  const { metadata, householdId, policy } = props;
+  const { metadata, householdId, policy, hasShownHouseholdPopup, setHasShownHouseholdPopup } = props;
   const countryId = metadata.countryId;
   const [searchParams, setSearchParams] = useSearchParams();
   const mobile = useMobile();
@@ -238,6 +238,8 @@ export default function HouseholdPage(props) {
           householdInput={householdInput}
           policy={policy}
           loading={loading}
+          hasShownHouseholdPopup={hasShownHouseholdPopup}
+          setHasShownHouseholdPopup={setHasShownHouseholdPopup}
         />
       </>
     );

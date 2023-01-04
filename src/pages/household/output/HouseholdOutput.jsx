@@ -48,9 +48,12 @@ export default function HouseholdOutput(props) {
     pane = (
       <NetIncomeBreakdown
         metadata={metadata}
+        householdInput={householdInput}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         policyLabel={policyLabel}
+        hasShownHouseholdPopup={props.hasShownHouseholdPopup}
+        setHasShownHouseholdPopup={props.setHasShownHouseholdPopup}
       />
     );
   } else if (focus === "householdOutput.earnings") {
