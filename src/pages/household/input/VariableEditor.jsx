@@ -72,8 +72,8 @@ export default function VariableEditor(props) {
           flexDirection: "column",
           alignItems: "center",
           marginTop: mobile ? 10 : "15%",
-          paddingLeft: mobile ? 10 : 50,
-          paddingRight: mobile ? 10 : 50,
+          paddingLeft: mobile ? 5 : 50,
+          paddingRight: mobile ? 5 : 50,
         }}
       >
         <h1 style={{ marginBottom: 20, textAlign: "center" }}>
@@ -117,7 +117,7 @@ function HouseholdVariableEntity(props) {
     householdInput[entityPlural][entityName][variable.name]
   );
   return (
-    <div>
+    <>
       {possibleTimePeriods.map((timePeriod) => {
         return (
           <HouseholdVariableEntityInput
@@ -138,7 +138,7 @@ function HouseholdVariableEntity(props) {
           />
         );
       })}
-    </div>
+    </>
   );
 }
 
@@ -199,6 +199,7 @@ function HouseholdVariableEntityInput(props) {
         householdReform,
         metadata
       ) : null;
+  const mobile = useMobile();
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     control = (
@@ -209,6 +210,8 @@ function HouseholdVariableEntityInput(props) {
             `${formatValue(inputValue || simulatedValue)} → ${formatValue(reformValue)}` :
             formatValue(inputValue || simulatedValue)}
         autofocus={true}
+        width={mobile && 150}
+        padding={mobile && 10}
       />
     );
   } else if (variable.valueType === "bool") {
@@ -237,21 +240,28 @@ function HouseholdVariableEntityInput(props) {
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: mobile ? "col" : "row",
           alignItems: "center",
+          justifyContent: "space-evenly",
           width: "100%",
           marginBottom: 10,
         }}
       >
-        <h5 style={{ width: "100%", textAlign: "right", margin: 0 }}>
+        <h5 
+          style={{ textAlign: "right", margin: 0, flex: 1, flexBasis: "10%", fontSize: mobile && ".9rem" }}
+        >
           {capitalize(entityName)}:{" "}
         </h5>
-        <div
-          style={{ width: "180%", display: "flex", justifyContent: "center" }}
+        <div 
+          style={{ display: "flex", justifyContent: "center" }}
         >
           {control}
         </div>
-        <h5 style={{ margin: 0, width: "100%" }}>in {timePeriod}</h5>
+        <h5 
+          style={{ textAlign: "left", margin: 0, flex: 1, flexBasis: "10%", fontSize: mobile && ".9rem" }}
+        >
+          in {timePeriod}
+        </h5>
       </div>
     </>
   );
