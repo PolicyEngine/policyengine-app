@@ -117,6 +117,9 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
   return countryApiCall(countryId, "/policy", submission, "POST")
     .then((response) => response.json())
     .then((data) => {
+      if (data.status === "error") {
+        return data;
+      }
       return data.result.policy_id;
     });
 }

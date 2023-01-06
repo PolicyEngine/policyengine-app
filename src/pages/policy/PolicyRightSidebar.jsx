@@ -1,5 +1,5 @@
 import { SwapOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -12,13 +12,15 @@ import NavigationButton from "../../controls/NavigationButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
+import { Alert } from "antd";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
-
+  const [error, setError] = useState(null);
   return (
+    <>
     <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
       <InputField
         placeholder={label}
@@ -28,15 +30,22 @@ function PolicyNamer(props) {
         width="100%"
         onChange={(name) => {
           getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
-            () => {
-              let newSearch = copySearchParams(searchParams);
-              newSearch.set("renamed", true);
-              setSearchParams(newSearch);
+            data => {
+              if (data.status) {
+                setError(data.message);
+              } else {
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("reform", data);
+                setSearchParams(newSearch);
+                setError(null);
+              }
             }
           );
         }}
       />
     </div>
+    {error && <Alert message={error} type="error" style={{marginLeft: 20, marginRight: 20}} />}
+    </>
   );
 }
 

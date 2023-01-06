@@ -76,7 +76,7 @@ export default function PolicyOutput(props) {
   const [error, setError] = useState(null);
   const { metadata, policy } = props;
   useEffect(() => {
-    if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
+    if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId && focus !== "policyOutput.cliffImpact") {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}`;
       setImpact(null);
       setError(null);
