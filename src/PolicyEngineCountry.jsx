@@ -44,6 +44,8 @@ export default function PolicyEngineCountry(props) {
     reform: reformPolicy,
   };
 
+  const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
+
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
     updateMetadata(countryId, setMetadata, setError);
@@ -110,6 +112,8 @@ export default function PolicyEngineCountry(props) {
       metadata={metadata}
       householdId={householdId}
       policy={policy}
+      hasShownHouseholdPopup={hasShownHouseholdPopup}
+      setHasShownHouseholdPopup={setHasShownHouseholdPopup}
     />
   );
 

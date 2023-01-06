@@ -46,3 +46,7 @@ a {
 .serif p {
   font-family: "Merriweather", serif !important;
 }
+
+div.ant-modal-content {
+  border-radius: 25px;
+}
