@@ -41,6 +41,7 @@ export default function PolicyImpactPopup(props) {
             setNeedToOpenModal(false);
             setHasShownPopulationImpactPopup(true);
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [needToOpenModal, metadata, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup]);
     return null;
 }
