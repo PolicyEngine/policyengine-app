@@ -1,5 +1,6 @@
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { getParameterAtInstant } from "../../../api/parameters";
 import {
   formatVariableValue,
   getValueFromHousehold,
@@ -88,8 +89,26 @@ function VariableArithmetic(props) {
   }
 
   const [expanded, setExpanded] = useState(defaultExpanded);
-  const adds = variable.adds || [];
-  const subtracts = variable.subtracts || [];
+  let adds = variable.adds || [];
+  // Check if 'adds' is a string
+  if (typeof adds === "string") {
+    // adds is a parameter name (e.g. income.tax.groups). Find its value
+    const parameter = metadata.parameters[adds];
+    adds = getParameterAtInstant(
+      parameter,
+      "2023-01-01",
+    );
+  }
+  let subtracts = variable.subtracts || [];
+  // Check if 'subtracts' is a string
+  if (typeof subtracts === "string") {
+    // subtracts is a parameter name (e.g. income.tax.groups). Find its value
+    const parameter = metadata.parameters[subtracts];
+    subtracts = getParameterAtInstant(
+      parameter,
+      "2023-01-01",
+    );
+  }
   const expandable = adds.length + subtracts.length > 0;
   const childAddNodes = adds
     .filter(shouldShowVariable)
