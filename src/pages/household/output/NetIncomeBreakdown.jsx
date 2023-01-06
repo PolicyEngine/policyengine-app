@@ -7,7 +7,6 @@ import {
 } from "../../../api/variables";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
-import PoliciesModelledPopup from "./PoliciesModelledPopup";
 
 function VariableArithmetic(props) {
   const {
@@ -210,7 +209,7 @@ function VariableArithmetic(props) {
 }
 
 export default function NetIncomeBreakdown(props) {
-  const { metadata, householdBaseline, householdReform, policyLabel, householdInput, hasShownHouseholdPopup, setHasShownHouseholdPopup } = props;
+  const { metadata, householdBaseline, householdReform, policyLabel } = props;
   const hasReform = !!householdReform;
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, householdBaseline, metadata);
@@ -241,7 +240,6 @@ export default function NetIncomeBreakdown(props) {
 
   return (
     <>
-    <PoliciesModelledPopup metadata={metadata} householdInput={householdInput} hasShownHouseholdPopup={hasShownHouseholdPopup} setHasShownHouseholdPopup={setHasShownHouseholdPopup} />
     <ResultsPanel
       title={title}
       description="Here's how we calculated your household's net income. Click on a section to see more details."

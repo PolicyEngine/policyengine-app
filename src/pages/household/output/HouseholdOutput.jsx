@@ -7,6 +7,7 @@ import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
+import PoliciesModelledPopup from "./PoliciesModelledPopup";
 import HOUSEHOLD_OUTPUT_TREE from "./tree";
 
 export default function HouseholdOutput(props) {
@@ -21,6 +22,8 @@ export default function HouseholdOutput(props) {
     householdBaseline,
     householdReform,
     loading,
+    hasShownHouseholdPopup,
+    setHasShownHouseholdPopup,
   } = props;
   const mobile = useMobile();
 
@@ -38,7 +41,13 @@ export default function HouseholdOutput(props) {
   let pane;
   if (loading) {
     pane = (
-      <LoadingCentered message="Computing your household's taxes and benefits" />
+      <>
+        {
+          focus === "householdOutput.netIncome" &&
+          <PoliciesModelledPopup metadata={metadata} householdInput={householdInput} hasShownHouseholdPopup={hasShownHouseholdPopup} setHasShownHouseholdPopup={setHasShownHouseholdPopup} />
+        }
+        <LoadingCentered message="Computing your household's taxes and benefits" />
+      </>
     );
   } else if (!householdBaseline) {
     pane = (
@@ -52,8 +61,6 @@ export default function HouseholdOutput(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         policyLabel={policyLabel}
-        hasShownHouseholdPopup={props.hasShownHouseholdPopup}
-        setHasShownHouseholdPopup={props.setHasShownHouseholdPopup}
       />
     );
   } else if (focus === "householdOutput.earnings") {

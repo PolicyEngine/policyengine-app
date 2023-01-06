@@ -45,6 +45,7 @@ export default function VariableEditor(props) {
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
     (entity) => householdInput[entityPlural][entity][variable.name]
   );
+
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity

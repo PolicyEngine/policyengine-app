@@ -29,13 +29,13 @@ function PoliciesModelledChecklist(props) {
         }
     }
     const modelledSteps = modelledNames.map((name) => {
-        return <div style={{display: "flex", padding: 5, alignItems: "center"}}>
+        return <div key={name} style={{display: "flex", padding: 5, alignItems: "center"}}>
             <CheckCircleFilled style={{color: "green", fontSize: 20}} />
             <div style={{marginLeft: 10}}>{name}</div>
         </div>
     });
     const notModelledSteps = notModelledNames.concat(["+ more"]).map((name) => {
-        return <div style={{display: "flex", padding: 5, alignItems: "center"}}>
+        return <div key={name} style={{display: "flex", padding: 5, alignItems: "center"}}>
             <div style={{marginLeft: 10}}>{name}</div>
         </div>
     });
@@ -72,7 +72,7 @@ export default function PoliciesModelledPopup(props) {
                 keyboard: true,
             });
         };
-        if (needToOpenModal && !hasShownHouseholdPopup) {
+        if (needToOpenModal && !!metadata.modelled_policies && !hasShownHouseholdPopup) {
             openModal();
             setNeedToOpenModal(false);
             setHasShownHouseholdPopup(true);
