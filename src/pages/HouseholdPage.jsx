@@ -152,7 +152,7 @@ export default function HouseholdPage(props) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, householdId]);
+  }, [countryId, householdId, policy.reform]);
 
   if (!householdInput) {
     middle = <LoadingCentered />;
@@ -285,6 +285,7 @@ export default function HouseholdPage(props) {
           householdInput={householdInput}
           autoCompute={autoCompute}
           loading={loading}
+          policy={policy}
         />
       }
       noMiddleScroll={!mobile && focus && focus.startsWith("householdOutput.")}

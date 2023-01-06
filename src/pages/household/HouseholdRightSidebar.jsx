@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   formatVariableValue,
@@ -6,6 +7,7 @@ import {
 import NavigationButton from "../../controls/NavigationButton";
 import Divider from "../../layout/Divider";
 import LoadingCentered from "../../layout/LoadingCentered";
+import PolicySearch from "../policy/PolicySearch";
 
 function Figure(props) {
   const { left, right } = props;
@@ -44,7 +46,8 @@ function Figure(props) {
 }
 
 export default function HouseholdRightSidebar(props) {
-  const { householdInput, householdBaseline, metadata, autoCompute, loading } = props;
+  const { householdInput, householdBaseline, metadata, autoCompute, loading, policy } = props;
+  const [showReformSearch, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
@@ -121,6 +124,16 @@ export default function HouseholdRightSidebar(props) {
       <Divider />
       <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>OUR CALCULATION</h5>
       {hasReform && <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 5}}>UNDER CURRENT LAW</h5>}
+      {
+        showReformSearch ?
+          <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+            <PolicySearch metadata={metadata} policy={policy} target="reform" width="100%" onSelect={() => setShowReformSearch(false)} />
+          </div> :
+          <div style={{display: "flex", justifyContent: "center"}}>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#" style={{textAlign: "center", width: "100%"}} onClick={() => setShowReformSearch(true)}>compare against a reform</a>
+          </div>
+      }
       {
         loading ?
           <LoadingCentered minHeight="25vh" height="25vh" /> :

@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
 
 export default function PolicySearch(props) {
-  const { metadata, target, policy } = props;
+  const { metadata, target, policy, width, onSelect } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultId = searchParams.get(target);
   let defaultLabel = policy[target].label || `Policy #${defaultId}`;
@@ -32,7 +32,7 @@ export default function PolicySearch(props) {
         .then((data) => {
           setPolicies(
             data.result.map((item) => {
-              return { value: item.id, label: item.label };
+              return { value: item.id, label: <><b>#{item.id}</b> {item.label}</> };
             }) || []
           );
           setLastRequestTime(new Date().getTime());
@@ -48,9 +48,12 @@ export default function PolicySearch(props) {
         let newSearch = copySearchParams(searchParams);
         newSearch.set(target, value);
         setSearchParams(newSearch);
+        if (onSelect) {
+          onSelect(value);
+        }
       }}
       onSearch={onSearch}
-      style={{ width: 200, marginLeft: 10, marginRight: 10 }}
+      style={{ width: width || 200, marginLeft: 10, marginRight: 10 }}
       placeholder={defaultLabel}
       value={value === defaultLabel ? null : value}
     />

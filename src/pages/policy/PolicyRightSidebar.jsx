@@ -31,13 +31,18 @@ function PolicyNamer(props) {
         onChange={(name) => {
           getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
             data => {
+              console.log(data)
               if (data.status) {
                 setError(data.message);
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("renamed", true);
+                setSearchParams(newSearch);
               } else {
                 let newSearch = copySearchParams(searchParams);
-                newSearch.set("reform", data);
+                newSearch.set("renamed", true);
                 setSearchParams(newSearch);
                 setError(null);
+
               }
             }
           );
@@ -165,6 +170,7 @@ export default function PolicyRightSidebar(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const focus = searchParams.get("focus") || "";
   const hasHousehold = searchParams.get("household") !== null;
+  const [showReformSearch, setShowReformSearch] = useState(false);
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -218,9 +224,20 @@ export default function PolicyRightSidebar(props) {
       </div>
     );
   }
+
   return (
     <div style={{ paddingTop: 10 }}>
       <PolicyNamer policy={policy} metadata={metadata} setPolicy={setPolicy} />
+      {
+        showReformSearch ?
+          <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+            <PolicySearch metadata={metadata} policy={policy} target="reform" width="100%" onSelect={() => setShowReformSearch(false)} />
+          </div> :
+          <div style={{display: "flex", justifyContent: "center"}}>
+            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+            <a href="#" style={{textAlign: "center", width: "100%"}} onClick={() => setShowReformSearch(true)}>find an existing policy</a>
+          </div>
+      }
       <PolicyDisplay policy={policy} metadata={metadata} />
       <div
         style={{
