@@ -3,6 +3,7 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
+import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 
 export default function BudgetaryImpact(props) {
@@ -13,6 +14,7 @@ export default function BudgetaryImpact(props) {
   const spendingImpact = impact.budget.benefit_spending_impact;
 
   const [hovercard, setHoverCard] = useState(null);
+  const mobile = useMobile();
 
   // Waterfall chart
   const chart = (
@@ -59,6 +61,11 @@ export default function BudgetaryImpact(props) {
           minsize: 12,
         },
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 40,
+        },
+        height: mobile ? 300 : 500,
       }}
       config={{
         displayModeBar: false,
@@ -134,15 +141,15 @@ export default function BudgetaryImpact(props) {
         {aggregateCurrency(budgetaryImpact, metadata)}
         {" this year"}
       </h2>
-      <p>
-        The chart below shows how this is broken down between tax and benefit
-        measures.
-      </p>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>
+        The chart above shows how this is broken down between tax and benefit
+        measures.
+      </p>
     </>
   );
 }

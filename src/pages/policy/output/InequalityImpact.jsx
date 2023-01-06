@@ -3,6 +3,7 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
+import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 
 export default function InequalityImpact(props) {
@@ -15,6 +16,7 @@ export default function InequalityImpact(props) {
   ];
 
   const [hovercard, setHoverCard] = useState(null);
+  const mobile = useMobile();
 
   const chart = (
     <Plot
@@ -51,6 +53,11 @@ export default function InequalityImpact(props) {
           minsize: 12,
         },
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 60,
+        },
+        height: mobile ? 300 : 450,
       }}
       config={{
         displayModeBar: false,
@@ -137,14 +144,14 @@ export default function InequalityImpact(props) {
               : " has an ambiguous effect on inequality"
         }
       </h2>
-      <p>
-        The chart below shows how this policy reform affects different measures of inequality.
-      </p>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>
+        The chart above shows how this policy reform affects different measures of inequality.
+      </p>
     </>
   );
 }

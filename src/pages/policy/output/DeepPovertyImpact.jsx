@@ -3,6 +3,7 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
+import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 
 export default function DeepPovertyImpact(props) {
@@ -28,6 +29,7 @@ export default function DeepPovertyImpact(props) {
     Seniors: "senior",
     All: "all",
   }
+  const mobile = useMobile();
   const [hovercard, setHoverCard] = useState(null);
   // Decile bar chart. Bars are grey if negative, green if positive.
   const chart = (
@@ -66,6 +68,11 @@ export default function DeepPovertyImpact(props) {
           minsize: 8,
         },
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 60,
+        },
+        height: mobile ? 300 : 450,
       }}
       config={{
         displayModeBar: false,
@@ -111,15 +118,15 @@ export default function DeepPovertyImpact(props) {
           ? `reduces the deep poverty rate by ${povertyRateChange}`
           : "doesn't change the deep poverty rate"}
       </h2>
-      <p>
-        The chart below shows the relative change in the deep poverty rate for each
-        age group.
-      </p>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>
+        The chart above shows the relative change in the deep poverty rate for each
+        age group.
+      </p>
     </>
   );
 }

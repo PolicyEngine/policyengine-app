@@ -5,6 +5,7 @@ import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
 import HoverCard from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
+import useMobile from "../../../layout/Responsive";
 
 export default function IntraDecileImpact(props) {
   const { impact, policyLabel } = props;
@@ -13,6 +14,7 @@ export default function IntraDecileImpact(props) {
   const all = impact.intra_decile.all;
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const [hovercard, setHovercard] = useState(null);
+  const mobile = useMobile();
   const data = [
     {
       type: "bar",
@@ -243,12 +245,19 @@ export default function IntraDecileImpact(props) {
         },
         legend: {
           // Position on the top going left
-          x: 0,
-          y: -0.3,
+          x: 0.4,
+          y: -0.2,
           orientation: "h",
         },
-        height: 600,
+        showlegend: false,
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 40,
+          l: 40,
+          r: 0,
+        },
+        height: mobile ? 300 : 450,
       }}
       config={{
         displayModeBar: false,
@@ -284,15 +293,15 @@ export default function IntraDecileImpact(props) {
         {policyLabel} benefits{" "}
         {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
       </h2>
-      <p>
-        The chart below shows percentage of of people in each household income decile who experience different outcome categories. Households are sorted into ten equally-populated groups according to
-        their equivalised household net income.
-      </p>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>
+        The chart above shows percentage of of people in each household income decile who experience different outcome categories. Households are sorted into ten equally-populated groups according to
+        their equivalised household net income.
+      </p>
     </>
   );
 }

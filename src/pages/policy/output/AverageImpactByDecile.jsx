@@ -4,12 +4,14 @@ import { ChartLogo } from "../../../api/charts";
 import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
 import HoverCard from "../../../layout/HoverCard";
+import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 
 export default function AverageImpactByDecile(props) {
   const { impact, policyLabel, metadata } = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
   const [hovercard, setHoverCard] = useState(null);
+  const mobile = useMobile();
   const chart = (
     <Plot
       data={[
@@ -47,6 +49,11 @@ export default function AverageImpactByDecile(props) {
           minsize: 8,
         },
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 60,
+        },
+        height: mobile ? 300 : 500,
       }}
       config={{
         displayModeBar: false,
@@ -95,16 +102,16 @@ export default function AverageImpactByDecile(props) {
           0
         )}
       </h2>
-      <p>
-        The chart below shows the relative change in income for each income
-        decile. Households are sorted into ten equally-populated groups according to
-        their equivalised household net income.
-      </p>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>
+        The chart above shows the relative change in income for each income
+        decile. Households are sorted into ten equally-populated groups according to
+        their equivalised household net income.
+      </p>
     </>
   );
 }

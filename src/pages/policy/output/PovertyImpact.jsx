@@ -3,6 +3,7 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
+import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 
 export default function PovertyImpact(props) {
@@ -29,6 +30,7 @@ export default function PovertyImpact(props) {
     All: "all",
   }
   const [hovercard, setHoverCard] = useState(null);
+  const mobile = useMobile();
   // Decile bar chart. Bars are grey if negative, green if positive.
   const chart = (
     <Plot
@@ -66,6 +68,11 @@ export default function PovertyImpact(props) {
           minsize: 8,
         },
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 60,
+        },
+        height: mobile ? 300 : 450,
       }}
       config={{
         displayModeBar: false,
@@ -111,15 +118,15 @@ export default function PovertyImpact(props) {
           ? `reduces the poverty rate by ${povertyRateChange}`
           : "doesn't change the poverty rate"}
       </h2>
-      <p>
-        The chart below shows the relative change in the poverty rate for each
-        age group.
-      </p>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>
+        The chart above shows the relative change in the poverty rate for each
+        age group.
+      </p>
     </>
   );
 }

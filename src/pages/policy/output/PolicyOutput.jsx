@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import SearchOptions from "../../../controls/SearchOptions";
-import ErrorPage from "../../../layout/Error";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BudgetaryImpact from "./BudgetaryImpact";
@@ -18,6 +17,7 @@ import POLICY_OUTPUT_TREE from "./tree";
 import InequalityImpact from "./InequalityImpact";
 import { Result, Steps } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
+import useMobile from "../../../layout/Responsive";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -75,6 +75,7 @@ export default function PolicyOutput(props) {
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const { metadata, policy } = props;
+  const mobile = useMobile();
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId && focus !== "policyOutput.cliffImpact") {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}`;
@@ -178,7 +179,10 @@ export default function PolicyOutput(props) {
   }
 
   if (!reformPolicyId) {
-    return <ErrorPage message="No policy selected." />;
+    return <ResultsPanel
+      title="Your policy is empty"
+      description="You haven't added any reforms to your policy yet. Change policy parameters and see the results here."
+    />
   }
 
   let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
@@ -255,17 +259,20 @@ export default function PolicyOutput(props) {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
 
+  const bottomElements = mobile ?
+    null :
+      metadata.countryId === "us" ?
+        <p>PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement. <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">Read our caveats and data enhancement plan.</a></p> :
+        <p>PolicyEngine estimates reform impacts using a static microsimulation over <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">an enhanced version of the 2019 Family Resources Survey</a></p>
+
+
   pane = (
     <>
       {pane}
       <BottomCarousel
         selected={focus}
         options={POLICY_OUTPUT_TREE[0].children}
-        bottomText={
-          metadata.countryId === "us" ?
-            <p>PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement. <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">Read our caveats and data enhancement plan.</a></p> :
-            <p>PolicyEngine estimates reform impacts using a static microsimulation over <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">an enhanced version of the 2019 Family Resources Survey</a></p>
-        }
+        bottomText={bottomElements}
       />
     </>
   );

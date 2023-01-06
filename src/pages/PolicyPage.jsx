@@ -220,7 +220,7 @@ function MobileBottomMenu(props) {
   return (
     <div
       style={{
-        padding: 20,
+        padding: 10,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -246,7 +246,7 @@ function MobileBottomMenu(props) {
             />
           </div>
         )}
-        {focus && !focus.startsWith("policyOutput") && hasReform && (
+        {focus && !focus.startsWith("policyOutput") && (
           <div
             style={{
               display: "flex",
@@ -305,7 +305,7 @@ function MobilePolicyPage(props) {
           overflow: "scroll",
           width: "100%",
           padding: 20,
-          height: "60vh",
+          height: "65vh",
         }}
       >
         {mainContent}

@@ -227,11 +227,13 @@ export default function PolicyRightSidebar(props) {
 
   return (
     <div style={{ paddingTop: 10 }}>
-      <PolicyNamer policy={policy} metadata={metadata} setPolicy={setPolicy} />
+      {
+        <PolicyNamer policy={policy} metadata={metadata} setPolicy={setPolicy} />
+      }
       {
         showReformSearch ?
           <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-            <PolicySearch metadata={metadata} policy={policy} target="reform" width="100%" onSelect={() => setShowReformSearch(false)} />
+            <PolicySearch metadata={metadata} policy={policy} target="reform" width="100%" onSelect={() => setShowReformSearch(false)}/>
           </div> :
           <div style={{display: "flex", justifyContent: "center"}}>
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}

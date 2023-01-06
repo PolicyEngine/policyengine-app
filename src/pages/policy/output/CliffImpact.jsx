@@ -7,6 +7,7 @@ import { aggregateCurrency, percent } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
 import HoverCard from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
+import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
@@ -20,6 +21,7 @@ export default function CliffImpact(props) {
   const [error, setError] = useState(null);
   const { metadata, policyLabel } = props;
   const [hovercard, setHovercard] = useState(null);
+  const mobile = useMobile();
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
@@ -79,9 +81,9 @@ export default function CliffImpact(props) {
   // The chart shows two bars: one for the relative change in the cliff share and one for the relative change in the cliff gap.
 
   const cliff_share_change =
-    impact.reform.cliff_share / impact.baseline.cliff_share - 1;
+    Math.round((impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100) / 100;
   const cliff_gap_change =
-    impact.reform.cliff_gap / impact.baseline.cliff_gap - 1;
+    Math.round((impact.reform.cliff_gap / impact.baseline.cliff_gap - 1 * 100) / 100);
 
   const chart = (
     <Plot
@@ -123,6 +125,11 @@ export default function CliffImpact(props) {
           minsize: 8,
         },
         ...ChartLogo,
+        margin: {
+          t: 0,
+          b: 60,
+        },
+        height: mobile ? 300 : 450,
       }}
       config={{
         displayModeBar: false,
@@ -168,13 +175,13 @@ export default function CliffImpact(props) {
   return (
     <ResultsPanel
       title={title}
-      description="The cliff rate is the share of households whose net income falls if each adult earned an additional £2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way."
     >
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      <p>The cliff rate is the share of households whose net income falls if each adult earned an additional £2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way.</p>
     </ResultsPanel>
   );
 }
