@@ -70,9 +70,9 @@ export default function PovertyImpact(props) {
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 60,
+          b: 100,
         },
-        height: mobile ? 300 : 450,
+        height: mobile ? 350 : 450,
       }}
       config={{
         displayModeBar: false,

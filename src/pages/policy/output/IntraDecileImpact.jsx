@@ -241,19 +241,13 @@ export default function IntraDecileImpact(props) {
         },
         uniformtext: {
           mode: "hide",
-          minsize: 10,
-        },
-        legend: {
-          // Position on the top going left
-          x: 0.4,
-          y: -0.2,
-          orientation: "h",
+          minsize: mobile ? 7 : 10,
         },
         showlegend: false,
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 40,
+          b: 80,
           l: 40,
           r: 0,
         },
@@ -265,7 +259,6 @@ export default function IntraDecileImpact(props) {
       }}
       style={{
         width: "100%",
-        height: 700,
       }}
       onHover={(data) => {
         const group = data.points[0].y;

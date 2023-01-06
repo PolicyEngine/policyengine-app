@@ -18,6 +18,7 @@ import InequalityImpact from "./InequalityImpact";
 import { Result, Steps } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import useMobile from "../../../layout/Responsive";
+import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -74,7 +75,7 @@ export default function PolicyOutput(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const { metadata, policy } = props;
+  const { metadata, policy, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
   const mobile = useMobile();
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId && focus !== "policyOutput.cliffImpact") {
@@ -268,6 +269,7 @@ export default function PolicyOutput(props) {
 
   pane = (
     <>
+      <PolicyImpactPopup metadata={metadata} hasShownPopulationImpactPopup={hasShownPopulationImpactPopup} setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup} />
       {pane}
       <BottomCarousel
         selected={focus}

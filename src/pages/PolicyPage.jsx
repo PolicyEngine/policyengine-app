@@ -317,7 +317,7 @@ function MobilePolicyPage(props) {
 }
 
 export default function PolicyPage(props) {
-  const { metadata, policy, setPolicy } = props;
+  const { metadata, policy, setPolicy, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
   const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -375,7 +375,9 @@ export default function PolicyPage(props) {
   } else if (focus.includes("policyOutput.")) {
     middle = (
       <>
-        <PolicyOutput metadata={metadata} policy={policy} />
+        <PolicyOutput metadata={metadata} policy={policy} 
+          hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
+          setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup} />
       </>
     );
   }

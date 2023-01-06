@@ -46,12 +46,14 @@ export default function AverageImpactByDecile(props) {
         showlegend: false,
         uniformtext: {
           mode: "hide",
-          minsize: 8,
+          minsize: mobile ? 4 : 8,
         },
         ...ChartLogo,
         margin: {
           t: 0,
           b: 60,
+          l: 60,
+          r: 20,
         },
         height: mobile ? 300 : 500,
       }}

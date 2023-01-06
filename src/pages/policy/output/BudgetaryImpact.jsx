@@ -21,7 +21,9 @@ export default function BudgetaryImpact(props) {
     <Plot
       data={[
         {
-          x: ["Tax revenues", "Benefit spending", "Net budgetary impact"],
+          x: mobile ?
+            ["Tax", "Benefit", "Net"] :
+            ["Tax revenues", "Benefit spending", "Net budgetary impact"],
           y: [taxImpact / 1e9, -spendingImpact / 1e9, -budgetaryImpact / 1e9],
           type: "waterfall",
           orientation: "v",
@@ -63,7 +65,7 @@ export default function BudgetaryImpact(props) {
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 40,
+          b: 60,
         },
         height: mobile ? 300 : 500,
       }}
@@ -146,10 +148,6 @@ export default function BudgetaryImpact(props) {
       >
         {chart}
       </HoverCard>
-      <p>
-        The chart above shows how this is broken down between tax and benefit
-        measures.
-      </p>
     </>
   );
 }

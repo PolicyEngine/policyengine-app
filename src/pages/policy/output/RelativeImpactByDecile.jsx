@@ -41,7 +41,7 @@ export default function RelativeImpactByDecile(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickformat: "+,.1%",
+          tickformat: "+,.0%",
         },
         uniformtext: {
           mode: "hide",
@@ -51,7 +51,9 @@ export default function RelativeImpactByDecile(props) {
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 60,
+          b: 80,
+          r: 20,
+          l: 60,
         },
         height: mobile ? 300 : 500,
       }}

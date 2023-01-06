@@ -45,6 +45,7 @@ export default function PolicyEngineCountry(props) {
   };
 
   const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
+  const [hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup] = useState(false);
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
@@ -120,7 +121,13 @@ export default function PolicyEngineCountry(props) {
   const errorPage = <ErrorPage />;
 
   const policyPage = (
-    <PolicyPage metadata={metadata} householdId={householdId} policy={policy} />
+    <PolicyPage 
+      metadata={metadata} 
+      householdId={householdId} 
+      policy={policy} 
+      hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
+      setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+    />
   );
 
   const loadingPage = <LoadingCentered />;
