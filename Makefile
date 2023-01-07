@@ -9,7 +9,7 @@ deploy-setup:
 	cp gcp/app.yaml ./app.yaml
 	cp gcp/main.py ./main.py
 	cp gcp/requirements.txt ./requirements.txt
-	cp -r social_cards/ build/static/media/social_cards/
+	cp -r ./social_cards/ ./build/static/media/social_cards/
 deploy: deploy-setup build
 	y | gcloud app deploy --project policyengine-app
 	rm app.yaml
