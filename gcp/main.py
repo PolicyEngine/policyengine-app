@@ -1,5 +1,6 @@
 from flask import Flask, send_from_directory, request, redirect
 from pathlib import Path
+from gcp.social_card_tags import add_social_card_tags
 
 app = Flask(__name__, static_folder="build")
 
@@ -22,16 +23,25 @@ def add_header(r):
     return r
 
 
+def send_index_html():
+    # Load the index.html file contents and send it
+    with open(app.static_folder + "/index.html") as f:
+        index_html = f.read()
+    index_html = add_social_card_tags(index_html, request.path, request.args)
+    # Return with correct headers
+    return index_html, 200, {"Content-Type": "text/html"}
+
+
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path):
     if path == "":
-        return send_from_directory(app.static_folder, "index.html")
+        return send_index_html()
     else:
         try:
             return send_from_directory(app.static_folder, path)
         except FileNotFoundError:
-            return send_from_directory(app.static_folder, "index.html")
+            return send_index_html()
 
 
 @app.errorhandler(404)
@@ -46,7 +56,7 @@ def page_not_found(e):
             Path(app.static_folder).joinpath("static/css").glob("*.css")
         )
         return send_from_directory(css_file.parent, css_file.name)
-    return send_from_directory(app.static_folder, "index.html")
+    return send_index_html()
 
 
 if __name__ == "__main__":
