@@ -28,7 +28,9 @@ def send_index_html():
     with open(app.static_folder + "/index.html") as f:
         index_html = f.read()
     try:
-        index_html = add_social_card_tags(index_html, request.path, request.args)
+        index_html = add_social_card_tags(
+            index_html, request.path, request.args
+        )
     except Exception as e:
         pass
     # Return with correct headers

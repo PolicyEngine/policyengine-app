@@ -54,9 +54,9 @@ def get_image(path: str, query_params: dict):
     social_card_files = list(social_card_folder.glob(f"{path}.*"))
     if len(social_card_files) > 0:
         filename = social_card_files[0].name
-        return f"/static/media/social_cards/{filename}"
+        return f"https://beta.policyengine.org/static/media/social_cards/{filename}"
     else:
-        return f"/static/media/social_cards/main_logo.png"
+        return f"https://beta.policyengine.org/static/media/social_cards/main_logo.png"
 
 
 def get_description(path: str, query_params: dict):
