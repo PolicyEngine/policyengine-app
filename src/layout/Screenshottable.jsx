@@ -51,8 +51,8 @@ export default function Screenshottable(props) {
             cancelButtonProps={{ style: { display: "none" } }}
         >
             <div style={{
-                paddingLeft: 30,
-                paddingRight: 30,
+                paddingLeft: 100,
+                paddingRight: 100,
                 paddingTop: 200,
                 paddingBottom: 120,
                 borderWidth: 1,
