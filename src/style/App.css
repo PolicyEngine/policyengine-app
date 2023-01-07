@@ -50,3 +50,24 @@ a {
 div.ant-modal-content {
   border-radius: 25px;
 }
+:-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar {
+  background-color: transparent;
+}
+body {
+  overflow: overlay;
+}
+::-webkit-scrollbar-track-piece:start {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}::-webkit-scrollbar-corner {
+  background: transparent;
+ }
