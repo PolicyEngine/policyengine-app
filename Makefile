@@ -8,6 +8,7 @@ deploy-setup:
 	cp gcp/.gcloudignore ./.gcloudignore
 	cp gcp/app.yaml ./app.yaml
 	cp gcp/main.py ./main.py
+	cp gcp/social_card_tags.py ./social_card_tags.py
 	cp gcp/requirements.txt ./requirements.txt
 deploy: deploy-setup build
 	cp -r ./social_cards/ ./build/static/media/social_cards/
