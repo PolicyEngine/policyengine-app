@@ -9,6 +9,8 @@ def get_safe_image_name(image_name):
         image_name = image_name.split(".org")[1]
     if ":5000" in image_name:
         image_name = image_name.split(":5000")[1]
+    if ":3000" in image_name:
+        image_name = image_name.split(":3000")[1]
     image_name = (
         image_name.replace("/", "-")
         .replace("?", "-")

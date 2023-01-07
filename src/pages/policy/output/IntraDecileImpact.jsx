@@ -6,6 +6,7 @@ import style from "../../../style";
 import HoverCard from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
+import Screenshottable from "../../../layout/Screenshottable";
 
 export default function IntraDecileImpact(props) {
   const { impact, policyLabel } = props;
@@ -259,6 +260,7 @@ export default function IntraDecileImpact(props) {
       }}
       style={{
         width: "100%",
+        marginBottom: !mobile && 50,
       }}
       onHover={(data) => {
         const group = data.points[0].y;
@@ -282,6 +284,7 @@ export default function IntraDecileImpact(props) {
 
   return (
     <>
+      <Screenshottable>
       <h2>
         {policyLabel} benefits{" "}
         {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
@@ -291,6 +294,7 @@ export default function IntraDecileImpact(props) {
       >
         {chart}
       </HoverCard>
+      </Screenshottable>
       <p>
         The chart above shows percentage of of people in each household income decile who experience different outcome categories. Households are sorted into ten equally-populated groups according to
         their equivalised household net income.

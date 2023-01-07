@@ -4,6 +4,7 @@ import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
+import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function BudgetaryImpact(props) {
@@ -65,7 +66,8 @@ export default function BudgetaryImpact(props) {
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 60,
+          b: 100,
+          r: 0,
         },
         height: mobile ? 300 : 500,
       }}
@@ -136,6 +138,7 @@ export default function BudgetaryImpact(props) {
 
   return (
     <>
+      <Screenshottable>
       <h2>
         {policyLabel}
         {" would "}
@@ -148,6 +151,7 @@ export default function BudgetaryImpact(props) {
       >
         {chart}
       </HoverCard>
+      </Screenshottable>
     </>
   );
 }

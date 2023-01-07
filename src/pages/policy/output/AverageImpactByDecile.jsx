@@ -5,6 +5,7 @@ import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
+import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function AverageImpactByDecile(props) {
@@ -51,7 +52,7 @@ export default function AverageImpactByDecile(props) {
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 60,
+          b: 80,
           l: 60,
           r: 20,
         },
@@ -63,6 +64,7 @@ export default function AverageImpactByDecile(props) {
       }}
       style={{
         width: "100%",
+        marginBottom: !mobile && 50,
       }}
       onHover={(data) => {
         const decile = cardinal(data.points[0].x);
@@ -95,6 +97,7 @@ export default function AverageImpactByDecile(props) {
 
   return (
     <>
+      <Screenshottable>
       <h2>
         {policyLabel} {averageChange >= 0 ? "increases" : "decreases"} the
         average household's net income by{" "}
@@ -109,6 +112,7 @@ export default function AverageImpactByDecile(props) {
       >
         {chart}
       </HoverCard>
+      </Screenshottable>
       <p>
         The chart above shows the relative change in income for each income
         decile. Households are sorted into ten equally-populated groups according to

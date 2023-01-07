@@ -9,6 +9,7 @@ import HoverCard from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
+import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function CliffImpact(props) {
@@ -176,11 +177,13 @@ export default function CliffImpact(props) {
     <ResultsPanel
       title={title}
     >
+      <Screenshottable>
       <HoverCard
         content={hovercard}
       >
         {chart}
       </HoverCard>
+      </Screenshottable>
       <p>The cliff rate is the share of households whose net income falls if each adult earned an additional £2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way.</p>
     </ResultsPanel>
   );

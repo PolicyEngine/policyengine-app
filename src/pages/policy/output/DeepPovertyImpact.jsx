@@ -4,6 +4,7 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
+import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function DeepPovertyImpact(props) {
@@ -110,6 +111,7 @@ export default function DeepPovertyImpact(props) {
 
   return (
     <>
+      <Screenshottable>
       <h2>
         {policyLabel}{" "}
         {totalPovertyChange > 0
@@ -123,6 +125,7 @@ export default function DeepPovertyImpact(props) {
       >
         {chart}
       </HoverCard>
+      </Screenshottable>
       <p>
         The chart above shows the relative change in the deep poverty rate for each
         age group.

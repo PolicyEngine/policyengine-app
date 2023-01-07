@@ -4,6 +4,7 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
+import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function InequalityImpact(props) {
@@ -134,6 +135,7 @@ export default function InequalityImpact(props) {
 
   return (
     <>
+      <Screenshottable>
       <h2>
         {policyLabel}
         {
@@ -149,6 +151,7 @@ export default function InequalityImpact(props) {
       >
         {chart}
       </HoverCard>
+      </Screenshottable>
       <p>
         The chart above shows how this policy reform affects different measures of inequality.
       </p>
