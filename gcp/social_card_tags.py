@@ -40,6 +40,8 @@ def get_image(path: str, query_params: dict):
             [f"{k}-{v}" for k, v in query_params.items()]
         )
         path = path + "-" + joined_query_params
+    
+    original_path = path
 
     path = (
         path.replace("/", "-")
@@ -49,7 +51,17 @@ def get_image(path: str, query_params: dict):
     )
 
     # Search the "./social_cards" directory for a file with the same name as the path and any extension
-
+    if "/blog/" in original_path:
+        slug = original_path.split("/blog/")[1]
+        post = post_by_slug[slug]
+        filename = post["image"].split(".")[0]
+        # React builds the image filename as 'original_name.hash.extension'. Find it by searching for the original name
+        image_folder = Path("./build/static/media")
+        image_files = list(image_folder.glob(f"{filename}.*"))
+        if len(image_files) > 0:
+            filename = image_files[0].name
+            return f"https://beta.policyengine.org/static/media/{filename}"
+    
     social_card_folder = Path("./social_cards")
     social_card_files = list(social_card_folder.glob(f"{path}.*"))
     if len(social_card_files) > 0:
@@ -81,10 +93,13 @@ def get_description(path: str, query_params: dict):
 
 def add_social_card_tags(html_file: str, path: str, query_params: dict = {}):
     # Add social card tags to the html file
+    print('Adding social card tags to the html file')
 
     title = get_title(path, query_params)
     description = get_description(path, query_params)
     image_url = get_image(path, query_params)
+
+    print(f"Image URL: {image_url}")
 
     # Use beautiful soup to add the tags for Twitter and Facebook
     soup = BeautifulSoup(html_file, "html.parser")
