@@ -97,6 +97,9 @@ export default function BaselineOnlyChart(props) {
                 orientation: "h",
               },
               ...ChartLogo,
+              margin: {
+                t: 0,
+              }
             }}
             config={{
               displayModeBar: false,

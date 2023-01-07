@@ -143,7 +143,7 @@ function PolicyDisplay(props) {
         controls={reformLength > 1 ? true : false} 
         slide={false}>
         {Object.keys(policy.reform.data).map((parameterName) => (
-          <Carousel.Item>
+          <Carousel.Item key={parameterName}>
             <PolicyItem
               key={parameterName}
               metadata={metadata}

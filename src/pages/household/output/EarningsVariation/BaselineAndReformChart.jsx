@@ -247,6 +247,9 @@ function BaselineReformDeltaChart(props) {
               y: 1.2,
               orientation: "h",
             },
+            margin: {
+              t: 0,
+            }
           }}
           config={{
             displayModeBar: false,

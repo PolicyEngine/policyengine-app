@@ -98,11 +98,13 @@ export default function ParameterOverTime(props) {
             orientation: "h",
           },
           ...ChartLogo,
+          margin: {
+            t: 0,
+          }
         }}
         style={{
           width: "100%",
           height: 400,
-          padding: 20,
         }}
         config={{
           displayModeBar: false,

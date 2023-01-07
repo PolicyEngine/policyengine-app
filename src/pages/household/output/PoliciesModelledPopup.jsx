@@ -45,6 +45,10 @@ function PoliciesModelledChecklist(props) {
         <div>
             {notModelledSteps}
         </div>
+        <p>
+            PolicyEngine results may not constitute exact tax liabilities or benefit
+            entitlements.
+        </p>
         <div style={{display: "flex", justifyContent: "center", marginTop: 20}}>
             <Button primary onClick={() => Modal.destroyAll()} text="See my results" />
         </div>

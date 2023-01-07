@@ -14,22 +14,21 @@ export default function BottomCarousel(props) {
   return (
     <div
       style={{
-        position: !mobile && "absolute",
-        bottom: !mobile && 0,
+        position: mobile ? "absolute" : "absolute",
+        bottom: mobile ? 200 : 0,
         display: "flex",
         height: 80,
-        zIndex: 100,
         left: !mobile && "25%",
-        width: !mobile && "50%",
+        width: mobile ? "90%" : "50%",
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
         padding: 5,
         justifyContent: mobile ? "center" : "right",
       }}
     >
-      <p style={{ paddingLeft: 50, paddingTop: 20 }}>
+      {!mobile && <p style={{ paddingLeft: 50, paddingTop: 20 }}>
         {bottomText}
-      </p>
+      </p>}
       <div
         style={{
           flex: 1,
