@@ -27,7 +27,10 @@ def send_index_html():
     # Load the index.html file contents and send it
     with open(app.static_folder + "/index.html") as f:
         index_html = f.read()
-    index_html = add_social_card_tags(index_html, request.path, request.args)
+    try:
+        index_html = add_social_card_tags(index_html, request.path, request.args)
+    except Exception as e:
+        pass
     # Return with correct headers
     return index_html, 200, {"Content-Type": "text/html"}
 
