@@ -374,8 +374,8 @@ function Collaborations(props) {
         <Row style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
           {
             Object.values(orgData[countryId] || {}).map(org => (
-              <Col>
-              <a href={org.link}><img src={org.logo} height={50} width={150} style={{objectFit: "contain"}} alt="test" /></a>
+              <Col style={{padding: mobile ? 20 : 10}}>
+              <a href={org.link}><img src={org.logo} height={mobile ? 30 : 50} width={mobile ? 90 : 150} style={{objectFit: "contain"}} alt="test" /></a>
               </Col>
             ))
           }
