@@ -320,6 +320,7 @@ function Collaborations(props) {
       CPS,
     ]
   }
+  const mobile = useMobile();
   const countryQuotes = quoteData[countryId] || [];
   if (countryQuotes.length === 0) {
     return null;
@@ -329,11 +330,10 @@ function Collaborations(props) {
       style={{
         backgroundColor: style.colors.WHITE,
         marginTop: 25,
-        marginBottom: 25,
       }}
     >
       <Container style={{ paddingTop: 100 }}>
-        <Row style={{paddingLeft: 300, paddingRight: 300}}>
+        <Row style={{paddingLeft: mobile ? 30 : 300, paddingRight: mobile ? 30 : 300}}>
           <Carousel autoplay>
             {countryQuotes.map(data => <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
               <p style={{fontFamily: "Merriweather", fontSize: 20, marginBottom: 50}}>{data.quote}</p>
