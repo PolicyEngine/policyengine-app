@@ -67,7 +67,7 @@ export function getReformDefinitionCode(metadata, policy) {
     "def modify_parameters(parameters):",
   ];
 
-  if (Object.keys(policy.reform.data) === 0) {
+  if (Object.keys(policy.reform.data).length === 0) {
     lines.push("    pass")
   }
 
