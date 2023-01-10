@@ -18,9 +18,8 @@ import TorrinWilkins from "../images/headshots/torrin-wilkins.webp";
 import Centre from "../images/logos/orgs/centre.webp";
 import CPS from "../images/logos/orgs/cps.png";
 import GPEW from "../images/logos/orgs/gpew.png";
-import LiberalParty from "../images/logos/orgs/liberal-party.png";
+import LiberalParty from "../images/logos/orgs/liberal-party.jpeg";
 import SMF from "../images/logos/orgs/smf.png";
-import UBICenter from "../images/logos/orgs/ubicenter.png";
 import UBILabs from "../images/logos/orgs/ubilabs.png";
 import UKEU from "../images/logos/orgs/ukeu.svg";
 
@@ -309,16 +308,36 @@ function Collaborations(props) {
 
   // eslint-disable-next-line
   const orgData = {
-    uk: [
-      UKEU,
-      GPEW,
-      LiberalParty,
-      SMF,
-      UBICenter,
-      UBILabs,
-      Centre,
-      CPS,
-    ]
+    uk: {
+      ukeu: {
+        logo: UKEU,
+        link: "https://ukandeu.ac.uk/energy-subsidy/",
+      },
+      green_party: {
+        logo: GPEW,
+        link: "https://martin-farley.medium.com/poverty-buster-the-impact-of-the-2019-green-party-manifesto-on-household-incomes-and-equality-9663c39b783b",
+      },
+      centre: {
+        logo: Centre,
+        link: "https://centrethinktank.co.uk/2022/04/19/the-land-dividend/",
+      },
+      smf: {
+        logo: SMF,
+        link: "https://www.smf.co.uk/commentary_podcasts/cost-of-living-crisis-response/",
+      },
+      cps: {
+        logo: CPS,
+        link: "https://cps.org.uk/research/national-insurance-a-plan-to-blunt-the-pain/",
+      },
+      ubilabs: {
+        logo: UBILabs,
+        link: "https://www.opendemocracy.net/en/oureconomy/we-want-to-give-everyone-in-britain-400-a-month-no-strings-attached/",
+      },
+      liberal: {
+        logo: LiberalParty,
+        link: "https://liberal.org.uk",
+      },
+    }
   }
   const mobile = useMobile();
   const countryQuotes = quoteData[countryId] || [];
@@ -351,6 +370,15 @@ function Collaborations(props) {
               <h6 style={{textAlign: "center", marginBottom: 50}}>{data.position}</h6>
             </div>)}
           </Carousel>
+        </Row>
+        <Row style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+          {
+            Object.values(orgData[countryId] || {}).map(org => (
+              <Col>
+              <a href={org.link}><img src={org.logo} height={50} width={150} style={{objectFit: "contain"}} alt="test" /></a>
+              </Col>
+            ))
+          }
         </Row>
       </Container>
     </div>
