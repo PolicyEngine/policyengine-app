@@ -67,6 +67,10 @@ export function getReformDefinitionCode(metadata, policy) {
     "def modify_parameters(parameters):",
   ];
 
+  if (Object.keys(policy.reform.data) === 0) {
+    lines.push("    pass")
+  }
+
   for (const [parameterName, parameter] of Object.entries(policy.reform.data)) {
     for (let [instant, value] of Object.entries(parameter)) {
       const [start, end] = instant.split(".");
