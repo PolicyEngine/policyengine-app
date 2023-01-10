@@ -8,6 +8,20 @@ import householdBaseline from "../images/home/householdBaseline.png";
 import policyImpact from "../images/home/policyImpact.png";
 import policyScore from "../images/home/policyScore.png";
 import gtag from "../api/analytics";
+import { Carousel } from "antd";
+
+import RobertColvile from "../images/headshots/robert-colvile.jpeg";
+import SimonDuffy from "../images/headshots/simon-duffy.jpeg";
+import MartinFarley from "../images/headshots/martin-farley.jpeg";
+
+import Centre from "../images/logos/orgs/centre.webp";
+import CPS from "../images/logos/orgs/cps.png";
+import GPEW from "../images/logos/orgs/gpew.png";
+import LiberalParty from "../images/logos/orgs/liberal-party.png";
+import SMF from "../images/logos/orgs/smf.png";
+import UBICenter from "../images/logos/orgs/ubicenter.png";
+import UBILabs from "../images/logos/orgs/ubilabs.png";
+import UKEU from "../images/logos/orgs/ukeu.svg";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -176,6 +190,7 @@ export default function HomePage(props) {
         <HouseholdPolicyOptions countryId={countryId} />
       </div>
       <BlogPostHolder countryId={countryId} />
+      <Collaborations countryId={countryId} />
       <WidePanel
         direction="right"
         backgroundColor={style.colors.WHITE}
@@ -256,5 +271,81 @@ export default function HomePage(props) {
         }
       />
     </>
+  );
+}
+
+function Collaborations(props) {
+  const { countryId } = props;
+
+  const quoteData = {
+    uk: [
+      {
+        name: "Robert Colvile",
+        position: "Director of the Centre for Policy Studies",
+        quote: "PolicyEngine has been a really valuable addition to the UK policy space, democratising access to economic modelling and making it easier than ever to apply actual numbers to the policy debate.",
+        headshot: RobertColvile,
+      },
+      {
+        name: "Martin Farley",
+        position: "Convener of the Green Party's Tax and Fiscal Policy Working Group",
+        quote: "PolicyEngine has transformed the Green Party's ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
+        headshot: MartinFarley,
+      },
+      {
+        name: "Dr Simon Duffy",
+        position: "Director of Citizen Network Research",
+        quote: "PolicyEngine is exactly what the world of policy-making needs today. For too long policy on tax and benefits has been lost in a fog of confusion and misleading rhetoric. To have democratic conversations about tax and benefits we need to look the overall picture and see what policies will mean for individuals and families. Policy Engine pulls back the curtain on tax and benefits and helps us find the courage to introduce real reforms.",
+        headshot: SimonDuffy,
+      }
+    ]
+  }
+
+  // eslint-disable-next-line
+  const orgData = {
+    uk: [
+      UKEU,
+      GPEW,
+      LiberalParty,
+      SMF,
+      UBICenter,
+      UBILabs,
+      Centre,
+      CPS,
+    ]
+  }
+  const countryQuotes = quoteData[countryId] || [];
+  if (countryQuotes.length === 0) {
+    return null;
+  }
+  return (
+    <div
+      style={{
+        backgroundColor: style.colors.WHITE,
+        marginTop: 25,
+        marginBottom: 25,
+      }}
+    >
+      <Container style={{ paddingTop: 100 }}>
+        <Row style={{paddingLeft: 300, paddingRight: 300}}>
+          <Carousel autoplay>
+            {countryQuotes.map(data => <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+              <p style={{fontFamily: "Merriweather", fontSize: 20, marginBottom: 50}}>{data.quote}</p>
+              <div style={{display: "flex", justifyContent: "center"}}>
+                <img 
+                  src={data.headshot} 
+                  alt={`${data.name} headshot`}
+                  style={{
+                    width: 100, height: 100, borderRadius: 50, marginBottom: 20,
+                    objectFit: "cover"
+                  }}
+                />
+              </div>
+              <h6 style={{textAlign: "center"}}><b>{data.name}</b></h6>
+              <h6 style={{textAlign: "center", marginBottom: 50}}>{data.position}</h6>
+            </div>)}
+          </Carousel>
+        </Row>
+      </Container>
+    </div>
   );
 }

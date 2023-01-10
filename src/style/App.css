@@ -50,3 +50,7 @@ a {
 div.ant-modal-content {
   border-radius: 25px;
 }
+
+.quote-dots {
+  background-color: "black"
+}
