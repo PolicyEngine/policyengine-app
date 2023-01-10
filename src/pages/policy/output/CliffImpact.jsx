@@ -84,7 +84,7 @@ export default function CliffImpact(props) {
   const cliff_share_change =
     Math.round((impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100) / 100;
   const cliff_gap_change =
-    Math.round((impact.reform.cliff_gap / impact.baseline.cliff_gap - 1 * 100) / 100);
+    Math.round((impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000) / 1000;
 
   const chart = (
     <Plot
