@@ -254,10 +254,12 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
-  } else if (focus === "policyOutput.cliffImpact") {
-    pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
+  }
+
+  if (focus === "policyOutput.cliffImpact") {
+    pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 
   const bottomElements = mobile ?
