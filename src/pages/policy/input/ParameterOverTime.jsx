@@ -2,10 +2,12 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { getReformedParameter } from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
+import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 
 export default function ParameterOverTime(props) {
   const { parameter, policy } = props;
+  const mobile = useMobile();
   let values = parameter.values;
   if (!values) {
     return null;
@@ -100,11 +102,12 @@ export default function ParameterOverTime(props) {
           ...ChartLogo,
           margin: {
             t: 0,
+            r: mobile && 30,
           }
         }}
         style={{
           width: "100%",
-          height: 400,
+          height: mobile ? 200 : 400,
         }}
         config={{
           displayModeBar: false,
