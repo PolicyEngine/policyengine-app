@@ -11,4 +11,4 @@ root.render(
   <PolicyEngine />
 );
 
-serviceWorkerRegistration.register();
+serviceWorkerRegistration.unregister();
