@@ -14,12 +14,12 @@ export default function BottomCarousel(props) {
   return (
     <div
       style={{
-        position: mobile ? "absolute" : "absolute",
-        bottom: mobile ? 200 : 0,
+        position: "absolute",
+        bottom: mobile ? 175 : 0,
         display: "flex",
         height: 80,
-        left: !mobile && "25%",
-        width: mobile ? "90%" : "50%",
+        left: mobile ? 0 : "25%",
+        width: mobile ? "100%" : "50%",
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
         padding: 5,
