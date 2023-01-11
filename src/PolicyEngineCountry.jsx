@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall, updateMetadata } from "./api/call";
 import Header from "./layout/Header";
@@ -6,11 +6,12 @@ import HomePage from "./pages/HomePage";
 import HouseholdPage from "./pages/HouseholdPage";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
-import PolicyPage from "./pages/PolicyPage";
-import BlogPostPage from "./pages/BlogPage";
 import Footer from "./layout/Footer";
-import AboutPage from "./pages/AboutPage";
-import DonatePage from "./pages/DonatePage";
+
+const PolicyPage = lazy(() => import("./pages/PolicyPage"));
+const BlogPostPage = lazy("./pages/BlogPage");
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const DonatePage = lazy(() => import("./pages/DonatePage"));
 
 export default function PolicyEngineCountry(props) {
   const { countryId } = props;
