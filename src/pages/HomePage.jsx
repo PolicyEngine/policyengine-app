@@ -25,6 +25,12 @@ import SMF from "../images/logos/orgs/smf.png";
 import UBILabs from "../images/logos/orgs/ubilabs.png";
 import UKEU from "../images/logos/orgs/ukeu.svg";
 
+import CGO from "../images/logos/orgs/cgo.jpg";
+import EPMT from "../images/logos/orgs/epmt.jpg";
+import F4GI from "../images/logos/orgs/f4gi.jpg";
+import GCV from "../images/logos/orgs/gary-community-ventures.png";
+import MCA from "../images/logos/orgs/mca.jpg";
+
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
   const navigate = useNavigate();
@@ -347,7 +353,29 @@ function Collaborations(props) {
         logo: LiberalParty,
         link: "https://liberal.org.uk",
       },
-    }
+    },
+    us: {
+      f4gi: {
+        logo: F4GI,
+        link: "https://f4gi.org",
+      },
+      epmt: {
+        logo: EPMT,
+        link: "https://endpovertymaketrillions.medium.com/economic-modeling-of-how-to-end-poverty-in-the-united-states-while-saving-taxpayers-trillions-of-1679b751d0c0",
+      },
+      gcv: {
+        logo: GCV,
+        link: "https://garycommunity.org",
+      },
+      mca: {
+        logo: MCA,
+        link: "https://www.marylandchildalliance.org/revenue-raisers",
+      },
+      cgo: {
+        logo: CGO,
+        link: "https://www.thecgo.org/research/how-does-targeted-cash-assistance-affect-incentives-to-work/",
+      }
+    },
   }
   const mobile = useMobile();
   const countryQuotes = quoteData[countryId] || [];
