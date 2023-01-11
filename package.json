@@ -2,7 +2,7 @@
   "name": "policyengine-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://beta.policyengine.org",
+  "homepage": "https://policyengine.org",
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "@n8tb1t/use-scroll-position": "^2.0.3",
