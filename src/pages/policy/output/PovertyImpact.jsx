@@ -72,6 +72,7 @@ export default function PovertyImpact(props) {
         margin: {
           t: 0,
           b: 100,
+          r: 0,
         },
         height: mobile ? 350 : 450,
       }}
