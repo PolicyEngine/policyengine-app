@@ -268,5 +268,23 @@
     "description": "A step-by-step guide to syncing our code with the latest legislation.",
     "filename": "2022-12-23-updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill.md",
     "image": "updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill.webp"
+  },
+  {
+    "title": "From idea to impact: scoring a policy reform on the new PolicyEngine UK",
+    "date": "2023-01-12",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["uk"],
+    "description": "A walkthrough of the new app on a UK tax-benefit reform.",
+    "filename": "2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-uk.md",
+    "image": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-uk.png"
+  },
+  {
+    "title": "From idea to impact: scoring a policy reform on the new PolicyEngine US",
+    "date": "2023-01-12",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["us"],
+    "description": "A walkthrough of the new app on a US tax-benefit reform.",
+    "filename": "2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us.md",
+    "image": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us.png"
   }
 ]
