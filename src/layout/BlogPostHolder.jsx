@@ -60,7 +60,7 @@ function BlogPostPreviewRegular(props) {
       >
         {authorImages.map((authorImage, index) => {
           return (
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex" }} key={index}>
               <img
                 src={authorImage}
                 style={{
