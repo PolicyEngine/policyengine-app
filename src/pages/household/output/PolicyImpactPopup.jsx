@@ -2,12 +2,10 @@ import { Modal } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
 import Button from "../../../controls/Button";
-import useMobile from "../../../layout/Responsive";
 
 export default function PolicyImpactPopup(props) {
     const [needToOpenModal, setNeedToOpenModal] = useState(true);
     const { metadata, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
-    const mobile = useMobile();
     const content = <div>
         <div>
             {
@@ -34,9 +32,10 @@ export default function PolicyImpactPopup(props) {
                     },
                 },
                 keyboard: true,
+                centered: true,
             });
         };
-        if (needToOpenModal && mobile && !hasShownPopulationImpactPopup) {
+        if (needToOpenModal && !hasShownPopulationImpactPopup) {
             openModal();
             setNeedToOpenModal(false);
             setHasShownPopulationImpactPopup(true);
