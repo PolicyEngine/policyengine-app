@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { Route, Routes, useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall, updateMetadata } from "./api/call";
 import Header from "./layout/Header";
@@ -9,7 +9,7 @@ import Footer from "./layout/Footer";
 
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
-const BlogPostPage = lazy("./pages/BlogPage");
+const BlogPostPage = lazy(() => import("./pages/BlogPage"));
 const AboutPage = lazy(() => import("./pages/AboutPage"));
 const DonatePage = lazy(() => import("./pages/DonatePage"));
 
@@ -107,9 +107,11 @@ export default function PolicyEngineCountry(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, searchParams.get("renamed")]);
 
+  const loadingPage = <LoadingCentered />;
   const homePage = <HomePage countryId={countryId} />;
 
   const householdPage = (
+    <Suspense fallback={loadingPage}>
     <HouseholdPage
       metadata={metadata}
       householdId={householdId}
@@ -117,11 +119,13 @@ export default function PolicyEngineCountry(props) {
       hasShownHouseholdPopup={hasShownHouseholdPopup}
       setHasShownHouseholdPopup={setHasShownHouseholdPopup}
     />
+    </Suspense>
   );
 
   const errorPage = <ErrorPage />;
 
   const policyPage = (
+    <Suspense fallback={loadingPage}>
     <PolicyPage 
       metadata={metadata} 
       householdId={householdId} 
@@ -129,9 +133,8 @@ export default function PolicyEngineCountry(props) {
       hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
       setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
     />
+    </Suspense>
   );
-
-  const loadingPage = <LoadingCentered />;
 
   let mainPage = (
     <Routes>
@@ -144,9 +147,9 @@ export default function PolicyEngineCountry(props) {
         path="/policy/*"
         element={metadata ? policyPage : error ? errorPage : loadingPage}
       />
-      <Route path="/blog/*" element={<BlogPostPage />} />
-      <Route path="/about" element={<AboutPage />} />
-      <Route path="/donate" element={<DonatePage />} />
+      <Route path="/blog/*" element={<Suspense fallback={loadingPage}><BlogPostPage /></Suspense>} />
+      <Route path="/about" element={<Suspense fallback={loadingPage}><AboutPage /></Suspense>} />
+      <Route path="/donate" element={<Suspense fallback={loadingPage}><DonatePage /></Suspense>} />
     </Routes>
   );
 
