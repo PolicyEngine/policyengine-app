@@ -151,5 +151,122 @@
     "description": "The UK API explorer and US API explorer describe variables and policy parameters in our models.",
     "filename": "2022-04-29-how-developers-can-explore-the-policyengine-api.md",
     "image": "how-developers-can-explore-the-policyengine-api.jpg"
+  },
+  {
+    "title": "Make Everyone a Policymaker",
+    "date": "2021-10-15",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["global"],
+    "description": "Today we’re (re)launching PolicyEngine to give the public unprecedented insight into the tax and benefit system.",
+    "filename": "2021-10-15-make-everyone-a-policymaker.md",
+    "image": "make-everyone-a-policymaker.webp"
+  },
+  {
+    "title": "Analysing Autumn Budget Universal Credit reforms with PolicyEngine",
+    "date": "2021-10-30",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["uk"],
+    "description": "See how the reform affects the UK population or your household.",
+    "filename": "2021-10-30-analysing-autumn-budget-universal-credit-reforms-with-policyengine.md",
+    "image": "analysing-autumn-budget-universal-credit-reforms-with-policyengine.webp"
+  },
+  {
+    "title": "Income Tax cuts Rishi Sunak is reportedly considering",
+    "date": "2021-12-04",
+    "authors": ["max-ghenis"],
+    "tags": ["uk"],
+    "description": "Explore the basic rate and additional rate cuts in PolicyEngine.",
+    "filename": "2021-12-04-income-tax-cuts-rishi-sunak-is-reportedly-considering.md",
+    "image": "income-tax-cuts-rishi-sunak-is-reportedly-considering.webp"
+  },
+  {
+    "title": "PolicyEngine’s 2021 year in review",
+    "date": "2021-12-29",
+    "authors": ["max-ghenis"],
+    "tags": ["global"],
+    "description": "PolicyEngine’s inaugural year was a substantial one for public policy.",
+    "filename": "2021-12-29-policyengines-2021-year-in-review.md",
+    "image": "policyengines-2021-year-in-review.webp"
+  },
+  {
+    "title": "The Green Party Manifesto at PolicyFest",
+    "date": "2022-01-26",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["uk"],
+    "description": "Explore the Green Party Manifesto on PolicyEngine.",
+    "filename": "2022-01-26-the-green-party-manifesto-at-policyfest.md",
+    "image": "the-green-party-manifesto-at-policyfest.webp"
+  },
+  {
+    "title": "PolicyEngine arrives stateside",
+    "date": "2022-03-31",
+    "authors": ["max-ghenis"],
+    "tags": ["us"],
+    "description": "Today, we’re beta-launching PolicyEngine US and several other new features.",
+    "filename": "2022-03-31-policyengine-comes-stateside.md",
+    "image": "policyengine-comes-stateside.webp"
+  },
+  {
+    "title": "How PolicyEngine estimates the effects of UK carbon taxes",
+    "date": "2022-04-23",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["uk"],
+    "description": "By fusing datasets with machine learning, we empower anyone to integrate custom carbon taxes with other tax and benefit reforms.",
+    "filename": "2022-04-23-how-policyengine-estimates-the-effects-of-uk-carbon-taxes.md",
+    "image": "how-policyengine-estimates-the-effects-of-uk-carbon-taxes.png"
+  },
+  {
+    "title": "Tax cuts in Prime Minister Truss’s Growth Plan 2022",
+    "date": "2022-09-23",
+    "authors": ["max-ghenis"],
+    "tags": ["uk"],
+    "description": "See the impact on the population and on your household in PolicyEngine UK.",
+    "filename": "2022-09-23-tax-cuts-in-prime-minister-trusss-growth-plan.md",
+    "image": "tax-cuts-in-prime-minister-trusss-growth-plan.png"
+  },
+  {
+    "title": "How to simulate basic and guaranteed income policies in PolicyEngine US",
+    "date": "2022-09-27",
+    "authors": ["max-ghenis"],
+    "tags": ["us"],
+    "description": "From universal basic income to age-dependent means-tested payments, we’ve got you covered.",
+    "filename": "2022-09-27-how-to-simulate-basic-and-guaranteed-income-policies-in-policyengine-us.md",
+    "image": "how-to-simulate-basic-and-guaranteed-income-policies-in-policyengine-us.png"
+  },
+  {
+    "title": "PolicyEngine launches in New York state",
+    "date": "2022-10-21",
+    "authors": ["max-ghenis"],
+    "tags": ["us"],
+    "description": "New Yorkers can now estimate their state income taxes alongside federal taxes and benefits — and change the rules, too.",
+    "filename": "2022-10-21-policyengine-launches-in-new-york-state.md",
+    "image": "policyengine-launches-in-new-york-state.webp"
+  },
+  {
+    "title": "Computing your Oregon Earned Income Tax Credit in PolicyEngine",
+    "date": "2022-10-24",
+    "authors": ["kevin-foster"],
+    "tags": ["us"],
+    "description": "We walk you through it step by step.",
+    "filename": "2022-10-24-computing-your-oregon-earned-income-tax-credit.md",
+    "image": "computing-your-oregon-earned-income-tax-credit.png"
+  },
+  {
+    "title": "Estimating your Supplemental Security Income benefits in PolicyEngine",
+    "date": "2022-10-28",
+    "authors": ["max-ghenis"],
+    "tags": ["us"],
+    "description": "Enter your household information, and our free web app will estimate your SSI — plus other taxes and benefits.",
+    "filename": "2022-10-28-estimating-your-supplemental-security-income-benefits-in-policyengine.md",
+    "image": "estimating-your-supplemental-security-income-benefits-in-policyengine.webp"
+  },
+  {
+    "title": "Updating PolicyEngine to reflect SNAP reform in the omnibus bill",
+    "date": "2022-12-23",
+    "authors": ["max-ghenis"],
+    "tags": ["us"],
+    "description": "A step-by-step guide to syncing our code with the latest legislation.",
+    "filename": "2022-12-23-updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill.md",
+    "image": "updating-policyengine-to-reflect-snap-reform-in-the-omnibus-bill.webp"
   }
 ]
