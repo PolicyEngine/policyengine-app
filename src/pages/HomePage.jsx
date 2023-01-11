@@ -15,6 +15,8 @@ import SimonDuffy from "../images/headshots/simon-duffy.jpeg";
 import MartinFarley from "../images/headshots/martin-farley.jpeg";
 import TorrinWilkins from "../images/headshots/torrin-wilkins.webp";
 
+import DarrylFinkton from "../images/headshots/darryl-finkton.jpeg";
+
 import Centre from "../images/logos/orgs/centre.webp";
 import CPS from "../images/logos/orgs/cps.png";
 import GPEW from "../images/logos/orgs/gpew.png";
@@ -303,7 +305,15 @@ function Collaborations(props) {
         quote: "PolicyEngine is an incredible tool for think tanks, policy makers and anyone who wants to understand the impact of policy decisions. It has been invaluable for Centre Think Tank when writing reports and has allowed us to propose new policies with ease whilst clearly breaking down the impacts on different groups. For us it has been a game changer.",
         headshot: TorrinWilkins,
       }
-    ]
+    ],
+    us: [
+      {
+        name: "Darryl Finkton Jr.",
+        position: "Founder of End Poverty Make Trillions",
+        quote: "PolicyEngine is bringing applied science and rationality to governance. We have the ability to design sustainable, effective systems if we just use all the wonderful data we have at our disposal. Move partisan politics aside so we can create a world that makes sense.",
+        headshot: DarrylFinkton,
+      }
+    ],
   }
 
   // eslint-disable-next-line
