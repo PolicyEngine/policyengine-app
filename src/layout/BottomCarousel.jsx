@@ -15,7 +15,7 @@ export default function BottomCarousel(props) {
     <div
       style={{
         position: "absolute",
-        bottom: mobile ? 175 : 0,
+        bottom: mobile ? "25vh" : 0,
         display: "flex",
         height: 80,
         left: mobile ? 0 : "25%",
