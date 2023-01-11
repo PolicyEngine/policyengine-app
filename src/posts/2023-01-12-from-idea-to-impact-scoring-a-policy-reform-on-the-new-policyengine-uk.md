@@ -82,8 +82,4 @@ We can also see the impact on marginal tax rates: for a household with £55,000 
 
 From here, you can go back and change any input variable (by the left navigation menu, or with the search box in the top left), go back and change the policy reform, or revisit any other part of the app.
 
-US quotes:
-
-* Brian
-
-* Nate
+Let us know what policy ideas you create, by tagging @ThePolicyEngine.
