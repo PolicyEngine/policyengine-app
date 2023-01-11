@@ -3,11 +3,11 @@ import { Route, Routes, useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall, updateMetadata } from "./api/call";
 import Header from "./layout/Header";
 import HomePage from "./pages/HomePage";
-import HouseholdPage from "./pages/HouseholdPage";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import Footer from "./layout/Footer";
 
+const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const BlogPostPage = lazy("./pages/BlogPage");
 const AboutPage = lazy(() => import("./pages/AboutPage"));
