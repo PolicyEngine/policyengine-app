@@ -294,13 +294,13 @@ function Collaborations(props) {
       {
         name: "Dr Simon Duffy",
         position: "Director of Citizen Network Research",
-        quote: "PolicyEngine is exactly what the world of policy-making needs today. For too long policy on tax and benefits has been lost in a fog of confusion and misleading rhetoric. To have democratic conversations about tax and benefits we need to look the overall picture and see what policies will mean for individuals and families. Policy Engine pulls back the curtain on tax and benefits and helps us find the courage to introduce real reforms.",
+        quote: "PolicyEngine is exactly what the world of policy-making needs today. For too long policy on tax and benefits has been lost in a fog of confusion and misleading rhetoric. To have democratic conversations about tax and benefits we need to look the overall picture and see what policies will mean for individuals and families. PolicyEngine pulls back the curtain on tax and benefits and helps us find the courage to introduce real reforms.",
         headshot: SimonDuffy,
       },
       {
         name: "Torrin Wilkins",
         position: "Director and Founder of Centre Think Tank",
-        quote: "Policy Engine is an incredible tool for think tanks, policy makers and anyone who wants to understand the impact of policy decisions. It has been invaluable for Centre Think Tank when writing reports and has allowed us to propose new policies with ease whilst clearly breaking down the impacts on different groups. For us it has been a game changer.",
+        quote: "PolicyEngine is an incredible tool for think tanks, policy makers and anyone who wants to understand the impact of policy decisions. It has been invaluable for Centre Think Tank when writing reports and has allowed us to propose new policies with ease whilst clearly breaking down the impacts on different groups. For us it has been a game changer.",
         headshot: TorrinWilkins,
       }
     ]
