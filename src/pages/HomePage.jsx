@@ -16,6 +16,7 @@ import MartinFarley from "../images/headshots/martin-farley.jpeg";
 import TorrinWilkins from "../images/headshots/torrin-wilkins.webp";
 
 import DarrylFinkton from "../images/headshots/darryl-finkton.jpeg";
+import NateGolden from "../images/headshots/nate-golden.jpg";
 
 import Centre from "../images/logos/orgs/centre.webp";
 import CPS from "../images/logos/orgs/cps.png";
@@ -318,6 +319,12 @@ function Collaborations(props) {
         position: "Founder of End Poverty Make Trillions",
         quote: "PolicyEngine is bringing applied science and rationality to governance. We have the ability to design sustainable, effective systems if we just use all the wonderful data we have at our disposal. Move partisan politics aside so we can create a world that makes sense.",
         headshot: DarrylFinkton,
+      },
+      {
+        name: "Nate Golden",
+        position: "Founder and President of the Maryland Child Alliance",
+        quote: "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
+        headshot: NateGolden,
       }
     ],
   }
