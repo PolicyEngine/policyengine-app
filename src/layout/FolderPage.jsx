@@ -21,7 +21,7 @@ export default function FolderPage(props) {
           justifyContent: mobile ? "center" : "left",
         }}
       >
-        {children.map((child) => (
+        {children.filter(child => !child.name.includes("pycache")).map((child) => (
           <motion.div
             key={child.name}
             style={{

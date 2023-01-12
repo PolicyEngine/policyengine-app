@@ -4,7 +4,7 @@ export function buildParameterTree(parameters) {
   let tree = {};
 
   for (const parameter of Object.values(parameters).filter(
-    (parameter) => parameter.economy || parameter.household
+    (parameter) => (parameter.economy || parameter.household)
   )) {
     const nodeToInsert = {
       name: parameter.parameter,

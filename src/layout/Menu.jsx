@@ -36,6 +36,7 @@ function MenuItemGroup(props) {
   // re-open if the selected item becomes a child of the group, and
   // close if the selected item moves out of the group.
 
+
   const [expanded, setExpanded] = useState(selected.includes(name));
   const [selectedWhenExpandedLastToggled, setSelectedWhenExpandedLastToggled] =
     useState(selected);
@@ -57,6 +58,9 @@ function MenuItemGroup(props) {
   if (showExpanded) {
     // Sort children by their index property
     for (let child of children) {
+      if (child.name.includes("pycache")) {
+        continue;
+      }
       if (child.children) {
         expandedChildren.push(
           <MenuItemGroup
