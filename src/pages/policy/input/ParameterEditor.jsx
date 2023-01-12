@@ -1,6 +1,6 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
-import { DatePicker, Switch } from "antd";
+import { Alert, DatePicker, Switch } from "antd";
 import moment from "moment";
 import InputField from "../../../controls/InputField";
 import {
@@ -108,6 +108,9 @@ export default function ParameterEditor(props) {
       description={parameter.description}
     >
       {editControl}
+      {
+        !parameter.economy && <Alert message="PolicyEngine does not currently model this parameter in society-wide economic simulations." type="warning" />
+      }
       <ParameterOverTime parameter={parameter} policy={policy} />
     </CenteredMiddleColumn>
   );
