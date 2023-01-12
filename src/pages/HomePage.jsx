@@ -95,8 +95,7 @@ function HouseholdPolicyOptions(props) {
       >
         <h2>Compute the impact of policy reforms</h2>
         <p>
-          Use PolicyEngine to calculate your taxes and benefits, and explore how
-          they'd change under different scenarios and policies.
+          Use PolicyEngine to build reforms to taxes and benefits, and see how they'd affect the economy and individual households.
         </p>
       </motion.div>
     </div>
