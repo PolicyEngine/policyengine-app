@@ -5,7 +5,7 @@ from gcp.social_card_tags import add_social_card_tags
 app = Flask(__name__, static_folder="build")
 
 REDIRECTS = {
-    "https://policyengine.org/uk/situation?child_UBI=46&adult_UBI=92&senior_UBI=46&WA_adult_UBI_age=16": "https://policyengine.org/uk/household?focus=intro&reform=135&region=uk&timePeriod=2023&baseline=1&household=72",
+    "https://policyengine.org/uk/situation?child_UBI=46&adult_UBI=92&senior_UBI=46&WA_adult_UBI_age=16": "https://policyengine.org/uk/household?focus=intro&reform=135&region=uk&timePeriod=2023&baseline=1",
 }
 
 # Should redirect to https
