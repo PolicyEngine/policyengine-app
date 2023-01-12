@@ -31,6 +31,7 @@ import EPMT from "../images/logos/orgs/epmt.jpg";
 import F4GI from "../images/logos/orgs/f4gi.jpg";
 import GCV from "../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../images/logos/orgs/mca.jpg";
+import UBICenter from "../images/logos/orgs/ubicenter.png";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -360,6 +361,10 @@ function Collaborations(props) {
         logo: LiberalParty,
         link: "https://liberal.org.uk",
       },
+      ubicenter: {
+        logo: UBICenter,
+        link: "https://ubicenter.org/",
+      }
     },
     us: {
       f4gi: {
@@ -381,6 +386,10 @@ function Collaborations(props) {
       cgo: {
         logo: CGO,
         link: "https://www.thecgo.org/research/how-does-targeted-cash-assistance-affect-incentives-to-work/",
+      },
+      ubicenter: {
+        logo: UBICenter,
+        link: "https://ubicenter.org/",
       }
     },
   }
@@ -420,7 +429,7 @@ function Collaborations(props) {
           {
             Object.values(orgData[countryId] || {}).map(org => (
               <Col style={{padding: mobile ? 20 : 10}}>
-              <a href={org.link}><img src={org.logo} height={mobile ? 30 : 50} width={mobile ? 90 : 150} style={{objectFit: "contain"}} alt="test" /></a>
+              <a href={org.link}><img src={org.logo} height={mobile ? 30 : 50} width={mobile ? 90 : 130} style={{objectFit: "contain"}} alt="test" /></a>
               </Col>
             ))
           }
