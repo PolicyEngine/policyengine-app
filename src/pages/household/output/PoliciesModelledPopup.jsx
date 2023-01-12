@@ -11,20 +11,22 @@ function PoliciesModelledChecklist(props) {
         return null;
     }
     const modelledPolicies = metadata.modelled_policies;
-    let modelledNames = modelledPolicies.core.modelled;
-    let notModelledNames = modelledPolicies.core.not_modelled;
+    let modelledNames = modelledPolicies.core.modelled || [];
+    let notModelledNames = modelledPolicies.core.not_modelled || [];
     for (const variable of Object.keys(modelledPolicies.filtered)) {
         for (const value of Object.keys(modelledPolicies.filtered[variable])) {
             // Check if the household input matches the filter
-            if (getValueFromHousehold(
+            const actualValue = getValueFromHousehold(
                 variable,
-                null,
-                null,
+                2023,
+                "your household",
                 householdInput,
                 metadata
-            ) === value) {
-                modelledNames = modelledNames.concat(modelledPolicies.filtered[variable][value].modelled);
-                notModelledNames = notModelledNames.concat(modelledPolicies.filtered[variable][value].not_modelled);
+            );
+            console.log(`Checking if ${variable} is ${value} (actual value is ${actualValue})`, householdInput)
+            if (actualValue === value) {
+                modelledNames = modelledNames.concat(modelledPolicies.filtered[variable][value].modelled || []);
+                notModelledNames = notModelledNames.concat(modelledPolicies.filtered[variable][value].not_modelled || []);
             }
         }
     }
@@ -41,10 +43,17 @@ function PoliciesModelledChecklist(props) {
     });
     return <div>
         {modelledSteps}
-        <h6 style={{marginTop: 10}}>Coming soon</h6>
-        <div>
-            {notModelledSteps}
-        </div>
+        {
+            notModelledNames.length > 0 && (
+                <>
+                <h6 style={{marginTop: 10}}>Coming soon</h6>
+                <div>
+                    {notModelledSteps}
+                </div>
+                </>
+            )
+        }
+        
         <p>
             PolicyEngine results may not constitute exact tax liabilities or benefit
             entitlements.
