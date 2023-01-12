@@ -9,7 +9,10 @@ import moment from "moment/moment";
 function BlogPostPreviewRegular(props) {
   const { title, description, image, filename, countryId, authors, date } =
     props;
-  const name = filename.split(".")[0];
+  let name = filename.split(".")[0];
+  if (name.startsWith("uk-") || name.startsWith("us-") || name.startsWith("ca-")) {
+    name = name.substring(3);
+  }
   const imageSrc = require(`../images/posts/${image}`);
   const navigate = useNavigate();
   const authorImages = authors.map((author) => {

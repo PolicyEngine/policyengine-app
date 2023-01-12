@@ -286,5 +286,23 @@
     "description": "A walkthrough of the new app on a US tax-benefit reform.",
     "filename": "2023-01-12-from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us.md",
     "image": "from-idea-to-impact-scoring-a-policy-reform-on-the-new-policyengine-us.png"
+  },
+  {
+    "title": "The New PolicyEngine",
+    "date": "2023-01-12 00:00:01",
+    "authors": ["max-ghenis"],
+    "tags": ["us"],
+    "description": "We’re exiting beta with the most accessible tax and benefit model ever built.",
+    "filename": "us-the-new-policyengine.md",
+    "image": "us-the-new-policyengine.png"
+  },
+  {
+    "title": "The New PolicyEngine",
+    "date": "2023-01-12 00:00:01",
+    "authors": ["max-ghenis"],
+    "tags": ["uk"],
+    "description": "We’re taking economic policy to the next level with the most accessible tax and benefit model ever built.",
+    "filename": "uk-the-new-policyengine.md",
+    "image": "uk-the-new-policyengine.png"
   }
 ]

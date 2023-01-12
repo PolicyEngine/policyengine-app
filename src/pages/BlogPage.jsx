@@ -177,10 +177,17 @@ export default function BlogPostPage(props) {
   // The URL will be in the format /uk/blog/post-name
   // We need to extract the countryId and postName from the URL
   const url = window.location.pathname;
+  const { countryId } = props;
   const postName = url.split("/")[3];
-  const postData = postJson.find(
+  let postData = postJson.find(
     (post) => post.filename.split(".")[0] === postName
   );
+  if (!postData) {
+    // Try appending {countryId}- to the postName
+    postData = postJson.find(
+      (post) => post.filename.split(".")[0] === `${countryId}-${postName}`
+    );
+  }
   const { title, description, image, filename, authors } = postData;
   const imageSrc = require(`../images/posts/${image}`);
   const markdownFile = require(`../posts/${filename}`);

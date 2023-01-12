@@ -147,7 +147,7 @@ export default function PolicyEngineCountry(props) {
         path="/policy/*"
         element={metadata ? policyPage : error ? errorPage : loadingPage}
       />
-      <Route path="/blog/*" element={<Suspense fallback={loadingPage}><BlogPostPage /></Suspense>} />
+      <Route path="/blog/*" element={<Suspense fallback={loadingPage}><BlogPostPage countryId={countryId} /></Suspense>} />
       <Route path="/about" element={<Suspense fallback={loadingPage}><AboutPage /></Suspense>} />
       <Route path="/donate" element={<Suspense fallback={loadingPage}><DonatePage /></Suspense>} />
     </Routes>
