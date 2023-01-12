@@ -54,3 +54,7 @@ div.ant-modal-content {
 .quote-dots {
   background-color: "black"
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
