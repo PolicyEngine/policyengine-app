@@ -407,7 +407,7 @@ function Collaborations(props) {
       <Container style={{ paddingTop: 100 }}>
         <Row style={{paddingLeft: mobile ? 30 : 300, paddingRight: mobile ? 30 : 300}}>
           <Carousel autoplay>
-            {countryQuotes.map(data => <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+            {countryQuotes.map(data => <div key={data.name} style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
               <p style={{fontFamily: "Merriweather", fontSize: 20, marginBottom: 50}}>{data.quote}</p>
               <div style={{display: "flex", justifyContent: "center"}}>
                 <img 
@@ -427,7 +427,7 @@ function Collaborations(props) {
         <Row style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
           {
             Object.values(orgData[countryId] || {}).map(org => (
-              <Col style={{padding: mobile ? 20 : 10}}>
+              <Col key={org.link} style={{padding: mobile ? 20 : 10}}>
               <a href={org.link}><img src={org.logo} height={mobile ? 30 : 50} width={mobile ? 90 : 130} style={{objectFit: "contain"}} alt="test" /></a>
               </Col>
             ))

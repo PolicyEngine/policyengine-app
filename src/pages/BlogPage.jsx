@@ -110,7 +110,13 @@ function LeftContents(props) {
   // Find the lines that start with ##, ###, or ####
   const headers = lines.filter((line) => line.startsWith("##"));
   const headerLevels = headers.map((header) => header.split("#").length - 1);
-  const headerTexts = headers.map((header) => header.split(" ").slice(1).join(" "));
+  const headerTexts = headers.map((header) => {
+    const text = header.split(" ").slice(1).join(" ");
+    if (text.includes("[")) {
+      return text.split("[").slice(1).join("[").split("]")[0];
+    }
+    return text;
+  });
   const headerSlugs = headers.map((header) => header.split(" ").slice(1).join(" ").split(" ").join("-").replace("\\", "").replace(/,/g, ""));
   const headerStartYs = headerSlugs.map((slug) => {
     const element = document.getElementById(slug);
@@ -285,6 +291,7 @@ export default function BlogPostPage(props) {
               },
               h3: ({ children }) => {
                 const headerText = children[0];
+                console.log(headerText, headerText.split)
                 return <h3
                   id={headerText.split(" ").join("-").replace(/,/g, "")}
                 >
