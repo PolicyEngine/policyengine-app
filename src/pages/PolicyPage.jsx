@@ -17,6 +17,7 @@ import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import POLICY_OUTPUT_TREE from "./policy/output/tree";
+import { capitalize } from "../api/language";
 
 function ParameterSearch(props) {
   const { metadata } = props;
@@ -193,7 +194,7 @@ function MobileTreeNavigationHolder(props) {
             setSearchParams(newSearch);
           }}
         >
-          {breadcrumb.label}
+          {capitalize(breadcrumb.label)}
           {i < breadcrumbs.length - 1 && (
             <span
               style={{

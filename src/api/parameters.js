@@ -6,9 +6,10 @@ export function buildParameterTree(parameters) {
   for (const parameter of Object.values(parameters).filter(
     (parameter) => (parameter.economy || parameter.household)
   )) {
+
     const nodeToInsert = {
       name: parameter.parameter,
-      label: parameter.label || parameter.parameter.split(/\.|\[/).pop(),
+      label: (parameter.label || parameter.parameter.split(/\.|\[/).pop()).replace("_", " "),
       index: parameter.indexInModule,
     };
     // Split based on . or [
@@ -22,6 +23,12 @@ export function buildParameterTree(parameters) {
     for (const key of pathComponents.slice(0, -1)) {
       cumulativePath += key;
       const fixedCumulativePath = cumulativePath;
+      let label = key;
+      // Transform e.g. "0]" -> 1
+      if (key.endsWith("]")) {
+        label = `Bracket ${parseInt(key.slice(0, -1)) + 1}`;
+      }
+      label = label.replace("_", " ");
       if (!currentNode.children) {
         currentNode.children = [];
       }
@@ -31,7 +38,7 @@ export function buildParameterTree(parameters) {
         )
       ) {
         currentNode.children.push({
-          label: key,
+          label: label,
           name: cumulativePath,
           index: 0,
           children: [],
@@ -54,6 +61,7 @@ export function buildParameterTree(parameters) {
       console.log("Error inserting node", nodeToInsert, "into", currentNode);
     }
   }
+  console.log(tree)
   return tree.children.find((child) => child.name === "gov");
 }
 
