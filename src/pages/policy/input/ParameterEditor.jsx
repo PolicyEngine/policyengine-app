@@ -100,12 +100,16 @@ export default function ParameterEditor(props) {
     </div>
   );
 
+  const timePeriodSentence = parameter.period ? 
+        `This parameter is ${parameter.period}ly.` :
+        "";
+
   return (
     <CenteredMiddleColumn
       marginTop="5%"
       marginBottom={0}
       title={capitalize(parameter.label)}
-      description={parameter.description}
+      description={parameter.description + timePeriodSentence}
     >
       {editControl}
       {
