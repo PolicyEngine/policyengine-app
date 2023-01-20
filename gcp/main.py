@@ -6,7 +6,7 @@ from subprocess import STDOUT, check_call
 from pyvirtualdisplay import Display
 import time
 
-app = Flask(__name__, static_folder="build")
+app = application = Flask(__name__, static_folder="build")
 
 # Add ./chromedriver to PATH
 if os.getcwd() not in os.environ["PATH"]:
@@ -67,13 +67,16 @@ def serve(path):
             return send_index_html()
 
 
-# This endpoint should enable slashes in the URL (e.g. /social-card/uk/policy?reform=1)
+# This endpoint should enable slashes in the URL (e.g. /social-card/uk/policy?reform=1). IMPORTANT: query parameters should be included in path
 @app.route("/social-card/<path:path>")
 def social_card(path):
     # Use Selenium to render the page and return a screenshot
+    query_string = request.query_string.decode("utf-8")
     url = f"https://policyengine.org/{path}"
+    if query_string:
+        url += f"?{query_string}"
     if os.environ.get("app-prod") == "true":
-        display = Display(visible=0, size=(1920, 1080))
+        display = Display(visible=0, size=(800, 418))
         display.start()
     driver = webdriver.Firefox()
     driver.get(url)
