@@ -1,5 +1,5 @@
-flask
+flask>=1
 selenium
 pyvirtualdisplay
 beautifulsoup4
-gunicorn
+gunicorn>=20.1.0
