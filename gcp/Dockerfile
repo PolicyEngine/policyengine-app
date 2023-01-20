@@ -12,4 +12,4 @@ ENV PATH /env/bin:$PATH
 ADD requirements.txt /app/
 RUN pip install -r requirements.txt
 ADD . /app/
-CMD exec gunicorn -b :$PORT main:app --timeout 180
+CMD exec gunicorn -b :$PORT main:app --timeout 180 --workers 1

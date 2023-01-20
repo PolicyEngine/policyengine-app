@@ -24,7 +24,7 @@ REDIRECTS = {
 
 @app.before_request
 def before_request():
-    if request.url.startswith("http://"):
+    if request.url.startswith("httpa://"):
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
@@ -72,15 +72,17 @@ def serve(path):
 def social_card(path):
     # Use Selenium to render the page and return a screenshot
     url = f"https://policyengine.org/{path}"
-    display = Display(visible=0, size=(1920, 1080))
-    display.start()
-    driver = webdriver.Chrome()
+    if os.environ.get("app-prod") == "true":
+        display = Display(visible=0, size=(1920, 1080))
+        display.start()
+    driver = webdriver.Firefox()
     driver.get(url)
     # Wait for the page to load
-    time.sleep(10)
+    time.sleep(7)
     screenshot = driver.get_screenshot_as_png()
     driver.quit()
-    display.stop()
+    if os.environ.get("app-prod") == "true":
+        display.stop()
 
     return screenshot, 200, {"Content-Type": "image/png"}
 
