@@ -7,3 +7,4 @@ handlers:
 env_variables:
   FLASK_APP: app.py
   FLASK_ENV: production
+  APP_ENGINE: true

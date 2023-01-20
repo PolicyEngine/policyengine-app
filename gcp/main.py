@@ -6,7 +6,7 @@ from subprocess import STDOUT, check_call
 from pyvirtualdisplay import Display
 import time
 
-if os.name == 'nt':
+if os.environ.get("APP_ENGINE") == "true":
     check_call(['apt-get', 'install', '-y', 'xvfb'], stdout=open(os.devnull,'wb'), stderr=STDOUT)
 
     check_call(['apt-get', 'install', '-y', 'firefox'], stdout=open(os.devnull,'wb'), stderr=STDOUT)
