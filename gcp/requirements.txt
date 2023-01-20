@@ -2,3 +2,4 @@ flask
 selenium
 pyvirtualdisplay
 beautifulsoup4
+gunicorn
