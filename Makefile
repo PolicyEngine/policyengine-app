@@ -10,6 +10,8 @@ deploy-setup:
 	cp gcp/main.py ./main.py
 	cp gcp/social_card_tags.py ./social_card_tags.py
 	cp gcp/requirements.txt ./requirements.txt
+	cp gcp/Dockerfile ./Dockerfile
+	cp gcp/geckodriver ./geckodriver
 deploy: deploy-setup build
 	cp -r ./social_cards/ ./build/static/media/social_cards/
 	y | gcloud app deploy --project policyengine-app

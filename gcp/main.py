@@ -6,23 +6,6 @@ from subprocess import STDOUT, check_call
 from pyvirtualdisplay import Display
 import time
 
-if False:
-    check_call(['apt-get', 'install', '-y', 'xvfb'], stdout=open(os.devnull,'wb'), stderr=STDOUT)
-
-    check_call(['apt-get', 'install', '-y', 'firefox'], stdout=open(os.devnull,'wb'), stderr=STDOUT)
-
-    GECKODRIVER_PATH = Path(__file__).parent / "geckodriver"
-    GECKODRIVER_URL = "https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz"
-    
-    # Save the tar.gz file in the current folder
-    check_call(['wget', GECKODRIVER_URL, '-O', GECKODRIVER_PATH.parent], stdout=open(os.devnull,'wb'), stderr=STDOUT)
-
-    # Unzip the tar.gz file
-    check_call(['tar', '-xvzf', GECKODRIVER_PATH.parent / "geckodriver-v0.32.0-linux64.tar.gz"], stdout=open(os.devnull,'wb'), stderr=STDOUT)
-
-    # Make the geckodriver executable
-    check_call(['chmod', '+x', GECKODRIVER_PATH], stdout=open(os.devnull,'wb'), stderr=STDOUT)
-
 app = Flask(__name__, static_folder="build")
 
 # Add ./chromedriver to PATH
@@ -38,13 +21,14 @@ REDIRECTS = {
 
 # Should redirect to https
 
+
 @app.before_request
 def before_request():
     if request.url.startswith("http://"):
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
-    
+
     if request.url in REDIRECTS:
         return redirect(REDIRECTS[request.url])
 
@@ -82,7 +66,8 @@ def serve(path):
         except FileNotFoundError:
             return send_index_html()
 
-#This endpoint should enable slashes in the URL (e.g. /social-card/uk/policy?reform=1)
+
+# This endpoint should enable slashes in the URL (e.g. /social-card/uk/policy?reform=1)
 @app.route("/social-card/<path:path>")
 def social_card(path):
     # Use Selenium to render the page and return a screenshot

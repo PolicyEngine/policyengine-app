@@ -1,10 +1,7 @@
-runtime: python37
-
-handlers:
-  - url: /.*
-    script: app.app
+runtime: custom
+env: flex
+entrypoint: gunicorn -b :$PORT main:app --timeout 180
 
 env_variables:
-  FLASK_APP: app.py
+  FLASK_APP: main.py
   FLASK_ENV: production
-  APP_ENGINE: true
