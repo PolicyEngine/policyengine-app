@@ -1,8 +1,36 @@
 from flask import Flask, send_from_directory, request, redirect
 from pathlib import Path
 from gcp.social_card_tags import add_social_card_tags
+import os
+from subprocess import STDOUT, check_call
+from pyvirtualdisplay import Display
+import time
+
+if os.name == 'nt':
+    check_call(['apt-get', 'install', '-y', 'xvfb'], stdout=open(os.devnull,'wb'), stderr=STDOUT)
+
+    check_call(['apt-get', 'install', '-y', 'firefox'], stdout=open(os.devnull,'wb'), stderr=STDOUT)
+
+    GECKODRIVER_PATH = Path(__file__).parent / "geckodriver"
+    GECKODRIVER_URL = "https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz"
+    
+    # Save the tar.gz file in the current folder
+    check_call(['wget', GECKODRIVER_URL, '-O', GECKODRIVER_PATH.parent], stdout=open(os.devnull,'wb'), stderr=STDOUT)
+
+    # Unzip the tar.gz file
+    check_call(['tar', '-xvzf', GECKODRIVER_PATH.parent / "geckodriver-v0.32.0-linux64.tar.gz"], stdout=open(os.devnull,'wb'), stderr=STDOUT)
+
+    # Make the geckodriver executable
+    check_call(['chmod', '+x', GECKODRIVER_PATH], stdout=open(os.devnull,'wb'), stderr=STDOUT)
 
 app = Flask(__name__, static_folder="build")
+
+# Add ./chromedriver to PATH
+if os.getcwd() not in os.environ["PATH"]:
+    os.environ["PATH"] += os.pathsep + os.getcwd()
+
+from selenium import webdriver
+
 
 REDIRECTS = {
     "https://policyengine.org/uk/situation?child_UBI=46&adult_UBI=92&senior_UBI=46&WA_adult_UBI_age=16": "https://policyengine.org/uk/household?focus=intro&reform=135&region=uk&timePeriod=2023&baseline=1",
@@ -12,7 +40,7 @@ REDIRECTS = {
 
 @app.before_request
 def before_request():
-    if request.url.startswith("http://"):
+    if request.url.startswith("https://"):
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
@@ -53,6 +81,23 @@ def serve(path):
             return send_from_directory(app.static_folder, path)
         except FileNotFoundError:
             return send_index_html()
+
+#This endpoint should enable slashes in the URL (e.g. /social-card/uk/policy?reform=1)
+@app.route("/social-card/<path:path>")
+def social_card(path):
+    # Use Selenium to render the page and return a screenshot
+    url = f"https://policyengine.org/{path}"
+    display = Display(visible=0, size=(1920, 1080))
+    display.start()
+    driver = webdriver.Chrome()
+    driver.get(url)
+    # Wait for the page to load
+    time.sleep(10)
+    screenshot = driver.get_screenshot_as_png()
+    driver.quit()
+    display.stop()
+
+    return screenshot, 200, {"Content-Type": "image/png"}
 
 
 @app.errorhandler(404)

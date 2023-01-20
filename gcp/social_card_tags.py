@@ -43,7 +43,7 @@ def get_image(path: str, query_params: dict):
             [f"{k}-{v}" for k, v in query_params.items()]
         )
         path = path + "-" + joined_query_params
-    
+
     original_path = path
 
     path = (
@@ -66,14 +66,16 @@ def get_image(path: str, query_params: dict):
         if len(image_files) > 0:
             filename = image_files[0].name
             return f"https://policyengine.org/static/media/{filename}"
-    
+
     social_card_folder = Path("./social_cards")
     social_card_files = list(social_card_folder.glob(f"{path}.*"))
     if len(social_card_files) > 0:
         filename = social_card_files[0].name
         return f"https://policyengine.org/static/media/social_cards/{filename}"
     else:
-        return f"https://policyengine.org/static/media/social_cards/main_logo.png"
+        return (
+            f"https://policyengine.org/static/media/social_cards/main_logo.png"
+        )
 
 
 def get_description(path: str, query_params: dict):

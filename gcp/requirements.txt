@@ -1,2 +1,4 @@
 flask
+selenium==3.13.0
+pyvirtualdisplay==0.2.1
 beautifulsoup4
