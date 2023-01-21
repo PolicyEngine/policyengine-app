@@ -8,12 +8,16 @@ import time
 
 app = application = Flask(__name__, static_folder="build")
 
+
 # Add ./chromedriver to PATH
 if os.getcwd() not in os.environ["PATH"]:
     os.environ["PATH"] += os.pathsep + os.getcwd()
 
 from selenium import webdriver
 
+options = webdriver.FirefoxOptions()
+options.add_argument("--headless")
+driver = webdriver.Firefox(options=options)
 
 REDIRECTS = {
     "https://policyengine.org/uk/situation?child_UBI=46&adult_UBI=92&senior_UBI=46&WA_adult_UBI_age=16": "https://policyengine.org/uk/household?focus=intro&reform=135&region=uk&timePeriod=2023&baseline=1",
@@ -72,24 +76,12 @@ def serve(path):
 def social_card(path):
     # Use Selenium to render the page and return a screenshot
     query_string = request.query_string.decode("utf-8")
-    url = f"https://policyengine.org/{path}"
+    url = request.url_root + path
     if query_string:
         url += f"?{query_string}"
-    print(f"Adding options")
-    options = webdriver.FirefoxOptions()
-    options.add_argument("--headless")
-    print(f"Starting display")
-    driver = webdriver.Firefox(options=options)
-    print(f"Getting {url}")
     driver.get(url)
-    # Wait for the page to load
-    print(f"Waiting for page to load")
-    time.sleep(7)
-    print(f"Getting screenshot")
+    time.sleep(5)
     screenshot = driver.get_screenshot_as_png()
-    print(f"Closing driver")
-    driver.quit()
-    print(f"Returning screenshot")
 
     return screenshot, 200, {"Content-Type": "image/png"}
 
