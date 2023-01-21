@@ -5,13 +5,15 @@ import SearchOptions from "../../controls/SearchOptions";
 export default function VariableSearch(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
+  const showComputed = searchParams.get("showComputedVariables") === "true";
   const options = Object.values(metadata.variables)
     .filter((variable) => !variable.hidden_input)
+    .filter((variable) => showComputed || variable.isInputVariable)
     .map((variable) => ({
       value: variable.moduleName + "." + variable.name,
       label: variable.label,
     }))
-    .filter((option) => !!option.label && !!option.value);
+    .filter((option) => !!option.label && !!option.value)
   return (
     <SearchOptions
       options={options}
