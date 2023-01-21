@@ -125,8 +125,9 @@ function PolicyItem(props) {
 }
 
 function PolicyDisplay(props) {
-  const { policy, metadata } = props;
+  const { policy, metadata, closeDrawer, hideButtons } = props;
   const reformLength = Object.keys(policy.reform.data).length;
+  const navigate = useNavigate();
   return (
     <div
       style={{
@@ -143,7 +144,20 @@ function PolicyDisplay(props) {
         controls={reformLength > 1 ? true : false} 
         slide={false}>
         {Object.keys(policy.reform.data).map((parameterName) => (
-          <Carousel.Item key={parameterName}>
+          <Carousel.Item 
+          key={parameterName} 
+          onClick={() => {
+            const country = metadata.countryId;
+            const newSearchParams = {};
+            newSearchParams.focus = parameterName;
+            newSearchParams.reform = policy.reform.id;
+            newSearchParams.region = country;
+            const newUrl = `/${country}/policy?${new URLSearchParams(
+              newSearchParams
+            )}`;
+            navigate(newUrl);
+            hideButtons && closeDrawer();
+          }}>
             <PolicyItem
               key={parameterName}
               metadata={metadata}
@@ -161,7 +175,7 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons } = props;
+  const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const region = searchParams.get("region");
@@ -240,7 +254,7 @@ export default function PolicyRightSidebar(props) {
             <a href="#" style={{textAlign: "center", width: "100%"}} onClick={() => setShowReformSearch(true)}>find an existing policy</a>
           </div>
       }
-      <PolicyDisplay policy={policy} metadata={metadata} />
+      <PolicyDisplay policy={policy} metadata={metadata} closeDrawer={closeDrawer} hideButtons={hideButtons} />
       <div
         style={{
           display: "flex",

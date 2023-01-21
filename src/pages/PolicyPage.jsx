@@ -218,6 +218,11 @@ function MobileBottomMenu(props) {
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
   const [policyDrawerOpen, setPolicyDrawerOpen] = useState(false);
+
+  const handleClick = e => {
+    return setPolicyDrawerOpen(false);
+  }
+
   return (
     <div
       style={{
@@ -285,12 +290,12 @@ function MobileBottomMenu(props) {
         )}
         <Drawer
           open={policyDrawerOpen}
-          onClose={() => setPolicyDrawerOpen(false)}
+          onClose={e => handleClick(e)}
           placement="bottom"
           title="Your policy"
           height="60vh"
         >
-          <PolicyRightSidebar metadata={metadata} policy={policy} hideButtons />
+          <PolicyRightSidebar metadata={metadata} policy={policy} closeDrawer={handleClick} hideButtons />
         </Drawer>
       </div>
     </div>
