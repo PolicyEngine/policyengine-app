@@ -13,6 +13,7 @@ deploy-setup:
 	cp gcp/Dockerfile ./Dockerfile
 deploy: deploy-setup build
 	cp -r ./social_cards/ ./build/static/media/social_cards/
+	gcloud config set app/cloud_build_timeout 1000
 	y | gcloud app deploy --project policyengine-app
 	rm app.yaml
 	rm .gcloudignore
