@@ -80,7 +80,6 @@ def social_card(path):
     url = request.url_root + path
     if query_string:
         url += f"?{query_string}"
-    print(f"Screenshotting {url}..."")
     driver.get(url)
     time.sleep(5)
     screenshot = driver.get_screenshot_as_png()
