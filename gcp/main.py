@@ -18,6 +18,7 @@ from selenium import webdriver
 options = webdriver.FirefoxOptions()
 options.add_argument("--headless")
 driver = webdriver.Firefox(options=options)
+driver.set_page_load_timeout(10)
 
 REDIRECTS = {
     "https://policyengine.org/uk/situation?child_UBI=46&adult_UBI=92&senior_UBI=46&WA_adult_UBI_age=16": "https://policyengine.org/uk/household?focus=intro&reform=135&region=uk&timePeriod=2023&baseline=1",
@@ -79,6 +80,7 @@ def social_card(path):
     url = request.url_root + path
     if query_string:
         url += f"?{query_string}"
+    print(f"Screenshotting {url}..."")
     driver.get(url)
     time.sleep(5)
     screenshot = driver.get_screenshot_as_png()
