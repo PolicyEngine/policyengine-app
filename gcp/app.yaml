@@ -1,7 +1,8 @@
 runtime: custom
 env: flex
 entrypoint: gunicorn -b :$PORT main:app --timeout 180
-
+resources:
+  memory_gb: 2
 env_variables:
   FLASK_APP: main.py
   FLASK_ENV: production
