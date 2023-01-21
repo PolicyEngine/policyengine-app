@@ -75,14 +75,21 @@ def social_card(path):
     url = f"https://policyengine.org/{path}"
     if query_string:
         url += f"?{query_string}"
+    print(f"Adding options")
     options = webdriver.FirefoxOptions()
     options.add_argument("--headless")
+    print(f"Starting display")
     driver = webdriver.Firefox(options=options)
+    print(f"Getting {url}")
     driver.get(url)
     # Wait for the page to load
+    print(f"Waiting for page to load")
     time.sleep(7)
+    print(f"Getting screenshot")
     screenshot = driver.get_screenshot_as_png()
+    print(f"Closing driver")
     driver.quit()
+    print(f"Returning screenshot")
 
     return screenshot, 200, {"Content-Type": "image/png"}
 
