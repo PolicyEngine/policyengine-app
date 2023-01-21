@@ -14,4 +14,4 @@ RUN cd Python-3.9.7 && make altinstall
 RUN python3.9 -m pip install --upgrade pip
 ADD . /app
 RUN cd /app && pip3 install -r requirements.txt
-CMD exec gunicorn -b :$PORT main --timeout 180 --workers 1
+CMD exec gunicorn -b :$PORT main --timeout 300 --workers 1
