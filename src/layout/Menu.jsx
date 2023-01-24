@@ -20,10 +20,10 @@ function MenuItem(props) {
       <motion.h5
         style={{ fontSize: 18 }}
         initial={{ x: 0 }}
-        whileHover={{ x: 5 }}
+        whileHover={{ color: "black", fontWeight: "bold" }}
       >
-        {selected === name && <span style={{ marginRight: 10 }}>&#8594;</span>}
-        {label || name.split(".").pop()}
+        {selected === name && <span style={{ marginRight: 10, color: "black", fontWeight: "bold", textShadow: "0 0 .2px #000" }}>{label}</span>}
+        {selected === name ? "" : label || name.split(".").pop()}
       </motion.h5>
     </motion.div>
   );
@@ -119,12 +119,11 @@ function MenuItemGroup(props) {
       <motion.h5
         onClick={toggleExpanded}
         initial={{ x: 0 }}
-        whileHover={{ x: 5 }}
-        transition={{ duration: 0.25 }}
+        whileHover={{ color: "black", fontWeight: "bold" }}
         style={{ fontSize: 18 }}
       >
-        {selected === name && <span style={{ marginRight: 10 }}>&#8594;</span>}
-        {label || name.split(".").pop()}
+        {selected === name && <span style={{ marginRight: 10, color: "black", fontWeight: "bold", textShadow: "0 0 .2px #000" }}>{label}</span>}
+        {selected === name ? "" : label || name.split(".").pop()}
       </motion.h5>
       {expandedComponentSpace}
     </motion.div>
