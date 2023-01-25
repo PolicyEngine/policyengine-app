@@ -67,11 +67,16 @@ export default function CountrySelector(props) {
     navigate(`${path}${search}`);
   };
 
-  const items = [
+  const items = countryId === "us" ? [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
+    { label: CALogo, onClick: () => navigateToCountry("ca")}
+  ] : countryId === "uk" ? [
     { label: USLogo, onClick: () => navigateToCountry("us") },
     { label: CALogo, onClick: () => navigateToCountry("ca")}
-  ];
+  ] : [
+    { label: UKLogo, onClick: () => navigateToCountry("uk") },
+    { label: USLogo, onClick: () => navigateToCountry("us") }
+  ]
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
