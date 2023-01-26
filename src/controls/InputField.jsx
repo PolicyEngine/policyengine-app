@@ -3,7 +3,7 @@ import useMobile from "../layout/Responsive";
 import style from "../style";
 
 export default function InputField(props) {
-  const { placeholder, onChange, padding, width, type, inputmode } = props;
+  const { placeholder, onChange, padding, width, type, inputmode, pattern } = props;
   const mobile = useMobile();
   const onInput = (e) => {
     let value = e.target.value;
@@ -41,6 +41,21 @@ export default function InputField(props) {
             e.target.blur();
           }
         }
+      }}
+      onChange= {e =>{
+        let {value} = e.target;
+        
+        // evaluating percentage input
+        if(pattern === "%"){
+          if(!value.includes('%')){
+            e.target.value += '%';
+            e.target.setSelectionRange(e.target.value.length-1, e.target.value.length-1);
+          }else{
+            let val = value.slice(0, e.target.value.length-1);
+            e.target.value = val + '%';
+            e.target.setSelectionRange(e.target.value.length-1, e.target.value.length-1);
+          }  
+        }    
       }}
       placeholder={placeholder}
     />

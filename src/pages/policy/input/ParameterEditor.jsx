@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
 import { capitalize } from "../../../api/language";
+import { formatVariableValue } from "../../../api/variables";
 
 const { RangePicker } = DatePicker;
 
@@ -56,6 +57,29 @@ export default function ParameterEditor(props) {
         />
       </div>
     );
+  } else if(parameter.unit === "/1"){
+    let val = getParameterAtInstant(reformedParameter, startDate);
+    let valInPercentage = formatVariableValue(parameter, val);
+    control = (
+      <InputField
+        placeholder={valInPercentage}
+        pattern={"%"}
+        onChange={(value) => {
+          let newPolicy = { ...policy.reform.data };
+          value = parseFloat(value);
+          newPolicy[parameterName] = {
+            ...newPolicy[parameterName],
+            [`${startDate}.${endDate}`]: value/100,
+          };
+          setValue(value);
+          getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("reform", newPolicyId);
+            setSearchParams(newSearch);
+          });
+        }}
+      />
+    );
   } else {
     control = (
       <InputField
@@ -64,7 +88,7 @@ export default function ParameterEditor(props) {
           let newPolicy = { ...policy.reform.data };
           newPolicy[parameterName] = {
             ...newPolicy[parameterName],
-            [`${startDate}.${endDate}`]: +value,
+            [`${startDate}.${endDate}`]: value,
           };
           setValue(value);
           getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
