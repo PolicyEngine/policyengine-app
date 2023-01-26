@@ -92,6 +92,7 @@ export function getReformDefinitionCode(metadata, policy) {
       );
     }
   }
+  lines.push("    return parameters");
 
   lines = lines.concat([
     "",
