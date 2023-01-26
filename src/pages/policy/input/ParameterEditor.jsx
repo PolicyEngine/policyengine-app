@@ -129,12 +129,17 @@ export default function ParameterEditor(props) {
         `This parameter is ${parameter.period}ly.` :
         "";
 
+  let description = parameter.description;
+  if (!description) {
+    description = "";
+  }
+
   return (
     <CenteredMiddleColumn
       marginTop="5%"
       marginBottom={0}
       title={capitalize(parameter.label)}
-      description={parameter.description + timePeriodSentence}
+      description={description + timePeriodSentence}
     >
       {editControl}
       {
