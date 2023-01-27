@@ -24,8 +24,9 @@ export default function ParameterEditor(props) {
   const parameter = metadata.parameters[parameterName];
   const reformedParameter = getReformedParameter(parameter, policy.reform.data);
 
-  const [startDate, setStartDate] = useState("2022-01-01");
-  const [endDate, setEndDate] = useState("2027-12-31");
+  const currentYear = new Date().getFullYear();
+  const [startDate, setStartDate] = useState(currentYear + "-01-01");
+  const [endDate, setEndDate] = useState(currentYear + 5 + "-12-31");
 
   // eslint-disable-next-line no-unused-vars
   const [_, setValue] = useState(
