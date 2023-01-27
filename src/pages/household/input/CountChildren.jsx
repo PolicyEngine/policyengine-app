@@ -156,7 +156,7 @@ export default function CountChildren(props) {
     newSearch.set("focus", `input.household.${metadata.basicInputs[0]}`);
     setSearchParams(newSearch);
     if (autoCompute) {
-      getNewHouseholdId(metadata.countryId, newHousehold).then((householdId) => {
+      getNewHouseholdId(metadata.countryId, newHousehold, metadata).then((householdId) => {
         let newSearch = new URLSearchParams(window.location.search);
         newSearch.set("household", householdId);
         setSearchParams(newSearch);

@@ -439,11 +439,11 @@ export function getValueFromHousehold(
   return timePeriodValues[timePeriod];
 }
 
-export function getNewHouseholdId(countryId, newHouseholdData) {
+export function getNewHouseholdId(countryId, newHouseholdData, metadata) {
   return countryApiCall(
     countryId,
     "/household",
-    { data: newHouseholdData },
+    { data: optimiseHousehold(newHouseholdData, metadata) },
     "POST"
   )
     .then((response) => response.json())
@@ -469,4 +469,36 @@ export function getDefaultHouseholdId(metadata) {
     .then((dataHolder) => {
       return dataHolder.result.household_id;
     });
+}
+
+
+export function optimiseHousehold(household, metadata) {
+  // Variables don't need to be sent if they are:
+  // - the same as the default value AND
+  // - have no formula
+
+  let newHousehold = JSON.parse(JSON.stringify(household));
+  
+  for(let entityPlural of Object.keys(household)) {
+    for(let entityName of Object.keys(household[entityPlural])) {
+      let variablesToKeep = [];
+      for(let variable of Object.keys(household[entityPlural][entityName])) {
+        for(let timePeriod of Object.keys(household[entityPlural][entityName])) {
+            let variableData = household[entityPlural][entityName][variable];
+            if (!variableData) {
+              variablesToKeep.push(variable);
+            let defaultValue = metadata.variables[variable].defaultValue;
+            let hasFormula = !metadata.variables[variable].isInputVariable;
+            if(variableData[timePeriod] !== defaultValue || !hasFormula) {
+              variablesToKeep.push(variable);
+            }
+          }
+        }
+      }
+      for(let variable in variablesToKeep) {
+        newHousehold[entityPlural][entityName][variable] = household[entityPlural][entityName][variable];
+      }
+    }
+  }
+  return newHousehold;
 }

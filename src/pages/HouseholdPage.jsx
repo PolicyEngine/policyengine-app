@@ -220,7 +220,7 @@ export default function HouseholdPage(props) {
       setAutoCompute(true);
     }
     if (!householdId && !loading) {
-      getNewHouseholdId(metadata.countryId, householdInput).then(
+      getNewHouseholdId(metadata.countryId, householdInput, metadata).then(
         (householdId) => {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
