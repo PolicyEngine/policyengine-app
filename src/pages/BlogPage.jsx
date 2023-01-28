@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
 import rehypeRaw from "rehype-raw";
 import style from "../style";
+import useDetectPrint from "react-detect-print";
 import {
   GithubOutlined,
   LinkedinOutlined,
@@ -183,6 +184,7 @@ export default function BlogPostPage(props) {
   // The URL will be in the format /uk/blog/post-name
   // We need to extract the countryId and postName from the URL
   const url = window.location.pathname;
+  const printing = useDetectPrint();
   const { countryId } = props;
   const postName = url.split("/")[3];
   let postData = postJson.find(
@@ -198,7 +200,7 @@ export default function BlogPostPage(props) {
   const imageSrc = require(`../images/posts/${image}`);
   const markdownFile = require(`../posts/${filename}`);
   const [markdown, setMarkdown] = useState("");
-  const mobile = useMobile();
+  const mobile = useMobile() || printing;
   useEffect(() => {
     fetch(markdownFile)
       .then((response) => response.text())

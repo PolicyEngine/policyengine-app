@@ -78,6 +78,7 @@ def social_card(path):
     # Use Selenium to render the page and return a screenshot
     query_string = request.query_string.decode("utf-8")
     url = request.url_root + path
+    print(url)
     if query_string:
         url += f"?{query_string}"
     driver.get(url)
