@@ -91,7 +91,7 @@ export default function RelativeImpactByDecile(props) {
     <>
       <Screenshottable>
       <h2>
-        {policyLabel} {averageRelChange >= 0 ? "increases" : "decreases"} the
+        {policyLabel} {averageRelChange >= 0 ? "would increase" : "would decrease"} the
         average household's net income by{" "}
         {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
       </h2>

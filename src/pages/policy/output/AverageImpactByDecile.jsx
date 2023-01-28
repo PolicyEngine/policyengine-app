@@ -99,7 +99,7 @@ export default function AverageImpactByDecile(props) {
     <>
       <Screenshottable>
       <h2>
-        {policyLabel} {averageChange >= 0 ? "increases" : "decreases"} the
+        {policyLabel} {averageChange >= 0 ? "would increase" : "would decrease"} the
         average household's net income by{" "}
         {formatVariableValue(
           metadata.variables.household_net_income,

@@ -141,9 +141,9 @@ export default function InequalityImpact(props) {
         {policyLabel}
         {
           impactLabel === "positive"
-            ? " increases inequality"
+            ? " would increase inequality"
             : impactLabel === "negative"
-              ? " reduces inequality"
+              ? " would reduce inequality"
               : " has an ambiguous effect on inequality"
         }
       </h2>

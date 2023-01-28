@@ -117,10 +117,10 @@ export default function PovertyImpact(props) {
       <h2>
         {policyLabel}{" "}
         {totalPovertyChange > 0
-          ? `raises the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+          ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
           : totalPovertyChange < 0
-          ? `reduces the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-          : "doesn't change the poverty rate"}
+          ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+          : "wouldn't change the poverty rate"}
       </h2>
       <HoverCard
         content={hovercard}
