@@ -18,6 +18,7 @@ import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import POLICY_OUTPUT_TREE from "./policy/output/tree";
 import { capitalize } from "../api/language";
+import FuzzySearch from 'fuzzy-search';
 
 function ParameterSearch(props) {
   const { metadata } = props;
@@ -29,10 +30,17 @@ function ParameterSearch(props) {
       label: parameter.label,
     }))
     .filter((option) => !!option.label && !!option.value);
+  const searcher = new FuzzySearch(options, ['label'], {
+    caseSensitive: false,
+    sort: true,
+  });
+  const [searchText, setSearchText] = useState("");
+  const results = searcher.search(searchText);
   return (
     <SearchOptions
-      options={options}
+      options={results}
       defaultValue={null}
+      onSearch={setSearchText}
       style={{ margin: 0, width: "100%" }}
       placeholder="Search for a parameter"
       onSelect={(value) => {

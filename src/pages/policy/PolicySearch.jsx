@@ -2,6 +2,7 @@ import { AutoComplete } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
+import FuzzySearch from 'fuzzy-search';
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, onSelect } = props;
@@ -30,10 +31,16 @@ export default function PolicySearch(props) {
       countryApiCall(metadata.countryId, `/policies?query=${searchText}`)
         .then((data) => data.json())
         .then((data) => {
+          const fullList = data.result.map((item) => {
+            return { value: item.id, label: <><b>#{item.id}</b> {item.label}</> };
+          }) || [];
+          const searcher = new FuzzySearch(fullList, ['label'], {
+            caseSensitive: false,
+            sort: true,
+          });
+          const results = searcher.search(searchText);
           setPolicies(
-            data.result.map((item) => {
-              return { value: item.id, label: <><b>#{item.id}</b> {item.label}</> };
-            }) || []
+            results
           );
           setLastRequestTime(new Date().getTime());
           setLastSearch(searchText);

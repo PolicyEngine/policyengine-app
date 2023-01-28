@@ -12,6 +12,7 @@ import AverageImpactByDecile from "./AverageImpactByDecile";
 import IntraDecileImpact from "./IntraDecileImpact";
 import Reproducibility from "./PolicyReproducibility";
 import CliffImpact from "./CliffImpact";
+import MacroImpact from "./MacroImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import POLICY_OUTPUT_TREE from "./tree";
 import InequalityImpact from "./InequalityImpact";
@@ -158,7 +159,7 @@ export default function PolicyOutput(props) {
             }
             status="wait"
             icon={
-              baselineOK ?
+              reformOK ?
                 <CheckCircleFilled style={{fontSize: 20, color: "green"}} /> :
                 <CloseCircleFilled style={{fontSize: 20, color: "red"}} />
             }
@@ -260,6 +261,10 @@ export default function PolicyOutput(props) {
 
   if (focus === "policyOutput.cliffImpact") {
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
+  }
+
+  if (focus === "policyOutput.macroImpact") {
+    pane = <MacroImpact metadata={metadata} policyLabel={policyLabel} />
   }
 
   const bottomElements = mobile ?

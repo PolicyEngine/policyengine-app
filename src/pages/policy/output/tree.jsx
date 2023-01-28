@@ -36,6 +36,10 @@ const POLICY_OUTPUT_TREE = [
         label: "Cliff impact",
       },
       {
+        name: "policyOutput.macroImpact",
+        label: "Macro impact",
+      },
+      {
         name: "policyOutput.codeReproducibility",
         label: "Reproduce in Python",
       },
