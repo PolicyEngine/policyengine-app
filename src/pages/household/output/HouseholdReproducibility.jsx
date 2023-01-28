@@ -1,3 +1,4 @@
+import { optimiseHousehold } from "../../../api/variables";
 import Button from "../../../controls/Button";
 import style from "../../../style";
 import { getReformDefinitionCode } from "../../policy/output/PolicyReproducibility";
@@ -72,7 +73,7 @@ export default function HouseholdReproducibility(props) {
     );
   }
 
-  let householdInputCopy = JSON.parse(JSON.stringify(householdInput));
+  let householdInputCopy = JSON.parse(JSON.stringify(optimiseHousehold(householdInput, metadata, true)));
 
   for (const entityPlural of Object.keys(householdInputCopy)) {
     for (const entity of Object.keys(householdInputCopy[entityPlural])) {
@@ -90,7 +91,7 @@ export default function HouseholdReproducibility(props) {
     }
   }
 
-  let householdJson = JSON.stringify(householdInputCopy);
+  let householdJson = JSON.stringify(householdInputCopy, null, 2);
   // It's Python-safe, so we need to make true -> True and false -> False and null -> None
   householdJson = householdJson
     .replace(/true/g, "True")

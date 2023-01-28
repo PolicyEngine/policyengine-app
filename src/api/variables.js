@@ -472,7 +472,7 @@ export function getDefaultHouseholdId(metadata) {
 }
 
 
-export function optimiseHousehold(household, metadata) {
+export function optimiseHousehold(household, metadata, removeEmpty = false) {
   // Variables don't need to be sent if they are:
   // - the same as the default value AND
   // - have no formula
@@ -481,24 +481,20 @@ export function optimiseHousehold(household, metadata) {
   
   for(let entityPlural of Object.keys(household)) {
     for(let entityName of Object.keys(household[entityPlural])) {
-      let variablesToKeep = [];
       for(let variable of Object.keys(household[entityPlural][entityName])) {
-        for(let timePeriod of Object.keys(household[entityPlural][entityName])) {
-            let variableData = household[entityPlural][entityName][variable];
-            if (!variableData) {
-              variablesToKeep.push(variable);
+        for(let timePeriod of Object.keys(household[entityPlural][entityName][variable])) {
+            let variableData = newHousehold[entityPlural][entityName][variable];
+            if (variable === "members") {
+              continue;
+            }
             let defaultValue = metadata.variables[variable].defaultValue;
             let hasFormula = !metadata.variables[variable].isInputVariable;
-            if(variableData[timePeriod] !== defaultValue || !hasFormula) {
-              variablesToKeep.push(variable);
+            if(((variableData[timePeriod] === defaultValue) && !hasFormula) || (hasFormula && removeEmpty)) {
+              delete newHousehold[entityPlural][entityName][variable];
             }
           }
         }
       }
-      for(let variable in variablesToKeep) {
-        newHousehold[entityPlural][entityName][variable] = household[entityPlural][entityName][variable];
-      }
     }
-  }
   return newHousehold;
 }
