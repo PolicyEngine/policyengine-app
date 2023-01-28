@@ -312,6 +312,9 @@ export function getPlotlyAxisFormat(
   if (values) {
     precision = 0;
     for (const value of values) {
+      if (value === null) {
+        continue;
+      }
       const decimalPlaces = value.toString().split(".")[1]?.length || 0;
       if (decimalPlaces > precision) {
         precision = decimalPlaces;
