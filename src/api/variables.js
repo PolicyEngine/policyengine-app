@@ -443,7 +443,7 @@ export function getNewHouseholdId(countryId, newHouseholdData, metadata) {
   return countryApiCall(
     countryId,
     "/household",
-    { data: optimiseHousehold(newHouseholdData, metadata) },
+    { data: newHouseholdData },
     "POST"
   )
     .then((response) => response.json())
