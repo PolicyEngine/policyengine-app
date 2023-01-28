@@ -286,7 +286,7 @@ export default function IntraDecileImpact(props) {
     <>
       <Screenshottable>
       <h2>
-        {policyLabel} benefits{" "}
+        {policyLabel} would benefit{" "}
         {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
       </h2>
       <HoverCard

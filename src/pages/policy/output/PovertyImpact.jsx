@@ -109,6 +109,7 @@ export default function PovertyImpact(props) {
   );
 
   const povertyRateChange = percent(Math.abs(totalPovertyChange));
+  const percentagePointChange = Math.round(Math.abs(impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline) * 1000) / 10;
 
   return (
     <>
@@ -116,10 +117,10 @@ export default function PovertyImpact(props) {
       <h2>
         {policyLabel}{" "}
         {totalPovertyChange > 0
-          ? `raises the poverty rate by ${povertyRateChange}`
+          ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
           : totalPovertyChange < 0
-          ? `reduces the poverty rate by ${povertyRateChange}`
-          : "doesn't change the poverty rate"}
+          ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+          : "wouldn't change the poverty rate"}
       </h2>
       <HoverCard
         content={hovercard}

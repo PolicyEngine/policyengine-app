@@ -184,7 +184,7 @@ export default function CliffImpact(props) {
         {chart}
       </HoverCard>
       </Screenshottable>
-      <p>The cliff rate is the share of households whose net income falls if each adult earned an additional £2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way.</p>
+      <p>The cliff rate is the share of households whose net income falls if each adult earned an additional {metadata.currency}2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way.</p>
     </ResultsPanel>
   );
 }
