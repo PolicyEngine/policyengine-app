@@ -267,12 +267,15 @@ export default function PolicyOutput(props) {
     pane = <MacroImpact metadata={metadata} policyLabel={policyLabel} />
   }
 
-  const bottomElements = mobile ?
+  let bottomElements = mobile ?
     null :
       metadata.countryId === "us" ?
         <p>PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement. <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">Read our caveats and data enhancement plan.</a></p> :
         <p>PolicyEngine estimates reform impacts using a static microsimulation over <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">an enhanced version of the 2019 Family Resources Survey</a></p>
 
+  if (focus === "policyOutput.macroImpact") {
+    bottomElements = <p>PolicyEngine estimates macroeconomic impacts using an open-source dynamic overlapping-generations macro model, OG-UK. <a href="https://github.com/PSLmodels/OG-UK">See more</a></p>;
+  }
 
   pane = (
     <>
