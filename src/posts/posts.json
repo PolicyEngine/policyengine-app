@@ -304,5 +304,14 @@
     "description": "We’re taking economic policy to the next level with the most accessible tax and benefit model ever built.",
     "filename": "uk-the-new-policyengine.md",
     "image": "uk-the-new-policyengine.png"
+  },
+  {
+    "title": "How would reforms affect cliffs?",
+    "date": "2023-02-02 21:00:00",
+    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "tags": ["us"],
+    "description": "We’ve added a new feature to the US version of PolicyEngine that lets you see how your reforms affect cliffs.",
+    "filename": "2023-02-02-how-would-reforms-affect-cliffs.md",
+    "image": "how-would-reforms-affect-cliffs.png"
   }
 ]
