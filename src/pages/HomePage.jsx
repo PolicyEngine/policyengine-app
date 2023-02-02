@@ -25,6 +25,7 @@ import LiberalParty from "../images/logos/orgs/liberal-party.jpeg";
 import SMF from "../images/logos/orgs/smf.png";
 import UBILabs from "../images/logos/orgs/ubilabs.png";
 import UKEU from "../images/logos/orgs/ukeu.svg";
+import ASI from "../images/logos/orgs/asi.webp";
 
 import CGO from "../images/logos/orgs/cgo.jpg";
 import EPMT from "../images/logos/orgs/epmt.jpg";
@@ -363,7 +364,11 @@ function Collaborations(props) {
       ubicenter: {
         logo: UBICenter,
         link: "https://ubicenter.org/",
-      }
+      },
+      asi: {
+        logo: ASI,
+        link: "https://www.adamsmith.org/blog/welfare-shouldnt-be-complicated",
+      },
     },
     us: {
       f4gi: {
@@ -424,10 +429,10 @@ function Collaborations(props) {
             </div>)}
           </Carousel>
         </Row>
-        <Row style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <Row style={{justifyContent: "center", alignItems: "center"}}>
           {
             Object.values(orgData[countryId] || {}).map(org => (
-              <Col key={org.link} style={{padding: mobile ? 20 : 10}}>
+              <Col key={org.link} style={{padding: mobile ? 20 : 10, minWidth: 50, justifyContent: "center", display: "flex"}}>
               <a href={org.link}><img src={org.logo} height={mobile ? 30 : 50} width={mobile ? 90 : 130} style={{objectFit: "contain"}} alt="test" /></a>
               </Col>
             ))
