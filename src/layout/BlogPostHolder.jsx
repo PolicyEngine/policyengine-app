@@ -26,7 +26,7 @@ function BlogPostPreviewRegular(props) {
     <motion.div
       style={{
         width: 300,
-        minHeight: 400,
+        minHeight: 100,
         backgroundColor: style.colors.WHITE,
         margin: 10,
         display: "flex",
@@ -41,7 +41,7 @@ function BlogPostPreviewRegular(props) {
         src={imageSrc}
         style={{
           width: 300,
-          height: 150,
+          height: 200,
           // Fit inside without stretching
           objectFit: "cover",
           borderTopLeftRadius: 20,
@@ -58,12 +58,13 @@ function BlogPostPreviewRegular(props) {
           padding: 20,
           marginTop: "auto",
           display: "flex",
-          alignItems: "center",
+          alignItems: "end",
         }}
       >
+        <div style={{display: "flex", flexDirection: "column", marginRight: 10}}>
         {authorImages.map((authorImage, index) => {
           return (
-            <div style={{ display: "flex" }} key={index}>
+            <div style={{ display: "flex", marginBottom: 10 }} key={index}>
               <img
                 src={authorImage}
                 style={{
@@ -80,10 +81,11 @@ function BlogPostPreviewRegular(props) {
             </div>
           );
         })}
+        </div>
         <p
           style={{
             marginLeft: "auto",
-            marginBottom: 10,
+            marginBottom: 25,
             color: style.colors.DARK_GRAY,
           }}
         >
