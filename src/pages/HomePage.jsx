@@ -14,6 +14,7 @@ import RobertColvile from "../images/headshots/robert-colvile.jpeg";
 import SimonDuffy from "../images/headshots/simon-duffy.jpeg";
 import MartinFarley from "../images/headshots/martin-farley.jpeg";
 import TorrinWilkins from "../images/headshots/torrin-wilkins.webp";
+import BrianHiatt from "../images/headshots/brian-hiatt.png";
 
 import DarrylFinkton from "../images/headshots/darryl-finkton.jpeg";
 import NateGolden from "../images/headshots/nate-golden.jpg";
@@ -326,6 +327,12 @@ function Collaborations(props) {
         position: "Founder and President of the Maryland Child Alliance",
         quote: "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
         headshot: NateGolden,
+      },
+      {
+        name: "Brian Hiatt",
+        position: "Vice President of Technology at Gary Community Ventures",
+        quote: "Thanks to PolicyEngine, we have been able to help more families access the resources they need to grow income and build wealth. We're grateful to have such a reliable partner on our side.",
+        headshot: BrianHiatt,
       }
     ],
   }
