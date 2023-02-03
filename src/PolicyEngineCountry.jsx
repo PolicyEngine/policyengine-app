@@ -173,15 +173,15 @@ export default function PolicyEngineCountry(props) {
 
 
 function CEC() {
-  // Update the title to be "CEC reform simulator | PolicyEngine"
+  // Update the title to be "CEC reform simulator | PolicyEngine")
   useEffect(() => {
     document.title = "CEC reform simulator | PolicyEngine";
   }, []);
 
   return <div style={{
       display: "flex",
-      justifyContent: "center"
+      justifyContent: "center",
     }}>
-    <iframe src="https://policyengine-cec-simulator.streamlit.app/?embedded=true" title="Citizens' Economic Council reform simulator" height="800" width="800" />
+    <iframe src="https://policyengine-cec-simulator.streamlit.app/?embedded=true" title="Citizens' Economic Council reform simulator" height="700" width="800" style={{overflow: "hidden"}} />
   </div>
 }
