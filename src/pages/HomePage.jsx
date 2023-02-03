@@ -27,6 +27,7 @@ import SMF from "../images/logos/orgs/smf.png";
 import UBILabs from "../images/logos/orgs/ubilabs.png";
 import UKEU from "../images/logos/orgs/ukeu.svg";
 import ASI from "../images/logos/orgs/asi.webp";
+import CEC from "../images/logos/orgs/cec.svg";
 
 import CGO from "../images/logos/orgs/cgo.jpg";
 import EPMT from "../images/logos/orgs/epmt.jpg";
@@ -375,6 +376,10 @@ function Collaborations(props) {
       asi: {
         logo: ASI,
         link: "https://www.adamsmith.org/blog/welfare-shouldnt-be-complicated",
+      },
+      cec: {
+        logo: CEC,
+        link: "https://citizensecon.org.uk/get-involved",
       },
     },
     us: {
