@@ -1,28 +1,8 @@
 from flask import Flask, send_from_directory, request, redirect
 from pathlib import Path
 from gcp.social_card_tags import add_social_card_tags
-import os
-from subprocess import STDOUT, check_call
-from pyvirtualdisplay import Display
-import time
 
-app = application = Flask(__name__, static_folder="build")
-
-
-# Add ./chromedriver to PATH
-if os.getcwd() not in os.environ["PATH"]:
-    os.environ["PATH"] += os.pathsep + os.getcwd()
-
-from selenium import webdriver
-
-options = webdriver.FirefoxOptions()
-options.add_argument("--headless")
-driver = webdriver.Firefox(options=options)
-driver.set_page_load_timeout(10)
-
-REDIRECTS = {
-    "https://policyengine.org/uk/situation?child_UBI=46&adult_UBI=92&senior_UBI=46&WA_adult_UBI_age=16": "https://policyengine.org/uk/household?focus=intro&reform=135&region=uk&timePeriod=2023&baseline=1",
-}
+app = Flask(__name__, static_folder="build")
 
 # Should redirect to https
 
@@ -33,9 +13,6 @@ def before_request():
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
-
-    if request.url in REDIRECTS:
-        return redirect(REDIRECTS[request.url])
 
 
 @app.after_request
@@ -51,9 +28,7 @@ def send_index_html():
     with open(app.static_folder + "/index.html") as f:
         index_html = f.read()
     try:
-        index_html = add_social_card_tags(
-            index_html, request.path, request.args
-        )
+        index_html = add_social_card_tags(index_html, request.path, request.args)
     except Exception as e:
         pass
     # Return with correct headers
@@ -70,22 +45,6 @@ def serve(path):
             return send_from_directory(app.static_folder, path)
         except FileNotFoundError:
             return send_index_html()
-
-
-# This endpoint should enable slashes in the URL (e.g. /social-card/uk/policy?reform=1). IMPORTANT: query parameters should be included in path
-@app.route("/social-card/<path:path>")
-def social_card(path):
-    # Use Selenium to render the page and return a screenshot
-    query_string = request.query_string.decode("utf-8")
-    url = request.url_root + path
-    print(url)
-    if query_string:
-        url += f"?{query_string}"
-    driver.get(url)
-    time.sleep(5)
-    screenshot = driver.get_screenshot_as_png()
-
-    return screenshot, 200, {"Content-Type": "image/png"}
 
 
 @app.errorhandler(404)
