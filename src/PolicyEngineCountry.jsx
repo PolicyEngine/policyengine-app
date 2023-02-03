@@ -150,6 +150,14 @@ export default function PolicyEngineCountry(props) {
       <Route path="/blog/*" element={<Suspense fallback={loadingPage}><BlogPostPage countryId={countryId} /></Suspense>} />
       <Route path="/about" element={<Suspense fallback={loadingPage}><AboutPage /></Suspense>} />
       <Route path="/donate" element={<Suspense fallback={loadingPage}><DonatePage /></Suspense>} />
+      <Route path="/cec" element={
+        <div style={{
+          display: "flex",
+          justifyContent: "center"
+        }}>
+          <iframe src="https://policyengine-cec-simulator.streamlit.app?embedded=true" title="Citizens' Economic Council reform simulator" height="800px" width="800px" />
+        </div>
+      } />
     </Routes>
   );
 
