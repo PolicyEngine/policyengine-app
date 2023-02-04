@@ -12,7 +12,7 @@ If you’ve used the beta app, we think you’ll find the new version easier to 
 
 * **Simplified household questionnaire** so you can estimate your taxes and benefits fast.
 
-* **Deep linking to specific households, policies, and charts** — our new social cards even preview the charts themselves!
+* **Deep linking to specific households, policies, and charts** for more reliable sharing.
 
 * **Auto-generated code** to reproduce results with our open source Python package.
 
