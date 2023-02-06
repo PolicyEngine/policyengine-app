@@ -23,7 +23,7 @@ export default function InequalityImpact(props) {
     <Plot
       data={[
         {
-          x: ["Gini coefficient", "Top 10% share", "Top 1% share"],
+          x: ["Gini index", "Top 10% share", "Top 1% share"],
           y: metricChanges,
           type: "bar",
           marker: {
@@ -71,7 +71,7 @@ export default function InequalityImpact(props) {
       onHover={(data) => {
         const label = data.points[0].x;
         let body = null;
-        if ((label === "Gini coefficient")) {
+        if ((label === "Gini index")) {
           // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
           const baseline = impact.inequality.gini.baseline;
           const reform = impact.inequality.gini.reform;
