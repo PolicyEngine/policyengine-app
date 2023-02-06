@@ -12,7 +12,7 @@ First, select **Your Household** on the top bar to enter information about you a
 
 ![](https://cdn-images-1.medium.com/max/3200/0*xEmc7hvB-nFDU7JU)
 
-Second, enter **Marital status** and **Dependents **on the first household screen. Leave marital status as **Single** and select **2 **dependents.
+Second, enter **Marital status** and **Dependents** on the first household screen. Leave marital status as **Single** and select **2** dependents.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*JBUdSsMw_BvwvPPy)
 
@@ -20,15 +20,15 @@ Third, go to the **Location** tab.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*GjKKdHk5vAjFvBO6)
 
-Enter **OR **from the **State code **menu, and move to the **Income** tab.
+Enter **OR** from the **State code** menu, and move to the **Income** tab.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*WnKOVF2eUkI95aNc)
 
-Enter **$30,000** in **Employment income. **You can also enter several types of income other than employment income.
+Enter **$30,000** in **Employment income.** You can also enter several types of income other than employment income.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*qq50BmXMkKf6MjyW)
 
-Then, on to the **Demographics** tab to enter the ages of the children, since the Oregon EITC varies with age. Using the person dropdown menu, enter the age of **Your first dependent **as **2 **and **Your second dependent **as **4**.
+Then, on to the **Demographics** tab to enter the ages of the children, since the Oregon EITC varies with age. Using the person dropdown menu, enter the age of **Your first dependent** as **2** and **Your second dependent** as **4**.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*uAM2KQGPnJLH1OPO)
 
@@ -36,7 +36,7 @@ Finally, select **Compute your net income**, the highlighted button on the right
 
 ![](https://cdn-images-1.medium.com/max/3200/0*Xyif0kuqdLMjHU6J)
 
-Clicking through each highlighted tab, we come to the **Oregon EITC** of **$490. **That is, a single parent with $30,000 employment income and children aged two and four will receive $490 from the Oregon EITC in 2022.
+Clicking through each highlighted tab, we come to the **Oregon EITC** of **$490.** That is, a single parent with $30,000 employment income and children aged two and four will receive $490 from the Oregon EITC in 2022.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*8a9rHUsaP87t-0k5)
 

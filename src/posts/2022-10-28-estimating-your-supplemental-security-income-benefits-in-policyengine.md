@@ -10,18 +10,18 @@ Go to the **Your household** tab to enter your household’s info. Let’s say w
 
 ![](https://cdn-images-1.medium.com/max/4228/1*5HwxclNO_eVCNnzQH95MBA.png)
 
-In the **Income **menu, enter **$30,000** under **Employment income**.
+In the **Income** menu, enter **$30,000** under **Employment income**.
 
 ![](https://cdn-images-1.medium.com/max/4228/1*oZ3CRAEsSnrvyVyjNYOY4w.png)
 
-In the **Demographics **menu, select the **You **drop-down in the upper right corner, and select **Your first dependent. **Scroll down to toggle the **SSI disabled **flag.
+In the **Demographics** menu, select the **You** drop-down in the upper right corner, and select **Your first dependent.** Scroll down to toggle the **SSI disabled** flag.
 
 ![](https://cdn-images-1.medium.com/max/4228/1*NL9U8j7SGxkDvV73kfUW8w.png)
 
-Now click **Compute your net income. **SSI is in the **Benefits **section of the expandable table. This household would receive $5,934 per year (in 2022), or about $495 per month. This also assumes the household meets other requirements such as asset limits.
+Now click **Compute your net income.** SSI is in the **Benefits** section of the expandable table. This household would receive $5,934 per year (in 2022), or about $495 per month. This also assumes the household meets other requirements such as asset limits.
 
 ![](https://cdn-images-1.medium.com/max/4220/1*07anufgQuSoobtdMU0DUrQ.png)
 
-To estimate your own SSI benefits, as well as other taxes and benefits, visit [**policyengine.org](https://policyengine.org/)**.
+To estimate your own SSI benefits, as well as other taxes and benefits, visit [**policyengine.org**](https://policyengine.org/).
 
 *PolicyEngine provides estimates only; they do not confer benefit eligibility.*

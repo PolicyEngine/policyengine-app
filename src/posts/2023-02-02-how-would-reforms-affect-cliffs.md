@@ -40,15 +40,15 @@ This example shows that even at the individual level, even simple reforms can af
 
 We have added the following measures and charts:
 
-* **Cliff rate
-**Share of households who would be worse off if each adult earned $2,000 more per year
+* **Cliff rate:**
+Share of households who would be worse off if each adult earned $2,000 more per year
 
-* **Cliff gap
-**Total net income lost by households when adults earn an additional $2,000
+* **Cliff gap:**
+Total net income lost by households when adults earn an additional $2,000
 
 We selected a $2,000 increment to capture plausible margins for labor supply decisions: $2,000 is roughly a $1 per hour raise for full-time workers, or one hour per workday at the federal minimum wage of $7.25 per hour. Tax analysis often applies a smaller increment, such as $1, but this will only capture cliffs in hypothetical charts, not sparser microdata. The Department of Health and Human Services’s Marginal Tax Rate series measures cliffs with $2,000 increments. See Appendix A for exploration of other increments and approaches.
 
-We use the *cliff *nomenclature because both tax and benefit programs can create cliffs, and sometimes they interact to create cliffs that wouldn’t appear in the tax or benefit system alone. The *cliff rate* and *cliff gap* terms mirror the established *poverty rate* (share of people below the poverty line) and *poverty gap* (total amount below the poverty line across all people in poverty) terms.
+We use the *cliff* nomenclature because both tax and benefit programs can create cliffs, and sometimes they interact to create cliffs that wouldn’t appear in the tax or benefit system alone. The *cliff rate* and *cliff gap* terms mirror the established *poverty rate* (share of people below the poverty line) and *poverty gap* (total amount below the poverty line across all people in poverty) terms.
 
 Currently, we estimate that 0.5% of households face a cliff in 2023, producing a total cliff gap of $5.0 billion. In 2022, 1.7% of households faced a cliff, producing a cliff gap of $18.5 billion. The repeal of SNAP emergency allotments, scheduled for March 2023, reduces the prevalence of cliffs in 2023, as we discuss more below.
 
@@ -170,5 +170,3 @@ Beyond PolicyEngine, several organizations have studied cliffs:
 * [Georgia Center for Opportunity](https://foropportunity.org/)’s [BenefitsCliffs.org](http://benefitscliffs.org) calculator
 
 * [Leap Fund](https://myleapfund.com/)’s [BenefitsCliff.com](http://benefitscliff.com) resource
-
-PolicyEngine works with many of these organizations, for example through the California Social Benefit Impact Alliance and by helping the Atlanta Fed open source part of their rules engine. However, only PolicyEngine shows the impact of policy reforms on cliffs — currently, by showing how they affect individual households.
