@@ -71,10 +71,10 @@ export default function RelativeImpactByDecile(props) {
         const relativeChange = data.points[0].y;
         const message =
           relativeChange > 0.001 ?
-            `This reform raises the income of households in the ${decile} decile by an average of ${percent(relativeChange)}.` :
+            `This reform would raise the income of households in the ${decile} decile by an average of ${percent(relativeChange)}.` :
             relativeChange < -0.001 ?
-              `This reform lowers the income of households in the ${decile} decile by an average of ${percent(-relativeChange)}.` :
-              `This reform has no impact on the income of households in the ${decile} decile.`;
+              `This reform would lower the income of households in the ${decile} decile by an average of ${percent(-relativeChange)}.` :
+              `This reform would ot impact the income of households in the ${decile} decile.`;
         setHoverCard({
           title: `Decile ${data.points[0].x}`,
           body: message,
@@ -90,16 +90,16 @@ export default function RelativeImpactByDecile(props) {
   return (
     <>
       <Screenshottable>
-      <h2>
-        {policyLabel} {averageRelChange >= 0 ? "would increase" : "would decrease"} the
-        average household's net income by{" "}
-        {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
-      </h2>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <h2>
+          {policyLabel} {averageRelChange >= 0 ? "would increase" : "would decrease"} the
+          average household's net income by{" "}
+          {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
+        </h2>
+        <HoverCard
+          content={hovercard}
+        >
+          {chart}
+        </HoverCard>
       </Screenshottable>
       <p>
         The chart above shows the relative change in income for each income

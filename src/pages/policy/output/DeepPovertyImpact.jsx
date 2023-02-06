@@ -89,16 +89,14 @@ export default function DeepPovertyImpact(props) {
         const baseline = impact.poverty.deep_poverty[labelToKey[group]].baseline;
         const reform = impact.poverty.deep_poverty[labelToKey[group]].reform;
         const message =
-          `The percentage of ${
-            group === "All" ? 
-              "people" : 
-              group.toLowerCase()
-          } in absolute deep poverty before housing costs ${
-            change < -0.001 ? 
-              `falls ${percent(-change)} from ${percent(baseline)} to ${percent(reform)}.` : 
-              change > 0.001 ?
-                `rises ${percent(change)} from ${percent(baseline)} to ${percent(reform)}.` :
-                `remains at ${percent(baseline)}.`
+          `The percentage of ${group === "All" ?
+            "people" :
+            group.toLowerCase()
+          } in deep poverty ${change < -0.001 ?
+            `would fall ${percent(-change)} from ${percent(baseline)} to ${percent(reform)}.` :
+            change > 0.001 ?
+              `would rise ${percent(change)} from ${percent(baseline)} to ${percent(reform)}.` :
+              `would remain at ${percent(baseline)}.`
           }`;
         setHoverCard({
           title: group,
@@ -113,19 +111,19 @@ export default function DeepPovertyImpact(props) {
   return (
     <>
       <Screenshottable>
-      <h2>
-        {policyLabel}{" "}
-        {totalPovertyChange > 0
-          ? `would raise the deep poverty rate by ${povertyRateChange}`
-          : totalPovertyChange < 0
-          ? `would lower the deep poverty rate by ${povertyRateChange}`
-          : "wouldn't change the deep poverty rate"}
-      </h2>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <h2>
+          {policyLabel}{" "}
+          {totalPovertyChange > 0
+            ? `would raise the deep poverty rate by ${povertyRateChange}`
+            : totalPovertyChange < 0
+              ? `would lower the deep poverty rate by ${povertyRateChange}`
+              : "wouldn't change the deep poverty rate"}
+        </h2>
+        <HoverCard
+          content={hovercard}
+        >
+          {chart}
+        </HoverCard>
       </Screenshottable>
       <p>
         The chart above shows the relative change in the deep poverty rate for each
