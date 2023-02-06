@@ -264,15 +264,14 @@ export default function IntraDecileImpact(props) {
       }}
       onHover={(data) => {
         const group = data.points[0].y;
-        const title = 
+        const title =
           group === "All" ?
             "All households" :
             `Decile ${group}`;
         const category = data.points[0].data.name;
         const value = data.points[0].x;
-        const message = 
-          `${percent(value)} of ${
-            group === "All" ? "all households" : `households in the ${cardinal(group)} decile`
+        const message =
+          `${percent(value)} of ${group === "All" ? "all households" : `households in the ${cardinal(group)} decile`
           } ${category.toLowerCase()}.`
         setHovercard({
           title: title,
@@ -285,18 +284,18 @@ export default function IntraDecileImpact(props) {
   return (
     <>
       <Screenshottable>
-      <h2>
-        {policyLabel} would benefit{" "}
-        {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
-      </h2>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <h2>
+          {policyLabel} would benefit{" "}
+          {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
+        </h2>
+        <HoverCard
+          content={hovercard}
+        >
+          {chart}
+        </HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows percentage of of people in each household income decile who experience different outcome categories. Households are sorted into ten equally-populated groups according to
+        The chart above shows percentage of of people in each household income decile who experience different outcomes. Households are sorted into ten equally-populated groups according to
         their equivalised household net income.
       </p>
     </>

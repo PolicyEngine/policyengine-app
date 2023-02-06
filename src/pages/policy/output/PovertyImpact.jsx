@@ -89,16 +89,14 @@ export default function PovertyImpact(props) {
         const baseline = impact.poverty.poverty[labelToKey[group]].baseline;
         const reform = impact.poverty.poverty[labelToKey[group]].reform;
         const message =
-          `The percentage of ${
-            group === "All" ? 
-              "people" : 
-              group.toLowerCase()
-          } in absolute poverty before housing costs ${
-            change < -0.001 ? 
-              `falls ${percent(-change)} from ${percent(baseline)} to ${percent(reform)}.` : 
-              change > 0.001 ?
-                `rises ${percent(change)} from ${percent(baseline)} to ${percent(reform)}.` :
-                `remains at ${percent(baseline)}.`
+          `The percentage of ${group === "All" ?
+            "people" :
+            group.toLowerCase()
+          } in poverty ${change < -0.001 ?
+            `would fall ${percent(-change)} from ${percent(baseline)} to ${percent(reform)}.` :
+            change > 0.001 ?
+              `would rise ${percent(change)} from ${percent(baseline)} to ${percent(reform)}.` :
+              `would remain at ${percent(baseline)}.`
           }`;
         setHoverCard({
           title: group,
@@ -114,19 +112,19 @@ export default function PovertyImpact(props) {
   return (
     <>
       <Screenshottable>
-      <h2>
-        {policyLabel}{" "}
-        {totalPovertyChange > 0
-          ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-          : totalPovertyChange < 0
-          ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-          : "wouldn't change the poverty rate"}
-      </h2>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <h2>
+          {policyLabel}{" "}
+          {totalPovertyChange > 0
+            ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            : totalPovertyChange < 0
+              ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+              : "wouldn't change the poverty rate"}
+        </h2>
+        <HoverCard
+          content={hovercard}
+        >
+          {chart}
+        </HoverCard>
       </Screenshottable>
       <p>
         The chart above shows the relative change in the poverty rate for each

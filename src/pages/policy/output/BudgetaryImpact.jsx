@@ -80,7 +80,7 @@ export default function BudgetaryImpact(props) {
       }}
       onHover={(data) => {
         const label = data.points[0].x;
-        const relevantFigure = 
+        const relevantFigure =
           label === "Tax revenues" ? -taxImpact :
             label === "Benefit spending" ? spendingImpact :
               budgetaryImpact;
@@ -89,44 +89,44 @@ export default function BudgetaryImpact(props) {
           // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
           body =
             relevantFigure < 0
-              ? `This reform increases tax revenues by ${aggregateCurrency(
-                  relevantFigure,
-                  metadata
-                )}.`
+              ? `This reform would increase tax revenues by ${aggregateCurrency(
+                relevantFigure,
+                metadata
+              )}.`
               : relevantFigure > 0
-              ? `This reform reduces tax revenues by ${aggregateCurrency(
+                ? `This reform would reduce tax revenues by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
                 )}.`
-              : "This reform has no impact on tax revenues.";
+                : "This reform would not impact tax revenues.";
         } else if (label === "Benefit spending") {
           // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
           body =
             relevantFigure > 0
-              ? `This reform increases benefit spending by ${aggregateCurrency(
-                  relevantFigure,
-                  metadata
-                )}.`
+              ? `This reform would increase benefit spending by ${aggregateCurrency(
+                relevantFigure,
+                metadata
+              )}.`
               : relevantFigure < 0
-              ? `This reform reduces benefit spending by ${aggregateCurrency(
+                ? `This reform would reduce benefit spending by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
                 )}.`
-              : "This reform has no impact on benefit spending.";
+                : "This reform would not impact benefit spending.";
         } else {
           // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
           body =
             relevantFigure < 0
-              ? `This reform increases the budget deficit by ${aggregateCurrency(
-                  relevantFigure,
-                  metadata
-                )}.`
+              ? `This reform would increase the budget deficit by ${aggregateCurrency(
+                relevantFigure,
+                metadata
+              )}.`
               : relevantFigure > 0
-              ? `This reform reduces the budget deficit by ${aggregateCurrency(
+                ? `This reform would reduce the budget deficit by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
                 )}.`
-              : "This reform has no impact on the budget deficit.";
+                : "This reform would not impact the budget deficit.";
         }
         setHoverCard({
           title: label,
@@ -139,18 +139,18 @@ export default function BudgetaryImpact(props) {
   return (
     <>
       <Screenshottable>
-      <h2>
-        {policyLabel}
-        {" would "}
-        {budgetaryImpact > 0 ? "raise " : "cost "}
-        {aggregateCurrency(budgetaryImpact, metadata)}
-        {" this year"}
-      </h2>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <h2>
+          {policyLabel}
+          {" would "}
+          {budgetaryImpact > 0 ? "raise " : "cost "}
+          {aggregateCurrency(budgetaryImpact, metadata)}
+          {" this year"}
+        </h2>
+        <HoverCard
+          content={hovercard}
+        >
+          {chart}
+        </HoverCard>
       </Screenshottable>
     </>
   );

@@ -144,17 +144,16 @@ export default function CliffImpact(props) {
         const baseline = metric === "Cliff rate" ? impact.baseline.cliff_share : impact.baseline.cliff_gap;
         const reform = metric === "Cliff rate" ? impact.reform.cliff_share : impact.reform.cliff_gap;
         const change = reform / baseline - 1;
-        const formatter = 
+        const formatter =
           metric === "Cliff rate" ?
             percent :
             x => aggregateCurrency(x, metadata);
-        const message = `The ${metric.toLowerCase()} ${
-          change > 0.0001 ?
-            `rises ${percent(change)} from ${formatter(baseline)} to ${formatter(reform)}` :
-            change < -0.0001 ?
-              `falls ${percent(-change)} from ${formatter(baseline)} to ${formatter(reform)}` :
-              `remains at ${percent(baseline)}`
-        }.`;
+        const message = `The ${metric.toLowerCase()} ${change > 0.0001 ?
+          `would rise ${percent(change)} from ${formatter(baseline)} to ${formatter(reform)}` :
+          change < -0.0001 ?
+            `would fall ${percent(-change)} from ${formatter(baseline)} to ${formatter(reform)}` :
+            `would remain at ${percent(baseline)}`
+          }.`;
         setHovercard({
           title: data.points[0].x,
           body: message,
@@ -163,26 +162,25 @@ export default function CliffImpact(props) {
     />
   );
 
-  const title = `${policyLabel} ${
-    cliff_share_change === 0 && cliff_gap_change === 0
-      ? "doesn't affect cliffs"
-      : cliff_share_change >= 0 && cliff_gap_change >= 0
-      ? "makes cliffs more prevalent"
+  const title = `${policyLabel} ${cliff_share_change === 0 && cliff_gap_change === 0
+    ? "wouldn't affect cliffs"
+    : cliff_share_change >= 0 && cliff_gap_change >= 0
+      ? "would make cliffs more prevalent"
       : cliff_share_change <= 0 && cliff_gap_change <= 0
-      ? "makes cliffs less prevalent"
-      : "has an ambiguous effect on cliffs"
-  }`;
+        ? "would make cliffs less prevalent"
+        : "would have an ambiguous effect on cliffs"
+    }`;
 
   return (
     <ResultsPanel
       title={title}
     >
       <Screenshottable>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <HoverCard
+          content={hovercard}
+        >
+          {chart}
+        </HoverCard>
       </Screenshottable>
       <p>The cliff rate is the share of households whose net income falls if each adult earned an additional {metadata.currency}2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way.</p>
     </ResultsPanel>
