@@ -239,9 +239,7 @@ export default function HomePage(props) {
           <>
             <h1 style={{ paddingBottom: 30 }}>Design custom policy reforms</h1>
             <h5>
-              Our free and open-source models describe a country's tax and
-              benefit laws. Describe a household's characteristics and instantly
-              compute their taxes, benefits, marginal tax rates and more.
+              PolicyEngine's country models contains hundreds of customisable policy parameters and can handle structural reforms.
             </h5>
           </>
         }
@@ -266,9 +264,7 @@ export default function HomePage(props) {
               See how reforms affect households
             </h1>
             <h5>
-              Our free and open-source models describe a country's tax and
-              benefit laws. Describe a household's characteristics and instantly
-              compute their taxes, benefits, marginal tax rates and more.
+              Evaluate the impact of changes to policy rules on households or entire economics within seconds, and iterate quickly over policy ideas.
             </h5>
           </>
         }
@@ -284,6 +280,7 @@ export default function HomePage(props) {
           />
         }
       />
+      <APIDemo countryId={countryId} />
     </>
   );
 }
@@ -516,5 +513,35 @@ function Collaborations(props) {
         </Row>
       </Container>
     </div>
+  );
+}
+
+
+function APIDemo(props) {
+  const mobile = useMobile();
+  const { countryId } = props;
+  return (
+    <div
+    style={{
+      backgroundColor: style.colors.WHITE,
+      marginTop: 25,
+      marginBottom: 50,
+    }}
+  >
+    <Container fluid>
+      <Row
+        style={{
+          paddingLeft: mobile ? 30 : 50,
+          paddingRight: mobile ? 30 : 50,
+        }}
+      >
+        <h2 style={{paddingLeft: 90, paddingRight: 90}}>PolicyEngine's free API computes policy impacts</h2>
+        <h5 style={{paddingLeft: 90, paddingRight: 90}}>
+          Instantly compute taxes and benefits for any household under current or reformed policy rules, using the PolicyEngine REST API.
+        </h5>
+        <iframe src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`} title="PolicyEngine API demo" width={mobile ? 400 : 1_500} height="500px" />
+      </Row>
+    </Container>
+  </div>
   );
 }
