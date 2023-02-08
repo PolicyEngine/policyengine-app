@@ -23,7 +23,7 @@ function getUKMaritalStatus(situation) {
 function setUKMaritalStatus(situation, status, variables, entities) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2023: 30 },
+    age: { 2023: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -50,7 +50,7 @@ function getUSMaritalStatus(situation) {
 function setUSMaritalStatus(situation, status, variables, entities) {
   const currentStatus = getUSMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2023: 30 },
+    age: { 2023: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -79,7 +79,7 @@ function getCAMaritalStatus(situation) {
 function setCAMaritalStatus(situation, status, variables, entities) {
   const currentStatus = getCAMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2023: 30 },
+    age: { 2023: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -115,7 +115,7 @@ export default function MaritalStatus(props) {
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", "input.household.children");
     setSearchParams(newSearch);
-    if(autoCompute) {
+    if (autoCompute) {
       getNewHouseholdId(metadata.countryId, newHousehold, metadata).then((householdId) => {
         let newSearch = new URLSearchParams(window.location.search);
         newSearch.set("household", householdId);
