@@ -35,6 +35,21 @@ export default function MarginalTaxRates(props) {
   const [showDelta, setShowDelta] = useState(false);
   let title;
 
+  const currentEarnings = getValueFromHousehold(
+    "employment_income",
+    "2023",
+    "you",
+    householdInput,
+    metadata
+  );
+  const currentMtr = getValueFromHousehold(
+    "marginal_tax_rate",
+    "2023",
+    "you",
+    householdBaseline,
+    metadata
+  );
+
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
     householdData.people.you.employment_income["2023"] = null;
@@ -44,7 +59,7 @@ export default function MarginalTaxRates(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: 200_000,
+          max: Math.max(200_000, 2 * currentEarnings),
           count: 401,
         },
       ],
@@ -105,20 +120,6 @@ export default function MarginalTaxRates(props) {
       "2023",
       "you",
       baselineMtr,
-      metadata
-    );
-    const currentEarnings = getValueFromHousehold(
-      "employment_income",
-      "2023",
-      "you",
-      householdInput,
-      metadata
-    );
-    const currentMtr = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      householdBaseline,
       metadata
     );
     title = `Your current marginal tax rate is ${formatVariableValue(
@@ -201,20 +202,6 @@ export default function MarginalTaxRates(props) {
       reformMtr,
       metadata
     );
-    const currentEarnings = getValueFromHousehold(
-      "employment_income",
-      "2023",
-      "you",
-      householdInput,
-      metadata
-    );
-    const currentMtr = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      householdReform,
-      metadata
-    );
     const baselineMtrValue = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
@@ -223,13 +210,12 @@ export default function MarginalTaxRates(props) {
       metadata
     );
     if (currentMtr !== baselineMtrValue) {
-      title = `${policyLabel} ${
-        currentMtr > baselineMtrValue ? "increases" : "decreases"
-      } your marginal tax rate from ${formatVariableValue(
-        { unit: "/1" },
-        baselineMtrValue,
-        0
-      )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
+      title = `${policyLabel} ${currentMtr > baselineMtrValue ? "increases" : "decreases"
+        } your marginal tax rate from ${formatVariableValue(
+          { unit: "/1" },
+          baselineMtrValue,
+          0
+        )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
