@@ -59,7 +59,7 @@ export default function MarginalTaxRates(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: Math.max(200000, 2 * currentEarnings),
+          max: Math.max(200_000, 2 * currentEarnings),
           count: 401,
         },
       ],
