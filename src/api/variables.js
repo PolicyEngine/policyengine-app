@@ -481,23 +481,23 @@ export function optimiseHousehold(household, metadata, removeEmpty = false) {
   // - have no formula
 
   let newHousehold = JSON.parse(JSON.stringify(household));
-  
-  for(let entityPlural of Object.keys(household)) {
-    for(let entityName of Object.keys(household[entityPlural])) {
-      for(let variable of Object.keys(household[entityPlural][entityName])) {
-        for(let timePeriod of Object.keys(household[entityPlural][entityName][variable])) {
-            let variableData = newHousehold[entityPlural][entityName][variable];
-            if (variable === "members") {
-              continue;
-            }
-            let defaultValue = metadata.variables[variable].defaultValue;
-            let hasFormula = !metadata.variables[variable].isInputVariable;
-            if(((variableData[timePeriod] === defaultValue) && !hasFormula) || (hasFormula && removeEmpty)) {
-              delete newHousehold[entityPlural][entityName][variable];
-            }
+
+  for (let entityPlural of Object.keys(household)) {
+    for (let entityName of Object.keys(household[entityPlural])) {
+      for (let variable of Object.keys(household[entityPlural][entityName])) {
+        for (let timePeriod of Object.keys(household[entityPlural][entityName][variable])) {
+          let variableData = newHousehold[entityPlural][entityName][variable];
+          if (variable === "members") {
+            continue;
+          }
+          let defaultValue = metadata.variables[variable].defaultValue;
+          let hasFormula = !metadata.variables[variable].isInputVariable;
+          if (((variableData[timePeriod] === defaultValue) && !hasFormula) || (hasFormula && removeEmpty)) {
+            delete newHousehold[entityPlural][entityName][variable];
           }
         }
       }
     }
+  }
   return newHousehold;
 }
