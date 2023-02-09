@@ -64,7 +64,6 @@ export default function EarningsVariation(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          // max: 200_000,
           max: Math.max(200_000, 2 * currentEarnings),
           count: 401,
         },
