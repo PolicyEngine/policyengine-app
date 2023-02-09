@@ -322,5 +322,14 @@
     "filename": "2023-02-09-reform-uks-emergency-recovery-plan.md",
     "image": "reform-uks-emergency-recovery-plan.png",
     "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "The Child Tax Credit in 2023",
+    "description": "We review how the program works and compute its impact with PolicyEngine US.",
+    "date": "2023-02-09 00:00:00",
+    "tags": ["us"],
+    "filename": "2023-02-09-the-child-tax-credit-in-2023.md",
+    "image": "the-child-tax-credit-in-2023.png",
+    "authors": ["max-ghenis"]
   }
 ]
