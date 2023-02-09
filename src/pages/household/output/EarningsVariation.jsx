@@ -8,7 +8,7 @@ import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../api/language";
 import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";
 import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
-import getValueFromHousehold from "../../../api/variables";
+import { getValueFromHousehold } from "../../../api/variables";
 
 export default function EarningsVariation(props) {
   const { householdInput, householdBaseline, householdReform, metadata } =
@@ -51,21 +51,21 @@ export default function EarningsVariation(props) {
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
     householdData.people.you.employment_income["2023"] = null;
-    // const currentEarnings = getValueFromHousehold(
-    //   "employment_income",
-    //   "2023",
-    //   "you",
-    //   householdInput,
-    //   metadata
-    // );
+    const currentEarnings = getValueFromHousehold(
+      "employment_income",
+      "2023",
+      "you",
+      householdInput,
+      metadata
+    );
     householdData.axes = [
       [
         {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: 200_000,
-          // max: Math.max(200_000, 2 * currentEarnings),
+          // max: 200_000,
+          max: Math.max(200_000, 2 * currentEarnings),
           count: 401,
         },
       ],
