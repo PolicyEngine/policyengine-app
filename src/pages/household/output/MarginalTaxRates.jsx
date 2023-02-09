@@ -19,7 +19,6 @@ export default function MarginalTaxRates(props) {
   const {
     householdInput,
     householdBaseline,
-    householdReform,
     metadata,
     policyLabel,
   } = props;
