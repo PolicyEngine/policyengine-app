@@ -331,5 +331,14 @@
     "filename": "2023-02-09-the-child-tax-credit-in-2023.md",
     "image": "the-child-tax-credit-in-2023.png",
     "authors": ["max-ghenis"]
+  },
+  {
+    "title": "Restoration of the American Rescue Plan Act’s expanded Child Tax Credit",
+    "description": "PolicyEngine computes how the 2021 policy would affect Americans and America in 2023.",
+    "date": "2023-02-10 00:00:00",
+    "tags": ["us"],
+    "filename": "2023-02-10-restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.md",
+    "image": "restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.png",
+    "authors": ["max-ghenis"]
   }
 ]
