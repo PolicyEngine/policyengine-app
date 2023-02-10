@@ -25,7 +25,7 @@ For the 2021 tax year only, the American Rescue Plan Act made four major changes
 
 This video shows how to model these changes in PolicyEngine. To see the results, skip to the next section, where the links reflect the pre-built policy.
 
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/jWVdm9SHlJ8" frameborder="0" allowfullscreen></iframe></center>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/_PcdbIIQ6AM" frameborder="0" allowfullscreen></iframe></center>
 
 ## How would restoring the ARPA CTC expansion affect households?
 
@@ -75,6 +75,6 @@ By increasing marginal tax rates among low-income households most likely to expe
 
 ![](https://cdn-images-1.medium.com/max/2284/0*o6ZxOJ5izxBcLASn)
 
-Were the US to restore the American Rescue Plan’s expanded Child Tax Credit, two in five Americans would benefit, poverty would fall 9%, and a broad measure of inequality would fall 2%. PolicyEngine also computes impacts for any state; for example, the ARPA CTC would provide [$17.7 billion in benefits to Texas](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=3840&region=tx&timePeriod=2023&baseline=2&household=2265), where it would [benefit 48% of the population](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=3840&region=tx&timePeriod=2023&baseline=2&household=2265), [cut child poverty by 50%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=3840&region=tx&timePeriod=2023&baseline=2&household=2265), and [lower the Gini index by 3.5%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=3840&region=tx&timePeriod=2023&baseline=2&household=2265). These impacts, as well as the $100 billion cost and higher marginal tax rates, would likely produce macroeconomic effects that PolicyEngine does not yet model.
+Were the US to restore the American Rescue Plan’s expanded Child Tax Credit, two in five Americans would benefit, poverty would fall 9%, and a broad measure of inequality would fall 2%. PolicyEngine also computes impacts for any state; for example, the ARPA CTC would [provide $10 billion to Texans](https://policyengine.org/us/policy?reform=3826&focus=policyOutput.netIncome&region=tx&timePeriod=2023&baseline=2) (the cost to the US), [benefit 46% of Texans](https://policyengine.org/us/policy?reform=3826&focus=policyOutput.intraDecileImpact&region=tx&timePeriod=2023&baseline=2), and [cut Texas’s child poverty rate by 32%](https://policyengine.org/us/policy?reform=3826&focus=policyOutput.povertyImpact&region=tx&timePeriod=2023&baseline=2). These impacts, as well as the $100 billion cost and higher marginal tax rates, would likely produce macroeconomic effects that PolicyEngine does not yet model.
 
 With PolicyEngine, you can model highly customizable reforms to the Child Tax Credit and other programs — not only those enacted in the past like the American Rescue Plan Act. Try your own policy model at [policyengine.org](http://policyengine.org).
