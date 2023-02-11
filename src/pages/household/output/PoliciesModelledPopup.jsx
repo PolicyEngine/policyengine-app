@@ -7,7 +7,7 @@ import Button from "../../../controls/Button";
 
 function PoliciesModelledChecklist(props) {
     const { metadata, householdInput } = props;
-    if (!metadata.modelled_policies) {
+    if (!metadata.modelled_policies || !metadata.modelled_policies.filtered) {
         return null;
     }
     const modelledPolicies = metadata.modelled_policies;

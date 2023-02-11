@@ -22,7 +22,11 @@ export default function PolicyEngineCountry(props) {
     1 :
     countryId === "us" ?
       2 :
-      3
+      countryId === "ca" ?
+        3 :
+        countryId === "ng" ?
+          4 :
+          1;
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;
@@ -59,6 +63,7 @@ export default function PolicyEngineCountry(props) {
       countryApiCall(countryId, `/policy/${baselinePolicyId}`)
         .then((res) => res.json())
         .then((dataHolder) => {
+          console.log(dataHolder)
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
           }
@@ -121,6 +126,8 @@ export default function PolicyEngineCountry(props) {
     />
     </Suspense>
   );
+
+  console.log(metadata)
 
   const errorPage = <ErrorPage />;
 

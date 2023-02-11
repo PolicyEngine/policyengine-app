@@ -116,6 +116,17 @@ export function createDefaultHousehold(country, variables, entities) {
         },
       },
     };
+  } else if (country === "ng") {
+    situation = {
+      people: {
+        you: {},
+      },
+      households: {
+        "your household": {
+          members: ["you"],
+        },
+      },
+    };
   }
   situation = addYearlyVariables(situation, variables, entities);
   return situation;
@@ -276,6 +287,14 @@ export function formatVariableValue(variable, value, precision = 2) {
     } else if (variable.unit === "currency-CAD") {
       return (
         "$" +
+        value.toLocaleString(undefined, {
+          minimumFractionDigits: precision,
+          maximumFractionDigits: precision,
+        })
+      );
+    } else if (variable.unit === "currency-NGN") {
+      return (
+        "₦" +
         value.toLocaleString(undefined, {
           minimumFractionDigits: precision,
           maximumFractionDigits: precision,

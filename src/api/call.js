@@ -59,6 +59,7 @@ export function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
     .then((dataHolder) => {
+      console.log(dataHolder)
       const data = dataHolder.result;
       const variableTree = buildVariableTree(
         data.variables,
@@ -78,7 +79,4 @@ export function updateMetadata(countryId, setMetadata, setError) {
       setMetadata(metadata);
       return metadata;
     })
-    .catch((error) => {
-      setError(error);
-    });
 }
