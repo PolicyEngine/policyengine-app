@@ -63,7 +63,6 @@ export default function PolicyEngineCountry(props) {
       countryApiCall(countryId, `/policy/${baselinePolicyId}`)
         .then((res) => res.json())
         .then((dataHolder) => {
-          console.log(dataHolder)
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
           }
@@ -127,7 +126,6 @@ export default function PolicyEngineCountry(props) {
     </Suspense>
   );
 
-  console.log(metadata)
 
   const errorPage = <ErrorPage />;
 
