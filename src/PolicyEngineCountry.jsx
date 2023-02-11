@@ -22,7 +22,11 @@ export default function PolicyEngineCountry(props) {
     1 :
     countryId === "us" ?
       2 :
-      3
+      countryId === "ca" ?
+        3 :
+        countryId === "ng" ?
+          4 :
+          1;
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;
@@ -121,6 +125,7 @@ export default function PolicyEngineCountry(props) {
     />
     </Suspense>
   );
+
 
   const errorPage = <ErrorPage />;
 

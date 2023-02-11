@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import UKFlag from "../images/logos/countries/uk.webp";
 import USFlag from "../images/logos/countries/us.png";
 import CAFlag from "../images/logos/countries/ca.png";
+import NGFlag from "../images/logos/countries/ng.webp";
 
 export default function CountrySelector(props) {
   const { countryId } = props;
@@ -49,10 +50,25 @@ export default function CountrySelector(props) {
     />
   );
 
+  const NGLogo = (
+    <img
+      src={NGFlag}
+      alt="NG flag"
+      style={{
+        objectFit: "cover",
+        width: 20,
+        height: 20,
+        marginRight: 10,
+        backgroundColor: "transparent",
+      }}
+    />
+  );
+
   const countryLabel = {
     uk: UKLogo,
     us: USLogo,
     ca: CALogo,
+    ng: NGLogo,
   }[countryId];
 
   // Only show on the homepage (/uk and /us)
@@ -69,10 +85,12 @@ export default function CountrySelector(props) {
 
   const items = countryId === "us" ? [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
-    { label: CALogo, onClick: () => navigateToCountry("ca")}
+    { label: CALogo, onClick: () => navigateToCountry("ca")},
+    { label: NGLogo, onClick: () => navigateToCountry("ng")}
   ] : countryId === "uk" ? [
     { label: USLogo, onClick: () => navigateToCountry("us") },
-    { label: CALogo, onClick: () => navigateToCountry("ca")}
+    { label: CALogo, onClick: () => navigateToCountry("ca")},
+    { label: NGLogo, onClick: () => navigateToCountry("ng")}
   ] : [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
     { label: USLogo, onClick: () => navigateToCountry("us") }

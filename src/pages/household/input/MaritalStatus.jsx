@@ -95,13 +95,19 @@ function setCAMaritalStatus(situation, status, variables, entities) {
 export default function MaritalStatus(props) {
   const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const getMaritalStatus = { uk: getUKMaritalStatus, us: getUSMaritalStatus, ca: getCAMaritalStatus }[
+  const getMaritalStatus = { 
+    uk: getUKMaritalStatus, 
+    us: getUSMaritalStatus, 
+    ca: getCAMaritalStatus,
+    ng: getCAMaritalStatus,
+   }[
     metadata.countryId
   ];
   const setMaritalStatusInHousehold = {
     uk: setUKMaritalStatus,
     us: setUSMaritalStatus,
     ca: setCAMaritalStatus,
+    ng: setCAMaritalStatus,
   }[metadata.countryId];
   const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {

@@ -136,13 +136,19 @@ function setCACountChildren(situation, countChildren, variables, entities) {
 export default function CountChildren(props) {
   const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const getCountChildren = { uk: getUKCountChildren, us: getUSCountChildren, ca: getCACountChildren }[
+  const getCountChildren = { 
+    uk: getUKCountChildren, 
+    us: getUSCountChildren, 
+    ca: getCACountChildren,
+    ng: getCACountChildren,
+   }[
     metadata.countryId
   ];
   const setCountChildrenInHousehold = {
     uk: setUKCountChildren,
     us: setUSCountChildren,
     ca: setCACountChildren,
+    ng: setCACountChildren,
   }[metadata.countryId];
   const setCountChildren = (countChildren) => {
     let newHousehold = setCountChildrenInHousehold(
