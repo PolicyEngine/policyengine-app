@@ -1,9 +1,4 @@
-
-# OpenFisca wins Edge of Government’s Innovation Award at World Government Summit 2023
-
-The success of Rules as Code and its impact on citizens.
-
-![*UAE Minister of Interior, [HH Sheikh Saif bin Zayed Al Nahyan](https://en.wikipedia.org/wiki/Saif_bin_Zayed_Al_Nahyan), giving [Matti Schneider](https://www.linkedin.com/in/mattisg/) and [Sandra Chakroun](https://www.linkedin.com/in/sandra-chakroun/) the Edge of Government Innovation Award for OpenFisca.*](https://cdn-images-1.medium.com/max/3200/0*RnLdD_sB_pMUR-D3)**UAE Minister of Interior, [HH Sheikh Saif bin Zayed Al Nahyan](https://en.wikipedia.org/wiki/Saif_bin_Zayed_Al_Nahyan), giving [Matti Schneider](https://www.linkedin.com/in/mattisg/) and [Sandra Chakroun](https://www.linkedin.com/in/sandra-chakroun/) the Edge of Government Innovation Award for OpenFisca.**
+*UAE Minister of Interior, [HH Sheikh Saif bin Zayed Al Nahyan](https://en.wikipedia.org/wiki/Saif_bin_Zayed_Al_Nahyan), giving [Matti Schneider](https://www.linkedin.com/in/mattisg/) and [Sandra Chakroun](https://www.linkedin.com/in/sandra-chakroun/) the Edge of Government Innovation Award for OpenFisca.*
 
 We are thrilled to congratulate [OpenFisca](http://openfisca.org) on winning the [Edge of Government](https://edge.worldgovernmentsummit.org/)’s Innovation Award from the [World Government Summit 2023](https://www.worldgovernmentsummit.org/events/world-government-summit-2023)! The summit, held in Dubai, brought together global experts, thought leaders, and decision-makers to discuss how to shape future governments through policies, models, and tools. With over 300 sessions, 200 speakers, and 20 reports, the summit focused on six main themes, including accelerating development and governance, future of societies and healthcare, exploring the frontiers, governing economic resilience and connectivity, global city design and sustainability, and prioritizing learning and work.
 
@@ -11,11 +6,12 @@ We are thrilled to congratulate [OpenFisca](http://openfisca.org) on winning the
 
 OpenFisca’s innovative approach to Rules as Code was showcased at the summit, highlighting how its machine-readable code can help citizens understand laws and their impact without consulting a lawyer. OpenFisca has been implemented in various countries, including France and New Zealand, where it has proved to be a success. The technology has enabled citizens to assess their entitlement to social benefits and has given governments new insights into the estimated impact of law reforms.
 
-![*OpenFisca’s description at the [Edge of Government](https://edge.worldgovernmentsummit.org/).*](https://cdn-images-1.medium.com/max/3200/0*EcM_Z_fKd8QIz7-F)**OpenFisca’s description at the [Edge of Government](https://edge.worldgovernmentsummit.org/).**
+![*OpenFisca’s description at the [Edge of Government](https://edge.worldgovernmentsummit.org/).*](https://cdn-images-1.medium.com/max/3200/0*EcM_Z_fKd8QIz7-F)
+*OpenFisca’s description at the [Edge of Government](https://edge.worldgovernmentsummit.org/).*
 
 At PolicyEngine, we have had the privilege of working closely with the OpenFisca team, and we are proud to have contributed to the growth of this incredible framework. Our journey with OpenFisca began in 2020 when we started building a microsimulation model of the UK tax and benefit system. We were impressed by OpenFisca’s modernness, flexibility, and excellent documentation. Over time, as we built more complex systems and required additional features, we [forked OpenFisca into our own microsimulation framework called PolicyEngine](https://policyengine.org/us/blog/2022-11-10-from-openfisca-to-policyengine). We are grateful to the OpenFisca team for their collaboration and support throughout this process.
 
-![*PolicyEngine in the [OpenFisca showcase](https://openfisca.org/en/showcase/).*](https://cdn-images-1.medium.com/max/3200/0*HAMMqkNEVc9IQ7uu)**PolicyEngine in the [OpenFisca showcase](https://openfisca.org/en/showcase/).**
+![*PolicyEngine in the [OpenFisca showcase](https://openfisca.org/en/showcase/).*](https://cdn-images-1.medium.com/max/3200/0*HAMMqkNEVc9IQ7uu)*PolicyEngine in the [OpenFisca showcase](https://openfisca.org/en/showcase/).*
 
 The Edge of Government innovation experience at the World Government Summit challenges visitors to think in new and often counterintuitive ways about how to solve the most pressing public challenges of our time. OpenFisca’s innovative use of machine-readable code is a prime example of this approach.
 
