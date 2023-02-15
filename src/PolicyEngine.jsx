@@ -21,7 +21,7 @@ export default function PolicyEngine() {
         <Route path="/us/*" element={<PolicyEngineCountry countryId="us" />} />
         <Route path="/ca/*" element={<PolicyEngineCountry countryId="ca" />} />
         <Route path="/ng/*" element={<PolicyEngineCountry countryId="ng" />} />
-        <Route exact path="/" element={<Navigate to={`/${countryId}`} />} />
+        <Route path="/*" element={<Navigate to={`/${countryId}`} />} />
       </Routes>
     </Router>
   );
