@@ -187,6 +187,6 @@ function CEC() {
       display: "flex",
       justifyContent: "center",
     }}>
-    <iframe src="https://policyengine-cec-simulator.streamlit.app/~/+/" title="Citizens' Economic Council reform simulator" height="800" width="800" style={{overflow: "hidden"}} />
+    <iframe src="http://localhost:8501" title="Citizens' Economic Council reform simulator" height="800" width="800" style={{overflow: "hidden"}} />
   </div>
 }
