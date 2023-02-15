@@ -19,6 +19,7 @@ import ChrisHolmes from "../images/headshots/chris-holmes.webp";
 import BrianHiatt from "../images/headshots/brian-hiatt.png";
 import DarrylFinkton from "../images/headshots/darryl-finkton.jpeg";
 import NateGolden from "../images/headshots/nate-golden.jpg";
+import NikaSoonShiong from "../images/headshots/nika-soon-shiong.png";
 
 import Centre from "../images/logos/orgs/centre.webp";
 import CPS from "../images/logos/orgs/cps.png";
@@ -351,6 +352,13 @@ function Collaborations(props) {
           "Thanks to PolicyEngine, we have been able to help more families access the resources they need to grow income and build wealth. We're grateful to have such a reliable partner on our side.",
         headshot: BrianHiatt,
       },
+      {
+        name: "Nika Soon-Shiong",
+        position: "Founder and Executive Director of the Fund for Guaranteed Income",
+        quote:
+          "As low-income families face a web of opaque, disconnected welfare systems, millions are left excluded or unsupported from the benefits they deserve. It’s critical for organizations such as PolicyEngine to chart new research, technology, and coalitions that can change this unacceptable status quo. I’m very excited to show our new Benefits Screener to the world this year.",
+        headshot: NikaSoonShiong,
+      }
     ],
   };
 
