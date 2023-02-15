@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import Footer from "./layout/Footer";
+import FOF from "./pages/FOF";
 
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -143,7 +144,7 @@ export default function PolicyEngineCountry(props) {
 
   let mainPage = (
     <Routes>
-      <Route path="/" element={homePage} />
+      <Route exact path="/" element={homePage} />
       <Route
         path="/household/*"
         element={metadata ? householdPage : error ? errorPage : loadingPage}
@@ -158,6 +159,7 @@ export default function PolicyEngineCountry(props) {
       <Route path="/cec" element={
         <CEC />
       } />
+      <Route path="/*" element={<FOF />} />
     </Routes>
   );
 
