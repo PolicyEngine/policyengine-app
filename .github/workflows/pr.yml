@@ -1,6 +1,8 @@
 name: Pull request
 
-on: pull_request
+on:
+  pull_request:
+    branches: [ master ]
 
 jobs:
   lint:
@@ -12,3 +14,25 @@ jobs:
       - uses: psf/black@stable
         with:
           options: ". -l 79 --check"
+
+  test:
+    name: CI
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # Test on every node version that is supported
+        # by our package.json.
+        # Hopefully this allows us to catch problems
+        # with differing versions ahead of time.
+        node-version: [16.x, 17.x, 18.x, 19.x]
+      
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+        # https://docs.npmjs.com/cli/v9/commands/npm-ci
+      - run: npm ci
+      - run: npm run build
+      - run: npm test

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://policyengine.org",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "@n8tb1t/use-scroll-position": "^2.0.3",
