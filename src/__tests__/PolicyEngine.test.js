@@ -25,6 +25,6 @@ describe("test routing", () => {
             </MemoryRouter>
         );
 
-        expect(screen.getByText(/Nope/).textContent).toMatchSnapshot();
+        expect(screen.getByText(/Sorry/).textContent).toMatchSnapshot();
     });
 })
