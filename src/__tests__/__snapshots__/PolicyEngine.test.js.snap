@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test routing should redirect an invalid country to the uk page 1`] = `"We compute the impact of public policy."`;
+
+exports[`test routing should redirect to the 404 page if bad url on a country page 1`] = `"Sorry, we can't find the page you're looking for."`;

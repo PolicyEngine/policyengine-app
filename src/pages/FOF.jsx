@@ -7,7 +7,7 @@ export default function FOF() {
     return (
         <div style={{ height: "100%" }}>
             <p style={{ 
-                marginTop: 180,
+                marginTop: 90,
                 fontSize: "2em",
                 textAlign: "center"
             }}>
