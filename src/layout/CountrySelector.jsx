@@ -85,15 +85,21 @@ export default function CountrySelector(props) {
 
   const items = countryId === "us" ? [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
-    { label: CALogo, onClick: () => navigateToCountry("ca")},
-    { label: NGLogo, onClick: () => navigateToCountry("ng")}
+    { label: CALogo, onClick: () => navigateToCountry("ca") },
+    { label: NGLogo, onClick: () => navigateToCountry("ng") }
   ] : countryId === "uk" ? [
     { label: USLogo, onClick: () => navigateToCountry("us") },
-    { label: CALogo, onClick: () => navigateToCountry("ca")},
-    { label: NGLogo, onClick: () => navigateToCountry("ng")}
-  ] : [
+    { label: CALogo, onClick: () => navigateToCountry("ca") },
+    { label: NGLogo, onClick: () => navigateToCountry("ng") }
+  ] : countryId === "ca" ? [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
-    { label: USLogo, onClick: () => navigateToCountry("us") }
+    { label: USLogo, onClick: () => navigateToCountry("us") },
+    { label: NGLogo, onClick: () => navigateToCountry("ng") }
+  ] : [
+    { label: USLogo, onClick: () => navigateToCountry("us") },
+    { label: UKLogo, onClick: () => navigateToCountry("uk") },
+    { label: CALogo, onClick: () => navigateToCountry("ca") },
+
   ]
 
   return (
