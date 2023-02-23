@@ -7,6 +7,7 @@ import {
   TwitterOutlined,
   GithubOutlined,
   MailOutlined,
+  YoutubeOutlined,
 } from "@ant-design/icons";
 
 import LinkedInLogo from "../images/logos/linkedin_logo.png";
@@ -39,6 +40,9 @@ export default function SocialLinks(props) {
       </a>
       <a href="https://instagram.com/PolicyEngine" style={aStyle}>
         <InstagramOutlined style={iconStyle} />
+      </a>
+      <a href="https://www.youtube.com/@policyengine" style={aStyle}>
+        <YoutubeOutlined style={iconStyle}/>
       </a>
       <a href="https://github.com/PolicyEngine" style={aStyle}>
         <GithubOutlined style={iconStyle} />
