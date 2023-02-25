@@ -17,10 +17,13 @@ export default function CountrySelector(props) {
       src={UKFlag}
       alt="UK flag"
       style={{
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
+        
+        
+        
       }}
     />
   );
@@ -29,7 +32,7 @@ export default function CountrySelector(props) {
       src={USFlag}
       alt="US flag"
       style={{
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
@@ -42,7 +45,7 @@ export default function CountrySelector(props) {
       alt="CA flag"
       style={{
         objectFit: "cover",
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
@@ -56,7 +59,7 @@ export default function CountrySelector(props) {
       alt="NG flag"
       style={{
         objectFit: "cover",
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
