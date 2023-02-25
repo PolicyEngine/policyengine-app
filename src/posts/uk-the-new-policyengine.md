@@ -6,17 +6,17 @@ Today we’re launching a new version of our web app that makes public policy mo
 
 If you’ve used PolicyEngine before, we think you’ll find the new version easier to use, and especially more delightful on mobile. We’ve also added a number of concrete new features, including:
 
-* **Access to all household variables and policy parameters** in our model — several hundred in total — with a search box to cut down on clicks.
+- **Access to all household variables and policy parameters** in our model — several hundred in total — with a search box to cut down on clicks.
 
-* **Named policies** that feed into chart titles.
+- **Named policies** that feed into chart titles.
 
-* **Simplified household questionnaire** so you can estimate your taxes and benefits fast.
+- **Simplified household questionnaire** so you can estimate your taxes and benefits fast.
 
-* **Deep linking to specific households, policies, and charts** for easier sharing.
+- **Deep linking to specific households, policies, and charts** for easier sharing.
 
-* **Auto-generated code** to reproduce results with our open source Python package.
+- **Auto-generated code** to reproduce results with our open source Python package.
 
-* **Cliff impact**, estimating how a reform affects the population share for whom an earnings increase would lower net income (more on that in a future post soon).
+- **Cliff impact**, estimating how a reform affects the population share for whom an earnings increase would lower net income (more on that in a future post soon).
 
 For more information:
 

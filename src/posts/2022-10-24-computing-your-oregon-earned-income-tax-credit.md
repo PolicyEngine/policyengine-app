@@ -42,4 +42,4 @@ To estimate your own Oregon EITC, or other taxes and benefits, visit policyengin
 
 ![](https://cdn-images-1.medium.com/max/3200/0*7234nnaAoAino9Mr)
 
-*PolicyEngine estimates do not constitute exact tax liabilities or benefits. Consult a tax advisor.*
+_PolicyEngine estimates do not constitute exact tax liabilities or benefits. Consult a tax advisor._

@@ -82,9 +82,13 @@ export default function CliffImpact(props) {
   // The chart shows two bars: one for the relative change in the cliff share and one for the relative change in the cliff gap.
 
   const cliff_share_change =
-    Math.round((impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100) / 100;
+    Math.round(
+      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100
+    ) / 100;
   const cliff_gap_change =
-    Math.round((impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000) / 1000;
+    Math.round(
+      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000
+    ) / 1000;
 
   const chart = (
     <Plot
@@ -141,48 +145,59 @@ export default function CliffImpact(props) {
       }}
       onHover={(data) => {
         const metric = data.points[0].x;
-        const baseline = metric === "Cliff rate" ? impact.baseline.cliff_share : impact.baseline.cliff_gap;
-        const reform = metric === "Cliff rate" ? impact.reform.cliff_share : impact.reform.cliff_gap;
+        const baseline =
+          metric === "Cliff rate"
+            ? impact.baseline.cliff_share
+            : impact.baseline.cliff_gap;
+        const reform =
+          metric === "Cliff rate"
+            ? impact.reform.cliff_share
+            : impact.reform.cliff_gap;
         const change = reform / baseline - 1;
         const formatter =
-          metric === "Cliff rate" ?
-            percent :
-            x => aggregateCurrency(x, metadata);
-        const message = `The ${metric.toLowerCase()} ${change > 0.0001 ?
-          `would rise ${percent(change)} from ${formatter(baseline)} to ${formatter(reform)}` :
-          change < -0.0001 ?
-            `would fall ${percent(-change)} from ${formatter(baseline)} to ${formatter(reform)}` :
-            `would remain at ${percent(baseline)}`
-          }.`;
+          metric === "Cliff rate"
+            ? percent
+            : (x) => aggregateCurrency(x, metadata);
+        const message = `The ${metric.toLowerCase()} ${
+          change > 0.0001
+            ? `would rise ${percent(change)} from ${formatter(
+                baseline
+              )} to ${formatter(reform)}`
+            : change < -0.0001
+            ? `would fall ${percent(-change)} from ${formatter(
+                baseline
+              )} to ${formatter(reform)}`
+            : `would remain at ${percent(baseline)}`
+        }.`;
         setHovercard({
           title: data.points[0].x,
           body: message,
-        })
+        });
       }}
     />
   );
 
-  const title = `${policyLabel} ${cliff_share_change === 0 && cliff_gap_change === 0
-    ? "wouldn't affect cliffs"
-    : cliff_share_change >= 0 && cliff_gap_change >= 0
+  const title = `${policyLabel} ${
+    cliff_share_change === 0 && cliff_gap_change === 0
+      ? "wouldn't affect cliffs"
+      : cliff_share_change >= 0 && cliff_gap_change >= 0
       ? "would make cliffs more prevalent"
       : cliff_share_change <= 0 && cliff_gap_change <= 0
-        ? "would make cliffs less prevalent"
-        : "would have an ambiguous effect on cliffs"
-    }`;
+      ? "would make cliffs less prevalent"
+      : "would have an ambiguous effect on cliffs"
+  }`;
 
   return (
-    <ResultsPanel
-      title={title}
-    >
+    <ResultsPanel title={title}>
       <Screenshottable>
-        <HoverCard
-          content={hovercard}
-        >
-          {chart}
-        </HoverCard>
+        <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
-      <p>The cliff rate is the share of households whose net income falls if each adult earned an additional {metadata.currency}2,000. The cliff gap is the sum of the losses incurred by all households on a cliff if their income rose in this way.</p>
+      <p>
+        The cliff rate is the share of households whose net income falls if each
+        adult earned an additional {metadata.currency}2,000. The cliff gap is
+        the sum of the losses incurred by all households on a cliff if their
+        income rose in this way.
+      </p>
     </ResultsPanel>
   );
 }

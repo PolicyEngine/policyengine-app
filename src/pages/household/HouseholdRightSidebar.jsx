@@ -46,7 +46,14 @@ function Figure(props) {
 }
 
 export default function HouseholdRightSidebar(props) {
-  const { householdInput, householdBaseline, metadata, autoCompute, loading, policy } = props;
+  const {
+    householdInput,
+    householdBaseline,
+    metadata,
+    autoCompute,
+    loading,
+    policy,
+  } = props;
   const [showReformSearch, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
@@ -83,32 +90,42 @@ export default function HouseholdRightSidebar(props) {
   const calculationResults = (
     <>
       {netIncomeComponents.map((variableId) => {
-      const variable = metadata.variables[variableId];
-      const value = getValueFromHousehold(
-        variableId,
-        null,
-        null,
-        householdBaseline,
-        metadata
-      );
-      return (
-        <Figure
-          key={variableId}
-          left={formatVariableValue(variable, value, 0)}
-          right={variable.label}
-        />
-      );
-    })}
-    <Figure
-      left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
-      right={"marginal tax rate"}
-    />
+        const variable = metadata.variables[variableId];
+        const value = getValueFromHousehold(
+          variableId,
+          null,
+          null,
+          householdBaseline,
+          metadata
+        );
+        return (
+          <Figure
+            key={variableId}
+            left={formatVariableValue(variable, value, 0)}
+            right={variable.label}
+          />
+        );
+      })}
+      <Figure
+        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
+        right={"marginal tax rate"}
+      />
     </>
-  )
+  );
 
   const situationOverview = (
     <>
-      <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>YOUR INPUTS</h5>
+      <h5
+        style={{
+          textAlign: "center",
+          fontSize: 11,
+          fontWeight: "bold",
+          marginBottom: 0,
+          marginTop: 15,
+        }}
+      >
+        YOUR INPUTS
+      </h5>
       <Figure
         left={countPeople}
         right={countPeople === 1 ? "person" : "people"}
@@ -122,23 +139,57 @@ export default function HouseholdRightSidebar(props) {
         right={"market income"}
       />
       <Divider />
-      <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 15}}>OUR CALCULATION</h5>
-      {hasReform && <h5 style={{textAlign: "center", fontSize: 11, fontWeight: "bold", marginBottom: 0, marginTop: 5}}>UNDER CURRENT LAW</h5>}
-      {
-        showReformSearch ?
-          <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-            <PolicySearch metadata={metadata} policy={policy} target="reform" width="100%" onSelect={() => setShowReformSearch(false)} />
-          </div> :
-          <div style={{display: "flex", justifyContent: "center"}}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#" style={{textAlign: "center", width: "100%"}} onClick={() => setShowReformSearch(true)}>compare against a reform</a>
-          </div>
-      }
-      {
-        loading ?
-          <LoadingCentered minHeight="25vh" height="25vh" /> :
-          calculationResults
-      }
+      <h5
+        style={{
+          textAlign: "center",
+          fontSize: 11,
+          fontWeight: "bold",
+          marginBottom: 0,
+          marginTop: 15,
+        }}
+      >
+        OUR CALCULATION
+      </h5>
+      {hasReform && (
+        <h5
+          style={{
+            textAlign: "center",
+            fontSize: 11,
+            fontWeight: "bold",
+            marginBottom: 0,
+            marginTop: 5,
+          }}
+        >
+          UNDER CURRENT LAW
+        </h5>
+      )}
+      {showReformSearch ? (
+        <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+          <PolicySearch
+            metadata={metadata}
+            policy={policy}
+            target="reform"
+            width="100%"
+            onSelect={() => setShowReformSearch(false)}
+          />
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a
+            href="#"
+            style={{ textAlign: "center", width: "100%" }}
+            onClick={() => setShowReformSearch(true)}
+          >
+            compare against a reform
+          </a>
+        </div>
+      )}
+      {loading ? (
+        <LoadingCentered minHeight="25vh" height="25vh" />
+      ) : (
+        calculationResults
+      )}
     </>
   );
   const notEnoughInfo = (

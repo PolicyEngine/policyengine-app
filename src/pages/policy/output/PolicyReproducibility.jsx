@@ -68,7 +68,7 @@ export function getReformDefinitionCode(metadata, policy) {
   ];
 
   if (Object.keys(policy.reform.data).length === 0) {
-    lines.push("    pass")
+    lines.push("    pass");
   }
 
   for (const [parameterName, parameter] of Object.entries(policy.reform.data)) {

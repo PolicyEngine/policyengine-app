@@ -8,7 +8,7 @@ import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 
-export default function RelativeImpactByDecile(props) {
+export default function RelativeImpactByWealthDecile(props) {
   const { impact, policyLabel } = props;
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
@@ -17,15 +17,15 @@ export default function RelativeImpactByDecile(props) {
     <Plot
       data={[
         {
-          x: Object.keys(impact.decile.relative),
-          y: Object.values(impact.decile.relative),
+          x: Object.keys(impact.wealth_decile.relative),
+          y: Object.values(impact.wealth_decile.relative),
           type: "bar",
           marker: {
-            color: Object.values(impact.decile.relative).map((value) =>
+            color: Object.values(impact.wealth_decile.relative).map((value) =>
               value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
             ),
           },
-          text: Object.values(impact.decile.relative).map(
+          text: Object.values(impact.wealth_decile.relative).map(
             (value) =>
               (value >= 0 ? "+" : "") +
               (value * 100).toFixed(1).toString() +
@@ -38,7 +38,7 @@ export default function RelativeImpactByDecile(props) {
       layout={{
         xaxis: {
           title: "Income decile",
-          tickvals: Object.keys(impact.decile.relative),
+          tickvals: Object.keys(impact.wealth_decile.relative),
         },
         yaxis: {
           title: "Relative change",
@@ -102,9 +102,9 @@ export default function RelativeImpactByDecile(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows the relative change in income for each income
+        The chart above shows the relative change in income for each wealth
         decile. Households are sorted into ten equally-populated groups
-        according to their equivalised household net income.
+        according to their equivalised household net wealth.
       </p>
     </>
   );

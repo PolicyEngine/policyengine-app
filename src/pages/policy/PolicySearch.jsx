@@ -32,7 +32,14 @@ export default function PolicySearch(props) {
         .then((data) => {
           setPolicies(
             data.result.map((item) => {
-              return { value: item.id, label: <><b>#{item.id}</b> {item.label}</> };
+              return {
+                value: item.id,
+                label: (
+                  <>
+                    <b>#{item.id}</b> {item.label}
+                  </>
+                ),
+              };
             }) || []
           );
           setLastRequestTime(new Date().getTime());

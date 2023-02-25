@@ -58,7 +58,7 @@ export default function ParameterEditor(props) {
         />
       </div>
     );
-  } else if(parameter.unit === "/1"){
+  } else if (parameter.unit === "/1") {
     let val = getParameterAtInstant(reformedParameter, startDate);
     let valInPercentage = formatVariableValue(parameter, val);
     control = (
@@ -70,7 +70,7 @@ export default function ParameterEditor(props) {
           value = parseFloat(value);
           newPolicy[parameterName] = {
             ...newPolicy[parameterName],
-            [`${startDate}.${endDate}`]: value/100,
+            [`${startDate}.${endDate}`]: value / 100,
           };
           setValue(value);
           getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
@@ -125,9 +125,9 @@ export default function ParameterEditor(props) {
     </div>
   );
 
-  const timePeriodSentence = parameter.period ? 
-        `This parameter is ${parameter.period}ly.` :
-        "";
+  const timePeriodSentence = parameter.period
+    ? `This parameter is ${parameter.period}ly.`
+    : "";
 
   let description = parameter.description;
   if (!description) {
@@ -142,9 +142,12 @@ export default function ParameterEditor(props) {
       description={description + timePeriodSentence}
     >
       {editControl}
-      {
-        !parameter.economy && <Alert message="PolicyEngine does not currently model this parameter in society-wide economic simulations." type="warning" />
-      }
+      {!parameter.economy && (
+        <Alert
+          message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
+          type="warning"
+        />
+      )}
       <ParameterOverTime parameter={parameter} policy={policy} />
     </CenteredMiddleColumn>
   );

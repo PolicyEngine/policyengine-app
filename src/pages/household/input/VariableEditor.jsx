@@ -37,9 +37,7 @@ export default function VariableEditor(props) {
     return null;
   }
   const variable = metadata.variables[variableName];
-  const required = [
-    "state_name",
-  ].includes(variableName);
+  const required = ["state_name"].includes(variableName);
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
@@ -92,7 +90,12 @@ export default function VariableEditor(props) {
         )}
         {entityInputs}
         {nextVariable && (
-          <NavigationButton text="Enter" focus={nextVariable} primary disabled={required && !edited} />
+          <NavigationButton
+            text="Enter"
+            focus={nextVariable}
+            primary
+            disabled={required && !edited}
+          />
         )}
       </div>
     </>
@@ -167,12 +170,14 @@ function HouseholdVariableEntityInput(props) {
       event_category: "household",
       event_label: variable.name,
     });
-    if(autoCompute) {
-      getNewHouseholdId(metadata.countryId, newHousehold, metadata).then((householdId) => {
-        let newSearch = new URLSearchParams(window.location.search);
-        newSearch.set("household", householdId);
-        setSearchParams(newSearch);
-      });
+    if (autoCompute) {
+      getNewHouseholdId(metadata.countryId, newHousehold, metadata).then(
+        (householdId) => {
+          let newSearch = new URLSearchParams(window.location.search);
+          newSearch.set("household", householdId);
+          setSearchParams(newSearch);
+        }
+      );
     }
     setEdited(true);
   };
@@ -191,15 +196,15 @@ function HouseholdVariableEntityInput(props) {
     householdInput,
     metadata
   );
-  const reformValue =
-    householdReform ?
-      getValueFromHousehold(
+  const reformValue = householdReform
+    ? getValueFromHousehold(
         variable.name,
         timePeriod,
         entityName,
         householdReform,
         metadata
-      ) : null;
+      )
+    : null;
   const mobile = useMobile();
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
@@ -207,9 +212,12 @@ function HouseholdVariableEntityInput(props) {
       <InputField
         onChange={submitValue}
         placeholder={
-          reformValue !== null ?
-            `${formatValue(inputValue || simulatedValue)} → ${formatValue(reformValue)}` :
-            formatValue(inputValue || simulatedValue)}
+          reformValue !== null
+            ? `${formatValue(inputValue || simulatedValue)} → ${formatValue(
+                reformValue
+              )}`
+            : formatValue(inputValue || simulatedValue)
+        }
         autofocus={true}
         width={mobile && 150}
         padding={mobile && 10}
@@ -248,18 +256,28 @@ function HouseholdVariableEntityInput(props) {
           marginBottom: 10,
         }}
       >
-        <h5 
-          style={{ textAlign: "right", margin: 0, flex: 1, flexBasis: "10%", fontSize: mobile && ".9rem" }}
+        <h5
+          style={{
+            textAlign: "right",
+            margin: 0,
+            flex: 1,
+            flexBasis: "10%",
+            fontSize: mobile && ".9rem",
+          }}
         >
           {capitalize(entityName)}:{" "}
         </h5>
-        <div 
-          style={{ display: "flex", justifyContent: "center" }}
-        >
+        <div style={{ display: "flex", justifyContent: "center" }}>
           {control}
         </div>
-        <h5 
-          style={{ textAlign: "left", margin: 0, flex: 1, flexBasis: "10%", fontSize: mobile && ".9rem" }}
+        <h5
+          style={{
+            textAlign: "left",
+            margin: 0,
+            flex: 1,
+            flexBasis: "10%",
+            fontSize: mobile && ".9rem",
+          }}
         >
           in {timePeriod}
         </h5>

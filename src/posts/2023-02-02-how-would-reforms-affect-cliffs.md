@@ -1,8 +1,8 @@
-*We’re grateful to [Innovation Network for Communities](https://in4c.net/), which funded the development of this PolicyEngine feature and report.*
+_We’re grateful to [Innovation Network for Communities](https://in4c.net/), which funded the development of this PolicyEngine feature and report._
 
 ## Overview
 
-The *cliff* (a.k.a. *benefit cliff* or *welfare cliff*) is a phenomenon that occurs when an individual is worse off when their income rises, due to the government withdrawing benefits and/or levying taxes. Cliffs discourage individuals from working more hours or seeking a higher wage, and they have been a topic of concern in the US policy arena.
+The _cliff_ (a.k.a. _benefit cliff_ or _welfare cliff_) is a phenomenon that occurs when an individual is worse off when their income rises, due to the government withdrawing benefits and/or levying taxes. Cliffs discourage individuals from working more hours or seeking a higher wage, and they have been a topic of concern in the US policy arena.
 
 PolicyEngine now shows how policy reforms can avoid these cliffs. Our free and open source web app uses a comprehensive microsimulation model to compute the effects of customizable tax and benefit reforms on society and individual households.
 
@@ -40,15 +40,15 @@ This example shows that even at the individual level, even simple reforms can af
 
 We have added the following measures and charts:
 
-* **Cliff rate:**
-Share of households who would be worse off if each adult earned $2,000 more per year
+- **Cliff rate:**
+  Share of households who would be worse off if each adult earned $2,000 more per year
 
-* **Cliff gap:**
-Total net income lost by households when adults earn an additional $2,000
+- **Cliff gap:**
+  Total net income lost by households when adults earn an additional $2,000
 
 We selected a $2,000 increment to capture plausible margins for labor supply decisions: $2,000 is roughly a $1 per hour raise for full-time workers, or one hour per workday at the federal minimum wage of $7.25 per hour. Tax analysis often applies a smaller increment, such as $1, but this will only capture cliffs in hypothetical charts, not sparser microdata. The Department of Health and Human Services’s Marginal Tax Rate series measures cliffs with $2,000 increments. See Appendix A for exploration of other increments and approaches.
 
-We use the *cliff* nomenclature because both tax and benefit programs can create cliffs, and sometimes they interact to create cliffs that wouldn’t appear in the tax or benefit system alone. The *cliff rate* and *cliff gap* terms mirror the established *poverty rate* (share of people below the poverty line) and *poverty gap* (total amount below the poverty line across all people in poverty) terms.
+We use the _cliff_ nomenclature because both tax and benefit programs can create cliffs, and sometimes they interact to create cliffs that wouldn’t appear in the tax or benefit system alone. The _cliff rate_ and _cliff gap_ terms mirror the established _poverty rate_ (share of people below the poverty line) and _poverty gap_ (total amount below the poverty line across all people in poverty) terms.
 
 Currently, we estimate that 0.5% of households face a cliff in 2023, producing a total cliff gap of $5.0 billion. In 2022, 1.7% of households faced a cliff, producing a cliff gap of $18.5 billion. The repeal of SNAP emergency allotments, scheduled for March 2023, reduces the prevalence of cliffs in 2023, as we discuss more below.
 
@@ -90,7 +90,7 @@ Phasing out the credit over a longer interval would increase MTRs for those newl
 
 Government agencies and nonprofits have expanded their research into cliffs in recent years, as we summarize in Appendix C. We now provide a novel contribution to the cliff conversation: quantitative estimates of their prevalence under highly customizable reforms, alongside budgetary and distributional outcomes.
 
-![Impacts of selected reforms on cliffs and other outcomes](https://cdn-images-1.medium.com/max/2756/1*sphHryjtjLOBIRJcX30xvg.png)*Impacts of selected reforms on cliffs and other outcomes*
+![Impacts of selected reforms on cliffs and other outcomes](https://cdn-images-1.medium.com/max/2756/1*sphHryjtjLOBIRJcX30xvg.png)_Impacts of selected reforms on cliffs and other outcomes_
 
 However, our cliff measures are only as complete as our microsimulation model. Since we do not yet capture all tax and benefit programs (for example, childcare subsidies, housing subsidies, and state income taxes in most states), we under-report cliffs. Our [data enhancement plan](https://policyengine.org/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis) will also improve cliff modeling, especially at the state level where we rely on a small sample of households potentially subject to cliffs. As we improve our model, PolicyEngine will identify more cliffs — and more opportunities to address them.
 
@@ -102,9 +102,9 @@ As the policy community crafts policies to achieve other goals, such as budgetar
 
 We considered two dimensions of alternatives for cliffs:
 
-* Earnings increment
+- Earnings increment
 
-* Grouping of people and households
+- Grouping of people and households
 
 We initially proposed reporting the share of adults whose net income would fall with an additional $2,000 of earnings. Further investigation revealed that reporting the share of adults would add to the PolicyEngine runtime by multiple times, since we would have to recompute a household’s net income under each adult’s increment independently. Instead, we chose to determine cliffs at the household level upon each adult increasing their earnings simultaneously.
 
@@ -124,23 +124,23 @@ We also considered whether to “pool” the earnings increment, i.e. to divide 
 
 Since pooling the earnings increment adds complexity without producing an obvious benefit, we opted not to pool them.
 
-*These numbers differ slightly from the current baseline cliff values for 2022, as we produced them with an earlier version of the model.*
+_These numbers differ slightly from the current baseline cliff values for 2022, as we produced them with an earlier version of the model._
 
 ## Appendix B: PolicyEngine’s SSI microsimulation model
 
 The Social Security Administration determines eligibility for SSI based on four factors:
 
-* Age
+- Age
 
-* Disability
+- Disability
 
-* Income
+- Income
 
-* Assets
+- Assets
 
 PolicyEngine uses the Current Population Survey for microsimulation modeling. Of these factors, the CPS only has reliable information on age and income. CPS respondents report difficulties across six areas, including vision, and they do not report assets.
 
-Modeling SSI in reforms requires assigning eligibility independent of whether a respondent reported receiving SSI. For example, if a reform increases income eligibility limits (as in *Experiment 1* here), we need to estimate whether a respondent would be newly eligible.
+Modeling SSI in reforms requires assigning eligibility independent of whether a respondent reported receiving SSI. For example, if a reform increases income eligibility limits (as in _Experiment 1_ here), we need to estimate whether a respondent would be newly eligible.
 
 We assign SSI eligibility stochastically using the following algorithm:
 
@@ -149,7 +149,7 @@ We assign SSI eligibility stochastically using the following algorithm:
 1. Assign disability to respondents who report any difficulty in the CPS.
 
 1. Calculate the share of the ABD (aged, blind, or disabled) population that would meet other SSI requirements except for income, such as asset limits and disability certification, as well as take-up conditional on eligibility, in order to match the SSA’s total SSI enrollment records.
-*We estimate that **59%** of the ABD population would participate in SSI based on non-income-based eligibility requirements and take-up.*
+   _We estimate that **59%** of the ABD population would participate in SSI based on non-income-based eligibility requirements and take-up._
 
 1. Assign SSI eligibility randomly to 59% of the ABD population.
 
@@ -157,16 +157,16 @@ We assign SSI eligibility stochastically using the following algorithm:
 
 Beyond PolicyEngine, several organizations have studied cliffs:
 
-* The Department of Health and Human Services’s [Marginal Tax Rate Series](https://aspe.hhs.gov/topics/poverty-economic-mobility/marginal-tax-rate-series)
+- The Department of Health and Human Services’s [Marginal Tax Rate Series](https://aspe.hhs.gov/topics/poverty-economic-mobility/marginal-tax-rate-series)
 
-* The Congressional Budget Office’s study on [Effective Marginal Tax Rates](https://www.cbo.gov/publication/50923)
+- The Congressional Budget Office’s study on [Effective Marginal Tax Rates](https://www.cbo.gov/publication/50923)
 
-* The Atlanta Fed’s [CLIFF Dashboard](https://www.atlantafed.org/economic-mobility-and-resilience/advancing-careers-for-low-income-families.aspx)
+- The Atlanta Fed’s [CLIFF Dashboard](https://www.atlantafed.org/economic-mobility-and-resilience/advancing-careers-for-low-income-families.aspx)
 
-* [ImagineLA](https://www.imaginela.org/)’s [Social Benefit Navigator](https://www.imaginela.org/sbn) for Los Angeles, using the [BenefitKitchen API](https://benefitkitchen.com/)
+- [ImagineLA](https://www.imaginela.org/)’s [Social Benefit Navigator](https://www.imaginela.org/sbn) for Los Angeles, using the [BenefitKitchen API](https://benefitkitchen.com/)
 
-* [CrossPurpose](https://www.crosspurpose.org/)’s cliff dashboard
+- [CrossPurpose](https://www.crosspurpose.org/)’s cliff dashboard
 
-* [Georgia Center for Opportunity](https://foropportunity.org/)’s [BenefitsCliffs.org](http://benefitscliffs.org) calculator
+- [Georgia Center for Opportunity](https://foropportunity.org/)’s [BenefitsCliffs.org](http://benefitscliffs.org) calculator
 
-* [Leap Fund](https://myleapfund.com/)’s [BenefitsCliff.com](http://benefitscliff.com) resource
+- [Leap Fund](https://myleapfund.com/)’s [BenefitsCliff.com](http://benefitscliff.com) resource

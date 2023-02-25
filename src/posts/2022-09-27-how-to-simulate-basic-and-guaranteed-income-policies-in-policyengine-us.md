@@ -1,10 +1,10 @@
-*The [UBI Center](http://ubicenter.org) contributed basic income policy parameters to PolicyEngine.*
+_The [UBI Center](http://ubicenter.org) contributed basic income policy parameters to PolicyEngine._
 
 With PolicyEngine US, you can adjust hundreds of parameters defining federal and state tax and benefit programs, and then compute how adjusting those programs would affect society and households. But did you know you can also model policies that don’t currently exist, like basic income?
 
-To define policies that don’t exist, scroll past the *Simulation, US government*, and *State government* parameter menus in our [*Policy* page](http://policyengine.org/us/policy) and select *Third party*. Here you’ll find third-party-contributed policy parameters. Currently that includes *Congress*, which shows parameters that characterize the End Child Poverty Act (more on that below), and *UBI Center*,¹ which shows parameters that characterize basic or guaranteed income policies (we use the term *basic income*). Before it was signed into law, we characterized policies in the Inflation Reduction Act in the *Third party > Congress* menu, too.
+To define policies that don’t exist, scroll past the _Simulation, US government_, and _State government_ parameter menus in our [_Policy_ page](http://policyengine.org/us/policy) and select _Third party_. Here you’ll find third-party-contributed policy parameters. Currently that includes _Congress_, which shows parameters that characterize the End Child Poverty Act (more on that below), and _UBI Center_,¹ which shows parameters that characterize basic or guaranteed income policies (we use the term _basic income_). Before it was signed into law, we characterized policies in the Inflation Reduction Act in the _Third party > Congress_ menu, too.
 
-![Part of PolicyEngine’s basic income parameter menu from a mobile device.](https://cdn-images-1.medium.com/max/2000/1*-OToQxH1XvFoz4nqT73DXA.png)*Part of PolicyEngine’s basic income parameter menu from a mobile device.*
+![Part of PolicyEngine’s basic income parameter menu from a mobile device.](https://cdn-images-1.medium.com/max/2000/1*-OToQxH1XvFoz4nqT73DXA.png)_Part of PolicyEngine’s basic income parameter menu from a mobile device._
 
 In this blog post, we’ll show you how to design and compute the impact of basic income policies covering a range of parameters. We’ll do this through the lens of four example reforms:
 
@@ -20,13 +20,13 @@ After you’ve created any of these policies, you can compute the impact on the 
 
 ## Universal basic income
 
-The first policy switch under *Amounts* is the simplest: an unconditional, universal cash payment to every member of the population. By default, it does not affect any other taxes or benefits, has no means test, and increases the income of each person by the same amount.
+The first policy switch under _Amounts_ is the simplest: an unconditional, universal cash payment to every member of the population. By default, it does not affect any other taxes or benefits, has no means test, and increases the income of each person by the same amount.
 
 ### Example: Applying the [Alaska Permanent Fund Dividend](https://pfd.alaska.gov/) nationwide
 
 Suppose the US implemented its own version of [Alaska’s Permanent Fund Dividend](https://pfd.alaska.gov/). Since 1982, Alaska has given each resident a share of the return on its sovereign wealth fund, funded by oil revenue. The most recent payment, in 2021, was [$1,114 per person](https://pfd.alaska.gov/Division-Info/summary-of-dividend-applications-payments).
 
-To simulate that policy nationwide, enter 1114 in the top *Basic income* parameter.
+To simulate that policy nationwide, enter 1114 in the top _Basic income_ parameter.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*eqOCDQgqARfOKWf2)
 
@@ -34,17 +34,17 @@ To simulate that policy nationwide, enter 1114 in the top *Basic income* paramet
 
 ## Age-dependent basic income
 
-To design basic income policies that grant different amounts to different age groups, use the controls in the *Amounts* tab. These controls let you use five age-based basic income levels:
+To design basic income policies that grant different amounts to different age groups, use the controls in the _Amounts_ tab. These controls let you use five age-based basic income levels:
 
-* Young children (under age 6)
+- Young children (under age 6)
 
-* Older children (6 to 17)
+- Older children (6 to 17)
 
-* Young adults (18 to 24)
+- Young adults (18 to 24)
 
-* Older adults (25 to 64)
+- Older adults (25 to 64)
 
-* Senior citizens (65 or older)
+- Senior citizens (65 or older)
 
 You can adjust the age bounds and set the basic income amount for each of these age groups.
 
@@ -60,11 +60,11 @@ The End Child Poverty Act would:
 
 1. Repeal the Child Tax Credit and the Earned Income Tax Credit
 
-To model the basic income for children, skip the first basic income amount and enter 4720 in the *Young child basic income* box. Then to apply it to all children up to age 18, enter 19 in the *Older child basic income age* box. To avoid overlapping age ranges, the last step is entering 20 (or any age between 20 and 24) in the *Young adult basic income age* box.
+To model the basic income for children, skip the first basic income amount and enter 4720 in the _Young child basic income_ box. Then to apply it to all children up to age 18, enter 19 in the _Older child basic income age_ box. To avoid overlapping age ranges, the last step is entering 20 (or any age between 20 and 24) in the _Young adult basic income age_ box.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*5UFNDEwvxpq5BepR)
 
-You can use the *Third party > Congress > House > Rep Tlaib* parameter menus to specify provisions 2 and 3, and the *US government > IRS > Credits > {Child, Earned income} tax credit > General* parameter menus to specify provision 4.
+You can use the _Third party > Congress > House > Rep Tlaib_ parameter menus to specify provisions 2 and 3, and the _US government > IRS > Credits > {Child, Earned income} tax credit > General_ parameter menus to specify provision 4.
 
 [See the End Child Poverty Act in PolicyEngine here.](https://policyengine.org/us/population-impact?abolish_eitc=1&end_child_poverty_act_adult_dependent_credit_amount=600&end_child_poverty_act_filer_credit_amount_HEAD_OF_HOUSEHOLD=600&end_child_poverty_act_filer_credit_amount_JOINT=1200&end_child_poverty_act_filer_credit_amount_SEPARATE=600&end_child_poverty_act_filer_credit_amount_SINGLE=600&end_child_poverty_act_filer_credit_amount_WIDOW=600&end_child_poverty_act_filer_credit_phase_out_start_HEAD_OF_HOUSEHOLD=20000&end_child_poverty_act_filer_credit_phase_out_start_JOINT=40000&end_child_poverty_act_filer_credit_phase_out_start_SEPARATE=20000&end_child_poverty_act_filer_credit_phase_out_start_SINGLE=20000&end_child_poverty_act_filer_credit_phase_out_start_WIDOW=20000&end_child_poverty_act_filer_credit_phase_out_rate=5&young_child_bi=4716&older_child_bi_age=19&abolish_non_refundable_ctc=1&abolish_refundable_ctc=1&young_adult_bi_age=20&young_child_bi_amount=4720)
 
@@ -78,11 +78,11 @@ The basic income policies we’ve described so far have set amounts at the indiv
 
 The Seed Money Act provides a grant equal to 100% of the poverty line. Its proposal document also suggests taxing the grant back for higher earners (effectively phasing it out) and repealing benefit programs. [This blog post](https://endpovertymaketrillions.medium.com/economic-modeling-of-how-to-end-poverty-in-the-united-states-while-saving-taxpayers-trillions-of-1679b751d0c0) from End Poverty Make Trillions uses PolicyEngine to explore a range of policy options; of these, we consider the option that phases out at 50% and does not replace existing programs.
 
-To model the basic income at 100% of the poverty line, scroll to the bottom of the *Amounts* parameter menu and enter 100 in the *Basic income as a percent of tax unit’s poverty line* box.
+To model the basic income at 100% of the poverty line, scroll to the bottom of the _Amounts_ parameter menu and enter 100 in the _Basic income as a percent of tax unit’s poverty line_ box.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*p73Tm_diUvxXjRlK)
 
-Then enter 50 in the *Basic income phase-out rate* box in the *Phase-out* menu.
+Then enter 50 in the _Basic income phase-out rate_ box in the _Phase-out_ menu.
 
 ![](https://cdn-images-1.medium.com/max/5880/1*aCzYTQ5LzMtutKHHQePGBg.png)
 
@@ -96,21 +96,21 @@ Rather than phasing out the benefit as a rate above a threshold, some proposals 
 
 In 2021, the Economic Security Project commissioned a report from the New School to study what they called “Guaranteed Income for the 21st Century”. This policy:
 
-* Guarantees $12,500 per adult and $4,500 per child
+- Guarantees $12,500 per adult and $4,500 per child
 
-* Phases out between $10,000 and $50,000 adjusted gross income ($15,000 to $70,000 for joint filers)
+- Phases out between $10,000 and $50,000 adjusted gross income ($15,000 to $70,000 for joint filers)
 
-* Repeals the Earned Income Tax Credit
+- Repeals the Earned Income Tax Credit
 
-To model the phase-out, go to the *Phase-out* menu and make the following entries:
+To model the phase-out, go to the _Phase-out_ menu and make the following entries:
 
-1. Enter 10000 in the *Basic income phase-out threshold* box for heads of household (the first filing status in the drop-down menu)
+1. Enter 10000 in the _Basic income phase-out threshold_ box for heads of household (the first filing status in the drop-down menu)
 
 1. Repeat (1) for all other filing statuses, setting the joint value to 15000
 
-1. Toggle off the *Phase out basic income as a rate* switch
+1. Toggle off the _Phase out basic income as a rate_ switch
 
-1. Enter 50000 in the *Basic income phase-out end* box for heads of household
+1. Enter 50000 in the _Basic income phase-out end_ box for heads of household
 
 1. Repeat (4) for all other filing statuses, setting the joint value to 70000
 

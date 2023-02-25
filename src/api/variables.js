@@ -302,10 +302,12 @@ export function formatVariableValue(variable, value, precision = 2) {
       );
     } else if (variable.unit === "/1") {
       // Format to the decimal places specified in precision.
-      return (value * 100).toLocaleString(undefined, {
-        minimumFractionDigits: precision,
-        maximumFractionDigits: precision,
-      }) + "%";
+      return (
+        (value * 100).toLocaleString(undefined, {
+          minimumFractionDigits: precision,
+          maximumFractionDigits: precision,
+        }) + "%"
+      );
     } else {
       return value.toLocaleString();
     }
@@ -493,7 +495,6 @@ export function getDefaultHouseholdId(metadata) {
     });
 }
 
-
 export function optimiseHousehold(household, metadata, removeEmpty = false) {
   // Variables don't need to be sent if they are:
   // - the same as the default value AND
@@ -504,14 +505,19 @@ export function optimiseHousehold(household, metadata, removeEmpty = false) {
   for (let entityPlural of Object.keys(household)) {
     for (let entityName of Object.keys(household[entityPlural])) {
       for (let variable of Object.keys(household[entityPlural][entityName])) {
-        for (let timePeriod of Object.keys(household[entityPlural][entityName][variable])) {
+        for (let timePeriod of Object.keys(
+          household[entityPlural][entityName][variable]
+        )) {
           let variableData = newHousehold[entityPlural][entityName][variable];
           if (variable === "members") {
             continue;
           }
           let defaultValue = metadata.variables[variable].defaultValue;
           let hasFormula = !metadata.variables[variable].isInputVariable;
-          if (((variableData[timePeriod] === defaultValue) && !hasFormula) || (hasFormula && removeEmpty)) {
+          if (
+            (variableData[timePeriod] === defaultValue && !hasFormula) ||
+            (hasFormula && removeEmpty)
+          ) {
             delete newHousehold[entityPlural][entityName][variable];
           }
         }

@@ -103,7 +103,7 @@ export default function ParameterOverTime(props) {
           margin: {
             t: 0,
             r: mobile && 30,
-          }
+          },
         }}
         style={{
           width: "100%",

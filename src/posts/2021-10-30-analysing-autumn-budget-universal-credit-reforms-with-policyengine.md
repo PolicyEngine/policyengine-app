@@ -1,4 +1,4 @@
-*Chancellor of the Exchequer Rishi Sunak. Credit: [Number 10](https://www.flickr.com/photos/number10gov/49647526566).*
+_Chancellor of the Exchequer Rishi Sunak. Credit: [Number 10](https://www.flickr.com/photos/number10gov/49647526566)._
 
 On Wednesday, the UK’s Chancellor of the Exchequer Rishi Sunak [published the details](https://www.gov.uk/government/topical-events/budget-2021) of the 2021 Autumn Budget, including a wide array of tax and benefit reforms. Among those were changes to Universal Credit (UC): reducing the taper rate from 63% to 55% and increasing work allowances by £500 per year. This follows, and will partially counteract, October’s reduction of the UC standard allowance by £20 per adult.
 
@@ -12,7 +12,7 @@ Universal Credit is the central in-work means-tested benefit, currently being ro
 
 ### The maximum rate
 
-Universal Credit payments are paid in respect of a *benefit unit* (one or two cohabiting adults, plus children). Entitlements are calculated based on three steps: the first, eligibility, requires that the claimant be working-age. The second step calculates the maximum entitlement, by summing any of the following elements that apply.
+Universal Credit payments are paid in respect of a _benefit unit_ (one or two cohabiting adults, plus children). Entitlements are calculated based on three steps: the first, eligibility, requires that the claimant be working-age. The second step calculates the maximum entitlement, by summing any of the following elements that apply.
 
 ![*Values of components in Universal Credit, as of 28th October 2021.*](https://cdn-images-1.medium.com/max/2000/1*E5Gdno7MfZgBf6pIQsQVuQ.png)**Values of components in Universal Credit, as of 28th October 2021.**
 
@@ -54,7 +54,7 @@ The marginal tax rate is the share of an additional pound of income that the gov
 
 A couple with two children and no rental costs will see their marginal tax rate fall if they earn between £6,180 and £32,540, and rise if they earn between £29,400 and £37,460, where they would be newly eligible for UC.
 
-![How the reform affects marginal tax rates for a non-renting two-adult two-child household.](https://cdn-images-1.medium.com/max/2712/1*I3HUX7zt-N33mVlcW9NoyA.png)*How the reform affects marginal tax rates for a non-renting two-adult two-child household.*
+![How the reform affects marginal tax rates for a non-renting two-adult two-child household.](https://cdn-images-1.medium.com/max/2712/1*I3HUX7zt-N33mVlcW9NoyA.png)_How the reform affects marginal tax rates for a non-renting two-adult two-child household._
 
 The reform lowers marginal tax rates more than it raises them, but its effect is reduced by Income Tax and National Insurance. Furthermore, the family is affected for longer by the taper rate, which is several times larger than any other marginal tax.
 
@@ -62,10 +62,10 @@ We’re pleased to share this first interactive analysis of the Autumn Budget UC
 
 For more timely analysis of tax and benefit reforms, follow us here and on social media, and to create your own policy, try PolicyEngine at [policyengine.org.](https://policyengine.org/)
 
-*2021–11–04 update: This now reflects PolicyEngine 1.1.0, which incorporates Universal Credit’s minimum income floor for self-employed people.*
+_2021–11–04 update: This now reflects PolicyEngine 1.1.0, which incorporates Universal Credit’s minimum income floor for self-employed people._
 
-*2021–11–06 update: This now reflects PolicyEngine 1.1.1, which calculates poverty consistently for the year 2021.*
+_2021–11–06 update: This now reflects PolicyEngine 1.1.1, which calculates poverty consistently for the year 2021._
 
-*2021–11–15 update: This now reflects PolicyEngine 1.1.8, which projects poverty thresholds and population to 2021.*
+_2021–11–15 update: This now reflects PolicyEngine 1.1.8, which projects poverty thresholds and population to 2021._
 
 [1]: Other programs, like the Child Benefit High-Income Tax Charge, can interact with Universal Credit to produce different results depending on household composition.

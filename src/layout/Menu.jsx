@@ -22,7 +22,18 @@ function MenuItem(props) {
         initial={{ x: 0 }}
         whileHover={{ color: "black", fontWeight: "bold" }}
       >
-        {selected === name && <span style={{ marginRight: 10, color: "black", fontWeight: "bold", textShadow: "0 0 .2px #000" }}>{label}</span>}
+        {selected === name && (
+          <span
+            style={{
+              marginRight: 10,
+              color: "black",
+              fontWeight: "bold",
+              textShadow: "0 0 .2px #000",
+            }}
+          >
+            {label}
+          </span>
+        )}
         {selected === name ? "" : label || name.split(".").pop()}
       </motion.h5>
     </motion.div>
@@ -35,7 +46,6 @@ function MenuItemGroup(props) {
   // The user can then collapse the group if they want, but it should
   // re-open if the selected item becomes a child of the group, and
   // close if the selected item moves out of the group.
-
 
   const [expanded, setExpanded] = useState(selected.includes(name));
   const [selectedWhenExpandedLastToggled, setSelectedWhenExpandedLastToggled] =
@@ -122,7 +132,18 @@ function MenuItemGroup(props) {
         whileHover={{ color: "black", fontWeight: "bold" }}
         style={{ fontSize: 18 }}
       >
-        {selected === name && <span style={{ marginRight: 10, color: "black", fontWeight: "bold", textShadow: "0 0 .2px #000" }}>{label}</span>}
+        {selected === name && (
+          <span
+            style={{
+              marginRight: 10,
+              color: "black",
+              fontWeight: "bold",
+              textShadow: "0 0 .2px #000",
+            }}
+          >
+            {label}
+          </span>
+        )}
         {selected === name ? "" : label || name.split(".").pop()}
       </motion.h5>
       {expandedComponentSpace}

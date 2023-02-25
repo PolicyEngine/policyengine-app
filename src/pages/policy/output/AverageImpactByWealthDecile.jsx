@@ -8,7 +8,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
-export default function AverageImpactByDecile(props) {
+export default function AverageImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata } = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
   const [hovercard, setHoverCard] = useState(null);
@@ -17,15 +17,15 @@ export default function AverageImpactByDecile(props) {
     <Plot
       data={[
         {
-          x: Object.keys(impact.decile.average),
-          y: Object.values(impact.decile.average),
+          x: Object.keys(impact.wealth_decile.average),
+          y: Object.values(impact.wealth_decile.average),
           type: "bar",
           marker: {
-            color: Object.values(impact.decile.average).map((value) =>
+            color: Object.values(impact.wealth_decile.average).map((value) =>
               value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
             ),
           },
-          text: Object.values(impact.decile.average).map(
+          text: Object.values(impact.wealth_decile.average).map(
             (value) =>
               metadata.currency +
               value.toLocaleString("en-GB", { maximumFractionDigits: 0 })
@@ -37,7 +37,7 @@ export default function AverageImpactByDecile(props) {
       layout={{
         xaxis: {
           title: "Income decile",
-          tickvals: Object.keys(impact.decile.average),
+          tickvals: Object.keys(impact.wealth_decile.average),
         },
         yaxis: {
           title: "Average change",
@@ -71,18 +71,18 @@ export default function AverageImpactByDecile(props) {
         const change = data.points[0].y;
         const message =
           change > 0.0001
-            ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
+            ? `This reform raises the income of households in the ${decile} wealth decile by an average of ${formatVariableValue(
                 metadata.variables.household_net_income,
                 change,
                 0
               )} per year.`
             : change < -0.0001
-            ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
+            ? `This reform lowers the income of households in the ${decile} wealth decile by an average of ${formatVariableValue(
                 metadata.variables.household_net_income,
                 -change,
                 0
               )} per year.`
-            : `This reform has no impact on the income of households in the ${decile} decile.`;
+            : `This reform has no impact on the income of households in the ${decile} wealth decile.`;
         setHoverCard({
           title: `Decile ${data.points[0].x}`,
           body: message,

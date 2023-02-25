@@ -10,7 +10,11 @@ function BlogPostPreviewRegular(props) {
   const { title, description, image, filename, countryId, authors, date } =
     props;
   let name = filename.split(".")[0];
-  if (name.startsWith("uk-") || name.startsWith("us-") || name.startsWith("ca-")) {
+  if (
+    name.startsWith("uk-") ||
+    name.startsWith("us-") ||
+    name.startsWith("ca-")
+  ) {
     name = name.substring(3);
   }
   const imageSrc = require(`../images/posts/${image}`);
@@ -61,26 +65,30 @@ function BlogPostPreviewRegular(props) {
           alignItems: "end",
         }}
       >
-        <div style={{display: "flex", flexDirection: "column", marginRight: 10}}>
-        {authorImages.map((authorImage, index) => {
-          return (
-            <div style={{ display: "flex", marginBottom: 10 }} key={index}>
-              <img
-                src={authorImage}
-                style={{
-                  width: 40,
-                  height: 40,
-                  // Fit inside without stretching
-                  objectFit: "cover",
-                  borderRadius: 20,
-                  marginRight: 10,
-                }}
-                alt="Author"
-              />
-              <p style={{ marginTop: 5 }}>{authorsJson[authors[index]].name}</p>
-            </div>
-          );
-        })}
+        <div
+          style={{ display: "flex", flexDirection: "column", marginRight: 10 }}
+        >
+          {authorImages.map((authorImage, index) => {
+            return (
+              <div style={{ display: "flex", marginBottom: 10 }} key={index}>
+                <img
+                  src={authorImage}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    // Fit inside without stretching
+                    objectFit: "cover",
+                    borderRadius: 20,
+                    marginRight: 10,
+                  }}
+                  alt="Author"
+                />
+                <p style={{ marginTop: 5 }}>
+                  {authorsJson[authors[index]].name}
+                </p>
+              </div>
+            );
+          })}
         </div>
         <p
           style={{

@@ -7,52 +7,84 @@ import NikhilWoodruff from "../images/authors/nikhil-woodruff.jpg";
 
 export default function AboutPage(props) {
   const mobile = useMobile();
-  const nikhilBio = <Col xs={12} md={8} style={{display: "flex", alignItems: "center"}}>
-  <p>
-    <b>Nikhil Woodruff</b> is the co-founder and CTO of PolicyEngine. He
-    is also the UK Research Director at the UBI Center, a think tank
-    researching universal basic income policies, and was previously a data
-    scientist at Caspian, where he worked in improving anti-money
-    laundering investigations. Nikhil is currently on leave from Durham
-    University's Computer Science program.
-  </p>
-  </Col>;
-  const nikhilImage = <Col xs={12} md={4}  style={{display: "flex", justifyContent: mobile ? "center" : "right", alignItems: "center", paddingBottom: 25, paddingTop: 25}}>
-  <img
-    src={NikhilWoodruff}
-    alt="Nikhil Woodruff"
-    style={{ width: 150, height: 150, borderRadius: 100, objectFit: "cover" }}
-  />
-</Col>;
+  const nikhilBio = (
+    <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
+      <p>
+        <b>Nikhil Woodruff</b> is the co-founder and CTO of PolicyEngine. He is
+        also the UK Research Director at the UBI Center, a think tank
+        researching universal basic income policies, and was previously a data
+        scientist at Caspian, where he worked in improving anti-money laundering
+        investigations. Nikhil is currently on leave from Durham University's
+        Computer Science program.
+      </p>
+    </Col>
+  );
+  const nikhilImage = (
+    <Col
+      xs={12}
+      md={4}
+      style={{
+        display: "flex",
+        justifyContent: mobile ? "center" : "right",
+        alignItems: "center",
+        paddingBottom: 25,
+        paddingTop: 25,
+      }}
+    >
+      <img
+        src={NikhilWoodruff}
+        alt="Nikhil Woodruff"
+        style={{
+          width: 150,
+          height: 150,
+          borderRadius: 100,
+          objectFit: "cover",
+        }}
+      />
+    </Col>
+  );
   const contents = (
     <>
       <h1>About</h1>
       <div style={{ paddingTop: 20, paddingBottom: 20 }}>
-        <h3 style={{paddingBottom: 25}}>Leadership</h3>
+        <h3 style={{ paddingBottom: 25 }}>Leadership</h3>
         <Row>
-          <Col xs={12} md={4} style={{display: "flex", justifyContent: "center", alignItems: "center", paddingBottom: 25, paddingTop: 25}}>
+          <Col
+            xs={12}
+            md={4}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              paddingBottom: 25,
+              paddingTop: 25,
+            }}
+          >
             <img
               src={MaxGhenis}
               alt="Max Ghenis"
-              style={{ width: 150, height: 150, borderRadius: 100, objectFit: "cover" }}
+              style={{
+                width: 150,
+                height: 150,
+                borderRadius: 100,
+                objectFit: "cover",
+              }}
             />
           </Col>
-          <Col xs={12} md={8} style={{display: "flex", alignItems: "center"}}>
-            <p><b>Max Ghenis</b> is the co-founder and CEO of PolicyEngine. He is
-            also the founder and president of the UBI Center, a think tank
-            researching universal basic income policies, and was previously a data
-            scientist at Google. Max has a master's degree in Data, Economics, and
-            Development Policy from MIT and a bachelor's degree in operations
-            research from UC Berkeley.</p>
+          <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
+            <p>
+              <b>Max Ghenis</b> is the co-founder and CEO of PolicyEngine. He is
+              also the founder and president of the UBI Center, a think tank
+              researching universal basic income policies, and was previously a
+              data scientist at Google. Max has a master's degree in Data,
+              Economics, and Development Policy from MIT and a bachelor's degree
+              in operations research from UC Berkeley.
+            </p>
           </Col>
         </Row>
         <Row>
-          {
-            mobile ? nikhilImage : nikhilBio
-          }
-          {
-            mobile ? nikhilBio : nikhilImage
-          }
+          {mobile ? nikhilImage : nikhilBio}
+          {mobile ? nikhilBio : nikhilImage}
         </Row>
       </div>
       <div style={{ paddingTop: 20, paddingBottom: 20 }}>

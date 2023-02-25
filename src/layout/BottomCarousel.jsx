@@ -26,9 +26,9 @@ export default function BottomCarousel(props) {
         justifyContent: mobile ? "center" : "right",
       }}
     >
-      {!mobile && <p style={{ paddingLeft: 50, paddingTop: 20 }}>
-        {bottomText}
-      </p>}
+      {!mobile && (
+        <p style={{ paddingLeft: 50, paddingTop: 20 }}>{bottomText}</p>
+      )}
       <div
         style={{
           flex: 1,

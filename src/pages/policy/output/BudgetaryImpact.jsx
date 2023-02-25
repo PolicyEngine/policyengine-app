@@ -22,9 +22,9 @@ export default function BudgetaryImpact(props) {
     <Plot
       data={[
         {
-          x: mobile ?
-            ["Tax", "Benefit", "Net"] :
-            ["Tax revenues", "Benefit spending", "Net budgetary impact"],
+          x: mobile
+            ? ["Tax", "Benefit", "Net"]
+            : ["Tax revenues", "Benefit spending", "Net budgetary impact"],
           y: [taxImpact / 1e9, -spendingImpact / 1e9, -budgetaryImpact / 1e9],
           type: "waterfall",
           orientation: "v",
@@ -81,52 +81,54 @@ export default function BudgetaryImpact(props) {
       onHover={(data) => {
         const label = data.points[0].x;
         const relevantFigure =
-          label === "Tax revenues" ? -taxImpact :
-            label === "Benefit spending" ? spendingImpact :
-              budgetaryImpact;
+          label === "Tax revenues"
+            ? -taxImpact
+            : label === "Benefit spending"
+            ? spendingImpact
+            : budgetaryImpact;
         let body = null;
-        if ((label === "Tax revenues")) {
+        if (label === "Tax revenues") {
           // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
           body =
             relevantFigure < 0
               ? `This reform would increase tax revenues by ${aggregateCurrency(
-                relevantFigure,
-                metadata
-              )}.`
+                  relevantFigure,
+                  metadata
+                )}.`
               : relevantFigure > 0
-                ? `This reform would reduce tax revenues by ${aggregateCurrency(
+              ? `This reform would reduce tax revenues by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
                 )}.`
-                : "This reform would not impact tax revenues.";
+              : "This reform would not impact tax revenues.";
         } else if (label === "Benefit spending") {
           // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
           body =
             relevantFigure > 0
               ? `This reform would increase benefit spending by ${aggregateCurrency(
-                relevantFigure,
-                metadata
-              )}.`
+                  relevantFigure,
+                  metadata
+                )}.`
               : relevantFigure < 0
-                ? `This reform would reduce benefit spending by ${aggregateCurrency(
+              ? `This reform would reduce benefit spending by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
                 )}.`
-                : "This reform would not impact benefit spending.";
+              : "This reform would not impact benefit spending.";
         } else {
           // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
           body =
             relevantFigure < 0
               ? `This reform would increase the budget deficit by ${aggregateCurrency(
-                relevantFigure,
-                metadata
-              )}.`
+                  relevantFigure,
+                  metadata
+                )}.`
               : relevantFigure > 0
-                ? `This reform would reduce the budget deficit by ${aggregateCurrency(
+              ? `This reform would reduce the budget deficit by ${aggregateCurrency(
                   -relevantFigure,
                   metadata
                 )}.`
-                : "This reform would not impact the budget deficit.";
+              : "This reform would not impact the budget deficit.";
         }
         setHoverCard({
           title: label,
@@ -146,11 +148,7 @@ export default function BudgetaryImpact(props) {
           {aggregateCurrency(budgetaryImpact, metadata)}
           {" this year"}
         </h2>
-        <HoverCard
-          content={hovercard}
-        >
-          {chart}
-        </HoverCard>
+        <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
     </>
   );

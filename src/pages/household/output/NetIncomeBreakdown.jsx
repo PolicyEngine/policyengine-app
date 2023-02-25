@@ -93,20 +93,14 @@ function VariableArithmetic(props) {
   if (typeof adds === "string") {
     // adds is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[adds];
-    adds = getParameterAtInstant(
-      parameter,
-      "2023-01-01",
-    );
+    adds = getParameterAtInstant(parameter, "2023-01-01");
   }
   let subtracts = variable.subtracts || [];
   // Check if 'subtracts' is a string
   if (typeof subtracts === "string") {
     // subtracts is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[subtracts];
-    subtracts = getParameterAtInstant(
-      parameter,
-      "2023-01-01",
-    );
+    subtracts = getParameterAtInstant(parameter, "2023-01-01");
   }
   const expandable = adds.length + subtracts.length > 0;
   const childAddNodes = adds
@@ -240,20 +234,20 @@ export default function NetIncomeBreakdown(props) {
 
   return (
     <>
-    <ResultsPanel
-      title={title}
-      description="Here's how we calculated your household's net income. Click on a section to see more details."
-    >
-      <div style={{ height: 10 }} />
-      <VariableArithmetic
-        variableName="household_net_income"
-        householdBaseline={householdBaseline}
-        householdReform={householdReform}
-        metadata={metadata}
-        defaultExpanded={true}
-        childrenOnly
-      />
-    </ResultsPanel>
+      <ResultsPanel
+        title={title}
+        description="Here's how we calculated your household's net income. Click on a section to see more details."
+      >
+        <div style={{ height: 10 }} />
+        <VariableArithmetic
+          variableName="household_net_income"
+          householdBaseline={householdBaseline}
+          householdReform={householdReform}
+          metadata={metadata}
+          defaultExpanded={true}
+          childrenOnly
+        />
+      </ResultsPanel>
     </>
   );
 }

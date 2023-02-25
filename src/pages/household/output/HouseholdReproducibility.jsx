@@ -73,7 +73,9 @@ export default function HouseholdReproducibility(props) {
     );
   }
 
-  let householdInputCopy = JSON.parse(JSON.stringify(optimiseHousehold(householdInput, metadata, true)));
+  let householdInputCopy = JSON.parse(
+    JSON.stringify(optimiseHousehold(householdInput, metadata, true))
+  );
 
   for (const entityPlural of Object.keys(householdInputCopy)) {
     for (const entity of Object.keys(householdInputCopy[entityPlural])) {

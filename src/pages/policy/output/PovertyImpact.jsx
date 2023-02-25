@@ -10,11 +10,17 @@ import style from "../../../style";
 export default function PovertyImpact(props) {
   const { impact, policyLabel } = props;
   const childPovertyChange =
-    impact.poverty.poverty.child.reform / impact.poverty.poverty.child.baseline - 1;
+    impact.poverty.poverty.child.reform /
+      impact.poverty.poverty.child.baseline -
+    1;
   const adultPovertyChange =
-    impact.poverty.poverty.adult.reform / impact.poverty.poverty.adult.baseline - 1;
+    impact.poverty.poverty.adult.reform /
+      impact.poverty.poverty.adult.baseline -
+    1;
   const seniorPovertyChange =
-    impact.poverty.poverty.senior.reform / impact.poverty.poverty.senior.baseline - 1;
+    impact.poverty.poverty.senior.reform /
+      impact.poverty.poverty.senior.baseline -
+    1;
   const totalPovertyChange =
     impact.poverty.poverty.all.reform / impact.poverty.poverty.all.baseline - 1;
   const povertyChanges = [
@@ -29,7 +35,7 @@ export default function PovertyImpact(props) {
     "Working-age adults": "adult",
     Seniors: "senior",
     All: "all",
-  }
+  };
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
   // Decile bar chart. Bars are grey if negative, green if positive.
@@ -88,16 +94,19 @@ export default function PovertyImpact(props) {
         const change = data.points[0].y;
         const baseline = impact.poverty.poverty[labelToKey[group]].baseline;
         const reform = impact.poverty.poverty[labelToKey[group]].reform;
-        const message =
-          `The percentage of ${group === "All" ?
-            "people" :
-            group.toLowerCase()
-          } in poverty ${change < -0.001 ?
-            `would fall ${percent(-change)} from ${percent(baseline)} to ${percent(reform)}.` :
-            change > 0.001 ?
-              `would rise ${percent(change)} from ${percent(baseline)} to ${percent(reform)}.` :
-              `would remain at ${percent(baseline)}.`
-          }`;
+        const message = `The percentage of ${
+          group === "All" ? "people" : group.toLowerCase()
+        } in poverty ${
+          change < -0.001
+            ? `would fall ${percent(-change)} from ${percent(
+                baseline
+              )} to ${percent(reform)}.`
+            : change > 0.001
+            ? `would rise ${percent(change)} from ${percent(
+                baseline
+              )} to ${percent(reform)}.`
+            : `would remain at ${percent(baseline)}.`
+        }`;
         setHoverCard({
           title: group,
           body: message,
@@ -107,7 +116,12 @@ export default function PovertyImpact(props) {
   );
 
   const povertyRateChange = percent(Math.abs(totalPovertyChange));
-  const percentagePointChange = Math.round(Math.abs(impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline) * 1000) / 10;
+  const percentagePointChange =
+    Math.round(
+      Math.abs(
+        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
+      ) * 1000
+    ) / 10;
 
   return (
     <>
@@ -117,14 +131,10 @@ export default function PovertyImpact(props) {
           {totalPovertyChange > 0
             ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-              ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-              : "wouldn't change the poverty rate"}
+            ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            : "wouldn't change the poverty rate"}
         </h2>
-        <HoverCard
-          content={hovercard}
-        >
-          {chart}
-        </HoverCard>
+        <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
         The chart above shows the relative change in the poverty rate for each

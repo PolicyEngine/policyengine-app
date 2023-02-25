@@ -25,7 +25,13 @@ import { Result } from "antd";
 
 export default function HouseholdPage(props) {
   // const { metadata, household, setHousehold, policy, loading, setHouseholdInput } = props;
-  const { metadata, householdId, policy, hasShownHouseholdPopup, setHasShownHouseholdPopup } = props;
+  const {
+    metadata,
+    householdId,
+    policy,
+    hasShownHouseholdPopup,
+    setHasShownHouseholdPopup,
+  } = props;
   const countryId = metadata.countryId;
   const [searchParams, setSearchParams] = useSearchParams();
   const mobile = useMobile();
@@ -95,10 +101,10 @@ export default function HouseholdPage(props) {
         )
           .then((res) => res.json())
           .then((dataHolder) => {
-            if(dataHolder.status === "error") {
+            if (dataHolder.status === "error") {
               setLoading(false);
               setError(dataHolder.result);
-              return { baseline: null }
+              return { baseline: null };
             } else {
               return { baseline: dataHolder.result };
             }
@@ -115,10 +121,10 @@ export default function HouseholdPage(props) {
           )
             .then((res) => res.json())
             .then((dataHolder) => {
-              if(dataHolder.status === "error") {
+              if (dataHolder.status === "error") {
                 setLoading(false);
                 setError(dataHolder.message);
-                return { reform: null }
+                return { reform: null };
               } else {
                 return { reform: dataHolder.result };
               }
@@ -255,13 +261,13 @@ export default function HouseholdPage(props) {
   }
   if (error) {
     let errorContent = error.error;
-    middle = <Result
-      status="error"
-      title="Something went wrong"
-      subTitle={
-        <p>{errorContent}</p>
-      }
-    />
+    middle = (
+      <Result
+        status="error"
+        title="Something went wrong"
+        subTitle={<p>{errorContent}</p>}
+      />
+    );
   }
   if (mobile) {
     return (

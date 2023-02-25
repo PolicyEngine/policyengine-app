@@ -6,7 +6,7 @@ The [Emergency Recovery Plan](https://assets.nationbuilder.com/reformuk/pages/27
 
 ![](https://cdn-images-1.medium.com/max/2000/1*jmpWEyv7OEylKpxMnTB-oA.png)
 
-*Provisions in Reform UK’s Emergency Recovery Plan, alongside PolicyEngine’s cost estimates.*
+_Provisions in Reform UK’s Emergency Recovery Plan, alongside PolicyEngine’s cost estimates._
 
 For this analysis, we considered only those occurring over the next year (therefore excluding the tax inflation indexing). We also excluded the abolition of environmental levies, non-household fuel duty and government spending cuts- these are currently out of the scope of our model.
 
@@ -16,7 +16,7 @@ In total, we project that these reforms would reduce tax revenues by £67 billio
 
 ![](https://cdn-images-1.medium.com/max/2000/0*3E3MPE6q_RJB1fPK)
 
-*Overall budgetary impact of the Economic Recovery Plan.*
+_Overall budgetary impact of the Economic Recovery Plan._
 
 ## Distributional impact
 
@@ -24,19 +24,19 @@ We estimate that the average household’s income would rise by 6%, with gains h
 
 ![](https://cdn-images-1.medium.com/max/2000/0*3rc1RlNXmIp96LlJ)
 
-*Relative change to net income by decile under the Economic Recovery Plan.*
+_Relative change to net income by decile under the Economic Recovery Plan._
 
 The first income decile sees an average income gain of £468, compared to £5,350 for the top decile.
 
 ![](https://cdn-images-1.medium.com/max/2000/0*IlIMx61Z3uTDk_WQ)
 
-*Absolute change to net income under the Economic Recovery Plan.*
+_Absolute change to net income under the Economic Recovery Plan._
 
 By lowering consumption and income taxes together, the reforms reach all households, and 81% of households see their net income rise by over 5%. This ‘strong increase’ is lowest for the second decile at 58%, rising to 99% in the ninth decile.
 
 ![](https://cdn-images-1.medium.com/max/2000/0*7fPvGpzwxibSeDEr)
 
-*Distribution of outcomes by income decile under the Economic Recovery Plan.*
+_Distribution of outcomes by income decile under the Economic Recovery Plan._
 
 ## Poverty and inequality
 
@@ -48,7 +48,7 @@ The Emergency Recovery Plan would reduce income inequality according to the thre
 
 ![](https://cdn-images-1.medium.com/max/2000/0*Me-OW-00Wh9TVerc)
 
-*Change to inequality metrics under the Economic Recovery Plan.*
+_Change to inequality metrics under the Economic Recovery Plan._
 
 ## Work incentives
 
@@ -62,13 +62,13 @@ Further up the income spectrum, another work disincentive under current law is t
 
 ![](https://cdn-images-1.medium.com/max/2000/0*WVDTeH4b9HS8d0At)
 
-*Change to marginal tax rate by employment income, for a single-earner married couple with two children.*
+_Change to marginal tax rate by employment income, for a single-earner married couple with two children._
 
 Reflecting this, the overall change to net income phases in until £65,000. After this point, gains are smoothly tapered away after £125,000 before reaching zero.
 
 ![](https://cdn-images-1.medium.com/max/2000/0*eS-8ASirEFxhcvYU)
 
-*Change to net income by employment income, for a single-earner married couple with two children.*
+_Change to net income by employment income, for a single-earner married couple with two children._
 
 ## See the effect on your household
 

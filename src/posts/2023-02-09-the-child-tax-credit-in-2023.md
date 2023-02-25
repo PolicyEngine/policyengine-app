@@ -1,4 +1,4 @@
-*Credit: DALL-E 2*
+_Credit: DALL-E 2_
 
 In Tuesday’s State of the Union speech, President Joe Biden called to expand the Child Tax Credit. What is the Child Tax Credit, how might it affect you, and what impact does PolicyEngine estimate it has on society? This blog post covers the bases.
 

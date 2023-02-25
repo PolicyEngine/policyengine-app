@@ -167,8 +167,8 @@ function MobileBottomMenu(props) {
     formatVariableValue(metadata.variables[variable], getValue(variable), 0);
   let text;
   try {
-    getReformValue("household_net_income")
-  } catch(e) {
+    getReformValue("household_net_income");
+  } catch (e) {
     hasReform = false;
   }
   if (hasReform && autoCompute) {

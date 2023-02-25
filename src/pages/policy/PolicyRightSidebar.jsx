@@ -21,79 +21,91 @@ function PolicyNamer(props) {
   const [error, setError] = useState(null);
   return (
     <>
-    <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-      <InputField
-        placeholder={label}
-        type="text"
-        inputmode="text"
-        padding={10}
-        width="100%"
-        onChange={(name) => {
-          getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
-            data => {
-              console.log(data)
-              if (data.status) {
-                setError(data.message);
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("renamed", true);
-                setSearchParams(newSearch);
-              } else {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("renamed", true);
-                setSearchParams(newSearch);
-                setError(null);
-
+      <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+        <InputField
+          placeholder={label}
+          type="text"
+          inputmode="text"
+          padding={10}
+          width="100%"
+          onChange={(name) => {
+            getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
+              (data) => {
+                if (data.status) {
+                  setError(data.message);
+                  let newSearch = copySearchParams(searchParams);
+                  newSearch.set("renamed", true);
+                  setSearchParams(newSearch);
+                } else {
+                  let newSearch = copySearchParams(searchParams);
+                  newSearch.set("renamed", true);
+                  setSearchParams(newSearch);
+                  setError(null);
+                }
               }
-            }
-          );
-        }}
-      />
-    </div>
-    {error && <Alert message={error} type="error" style={{marginLeft: 20, marginRight: 20}} />}
+            );
+          }}
+        />
+      </div>
+      {error && (
+        <Alert
+          message={error}
+          type="error"
+          style={{ marginLeft: 20, marginRight: 20 }}
+        />
+      )}
     </>
   );
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } = props;
+  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } =
+    props;
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
-  const isBool = (parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition");
-  const prefix  = isBool ? 
-                  value ? 'Enable' : 'Disable' 
-                  : value > oldVal ? 'Raise' : 'Lower';
+  const isBool =
+    parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition";
+  const prefix = isBool
+    ? value
+      ? "Enable"
+      : "Disable"
+    : value > oldVal
+    ? "Raise"
+    : "Lower";
 
   return (
-    <div 
-      style={{ 
-        display: "flex", 
+    <div
+      style={{
+        display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "0 10%" }}
+        padding: "0 10%",
+      }}
     >
       <div>
-        <span style={isBool ? {color: style.colors.BLUE, fontWeight : "bold" } : {}}>
-          {prefix}{' '}
+        <span
+          style={isBool ? { color: style.colors.BLUE, fontWeight: "bold" } : {}}
+        >
+          {prefix}{" "}
         </span>
         {paramLabel}
-        {
-          !isBool && 
-            <>
-              {' '}from{' '}
-              <span  style={{ fontWeight : "bold" }}>{oldValStr}</span>
-              {' '} to{' '} 
-              <span 
-                style={{ 
-                  color: style.colors.BLUE,
-                  fontWeight : "bold" }}
-              >
-                {newValueStr}
-              </span>
-            </>
-        }
+        {!isBool && (
+          <>
+            {" "}
+            from <span style={{ fontWeight: "bold" }}>{oldValStr}</span> to{" "}
+            <span
+              style={{
+                color: style.colors.BLUE,
+                fontWeight: "bold",
+              }}
+            >
+              {newValueStr}
+            </span>
+          </>
+        )}
       </div>
-      <div style={{ fontStyle: "italic"}}>
+      <div style={{ fontStyle: "italic" }}>
         {startDateStr} to {endDateStr}
       </div>
     </div>
@@ -136,28 +148,30 @@ function PolicyDisplay(props) {
         overflow: "scroll",
       }}
     >
-      <Carousel 
-        variant="dark" 
-        className="text-center" 
-        indicators={false} 
-        interval={null} 
-        controls={reformLength > 1 ? true : false} 
-        slide={false}>
+      <Carousel
+        variant="dark"
+        className="text-center"
+        indicators={false}
+        interval={null}
+        controls={reformLength > 1 ? true : false}
+        slide={false}
+      >
         {Object.keys(policy.reform.data).map((parameterName) => (
-          <Carousel.Item 
-          key={parameterName} 
-          onClick={() => {
-            const country = metadata.countryId;
-            const newSearchParams = {};
-            newSearchParams.focus = parameterName;
-            newSearchParams.reform = policy.reform.id;
-            newSearchParams.region = country;
-            const newUrl = `/${country}/policy?${new URLSearchParams(
-              newSearchParams
-            )}`;
-            navigate(newUrl);
-            hideButtons && closeDrawer();
-          }}>
+          <Carousel.Item
+            key={parameterName}
+            onClick={() => {
+              const country = metadata.countryId;
+              const newSearchParams = {};
+              newSearchParams.focus = parameterName;
+              newSearchParams.reform = policy.reform.id;
+              newSearchParams.region = country;
+              const newUrl = `/${country}/policy?${new URLSearchParams(
+                newSearchParams
+              )}`;
+              navigate(newUrl);
+              hideButtons && closeDrawer();
+            }}
+          >
             <PolicyItem
               key={parameterName}
               metadata={metadata}
@@ -242,19 +256,40 @@ export default function PolicyRightSidebar(props) {
   return (
     <div style={{ paddingTop: 10 }}>
       {
-        <PolicyNamer policy={policy} metadata={metadata} setPolicy={setPolicy} />
+        <PolicyNamer
+          policy={policy}
+          metadata={metadata}
+          setPolicy={setPolicy}
+        />
       }
-      {
-        showReformSearch ?
-          <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-            <PolicySearch metadata={metadata} policy={policy} target="reform" width="100%" onSelect={() => setShowReformSearch(false)}/>
-          </div> :
-          <div style={{display: "flex", justifyContent: "center"}}>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#" style={{textAlign: "center", width: "100%"}} onClick={() => setShowReformSearch(true)}>find an existing policy</a>
-          </div>
-      }
-      <PolicyDisplay policy={policy} metadata={metadata} closeDrawer={closeDrawer} hideButtons={hideButtons} />
+      {showReformSearch ? (
+        <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+          <PolicySearch
+            metadata={metadata}
+            policy={policy}
+            target="reform"
+            width="100%"
+            onSelect={() => setShowReformSearch(false)}
+          />
+        </div>
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a
+            href="#"
+            style={{ textAlign: "center", width: "100%" }}
+            onClick={() => setShowReformSearch(true)}
+          >
+            find an existing policy
+          </a>
+        </div>
+      )}
+      <PolicyDisplay
+        policy={policy}
+        metadata={metadata}
+        closeDrawer={closeDrawer}
+        hideButtons={hideButtons}
+      />
       <div
         style={{
           display: "flex",

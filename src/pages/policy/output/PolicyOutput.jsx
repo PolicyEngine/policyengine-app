@@ -13,12 +13,15 @@ import IntraDecileImpact from "./IntraDecileImpact";
 import Reproducibility from "./PolicyReproducibility";
 import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
-import POLICY_OUTPUT_TREE from "./tree";
+import getPolicyOutputTree from "./tree";
 import InequalityImpact from "./InequalityImpact";
 import { Result, Steps } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import useMobile from "../../../layout/Responsive";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
+import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
+import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
+import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -75,10 +78,22 @@ export default function PolicyOutput(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const { metadata, policy, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
+  const {
+    metadata,
+    policy,
+    hasShownPopulationImpactPopup,
+    setHasShownPopulationImpactPopup,
+  } = props;
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
   useEffect(() => {
-    if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId && focus !== "policyOutput.cliffImpact") {
+    if (
+      !!region &&
+      !!timePeriod &&
+      !!reformPolicyId &&
+      !!baselinePolicyId &&
+      focus !== "policyOutput.cliffImpact"
+    ) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}`;
       setImpact(null);
       setError(null);
@@ -86,12 +101,18 @@ export default function PolicyOutput(props) {
         .then((data) => {
           if (data.status === "error") {
             if (!data.result.baseline_economy) {
-              data.result.baseline_economy = { status: "error", message: "An error outside the baseline economy computation." };
+              data.result.baseline_economy = {
+                status: "error",
+                message: "An error outside the baseline economy computation.",
+              };
             }
             if (!data.result.reform_economy) {
-              data.result.reform_economy = { status: "error", message: "An error outside the baseline economy computation." };
+              data.result.reform_economy = {
+                status: "error",
+                message: "An error outside the baseline economy computation.",
+              };
             }
-            if(data.message) {
+            if (data.message) {
               data.result.message = data.message;
             }
             setError(data.result);
@@ -127,63 +148,73 @@ export default function PolicyOutput(props) {
   if (error) {
     const baselineOK = error.baseline_economy.status === "ok";
     const reformOK = error.reform_economy.status === "ok";
-    return <Result
-      status="error"
-      title="Something went wrong"
-      subTitle={
-        <div>
-        <Steps
-          direction="vertical"
-        >
-          <Steps.Item
-            title="Baseline economy"
-            description={
-              baselineOK ?
-                "We simulated the baseline economy without error." :
-                error.baseline_economy.message
-            }
-            status={baselineOK ? "finish" : "wait"}
-            icon={
-              baselineOK ?
-                <CheckCircleFilled style={{fontSize: 20, color: "green"}} /> :
-                <CloseCircleFilled style={{fontSize: 20, color: "red"}} />
-            }
-          />
-          <Steps.Item
-            title="Reformed economy"
-            description={
-              reformOK ?
-                "We simulated the reformed economy without error." :
-                error.reform_economy.message
-            }
-            status="wait"
-            icon={
-              baselineOK ?
-                <CheckCircleFilled style={{fontSize: 20, color: "green"}} /> :
-                <CloseCircleFilled style={{fontSize: 20, color: "red"}} />
-            }
-          />
-          {
-            error.message ?
+    return (
+      <Result
+        status="error"
+        title="Something went wrong"
+        subTitle={
+          <div>
+            <Steps direction="vertical">
               <Steps.Item
-                title="Comparison"
-                description={error.message}
+                title="Baseline economy"
+                description={
+                  baselineOK
+                    ? "We simulated the baseline economy without error."
+                    : error.baseline_economy.message
+                }
+                status={baselineOK ? "finish" : "wait"}
+                icon={
+                  baselineOK ? (
+                    <CheckCircleFilled
+                      style={{ fontSize: 20, color: "green" }}
+                    />
+                  ) : (
+                    <CloseCircleFilled style={{ fontSize: 20, color: "red" }} />
+                  )
+                }
+              />
+              <Steps.Item
+                title="Reformed economy"
+                description={
+                  reformOK
+                    ? "We simulated the reformed economy without error."
+                    : error.reform_economy.message
+                }
                 status="wait"
-                icon={<CloseCircleFilled style={{fontSize: 20, color: "red"}} />}
-              /> :
-              null
-          }
-        </Steps>
-        </div>
-      }
-    />
+                icon={
+                  baselineOK ? (
+                    <CheckCircleFilled
+                      style={{ fontSize: 20, color: "green" }}
+                    />
+                  ) : (
+                    <CloseCircleFilled style={{ fontSize: 20, color: "red" }} />
+                  )
+                }
+              />
+              {error.message ? (
+                <Steps.Item
+                  title="Comparison"
+                  description={error.message}
+                  status="wait"
+                  icon={
+                    <CloseCircleFilled style={{ fontSize: 20, color: "red" }} />
+                  }
+                />
+              ) : null}
+            </Steps>
+          </div>
+        }
+      />
+    );
   }
 
   if (!reformPolicyId) {
-    return <ResultsPanel
-      title="Your policy is empty"
-      description="You haven't added any reforms to your policy yet. Change policy parameters and see the results here."
-    />
+    return (
+      <ResultsPanel
+        title="Your policy is empty"
+        description="You haven't added any reforms to your policy yet. Change policy parameters and see the results here."
+      />
+    );
   }
 
   let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
@@ -254,6 +285,30 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
+  } else if (focus === "policyOutput.wealthDecileAverageImpact") {
+    pane = (
+      <AverageImpactByWealthDecile
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.wealthDecileRelativeImpact") {
+    pane = (
+      <RelativeImpactByWealthDecile
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.intraWealthDecileImpact") {
+    pane = (
+      <IntraWealthDecileImpact
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   }
@@ -262,16 +317,30 @@ export default function PolicyOutput(props) {
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 
-  const bottomElements = mobile ?
-    null :
-      metadata.countryId === "us" ?
-        <p>PolicyEngine estimates reform impacts using a static microsimulation over the 2021 Current Population Survey March Supplement. <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">Read our caveats and data enhancement plan.</a></p> :
-        <p>PolicyEngine estimates reform impacts using a static microsimulation over <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">an enhanced version of the 2019 Family Resources Survey</a></p>
-
+  const bottomElements = mobile ? null : metadata.countryId === "us" ? (
+    <p>
+      PolicyEngine estimates reform impacts using a static microsimulation over
+      the 2021 Current Population Survey March Supplement.{" "}
+      <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">
+        Read our caveats and data enhancement plan.
+      </a>
+    </p>
+  ) : (
+    <p>
+      PolicyEngine estimates reform impacts using a static microsimulation over{" "}
+      <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
+        an enhanced version of the 2019 Family Resources Survey
+      </a>
+    </p>
+  );
 
   pane = (
     <>
-      <PolicyImpactPopup metadata={metadata} hasShownPopulationImpactPopup={hasShownPopulationImpactPopup} setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup} />
+      <PolicyImpactPopup
+        metadata={metadata}
+        hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
+        setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+      />
       {pane}
       <BottomCarousel
         selected={focus}
