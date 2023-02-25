@@ -36,7 +36,7 @@ export default function AverageImpactByWealthDecile(props) {
       ]}
       layout={{
         xaxis: {
-          title: "Income decile",
+          title: "Wealth decile",
           tickvals: Object.keys(impact.wealth_decile.average),
         },
         yaxis: {
@@ -110,7 +110,7 @@ export default function AverageImpactByWealthDecile(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows the relative change in income for each income
+        The chart above shows the relative change in income for each wealth
         decile. Households are sorted into ten equally-populated groups
         according to their equivalised household net income.
       </p>
