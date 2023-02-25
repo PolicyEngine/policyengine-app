@@ -1,46 +1,44 @@
-The federal earned income tax credit (EITC) is accrued through working and it functions to lower one’s tax liability. The EITC is _refundable_, meaning if one’s tax liability is reduced below zero, then the taxpayer will receive income back in the form of a refund. [Oregon is one of 29 states](https://www.taxcreditsforworkersandfamilies.org/state-tax-credits/) that provides a match or similar program to the federal EITC.
+The earned income tax credit (EITC) is a federal tax credit for low-income filers with earned income. The credit is refundable, meaning that the taxpayer can receive money back in the form of a refund if their tax liability is reduced below zero. [Oregon is one of 29 states](https://www.taxcreditsforworkersandfamilies.org/state-tax-credits/) or similar program to the federal EITC.
 
-Oregon’s EITC has two elements. The first gives 12% of the federal EITC to filers with children under three years old. For filers without young children, Oregon matches 9% of the federal EITC.
+## Introduction to the Oregon EITC
 
-We’ve now modeled Oregon’s EITC match in PolicyEngine, along with other credits and subtractions. The below video outlines an example of how to estimate your EITC match in Oregon under current law. You can also read on in this blog post for step by step instructions on entering your information and estimating your own credit.
+The Oregon EITC has two elements. For filers with children under three years old, the state provides 12% of the federal EITC. For filers without young children, Oregon matches 9% of the federal EITC. PolicyEngine has now modeled the Oregon EITC match, along with other credits and subtractions. In this blog post, we’ll walk you through the process of estimating your EITC match in Oregon using PolicyEngine.
 
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/YzJXuCZQ05Y" frameborder="0" allowfullscreen></iframe></center>
+## Example: Single Parent with $30,000 Employment Income and Two Children
 
-In this example, we’ll consider a single parent with $30,000 employment income and two children, aged two and four, respectively. By the end, you’ll see how much they are eligible for from the Oregon EITC in 2022. You can also enter information about your own household instead.
+Consider a single parent with $30,000 employment income and two children, aged two and four, respectively. By following the steps outlined below, you can estimate the amount of Oregon EITC you are eligible for in 2022.
 
-First, select **Your Household** on the top bar to enter information about you and other members of your household.
+## Step-by-Step Instructions for Estimating Your Oregon EITC in PolicyEngine
 
-![](https://cdn-images-1.medium.com/max/3200/0*xEmc7hvB-nFDU7JU)
+Select “Compute my household income” on the left, then “Enter my household.”
 
-Second, enter **Marital status** and **Dependents** on the first household screen. Leave marital status as **Single** and select **2** dependents.
+![](https://cdn-images-1.medium.com/max/3200/0*BZcMhZhhEGtlx9nu)
 
-![](https://cdn-images-1.medium.com/max/3200/0*JBUdSsMw_BvwvPPy)
+Enter your marital status as “Single,” followed by two dependents.
 
-Third, go to the **Location** tab.
+![](https://cdn-images-1.medium.com/max/3200/0*6rDvjb_CApdU-Dgp)
 
-![](https://cdn-images-1.medium.com/max/3200/0*GjKKdHk5vAjFvBO6)
+In the dropdown, select “Oregon” as your state.
 
-Enter **OR** from the **State code** menu, and move to the **Income** tab.
+![](https://cdn-images-1.medium.com/max/3200/0*bfcoGajoaxjJvd0I)
 
-![](https://cdn-images-1.medium.com/max/3200/0*WnKOVF2eUkI95aNc)
+Enter your employment income ($30,000 in this example).
 
-Enter **$30,000** in **Employment income.** You can also enter several types of income other than employment income.
+![](https://cdn-images-1.medium.com/max/3200/0*hjv0AkyVkHqjZnAX)
 
-![](https://cdn-images-1.medium.com/max/3200/0*qq50BmXMkKf6MjyW)
+Next, enter your age, and the ages of the children (in this example, age two and four).
 
-Then, on to the **Demographics** tab to enter the ages of the children, since the Oregon EITC varies with age. Using the person dropdown menu, enter the age of **Your first dependent** as **2** and **Your second dependent** as **4**.
+![](https://cdn-images-1.medium.com/max/7680/1*4jU0hHp0--fS3oMlRWR-Gg.png)
 
-![](https://cdn-images-1.medium.com/max/3200/0*uAM2KQGPnJLH1OPO)
+With your net income displayed at the top, click the “Your refundable tax credits,” then “Your Oregon refundable tax credits.” The dropdown will display your OR EITC.
 
-Finally, select **Compute your net income**, the highlighted button on the right.
+![](https://cdn-images-1.medium.com/max/3200/0*EzWn-Al88mSROJko)
 
-![](https://cdn-images-1.medium.com/max/3200/0*Xyif0kuqdLMjHU6J)
+In this example, the estimated Oregon EITC is $579. That is, a single parent with $30,000 employment income and children aged two and four will receive $579 from the Oregon EITC in 2022.
 
-Clicking through each highlighted tab, we come to the **Oregon EITC** of **$490.** That is, a single parent with $30,000 employment income and children aged two and four will receive $490 from the Oregon EITC in 2022.
+## Conclusion
 
-![](https://cdn-images-1.medium.com/max/3200/0*8a9rHUsaP87t-0k5)
-
-To estimate your own Oregon EITC, or other taxes and benefits, visit [policyengine.org](http://policyengine.org).
+To estimate your own Oregon EITC, or other taxes and benefits, visit policyengine.org. Remember, these are just estimates and the actual amount you receive may be different. For more information on the EITC and other tax credits, visit the Internal Revenue Service (IRS) website.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*7234nnaAoAino9Mr)
 
