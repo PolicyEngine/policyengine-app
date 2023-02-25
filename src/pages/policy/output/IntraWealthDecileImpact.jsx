@@ -235,7 +235,7 @@ export default function IntraWealthDecileImpact(props) {
           anchor: "y2",
         },
         yaxis2: {
-          title: "Income decile",
+          title: "Wealth decile",
           tickvals: decileNumbers,
           anchor: "x2",
           domain: [0, 0.85],
@@ -290,10 +290,10 @@ export default function IntraWealthDecileImpact(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows percentage of of people in each household income
+        The chart above shows percentage of of people in each household wealth
         decile who experience different outcomes. Households are sorted into ten
         equally-populated groups according to their equivalised household net
-        income.
+        wealth (including property and corporate holdings).
       </p>
     </>
   );
