@@ -25,7 +25,9 @@ export default function EarningsVariation(props) {
   const [variable, setVariable] = useState("household_net_income");
   const variableLabel = metadata.variables[variable].label || variable;
   const possibleEntities = Object.keys(
-    householdInput[metadata.entities[metadata.variables[variable].entity].plural]
+    householdInput[
+      metadata.entities[metadata.variables[variable].entity].plural
+    ]
   );
   // eslint-disable-next-line
   const [selectedEntity, setSelectedEntity] = useState(possibleEntities[0]);
@@ -36,7 +38,9 @@ export default function EarningsVariation(props) {
   if (baselineNetIncome) {
     for (const entityPlural in baselineNetIncome) {
       const firstEntity =
-        baselineNetIncome[entityPlural][Object.keys(baselineNetIncome[entityPlural])[0]];
+        baselineNetIncome[entityPlural][
+          Object.keys(baselineNetIncome[entityPlural])[0]
+        ];
       validVariables = validVariables.concat(
         Object.keys(firstEntity).filter((variable) =>
           Array.isArray(firstEntity[variable][2023])
@@ -78,7 +82,6 @@ export default function EarningsVariation(props) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
           setBaselineNetIncome(data.result);
         })
         .catch((err) => {
@@ -140,23 +143,27 @@ export default function EarningsVariation(props) {
   let mainChart;
 
   if (baselineNetIncome && !reformNetIncome) {
-    mainChart = <BaselineOnlyChart
-      householdBaseline={householdBaseline}
-      householdBaselineVariation={baselineNetIncome}
-      metadata={metadata}
-      variable={variable}
-      variableLabel={variableLabel}
-    />
+    mainChart = (
+      <BaselineOnlyChart
+        householdBaseline={householdBaseline}
+        householdBaselineVariation={baselineNetIncome}
+        metadata={metadata}
+        variable={variable}
+        variableLabel={variableLabel}
+      />
+    );
   } else if (baselineNetIncome) {
-    mainChart = <BaselineAndReformChart
-      householdBaseline={householdBaseline}
-      householdBaselineVariation={baselineNetIncome}
-      householdReform={householdReform}
-      householdReformVariation={reformNetIncome}
-      metadata={metadata}
-      variable={variable}
-      variableLabel={variableLabel}
-    />
+    mainChart = (
+      <BaselineAndReformChart
+        householdBaseline={householdBaseline}
+        householdBaselineVariation={baselineNetIncome}
+        householdReform={householdReform}
+        householdReformVariation={reformNetIncome}
+        metadata={metadata}
+        variable={variable}
+        variableLabel={variableLabel}
+      />
+    );
   }
 
   return (

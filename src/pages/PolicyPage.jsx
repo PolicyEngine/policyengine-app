@@ -16,7 +16,7 @@ import style from "../style";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-import POLICY_OUTPUT_TREE from "./policy/output/tree";
+import getPolicyOutputTree from "./policy/output/tree";
 import { capitalize } from "../api/language";
 
 function ParameterSearch(props) {
@@ -47,6 +47,7 @@ function ParameterSearch(props) {
 function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const selected = searchParams.get("focus") || "";
   const onSelect = (name) => {
     let newSearch = copySearchParams(searchParams);
@@ -122,6 +123,7 @@ function MobileMiddleBar(props) {
 
 function MobileTreeNavigationHolder(props) {
   const { metadata } = props;
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
@@ -219,9 +221,9 @@ function MobileBottomMenu(props) {
   const focus = searchParams.get("focus") || "";
   const [policyDrawerOpen, setPolicyDrawerOpen] = useState(false);
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     return setPolicyDrawerOpen(false);
-  }
+  };
 
   return (
     <div
@@ -290,12 +292,17 @@ function MobileBottomMenu(props) {
         )}
         <Drawer
           open={policyDrawerOpen}
-          onClose={e => handleClick(e)}
+          onClose={(e) => handleClick(e)}
           placement="bottom"
           title="Your policy"
           height="60vh"
         >
-          <PolicyRightSidebar metadata={metadata} policy={policy} closeDrawer={handleClick} hideButtons />
+          <PolicyRightSidebar
+            metadata={metadata}
+            policy={policy}
+            closeDrawer={handleClick}
+            hideButtons
+          />
         </Drawer>
       </div>
     </div>
@@ -323,7 +330,14 @@ function MobilePolicyPage(props) {
 }
 
 export default function PolicyPage(props) {
-  const { metadata, policy, setPolicy, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
+  const {
+    metadata,
+    policy,
+    setPolicy,
+    hasShownPopulationImpactPopup,
+    setHasShownPopulationImpactPopup,
+  } = props;
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -341,11 +355,9 @@ export default function PolicyPage(props) {
   useEffect(() => {
     if (!policy.reform.data && !searchParams.get("reform")) {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("reform", metadata.countryId === "us" ? 
-        2 : 
-        metadata.countryId === "uk" ?
-          1 :
-          3
+      newSearch.set(
+        "reform",
+        metadata.countryId === "us" ? 2 : metadata.countryId === "uk" ? 1 : 3
       );
       setSearchParams(newSearch);
     }
@@ -381,9 +393,12 @@ export default function PolicyPage(props) {
   } else if (focus.includes("policyOutput.")) {
     middle = (
       <>
-        <PolicyOutput metadata={metadata} policy={policy} 
+        <PolicyOutput
+          metadata={metadata}
+          policy={policy}
           hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-          setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup} />
+          setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+        />
       </>
     );
   }

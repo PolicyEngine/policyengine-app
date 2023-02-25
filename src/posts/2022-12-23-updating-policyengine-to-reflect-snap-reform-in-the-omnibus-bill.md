@@ -1,4 +1,3 @@
-
 # Updating PolicyEngine to reflect SNAP reform in the omnibus bill
 
 A step-by-step guide to syncing our code with the latest legislation

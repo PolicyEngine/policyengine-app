@@ -21,31 +21,33 @@ export default function FolderPage(props) {
           justifyContent: mobile ? "center" : "left",
         }}
       >
-        {children.filter(child => !child.name.includes("pycache")).map((child) => (
-          <motion.div
-            key={child.name}
-            style={{
-              width: mobile ? 100 : 150,
-              height: mobile ? 100 : 150,
-              backgroundColor: style.colors.LIGHT_GRAY,
-              margin: 10,
-              padding: 10,
-              borderRadius: 10,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-            }}
-            whileHover={{ scale: 1.05 }}
-            onClick={() => {
-              let newSearch = copySearchParams(searchParams);
-              newSearch.set("focus", child.name);
-              setSearchParams(newSearch);
-            }}
-          >
-            <h6 style={{ textAlign: "center" }}>{capitalize(child.label)}</h6>
-          </motion.div>
-        ))}
+        {children
+          .filter((child) => !child.name.includes("pycache"))
+          .map((child) => (
+            <motion.div
+              key={child.name}
+              style={{
+                width: mobile ? 100 : 150,
+                height: mobile ? 100 : 150,
+                backgroundColor: style.colors.LIGHT_GRAY,
+                margin: 10,
+                padding: 10,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                cursor: "pointer",
+              }}
+              whileHover={{ scale: 1.05 }}
+              onClick={() => {
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("focus", child.name);
+                setSearchParams(newSearch);
+              }}
+            >
+              <h6 style={{ textAlign: "center" }}>{capitalize(child.label)}</h6>
+            </motion.div>
+          ))}
       </div>
     </ResultsPanel>
   );

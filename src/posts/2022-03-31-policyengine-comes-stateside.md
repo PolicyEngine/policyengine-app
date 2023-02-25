@@ -1,8 +1,8 @@
 Last October, we [launched PolicyEngine UK](https://blog.policyengine.org/make-everyone-a-policymaker-dc7b00bdb143), bringing free, open-source, web-based tax and benefit analysis to the UK for the first time. Since then, users have asked us one question more than any other: “When is it coming to the US?” This isn’t too surprising; after all, half our founding team (me) is American.
 
-Well, fellow Yanks, the wait is over. Today, we’re beta-launching PolicyEngine US! To try it, visit [**policyengine.org/us](http://policyengine.org/us)** or check out the big American flag at [**policyengine.org](https://policyengine.org/)**. Did I mention we’re also launching a [**policyengine.org](https://policyengine.org)** homepage today?
+Well, fellow Yanks, the wait is over. Today, we’re beta-launching PolicyEngine US! To try it, visit [\*\*policyengine.org/us](http://policyengine.org/us)** or check out the big American flag at [**policyengine.org](https://policyengine.org/)**. Did I mention we’re also launching a [**policyengine.org](https://policyengine.org)\*\* homepage today?
 
-![[PolicyEngine homepage](http://policyengine.org)](https://cdn-images-1.medium.com/max/7636/1*VWLFVXNrF1Gss2euuXE7tA.png)*[PolicyEngine homepage](http://policyengine.org)*
+![[PolicyEngine homepage](http://policyengine.org)](https://cdn-images-1.medium.com/max/7636/1*VWLFVXNrF1Gss2euuXE7tA.png)_[PolicyEngine homepage](http://policyengine.org)_
 
 If you’ve used PolicyEngine UK, the US interface will look familiar, though without the society-wide impact page and with a different default screen. If you’re new to PolicyEngine, you can now see how to use it by clicking the question mark in the bottom left, which shows a brief demo.
 
@@ -10,35 +10,35 @@ If you’ve used PolicyEngine UK, the US interface will look familiar, though wi
 
 In fact, here are all the things we’re launching:
 
-* [PolicyEngine US beta](https://policyengine.org/us)
+- [PolicyEngine US beta](https://policyengine.org/us)
 
-* [PolicyEngine homepage](https://policyengine.org)
+- [PolicyEngine homepage](https://policyengine.org)
 
-* Demo walkthrough
+- Demo walkthrough
 
-* Counterfactuals, allowing you to change baseline policy (in the UK and US)
+- Counterfactuals, allowing you to change baseline policy (in the UK and US)
 
-* UK forecasts in our microsimulation model
+- UK forecasts in our microsimulation model
 
-* [API documentation](https://docs.google.com/document/d/1y-kRDOssYyRwEVTsntqGxoBtvFS4HKMQD-U0Ga9YzJE/) (if you want to estimate taxes or benefits in your app, get in touch)
+- [API documentation](https://docs.google.com/document/d/1y-kRDOssYyRwEVTsntqGxoBtvFS4HKMQD-U0Ga9YzJE/) (if you want to estimate taxes or benefits in your app, get in touch)
 
 OK, back to PolicyEngine US. Why the beta? Well, it’s not nearly complete. Here’s what we have so far:
 
-* Federal personal income taxes
+- Federal personal income taxes
 
-* Payroll taxes
+- Payroll taxes
 
-* Affordable Connectivity Program
+- Affordable Connectivity Program
 
-* Lifeline
+- Lifeline
 
-* Free and reduced school meals
+- Free and reduced school meals
 
-* Special Supplemental Nutrition Assistance Program for Women, Infants, and Children (WIC)
+- Special Supplemental Nutrition Assistance Program for Women, Infants, and Children (WIC)
 
-* California’s Supplemental Nutrition Assistance Program (SNAP)
+- California’s Supplemental Nutrition Assistance Program (SNAP)
 
-* California Clean Vehicle Rebate Project
+- California Clean Vehicle Rebate Project
 
 This is only a subset of US benefit programs — many of which vary by state — and we don’t yet have state income taxes. We also don’t compute impacts on societal measures like poverty, inequality, and the budget. And while we’ve tested it extensively, it’s not yet as thoroughly vetted as the UK model (as always, consult a tax or benefit advisor, as our estimates aren’t official).
 
@@ -52,4 +52,4 @@ We have a long way to go to bring all our UK features to the US. The US tax and 
 
 To compute the impact of US tax and benefit policy on your own household, give PolicyEngine US a try at [**policyengine.org/us**](https://policyengine.org/us). You can also learn more about the product on Monday at 11:30AM ET at the [Policy Simulation Library Demo Day](http://pslmodels.org/events.html). As always, feel free to [reach out](http://contact@policyengine.org) with any questions or feedback.
 
-*We’re grateful to other tax and benefit models, from the Policy Simulation Library’s open-source [Tax-Calculator](http://taxcalc.pslmodels.org) to [snapscreener.com](https://www.snapscreener.com/) to the Atlanta Fed’s [Policy Rules Database](https://www.atlantafed.org/economic-mobility-and-resilience/advancing-careers-for-low-income-families/policy-rules-database), and to our [open-source](https://github.com/PolicyEngine/openfisca-us/graphs/contributors) [contributors](https://github.com/PolicyEngine/policyengine/graphs/contributors)*,* for aiding in this launch.*
+_We’re grateful to other tax and benefit models, from the Policy Simulation Library’s open-source [Tax-Calculator](http://taxcalc.pslmodels.org) to [snapscreener.com](https://www.snapscreener.com/) to the Atlanta Fed’s [Policy Rules Database](https://www.atlantafed.org/economic-mobility-and-resilience/advancing-careers-for-low-income-families/policy-rules-database), and to our [open-source](https://github.com/PolicyEngine/openfisca-us/graphs/contributors) [contributors](https://github.com/PolicyEngine/policyengine/graphs/contributors)_,_ for aiding in this launch._

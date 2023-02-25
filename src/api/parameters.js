@@ -4,12 +4,13 @@ export function buildParameterTree(parameters) {
   let tree = {};
 
   for (const parameter of Object.values(parameters).filter(
-    (parameter) => (parameter.economy || parameter.household)
+    (parameter) => parameter.economy || parameter.household
   )) {
-
     const nodeToInsert = {
       name: parameter.parameter,
-      label: (parameter.label || parameter.parameter.split(/\.|\[/).pop()).replace("_", " "),
+      label: (
+        parameter.label || parameter.parameter.split(/\.|\[/).pop()
+      ).replace("_", " "),
       index: parameter.indexInModule,
     };
     // Split based on . or [
@@ -61,7 +62,7 @@ export function buildParameterTree(parameters) {
       console.log("Error inserting node", nodeToInsert, "into", currentNode);
     }
   }
-  console.log(tree)
+  console.log(tree);
   return tree.children.find((child) => child.name === "gov");
 }
 

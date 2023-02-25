@@ -118,7 +118,16 @@ function LeftContents(props) {
     }
     return text;
   });
-  const headerSlugs = headers.map((header) => header.split(" ").slice(1).join(" ").split(" ").join("-").replace("\\", "").replace(/,/g, ""));
+  const headerSlugs = headers.map((header) =>
+    header
+      .split(" ")
+      .slice(1)
+      .join(" ")
+      .split(" ")
+      .join("-")
+      .replace("\\", "")
+      .replace(/,/g, "")
+  );
   const headerStartYs = headerSlugs.map((slug) => {
     const element = document.getElementById(slug);
     if (element) {
@@ -140,8 +149,11 @@ function LeftContents(props) {
     const scrollPosition = -currPos.y + 100;
     for (let i = headerSlugs.length - 1; i >= 0; i--) {
       let startY = headerStartYs[i];
-      const nextY = i === headerSlugs.length - 1 ? document.body.scrollHeight : headerStartYs[i + 1];
-      const inCurrentView = (scrollPosition >= startY) && (scrollPosition < nextY);
+      const nextY =
+        i === headerSlugs.length - 1
+          ? document.body.scrollHeight
+          : headerStartYs[i + 1];
+      const inCurrentView = scrollPosition >= startY && scrollPosition < nextY;
       if (inCurrentView) {
         setCurrentHeaderSlug(headerSlugs[i]);
         break;
@@ -156,14 +168,20 @@ function LeftContents(props) {
     const startY = headerStartYs[i];
     const isSelected = currentHeaderSlug === headerSlugs[i];
     contents.push(
-      <p style={{ fontSize: 16 - 2 * (headerLevel - 2), cursor: "pointer", margin: 5, paddingLeft: 10 * (headerLevel - 2) }}
+      <p
+        style={{
+          fontSize: 16 - 2 * (headerLevel - 2),
+          cursor: "pointer",
+          margin: 5,
+          paddingLeft: 10 * (headerLevel - 2),
+        }}
         onClick={() => {
           window.scrollTo({ top: startY - 100, behavior: "smooth" });
         }}
-        >
-          {isSelected && <>&#8594;</>} {headerText}
+      >
+        {isSelected && <>&#8594;</>} {headerText}
       </p>
-    )
+    );
   }
 
   if (contents.length === 0) {
@@ -171,7 +189,7 @@ function LeftContents(props) {
   }
 
   return (
-    <div style={{position: "fixed", top: 300, left: 20, maxWidth: 300}}>
+    <div style={{ position: "fixed", top: 300, left: 20, maxWidth: 300 }}>
       <h5 style={{ marginBottom: 20 }}>
         <b>Contents</b>
       </h5>
@@ -213,113 +231,110 @@ export default function BlogPostPage(props) {
 
   return (
     <>
-    {
-      !mobile && <LeftContents markdown={markdown} />
-    }
-    <Container style={{ padding: mobile && 0 }} className="serif">
-      <div
-        style={{
-          margin: mobile ? 0 : 75,
-          marginTop: mobile ? 20 : 75,
-          marginLeft: mobile ? 0 : 250,
-          marginRight: mobile ? 0 : 250,
-        }}
-      >
-        <div style={{ padding: mobile && 20 }}>
-          <h1>{title}</h1>
-          <h5 style={{ fontFamily: "Merriweather" }}>{description}</h5>
-        </div>
-        <img
-          src={imageSrc}
+      {!mobile && <LeftContents markdown={markdown} />}
+      <Container style={{ padding: mobile && 0 }} className="serif">
+        <div
           style={{
-            paddingTop: 20,
-            paddingBottom: 20,
-            width: "100%",
-            maxHeight: 400,
-            objectFit: "contain",
-            marginBottom: 20,
+            margin: mobile ? 0 : 75,
+            marginTop: mobile ? 20 : 75,
+            marginLeft: mobile ? 0 : 250,
+            marginRight: mobile ? 0 : 250,
           }}
-          alt="Background"
-        />
-        <div style={{ padding: mobile && 20 }}>
-          <ReactMarkdown
-            rehypePlugins={[rehypeRaw]}
-            components={{
-              p: MarkdownP,
-              // Ensure images fit inside the container
-              img: ({ src, alt }) => (
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    padding: mobile ? 0 : 50,
-                  }}
-                >
-                  <img
-                    src={src}
-                    alt={alt}
-                    style={{
-                      width: "100%",
-                      objectFit: "contain",
-                      maxHeight: 400,
-                    }}
-                  />
-                </div>
-              ),
-              strong: ({ children }) => <b>{children}</b>,
-              a: ({ href, children }) => (
-                <a href={href} style={{ color: style.colors.BLUE }}>
-                  {children}
-                </a>
-              ),
-              h1: ({ children }) => {
-                const headerText = children[0];
-                return <h1
-                  id={headerText.split(" ").join("-").replace(/,/g, "")}
-                >
-                  {children}
-                </h1>
-              },
-              h2: ({ children }) => {
-                const headerText = children[0];
-                // Remove slashes and commas, and replace spaces with dashes to create a
-                // unique ID for each header.
-                const slug = headerText.split(" ").join("-").replace("/", "").replace(/,/g, "");
-                return <h2
-                  id={slug}
-                >
-                  {children}
-                </h2>
-              },
-              h3: ({ children }) => {
-                const headerText = children[0];
-                console.log(headerText, headerText.split)
-                return <h3
-                  id={headerText.split(" ").join("-").replace(/,/g, "")}
-                >
-                  {children}
-                </h3>
-              },
-              h4: ({ children }) => {
-                const headerText = children[0];
-                return <h4
-                  id={headerText.split(" ").join("-").replace(/,/g, "")}
-                >
-                  {children}
-                </h4>
-              }
+        >
+          <div style={{ padding: mobile && 20 }}>
+            <h1>{title}</h1>
+            <h5 style={{ fontFamily: "Merriweather" }}>{description}</h5>
+          </div>
+          <img
+            src={imageSrc}
+            style={{
+              paddingTop: 20,
+              paddingBottom: 20,
+              width: "100%",
+              maxHeight: 400,
+              objectFit: "contain",
+              marginBottom: 20,
             }}
-          >
-            {markdown}
-          </ReactMarkdown>
-          <div style={{ display: "flex", alignItems: "center" }}>
-            {authors.map((author) => (
-              <AuthorSection author={authorsJson[author]} />
-            ))}
+            alt="Background"
+          />
+          <div style={{ padding: mobile && 20 }}>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              components={{
+                p: MarkdownP,
+                // Ensure images fit inside the container
+                img: ({ src, alt }) => (
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      padding: mobile ? 0 : 50,
+                    }}
+                  >
+                    <img
+                      src={src}
+                      alt={alt}
+                      style={{
+                        width: "100%",
+                        objectFit: "contain",
+                        maxHeight: 400,
+                      }}
+                    />
+                  </div>
+                ),
+                strong: ({ children }) => <b>{children}</b>,
+                a: ({ href, children }) => (
+                  <a href={href} style={{ color: style.colors.BLUE }}>
+                    {children}
+                  </a>
+                ),
+                h1: ({ children }) => {
+                  const headerText = children[0];
+                  return (
+                    <h1 id={headerText.split(" ").join("-").replace(/,/g, "")}>
+                      {children}
+                    </h1>
+                  );
+                },
+                h2: ({ children }) => {
+                  const headerText = children[0];
+                  // Remove slashes and commas, and replace spaces with dashes to create a
+                  // unique ID for each header.
+                  const slug = headerText
+                    .split(" ")
+                    .join("-")
+                    .replace("/", "")
+                    .replace(/,/g, "");
+                  return <h2 id={slug}>{children}</h2>;
+                },
+                h3: ({ children }) => {
+                  const headerText = children[0];
+                  return (
+                    <h3 id={headerText.split(" ").join("-").replace(/,/g, "")}>
+                      {children}
+                    </h3>
+                  );
+                },
+                h4: ({ children }) => {
+                  const headerText = children[0];
+                  return (
+                    <h4 id={headerText.split(" ").join("-").replace(/,/g, "")}>
+                      {children}
+                    </h4>
+                  );
+                },
+              }}
+            >
+              {markdown}
+            </ReactMarkdown>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {authors.map((author) => (
+                <AuthorSection author={authorsJson[author]} />
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
     </>
   );
 }

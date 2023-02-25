@@ -240,7 +240,8 @@ export default function HomePage(props) {
           <>
             <h1 style={{ paddingBottom: 30 }}>Design custom policy reforms</h1>
             <h5>
-              PolicyEngine's country models contains hundreds of customisable policy parameters and can handle structural reforms.
+              PolicyEngine's country models contains hundreds of customisable
+              policy parameters and can handle structural reforms.
             </h5>
           </>
         }
@@ -265,7 +266,9 @@ export default function HomePage(props) {
               See how reforms affect households
             </h1>
             <h5>
-              Evaluate the impact of changes to policy rules on households or entire economics within seconds, and iterate quickly over policy ideas.
+              Evaluate the impact of changes to policy rules on households or
+              entire economics within seconds, and iterate quickly over policy
+              ideas.
             </h5>
           </>
         }
@@ -521,7 +524,6 @@ function Collaborations(props) {
   );
 }
 
-
 function APIDemo(props) {
   const mobile = useMobile();
   const { countryId } = props;
@@ -540,11 +542,19 @@ function APIDemo(props) {
             paddingRight: mobile ? 30 : 50,
           }}
         >
-          <h2 style={{ paddingLeft: 90, paddingRight: 90 }}>PolicyEngine's free API computes policy impacts</h2>
+          <h2 style={{ paddingLeft: 90, paddingRight: 90 }}>
+            PolicyEngine's free API computes policy impacts
+          </h2>
           <h5 style={{ paddingLeft: 90, paddingRight: 90 }}>
-            Instantly compute taxes and benefits for any household under current or reformed policy rules, using the PolicyEngine REST API.
+            Instantly compute taxes and benefits for any household under current
+            or reformed policy rules, using the PolicyEngine REST API.
           </h5>
-          <iframe src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`} title="PolicyEngine API demo" width={mobile ? 400 : 1_500} height="500px" />
+          <iframe
+            src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`}
+            title="PolicyEngine API demo"
+            width={mobile ? 400 : 1_500}
+            height="500px"
+          />
         </Row>
       </Container>
     </div>

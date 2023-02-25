@@ -1,50 +1,61 @@
-const POLICY_OUTPUT_TREE = [
-  {
-    name: "policyOutput",
-    label: "Policy impact",
-    children: [
-      {
-        name: "policyOutput.netIncome",
-        label: "Budgetary impact",
-      },
-      {
-        name: "policyOutput.decileRelativeImpact",
-        label: "Relative impact by decile",
-      },
-      {
-        name: "policyOutput.decileAverageImpact",
-        label: "Average impact by decile",
-      },
-      {
-        name: "policyOutput.wealthDecileAverageImpact",
-        label: "Average impact by wealth decile",
-      },
-      {
-        name: "policyOutput.intraDecileImpact",
-        label: "Outcomes by income decile",
-      },
-      {
-        name: "policyOutput.povertyImpact",
-        label: "Poverty impact",
-      },
-      {
-        name: "policyOutput.deepPovertyImpact",
-        label: "Deep poverty impact",
-      },
-      {
-        name: "policyOutput.inequalityImpact",
-        label: "Income inequality impact",
-      },
-      {
-        name: "policyOutput.cliffImpact",
-        label: "Cliff impact",
-      },
-      {
-        name: "policyOutput.codeReproducibility",
-        label: "Reproduce in Python",
-      },
-    ],
-  },
-];
+const getPolicyOutputTree = (countryId) => {
+  const shouldShowWealth = countryId === "uk";
+  return [
+    {
+      name: "policyOutput",
+      label: "Policy impact",
+      children: [
+        {
+          name: "policyOutput.netIncome",
+          label: "Budgetary impact",
+        },
+        {
+          name: "policyOutput.decileRelativeImpact",
+          label: "Relative impact by decile",
+        },
+        {
+          name: "policyOutput.decileAverageImpact",
+          label: "Average impact by decile",
+        },
+        shouldShowWealth && {
+          name: "policyOutput.wealthDecileRelativeImpact",
+          label: "Relative impact by wealth decile",
+        },
+        shouldShowWealth && {
+          name: "policyOutput.wealthDecileAverageImpact",
+          label: "Average impact by wealth decile",
+        },
+        {
+          name: "policyOutput.intraDecileImpact",
+          label: "Outcomes by income decile",
+        },
+        shouldShowWealth && {
+          name: "policyOutput.intraWealthDecileImpact",
+          label: "Outcomes by wealth decile",
+        },
+        {
+          name: "policyOutput.povertyImpact",
+          label: "Poverty impact",
+        },
+        {
+          name: "policyOutput.deepPovertyImpact",
+          label: "Deep poverty impact",
+        },
+        {
+          name: "policyOutput.inequalityImpact",
+          label: "Income inequality impact",
+        },
+        {
+          name: "policyOutput.cliffImpact",
+          label: "Cliff impact",
+        },
+        {
+          name: "policyOutput.codeReproducibility",
+          label: "Reproduce in Python",
+        },
+      ].filter(Boolean),
+    },
+  ];
+};
 
-export default POLICY_OUTPUT_TREE;
+export default getPolicyOutputTree;

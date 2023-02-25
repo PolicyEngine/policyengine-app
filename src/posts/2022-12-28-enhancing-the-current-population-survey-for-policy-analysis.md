@@ -2,21 +2,21 @@ The [PolicyEngine US app](http://policyengine.org/us) uses a microsimulation mod
 
 In 2023, we will enhance the CPS by integrating it with IRS tax records and reweighting it to minimize deviations from administrative aggregates. This enhanced dataset will be used in the PolicyEngine microsimulation app and will also be made available as an open resource for other policy research.
 
-*We’re grateful to Dylan Hirsch-Shell for supporting this project.*
+_We’re grateful to Dylan Hirsch-Shell for supporting this project._
 
 ## Why is the CPS inaccurate?
 
 The Census Bureau and the Bureau of Labor Statistics run the CPS monthly. Each March, they ask deeper questions on households’ activity in the prior calendar year, in the Annual Social and Economic Supplement (ASEC). We use the CPS ASEC (which we refer to as the CPS) for our policy simulations, as do many other analysts; for example, the Census Bureau uses it to produce their [annual poverty report](https://www.census.gov/library/publications/2022/demo/p60-277.html). However, the CPS has several limitations that can impact its accuracy:
 
-* It undercaptures benefits and tax credits, leading to underestimated impacts on certain populations. For example, [CPS respondents under-report SNAP (Supplemental Nutrition Assistance Program) benefits by about a third.](https://www.census.gov/content/dam/Census/library/working-papers/2011/demo/SEHSD-WP2012-01.pdf)
+- It undercaptures benefits and tax credits, leading to underestimated impacts on certain populations. For example, [CPS respondents under-report SNAP (Supplemental Nutrition Assistance Program) benefits by about a third.](https://www.census.gov/content/dam/Census/library/working-papers/2011/demo/SEHSD-WP2012-01.pdf)
 
-* It [top-codes income variables above $1 million](https://www.census.gov/content/dam/Census/library/working-papers/2019/demo/sehsd-wp2019-18.pdf), which can distort the income distribution and impact policy simulations.
+- It [top-codes income variables above $1 million](https://www.census.gov/content/dam/Census/library/working-papers/2019/demo/sehsd-wp2019-18.pdf), which can distort the income distribution and impact policy simulations.
 
-* With only 100,000 households, the CPS can produce volatile estimates when broken down by subpopulations, especially at the state level.
+- With only 100,000 households, the CPS can produce volatile estimates when broken down by subpopulations, especially at the state level.
 
-* It lacks some important information, such as assets, that can impact taxes and benefits.
+- It lacks some important information, such as assets, that can impact taxes and benefits.
 
-* The CPS is based on data that is 1–2 years old and is not extrapolated to predict future policy impacts.
+- The CPS is based on data that is 1–2 years old and is not extrapolated to predict future policy impacts.
 
 These limitations can reduce the accuracy and usefulness of the CPS for policy simulations and other research. For example, CPS-based projections will tend to underestimate the budgetary impacts of reforming SNAP or instituting a tax on top earners, and will be unable to estimate the impacts of wealth taxes or reforms to asset limits in benefit programs.
 
@@ -48,7 +48,7 @@ In the US, we have completed step 1, and also made progress importing the Survey
 
 We’ve grounded our algorithm in theory and empirics to maximize accuracy.
 
-My 2018 paper, [“Quantile regression, from linear models to trees to deep learning”](https://towardsdatascience.com/quantile-regression-from-linear-models-to-trees-to-deep-learning-af3738b527c3), compared the performance of several quantile regression techniques using holdout sets. To my knowledge, this was the first instance of such a benchmarking study, and in it I found that random forests outperformed most other models. In [follow-up research with Deepak Singh](https://colab.research.google.com/drive/1E8F7S1Uvfw_3PmpS226Sl1LWV5NBi0CE), we found again that random forests outperformed other models, and that matching — perhaps the most common data fusion method for economic microsimulation — performed *worse* than any others.
+My 2018 paper, [“Quantile regression, from linear models to trees to deep learning”](https://towardsdatascience.com/quantile-regression-from-linear-models-to-trees-to-deep-learning-af3738b527c3), compared the performance of several quantile regression techniques using holdout sets. To my knowledge, this was the first instance of such a benchmarking study, and in it I found that random forests outperformed most other models. In [follow-up research with Deepak Singh](https://colab.research.google.com/drive/1E8F7S1Uvfw_3PmpS226Sl1LWV5NBi0CE), we found again that random forests outperformed other models, and that matching — perhaps the most common data fusion method for economic microsimulation — performed _worse_ than any others.
 
 ![](https://cdn-images-1.medium.com/max/2556/0*ToiaXsYBexc9tD_H)
 

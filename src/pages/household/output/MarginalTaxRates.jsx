@@ -16,12 +16,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
-  const {
-    householdInput,
-    householdBaseline,
-    metadata,
-    policyLabel,
-  } = props;
+  const { householdInput, householdBaseline, metadata, policyLabel } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -209,12 +204,13 @@ export default function MarginalTaxRates(props) {
       metadata
     );
     if (currentMtr !== baselineMtrValue) {
-      title = `${policyLabel} ${currentMtr > baselineMtrValue ? "increases" : "decreases"
-        } your marginal tax rate from ${formatVariableValue(
-          { unit: "/1" },
-          baselineMtrValue,
-          0
-        )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
+      title = `${policyLabel} ${
+        currentMtr > baselineMtrValue ? "increases" : "decreases"
+      } your marginal tax rate from ${formatVariableValue(
+        { unit: "/1" },
+        baselineMtrValue,
+        0
+      )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }

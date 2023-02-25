@@ -42,10 +42,14 @@ export default function HouseholdOutput(props) {
   if (loading) {
     pane = (
       <>
-        {
-          focus === "householdOutput.netIncome" &&
-          <PoliciesModelledPopup metadata={metadata} householdInput={householdInput} hasShownHouseholdPopup={hasShownHouseholdPopup} setHasShownHouseholdPopup={setHasShownHouseholdPopup} />
-        }
+        {focus === "householdOutput.netIncome" && (
+          <PoliciesModelledPopup
+            metadata={metadata}
+            householdInput={householdInput}
+            hasShownHouseholdPopup={hasShownHouseholdPopup}
+            setHasShownHouseholdPopup={setHasShownHouseholdPopup}
+          />
+        )}
         <LoadingCentered message="Computing your household's taxes and benefits" />
       </>
     );
@@ -114,7 +118,9 @@ export default function HouseholdOutput(props) {
         selected={focus}
         options={HOUSEHOLD_OUTPUT_TREE[0].children}
         bottomText={
-          mobile ? null : "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
+          mobile
+            ? null
+            : "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
         }
       />
     </>

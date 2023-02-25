@@ -1,7 +1,7 @@
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 
-const POLICYENGINE_API = "http://127.0.0.1:5000";
+const POLICYENGINE_API = "https://api.policyengine.org";
 
 export function apiCall(path, body, method) {
   return fetch(POLICYENGINE_API + path, {
@@ -24,12 +24,12 @@ export function asyncApiCall(path, body, interval = 1000, firstInterval = 200) {
     const poll = (isFirst) => {
       apiCall(path, body)
         .then((response) => {
-          if(response.status === 200) {
-            return response.json()
+          if (response.status === 200) {
+            return response.json();
           } else {
-            return {status: "error", result: "Unknown error."}
+            return { status: "error", result: "Unknown error." };
           }
-          })
+        })
         .then((data) => {
           if (data.status === "computing") {
             setTimeout(() => poll(false), isFirst ? firstInterval : interval);
@@ -59,7 +59,6 @@ export function updateMetadata(countryId, setMetadata, setError) {
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
     .then((dataHolder) => {
-      console.log(dataHolder)
       const data = dataHolder.result;
       const variableTree = buildVariableTree(
         data.variables,
@@ -78,5 +77,5 @@ export function updateMetadata(countryId, setMetadata, setError) {
       };
       setMetadata(metadata);
       return metadata;
-    })
+    });
 }

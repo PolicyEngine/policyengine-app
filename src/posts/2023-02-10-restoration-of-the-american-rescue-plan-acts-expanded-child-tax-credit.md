@@ -1,4 +1,5 @@
 In [Tuesday’s State of the Union speech](https://www.whitehouse.gov/briefing-room/speeches-remarks/2023/02/07/remarks-of-president-joe-biden-state-of-the-union-address-as-prepared-for-delivery/), President Joe Biden called to
+
 > restore the full Child Tax Credit, which gave tens of millions of parents some breathing room and cut child poverty in half, to the lowest level in history.
 
 Biden may have been referring to the Child Tax Credit (CTC) expansion under the American Rescue Plan Act of 2021 (ARPA), which expanded the CTC in several ways. Following our [Child Tax Credit report released yesterday](https://policyengine.org/us/blog/2023-02-09-the-child-tax-credit-in-2023), this report describes ARPA’s CTC expansion, and PolicyEngine’s predicted impacts of restoring that expansion.
@@ -9,7 +10,7 @@ President Bill Clinton introduced the Child Tax Credit in 1997, and the Tax Cuts
 
 ![](https://cdn-images-1.medium.com/max/2836/0*8VNzHFmDkAEmKVAp)
 
-As we explain in our [Child Tax Credit article](https://policyengine.org/us/blog/2023-02-09-the-child-tax-credit-in-2023), the credit phases in with income due to *partial refundability* and also phases out with income. Refundable credits can reduce one’s tax liability below zero, while the value of non-refundable credits cannot exceed one’s tax liability. Part of the Child Tax Credit, the *Additional Child Tax Credit*, is refundable, and the ACTC also phases in with income; the remainder is non-refundable.
+As we explain in our [Child Tax Credit article](https://policyengine.org/us/blog/2023-02-09-the-child-tax-credit-in-2023), the credit phases in with income due to _partial refundability_ and also phases out with income. Refundable credits can reduce one’s tax liability below zero, while the value of non-refundable credits cannot exceed one’s tax liability. Part of the Child Tax Credit, the _Additional Child Tax Credit_, is refundable, and the ACTC also phases in with income; the remainder is non-refundable.
 
 ## How did the American Rescue Plan Act expand the Child Tax Credit?
 

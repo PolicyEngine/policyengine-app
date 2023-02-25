@@ -1,4 +1,4 @@
-The federal earned income tax credit (EITC) is accrued through working and it functions to lower one’s tax liability. The EITC is *refundable*, meaning if one’s tax liability is reduced below zero, then the taxpayer will receive income back in the form of a refund. [Oregon is one of 29 states](https://www.taxcreditsforworkersandfamilies.org/state-tax-credits/) that provides a match or similar program to the federal EITC.
+The federal earned income tax credit (EITC) is accrued through working and it functions to lower one’s tax liability. The EITC is _refundable_, meaning if one’s tax liability is reduced below zero, then the taxpayer will receive income back in the form of a refund. [Oregon is one of 29 states](https://www.taxcreditsforworkersandfamilies.org/state-tax-credits/) that provides a match or similar program to the federal EITC.
 
 Oregon’s EITC has two elements. The first gives 12% of the federal EITC to filers with children under three years old. For filers without young children, Oregon matches 9% of the federal EITC.
 
@@ -44,4 +44,4 @@ To estimate your own Oregon EITC, or other taxes and benefits, visit [policyengi
 
 ![](https://cdn-images-1.medium.com/max/3200/0*7234nnaAoAino9Mr)
 
-*PolicyEngine estimates do not constitute exact tax liabilities or benefits. Consult a tax advisor.*
+_PolicyEngine estimates do not constitute exact tax liabilities or benefits. Consult a tax advisor._

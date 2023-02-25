@@ -8,11 +8,11 @@ import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 
-export default function IntraDecileImpact(props) {
+export default function IntraWealthDecileImpact(props) {
   const { impact, policyLabel } = props;
-  const deciles = impact.intra_decile.deciles;
+  const deciles = impact.intra_wealth_decile.deciles;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const all = impact.intra_decile.all;
+  const all = impact.intra_wealth_decile.all;
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const [hovercard, setHovercard] = useState(null);
   const mobile = useMobile();

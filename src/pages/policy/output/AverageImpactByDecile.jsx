@@ -70,19 +70,19 @@ export default function AverageImpactByDecile(props) {
         const decile = cardinal(data.points[0].x);
         const change = data.points[0].y;
         const message =
-          change > 0.0001 ?
-            `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
-              metadata.variables.household_net_income,
-              change,
-              0,
-            )} per year.` :
-            change < -0.0001 ?
-              `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
+          change > 0.0001
+            ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
+                metadata.variables.household_net_income,
+                change,
+                0
+              )} per year.`
+            : change < -0.0001
+            ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
                 metadata.variables.household_net_income,
                 -change,
-                0,
-              )} per year.` :
-              `This reform has no impact on the income of households in the ${decile} decile.`;
+                0
+              )} per year.`
+            : `This reform has no impact on the income of households in the ${decile} decile.`;
         setHoverCard({
           title: `Decile ${data.points[0].x}`,
           body: message,
@@ -92,31 +92,27 @@ export default function AverageImpactByDecile(props) {
   );
 
   const averageChange =
-    Object.values(impact.decile.average).reduce((a, b) => a + b, 0) /
-    Object.values(impact.decile.average).length;
+    -impact.budget.budgetary_impact / impact.budget.households;
 
   return (
     <>
       <Screenshottable>
-      <h2>
-        {policyLabel} {averageChange >= 0 ? "would increase" : "would decrease"} the
-        average household's net income by{" "}
-        {formatVariableValue(
-          metadata.variables.household_net_income,
-          Math.abs(averageChange),
-          0
-        )}
-      </h2>
-      <HoverCard
-        content={hovercard}
-      >
-        {chart}
-      </HoverCard>
+        <h2>
+          {policyLabel}{" "}
+          {averageChange >= 0 ? "would increase" : "would decrease"} the average
+          household's net income by{" "}
+          {formatVariableValue(
+            metadata.variables.household_net_income,
+            Math.abs(averageChange),
+            0
+          )}
+        </h2>
+        <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
         The chart above shows the relative change in income for each income
-        decile. Households are sorted into ten equally-populated groups according to
-        their equivalised household net income.
+        decile. Households are sorted into ten equally-populated groups
+        according to their equivalised household net income.
       </p>
     </>
   );

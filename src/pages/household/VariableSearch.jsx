@@ -13,7 +13,7 @@ export default function VariableSearch(props) {
       value: variable.moduleName + "." + variable.name,
       label: variable.label,
     }))
-    .filter((option) => !!option.label && !!option.value)
+    .filter((option) => !!option.label && !!option.value);
   return (
     <SearchOptions
       options={options}
