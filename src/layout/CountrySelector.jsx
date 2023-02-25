@@ -83,24 +83,14 @@ export default function CountrySelector(props) {
     navigate(`${path}${search}`);
   };
 
-  const items = countryId === "us" ? [
-    { label: UKLogo, onClick: () => navigateToCountry("uk") },
-    { label: CALogo, onClick: () => navigateToCountry("ca") },
-    { label: NGLogo, onClick: () => navigateToCountry("ng") }
-  ] : countryId === "uk" ? [
-    { label: USLogo, onClick: () => navigateToCountry("us") },
-    { label: CALogo, onClick: () => navigateToCountry("ca") },
-    { label: NGLogo, onClick: () => navigateToCountry("ng") }
-  ] : countryId === "ca" ? [
+  const itemsList = [
     { label: UKLogo, onClick: () => navigateToCountry("uk") },
     { label: USLogo, onClick: () => navigateToCountry("us") },
-    { label: NGLogo, onClick: () => navigateToCountry("ng") }
-  ] : [
-    { label: USLogo, onClick: () => navigateToCountry("us") },
-    { label: UKLogo, onClick: () => navigateToCountry("uk") },
     { label: CALogo, onClick: () => navigateToCountry("ca") },
-
+    { label: NGLogo, onClick: () => navigateToCountry("ng") },
   ]
+ 
+  const items = itemsList.filter((item) => item.label !== countryLabel)
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
