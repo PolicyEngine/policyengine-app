@@ -25,6 +25,7 @@ function MarkdownP(props) {
 
 function AuthorSection(props) {
   const { author } = props;
+  const mobile = useMobile();
   const authorImage = require(`../images/authors/${author.headshot}`);
   // Image - name/bio - social icons (floating to the right)
   const mail = (
@@ -50,11 +51,11 @@ function AuthorSection(props) {
   return (
     <div
       style={{
-        display: "flex",
+        display: "grid",
         alignItems: "center",
         marginBottom: 20,
-        flexDirection: "row",
         width: "100%",
+        gridTemplateColumns: mobile ? "20% auto auto" : "10% auto auto"
       }}
     >
       <img
@@ -75,7 +76,7 @@ function AuthorSection(props) {
           paddingLeft: 10,
           display: "flex",
           flexDirection: "column",
-          marginRight: 20,
+          marginRight: mobile ? 0 : 20,
         }}
       >
         <h5>
@@ -266,6 +267,27 @@ export default function BlogPostPage(props) {
                   />
                 </div>
               ),
+              iframe: ({ src, width, height }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: mobile ? 0 : 50,
+                  }}
+                >
+                  <iframe
+                    title="video"
+                    src={src}
+                    style={{
+                      /* Prevent the iframe from
+                      overflowing on mobile. */
+                      width: mobile ? "100%" : width,
+                      objectFit: "contain",
+                      height: height
+                    }}
+                  />
+                </div>
+              ),
               strong: ({ children }) => <b>{children}</b>,
               a: ({ href, children }) => (
                 <a href={href} style={{ color: style.colors.BLUE }}>
@@ -312,7 +334,7 @@ export default function BlogPostPage(props) {
           >
             {markdown}
           </ReactMarkdown>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
             {authors.map((author) => (
               <AuthorSection author={authorsJson[author]} />
             ))}
