@@ -160,6 +160,9 @@ export default function PolicyEngineCountry(props) {
       <Route path="/cec" element={
         <CEC />
       } />
+      <Route path="/citizens-economic-council" element={
+        <CEC />
+      } />
       <Route path="/*" element={<FOF />} />
     </Routes>
   );
@@ -193,7 +196,7 @@ function CEC() {
       }}
     >
       <iframe
-        src="http://localhost:8501"
+        src="https://policyengine-cec-simulator.streamlit.app/~/+/"
         title="Citizens' Economic Council reform simulator"
         height="800"
         width="800"
