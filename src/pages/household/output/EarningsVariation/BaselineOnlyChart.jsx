@@ -116,17 +116,19 @@ export default function BaselineOnlyChart(props) {
           width: "100%",
         }}
         onHover={(data) => {
-          const netIncome = data.points[0].y.toLocaleString("en-US", 
+          const netIncome = data.points[0].y?.toLocaleString("en-US", 
             { style:"currency",
               currency:"USD",
               maximumFractionDigits: 0
             });
-          const employmentIncome = data.points[0].x.toLocaleString("en-US", 
+          const employmentIncome = data.points[0].x?.toLocaleString("en-US", 
             { style:"currency",
               currency:"USD",
               maximumFractionDigits: 0
             });
-          const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+          const message = netIncome && employmentIncome 
+              ? `Net Income ${netIncome} Employment Income ${employmentIncome}` 
+              : ""
           setHoverCard({
             title: data.points[0].y === currentNetIncome
               ? `Your current ${variableLabel}` 
