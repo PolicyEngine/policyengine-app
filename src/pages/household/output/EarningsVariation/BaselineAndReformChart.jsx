@@ -10,6 +10,7 @@ import {
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
+import HoverCard from "../../../../layout/HoverCard";
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -117,6 +118,7 @@ function BaselineAndReformTogetherChart(props) {
     metadata,
     variable,
   } = props;
+  const [hovercard, setHoverCard] = useState(null);
   let data = [
     ...(variable === "household_net_income"
       ? getCliffs(baselineArray, earningsArray)
@@ -141,6 +143,7 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.BLUE,
       },
+      hoverinfo:"none",
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -150,6 +153,7 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
+      hoverinfo:"none",
     },
   ];
   const plotObject = (
@@ -184,10 +188,29 @@ function BaselineAndReformTogetherChart(props) {
       style={{
         width: "100%",
       }}
+      onHover={(data) => {
+        const netIncome = data.points[0].y.toLocaleString("en-US", 
+          { style:"currency",
+            currency:"USD",
+            maximumFractionDigits: 0
+          });
+        const employmentIncome = data.points[0].x.toLocaleString("en-US", 
+          { style:"currency",
+            currency:"USD",
+            maximumFractionDigits: 0
+          });
+        const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+        setHoverCard({
+          title: data.points[0].x === +currentEarnings 
+            ? `Your current ${variableLabel}` 
+            : `Reform ${variableLabel}`,
+          body: message,
+        });
+      }}
     />
   );
 
-  return <FadeIn>{plotObject}</FadeIn>;
+  return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
 }
 
 function BaselineReformDeltaChart(props) {
@@ -202,6 +225,7 @@ function BaselineReformDeltaChart(props) {
     metadata,
     variable,
   } = props;
+  const [hovercard, setHoverCard] = useState(null);
   let data = [
     {
       x: earningsArray,
@@ -258,8 +282,27 @@ function BaselineReformDeltaChart(props) {
       style={{
         width: "100%",
       }}
+      onHover={(data) => {
+        const netIncome = data.points[0].y.toLocaleString("en-US", 
+          { style:"currency",
+            currency:"USD",
+            maximumFractionDigits: 0
+          });
+        const employmentIncome = data.points[0].x.toLocaleString("en-US", 
+          { style:"currency",
+            currency:"USD",
+            maximumFractionDigits: 0
+          });
+        const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+        setHoverCard({
+          title: data.points[0].x === +currentEarnings 
+            ? `Your current change in ${variableLabel}` 
+            : `Change in ${variableLabel}`,
+          body: message,
+        });
+      }}
     />
   );
 
-  return <FadeIn>{plotObject}</FadeIn>;
+  return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
 }

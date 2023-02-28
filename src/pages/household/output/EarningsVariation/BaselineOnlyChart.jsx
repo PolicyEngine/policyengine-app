@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
@@ -8,6 +9,7 @@ import {
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
+import HoverCard from "../../../../layout/HoverCard";
 
 export default function BaselineOnlyChart(props) {
   const {
@@ -17,6 +19,7 @@ export default function BaselineOnlyChart(props) {
     variable,
     variableLabel,
   } = props;
+  const [hovercard, setHoverCard] = useState(null);
 
   const earningsArray = getValueFromHousehold(
     "employment_income",
@@ -64,6 +67,7 @@ export default function BaselineOnlyChart(props) {
             line: {
               color: style.colors.BLUE,
             },
+            hoverinfo: "none",
           },
           {
             x: [currentEarnings, currentEarnings],
@@ -73,6 +77,7 @@ export default function BaselineOnlyChart(props) {
             line: {
               color: style.colors.MEDIUM_DARK_GRAY,
             },
+            hoverinfo: "none",
           },
         ]}
         layout={{
@@ -110,8 +115,27 @@ export default function BaselineOnlyChart(props) {
         style={{
           width: "100%",
         }}
+        onHover={(data) => {
+          const netIncome = data.points[0].y.toLocaleString("en-US", 
+            { style:"currency",
+              currency:"USD",
+              maximumFractionDigits: 0
+            });
+          const employmentIncome = data.points[0].x.toLocaleString("en-US", 
+            { style:"currency",
+              currency:"USD",
+              maximumFractionDigits: 0
+            });
+          const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+          setHoverCard({
+            title: data.points[0].y === currentNetIncome
+              ? `Your current ${variableLabel}` 
+              : capitalize(variableLabel),
+            body: message,
+          });
+        }}
       />
     </FadeIn>
   );
-  return plot;
+  return <HoverCard content={hovercard}>{plot}</HoverCard>
 }
