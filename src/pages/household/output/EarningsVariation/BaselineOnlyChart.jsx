@@ -126,15 +126,15 @@ export default function BaselineOnlyChart(props) {
               currency:"USD",
               maximumFractionDigits: 0
             });
-          const message = netIncome && employmentIncome 
-              ? `Net Income ${netIncome} Employment Income ${employmentIncome}` 
-              : ""
-          setHoverCard({
-            title: data.points[0].y === currentNetIncome
-              ? `Your current ${variableLabel}` 
-              : capitalize(variableLabel),
-            body: message,
-          });
+          const message = `Net Income ${netIncome} Employment Income ${employmentIncome}` 
+            if (netIncome && employmentIncome) {
+              setHoverCard({
+                title: data.points[0].y === currentNetIncome
+                ? `Your current ${variableLabel}` 
+                : capitalize(variableLabel),
+                body: message,
+              });
+            }
         }}
       />
     </FadeIn>

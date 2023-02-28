@@ -199,15 +199,15 @@ function BaselineAndReformTogetherChart(props) {
             currency:"USD",
             maximumFractionDigits: 0
           });
-        const message = netIncome && employmentIncome 
-          ? `Net Income ${netIncome} Employment Income ${employmentIncome}`
-          : ""
-        setHoverCard({
-          title: data.points[0].x === +currentEarnings 
+        const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+        if (netIncome && employmentIncome) {
+          setHoverCard({
+            title: data.points[0].x === +currentEarnings 
             ? `Your current ${variableLabel}` 
             : `Reform ${variableLabel}`,
-          body: message,
-        });
+            body: message,
+          });
+        }
       }}
     />
   );
@@ -297,15 +297,15 @@ function BaselineReformDeltaChart(props) {
             currency:"USD",
             maximumFractionDigits: 0
           });
-        const message = netIncome && employmentIncome 
-          ? `Net Income ${netIncome} Employment Income ${employmentIncome}`
-          : ""
-        setHoverCard({
-          title: data.points[0].x === +currentEarnings 
+        const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+        if (netIncome && employmentIncome) {
+          setHoverCard({
+            title: data.points[0].x === +currentEarnings 
             ? `Your current change in ${variableLabel}` 
             : `Change in ${variableLabel}`,
-          body: message,
-        });
+            body: message,
+          });
+        }
       }}
     />
   );
