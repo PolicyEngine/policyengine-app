@@ -41,7 +41,7 @@ Please try to be detailed in your PRs about the changes you made and why you mad
 
 Here are some [best practices](https://deepsource.io/blog/git-best-practices/) for using Git.
 
-It is recommended that you try to add tests for any new features or bug-fixes you add, so we can gradually build up the code coverage. We use [Jest](https://jestjs.io/docs/tutorial-react) and the [React Testing Library](https://github.com/testing-library/react-testing-library). You can run your tests locally with `npm test` and they will be run again in the PR pre-flight.
+We recommend, but do not yet require, that you add tests for any new features or bug-fixes you add, so we can gradually build up the code coverage. We use [Jest](https://jestjs.io/docs/tutorial-react) and the [React Testing Library](https://github.com/testing-library/react-testing-library). You can run your tests locally with `npm test` and they will be run again in the PR pre-flight.
 
 When you're ready for review, switch the PR from `Draft` to `Ready for review` and add a contributor as a reviewer.
 
