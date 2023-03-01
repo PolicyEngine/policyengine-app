@@ -189,17 +189,13 @@ function BaselineAndReformTogetherChart(props) {
         width: "100%",
       }}
       onHover={(data) => {
-        const netIncome = data.points[0].y?.toLocaleString("en-US", 
-          { style:"currency",
-            currency:"USD",
-            maximumFractionDigits: 0
-          });
-        const employmentIncome = data.points[0].x?.toLocaleString("en-US", 
-          { style:"currency",
-            currency:"USD",
-            maximumFractionDigits: 0
-          });
-        const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+        const netIncome = 
+          metadata.currency + 
+          data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
+        const employmentIncome = 
+          metadata.currency + 
+          data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
+        const message = <div>{`Net Income: ${netIncome}`}<br/>{`Employment Income: ${employmentIncome}`}</div>
         if (netIncome && employmentIncome) {
           setHoverCard({
             title: data.points[0].x === +currentEarnings 
@@ -287,17 +283,13 @@ function BaselineReformDeltaChart(props) {
         width: "100%",
       }}
       onHover={(data) => {
-        const netIncome = data.points[0].y?.toLocaleString("en-US", 
-          { style:"currency",
-            currency:"USD",
-            maximumFractionDigits: 0
-          });
-        const employmentIncome = data.points[0].x?.toLocaleString("en-US", 
-          { style:"currency",
-            currency:"USD",
-            maximumFractionDigits: 0
-          });
-        const message = `Net Income ${netIncome} Employment Income ${employmentIncome}`
+        const netIncome = 
+          metadata.currency + 
+          data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
+        const employmentIncome = 
+          metadata.currency + 
+          data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
+        const message = <div>{`Net Income: ${netIncome}`}<br/>{`Employment Income: ${employmentIncome}`}</div>
         if (netIncome && employmentIncome) {
           setHoverCard({
             title: data.points[0].x === +currentEarnings 
