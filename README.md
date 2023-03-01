@@ -35,7 +35,7 @@ npm test
 # Contributing
 If you're new to the project, go to Issues and search for good first issues `label: "good first issue"`.
 
-Reach out to @nikhilwoodruff and @MaxGhenis to be added as a collaborator so that you can make new PRs on the repo.
+Reach out to @nikhilwoodruff and @MaxGhenis to be added as a collaborator so that you can assign yourself to issues.
 
 Please try to be detailed in your PRs about the changes you made and why you made them. You may find yourself looking back at them for reference in the future, or needing insight about someone else's changes. Save yourself a conversation and write it all in the PR!
 
