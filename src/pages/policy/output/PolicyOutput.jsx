@@ -145,6 +145,10 @@ export default function PolicyOutput(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
+  if (error && (!error.baseline_economy || !error.reform_economy)) {
+    return null;
+  }
+
   if (error) {
     const baselineOK = error.baseline_economy.status === "ok";
     const reformOK = error.reform_economy.status === "ok";
