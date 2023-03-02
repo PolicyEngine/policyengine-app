@@ -502,7 +502,7 @@ function Collaborations(props) {
             paddingRight: mobile ? 30 : 300,
           }}
         >
-          <Carousel autoplay>{quoteBlocks}</Carousel>
+          <Carousel autoplay autoplaySpeed={10000}>{quoteBlocks}</Carousel>
         </Row>
         <Row style={{ justifyContent: "center", alignItems: "center" }}>
           {Object.values(orgData[countryId] || {}).map((org) => (
