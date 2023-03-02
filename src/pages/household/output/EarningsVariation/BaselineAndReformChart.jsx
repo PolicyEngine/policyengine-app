@@ -195,8 +195,8 @@ function BaselineAndReformTogetherChart(props) {
         const employmentIncome = 
           metadata.currency + 
           data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const message = <div>{`Net Income: ${netIncome}`}<br/>{`Employment Income: ${employmentIncome}`}</div>
-        if (netIncome && employmentIncome) {
+        const message = `If you earn ${employmentIncome}, your ${variable} will be ${netIncome}.`
+        if (data.points[0].x && data.points[0].y) {
           setHoverCard({
             title: data.points[0].x === +currentEarnings 
             ? `Your current ${variableLabel}` 
@@ -289,8 +289,8 @@ function BaselineReformDeltaChart(props) {
         const employmentIncome = 
           metadata.currency + 
           data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const message = <div>{`Net Income: ${netIncome}`}<br/>{`Employment Income: ${employmentIncome}`}</div>
-        if (netIncome && employmentIncome) {
+        const message = `If you earn ${employmentIncome}, your ${variable} will be ${netIncome}.`
+        if (data.points[0].x && data.points[0].y) {
           setHoverCard({
             title: data.points[0].x === +currentEarnings 
             ? `Your current change in ${variableLabel}` 
