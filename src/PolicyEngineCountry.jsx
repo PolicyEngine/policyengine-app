@@ -34,7 +34,7 @@ export default function PolicyEngineCountry(props) {
     searchParams.get("baseline") || defaultBaselinePolicy;
 
   const [metadata, setMetadata] = useState(null);
-  const [error, setError] = useState(null);
+  const [error] = useState(null);
 
   const [baselinePolicy, setBaselinePolicy] = useState({
     id: baselinePolicyId,
@@ -57,7 +57,7 @@ export default function PolicyEngineCountry(props) {
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
-    updateMetadata(countryId, setMetadata, setError);
+    updateMetadata(countryId, setMetadata);
   }, [countryId]);
 
   // Get the baseline policy data when the baseline policy ID changes.

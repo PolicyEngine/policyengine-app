@@ -55,7 +55,7 @@ export function copySearchParams(searchParams) {
   return newSearch;
 }
 
-export function updateMetadata(countryId, setMetadata, setError) {
+export function updateMetadata(countryId, setMetadata) {
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
     .then((dataHolder) => {
