@@ -10,7 +10,7 @@ export function buildParameterTree(parameters) {
       name: parameter.parameter,
       label: (
         parameter.label || parameter.parameter.split(/\.|\[/).pop()
-      ).replace("_", " "),
+      ).replaceAll("_", " "),
       index: parameter.indexInModule,
     };
     // Split based on . or [
@@ -29,7 +29,7 @@ export function buildParameterTree(parameters) {
       if (key.endsWith("]")) {
         label = `Bracket ${parseInt(key.slice(0, -1)) + 1}`;
       }
-      label = label.replace("_", " ");
+      label = label.replaceAll("_", " ");
       if (!currentNode.children) {
         currentNode.children = [];
       }
@@ -62,7 +62,6 @@ export function buildParameterTree(parameters) {
       console.log("Error inserting node", nodeToInsert, "into", currentNode);
     }
   }
-  console.log(tree);
   return tree.children.find((child) => child.name === "gov");
 }
 
