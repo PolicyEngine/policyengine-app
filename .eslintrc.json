@@ -1,42 +1,36 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "jest/globals": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "globals": {
-        "process": true
-    },
-    "overrides": [
-        {
-            "files": ["test/**"],
-            "plugins": ["jest"],
-            "extends": ["plugin:jest/recommended"],
-            "rules": { "jest/prefer-expect-assertions": "off" }
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "jest"
-    ],
-    "rules": {
-        // suppress errors for missing 'import React' in files
-        "react/react-in-jsx-scope": "off"
-    },
-    "ignorePatterns": ["**/*.css","**/*.scss"],
-    "settings": {
-        "react": {
-            "pragma": "React", // Pragma to use, default to "React"
-            "fragment": "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
-            "version": "detect" // React version. "detect" automatically picks the version you have installed.
-        }
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest/globals": true
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "globals": {
+    "process": true
+  },
+  "overrides": [
+    {
+      "files": ["test/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"],
+      "rules": { "jest/prefer-expect-assertions": "off" }
     }
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest"],
+  "rules": {
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": "off"
+  },
+  "ignorePatterns": ["**/*.css", "**/*.scss"],
+  "settings": {
+    "react": {
+      "pragma": "React", // Pragma to use, default to "React"
+      "fragment": "Fragment", // Fragment to use (may be a property of <pragma>), default to "Fragment"
+      "version": "detect" // React version. "detect" automatically picks the version you have installed.
+    }
+  }
 }
