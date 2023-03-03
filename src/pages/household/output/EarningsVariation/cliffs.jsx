@@ -38,6 +38,7 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
       line: {
         color: style.colors.DARK_GRAY,
       },
+      hoverinfo: "none"
     };
   });
 }

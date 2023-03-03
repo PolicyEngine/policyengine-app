@@ -116,21 +116,20 @@ export default function BaselineOnlyChart(props) {
           width: "100%",
         }}
         onHover={(data) => {
-          // console.log(metadata, metadata.variables)
-          const netIncome = 
+          const variableLabelAmount = 
             metadata.currency + 
             data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
           const employmentIncome = 
             metadata.currency + 
             data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-          const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${netIncome}.`
-            if (data.points[0].x && data.points[0].y) {
+          const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`
+            if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
               setHoverCard({
-                title: data.points[0].y === currentNetIncome
-                ? `Your current ${variableLabel}` 
-                : capitalize(variableLabel),
+                title: data.points[0].data.name,
                 body: message,
               });
+            } else {
+                setHoverCard({ title: data.points[0].data.name })
             }
         }}
       />

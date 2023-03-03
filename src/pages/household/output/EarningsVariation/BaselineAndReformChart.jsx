@@ -134,6 +134,7 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
+      hoverinfo:"none",
     },
     {
       x: earningsArray,
@@ -189,20 +190,21 @@ function BaselineAndReformTogetherChart(props) {
         width: "100%",
       }}
       onHover={(data) => {
-        const netIncome = 
+        const variableLabelAmount = 
           metadata.currency + 
           data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
         const employmentIncome = 
           metadata.currency + 
           data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const message = `If you earn ${employmentIncome}, your ${variable} will be ${netIncome}.`
-        if (data.points[0].x && data.points[0].y) {
+        const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`
+        // console.log(data.points[0])
+        if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
           setHoverCard({
-            title: data.points[0].x === +currentEarnings 
-            ? `Your current ${variableLabel}` 
-            : `Reform ${variableLabel}`,
+            title: data.points[0].data.name,
             body: message,
           });
+        } else {
+          setHoverCard({title: data.points[0].data.name})
         }
       }}
     />
@@ -283,18 +285,16 @@ function BaselineReformDeltaChart(props) {
         width: "100%",
       }}
       onHover={(data) => {
-        const netIncome = 
+        const variableLabelAmount = 
           metadata.currency + 
           data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
         const employmentIncome = 
           metadata.currency + 
           data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const message = `If you earn ${employmentIncome}, your ${variable} will be ${netIncome}.`
-        if (data.points[0].x && data.points[0].y) {
+        const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`
+        if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
           setHoverCard({
-            title: data.points[0].x === +currentEarnings 
-            ? `Your current change in ${variableLabel}` 
-            : `Change in ${variableLabel}`,
+            title: data.points[0].data.name,
             body: message,
           });
         }
