@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run eslint;
+npm run eslint || printf "The above issues need to be fixed eventually.";
 missing_files=`git ls-files --others | grep -ve "build\|node_modules" | grep -v ".husky/_"` || exit 0;
 [ "$missing_files" ] && printf "\033[91mDid you forget to add these files?\033[0m\n $missing_files \n\n" || exit 0;
