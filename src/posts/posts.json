@@ -506,5 +506,20 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Massachusetts Governor Maura Healey’s FY 2024 Budget Recommendation",
+    "description": "PolicyEngine estimates the distributional impact of two provisions and the household impact of four provisions.",
+    "date": "2023-03-03 00:00:00",
+    "tags": [
+      "us",
+      "massachusetts"
+    ],
+    "filename": "2023-03-03-massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.md",
+    "image": "massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.webp",
+    "authors": [
+      "max-ghenis",
+      "nick-rodelo"
+    ]
   }
 ]
