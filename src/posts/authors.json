@@ -6,7 +6,7 @@
     "github": "https://github.com/nikhilwoodruff",
     "linkedin": "https://www.linkedin.com/in/nikhil-woodruff/",
     "headshot": "nikhil-woodruff.jpg",
-    "bio": "Nikhil is a co-founder and CTO at PolicyEngine."
+    "bio": "Nikhil is PolicyEngine's co-founder and CTO."
   },
   "max-ghenis": {
     "name": "Max Ghenis",
@@ -15,10 +15,23 @@
     "github": "https://github.com/MaxGhenis",
     "linkedin": "https://www.linkedin.com/in/maxghenis/",
     "headshot": "max-ghenis.jpg",
-    "bio": "Max is a co-founder and CEO at PolicyEngine."
+    "bio": "Max is PolicyEngine's co-founder and CEO."
   },
   "kevin-foster": {
     "name": "Kevin Foster",
-    "headshot": "kevin-foster.jpeg"
+    "headshot": "kevin-foster.jpeg",
+    "email": "newforza@gmail.com",
+    "github": "https://github.com/kfoster19",
+    "linkedin": "https://www.linkedin.com/in/kevin-h-foster/",
+    "bio": "Kevin is a researcher at PolicyEngine."
+  },
+  "nicholas-rodelo": {
+    "name": "Nicholas Rodelo",
+    "headshot": "nicholas-rodelo.jpg",
+    "email": "nick@policyengine.org",
+    "github": "https://github.com/nmrodelo",
+    "linkedin": "https://www.linkedin.com/in/nicholas-rodelo-aaaa18159/",
+    "twitter": "https://twitter.com/NicholasRodelo",
+    "bio": "Nicholas is a researcher at PolicyEngine."
   }
 }
