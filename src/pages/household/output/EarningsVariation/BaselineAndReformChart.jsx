@@ -208,7 +208,7 @@ function BaselineAndReformTogetherChart(props) {
             body: `Your net income falls after earning 
               ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
               ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))} in the 
-              ${policy.reform.label} scenario.`
+              ${data.points[0].data.name.includes('reform') ? 'reform' : 'baseline'} scenario.`
           })
         }
       }}
