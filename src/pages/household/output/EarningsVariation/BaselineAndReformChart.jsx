@@ -120,7 +120,6 @@ function BaselineAndReformTogetherChart(props) {
     variableLabel,
     metadata,
     variable,
-    policy
   } = props;
   const [hovercard, setHoverCard] = useState(null);
   let data = [
