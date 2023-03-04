@@ -463,7 +463,7 @@ export function getValueFromHousehold(
   return timePeriodValues[timePeriod];
 }
 
-export function getNewHouseholdId(countryId, newHouseholdData, metadata) {
+export function getNewHouseholdId(countryId, newHouseholdData) {
   return countryApiCall(
     countryId,
     "/household",

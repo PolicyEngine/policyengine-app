@@ -11,6 +11,7 @@
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "antd": "^4.24.2",
     "bootstrap": "^5.2.2",
+    "eslint-config-prettier": "^8.6.0",
     "framer-motion": "^7.6.6",
     "markdown-to-jsx": "^7.1.7",
     "moment": "^2.29.4",
@@ -39,10 +40,11 @@
     "workbox-streams": "^6.5.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.jsx"
   },
   "eslintConfig": {
     "extends": [
@@ -62,9 +64,34 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.jsx": [
+      "eslint",
+      "prettier --write --ignore-unknown"
+    ],
+    "*.json": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.md": [
+      "prettier --write --ignore-unknown"
+    ],
+    "*.yml": [
+      "prettier --write --ignore-unknown"
+    ]
+  },
   "devDependencies": {
     "@testing-library/react": "^13.4.0",
+    "eslint": "^8.35.0",
+    "eslint-plugin-jest": "^27.2.1",
+    "eslint-plugin-react": "^7.32.2",
+    "husky": "^8.0.3",
     "jest": "^27.5.1",
-    "jest-environment-jsdom": "^29.4.3"
+    "jest-environment-jsdom": "^29.4.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "2.8.4"
   }
 }

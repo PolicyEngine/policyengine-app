@@ -171,7 +171,7 @@ function HouseholdVariableEntityInput(props) {
       event_label: variable.name,
     });
     if (autoCompute) {
-      getNewHouseholdId(metadata.countryId, newHousehold, metadata).then(
+      getNewHouseholdId(metadata.countryId, newHousehold).then(
         (householdId) => {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
