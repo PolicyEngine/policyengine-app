@@ -11,6 +11,8 @@ import style from "../../../../style";
 import { getCliffs } from "./cliffs";
 import HoverCard from "../../../../layout/HoverCard";
 
+import { convertToCurrencyString } from "./convertToCurrencyString";
+
 export default function BaselineOnlyChart(props) {
   const {
     householdBaseline,
@@ -116,21 +118,22 @@ export default function BaselineOnlyChart(props) {
           width: "100%",
         }}
         onHover={(data) => {
-          const variableLabelAmount = 
-            metadata.currency + 
-            data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-          const employmentIncome = 
-            metadata.currency + 
-            data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-          const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`
-            if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-              setHoverCard({
-                title: data.points[0].data.name,
-                body: message,
-              });
-            } else {
-                setHoverCard({ title: data.points[0].data.name })
-            }
+          if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
+            const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
+            const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
+            const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`
+            setHoverCard({
+              title: data.points[0].data.name,
+              body: message,
+            });
+          } else {
+            setHoverCard({ 
+              title: data.points[0].data.name,
+              body: `Your net income falls after earning 
+                ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
+                ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))}.`
+            })
+          }
         }}
       />
     </FadeIn>

@@ -11,6 +11,7 @@ import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
 import HoverCard from "../../../../layout/HoverCard";
+import { convertToCurrencyString } from "./convertToCurrencyString";
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -190,21 +191,21 @@ function BaselineAndReformTogetherChart(props) {
         width: "100%",
       }}
       onHover={(data) => {
-        const variableLabelAmount = 
-          metadata.currency + 
-          data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const employmentIncome = 
-          metadata.currency + 
-          data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`
-        // console.log(data.points[0])
         if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
+          const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
+          const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
+          const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`
           setHoverCard({
             title: data.points[0].data.name,
             body: message,
           });
         } else {
-          setHoverCard({title: data.points[0].data.name})
+          setHoverCard({ 
+            title: data.points[0].data.name,
+            body: `Your net income falls after earning 
+              ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
+              ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))} in the reform scenario.`
+          })
         }
       }}
     />
@@ -285,14 +286,10 @@ function BaselineReformDeltaChart(props) {
         width: "100%",
       }}
       onHover={(data) => {
-        const variableLabelAmount = 
-          metadata.currency + 
-          data.points[0].y?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const employmentIncome = 
-          metadata.currency + 
-          data.points[0].x?.toLocaleString("en-GB", { maximumFractionDigits: 0 });
-        const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`
         if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
+          const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
+          const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
+          const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`
           setHoverCard({
             title: data.points[0].data.name,
             body: message,
