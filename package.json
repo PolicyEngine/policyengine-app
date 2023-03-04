@@ -44,7 +44,7 @@
     "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "eslint": "node_modules/.bin/eslint src/**/*.js src/**/*.jsx"
+    "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.jsx"
   },
   "eslintConfig": {
     "extends": [
