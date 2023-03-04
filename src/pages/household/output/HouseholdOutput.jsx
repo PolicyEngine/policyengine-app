@@ -74,6 +74,7 @@ export default function HouseholdOutput(props) {
         householdInput={householdInput}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
+        policy={policy}
       />
     );
   } else if (focus === "householdOutput.mtr") {

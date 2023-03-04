@@ -22,6 +22,7 @@ export default function BaselineAndReformChart(props) {
     metadata,
     variable,
     variableLabel,
+    policy
   } = props;
   const [showDelta, setShowDelta] = useState(false);
   const toggle = (
@@ -102,6 +103,7 @@ export default function BaselineAndReformChart(props) {
           variableLabel={variableLabel}
           metadata={metadata}
           variable={variable}
+          policy={policy}
         />
       )}
     </>
@@ -118,6 +120,7 @@ function BaselineAndReformTogetherChart(props) {
     variableLabel,
     metadata,
     variable,
+    policy
   } = props;
   const [hovercard, setHoverCard] = useState(null);
   let data = [
@@ -204,7 +207,8 @@ function BaselineAndReformTogetherChart(props) {
             title: data.points[0].data.name,
             body: `Your net income falls after earning 
               ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
-              ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))} in the reform scenario.`
+              ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))} in the 
+              ${policy.reform.label} scenario.`
           })
         }
       }}
