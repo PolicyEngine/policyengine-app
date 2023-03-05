@@ -1,8 +1,8 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import UKFlag from "../images/logos/countries/uK.png";
-import USFlag from "../images/logos/countries/usa.png";
+import UKFlag from "../images/logos/countries/uk.png";
+import USFlag from "../images/logos/countries/us.png";
 import CAFlag from "../images/logos/countries/ca.png";
 import NGFlag from "../images/logos/countries/ng.webp";
 
