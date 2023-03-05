@@ -521,5 +521,19 @@
       "max-ghenis",
       "nicholas-rodelo"
     ]
+  },
+  {
+    "title": "Projected Impact of the UK’s Extended Energy Price Guarantee",
+    "description": "Analysis by PolicyEngine on the expected effects on income, poverty, and inequality.",
+    "date": "2023-03-05 07:30:00",
+    "tags": [
+      "uk"
+    ],
+    "filename": "2023-03-05-projected-impact-of-the-uks-extended-energy-price-guarantee.md",
+    "image": "projected-impact-of-the-uks-extended-energy-price-guarantee.png",
+    "authors": [
+      "nikhil-woodruff",
+      "max-ghenis"
+    ]
   }
 ]
