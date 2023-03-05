@@ -7,6 +7,7 @@ import useMobile from "../layout/Responsive";
 import rehypeRaw from "rehype-raw";
 import style from "../style";
 import useDetectPrint from "react-detect-print";
+import remarkGfm from "remark-gfm";
 import {
   GithubOutlined,
   LinkedinOutlined,
@@ -245,6 +246,7 @@ export default function BlogPostPage(props) {
         <div style={{ padding: mobile && 20 }}>
           <ReactMarkdown
             rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm]}
             components={{
               p: MarkdownP,
               // Ensure images fit inside the container

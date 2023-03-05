@@ -20,10 +20,12 @@ Accordingly, we project that the EPG extension would [reduce income inequality b
 
 ![](https://cdn-images-1.medium.com/max/3200/0*ykeEoMNKJXTRjmIb)
 
-Extending the EPG would [lower poverty by 0.9%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=5847&region=uk&timePeriod=2023&baseline=1), disproportionately among pensioners. It would also[ lower deep poverty by 1%](https://policyengine.org/uk/policy?focus=policyOutput.deepPovertyImpact&reform=5847&region=uk&timePeriod=2023&baseline=1), similarly across age groups.
+Extending the EPG would [lower poverty by 0.9%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=5847&region=uk&timePeriod=2023&baseline=1), disproportionately among pensioners.[^1] It would also[ lower deep poverty by 1%](https://policyengine.org/uk/policy?focus=policyOutput.deepPovertyImpact&reform=5847&region=uk&timePeriod=2023&baseline=1), similarly across age groups.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*uHZzOqtB7nZ7m0TO)
 
 You can [view the impact interactively in PolicyEngine here](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=5847&region=uk&timePeriod=2023&baseline=1), and even model your own custom EPG reform. You can also [enter your household information](https://policyengine.org/uk/household?focus=intro&reform=5847&region=uk&timePeriod=2023&baseline=1) to see how the EPG extension would affect you (to do this, enter the ‘domestic energy consumption’ field under *Consumption / Energy* or by searching in the top left).
 
 At PolicyEngine, we remain committed to providing free open-source software that enables the analysis of public policy impacts. Users with access to UK Data Service microdata can [reproduce our analysis](https://policyengine.org/uk/policy?focus=policyOutput.codeReproducibility&reform=5847&region=uk&timePeriod=2023&baseline=1&household=10576) with the [open-source PolicyEngine UK microsimulation model](https://github.com/PolicyEngine/policyengine-uk). For questions or comments on these impacts, feel free to [get in touch](mailto:hello@policyengine.org).
+
+[^1]: PolicyEngine's poverty rate impacts are lower than an initial estimate [published on the day](https://twitter.com/PolicyEngineUK/status/1631600746520010754), due to modelling improvements on cost-of-living payments in the baseline. See the changelog entry in the microsimulation model [here](https://github.com/PolicyEngine/policyengine-uk/compare/0.41.10...0.41.11).
