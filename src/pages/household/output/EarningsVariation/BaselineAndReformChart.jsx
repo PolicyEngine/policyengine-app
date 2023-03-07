@@ -169,6 +169,7 @@ function BaselineAndReformTogetherChart(props) {
           title: "Employment income",
           ...getPlotlyAxisFormat(metadata.variables.employment_income.unit, 0),
           tickformat: ",.0f",
+          uirevision: metadata.variables.employment_income.unit,
         },
         yaxis: {
           title: capitalize(variableLabel),
@@ -177,6 +178,7 @@ function BaselineAndReformTogetherChart(props) {
             0
           ),
           tickformat: ",.0f",
+          uirevision: metadata.variables.household_net_income.unit,
         },
         legend: {
           // Position above the plot
@@ -261,6 +263,7 @@ function BaselineReformDeltaChart(props) {
           title: "Employment income",
           ...getPlotlyAxisFormat(metadata.variables.employment_income.unit, 0),
           tickformat: ",.0f",
+          uirevision: metadata.variables.employment_income.unit,
         },
         yaxis: {
           title: `Change in ${variableLabel}`,
@@ -271,6 +274,7 @@ function BaselineReformDeltaChart(props) {
             metadata.variables[variable].valueType
           ),
           tickformat: ",.0f",
+          uirevision: metadata.variables[variable].unit,
         },
         legend: {
           // Position above the plot
