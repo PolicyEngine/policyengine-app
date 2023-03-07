@@ -10,20 +10,20 @@ const getPolicyOutputTree = (countryId) => {
           label: "Budgetary impact",
         },
         {
-          name: "policyOutput.decileRelativeImpact",
-          label: "Relative impact by decile",
+          name: "policyOutput.decileAverageImpact",
+          label: "Absolute impact by income decile",
+        },
+        shouldShowWealth && {
+          name: "policyOutput.wealthDecileAverageImpact",
+          label: "Absolute impact by wealth decile",
         },
         {
-          name: "policyOutput.decileAverageImpact",
-          label: "Average impact by decile",
+          name: "policyOutput.decileRelativeImpact",
+          label: "Relative impact by income decile",
         },
         shouldShowWealth && {
           name: "policyOutput.wealthDecileRelativeImpact",
           label: "Relative impact by wealth decile",
-        },
-        shouldShowWealth && {
-          name: "policyOutput.wealthDecileAverageImpact",
-          label: "Average impact by wealth decile",
         },
         {
           name: "policyOutput.intraDecileImpact",
