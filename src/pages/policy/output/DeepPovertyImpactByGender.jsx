@@ -7,18 +7,18 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
-export default function PovertyImpactByGender(props) {
+export default function DeepPovertyImpactByGender(props) {
   const { impact, policyLabel } = props;
   const malePovertyChange =
-    impact.poverty_by_gender.poverty.male.reform /
-      impact.poverty_by_gender.poverty.male.baseline -
+    impact.poverty_by_gender.deep_poverty.male.reform /
+      impact.poverty_by_gender.deep_poverty.male.baseline -
     1;
   const femalePovertyChange =
-    impact.poverty_by_gender.poverty.female.reform /
-      impact.poverty_by_gender.poverty.female.baseline -
+    impact.poverty_by_gender.deep_poverty.female.reform /
+      impact.poverty_by_gender.deep_poverty.female.baseline -
     1;
   const totalPovertyChange =
-    impact.poverty.poverty.all.reform / impact.poverty.poverty.all.baseline - 1;
+    impact.poverty.deep_poverty.all.reform / impact.poverty.deep_poverty.all.baseline - 1;
   const povertyChanges = [
     malePovertyChange,
     femalePovertyChange,
@@ -87,14 +87,14 @@ export default function PovertyImpactByGender(props) {
         const group = data.points[0].x;
         const change = data.points[0].y;
         const baseline = group == "All" ?
-          impact.poverty.poverty[labelToKey[group]].baseline :
+          impact.poverty.deep_poverty[labelToKey[group]].baseline :
           impact.poverty_by_gender.poverty[labelToKey[group]].baseline;
         const reform = group == "All" ?
-          impact.poverty.poverty[labelToKey[group]].reform :
+          impact.poverty.deep_poverty[labelToKey[group]].reform :
           impact.poverty_by_gender.poverty[labelToKey[group]].reform;
         const message = `The percentage of ${
           group === "All" ? "people" : {"male": "men", "female": "women"}[group.toLowerCase()]
-        } in poverty ${
+        } in deep poverty ${
           change < -0.001
             ? `would fall ${percent(-change)} from ${percent(
                 baseline
@@ -117,7 +117,7 @@ export default function PovertyImpactByGender(props) {
   const percentagePointChange =
     Math.round(
       Math.abs(
-        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
+        impact.poverty.deep_poverty.all.reform - impact.poverty.deep_poverty.all.baseline
       ) * 1000
     ) / 10;
 
@@ -127,15 +127,15 @@ export default function PovertyImpactByGender(props) {
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            ? `would raise the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-            : "wouldn't change the poverty rate"}
+            ? `would reduce the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            : "wouldn't change the deep poverty rate"}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows the relative change in the poverty rate for each sex.
+        The chart above shows the relative change in the deep poverty rate for each sex.
       </p>
     </>
   );

@@ -35,15 +35,19 @@ const getPolicyOutputTree = (countryId) => {
         },
         {
           name: "policyOutput.povertyImpact",
-          label: "Poverty impact",
+          label: "Poverty impact by age",
         },
         {
           name: "policyOutput.deepPovertyImpact",
-          label: "Deep poverty impact",
+          label: "Deep poverty impact by age",
         },
         {
           name: "policyOutput.genderPovertyImpact",
-          label: "Poverty impact by gender",
+          label: "Poverty impact by sex",
+        },
+        {
+          name: "policyOutput.genderDeepPovertyImpact",
+          label: "Deep poverty impact by sex",
         },
         {
           name: "policyOutput.inequalityImpact",

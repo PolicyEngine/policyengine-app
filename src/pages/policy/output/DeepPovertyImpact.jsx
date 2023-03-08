@@ -119,6 +119,12 @@ export default function DeepPovertyImpact(props) {
   );
 
   const povertyRateChange = percent(Math.abs(totalPovertyChange));
+  const percentagePointChange =
+    Math.round(
+      Math.abs(
+        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
+      ) * 1000
+    ) / 10;
 
   return (
     <>
@@ -126,9 +132,9 @@ export default function DeepPovertyImpact(props) {
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the deep poverty rate by ${povertyRateChange}`
+            ? `would raise the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would lower the deep poverty rate by ${povertyRateChange}`
+            ? `would lower the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
             : "wouldn't change the deep poverty rate"}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>

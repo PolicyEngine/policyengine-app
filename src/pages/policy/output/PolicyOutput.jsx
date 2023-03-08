@@ -23,6 +23,7 @@ import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
 import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
+import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -285,6 +286,14 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.genderPovertyImpact") {
     pane = (
       <PovertyImpactByGender
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.genderDeepPovertyImpact") {
+    pane = (
+      <DeepPovertyImpactByGender
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
