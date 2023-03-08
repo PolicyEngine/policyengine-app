@@ -62,6 +62,13 @@ export default function InputField(props) {
               e.target.value.length - 1
             );
           }
+        }else{
+          let re = /^[0-9\b]*[.]?[0-9\b]*$/;
+
+          if (value !== '' && !re.test(value)) {
+            const val = value.replace(/[^\d.]+/g, "");
+            e.target.value = parseFloat(val);
+          }
         }
       }}
       placeholder={placeholder}
