@@ -69,10 +69,10 @@ export default function BaselineOnlyChart(props) {
             line: {
               color: style.colors.BLUE,
             },
-            hoverinfo: "none",
-            // hovertemplate: `<b>${capitalize(variableLabel)}</b><br><br>` +
-            //                 `If you earn %{x}, your` +
-            //                 `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+            // hoverinfo: "none",
+            hovertemplate: `<b>${capitalize(variableLabel)}</b><br><br>` +
+                            `If you earn %{x}, your` +
+                            `<br>${variableLabel} will be %{y}.</br><extra></extra>`
           },
           {
             x: [currentEarnings, currentEarnings],
@@ -82,10 +82,10 @@ export default function BaselineOnlyChart(props) {
             line: {
               color: style.colors.MEDIUM_DARK_GRAY,
             },
-            hoverinfo: "none",
-            // hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
-            //                 `If you earn %{x}, your` +
-            //                 `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+            // hoverinfo: "none",
+            hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
+                            `If you earn %{x}, your` +
+                            `<br>${variableLabel} will be %{y}.</br><extra></extra>`
           },
         ]}
         layout={{
@@ -147,6 +147,6 @@ export default function BaselineOnlyChart(props) {
       />
     </FadeIn>
   );
-  // return plot
-  return <HoverCard content={hovercard}>{plot}</HoverCard>
+  return plot
+  // return <HoverCard content={hovercard}>{plot}</HoverCard>
 }
