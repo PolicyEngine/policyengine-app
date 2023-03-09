@@ -88,10 +88,10 @@ export default function DeepPovertyImpactByGender(props) {
         const change = data.points[0].y;
         const baseline = group == "All" ?
           impact.poverty.deep_poverty[labelToKey[group]].baseline :
-          impact.poverty_by_gender.poverty[labelToKey[group]].baseline;
+          impact.poverty_by_gender.deep_poverty[labelToKey[group]].baseline;
         const reform = group == "All" ?
           impact.poverty.deep_poverty[labelToKey[group]].reform :
-          impact.poverty_by_gender.poverty[labelToKey[group]].reform;
+          impact.poverty_by_gender.deep_poverty[labelToKey[group]].reform;
         const message = `The percentage of ${
           group === "All" ? "people" : {"male": "men", "female": "women"}[group.toLowerCase()]
         } in deep poverty ${
