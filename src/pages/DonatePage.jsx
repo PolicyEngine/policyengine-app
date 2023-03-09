@@ -1,14 +1,15 @@
 import { Container } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
 
-export default function DonatePage(props) {
+export default function DonatePage() {
   const contents = (
     <>
       <h1>Donate</h1>
       <div style={{ paddingTop: 20, paddingBottom: 20 }}>
         <p>
-          You can support PolicyEngine's work by donating through our fiscal
-          sponsor, the <a href="https://psl-foundation.org">PSL Foundation</a>
+          You can support PolicyEngine&apos;s work by donating through our
+          fiscal sponsor, the{" "}
+          <a href="https://psl-foundation.org">PSL Foundation</a>
         </p>
         <p>
           <a href="https://opencollective.com/psl-foundation">
@@ -19,7 +20,7 @@ export default function DonatePage(props) {
             email the PSL Foundation for other options
           </a>
           . Please <a href="hello@policyengine.org">email us</a> or the PSL
-          Foundation when you've donated to ensure your gift is directed to
+          Foundation when you&apos;ve donated to ensure your gift is directed to
           PolicyEngine.
         </p>
         <p>Your donation is tax-deductible in the US.</p>

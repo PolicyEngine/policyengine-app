@@ -137,7 +137,7 @@ export default function HouseholdPage(props) {
         requests.push(Promise.resolve({}));
       }
       setLoading(true);
-      Promise.all(requests).then((results) => {
+      Promise.all(requests).then(() => {
         setLoading(false);
       });
     } else {
@@ -194,12 +194,13 @@ export default function HouseholdPage(props) {
     middle = (
       <FolderPage
         label={node.label}
-        children={node.children}
         description={
           metadata.variableModules[focus] &&
           metadata.variableModules[focus].description
         }
-      />
+      >
+        {node.children}
+      </FolderPage>
     );
   } else if (focus === "input.household.maritalStatus") {
     middle = (
@@ -251,10 +252,9 @@ export default function HouseholdPage(props) {
     );
   } else if (focus === "householdOutput") {
     middle = (
-      <FolderPage
-        label="Household results"
-        children={HOUSEHOLD_OUTPUT_TREE[0].children}
-      />
+      <FolderPage label="Household results">
+        {HOUSEHOLD_OUTPUT_TREE[0].children}
+      </FolderPage>
     );
   } else {
     middle = <LoadingCentered />;
