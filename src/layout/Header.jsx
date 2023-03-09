@@ -34,7 +34,7 @@ function MobileHeader(props) {
           display: "flex",
           backgroundColor: style.colors.BLUE,
           height: HEADER_HEIGHT,
-          paddingLeft: 10,
+          paddingLeft: CountrySelector ? 50 : 10,
           position: "fixed",
           width: "100%",
           zIndex: 100,
