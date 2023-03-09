@@ -44,7 +44,6 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false, curre
         color: style.colors.DARK_GRAY,
       },
       hoverinfo: "text",
-      // hoverinfo: "none",
     };
   });
 }

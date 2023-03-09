@@ -10,8 +10,6 @@ import {
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
-import HoverCard from "../../../../layout/HoverCard";
-import { convertToCurrencyString } from "./convertToCurrencyString";
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -121,7 +119,6 @@ function BaselineAndReformTogetherChart(props) {
     metadata,
     variable,
   } = props;
-  const [hovercard, setHoverCard] = useState(null);
   let data = [
     ...(variable === "household_net_income"
       ? getCliffs(baselineArray, earningsArray)
@@ -137,7 +134,6 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      // hoverinfo:"none",
       hovertemplate: `<b>Baseline ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
                       `<br>${variableLabel} will be %{y}.</br><extra></extra>`
@@ -150,7 +146,6 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.BLUE,
       },
-      // hoverinfo:"none",
       hovertemplate: `<b>Reform ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
                       `<br>${variableLabel} will be %{y}.</br><extra></extra>`
@@ -163,7 +158,6 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      // hoverinfo:"none",
       hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
                       `<br>${variableLabel} will be %{y}.</br><extra></extra>`
@@ -204,29 +198,9 @@ function BaselineAndReformTogetherChart(props) {
       style={{
         width: "100%",
       }}
-      onHover={(data) => {
-        if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-          const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
-          const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
-          const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`
-          setHoverCard({
-            title: data.points[0].data.name,
-            body: message,
-          });
-        } else {
-          setHoverCard({ 
-            title: data.points[0].data.name,
-            body: `Your net income falls after earning 
-              ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
-              ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))} in the 
-              ${data.points[0].data.name.includes('reform') ? 'reform' : 'baseline'} scenario.`
-          })
-        }
-      }}
     />
   );
-  return plotObject
-  // return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
+  return <FadeIn>{plotObject}</FadeIn>;
 }
 
 function BaselineReformDeltaChart(props) {
@@ -241,7 +215,6 @@ function BaselineReformDeltaChart(props) {
     metadata,
     variable,
   } = props;
-  const [hovercard, setHoverCard] = useState(null);
   let data = [
     {
       x: earningsArray,
@@ -251,10 +224,9 @@ function BaselineReformDeltaChart(props) {
       line: {
         color: style.colors.BLUE,
       },
-      // hoverinfo:"none",
       hovertemplate: `<b>Change in ${variableLabel}</b><br><br>` +
-      `If you earn %{x}, your` +
-      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `If you earn %{x}, your` +
+                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -264,10 +236,9 @@ function BaselineReformDeltaChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      // hoverinfo:"none",
       hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
-      `If you earn %{x}, your` +
-      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `If you earn %{x}, your` +
+                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
   ];
   const plotObject = (
@@ -309,20 +280,8 @@ function BaselineReformDeltaChart(props) {
       style={{
         width: "100%",
       }}
-      onHover={(data) => {
-        if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-          const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
-          const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
-          const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`
-          setHoverCard({
-            title: data.points[0].data.name,
-            body: message,
-          });
-        }
-      }}
     />
   );
 
-  return plotObject
-  // return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
+  return <FadeIn>{plotObject}</FadeIn>;
 }
