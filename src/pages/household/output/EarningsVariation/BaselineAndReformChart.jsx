@@ -137,7 +137,10 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo:"none",
+      // hoverinfo:"none",
+      hovertemplate: `<b>Baseline ${variableLabel}</b><br><br>` +
+                      `If you earn %{x}, your` +
+                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
     {
       x: earningsArray,
@@ -147,7 +150,10 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo:"none",
+      // hoverinfo:"none",
+      hovertemplate: `<b>Reform ${variableLabel}</b><br><br>` +
+                      `If you earn %{x}, your` +
+                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -157,7 +163,10 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo:"none",
+      // hoverinfo:"none",
+      hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
+                      `If you earn %{x}, your` +
+                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
   ];
   const plotObject = (
@@ -180,6 +189,7 @@ function BaselineAndReformTogetherChart(props) {
           tickformat: ",.0f",
           uirevision: metadata.variables.household_net_income.unit,
         },
+        hoverlabel: { bgcolor: "#FFF", font: {size: "16"} },
         legend: {
           // Position above the plot
           y: 1.2,
@@ -215,8 +225,8 @@ function BaselineAndReformTogetherChart(props) {
       }}
     />
   );
-
-  return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
+  return plotObject
+  // return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
 }
 
 function BaselineReformDeltaChart(props) {
@@ -241,7 +251,10 @@ function BaselineReformDeltaChart(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo:"none",
+      // hoverinfo:"none",
+      hovertemplate: `<b>Change in ${variableLabel}</b><br><br>` +
+      `If you earn %{x}, your` +
+      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -251,7 +264,10 @@ function BaselineReformDeltaChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo:"none",
+      // hoverinfo:"none",
+      hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
+      `If you earn %{x}, your` +
+      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
     },
   ];
   const plotObject = (
@@ -276,6 +292,7 @@ function BaselineReformDeltaChart(props) {
           tickformat: ",.0f",
           uirevision: metadata.variables[variable].unit,
         },
+        hoverlabel: { bgcolor: "#FFF", font: {size: "16"} },
         legend: {
           // Position above the plot
           y: 1.2,
@@ -306,5 +323,6 @@ function BaselineReformDeltaChart(props) {
     />
   );
 
-  return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
+  return plotObject
+  // return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
 }
