@@ -163,6 +163,7 @@ function HouseholdVariableEntityInput(props) {
     setEdited,
   } = props;
   const submitValue = (value) => {
+    value = Number.isNaN(+value) ? value : +value
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     setHouseholdInput(newHousehold);
