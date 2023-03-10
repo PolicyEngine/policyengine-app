@@ -79,7 +79,7 @@ function HouseholdPolicyOptions(props) {
         <h2>Compute my household income</h2>
         <p>
           Use PolicyEngine to calculate your taxes and benefits, and explore how
-          they'd change under different scenarios and policies.
+          they&apos;d change under different scenarios and policies.
         </p>
       </motion.div>
       <motion.div
@@ -102,7 +102,7 @@ function HouseholdPolicyOptions(props) {
         <h2>Compute the impact of policy reforms</h2>
         <p>
           Use PolicyEngine to build reforms to taxes and benefits, and see how
-          they'd affect the economy and individual households.
+          they&apos;d affect the economy and individual households.
         </p>
       </motion.div>
     </div>
@@ -200,7 +200,7 @@ export default function HomePage(props) {
         >
           <h1>We compute the impact of public policy.</h1>
           <h4>
-            PolicyEngine's free, open-source software turns law into code.
+            PolicyEngine&apos;s free, open-source software turns law into code.
           </h4>
         </div>
         <HouseholdPolicyOptions countryId={countryId} />
@@ -216,9 +216,10 @@ export default function HomePage(props) {
               Simulate the full tax-benefit system on any household
             </h1>
             <h5>
-              Our free and open-source models describe a country's tax and
-              benefit laws. Describe a household's characteristics and instantly
-              compute their taxes, benefits, marginal tax rates and more.
+              Our free and open-source models describe a country&apos;s tax and
+              benefit laws. Describe a household&apos;s characteristics and
+              instantly compute their taxes, benefits, marginal tax rates and
+              more.
             </h5>
           </>
         }
@@ -241,8 +242,8 @@ export default function HomePage(props) {
           <>
             <h1 style={{ paddingBottom: 30 }}>Design custom policy reforms</h1>
             <h5>
-              PolicyEngine's country models contains hundreds of customisable
-              policy parameters and can handle structural reforms.
+              PolicyEngine&apos;s country models contains hundreds of
+              customisable policy parameters and can handle structural reforms.
             </h5>
           </>
         }
@@ -305,9 +306,9 @@ function Collaborations(props) {
       {
         name: "Martin Farley",
         position:
-          "Convener of the Green Party's Tax and Fiscal Policy Working Group",
+          "Convener of the Green Party&apos;s Tax and Fiscal Policy Working Group",
         quote:
-          "PolicyEngine has transformed the Green Party's ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
+          "PolicyEngine has transformed the Green Party&apos;s ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
         headshot: MartinFarley,
       },
       {
@@ -345,23 +346,24 @@ function Collaborations(props) {
         name: "Nate Golden",
         position: "Founder and President of the Maryland Child Alliance",
         quote:
-          "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
+          "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine&apos;s data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
         headshot: NateGolden,
       },
       {
         name: "Brian Hiatt",
         position: "Vice President of Technology at Gary Community Ventures",
         quote:
-          "Thanks to PolicyEngine, we have been able to help more families access the resources they need to grow income and build wealth. We're grateful to have such a reliable partner on our side.",
+          "Thanks to PolicyEngine, we have been able to help more families access the resources they need to grow income and build wealth. We&apos;re grateful to have such a reliable partner on our side.",
         headshot: BrianHiatt,
       },
       {
         name: "Nika Soon-Shiong",
-        position: "Founder and Executive Director of the Fund for Guaranteed Income",
+        position:
+          "Founder and Executive Director of the Fund for Guaranteed Income",
         quote:
           "As low-income families face a web of opaque, disconnected welfare systems, millions are left excluded or unsupported from the benefits they deserve. It’s critical for organizations such as PolicyEngine to chart new research, technology, and coalitions that can change this unacceptable status quo. I’m very excited to show our new Benefits Screener to the world this year.",
         headshot: NikaSoonShiong,
-      }
+      },
     ],
   };
 
@@ -502,7 +504,9 @@ function Collaborations(props) {
             paddingRight: mobile ? 30 : 300,
           }}
         >
-          <Carousel autoplay autoplaySpeed={10000}>{quoteBlocks}</Carousel>
+          <Carousel autoplay autoplaySpeed={10000}>
+            {quoteBlocks}
+          </Carousel>
         </Row>
         <Row style={{ justifyContent: "center", alignItems: "center" }}>
           {Object.values(orgData[countryId] || {}).map((org) => (
@@ -551,7 +555,7 @@ function APIDemo(props) {
           }}
         >
           <h2 style={{ paddingLeft: 90, paddingRight: 90 }}>
-            PolicyEngine's free API computes policy impacts
+            PolicyEngine&apos;s free API computes policy impacts
           </h2>
           <h5 style={{ paddingLeft: 90, paddingRight: 90 }}>
             Instantly compute taxes and benefits for any household under current
