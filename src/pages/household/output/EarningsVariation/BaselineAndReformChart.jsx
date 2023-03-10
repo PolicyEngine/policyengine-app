@@ -136,7 +136,7 @@ function BaselineAndReformTogetherChart(props) {
       },
       hovertemplate: `<b>Baseline ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
-                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `<br>${variableLabel} will be %{y}.<extra></extra>`
     },
     {
       x: earningsArray,
@@ -148,7 +148,7 @@ function BaselineAndReformTogetherChart(props) {
       },
       hovertemplate: `<b>Reform ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
-                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `<br>${variableLabel} will be %{y}.<extra></extra>`
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -160,7 +160,7 @@ function BaselineAndReformTogetherChart(props) {
       },
       hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
-                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `<br>${variableLabel} will be %{y}.<extra></extra>`
     },
   ];
   const plotObject = (
@@ -224,7 +224,7 @@ function BaselineReformDeltaChart(props) {
       },
       hovertemplate: `<b>Change in ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
-                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `<br>${variableLabel} will be %{y}.<extra></extra>`
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -236,7 +236,7 @@ function BaselineReformDeltaChart(props) {
       },
       hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
                       `If you earn %{x}, your` +
-                      `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                      `<br>${variableLabel} will be %{y}.<extra></extra>`
     },
   ];
   const plotObject = (

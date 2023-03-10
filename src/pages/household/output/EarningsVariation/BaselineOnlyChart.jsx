@@ -66,7 +66,7 @@ export default function BaselineOnlyChart(props) {
             },
             hovertemplate: `<b>${capitalize(variableLabel)}</b><br><br>` +
                             `If you earn %{x}, your` +
-                            `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                            `<br>${variableLabel} will be %{y}.<extra></extra>`
           },
           {
             x: [currentEarnings, currentEarnings],
@@ -78,7 +78,7 @@ export default function BaselineOnlyChart(props) {
             },
             hovertemplate: `<b>Your current ${variableLabel}</b><br><br>` +
                             `If you earn %{x}, your` +
-                            `<br>${variableLabel} will be %{y}.</br><extra></extra>`
+                            `<br>${variableLabel} will be %{y}.<extra></extra>`
           },
         ]}
         layout={{
