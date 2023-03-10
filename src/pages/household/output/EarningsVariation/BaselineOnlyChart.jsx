@@ -87,6 +87,7 @@ export default function BaselineOnlyChart(props) {
             title: "Employment income",
             ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
             tickformat: ",.0f",
+            uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
             title: {
@@ -99,6 +100,7 @@ export default function BaselineOnlyChart(props) {
               metadata.variables[variable].valueType
             ),
             tickformat: ",.0f",
+            uirevision: metadata.variables[variable].unit,
           },
           legend: {
             // Position above the plot

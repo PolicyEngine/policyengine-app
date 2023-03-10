@@ -7,39 +7,31 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
-export default function DeepPovertyImpact(props) {
+export default function PovertyImpactByGender(props) {
   const { impact, policyLabel } = props;
-  const childPovertyChange =
-    impact.poverty.deep_poverty.child.reform /
-      impact.poverty.deep_poverty.child.baseline -
+  const malePovertyChange =
+    impact.poverty_by_gender.poverty.male.reform /
+      impact.poverty_by_gender.poverty.male.baseline -
     1;
-  const adultPovertyChange =
-    impact.poverty.deep_poverty.adult.reform /
-      impact.poverty.deep_poverty.adult.baseline -
-    1;
-  const seniorPovertyChange =
-    impact.poverty.deep_poverty.senior.reform /
-      impact.poverty.deep_poverty.senior.baseline -
+  const femalePovertyChange =
+    impact.poverty_by_gender.poverty.female.reform /
+      impact.poverty_by_gender.poverty.female.baseline -
     1;
   const totalPovertyChange =
-    impact.poverty.deep_poverty.all.reform /
-      impact.poverty.deep_poverty.all.baseline -
-    1;
+    impact.poverty.poverty.all.reform / impact.poverty.poverty.all.baseline - 1;
   const povertyChanges = [
-    childPovertyChange,
-    adultPovertyChange,
-    seniorPovertyChange,
+    malePovertyChange,
+    femalePovertyChange,
     totalPovertyChange,
   ];
-  const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
+  const povertyLabels = ["Male", "Female", "All"];
   const labelToKey = {
-    Children: "child",
-    "Working-age adults": "adult",
-    Seniors: "senior",
+    Male: "male",
+    "Female": "female",
     All: "all",
   };
-  const mobile = useMobile();
   const [hovercard, setHoverCard] = useState(null);
+  const mobile = useMobile();
   // Decile bar chart. Bars are grey if negative, green if positive.
   const chart = (
     <Plot
@@ -65,7 +57,7 @@ export default function DeepPovertyImpact(props) {
       ]}
       layout={{
         xaxis: {
-          title: "Age group",
+          title: "Sex",
         },
         yaxis: {
           title: "Relative change",
@@ -94,12 +86,15 @@ export default function DeepPovertyImpact(props) {
       onHover={(data) => {
         const group = data.points[0].x;
         const change = data.points[0].y;
-        const baseline =
-          impact.poverty.deep_poverty[labelToKey[group]].baseline;
-        const reform = impact.poverty.deep_poverty[labelToKey[group]].reform;
+        const baseline = group == "All" ?
+          impact.poverty.poverty[labelToKey[group]].baseline :
+          impact.poverty_by_gender.poverty[labelToKey[group]].baseline;
+        const reform = group == "All" ?
+          impact.poverty.poverty[labelToKey[group]].reform :
+          impact.poverty_by_gender.poverty[labelToKey[group]].reform;
         const message = `The percentage of ${
-          group === "All" ? "people" : group.toLowerCase()
-        } in deep poverty ${
+          group === "All" ? "people" : {"male": "men", "female": "women"}[group.toLowerCase()]
+        } in poverty ${
           change < -0.001
             ? `would fall ${percent(-change)} from ${percent(
                 baseline
@@ -132,16 +127,15 @@ export default function DeepPovertyImpact(props) {
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            ? `would raise the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would lower the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-            : "wouldn't change the deep poverty rate"}
+            ? `would reduce the poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            : "wouldn't change the poverty rate"}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows the relative change in the deep poverty rate for
-        each age group.
+        The chart above shows the relative change in the poverty rate for each sex.
       </p>
     </>
   );

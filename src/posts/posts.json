@@ -535,5 +535,31 @@
       "nikhil-woodruff",
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Breaking down poverty impacts by sex",
+    "description": "PolicyEngine estimates the impact of customizable policy reforms on poverty — overall, by age, and now by sex.",
+    "date": "2023-03-08 07:30:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-08-breaking-down-us-poverty-impacts-by-sex.md",
+    "image": "breaking-down-poverty-impacts-by-sex.png",
+    "authors": [
+      "max-ghenis"
+    ]
+  },
+  {
+    "title": "Breaking down poverty impacts by sex",
+    "description": "PolicyEngine estimates the impact of customisable policy reforms on poverty — overall, by age, and now by sex.",
+    "date": "2023-03-08 07:30:00",
+    "tags": [
+      "uk"
+    ],
+    "filename": "2023-03-08-breaking-down-uk-poverty-impacts-by-sex.md",
+    "image": "breaking-down-poverty-impacts-by-sex.png",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   }
 ]
