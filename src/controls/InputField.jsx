@@ -6,6 +6,7 @@ export default function InputField(props) {
   const { placeholder, onChange, padding, width, type, inputmode, pattern } =
     props;
   const mobile = useMobile();
+  const re = /^[0-9\b]*[.]?[0-9\b]*$/;
   const onInput = (e) => {
     let value = e.target.value;
     e.target.value = null;
@@ -34,7 +35,7 @@ export default function InputField(props) {
         if (e.key === "Enter") {
           e.preventDefault();
           let value = e.target.value;
-          if (value !== "") {
+          if (value !== "" && re.test(value)) {
             onChange(value);
           }
           e.target.value = null;
@@ -63,11 +64,9 @@ export default function InputField(props) {
             );
           }
         }else{
-          let re = /^[0-9\b]*[.]?[0-9\b]*$/;
-
           if (value !== '' && !re.test(value)) {
-            const val = value.replace(/[^\d.]+/g, "");
-            e.target.value = parseFloat(val);
+            const val = value.replace(/[^\d.]+/g, '');
+            e.target.value = val.includes('.') ? parseFloat(val) : val;
           }
         }
       }}
