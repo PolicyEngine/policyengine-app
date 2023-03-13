@@ -1,6 +1,6 @@
 import style from "../style";
 
-export default function Divider(props) {
+export default function Divider() {
   return (
     <div
       style={{

@@ -5,7 +5,7 @@ import useMobile from "../layout/Responsive";
 import MaxGhenis from "../images/authors/max-ghenis.jpg";
 import NikhilWoodruff from "../images/authors/nikhil-woodruff.jpg";
 
-export default function AboutPage(props) {
+export default function AboutPage() {
   const mobile = useMobile();
   const nikhilBio = (
     <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
@@ -14,8 +14,8 @@ export default function AboutPage(props) {
         also the UK Research Director at the UBI Center, a think tank
         researching universal basic income policies, and was previously a data
         scientist at Caspian, where he worked in improving anti-money laundering
-        investigations. Nikhil is currently on leave from Durham University's
-        Computer Science program.
+        investigations. Nikhil is currently on leave from Durham
+        University&apos;s Computer Science program.
       </p>
     </Col>
   );
@@ -76,9 +76,9 @@ export default function AboutPage(props) {
               <b>Max Ghenis</b> is the co-founder and CEO of PolicyEngine. He is
               also the founder and president of the UBI Center, a think tank
               researching universal basic income policies, and was previously a
-              data scientist at Google. Max has a master's degree in Data,
-              Economics, and Development Policy from MIT and a bachelor's degree
-              in operations research from UC Berkeley.
+              data scientist at Google. Max has a master&apos;s degree in Data,
+              Economics, and Development Policy from MIT and a bachelor&apos;s
+              degree in operations research from UC Berkeley.
             </p>
           </Col>
         </Row>
@@ -95,8 +95,8 @@ export default function AboutPage(props) {
         </p>
         <p>
           <b>Jason DeBacker</b>, president of the PSL Foundation and associate
-          professor of economics at the University of South Carolina's Darla
-          Moore School of Business.
+          professor of economics at the University of South Carolina&apos;s
+          Darla Moore School of Business.
         </p>
         <p>
           <b>Linda Gibbs</b>, principal at Bloomberg Associates. Linda

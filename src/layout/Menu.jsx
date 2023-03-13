@@ -78,9 +78,10 @@ function MenuItemGroup(props) {
             name={child.name}
             label={capitalize(child.label)}
             selected={selected}
-            children={child.children}
             onSelect={onSelect}
-          />
+          >
+            {child.children}
+          </MenuItemGroup>
         );
       } else {
         expandedChildren.push(
@@ -167,9 +168,10 @@ export default function Menu(props) {
           name={item.name}
           label={item.label}
           selected={selected || ""}
-          children={item.children}
           onSelect={onSelect}
-        />
+        >
+          {item.children}
+        </MenuItemGroup>
       );
     } else {
       menuItems.push(

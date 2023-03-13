@@ -221,7 +221,7 @@ function MobileBottomMenu(props) {
   const focus = searchParams.get("focus") || "";
   const [policyDrawerOpen, setPolicyDrawerOpen] = useState(false);
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     return setPolicyDrawerOpen(false);
   };
 
@@ -382,13 +382,12 @@ export default function PolicyPage(props) {
     );
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
-    middle = <FolderPage label={node.label} children={node.children} />;
+    middle = <FolderPage label={node.label}>{node.children}</FolderPage>;
   } else if (focus === "policyOutput") {
     middle = (
-      <FolderPage
-        label="Policy impact"
-        children={POLICY_OUTPUT_TREE[0].children}
-      />
+      <FolderPage label="Policy impact">
+        {POLICY_OUTPUT_TREE[0].children}
+      </FolderPage>
     );
   } else if (focus.includes("policyOutput.")) {
     middle = (
