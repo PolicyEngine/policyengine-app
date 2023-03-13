@@ -509,7 +509,7 @@ export function optimiseHousehold(household, metadata, removeEmpty = false) {
           household[entityPlural][entityName][variable]
         )) {
           let variableData = newHousehold[entityPlural][entityName][variable];
-          if (variable === "members") {
+          if (variable === "members" || variable === "state_name") {
             continue;
           }
           let defaultValue = metadata.variables[variable].defaultValue;
