@@ -116,7 +116,7 @@ function VariableArithmetic(props) {
         &nbsp;
         <span
           style={{
-            color: labelColor,
+            color: labelColor(),
             textDecoration: `underline ${labelLineStyle()}`,
           }}
         >
@@ -292,7 +292,7 @@ export default function NetIncomeBreakdown(props) {
         <>
           {policyLabel} {isAdd ? "increases" : "decreases"} your net income
           by&nbsp;
-          <span style={isAdd ? labelAddStyle : labelSubStyle}>
+          <span style={isAdd ? labelAddStyle() : labelSubStyle()}>
             {formatVariableValue(
               metadata.variables.household_net_income,
               Math.abs(difference),
