@@ -1,12 +1,12 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
-import { useState } from "react";
-import { getParameterAtInstant } from "../../../api/parameters";
+import { PlusCircleOutlined } from '@ant-design/icons';
+import { useState } from 'react';
+import { getParameterAtInstant } from '../../../api/parameters';
 import {
   formatVariableValue,
   getValueFromHousehold,
-} from "../../../api/variables";
-import ResultsPanel from "../../../layout/ResultsPanel";
-import style from "../../../style";
+} from '../../../api/variables';
+import ResultsPanel from '../../../layout/ResultsPanel';
+import style from '../../../style';
 
 function VariableArithmetic(props) {
   const {
@@ -42,14 +42,14 @@ function VariableArithmetic(props) {
     valueStr =
       diff > 0
         ? `Your ${variable.label} rise${
-            variable.label.endsWith("s") ? "" : "s"
+            variable.label.endsWith('s') ? '' : 's'
           } by ${formatVariableValue(variable, diff, 0)}`
         : diff < 0
         ? `Your ${variable.label} fall${
-            variable.label.endsWith("s") ? "" : "s"
+            variable.label.endsWith('s') ? '' : 's'
           } by ${formatVariableValue(variable, -diff, 0)}`
         : `Your ${variable.label} ${
-            variable.label.endsWith("s") ? "don't" : "doesn't"
+            variable.label.endsWith('s') ? "don't" : "doesn't"
           } change`;
     shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
@@ -72,7 +72,7 @@ function VariableArithmetic(props) {
     };
   } else {
     valueStr = `Your ${variable.label} ${
-      variable.label.endsWith("s") ? "are" : "is"
+      variable.label.endsWith('s') ? 'are' : 'is'
     } ${formatVariableValue(variable, value, 0)}`;
     shouldShowVariable = (variableName) => {
       return (
@@ -90,17 +90,17 @@ function VariableArithmetic(props) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   let adds = variable.adds || [];
   // Check if 'adds' is a string
-  if (typeof adds === "string") {
+  if (typeof adds === 'string') {
     // adds is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[adds];
-    adds = getParameterAtInstant(parameter, "2023-01-01");
+    adds = getParameterAtInstant(parameter, '2023-01-01');
   }
   let subtracts = variable.subtracts || [];
   // Check if 'subtracts' is a string
-  if (typeof subtracts === "string") {
+  if (typeof subtracts === 'string') {
     // subtracts is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[subtracts];
-    subtracts = getParameterAtInstant(parameter, "2023-01-01");
+    subtracts = getParameterAtInstant(parameter, '2023-01-01');
   }
   const expandable = adds.length + subtracts.length > 0;
   const childAddNodes = adds
@@ -137,8 +137,8 @@ function VariableArithmetic(props) {
           padding: 10,
           paddingBottom: 0,
           borderLeftWidth: 2,
-          borderLeftStyle: "solid",
-          borderLeftColor: style.colors.DARK_GRAY,
+          borderLeftStyle: 'solid',
+          borderLeftColor: style.colors.DARK_GREEN,
         }}
       >
         {childNodes}
@@ -153,7 +153,7 @@ function VariableArithmetic(props) {
     >
       <div
         style={{
-          cursor: expandable ? "pointer" : "default",
+          cursor: expandable ? 'pointer' : 'default',
         }}
         onClick={() => {
           if (expandable) {
@@ -162,9 +162,9 @@ function VariableArithmetic(props) {
         }}
       >
         <div
-          style={{ display: "flex", alignItems: "center", marginBottom: 10 }}
+          style={{ display: 'flex', alignItems: 'center', marginBottom: 10 }}
         >
-          <h2 style={{ display: "flex", fontSize: 22, margin: 0 }}>
+          <h2 style={{ display: 'flex', fontSize: 22, margin: 0 }}>
             {valueStr}
           </h2>
           {expandable && (
@@ -173,8 +173,8 @@ function VariableArithmetic(props) {
                 fontSize: 14,
                 marginLeft: 10,
                 color: style.colors.DARK_GRAY,
-                transform: expanded ? "rotate(45deg)" : "rotate(0deg)",
-                transition: "transform 0.2s",
+                transform: expanded ? 'rotate(45deg)' : 'rotate(0deg)',
+                transition: 'transform 0.2s',
               }}
             />
           )}
@@ -191,8 +191,8 @@ function VariableArithmetic(props) {
             padding: 10,
             paddingBottom: 0,
             borderLeftWidth: 2,
-            borderLeftStyle: "solid",
-            borderLeftColor: style.colors.DARK_GRAY,
+            borderLeftStyle: 'solid',
+            borderLeftColor: style.colors.DARK_GREEN,
           }}
         >
           {childNodes}
@@ -216,12 +216,12 @@ export default function NetIncomeBreakdown(props) {
 
   if (hasReform) {
     const difference =
-      getReformValue("household_net_income") - getValue("household_net_income");
+      getReformValue('household_net_income') - getValue('household_net_income');
     if (Math.abs(difference) < 0.01) {
       title = `${policyLabel} doesn't change your net income`;
     } else {
       title = `${policyLabel} ${
-        difference > 0 ? "increases" : "decreases"
+        difference > 0 ? 'increases' : 'decreases'
       } your net income by ${formatVariableValue(
         metadata.variables.household_net_income,
         Math.abs(difference),
@@ -229,7 +229,7 @@ export default function NetIncomeBreakdown(props) {
       )}`;
     }
   } else {
-    title = `Your net income is ${getValueStr("household_net_income")}`;
+    title = `Your net income is ${getValueStr('household_net_income')}`;
   }
 
   return (
