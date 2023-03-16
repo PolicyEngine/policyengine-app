@@ -9,6 +9,55 @@ import {
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
+// The arrows are used to differentiate increases or decreases
+// to net income for colorblind users.
+function UpArrow() {
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        fontWeight: "bold",
+        fontSize: "1.5em",
+        color: style.colors.DARK_GREEN,
+      }}
+    >
+      &uarr;
+    </span>
+  );
+}
+
+function DownArrow() {
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        fontWeight: "bold",
+        fontSize: "1.5em",
+        color: style.colors.DARK_RED,
+      }}
+    >
+      &darr;
+    </span>
+  );
+}
+
+const labelArrow = (isAdd) => (isAdd ? <UpArrow /> : <DownArrow />);
+const labelDownArrow = (isAdd) => (isAdd ? <DownArrow /> : <UpArrow />);
+const labelColor = (isAdd) =>
+  isAdd ? style.colors.DARK_GREEN : style.colors.DARK_RED;
+const labelSubColor = (isAdd) =>
+  isAdd ? style.colors.DARK_RED : style.colors.DARK_GREEN;
+const labelAddStyle = (isAdd) => {
+  return {
+    color: labelColor(isAdd),
+  };
+};
+const labelSubStyle = (isAdd) => {
+  return {
+    color: labelSubColor(isAdd),
+  };
+};
+
 function VariableArithmetic(props) {
   const {
     variableName,
@@ -32,27 +81,6 @@ function VariableArithmetic(props) {
   const hasReform = householdReform !== null;
   const variable = metadata.variables[variableName];
 
-  const labelColor = () =>
-    isAdd ? style.colors.DARK_GREEN : style.colors.DARK_RED;
-  const labelSubColor = () =>
-    isAdd ? style.colors.DARK_RED : style.colors.DARK_GREEN;
-  // A line style is used to differentiate
-  // income/benefits vs liabilities for colorblind users.
-  const labelLineStyle = () => (isAdd ? "solid" : "dashed");
-  const labelLineSubStyle = () => (isAdd ? "dashed" : "solid");
-  const labelAddStyle = () => {
-    return {
-      color: labelColor(),
-      textDecoration: `underline ${labelLineStyle()}`,
-    };
-  };
-  const labelSubStyle = () => {
-    return {
-      color: labelSubColor(),
-      textDecoration: `underline ${labelLineSubStyle()}`,
-    };
-  };
-
   let doesIncomeChange = false;
   if (hasReform) {
     // Write the result in the form: £y (+£(y-x))
@@ -70,7 +98,8 @@ function VariableArithmetic(props) {
         <>
           Your {variable.label} rise{variable.label.endsWith("s") ? "" : "s"}{" "}
           by&nbsp;
-          <span style={labelAddStyle()}>
+          {labelArrow(isAdd)}&nbsp;
+          <span style={labelAddStyle(isAdd)}>
             {formatVariableValue(variable, diff, 0)}
           </span>
         </>
@@ -78,7 +107,8 @@ function VariableArithmetic(props) {
         <>
           Your {variable.label} fall{variable.label.endsWith("s") ? "" : "s"}{" "}
           by&nbsp;
-          <span style={labelSubStyle()}>
+          {labelDownArrow(isAdd)}&nbsp;
+          <span style={labelSubStyle(isAdd)}>
             {formatVariableValue(variable, -diff, 0)}
           </span>
         </>
@@ -114,10 +144,10 @@ function VariableArithmetic(props) {
           variable.label.endsWith("s") ? "are" : "is"
         }`}
         &nbsp;
+        {labelArrow(isAdd)}&nbsp;
         <span
           style={{
-            color: labelColor(),
-            textDecoration: `underline ${labelLineStyle()}`,
+            color: labelColor(isAdd),
           }}
         >
           {formatVariableValue(variable, value, 0)}
@@ -191,8 +221,8 @@ function VariableArithmetic(props) {
           padding: 10,
           paddingBottom: 0,
           borderLeftWidth: 2,
-          borderLeftStyle: labelLineStyle(),
-          borderLeftColor: labelColor(),
+          borderLeftStyle: "solid",
+          borderLeftColor: labelColor(isAdd),
         }}
       >
         {childNodes}
@@ -248,8 +278,8 @@ function VariableArithmetic(props) {
             padding: 10,
             paddingBottom: 0,
             borderLeftWidth: 2,
-            borderLeftStyle: labelLineStyle(), // For colorblind folks.
-            borderLeftColor: labelColor(),
+            borderLeftStyle: "solid",
+            borderLeftColor: labelColor(isAdd),
           }}
         >
           {childNodes}
@@ -269,15 +299,6 @@ export default function NetIncomeBreakdown(props) {
   const getValueStr = (variable) =>
     formatVariableValue(metadata.variables[variable], getValue(variable), 0);
 
-  const labelAddStyle = {
-    color: style.colors.DARK_GREEN,
-    textDecoration: "underline solid",
-  };
-  const labelSubStyle = {
-    color: style.colors.DARK_RED,
-    textDecoration: "underline dashed",
-  };
-
   let title;
 
   let isAdd = true;
@@ -292,7 +313,8 @@ export default function NetIncomeBreakdown(props) {
         <>
           {policyLabel} {isAdd ? "increases" : "decreases"} your net income
           by&nbsp;
-          <span style={isAdd ? labelAddStyle() : labelSubStyle()}>
+          {labelArrow(isAdd)}&nbsp;
+          <span style={{ color: labelColor(isAdd) }}>
             {formatVariableValue(
               metadata.variables.household_net_income,
               Math.abs(difference),
@@ -310,7 +332,7 @@ export default function NetIncomeBreakdown(props) {
     <>
       <ResultsPanel
         title={title}
-        description="Here's how we calculated your household's net income. Click on a section to see more details."
+        description="Here's how we calculated your household's net income. Click on a section to see the breakdown. Hover to see more details."
       >
         <div style={{ height: 10 }} />
         <VariableArithmetic
