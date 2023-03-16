@@ -1,6 +1,5 @@
 import Button from "../../../controls/Button";
 import Screenshottable from "../../../layout/Screenshottable";
-import Spinner from "../../../layout/Spinner";
 import { PythonCodeBlock } from "./PolicyReproducibility";
 
 export default function Analysis(props) {
@@ -35,8 +34,8 @@ export default function Analysis(props) {
   This JSON describes the baseline and reform poverty and deep poverty rates by gender (briefly describe the relative changes): ${JSON.stringify(impact.poverty_by_gender)}
 
   This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(impact.inequality)}`;
-    const analysisPrompt = policyDetails + description;
-    const lines = analysisPrompt.split("\n");
+  const analysisPrompt = policyDetails + description;
+  const lines = analysisPrompt.split("\n");
 
 
   return (
