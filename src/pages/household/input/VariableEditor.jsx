@@ -84,8 +84,8 @@ export default function VariableEditor(props) {
         </h4>
         {isSimulated && (
           <p style={{ textAlign: "center" }}>
-            This variable is calculated from other variables you've entered.
-            Editing it will override the simulated value.
+            This variable is calculated from other variables you&apos;ve
+            entered. Editing it will override the simulated value.
           </p>
         )}
         {entityInputs}
@@ -163,7 +163,7 @@ function HouseholdVariableEntityInput(props) {
     setEdited,
   } = props;
   const submitValue = (value) => {
-    value = Number.isNaN(+value) ? value : +value
+    value = Number.isNaN(+value) ? value : +value;
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
     newHousehold[entityPlural][entityName][variable.name][timePeriod] = value;
     setHouseholdInput(newHousehold);
