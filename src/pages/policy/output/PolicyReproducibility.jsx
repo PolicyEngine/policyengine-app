@@ -1,7 +1,7 @@
 import Button from "../../../controls/Button";
 import style from "../../../style";
 
-function PythonCodeBlock({ lines }) {
+export function PythonCodeBlock({ lines }) {
   // Turn 4-space indents into padding-left
   const lineIndents = lines.map((line) => {
     let numIndents = 0;
