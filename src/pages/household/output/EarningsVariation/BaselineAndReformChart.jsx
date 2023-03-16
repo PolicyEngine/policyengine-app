@@ -1,5 +1,5 @@
-import { Switch } from "antd";
 import { useState } from "react";
+import { Radio } from 'antd';
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
@@ -25,14 +25,30 @@ export default function BaselineAndReformChart(props) {
     policy
   } = props;
   const [showDelta, setShowDelta] = useState(false);
+  const options = [
+    {
+      label: 'Show baseline and reform',
+      value: false,
+    },
+    {
+      label: 'Show difference',
+      value: true,
+    },
+  ];
+  const onDelta = ({ target: { value } }) => {
+    console.log('checked', value);
+    setShowDelta(value);
+  };
   const toggle = (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <span style={{ marginRight: 10 }}>Show baseline and reform</span>
-      <Switch
-        checked={showDelta}
-        onChange={(checked) => setShowDelta(checked)}
+      <Radio.Group
+        style={{ marginRight: 10 }}
+        options={options}
+        onChange={onDelta}
+        value={showDelta}
+        optionType="button"
+        buttonStyle="solid"
       />
-      <span style={{ marginLeft: 10 }}>Show difference</span>
     </div>
   );
   const earningsArray = getValueFromHousehold(
