@@ -61,6 +61,10 @@ const getPolicyOutputTree = (countryId) => {
           name: "policyOutput.codeReproducibility",
           label: "Reproduce in Python",
         },
+        {
+          name: "policyOutput.analysis",
+          label: "Analysis",
+        }
       ].filter(Boolean),
     },
   ];

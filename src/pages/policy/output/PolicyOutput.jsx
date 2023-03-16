@@ -24,6 +24,7 @@ import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
+import Analysis from "./Analysis";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -334,6 +335,8 @@ export default function PolicyOutput(props) {
     );
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
+  } else if (focus === "policyOutput.analysis") {
+    pane = <Analysis impact={impact} metadata={metadata} policy={policy} policyLabel={policyLabel} />;
   }
 
   if (focus === "policyOutput.cliffImpact") {
