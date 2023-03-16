@@ -96,7 +96,7 @@ export default function RelativeImpactByWealthDecile(props) {
         <h2>
           {policyLabel}{" "}
           {averageRelChange >= 0 ? "would increase" : "would decrease"} the
-          average household's net income by{" "}
+          average household&apos;s net income by{" "}
           {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>

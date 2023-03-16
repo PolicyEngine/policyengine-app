@@ -146,14 +146,11 @@ export default function MaritalStatus(props) {
     />
   );
   return (
-    <CenteredMiddleColumn
-      title="What is your marital status?"
-      children={
-        <>
-          {radioButtonComponent}
-          <NavigationButton text="Enter" focus="input.household.children" />
-        </>
-      }
-    />
+    <CenteredMiddleColumn title="What is your marital status?">
+      <>
+        {radioButtonComponent}
+        <NavigationButton text="Enter" focus="input.household.children" />
+      </>
+    </CenteredMiddleColumn>
   );
 }

@@ -16,7 +16,7 @@ import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import getPolicyOutputTree from "./tree";
 import InequalityImpact from "./InequalityImpact";
-import { Dropdown, Result, Select, Steps } from "antd";
+import { Result, Steps } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import useMobile from "../../../layout/Responsive";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
@@ -342,15 +342,16 @@ export default function PolicyOutput(props) {
 
   const bottomElements = mobile ? null : metadata.countryId === "us" ? (
     <p>
-      PolicyEngine US v{selectedVersion} estimates reform impacts using a static microsimulation over
-      the 2021 Current Population Survey March Supplement.{" "}
+      PolicyEngine US v{selectedVersion} estimates reform impacts using a static
+      microsimulation over the 2021 Current Population Survey March Supplement.{" "}
       <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">
         Read our caveats and data enhancement plan.
       </a>
     </p>
   ) : (
     <p>
-      PolicyEngine UK v{selectedVersion} estimates reform impacts using a static microsimulation over{" "}
+      PolicyEngine UK v{selectedVersion} estimates reform impacts using a static
+      microsimulation over{" "}
       <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
         an enhanced version of the 2019 Family Resources Survey
       </a>
