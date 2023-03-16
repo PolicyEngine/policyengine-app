@@ -42,7 +42,6 @@ export default function BaselineAndReformChart(props) {
   const toggle = (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <Radio.Group
-        style={{ marginRight: 10 }}
         options={options}
         onChange={onDelta}
         value={showDelta}
