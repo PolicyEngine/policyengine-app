@@ -5,13 +5,18 @@ import { useSearchParams } from "react-router-dom";
 
 
 export default function Prompt(props) {
-  const { impact, policyLabel, metadata, policy } = props;
+  const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
   const relevantParameters = Object.keys(policy.reform.data).map(parameter => metadata.parameters[parameter]);
+  // metadata.economy_options.region = [{name: "uk", label: "United Kingdom"}]
+  const regionKeyToLabel = metadata.economy_options.region.reduce((acc, {name, label}) => {
+    acc[name] = label;
+    return acc;
+  }, {});
   const policyDetails = `I'm a researcher using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
-  * First explain each provision of the reform in detail, noting that it represents policy reforms for 2023.
+  * First explain each provision of the reform in detail, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}.
   * Write concisely and clearly, using plain English.
   * Explain concepts where a layperson might be unfamiliar.
   * Write in detail and in paragraphs (minimum 5).

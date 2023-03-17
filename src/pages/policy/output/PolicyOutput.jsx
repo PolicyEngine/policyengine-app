@@ -336,7 +336,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   } else if (focus === "policyOutput.prompt") {
-    pane = <Prompt impact={impact} metadata={metadata} policy={policy} policyLabel={policyLabel} />;
+    pane = <Prompt impact={impact} metadata={metadata} policy={policy} region={region} timePeriod={timePeriod} policyLabel={policyLabel} />;
   }
 
   if (focus === "policyOutput.cliffImpact") {
