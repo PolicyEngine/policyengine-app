@@ -62,8 +62,8 @@ const getPolicyOutputTree = (countryId) => {
           label: "Reproduce in Python",
         },
         {
-          name: "policyOutput.analysis",
-          label: "Analysis",
+          name: "policyOutput.prompt",
+          label: "ChatGPT prompt",
         }
       ].filter(Boolean),
     },

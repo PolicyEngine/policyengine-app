@@ -1,20 +1,28 @@
 import Button from "../../../controls/Button";
 import Screenshottable from "../../../layout/Screenshottable";
 import { PythonCodeBlock } from "./PolicyReproducibility";
+import { useSearchParams } from "react-router-dom";
 
-export default function Analysis(props) {
+
+export default function Prompt(props) {
   const { impact, policyLabel, metadata, policy } = props;
+  const [searchParams] = useSearchParams();
+  const selectedVersion = searchParams.get("version") || metadata.version;
   const relevantParameters = Object.keys(policy.reform.data).map(parameter => metadata.parameters[parameter]);
-  const policyDetails = `I'm a researcher using PolicyEngine, and I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
+  const policyDetails = `I'm a researcher using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
-  * First explain each provision of the reform in detail.
+  * First explain each provision of the reform in detail, noting that it represents policy reforms for 2023.
   * Write concisely and clearly, using plain English.
   * Explain concepts where a layperson might be unfamiliar.
   * Write in detail and in paragraphs (minimum 5).
   * Round large numbers like: ${metadata.currency}3.1bn, ${metadata.currency}300m, ${metadata.currency}106,000, ${metadata.currency}1.50.
-  * Round percentages to 1 decimal place.
-  * Don't use normative language like 'requires', 'should', 'must'. If you don't know what something is, don't make it up.
-  * Use British English spelling and grammar, and use the active voice where possible.
+  * Round percentages to one decimal place.
+  * Avoid normative language like 'requires', 'should', 'must', and use quantitative statements over general adjectives and adverbs. If you don't know what something is, don't make it up.
+  * Avoid speculating about the intent of the policy; only describe what the policy does.
+  * Use the active voice where possible; for example, write phrases where the reform is the subject, such as "the reform [or a description of the reform] reduces poverty by x%".
+  * Use ${metadata.countryId === "uk" ? "British" : "American"} English spelling and grammar.
+  * Cite PolicyEngine ${metadata.countryId.toUpperCase()} v${selectedVersion} and the ${metadata.countryId === "uk" ? "PolicyEngine-enhanced 2019 Family Resources Survey" : "2021 Current Population Survey March Supplement"} microdata when describing policy impacts.
+  * When describing poverty impacts, note that the poverty measure reported is ${metadata.countryId === "uk" ? "absolute poverty before housing costs" : "the Supplemental Poverty Measure"}.
   
   This JSON snippet describes the baseline and reform policies being compared: ${JSON.stringify(policy)}\n`;
   const description = `${policyLabel} has the following impacts from the PolicyEngine microsimulation model: 
@@ -41,9 +49,9 @@ export default function Analysis(props) {
   return (
     <>
       <Screenshottable>
-        <h2>Analysis</h2>
+        <h2>Prompt</h2>
       </Screenshottable>
-      <p>Use the below prompt to ChatGPT to generate an analysis of your policy reform.</p>
+      <p>Copy the below prompt into ChatGPT to generate a written analysis of your policy reform.</p>
       <div
         style={{
           display: "flex",
