@@ -5,13 +5,13 @@ import { PythonCodeBlock } from "./PolicyReproducibility";
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy } = props;
   const relevantParameters = Object.keys(policy.reform.data).map(parameter => metadata.parameters[parameter]);
-  const policyDetails = `I'm a researcher at PolicyEngine, and I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
+  const policyDetails = `I'm a researcher using PolicyEngine, and I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
   * First explain each provision of the reform in detail.
   * Write concisely and clearly, using plain English.
   * Explain concepts where a layperson might be unfamiliar.
   * Write in detail and in paragraphs (minimum 5).
-  * Round large numbers like: £3.1bn, £300m, £106,000.
+  * Round large numbers like: ${metadata.currency}3.1bn, ${metadata.currency}300m, ${metadata.currency}106,000, ${metadata.currency}1.50.
   * Round percentages to 1 decimal place.
   * Don't use normative language like 'requires', 'should', 'must'. If you don't know what something is, don't make it up.
   * Use British English spelling and grammar, and use the active voice where possible.
