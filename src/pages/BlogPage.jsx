@@ -13,6 +13,7 @@ import {
   LinkedinOutlined,
   MailOutlined,
   TwitterOutlined,
+  FacebookOutlined,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
@@ -99,6 +100,28 @@ function AuthorSection(props) {
         {author.linkedin && linkedIn}
         {author.twitter && twitter}
         {author.github && github}
+      </div>
+    </div>
+  );
+}
+
+function SocialMediaIcons() {
+  return (
+    <div style={{ position: "fixed", right: "40px", bottom: "40px", display: "flex", flexDirection: "column" }}>
+      <div style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px", marginBottom: "10px" }}>
+        <a href="https://twitter.com/ThePolicyEngine" target="_blank" rel="noreferrer">
+          <TwitterOutlined style={{ fontSize: 25 }} />
+        </a>
+      </div>
+      <div style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px", marginBottom: "10px" }}>
+        <a href="https://www.facebook.com/PolicyEngine" target="_blank" rel="noreferrer">
+          <FacebookOutlined style={{ fontSize: 25 }} />
+        </a>
+      </div>
+      <div style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px" }}>
+        <a href="https://www.linkedin.com/company/thepolicyengine/" target="_blank" rel="noreferrer">
+          <LinkedinOutlined style={{ fontSize: 25 }} />
+        </a>
       </div>
     </div>
   );
@@ -362,6 +385,7 @@ export default function BlogPostPage(props) {
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
               ))}
+              {SocialMediaIcons()}
             </div>
           </div>
         </div>
