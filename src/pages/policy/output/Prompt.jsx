@@ -2,7 +2,7 @@ import Button from "../../../controls/Button";
 import Screenshottable from "../../../layout/Screenshottable";
 import { PythonCodeBlock } from "./PolicyReproducibility";
 
-export default function Analysis(props) {
+export default function Prompt(props) {
   const { impact, policyLabel, metadata, policy } = props;
   const relevantParameters = Object.keys(policy.reform.data).map(parameter => metadata.parameters[parameter]);
   const policyDetails = `I'm a researcher using PolicyEngine, and I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
