@@ -63,7 +63,7 @@ export default function InputField(props) {
               e.target.value.length - 1
             );
           }
-        }else{
+        } else if (pattern === "number") {
           if (value !== '' && !re.test(value)) {
             const val = value.replace(/[^\d.]+/g, '');
             e.target.value = val.includes('.') ? parseFloat(val) : val;
