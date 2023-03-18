@@ -1,7 +1,9 @@
-import Button from "../../../controls/Button";
-import Screenshottable from "../../../layout/Screenshottable";
-import { PythonCodeBlock } from "./PolicyReproducibility";
 import { useSearchParams } from "react-router-dom";
+import { Configuration, OpenAIApi } from "openai";
+import { useState } from "react";
+import Spinner from "../../../layout/Spinner";
+import Button from "../../../controls/Button";
+import { PythonCodeBlock } from "./PolicyReproducibility";
 
 
 export default function Prompt(props) {
@@ -48,34 +50,102 @@ export default function Prompt(props) {
 
   This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(impact.inequality)}`;
   const analysisPrompt = policyDetails + description;
+  const [analysis, setAnalysis] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
+
+  const configuration = new Configuration({
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+  });
+  const openai = new OpenAIApi(configuration);
+  const [showPrompt, setShowPrompt] = useState(false);
   const lines = analysisPrompt.split("\n");
 
+  const onGenerate = () => {
+    setHasClickedGenerate(true);
+    setLoading(true);
+    openai.createChatCompletion({
+      model: "gpt-4",
+      messages: [{role: "user", content: analysisPrompt}],
+    }).then((response) => {
+      console.log(response);
+      setAnalysis(response.data.choices[0].message.content);
+      setLoading(false);
+    });
+  };
 
+  // Separate analysis into <p> tags
+  const analysisContent = analysis.split("\n").map((line, i) => {
+    return <p key={i}>{line}</p>;
+  });
+  const buttonText =
+    !hasClickedGenerate ? 
+      "Generate an analysis" : 
+      loading ? 
+        <><Spinner style={{marginRight: 10}} />Generating</> : 
+        "Regenerate analysis";
   return (
     <>
-      <Screenshottable>
-        <h2>Prompt</h2>
-      </Screenshottable>
-      <p>Copy the below prompt into ChatGPT to generate a written analysis of your policy reform.</p>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: 30,
-          marginBottom: 30,
-        }}
-      >
-        <Button
-          text="Copy"
-          style={{ width: 100 }}
-          onClick={() => {
-            navigator.clipboard.writeText(lines.join("\n"));
-          }}
-        />
+      <h2>Analysis</h2>
+      <p>PolicyEngine&apos;s automatic policy analysis is powered by GPT-4. Read more about this feature <a href="https://policyengine.org/uk/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration">here</a>. Generation usually takes around 20 seconds.</p>
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 20,
+      }}>
+        <Button primary text={buttonText} onClick={onGenerate} style={{maxWidth: 250}} />
       </div>
-      <p>
-        <PythonCodeBlock lines={lines} />
-      </p>
+      {
+        !hasClickedGenerate ? 
+          null : 
+          loading ? 
+            null : 
+            analysisContent
+      }
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: 20,
+      }}>
+        <Button text={
+          showPrompt ?
+            "Hide prompt" :
+            "Show prompt"
+        } onClick={
+          () => setShowPrompt(!showPrompt)
+        } style={{maxWidth: 250}} />
+      </div>
+      {
+        showPrompt ?
+          <>
+            <p>Copy the below prompt into ChatGPT to generate a written analysis of your policy reform.</p>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                paddingTop: 30,
+                marginBottom: 30,
+              }}
+            >
+              <Button
+                text="Copy"
+                style={{ width: 100 }}
+                onClick={() => {
+                  navigator.clipboard.writeText(lines.join("\n"));
+                }}
+              />
+            </div>
+            <p>
+              <PythonCodeBlock lines={lines} />
+            </p>
+          </> :
+          null
+      }
+      
     </>
   );
 }
