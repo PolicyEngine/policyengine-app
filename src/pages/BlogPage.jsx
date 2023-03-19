@@ -107,7 +107,6 @@ function AuthorSection(props) {
 }
 
 function SocialMediaIcons(props) {
-  const { markdown } = props;
   const twitter = (
     <a href="https://twitter.com/ThePolicyEngine" target="_blank" rel="noreferrer">
       <TwitterOutlined style={{ fontSize: 25 }} />
@@ -296,7 +295,7 @@ export default function BlogPostPage(props) {
   return (
     <>
       {!mobile && <LeftContents markdown={markdown} />}
-      {!mobile && <SocialMediaIcons markdown={markdown} />}
+      {!mobile && SocialMediaIcons()}
       <Container style={{ padding: mobile && 0 }} className="serif">
         <div
           style={{
