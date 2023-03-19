@@ -106,7 +106,7 @@ function AuthorSection(props) {
   );
 }
 
-function SocialMediaIcons(props) {
+function SocialMediaIcons() {
   const twitter = (
     <a href="https://twitter.com/ThePolicyEngine" target="_blank" rel="noreferrer">
       <TwitterOutlined style={{ fontSize: 25 }} />
