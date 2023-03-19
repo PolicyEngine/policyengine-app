@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+env:
+  REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
+
 jobs:
   test:
     name: Deploy
@@ -26,5 +29,3 @@ jobs:
         run: make install
       - name: Deploy
         run: make deploy
-        env:
-          REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
