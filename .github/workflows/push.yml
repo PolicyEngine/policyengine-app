@@ -26,3 +26,5 @@ jobs:
         run: make install
       - name: Deploy
         run: make deploy
+        with:
+          REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
