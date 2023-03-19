@@ -33,5 +33,10 @@
     "linkedin": "https://www.linkedin.com/in/nicholas-rodelo-aaaa18159/",
     "twitter": "https://twitter.com/NicholasRodelo",
     "bio": "Nicholas is a researcher at PolicyEngine."
+  },
+  "chat-gpt": {
+    "name": "ChatGPT",
+    "headshot": "chat-gpt.png",
+    "bio": "ChatGPT is a contributing writer at PolicyEngine"
   }
 }

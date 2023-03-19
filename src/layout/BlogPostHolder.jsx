@@ -83,7 +83,7 @@ function BlogPostPreviewRegular(props) {
                   }}
                   alt="Author"
                 />
-                <p style={{ marginTop: 5 }}>
+                <p style={{ marginTop: 9 }}>
                   {authorsJson[authors[index]].name}
                 </p>
               </div>

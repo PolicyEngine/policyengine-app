@@ -197,7 +197,8 @@ export default function CountChildren(props) {
       title={`How many ${
         metadata.countryId !== "us" ? "children" : "dependents"
       } do you have?`}
-      children={radioButtonComponent}
-    />
+    >
+      {radioButtonComponent}
+    </CenteredMiddleColumn>
   );
 }

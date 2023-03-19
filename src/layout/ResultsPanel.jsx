@@ -15,7 +15,7 @@ export default function ResultsPanel(props) {
     >
       <h2>{props.title}</h2>
       <h5 style={{ marginBottom: mobile ? 5 : 20 }}>{props.description}</h5>
-      <div style={{ paddingTop: 0 }}>{props.children}</div>
+      <div style={{ paddingTop: 0, paddingBottom: 150 }}>{props.children}</div>
     </div>
   );
 }

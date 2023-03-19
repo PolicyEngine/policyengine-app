@@ -15,6 +15,7 @@
     "framer-motion": "^7.6.6",
     "markdown-to-jsx": "^7.1.7",
     "moment": "^2.29.4",
+    "openai": "^3.2.1",
     "plotly.js": "^2.16.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
@@ -41,8 +42,8 @@
     "workbox-streams": "^6.5.4"
   },
   "scripts": {
-    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.jsx"

@@ -6,6 +6,7 @@ export default function InputField(props) {
   const { placeholder, onChange, padding, width, type, inputmode, pattern } =
     props;
   const mobile = useMobile();
+  const re = /^[0-9\b]*[.]?[0-9\b]*?$/;
   const onInput = (e) => {
     let value = e.target.value;
     e.target.value = null;
@@ -61,6 +62,11 @@ export default function InputField(props) {
               e.target.value.length - 1,
               e.target.value.length - 1
             );
+          }
+        } else if (pattern === "number") {
+          if (value !== '' && !re.test(value)) {
+            const val = value.replace(/[^\d.]+/g, '');
+            e.target.value = val.includes('.') ? parseFloat(val) : val;
           }
         }
       }}
