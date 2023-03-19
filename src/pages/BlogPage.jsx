@@ -13,7 +13,8 @@ import {
   LinkedinOutlined,
   MailOutlined,
   TwitterOutlined,
-  FacebookOutlined,
+  FacebookFilled,
+  LinkedinFilled,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 
@@ -105,23 +106,61 @@ function AuthorSection(props) {
   );
 }
 
-function SocialMediaIcons() {
+function SocialMediaIcons(props) {
+  const { markdown } = props;
+  const twitter = (
+    <a href="https://twitter.com/ThePolicyEngine" target="_blank" rel="noreferrer">
+      <TwitterOutlined style={{ fontSize: 25 }} />
+    </a>
+  );
+  const facebook = (
+    <a href="https://www.facebook.com/PolicyEngine" target="_blank" rel="noreferrer">
+      <FacebookFilled style={{ fontSize: 25 }} />
+    </a>
+  );
+  const linkedIn = (
+    <a href="https://www.linkedin.com/company/thepolicyengine/" target="_blank" rel="noreferrer">
+      <LinkedinFilled style={{ fontSize: 25 }} />
+    </a>
+  );
   return (
-    <div style={{ position: "fixed", right: "40px", bottom: "40px", display: "flex", flexDirection: "column" }}>
-      <div style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px", marginBottom: "10px" }}>
-        <a href="https://twitter.com/ThePolicyEngine" target="_blank" rel="noreferrer">
-          <TwitterOutlined style={{ fontSize: 25 }} />
-        </a>
+    <div 
+      style={{ 
+        position: "fixed", 
+        right: "30px", 
+        bottom: "30px", 
+        display: "flex", 
+        flexDirection: "column",
+      }}
+    >
+      <div 
+        style={{ 
+          border: "1px solid #ccc", 
+          borderRadius: "0px", 
+          padding: "8px", 
+          marginBottom: "-1px", 
+        }}
+      >
+      {twitter}
       </div>
-      <div style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px", marginBottom: "10px" }}>
-        <a href="https://www.facebook.com/PolicyEngine" target="_blank" rel="noreferrer">
-          <FacebookOutlined style={{ fontSize: 25 }} />
-        </a>
+      <div 
+        style={{ 
+          border: "1px solid #ccc", 
+          borderRadius: "0px", 
+          padding: "8px", 
+          marginBottom: "-1px",
+        }}
+      >
+      {facebook}
       </div>
-      <div style={{ border: "1px solid #ccc", borderRadius: "5px", padding: "5px" }}>
-        <a href="https://www.linkedin.com/company/thepolicyengine/" target="_blank" rel="noreferrer">
-          <LinkedinOutlined style={{ fontSize: 25 }} />
-        </a>
+      <div 
+        style={{ 
+          border: "1px solid #ccc", 
+          borderRadius: "0px", 
+          padding: "8px",
+        }}
+      >
+      {linkedIn}
       </div>
     </div>
   );
@@ -257,6 +296,7 @@ export default function BlogPostPage(props) {
   return (
     <>
       {!mobile && <LeftContents markdown={markdown} />}
+      {!mobile && <SocialMediaIcons markdown={markdown} />}
       <Container style={{ padding: mobile && 0 }} className="serif">
         <div
           style={{
@@ -385,7 +425,6 @@ export default function BlogPostPage(props) {
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
               ))}
-              {SocialMediaIcons()}
             </div>
           </div>
         </div>
