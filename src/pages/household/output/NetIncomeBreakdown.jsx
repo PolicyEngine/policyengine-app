@@ -1,4 +1,8 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
+import {
+  CaretDownFilled,
+  CaretUpFilled,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
 import { Tooltip } from "antd";
 import { useState } from "react";
 import { getParameterAtInstant } from "../../../api/parameters";
@@ -9,44 +13,20 @@ import {
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
+const UpArrow = () => <CaretUpFilled style={{ color: style.colors.GREEN }} />;
+
+const DownArrow = () => (
+  <CaretDownFilled style={{ color: style.colors.DARK_RED }} />
+);
+
 // The arrows are used to differentiate increases or decreases
 // to net income for colorblind users.
-function UpArrow() {
-  return (
-    <span
-      style={{
-        display: "inline-block",
-        fontWeight: "bold",
-        fontSize: "1.5em",
-        color: style.colors.DARK_GREEN,
-      }}
-    >
-      &uarr;
-    </span>
-  );
-}
-
-function DownArrow() {
-  return (
-    <span
-      style={{
-        display: "inline-block",
-        fontWeight: "bold",
-        fontSize: "1.5em",
-        color: style.colors.DARK_RED,
-      }}
-    >
-      &darr;
-    </span>
-  );
-}
-
 const labelArrow = (isAdd) => (isAdd ? <UpArrow /> : <DownArrow />);
 const labelDownArrow = (isAdd) => (isAdd ? <DownArrow /> : <UpArrow />);
 const labelColor = (isAdd) =>
-  isAdd ? style.colors.DARK_GREEN : style.colors.DARK_RED;
+  isAdd ? style.colors.GREEN : style.colors.DARK_RED;
 const labelSubColor = (isAdd) =>
-  isAdd ? style.colors.DARK_RED : style.colors.DARK_GREEN;
+  isAdd ? style.colors.DARK_RED : style.colors.GREEN;
 const labelAddStyle = (isAdd) => {
   return {
     color: labelColor(isAdd),
