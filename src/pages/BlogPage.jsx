@@ -106,7 +106,7 @@ function AuthorSection(props) {
   );
 }
 
-function SocialMediaIcons(props) {
+function SocialMediaIcons() {
   const url = encodeURIComponent(window.location.href);
 
   const twitter = (
