@@ -106,19 +106,21 @@ function AuthorSection(props) {
   );
 }
 
-function SocialMediaIcons() {
+function SocialMediaIcons(props) {
+  const url = encodeURIComponent(window.location.href);
+
   const twitter = (
-    <a href="https://twitter.com/ThePolicyEngine" target="_blank" rel="noreferrer">
-      <TwitterOutlined style={{ fontSize: 25 }} />
-    </a>
-  );
+  <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noreferrer">
+    <TwitterOutlined style={{ fontSize: 25 }} />
+  </a>
+);
   const facebook = (
-    <a href="https://www.facebook.com/PolicyEngine" target="_blank" rel="noreferrer">
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
       <FacebookFilled style={{ fontSize: 25 }} />
     </a>
   );
   const linkedIn = (
-    <a href="https://www.linkedin.com/company/thepolicyengine/" target="_blank" rel="noreferrer">
+    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
       <LinkedinFilled style={{ fontSize: 25 }} />
     </a>
   );
