@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
 import {
+  findEarningsIndex,
   formatVariableValue,
   getPlotlyAxisFormat,
   getValueFromHousehold,
@@ -203,14 +204,18 @@ export default function MarginalTaxRates(props) {
       householdBaseline,
       metadata
     );
-    if (currentMtr !== baselineMtrValue) {
+
+    const currEarningsIdx = findEarningsIndex(earningsArray, currentEarnings);
+    const reformMtrValue = reformMtrArray[currEarningsIdx]
+    
+    if (currentMtr !== reformMtrValue) {
       title = `${policyLabel} ${
-        currentMtr > baselineMtrValue ? "increases" : "decreases"
+        reformMtrValue > currentMtr ? "increases" : "decreases"
       } your marginal tax rate from ${formatVariableValue(
         { unit: "/1" },
-        baselineMtrValue,
+        currentMtr,
         0
-      )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
+      )} to ${formatVariableValue({ unit: "/1" }, reformMtrValue, 0)}`;
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
