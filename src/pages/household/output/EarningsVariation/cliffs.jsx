@@ -1,6 +1,6 @@
 import style from "../../../../style";
 
-const ROUNDING_FACTOR = 100000;
+const ROUNDING_FACTOR = 50000;
 
 export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
   // Return a list of [(start, end), ...] where the net income does not increase
