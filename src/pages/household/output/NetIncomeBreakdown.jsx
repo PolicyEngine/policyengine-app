@@ -13,42 +13,47 @@ import {
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
-const UpArrow = () => <CaretUpFilled style={{ color: style.colors.GREEN }} />;
-
+const UpArrow = () => (
+  <CaretUpFilled
+    style={{
+      color: style.colors.GREEN,
+      display: "inline-flex",
+      alignItems: "center",
+    }}
+  />
+);
 const DownArrow = () => (
-  <CaretDownFilled style={{ color: style.colors.DARK_RED }} />
+  <CaretDownFilled
+    style={{
+      color: style.colors.DARK_RED,
+      display: "inline-flex",
+      alignItems: "center",
+    }}
+  />
 );
 
 // The arrows are used to differentiate increases or decreases
 // to net income for colorblind users.
-const labelArrow = (isAdd) => (isAdd ? <UpArrow /> : <DownArrow />);
-const labelDownArrow = (isAdd) => (isAdd ? <DownArrow /> : <UpArrow />);
-const labelColor = (isAdd) =>
-  isAdd ? style.colors.GREEN : style.colors.DARK_RED;
-const labelSubColor = (isAdd) =>
-  isAdd ? style.colors.DARK_RED : style.colors.GREEN;
-const labelAddStyle = (isAdd) => {
-  return {
-    color: labelColor(isAdd),
-  };
-};
-const labelSubStyle = (isAdd) => {
-  return {
-    color: labelSubColor(isAdd),
-  };
-};
+const nodeArrow = (nodeSign) => (nodeSign ? <UpArrow /> : <DownArrow />);
+const nodeColor = (nodeSign) =>
+  nodeSign ? style.colors.GREEN : style.colors.DARK_RED;
+const nodeStyle = (nodeSign) => ({
+  color: nodeColor(nodeSign),
+  alignItems: "center",
+  display: "inline-flex",
+});
 
 function VariableArithmetic(props) {
   const {
     variableName,
     householdBaseline,
     householdReform,
-    inverted,
+    isAdd,
     metadata,
     defaultExpanded,
     childrenOnly,
   } = props;
-  let isAdd = inverted;
+  let nodeSign = isAdd;
   const value = getValueFromHousehold(
     variableName,
     null,
@@ -73,13 +78,27 @@ function VariableArithmetic(props) {
     );
     const diff = reformValue - value;
     doesIncomeChange = diff != 0;
+    // When not calculating reforms,
+    // every node is either just
+    // adding or subtracting from their
+    // parent. Tax credits subtract
+    // from their tax parents for example.
+    // The sign of the node is synonymous
+    // with whether it's an addition
+    // or subtraction in the variable
+    // arithmetic.
+    // However, once we start applying
+    // reforms then the sign is also influenced
+    // by whether the reform is increasing
+    // or decreasing its value.
+    if (!childrenOnly) nodeSign ^= diff < 0;
     valueStr =
       diff > 0 ? (
         <>
           Your {variable.label} rise{variable.label.endsWith("s") ? "" : "s"}{" "}
           by&nbsp;
-          {labelArrow(isAdd)}&nbsp;
-          <span style={labelAddStyle(isAdd)}>
+          {nodeArrow(nodeSign)}&nbsp;
+          <span style={nodeStyle(nodeSign)}>
             {formatVariableValue(variable, diff, 0)}
           </span>
         </>
@@ -87,8 +106,8 @@ function VariableArithmetic(props) {
         <>
           Your {variable.label} fall{variable.label.endsWith("s") ? "" : "s"}{" "}
           by&nbsp;
-          {labelDownArrow(isAdd)}&nbsp;
-          <span style={labelSubStyle(isAdd)}>
+          {nodeArrow(nodeSign)}&nbsp;
+          <span style={nodeStyle(nodeSign)}>
             {formatVariableValue(variable, -diff, 0)}
           </span>
         </>
@@ -97,7 +116,6 @@ function VariableArithmetic(props) {
           variable.label.endsWith("s") ? "don't" : "doesn't"
         } change`
       );
-    if (!childrenOnly) isAdd ^= diff < 0;
     shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
         getValueFromHousehold(
@@ -124,10 +142,10 @@ function VariableArithmetic(props) {
           variable.label.endsWith("s") ? "are" : "is"
         }`}
         &nbsp;
-        {labelArrow(isAdd)}&nbsp;
+        {nodeArrow(nodeSign)}&nbsp;
         <span
           style={{
-            color: labelColor(isAdd),
+            color: nodeColor(nodeSign),
           }}
         >
           {formatVariableValue(variable, value, 0)}
@@ -163,18 +181,24 @@ function VariableArithmetic(props) {
     subtracts = getParameterAtInstant(parameter, "2023-01-01");
   }
   const expandable = doesIncomeChange && adds.length + subtracts.length > 0;
-  const childAddNodes = adds
-    .filter(shouldShowVariable)
-    .map((variable) => (
-      <VariableArithmetic
-        variableName={variable}
-        householdBaseline={householdBaseline}
-        householdReform={householdReform}
-        metadata={metadata}
-        key={variable}
-        inverted={inverted}
-      />
-    ));
+  const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
+    <VariableArithmetic
+      variableName={variable}
+      householdBaseline={householdBaseline}
+      householdReform={householdReform}
+      metadata={metadata}
+      key={variable}
+      // Every node increases (positive),
+      // decreases (negative), or does nothing
+      // to income (neutral).
+      // Neutral nodes do not have children.
+      // Child nodes are influenced by their parents
+      // unless they are direct children of the root.
+      // Children of a positive parent keep their sign,
+      // and children of a negative parent are flipped.
+      isAdd={childrenOnly || isAdd}
+    />
+  ));
   const childSubtractNodes = subtracts
     .filter(shouldShowVariable)
     .map((variable) => (
@@ -183,10 +207,7 @@ function VariableArithmetic(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         metadata={metadata}
-        // This is a hard condition to write
-        // simply. Do a logic table to convince
-        // yourself of its correctness.
-        inverted={!(childrenOnly || inverted)}
+        isAdd={!(childrenOnly || isAdd)}
         key={variable}
       />
     ));
@@ -202,7 +223,7 @@ function VariableArithmetic(props) {
           paddingBottom: 0,
           borderLeftWidth: 2,
           borderLeftStyle: "solid",
-          borderLeftColor: labelColor(isAdd),
+          borderLeftColor: nodeColor(nodeSign),
         }}
       >
         {childNodes}
@@ -226,14 +247,18 @@ function VariableArithmetic(props) {
         }}
       >
         <div
-          style={{ display: "flex", alignItems: "center", marginBottom: 10 }}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            marginBottom: 10,
+          }}
         >
           <Tooltip
             title={variable.documentation}
             overlayStyle={variable.documentation ? {} : { display: "none" }}
             overlayInnerStyle={{ backgroundColor: style.colors.BLUE }}
           >
-            <h2 style={{ display: "flex", fontSize: 22, margin: 0 }}>
+            <h2 style={{ display: "inline-flex", fontSize: 22, margin: 0 }}>
               {valueStr}
             </h2>
           </Tooltip>
@@ -259,7 +284,7 @@ function VariableArithmetic(props) {
             paddingBottom: 0,
             borderLeftWidth: 2,
             borderLeftStyle: "solid",
-            borderLeftColor: labelColor(isAdd),
+            borderLeftColor: nodeColor(nodeSign),
           }}
         >
           {childNodes}
@@ -293,8 +318,8 @@ export default function NetIncomeBreakdown(props) {
         <>
           {policyLabel} {isAdd ? "increases" : "decreases"} your net income
           by&nbsp;
-          {labelArrow(isAdd)}&nbsp;
-          <span style={{ color: labelColor(isAdd) }}>
+          {nodeArrow(isAdd)}&nbsp;
+          <span style={nodeStyle(isAdd)}>
             {formatVariableValue(
               metadata.variables.household_net_income,
               Math.abs(difference),
@@ -320,7 +345,7 @@ export default function NetIncomeBreakdown(props) {
           householdBaseline={householdBaseline}
           householdReform={householdReform}
           metadata={metadata}
-          inverted={isAdd}
+          isAdd
           defaultExpanded={true}
           childrenOnly
         />
