@@ -526,3 +526,21 @@ export function optimiseHousehold(household, metadata, removeEmpty = false) {
   }
   return newHousehold;
 }
+
+export function findEarningsIndex(earningsArray, currentEarnings) {
+  let left = 0;
+  let right = earningsArray.length - 1;
+
+  while (left <= right) {
+    let middle = Math.floor(left + right) / 2;
+    if (earningsArray[middle] === currentEarnings) {
+      return middle;
+    }
+    if (earningsArray[middle] > currentEarnings) {
+      right = middle - 1;
+    } else {
+      left = middle + 1;
+    }
+  }
+  return 0;
+}
