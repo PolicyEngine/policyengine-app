@@ -254,11 +254,15 @@ function VariableArithmetic(props) {
           }}
         >
           <Tooltip
+            id="documentation"
             title={variable.documentation}
             overlayStyle={variable.documentation ? {} : { display: "none" }}
             overlayInnerStyle={{ backgroundColor: style.colors.BLUE }}
           >
-            <h2 style={{ display: "inline-flex", fontSize: 22, margin: 0 }}>
+            <h2
+              aria-describedby="documentation"
+              style={{ display: "inline-flex", fontSize: 22, margin: 0 }}
+            >
               {valueStr}
             </h2>
           </Tooltip>
