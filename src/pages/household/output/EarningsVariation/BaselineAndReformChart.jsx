@@ -306,6 +306,7 @@ function BaselineReformDeltaChart(props) {
       }}
       style={{
         width: "100%",
+        marginTop: "3rem"
       }}
       onHover={(data) => {
         if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
