@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Radio } from 'antd';
+import "antd/dist/antd.css";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
@@ -45,7 +46,6 @@ export default function BaselineAndReformChart(props) {
         options={options}
         onChange={onDelta}
         value={showDelta}
-        optionType="button"
         buttonStyle="solid"
       />
     </div>
