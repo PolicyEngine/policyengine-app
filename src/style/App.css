@@ -65,10 +65,3 @@ blockquote {
   padding-left: 3em;
   border-left: 0.5em #eee solid;
 }
-
-.ant-radio-checked .ant-radio-inner,
-.ant-radio:hover .ant-radio-inner,
-.ant-radio-wrapper:hover,
-.ant-radio-input:focus .ant-radio-inner {
-  border-color: #2C6496 !important;
-}
