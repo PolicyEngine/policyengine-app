@@ -106,11 +106,11 @@ function AuthorSection(props) {
   );
 }
 
-function SocialMediaIcons() {
+function SocialMediaIcons(props) {
   const url = encodeURIComponent(window.location.href);
 
   const twitter = (
-  <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noreferrer">
+  <a href={`https://twitter.com/intent/tweet?url=${url}&text=${props}`} target="_blank" rel="noreferrer">
     <TwitterOutlined style={{ fontSize: 25 }} />
   </a>
 );
@@ -297,7 +297,7 @@ export default function BlogPostPage(props) {
   return (
     <>
       {!mobile && <LeftContents markdown={markdown} />}
-      {!mobile && SocialMediaIcons()}
+      {!mobile && SocialMediaIcons(title)}
       <Container style={{ padding: mobile && 0 }} className="serif">
         <div
           style={{
