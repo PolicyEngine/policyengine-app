@@ -37,7 +37,21 @@ function PythonCodeBlock({ lines }) {
         {lines.map((line, i) => {
           if (line === "") {
             return <div key={i} style={{ paddingTop: 15 }} />;
-          } else {
+          } else if (line.includes("situation = {")) {
+            return (
+              <pre 
+                key={i} 
+                style={{
+                  color: style.colors.WHITE, 
+                  fontFamily: "monospace", 
+                  margin: 0, 
+                  paddingTop: 5,}}
+              >
+                {line}
+              </pre>
+            );
+          }
+          else {
             return (
               <p
                 key={i}
