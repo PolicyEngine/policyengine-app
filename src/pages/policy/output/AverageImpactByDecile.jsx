@@ -100,7 +100,7 @@ export default function AverageImpactByDecile(props) {
         <h2>
           {policyLabel}{" "}
           {averageChange >= 0 ? "would increase" : "would decrease"} the average
-          household's net income by{" "}
+          household&apos;s net income by{" "}
           {formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),

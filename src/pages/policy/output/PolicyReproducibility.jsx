@@ -1,7 +1,7 @@
 import Button from "../../../controls/Button";
 import style from "../../../style";
 
-function PythonCodeBlock({ lines }) {
+export function PythonCodeBlock({ lines }) {
   // Turn 4-space indents into padding-left
   const lineIndents = lines.map((line) => {
     let numIndents = 0;
@@ -34,10 +34,11 @@ function PythonCodeBlock({ lines }) {
       >
         {lines.map((line, i) => {
           if (line === "") {
-            return <div style={{ paddingTop: 15 }} />;
+            return <div key={i} style={{ paddingTop: 15 }} />;
           } else {
             return (
               <p
+                key={i}
                 style={{
                   color: style.colors.WHITE,
                   fontFamily: "monospace",
@@ -68,7 +69,8 @@ export function getReformDefinitionCode(metadata, policy) {
   ];
 
   if (Object.keys(policy.reform.data).length === 0) {
-    lines.push("    pass");
+    lines.pop();
+    return lines;
   }
 
   for (const [parameterName, parameter] of Object.entries(policy.reform.data)) {

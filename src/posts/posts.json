@@ -561,5 +561,32 @@
     "authors": [
       "nikhil-woodruff"
     ]
+  },
+  {
+    "title": "Analysis of the Spring Budget 2023",
+    "description": "PolicyEngine analysis estimates the impact of the EPG extension and the fuel duty freeze.",
+    "date": "2023-03-15 18:10:00",
+    "tags": [
+      "uk"
+    ],
+    "filename": "2023-03-15-analysis-of-the-spring-budget-2023.md",
+    "image": "analysis-of-the-spring-budget-2023.jpeg",
+    "authors": [
+      "nikhil-woodruff"
+    ]
+  },
+  {
+    "title": "Automate Policy Analysis with PolicyEngine’s New ChatGPT Integration",
+    "description": "Score an economic impact in a few clicks. Write a report in one more.",
+    "date": "2023-03-17 11:00:00",
+    "tags": [
+      "global"
+    ],
+    "filename": "2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration.md",
+    "image": "automate-policy-analysis-with-policy-engines-new-chatgpt-integration.png",
+    "authors": [
+      "nikhil-woodruff",
+      "chat-gpt"
+    ]
   }
 ]

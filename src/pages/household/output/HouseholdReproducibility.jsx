@@ -104,7 +104,7 @@ export default function HouseholdReproducibility(props) {
     "situation = " + householdJson,
     "",
     "simulation = Simulation(",
-    policy.reform.data ? "    reform=reform," : "",
+    Object.keys(policy.reform.data).length ? "    reform=reform," : "",
     "    situation=situation,",
     ")",
     "",
