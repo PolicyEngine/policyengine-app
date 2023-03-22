@@ -532,7 +532,7 @@ export function findEarningsIndex(earningsArray, currentEarnings) {
   let right = earningsArray.length - 1;
 
   while (left <= right) {
-    let middle = Math.floor(left + right) / 2;
+    let middle = Math.floor((left + right) / 2);
     if (earningsArray[middle] === currentEarnings) {
       return middle;
     }
@@ -542,5 +542,5 @@ export function findEarningsIndex(earningsArray, currentEarnings) {
       left = middle + 1;
     }
   }
-  return 0;
+  return -1;
 }
