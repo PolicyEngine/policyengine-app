@@ -197,13 +197,6 @@ export default function MarginalTaxRates(props) {
       reformMtr,
       metadata
     );
-    const baselineMtrValue = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      householdBaseline,
-      metadata
-    );
 
     const currEarningsIdx = findEarningsIndex(earningsArray, currentEarnings);
     const reformMtrValue = reformMtrArray[currEarningsIdx]
@@ -237,7 +230,7 @@ export default function MarginalTaxRates(props) {
         },
         {
           x: [currentEarnings, currentEarnings],
-          y: [0, currentMtr - baselineMtrValue],
+          y: [0, reformMtrValue - currentMtr],
           type: "line",
           name: "Your current MTR difference",
           line: {
