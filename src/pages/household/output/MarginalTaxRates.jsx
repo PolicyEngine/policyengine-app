@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
 import {
-  findEarningsIndex,
   formatVariableValue,
   getPlotlyAxisFormat,
   getValueFromHousehold,
@@ -198,7 +197,7 @@ export default function MarginalTaxRates(props) {
       metadata
     );
 
-    const currEarningsIdx = findEarningsIndex(earningsArray, currentEarnings);
+    const currEarningsIdx = earningsArray.indexOf(currentEarnings)
     const reformMtrValue = reformMtrArray[currEarningsIdx]
     
     if (currentMtr !== reformMtrValue) {
