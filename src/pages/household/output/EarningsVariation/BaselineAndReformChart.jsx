@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Radio } from 'antd';
-import "antd/dist/antd.css";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
