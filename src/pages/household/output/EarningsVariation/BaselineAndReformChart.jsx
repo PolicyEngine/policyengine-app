@@ -28,11 +28,11 @@ export default function BaselineAndReformChart(props) {
   const [showDelta, setShowDelta] = useState(false);
   const options = [
     {
-      label: 'Show baseline and reform',
+      label: 'Baseline and reform',
       value: false,
     },
     {
-      label: 'Show difference',
+      label: 'Difference',
       value: true,
     },
   ];
