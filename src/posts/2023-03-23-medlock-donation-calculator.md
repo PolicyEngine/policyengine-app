@@ -20,6 +20,8 @@ Should Medlock win his bet, how much should he donate to GiveDirectly to fulfill
 
 Using [our `policyengine-us` Python package](http://github.com/policyengine/policyengine-us) — the same package that powers our web app — and the [Streamlit](http://streamlit.app) dashboarding software, [**we built a tool**](https://policyengine-james-medlock-donation-solver.streamlit.app/) to calculate how much Medlock should give. The amount to give also depends on other circumstances of Medlock’s finances and household, and our tool includes levers to explore different scenarios.
 
+We find that Medlock should give between $333,000 (if he has at least $4 million in other income) and $565,000 (if he has no other income).
+
 ## Who is James Medlock?
 
 James Medlock ([@jdcmedlock](https://twitter.com/jdcmedlock?lang=en)) is a pseudonymous Twitter account known for his social and economic policy content. Relevant information for his taxes include:
@@ -42,7 +44,9 @@ As an example, suppose Medlock earns $100,000 from self-employment, and his wife
 
 ![](https://cdn-images-1.medium.com/max/3012/0*GnNvsUqhT-LxtSpt)
 
-[The main PolicyEngine app shows](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16581) that, between payroll tax, self-employment tax, federal income tax, and California income tax, they would pay $58,949 in taxes, leaving a net income of $141,051 (they would not be eligible for any benefits).
+[The main PolicyEngine app shows](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16581) that, between payroll tax, self-employment tax, federal income tax, and California income tax, they would pay $58,949 in taxes, leaving a net income of $141,051 (they would not be eligible for any benefits).[^1]
+
+[^1]: California has not yet released its 2023 tax bracket thresholds, so we use values from 2022.
 
 Now with $1 million in gambling winnings, their [tax bill will rise $436,115](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=16582) from $58,949 to $495,064; federal income taxes rise from $26,967 to $361,051, California income taxes rise from $10,202 to $112,233, and payroll and self-employment taxes stay the same. Their net income rises by the remaining $563,886 to $704,937 if he doesn’t donate anything.
 
