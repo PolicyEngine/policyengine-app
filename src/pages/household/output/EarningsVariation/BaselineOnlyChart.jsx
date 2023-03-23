@@ -137,6 +137,9 @@ export default function BaselineOnlyChart(props) {
             })
           }
         }}
+        onUnhover={() => {
+          setHoverCard(null);
+        }}
       />
     </FadeIn>
   );

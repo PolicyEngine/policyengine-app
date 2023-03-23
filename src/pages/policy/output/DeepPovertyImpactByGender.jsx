@@ -110,6 +110,9 @@ export default function DeepPovertyImpactByGender(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 

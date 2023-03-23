@@ -277,6 +277,9 @@ export default function IntraWealthDecileImpact(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHovercard(null);
+      }}
     />
   );
 

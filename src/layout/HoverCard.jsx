@@ -12,6 +12,8 @@ export default function HoverCard(props) {
       body: "",
     };
   }
+  const notEmpty = content.title.length !== 0 || content.body.length !== 0;
+
   const [visible, setVisible] = useState(false);
 
   const hoverCardElement = (
@@ -50,7 +52,7 @@ export default function HoverCard(props) {
 
   return (
     <>
-      <AnimatePresence>{visible && hoverCardElement}</AnimatePresence>
+      <AnimatePresence>{visible && notEmpty && hoverCardElement}</AnimatePresence>
       <div
         onMouseEnter={() => {
           setVisible(true);

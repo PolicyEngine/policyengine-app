@@ -88,6 +88,9 @@ export default function AverageImpactByWealthDecile(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 
