@@ -84,6 +84,9 @@ export default function RelativeImpactByDecile(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 

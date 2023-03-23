@@ -277,6 +277,9 @@ export default function IntraDecileImpact(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHovercard(null);
+      }}
     />
   );
 

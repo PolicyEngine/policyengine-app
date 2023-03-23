@@ -112,6 +112,9 @@ export default function PovertyImpact(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 

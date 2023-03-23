@@ -227,6 +227,9 @@ function BaselineAndReformTogetherChart(props) {
           })
         }
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 
@@ -317,6 +320,9 @@ function BaselineReformDeltaChart(props) {
             body: message,
           });
         }
+      }}
+      onUnhover={() => {
+        setHoverCard(null);
       }}
     />
   );

@@ -115,6 +115,9 @@ export default function DeepPovertyImpact(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 

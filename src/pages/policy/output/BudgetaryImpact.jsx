@@ -135,6 +135,9 @@ export default function BudgetaryImpact(props) {
           body: body,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 

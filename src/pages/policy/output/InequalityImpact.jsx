@@ -126,6 +126,9 @@ export default function InequalityImpact(props) {
           body: body,
         });
       }}
+      onUnhover={() => {
+          setHoverCard(null);
+      }}
     />
   );
 
