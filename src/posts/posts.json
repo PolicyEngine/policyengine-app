@@ -1,18 +1,5 @@
 [
   {
-    "title": "Oregon’s Nonrefundable Exemption Credit: A Closer Look",
-    "description": "PolicyEngine computes the program’s impact on Oregon and individual households.",
-    "date": "2023-03-10",
-    "tags": [
-      "us"
-    ],
-    "filename": "2023-03-10-oregons-nonrefundable-exemption-credit.md",
-    "image": "oregons-nonrefundable-exemption-credit.jpeg",
-    "authors": [
-      "kevin-foster"
-    ]
-  },
-  {
     "title": "PolicyEngine's 2022 year in review",
     "description": "A year of launches, analysis, and building for the future.",
     "date": "2022-12-30",
@@ -589,7 +576,7 @@
     ]
   },
   {
-    "title": "Automate Policy Analysis with PolicyEngine’s New ChatGPT Integration",
+    "title": "Automate policy analysis with PolicyEngine’s new ChatGPT integration",
     "description": "Score an economic impact in a few clicks. Write a report in one more.",
     "date": "2023-03-17 11:00:00",
     "tags": [
@@ -600,6 +587,33 @@
     "authors": [
       "nikhil-woodruff",
       "chat-gpt"
+    ]
+  },
+  {
+    "title": "Oregon's nonrefundable exemption credit: a closer look",
+    "description": "PolicyEngine computes the program's impact on Oregon and individual households.",
+    "date": "2023-03-15",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-15-oregons-nonrefundable-exemption-credit.md",
+    "image": "oregons-nonrefundable-exemption-credit.jpeg",
+    "authors": [
+      "kevin-foster"
+    ]
+  },
+  {
+    "title": "How much should James Medlock donate to GiveDirectly?",
+    "description": "We built a mini-app with the policyengine-us Python package to crunch the implications of a Twitter bet.",
+    "date": "2023-03-23 01:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-23-medlock-donation-calculator.md",
+    "image": "medlock-donation-calculator.png",
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
     ]
   }
 ]
