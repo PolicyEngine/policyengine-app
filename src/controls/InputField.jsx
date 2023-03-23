@@ -28,7 +28,7 @@ export default function InputField(props) {
         marginTop: mobile ? 0 : -10,
       }}
       type={type || "tel"}
-      inputmode={inputmode || "decimal"}
+      inputMode={inputmode || "decimal"}
       whileFocus={{ scale: 1.05 }}
       onBlur={onInput}
       onKeyUp={(e) => {

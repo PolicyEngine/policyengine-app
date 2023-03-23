@@ -1,4 +1,9 @@
-import { PlusCircleOutlined } from "@ant-design/icons";
+import {
+  CaretDownFilled,
+  CaretUpFilled,
+  PlusCircleOutlined,
+} from "@ant-design/icons";
+import { Tooltip } from "antd";
 import { useState } from "react";
 import { getParameterAtInstant } from "../../../api/parameters";
 import {
@@ -8,16 +13,47 @@ import {
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 
+const UpArrow = () => (
+  <CaretUpFilled
+    style={{
+      color: style.colors.DARK_GREEN,
+      display: "inline-flex",
+      alignItems: "center",
+    }}
+  />
+);
+const DownArrow = () => (
+  <CaretDownFilled
+    style={{
+      color: style.colors.DARK_GRAY,
+      display: "inline-flex",
+      alignItems: "center",
+    }}
+  />
+);
+
+// The arrows are used to differentiate increases or decreases
+// to net income for colorblind users.
+const nodeArrow = (nodeSign) => (nodeSign ? <UpArrow /> : <DownArrow />);
+const nodeColor = (nodeSign) =>
+  nodeSign ? style.colors.DARK_GREEN : style.colors.DARK_GRAY;
+const nodeStyle = (nodeSign) => ({
+  color: nodeColor(nodeSign),
+  alignItems: "center",
+  display: "inline-flex",
+});
+
 function VariableArithmetic(props) {
   const {
     variableName,
     householdBaseline,
     householdReform,
+    isAdd,
     metadata,
-    inverted,
     defaultExpanded,
     childrenOnly,
   } = props;
+  let nodeSign = isAdd;
   const value = getValueFromHousehold(
     variableName,
     null,
@@ -29,6 +65,8 @@ function VariableArithmetic(props) {
   let shouldShowVariable;
   const hasReform = householdReform !== null;
   const variable = metadata.variables[variableName];
+
+  let doesIncomeChange = false;
   if (hasReform) {
     // Write the result in the form: £y (+£(y-x))
     const reformValue = getValueFromHousehold(
@@ -39,18 +77,45 @@ function VariableArithmetic(props) {
       metadata
     );
     const diff = reformValue - value;
+    doesIncomeChange = diff != 0;
+    // When not calculating reforms,
+    // every node is either just
+    // adding or subtracting from their
+    // parent. Tax credits subtract
+    // from their tax parents for example.
+    // The sign of the node is synonymous
+    // with whether it's an addition
+    // or subtraction in the variable
+    // arithmetic.
+    // However, once we start applying
+    // reforms then the sign is also influenced
+    // by whether the reform is increasing
+    // or decreasing its value.
+    if (!childrenOnly) nodeSign ^= diff < 0;
     valueStr =
-      diff > 0
-        ? `Your ${variable.label} rise${
-            variable.label.endsWith("s") ? "" : "s"
-          } by ${formatVariableValue(variable, diff, 0)}`
-        : diff < 0
-        ? `Your ${variable.label} fall${
-            variable.label.endsWith("s") ? "" : "s"
-          } by ${formatVariableValue(variable, -diff, 0)}`
-        : `Your ${variable.label} ${
-            variable.label.endsWith("s") ? "don't" : "doesn't"
-          } change`;
+      diff > 0 ? (
+        <>
+          Your {variable.label} rise{variable.label.endsWith("s") ? "" : "s"}{" "}
+          by&nbsp;
+          {nodeArrow(nodeSign)}&nbsp;
+          <span style={nodeStyle(nodeSign)}>
+            {formatVariableValue(variable, diff, 0)}
+          </span>
+        </>
+      ) : diff < 0 ? (
+        <>
+          Your {variable.label} fall{variable.label.endsWith("s") ? "" : "s"}{" "}
+          by&nbsp;
+          {nodeArrow(nodeSign)}&nbsp;
+          <span style={nodeStyle(nodeSign)}>
+            {formatVariableValue(variable, -diff, 0)}
+          </span>
+        </>
+      ) : (
+        `Your ${variable.label} ${
+          variable.label.endsWith("s") ? "don't" : "doesn't"
+        } change`
+      );
     shouldShowVariable = (variableName) => {
       const isNonZeroInBaseline =
         getValueFromHousehold(
@@ -71,9 +136,22 @@ function VariableArithmetic(props) {
       return isNonZeroInBaseline || isNonZeroInReform;
     };
   } else {
-    valueStr = `Your ${variable.label} ${
-      variable.label.endsWith("s") ? "are" : "is"
-    } ${formatVariableValue(variable, value, 0)}`;
+    valueStr = (
+      <>
+        {`Your ${variable.label} ${
+          variable.label.endsWith("s") ? "are" : "is"
+        }`}
+        &nbsp;
+        {nodeArrow(nodeSign)}&nbsp;
+        <span
+          style={{
+            color: nodeColor(nodeSign),
+          }}
+        >
+          {formatVariableValue(variable, value, 0)}
+        </span>
+      </>
+    );
     shouldShowVariable = (variableName) => {
       return (
         getValueFromHousehold(
@@ -102,19 +180,25 @@ function VariableArithmetic(props) {
     const parameter = metadata.parameters[subtracts];
     subtracts = getParameterAtInstant(parameter, "2023-01-01");
   }
-  const expandable = adds.length + subtracts.length > 0;
-  const childAddNodes = adds
-    .filter(shouldShowVariable)
-    .map((variable) => (
-      <VariableArithmetic
-        variableName={variable}
-        householdBaseline={householdBaseline}
-        householdReform={householdReform}
-        metadata={metadata}
-        key={variable}
-        inverted={inverted}
-      />
-    ));
+  const expandable = doesIncomeChange && adds.length + subtracts.length > 0;
+  const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
+    <VariableArithmetic
+      variableName={variable}
+      householdBaseline={householdBaseline}
+      householdReform={householdReform}
+      metadata={metadata}
+      key={variable}
+      // Every node increases (positive),
+      // decreases (negative), or does nothing
+      // to income (neutral).
+      // Neutral nodes do not have children.
+      // Child nodes are influenced by their parents
+      // unless they are direct children of the root.
+      // Children of a positive parent keep their sign,
+      // and children of a negative parent are flipped.
+      isAdd={childrenOnly || isAdd}
+    />
+  ));
   const childSubtractNodes = subtracts
     .filter(shouldShowVariable)
     .map((variable) => (
@@ -123,11 +207,12 @@ function VariableArithmetic(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         metadata={metadata}
-        inverted={!inverted}
+        isAdd={!(childrenOnly || isAdd)}
         key={variable}
       />
     ));
   const childNodes = childAddNodes.concat(childSubtractNodes);
+
   if (childrenOnly) {
     return (
       <div
@@ -138,7 +223,7 @@ function VariableArithmetic(props) {
           paddingBottom: 0,
           borderLeftWidth: 2,
           borderLeftStyle: "solid",
-          borderLeftColor: style.colors.DARK_GRAY,
+          borderLeftColor: nodeColor(nodeSign),
         }}
       >
         {childNodes}
@@ -162,11 +247,25 @@ function VariableArithmetic(props) {
         }}
       >
         <div
-          style={{ display: "flex", alignItems: "center", marginBottom: 10 }}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            marginBottom: 10,
+          }}
         >
-          <h2 style={{ display: "flex", fontSize: 22, margin: 0 }}>
-            {valueStr}
-          </h2>
+          <Tooltip
+            id="documentation"
+            title={variable.documentation}
+            overlayStyle={variable.documentation ? {} : { display: "none" }}
+            overlayInnerStyle={{ backgroundColor: style.colors.BLUE }}
+          >
+            <h2
+              aria-describedby="documentation"
+              style={{ display: "inline-flex", fontSize: 22, margin: 0 }}
+            >
+              {valueStr}
+            </h2>
+          </Tooltip>
           {expandable && (
             <PlusCircleOutlined
               style={{
@@ -179,9 +278,6 @@ function VariableArithmetic(props) {
             />
           )}
         </div>
-        {variable.documentation ? (
-          <h5 style={{ fontSize: 18 }}>{variable.documentation}</h5>
-        ) : null}
       </div>
       {expanded && (
         <div
@@ -192,7 +288,7 @@ function VariableArithmetic(props) {
             paddingBottom: 0,
             borderLeftWidth: 2,
             borderLeftStyle: "solid",
-            borderLeftColor: style.colors.DARK_GRAY,
+            borderLeftColor: nodeColor(nodeSign),
           }}
         >
           {childNodes}
@@ -214,29 +310,38 @@ export default function NetIncomeBreakdown(props) {
 
   let title;
 
+  let isAdd = true;
   if (hasReform) {
     const difference =
       getReformValue("household_net_income") - getValue("household_net_income");
     if (Math.abs(difference) < 0.01) {
-      title = `${policyLabel} doesn't change your net income`;
+      title = <>{policyLabel} doesn&apos;t change your net income</>;
     } else {
-      title = `${policyLabel} ${
-        difference > 0 ? "increases" : "decreases"
-      } your net income by ${formatVariableValue(
-        metadata.variables.household_net_income,
-        Math.abs(difference),
-        0
-      )}`;
+      isAdd = difference > 0;
+      title = (
+        <>
+          {policyLabel} {isAdd ? "increases" : "decreases"} your net income
+          by&nbsp;
+          {nodeArrow(isAdd)}&nbsp;
+          <span style={nodeStyle(isAdd)}>
+            {formatVariableValue(
+              metadata.variables.household_net_income,
+              Math.abs(difference),
+              0
+            )}
+          </span>
+        </>
+      );
     }
   } else {
-    title = `Your net income is ${getValueStr("household_net_income")}`;
+    title = <>Your net income is {getValueStr("household_net_income")}</>;
   }
 
   return (
     <>
       <ResultsPanel
         title={title}
-        description="Here's how we calculated your household's net income. Click on a section to see more details."
+        description="Here's how we calculated your household's net income. Click on a section to see the breakdown. Hover to see more details."
       >
         <div style={{ height: 10 }} />
         <VariableArithmetic
@@ -244,6 +349,7 @@ export default function NetIncomeBreakdown(props) {
           householdBaseline={householdBaseline}
           householdReform={householdReform}
           metadata={metadata}
+          isAdd
           defaultExpanded={true}
           childrenOnly
         />
