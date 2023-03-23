@@ -196,21 +196,18 @@ export default function MarginalTaxRates(props) {
       reformMtr,
       metadata
     );
-    const baselineMtrValue = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      householdBaseline,
-      metadata
-    );
-    if (currentMtr !== baselineMtrValue) {
+
+    const currEarningsIdx = earningsArray.indexOf(currentEarnings)
+    const reformMtrValue = reformMtrArray[currEarningsIdx]
+    
+    if (currentMtr !== reformMtrValue) {
       title = `${policyLabel} ${
-        currentMtr > baselineMtrValue ? "increases" : "decreases"
+        reformMtrValue > currentMtr ? "increases" : "decreases"
       } your marginal tax rate from ${formatVariableValue(
         { unit: "/1" },
-        baselineMtrValue,
+        currentMtr,
         0
-      )} to ${formatVariableValue({ unit: "/1" }, currentMtr, 0)}`;
+      )} to ${formatVariableValue({ unit: "/1" }, reformMtrValue, 0)}`;
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
@@ -232,7 +229,7 @@ export default function MarginalTaxRates(props) {
         },
         {
           x: [currentEarnings, currentEarnings],
-          y: [0, currentMtr - baselineMtrValue],
+          y: [0, reformMtrValue - currentMtr],
           type: "line",
           name: "Your current MTR difference",
           line: {
