@@ -12,7 +12,7 @@ That is, Srinivasan, the former CTO of Coinbase, is betting that Bitcoin will ex
 
 This bet [appears to be moving forward](https://twitter.com/jdcmedlock/status/1638611778006560768). When discussing how he’d use the potential winnings, Medlock tweeted:
 
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">are you donating to <a href="https://twitter.com/GiveDirectly?ref_src=twsrc%5Etfw">@GiveDirectly</a></p>&mdash; ً (@FrFriedPotaters) <a href="https://twitter.com/FrFriedPotaters/status/1637472210947284994?ref_src=twsrc%5Etfw">March 19, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Yes - my goal is to give myself a 70 effective tax rate between taxes and a GiveDirectly donation</p>&mdash; James Medlock (@jdcmedlock) <a href="https://twitter.com/jdcmedlock/status/1637472476782362624?ref_src=twsrc%5Etfw">March 19, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 [GiveDirectly](http://givedirectly.org) is a charity that gives unconditional cash transfers to low-income households. Medlock [plans to give an unrestricted grant](https://twitter.com/jdcmedlock/status/1637848723052167168), which GiveDirectly currently directs to Africa.
 
