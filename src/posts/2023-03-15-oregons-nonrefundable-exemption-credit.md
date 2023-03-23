@@ -39,10 +39,10 @@ Select “Calculate economic impact” and choose which metric you would like to
 
 ![](https://cdn-images-1.medium.com/max/3200/0*jNzuIY1ZmfdlBan5)
 
-We estimate that Oregon’s exemption credit[ cost $645.5 million in 2022](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=or&timePeriod=2023&baseline=3349), [reduced poverty 0%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=or&timePeriod=2023&baseline=3349), and[ increased the average household’s net income by $365](https://policyengine.org/us/policy?focus=policyOutput.decileAverageImpact&reform=2&region=or&timePeriod=2023&baseline=3349). As a comparison, Oregon estimates that the credit cost about $650 million in 2021.¹
+We estimate that Oregon’s exemption credit [cost $645.5 million in 2022](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=or&timePeriod=2023&baseline=3349), [reduced poverty 0%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=or&timePeriod=2023&baseline=3349), and [increased the average household’s net income by $365](https://policyengine.org/us/policy?focus=policyOutput.decileAverageImpact&reform=2&region=or&timePeriod=2023&baseline=3349). As a comparison, Oregon estimates that the credit cost about $650 million in 2021.[^1]
 
 ![](https://cdn-images-1.medium.com/max/2000/0*FnGciLTwIOECw92y.jpg)
 
 **To compute other elements of Oregon’s income tax, visit [policyengine.org](http://policyengine.org).**
 
-¹ In the 2021–2023 period, [Oregon’s biennial tax expenditure report](https://www.oregon.gov/dor/programs/gov-research/Documents/TE2123-Final.pdf#page=200) shows a revenue impact of $4.6 million for the child with disability credit (p.144), $4.5 million for the severe disability credit (p.149), and $1,308,900,000 for the personal exemption credit (p.200). $1.318 billion divided by 2 (tax years 2021 and 2022) is $659 million.
+[^1]: In the 2021–2023 period, [Oregon’s biennial tax expenditure report](https://www.oregon.gov/dor/programs/gov-research/Documents/TE2123-Final.pdf#page=200) shows a revenue impact of $4.6 million for the child with disability credit (p.144), $4.5 million for the severe disability credit (p.149), and $1,308,900,000 for the personal exemption credit (p.200). $1.318 billion divided by 2 (tax years 2021 and 2022) is $659 million.
