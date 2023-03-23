@@ -24,7 +24,7 @@ function PythonCodeBlock({ lines }) {
     return numIndents;
   });
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ display: "flex", justifyContent: "center", maxHeight: "50vh", overflowY: "scroll" }}>
       <div
         style={{
           backgroundColor: style.colors.DARK_GRAY,
