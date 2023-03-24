@@ -141,7 +141,7 @@ const PRCarousel = () => {
               We&apos;re fully open source
             </h1>
             <h5 style={{ paddingLeft: 90, paddingRight: 90, color: "white" }}>
-              All PolicyEngine models, code, and data are open source and available in their latest form on GitHub, with code, documentation and validation from over fifty open-source contributors.
+              All PolicyEngine models, code, and data are open source and available in their latest form on GitHub, with code, documentation and validation from over fifty open-source contributors. This is our real-time, unfiltered development.
             </h5>
         </Row>
     </Container>
