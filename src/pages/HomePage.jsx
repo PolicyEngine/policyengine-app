@@ -38,6 +38,7 @@ import GCV from "../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../images/logos/orgs/mca.jpg";
 import UBICenter from "../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
+import PRCarousel from "./home/GitHubActivity";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -156,7 +157,7 @@ export function WidePanel(props) {
     <div
       style={{
         backgroundColor: backgroundColor,
-        height: !mobile && 600,
+        height: !mobile && 500,
         marginTop: 25,
         marginBottom: 25,
       }}
@@ -286,6 +287,7 @@ export default function HomePage(props) {
           />
         }
       />
+      <PRCarousel />
       <APIDemo countryId={countryId} />
     </>
   );
@@ -552,6 +554,7 @@ function APIDemo(props) {
           style={{
             paddingLeft: mobile ? 30 : 50,
             paddingRight: mobile ? 30 : 50,
+            paddingTop: 100,
           }}
         >
           <h2 style={{ paddingLeft: 90, paddingRight: 90 }}>
