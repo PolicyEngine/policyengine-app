@@ -615,5 +615,19 @@
       "max-ghenis",
       "nikhil-woodruff"
     ]
+  },
+  {
+    "title": "FiscalSim and PolicyEngine: Emphasizing collaboration and open-source acknowledgment",
+    "description": "The Center for Growth and Opportunity launches FiscalSim, a US policy-computing web app drawing heavily from PolicyEngine’s work.",
+    "date": "2023-03-24 01:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-24-fiscalsim.md",
+    "image": "fiscalsim.png",
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
   }
 ]
