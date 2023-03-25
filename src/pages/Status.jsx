@@ -30,79 +30,41 @@ export function StatusPage() {
     setCountryStatuses("false")
     setCalculateStatus("false")
     setMetaDataStatuses("false")
+    console.log(COUNTRY_IDS)
   }
   
   // console.log(counter)
-  console.log(COUNTRY_IDS)
   
+function callAPIRoute(country, path, setState) {
+  const startTime = Date.now();
+  countryApiCall(country, path)
+    .then((res) => res.json())
+    .then((res) => {
+      const endTime = Date.now();
+      const latency = endTime - startTime;
+      console.log(country, latency, res.status)
+      return {[country]: `${res.status} - ${latency}`}
+    })
+    .then((result) => {
+      setState((prevState) => ({...prevState, ...result}))
+    })
+    .catch(() => {
+      setState((prevState) => ({...prevState, [country]: "ERROR"}))
+    })
+}
+
   useEffect(() => {
     const baselinePolicyId = { uk: 1, us: 2, ca: 3, ng: 4};
-
-    const countryRequests = [];
     for (let key in countryStatuses) {
-      const responseResults = {};
-      responseResults[key] = {};
-      const startTime = Date.now();
-      responseResults[key]["startTime"] = startTime;
-      countryRequests.push(
-        countryApiCall(key, `/policy/${baselinePolicyId[key]}`)
-          .then((res) => res.json())
-          .then((res) => {
-            responseResults[key]["status"] = res.status;
-            const endTime = Date.now();
-            responseResults[key]["endTime"] = endTime;
-          })
-          .then(() => {
-            return responseResults
-          })
-        )
-      }
-    const countryLatencies = {}
-    Promise.all(countryRequests).then((response) => {
-      console.log(response)
-      for (let result of response) {
-        for (let country in result) {
-          console.log(result[country], country)
-          const latency = result[country]["endTime"] - result[country]["startTime"];  
-          countryLatencies[country] = `${result[country]["status"].toUpperCase()} - ${latency}`
-        }
-      }
-    })
-      .then(() => setCountryStatuses(countryLatencies))
-      .catch(err => console.log(err))
+      const path = `/policy/${baselinePolicyId[key]}`
+      callAPIRoute(key, path, setCountryStatuses)
+    }
 
-    const metaDataRequests = []
-      for (let key in metaDataStatuses) {
-        const responseResults = {};
-        responseResults[key] = {};
-        const startTime = Date.now();
-        responseResults[key]["startTime"] = startTime;
-        metaDataRequests.push(
-          countryApiCall(key, "/metadata")
-            .then((res) => res.json())
-            .then((res) => {
-              responseResults[key]["status"] = res.status;
-              const endTime = Date.now();
-              responseResults[key]["endTime"] = endTime;
-            })
-            .then(() => {
-              return responseResults
-            })
-          )
-        }
-      const metaDataLatencies = {}
-      Promise.all(metaDataRequests).then((response) => {
-        console.log(response)
-        for (let result of response) {
-          for (let country in result) {
-            console.log(result[country], country)
-            const latency = result[country]["endTime"] - result[country]["startTime"];  
-            metaDataLatencies[country] = `${result[country]["status"].toUpperCase()} - ${latency}`
-          }
-        }
-      })
-        .then(() => setMetaDataStatuses(metaDataLatencies))
-        .catch(err => console.log(err))
+    for(let key in metaDataStatuses) {
+      const path = "/metadata";
+      callAPIRoute(key, path, setMetaDataStatuses)
+
+    }
     
   }, [])
 
