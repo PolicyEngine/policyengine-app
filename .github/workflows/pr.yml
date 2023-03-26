@@ -36,3 +36,78 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
+
+  build-and-screenshot:
+    name: Add screenshots to PR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Start the app
+        run: npm start &
+        env:
+          CI: true
+
+      - name: Wait for the server
+        run: sleep 30s
+
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Take screenshots
+        id: screenshot
+        run: |
+          URLS=$(echo '${{ github.event.pull_request.body }}' | grep -oP 'https://policyengine.org/[-A-Za-z0-9\+&@#/%=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]')
+          SCREENSHOT_PATHS=""
+          for url in $URLS; do
+            FILENAME=$(echo $url | sed 's/https:\/\/policyengine.org\//screenshot_/g' | sed 's/\//_/g').png
+            node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('${url//policyengine.org/localhost:3000}', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
+            SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
+          done
+          echo "::set-output name=paths::$SCREENSHOT_PATHS"
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: ${{ steps.screenshot.outputs.paths }}
+
+      - name: Add comment
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require('fs');
+            const paths = '${{ steps.screenshot.outputs.paths }}'.split(' ').filter(path => path !== '');
+            const issue_number = context.payload.pull_request.number;
+
+            async function createCommentWithScreenshots() {
+              let body = '### Screenshots\n';
+
+              for (const path of paths) {
+                const url = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${path}/raw`;
+                body += `![${path}](${url})\n`;
+              }
+
+              await github.issues.createComment({
+                issue_number: issue_number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
+            createCommentWithScreenshots();
