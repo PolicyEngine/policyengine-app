@@ -6,7 +6,7 @@ import Button from "../../../controls/Button";
 import { PythonCodeBlock } from "./PolicyReproducibility";
 
 
-export default function Prompt(props) {
+export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
@@ -16,13 +16,12 @@ export default function Prompt(props) {
     acc[name] = label;
     return acc;
   }, {});
-  const policyDetails = `I'm a researcher using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
+  const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
-  * First explain each provision of the reform in detail, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}.
-  * Write concisely and clearly, using plain English.
-  * Explain concepts where a layperson might be unfamiliar.
+  * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}.
+  * Write concisely and clearly.
   * Write in detail and in paragraphs (minimum 5).
-  * Round large numbers like: ${metadata.currency}3.1bn, ${metadata.currency}300m, ${metadata.currency}106,000, ${metadata.currency}1.50.
+  * Round large numbers like: ${metadata.currency}3.1 billion, ${metadata.currency}300 million, ${metadata.currency}106,000, ${metadata.currency}1.50.
   * Round percentages to one decimal place.
   * Avoid normative language like 'requires', 'should', 'must', and use quantitative statements over general adjectives and adverbs. If you don't know what something is, don't make it up.
   * Avoid speculating about the intent of the policy; only describe what the policy does.
@@ -48,17 +47,19 @@ export default function Prompt(props) {
 
   This JSON describes the baseline and reform poverty and deep poverty rates by gender (briefly describe the relative changes): ${JSON.stringify(impact.poverty_by_gender)}
 
-  This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(impact.inequality)}`;
+  This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(impact.inequality)}
+  
+  `;
 
-  const [mode, setMode] = useState("Normal");
+  const [audience, setAudience] = useState("Normal");
 
-  const modePrompts = {
-    ELI5: "Explain like I'm 5: ",
-    Normal: "",
-    Wonk: "Explain like I'm a policy wonk seeking a technical brief (you can use acronyms and other jargon): ",
+  const audienceDescriptions = {
+    ELI5: "Write this for a five-year-old who doesn't know anything about economics or policy.",
+    Normal: "Write this for a policy analyst who knows a bit about economics and policy.",
+    Wonk: "Write this for a policy analyst who knows a lot about economics and policy. Use acronyms and jargon if it makes the content more concise and informative.",
   };
 
-  const analysisPrompt = modePrompts[mode] + policyDetails + description;
+  const prompt = policyDetails + description + audienceDescriptions[audience];
 
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,11 +70,10 @@ export default function Prompt(props) {
   });
   const openai = new OpenAIApi(configuration);
   const [showPrompt, setShowPrompt] = useState(false);
-  const lines = analysisPrompt.split("\n");
+  const lines = prompt.split("\n");
 
-  // Add a function to handle mode changes
-  const handleModeChange = (modeValue) => {
-    setMode(modeValue);
+  const handleAudienceChange = (audienceValue) => {
+    setAudience(audienceValue);
   };
 
 
@@ -82,22 +82,22 @@ export default function Prompt(props) {
   const inactiveColor = "white";
   const borderColor = "1px solid #6c757d";
 
-  const ModeButton = ({ modeValue, currentMode, handleModeChange }) => (
+  const AudienceButton = ({ audienceValue, currentAudience, handleAudienceChange }) => (
     <button
       style={{
-        backgroundColor: modeValue === currentMode ? activeColor : inactiveColor,
-        color: modeValue === currentMode ? inactiveColor : activeColor,
-        borderRadius: modeValue === "ELI5" ? "5px 0 0 5px" : modeValue === "Wonk" ? "0 5px 5px 0" : 0,
+        backgroundColor: audienceValue === currentAudience ? activeColor : inactiveColor,
+        color: audienceValue === currentAudience ? inactiveColor : activeColor,
+        borderRadius: audienceValue === "ELI5" ? "5px 0 0 5px" : audienceValue === "Wonk" ? "0 5px 5px 0" : 0,
         border: borderColor,
-        borderRight: modeValue !== "Wonk" ? "none" : borderColor,
+        borderRight: audienceValue !== "Wonk" ? "none" : borderColor,
         padding: "5px 10px",
         margin: 0,
         cursor: "pointer",
         width: buttonWidth,
       }}
-      onClick={() => handleModeChange(modeValue)}
+      onClick={() => handleAudienceChange(audienceValue)}
     >
-      {modeValue}
+      {audienceValue}
     </button>
   );
 
@@ -107,7 +107,7 @@ export default function Prompt(props) {
     setLoading(true);
     openai.createChatCompletion({
       model: "gpt-4",
-      messages: [{ role: "user", content: analysisPrompt }],
+      messages: [{ role: "user", content: prompt }],
     }).then((response) => {
       console.log(response);
       setAnalysis(response.data.choices[0].message.content);
@@ -157,20 +157,20 @@ export default function Prompt(props) {
             marginBottom: 20,
           }}
         >
-          <ModeButton
-            modeValue="ELI5"
-            currentMode={mode}
-            handleModeChange={handleModeChange}
+          <AudienceButton
+            audienceValue="ELI5"
+            currentAudience={audience}
+            handleAudienceChange={handleAudienceChange}
           />
-          <ModeButton
-            modeValue="Normal"
-            currentMode={mode}
-            handleModeChange={handleModeChange}
+          <AudienceButton
+            audienceValue="Normal"
+            currentAudience={audience}
+            handleAudienceChange={handleAudienceChange}
           />
-          <ModeButton
-            modeValue="Wonk"
-            currentMode={mode}
-            handleModeChange={handleModeChange}
+          <AudienceButton
+            audienceValue="Wonk"
+            currentAudience={audience}
+            handleAudienceChange={handleAudienceChange}
           />
         </div>
         <Button primary text={buttonText} onClick={onGenerate} style={{ maxWidth: 250 }} />
@@ -200,7 +200,6 @@ export default function Prompt(props) {
       {
         showPrompt ?
           <>
-            <p>Copy the below prompt into ChatGPT to generate a written analysis of your policy reform.</p>
             <div
               style={{
                 display: "flex",
