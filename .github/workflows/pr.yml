@@ -85,22 +85,17 @@ jobs:
             const fs = require('fs');
             const paths = '${{ steps.screenshot.outputs.paths }}'.split(' ').filter(path => path !== '');
             const issue_number = context.payload.pull_request.number;
+            let body = '### Screenshots\n';
 
-            async function createCommentWithScreenshots() {
-              let body = '### Screenshots\n';
-
-              for (const path of paths) {
-                const url = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${path}/raw`;
-                body += `#### ${path}\n`;
-                body += `<img src="${url}" width="400" />\n`;
-              }
-
-              await github.rest.issues.createComment({
-                issue_number: issue_number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: body
-              });
+            for (const path of paths) {
+              const url = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${path}/raw`;
+              body += `#### ${path}\n`;
+              body += `<img src="${url}" width="400" />\n`;
             }
 
-            createCommentWithScreenshots();
+            github.rest.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
