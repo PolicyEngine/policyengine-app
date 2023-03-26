@@ -16,7 +16,7 @@ jobs:
           options: ". -l 79 --check"
 
   test:
-    name: CI
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -52,9 +52,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
-      - name: Build the app
-        run: npm run build
 
       - name: Start the app
         run: npm start &
