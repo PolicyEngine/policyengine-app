@@ -1,4 +1,3 @@
-import asyncio
 import re
 import subprocess
 
@@ -44,7 +43,7 @@ async def take_screenshot(url, output_filename):
         stderr=subprocess.PIPE,
     )
 
-
+filenames = []
 # Take screenshots and save them as PNG files
 for url in local_urls:
     # /uk/policy?a=b -> uk_policy_a_b.png
@@ -55,6 +54,9 @@ for url in local_urls:
         .replace("&", "_")
         + ".png"
     )
-    asyncio.get_event_loop().run_until_complete(
-        take_screenshot(url, output_filename)
-    )
+    filenames.append(output_filename)
+    take_screenshot(url, output_filename)
+
+# On GitHub, set the step output {paths: filenames}
+
+print(f"::set-output name=paths::{filenames}")

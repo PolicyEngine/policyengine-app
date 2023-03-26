@@ -70,7 +70,6 @@ jobs:
           PR_BODY: ${{ github.event.pull_request.body }}
         run: python .github/screenshot.py
 
-      # Right now you have some .png files in the current directory. Upload them as artifacts.
       - name: Upload screenshots as artifacts
         uses: actions/upload-artifact@v2
         with:
