@@ -4,6 +4,7 @@ import { useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
 import { PythonCodeBlock } from "./PolicyReproducibility";
+import colors from "../../../style/colors";
 
 
 export default function Analysis(props) {
@@ -78,28 +79,32 @@ export default function Analysis(props) {
 
 
   const buttonWidth = "80px";
-  const activeColor = "#6c757d";
+  const activeColor = colors.DARK_GRAY;
+
   const inactiveColor = "white";
   const borderColor = "1px solid #6c757d";
 
-  const AudienceButton = ({ audienceValue, currentAudience, handleAudienceChange }) => (
-    <button
-      style={{
-        backgroundColor: audienceValue === currentAudience ? activeColor : inactiveColor,
-        color: audienceValue === currentAudience ? inactiveColor : activeColor,
-        borderRadius: audienceValue === "ELI5" ? "5px 0 0 5px" : audienceValue === "Wonk" ? "0 5px 5px 0" : 0,
-        border: borderColor,
-        borderRight: audienceValue !== "Wonk" ? "none" : borderColor,
-        padding: "5px 10px",
-        margin: 0,
-        cursor: "pointer",
-        width: buttonWidth,
-      }}
-      onClick={() => handleAudienceChange(audienceValue)}
-    >
-      {audienceValue}
-    </button>
-  );
+  function AudienceButton({ audienceValue, currentAudience, handleAudienceChange }) {
+    return (
+      <button
+        style={{
+          backgroundColor: audienceValue === currentAudience ? activeColor : inactiveColor,
+          color: audienceValue === currentAudience ? inactiveColor : activeColor,
+          borderRadius: audienceValue === "ELI5" ? "5px 0 0 5px" : audienceValue === "Wonk" ? "0 5px 5px 0" : 0,
+          border: borderColor,
+          borderRight: audienceValue !== "Wonk" ? "none" : borderColor,
+          padding: "5px 10px",
+          margin: 0,
+          cursor: "pointer",
+          width: buttonWidth,
+        }}
+        onClick={() => handleAudienceChange(audienceValue)}
+      >
+        {audienceValue}
+      </button>
+    );
+  }
+
 
 
   const onGenerate = () => {
