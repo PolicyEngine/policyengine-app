@@ -106,10 +106,11 @@ jobs:
 
               for (const path of paths) {
                 const url = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${path}/raw`;
-                body += `![${path}](${url})\n`;
+                body += `#### ${path}\n`;
+                body += `<img src="${url}" width="400" />\n`;
               }
 
-              await github.issues.createComment({
+              await github.rest.issues.createComment({
                 issue_number: issue_number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
