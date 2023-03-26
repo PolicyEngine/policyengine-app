@@ -6264,4 +6264,10 @@ export const STATUS_COLORS = {
   Pending: colors.LIGHT_GRAY,
 }
 
+export const STATUS_TEXT_COLORS = {
+  OK: colors.DARK_GREEN,
+  ERROR: colors.WHITE,
+  Pending: colors.BLACK,
+}
+
 export const COUNTRY_CODES = ["uk", "us", "ca", "ng"];
