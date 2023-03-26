@@ -1,6 +1,6 @@
 import asyncio
 import re
-from pyppeteer import launch
+import subprocess
 
 # Sample PR_BODY with URLs
 PR_BODY = """
@@ -24,19 +24,25 @@ local_urls = [
 
 
 async def take_screenshot(url, output_filename):
-    print(f"Taking screenshot of {url} and saving it as {output_filename}...")
-    browser = await launch()
-    print("Browser launched")
-    page = await browser.newPage()
-    print("New page created")
-    await page.setViewport({"width": 1920, "height": 1080})
-    print("Viewport set")
-    await page.goto(url)
-    print("Page loaded")
-    await page.screenshot({"path": output_filename})
-    print("Screenshot taken")
-    await page.close()
-    print("Page closed")
+    # Invoke the Puppeteer script to take a screenshot, e.g.
+    # node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('$url', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
+
+    puppeteer_script = f"""
+    const puppeteer = require('puppeteer');
+    (async () => {{
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.setViewport({{ width: 1280, height: 720 }});
+        await page.goto('{url}', {{waitUntil: 'networkidle2'}});
+        await page.screenshot({{path: '{output_filename}'}});
+        await browser.close();
+    }})()
+    """
+    subprocess.run(
+        ["node", "-e", puppeteer_script],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
 
 
 # Take screenshots and save them as PNG files
