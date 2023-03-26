@@ -1,4 +1,5 @@
 import re
+import asyncio
 import subprocess
 
 # Sample PR_BODY with URLs
@@ -55,7 +56,7 @@ for url in local_urls:
         + ".png"
     )
     filenames.append(output_filename)
-    take_screenshot(url, output_filename)
+    asyncio.run(take_screenshot(url, output_filename))
 
 # On GitHub, set the step output {paths: filenames}
 
