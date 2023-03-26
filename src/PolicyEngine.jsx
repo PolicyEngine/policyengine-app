@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import PolicyEngineCountry from "./PolicyEngineCountry";
 import gtag from "./api/analytics";
-import { StatusPage } from "./pages/Status";
+import { StatusPage } from "./pages/StatusPage";
 
 /*
 * This component is split out of the main
