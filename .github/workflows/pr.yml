@@ -67,6 +67,7 @@ jobs:
       - name: Take screenshots
         id: screenshot
         run: |
+          set -e
           URLS=$(echo '${{ github.event.pull_request.body }}' | grep -oP 'https://policyengine.org/[-A-Za-z0-9\+&@#/%=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]')
           if [ -z "$URLS" ]; then
             echo "No URLs found. Skipping."
