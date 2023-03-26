@@ -75,8 +75,7 @@ jobs:
           echo "URLS: $URLS"
           SCREENSHOT_PATHS=""
           for url in $URLS; do
-            # https://policyengine.org/uk -> screenshot_uk.png
-            FILENAME="screenshot_$(echo $url | sed 's/https:\/\/policyengine.org\///g').png"
+            FILENAME="screenshot_$(echo $url | sed 's/http:\/\/localhost:3000\///g').png"
             echo "FILENAME: $FILENAME"
             node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('$url', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
             SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
