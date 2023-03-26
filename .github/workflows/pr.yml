@@ -68,6 +68,10 @@ jobs:
         id: screenshot
         run: |
           URLS=$(echo '${{ github.event.pull_request.body }}' | grep -oP 'https://policyengine.org/[-A-Za-z0-9\+&@#/%=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]')
+          if [ -z "$URLS" ]; then
+            echo "No URLs found. Skipping."
+            exit 0
+          fi
           SCREENSHOT_PATHS=""
           for url in $URLS; do
             FILENAME=$(echo $url | sed 's/https:\/\/policyengine.org\//screenshot_/g' | sed 's/\//_/g').png
@@ -83,6 +87,7 @@ jobs:
           path: ${{ steps.screenshot.outputs.paths }}
 
       - name: Add comment
+        if: steps.screenshot.outputs.paths != ''
         uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
