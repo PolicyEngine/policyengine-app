@@ -71,11 +71,13 @@ jobs:
           set -e
           URLS=$(echo ${{ github.event.pull_request.body }} | grep -o 'https://policyengine.org/[a-zA-Z0-9/_-]*')
           echo "URLS: $URLS"
+          URLS=$(echo $URLS | sed 's/https:\/\/policyengine.org/http:\/\/localhost:3000/g')
+          echo "URLS: $URLS"
           SCREENSHOT_PATHS=""
           for url in $URLS; do
             FILENAME=$(echo $url | sed 's/https:\/\/policyengine.org\//screenshot_/g' | sed 's/\//_/g').png
             echo "FILENAME: $FILENAME"
-            node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('${url.replace('https://policyengine.org', 'http://localhost:3000')}', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
+            node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('$url', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
             SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
           done
           echo "::set-output name=paths::$SCREENSHOT_PATHS"
