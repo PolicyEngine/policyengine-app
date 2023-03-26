@@ -22,10 +22,9 @@ local_urls = [
     for url in urls
 ]
 
-browser = launch(headless=True)
-
 
 async def take_screenshot(url, output_filename):
+    browser = await launch()
     page = await browser.newPage()
     await page.setViewport({"width": 1200, "height": 800})
     await page.goto(url)
