@@ -76,13 +76,27 @@ jobs:
           name: screenshots
           path: "*.png"
 
-      - name: Post screenshots to PR
+      - name: Add comment
+        if: steps.screenshot.outputs.paths != ''
         uses: actions/github-script@v5
         with:
-          script: '.github/post_screenshot.js'
-          inputs:
-            paths: ${{ steps.screenshot.outputs.paths }}
-            repository: ${{ github.repository }}
-            run_id: ${{ github.run_id }}
-            issue_number: ${{ github.event.pull_request.number }}
-            token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            const fs = require('fs');
+            const paths = '${{ steps.screenshot.outputs.paths }}'.split(' ').filter(path => path !== '');
+            const issue_number = context.payload.pull_request.number;
+            let body = '### Screenshots\n';
+
+            for (const path of paths) {
+              const url = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${path}/raw`;
+              body += `#### ${path}\n`;
+              body += `<img src="${url}" width="400" />\n`;
+            }
+
+            github.rest.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
