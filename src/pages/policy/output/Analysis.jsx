@@ -20,12 +20,10 @@ export default function Analysis(props) {
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
   * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}.
-  * Write concisely and clearly.
-  * Write in detail and in paragraphs (minimum 5).
-  * Round large numbers like: ${metadata.currency}3.1 billion, ${metadata.currency}300 million, ${metadata.currency}106,000, ${metadata.currency}1.50.
+  * Round large numbers like: ${metadata.currency}3.1 billion, ${metadata.currency}300 million, ${metadata.currency}106,000, ${metadata.currency}1.50 (never ${metadata.currency}1.5).
   * Round percentages to one decimal place.
   * Avoid normative language like 'requires', 'should', 'must', and use quantitative statements over general adjectives and adverbs. If you don't know what something is, don't make it up.
-  * Avoid speculating about the intent of the policy; only describe what the policy does.
+  * Avoid speculating about the intent of the policy or inferring any motives; only describe the observable effects and impacts of the policy.
   * Use the active voice where possible; for example, write phrases where the reform is the subject, such as "the reform [or a description of the reform] reduces poverty by x%".
   * Use ${metadata.countryId === "uk" ? "British" : "American"} English spelling and grammar.
   * Cite PolicyEngine ${metadata.countryId.toUpperCase()} v${selectedVersion} and the ${metadata.countryId === "uk" ? "PolicyEngine-enhanced 2019 Family Resources Survey" : "2021 Current Population Survey March Supplement"} microdata when describing policy impacts.
@@ -55,7 +53,7 @@ export default function Analysis(props) {
   const [audience, setAudience] = useState("Normal");
 
   const audienceDescriptions = {
-    ELI5: "Write this for a five-year-old who doesn't know anything about economics or policy.",
+    ELI5: "Write this for a five-year-old who doesn't know anything about economics or policy. Explain fundamental concepts like taxes, poverty rates, and inequality as needed.",
     Normal: "Write this for a policy analyst who knows a bit about economics and policy.",
     Wonk: "Write this for a policy analyst who knows a lot about economics and policy. Use acronyms and jargon if it makes the content more concise and informative.",
   };
