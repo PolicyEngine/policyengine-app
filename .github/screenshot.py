@@ -24,13 +24,19 @@ local_urls = [
 
 
 async def take_screenshot(url, output_filename):
+    print(f"Taking screenshot of {url} and saving it as {output_filename}...")
     browser = await launch()
+    print("Browser launched")
     page = await browser.newPage()
-    await page.setViewport({"width": 1200, "height": 800})
+    print("New page created")
+    await page.setViewport({"width": 1920, "height": 1080})
+    print("Viewport set")
     await page.goto(url)
-    await page.waitFor(3_000)
+    print("Page loaded")
     await page.screenshot({"path": output_filename})
+    print("Screenshot taken")
     await page.close()
+    print("Page closed")
 
 
 # Take screenshots and save them as PNG files
