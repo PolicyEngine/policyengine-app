@@ -2,7 +2,6 @@ import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import style from "../style";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import EmailSignUp from "./EmailSignup";
 import moment from "moment/moment";
 
@@ -18,7 +17,6 @@ function BlogPostPreviewRegular(props) {
     name = name.substring(3);
   }
   const imageSrc = require(`../images/posts/${image}`);
-  const navigate = useNavigate();
   const authorImages = authors.map((author) => {
     return require(`../images/authors/${authorsJson[author].headshot}`);
   });
@@ -39,7 +37,7 @@ function BlogPostPreviewRegular(props) {
         cursor: "pointer",
       }}
       whileHover={{ scale: 1.05 }}
-      onClick={() => navigate(`/${countryId}/blog/${name}`)}
+      onClick={() => window.open(`/${countryId}/blog/${name}`, "_blank")}
     >
       <img
         src={imageSrc}
