@@ -1,5 +1,32 @@
 import colors from "../style/colors";
 
+export const COUNTRY_CODES = ["uk", "us", "ca", "ng"];
+
+export const INITIAL_COUNTRY_STATUSES = {
+  uk: "",
+  us: "",
+  ca: "",
+  ng: "",
+};
+
+export const STATUS_COLORS = {
+  OK: colors.LIGHT_GREEN,
+  ERROR: colors.DARK_RED,
+  Pending: colors.LIGHT_GRAY,
+}
+
+export const STATUS_TEXT_COLORS = {
+  OK: colors.DARK_GREEN,
+  ERROR: colors.WHITE,
+  Pending: colors.BLACK,
+}
+
+export const DEFAULT_COUNTRY_HOUSEHOULD_INPUTS = {
+  uk: DEFAULT_UK_HOUSEHOLD,
+  us: DEFAULT_US_HOUSEHOLD,
+  ca: DEFAULT_CA_HOUSEHOLD,
+};
+
 const DEFAULT_US_HOUSEHOLD = {
   "people": {
     "you": {
@@ -6242,32 +6269,3 @@ const DEFAULT_CA_HOUSEHOLD = {
     ]
   ]
 };
-
-
-export const DEFAULT_COUNTRY_HOUSEHOULD_INPUTS = {
-  uk: DEFAULT_UK_HOUSEHOLD,
-  us: DEFAULT_US_HOUSEHOLD,
-  ca: DEFAULT_CA_HOUSEHOLD,
-};
-
-
-export const INITIAL_COUNTRY_STATUSES = {
-  uk: "",
-  us: "",
-  ca: "",
-  ng: "",
-};
-
-export const STATUS_COLORS = {
-  OK: colors.LIGHT_GREEN,
-  ERROR: colors.DARK_RED,
-  Pending: colors.LIGHT_GRAY,
-}
-
-export const STATUS_TEXT_COLORS = {
-  OK: colors.DARK_GREEN,
-  ERROR: colors.WHITE,
-  Pending: colors.BLACK,
-}
-
-export const COUNTRY_CODES = ["uk", "us", "ca", "ng"];
