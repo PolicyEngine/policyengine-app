@@ -75,10 +75,11 @@ jobs:
           SCREENSHOT_PATHS=""
           for url in $URLS; do
             FILENAME=$(echo $url | sed 's/https:\/\/policyengine.org\//screenshot_/g' | sed 's/\//_/g').png
-            node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('${url//policyengine.org/localhost:3000}', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
+            node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('${url.replace('https://policyengine.org', 'http://localhost:3000')}', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
             SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
           done
           echo "::set-output name=paths::$SCREENSHOT_PATHS"
+
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v2
