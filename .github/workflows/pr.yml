@@ -67,19 +67,20 @@ jobs:
       - name: Take screenshots
         id: screenshot
         run: |
+          echo "Taking screenshots..."
           set -e
           URLS=$(echo '${{ github.event.pull_request.body }}' | grep -oP 'https://policyengine.org/[-A-Za-z0-9\+&@#/%=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]')
-          if [ -z "$URLS" ]; then
-            echo "No URLs found. Skipping."
-            exit 0
-          fi
+          echo "URLS: $URLS"
           SCREENSHOT_PATHS=""
           for url in $URLS; do
             FILENAME=$(echo $url | sed 's/https:\/\/policyengine.org\//screenshot_/g' | sed 's/\//_/g').png
+            echo "FILENAME: $FILENAME"
             node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('${url.replace('https://policyengine.org', 'http://localhost:3000')}', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
             SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
           done
           echo "::set-output name=paths::$SCREENSHOT_PATHS"
+          echo "Screenshot paths: $SCREENSHOT_PATHS"
+
 
 
       - name: Upload screenshots
