@@ -50,6 +50,16 @@ jobs:
         with:
           node-version: 14
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install pyppeteer
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyppeteer
+
       - name: Install dependencies
         run: npm ci
 
@@ -66,27 +76,16 @@ jobs:
 
       - name: Take screenshots
         id: screenshot
-        run: |
-          echo "Taking screenshots..."
-          set -e
-          URLS=$(echo ${{ github.event.pull_request.body }} | grep -o 'https://policyengine.org/[a-zA-Z0-9/_-]*' | sed 's/https:\/\/policyengine.org/http:\/\/localhost:3000/g')
-          echo "URLS: $URLS"
-          SCREENSHOT_PATHS=""
-          for url in $URLS; do
-            # http://localhost:3000/uk/policy -> screenshot_uk_policy.png
-            FILENAME="screenshot_$(echo $url | sed 's/http:\/\/localhost:3000\///g' | sed 's/\//_/g').png"
-            echo "FILENAME: $FILENAME"
-            node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('$url', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
-            SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
-          done
-          echo "::set-output name=paths::$SCREENSHOT_PATHS"
-          echo "Screenshot paths: $SCREENSHOT_PATHS"
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python .github/screenshot.py
 
-      - name: Upload screenshots
+      # Right now you have some .png files in the current directory. Upload them as artifacts.
+      - name: Upload screenshots as artifacts
         uses: actions/upload-artifact@v2
         with:
           name: screenshots
-          path: ${{ steps.screenshot.outputs.paths }}
+          path: "*.png"
 
       - name: Add comment
         if: steps.screenshot.outputs.paths != ''
