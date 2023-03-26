@@ -131,13 +131,10 @@ export default function Analysis(props) {
     <>
       <h2>Analysis</h2>
       <p>
-        PolicyEngine&apos;s automatic policy analysis is powered by GPT-4. Read
-        more about this feature{" "}
         <a href="https://policyengine.org/uk/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration">
-          here
+          Read more about PolicyEngine&apos;s automatic GPT4-powered policy analysis.
         </a>
-        . Generation usually takes around 20 seconds. This is an experimental
-        feature, so please verify the claims made against the prompt.
+        {" "} Generation usually takes around 20 seconds. Please verify any results of this experimental feature against our charts.
       </p>
       <div
         style={{
