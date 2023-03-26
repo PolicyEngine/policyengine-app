@@ -75,15 +75,14 @@ jobs:
           echo "URLS: $URLS"
           SCREENSHOT_PATHS=""
           for url in $URLS; do
-            FILENAME="screenshot_$(echo $url | sed 's/http:\/\/localhost:3000\///g').png"
+            # http://localhost:3000/uk/policy -> screenshot_uk_policy.png
+            FILENAME="screenshot_$(echo $url | sed 's/http:\/\/localhost:3000\///g' | sed 's/\//_/g').png"
             echo "FILENAME: $FILENAME"
             node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('$url', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
             SCREENSHOT_PATHS="$SCREENSHOT_PATHS $FILENAME"
           done
           echo "::set-output name=paths::$SCREENSHOT_PATHS"
           echo "Screenshot paths: $SCREENSHOT_PATHS"
-
-
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v2
