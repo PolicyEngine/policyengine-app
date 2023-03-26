@@ -69,7 +69,7 @@ jobs:
         run: |
           echo "Taking screenshots..."
           set -e
-          URLS=$(echo '${{ github.event.pull_request.body }}' | grep -oP 'https://policyengine.org/[-A-Za-z0-9\+&@#/%=~_|!:,.;]*[-A-Za-z0-9\+&@#/%=~_|]')
+          URLS=$(echo ${{ github.event.pull_request.body }} | grep -o 'https://policyengine.org/[a-zA-Z0-9/_-]*')
           echo "URLS: $URLS"
           SCREENSHOT_PATHS=""
           for url in $URLS; do
