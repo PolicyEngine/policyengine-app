@@ -23,7 +23,7 @@ local_urls = [
 ]
 
 
-async def take_screenshot(url, output_filename):
+def take_screenshot(url, output_filename):
     # Invoke the Puppeteer script to take a screenshot, e.g.
     # node -e "const puppeteer = require('puppeteer'); (async () => { const browser = await puppeteer.launch(); const page = await browser.newPage(); await page.setViewport({ width: 1280, height: 720 }); await page.goto('$url', {waitUntil: 'networkidle2'}); await page.screenshot({path: '$FILENAME'}); await browser.close(); })()"
 
@@ -38,11 +38,8 @@ async def take_screenshot(url, output_filename):
         await browser.close();
     }})()
     """
-    subprocess.run(
-        ["node", "-e", puppeteer_script],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
+    # Run, but wait for the process to finish without await
+    subprocess.run(["node", "-e", puppeteer_script])
 
 filenames = []
 # Take screenshots and save them as PNG files
@@ -56,7 +53,7 @@ for url in local_urls:
         + ".png"
     )
     filenames.append(output_filename)
-    asyncio.run(take_screenshot(url, output_filename))
+    take_screenshot(url, output_filename)
 
 # On GitHub, set the step output {paths: filenames}
 
