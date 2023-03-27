@@ -198,7 +198,6 @@ export default function Analysis(props) {
               <BlogPostMarkdown markdown={analysis} />
         }
       </div>
-      <>{analysis}</>
       <div style={{
         display: "flex",
         flexDirection: "column",
