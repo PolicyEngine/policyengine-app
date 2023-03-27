@@ -9,6 +9,13 @@ export const INITIAL_COUNTRY_STATUSES = {
   ng: "",
 };
 
+export const COUNTRY_NAMES = {
+  uk: "United Kingdom",
+  us: "United States",
+  ca: "Canada",
+  ng: "Nigeria",
+}
+
 export const STATUS_COLORS = {
   OK: colors.LIGHT_GREEN,
   ERROR: colors.DARK_RED,
