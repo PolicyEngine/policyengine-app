@@ -22,13 +22,13 @@ function ApiStatus({apiStatus, apiCategory, countryNames}) {
           style={{ 
             color: STATUS_TEXT_COLORS[apiStatus[apiRoute]["status"]],
             backgroundColor: STATUS_COLORS[apiStatus[apiRoute]["status"]],
-            maxWidth: "50%",
+            // maxWidth: "50%",
             marginBottom: 2,
-            marginLeft: "auto",
-            marginRight: "auto"
+            marginLeft: 2,
+            // marginRight: "auto"
           }} 
         >
-            <p style={{margin: 0}}>{countryNames[apiRoute]} | /{apiRoute} | {apiStatus[apiRoute]["status"] ? apiStatus[apiRoute]["status"] : "Checking Status"} in {apiStatus[apiRoute]["latency"] ? apiStatus[apiRoute]["latency"] : "Calculating Latency"}</p>
+            <p style={{margin: 0}}>{countryNames[apiRoute]} | /{apiRoute} | <strong>{apiStatus[apiRoute]["status"] ? apiStatus[apiRoute]["status"] : "Checking Status"}</strong> in <strong>{apiStatus[apiRoute]["latency"] ? apiStatus[apiRoute]["latency"] : "Calculating Latency"}</strong></p>
         </div> 
       )}
     </>
@@ -53,7 +53,7 @@ function getAPIRoute(country, path, setState, api, body = {}) {
     .then((res) => {
     const endTime = Date.now();
     const latency = endTime - startTime;
-    return {[country]: {status: `${res.status.toUpperCase()}`, latency: `${latency} ms`}}
+    return {[country]: {status: `${res.status.toUpperCase()}`, latency: `${latency}ms`}}
     })
     .then((result) => {
     setState((prevState) => ({...prevState, ...result}))
@@ -106,20 +106,32 @@ function getAPIRoute(country, path, setState, api, body = {}) {
               }}
             >
             <h1>PolicyEngine API status</h1>
-            <section>
-              <h3>Country pages</h3>
-              <h6>{`These requests represent accessing the home page for PolicyEngine's supported countries.`}</h6>
-              <ApiStatus apiStatus={countryStatuses} apiCategory={"country"} countryNames={COUNTRY_NAMES} />
+            <section style={{display: "flex", marginBottom: 2}}>
+              <div style={{flex: "50", textAlign:"left"}}>
+                <h3>Country pages</h3>
+                <h6>{`These requests represent accessing the home page for PolicyEngine's supported countries.`}</h6>
+              </div>
+              <div style={{flex: "50", marginTop: 10, marginBottom: 10}}>
+                <ApiStatus apiStatus={countryStatuses} apiCategory={"country"} countryNames={COUNTRY_NAMES} />
+              </div>
             </section>
-            <section>
-              <h3 style={{marginTop: 5}}>Metadata</h3>
-              <h6>{`These requests represent accessing the metadata for PolicyEngine's supported countries.`}</h6>
-              <ApiStatus apiStatus={metaDataStatuses} apiCategory={"metadata"} countryNames={COUNTRY_NAMES} />
+            <section style={{display: "flex", marginBottom: 2}}>
+              <div style={{flex: "50", textAlign:"left"}}>
+                <h3 style={{marginTop: 5}}>Metadata</h3>
+                <h6>{`These requests represent accessing the metadata for PolicyEngine's supported countries.`}</h6>
+              </div>
+              <div style={{flex: "50", marginTop: 10, marginBottom: 10}}>
+                <ApiStatus apiStatus={metaDataStatuses} apiCategory={"metadata"} countryNames={COUNTRY_NAMES} />
+              </div>
             </section>
-            <section>
-              <h3 style={{marginTop: 5}}>Calculate</h3>
-              <h6>{`These requests represent generating analysis with basic household data for PolicyEngine's supported countries.`}</h6>
-              <ApiStatus apiStatus={calculateStatuses} apiCategory={"calculate"} countryNames={COUNTRY_NAMES} />
+            <section style={{display: "flex", marginBottom: 2}}>
+              <div style={{flex: "50", textAlign:"left"}}>
+                <h3 style={{marginTop: 5}}>Calculate</h3>
+                <h6>{`These requests represent generating analysis with basic household data for PolicyEngine's supported countries.`}</h6>
+              </div>
+              <div style={{flex: "50", marginTop: 10, marginBottom: 10}}>
+                <ApiStatus apiStatus={calculateStatuses} apiCategory={"calculate"} countryNames={COUNTRY_NAMES} />
+              </div>
             </section>
           </div>
         </div>
