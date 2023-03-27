@@ -111,9 +111,9 @@ function SocialMediaIcons(props) {
 
   const twitter = (
   <a href={`https://twitter.com/intent/tweet?url=${url}&text=${props}`} target="_blank" rel="noreferrer">
-    <TwitterOutlined style={{ fontSize: 25 }} />
-  </a>
-);
+      <TwitterOutlined style={{ fontSize: 25 }} />
+    </a>
+  );
   const facebook = (
     <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
       <FacebookFilled style={{ fontSize: 25 }} />
@@ -125,43 +125,43 @@ function SocialMediaIcons(props) {
     </a>
   );
   return (
-    <div 
-      style={{ 
-        position: "fixed", 
-        right: "30px", 
-        bottom: "30px", 
-        display: "flex", 
+    <div
+      style={{
+        position: "fixed",
+        right: "30px",
+        bottom: "30px",
+        display: "flex",
         flexDirection: "column",
       }}
     >
-      <div 
-        style={{ 
-          border: "1px solid #ccc", 
-          borderRadius: "0px", 
-          padding: "8px", 
-          marginBottom: "-1px", 
-        }}
-      >
-      {twitter}
-      </div>
-      <div 
-        style={{ 
-          border: "1px solid #ccc", 
-          borderRadius: "0px", 
-          padding: "8px", 
+      <div
+        style={{
+          border: "1px solid #ccc",
+          borderRadius: "0px",
+          padding: "8px",
           marginBottom: "-1px",
         }}
       >
-      {facebook}
+        {twitter}
       </div>
-      <div 
-        style={{ 
-          border: "1px solid #ccc", 
-          borderRadius: "0px", 
+      <div
+        style={{
+          border: "1px solid #ccc",
+          borderRadius: "0px",
+          padding: "8px",
+          marginBottom: "-1px",
+        }}
+      >
+        {facebook}
+      </div>
+      <div
+        style={{
+          border: "1px solid #ccc",
+          borderRadius: "0px",
           padding: "8px",
         }}
       >
-      {linkedIn}
+        {linkedIn}
       </div>
     </div>
   );
@@ -372,7 +372,12 @@ export default function BlogPostPage(props) {
                 ),
                 strong: ({ children }) => <b>{children}</b>,
                 a: ({ href, children }) => (
-                  <a href={href} style={{ color: style.colors.BLUE }}>
+                  <a
+                    href={href}
+                    style={{ color: style.colors.BLUE }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     {children}
                   </a>
                 ),
