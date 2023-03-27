@@ -5,6 +5,9 @@ import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
 import { PythonCodeBlock } from "./PolicyReproducibility";
 import colors from "../../../style/colors";
+import { getParameterAtInstant } from "../../../api/parameters";
+import { BlogPostMarkdown } from "../../BlogPage";
+import ReactMarkdown from "react-markdown";
 
 
 export default function Analysis(props) {
@@ -12,14 +15,17 @@ export default function Analysis(props) {
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
   const relevantParameters = Object.keys(policy.reform.data).map(parameter => metadata.parameters[parameter]);
+  const relevantParameterBaselineValues = relevantParameters.map(parameter => {return {[parameter.parameter]: getParameterAtInstant(parameter, `${timePeriod}-01-01`)}});
   // metadata.economy_options.region = [{name: "uk", label: "United Kingdom"}]
   const regionKeyToLabel = metadata.economy_options.region.reduce((acc, { name, label }) => {
     acc[name] = label;
     return acc;
   }, {});
+  const baseResultsUrl = `https://policyengine.org/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
+  console.log(baseResultsUrl)
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
-  * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}.
+  * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}. Explain how the parameters are changing from the baseline to the reform values using the given data.
   * Round large numbers like: ${metadata.currency}3.1 billion, ${metadata.currency}300 million, ${metadata.currency}106,000, ${metadata.currency}1.50 (never ${metadata.currency}1.5).
   * Round percentages to one decimal place.
   * Avoid normative language like 'requires', 'should', 'must', and use quantitative statements over general adjectives and adverbs. If you don't know what something is, don't make it up.
@@ -28,12 +34,18 @@ export default function Analysis(props) {
   * Use ${metadata.countryId === "uk" ? "British" : "American"} English spelling and grammar.
   * Cite PolicyEngine ${metadata.countryId.toUpperCase()} v${selectedVersion} and the ${metadata.countryId === "uk" ? "PolicyEngine-enhanced 2019 Family Resources Survey" : "2021 Current Population Survey March Supplement"} microdata when describing policy impacts.
   * When describing poverty impacts, note that the poverty measure reported is ${metadata.countryId === "uk" ? "absolute poverty before housing costs" : "the Supplemental Poverty Measure"}.
-  
+  * Don't use headers, but do use Markdown formatting (e.g. * for bullets).
+  * Include the following embeds inline, without a header so it flows.
+  * Immediately after you describe the budgetary impact, include an IFrame pointing to the chart. It should look like this: <iframe src="${baseResultsUrl}&focus=policyOutput.netIncome" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>
+  * Immediately after you describe the changes by income decile, include an IFrame: <iframe src="${baseResultsUrl}&focus=policyOutput.decileRelativeImpact" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>
+  * Immediately after you describe the changes by poverty status, include an IFrame: <iframe src="${baseResultsUrl}&focus=policyOutput.povertyImpact" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>
+
+  This JSON snippet describes the default parameter values: ${JSON.stringify(relevantParameterBaselineValues)}\n
   This JSON snippet describes the baseline and reform policies being compared: ${JSON.stringify(policy)}\n`;
   const description = `${policyLabel} has the following impacts from the PolicyEngine microsimulation model: 
 
   This JSON snippet describes the relevant parameters with more details: ${JSON.stringify(relevantParameters)}
-  
+
   This JSON describes the total budgetary impact, the change to tax revenues and benefit spending (ignore 'households' and 'baseline_net_income': ${JSON.stringify(impact.budget)}
 
   This JSON describes how common different outcomes were at each income decile: ${JSON.stringify(impact.intra_decile)}
@@ -60,7 +72,9 @@ export default function Analysis(props) {
 
   const prompt = policyDetails + description + audienceDescriptions[audience];
 
-  const [analysis, setAnalysis] = useState("");
+  const [analysis, setAnalysis] = useState(`
+  This analysis examines the economic impact of a hypothetical tax-benefit policy reform for the UK in 2023. The reform involves restoring the £20/week Universal Credit (UC) uplift for various groups. Using PolicyEngine UK v0.44.2 and the PolicyEngine-enhanced 2019 Family Resources Survey microdata, we can assess the impacts of this reform on budgetary costs, income distribution, poverty, and inequality. The reform increases the standard allowance for couples where one is over 25 from £525.72 to £612 per month, and for couples where both are under 25 from £416.45 to £503 per month. Similarly, it increases the standard allowance for single claimants over 25 from £334.91 to £421 per month and for single claimants under 25 from £265.31 to £352 per month. The total budgetary impact of this reform is an increase in benefit spending of £3.1 billion, with no change in tax revenues. The budgetary impact can be visualised through the following chart: <iframe src="http://localhost:3000/uk/policy?version=0.44.2&region=uk&timePeriod=2023&reform=6668&baseline=1&embed=True&focus=policyOutput.netIncome" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe> The policy affects households differently depending on their income decile. For instance, 18.4% of the lowest-income decile experiences gains of more than 5%, while only 0.6% of the highest-income decile has similar gains. The following chart illustrates these changes by income decile: <iframe src="http://localhost:3000/uk/policy?version=0.44.2&region=uk&timePeriod=2023&reform=6668&baseline=1&embed=True&focus=policyOutput.decileRelativeImpact" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe> In terms of the poverty impacts of this reform, we report the absolute poverty rates before housing costs. The policy leads to a 0.7 percentage point reduction in poverty rates for all individuals (from 16.5% to 15.8%). Similarly, poverty rates for children decrease by 0.9 percentage points (from 24.1% to 23.2%), while poverty rates for adults decrease by 0.8 percentage points (from 14.7% to 13.9%). The poverty rates for seniors decrease by a smaller margin of 0.1 percentage points (from 13.8% to 13.7%). The reform also leads to a decrease in deep poverty rates. Deep poverty rates for children decrease by 0.2 percentage points (from 2.6% to 2.4%), while adult deep poverty rates decrease by 0.2 percentage points (from 2.3% to 2.1%). No change is observed in the deep poverty rates for seniors. The relative changes in deep poverty rates by gender are a decrease of 0.1 percentage points for females (from 1.8% to 1.7%) and for males (from 2.1% to 2.0%). In terms of poverty rates, relative changes indicate a decrease of 0.1 percentage points for both females (from 17.0% to 16.3%) and males (from 15.9% to 15.3%). Lastly, the reform has a relatively small impact on income inequality. The Gini coefficient of income inequality decreases slightly from 32.3% to 32.1%. The top 10% of households' share of income slightly declines from 25.1% to 25.0%, while the top 1% of households' share slightly falls from 6.2% to 6.1%. To summarise, the reform analysed herein results in an increase in benefit spending of £3.1 billion and has positive effects on poverty reduction, particularly for lower-income households, children, and adults. It also leads to a small decrease in income inequality.
+  `);
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
 
@@ -126,9 +140,13 @@ export default function Analysis(props) {
     !hasClickedGenerate ?
       "Generate an analysis" :
       loading ?
-        <><Spinner style={{ marginRight: 10 }} />Generating</> :
+        <>
+          <Spinner style={{ marginRight: 10 }} />Generating
+        </> :
         "Regenerate analysis";
-
+  analysisContent;
+  BlogPostMarkdown;
+  ReactMarkdown;
 
   return (
     <>
@@ -137,7 +155,7 @@ export default function Analysis(props) {
         <a href="https://policyengine.org/uk/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration">
           Read more about PolicyEngine&apos;s automatic GPT4-powered policy analysis.
         </a>
-        {" "} Generation usually takes around 20 seconds. Please verify any results of this experimental feature against our charts.
+        {" "} Generation usually takes around 60 seconds. Please verify any results of this experimental feature against our charts.
       </p>
       <div
         style={{
@@ -173,15 +191,16 @@ export default function Analysis(props) {
             handleAudienceChange={handleAudienceChange}
           />
         </div>
-        <Button primary text={buttonText} onClick={onGenerate} style={{ maxWidth: 250 }} />
+        <Button primary text={buttonText} onClick={onGenerate} style={{ maxWidth: 250, marginBottom: 25 }} />
         {
           !hasClickedGenerate ?
-            null :
+          <BlogPostMarkdown markdown={analysis} /> :
             loading ?
               null :
-              analysisContent
+              <BlogPostMarkdown markdown={analysis} />
         }
       </div>
+      <>{analysis}</>
       <div style={{
         display: "flex",
         flexDirection: "column",
