@@ -21,12 +21,6 @@ export const STATUS_TEXT_COLORS = {
   Pending: colors.BLACK,
 }
 
-export const DEFAULT_COUNTRY_HOUSEHOULD_INPUTS = {
-  uk: DEFAULT_UK_HOUSEHOLD,
-  us: DEFAULT_US_HOUSEHOLD,
-  ca: DEFAULT_CA_HOUSEHOLD,
-};
-
 const DEFAULT_US_HOUSEHOLD = {
   "people": {
     "you": {
@@ -6269,3 +6263,10 @@ const DEFAULT_CA_HOUSEHOLD = {
     ]
   ]
 };
+
+export const DEFAULT_COUNTRY_HOUSEHOULD_INPUTS = {
+  uk: DEFAULT_UK_HOUSEHOLD,
+  us: DEFAULT_US_HOUSEHOLD,
+  ca: DEFAULT_CA_HOUSEHOLD,
+};
+
