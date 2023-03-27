@@ -77,57 +77,64 @@ function getAPIRoute(country, path, setState, api, body = {}) {
               }}
             >
             <h1>{`PolicyEngine's API Status Information`}</h1>
-            <div>
+            <section>
               <h3>Country Pages</h3>
               <h6>{`These requests represent accessing the home page for PolicyEngine's supported countries.`}</h6>
                 {Object.keys(countryStatuses).map((countryStatus, idx) => 
-                  <> 
                     <div 
                       key={`${idx}-country`} 
                       style={{ 
-                        marginBottom: 2,
                         color: STATUS_TEXT_COLORS[countryStatuses[countryStatus]["status"]],
-                        backgroundColor: STATUS_COLORS[countryStatuses[countryStatus]["status"]]}} 
+                        backgroundColor: STATUS_COLORS[countryStatuses[countryStatus]["status"]],
+                        maxWidth: "50%",
+                        marginTop: 2,
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }} 
                     >
                         {countryStatus.toUpperCase()} - {countryStatuses[countryStatus]["status"] ? countryStatuses[countryStatus]["status"] : "Checking Status"} - {countryStatuses[countryStatus]["latency"] ? countryStatuses[countryStatus]["latency"] : "Calculating Latency"}
                     </div> 
-                  </>
                 )}
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 style={{marginTop: 5}}>Metadata</h3>
               <h6>{`These requests represent accessing the metadata for PolicyEngine's supported countries.`}</h6>
               {Object.keys(metaDataStatuses).map((metaDataStatus, idx) => 
-                <> 
                   <div 
                     key={`${idx}-metaData`} 
                     style={{ 
-                        marginBottom: 2, 
                         color: STATUS_TEXT_COLORS[metaDataStatuses[metaDataStatus]["status"]],
-                        backgroundColor: STATUS_COLORS[metaDataStatuses[metaDataStatus]["status"]]}} 
+                        backgroundColor: STATUS_COLORS[metaDataStatuses[metaDataStatus]["status"]],
+                        maxWidth: "50%",
+                        marginTop: 2,
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }} 
                   >
                     {metaDataStatus.toUpperCase()} - {metaDataStatuses[metaDataStatus]["status"] ? metaDataStatuses[metaDataStatus]["status"] : "Checking Status"} - {metaDataStatuses[metaDataStatus]["latency"] ? metaDataStatuses[metaDataStatus]["latency"] : "Calculating Latency"}
                   </div> 
-                </>
               )}
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 style={{marginTop: 5}}>Calculate</h3>
               <h6>{`These requests represent generating analysis with basic household data for PolicyEngine's supported countries.`}</h6>
               {Object.keys(calculateStatuses).map((calcStatus, idx) => 
-                <> 
                   <div 
                     key={`${idx}-calculate`} 
                     style={{ 
                         marginBottom: 2, 
                         color: STATUS_TEXT_COLORS[calculateStatuses[calcStatus]["status"]],
-                        backgroundColor: STATUS_COLORS[calculateStatuses[calcStatus]["status"]]}} 
+                        backgroundColor: STATUS_COLORS[calculateStatuses[calcStatus]["status"]],
+                        maxWidth: "50%",
+                        marginTop: 2,
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                      }} 
                   >
                     {calcStatus.toUpperCase()} - {calculateStatuses[calcStatus]["status"] ? calculateStatuses[calcStatus]["status"] : "Checking Status"} - {calculateStatuses[calcStatus]["latency"] ? calculateStatuses[calcStatus]["latency"] : "Calculating Latency"}
                   </div> 
-                </>
               )}
-            </div>
+            </section>
           </div>
         </div>
       <Footer />
