@@ -28,7 +28,8 @@ function ParameterSearch(props) {
       value: parameter.parameter,
       label: parameter.label,
     }))
-    .filter((option) => !!option.label && !!option.value);
+    .filter((option) => !!option.label && !!option.value)
+    .reverse();
   return (
     <SearchOptions
       options={options}

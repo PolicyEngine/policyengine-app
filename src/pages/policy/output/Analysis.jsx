@@ -5,6 +5,9 @@ import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
 import { PythonCodeBlock } from "./PolicyReproducibility";
 import colors from "../../../style/colors";
+import { getParameterAtInstant } from "../../../api/parameters";
+import { BlogPostMarkdown } from "../../BlogPage";
+import ReactMarkdown from "react-markdown";
 
 
 export default function Analysis(props) {
@@ -12,6 +15,7 @@ export default function Analysis(props) {
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
   const relevantParameters = Object.keys(policy.reform.data).map(parameter => metadata.parameters[parameter]);
+  const relevantParameterBaselineValues = relevantParameters.map(parameter => {return {[parameter.parameter]: getParameterAtInstant(parameter, `${timePeriod}-01-01`)}});
   // metadata.economy_options.region = [{name: "uk", label: "United Kingdom"}]
   const regionKeyToLabel = metadata.economy_options.region.reduce((acc, { name, label }) => {
     acc[name] = label;
@@ -19,7 +23,7 @@ export default function Analysis(props) {
   }, {});
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
-  * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}.
+  * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}. Explain how the parameters are changing from the baseline to the reform values using the given data.
   * Round large numbers like: ${metadata.currency}3.1 billion, ${metadata.currency}300 million, ${metadata.currency}106,000, ${metadata.currency}1.50 (never ${metadata.currency}1.5).
   * Round percentages to one decimal place.
   * Avoid normative language like 'requires', 'should', 'must', and use quantitative statements over general adjectives and adverbs. If you don't know what something is, don't make it up.
@@ -28,7 +32,9 @@ export default function Analysis(props) {
   * Use ${metadata.countryId === "uk" ? "British" : "American"} English spelling and grammar.
   * Cite PolicyEngine ${metadata.countryId.toUpperCase()} v${selectedVersion} and the ${metadata.countryId === "uk" ? "PolicyEngine-enhanced 2019 Family Resources Survey" : "2021 Current Population Survey March Supplement"} microdata when describing policy impacts.
   * When describing poverty impacts, note that the poverty measure reported is ${metadata.countryId === "uk" ? "absolute poverty before housing costs" : "the Supplemental Poverty Measure"}.
-  
+  * Don't use headers, but do use Markdown formatting.
+
+  This JSON snippet describes the default parameter values: ${JSON.stringify(relevantParameterBaselineValues)}\n
   This JSON snippet describes the baseline and reform policies being compared: ${JSON.stringify(policy)}\n`;
   const description = `${policyLabel} has the following impacts from the PolicyEngine microsimulation model: 
 
@@ -109,7 +115,7 @@ export default function Analysis(props) {
     setHasClickedGenerate(true);
     setLoading(true);
     openai.createChatCompletion({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
     }).then((response) => {
       console.log(response);
@@ -126,9 +132,13 @@ export default function Analysis(props) {
     !hasClickedGenerate ?
       "Generate an analysis" :
       loading ?
-        <><Spinner style={{ marginRight: 10 }} />Generating</> :
+        <>
+          <Spinner style={{ marginRight: 10 }} />Generating
+        </> :
         "Regenerate analysis";
-
+  analysisContent;
+  BlogPostMarkdown;
+  ReactMarkdown;
 
   return (
     <>
@@ -137,7 +147,7 @@ export default function Analysis(props) {
         <a href="https://policyengine.org/uk/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration">
           Read more about PolicyEngine&apos;s automatic GPT4-powered policy analysis.
         </a>
-        {" "} Generation usually takes around 20 seconds. Please verify any results of this experimental feature against our charts.
+        {" "} Generation usually takes around 60 seconds. Please verify any results of this experimental feature against our charts.
       </p>
       <div
         style={{
@@ -173,13 +183,13 @@ export default function Analysis(props) {
             handleAudienceChange={handleAudienceChange}
           />
         </div>
-        <Button primary text={buttonText} onClick={onGenerate} style={{ maxWidth: 250 }} />
+        <Button primary text={buttonText} onClick={onGenerate} style={{ maxWidth: 250, marginBottom: 25 }} />
         {
           !hasClickedGenerate ?
             null :
             loading ?
               null :
-              analysisContent
+              <BlogPostMarkdown markdown={analysis} />
         }
       </div>
       <div style={{

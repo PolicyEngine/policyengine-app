@@ -26,6 +26,108 @@ function MarkdownP(props) {
   return <p style={pStyle}>{props.children}</p>;
 }
 
+export function BlogPostMarkdown(props) {
+  const { markdown } = props;
+  const mobile = useMobile();
+  return <ReactMarkdown
+    rehypePlugins={[rehypeRaw]}
+    remarkPlugins={[remarkGfm]}
+    components={{
+      p: MarkdownP,
+      // Ensure images fit inside the container
+      img: ({ src, alt }) => (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: mobile ? 0 : 50,
+          }}
+        >
+          <img
+            src={src}
+            alt={alt}
+            style={{
+              width: "100%",
+              objectFit: "contain",
+              maxHeight: 400,
+            }}
+          />
+        </div>
+      ),
+      iframe: ({ src, width, height }) => (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: mobile ? 0 : 50,
+          }}
+        >
+          <iframe
+            title="video"
+            src={src}
+            style={{
+              /* Prevent the iframe from
+            overflowing on mobile. */
+              width: mobile ? "100%" : width,
+              objectFit: "contain",
+              height: height,
+            }}
+          />
+        </div>
+      ),
+      strong: ({ children }) => <b>{children}</b>,
+      a: ({ href, children }) => (
+        <a
+          href={href}
+          style={{ color: style.colors.BLUE }}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ),
+      h1: ({ children }) => {
+        const headerText = children[0];
+        return (
+          <h1 id={headerText.split(" ").join("-").replace(/,/g, "")}>
+            {children}
+          </h1>
+        );
+      },
+      h2: ({ children }) => {
+        const headerText = children[0];
+        // Remove slashes and commas, and replace spaces with dashes to create a
+        // unique ID for each header.
+        const slug = headerText
+          .split(" ")
+          .join("-")
+          .replace("/", "")
+          .replace(/,/g, "");
+        return <h2 id={slug}>{children}</h2>;
+      },
+      h3: ({ children }) => {
+        const headerText = children[0];
+        console.log(headerText, headerText.split);
+        return (
+          <h3 id={headerText.split(" ").join("-").replace(/,/g, "")}>
+            {children}
+          </h3>
+        );
+      },
+      h4: ({ children }) => {
+        const headerText = children[0];
+        return (
+          <h4 id={headerText.split(" ").join("-").replace(/,/g, "")}>
+            {children}
+          </h4>
+        );
+      },
+    }}
+  >
+    {markdown}
+  </ReactMarkdown>;
+}
+
 function AuthorSection(props) {
   const { author } = props;
   const mobile = useMobile();
@@ -324,103 +426,7 @@ export default function BlogPostPage(props) {
             alt="Background"
           />
           <div style={{ padding: mobile && 20 }}>
-            <ReactMarkdown
-              rehypePlugins={[rehypeRaw]}
-              remarkPlugins={[remarkGfm]}
-              components={{
-                p: MarkdownP,
-                // Ensure images fit inside the container
-                img: ({ src, alt }) => (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      padding: mobile ? 0 : 50,
-                    }}
-                  >
-                    <img
-                      src={src}
-                      alt={alt}
-                      style={{
-                        width: "100%",
-                        objectFit: "contain",
-                        maxHeight: 400,
-                      }}
-                    />
-                  </div>
-                ),
-                iframe: ({ src, width, height }) => (
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      padding: mobile ? 0 : 50,
-                    }}
-                  >
-                    <iframe
-                      title="video"
-                      src={src}
-                      style={{
-                        /* Prevent the iframe from
-                      overflowing on mobile. */
-                        width: mobile ? "100%" : width,
-                        objectFit: "contain",
-                        height: height,
-                      }}
-                    />
-                  </div>
-                ),
-                strong: ({ children }) => <b>{children}</b>,
-                a: ({ href, children }) => (
-                  <a
-                    href={href}
-                    style={{ color: style.colors.BLUE }}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {children}
-                  </a>
-                ),
-                h1: ({ children }) => {
-                  const headerText = children[0];
-                  return (
-                    <h1 id={headerText.split(" ").join("-").replace(/,/g, "")}>
-                      {children}
-                    </h1>
-                  );
-                },
-                h2: ({ children }) => {
-                  const headerText = children[0];
-                  // Remove slashes and commas, and replace spaces with dashes to create a
-                  // unique ID for each header.
-                  const slug = headerText
-                    .split(" ")
-                    .join("-")
-                    .replace("/", "")
-                    .replace(/,/g, "");
-                  return <h2 id={slug}>{children}</h2>;
-                },
-                h3: ({ children }) => {
-                  const headerText = children[0];
-                  console.log(headerText, headerText.split);
-                  return (
-                    <h3 id={headerText.split(" ").join("-").replace(/,/g, "")}>
-                      {children}
-                    </h3>
-                  );
-                },
-                h4: ({ children }) => {
-                  const headerText = children[0];
-                  return (
-                    <h4 id={headerText.split(" ").join("-").replace(/,/g, "")}>
-                      {children}
-                    </h4>
-                  );
-                },
-              }}
-            >
-              {markdown}
-            </ReactMarkdown>
+            <BlogPostMarkdown markdown={markdown} />
             <div
               style={{
                 display: "flex",
