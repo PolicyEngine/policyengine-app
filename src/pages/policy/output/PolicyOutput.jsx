@@ -343,7 +343,8 @@ export default function PolicyOutput(props) {
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 
-  const bottomElements = mobile ? null : metadata.countryId === "us" ? (
+  const embed = new URLSearchParams(window.location.search).get("embed");
+  const bottomElements = (mobile & !embed) ? null : metadata.countryId === "us" ? (
     <p>
       PolicyEngine US v{selectedVersion} estimates reform impacts using a static
       microsimulation over the 2021 Current Population Survey March Supplement.{" "}
@@ -360,6 +361,34 @@ export default function PolicyOutput(props) {
       </a>
     </p>
   );
+
+  // If ?embed=True, just show `pane`, full screen.
+
+
+  if (embed) {
+    return <>
+    <div style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100vh",
+      zIndex: 1001,
+      padding: 50,
+    }}>
+      {pane}
+    </div>
+    <div style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100vh",
+      zIndex: 1000,
+      backgroundColor: "rgba(255, 255, 255, 1)",
+    }} />
+    </>;
+  }
 
   pane = (
     <>

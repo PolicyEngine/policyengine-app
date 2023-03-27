@@ -312,6 +312,11 @@ function MobileBottomMenu(props) {
 
 function MobilePolicyPage(props) {
   const { mainContent, metadata, policy } = props;
+  const [searchParams] = useSearchParams();
+  const embed = searchParams.get("embed") !== null;
+  if (embed) {
+    return mainContent;
+  }
   return (
     <>
       <div

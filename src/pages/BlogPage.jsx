@@ -21,8 +21,8 @@ import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 function MarkdownP(props) {
   const mobile = useMobile();
   const pStyle = mobile
-    ? { fontSize: 16, marginBottom: 20, fontFamily: "Merriweather" }
-    : { fontSize: 18, marginBottom: 20, fontFamily: "Merriweather" };
+    ? { fontSize: 16, marginBottom: 20, fontFamily: "Merriweather", width: "100%" }
+    : { fontSize: 18, marginBottom: 20, fontFamily: "Merriweather", width: "100%" };
   return <p style={pStyle}>{props.children}</p>;
 }
 
@@ -40,7 +40,7 @@ export function BlogPostMarkdown(props) {
           style={{
             display: "flex",
             justifyContent: "center",
-            padding: mobile ? 0 : 50,
+            padding: 0,
           }}
         >
           <img
@@ -59,7 +59,8 @@ export function BlogPostMarkdown(props) {
           style={{
             display: "flex",
             justifyContent: "center",
-            padding: mobile ? 0 : 50,
+            padding: mobile ? 0 : 20,
+            width: "100%",
           }}
         >
           <iframe
