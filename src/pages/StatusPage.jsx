@@ -82,7 +82,7 @@ function getAPIRoute(country, path, setState, api, body = {}) {
               <h6>{`These requests represent accessing the home page for PolicyEngine's supported countries.`}</h6>
                 {Object.keys(countryStatuses).map((countryStatus, idx) => 
                     <div 
-                      key={`${idx}-country`} 
+                      key={`${idx + 1}-country`} 
                       style={{ 
                         color: STATUS_TEXT_COLORS[countryStatuses[countryStatus]["status"]],
                         backgroundColor: STATUS_COLORS[countryStatuses[countryStatus]["status"]],
@@ -101,7 +101,7 @@ function getAPIRoute(country, path, setState, api, body = {}) {
               <h6>{`These requests represent accessing the metadata for PolicyEngine's supported countries.`}</h6>
               {Object.keys(metaDataStatuses).map((metaDataStatus, idx) => 
                   <div 
-                    key={`${idx}-metaData`} 
+                    key={`${idx + 1}-metaData`} 
                     style={{ 
                         color: STATUS_TEXT_COLORS[metaDataStatuses[metaDataStatus]["status"]],
                         backgroundColor: STATUS_COLORS[metaDataStatuses[metaDataStatus]["status"]],
@@ -120,7 +120,7 @@ function getAPIRoute(country, path, setState, api, body = {}) {
               <h6>{`These requests represent generating analysis with basic household data for PolicyEngine's supported countries.`}</h6>
               {Object.keys(calculateStatuses).map((calcStatus, idx) => 
                   <div 
-                    key={`${idx}-calculate`} 
+                    key={`${idx + 1}-calculate`} 
                     style={{ 
                         marginBottom: 2, 
                         color: STATUS_TEXT_COLORS[calculateStatuses[calcStatus]["status"]],
