@@ -20,6 +20,7 @@
 
 6. If needed, add a new author entry to `src/posts/authors.json`.
 7. Remove the title (with the single #), the description and cover image from the post (the start of the markdown file should be the first sentence of the post).
+8. Replace superscript footnotes with Markdown footnotes.
 
 [^1]: This way, Medium does all the image optimisation and we can use their server space to host the images.
 [^2]: A 'slug' is a code-friendly version of the post title. For example, the slug for "How to write a blog post" is `how-to-write-a-blog-post`.
