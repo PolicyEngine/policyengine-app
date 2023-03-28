@@ -27,12 +27,12 @@ function ApiStatus({apiStatus, apiCategory, countryNames}) {
           }} 
         >
             <p style={{margin: 0, display: "flex"}}>
-              <span style={{flexGrow: 1, width: "30%"}}>{countryNames[apiRoute]}</span>
-              <span style={{flexGrow: 0, width: "10%"}}>/{apiRoute}</span>
-              <span style={{flexGrow: 1, width: "60%"}}>
+              <span style={{width: "30%"}}>{countryNames[apiRoute]}</span>
+              <span style={{width: "20%"}}>/{apiRoute}</span>
+              <span style={{width: "50%"}}>
                 <strong> {apiStatus[apiRoute]["status"] ? apiStatus[apiRoute]["status"] : "Checking status"}</strong> 
                 {apiStatus[apiRoute]["status"] ? " in" : " and"}
-                <strong> {apiStatus[apiRoute]["latency"] ? apiStatus[apiRoute]["latency"] : "Calculating latency"}</strong>
+                <strong> {apiStatus[apiRoute]["latency"] ? apiStatus[apiRoute]["latency"] : "calculating latency"}</strong>
               </span>
             </p>
         </div> 
