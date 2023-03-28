@@ -25,6 +25,12 @@ import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
 import Prompt from "./Prompt";
+import {
+  TwitterOutlined,
+  FacebookFilled,
+  LinkedinFilled,
+  LinkOutlined,
+} from "@ant-design/icons";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -89,6 +95,43 @@ export default function PolicyOutput(props) {
   } = props;
   const selectedVersion = searchParams.get("version") || metadata.version;
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  const url = encodeURIComponent(window.location.href);
+  const link = (
+    <a onClick={() => {
+      navigator.clipboard.writeText(window.location.href);
+      alert('Link copied to clipboard!');
+    }}>
+      <LinkOutlined style={{ fontSize: 23 }} />
+    </a>
+  );
+  {link}  
+  const twitter = (
+  <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noreferrer">
+    <TwitterOutlined style={{ fontSize: 23 }} />
+  </a>
+);
+  const facebook = (
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
+      <FacebookFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const linkedIn = (
+    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
+      <LinkedinFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const commonStyle = {
+    border: "1px solid #ccc", 
+    borderRadius: "0px", 
+    padding: "6px", 
+    marginRight: "-1px",
+  };
+  const shareItems = [link, twitter, facebook, linkedIn];
+  const shareDivs = shareItems.map((item, index) => (
+    <div key={index} style={commonStyle}>
+      {item}
+    </div>
+  ));
   const mobile = useMobile();
   useEffect(() => {
     if (
@@ -363,6 +406,17 @@ export default function PolicyOutput(props) {
 
   pane = (
     <>
+      <h6>Share this result:</h6>
+     <div 
+      style={{ 
+        position: "relative", 
+        top: "-45px", 
+        left: "130px",
+        display: "flex", 
+        flexDirection: "row",
+      }}>
+      {shareDivs}
+    </div>
       <PolicyImpactPopup
         metadata={metadata}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
