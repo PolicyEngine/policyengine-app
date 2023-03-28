@@ -21,7 +21,6 @@ export default function CountrySelector(props) {
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
-        
       }}
     />
   );
@@ -89,9 +88,9 @@ export default function CountrySelector(props) {
     { label: USLogo, onClick: () => navigateToCountry("us") },
     { label: CALogo, onClick: () => navigateToCountry("ca") },
     { label: NGLogo, onClick: () => navigateToCountry("ng") },
-  ]
- 
-  const items = itemsList.filter((item) => item.label !== countryLabel)
+  ];
+
+  const items = itemsList.filter((item) => item.label !== countryLabel);
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>

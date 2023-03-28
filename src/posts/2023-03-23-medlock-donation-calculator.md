@@ -1,4 +1,4 @@
-[*Jump to the tool*](https://policyengine-james-medlock-donation-solver.streamlit.app/)
+[_Jump to the tool_](https://policyengine-james-medlock-donation-solver.streamlit.app/)
 
 One week ago, Twitter user James Medlock tweeted:
 
@@ -26,15 +26,15 @@ We find that Medlock should give between $333,000 (if he has at least $4 million
 
 James Medlock ([@jdcmedlock](https://twitter.com/jdcmedlock?lang=en)) is a pseudonymous Twitter account known for his social and economic policy content. Relevant information for his taxes include:
 
-* [Lives in Oakland, California](https://twitter.com/jdcmedlock/status/1358307871188865030)
+- [Lives in Oakland, California](https://twitter.com/jdcmedlock/status/1358307871188865030)
 
-* [Married](https://twitter.com/jdcmedlock/status/1431664648701448195)
+- [Married](https://twitter.com/jdcmedlock/status/1431664648701448195)
 
-* [Doesn’t have children](https://twitter.com/jdcmedlock/status/1484002980466626560) (though he previously cared for a cat, [Midnight](https://twitter.com/jdcmedlock/status/1616950217391362048))
+- [Doesn’t have children](https://twitter.com/jdcmedlock/status/1484002980466626560) (though he previously cared for a cat, [Midnight](https://twitter.com/jdcmedlock/status/1616950217391362048))
 
-* [Self-employed](https://twitter.com/jdcmedlock/status/1415412142535106560)
+- [Self-employed](https://twitter.com/jdcmedlock/status/1415412142535106560)
 
-* [33 years old](https://twitter.com/jdcmedlock/status/1368113815779385345) (his profile picture is a portrait of economic anthropologist [Karl Polanyi](https://en.wikipedia.org/wiki/Karl_Polanyi) as an older man)
+- [33 years old](https://twitter.com/jdcmedlock/status/1368113815779385345) (his profile picture is a portrait of economic anthropologist [Karl Polanyi](https://en.wikipedia.org/wiki/Karl_Polanyi) as an older man)
 
 ## Using our calculator
 

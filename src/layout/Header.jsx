@@ -62,19 +62,19 @@ function MobileHeader(props) {
           )}
         </div>
       </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            position: "fixed",
-            right: 20,
-            marginLeft: "auto",
-            marginTop: 27.5,
-            zIndex: 200
-          }}
-        >
-          <CountrySelector countryId={countryId} />
-        </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          position: "fixed",
+          right: 20,
+          marginLeft: "auto",
+          marginTop: 27.5,
+          zIndex: 200,
+        }}
+      >
+        <CountrySelector countryId={countryId} />
+      </div>
       <div style={{ height: HEADER_HEIGHT }} />
     </>
   );

@@ -1,4 +1,3 @@
-
 Oregon’s nonrefundable exemption credit was created in 1983 to replace the personal exemption deduction. Since 1987, the state has indexed the credit to inflation. As a nonrefundable credit, its value is capped at one’s tax liability. Single and married filing separately statuses can claim the credit if their income does not exceed $100,000. For other statuses, the income cap is $200,000. In the 2022 tax year, eligible filers could claim a $219 credit for themselves, their spouse, and any dependents in the household. They can also claim additional exemptions if the filer or their spouse is severely disabled, or if they have a disabled child.
 
 Using PolicyEngine, we can compute the exemption credit’s impact on the state of Oregon and individual households.
@@ -7,7 +6,7 @@ Using PolicyEngine, we can compute the exemption credit’s impact on the state 
 
 ![](https://cdn-images-1.medium.com/max/3200/0*LZy0ZwVxCVavnySk)
 
-The exemption credit for a family of four (married with two children) is shown above. Making under $200,000 provides a credit of $876 ($219 * 4). To see how to define a household, check out our [post on the Oregon Earned Income Tax Credit](https://medium.com/policyengine/computing-your-oregon-earned-income-tax-credit-in-policyengine-d911ae29749d).
+The exemption credit for a family of four (married with two children) is shown above. Making under $200,000 provides a credit of $876 ($219 \* 4). To see how to define a household, check out our [post on the Oregon Earned Income Tax Credit](https://medium.com/policyengine/computing-your-oregon-earned-income-tax-credit-in-policyengine-d911ae29749d).
 
 Due to the credit’s non-refundability, the value phases in. The household would have to earn $21,000 to see the full value of the credit.
 

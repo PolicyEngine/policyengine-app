@@ -52,7 +52,9 @@ export default function HoverCard(props) {
 
   return (
     <>
-      <AnimatePresence>{visible && notEmpty && hoverCardElement}</AnimatePresence>
+      <AnimatePresence>
+        {visible && notEmpty && hoverCardElement}
+      </AnimatePresence>
       <div
         onMouseEnter={() => {
           setVisible(true);

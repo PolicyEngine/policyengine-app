@@ -1,11 +1,10 @@
-
 # Breaking down policy impacts by wealth decile
 
 Income isn’t everything.
 
 ![](https://cdn-images-1.medium.com/max/2048/1*vThHbc9z1P1f2WeLe20f8g.png)
 
-*A UK mansion. Credit: DALLE-2.*
+_A UK mansion. Credit: DALLE-2._
 
 Since our earliest days, we’ve broken the impact of policy reforms by income decile. For example, our [very first report](https://policyengine.org/uk/blog/2021-10-30-analysing-autumn-budget-universal-credit-reforms-with-policyengine) found that the 2021 Autumn Budget Universal Credit reforms would raise the net income of households in the third income decile by 1.6%, more than any other decile.
 
@@ -21,27 +20,27 @@ Reflecting this interest in wealth inequality, PolicyEngine UK now provides brea
 
 ## How PolicyEngine breaks down by decile
 
-Our approach largely mirrors that of income grouping: we first sort UK households by their total wealth (including corporate and property wealth). We then partition this ordered set of households into ten groups of *equal population size* (this means that the groups might have different numbers of households, but the same number of people).
+Our approach largely mirrors that of income grouping: we first sort UK households by their total wealth (including corporate and property wealth). We then partition this ordered set of households into ten groups of _equal population size_ (this means that the groups might have different numbers of households, but the same number of people).
 
 Corporate wealth includes the following:
 
-* Non-defined benefit pensions
+- Non-defined benefit pensions
 
-* Employee shares and options
+- Employee shares and options
 
-* Other UK shares
+- Other UK shares
 
-* Investment ISAs
+- Investment ISAs
 
-* Unit investment trusts
+- Unit investment trusts
 
 Property wealth includes:
 
-* Primary residences
+- Primary residences
 
-* Non-primary residences
+- Non-primary residences
 
-* Non-residential property
+- Non-residential property
 
 PolicyEngine simulates policy reforms over a dataset of tens of thousands of households, based on the [Family Resources Survey](https://www.gov.uk/government/collections/family-resources-survey--2) (FRS). The FRS doesn’t include data on households’ wealth, so we use another survey — the [Wealth and Assets Survey](https://www.gov.uk/government/statistics/personal-wealth-statistics-and-the-wealth-and-assets-survey) (WAS) — to estimate wealth values.
 
@@ -51,11 +50,11 @@ Let’s explore a policy that affects income deciles differently than it affects
 
 To see the impacts by decile for [this policy](https://policyengine.org/uk/policy?focus=policyOutput.decileAverageImpact&reform=2320&region=uk&timePeriod=2023&baseline=1), choose from the newly-added chart options in the bottom left. There are three different wealth breakdown charts:
 
-* *Absolute impact by wealth decile*: showing the absolute (£) average impacts by decile
+- _Absolute impact by wealth decile_: showing the absolute (£) average impacts by decile
 
-* *Relative impact by wealth decile*: showing the impact as a percentage of income
+- _Relative impact by wealth decile_: showing the impact as a percentage of income
 
-* *Outcomes by wealth decile*: showing the distribution of outcomes within each wealth decile, in terms of how much it affects households’ net income
+- _Outcomes by wealth decile_: showing the distribution of outcomes within each wealth decile, in terms of how much it affects households’ net income
 
 ![](https://cdn-images-1.medium.com/max/3200/0*p7v9OzI_T7AJz5_k)
 
@@ -69,17 +68,17 @@ But if we look at the impacts by wealth decile, we find that the policy is progr
 
 While decile averages are useful, they don’t tell us how mixed the outcomes were in each decile. For example, a policy might benefit most people in a decile, but have an overall negative impact if those were outweighed by a smaller number of households losing out — and this would look the same as a policy which negatively affected everyone in a decile to a smaller extent.
 
-To see what’s going on inside the deciles, we can use the *Outcomes by wealth decile* chart. This breaks down each wealth decile, and shows the percentage of people who:
+To see what’s going on inside the deciles, we can use the _Outcomes by wealth decile_ chart. This breaks down each wealth decile, and shows the percentage of people who:
 
-* Gained more than 5% of their income
+- Gained more than 5% of their income
 
-* Gained less than 5% of their income
+- Gained less than 5% of their income
 
-* Experienced no change
+- Experienced no change
 
-* Lost more than 5% of their income
+- Lost more than 5% of their income
 
-* Lost more than 5% of their income
+- Lost more than 5% of their income
 
 For this policy, the chart shows a clearly increasing impact across the deciles, and reveals something more about the third decile: although there is no overall rounded impact, 14% of the decile experiences some small decrease in net income- just not enough to influence the overall decile average.
 

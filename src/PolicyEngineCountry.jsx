@@ -154,15 +154,32 @@ export default function PolicyEngineCountry(props) {
         path="/policy/*"
         element={metadata ? policyPage : error ? errorPage : loadingPage}
       />
-      <Route path="/blog/*" element={<Suspense fallback={loadingPage}><BlogPostPage countryId={countryId} /></Suspense>} />
-      <Route path="/about" element={<Suspense fallback={loadingPage}><AboutPage /></Suspense>} />
-      <Route path="/donate" element={<Suspense fallback={loadingPage}><DonatePage /></Suspense>} />
-      <Route path="/cec" element={
-        <CEC />
-      } />
-      <Route path="/citizens-economic-council" element={
-        <CEC />
-      } />
+      <Route
+        path="/blog/*"
+        element={
+          <Suspense fallback={loadingPage}>
+            <BlogPostPage countryId={countryId} />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/about"
+        element={
+          <Suspense fallback={loadingPage}>
+            <AboutPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/donate"
+        element={
+          <Suspense fallback={loadingPage}>
+            <DonatePage />
+          </Suspense>
+        }
+      />
+      <Route path="/cec" element={<CEC />} />
+      <Route path="/citizens-economic-council" element={<CEC />} />
       <Route path="/*" element={<FOF />} />
     </Routes>
   );
