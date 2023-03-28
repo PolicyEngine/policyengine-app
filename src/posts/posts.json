@@ -629,5 +629,18 @@
       "max-ghenis",
       "nikhil-woodruff"
     ]
+  },
+  {
+    "title": "Restoring the American Rescue Plan's Earned Income Tax Credit Expansion",
+    "description": "We review how the expansion works and model its impact with PolicyEngine US.",
+    "date": "2023-03-27 01:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-27-restoring-arpa-eitc.md",
+    "image": "eitc.webp",
+    "authors": [
+      "arthur-wright"
+    ]
   }
 ]
