@@ -22,13 +22,19 @@ function ApiStatus({apiStatus, apiCategory, countryNames}) {
           style={{ 
             color: STATUS_TEXT_COLORS[apiStatus[apiRoute]["status"]],
             backgroundColor: STATUS_COLORS[apiStatus[apiRoute]["status"]],
-            // maxWidth: "50%",
             marginBottom: 2,
             marginLeft: 2,
-            // marginRight: "auto"
           }} 
         >
-            <p style={{margin: 0}}>{countryNames[apiRoute]} | /{apiRoute} | <strong>{apiStatus[apiRoute]["status"] ? apiStatus[apiRoute]["status"] : "Checking Status"}</strong> in <strong>{apiStatus[apiRoute]["latency"] ? apiStatus[apiRoute]["latency"] : "Calculating Latency"}</strong></p>
+            <p style={{margin: 0, display: "flex"}}>
+              <span style={{flexGrow: 1, width: "30%"}}>{countryNames[apiRoute]}</span>
+              <span style={{flexGrow: 0, width: "10%"}}>/{apiRoute}</span>
+              <span style={{flexGrow: 1, width: "60%"}}>
+                <strong> {apiStatus[apiRoute]["status"] ? apiStatus[apiRoute]["status"] : "Checking status"}</strong> 
+                {apiStatus[apiRoute]["status"] ? " in" : " and"}
+                <strong> {apiStatus[apiRoute]["latency"] ? apiStatus[apiRoute]["latency"] : "Calculating latency"}</strong>
+              </span>
+            </p>
         </div> 
       )}
     </>
@@ -51,16 +57,16 @@ function getAPIRoute(country, path, setState, api, body = {}) {
   calledApi
     .then((res) => res.json())
     .then((res) => {
-    const endTime = Date.now();
-    const latency = endTime - startTime;
-    return {[country]: {status: `${res.status.toUpperCase()}`, latency: `${latency}ms`}}
+      const endTime = Date.now();
+      const latency = endTime - startTime;
+      return {[country]: {status: `${res.status.toUpperCase()}`, latency: `${latency}ms`}}
     })
     .then((result) => {
-    setState((prevState) => ({...prevState, ...result}))
+      setState((prevState) => ({...prevState, ...result}))
     })
     .catch((err) => {
-    console.log(err)
-    setState((prevState) => ({...prevState, [country]: "ERROR"}))
+      console.log(err)
+      setState((prevState) => ({...prevState, [country]: "ERROR"}))
     })
 }
 
