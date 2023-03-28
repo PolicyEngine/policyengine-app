@@ -59,7 +59,7 @@ export function BlogPostMarkdown(props) {
           style={{
             display: "flex",
             justifyContent: "center",
-            padding: mobile ? 0 : 20,
+            paddingBottom: 20,
             width: "100%",
           }}
         >
