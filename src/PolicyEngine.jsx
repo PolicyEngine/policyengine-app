@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import PolicyEngineCountry from "./PolicyEngineCountry";
 import gtag from "./api/analytics";
+import { StatusPage } from "./pages/StatusPage";
 
 /*
 * This component is split out of the main
@@ -23,6 +24,7 @@ export function PolicyEngineRoutes() {
       <Route path="/us/*" element={<PolicyEngineCountry countryId="us" />} />
       <Route path="/ca/*" element={<PolicyEngineCountry countryId="ca" />} />
       <Route path="/ng/*" element={<PolicyEngineCountry countryId="ng" />} />
+      <Route path="/api-status" element={<StatusPage />} />
       <Route path="/*" element={<Navigate to={`/${countryId}`} />} />
     </Routes>
   );
