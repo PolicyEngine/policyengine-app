@@ -60,8 +60,7 @@ export default function PolicyEngineCountry(props) {
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
     try {
-      throw new Error("This is a test error.");
-      //updateMetadata(countryId, setMetadata);
+      updateMetadata(countryId, setMetadata);
     } catch (e) {
       // Sometimes this fails. When it does, refresh the page, but only once (use a param in the URL to make sure it only happens once).
       if (!searchParams.get("refreshed")) {
