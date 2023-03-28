@@ -38,5 +38,13 @@
     "name": "ChatGPT",
     "headshot": "chat-gpt.png",
     "bio": "ChatGPT is a contributing writer at PolicyEngine"
+  },
+  "arthur-wright": {
+    "name": "Arthur Wright",
+    "headshot": "arthur-wright.jpg",
+    "email": "awrigh46@gmu.edu",
+    "github": "awrigh46",
+    "bio": "Arthur is a researcher at PolicyEngine.",
+    "twitter": "https://twitter.com/Arthur_Wright_"
   }
 }
