@@ -39,8 +39,7 @@ function BlogPostPreviewRegular(props) {
         cursor: "pointer",
       }}
       whileHover={{ scale: 1.05 }}
-      onClick={() => navigate(`/${countryId}/blog/${name}`)}
-    >
+      onClick={() => navigate(`/${countryId}/blog/${name}`)}    >
       <img
         src={imageSrc}
         style={{

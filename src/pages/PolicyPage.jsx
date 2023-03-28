@@ -28,7 +28,8 @@ function ParameterSearch(props) {
       value: parameter.parameter,
       label: parameter.label,
     }))
-    .filter((option) => !!option.label && !!option.value);
+    .filter((option) => !!option.label && !!option.value)
+    .reverse();
   return (
     <SearchOptions
       options={options}
@@ -311,6 +312,11 @@ function MobileBottomMenu(props) {
 
 function MobilePolicyPage(props) {
   const { mainContent, metadata, policy } = props;
+  const [searchParams] = useSearchParams();
+  const embed = searchParams.get("embed") !== null;
+  if (embed) {
+    return mainContent;
+  }
   return (
     <>
       <div

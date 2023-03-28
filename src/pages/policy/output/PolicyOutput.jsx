@@ -24,6 +24,7 @@ import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
+<<<<<<< HEAD
 import Prompt from "./Prompt";
 import {
   TwitterOutlined,
@@ -31,6 +32,9 @@ import {
   LinkedinFilled,
   LinkOutlined,
 } from "@ant-design/icons";
+=======
+import Analysis from "./Analysis";
+>>>>>>> master
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -378,15 +382,16 @@ export default function PolicyOutput(props) {
     );
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
-  } else if (focus === "policyOutput.prompt") {
-    pane = <Prompt impact={impact} metadata={metadata} policy={policy} region={region} timePeriod={timePeriod} policyLabel={policyLabel} />;
+  } else if (focus === "policyOutput.analysis") {
+    pane = <Analysis impact={impact} metadata={metadata} policy={policy} region={region} timePeriod={timePeriod} policyLabel={policyLabel} />;
   }
 
   if (focus === "policyOutput.cliffImpact") {
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 
-  const bottomElements = mobile ? null : metadata.countryId === "us" ? (
+  const embed = new URLSearchParams(window.location.search).get("embed");
+  const bottomElements = (mobile & !embed) ? null : metadata.countryId === "us" ? (
     <p>
       PolicyEngine US v{selectedVersion} estimates reform impacts using a static
       microsimulation over the 2021 Current Population Survey March Supplement.{" "}
@@ -403,6 +408,34 @@ export default function PolicyOutput(props) {
       </a>
     </p>
   );
+
+  // If ?embed=True, just show `pane`, full screen.
+
+
+  if (embed) {
+    return <>
+    <div style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100vh",
+      zIndex: 1001,
+      padding: 50,
+    }}>
+      {pane}
+    </div>
+    <div style={{
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100vh",
+      zIndex: 1000,
+      backgroundColor: "rgba(255, 255, 255, 1)",
+    }} />
+    </>;
+  }
 
   pane = (
     <>
