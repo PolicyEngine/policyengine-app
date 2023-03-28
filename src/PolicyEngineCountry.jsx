@@ -55,9 +55,21 @@ export default function PolicyEngineCountry(props) {
   const [hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup] =
     useState(false);
 
+  updateMetadata;
+  setMetadata;
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
-    updateMetadata(countryId, setMetadata);
+    try {
+      updateMetadata(countryId, setMetadata);
+    } catch (e) {
+      // Sometimes this fails. When it does, refresh the page, but only once (use a param in the URL to make sure it only happens once).
+      if (!searchParams.get("refreshed")) {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("refreshed", true);
+        setSearchParams(newSearch);
+        window.location.reload();
+      }
+    }
   }, [countryId]);
 
   // Get the baseline policy data when the baseline policy ID changes.
