@@ -22,8 +22,8 @@ export default function Analysis(props) {
     return acc;
   }, {});
   const baseResultsUrl = `https://policyengine.org/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
-  console.log(baseResultsUrl)
-  const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
+  const buildIFrame = chartName => `<iframe src="${baseResultsUrl}&focus=policyOutput.${chartName}" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>`;
+  let policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
   * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${regionKeyToLabel[region]}. Explain how the parameters are changing from the baseline to the reform values using the given data.
   * Round large numbers like: ${metadata.currency}3.1 billion, ${metadata.currency}300 million, ${metadata.currency}106,000, ${metadata.currency}1.50 (never ${metadata.currency}1.5).
@@ -36,9 +36,10 @@ export default function Analysis(props) {
   * When describing poverty impacts, note that the poverty measure reported is ${metadata.countryId === "uk" ? "absolute poverty before housing costs" : "the Supplemental Poverty Measure"}.
   * Don't use headers, but do use Markdown formatting (e.g. * for bullets).
   * Include the following embeds inline, without a header so it flows.
-  * Immediately after you describe the budgetary impact, include an IFrame pointing to the chart. It should look like this: <iframe src="${baseResultsUrl}&focus=policyOutput.netIncome" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>
-  * Immediately after you describe the changes by income decile, include an IFrame: <iframe src="${baseResultsUrl}&focus=policyOutput.decileRelativeImpact" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>
-  * Immediately after you describe the changes by poverty status, include an IFrame: <iframe src="${baseResultsUrl}&focus=policyOutput.povertyImpact" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>
+  * Immediately after you describe the budgetary impact, include the text: {{netIncome}}
+  * And after you describe the changes by decile, include the text: {{decileRelativeImpact}}
+  * And after the poverty rate changes, include the text: {{povertyImpact}}
+  * Make sure to accurately represent the changes observed in the data.
 
   This JSON snippet describes the default parameter values: ${JSON.stringify(relevantParameterBaselineValues)}\n
   This JSON snippet describes the baseline and reform policies being compared: ${JSON.stringify(policy)}\n`;
@@ -61,6 +62,8 @@ export default function Analysis(props) {
   This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(impact.inequality)}
   
   `;
+
+  policyDetails = policyDetails.replace(/{{(.*?)}}/g, (match, chartName) => buildIFrame(chartName));
 
   const [audience, setAudience] = useState("Normal");
 
@@ -121,7 +124,7 @@ export default function Analysis(props) {
     setHasClickedGenerate(true);
     setLoading(true);
     openai.createChatCompletion({
-      model: "gpt-4",
+      model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt }],
     }).then((response) => {
       console.log(response);
