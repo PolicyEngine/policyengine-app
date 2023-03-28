@@ -1,4 +1,4 @@
-Last week, the Biden Administration [announced its budget](https://www.whitehouse.gov/omb/briefing-room/2023/03/09/fact-sheet-the-presidents-budget-for-fiscal-year-2024/) for the 2024 fiscal year. The proposal “calls on the Congress to make the Earned Income Tax Credit expansion for childless workers permanent, which would help pull low-paid workers out of poverty.”
+Earlier this month, the Biden Administration [announced its budget](https://www.whitehouse.gov/omb/briefing-room/2023/03/09/fact-sheet-the-presidents-budget-for-fiscal-year-2024/) for the 2024 fiscal year. The proposal “calls on the Congress to make the Earned Income Tax Credit expansion for childless workers permanent, which would help pull low-paid workers out of poverty.”
 
 The president’s announcement refers to the expansion of the Earned Income Tax Credit (EITC) temporarily enacted by the American Rescue Plan Act (ARPA) in 2021, which has since expired. This report describes ARPA’s EITC expansion for childless workers and PolicyEngine’s projected impacts of restoring it today.
 
