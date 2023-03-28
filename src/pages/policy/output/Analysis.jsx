@@ -8,7 +8,7 @@ import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { BlogPostMarkdown } from "../../BlogPage";
 import ReactMarkdown from "react-markdown";
-
+import { Collapse } from 'react-collapse';
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -148,7 +148,7 @@ export default function Analysis(props) {
   analysisContent;
   BlogPostMarkdown;
   ReactMarkdown;
-
+  const toggleShowPrompt=() => setShowPrompt(prev=>!prev)
   return (
     <>
       <h2>Analysis</h2>
@@ -201,47 +201,42 @@ export default function Analysis(props) {
               <BlogPostMarkdown markdown={analysis} />
         }
       </div>
-      <div style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        marginBottom: 20,
-      }}>
-        <Button text={
-          showPrompt ?
-            "Hide prompt" :
-            "Show prompt"
-        } onClick={
-          () => setShowPrompt(!showPrompt)
-        } style={{ maxWidth: 250 }} />
-      </div>
-      {
-        showPrompt ?
-          <>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: 30,
-                marginBottom: 30,
-              }}
-            >
-              <Button
-                text="Copy"
-                style={{ width: 100 }}
-                onClick={() => {
-                  navigator.clipboard.writeText(lines.join("\n"));
-                }}
-              />
-            </div>
-            <p>
-              <PythonCodeBlock lines={lines} />
-            </p>
-          </> :
-          null
-      }
-
+      <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 20,
+          }}
+       >
+      <Button
+        text={showPrompt ? "Hide prompt" : "Show prompt"}
+        onClick={toggleShowPrompt}
+        style={{ maxWidth: 250 }}
+      />
+      <Collapse isOpened={showPrompt}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: 30,
+            marginBottom: 30,
+          }}
+        >
+          <Button
+            text="Copy"
+            style={{ width: 100 }}
+            onClick={() => {
+              navigator.clipboard.writeText(lines.join("\n"));
+            }}
+          />
+        </div>
+        <p>
+          <PythonCodeBlock lines={lines} />
+        </p>
+      </Collapse>
+    </div>
     </>
   );
 }
