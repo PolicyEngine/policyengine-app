@@ -24,17 +24,13 @@ import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
-<<<<<<< HEAD
-import Prompt from "./Prompt";
 import {
   TwitterOutlined,
   FacebookFilled,
   LinkedinFilled,
   LinkOutlined,
 } from "@ant-design/icons";
-=======
 import Analysis from "./Analysis";
->>>>>>> master
 
 export function RegionSelector(props) {
   const { metadata } = props;
