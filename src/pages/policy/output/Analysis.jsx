@@ -124,7 +124,7 @@ export default function Analysis(props) {
     setHasClickedGenerate(true);
     setLoading(true);
     openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
       messages: [{ role: "user", content: prompt }],
     }).then((response) => {
       console.log(response);
