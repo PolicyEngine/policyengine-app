@@ -197,9 +197,9 @@ export default function MarginalTaxRates(props) {
       metadata
     );
 
-    const currEarningsIdx = earningsArray.indexOf(currentEarnings)
-    const reformMtrValue = reformMtrArray[currEarningsIdx]
-    
+    const currEarningsIdx = earningsArray.indexOf(currentEarnings);
+    const reformMtrValue = reformMtrArray[currEarningsIdx];
+
     if (currentMtr !== reformMtrValue) {
       title = `${policyLabel} ${
         reformMtrValue > currentMtr ? "increases" : "decreases"

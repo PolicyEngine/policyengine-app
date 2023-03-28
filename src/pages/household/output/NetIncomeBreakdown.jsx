@@ -180,7 +180,8 @@ function VariableArithmetic(props) {
     const parameter = metadata.parameters[subtracts];
     subtracts = getParameterAtInstant(parameter, "2023-01-01");
   }
-  const expandable = (!hasReform || doesIncomeChange) && adds.length + subtracts.length > 0;
+  const expandable =
+    (!hasReform || doesIncomeChange) && adds.length + subtracts.length > 0;
   const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
     <VariableArithmetic
       variableName={variable}

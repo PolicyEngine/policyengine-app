@@ -64,9 +64,9 @@ export default function InputField(props) {
             );
           }
         } else if (pattern === "number") {
-          if (value !== '' && !re.test(value)) {
-            const val = value.replace(/[^\d.]+/g, '');
-            e.target.value = val.includes('.') ? parseFloat(val) : val;
+          if (value !== "" && !re.test(value)) {
+            const val = value.replace(/[^\d.]+/g, "");
+            e.target.value = val.includes(".") ? parseFloat(val) : val;
           }
         }
       }}

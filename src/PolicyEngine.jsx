@@ -10,10 +10,10 @@ import gtag from "./api/analytics";
 import { StatusPage } from "./pages/StatusPage";
 
 /*
-* This component is split out of the main
-* component for testing purposes: you can't
-* have nested routers in a test.
-*/
+ * This component is split out of the main
+ * component for testing purposes: you can't
+ * have nested routers in a test.
+ */
 export function PolicyEngineRoutes() {
   // Look up the country ID from the user's browser language
   const browserLanguage = navigator.language;

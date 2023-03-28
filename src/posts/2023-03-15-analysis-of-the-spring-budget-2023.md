@@ -4,9 +4,9 @@ Today saw the announcement of the 2023 Spring Budget for 2023, with significant 
 
 ## Policy changes modelled
 
-* The Energy Price Guarantee (EPG) is fixed at £2,500 for three extra months (April to June), down from the £3,000 it would have been. The EPG limits the average households’ energy bills, with the government covering spending (for the fixed average household energy usage) above the cap. We estimate the cost of this policy is £3.1 billion.
+- The Energy Price Guarantee (EPG) is fixed at £2,500 for three extra months (April to June), down from the £3,000 it would have been. The EPG limits the average households’ energy bills, with the government covering spending (for the fixed average household energy usage) above the cap. We estimate the cost of this policy is £3.1 billion.
 
-* Fuel duty is frozen at 53p per litre, instead of increasing to 65p. This continues the temporary 5p cut from last year and cancels the planned Retail Price Index (RPI) inflation increase. We estimate the cost of this policy is £4.2 billion.[^1]
+- Fuel duty is frozen at 53p per litre, instead of increasing to 65p. This continues the temporary 5p cut from last year and cancels the planned Retail Price Index (RPI) inflation increase. We estimate the cost of this policy is £4.2 billion.[^1]
 
 The combined cost of these policy changes is £7.3 billion. This is similar to HM Treasury’s estimate for FY 2023–24 at £7.8bn.[^2]
 
@@ -37,5 +37,4 @@ In terms of inequality, the Gini coefficient decreases slightly from 0.336 to 0.
 The Spring Budget 2023’s policy changes regarding energy and fuel have a budgetary impact of £7.3 billion, with nearly all people (98%) gaining from these reforms. The policies have a larger relative impact on lower-income households, contribute to a reduction in poverty rates and inequality under several different metrics.
 
 [^1]: To estimate the impact of the fuel duty freeze, we compare it against a counterfactual scenario in which the fuel duty rate was raised to 65p.
-
 [^2]: See the policy costing document [here](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1142824/Costing_Document_-_Spring_Budget_2023.pdf#page=9).

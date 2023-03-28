@@ -126,15 +126,20 @@ export default function PolicyReproducibility(props) {
     "difference_person_df = reformed_person_df - baseline_person_df",
   ]);
 
-  const colabLink = metadata.countryId == "uk" ?
-    "https://colab.research.google.com/drive/16h6v-EAYk5n4qZ4krXbmFG4_oKAaflo9#scrollTo=TBTIupkjIThF" :
-    metadata.countryId == "us" ?
-      "https://colab.research.google.com/drive/1hqA9a2LrNj2leJ9YtXXC3xyaCXQ7mwUW?usp=sharing" :
-      null;
+  const colabLink =
+    metadata.countryId == "uk"
+      ? "https://colab.research.google.com/drive/16h6v-EAYk5n4qZ4krXbmFG4_oKAaflo9#scrollTo=TBTIupkjIThF"
+      : metadata.countryId == "us"
+      ? "https://colab.research.google.com/drive/1hqA9a2LrNj2leJ9YtXXC3xyaCXQ7mwUW?usp=sharing"
+      : null;
 
-  const notebookLink = colabLink ?
-    <a href={colabLink} target="_blank" rel="noreferrer">Python notebook</a> :
-    "Python notebook";
+  const notebookLink = colabLink ? (
+    <a href={colabLink} target="_blank" rel="noreferrer">
+      Python notebook
+    </a>
+  ) : (
+    "Python notebook"
+  );
 
   // This component shows the Python code necessary to run a microsimulation to reproduce
   // results on PolicyEngine.
@@ -143,7 +148,7 @@ export default function PolicyReproducibility(props) {
       <h2>Reproduce these results</h2>
       <p>
         Run the code below into a {notebookLink} to reproduce the
-        microsimulation results. 
+        microsimulation results.
       </p>
       <PythonCodeBlock lines={initialLines} />
       <div

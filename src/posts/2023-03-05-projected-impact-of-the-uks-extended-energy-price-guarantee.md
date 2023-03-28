@@ -1,4 +1,4 @@
-*Credit: DALLE-2*
+_Credit: DALLE-2_
 
 According to [a report by The Times](https://archive.is/MnyZd#selection-773.0-1329.308), Chancellor Jeremy Hunt is expected to announce an extension of the £2,500 energy price guarantee (EPG) for an additional three months. The government structures the EPG such that the typical household bill does not exceed £2,500 per year. The Times reports that the government estimates this extension to cost approximately £3 billion.
 
@@ -24,7 +24,7 @@ Extending the EPG would [lower poverty by 0.9%](https://policyengine.org/uk/poli
 
 ![](https://cdn-images-1.medium.com/max/3200/0*uHZzOqtB7nZ7m0TO)
 
-You can [view the impact interactively in PolicyEngine here](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=5847&region=uk&timePeriod=2023&baseline=1), and even model your own custom EPG reform. You can also [enter your household information](https://policyengine.org/uk/household?focus=intro&reform=5847&region=uk&timePeriod=2023&baseline=1) to see how the EPG extension would affect you (to do this, enter the ‘domestic energy consumption’ field under *Consumption / Energy* or by searching in the top left).
+You can [view the impact interactively in PolicyEngine here](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=5847&region=uk&timePeriod=2023&baseline=1), and even model your own custom EPG reform. You can also [enter your household information](https://policyengine.org/uk/household?focus=intro&reform=5847&region=uk&timePeriod=2023&baseline=1) to see how the EPG extension would affect you (to do this, enter the ‘domestic energy consumption’ field under _Consumption / Energy_ or by searching in the top left).
 
 At PolicyEngine, we remain committed to providing free open-source software that enables the analysis of public policy impacts. Users with access to UK Data Service microdata can [reproduce our analysis](https://policyengine.org/uk/policy?focus=policyOutput.codeReproducibility&reform=5847&region=uk&timePeriod=2023&baseline=1&household=10576) with the [open-source PolicyEngine UK microsimulation model](https://github.com/PolicyEngine/policyengine-uk). For questions or comments on these impacts, feel free to [get in touch](mailto:hello@policyengine.org).
 
