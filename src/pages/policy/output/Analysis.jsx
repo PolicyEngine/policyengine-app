@@ -38,7 +38,7 @@ export default function Analysis(props) {
     `<iframe src="${baseResultsUrl}&focus=policyOutput.${chartName}" width="100%" height="400" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>`;
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
-  * First explain each provision of the reform, noting that it represents policy reforms for ${timePeriod} and ${
+  * First explain each provision of the reform, noting that it's hypothetical and represents policy reforms for ${timePeriod} and ${
     regionKeyToLabel[region]
   }. Explain how the parameters are changing from the baseline to the reform values using the given data.
   * Round large numbers like: ${metadata.currency}3.1 billion, ${
@@ -227,9 +227,7 @@ export default function Analysis(props) {
       <Spinner style={{ marginRight: 10 }} />
       Generating
     </>
-  ) : (
-    "Regenerate analysis"
-  );
+  ) : null;
 
   return (
     <>
@@ -276,12 +274,12 @@ export default function Analysis(props) {
             handleAudienceChange={handleAudienceChange}
           />
         </div>
-        <Button
+        {buttonText && <Button
           primary
           text={buttonText}
           onClick={onGenerate}
           style={{ maxWidth: 250, marginBottom: 25 }}
-        />
+        />}
         {!hasClickedGenerate ? (
           <BlogPostMarkdown markdown={analysis} />
         ) : analysis ? (
