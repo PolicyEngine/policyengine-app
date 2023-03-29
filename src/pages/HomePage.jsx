@@ -541,6 +541,9 @@ function Collaborations(props) {
 function APIDemo(props) {
   const mobile = useMobile();
   const { countryId } = props;
+  if (mobile) {
+    return null;
+  }
   return (
     <div
       style={{
@@ -557,10 +560,10 @@ function APIDemo(props) {
             paddingTop: 100,
           }}
         >
-          <h2 style={{ paddingLeft: 90, paddingRight: 90 }}>
+          <h2 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90 }}>
             PolicyEngine&apos;s free API computes policy impacts
           </h2>
-          <h5 style={{ paddingLeft: 90, paddingRight: 90 }}>
+          <h5 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90 }}>
             Instantly compute taxes and benefits for any household under current
             or reformed policy rules, using the PolicyEngine REST API.
           </h5>
