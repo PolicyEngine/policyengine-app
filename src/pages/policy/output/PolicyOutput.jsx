@@ -390,6 +390,7 @@ export default function PolicyOutput(props) {
             height: "100vh",
             zIndex: 1001,
             padding: 50,
+            paddingBottom: 100,
           }}
         >
           {pane}

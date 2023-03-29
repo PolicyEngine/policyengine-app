@@ -65,6 +65,18 @@ export function BlogPostMarkdown(props) {
             />
           </div>
         ),
+        ul: ({ children }) => (
+          <ul
+            style={{
+              paddingLeft: 20,
+              marginBottom: 20,
+              fontFamily: "Merriweather",
+              fontSize: mobile ? 16 : 18,
+            }}
+          >
+            {children}
+          </ul>
+        ),
         iframe: ({ src, width, height }) => (
           <div
             style={{
@@ -77,6 +89,7 @@ export function BlogPostMarkdown(props) {
             <iframe
               title="video"
               src={src}
+              scrolling="no"
               style={{
                 /* Prevent the iframe from
             overflowing on mobile. */

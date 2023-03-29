@@ -80,7 +80,7 @@ export default function PovertyImpact(props) {
           b: 100,
           r: 0,
         },
-        height: mobile ? 350 : 450,
+        height: mobile ? 300 : 500,
       }}
       config={{
         displayModeBar: false,
