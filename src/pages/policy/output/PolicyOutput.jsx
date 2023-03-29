@@ -31,6 +31,7 @@ import {
   LinkOutlined,
 } from "@ant-design/icons";
 import Analysis from "./Analysis";
+import style from "../../../style";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -435,16 +436,20 @@ export default function PolicyOutput(props) {
 
   pane = (
     <>
-      <h6>Share this result:</h6>
+      <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
+      justifyContent: "center", alignItems: "center", paddingBottom: 20,
+     }}>
+      <h6 style={{
+        margin: 0,
+        paddingRight: 20,
+      }}><b>Share this result</b></h6>
      <div 
       style={{ 
-        position: "relative", 
-        top: "-45px", 
-        left: "130px",
         display: "flex", 
         flexDirection: "row",
       }}>
       {shareDivs}
+      </div>
     </div>
       <PolicyImpactPopup
         metadata={metadata}
