@@ -6,7 +6,6 @@ import { PythonCodeBlock } from "./PolicyReproducibility";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { BlogPostMarkdown } from "../../BlogPage";
-import ReactMarkdown from "react-markdown";
 import { asyncApiCall, countryApiCall } from "../../../api/call";
 
 export default function Analysis(props) {
@@ -209,24 +208,18 @@ export default function Analysis(props) {
             for (let i = 0; i < analysisWords.length; i++) {
               setTimeout(() => {
                 setAnalysis((analysis) =>
-                  displayCharts(analysis + " " + analysisWords[i])
+                  displayCharts(analysis + " " + analysisWords[i]).replaceAll("  ", " ")
                 );
               }, 100 * i);
             }
             fullAnalysis = analysisFromCall;
           }
         ).then((data) => {
-          setAnalysis(data.result.analysis);
+          setAnalysis(displayCharts(data.result.analysis).replaceAll("  ", " "));
           setLoading(false);
         });
       });
   };
-  buildIFrame;
-
-  // Separate analysis into <p> tags
-  const analysisContent = analysis.split("\n").map((line, i) => {
-    return <p key={i}>{line}</p>;
-  });
   const buttonText = !hasClickedGenerate ? (
     "Generate an analysis"
   ) : loading ? (
@@ -237,9 +230,6 @@ export default function Analysis(props) {
   ) : (
     "Regenerate analysis"
   );
-  analysisContent;
-  BlogPostMarkdown;
-  ReactMarkdown;
 
   return (
     <>
