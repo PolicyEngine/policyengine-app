@@ -13,7 +13,13 @@ export function apiCall(path, body, method) {
   });
 }
 
-export function asyncApiCall(path, body, interval = 1000, firstInterval = 200) {
+export function asyncApiCall(
+  path,
+  body,
+  interval = 1000,
+  firstInterval = 200,
+  computingCallback = () => {}
+) {
   // Call an API endpoint which may respond with a {status: computing} response.
   // If so, poll until the response is ready.
   // The timeline is: call, wait 200ms, call, wait 1000ms, call, wait 1000ms, ...
@@ -32,6 +38,7 @@ export function asyncApiCall(path, body, interval = 1000, firstInterval = 200) {
         })
         .then((data) => {
           if (data.status === "computing") {
+            computingCallback(data);
             setTimeout(() => poll(false), isFirst ? firstInterval : interval);
           } else {
             resolve(data);

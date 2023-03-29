@@ -25,7 +25,8 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
   }
 
   const maxNetIncome = Math.max(...netIncomeArray);
-  const maxCliffShadingHeight = Math.ceil(maxNetIncome / ROUNDING_FACTOR) * ROUNDING_FACTOR; 
+  const maxCliffShadingHeight =
+    Math.ceil(maxNetIncome / ROUNDING_FACTOR) * ROUNDING_FACTOR;
 
   return cliffs.map((points, i) => {
     return {
@@ -43,7 +44,7 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
       line: {
         color: style.colors.DARK_GRAY,
       },
-      hoverinfo: "none"
+      hoverinfo: "none",
     };
   });
 }

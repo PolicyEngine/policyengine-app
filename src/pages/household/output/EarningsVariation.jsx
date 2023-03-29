@@ -11,8 +11,13 @@ import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
 import { getValueFromHousehold } from "../../../api/variables";
 
 export default function EarningsVariation(props) {
-  const { householdInput, householdBaseline, householdReform, metadata, policy } =
-    props;
+  const {
+    householdInput,
+    householdBaseline,
+    householdReform,
+    metadata,
+    policy,
+  } = props;
   const [baselineNetIncome, setBaselineNetIncome] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");

@@ -9,8 +9,15 @@ export default function Footer(props) {
     `/${countryId}/about`,
     "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
     `/${countryId}/donate`,
+    "/api-status",
   ];
-  const labels = ["PolicyEngine © 2023", "About", "Contact", "Donate"];
+  const labels = [
+    "PolicyEngine © 2023",
+    "About",
+    "Contact",
+    "Donate",
+    "Status",
+  ];
   if (mobile) {
     return null;
   } else {

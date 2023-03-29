@@ -1,4 +1,4 @@
-***[See how the proposal would affect your household.](https://policyengine.org/us/household?focus=intro&reform=5842&region=ma&timePeriod=2023&baseline=2)***
+**_[See how the proposal would affect your household.](https://policyengine.org/us/household?focus=intro&reform=5842&region=ma&timePeriod=2023&baseline=2)_**
 
 On Monday, Massachusetts Governor Maura Healey introduced her [fiscal year 2024 budget recommendation](https://www.mass.gov/doc/fy-2024-budget-recommendation-brief-providing-meaningful-tax-relief), which included five main proposals:
 
@@ -26,7 +26,7 @@ Here we detail each provision.
 
 ## Child & Family Credit
 
-***[See the impact of the Child & Family Credit on your household](https://policyengine.org/us/household?focus=intro&reform=5843&region=ma&timePeriod=2023&baseline=2) and [on Massachusetts](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=5843&region=ma&timePeriod=2023&baseline=2).***
+**_[See the impact of the Child & Family Credit on your household](https://policyengine.org/us/household?focus=intro&reform=5843&region=ma&timePeriod=2023&baseline=2) and [on Massachusetts](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=5843&region=ma&timePeriod=2023&baseline=2)._**
 
 Currently, Massachusetts families can claim one of the following two refundable tax credits:
 
@@ -42,19 +42,19 @@ Governor Healey proposes eliminating any Estate Taxes for estates with a value o
 
 ## Renter tax deduction increase
 
-[***See the impact of the renter tax deduction increase on your household.***](https://policyengine.org/us/household?focus=intro&reform=5370&region=ma&timePeriod=2023&baseline=2)
+[**_See the impact of the renter tax deduction increase on your household._**](https://policyengine.org/us/household?focus=intro&reform=5370&region=ma&timePeriod=2023&baseline=2)
 
 Massachusetts provides a tax deduction of up to 50% of filers’ yearly rent, capped at $3,000. Governor Healey proposes raising this to $4,000.
 
 ## Senior Circuit Breaker Credit increase
 
-[***See the impact of the Senior Circuit Breaker Credit increase on your household.***](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=5828&region=ma&timePeriod=2023&baseline=2)
+[**_See the impact of the Senior Circuit Breaker Credit increase on your household._**](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=5828&region=ma&timePeriod=2023&baseline=2)
 
 Massachusetts provides a Senior Circuit Breaker Tax Credit, which reduces tax liabilities for filers aged 65 or older, depending on their income, rent, and property tax, in particular when rent and property tax exceed 10% of one’s income. Governor Healey proposes doubling the maximum credit from $1,200 to $2,400.
 
 ## Short-term capital gains cut
 
-***[See the impact of the short-term capital gains cut on your household](https://policyengine.org/us/policy?focus=policyOutput&reform=5830&region=ma&timePeriod=2023&baseline=2) and [on Massachusetts](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=5830&region=ma&timePeriod=2023&baseline=2).***
+**_[See the impact of the short-term capital gains cut on your household](https://policyengine.org/us/policy?focus=policyOutput&reform=5830&region=ma&timePeriod=2023&baseline=2) and [on Massachusetts](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=5830&region=ma&timePeriod=2023&baseline=2)._**
 
 Massachusetts currently taxes most income at 5%, except income exceeding $1 million (9%) and short term capital gains (12%). The federal government and two other states also tax capital gains differently depending on whether the assets have been held for a year. Governor Healey proposes equalizing short and long term capital gains rates by reducing the short term rate from 12% to 5%.
 
@@ -66,13 +66,13 @@ To illustrate the impact of the four policies, we show how they would affect thr
 
 Consider this family of five:
 
-* Spouse earns $20,000 per year, one infant, one six-year-old child, and one ten-year-old child
+- Spouse earns $20,000 per year, one infant, one six-year-old child, and one ten-year-old child
 
-* Renting in Norfolk County, and paying [$3,600 per month](https://www.zillow.com/rental-manager/market-trends/ma/?bedrooms=3), Zillow’s estimated median for three-bedroom homes in Massachusetts
+- Renting in Norfolk County, and paying [$3,600 per month](https://www.zillow.com/rental-manager/market-trends/ma/?bedrooms=3), Zillow’s estimated median for three-bedroom homes in Massachusetts
 
-* Paying the median center-based infant care cost in Norfolk County, which the [US Department of Labor estimates](https://www.dol.gov/agencies/wb/topics/childcare/price-by-age-care-setting) at $26,409 per year in 2022 (the highest in Massachusetts)
+- Paying the median center-based infant care cost in Norfolk County, which the [US Department of Labor estimates](https://www.dol.gov/agencies/wb/topics/childcare/price-by-age-care-setting) at $26,409 per year in 2022 (the highest in Massachusetts)
 
-* No childcare costs for the six- and ten-year-old children
+- No childcare costs for the six- and ten-year-old children
 
 Governor Healey’s proposal would [provide them a net benefit](https://policyengine.org/us/household?focus=householdOutput.mtr&reform=5842&region=ma&timePeriod=2023&baseline=2&household=9150) if they earn above $8,000, and $50 if they earn at least $9,500. This is the earnings range over which they would pay income taxes, and where the renter tax deduction begins to reduce their taxable income.
 
@@ -140,7 +140,7 @@ These provisions would [raise the average household’s net income by 0.2%](http
 
 PolicyEngine projects [no poverty impact](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=5902&region=ma&timePeriod=2023&baseline=2) of the Child & Family Credit and short-term capital gains cut, while deep poverty (the population share in households with resources below half their poverty line) would [fall 1.6%](https://policyengine.org/us/policy?focus=policyOutput.deepPovertyImpact&reform=5902&region=ma&timePeriod=2023&baseline=2).
 
-*PolicyEngine’s poverty impacts in small states are noisy, due to using a single year’s Current Population Survey.*
+_PolicyEngine’s poverty impacts in small states are noisy, due to using a single year’s Current Population Survey._
 
 ![](https://cdn-images-1.medium.com/max/3668/1*FxLPdCVJYlXYqVvBWmjSDw.png)
 
