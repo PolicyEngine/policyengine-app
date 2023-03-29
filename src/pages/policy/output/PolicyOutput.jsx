@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import SearchOptions from "../../../controls/SearchOptions";
@@ -25,6 +25,9 @@ import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
 import Analysis from "./Analysis";
+
+import { useScreenshot } from 'use-react-screenshot'
+
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -81,6 +84,16 @@ export default function PolicyOutput(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
+  const imageRef = useRef(null)
+  const [image, takeScreenShot] = useScreenshot();
+
+  function handleScreenshot() {
+    takeScreenShot(imageRef.current)
+  }
+  
+  
+
+
   const {
     metadata,
     policy,
@@ -425,5 +438,11 @@ export default function PolicyOutput(props) {
     </>
   );
 
-  return <ResultsPanel>{pane}</ResultsPanel>;
+  return (
+    <>
+      <img height={300} src={image} ></img>
+      <button onClick={handleScreenshot}>Test</button>
+      <ResultsPanel ref={imageRef}>{pane}</ResultsPanel>;
+    </>
+  )
 }
