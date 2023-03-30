@@ -87,7 +87,8 @@ export default function PolicyOutput(props) {
   const [error, setError] = useState(null);
   const imageRef = useRef(null)
   // const [image, takeScreenShot] = useScreenshot();
-  const [imageBlob, setImageBlob] = useState(null)
+  const [imagePng, setImagePng] = useState(null)
+
 
   async function handleScreenshot() {
     // http://localhost:3000/us/policy?focus=policyOutput.netIncome&reform=8663&region=us&timePeriod=2023&baseline=2
@@ -95,10 +96,10 @@ export default function PolicyOutput(props) {
     console.log('test')
     // console.log(window.location.href + "&embed")
     const imageOptions = { height: 650 }
-    const imageBlob = (await htmlToImage.toBlob(imageRef.current, imageOptions))
-    const imageUrl = window.URL.createObjectURL(imageBlob)
-    console.log("image url", imageUrl, imageBlob)
-    setImageBlob(imageUrl)
+    const imagePng = (await htmlToImage.toPng(imageRef.current, imageOptions))
+    // const imageUrl = window.URL.createObjectURL(imageBlob)
+    // console.log("image url",  imagePng)
+    setImagePng(imagePng)
   }
   
   
@@ -450,7 +451,7 @@ export default function PolicyOutput(props) {
 
   return (
     <>
-      <img height={300} src={imageBlob} ></img>
+      <img height={300} src={imagePng} ></img>
       <button onClick={handleScreenshot}>Test</button>
       <ResultsPanel ref={imageRef}>{pane}</ResultsPanel>;
       {/* <ResultsPanel>{pane}</ResultsPanel>; */}
