@@ -166,7 +166,7 @@ function BaselineAndReformTogetherChart(props) {
       key="reform"
       layout={{
         xaxis: {
-          title: "Employment income",
+          title: "Household head employment income",
           ...getPlotlyAxisFormat(metadata.variables.employment_income.unit, 0),
           tickformat: ",.0f",
           uirevision: metadata.variables.employment_income.unit,
@@ -260,7 +260,7 @@ function BaselineReformDeltaChart(props) {
       key="reform"
       layout={{
         xaxis: {
-          title: "Employment income",
+          title: "Household head employment income",
           ...getPlotlyAxisFormat(metadata.variables.employment_income.unit, 0),
           tickformat: ",.0f",
           uirevision: metadata.variables.employment_income.unit,

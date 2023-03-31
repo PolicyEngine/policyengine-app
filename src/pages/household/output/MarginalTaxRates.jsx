@@ -148,7 +148,7 @@ export default function MarginalTaxRates(props) {
           ]}
           layout={{
             xaxis: {
-              title: "Employment income",
+              title: "Household head employment income",
               ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
               tickformat: ",.0f",
             },
@@ -292,7 +292,7 @@ export default function MarginalTaxRates(props) {
           data={data}
           layout={{
             xaxis: {
-              title: "Employment income",
+              title: "Household head employment income",
               ...getPlotlyAxisFormat(
                 metadata.variables.employment_income.unit,
                 0
