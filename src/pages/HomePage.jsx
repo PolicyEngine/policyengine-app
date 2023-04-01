@@ -8,6 +8,7 @@ import householdBaseline from "../images/home/householdBaseline.png";
 import policyImpact from "../images/home/policyImpact.png";
 import policyScore from "../images/home/policyScore.png";
 import ukDocs from "../images/home/uk_docs.png";
+import usDocs from "../images/home/us_docs.png";
 import gtag from "../api/analytics";
 import { Carousel } from "antd";
 
@@ -304,20 +305,24 @@ function CountryPackages(props) {
     right={
       <>
         <h1 style={{ paddingBottom: 30 }}>
-          Run your own simulations with our country packages
+          Advanced analysis with our Python packages
         </h1>
         <h5>
-          PolicyEngine&apos;s impacts are powered by free and open source Python tax-benefit models. Conduct more complex reforms and simulations on your own machine.
+          Dive deeper into policy impact analysis using PolicyEngine&apos;s open-source Python packages. Customize your simulations and perform advanced reforms for thorough insights, all on your own computer.
         </h5>
         <div style={{paddingTop: 10}} />
         <a 
           href={`/${countryId}/docs`}
-        ><h4>Read the documentation &#8594;</h4></a>
+        ><h4>Explore the documentation &#8594;</h4></a>
       </>
     }
     left={
       <img
-        src={ukDocs}
+        src={
+          countryId === "us" ?
+            usDocs :
+            ukDocs
+        }
         style={{
           width: "100%",
           height: "100%",
