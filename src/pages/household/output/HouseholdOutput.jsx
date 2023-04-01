@@ -15,6 +15,9 @@ import {
   LinkedinFilled,
   LinkOutlined,
 } from "@ant-design/icons";
+import React from 'react';
+import {message} from 'antd';
+import style from "../../../style";
 
 export default function HouseholdOutput(props) {
   const [searchParams] = useSearchParams();
@@ -31,43 +34,6 @@ export default function HouseholdOutput(props) {
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
   } = props;
-  const url = encodeURIComponent(window.location.href);
-  const link = (
-    <a onClick={() => {
-      navigator.clipboard.writeText(window.location.href);
-      alert('Link copied to clipboard!');
-    }}>
-      <LinkOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
-  {link}  
-  const twitter = (
-  <a href={`https://twitter.com/intent/tweet?url=${url}`} target="_blank" rel="noreferrer">
-    <TwitterOutlined style={{ fontSize: 23 }} />
-  </a>
-);
-  const facebook = (
-    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
-      <FacebookFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const linkedIn = (
-    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
-      <LinkedinFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const commonStyle = {
-    border: "1px solid #ccc", 
-    borderRadius: "0px", 
-    padding: "6px", 
-    marginRight: "-1px",
-  };
-  const shareItems = [link, twitter, facebook, linkedIn];
-  const shareDivs = shareItems.map((item, index) => (
-    <div key={index} style={commonStyle}>
-      {item}
-    </div>
-  ));
   const mobile = useMobile();
 
   let reformLabel = policy.reform.label || `Policy #${reformPolicyId}`;
@@ -155,19 +121,61 @@ export default function HouseholdOutput(props) {
     );
   }
 
+  const url = encodeURIComponent(window.location.href);
+  const link = (
+    <a onClick={() => {
+      navigator.clipboard.writeText(window.location.href);
+      message.info('Link copied to clipboard');
+    }}>
+      <LinkOutlined style={{ fontSize: 23 }} />
+    </a>
+  );
+  const encodedPolicyLabel = encodeURIComponent(policyLabel);
+  const twitter = (
+    <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+      <TwitterOutlined style={{ fontSize: 23 }} />
+    </a>
+  );
+  const facebook = (
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
+      <FacebookFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const linkedIn = (
+    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
+      <LinkedinFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const commonStyle = {
+    border: "1px solid #ccc", 
+    borderRadius: "0px", 
+    padding: "6px", 
+    marginRight: "-1px",
+  };
+  const shareItems = [link, twitter, facebook, linkedIn];
+  const shareDivs = shareItems.map((item, index) => (
+    <div key={index} style={commonStyle}>
+      {item}
+    </div>
+  ));
+
   pane = (
     <>
-      <h6>Share this result:</h6>
-      <div 
-        style={{ 
-          position: "relative", 
-          top: "-45px", 
-          left: "130px",
-          display: "flex", 
-          flexDirection: "row",
-        }}>
-        {shareDivs}
+      <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
+      justifyContent: "center", alignItems: "center", paddingBottom: 20,
+     }}>
+      <h6 style={{
+        margin: 0,
+        paddingRight: 20,
+      }}><b>Share this result</b></h6>
+     <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: "row",
+      }}>
+      {shareDivs}
       </div>
+    </div>
       {pane}
       <BottomCarousel
         selected={focus}
