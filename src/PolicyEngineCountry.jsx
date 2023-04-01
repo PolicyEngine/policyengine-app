@@ -7,6 +7,7 @@ import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/Error";
 import Footer from "./layout/Footer";
 import FOF from "./pages/FOF";
+import CountryPackageDocs from "./pages/CountryPackageDocs";
 
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -192,6 +193,7 @@ export default function PolicyEngineCountry(props) {
       />
       <Route path="/cec" element={<CEC />} />
       <Route path="/citizens-economic-council" element={<CEC />} />
+      <Route path="/docs" element={<CountryPackageDocs countryId={countryId} />} />
       <Route path="/*" element={<FOF />} />
     </Routes>
   );
