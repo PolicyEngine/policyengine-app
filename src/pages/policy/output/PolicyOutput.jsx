@@ -24,7 +24,16 @@ import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
+import {
+  TwitterOutlined,
+  FacebookFilled,
+  LinkedinFilled,
+  LinkOutlined,
+} from "@ant-design/icons";
+import React from 'react';
+import {message} from 'antd';
 import Analysis from "./Analysis";
+import style from "../../../style";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -355,6 +364,43 @@ export default function PolicyOutput(props) {
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 
+  const url = encodeURIComponent(window.location.href);
+  const link = (
+    <a onClick={() => {
+      navigator.clipboard.writeText(window.location.href);
+      message.info('Link copied to clipboard');
+    }}>
+      <LinkOutlined style={{ fontSize: 23 }} />
+    </a>
+  );
+  const encodedPolicyLabel = encodeURIComponent(policyLabel);
+  const twitter = (
+    <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+      <TwitterOutlined style={{ fontSize: 23 }} />
+    </a>
+  );
+  const facebook = (
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
+      <FacebookFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const linkedIn = (
+    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
+      <LinkedinFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const commonStyle = {
+    border: "1px solid #ccc", 
+    borderRadius: "0px", 
+    padding: "6px", 
+    marginRight: "-1px",
+  };
+  const shareItems = [link, twitter, facebook, linkedIn];
+  const shareDivs = shareItems.map((item, index) => (
+    <div key={index} style={commonStyle}>
+      {item}
+    </div>
+  ));
   const embed = new URLSearchParams(window.location.search).get("embed");
   const bottomElements =
     mobile & !embed ? null : metadata.countryId === "us" ? (
@@ -412,6 +458,21 @@ export default function PolicyOutput(props) {
 
   pane = (
     <>
+      <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
+      justifyContent: "center", alignItems: "center", paddingBottom: 20,
+     }}>
+      <h6 style={{
+        margin: 0,
+        paddingRight: 20,
+      }}><b>Share this result</b></h6>
+     <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: "row",
+      }}>
+      {shareDivs}
+      </div>
+    </div>
       <PolicyImpactPopup
         metadata={metadata}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
