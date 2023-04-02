@@ -41,6 +41,7 @@ import MCA from "../images/logos/orgs/mca.jpg";
 import UBICenter from "../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
 import PRCarousel from "./home/GitHubActivity";
+import NaturalLanguageImpact from "./NaturalLanguageImpact";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -63,9 +64,10 @@ function HouseholdPolicyOptions(props) {
       <motion.div
         style={{
           width: boxWidth,
-          height: boxWidth,
+          height: boxWidth * 0.8,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
+          paddingBottom: 0,
           cursor: "pointer",
           marginRight: mobile ? 0 : 20,
           marginBottom: mobile ? 20 : 0,
@@ -88,7 +90,7 @@ function HouseholdPolicyOptions(props) {
       <motion.div
         style={{
           width: boxWidth,
-          height: boxWidth,
+          height: boxWidth * 0.8,
           backgroundColor: style.colors.LIGHT_GRAY,
           padding: 20,
           cursor: "pointer",
@@ -192,7 +194,7 @@ export default function HomePage(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: !mobile && "center",
-          marginBottom: 50,
+          marginBottom: 20,
         }}
       >
         <div
@@ -208,6 +210,7 @@ export default function HomePage(props) {
         </div>
         <HouseholdPolicyOptions countryId={countryId} />
       </div>
+      <NaturalLanguageImpact countryId={countryId} />
       <BlogPostHolder countryId={countryId} />
       <Collaborations countryId={countryId} />
       <WidePanel
