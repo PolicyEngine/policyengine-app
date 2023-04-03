@@ -12,7 +12,7 @@ function APIResultCard(props) {
     // rounded edges, display all metadata and distinguish between parameters and variables
 
     return <Card bordered={true} style={{ 
-        width: 250, 
+        width: 400, 
         backgroundColor: style.colors.WHITE,
         margin: 15,
     }}
@@ -38,6 +38,7 @@ function APIParameterCard(props) {
         <p>{metadata.description}</p>
         <p>Period: {metadata.period || "None"}</p>
         <p>Unit: {metadata.unit}</p>
+        <p>Python name: {metadata.parameter}</p>
     </>
 }
 
@@ -53,6 +54,7 @@ function APIVariableCard(props) {
         <p>{metadata.description}</p>
         <p>Entity: {metadata.entity}</p>
         <p>Period: {metadata.period || "none"}</p>
+        <p>Python name: {metadata.name}</p>
         <p>Unit: {metadata.unit}</p>
     </>
 }
