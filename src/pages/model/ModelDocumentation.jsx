@@ -73,7 +73,7 @@ export default function ModelDocumentation(props) {
             if (query === "") {
                 return true;
             }
-            return parameter.label.toLowerCase().includes(query.toLowerCase())
+            return (parameter.label || "").replaceAll(" ", "").toLowerCase().includes(query.replaceAll(" ", "").toLowerCase())
         })
         .slice(0, 50)
         .map((parameter) => {
@@ -85,7 +85,7 @@ export default function ModelDocumentation(props) {
             if (query === "") {
                 return true;
             }
-            return variable.label.replaceAll(" ", "").toLowerCase().includes(query.replaceAll(" ", "").toLowerCase())
+            return (variable.label || "").replaceAll(" ", "").toLowerCase().includes(query.replaceAll(" ", "").toLowerCase())
         })
         .slice(0, 50)
         .map((variable) => {
