@@ -685,5 +685,34 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "The District Child Tax Credit proposal",
+    "description": "Analysis of DC Councilmember Zachary Parker's new legislation.",
+    "date": "2023-04-02 09:00:00",
+    "tags": [
+      "us",
+      "us-dc",
+      "proposals"
+    ],
+    "filename": "2023-04-02-district-child-tax-credit.md",
+    "image": "district-child-tax-credit.png",
+    "authors": [
+      "max-ghenis"
+    ]
+  },
+  {
+    "title": "Revolutionizing policy analysis with AI",
+    "description": "Discover PolicyEngine’s new GPT-4 integration and audience modes.",
+    "date": "2023-04-03 16:00:00",
+    "tags": [
+      "global"
+    ],
+    "filename": "2023-04-03-gpt-analysis.md",
+    "image": "ai-analysis.png",
+    "authors": [
+      "nikhil-woodruff",
+      "chat-gpt"
+    ]
   }
 ]
