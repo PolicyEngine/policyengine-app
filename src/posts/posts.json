@@ -670,5 +670,20 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Announcing the addition of Kansas income tax to PolicyEngine",
+    "description": "We’ve expanded our tax calculator and customizable reform simulator to the Sunflower State.",
+    "date": "2023-04-03 09:00:00",
+    "tags": [
+      "us",
+      "us-ks",
+      "tax"
+    ],
+    "filename": "2023-04-03-kansas-income-tax.md",
+    "image": "kansas-income-tax.png",
+    "authors": [
+      "max-ghenis"
+    ]
   }
 ]
