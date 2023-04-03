@@ -131,11 +131,23 @@ export default function HouseholdOutput(props) {
     </a>
   );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
-  const twitter = (
-    <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
-      <TwitterOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
+  const urlParams = new URLSearchParams(window.location.search);
+  const householdId = urlParams.get('household');
+  let twitter;
+  if (reformLabel == "Current law"){
+    twitter = (
+      <a href={`https://twitter.com/intent/tweet?url=${url}&text=Household%20%23${householdId}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+        <TwitterOutlined style={{ fontSize: 23 }} />
+      </a>
+    );
+  }else{
+    twitter = (
+      <a href={`https://twitter.com/intent/tweet?url=${url}&text=Impacts%20of%20${encodedPolicyLabel}%20on%20Household%20%23${householdId}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+        <TwitterOutlined style={{ fontSize: 23 }} />
+      </a>
+    );
+  }
+  
   const facebook = (
     <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
       <FacebookFilled style={{ fontSize: 23 }} />
