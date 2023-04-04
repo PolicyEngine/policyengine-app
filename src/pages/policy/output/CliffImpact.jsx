@@ -174,6 +174,9 @@ export default function CliffImpact(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHovercard(null);
+      }}
     />
   );
 

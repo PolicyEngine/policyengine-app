@@ -9,14 +9,24 @@ export default function Footer(props) {
     `/${countryId}/about`,
     "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
     `/${countryId}/donate`,
+    "/api-status",
   ];
-  const labels = ["PolicyEngine © 2023", "About", "Contact", "Donate"];
+  const labels = [
+    "PolicyEngine © 2023",
+    "About",
+    "Contact",
+    "Donate",
+    "Status",
+  ];
   if (mobile) {
-    return null;
+    footer = <div>
+      <SpacedLinks links={links.slice(0, 3)} labels={labels.slice(0, 3)} />
+      <SpacedLinks links={links.slice(3)} labels={labels.slice(3)} />
+    </div>
   } else {
     footer = <SpacedLinks links={links} labels={labels} />;
   }
-  return <div style={{ paddingBottom: mobile ? 5 : 20 }}>{footer}</div>;
+  return <div style={{ paddingBottom: 20 }}>{footer}</div>;
 }
 
 function SpacedLinks(props) {

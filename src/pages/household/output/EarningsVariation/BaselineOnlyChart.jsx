@@ -120,25 +120,43 @@ export default function BaselineOnlyChart(props) {
           width: "100%",
         }}
         onHover={(data) => {
-          if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-            const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
-            const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
-            const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`
+          if (
+            data.points[0].x !== undefined &&
+            data.points[0].y !== undefined
+          ) {
+            const variableLabelAmount = convertToCurrencyString(
+              metadata.currency,
+              data.points[0].y
+            );
+            const employmentIncome = convertToCurrencyString(
+              metadata.currency,
+              data.points[0].x
+            );
+            const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
             setHoverCard({
               title: data.points[0].data.name,
               body: message,
             });
           } else {
-            setHoverCard({ 
+            setHoverCard({
               title: data.points[0].data.name,
               body: `Your net income falls after earning 
-                ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
-                ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))}.`
-            })
+                ${convertToCurrencyString(
+                  metadata.currency,
+                  Math.min(...data.points[0].data.x)
+                )} until earning 
+                ${convertToCurrencyString(
+                  metadata.currency,
+                  Math.max(...data.points[0].data.x)
+                )}.`,
+            });
           }
+        }}
+        onUnhover={() => {
+          setHoverCard(null);
         }}
       />
     </FadeIn>
   );
-  return <HoverCard content={hovercard}>{plot}</HoverCard>
+  return <HoverCard content={hovercard}>{plot}</HoverCard>;
 }

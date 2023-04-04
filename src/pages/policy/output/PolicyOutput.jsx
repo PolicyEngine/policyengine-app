@@ -24,7 +24,16 @@ import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
-import Prompt from "./Prompt";
+import {
+  TwitterOutlined,
+  FacebookFilled,
+  LinkedinFilled,
+  LinkOutlined,
+} from "@ant-design/icons";
+import React from 'react';
+import {message} from 'antd';
+import Analysis from "./Analysis";
+import style from "../../../style";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -234,8 +243,11 @@ export default function PolicyOutput(props) {
     policyLabel = `${baselineLabel} → ${reformLabel}`;
   }
   let pane;
+  const skipImpacts = POLICY_OUTPUT_TREE[0].children.find(
+    (item) => item.name === focus
+  ).skipImpacts;
 
-  if (!impact) {
+  if (!impact & !skipImpacts) {
     pane = <LoadingCentered message="Simulating your policy" />;
   } else if (focus === "policyOutput.netIncome") {
     pane = (
@@ -335,34 +347,132 @@ export default function PolicyOutput(props) {
     );
   } else if (focus === "policyOutput.codeReproducibility") {
     pane = <Reproducibility metadata={metadata} policy={policy} />;
-  } else if (focus === "policyOutput.prompt") {
-    pane = <Prompt impact={impact} metadata={metadata} policy={policy} region={region} timePeriod={timePeriod} policyLabel={policyLabel} />;
+  } else if (focus === "policyOutput.analysis") {
+    pane = (
+      <Analysis
+        impact={impact}
+        metadata={metadata}
+        policy={policy}
+        region={region}
+        timePeriod={timePeriod}
+        policyLabel={policyLabel}
+      />
+    );
   }
 
   if (focus === "policyOutput.cliffImpact") {
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 
-  const bottomElements = mobile ? null : metadata.countryId === "us" ? (
-    <p>
-      PolicyEngine US v{selectedVersion} estimates reform impacts using a static
-      microsimulation over the 2021 Current Population Survey March Supplement.{" "}
-      <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">
-        Read our caveats and data enhancement plan.
-      </a>
-    </p>
-  ) : (
-    <p>
-      PolicyEngine UK v{selectedVersion} estimates reform impacts using a static
-      microsimulation over{" "}
-      <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
-        an enhanced version of the 2019 Family Resources Survey
-      </a>
-    </p>
+  const url = encodeURIComponent(window.location.href);
+  const link = (
+    <a onClick={() => {
+      navigator.clipboard.writeText(window.location.href);
+      message.info('Link copied to clipboard');
+    }}>
+      <LinkOutlined style={{ fontSize: 23 }} />
+    </a>
   );
+  const encodedPolicyLabel = encodeURIComponent(policyLabel);
+  const twitter = (
+    <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+      <TwitterOutlined style={{ fontSize: 23 }} />
+    </a>
+  );
+  const facebook = (
+    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
+      <FacebookFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const linkedIn = (
+    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
+      <LinkedinFilled style={{ fontSize: 23 }} />
+    </a>
+  );
+  const commonStyle = {
+    border: "1px solid #ccc", 
+    borderRadius: "0px", 
+    padding: "6px", 
+    marginRight: "-1px",
+  };
+  const shareItems = [link, twitter, facebook, linkedIn];
+  const shareDivs = shareItems.map((item, index) => (
+    <div key={index} style={commonStyle}>
+      {item}
+    </div>
+  ));
+  const embed = new URLSearchParams(window.location.search).get("embed");
+  const bottomElements =
+    mobile & !embed ? null : metadata.countryId === "us" ? (
+      <p>
+        PolicyEngine US v{selectedVersion} estimates reform impacts using a
+        static microsimulation over the 2021 Current Population Survey March
+        Supplement.{" "}
+        <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">
+          Read our caveats and data enhancement plan.
+        </a>
+      </p>
+    ) : (
+      <p>
+        PolicyEngine UK v{selectedVersion} estimates reform impacts using a
+        static microsimulation over{" "}
+        <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
+          an enhanced version of the 2019 Family Resources Survey
+        </a>
+      </p>
+    );
+
+  // If ?embed=True, just show `pane`, full screen.
+
+  if (embed) {
+    return (
+      <>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            zIndex: 1001,
+            padding: 50,
+            paddingBottom: 100,
+          }}
+        >
+          {pane}
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh",
+            zIndex: 1000,
+            backgroundColor: "rgba(255, 255, 255, 1)",
+          }}
+        />
+      </>
+    );
+  }
 
   pane = (
     <>
+      <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
+      justifyContent: "center", alignItems: "center", paddingBottom: 20,
+     }}>
+      <h6 style={{
+        margin: 0,
+        paddingRight: 20,
+      }}><b>Share this result</b></h6>
+     <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: "row",
+      }}>
+      {shareDivs}
+      </div>
+    </div>
       <PolicyImpactPopup
         metadata={metadata}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}

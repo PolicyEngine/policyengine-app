@@ -27,7 +27,7 @@ export default function PovertyImpactByGender(props) {
   const povertyLabels = ["Male", "Female", "All"];
   const labelToKey = {
     Male: "male",
-    "Female": "female",
+    Female: "female",
     All: "all",
   };
   const [hovercard, setHoverCard] = useState(null);
@@ -86,14 +86,18 @@ export default function PovertyImpactByGender(props) {
       onHover={(data) => {
         const group = data.points[0].x;
         const change = data.points[0].y;
-        const baseline = group == "All" ?
-          impact.poverty.poverty[labelToKey[group]].baseline :
-          impact.poverty_by_gender.poverty[labelToKey[group]].baseline;
-        const reform = group == "All" ?
-          impact.poverty.poverty[labelToKey[group]].reform :
-          impact.poverty_by_gender.poverty[labelToKey[group]].reform;
+        const baseline =
+          group == "All"
+            ? impact.poverty.poverty[labelToKey[group]].baseline
+            : impact.poverty_by_gender.poverty[labelToKey[group]].baseline;
+        const reform =
+          group == "All"
+            ? impact.poverty.poverty[labelToKey[group]].reform
+            : impact.poverty_by_gender.poverty[labelToKey[group]].reform;
         const message = `The percentage of ${
-          group === "All" ? "people" : {"male": "men", "female": "women"}[group.toLowerCase()]
+          group === "All"
+            ? "people"
+            : { male: "men", female: "women" }[group.toLowerCase()]
         } in poverty ${
           change < -0.001
             ? `would fall ${percent(-change)} from ${percent(
@@ -109,6 +113,9 @@ export default function PovertyImpactByGender(props) {
           title: group,
           body: message,
         });
+      }}
+      onUnhover={() => {
+        setHoverCard(null);
       }}
     />
   );
@@ -135,7 +142,8 @@ export default function PovertyImpactByGender(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows the relative change in the poverty rate for each sex.
+        The chart above shows the relative change in the poverty rate for each
+        sex.
       </p>
     </>
   );

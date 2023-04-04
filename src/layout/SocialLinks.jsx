@@ -42,7 +42,7 @@ export default function SocialLinks(props) {
         <InstagramOutlined style={iconStyle} />
       </a>
       <a href="https://www.youtube.com/@policyengine" style={aStyle}>
-        <YoutubeOutlined style={iconStyle}/>
+        <YoutubeOutlined style={iconStyle} />
       </a>
       <a href="https://github.com/PolicyEngine" style={aStyle}>
         <GithubOutlined style={iconStyle} />

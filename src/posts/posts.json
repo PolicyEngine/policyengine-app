@@ -576,7 +576,7 @@
     ]
   },
   {
-    "title": "Automate Policy Analysis with PolicyEngine’s New ChatGPT Integration",
+    "title": "Automate policy analysis with PolicyEngine’s new ChatGPT integration",
     "description": "Score an economic impact in a few clicks. Write a report in one more.",
     "date": "2023-03-17 11:00:00",
     "tags": [
@@ -584,6 +584,117 @@
     ],
     "filename": "2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration.md",
     "image": "automate-policy-analysis-with-policy-engines-new-chatgpt-integration.png",
+    "authors": [
+      "nikhil-woodruff",
+      "chat-gpt"
+    ]
+  },
+  {
+    "title": "Oregon's nonrefundable exemption credit: a closer look",
+    "description": "PolicyEngine computes the program's impact on Oregon and individual households.",
+    "date": "2023-03-15",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-15-oregons-nonrefundable-exemption-credit.md",
+    "image": "oregons-nonrefundable-exemption-credit.jpeg",
+    "authors": [
+      "kevin-foster"
+    ]
+  },
+  {
+    "title": "How much should James Medlock donate to GiveDirectly?",
+    "description": "We built a mini-app with the policyengine-us Python package to crunch the implications of a Twitter bet.",
+    "date": "2023-03-23 01:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-23-medlock-donation-calculator.md",
+    "image": "medlock-donation-calculator.png",
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
+  },
+  {
+    "title": "FiscalSim and PolicyEngine: Emphasizing collaboration and open-source acknowledgment",
+    "description": "The Center for Growth and Opportunity launches FiscalSim, a US policy-computing web app drawing heavily from PolicyEngine’s work.",
+    "date": "2023-03-24 01:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-24-fiscalsim.md",
+    "image": "fiscalsim.png",
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
+  },
+  {
+    "title": "Restoring the American Rescue Plan's Earned Income Tax Credit Expansion",
+    "description": "We review how the expansion works and model its impact with PolicyEngine US.",
+    "date": "2023-03-27 01:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "2023-03-27-restoring-arpa-eitc.md",
+    "image": "eitc.webp",
+    "authors": [
+      "arthur-wright"
+    ]
+  },
+  {
+    "title": "Breaking down policy impacts by wealth decile",
+    "description": "Income isn’t everything.",
+    "date": "2023-03-28 09:00:00",
+    "tags": [
+      "uk"
+    ],
+    "filename": "2023-03-28-breaking-down-policy-impacts-by-wealth-decile.md",
+    "image": "breaking-down-policy-impacts-by-wealth-decile.png",
+    "authors": [
+      "nikhil-woodruff"
+    ]
+  },
+  {
+    "title": "The District Child Tax Credit proposal",
+    "description": "Analysis of DC Councilmember Zachary Parker's new legislation.",
+    "date": "2023-04-02 09:00:00",
+    "tags": [
+      "us",
+      "us-dc",
+      "proposals"
+    ],
+    "filename": "2023-04-02-district-child-tax-credit.md",
+    "image": "district-child-tax-credit.png",
+    "authors": [
+      "max-ghenis"
+    ]
+  },
+  {
+    "title": "Announcing the addition of Kansas income tax to PolicyEngine",
+    "description": "We’ve expanded our tax calculator and customizable reform simulator to the Sunflower State.",
+    "date": "2023-04-03 09:00:00",
+    "tags": [
+      "us",
+      "us-ks",
+      "tax"
+    ],
+    "filename": "2023-04-03-kansas-income-tax.md",
+    "image": "kansas-income-tax.png",
+    "authors": [
+      "max-ghenis"
+    ]
+  },
+  {
+    "title": "Revolutionizing policy analysis with AI",
+    "description": "Discover PolicyEngine’s new GPT-4 integration and audience modes.",
+    "date": "2023-04-03 16:00:00",
+    "tags": [
+      "global"
+    ],
+    "filename": "2023-04-03-gpt-analysis.md",
+    "image": "ai-analysis.png",
     "authors": [
       "nikhil-woodruff",
       "chat-gpt"

@@ -60,11 +60,12 @@ const getPolicyOutputTree = (countryId) => {
         {
           name: "policyOutput.codeReproducibility",
           label: "Reproduce in Python",
+          skipImpacts: true,
         },
         {
-          name: "policyOutput.prompt",
-          label: "ChatGPT prompt",
-        }
+          name: "policyOutput.analysis",
+          label: "Analysis",
+        },
       ].filter(Boolean),
     },
   ];

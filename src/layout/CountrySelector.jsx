@@ -1,7 +1,7 @@
 import { DownOutlined } from "@ant-design/icons";
 import { Dropdown } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import UKFlag from "../images/logos/countries/uk.webp";
+import UKFlag from "../images/logos/countries/uk.png";
 import USFlag from "../images/logos/countries/us.png";
 import CAFlag from "../images/logos/countries/ca.png";
 import NGFlag from "../images/logos/countries/ng.webp";
@@ -17,7 +17,7 @@ export default function CountrySelector(props) {
       src={UKFlag}
       alt="UK flag"
       style={{
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
@@ -29,7 +29,7 @@ export default function CountrySelector(props) {
       src={USFlag}
       alt="US flag"
       style={{
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
@@ -42,7 +42,7 @@ export default function CountrySelector(props) {
       alt="CA flag"
       style={{
         objectFit: "cover",
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
@@ -56,7 +56,7 @@ export default function CountrySelector(props) {
       alt="NG flag"
       style={{
         objectFit: "cover",
-        width: 20,
+        width: 35,
         height: 20,
         marginRight: 10,
         backgroundColor: "transparent",
@@ -88,9 +88,9 @@ export default function CountrySelector(props) {
     { label: USLogo, onClick: () => navigateToCountry("us") },
     { label: CALogo, onClick: () => navigateToCountry("ca") },
     { label: NGLogo, onClick: () => navigateToCountry("ng") },
-  ]
- 
-  const items = itemsList.filter((item) => item.label !== countryLabel)
+  ];
+
+  const items = itemsList.filter((item) => item.label !== countryLabel);
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>

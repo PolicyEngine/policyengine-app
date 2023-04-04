@@ -84,6 +84,9 @@ export default function RelativeImpactByWealthDecile(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 

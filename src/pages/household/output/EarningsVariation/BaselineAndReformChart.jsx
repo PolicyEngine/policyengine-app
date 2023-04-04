@@ -1,5 +1,5 @@
-import { Switch } from "antd";
 import { useState } from "react";
+import { Radio } from "antd";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
@@ -22,17 +22,31 @@ export default function BaselineAndReformChart(props) {
     metadata,
     variable,
     variableLabel,
-    policy
+    policy,
   } = props;
   const [showDelta, setShowDelta] = useState(false);
+  const options = [
+    {
+      label: "Baseline and reform",
+      value: false,
+    },
+    {
+      label: "Difference",
+      value: true,
+    },
+  ];
+  const onDelta = ({ target: { value } }) => {
+    console.log("checked", value);
+    setShowDelta(value);
+  };
   const toggle = (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <span style={{ marginRight: 10 }}>Show baseline and reform</span>
-      <Switch
-        checked={showDelta}
-        onChange={(checked) => setShowDelta(checked)}
+      <Radio.Group
+        options={options}
+        onChange={onDelta}
+        value={showDelta}
+        buttonStyle="solid"
       />
-      <span style={{ marginLeft: 10 }}>Show difference</span>
     </div>
   );
   const earningsArray = getValueFromHousehold(
@@ -137,7 +151,7 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo:"none",
+      hoverinfo: "none",
     },
     {
       x: earningsArray,
@@ -147,7 +161,7 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo:"none",
+      hoverinfo: "none",
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -157,7 +171,7 @@ function BaselineAndReformTogetherChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo:"none",
+      hoverinfo: "none",
     },
   ];
   const plotObject = (
@@ -196,27 +210,50 @@ function BaselineAndReformTogetherChart(props) {
       }}
       onHover={(data) => {
         if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-          const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
-          const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
-          const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`
+          const variableLabelAmount = convertToCurrencyString(
+            metadata.currency,
+            data.points[0].y
+          );
+          const employmentIncome = convertToCurrencyString(
+            metadata.currency,
+            data.points[0].x
+          );
+          const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`;
           setHoverCard({
             title: data.points[0].data.name,
             body: message,
           });
         } else {
-          setHoverCard({ 
+          setHoverCard({
             title: data.points[0].data.name,
             body: `Your net income falls after earning 
-              ${convertToCurrencyString(metadata.currency, Math.min(...data.points[0].data.x))} until earning 
-              ${convertToCurrencyString(metadata.currency, Math.max(...data.points[0].data.x))} in the 
-              ${data.points[0].data.name.includes('reform') ? 'reform' : 'baseline'} scenario.`
-          })
+              ${convertToCurrencyString(
+                metadata.currency,
+                Math.min(...data.points[0].data.x)
+              )} until earning 
+              ${convertToCurrencyString(
+                metadata.currency,
+                Math.max(...data.points[0].data.x)
+              )} in the 
+              ${
+                data.points[0].data.name.includes("reform")
+                  ? "reform"
+                  : "baseline"
+              } scenario.`,
+          });
         }
+      }}
+      onUnhover={() => {
+        setHoverCard(null);
       }}
     />
   );
 
-  return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
+  return (
+    <HoverCard content={hovercard}>
+      <FadeIn>{plotObject}</FadeIn>
+    </HoverCard>
+  );
 }
 
 function BaselineReformDeltaChart(props) {
@@ -241,7 +278,7 @@ function BaselineReformDeltaChart(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo:"none",
+      hoverinfo: "none",
     },
     {
       x: [currentEarnings, currentEarnings],
@@ -251,7 +288,7 @@ function BaselineReformDeltaChart(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo:"none",
+      hoverinfo: "none",
     },
   ];
   const plotObject = (
@@ -291,20 +328,34 @@ function BaselineReformDeltaChart(props) {
       }}
       style={{
         width: "100%",
+        marginTop: "3rem",
       }}
       onHover={(data) => {
         if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-          const variableLabelAmount = convertToCurrencyString(metadata.currency, data.points[0].y)
-          const employmentIncome = convertToCurrencyString(metadata.currency, data.points[0].x)
-          const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`
+          const variableLabelAmount = convertToCurrencyString(
+            metadata.currency,
+            data.points[0].y
+          );
+          const employmentIncome = convertToCurrencyString(
+            metadata.currency,
+            data.points[0].x
+          );
+          const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`;
           setHoverCard({
             title: data.points[0].data.name,
             body: message,
           });
         }
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 
-  return <HoverCard content={hovercard}><FadeIn>{plotObject}</FadeIn></HoverCard>;
+  return (
+    <HoverCard content={hovercard}>
+      <FadeIn>{plotObject}</FadeIn>
+    </HoverCard>
+  );
 }

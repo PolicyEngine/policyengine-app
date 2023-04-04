@@ -1,5 +1,7 @@
 import style from "../../../../style";
 
+const ROUNDING_FACTOR = 50000;
+
 export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
   // Return a list of [(start, end), ...] where the net income does not increase
   if (!netIncomeArray || !earningsArray) return [];
@@ -22,10 +24,14 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
     }
   }
 
+  const maxNetIncome = Math.max(...netIncomeArray);
+  const maxCliffShadingHeight =
+    Math.ceil(maxNetIncome / ROUNDING_FACTOR) * ROUNDING_FACTOR;
+
   return cliffs.map((points, i) => {
     return {
       x: [points[0], points[0], points[1], points[1], points[0]],
-      y: [0, 200_000, 200_000, 0, 0],
+      y: [0, maxCliffShadingHeight, maxCliffShadingHeight, 0, 0],
       fill: "toself",
       mode: "lines",
       fillcolor: style.colors.DARK_GRAY,
@@ -38,7 +44,7 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
       line: {
         color: style.colors.DARK_GRAY,
       },
-      hoverinfo: "none"
+      hoverinfo: "none",
     };
   });
 }

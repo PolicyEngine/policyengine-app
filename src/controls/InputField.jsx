@@ -28,7 +28,7 @@ export default function InputField(props) {
         marginTop: mobile ? 0 : -10,
       }}
       type={type || "tel"}
-      inputmode={inputmode || "decimal"}
+      inputMode={inputmode || "decimal"}
       whileFocus={{ scale: 1.05 }}
       onBlur={onInput}
       onKeyUp={(e) => {
@@ -63,10 +63,10 @@ export default function InputField(props) {
               e.target.value.length - 1
             );
           }
-        }else{
-          if (value !== '' && !re.test(value)) {
-            const val = value.replace(/[^\d.]+/g, '');
-            e.target.value = val.includes('.') ? parseFloat(val) : val;
+        } else if (pattern === "number") {
+          if (value !== "" && !re.test(value)) {
+            const val = value.replace(/[^\d.]+/g, "");
+            e.target.value = val.includes(".") ? parseFloat(val) : val;
           }
         }
       }}

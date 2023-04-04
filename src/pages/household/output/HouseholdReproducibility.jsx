@@ -24,7 +24,14 @@ function PythonCodeBlock({ lines }) {
     return numIndents;
   });
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        maxHeight: "50vh",
+        overflowY: "scroll",
+      }}
+    >
       <div
         style={{
           backgroundColor: style.colors.DARK_GRAY,
@@ -37,6 +44,20 @@ function PythonCodeBlock({ lines }) {
         {lines.map((line, i) => {
           if (line === "") {
             return <div key={i} style={{ paddingTop: 15 }} />;
+          } else if (line.includes("situation = {")) {
+            return (
+              <pre
+                key={i}
+                style={{
+                  color: style.colors.WHITE,
+                  fontFamily: "monospace",
+                  margin: 0,
+                  paddingTop: 5,
+                }}
+              >
+                {line}
+              </pre>
+            );
           } else {
             return (
               <p
@@ -104,7 +125,7 @@ export default function HouseholdReproducibility(props) {
     "situation = " + householdJson,
     "",
     "simulation = Simulation(",
-    policy.reform.data ? "    reform=reform," : "",
+    Object.keys(policy.reform.data).length ? "    reform=reform," : "",
     "    situation=situation,",
     ")",
     "",

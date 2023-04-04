@@ -88,6 +88,9 @@ export default function AverageImpactByDecile(props) {
           body: message,
         });
       }}
+      onUnhover={() => {
+        setHoverCard(null);
+      }}
     />
   );
 
