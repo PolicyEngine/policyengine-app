@@ -297,7 +297,7 @@ export default function MarginalTaxRates(props) {
               tickformat: ",.0f",
             },
             yaxis: {
-              title: (showDelta ? "Change in " : "") + "Marginal Tax rate",
+              title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
               ...getPlotlyAxisFormat(
                 metadata.variables.marginal_tax_rate.unit,
                 0
