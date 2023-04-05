@@ -84,7 +84,7 @@ export default function BaselineOnlyChart(props) {
         ]}
         layout={{
           xaxis: {
-            title: "Employment income",
+            title: "Household head employment income",
             ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
             tickformat: ",.0f",
             uirevision: metadata.variables.employment_income.unit,
