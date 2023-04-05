@@ -6,7 +6,7 @@
     "tags": [
       "global"
     ],
-    "filename": "2022-12-30-policyengine-2022-year-in-review.md",
+    "filename": "policyengine-2022-year-in-review.md",
     "image": "policyengine-2022-year-in-review.png",
     "authors": [
       "max-ghenis"
@@ -19,7 +19,7 @@
     "tags": [
       "uk"
     ],
-    "filename": "2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate.md",
+    "filename": "how-machine-learning-tools-make-policyengine-more-accurate.md",
     "image": "how-machine-learning-tools-make-policyengine-more-accurate.png",
     "authors": [
       "nikhil-woodruff"
@@ -32,7 +32,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2022-12-28-enhancing-the-current-population-survey-for-policy-analysis.md",
+    "filename": "enhancing-the-current-population-survey-for-policy-analysis.md",
     "image": "enhancing-the-current-population-survey-for-policy-analysis.png",
     "authors": [
       "max-ghenis"
@@ -45,7 +45,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2022-11-29-charitable-contributions.md",
+    "filename": "charitable-contributions.md",
     "image": "charitable-contributions.png",
     "authors": [
       "max-ghenis"
@@ -58,7 +58,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2022-11-22-maryland-standard-deduction.md",
+    "filename": "maryland-standard-deduction.md",
     "image": "maryland-standard-deduction.png",
     "authors": [
       "kevin-foster"
@@ -71,7 +71,7 @@
     "tags": [
       "global"
     ],
-    "filename": "2022-11-10-from-openfisca-to-policyengine.md",
+    "filename": "from-openfisca-to-policyengine.md",
     "image": "from-openfisca-to-policyengine.png",
     "authors": [
       "nikhil-woodruff"
@@ -84,7 +84,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2022-11-04-oregons-nonrefundable-exemption-credit.md",
+    "filename": "oregons-nonrefundable-exemption-credit.md",
     "image": "oregons-nonrefundable-exemption-credit.jpeg",
     "authors": [
       "kevin-foster"
@@ -462,7 +462,7 @@
     "tags": [
       "uk"
     ],
-    "filename": "2023-02-09-reform-uks-emergency-recovery-plan.md",
+    "filename": "reform-uks-emergency-recovery-plan.md",
     "image": "reform-uks-emergency-recovery-plan.png",
     "authors": [
       "nikhil-woodruff"
@@ -475,7 +475,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-02-09-the-child-tax-credit-in-2023.md",
+    "filename": "the-child-tax-credit-in-2023.md",
     "image": "the-child-tax-credit-in-2023.png",
     "authors": [
       "max-ghenis"
@@ -488,7 +488,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-02-10-restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.md",
+    "filename": "restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.md",
     "image": "restoration-of-the-american-rescue-plan-acts-expanded-child-tax-credit.png",
     "authors": [
       "max-ghenis"
@@ -501,7 +501,7 @@
     "tags": [
       "global"
     ],
-    "filename": "2023-02-15-openfisca-wins-edge-of-government-innovation-award.md",
+    "filename": "openfisca-wins-edge-of-government-innovation-award.md",
     "image": "openfisca-wins-edge-of-government-innovation-award.jpeg",
     "authors": [
       "max-ghenis"
@@ -515,7 +515,7 @@
       "us",
       "massachusetts"
     ],
-    "filename": "2023-03-03-massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.md",
+    "filename": "massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.md",
     "image": "massachusetts-governor-maura-healeys-fy-2024-budget-recommendation.webp",
     "authors": [
       "max-ghenis",
@@ -529,7 +529,7 @@
     "tags": [
       "uk"
     ],
-    "filename": "2023-03-05-projected-impact-of-the-uks-extended-energy-price-guarantee.md",
+    "filename": "projected-impact-of-the-uks-extended-energy-price-guarantee.md",
     "image": "projected-impact-of-the-uks-extended-energy-price-guarantee.png",
     "authors": [
       "nikhil-woodruff",
@@ -543,7 +543,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-03-08-breaking-down-us-poverty-impacts-by-sex.md",
+    "filename": "breaking-down-us-poverty-impacts-by-sex.md",
     "image": "breaking-down-poverty-impacts-by-sex.png",
     "authors": [
       "max-ghenis"
@@ -556,7 +556,7 @@
     "tags": [
       "uk"
     ],
-    "filename": "2023-03-08-breaking-down-uk-poverty-impacts-by-sex.md",
+    "filename": "breaking-down-uk-poverty-impacts-by-sex.md",
     "image": "breaking-down-poverty-impacts-by-sex.png",
     "authors": [
       "nikhil-woodruff"
@@ -569,7 +569,7 @@
     "tags": [
       "uk"
     ],
-    "filename": "2023-03-15-analysis-of-the-spring-budget-2023.md",
+    "filename": "analysis-of-the-spring-budget-2023.md",
     "image": "analysis-of-the-spring-budget-2023.jpeg",
     "authors": [
       "nikhil-woodruff"
@@ -582,7 +582,7 @@
     "tags": [
       "global"
     ],
-    "filename": "2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration.md",
+    "filename": "automate-policy-analysis-with-policy-engines-new-chatgpt-integration.md",
     "image": "automate-policy-analysis-with-policy-engines-new-chatgpt-integration.png",
     "authors": [
       "nikhil-woodruff",
@@ -596,7 +596,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-03-15-oregons-nonrefundable-exemption-credit.md",
+    "filename": "oregons-nonrefundable-exemption-credit.md",
     "image": "oregons-nonrefundable-exemption-credit.jpeg",
     "authors": [
       "kevin-foster"
@@ -609,7 +609,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-03-23-medlock-donation-calculator.md",
+    "filename": "medlock-donation-calculator.md",
     "image": "medlock-donation-calculator.png",
     "authors": [
       "max-ghenis",
@@ -623,7 +623,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-03-24-fiscalsim.md",
+    "filename": "fiscalsim.md",
     "image": "fiscalsim.png",
     "authors": [
       "max-ghenis",
@@ -637,7 +637,7 @@
     "tags": [
       "us"
     ],
-    "filename": "2023-03-27-restoring-arpa-eitc.md",
+    "filename": "restoring-arpa-eitc.md",
     "image": "eitc.webp",
     "authors": [
       "arthur-wright"
@@ -650,7 +650,7 @@
     "tags": [
       "uk"
     ],
-    "filename": "2023-03-28-breaking-down-policy-impacts-by-wealth-decile.md",
+    "filename": "breaking-down-policy-impacts-by-wealth-decile.md",
     "image": "breaking-down-policy-impacts-by-wealth-decile.png",
     "authors": [
       "nikhil-woodruff"
@@ -665,7 +665,7 @@
       "us-dc",
       "proposals"
     ],
-    "filename": "2023-04-02-district-child-tax-credit.md",
+    "filename": "district-child-tax-credit.md",
     "image": "district-child-tax-credit.png",
     "authors": [
       "max-ghenis"
@@ -680,7 +680,7 @@
       "us-ks",
       "tax"
     ],
-    "filename": "2023-04-03-kansas-income-tax.md",
+    "filename": "kansas-income-tax.md",
     "image": "kansas-income-tax.png",
     "authors": [
       "max-ghenis"
@@ -693,7 +693,7 @@
     "tags": [
       "global"
     ],
-    "filename": "2023-04-03-gpt-analysis.md",
+    "filename": "gpt-analysis.md",
     "image": "ai-analysis.png",
     "authors": [
       "nikhil-woodruff",
