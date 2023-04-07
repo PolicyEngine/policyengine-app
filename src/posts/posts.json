@@ -699,5 +699,19 @@
       "nikhil-woodruff",
       "chat-gpt"
     ]
+  },
+  {
+    "title": "Introducing California income tax analysis on PolicyEngine",
+    "description": "Expanding our tax calculator and reform simulator capabilities to the most populous state.",
+    "date": "2023-04-07 09:00:00",
+    "tags": [
+      "us",
+      "us-ca"
+    ],
+    "filename": "california-income-tax.md",
+    "image": "california-income-tax.png",
+    "authors": [
+      "max-ghenis"
+    ]
   }
 ]
