@@ -7,6 +7,8 @@ import BlogPostHolder from "../layout/BlogPostHolder";
 import householdBaseline from "../images/home/householdBaseline.png";
 import policyImpact from "../images/home/policyImpact.png";
 import policyScore from "../images/home/policyScore.png";
+import ukDocs from "../images/home/uk_docs.png";
+import usDocs from "../images/home/us_docs.png";
 import gtag from "../api/analytics";
 import { Carousel } from "antd";
 
@@ -288,9 +290,48 @@ export default function HomePage(props) {
         }
       />
       <PRCarousel />
+      <CountryPackages countryId={countryId} />
       <APIDemo countryId={countryId} />
     </>
   );
+}
+
+function CountryPackages(props) {
+  const { countryId } = props;
+
+  return <WidePanel
+    direction="right"
+    backgroundColor={style.colors.WHITE}
+    right={
+      <>
+        <h1 style={{ paddingBottom: 30 }}>
+          Advanced analysis with our Python packages
+        </h1>
+        <h5>
+          Dive deeper into policy impact analysis using PolicyEngine&apos;s open-source Python packages. Customize your simulations and perform advanced reforms for thorough insights, all on your own computer.
+        </h5>
+        <div style={{paddingTop: 10}} />
+        <a 
+          href={`/${countryId}/docs`}
+        ><h4>Explore the documentation &#8594;</h4></a>
+      </>
+    }
+    left={
+      <img
+        src={
+          countryId === "us" ?
+            usDocs :
+            ukDocs
+        }
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+        }}
+        alt="Policy impact"
+      />
+    }
+  />
 }
 
 function Collaborations(props) {
@@ -541,6 +582,9 @@ function Collaborations(props) {
 function APIDemo(props) {
   const mobile = useMobile();
   const { countryId } = props;
+  if (mobile) {
+    return null;
+  }
   return (
     <div
       style={{
@@ -557,10 +601,10 @@ function APIDemo(props) {
             paddingTop: 100,
           }}
         >
-          <h2 style={{ paddingLeft: 90, paddingRight: 90 }}>
+          <h2 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90 }}>
             PolicyEngine&apos;s free API computes policy impacts
           </h2>
-          <h5 style={{ paddingLeft: 90, paddingRight: 90 }}>
+          <h5 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90 }}>
             Instantly compute taxes and benefits for any household under current
             or reformed policy rules, using the PolicyEngine REST API.
           </h5>

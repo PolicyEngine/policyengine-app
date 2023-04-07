@@ -121,8 +121,8 @@ export default function PolicyReproducibility(props) {
     "baseline = Microsimulation()",
     "reformed = Microsimulation(reform=reform)",
     'HOUSEHOLD_VARIABLES = ["person_id", "household_id", "age", "household_net_income", "household_income_decile", "in_poverty", "household_tax", "household_benefits"]',
-    "baseline_person_df = baseline.calculate_dataframe(HOUSEHOLD_VARIABLES, 2022).astype(float)",
-    "reformed_person_df = reformed.calculate_dataframe(HOUSEHOLD_VARIABLES, 2022).astype(float)",
+    "baseline_person_df = baseline.calculate_dataframe(HOUSEHOLD_VARIABLES, 2023).astype(float)",
+    "reformed_person_df = reformed.calculate_dataframe(HOUSEHOLD_VARIABLES, 2023).astype(float)",
     "difference_person_df = reformed_person_df - baseline_person_df",
   ]);
 

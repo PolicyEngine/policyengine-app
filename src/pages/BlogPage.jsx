@@ -2,8 +2,10 @@ import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
 import { Container } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
+import FOF from "./FOF";
 import rehypeRaw from "rehype-raw";
 import style from "../style";
 import useDetectPrint from "react-detect-print";
@@ -65,6 +67,18 @@ export function BlogPostMarkdown(props) {
             />
           </div>
         ),
+        ul: ({ children }) => (
+          <ul
+            style={{
+              paddingLeft: 20,
+              marginBottom: 20,
+              fontFamily: "Merriweather",
+              fontSize: mobile ? 16 : 18,
+            }}
+          >
+            {children}
+          </ul>
+        ),
         iframe: ({ src, width, height }) => (
           <div
             style={{
@@ -77,6 +91,7 @@ export function BlogPostMarkdown(props) {
             <iframe
               title="video"
               src={src}
+              scrolling="no"
               style={{
                 /* Prevent the iframe from
             overflowing on mobile. */
@@ -394,9 +409,12 @@ export default function BlogPostPage(props) {
   // The URL will be in the format /uk/blog/post-name
   // We need to extract the countryId and postName from the URL
   const url = window.location.pathname;
-  const printing = useDetectPrint();
   const { countryId } = props;
   const postName = url.split("/")[3];
+  const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
+  if (YYYYMMDDFormat.test(postName)) {
+      return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
+  }
   let postData = postJson.find(
     (post) => post.filename.split(".")[0] === postName
   );
@@ -406,10 +424,14 @@ export default function BlogPostPage(props) {
       (post) => post.filename.split(".")[0] === `${countryId}-${postName}`
     );
   }
+  if (postData === undefined) {
+      return <FOF />;
+  }
   const { title, description, image, filename, authors } = postData;
   const imageSrc = require(`../images/posts/${image}`);
   const markdownFile = require(`../posts/${filename}`);
   const [markdown, setMarkdown] = useState("");
+  const printing = useDetectPrint();
   const mobile = useMobile() || printing;
   useEffect(() => {
     fetch(markdownFile)

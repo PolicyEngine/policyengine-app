@@ -2,7 +2,7 @@
 
 1. Publish a post to Medium (any site will do but preferably blog.policyengine.org).[^1]
 2. Ensure `npm install -g mediumexporter` is installed.
-3. Run `mediumexporter {url_of_post} > src/posts/{YYYY-MM-DD}-{slug}.md`.[^2]
+3. Run `mediumexporter {url_of_post} > src/posts/{slug}.md`.[^2]
 4. Download the cover image from the post and save it to `src/images/posts/{slug}.{ext}`.
 5. Add a new entry to `src/posts/posts.json` with the below details (mostly self-explanatory):
 
@@ -13,7 +13,7 @@
   "authors": ["max-ghenis"],
   "tags": ["uk"],
   "description": "We’re taking economic policy to the next level with the most accessible tax and benefit model ever built.",
-  "filename": "2023-01-01-uk-the-new-policyengine.md", // path *within* the src/posts directory
+  "filename": "uk-the-new-policyengine.md", // path *within* the src/posts directory
   "image": "uk-the-new-policyengine.png" // path *within* the src/images/posts directory
 }
 ```

@@ -24,6 +24,7 @@ export default function ThreeColumnPage(props) {
           width: "50%",
           backgroundColor: style.colors.WHITE,
           padding: 20,
+          paddingTop: 0,
           overflowY: !noMiddleScroll && "scroll",
         }}
       >
