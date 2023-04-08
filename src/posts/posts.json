@@ -713,5 +713,22 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "PolicyEngine adds New York Family Assistance (TANF) to US model",
+    "description": "Enhancing analysis of public policy impacts on needy families.",
+    "date": "2023-04-08 09:00:00",
+    "tags": [
+      "us",
+      "us-ny",
+      "tanf"
+    ],
+    "filename": "new-york-tanf.md",
+    "image": "new-york-tanf.png",
+    "authors": [
+      "max-ghenis",
+      "donglai-xu",
+      "lin-tao"
+    ]
   }
 ]
