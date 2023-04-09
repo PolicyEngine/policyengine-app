@@ -1,5 +1,4 @@
 import postJson from "../posts/posts.json";
-import authorsJson from "../posts/authors.json";
 import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +6,7 @@ import EmailSignUp from "./EmailSignup";
 import moment from "moment/moment";
 
 function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, authors, date } =
+  const { title, description, image, filename, countryId, date } =
     props;
   let name = filename.split(".")[0];
   if (
@@ -19,18 +18,14 @@ function BlogPostPreviewRegular(props) {
   }
   const imageSrc = require(`../images/posts/${image}`);
   const navigate = useNavigate();
-  const authorImages = authors.map((author) => {
-    return require(`../images/authors/${authorsJson[author].headshot}`);
-  });
 
-  // Date will be like 2022-01-01. Convert it to '3 days ago'
-  const dateString = moment(date).fromNow();
+  // Date will be like 2022-01-01. Convert it to 'April 1st, 2022'
+  const dateString = moment(date).format("MMMM Do, YYYY");
 
   return (
     <motion.div
       style={{
         width: 300,
-        minHeight: 100,
         backgroundColor: style.colors.WHITE,
         margin: 10,
         display: "flex",
@@ -54,46 +49,22 @@ function BlogPostPreviewRegular(props) {
         alt="Preview"
       />
       <div style={{ padding: 20, paddingBottom: 0 }}>
-        <h3>{title}</h3>
+        <h5>{title}</h5>
         <p>{description}</p>
       </div>
       <div
         style={{
           padding: 20,
+          paddingTop: 0,
           marginTop: "auto",
           display: "flex",
           alignItems: "end",
         }}
       >
-        <div
-          style={{ display: "flex", flexDirection: "column", marginRight: 10 }}
-        >
-          {authorImages.map((authorImage, index) => {
-            return (
-              <div style={{ display: "flex", marginBottom: 10 }} key={index}>
-                <img
-                  src={authorImage}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    // Fit inside without stretching
-                    objectFit: "cover",
-                    borderRadius: 20,
-                    marginRight: 10,
-                  }}
-                  alt="Author"
-                />
-                <p style={{ marginTop: 9 }}>
-                  {authorsJson[authors[index]].name}
-                </p>
-              </div>
-            );
-          })}
-        </div>
         <p
           style={{
             marginLeft: "auto",
-            marginBottom: 25,
+            marginBottom: 5,
             color: style.colors.DARK_GRAY,
           }}
         >

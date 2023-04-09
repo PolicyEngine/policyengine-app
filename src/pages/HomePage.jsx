@@ -142,12 +142,12 @@ export function WidePanel(props) {
       <div
         style={{
           backgroundColor: backgroundColor,
-          marginTop: 25,
-          marginBottom: 25,
+          marginTop: 15,
+          marginBottom: 15,
           overflowX: "hidden",
         }}
       >
-        <Container style={{ paddingTop: 100, paddingBottom: 100 }}>
+        <Container style={{ paddingTop: 50, paddingBottom: 50 }}>
           <WidePanelHalf direction={direction}>{left}</WidePanelHalf>
           <WidePanelHalf direction={direction}>{right}</WidePanelHalf>
         </Container>
@@ -188,11 +188,11 @@ export default function HomePage(props) {
         style={{
           paddingLeft: 50,
           paddingRight: 50,
-          paddingTop: 70,
+          paddingTop: 40,
           display: "flex",
           flexDirection: "column",
           alignItems: !mobile && "center",
-          marginBottom: 50,
+          marginBottom: 30,
         }}
       >
         <div
@@ -536,22 +536,13 @@ function Collaborations(props) {
   return (
     <div
       style={{
-        backgroundColor: style.colors.WHITE,
+        backgroundColor: style.colors.LIGHT_GRAY,
         marginTop: 25,
       }}
     >
-      <Container style={{ paddingTop: 100 }}>
-        <Row
-          style={{
-            paddingLeft: mobile ? 30 : 300,
-            paddingRight: mobile ? 30 : 300,
-          }}
-        >
-          <Carousel autoplay autoplaySpeed={10000}>
-            {quoteBlocks}
-          </Carousel>
-        </Row>
-        <Row style={{ justifyContent: "center", alignItems: "center" }}>
+      <Container fluid style={{backgroundColor: style.colors.WHITE, padding: 50, paddingBottom: 70 }}>
+
+      <Row style={{ justifyContent: "center", alignItems: "center" }}>
           {Object.values(orgData[countryId] || {}).map((org) => (
             <Col
               key={org.link}
@@ -573,6 +564,18 @@ function Collaborations(props) {
               </a>
             </Col>
           ))}
+        </Row>
+      </Container>
+      <Container style={{ paddingTop: 50 }}>
+        <Row
+          style={{
+            paddingLeft: mobile ? 30 : 300,
+            paddingRight: mobile ? 30 : 300,
+          }}
+        >
+          <Carousel autoplay autoplaySpeed={10000}>
+            {quoteBlocks}
+          </Carousel>
         </Row>
       </Container>
     </div>
