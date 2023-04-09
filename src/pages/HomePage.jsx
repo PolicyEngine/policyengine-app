@@ -349,9 +349,9 @@ function Collaborations(props) {
       {
         name: "Martin Farley",
         position:
-          "Convener of the Green Party&apos;s Tax and Fiscal Policy Working Group",
+          "Convener of the Green Party's Tax and Fiscal Policy Working Group",
         quote:
-          "PolicyEngine has transformed the Green Party&apos;s ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
+          "PolicyEngine has transformed the Green Party's ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
         headshot: MartinFarley,
       },
       {
