@@ -8,7 +8,7 @@ import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function InequalityImpact(props) {
-  const { impact, policyLabel } = props;
+  const { impact, policyLabel, metadata } = props;
 
   const metricChanges = [
     impact.inequality.gini.reform / impact.inequality.gini.baseline - 1,
@@ -137,17 +137,24 @@ export default function InequalityImpact(props) {
       : metricChanges[0] < 0 && metricChanges[1] < 0 && metricChanges[2] < 0
       ? "negative"
       : "ambiguous";
-
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label = options.find((option) => option.value === region)?.label;
+      
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel}
           {impactLabel === "positive"
-            ? " would increase inequality"
+            ? ` would increase inequality in ${label}`
             : impactLabel === "negative"
-            ? " would reduce inequality"
-            : " would have an ambiguous effect on inequality"}
+            ? ` would reduce inequality in ${label}` 
+            : ` would have an ambiguous effect on inequality in ${label}` }
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

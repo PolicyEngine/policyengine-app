@@ -8,7 +8,7 @@ import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
 export default function DeepPovertyImpact(props) {
-  const { impact, policyLabel } = props;
+  const { impact, policyLabel, metadata } = props;
   const childPovertyChange =
     impact.poverty.deep_poverty.child.reform /
       impact.poverty.deep_poverty.child.baseline -
@@ -125,17 +125,24 @@ export default function DeepPovertyImpact(props) {
         impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
       ) * 1000
     ) / 10;
-
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label = options.find((option) => option.value === region)?.label;
+    
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
+            ? `would raise the deep poverty rate in ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would lower the deep poverty rate by ${povertyRateChange} (${percentagePointChange}pp)`
-            : "wouldn't change the deep poverty rate"}
+            ? `would lower the deep poverty rate in ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : `wouldn't change the deep poverty rate in ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

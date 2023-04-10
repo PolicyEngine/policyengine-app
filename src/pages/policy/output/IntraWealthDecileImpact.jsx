@@ -9,7 +9,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 
 export default function IntraWealthDecileImpact(props) {
-  const { impact, policyLabel } = props;
+  const { impact, policyLabel, metadata } = props;
   const deciles = impact.intra_wealth_decile.deciles;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const all = impact.intra_wealth_decile.all;
@@ -280,12 +280,19 @@ export default function IntraWealthDecileImpact(props) {
     />
   );
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label = options.find((option) => option.value === region)?.label;
+
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel} would benefit{" "}
-          {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population
+          {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of the population in {label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

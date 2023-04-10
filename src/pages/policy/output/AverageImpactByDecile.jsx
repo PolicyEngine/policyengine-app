@@ -93,14 +93,21 @@ export default function AverageImpactByDecile(props) {
 
   const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
-
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label = options.find((option) => option.value === region)?.label;
+  
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel}{" "}
           {averageChange >= 0 ? "would increase" : "would decrease"} the average
-          household&apos;s net income by{" "}
+          household&apos;s net income in {label} by{" "}
           {formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),
