@@ -46,5 +46,21 @@
     "github": "awrigh46",
     "bio": "Arthur is a researcher at PolicyEngine.",
     "twitter": "https://twitter.com/Arthur_Wright_"
+  },
+  "donglai-xu": {
+    "name": "Donglai Xu",
+    "headshot": "donglai-xu.jpeg",
+    "email": "donglaixu99@gmail.com",
+    "github": "xudonglai0426",
+    "linkedin": "https://www.linkedin.com/in/donglaixu11101",
+    "bio": "Donglai is a data analyst at PolicyEngine."
+  },
+  "lin-tao": {
+    "name": "Lin Tao",
+    "headshot": "lin-tao.jpeg",
+    "email": "tao.lin1@northeastern.edu",
+    "github": "Kim1277",
+    "linkedin": "https://www.linkedin.com/in/lin-tao-384203207",
+    "bio": "Lin is a data analyst at PolicyEngine."
   }
 }
