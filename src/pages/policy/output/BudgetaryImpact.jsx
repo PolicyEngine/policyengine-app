@@ -143,7 +143,10 @@ export default function BudgetaryImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label = options.find((option) => option.value === region)?.label;
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
 
   return (
     <>
@@ -153,7 +156,7 @@ export default function BudgetaryImpact(props) {
           {" would "}
           {budgetaryImpact > 0 ? "raise " : "cost "}
           {aggregateCurrency(budgetaryImpact, metadata)}
-          {" this year in "}
+          {" this year "}
           {label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>

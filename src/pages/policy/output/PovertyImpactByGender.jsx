@@ -126,18 +126,21 @@ export default function PovertyImpactByGender(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label = options.find((option) => option.value === region)?.label;
-  
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the poverty rate in ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the poverty rate in ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the poverty rate in ${label}`}
+            ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

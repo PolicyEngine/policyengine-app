@@ -143,18 +143,21 @@ export default function InequalityImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label = options.find((option) => option.value === region)?.label;
-      
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+   
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel}
           {impactLabel === "positive"
-            ? ` would increase inequality in ${label}`
+            ? ` would increase inequality ${label}`
             : impactLabel === "negative"
-            ? ` would reduce inequality in ${label}` 
-            : ` would have an ambiguous effect on inequality in ${label}` }
+            ? ` would reduce inequality ${label}` 
+            : ` would have an ambiguous effect on inequality ${label}` }
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

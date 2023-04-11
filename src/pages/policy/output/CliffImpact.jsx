@@ -180,16 +180,19 @@ export default function CliffImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label = options.find((option) => option.value === region)?.label;
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : " in " + options.find((option) => option.value === region)?.label;
 
   const title = `${policyLabel} ${
     cliff_share_change === 0 && cliff_gap_change === 0
-      ? "wouldn't affect cliffs in"
+      ? "wouldn't affect cliffs"
       : cliff_share_change >= 0 && cliff_gap_change >= 0
-      ? "would make cliffs more prevalent in"
+      ? "would make cliffs more prevalent"
       : cliff_share_change <= 0 && cliff_gap_change <= 0
-      ? "would make cliffs less prevalent in"
-      : "would have an ambiguous effect on cliffs in"
+      ? "would make cliffs less prevalent"
+      : "would have an ambiguous effect on cliffs"
   } ${label}`;
 
   return (

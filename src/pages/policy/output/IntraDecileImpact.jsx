@@ -285,14 +285,17 @@ export default function IntraDecileImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label = options.find((option) => option.value === region)?.label;
+  const label =
+  region === "us" || region === "uk"
+    ? " of the population"
+    : " of " + options.find((option) => option.value === region)?.label + " residents";
 
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel} would benefit{" "}
-          {formatVariableValue({ unit: "/1" }, totalAhead, 0)} of {label} residents
+          {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

@@ -131,18 +131,21 @@ export default function DeepPovertyImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label = options.find((option) => option.value === region)?.label;
-    
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+
   return (
     <>
       <Screenshottable>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the deep poverty rate in ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would lower the deep poverty rate in ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate in ${label}`}
+            ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
