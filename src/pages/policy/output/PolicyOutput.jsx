@@ -35,8 +35,7 @@ import {message} from 'antd';
 import Analysis from "./Analysis";
 import style from "../../../style";
 
-// import { useScreenshot } from 'use-react-screenshot'
-import * as htmlToImage from "html-to-image"
+import { useScreenshot } from 'use-react-screenshot'
 
 
 export function RegionSelector(props) {
@@ -95,20 +94,11 @@ export default function PolicyOutput(props) {
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const imageRef = useRef(null)
-  // const [image, takeScreenShot] = useScreenshot();
-  const [imagePng, setImagePng] = useState(null)
-
+  const [image, takeScreenShot] = useScreenshot();
 
   async function handleScreenshot() {
-    // http://localhost:3000/us/policy?focus=policyOutput.netIncome&reform=8663&region=us&timePeriod=2023&baseline=2
-    // takeScreenShot(imageRef.current)
+    takeScreenShot(imageRef.current)
     console.log('test')
-    // console.log(window.location.href + "&embed")
-    const imageOptions = { height: 650 }
-    const imagePng = (await htmlToImage.toPng(imageRef.current, imageOptions))
-    // const imageUrl = window.URL.createObjectURL(imageBlob)
-    // console.log("image url",  imagePng)
-    setImagePng(imagePng)
   }
   
   
@@ -513,7 +503,7 @@ export default function PolicyOutput(props) {
 
   return (
     <>
-      <img height={300} src={imagePng} ></img>
+      <img height={300} src={image} ></img>
       <button onClick={handleScreenshot}>Test</button>
       <ResultsPanel ref={imageRef}>{pane}</ResultsPanel>;
       {/* <ResultsPanel>{pane}</ResultsPanel>; */}
