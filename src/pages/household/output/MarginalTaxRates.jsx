@@ -155,7 +155,7 @@ export default function MarginalTaxRates(props) {
             yaxis: {
               title: "Marginal tax rate",
               ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
-              tickformat: ".0%",
+              tickformat: ".1%",
             },
             legend: {
               // Position above the plot
