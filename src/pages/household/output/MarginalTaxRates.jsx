@@ -119,7 +119,7 @@ export default function MarginalTaxRates(props) {
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
-      0
+      1
     )}`;
     // Add the main line, then add a 'you are here' line
     plot = (
