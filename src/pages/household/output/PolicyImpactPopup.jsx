@@ -17,7 +17,7 @@ export default function PolicyImpactPopup(props) {
           <p>
             PolicyEngine estimates reform impacts using a static microsimulation
             over the 2021 Current Population Survey March Supplement.{" "}
-            <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis">
+            <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis" target="_blank">
               Read our caveats and data enhancement plan.
             </a>
           </p>
