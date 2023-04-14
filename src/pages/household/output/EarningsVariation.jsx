@@ -97,7 +97,7 @@ export default function EarningsVariation(props) {
       requests.push(
         apiCall(`/${metadata.countryId}/calculate`, {
           household: householdData,
-          policy_id: reformPolicyId,
+          policy: policy.reform.data,
         })
           .then((res) => res.json())
           .then((data) => {
@@ -111,6 +111,9 @@ export default function EarningsVariation(props) {
     Promise.all(requests).then(() => setLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reformPolicyId, baselinePolicyId, householdId]);
+
+  console.log("baselineNetIncome", baselineNetIncome)
+  console.log("reformNetIncome", reformNetIncome)
 
   if (error) {
     return (
