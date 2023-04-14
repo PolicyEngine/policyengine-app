@@ -16,7 +16,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
-  const { householdInput, householdBaseline, metadata, policyLabel } = props;
+  const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -62,7 +62,7 @@ export default function MarginalTaxRates(props) {
     requests.push(
       apiCall(`/${metadata.countryId}/calculate`, {
         household: householdData,
-        policy_id: baselinePolicyId,
+        policy: policy.reform.data,
       })
         .then((res) => res.json())
         .then((data) => {
