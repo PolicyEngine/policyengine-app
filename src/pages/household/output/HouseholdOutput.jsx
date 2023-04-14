@@ -94,6 +94,7 @@ export default function HouseholdOutput(props) {
         householdReform={householdReform}
         householdInput={householdInput}
         policyLabel={policyLabel}
+        policy={policy}
       />
     );
   } else if (focus === "householdOutput.pythonReproducibility") {

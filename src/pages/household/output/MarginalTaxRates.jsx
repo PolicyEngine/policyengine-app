@@ -16,7 +16,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
-  const { householdInput, householdBaseline, metadata, policyLabel } = props;
+  const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -62,7 +62,6 @@ export default function MarginalTaxRates(props) {
     requests.push(
       apiCall(`/${metadata.countryId}/calculate`, {
         household: householdData,
-        policy_id: baselinePolicyId,
       })
         .then((res) => res.json())
         .then((data) => {
@@ -76,7 +75,7 @@ export default function MarginalTaxRates(props) {
       requests.push(
         apiCall(`/${metadata.countryId}/calculate`, {
           household: householdData,
-          policy_id: reformPolicyId,
+          policy: policy.reform.data,
         })
           .then((res) => res.json())
           .then((data) => {
@@ -200,7 +199,7 @@ export default function MarginalTaxRates(props) {
     const currEarningsIdx = earningsArray.indexOf(currentEarnings);
     const reformMtrValue = reformMtrArray[currEarningsIdx];
 
-    if (currentMtr !== reformMtrValue) {
+    if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
       title = `${policyLabel} ${
         reformMtrValue > currentMtr ? "increases" : "decreases"
       } your marginal tax rate from ${formatVariableValue(
