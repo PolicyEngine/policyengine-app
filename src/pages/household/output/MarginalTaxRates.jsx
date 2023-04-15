@@ -118,7 +118,7 @@ export default function MarginalTaxRates(props) {
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
-      0
+      1
     )}`;
     // Add the main line, then add a 'you are here' line
     plot = (
@@ -154,7 +154,7 @@ export default function MarginalTaxRates(props) {
             yaxis: {
               title: "Marginal tax rate",
               ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
-              tickformat: ".0%",
+              tickformat: ".1%",
             },
             legend: {
               // Position above the plot
