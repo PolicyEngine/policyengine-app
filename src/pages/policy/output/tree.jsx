@@ -52,7 +52,7 @@ const getPolicyOutputTree = (countryId) => {
         },
         shouldShowRacialPoverty && {
           name: "policyOutput.racialPovertyImpact",
-          label: "Poverty impact by race",
+          label: "Poverty impact by race and ethnicity",
         },
         {
           name: "policyOutput.inequalityImpact",
