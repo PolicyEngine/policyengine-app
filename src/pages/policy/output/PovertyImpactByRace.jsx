@@ -172,7 +172,7 @@ export default function PovertyImpactByRace(props) {
       </Screenshottable>
       <p>
         The chart above shows the relative change in the poverty rate for each
-        top-level racial group.
+        top-level racial and ethnic group.
       </p>
     </>
   );
