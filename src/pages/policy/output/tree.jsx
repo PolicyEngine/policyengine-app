@@ -1,5 +1,6 @@
 const getPolicyOutputTree = (countryId) => {
   const shouldShowWealth = countryId === "uk";
+  const shouldShowRacialPoverty = countryId === "us";
   return [
     {
       name: "policyOutput",
@@ -48,6 +49,10 @@ const getPolicyOutputTree = (countryId) => {
         {
           name: "policyOutput.genderDeepPovertyImpact",
           label: "Deep poverty impact by sex",
+        },
+        shouldShowRacialPoverty && {
+          name: "policyOutput.racialPovertyImpact",
+          label: "Poverty impact by race",
         },
         {
           name: "policyOutput.inequalityImpact",
