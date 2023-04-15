@@ -8,6 +8,7 @@ import BudgetaryImpact from "./BudgetaryImpact";
 import PovertyImpact from "./PovertyImpact";
 import DeepPovertyImpact from "./DeepPovertyImpact";
 import PovertyImpactByGender from "./PovertyImpactByGender";
+import PovertyImpactByRace from "./PovertyImpactByRace";
 import RelativeImpactByDecile from "./RelativeImpactByDecile";
 import AverageImpactByDecile from "./AverageImpactByDecile";
 import IntraDecileImpact from "./IntraDecileImpact";
@@ -228,6 +229,7 @@ export default function PolicyOutput(props) {
   if (!reformPolicyId) {
     return (
       <ResultsPanel
+        style={{paddingTop: 50}}
         title="Your policy is empty"
         description="You haven't added any reforms to your policy yet. Change policy parameters and see the results here."
       />
@@ -308,6 +310,14 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.genderDeepPovertyImpact") {
     pane = (
       <DeepPovertyImpactByGender
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.racialPovertyImpact") {
+    pane = (
+      <PovertyImpactByRace
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
