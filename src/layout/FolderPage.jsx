@@ -8,15 +8,14 @@ import { capitalize } from "../api/language";
 import getPolicyOutputTree from "../pages/policy/output/tree";
 import Divider from "./Divider";
 
-export default function FolderPage(props) {
-  const { children } = props;
-  const { metadata } = props;
+function FolderPageDescription(props) {
+  const { metadata, inPolicySide } = props;
+  if (!metadata) return null;
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
   let currentNode;
-  const mobile = useMobile();
 
   if (focus && focus.startsWith("policyOutput")) {
     currentNode = { children: POLICY_OUTPUT_TREE };
@@ -41,23 +40,44 @@ export default function FolderPage(props) {
   } catch (e) {
     currentNode = null;
   }
+  return <>
+    <h3>
+      {
+      inPolicySide ?
+        "Policy parameters" :
+        "Household variables"
+      }
+    </h3>
+    <h5>{
+      inPolicySide ?
+        "Build a tax-benefit reform by selecting parameters from the menu items below. Then when you're ready, click <i>Calculate economic impact</i> on the right to see how your reform would affect the economy." :
+        "Select a household variable from the menu items below to enter your own information."
+    }
+    </h5>
+    <Divider />
+    {breadcrumbs.map((breadcrumb, i) => (
+      <h5 
+      onClick={() => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("focus", breadcrumb.name);
+        setSearchParams(newSearch);
+      }}
+      key={breadcrumb.name} 
+      style={{paddingLeft: i * 15, cursor: "pointer"}}>{(i > 0) && <>&#x2514;</>}  {capitalize(breadcrumb.label)}</h5>
+    )
+    )}
+  </>
+}
+
+export default function FolderPage(props) {
+  const { children, metadata, inPolicySide } = props;
+  // Try to find the current focus in the tree.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const mobile = useMobile();
 
   return (
     <ResultsPanel>
-      <h3>Policy parameter selection</h3>
-      <h5>Build a tax-benefit reform by selecting parameters from the menu items below. Then when you&apos;re ready, click <i>Calculate economic impact</i> on the right to see how your reform would affect the economy.</h5>
-      <Divider />
-      {breadcrumbs.map((breadcrumb, i) => (
-        <h5 
-        onClick={() => {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("focus", breadcrumb.name);
-          setSearchParams(newSearch);
-        }}
-        key={breadcrumb.name} 
-        style={{paddingLeft: i * 15, cursor: "pointer"}}>{(i > 0) && <>&#x2514;</>}  {capitalize(breadcrumb.label)}</h5>
-      )
-      )}
+      {!mobile && inPolicySide && <FolderPageDescription metadata={metadata} inPolicySide={inPolicySide} />}
       <div
         style={{
           display: "flex",
