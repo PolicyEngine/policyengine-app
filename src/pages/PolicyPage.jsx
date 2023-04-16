@@ -388,7 +388,7 @@ export default function PolicyPage(props) {
     );
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
-    middle = <FolderPage label={node.label}>{node.children}</FolderPage>;
+    middle = <FolderPage label={node.label} metadata={metadata}>{node.children}</FolderPage>;
   } else if (focus === "policyOutput") {
     middle = (
       <FolderPage label="Policy impact">
