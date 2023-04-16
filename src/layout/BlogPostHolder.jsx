@@ -2,7 +2,6 @@ import postJson from "../posts/posts.json";
 import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import EmailSignUp from "./EmailSignup";
 import moment from "moment/moment";
 
 function BlogPostPreviewRegular(props) {
@@ -30,8 +29,8 @@ function BlogPostPreviewRegular(props) {
         margin: 10,
         display: "flex",
         flexDirection: "column",
-        borderRadius: 20,
         cursor: "pointer",
+        height: 450,
       }}
       whileHover={{ scale: 1.05 }}
       onClick={() => navigate(`/${countryId}/blog/${name}`)}
@@ -43,8 +42,6 @@ function BlogPostPreviewRegular(props) {
           height: 200,
           // Fit inside without stretching
           objectFit: "cover",
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
         }}
         alt="Preview"
       />
@@ -108,26 +105,12 @@ export default function BlogPostHolder(props) {
     <div
       style={{
         display: "flex",
-        paddingTop: 50,
-        paddingBottom: 50,
+        paddingTop: 20,
+        paddingBottom: 20,
         backgroundColor: style.colors.LIGHT_GRAY,
         overflowX: "scroll",
       }}
     >
-      <div
-        style={{
-          minWidth: 300,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <h3>Blog</h3>
-        </div>
-        <EmailSignUp />
-      </div>
       {posts}
     </div>
   );
