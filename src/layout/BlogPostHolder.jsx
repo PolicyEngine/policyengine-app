@@ -109,6 +109,7 @@ export default function BlogPostHolder(props) {
         paddingBottom: 20,
         backgroundColor: style.colors.LIGHT_GRAY,
         overflowX: "scroll",
+        overflowY: "hidden",
       }}
     >
       {posts}
