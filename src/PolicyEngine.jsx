@@ -84,14 +84,14 @@ function CookieConsent() {
         style={{ 
           position: "fixed", bottom: 20, left: 0,
           padding: "1em", background: style.colors.WHITE,
-          zIndex: 1000, borderRadius: 50, x: mobile ? 0 : "30%",
+          zIndex: 1000, borderRadius: 50, x: mobile ? 0 : "30vw",
           display: "flex", alignItems: "center",
           flexDirection: mobile ? "column" : "row",
           boxShadow: "0 0 10px rgba(0,0,0,0.2)",
           paddingLeft: 20, paddingRight: 20,
       }}
       >
-        <p style={{margin: 0, marginBottom: mobile && 20}}>
+        <p style={{margin: 0, marginBottom: mobile && 10, marginTop: 10}}>
           This site uses cookies to improve your experience.
         </p>
         <div style={{display: "flex"}}>
