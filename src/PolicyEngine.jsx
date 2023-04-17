@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import Button from "./controls/Button";
 import style from "./style";
+import useMobile from "./layout/Responsive";
 
 /*
  * This component is split out of the main
@@ -42,12 +43,27 @@ function CookieConsent() {
     });
   }
 
+  const necessaryCookiesOnly = () => {
+    // Give animation time to finish
+    setAccepted(true);
+    setTimeout(() => {
+      setShow(false);
+    }, 500);
+
+    gtag('consent', 'update', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied'
+    });
+  }
+
+  const mobile = useMobile();
+
   return (
     <>
     {show &&
       <motion.div
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: accepted ? 0 : 1, y: accepted ? 100 : 0 }}
+        initial={{ opacity: 0, y: 200 }}
+        animate={{ opacity: accepted ? 0 : 1, y: accepted ? 200 : 0 }}
         transition={{ 
           duration: 0.25,
           ease: "easeInOut",
@@ -56,17 +72,21 @@ function CookieConsent() {
         style={{ 
           position: "fixed", bottom: 20, left: 0,
           padding: "1em", background: style.colors.WHITE,
-          zIndex: 1000, borderRadius: 50, x: "50%",
+          zIndex: 1000, borderRadius: 50, x: mobile ? 0 : "30%",
           display: "flex", alignItems: "center",
+          flexDirection: mobile ? "column" : "row",
           boxShadow: "0 0 10px rgba(0,0,0,0.2)",
           paddingLeft: 20, paddingRight: 20,
       }}
       >
-        <p style={{margin: 0}}>
+        <p style={{margin: 0, marginBottom: mobile && 20}}>
           This site uses cookies. By continuing to use
           this site, you agree to our use of cookies.
         </p>
-        <Button onClick={acceptCookies} text="Accept" style={{marginLeft: 20}} />
+        <div style={{display: "flex"}}>
+        <Button onClick={acceptCookies} text="Accept" style={{marginLeft: 20}} primary/>
+        <Button onClick={necessaryCookiesOnly} text="Necessary cookies only" style={{marginLeft: 20}} />
+        </div>
       </motion.div>
     }
     </>
@@ -90,10 +110,7 @@ export function PolicyEngineRoutes() {
 
 export default function PolicyEngine() {
   gtag("js", new Date());
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
+  gtag("config", "G-91M4529HE7");
   return (
     <>
     <Router>

@@ -1,12 +1,14 @@
 import { Container } from "react-bootstrap";
+import useMobile from "../layout/Responsive";
 
 
 export default function PrivacyPage() {
-    return <Container style={{paddingTop: 100, paddingLeft: 100, paddingRight: 100}}>
+    const mobile = useMobile();
+    return <Container style={{paddingTop: 100, paddingLeft: !mobile && 100, paddingRight: !mobile && 100}}>
         <h1>Privacy</h1>
         <h3>How does PolicyEngine use my data?</h3>
         <p>
-            PolicyEngine doesn&apos;t store cookies or personally identifiable information. We <b>do</b> use Google Analytics to track site statistics, but with cookies disabled.
+            PolicyEngine does not store personally identifiable information. We <b>do</b> use Google Analytics to track site usage statistics using cookies. You can opt-out of this tracking by clicking the &quot;Necessary cookies only&quot; button on the cookie consent banner at the bottom of the page.
         </p>
         <p>
             Sometimes external websites embed PolicyEngine-developed applications on their own pages as interactives. In these cases, the external website may on the same page collect data about your use of the PolicyEngine application: see their own privacy policy for details.
