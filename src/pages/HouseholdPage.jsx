@@ -252,7 +252,7 @@ export default function HouseholdPage(props) {
     );
   } else if (focus === "householdOutput") {
     middle = (
-      <FolderPage label="Household results">
+      <FolderPage label="Household results" metadata={metadata}>
         {HOUSEHOLD_OUTPUT_TREE[0].children}
       </FolderPage>
     );

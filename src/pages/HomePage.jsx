@@ -63,14 +63,20 @@ function HouseholdPolicyOptions(props) {
       <motion.div
         style={{
           width: boxWidth,
-          height: boxWidth,
+          height: boxWidth * 0.5,
           backgroundColor: style.colors.LIGHT_GRAY,
+          color: style.colors.BLACK,
           padding: 20,
           cursor: "pointer",
           marginRight: mobile ? 0 : 20,
           marginBottom: mobile ? 20 : 0,
         }}
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ 
+          scale: 1.05,
+          backgroundColor: style.colors.DARK_GRAY,
+          color: style.colors.WHITE,
+        }}
+        transition={{ duration: 0.25 }}
         onClick={() => {
           navigate(`/${countryId}/household`);
           gtag("event", "navigate", {
@@ -79,21 +85,23 @@ function HouseholdPolicyOptions(props) {
           });
         }}
       >
-        <h2>Compute my household income</h2>
-        <p>
-          Use PolicyEngine to calculate your taxes and benefits, and explore how
-          they&apos;d change under different scenarios and policies.
-        </p>
+        <h3 style={{color: "inherit"}}>Compute my household income, taxes and benefits →</h3>
       </motion.div>
       <motion.div
         style={{
           width: boxWidth,
-          height: boxWidth,
+          height: boxWidth * 0.5,
           backgroundColor: style.colors.LIGHT_GRAY,
+          color: style.colors.BLACK,
           padding: 20,
           cursor: "pointer",
         }}
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ 
+          scale: 1.05,
+          backgroundColor: style.colors.DARK_GRAY,
+          color: style.colors.WHITE,
+        }}
+        transition={{ duration: 0.25 }}
         onClick={() => {
           navigate(`/${countryId}/policy`);
           gtag("event", "navigate", {
@@ -102,11 +110,7 @@ function HouseholdPolicyOptions(props) {
           });
         }}
       >
-        <h2>Compute the impact of policy reforms</h2>
-        <p>
-          Use PolicyEngine to build reforms to taxes and benefits, and see how
-          they&apos;d affect the economy and individual households.
-        </p>
+        <h3 style={{color: "inherit"}}>Compute the impact of policy reforms →</h3>
       </motion.div>
     </div>
   );
@@ -159,12 +163,11 @@ export function WidePanel(props) {
     <div
       style={{
         backgroundColor: backgroundColor,
-        height: !mobile && 500,
         marginTop: 25,
         marginBottom: 25,
       }}
     >
-      <Container style={{ paddingTop: 100, paddingBottom: 100 }}>
+      <Container style={{ paddingTop: 50, paddingBottom: 50 }}>
         <Row>
           <Col>
             <WidePanelHalf direction={direction}>{left}</WidePanelHalf>
@@ -184,29 +187,39 @@ export default function HomePage(props) {
   // Items are centered horizontally, and placed in order vertically.
   return (
     <>
-      <div
-        style={{
-          paddingLeft: 50,
-          paddingRight: 50,
-          paddingTop: 40,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: !mobile && "center",
-          marginBottom: 30,
-        }}
-      >
+    <div style={{
+      width: mobile ? "100%" : "50%",
+    }}>
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
         <div
           style={{
-            paddingRight: 0,
-            paddingLeft: 0,
+            paddingLeft: 50,
+            paddingRight: 50,
+            paddingTop: 40,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: !mobile && "center",
+            marginBottom: 30,
           }}
         >
-          <h1>We compute the impact of public policy.</h1>
-          <h4>
-            PolicyEngine&apos;s free, open-source software turns law into code.
-          </h4>
-        </div>
-        <HouseholdPolicyOptions countryId={countryId} />
+          <div
+            style={{
+              paddingRight: 0,
+              paddingLeft: 0,
+              width: mobile ? "100%" : "50vw"
+            }}
+          >
+            <h1>Computing the impact of public policy</h1>
+            <h4>PolicyEngine is a free, open-source app enabling anyone to compute how tax-benefit policy affects them.</h4>
+          </div>
+          <HouseholdPolicyOptions countryId={countryId} />
+          </div>
+          {!mobile && <QuoteCarousel countryId={countryId}/>}
+      </div>
       </div>
       <BlogPostHolder countryId={countryId} />
       <Collaborations countryId={countryId} />
@@ -334,157 +347,89 @@ function CountryPackages(props) {
   />
 }
 
+function QuoteCarousel(props) {
+  const { countryId } = props;
+  const mobile = useMobile();
+  countryId;
+  const countryQuotes = quoteData[countryId];
+  if (countryQuotes.length === 0) {
+    return null;
+  }
+  let quoteBlocks = [];
+
+  for (let i = 0; i < countryQuotes.length; i++) {
+    const data = countryQuotes[i];
+    quoteBlocks.push(
+      <div
+        key={data.name}
+      >
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          height: 280,
+        }}>
+          <p
+            style={{ fontFamily: "Merriweather", fontSize: 16, marginBottom: 20 }}
+          >
+            {data.quote}
+          </p>
+          <div style={{display: "flex"}}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <img
+              src={data.headshot}
+              alt={`${data.name} headshot`}
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                marginBottom: 20,
+                objectFit: "cover",
+              }}
+            />
+          </div>
+          <div style={{paddingLeft: 30}}>
+          <h6 style={{ textAlign: "left" }}>
+            <b>{data.name}</b>
+          </h6>
+          <h6 style={{ textAlign: "left" }}>
+            {data.position}
+          </h6>
+          </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <div
+      style={{
+        backgroundColor: style.colors.LIGHT_GRAY,
+        marginTop: 35,
+        width: "40vw",
+        height: 310,
+      }}
+    >
+      <Container style={{ paddingTop: 20 }}>
+        <Row
+          style={{
+            paddingLeft: mobile ? 30 : 50,
+            paddingRight: mobile ? 30 : 50,
+          }}
+        >
+          <Carousel autoplay autoplaySpeed={15_000} dots={false}>
+            {quoteBlocks}
+          </Carousel>
+        </Row>
+      </Container>
+    </div>
+  );
+}
+
 function Collaborations(props) {
   const { countryId } = props;
 
-  const quoteData = {
-    uk: [
-      {
-        name: "Robert Colvile",
-        position: "Director of the Centre for Policy Studies",
-        quote:
-          "PolicyEngine has been a really valuable addition to the UK policy space, democratising access to economic modelling and making it easier than ever to apply actual numbers to the policy debate.",
-        headshot: RobertColvile,
-      },
-      {
-        name: "Martin Farley",
-        position:
-          "Convener of the Green Party's Tax and Fiscal Policy Working Group",
-        quote:
-          "PolicyEngine has transformed the Green Party's ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
-        headshot: MartinFarley,
-      },
-      {
-        name: "Dr Christopher Holmes",
-        position:
-          "Director of the Citizens’ Economic Council on the Cost of Living",
-        quote:
-          "PolicyEngine is an essential tool in the fight to democratise economics, because it gives a much wider group of people and organisations the ability to test out fiscal policy decisions, and see the potential impacts for themselves. Their input has been really important for our project, helping us to show ordinary citizens the effects of various tax/spend decisions on different types of households in the UK.",
-        headshot: ChrisHolmes,
-      },
-      {
-        name: "Dr Simon Duffy",
-        position: "Director of Citizen Network Research",
-        quote:
-          "PolicyEngine is exactly what the world of policy-making needs today. For too long policy on tax and benefits has been lost in a fog of confusion and misleading rhetoric. To have democratic conversations about tax and benefits we need to look the overall picture and see what policies will mean for individuals and families. PolicyEngine pulls back the curtain on tax and benefits and helps us find the courage to introduce real reforms.",
-        headshot: SimonDuffy,
-      },
-      {
-        name: "Torrin Wilkins",
-        position: "Director and Founder of Centre Think Tank",
-        quote:
-          "PolicyEngine is an incredible tool for think tanks, policy makers and anyone who wants to understand the impact of policy decisions. It has been invaluable for Centre Think Tank when writing reports and has allowed us to propose new policies with ease whilst clearly breaking down the impacts on different groups. For us it has been a game changer.",
-        headshot: TorrinWilkins,
-      },
-    ],
-    us: [
-      {
-        name: "Darryl Finkton Jr.",
-        position: "Founder of End Poverty Make Trillions",
-        quote:
-          "PolicyEngine is bringing applied science and rationality to governance. We have the ability to design sustainable, effective systems if we just use all the wonderful data we have at our disposal. Move partisan politics aside so we can create a world that makes sense.",
-        headshot: DarrylFinkton,
-      },
-      {
-        name: "Nate Golden",
-        position: "Founder and President of the Maryland Child Alliance",
-        quote:
-          "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
-        headshot: NateGolden,
-      },
-      {
-        name: "Brian Hiatt",
-        position: "Vice President of Technology at Gary Community Ventures",
-        quote:
-          "Thanks to PolicyEngine, we have been able to help more families access the resources they need to grow income and build wealth. We're grateful to have such a reliable partner on our side.",
-        headshot: BrianHiatt,
-      },
-      {
-        name: "Nika Soon-Shiong",
-        position:
-          "Founder and Executive Director of the Fund for Guaranteed Income",
-        quote:
-          "As low-income families face a web of opaque, disconnected welfare systems, millions are left excluded or unsupported from the benefits they deserve. It’s critical for organizations such as PolicyEngine to chart new research, technology, and coalitions that can change this unacceptable status quo. I’m very excited to show our new Benefits Screener to the world this year.",
-        headshot: NikaSoonShiong,
-      },
-    ],
-  };
-
-  // eslint-disable-next-line
-  const orgData = {
-    uk: {
-      ukeu: {
-        logo: UKEU,
-        link: "https://ukandeu.ac.uk/energy-subsidy/",
-      },
-      green_party: {
-        logo: GPEW,
-        link: "https://martin-farley.medium.com/poverty-buster-the-impact-of-the-2019-green-party-manifesto-on-household-incomes-and-equality-9663c39b783b",
-      },
-      centre: {
-        logo: Centre,
-        link: "https://centrethinktank.co.uk/2022/04/19/the-land-dividend/",
-      },
-      smf: {
-        logo: SMF,
-        link: "https://www.smf.co.uk/commentary_podcasts/cost-of-living-crisis-response/",
-      },
-      cps: {
-        logo: CPS,
-        link: "https://cps.org.uk/research/national-insurance-a-plan-to-blunt-the-pain/",
-      },
-      ubilabs: {
-        logo: UBILabs,
-        link: "https://www.opendemocracy.net/en/oureconomy/we-want-to-give-everyone-in-britain-400-a-month-no-strings-attached/",
-      },
-      liberal: {
-        logo: LiberalParty,
-        link: "https://liberal.org.uk",
-      },
-      ubicenter: {
-        logo: UBICenter,
-        link: "https://ubicenter.org/",
-      },
-      asi: {
-        logo: ASI,
-        link: "https://www.adamsmith.org/blog/welfare-shouldnt-be-complicated",
-      },
-      cec: {
-        logo: CEC,
-        link: "https://citizensecon.org.uk/get-involved",
-      },
-    },
-    us: {
-      f4gi: {
-        logo: F4GI,
-        link: "https://f4gi.org",
-      },
-      epmt: {
-        logo: EPMT,
-        link: "https://endpovertymaketrillions.medium.com/economic-modeling-of-how-to-end-poverty-in-the-united-states-while-saving-taxpayers-trillions-of-1679b751d0c0",
-      },
-      gcv: {
-        logo: GCV,
-        link: "https://garycommunity.org",
-      },
-      mca: {
-        logo: MCA,
-        link: "https://www.marylandchildalliance.org/revenue-raisers",
-      },
-      cgo: {
-        logo: CGO,
-        link: "https://www.thecgo.org/research/how-does-targeted-cash-assistance-affect-incentives-to-work/",
-      },
-      ubicenter: {
-        logo: UBICenter,
-        link: "https://ubicenter.org/",
-      },
-      mothers_outreach_network: {
-        logo: MothersOutreachNetwork,
-        link: "https://mothersoutreachnetwork.org/",
-      },
-    },
-  };
   const mobile = useMobile();
   const countryQuotes = quoteData[countryId] || [];
   if (countryQuotes.length === 0) {
@@ -543,6 +488,9 @@ function Collaborations(props) {
       <Container fluid style={{backgroundColor: style.colors.WHITE, padding: 50, paddingBottom: 70 }}>
 
       <Row style={{ justifyContent: "center", alignItems: "center" }}>
+        <Col style={{ textAlign: "center" }}>
+          <h3></h3>
+        </Col>
           {Object.values(orgData[countryId] || {}).map((org) => (
             <Col
               key={org.link}
@@ -564,18 +512,6 @@ function Collaborations(props) {
               </a>
             </Col>
           ))}
-        </Row>
-      </Container>
-      <Container style={{ paddingTop: 50 }}>
-        <Row
-          style={{
-            paddingLeft: mobile ? 30 : 300,
-            paddingRight: mobile ? 30 : 300,
-          }}
-        >
-          <Carousel autoplay autoplaySpeed={10000}>
-            {quoteBlocks}
-          </Carousel>
         </Row>
       </Container>
     </div>
@@ -622,3 +558,153 @@ function APIDemo(props) {
     </div>
   );
 }
+
+
+const quoteData = {
+  uk: [
+    {
+      name: "Robert Colvile",
+      position: "Director of the Centre for Policy Studies",
+      quote:
+        "PolicyEngine has been a really valuable addition to the UK policy space, democratising access to economic modelling and making it easier than ever to apply actual numbers to the policy debate.",
+      headshot: RobertColvile,
+    },
+    {
+      name: "Martin Farley",
+      position:
+        "Convener of the Green Party's Tax and Fiscal Policy Working Group",
+      quote:
+        "PolicyEngine has transformed the Green Party's ability to measure and understand the impact of its policy platform in a way that seemed impossible before. Its ability to process complex data and turn it into policy outcomes brings clarity and direction to policies at a stroke. An amazing tool that should be used in all discussions about policy in the future.",
+      headshot: MartinFarley,
+    },
+    {
+      name: "Dr Christopher Holmes",
+      position:
+        "Director of the Citizens’ Economic Council on the Cost of Living",
+      quote:
+        "PolicyEngine is an essential tool in the fight to democratise economics, because it gives a much wider group of people and organisations the ability to test out fiscal policy decisions, and see the potential impacts for themselves. Their input has been really important for our project, helping us to show ordinary citizens the effects of various tax/spend decisions on different types of households in the UK.",
+      headshot: ChrisHolmes,
+    },
+    {
+      name: "Dr Simon Duffy",
+      position: "Director of Citizen Network Research",
+      quote:
+        "PolicyEngine is exactly what the world of policy-making needs today. For too long policy on tax and benefits has been lost in a fog of confusion and misleading rhetoric. To have democratic conversations about tax and benefits we need to look the overall picture and see what policies will mean for individuals and families. PolicyEngine pulls back the curtain on tax and benefits and helps us find the courage to introduce real reforms.",
+      headshot: SimonDuffy,
+    },
+    {
+      name: "Torrin Wilkins",
+      position: "Director and Founder of Centre Think Tank",
+      quote:
+        "PolicyEngine is an incredible tool for think tanks, policy makers and anyone who wants to understand the impact of policy decisions. It has been invaluable for Centre Think Tank when writing reports and has allowed us to propose new policies with ease whilst clearly breaking down the impacts on different groups. For us it has been a game changer.",
+      headshot: TorrinWilkins,
+    },
+  ],
+  us: [
+    {
+      name: "Darryl Finkton Jr.",
+      position: "Founder of End Poverty Make Trillions",
+      quote:
+        "PolicyEngine is bringing applied science and rationality to governance. We have the ability to design sustainable, effective systems if we just use all the wonderful data we have at our disposal. Move partisan politics aside so we can create a world that makes sense.",
+      headshot: DarrylFinkton,
+    },
+    {
+      name: "Nate Golden",
+      position: "Founder and President of the Maryland Child Alliance",
+      quote:
+        "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
+      headshot: NateGolden,
+    },
+    {
+      name: "Brian Hiatt",
+      position: "Vice President of Technology at Gary Community Ventures",
+      quote:
+        "Thanks to PolicyEngine, we have been able to help more families access the resources they need to grow income and build wealth. We're grateful to have such a reliable partner on our side.",
+      headshot: BrianHiatt,
+    },
+    {
+      name: "Nika Soon-Shiong",
+      position:
+        "Founder and Executive Director of the Fund for Guaranteed Income",
+      quote:
+        "As low-income families face a web of opaque, disconnected welfare systems, millions are left excluded or unsupported from the benefits they deserve. It’s critical for organizations such as PolicyEngine to chart new research, technology, and coalitions that can change this unacceptable status quo. I’m very excited to show our new Benefits Screener to the world this year.",
+      headshot: NikaSoonShiong,
+    },
+  ],
+};
+
+// eslint-disable-next-line
+const orgData = {
+  uk: {
+    ukeu: {
+      logo: UKEU,
+      link: "https://ukandeu.ac.uk/energy-subsidy/",
+    },
+    green_party: {
+      logo: GPEW,
+      link: "https://martin-farley.medium.com/poverty-buster-the-impact-of-the-2019-green-party-manifesto-on-household-incomes-and-equality-9663c39b783b",
+    },
+    centre: {
+      logo: Centre,
+      link: "https://centrethinktank.co.uk/2022/04/19/the-land-dividend/",
+    },
+    smf: {
+      logo: SMF,
+      link: "https://www.smf.co.uk/commentary_podcasts/cost-of-living-crisis-response/",
+    },
+    cps: {
+      logo: CPS,
+      link: "https://cps.org.uk/research/national-insurance-a-plan-to-blunt-the-pain/",
+    },
+    ubilabs: {
+      logo: UBILabs,
+      link: "https://www.opendemocracy.net/en/oureconomy/we-want-to-give-everyone-in-britain-400-a-month-no-strings-attached/",
+    },
+    liberal: {
+      logo: LiberalParty,
+      link: "https://liberal.org.uk",
+    },
+    ubicenter: {
+      logo: UBICenter,
+      link: "https://ubicenter.org/",
+    },
+    asi: {
+      logo: ASI,
+      link: "https://www.adamsmith.org/blog/welfare-shouldnt-be-complicated",
+    },
+    cec: {
+      logo: CEC,
+      link: "https://citizensecon.org.uk/get-involved",
+    },
+  },
+  us: {
+    f4gi: {
+      logo: F4GI,
+      link: "https://f4gi.org",
+    },
+    epmt: {
+      logo: EPMT,
+      link: "https://endpovertymaketrillions.medium.com/economic-modeling-of-how-to-end-poverty-in-the-united-states-while-saving-taxpayers-trillions-of-1679b751d0c0",
+    },
+    gcv: {
+      logo: GCV,
+      link: "https://garycommunity.org",
+    },
+    mca: {
+      logo: MCA,
+      link: "https://www.marylandchildalliance.org/revenue-raisers",
+    },
+    cgo: {
+      logo: CGO,
+      link: "https://www.thecgo.org/research/how-does-targeted-cash-assistance-affect-incentives-to-work/",
+    },
+    ubicenter: {
+      logo: UBICenter,
+      link: "https://ubicenter.org/",
+    },
+    mothers_outreach_network: {
+      logo: MothersOutreachNetwork,
+      link: "https://mothersoutreachnetwork.org/",
+    },
+  },
+};
