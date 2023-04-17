@@ -86,7 +86,7 @@ function DesktopHeader(props) {
 
   const links = [
     `/${countryId}/about`,
-    "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
+    "mailto:hello@policyengine.org",
     `/${countryId}/donate`,
   ];
   const labels = [
