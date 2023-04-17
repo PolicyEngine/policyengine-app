@@ -49,10 +49,13 @@ function CookieConsent() {
       document.cookie = "consent=granted;max-age=31536000;path=/";
     }, 500);
 
-    gtag('consent', 'update', {
-      'ad_storage': 'granted',
-      'analytics_storage': 'granted'
+    
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied'
     });
+    gtag("js", new Date());
+    gtag("config", "G-91M4529HE7");
   }
 
   const noCookies = () => {
@@ -61,11 +64,6 @@ function CookieConsent() {
     setTimeout(() => {
       setShow(false);
     }, 500);
-
-    gtag('consent', 'update', {
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied'
-    });
   }
 
   const mobile = useMobile();
@@ -133,12 +131,6 @@ function clearCookies() {
 clearCookies;
 
 export default function PolicyEngine() {
-  gtag('consent', 'default', {
-    'ad_storage': 'denied',
-    'analytics_storage': 'denied'
-  });
-  gtag("js", new Date());
-  gtag("config", "G-91M4529HE7");
   return (
     <>
     <Router>
