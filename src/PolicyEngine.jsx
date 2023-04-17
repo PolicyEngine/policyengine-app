@@ -32,7 +32,7 @@ export function PolicyEngineRoutes() {
 
 export default function PolicyEngine() {
   gtag("js", new Date());
-  gtag("config", "G-91M4529HE7");
+  gtag("config", "G-91M4529HE7", { storage: "none" } );
   return (
     <Router>
       <PolicyEngineRoutes />

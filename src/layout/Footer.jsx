@@ -10,6 +10,7 @@ export default function Footer(props) {
     "https://zej8fnylwn9.typeform.com/to/XFFu15Xq",
     `/${countryId}/donate`,
     "/api-status",
+    `/${countryId}/privacy`,
   ];
   const labels = [
     "PolicyEngine © 2023",
@@ -17,6 +18,7 @@ export default function Footer(props) {
     "Contact",
     "Donate",
     "Status",
+    "Privacy",
   ];
   if (mobile) {
     footer = <div>
