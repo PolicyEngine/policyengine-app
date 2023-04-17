@@ -22,6 +22,16 @@ import useMobile from "./layout/Responsive";
 
 function CookieConsent() {
   /* An animated bottom-left popup that asks the user to accept cookies */
+  // We'll use a 'consent' cookie to remember the user's choice
+  // first, check if it's already set
+  const consentCookie = document.cookie.split(";").find((cookie) => {
+    return cookie.trim().startsWith("consent=");
+  });
+  const consent = consentCookie && consentCookie.split("=")[1];
+  // if it's set, don't show the popup and return null
+  if (consent) {
+    return null;
+  }
   const [show, setShow] = React.useState(false);
   const [accepted, setAccepted] = React.useState(false);
   React.useEffect(() => {
@@ -35,6 +45,8 @@ function CookieConsent() {
     setAccepted(true);
     setTimeout(() => {
       setShow(false);
+      // Set the consent cookie to 'granted'
+      document.cookie = "consent=granted;max-age=31536000;path=/";
     }, 500);
 
     gtag('consent', 'update', {
@@ -43,7 +55,7 @@ function CookieConsent() {
     });
   }
 
-  const necessaryCookiesOnly = () => {
+  const noCookies = () => {
     // Give animation time to finish
     setAccepted(true);
     setTimeout(() => {
@@ -80,12 +92,11 @@ function CookieConsent() {
       }}
       >
         <p style={{margin: 0, marginBottom: mobile && 20}}>
-          This site uses cookies. By continuing to use
-          this site, you agree to our use of cookies.
+          This site uses cookies to improve your experience.
         </p>
         <div style={{display: "flex"}}>
         <Button onClick={acceptCookies} text="Accept" style={{marginLeft: 20}} primary/>
-        <Button onClick={necessaryCookiesOnly} text="Necessary cookies only" style={{marginLeft: 20}} />
+        <Button onClick={noCookies} text="Decline" style={{marginLeft: 20}} />
         </div>
       </motion.div>
     }
@@ -108,7 +119,24 @@ export function PolicyEngineRoutes() {
   );
 }
 
+function clearCookies() {
+  const cookies = document.cookie.split(";");
+
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i];
+    const eqPos = cookie.indexOf("=");
+    const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
+}
+
+clearCookies;
+
 export default function PolicyEngine() {
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
   gtag("js", new Date());
   gtag("config", "G-91M4529HE7");
   return (
