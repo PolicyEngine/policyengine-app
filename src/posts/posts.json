@@ -745,5 +745,19 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Introducing Utah State Income Tax Analysis on PolicyEngine",
+    "description": "Expanding our tax calculator and reform simulator capabilities to the Beehive State.",
+    "date": "2023-04-17 09:00:00",
+    "tags": [
+      "us",
+      "us-ut"
+    ],
+    "filename": "introducing-utah-state-income-tax-analysis-on-policyengine.md",
+    "image": "introducing-utah-state-income-tax-analysis-on-policyengine.webp",
+    "authors": [
+      "nikhil-woodruff"
+    ]
   }
 ]

@@ -149,6 +149,39 @@ export function BlogPostMarkdown(props) {
             </h4>
           );
         },
+        table: ({ children }) => (
+          <table
+            style={{
+              marginTop: 30,
+              marginBottom: 30,
+            }}
+          >
+            {children}
+          </table>
+        ),
+        td: ({ children }) => (
+          <td
+            style={{
+              padding: 5,
+              fontFamily: "Merriweather",
+              fontSize: mobile ? 16 : 18,
+            }}
+          >
+            {children}
+          </td>
+        ),
+        th: ({ children }) => (
+          <th
+            style={{
+              padding: 5,
+              fontFamily: "Merriweather",
+              fontSize: mobile ? 16 : 18,
+              borderBottom: "1px solid black",
+            }}
+          >
+            {children}
+          </th>
+        ),
       }}
     >
       {markdown}
