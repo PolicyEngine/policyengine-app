@@ -13,6 +13,9 @@ export default function PrivacyPage() {
         <p>
             Sometimes external websites embed PolicyEngine-developed applications on their own pages as interactives. In these cases, the external website may on the same page collect data about your use of the PolicyEngine application: see their own privacy policy for details.
         </p>
+        <p>
+            When you create a household or policy reform, PolicyEngine stores an anonymous ID for it in the page URL: this is to enable you to refresh the page or share a link directly to a specific result without having to enter details again.
+        </p>
         <h3>Contributing to PolicyEngine</h3>
         <p>Many people contribute to the development of PolicyEngine models and applications in our open-source repositories on GitHub, and we display a running feed of GitHub activity on our homepage to highlight these contributions. By agreeing to the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">GitHub privacy policy</a>, contributors agree that their GitHub username can be used for this purpose.</p>
     </Container>
