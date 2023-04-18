@@ -351,7 +351,7 @@ function QuoteCarousel(props) {
   const { countryId } = props;
   const mobile = useMobile();
   countryId;
-  const countryQuotes = quoteData[countryId];
+  const countryQuotes = quoteData[countryId] || [];
   if (countryQuotes.length === 0) {
     return null;
   }
