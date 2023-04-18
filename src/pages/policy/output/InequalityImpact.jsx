@@ -51,7 +51,7 @@ export default function InequalityImpact(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickformat: ",.0%",
+          tickformat: ",.2%",
         },
         uniformtext: {
           mode: "hide",
