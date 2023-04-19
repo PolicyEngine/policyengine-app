@@ -85,11 +85,13 @@ function DesktopHeader(props) {
   const { countryId, loading } = props;
 
   const links = [
+    `/${countryId}/blog`,
     `/${countryId}/about`,
     "mailto:hello@policyengine.org",
     `/${countryId}/donate`,
   ];
   const labels = [
+    "Research",
     "About",
     "Contact",
     "Donate",
