@@ -23,16 +23,24 @@ export function BlogPostPreviewRegular(props) {
 
   return (
     <motion.div
+      initial={{
+        backgroundColor: backgroundColor || style.colors.WHITE,
+        color: style.colors.BLACK,
+      }}
       style={{
         width: width || 300,
-        backgroundColor: backgroundColor || style.colors.WHITE,
         margin: 10,
         display: "flex",
         flexDirection: "column",
         cursor: "pointer",
         height: height || 450,
       }}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ 
+        scale: 1.05,
+        backgroundColor: style.colors.DARK_GRAY,
+        color: style.colors.WHITE,
+      }}
+      transition={{ duration: 0.25 }}
       onClick={() => navigate(`/${countryId}/blog/${name}`)}
     >
       <img
@@ -45,8 +53,8 @@ export function BlogPostPreviewRegular(props) {
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, paddingBottom: 0 }}>
-        <h5>{title}</h5>
+      <div style={{ padding: 20, paddingBottom: 0,  }}>
+        <p style={{fontSize: 18}} >{title}</p>
         <p>{description}</p>
       </div>
       <div
