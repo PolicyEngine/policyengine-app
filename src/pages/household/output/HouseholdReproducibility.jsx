@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { optimiseHousehold } from "../../../api/variables";
 import Button from "../../../controls/Button";
+import Checkbox from "../../../controls/Checkbox";
 import style from "../../../style";
 import { getReformDefinitionCode } from "../../policy/output/PolicyReproducibility";
 
@@ -83,6 +85,7 @@ function PythonCodeBlock({ lines }) {
 
 export default function HouseholdReproducibility(props) {
   const { policy, metadata, householdInput } = props;
+  const [ earningVariation, setEarningVariation ] = useState(false);
 
   let initialLines = [
     "from policyengine_" + metadata.countryId + " import Simulation",
@@ -110,8 +113,15 @@ export default function HouseholdReproducibility(props) {
             delete householdInputCopy[entityPlural][entity][variable];
           }
         }
+        if (earningVariation && variable === "employment_income") {
+          delete householdInputCopy[entityPlural][entity][variable];
+        }
       }
     }
+  }
+
+  if (earningVariation) {
+    householdInputCopy["axes"] = [[{"name": "employment_income", "count": 200, "min": 0, "max": 200_000}]];
   }
 
   let householdJson = JSON.stringify(householdInputCopy, null, 2);
@@ -143,6 +153,19 @@ export default function HouseholdReproducibility(props) {
         Run the code below into a Python notebook to reproduce the
         microsimulation results.
       </p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: 30
+        }}
+      >
+        <Checkbox
+          label=" Include earning variation"
+          checked={earningVariation}
+          onChange={() => setEarningVariation(!earningVariation)}
+        />
+      </div>
       <PythonCodeBlock lines={initialLines} />
       <div
         style={{
