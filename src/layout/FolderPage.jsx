@@ -50,7 +50,7 @@ function FolderPageDescription(props) {
     </h3>
     <h5>{
       inPolicySide ?
-        "Build a tax-benefit reform by selecting parameters from the menu items below. Then when you're ready, click <i>Calculate economic impact</i> on the right to see how your reform would affect the economy." :
+        <>Build a tax-benefit reform by selecting parameters from the menu items below. Then when you&apos;re ready, click <i>Calculate economic impact</i> on the right to see how your reform would affect the economy.</> :
         "Select a household variable from the menu items below to enter your own information."
     }
     </h5>
