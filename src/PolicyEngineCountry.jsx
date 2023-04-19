@@ -11,6 +11,7 @@ import CountryPackageDocs from "./pages/CountryPackageDocs";
 CountryPackageDocs;
 import ModelDocumentation from "./pages/model/ModelDocumentation";
 import PrivacyPage from "./pages/PrivacyPage";
+import ResearchPage from "./pages/ResearchPage";
 
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -198,6 +199,7 @@ export default function PolicyEngineCountry(props) {
       <Route path="/citizens-economic-council" element={<CEC />} />
       <Route path="/docs" element={<ModelDocumentation countryId={countryId} metadata={metadata} />} />
       <Route path="/privacy" element={<PrivacyPage />} />
+      <Route path="/blog" element={<ResearchPage countryId={countryId} />} />
       <Route path="/*" element={<FOF />} />
     </Routes>
   );

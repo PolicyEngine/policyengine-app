@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 
-function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, date } =
+export function BlogPostPreviewRegular(props) {
+  const { title, description, image, filename, countryId, date, width, height, imageHeight, backgroundColor } =
     props;
   let name = filename.split(".")[0];
   if (
@@ -23,30 +23,38 @@ function BlogPostPreviewRegular(props) {
 
   return (
     <motion.div
+      initial={{
+        backgroundColor: backgroundColor || style.colors.WHITE,
+        color: style.colors.BLACK,
+      }}
       style={{
-        width: 300,
-        backgroundColor: style.colors.WHITE,
+        width: width || 300,
         margin: 10,
         display: "flex",
         flexDirection: "column",
         cursor: "pointer",
-        height: 450,
+        height: height || 450,
       }}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ 
+        scale: 1.05,
+        backgroundColor: style.colors.DARK_GRAY,
+        color: style.colors.WHITE,
+      }}
+      transition={{ duration: 0.25 }}
       onClick={() => navigate(`/${countryId}/blog/${name}`)}
     >
       <img
         src={imageSrc}
         style={{
-          width: 300,
-          height: 200,
+          width: width || 300,
+          height: imageHeight || 200,
           // Fit inside without stretching
           objectFit: "cover",
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, paddingBottom: 0 }}>
-        <h5>{title}</h5>
+      <div style={{ padding: 20, paddingBottom: 0,  }}>
+        <p style={{fontSize: 18}} >{title}</p>
         <p>{description}</p>
       </div>
       <div

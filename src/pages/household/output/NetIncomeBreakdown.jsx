@@ -52,6 +52,7 @@ function VariableArithmetic(props) {
     metadata,
     defaultExpanded,
     childrenOnly,
+    forceShowChildValuesIfZero,
   } = props;
   let nodeSign = isAdd;
   const value = getValueFromHousehold(
@@ -133,7 +134,7 @@ function VariableArithmetic(props) {
           householdReform,
           metadata
         ) !== 0;
-      return isNonZeroInBaseline || isNonZeroInReform;
+      return isNonZeroInBaseline || isNonZeroInReform || forceShowChildValuesIfZero;
     };
   } else {
     valueStr = (
@@ -161,7 +162,7 @@ function VariableArithmetic(props) {
           householdBaseline,
           metadata
         ) !== 0
-      );
+      ) || forceShowChildValuesIfZero;
     };
   }
 
@@ -352,6 +353,7 @@ export default function NetIncomeBreakdown(props) {
           metadata={metadata}
           isAdd
           defaultExpanded={true}
+          forceShowChildValuesIfZero={true}
           childrenOnly
         />
       </ResultsPanel>
