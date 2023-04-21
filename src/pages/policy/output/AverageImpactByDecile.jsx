@@ -115,7 +115,7 @@ export default function AverageImpactByDecile(props) {
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "48px",
-    left: "85px",
+    left: "70px",
   };
 
   return (
@@ -136,7 +136,7 @@ export default function AverageImpactByDecile(props) {
           {!mobile &&
             <DownloadCsvButton
               content={data}
-              filename="budgetary_impact.csv"
+              filename="AverageImpactByDecile.csv"
               style={downloadButtonStyle}
             />
           }
