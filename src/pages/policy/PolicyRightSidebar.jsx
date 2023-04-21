@@ -137,7 +137,7 @@ function PolicyItem(props) {
 }
 
 function PolicyDisplay(props) {
-  const { policy, metadata, closeDrawer, hideButtons } = props;
+  const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } = props;
   const reformLength = Object.keys(policy.reform.data).length;
   const navigate = useNavigate();
   return (
@@ -164,7 +164,8 @@ function PolicyDisplay(props) {
               const newSearchParams = {};
               newSearchParams.focus = parameterName;
               newSearchParams.reform = policy.reform.id;
-              newSearchParams.region = country;
+              newSearchParams.region = region;
+              newSearchParams.timePeriod = timePeriod;
               const newUrl = `/${country}/policy?${new URLSearchParams(
                 newSearchParams
               )}`;
@@ -287,6 +288,8 @@ export default function PolicyRightSidebar(props) {
       <PolicyDisplay
         policy={policy}
         metadata={metadata}
+        region={region}
+        timePeriod={timePeriod}
         closeDrawer={closeDrawer}
         hideButtons={hideButtons}
       />
