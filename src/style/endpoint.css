@@ -1,0 +1,83 @@
+.endpoint {
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+  
+  .columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .left-column,
+  .right-column {
+    flex-basis: 48%;
+  }
+  
+  .left-column {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+  }
+  
+  .endpoint-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .method {
+    background-color: #007bff;
+    color: white;
+    border-radius: 3px;
+    padding: 2px 5px;
+    margin-left: 5px;
+    font-size: 0.8rem;
+  }
+  
+  .summary,
+  .operation-id,
+  .description {
+    margin-bottom: 1rem;
+  }
+  
+  .parameters {
+    margin-bottom: 1rem;
+  }
+  
+  .parameters h4 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .parameters ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .parameters li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .response {
+    margin-bottom: 1rem;
+  }
+  
+  .response h5 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .response-content {
+    margin-bottom: 0.5rem;
+  }
+  
+  .response-content pre {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 0.5rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+  }
+  
