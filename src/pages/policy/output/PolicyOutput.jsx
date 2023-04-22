@@ -111,7 +111,7 @@ export default function PolicyOutput(props) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}`;
       setImpact(null);
       setError(null);
-      asyncApiCall(url, null, 3_000)
+      asyncApiCall(url, null, 1_000)
         .then((data) => {
           if (data.status === "error") {
             if (!data.result.baseline_economy) {
