@@ -83,6 +83,19 @@ function MobileHeader(props) {
 function DesktopHeader(props) {
   // The top header bar, with the logo, search bar and social links
   const { countryId, loading } = props;
+
+  const links = [
+    `/${countryId}/blog`,
+    `/${countryId}/about`,
+    "mailto:hello@policyengine.org",
+    `/${countryId}/donate`,
+  ];
+  const labels = [
+    "Research",
+    "About",
+    "Contact",
+    "Donate",
+  ];
   return (
     <>
       <div
@@ -110,6 +123,21 @@ function DesktopHeader(props) {
             <Spinner style={{ color: "white", fontSize: 30 }} />
           </div>
         )}
+        {links.map((link, i) => (
+          <a
+            key={i}
+            href={link}
+            style={{
+              color: "white",
+              marginLeft: 20,
+              marginRight: 20,
+              textDecoration: "none",
+              fontSize: 20,
+            }}
+          >
+            {labels[i]}
+          </a>
+        ))}
         <div style={{ marginLeft: "auto", marginRight: 20 }}>
           <div
             style={{

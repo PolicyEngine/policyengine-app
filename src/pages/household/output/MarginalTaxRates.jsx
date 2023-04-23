@@ -16,7 +16,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
-  const { householdInput, householdBaseline, metadata, policyLabel } = props;
+  const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -53,7 +53,10 @@ export default function MarginalTaxRates(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: Math.max(200_000, 2 * currentEarnings),
+          max: Math.max((
+            metadata.countryId == "ng" ?
+              1_200_000 : 200_000
+          ), 2 * currentEarnings),
           count: 401,
         },
       ],
@@ -62,7 +65,6 @@ export default function MarginalTaxRates(props) {
     requests.push(
       apiCall(`/${metadata.countryId}/calculate`, {
         household: householdData,
-        policy_id: baselinePolicyId,
       })
         .then((res) => res.json())
         .then((data) => {
@@ -76,7 +78,7 @@ export default function MarginalTaxRates(props) {
       requests.push(
         apiCall(`/${metadata.countryId}/calculate`, {
           household: householdData,
-          policy_id: reformPolicyId,
+          policy: policy.reform.data,
         })
           .then((res) => res.json())
           .then((data) => {
@@ -119,7 +121,7 @@ export default function MarginalTaxRates(props) {
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
-      0
+      1
     )}`;
     // Add the main line, then add a 'you are here' line
     plot = (
@@ -155,7 +157,7 @@ export default function MarginalTaxRates(props) {
             yaxis: {
               title: "Marginal tax rate",
               ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
-              tickformat: ".0%",
+              tickformat: ".1%",
             },
             legend: {
               // Position above the plot
@@ -200,7 +202,7 @@ export default function MarginalTaxRates(props) {
     const currEarningsIdx = earningsArray.indexOf(currentEarnings);
     const reformMtrValue = reformMtrArray[currEarningsIdx];
 
-    if (currentMtr !== reformMtrValue) {
+    if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
       title = `${policyLabel} ${
         reformMtrValue > currentMtr ? "increases" : "decreases"
       } your marginal tax rate from ${formatVariableValue(

@@ -2,11 +2,10 @@ import postJson from "../posts/posts.json";
 import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import EmailSignUp from "./EmailSignup";
 import moment from "moment/moment";
 
-function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, date } =
+export function BlogPostPreviewRegular(props) {
+  const { title, description, image, filename, countryId, date, width, height, imageHeight, backgroundColor } =
     props;
   let name = filename.split(".")[0];
   if (
@@ -24,32 +23,38 @@ function BlogPostPreviewRegular(props) {
 
   return (
     <motion.div
+      initial={{
+        backgroundColor: backgroundColor || style.colors.WHITE,
+        color: style.colors.BLACK,
+      }}
       style={{
-        width: 300,
-        backgroundColor: style.colors.WHITE,
+        width: width || 300,
         margin: 10,
         display: "flex",
         flexDirection: "column",
-        borderRadius: 20,
         cursor: "pointer",
+        height: height || 450,
       }}
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ 
+        scale: 1.05,
+        backgroundColor: style.colors.DARK_GRAY,
+        color: style.colors.WHITE,
+      }}
+      transition={{ duration: 0.25 }}
       onClick={() => navigate(`/${countryId}/blog/${name}`)}
     >
       <img
         src={imageSrc}
         style={{
-          width: 300,
-          height: 200,
+          width: width || 300,
+          height: imageHeight || 200,
           // Fit inside without stretching
           objectFit: "cover",
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, paddingBottom: 0 }}>
-        <h5>{title}</h5>
+      <div style={{ padding: 20, paddingBottom: 0,  }}>
+        <p style={{fontSize: 18}} >{title}</p>
         <p>{description}</p>
       </div>
       <div
@@ -108,26 +113,13 @@ export default function BlogPostHolder(props) {
     <div
       style={{
         display: "flex",
-        paddingTop: 50,
-        paddingBottom: 50,
+        paddingTop: 20,
+        paddingBottom: 20,
         backgroundColor: style.colors.LIGHT_GRAY,
         overflowX: "scroll",
+        overflowY: "hidden",
       }}
     >
-      <div
-        style={{
-          minWidth: 300,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <h3>Blog</h3>
-        </div>
-        <EmailSignUp />
-      </div>
       {posts}
     </div>
   );

@@ -76,3 +76,7 @@ blockquote {
 .ant-radio-input:focus .ant-radio-inner {
   border-color: #2c6496 !important;
 }
+
+p {
+  font-size: 12pt;
+}

@@ -7,30 +7,42 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 
-export default function DeepPovertyImpactByGender(props) {
-  const { impact, policyLabel, metadata } = props;
-  const malePovertyChange =
-    impact.poverty_by_gender.deep_poverty.male.reform /
-      impact.poverty_by_gender.deep_poverty.male.baseline -
+export default function PovertyImpactByRace(props) {
+  const { impact, policyLabel, metadata} = props;
+  console.log(impact)
+  // white, black, hispanic, other
+  const whitePovertyChange =
+    impact.poverty_by_race.poverty.white.reform /
+      impact.poverty_by_race.poverty.white.baseline -
     1;
-  const femalePovertyChange =
-    impact.poverty_by_gender.deep_poverty.female.reform /
-      impact.poverty_by_gender.deep_poverty.female.baseline -
+  const blackPovertyChange =
+    impact.poverty_by_race.poverty.black.reform /
+      impact.poverty_by_race.poverty.black.baseline -
     1;
+  const hispanicPovertyChange =
+    impact.poverty_by_race.poverty.hispanic.reform /
+      impact.poverty_by_race.poverty.hispanic.baseline -
+    1;
+  const otherPovertyChange =
+    impact.poverty_by_race.poverty.other.reform /
+      impact.poverty_by_race.poverty.other.baseline -
+      1;
   const totalPovertyChange =
-    impact.poverty.deep_poverty.all.reform /
-      impact.poverty.deep_poverty.all.baseline -
-    1;
+    impact.poverty.poverty.all.reform / impact.poverty.poverty.all.baseline - 1;
   const povertyChanges = [
-    malePovertyChange,
-    femalePovertyChange,
+    whitePovertyChange,
+    blackPovertyChange,
+    hispanicPovertyChange,
+    otherPovertyChange,
     totalPovertyChange,
   ];
-  const povertyLabels = ["Male", "Female", "All"];
+  const povertyLabels = ["White (non-Hispanic)", "Black (non-Hispanic)", "Hispanic", "Other", "All"];
   const labelToKey = {
-    Male: "male",
-    Female: "female",
-    All: "all",
+    "White (non-Hispanic)": "white",
+    "Black (non-Hispanic)": "black",
+    "Hispanic": "hispanic",
+    "Other": "other",
+    "All": "all",
   };
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
@@ -59,7 +71,7 @@ export default function DeepPovertyImpactByGender(props) {
       ]}
       layout={{
         xaxis: {
-          title: "Sex",
+          title: "Race",
         },
         yaxis: {
           title: "Relative change",
@@ -90,17 +102,22 @@ export default function DeepPovertyImpactByGender(props) {
         const change = data.points[0].y;
         const baseline =
           group == "All"
-            ? impact.poverty.deep_poverty[labelToKey[group]].baseline
-            : impact.poverty_by_gender.deep_poverty[labelToKey[group]].baseline;
+            ? impact.poverty.poverty[labelToKey[group]].baseline
+            : impact.poverty_by_race.poverty[labelToKey[group]].baseline;
         const reform =
           group == "All"
-            ? impact.poverty.deep_poverty[labelToKey[group]].reform
-            : impact.poverty_by_gender.deep_poverty[labelToKey[group]].reform;
+            ? impact.poverty.poverty[labelToKey[group]].reform
+            : impact.poverty_by_race.poverty[labelToKey[group]].reform;
         const message = `The percentage of ${
           group === "All"
             ? "people"
-            : { male: "men", female: "women" }[group.toLowerCase()]
-        } in deep poverty ${
+            : { 
+                white: "White (non-Hispanic) people", 
+                black: "Black (non-Hispanic) people",
+                hispanic: "Hispanic people",
+                other: "people of other racial groups",
+            }[group.toLowerCase()]
+        } in poverty ${
           change < -0.001
             ? `would fall ${percent(-change)} from ${percent(
                 baseline
@@ -126,11 +143,10 @@ export default function DeepPovertyImpactByGender(props) {
   const percentagePointChange =
     Math.round(
       Math.abs(
-        impact.poverty.deep_poverty.all.reform -
-          impact.poverty.deep_poverty.all.baseline
+        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
       ) * 1000
     ) / 10;
-
+  
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
@@ -147,16 +163,16 @@ export default function DeepPovertyImpactByGender(props) {
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
-            ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
+            ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
       <p>
-        The chart above shows the relative change in the deep poverty rate for
-        each sex.
+        The chart above shows the relative change in the poverty rate for each
+        top-level racial and ethnic group.
       </p>
     </>
   );

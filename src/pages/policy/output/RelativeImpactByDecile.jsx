@@ -9,7 +9,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 
 export default function RelativeImpactByDecile(props) {
-  const { impact, policyLabel } = props;
+  const { impact, policyLabel, metadata} = props;
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
   // Decile bar chart. Bars are grey if negative, green if positive.
@@ -78,7 +78,7 @@ export default function RelativeImpactByDecile(props) {
             ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
                 -relativeChange
               )}.`
-            : `This reform would ot impact the income of households in the ${decile} decile.`;
+            : `This reform would not impact the income of households in the ${decile} decile.`;
         setHoverCard({
           title: `Decile ${data.points[0].x}`,
           body: message,
@@ -92,6 +92,16 @@ export default function RelativeImpactByDecile(props) {
 
   const averageRelChange =
     -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
 
   return (
     <>
@@ -99,7 +109,7 @@ export default function RelativeImpactByDecile(props) {
         <h2>
           {policyLabel}{" "}
           {averageRelChange >= 0 ? "would increase" : "would decrease"} the
-          average household&apos;s net income by{" "}
+          average household&apos;s net income {label} by{" "}
           {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>

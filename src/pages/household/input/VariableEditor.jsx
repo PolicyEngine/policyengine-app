@@ -214,7 +214,7 @@ function HouseholdVariableEntityInput(props) {
         onChange={submitValue}
         placeholder={
           reformValue !== null
-            ? `${formatValue(inputValue || simulatedValue)} → ${formatValue(
+            ? `${formatValue(
                 reformValue
               )}`
             : formatValue(inputValue || simulatedValue)

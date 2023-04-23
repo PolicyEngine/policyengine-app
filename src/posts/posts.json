@@ -730,5 +730,48 @@
       "donglai-xu",
       "lin-tao"
     ]
+  },
+  {
+    "title": "Analysis of the DC Financial Support for Families with Children Amendment Act",
+    "description": "Evaluating Councilmember Zachary Parker’s second Child Tax Credit proposal of 2023.",
+    "date": "2023-04-16 09:00:00",
+    "tags": [
+      "us",
+      "us-dc",
+      "proposals"
+    ],
+    "filename": "dc-financial-support-for-families-with-children.md",
+    "image": "dc-financial-support-for-families-with-children.png",
+    "authors": [
+      "max-ghenis"
+    ]
+  },
+  {
+    "title": "Introducing Utah State Income Tax Analysis on PolicyEngine",
+    "description": "Expanding our tax calculator and reform simulator capabilities to the Beehive State.",
+    "date": "2023-04-17 09:00:00",
+    "tags": [
+      "us",
+      "us-ut"
+    ],
+    "filename": "introducing-utah-state-income-tax-analysis-on-policyengine.md",
+    "image": "introducing-utah-state-income-tax-analysis-on-policyengine.webp",
+    "authors": [
+      "nikhil-woodruff"
+    ]
+  },
+  {
+    "title": "Building the roots of PolicyEngine Nigeria",
+    "description": "We’re expanding PolicyEngine’s reach by empowering Nigerians to understand personal income tax policies.",
+    "date": "2023-04-21 09:00:00",
+    "tags": [
+      "ng"
+    ],
+    "filename": "building-the-roots-of-policyengine-nigeria.md",
+    "image": "building-the-roots-of-policyengine-nigeria.webp",
+    "authors": [
+      "nikhil-woodruff",
+      "max-ghenis"
+    ]
   }
 ]

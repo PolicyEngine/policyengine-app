@@ -9,7 +9,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 
 export default function RelativeImpactByWealthDecile(props) {
-  const { impact, policyLabel } = props;
+  const { impact, policyLabel, metadata} = props;
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
   // Decile bar chart. Bars are grey if negative, green if positive.
@@ -92,6 +92,16 @@ export default function RelativeImpactByWealthDecile(props) {
 
   const averageRelChange =
     -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
 
   return (
     <>
@@ -99,7 +109,7 @@ export default function RelativeImpactByWealthDecile(props) {
         <h2>
           {policyLabel}{" "}
           {averageRelChange >= 0 ? "would increase" : "would decrease"} the
-          average household&apos;s net income by{" "}
+          average household&apos;s net income {label} by{" "}
           {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>

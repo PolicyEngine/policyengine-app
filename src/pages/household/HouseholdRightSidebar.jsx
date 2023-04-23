@@ -107,7 +107,7 @@ export default function HouseholdRightSidebar(props) {
         );
       })}
       <Figure
-        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 0)}
+        left={formatVariableValue(metadata.variables.marginal_tax_rate, mtr, 1)}
         right={"marginal tax rate"}
       />
     </>
