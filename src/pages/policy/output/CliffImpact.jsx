@@ -11,6 +11,7 @@ import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function CliffImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -132,7 +133,7 @@ export default function CliffImpact(props) {
         ...ChartLogo,
         margin: {
           t: 0,
-          b: 60,
+          b: 80,
         },
         height: mobile ? 300 : 450,
       }}
@@ -198,12 +199,42 @@ export default function CliffImpact(props) {
       : "would have an ambiguous effect on cliffs"
   } ${label}`;
 
+  const data = [
+    {
+      Metric: "Cliff rate",
+      Baseline: impact.baseline.cliff_share,
+      Reform: impact.reform.cliff_share,
+      Change: cliff_share_change
+    },
+    {
+      Metric: "Cliff gap",
+      Baseline: impact.baseline.cliff_gap,
+      Reform: impact.reform.cliff_gap,
+      Change: cliff_gap_change
+    }
+  ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "0px",
+    left: "70px",
+  };
+  
+
   return (
     <ResultsPanel title={title}>
       <Screenshottable>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container">
+          {!mobile && 
+            <DownloadCsvButton
+              content={data}
+              filename="cliff_impact.csv"
+              style={downloadButtonStyle}
+            />
+          }
+       </div>
       </Screenshottable>
-      <p>
+      <p style={{ marginTop: '10px' }}>
         The cliff rate is the share of households whose net income falls if each
         adult earned an additional {metadata.currency}2,000. The cliff gap is
         the sum of the losses incurred by all households on a cliff if their

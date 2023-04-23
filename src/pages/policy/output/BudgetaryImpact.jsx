@@ -174,7 +174,7 @@ export default function BudgetaryImpact(props) {
           {!mobile &&
             <DownloadCsvButton
               content={data}
-              filename="budgetary_impact.csv"
+              filename="budgetaryImpact.csv"
               className="download-button"
             />
           }

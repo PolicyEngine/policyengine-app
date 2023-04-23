@@ -136,7 +136,7 @@ export default function AverageImpactByDecile(props) {
           {!mobile &&
             <DownloadCsvButton
               content={data}
-              filename="AverageImpactByDecile.csv"
+              filename="absoluteImpactByIncomeDecile.csv"
               style={downloadButtonStyle}
             />
           }
