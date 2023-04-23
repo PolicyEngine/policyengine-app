@@ -199,24 +199,30 @@ export default function CliffImpact(props) {
       : "would have an ambiguous effect on cliffs"
   } ${label}`;
 
+  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
   const data = [
+    csvHeader,
+    ...[
     {
       Metric: "Cliff rate",
       Baseline: impact.baseline.cliff_share,
       Reform: impact.reform.cliff_share,
-      Change: cliff_share_change
+      Change: cliff_share_change,
     },
     {
       Metric: "Cliff gap",
       Baseline: impact.baseline.cliff_gap,
       Reform: impact.reform.cliff_gap,
-      Change: cliff_gap_change
-    }
+      Change: cliff_gap_change,
+    },
+    ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
   ];
+
+  
   const downloadButtonStyle = {
     position: "absolute",
-    bottom: "0px",
-    left: "70px",
+    bottom: "5px",
+    left: "100px",
   };
   
 
@@ -228,7 +234,7 @@ export default function CliffImpact(props) {
           {!mobile && 
             <DownloadCsvButton
               content={data}
-              filename="cliff_impact.csv"
+              filename="cliffImpact.csv"
               style={downloadButtonStyle}
             />
           }
