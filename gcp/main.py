@@ -1,6 +1,7 @@
 from flask import Flask, send_from_directory, request, redirect
 from pathlib import Path
 from gcp.social_card_tags import add_social_card_tags
+import base64
 
 app = Flask(__name__, static_folder="build")
 
@@ -29,7 +30,7 @@ def send_index_html():
             index_html, request.path, request.args
         )
     except Exception as e:
-        pass
+        print(e)
     # Return with correct headers
     return index_html, 200, {"Content-Type": "text/html"}
 
@@ -59,6 +60,22 @@ def page_not_found(e):
         )
         return send_from_directory(css_file.parent, css_file.name)
     return send_index_html()
+
+
+# Endpoint for the app to send an image hash- the server should save it locally in an image folder and return the URL at which it can be accessed.
+@app.route("/image", methods=["POST"])
+def image():
+    print(request.json)
+    # Get the image from the request body (filename: str and image: base64 str)
+    filename = request.json["filename"]
+    image = request.json["image"]
+    # remove the data:image/png;base64, from the start of the image string
+    image = image.split(",")[1]
+    # Save the image to the images folder
+    with open(f"build/static/media/social_cards/{filename}", "wb") as f:
+        # decode from base64
+        f.write(base64.b64decode(image))
+    return {}
 
 
 if __name__ == "__main__":
