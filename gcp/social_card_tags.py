@@ -39,18 +39,18 @@ def get_image(path: str, query_params: dict):
 
     country = path.split("/")[1].upper()
     if len(query_params) > 0:
-        joined_query_params = "-".join(
-            [f"{k}-{v}" for k, v in query_params.items()]
+        joined_query_params = "_".join(
+            [f"{k}_{v}" for k, v in query_params.items()]
         )
-        path = path + "-" + joined_query_params
+        path = path + "_" + joined_query_params
 
     original_path = path
 
     path = (
-        path.replace("/", "-")
-        .replace("?", "-")
-        .replace("=", "-")
-        .replace(".", "-")
+        path.replace("/", "_")
+        .replace("?", "_")
+        .replace("=", "_")
+        .replace(".", "_")
     )
 
     # Search the "./social_cards" directory for a file with the same name as the path and any extension
@@ -67,7 +67,7 @@ def get_image(path: str, query_params: dict):
             filename = image_files[0].name
             return f"https://policyengine.org/static/media/{filename}"
 
-    social_card_folder = Path("./social_cards")
+    social_card_folder = Path("./build/static/media/social_cards")
     social_card_files = list(social_card_folder.glob(f"{path}.*"))
     if len(social_card_files) > 0:
         filename = social_card_files[0].name
