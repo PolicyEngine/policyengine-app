@@ -759,5 +759,34 @@
     "authors": [
       "nikhil-woodruff"
     ]
+  },
+  {
+    "title": "Building the roots of PolicyEngine Nigeria",
+    "description": "We’re expanding PolicyEngine’s reach by empowering Nigerians to understand personal income tax policies.",
+    "date": "2023-04-21 09:00:00",
+    "tags": [
+      "ng"
+    ],
+    "filename": "building-the-roots-of-policyengine-nigeria.md",
+    "image": "building-the-roots-of-policyengine-nigeria.webp",
+    "authors": [
+      "nikhil-woodruff",
+      "max-ghenis"
+    ]
+  },
+  {
+    "title": "Kansas’s Flat Tax Proposal — SB169",
+    "description": "We review how the bill works and model its impact with PolicyEngine US.",
+    "date": "2023-04-23 09:00:00",
+    "tags": [
+      "us",
+      "us-ks",
+      "proposals"
+    ],
+    "filename": "kansas-flat-income-tax-sb-169.md",
+    "image": "kansas-flat-income-tax-sb-169.webp",
+    "authors": [
+      "arthur-wright"
+    ]
   }
 ]

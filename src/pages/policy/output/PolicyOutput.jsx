@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import SearchOptions from "../../../controls/SearchOptions";
@@ -35,6 +35,9 @@ import React from 'react';
 import {message} from 'antd';
 import Analysis from "./Analysis";
 import style from "../../../style";
+
+import { useScreenshot } from 'use-react-screenshot'
+
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -91,6 +94,46 @@ export default function PolicyOutput(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
+  const imageRef = useRef(null)
+  const [preparingForScreenshot, setPreparingForScreenshot] = useState(false)
+  const [image, takeScreenShot] = useScreenshot();
+  image;
+  setPreparingForScreenshot;
+
+  const handleScreenshot = () => {
+    console.log(imageRef.current)
+    setPreparingForScreenshot(true);
+  }
+
+  useEffect(() => {
+    if (preparingForScreenshot) {
+      setTimeout(() => {
+        takeScreenShot(imageRef.current).then(img => {
+            setPreparingForScreenshot(false);
+            // send a request to /image with the image
+            // The filename should be the current path (including query strings), but with /, &, ? etc. replaced with _
+            const filename = (window.location.pathname + window.location.search).replaceAll("/", "_").replaceAll("&", "_").replaceAll("?", "_").replaceAll("=", "_").replaceAll(".", "_") + ".png";
+            fetch('/image', {
+              method: 'POST',
+              body: JSON.stringify({
+                filename,
+                image: img,
+              }),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }).then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                throw new Error('Something went wrong');
+              }
+            });
+          });
+      }, 1000);
+    }
+  }, [preparingForScreenshot])
+
   const {
     metadata,
     policy,
@@ -111,7 +154,7 @@ export default function PolicyOutput(props) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}`;
       setImpact(null);
       setError(null);
-      asyncApiCall(url, null, 3_000)
+      asyncApiCall(url, null, 1_000)
         .then((data) => {
           if (data.status === "error") {
             if (!data.result.baseline_economy) {
@@ -377,6 +420,7 @@ export default function PolicyOutput(props) {
   const url = encodeURIComponent(window.location.href);
   const link = (
     <a onClick={() => {
+      handleScreenshot();
       navigator.clipboard.writeText(window.location.href);
       message.info('Link copied to clipboard');
     }}>
@@ -385,7 +429,14 @@ export default function PolicyOutput(props) {
   );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
   const twitter = (
-    <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+    <a 
+      onClick={() => {
+        handleScreenshot();
+      }}
+      href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <TwitterOutlined style={{ fontSize: 23 }} />
     </a>
   );
@@ -434,22 +485,23 @@ export default function PolicyOutput(props) {
 
   // If ?embed=True, just show `pane`, full screen.
 
-  if (embed) {
+  if (embed || preparingForScreenshot) {
     return (
       <>
         <div
+          ref={imageRef}
           style={{
             position: "absolute",
             top: 0,
             left: 0,
-            width: "100%",
-            height: "100vh",
+            width: 800 * 1.5,
+            height: 418 * 1.5,
             zIndex: 1001,
             padding: 50,
             paddingBottom: 100,
           }}
         >
-          {pane}
+            {pane}
         </div>
         <div
           style={{
@@ -471,16 +523,16 @@ export default function PolicyOutput(props) {
       <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
       justifyContent: "center", alignItems: "center", paddingBottom: 20,
      }}>
-      <h6 style={{
+      {!preparingForScreenshot && <h6 style={{
         margin: 0,
         paddingRight: 20,
-      }}><b>Share this result</b></h6>
+      }}><b>Share this result</b></h6>}
      <div 
       style={{ 
         display: "flex", 
         flexDirection: "row",
       }}>
-      {shareDivs}
+      {!preparingForScreenshot && shareDivs}
       </div>
     </div>
       <PolicyImpactPopup
@@ -489,13 +541,17 @@ export default function PolicyOutput(props) {
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {pane}
-      <BottomCarousel
+      {!preparingForScreenshot && <BottomCarousel
         selected={focus}
         options={POLICY_OUTPUT_TREE[0].children}
         bottomText={bottomElements}
-      />
+      />}
     </>
   );
 
-  return <ResultsPanel>{pane}</ResultsPanel>;
+  return (
+    <div>
+      <ResultsPanel ref={imageRef}>{pane}</ResultsPanel>
+    </div>
+  )
 }

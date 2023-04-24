@@ -1,6 +1,7 @@
 from flask import Flask, send_from_directory, request, redirect
 from pathlib import Path
 from gcp.social_card_tags import add_social_card_tags
+import base64
 
 app = Flask(__name__, static_folder="build")
 
@@ -9,7 +10,7 @@ app = Flask(__name__, static_folder="build")
 
 @app.before_request
 def before_request():
-    if request.url.startswith("http://"):
+    if request.url.startswith("httpa://"):
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
@@ -26,10 +27,10 @@ def send_index_html():
         index_html = f.read()
     try:
         index_html = add_social_card_tags(
-            index_html, request.path, request.args
+            index_html, request.path, request.args, SOCIAL_CARDS
         )
     except Exception as e:
-        pass
+        print(e)
     # Return with correct headers
     return index_html, 200, {"Content-Type": "text/html"}
 
@@ -43,6 +44,7 @@ def serve(path):
         try:
             return send_from_directory(app.static_folder, path)
         except FileNotFoundError:
+            print(f"File not found: {path}")
             return send_index_html()
 
 
@@ -61,5 +63,31 @@ def page_not_found(e):
     return send_index_html()
 
 
-if __name__ == "__main__":
-    app.run()
+# Endpoint for the app to send an image hash- the server should save it
+# locally in an image folder and return the URL at which it can be accessed.
+SOCIAL_CARDS = {}  # filename -> base64 image
+
+
+@app.route("/image", methods=["POST"])
+def image():
+    print(request.json)
+    # Get the image from the request body (filename: str and image: base64 str)
+    filename = request.json["filename"]
+    image = request.json["image"]
+    # remove the data:image/png;base64, from the start of the image string
+    image = image.split(",")[1]
+    # If more than 100 images are saved, delete the oldest one
+    if len(SOCIAL_CARDS) > 100:
+        del SOCIAL_CARDS[list(SOCIAL_CARDS.keys())[0]]
+    # Save the image to the images folder
+    SOCIAL_CARDS[filename] = image
+    return {}
+
+
+# GET /images/social-cards/<filename> should return the image with the given filename
+@app.route("/images/social-cards/<filename>")
+def get_image(filename):
+    # Send from the base64 image
+    base64_data = SOCIAL_CARDS[filename]
+    image = base64.b64decode(base64_data)
+    return image, 200, {"Content-Type": "image/png"}
