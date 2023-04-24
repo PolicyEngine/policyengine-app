@@ -773,5 +773,20 @@
       "nikhil-woodruff",
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Kansas’s Flat Tax Proposal — SB169",
+    "description": "We review how the bill works and model its impact with PolicyEngine US.",
+    "date": "2023-04-23 09:00:00",
+    "tags": [
+      "us",
+      "us-ks",
+      "proposals"
+    ],
+    "filename": "kansas-flat-income-tax-sb-169.md",
+    "image": "kansas-flat-income-tax-sb-169.webp",
+    "authors": [
+      "arthur-wright"
+    ]
   }
 ]
