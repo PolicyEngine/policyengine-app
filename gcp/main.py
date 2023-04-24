@@ -10,7 +10,7 @@ app = Flask(__name__, static_folder="build")
 
 @app.before_request
 def before_request():
-    if request.url.startswith("http://"):
+    if request.url.startswith("httpa://"):
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
@@ -76,7 +76,3 @@ def image():
         # decode from base64
         f.write(base64.b64decode(image))
     return {}
-
-
-if __name__ == "__main__":
-    app.run()
