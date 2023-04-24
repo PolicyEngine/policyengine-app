@@ -429,7 +429,14 @@ export default function PolicyOutput(props) {
   );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
   const twitter = (
-    <a href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+    <a 
+      onClick={() => {
+        handleScreenshot();
+      }}
+      href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <TwitterOutlined style={{ fontSize: 23 }} />
     </a>
   );
