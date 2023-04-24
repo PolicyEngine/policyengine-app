@@ -62,7 +62,8 @@ def page_not_found(e):
     return send_index_html()
 
 
-# Endpoint for the app to send an image hash- the server should save it locally in an image folder and return the URL at which it can be accessed.
+# Endpoint for the app to send an image hash- the server should save it
+# locally in an image folder and return the URL at which it can be accessed.
 @app.route("/image", methods=["POST"])
 def image():
     print(request.json)
