@@ -44,6 +44,7 @@ def serve(path):
         try:
             return send_from_directory(app.static_folder, path)
         except FileNotFoundError:
+            print(f"File not found: {path}")
             return send_index_html()
 
 
@@ -75,4 +76,5 @@ def image():
     with open(f"build/static/media/social_cards/{filename}", "wb") as f:
         # decode from base64
         f.write(base64.b64decode(image))
+    print(f"Saved image to {filename}. Other files in folder: {list(Path('build/static/media/social_cards').glob('*'))}")
     return {}

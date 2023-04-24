@@ -70,6 +70,7 @@ def get_image(path: str, query_params: dict):
     social_card_folder = Path("./build/static/media/social_cards")
     social_card_files = list(social_card_folder.glob(f"{path}.*"))
     if len(social_card_files) > 0:
+        print(f"Found a social card for {path}")
         filename = social_card_files[0].name
         return f"https://policyengine.org/static/media/social_cards/{filename}"
     else:
