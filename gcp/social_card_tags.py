@@ -34,7 +34,7 @@ def get_title(path: str, query_params: dict):
     return main_text
 
 
-def get_image(path: str, query_params: dict):
+def get_image(path: str, query_params: dict, social_cards: dict = {}):
     # Replace all /, ? and = from the path and query string combined with -
 
     country = path.split("/")[1].upper()
@@ -67,11 +67,10 @@ def get_image(path: str, query_params: dict):
             filename = image_files[0].name
             return f"https://policyengine.org/static/media/{filename}"
 
-    social_card_folder = Path("./build/static/media/social_cards")
-    social_card_files = list(social_card_folder.glob(f"{path}.*"))
-    if len(social_card_files) > 0:
-        filename = social_card_files[0].name
-        return f"https://policyengine.org/static/media/social_cards/{filename}"
+    # Check if there is a filename in the social_cards dict whose non-extension part matches the path
+    if path + ".png" in social_cards:
+        print(f"Found a social card for {path}")
+        return f"https://policyengine.org/images/social-cards/{path}.png"
     else:
         return (
             f"https://policyengine.org/static/media/social_cards/main_logo.png"
@@ -100,12 +99,14 @@ def get_description(path: str, query_params: dict):
         return f"See the full the impact of a policy reform on PolicyEngine {country}"
 
 
-def add_social_card_tags(html_file: str, path: str, query_params: dict = {}):
+def add_social_card_tags(
+    html_file: str, path: str, query_params: dict = {}, social_cards: dict = {}
+):
     # Add social card tags to the html file
 
     title = get_title(path, query_params)
     description = get_description(path, query_params)
-    image_url = get_image(path, query_params)
+    image_url = get_image(path, query_params, social_cards)
 
     # Use beautiful soup to add the tags for Twitter and Facebook
     soup = BeautifulSoup(html_file, "html.parser")
