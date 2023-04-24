@@ -10,7 +10,7 @@ app = Flask(__name__, static_folder="build")
 
 @app.before_request
 def before_request():
-    if request.url.startswith("http://"):
+    if request.url.startswith("httpa://"):
         url = request.url.replace("http://", "https://", 1)
         code = 301
         return redirect(url, code=code)
@@ -27,7 +27,7 @@ def send_index_html():
         index_html = f.read()
     try:
         index_html = add_social_card_tags(
-            index_html, request.path, request.args
+            index_html, request.path, request.args, SOCIAL_CARDS
         )
     except Exception as e:
         print(e)
@@ -63,6 +63,8 @@ def page_not_found(e):
     return send_index_html()
 
 
+SOCIAL_CARDS = {}  # filename -> base64 image
+
 # Endpoint for the app to send an image hash- the server should save it locally in an image folder and return the URL at which it can be accessed.
 @app.route("/image", methods=["POST"])
 def image():
@@ -72,9 +74,18 @@ def image():
     image = request.json["image"]
     # remove the data:image/png;base64, from the start of the image string
     image = image.split(",")[1]
+    # If more than 100 images are saved, delete the oldest one
+    if len(SOCIAL_CARDS) > 100:
+        del SOCIAL_CARDS[list(SOCIAL_CARDS.keys())[0]]
     # Save the image to the images folder
-    with open(f"build/static/media/social_cards/{filename}", "wb") as f:
-        # decode from base64
-        f.write(base64.b64decode(image))
-    print(f"Saved image to {filename}. Other files in folder: {list(Path('build/static/media/social_cards').glob('*'))}")
+    SOCIAL_CARDS[filename] = image
     return {}
+
+
+# GET /images/social-cards/<filename> should return the image with the given filename
+@app.route("/images/social-cards/<filename>")
+def get_image(filename):
+    # Send from the base64 image
+    base64_data = SOCIAL_CARDS[filename]
+    image = base64.b64decode(base64_data)
+    return image, 200, {"Content-Type": "image/png"}
