@@ -6,6 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function InequalityImpact(props) {
   const { impact, policyLabel, metadata } = props;
@@ -150,7 +151,29 @@ export default function InequalityImpact(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-   
+  
+  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
+  const metricLabels = ["Gini index", "Top 10% share", "Top 1% share"];
+  const baselineValues = [
+    impact.inequality.gini.baseline,
+    impact.inequality.top_10_pct_share.baseline,
+    impact.inequality.top_1_pct_share.baseline,
+  ];
+  const reformValues = [
+    impact.inequality.gini.reform,
+    impact.inequality.top_10_pct_share.reform,
+    impact.inequality.top_1_pct_share.reform,
+  ];
+  const data = [
+    csvHeader,
+    ...metricLabels.map((label, index) => {
+      const baseline = baselineValues[index];
+      const reform = reformValues[index];
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+    
   return (
     <>
       <Screenshottable>
@@ -163,6 +186,15 @@ export default function InequalityImpact(props) {
             : ` would have an ambiguous effect on inequality ${label}` }
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton
+              content={data}
+              filename="incomeInequilityImpact.csv"
+              className="download-button"
+            />
+          )}
+        </div>
       </Screenshottable>
       <p>
         The chart above shows how this policy reform affects different measures
