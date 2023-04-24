@@ -1,6 +1,6 @@
 runtime: python
 env: flex
-entrypoint: gunicorn -b :$PORT main:app --timeout 60
+entrypoint: gunicorn -b :$PORT main:app --timeout 60 --workers 3
 runtime_config:
     operating_system: "ubuntu18"
     runtime_version: "3.8"
