@@ -2,7 +2,7 @@ Last week, the [Kansas state house passed](https://fastdemocracy.com/bill-search
 
 This post examines the details of these reforms and [PolicyEngine’s forecasted impacts](https://policyengine.org/us/policy?focus=policyOutput.netIncome&region=ks&timePeriod=2023&baseline=2&reform=8918) of implementing SB 169 in the current tax year.
 
-[**See how SB 169 would affect your household with PolicyEngine’s personalized calculator.**](https://policyengine.org/us/household?focus=intro&region=ks&timePeriod=2023&baseline=2&reform=8918)
+[See how SB 169 would affect your household with PolicyEngine’s personalized calculator.](https://policyengine.org/us/household?focus=intro&region=ks&timePeriod=2023&baseline=2&reform=8918)
 
 ## How would SB169 change Kansas’s tax system, and how much does PolicyEngine model?
 
@@ -17,23 +17,19 @@ SB169 would enact nine changes to the tax system. Below we list them, and also n
 1. **Inflation-adjust the standard deduction** in future years for all filers.
 *Not applicable to PolicyEngine’s one-year model.*
 
-1. **Eliminate the nonrefundable Food Sales Tax credit, **which would otherwise end in 2025.
+1. **Eliminate the nonrefundable Food Sales Tax credit,** which would otherwise end in 2025.
 *Fully modeled.*
 
-1. **Eliminate the sales tax on unprepared food.
-***PolicyEngine does not model sales taxes. Note however that food purchased with Supplemental Nutrition Assistance Program benefits (food stamps) are already [exempt from sales taxes](https://ask.usda.gov/s/article/Can-sales-tax-be-charged-on-items-I-bought-with-Supplemental-Nutrition-Assistance-Program-benefits#:~:text=Information&text=No%2C%20retailers%20cannot%20charge%20sales,Assistance%20Program%20(SNAP)%20benefits.).*
+1. **Eliminate the sales tax on unprepared food.** *PolicyEngine does not model sales taxes. Note however that food purchased with Supplemental Nutrition Assistance Program benefits (food stamps) are already [exempt from sales taxes](https://ask.usda.gov/s/article/Can-sales-tax-be-charged-on-items-I-bought-with-Supplemental-Nutrition-Assistance-Program-benefits#:~:text=Information&text=No%2C%20retailers%20cannot%20charge%20sales,Assistance%20Program%20(SNAP)%20benefits.).*
 
-1. **Expand the income tax exemption for Social Security benefits: **Under current law, Kansans whose total adjusted gross income is $75,000 or less are exempt from taxes on their social security benefits, while those above this threshold are fully taxed. Instead, SB169 would gradually phase out the subtraction for Social Security benefits between $75,000 and $100,000 of adjusted gross income.
+1. **Expand the income tax exemption for Social Security benefits:** Under current law, Kansans whose total adjusted gross income is $75,000 or less are exempt from taxes on their social security benefits, while those above this threshold are fully taxed. Instead, SB169 would gradually phase out the subtraction for Social Security benefits between $75,000 and $100,000 of adjusted gross income.
 *PolicyEngine models the existing exemption, but this reform amends the structure of the exemption in a way that the app cannot model. We therefore exclude it from this analysis, though invite analysts to model it in our Python package.*
 
-1. **Decrease the normal tax rate for corporations.
-***Not modeled.*
+1. **Decrease the normal tax rate for corporations.** *Not modeled.*
 
-1. **Raise the exemption ceiling for residential property taxes.
-***Not modeled.*
+1. **Raise the exemption ceiling for residential property taxes.** *Not modeled.*
 
-1. **Reduce the tax rate on banks.
-***Not modeled.*
+1. **Reduce the tax rate on banks.** *Not modeled.*
 
 PolicyEngine’s limitations may result in our understating the net income benefits to Kansans and the state revenue losses from implementing SB169. Beyond the policies we do not model, our reliance on the Current Population Survey creates inaccuracies that we [intend to remedy later this year](https://policyengine.org/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis).
 
