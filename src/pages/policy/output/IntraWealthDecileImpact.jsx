@@ -7,6 +7,7 @@ import HoverCard from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function IntraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata } = props;
@@ -293,6 +294,41 @@ export default function IntraWealthDecileImpact(props) {
     ? " of the population"
     : " of " + options.find((option) => option.value === region)?.label + " residents";
 
+  const csvHeader = [
+    "Wealth Decile",
+    "Gain more than 5%",
+    "Gain less than 5%",
+    "No change",
+    "Lose less than 5%",
+    "Lose more than 5%"
+  ];
+  const csvData = [
+    csvHeader,
+    ...decileNumbers.map((decile) => {
+      return [
+        decile,
+        deciles["Gain more than 5%"][decile - 1],
+        deciles["Gain less than 5%"][decile - 1],
+        deciles["No change"][decile - 1],
+        deciles["Lose less than 5%"][decile - 1],
+        deciles["Lose more than 5%"][decile - 1]
+      ];
+    }),
+    [
+       "All",
+      all["Gain more than 5%"],
+      all["Gain less than 5%"],
+      all["No change"],
+      all["Lose less than 5%"],
+      all["Lose more than 5%"]
+    ]
+  ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "60px",
+    left: "40px",
+  };
+
   return (
     <>
       <Screenshottable>
@@ -301,6 +337,15 @@ export default function IntraWealthDecileImpact(props) {
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton
+              content={csvData}
+              filename="intraWealthDecileImpact.csv"
+              style={downloadButtonStyle}
+            />
+          )}
+        </div>
       </Screenshottable>
       <p>
         The chart above shows percentage of of people in each household wealth

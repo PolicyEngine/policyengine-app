@@ -6,6 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function DeepPovertyImpactByGender(props) {
   const { impact, policyLabel, metadata } = props;
@@ -140,6 +141,24 @@ export default function DeepPovertyImpactByGender(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
+  
+  const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
+  const data = [
+    csvHeader,
+      ...povertyLabels.map((label) => {
+      const baseline =
+        label === "All"
+          ? impact.poverty.deep_poverty[labelToKey[label]].baseline
+          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].baseline;
+      const reform =
+        label === "All"
+          ? impact.poverty.deep_poverty[labelToKey[label]].reform
+          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].reform;
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+    
 
   return (
     <>
@@ -153,6 +172,15 @@ export default function DeepPovertyImpactByGender(props) {
             : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton
+              content={data}
+              filename="deepPovertyImpactBySex.csv"
+              className="download-button"
+            />
+          )}
+        </div>
       </Screenshottable>
       <p>
         The chart above shows the relative change in the deep poverty rate for

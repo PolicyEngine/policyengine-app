@@ -7,6 +7,7 @@ import HoverCard from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function RelativeImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata} = props;
@@ -102,7 +103,19 @@ export default function RelativeImpactByWealthDecile(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-
+  const csvHeader = ['Wealth Decile', 'Relative Change'];
+  const data = [
+    csvHeader,
+    ...Object.entries(impact.wealth_decile.relative).map(([decile, relativeChange]) => {
+      return [decile, relativeChange];
+    }),
+  ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "48px",
+    left: "70px",
+  };
+    
   return (
     <>
       <Screenshottable>
@@ -113,6 +126,15 @@ export default function RelativeImpactByWealthDecile(props) {
           {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton
+              content={data}
+              filename="relativeImpactByWealthDecile.csv"
+              style={downloadButtonStyle}
+            />
+          )}
+        </div>
       </Screenshottable>
       <p>
         The chart above shows the relative change in income for each wealth

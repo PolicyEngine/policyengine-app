@@ -6,6 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function BudgetaryImpact(props) {
   const { impact, policyLabel, metadata } = props;
@@ -151,6 +152,12 @@ export default function BudgetaryImpact(props) {
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
 
+  const data = [
+    ['Tax revenues', taxImpact],
+    ['Benefit spending', spendingImpact],
+    ['Net budgetary impact', budgetaryImpact],
+  ];
+    
   return (
     <>
       <Screenshottable>
@@ -163,7 +170,17 @@ export default function BudgetaryImpact(props) {
           {label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container"> 
+          {!mobile &&
+            <DownloadCsvButton
+              content={data}
+              filename="budgetaryImpact.csv"
+              className="download-button"
+            />
+          }
+        </div>
       </Screenshottable>
     </>
   );
+  
 }

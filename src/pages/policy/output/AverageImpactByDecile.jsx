@@ -7,6 +7,7 @@ import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function AverageImpactByDecile(props) {
   const { impact, policyLabel, metadata } = props;
@@ -106,6 +107,16 @@ export default function AverageImpactByDecile(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
+  
+  const data = Object.entries(impact.decile.average).map(([key, value]) => [
+    `Decile ${key}`,
+    value,
+  ]);    
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "48px",
+    left: "70px",
+  };
 
   return (
     <>
@@ -121,6 +132,15 @@ export default function AverageImpactByDecile(props) {
           )}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container"> 
+          {!mobile &&
+            <DownloadCsvButton
+              content={data}
+              filename="absoluteImpactByIncomeDecile.csv"
+              style={downloadButtonStyle}
+            />
+          }
+        </div>
       </Screenshottable>
       <p>
         The chart above shows the relative change in income for each income
