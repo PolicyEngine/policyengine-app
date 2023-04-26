@@ -6,6 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
+import DownloadCsvButton from './DownloadCsvButton';
 
 export default function PovertyImpactByRace(props) {
   const { impact, policyLabel, metadata} = props;
@@ -156,6 +157,26 @@ export default function PovertyImpactByRace(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
+  
+  const csvHeader = ['Race', 'Baseline', 'Reform', 'Change'];
+  const data = [
+    csvHeader,
+    ...povertyLabels.map((label) => {
+      const baseline = label === 'All'
+        ? impact.poverty.poverty[labelToKey[label]].baseline
+        : impact.poverty_by_race.poverty[labelToKey[label]].baseline;
+      const reform = label === 'All'
+        ? impact.poverty.poverty[labelToKey[label]].reform
+        : impact.poverty_by_race.poverty[labelToKey[label]].reform;
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "27px",
+    left: "40px",
+  };
 
   return (
     <>
@@ -169,6 +190,15 @@ export default function PovertyImpactByRace(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton
+              content={data}
+              filename="povertyImpactByRace.csv"
+              style={downloadButtonStyle}
+            />
+          )}
+        </div>
       </Screenshottable>
       <p>
         The chart above shows the relative change in the poverty rate for each
