@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { optimiseHousehold } from "../../../api/variables";
+import ResultsPanel from "../../../layout/ResultsPanel";
 import Button from "../../../controls/Button";
-import Checkbox from "../../../controls/Checkbox";
+import { Switch } from "antd";
 import style from "../../../style";
 import { getReformDefinitionCode } from "../../policy/output/PolicyReproducibility";
 
@@ -147,21 +148,23 @@ export default function HouseholdReproducibility(props) {
   // This component shows the Python code necessary to run a microsimulation to reproduce
   // results on PolicyEngine.
   return (
-    <>
-      <h2>Reproduce these results</h2>
-      <p>
-        Run the code below into a Python notebook to reproduce the
-        microsimulation results.
-      </p>
+    <ResultsPanel
+      title="Reproduce these results"
+      description="Run the code below into a Python notebook to reproduce the microsimulation results."
+    >
       <div
         style={{
           display: "flex",
           justifyContent: "center",
-          marginBottom: 30
+          columnGap: "10px",
+          alignItems: "center",
+          paddingBottom: 20,
         }}
       >
-        <Checkbox
-          label=" Include earning variation"
+        <p style={{margin: 0}}>
+          Include earning variation
+        </p>
+        <Switch
           checked={earningVariation}
           onChange={() => setEarningVariation(!earningVariation)}
         />
@@ -183,6 +186,6 @@ export default function HouseholdReproducibility(props) {
           }}
         />
       </div>
-    </>
+    </ResultsPanel>
   );
 }
