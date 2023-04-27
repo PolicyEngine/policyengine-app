@@ -47,7 +47,8 @@ export function BlogPostPreviewRegular(props) {
         src={imageSrc}
         style={{
           width: width || 300,
-          height: imageHeight || 200,
+          height: imageHeight || 180,
+          maxHeight: 180,
           // Fit inside without stretching
           objectFit: "cover",
         }}
