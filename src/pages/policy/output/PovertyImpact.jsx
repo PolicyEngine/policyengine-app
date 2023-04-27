@@ -9,7 +9,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function PovertyImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   const childPovertyChange =
     impact.poverty.poverty.child.reform /
       impact.poverty.poverty.child.baseline -
@@ -160,16 +160,16 @@ export default function PovertyImpact(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="povertyImpactByAge.csv"
               className="download-button"
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows the relative change in the poverty rate for each
         age group.

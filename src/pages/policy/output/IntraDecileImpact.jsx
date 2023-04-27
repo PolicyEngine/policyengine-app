@@ -10,7 +10,7 @@ import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function IntraDecileImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   const deciles = impact.intra_decile.deciles;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const all = impact.intra_decile.all;
@@ -337,16 +337,16 @@ export default function IntraDecileImpact(props) {
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={csvData}
               filename="intraDecileImpact.csv"
               style={downloadButtonStyle}
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows percentage of of people in each household income
         decile who experience different outcomes. Households are sorted into ten

@@ -15,18 +15,16 @@ export default function PolicyImpactPopup(props) {
       <div>
         {metadata.countryId === "us" ? (
           <p>
-            PolicyEngine estimates reform impacts using a static microsimulation
-            over the 2021 Current Population Survey March Supplement.{" "}
+            PolicyEngine estimates reform impacts using microsimulation.{" "}
             <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis" target="_blank">
-              Read our caveats and data enhancement plan.
+              Learn more
             </a>
           </p>
         ) : (
           <p>
-            PolicyEngine estimates reform impacts using a static microsimulation
-            over{" "}
+            PolicyEngine estimates reform impacts using microsimulation.{" "}
             <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
-              an enhanced version of the 2019 Family Resources Survey
+              Learn more
             </a>
           </p>
         )}

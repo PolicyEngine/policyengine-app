@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DownloadCsvButton = ({ content, filename, className, style }) => {
+const DownloadCsvButton = ({ content, filename, className, style, preparingForScreenshot }) => {
   const downloadCSV = (event) => {
     event.preventDefault();
 
@@ -20,6 +20,10 @@ const DownloadCsvButton = ({ content, filename, className, style }) => {
     URL.revokeObjectURL(url);
   };
 
+  if (preparingForScreenshot) {
+    return null;
+  }
+
   const downloadButtonStyle = {
     display: "inline-block",
     backgroundColor: "#F2F2F2",
@@ -35,6 +39,7 @@ const DownloadCsvButton = ({ content, filename, className, style }) => {
   };
 
   return (
+    // eslint-disable-next-line
     <a
       href="#"
       onClick={downloadCSV}

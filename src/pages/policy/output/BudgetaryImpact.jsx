@@ -9,7 +9,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function BudgetaryImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
 
   const budgetaryImpact = impact.budget.budgetary_impact;
   const taxImpact = impact.budget.tax_revenue_impact;
@@ -170,16 +170,16 @@ export default function BudgetaryImpact(props) {
           {label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container"> 
           {!mobile &&
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="budgetaryImpact.csv"
               className="download-button"
             />
           }
         </div>
-      </Screenshottable>
     </>
   );
   

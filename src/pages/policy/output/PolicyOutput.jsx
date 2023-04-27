@@ -96,9 +96,7 @@ export default function PolicyOutput(props) {
   const [error, setError] = useState(null);
   const imageRef = useRef(null)
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false)
-  const [image, takeScreenShot] = useScreenshot();
-  image;
-  setPreparingForScreenshot;
+  const [, takeScreenShot] = useScreenshot();
 
   const handleScreenshot = () => {
     console.log(imageRef.current)
@@ -132,7 +130,7 @@ export default function PolicyOutput(props) {
           });
       }, 1000);
     }
-  }, [preparingForScreenshot])
+  }, [preparingForScreenshot, takeScreenShot]);
 
   const {
     metadata,
@@ -297,6 +295,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.netIncome") {
     pane = (
       <BudgetaryImpact
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -305,6 +304,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.decileRelativeImpact") {
     pane = (
       <RelativeImpactByDecile
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -313,6 +313,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.decileAverageImpact") {
     pane = (
       <AverageImpactByDecile
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -321,6 +322,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.intraDecileImpact") {
     pane = (
       <IntraDecileImpact
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -329,6 +331,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.povertyImpact") {
     pane = (
       <PovertyImpact
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -337,6 +340,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.deepPovertyImpact") {
     pane = (
       <DeepPovertyImpact
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -345,6 +349,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.genderPovertyImpact") {
     pane = (
       <PovertyImpactByGender
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -353,6 +358,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.genderDeepPovertyImpact") {
     pane = (
       <DeepPovertyImpactByGender
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -361,6 +367,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.racialPovertyImpact") {
     pane = (
       <PovertyImpactByRace
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -369,6 +376,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.inequalityImpact") {
     pane = (
       <InequalityImpact
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -377,6 +385,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.wealthDecileAverageImpact") {
     pane = (
       <AverageImpactByWealthDecile
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -385,6 +394,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.wealthDecileRelativeImpact") {
     pane = (
       <RelativeImpactByWealthDecile
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -393,6 +403,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.intraWealthDecileImpact") {
     pane = (
       <IntraWealthDecileImpact
+        preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -419,6 +430,7 @@ export default function PolicyOutput(props) {
 
   const url = encodeURIComponent(window.location.href);
   const link = (
+    // eslint-disable-next-line
     <a onClick={() => {
       handleScreenshot();
       navigator.clipboard.writeText(window.location.href);
@@ -466,19 +478,16 @@ export default function PolicyOutput(props) {
   const bottomElements =
     mobile & !embed ? null : metadata.countryId === "us" ? (
       <p>
-        PolicyEngine US v{selectedVersion} estimates reform impacts using a
-        static microsimulation over the 2021 Current Population Survey March
-        Supplement.{" "}
+        PolicyEngine US v{selectedVersion} estimates reform impacts using microsimulation.{" "}
         <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis" target="_blank">
-          Read our caveats and data enhancement plan.
+          Learn more
         </a>
       </p>
     ) : (
       <p>
-        PolicyEngine UK v{selectedVersion} estimates reform impacts using a
-        static microsimulation over{" "}
+        PolicyEngine UK v{selectedVersion} estimates reform impacts using microsimulation.{" "}
         <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
-          an enhanced version of the 2019 Family Resources Survey
+          Learn more
         </a>
       </p>
     );

@@ -9,7 +9,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function DeepPovertyImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   const childPovertyChange =
     impact.poverty.deep_poverty.child.reform /
       impact.poverty.deep_poverty.child.baseline -
@@ -165,16 +165,16 @@ export default function DeepPovertyImpact(props) {
             : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="deeppPovertyImpactByAge.csv"
               className="download-button"
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows the relative change in the deep poverty rate for
         each age group.

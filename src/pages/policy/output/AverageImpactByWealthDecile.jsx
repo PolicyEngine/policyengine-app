@@ -10,7 +10,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function AverageImpactByWealthDecile(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
@@ -132,16 +132,16 @@ export default function AverageImpactByWealthDecile(props) {
           )}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container"> 
           {!mobile &&
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="absoluteImpactByWealthDecile.csv"
               style={downloadButtonStyle}
             />
           }
         </div>
-      </Screenshottable>
       <p>
         The chart above shows the relative change in income for each wealth
         decile. Households are sorted into ten equally-populated groups

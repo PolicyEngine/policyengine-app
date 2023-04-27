@@ -9,7 +9,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function InequalityImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
 
   const metricChanges = [
     impact.inequality.gini.reform / impact.inequality.gini.baseline - 1,
@@ -186,16 +186,16 @@ export default function InequalityImpact(props) {
             : ` would have an ambiguous effect on inequality ${label}` }
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="incomeInequilityImpact.csv"
               className="download-button"
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows how this policy reform affects different measures
         of income inequality.
