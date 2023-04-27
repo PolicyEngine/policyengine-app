@@ -70,7 +70,6 @@ export function BlogPostPreviewRegular(props) {
           style={{
             marginLeft: "auto",
             marginBottom: 5,
-            color: style.colors.DARK_GRAY,
           }}
         >
           {dateString}
