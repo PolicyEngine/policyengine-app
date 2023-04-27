@@ -186,6 +186,7 @@ export default function InequalityImpact(props) {
             : ` would have an ambiguous effect on inequality ${label}` }
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
@@ -195,7 +196,6 @@ export default function InequalityImpact(props) {
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows how this policy reform affects different measures
         of income inequality.

@@ -127,6 +127,7 @@ export default function RelativeImpactByDecile(props) {
           {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
@@ -136,7 +137,6 @@ export default function RelativeImpactByDecile(props) {
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows the relative change in income for each income
         decile. Households are sorted into ten equally-populated groups

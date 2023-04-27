@@ -337,6 +337,7 @@ export default function IntraWealthDecileImpact(props) {
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
@@ -346,7 +347,6 @@ export default function IntraWealthDecileImpact(props) {
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows percentage of of people in each household wealth
         decile who experience different outcomes. Households are sorted into ten

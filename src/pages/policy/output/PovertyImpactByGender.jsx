@@ -166,6 +166,7 @@ export default function PovertyImpactByGender(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
@@ -175,7 +176,6 @@ export default function PovertyImpactByGender(props) {
             />
           )}
         </div>
-      </Screenshottable>
       <p>
         The chart above shows the relative change in the poverty rate for each
         sex.

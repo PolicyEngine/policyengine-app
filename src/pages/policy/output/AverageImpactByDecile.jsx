@@ -132,6 +132,7 @@ export default function AverageImpactByDecile(props) {
           )}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container"> 
           {!mobile &&
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
@@ -141,7 +142,6 @@ export default function AverageImpactByDecile(props) {
             />
           }
         </div>
-      </Screenshottable>
       <p>
         The chart above shows the relative change in income for each income
         decile. Households are sorted into ten equally-populated groups

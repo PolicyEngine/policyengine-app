@@ -170,6 +170,7 @@ export default function BudgetaryImpact(props) {
           {label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
+      </Screenshottable>
         <div className="chart-container"> 
           {!mobile &&
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
@@ -179,7 +180,6 @@ export default function BudgetaryImpact(props) {
             />
           }
         </div>
-      </Screenshottable>
     </>
   );
   
