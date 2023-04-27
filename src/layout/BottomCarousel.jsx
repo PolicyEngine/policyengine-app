@@ -24,6 +24,7 @@ export default function BottomCarousel(props) {
         backgroundColor: style.colors.WHITE,
         padding: 5,
         justifyContent: mobile ? "center" : "right",
+        borderTop: "1px solid black"
       }}
     >
       {!mobile && (

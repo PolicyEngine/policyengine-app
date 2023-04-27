@@ -21,7 +21,7 @@ export default function CliffImpact(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const { metadata, policyLabel } = props;
+  const { metadata, policyLabel, preparingForScreenshot } = props;
   const [hovercard, setHovercard] = useState(null);
   const mobile = useMobile();
   useEffect(() => {
@@ -232,7 +232,7 @@ export default function CliffImpact(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
         <div className="chart-container">
           {!mobile && 
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="cliffImpact.csv"
               style={downloadButtonStyle}

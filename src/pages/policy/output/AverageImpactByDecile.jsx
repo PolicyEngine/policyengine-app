@@ -10,7 +10,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function AverageImpactByDecile(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
@@ -134,7 +134,7 @@ export default function AverageImpactByDecile(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
         <div className="chart-container"> 
           {!mobile &&
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="absoluteImpactByIncomeDecile.csv"
               style={downloadButtonStyle}

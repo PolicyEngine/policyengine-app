@@ -10,7 +10,7 @@ import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function RelativeImpactByDecile(props) {
-  const { impact, policyLabel, metadata} = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
   // Decile bar chart. Bars are grey if negative, green if positive.
@@ -129,7 +129,7 @@ export default function RelativeImpactByDecile(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="relativeImpactByDecile.csv"
               style={downloadButtonStyle}

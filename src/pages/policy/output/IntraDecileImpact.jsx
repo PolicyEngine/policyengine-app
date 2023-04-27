@@ -10,7 +10,7 @@ import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function IntraDecileImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   const deciles = impact.intra_decile.deciles;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const all = impact.intra_decile.all;
@@ -339,7 +339,7 @@ export default function IntraDecileImpact(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={csvData}
               filename="intraDecileImpact.csv"
               style={downloadButtonStyle}

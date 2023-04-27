@@ -9,7 +9,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function PovertyImpact(props) {
-  const { impact, policyLabel, metadata } = props;
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   const childPovertyChange =
     impact.poverty.poverty.child.reform /
       impact.poverty.poverty.child.baseline -
@@ -162,7 +162,7 @@ export default function PovertyImpact(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="povertyImpactByAge.csv"
               className="download-button"

@@ -9,8 +9,7 @@ import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 
 export default function PovertyImpactByRace(props) {
-  const { impact, policyLabel, metadata} = props;
-  console.log(impact)
+  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
   // white, black, hispanic, other
   const whitePovertyChange =
     impact.poverty_by_race.poverty.white.reform /
@@ -102,11 +101,11 @@ export default function PovertyImpactByRace(props) {
         const group = data.points[0].x;
         const change = data.points[0].y;
         const baseline =
-          group == "All"
+          group === "All"
             ? impact.poverty.poverty[labelToKey[group]].baseline
             : impact.poverty_by_race.poverty[labelToKey[group]].baseline;
         const reform =
-          group == "All"
+          group === "All"
             ? impact.poverty.poverty[labelToKey[group]].reform
             : impact.poverty_by_race.poverty[labelToKey[group]].reform;
         const message = `The percentage of ${
@@ -192,7 +191,7 @@ export default function PovertyImpactByRace(props) {
         <HoverCard content={hovercard}>{chart}</HoverCard>
         <div className="chart-container">
           {!mobile && (
-            <DownloadCsvButton
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="povertyImpactByRace.csv"
               style={downloadButtonStyle}
