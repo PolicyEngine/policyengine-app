@@ -552,7 +552,6 @@ export default function BlogPostPage(props) {
                 flexDirection: "column",
               }}
             >
-                <SubscribeForm />
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
               ))}
