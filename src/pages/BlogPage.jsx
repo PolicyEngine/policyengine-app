@@ -2,7 +2,7 @@ import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
 import { Container } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import { Navigate, BrowserRouter, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
 import FOF from "./FOF";
@@ -345,14 +345,15 @@ function SocialMediaIcons(props) {
 //CHANGES HERE 
 function SubscribeForm() {
     console.log(`Enter your email address to subscribe to Policy Engine`);
+    
         const [searchTerm, setSearchTerm] = useState('');
         const [subscribed, setSubscribed] = useState('');
 
-    const handleSubscribe = (e) => {
-        e.preventDefault();
-        setSubscribed(true);
-    };
-    
+        const handleSubscribe = (e) => {
+            e.preventDefault();
+            setSubscribed(true);
+        };
+
     return (
         <BrowserRouter>
 
@@ -363,7 +364,7 @@ function SubscribeForm() {
             Get the latest posts delivered right to your inbox</p>
         <form onSubmit={handleSubscribe}>
         <Link to="/layout/EmailSignup">
-        <button className='right'>Subscribe</button>
+        <button className='right'value={{subscribed}}>Subscribe</button>
         </Link>
         <input
             type="text"
@@ -551,10 +552,13 @@ export default function BlogPostPage(props) {
                 flexDirection: "column",
               }}
             >
+                <SubscribeForm />
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
               ))}
             </div>
+    
+            
           </div>
         </div>
       </Container>
