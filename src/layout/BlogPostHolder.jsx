@@ -1,9 +1,9 @@
-import postJson from '../posts/posts.json';
-import style from '../style';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import moment from 'moment/moment';
-import { useState } from 'react';
+import postJson from "../posts/posts.json";
+import style from "../style";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import moment from "moment/moment";
+import { useState } from "react";
 
 export function BlogPostPreviewRegular(props) {
   const [isHovered, setIsHovered] = useState(false)
@@ -19,20 +19,19 @@ export function BlogPostPreviewRegular(props) {
     imageHeight,
     backgroundColor
   } = props;
-  let name = filename.split('.')[0];
+  let name = filename.split(".")[0];
   if (
-    name.startsWith('uk-') ||
-    name.startsWith('us-') ||
-    name.startsWith('ca-')
+    name.startsWith("uk-") ||
+    name.startsWith("us-") ||
+    name.startsWith("ca-")
   ) {
     name = name.substring(3);
   }
   const imageSrc = require(`../images/posts/${image}`);
   const navigate = useNavigate();
 
-  // Date will be like 2022-01-01. Convert it to 'April 1st, 2022'
-  const dateString = moment(date).format('MMMM Do, YYYY');
-
+  // Date will be like 2022-01-01. Convert it to "April 1st, 2022"
+  const dateString = moment(date).format("MMMM Do, YYYY");
 
   const handleMouseEnter = () => {
     setIsHovered(true)
@@ -40,7 +39,6 @@ export function BlogPostPreviewRegular(props) {
   const handleMouseLeave = () => {
     setIsHovered(false)
   }
-
 
   return (
     <motion.div
@@ -52,9 +50,9 @@ export function BlogPostPreviewRegular(props) {
       style={{
         width: width || 300,
         margin: 10,
-        display: 'flex',
-        flexDirection: 'column',
-        cursor: 'pointer',
+        display: "flex",
+        flexDirection: "column",
+        cursor: "pointer",
         height: height || 450
       }}
       whileHover={{
@@ -71,7 +69,7 @@ export function BlogPostPreviewRegular(props) {
           width: width || 300,
           height: imageHeight || 200,
           // Fit inside without stretching
-          objectFit: 'cover'
+          objectFit: "cover"
         }}
         alt="Preview"
       />
@@ -83,14 +81,14 @@ export function BlogPostPreviewRegular(props) {
         style={{
           padding: 20,
           paddingTop: 0,
-          marginTop: 'auto',
-          display: 'flex',
-          alignItems: 'end'
+          marginTop: "auto",
+          display: "flex",
+          alignItems: "end"
         }}
       >
         <p 
           style={{
-            marginLeft: 'auto',
+            marginLeft: "auto",
             marginBottom: 5,
             color: isHovered ? style.colors.WHITE : style.colors.DARK_GRAY,
           }}
@@ -121,7 +119,7 @@ export default function BlogPostHolder(props) {
   for (let i = 0; i < postJson.length; i++) {
     if (
       postJson[i].tags.includes(countryId) ||
-      postJson[i].tags.includes('global')
+      postJson[i].tags.includes("global")
     )
       posts.push(
         <BlogPostPreviewRegular
@@ -135,12 +133,12 @@ export default function BlogPostHolder(props) {
   return (
     <div
       style={{
-        display: 'flex',
+        display: "flex",
         paddingTop: 20,
         paddingBottom: 20,
         backgroundColor: style.colors.LIGHT_GRAY,
-        overflowX: 'scroll',
-        overflowY: 'hidden'
+        overflowX: "scroll",
+        overflowY: "hidden"
       }}
     >
       {posts}
