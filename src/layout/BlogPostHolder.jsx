@@ -1,17 +1,29 @@
-import postJson from "../posts/posts.json";
-import style from "../style";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-import moment from "moment/moment";
+import postJson from '../posts/posts.json';
+import style from '../style';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment/moment';
+import { useState } from 'react';
 
 export function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, date, width, height, imageHeight, backgroundColor } =
-    props;
-  let name = filename.split(".")[0];
+  const [isHovered, setIsHovered] = useState(false)
+  const {
+    title,
+    description,
+    image,
+    filename,
+    countryId,
+    date,
+    width,
+    height,
+    imageHeight,
+    backgroundColor
+  } = props;
+  let name = filename.split('.')[0];
   if (
-    name.startsWith("uk-") ||
-    name.startsWith("us-") ||
-    name.startsWith("ca-")
+    name.startsWith('uk-') ||
+    name.startsWith('us-') ||
+    name.startsWith('ca-')
   ) {
     name = name.substring(3);
   }
@@ -19,26 +31,36 @@ export function BlogPostPreviewRegular(props) {
   const navigate = useNavigate();
 
   // Date will be like 2022-01-01. Convert it to 'April 1st, 2022'
-  const dateString = moment(date).format("MMMM Do, YYYY");
+  const dateString = moment(date).format('MMMM Do, YYYY');
+
+
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+  }
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+  }
+
 
   return (
     <motion.div
+    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
       initial={{
         backgroundColor: backgroundColor || style.colors.WHITE,
-        color: style.colors.BLACK,
+        color: style.colors.BLACK
       }}
       style={{
         width: width || 300,
         margin: 10,
-        display: "flex",
-        flexDirection: "column",
-        cursor: "pointer",
-        height: height || 450,
+        display: 'flex',
+        flexDirection: 'column',
+        cursor: 'pointer',
+        height: height || 450
       }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.05,
         backgroundColor: style.colors.DARK_GRAY,
-        color: style.colors.WHITE,
+        color: style.colors.WHITE
       }}
       transition={{ duration: 0.25 }}
       onClick={() => navigate(`/${countryId}/blog/${name}`)}
@@ -49,29 +71,30 @@ export function BlogPostPreviewRegular(props) {
           width: width || 300,
           height: imageHeight || 200,
           // Fit inside without stretching
-          objectFit: "cover",
+          objectFit: 'cover'
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, paddingBottom: 0,  }}>
-        <p style={{fontSize: 18}} >{title}</p>
+      <div style={{ padding: 20, paddingBottom: 0 }}>
+        <p style={{ fontSize: 18 }}>{title}</p>
         <p>{description}</p>
       </div>
       <div
         style={{
           padding: 20,
           paddingTop: 0,
-          marginTop: "auto",
-          display: "flex",
-          alignItems: "end",
+          marginTop: 'auto',
+          display: 'flex',
+          alignItems: 'end'
         }}
       >
-        <p
+        <p 
           style={{
-            marginLeft: "auto",
+            marginLeft: 'auto',
             marginBottom: 5,
-            color: style.colors.DARK_GRAY,
+            color: isHovered ? style.colors.WHITE : style.colors.DARK_GRAY,
           }}
+          
         >
           {dateString}
         </p>
@@ -98,7 +121,7 @@ export default function BlogPostHolder(props) {
   for (let i = 0; i < postJson.length; i++) {
     if (
       postJson[i].tags.includes(countryId) ||
-      postJson[i].tags.includes("global")
+      postJson[i].tags.includes('global')
     )
       posts.push(
         <BlogPostPreviewRegular
@@ -112,12 +135,12 @@ export default function BlogPostHolder(props) {
   return (
     <div
       style={{
-        display: "flex",
+        display: 'flex',
         paddingTop: 20,
         paddingBottom: 20,
         backgroundColor: style.colors.LIGHT_GRAY,
-        overflowX: "scroll",
-        overflowY: "hidden",
+        overflowX: 'scroll',
+        overflowY: 'hidden'
       }}
     >
       {posts}
