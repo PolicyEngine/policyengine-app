@@ -342,6 +342,43 @@ function SocialMediaIcons(props) {
   );
 }
 
+//CHANGES HERE 
+function SubscribeForm() {
+    console.log(`Enter your email address to subscribe to Policy Engine`);
+        const [searchTerm, setSearchTerm] = useState('');
+        const [subscribed, setSubscribed] = useState('');
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        setSubscribed(true);
+    };
+    
+    return (
+        <BrowserRouter>
+
+    <div className='Subscribe'style={{display: "flex", backgroundColor:"lightcyan"}}>
+        <h2 style={{textAlign:"center", margin:3, color:"black"}}>
+            <b>Subscribe to Policy Engine</b></h2>
+        <p style={{textAlign:"center", color:"grey"}}>
+            Get the latest posts delivered right to your inbox</p>
+        <form onSubmit={handleSubscribe}>
+        <Link to="/layout/EmailSignup">
+        <button className='right'>Subscribe</button>
+        </Link>
+        <input
+            type="text"
+            style={{padding:10}}
+            placeholder="youremail@example.com"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        </form>
+
+    </div>
+    </BrowserRouter>
+    );
+    }
+
 function LeftContents(props) {
   const { markdown } = props;
 
