@@ -19,6 +19,7 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { color } from "html2canvas/dist/types/css/types/color";
 
 function MarkdownP(props) {
   const mobile = useMobile();
@@ -380,6 +381,8 @@ function SubscribeForm() {
     );
     }
 
+    
+
 function LeftContents(props) {
   const { markdown } = props;
 
@@ -552,12 +555,21 @@ export default function BlogPostPage(props) {
                 flexDirection: "column",
               }}
             >
+            
+          <div style={{ padding: mobile && 20 }}>
+            <SubscribeForm />
+            <div
+              style={{
+                display: "flex",
+                margin: 30,
+              }}
+            >
+                
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
               ))}
             </div>
-    
-            
+          </div>
           </div>
         </div>
       </Container>
