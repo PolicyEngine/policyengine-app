@@ -10,26 +10,31 @@ import DownloadCsvButton from './DownloadCsvButton';
 
 export default function BudgetaryImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+  const mobile = useMobile();
 
   const budgetaryImpact = impact.budget.budgetary_impact;
-  const taxImpact = impact.budget.tax_revenue_impact;
   const spendingImpact = impact.budget.benefit_spending_impact;
+  const stateTaxImpact = impact.budget.state_tax_revenue_impact;
+  const taxImpact = impact.budget.tax_revenue_impact - stateTaxImpact;
+  const splitFederalState = metadata.countryId === "us" && stateTaxImpact != 0;
+  const desktopLabels = splitFederalState ? ["Federal tax revenues", "Benefit spending", "State tax revenues", "Net impact"] : ["Tax revenues", "Benefit spending", "Net impact"];
+  const mobileLabels = splitFederalState ? ["Federal taxes", "Benefits", "State taxes", "Net"] : ["Tax", "Benefit", "Net"];
+  const labels = mobile ? mobileLabels : desktopLabels;
+  const values = splitFederalState ? [taxImpact / 1e9, -spendingImpact / 1e9, stateTaxImpact / 1e9, -budgetaryImpact / 1e9] : [taxImpact / 1e9, -spendingImpact / 1e9, -budgetaryImpact / 1e9];
+  stateTaxImpact;
 
   const [hovercard, setHoverCard] = useState(null);
-  const mobile = useMobile();
 
   // Waterfall chart
   const chart = (
     <Plot
       data={[
         {
-          x: mobile
-            ? ["Tax", "Benefit", "Net"]
-            : ["Tax revenues", "Benefit spending", "Net budgetary impact"],
-          y: [taxImpact / 1e9, -spendingImpact / 1e9, -budgetaryImpact / 1e9],
+          x: labels,
+          y: values,
           type: "waterfall",
           orientation: "v",
-          measure: ["relative", "relative", "total"],
+          measure: stateTaxImpact != 0 ? ["relative", "relative", "relative", "total"] : ["relative", "relative", "total"],
           textposition: "inside",
           text: [
             aggregateCurrency(-taxImpact, metadata),
@@ -81,55 +86,21 @@ export default function BudgetaryImpact(props) {
       }}
       onHover={(data) => {
         const label = data.points[0].x;
-        const relevantFigure =
-          label === "Tax revenues"
-            ? -taxImpact
-            : label === "Benefit spending"
-            ? spendingImpact
-            : budgetaryImpact;
-        let body = null;
-        if (label === "Tax revenues") {
-          // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
-          body =
-            relevantFigure < 0
-              ? `This reform would increase tax revenues by ${aggregateCurrency(
-                  relevantFigure,
-                  metadata
-                )}.`
-              : relevantFigure > 0
-              ? `This reform would reduce tax revenues by ${aggregateCurrency(
-                  -relevantFigure,
-                  metadata
-                )}.`
-              : "This reform would not impact tax revenues.";
-        } else if (label === "Benefit spending") {
-          // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
-          body =
-            relevantFigure > 0
-              ? `This reform would increase benefit spending by ${aggregateCurrency(
-                  relevantFigure,
-                  metadata
-                )}.`
-              : relevantFigure < 0
-              ? `This reform would reduce benefit spending by ${aggregateCurrency(
-                  -relevantFigure,
-                  metadata
-                )}.`
-              : "This reform would not impact benefit spending.";
+        // look up label/values array
+        let relevantFigure = values[labels.indexOf(label)] * 1e9;
+        // If tax revenues, negate
+        if (label.toLowerCase().includes("tax")) {
+          relevantFigure = -relevantFigure;
+        }
+        let body = relevantFigure < 0 ? "This reform would increase " : relevantFigure > 0 ? "This reform would reduce " : "This reform would not impact ";
+        body += label.toLowerCase().includes("tax") ? label.toLowerCase() : label.toLowerCase().includes("benefit") ? "benefit spending" : "the budget deficit";
+        if (relevantFigure === 0) {
+          body += ".";
         } else {
-          // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
-          body =
-            relevantFigure < 0
-              ? `This reform would increase the budget deficit by ${aggregateCurrency(
-                  relevantFigure,
-                  metadata
-                )}.`
-              : relevantFigure > 0
-              ? `This reform would reduce the budget deficit by ${aggregateCurrency(
-                  -relevantFigure,
-                  metadata
-                )}.`
-              : "This reform would not impact the budget deficit.";
+          body += ` by ${aggregateCurrency(
+            Math.abs(relevantFigure),
+            metadata
+          )}.`;
         }
         setHoverCard({
           title: label,
@@ -152,11 +123,10 @@ export default function BudgetaryImpact(props) {
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
 
-  const data = [
-    ['Tax revenues', taxImpact],
-    ['Benefit spending', spendingImpact],
-    ['Net budgetary impact', budgetaryImpact],
-  ];
+  // rewrite above but using labels/values
+  const data = labels.map((label, index) => {
+    return [label, values[index]];
+  });
     
   return (
     <>
