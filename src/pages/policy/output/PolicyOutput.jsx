@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { asyncApiCall, copySearchParams } from "../../../api/call";
+import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import SearchOptions from "../../../controls/SearchOptions";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -163,11 +163,13 @@ export default function PolicyOutput(props) {
       const interval = setInterval(() => {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
       }, 1000);
-      asyncApiCall(url, null, 1_000, 1_000, (intermediateData) => {
+      apiCall(url, null).then(res => res.json()).then(intermediateData => {
         if(averageImpactTime === 100) {
+          console.log(intermediateData)
           setAverageImpactTime(intermediateData.average_time);
         }
       })
+      asyncApiCall(url, null, 1_000, 1_000)
         .then((data) => {
           if (data.status === "error") {
             if (!data.result.baseline_economy) {
