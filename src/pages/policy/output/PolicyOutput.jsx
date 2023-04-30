@@ -17,7 +17,7 @@ import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import getPolicyOutputTree from "./tree";
 import InequalityImpact from "./InequalityImpact";
-import { Result, Steps } from "antd";
+import { Result, Steps, Progress } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import useMobile from "../../../layout/Responsive";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
@@ -31,13 +31,12 @@ import {
   LinkedinFilled,
   LinkOutlined,
 } from "@ant-design/icons";
-import React from 'react';
-import {message} from 'antd';
+import React from "react";
+import { message } from "antd";
 import Analysis from "./Analysis";
 import style from "../../../style";
 
-import { useScreenshot } from 'use-react-screenshot'
-
+import { useScreenshot } from "use-react-screenshot";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -94,40 +93,48 @@ export default function PolicyOutput(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const imageRef = useRef(null)
-  const [preparingForScreenshot, setPreparingForScreenshot] = useState(false)
+  const imageRef = useRef(null);
+  const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
   const [, takeScreenShot] = useScreenshot();
+  const [averageImpactTime, setAverageImpactTime] = useState(100);
+  const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   const handleScreenshot = () => {
-    console.log(imageRef.current)
+    console.log(imageRef.current);
     setPreparingForScreenshot(true);
-  }
+  };
 
   useEffect(() => {
     if (preparingForScreenshot) {
       setTimeout(() => {
-        takeScreenShot(imageRef.current).then(img => {
-            setPreparingForScreenshot(false);
-            // send a request to /image with the image
-            // The filename should be the current path (including query strings), but with /, &, ? etc. replaced with _
-            const filename = (window.location.pathname + window.location.search).replaceAll("/", "_").replaceAll("&", "_").replaceAll("?", "_").replaceAll("=", "_").replaceAll(".", "_") + ".png";
-            fetch('/image', {
-              method: 'POST',
-              body: JSON.stringify({
-                filename,
-                image: img,
-              }),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            }).then((response) => {
-              if (response.ok) {
-                return response.json();
-              } else {
-                throw new Error('Something went wrong');
-              }
-            });
+        takeScreenShot(imageRef.current).then((img) => {
+          setPreparingForScreenshot(false);
+          // send a request to /image with the image
+          // The filename should be the current path (including query strings), but with /, &, ? etc. replaced with _
+          const filename =
+            (window.location.pathname + window.location.search)
+              .replaceAll("/", "_")
+              .replaceAll("&", "_")
+              .replaceAll("?", "_")
+              .replaceAll("=", "_")
+              .replaceAll(".", "_") + ".png";
+          fetch("/image", {
+            method: "POST",
+            body: JSON.stringify({
+              filename,
+              image: img,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }).then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Something went wrong");
+            }
           });
+        });
       }, 1000);
     }
   }, [preparingForScreenshot, takeScreenShot]);
@@ -152,7 +159,15 @@ export default function PolicyOutput(props) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}`;
       setImpact(null);
       setError(null);
-      asyncApiCall(url, null, 1_000)
+      // start counting (but stop when the API call finishes)
+      const interval = setInterval(() => {
+        setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
+      }, 1000);
+      asyncApiCall(url, null, 1_000, 1_000, (intermediateData) => {
+        if(averageImpactTime === 100) {
+          setAverageImpactTime(intermediateData.average_time);
+        }
+      })
         .then((data) => {
           if (data.status === "error") {
             if (!data.result.baseline_economy) {
@@ -171,12 +186,18 @@ export default function PolicyOutput(props) {
               data.result.message = data.message;
             }
             setError(data.result);
+            setSecondsElapsed(0);
+            clearInterval(interval);
           } else {
             setImpact(data.result);
+            setSecondsElapsed(0);
+            clearInterval(interval);
           }
         })
         .catch((err) => {
           setError(err);
+          setSecondsElapsed(0);
+          clearInterval(interval);
         });
     } else {
       const defaults = {
@@ -270,7 +291,7 @@ export default function PolicyOutput(props) {
   if (!reformPolicyId) {
     return (
       <ResultsPanel
-        style={{paddingTop: 50}}
+        style={{ paddingTop: 50 }}
         title="Your policy is empty"
         description="You haven't added any reforms to your policy yet. Change policy parameters and see the results here."
       />
@@ -291,7 +312,28 @@ export default function PolicyOutput(props) {
   ).skipImpacts;
 
   if (!impact & !skipImpacts) {
-    pane = <LoadingCentered message="Simulating your policy" />;
+    // Show a Progress bar that fills up over time, taking 100 seconds to fill.
+    pane = (
+      <div style={{ textAlign: "center", paddingTop: 50 }}>
+        <LoadingCentered message="Simulating the impact of your policy..." />
+        <Progress
+          showInfo={false}
+          percent={
+            averageImpactTime
+              ? Math.min(
+                  90,
+                  (secondsElapsed / averageImpactTime) * 100
+                )
+              : 0
+          }
+          strokeColor={style.colors.BLUE}
+        />
+        <p>
+          This usually takes around{" "}
+          {Math.round(averageImpactTime / 5) * 5} seconds, but may take longer.
+        </p>
+      </div>
+    );
   } else if (focus === "policyOutput.netIncome") {
     pane = (
       <BudgetaryImpact
@@ -431,17 +473,19 @@ export default function PolicyOutput(props) {
   const url = encodeURIComponent(window.location.href);
   const link = (
     // eslint-disable-next-line
-    <a onClick={() => {
-      handleScreenshot();
-      navigator.clipboard.writeText(window.location.href);
-      message.info('Link copied to clipboard');
-    }}>
+    <a
+      onClick={() => {
+        handleScreenshot();
+        navigator.clipboard.writeText(window.location.href);
+        message.info("Link copied to clipboard");
+      }}
+    >
       <LinkOutlined style={{ fontSize: 23 }} />
     </a>
   );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
   const twitter = (
-    <a 
+    <a
       onClick={() => {
         handleScreenshot();
       }}
@@ -453,19 +497,27 @@ export default function PolicyOutput(props) {
     </a>
   );
   const facebook = (
-    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
+    <a
+      href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <FacebookFilled style={{ fontSize: 23 }} />
     </a>
   );
   const linkedIn = (
-    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
+    <a
+      href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <LinkedinFilled style={{ fontSize: 23 }} />
     </a>
   );
   const commonStyle = {
-    border: "1px solid #ccc", 
-    borderRadius: "0px", 
-    padding: "6px", 
+    border: "1px solid #ccc",
+    borderRadius: "0px",
+    padding: "6px",
     marginRight: "-1px",
   };
   const shareItems = [link, twitter, facebook, linkedIn];
@@ -478,14 +530,19 @@ export default function PolicyOutput(props) {
   const bottomElements =
     mobile & !embed ? null : metadata.countryId === "us" ? (
       <p>
-        PolicyEngine US v{selectedVersion} estimates reform impacts using microsimulation.{" "}
-        <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis" target="_blank">
+        PolicyEngine US v{selectedVersion} estimates reform impacts using
+        microsimulation.{" "}
+        <a
+          href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis"
+          target="_blank"
+        >
           Learn more
         </a>
       </p>
     ) : (
       <p>
-        PolicyEngine UK v{selectedVersion} estimates reform impacts using microsimulation.{" "}
+        PolicyEngine UK v{selectedVersion} estimates reform impacts using
+        microsimulation.{" "}
         <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
           Learn more
         </a>
@@ -510,7 +567,7 @@ export default function PolicyOutput(props) {
             paddingBottom: 100,
           }}
         >
-            {pane}
+          {pane}
         </div>
         <div
           style={{
@@ -529,32 +586,48 @@ export default function PolicyOutput(props) {
 
   pane = (
     <>
-      <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
-      justifyContent: "center", alignItems: "center", paddingBottom: 20,
-     }}>
-      {!preparingForScreenshot && <h6 style={{
-        margin: 0,
-        paddingRight: 20,
-      }}><b>Share this result</b></h6>}
-     <div 
-      style={{ 
-        display: "flex", 
-        flexDirection: "row",
-      }}>
-      {!preparingForScreenshot && shareDivs}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          backgroundColor: style.colors.WHITE,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: 20,
+        }}
+      >
+        {!preparingForScreenshot && (
+          <h6
+            style={{
+              margin: 0,
+              paddingRight: 20,
+            }}
+          >
+            <b>Share this result</b>
+          </h6>
+        )}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          {!preparingForScreenshot && shareDivs}
+        </div>
       </div>
-    </div>
       <PolicyImpactPopup
         metadata={metadata}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {pane}
-      {!preparingForScreenshot && <BottomCarousel
-        selected={focus}
-        options={POLICY_OUTPUT_TREE[0].children}
-        bottomText={bottomElements}
-      />}
+      {!preparingForScreenshot && (
+        <BottomCarousel
+          selected={focus}
+          options={POLICY_OUTPUT_TREE[0].children}
+          bottomText={bottomElements}
+        />
+      )}
     </>
   );
 
@@ -562,5 +635,5 @@ export default function PolicyOutput(props) {
     <div>
       <ResultsPanel ref={imageRef}>{pane}</ResultsPanel>
     </div>
-  )
+  );
 }
