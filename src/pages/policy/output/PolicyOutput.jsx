@@ -97,6 +97,7 @@ export default function PolicyOutput(props) {
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
   const [, takeScreenShot] = useScreenshot();
   const [impactTimeStats, setImpactTimeStats] = useState(null);
+  const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   const handleScreenshot = () => {
     console.log(imageRef.current);
@@ -158,8 +159,11 @@ export default function PolicyOutput(props) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}`;
       setImpact(null);
       setError(null);
+      // start counting (but stop when the API call finishes)
+      const interval = setInterval(() => {
+        setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
+      }, 1000);
       asyncApiCall(url, null, 1_000, 1_000, (intermediateData) => {
-        console.log(intermediateData);
         setImpactTimeStats(intermediateData);
       })
         .then((data) => {
@@ -180,12 +184,15 @@ export default function PolicyOutput(props) {
               data.result.message = data.message;
             }
             setError(data.result);
+            clearInterval(interval);
           } else {
             setImpact(data.result);
+            clearInterval(interval);
           }
         })
         .catch((err) => {
           setError(err);
+          clearInterval(interval);
         });
     } else {
       const defaults = {
@@ -310,7 +317,7 @@ export default function PolicyOutput(props) {
             impactTimeStats
               ? Math.min(
                   90,
-                  (impactTimeStats.time_elapsed /
+                  (secondsElapsed /
                     impactTimeStats.average_time) *
                     100
                 )
