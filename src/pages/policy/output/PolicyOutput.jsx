@@ -96,7 +96,7 @@ export default function PolicyOutput(props) {
   const imageRef = useRef(null);
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
   const [, takeScreenShot] = useScreenshot();
-  const [impactTimeStats, setImpactTimeStats] = useState(null);
+  const [averageImpactTime, setAverageImpactTime] = useState(100);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   const handleScreenshot = () => {
@@ -164,7 +164,9 @@ export default function PolicyOutput(props) {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
       }, 1000);
       asyncApiCall(url, null, 1_000, 1_000, (intermediateData) => {
-        setImpactTimeStats(intermediateData);
+        if(averageImpactTime === 100) {
+          setAverageImpactTime(intermediateData.average_time);
+        }
       })
         .then((data) => {
           if (data.status === "error") {
@@ -184,14 +186,17 @@ export default function PolicyOutput(props) {
               data.result.message = data.message;
             }
             setError(data.result);
+            setSecondsElapsed(0);
             clearInterval(interval);
           } else {
             setImpact(data.result);
+            setSecondsElapsed(0);
             clearInterval(interval);
           }
         })
         .catch((err) => {
           setError(err);
+          setSecondsElapsed(0);
           clearInterval(interval);
         });
     } else {
@@ -314,17 +319,19 @@ export default function PolicyOutput(props) {
         <Progress
           showInfo={false}
           percent={
-            impactTimeStats
+            averageImpactTime
               ? Math.min(
                   90,
-                  (secondsElapsed /
-                    impactTimeStats.average_time) *
-                    100
+                  (secondsElapsed / averageImpactTime) * 100
                 )
               : 0
           }
           strokeColor={style.colors.BLUE}
         />
+        <p>
+          This usually takes around{" "}
+          {Math.round(averageImpactTime / 5) * 5} seconds, but may take longer.
+        </p>
       </div>
     );
   } else if (focus === "policyOutput.netIncome") {
