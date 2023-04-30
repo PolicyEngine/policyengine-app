@@ -6,7 +6,7 @@ import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
+import DownloadCsvButton from "./DownloadCsvButton";
 
 export default function BudgetaryImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -16,12 +16,25 @@ export default function BudgetaryImpact(props) {
   const spendingImpact = impact.budget.benefit_spending_impact;
   const stateTaxImpact = impact.budget.state_tax_revenue_impact;
   const taxImpact = impact.budget.tax_revenue_impact - stateTaxImpact;
-  const splitFederalState = metadata.countryId === "us" && stateTaxImpact != 0;
-  const desktopLabels = splitFederalState ? ["Federal tax revenues", "Benefit spending", "State tax revenues", "Net impact"] : ["Tax revenues", "Benefit spending", "Net impact"];
-  const mobileLabels = splitFederalState ? ["Federal taxes", "Benefits", "State taxes", "Net"] : ["Tax", "Benefit", "Net"];
-  const labels = mobile ? mobileLabels : desktopLabels;
-  const values = splitFederalState ? [taxImpact / 1e9, -spendingImpact / 1e9, stateTaxImpact / 1e9, -budgetaryImpact / 1e9] : [taxImpact / 1e9, -spendingImpact / 1e9, -budgetaryImpact / 1e9];
-  stateTaxImpact;
+  const desktopLabels = [
+    "Federal tax revenues",
+    "State tax revenues",
+    "Benefit spending",
+    "Net impact",
+  ];
+  const mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
+  const labelsBeforeFilter = mobile ? mobileLabels : desktopLabels;
+  const valuesBeforeFilter = [
+    taxImpact / 1e9,
+    stateTaxImpact / 1e9,
+    -spendingImpact / 1e9,
+    budgetaryImpact / 1e9,
+  ];
+  const values = valuesBeforeFilter.filter((value) => value !== 0);
+  // Only include labels for which there is a value
+  const labels = labelsBeforeFilter.filter(
+    (label, index) => valuesBeforeFilter[index] !== 0
+  );
 
   const [hovercard, setHoverCard] = useState(null);
 
@@ -34,13 +47,12 @@ export default function BudgetaryImpact(props) {
           y: values,
           type: "waterfall",
           orientation: "v",
-          measure: stateTaxImpact != 0 ? ["relative", "relative", "relative", "total"] : ["relative", "relative", "total"],
+          // 'relative' for all but the last, which is 'total'
+          measure: Array(labels.length - 1)
+            .fill("relative")
+            .concat(["total"]),
           textposition: "inside",
-          text: [
-            aggregateCurrency(-taxImpact, metadata),
-            aggregateCurrency(spendingImpact, metadata),
-            aggregateCurrency(budgetaryImpact, metadata),
-          ],
+          text: values.map((value) => aggregateCurrency(value * 1e9, metadata)),
           increasing: { marker: { color: style.colors.DARK_GREEN } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
           // Total should be dark gray if negative, dark green if positive
@@ -92,8 +104,17 @@ export default function BudgetaryImpact(props) {
         if (label.toLowerCase().includes("tax")) {
           relevantFigure = -relevantFigure;
         }
-        let body = relevantFigure < 0 ? "This reform would increase " : relevantFigure > 0 ? "This reform would reduce " : "This reform would not impact ";
-        body += label.toLowerCase().includes("tax") ? label.toLowerCase() : label.toLowerCase().includes("benefit") ? "benefit spending" : "the budget deficit";
+        let body =
+          relevantFigure < 0
+            ? "This reform would increase "
+            : relevantFigure > 0
+            ? "This reform would reduce "
+            : "This reform would not impact ";
+        body += label.toLowerCase().includes("tax")
+          ? label.toLowerCase()
+          : label.toLowerCase().includes("benefit")
+          ? "benefit spending"
+          : "the budget deficit";
         if (relevantFigure === 0) {
           body += ".";
         } else {
@@ -119,15 +140,15 @@ export default function BudgetaryImpact(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
 
   // rewrite above but using labels/values
   const data = labels.map((label, index) => {
     return [label, values[index]];
   });
-    
+
   return (
     <>
       <Screenshottable>
@@ -141,16 +162,16 @@ export default function BudgetaryImpact(props) {
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
-        <div className="chart-container"> 
-          {!mobile &&
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="budgetaryImpact.csv"
-              className="download-button"
-            />
-          }
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename="budgetaryImpact.csv"
+            className="download-button"
+          />
+        )}
+      </div>
     </>
   );
-  
 }
