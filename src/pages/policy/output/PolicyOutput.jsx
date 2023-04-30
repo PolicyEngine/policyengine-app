@@ -166,7 +166,7 @@ export default function PolicyOutput(props) {
       apiCall(url, null).then(res => res.json()).then(intermediateData => {
         if(averageImpactTime === 100) {
           console.log(intermediateData)
-          setAverageImpactTime(intermediateData.average_time);
+          setAverageImpactTime(intermediateData.average_time || 100);
         }
       })
       asyncApiCall(url, null, 1_000, 1_000)
