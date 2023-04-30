@@ -19,7 +19,7 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import { color } from "html2canvas/dist/types/css/types/color";
+
 
 function MarkdownP(props) {
   const mobile = useMobile();
@@ -346,40 +346,82 @@ function SocialMediaIcons(props) {
 //CHANGES HERE 
 function SubscribeForm() {
     console.log(`Enter your email address to subscribe to Policy Engine`);
-    
+
+
         const [searchTerm, setSearchTerm] = useState('');
         const [subscribed, setSubscribed] = useState('');
+
 
         const handleSubscribe = (e) => {
             e.preventDefault();
             setSubscribed(true);
         };
+        
+        return (
+            <BrowserRouter>
 
-    return (
-        <BrowserRouter>
+    <div className='Subscribe'
+            style={{
+            aspectratio: 4/3,
+            padding: 60,
+            textAlign: "center",
+            backgroundColor: '#F4F8FB',
+            opacity: 70,
+            borderRadius: '7px',
 
-    <div className='Subscribe'style={{display: "flex", backgroundColor:"lightcyan"}}>
-        <h2 style={{textAlign:"center", margin:3, color:"black"}}>
-            <b>Subscribe to Policy Engine</b></h2>
-        <p style={{textAlign:"center", color:"grey"}}>
+            }}>
+    <h2
+        style={{
+            color:'black',
+            fontSize: 35,
+            marginBottom: 3,
+            }}>
+            <b>Subscribe to Policy Engine</b>
+            </h2>
+            <p
+        style={{
+            color:'grey',
+            fontSize: 22,
+            marginTop: 3,
+            }}>
             Get the latest posts delivered right to your inbox</p>
-        <form onSubmit={handleSubscribe}>
-        <Link to="/layout/EmailSignup">
-        <button className='right'value={{subscribed}}>Subscribe</button>
-        </Link>
-        <input
-            type="text"
-            style={{padding:10}}
-            placeholder="youremail@example.com"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        </form>
+            <form onSubmit={handleSubscribe}>
+    <input
+        type="text"
+        style={{
+            padding:10,
+            width: 300,
+            fontSize: 15,
+            maxWidth: '300px',
+            boxSizing: 'border-box',
+        }}
+        placeholder="youremail@example.com"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+    />
+    <Link to="/layout/EmailSignup">
+    <button className='bluebutton'
+        value={{subscribed}}
+        style={{
+            marginLeft:10,
+            padding:10,
+            color: 'black',
+            backgroundColor: '#B4E5FF',
+            boxShadow: 'none',
+            boxSizing: 'border-box',
+        }}>
+        Subscribe</button>
+    </Link>
+    </form>
+
 
     </div>
     </BrowserRouter>
-    );
-    }
+);
+}
+
+
+
 
     
 
@@ -555,16 +597,10 @@ export default function BlogPostPage(props) {
                 flexDirection: "column",
               }}
             >
-            
+        
           <div style={{ padding: mobile && 20 }}>
             <SubscribeForm />
-            <div
-              style={{
-                display: "flex",
-                margin: 30,
-              }}
-            >
-                
+
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
               ))}
