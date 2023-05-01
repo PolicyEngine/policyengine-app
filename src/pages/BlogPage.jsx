@@ -2,7 +2,7 @@ import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
 import { Container } from "react-bootstrap";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
 import FOF from "./FOF";
@@ -19,6 +19,7 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+
 
 
 function MarkdownP(props) {
@@ -362,7 +363,7 @@ function SubscribeForm() {
     <div className="Subscribe"
             style={{
             aspectratio: 4/3,
-            padding: 60,
+            padding: 60, 
             textAlign: "center",
             backgroundColor: '#F4F8FB',
             opacity: 70,
@@ -398,7 +399,8 @@ function SubscribeForm() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
     />
-    <Link to="/layout/EmailSignup">
+    
+    <a href="https://policyengine.us5.list-manage.com/subscribe/post?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0">
     <button className='bluebutton'
         value={{subscribed}}
         style={{
@@ -413,7 +415,7 @@ function SubscribeForm() {
         >
         Subscribe
     </button>
-    </Link>
+    </a>
     </form>
 
 
