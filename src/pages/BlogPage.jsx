@@ -2,7 +2,7 @@ import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
 import { Container } from "react-bootstrap";
-import { Navigate, BrowserRouter, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
 import FOF from "./FOF";
@@ -345,11 +345,10 @@ function SocialMediaIcons(props) {
 
 //CHANGES HERE 
 function SubscribeForm() {
-    console.log(`Enter your email address to subscribe to Policy Engine`);
-
+    
 
         const [searchTerm, setSearchTerm] = useState('');
-        const [subscribed, setSubscribed] = useState('');
+        const [subscribed, setSubscribed] = useState(false);
 
 
         const handleSubscribe = (e) => {
@@ -358,9 +357,9 @@ function SubscribeForm() {
         };
         
         return (
-            <BrowserRouter>
 
-    <div className='Subscribe'
+
+    <div className="Subscribe"
             style={{
             aspectratio: 4/3,
             padding: 60,
@@ -409,14 +408,16 @@ function SubscribeForm() {
             backgroundColor: '#B4E5FF',
             boxShadow: 'none',
             boxSizing: 'border-box',
-        }}>
-        Subscribe</button>
+        }}
+        type="submit"
+        >
+        Subscribe
+    </button>
     </Link>
     </form>
 
 
     </div>
-    </BrowserRouter>
 );
 }
 
@@ -600,6 +601,7 @@ export default function BlogPostPage(props) {
         
           <div style={{ padding: mobile && 20 }}>
             <SubscribeForm />
+            
 
               {authors.map((author, idx) => (
                 <AuthorSection key={idx} author={authorsJson[author]} />
