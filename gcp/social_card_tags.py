@@ -35,6 +35,7 @@ def get_title(path: str, query_params: dict):
 
 
 def get_image(path: str, query_params: dict, social_cards: dict = {}):
+    print(f"Getting image for {path}")
     # Replace all /, ? and = from the path and query string combined with -
 
     country = path.split("/")[1].upper()
@@ -64,7 +65,11 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
         image_folder = Path("./build/static/media")
         image_files = list(image_folder.glob(f"{filename}.*"))
         if len(image_files) > 0:
-            filename = image_files[0].name
+            # In order of preference: file ending with .png, then jpeg, then jpg
+            for extension in [".png", ".jpeg", ".jpg"]:
+                for image_file in image_files:
+                    if image_file.name.endswith(extension):
+                        return f"https://policyengine.org/static/media/{image_file.name}"
             return f"https://policyengine.org/static/media/{filename}"
 
     # Check if there is a filename in the social_cards dict whose non-extension part matches the path
