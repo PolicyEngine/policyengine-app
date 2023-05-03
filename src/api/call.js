@@ -3,13 +3,19 @@ import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
 
-export function apiCall(path, body, method) {
+export function apiCall(path, body, method, secondAttempt = false) {
   return fetch(POLICYENGINE_API + path, {
     method: method || (body ? "POST" : "GET"),
     headers: {
       "Content-Type": "application/json",
     },
     body: body ? JSON.stringify(body) : null,
+  }).then((response) => {
+    // If the response is a 500, try again once.
+    if (response.status === 500 && !secondAttempt) {
+      return apiCall(path, body, method, true);
+    }
+    return response;
   });
 }
 

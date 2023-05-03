@@ -1,6 +1,7 @@
 import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 import { Container } from "react-bootstrap";
 import { Navigate} from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -43,11 +44,29 @@ function MarkdownP(props) {
 export function BlogPostMarkdown(props) {
   const { markdown } = props;
   const mobile = useMobile();
+
+  const renderers = {
+    blockquote: (props) => {
+      const { children } = props;
+      const anchorTag = children.find(
+        (child) => child?.props?.href?.startsWith('https://twitter.com/')
+      );
+      const tweetId = anchorTag?.props?.href?.split("/")?.pop()?.split("?")[0];
+  
+      if (tweetId) {
+        return <TwitterTweetEmbed tweetId={tweetId} />;
+      }
+  
+      return <blockquote>{children}</blockquote>;
+    },
+  };
+
   return (
     <ReactMarkdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
       components={{
+        ...renderers,
         p: MarkdownP,
         // Ensure images fit inside the container
         img: ({ src, alt }) => (
@@ -183,7 +202,7 @@ export function BlogPostMarkdown(props) {
           >
             {children}
           </th>
-        ),
+        )
       }}
     >
       {markdown}

@@ -801,5 +801,18 @@
     "authors": [
       "nikhil-woodruff"
     ]
+  },
+  {
+    "title": "How PolicyEngine shaped the outcome of the $1 million bet James Medlock won today",
+    "description": "Our free tax calculator helped determine Balaji Srinivasan’s $500,000 payments to Medlock and GiveDirectly.",
+    "date": "2023-05-02 16:00:00",
+    "tags": [
+      "us"
+    ],
+    "filename": "medlock-wins.md",
+    "image": "medlock-wins.png",
+    "authors": [
+      "max-ghenis"
+    ]
   }
 ]
