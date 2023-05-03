@@ -268,11 +268,12 @@ export default function IntraDecileImpact(props) {
         const title = group === "All" ? "All households" : `Decile ${group}`;
         const category = data.points[0].data.name;
         const value = data.points[0].x;
-        const message = `${percent(value)} of ${
+        const message = `Of ${
           group === "All"
             ? "all households"
             : `households in the ${cardinal(group)} decile`
-        } ${category.toLowerCase()}.`;
+        }, ${policyLabel} would cause ${percent(value)} of people to
+        ${category.toLowerCase()} of their net income.`;
         setHovercard({
           title: title,
           body: message,
