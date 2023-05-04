@@ -20,6 +20,7 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import EmailSignUp from "../layout/EmailSignup";
 
 
 
@@ -363,13 +364,13 @@ function SocialMediaIcons(props) {
   );
 }
 
-//CHANGES HERE 
+
 //CHANGES HERE 
 function SubscribeForm() {
     
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [subscribed, setSubscribed] = useState(false);
+    const [subscribed, setSubscribed] = useState(true);
 
 
     const handleSubscribe = (e) => {
@@ -380,69 +381,17 @@ function SubscribeForm() {
     
     return (
 
-<div className="Subscribe"
-        style={{
-        padding: '50px', 
-        textAlign: "center",
-        backgroundColor: '#D2D2D2',
-        opacity: 70,
-        borderRadius: '7px',
-        width: '100%',
-        }}>
-<h2
-    style={{
-        color:'black',
-        fontSize: 35,
-        fontWeight: 'bold',
-        marginBottom: 3,
-        }}>
-        Subscribe to Policy Engine
-        </h2>
-        <h3
-    style={{
-        color:'black',
-        fontSize: 18,
-        marginTop: 3,
-        paddingBottom: 10,
-        }}>
-        Get the latest posts delivered right to your inbox</h3>
-        <form onSubmit={handleSubscribe}>
-<input
-    type="text"
-    style={{
-        padding:10,
-        width: 300,
-        fontSize: 15,
-        maxWidth: '300px',
-        borderWidth: 0,
-        outline:'none',
-        boxShadow: 'none',
-        boxSizing: 'border-box',
-    }}
-    placeholder="youremail@example.com"
-    value={searchTerm}
-    onChange={(e) => setSearchTerm(e.target.value)}
-/>
+<div>
+        <form 
+        onSubmit={handleSubscribe}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}>
 
-
-<button className='bluebutton'
-    value={{subscribed}}
-    style={{
-        marginLeft:10,
-        padding:10,
-        color: 'white',
-        backgroundColor: '#2C6496',
-        borderWidth: 0,
-        boxShadow: 'none',
-        boxSizing: 'border-box',
-    }}
-    onClick={() => {
-        window.open('https://policyengine.us5.list-manage.com/subscribe/post?u=e5ad35332666289a0f48013c5&id=71ed1f89d8&f_id=00f173e6f0', '_blank');
-    }}
-    type="submit"
-    >
-    <b>Subscribe</b>
-</button>
+<EmailSignUp value={{subscribed}}
+style={{
+    display: "flex",
+    alignItems: "center",
+}} />
 
 </form>
 
