@@ -91,10 +91,10 @@ export default function EmailSignUp() {
     return (
         <div style={backgroundStyle}>
         <div style={h2Style}>
-            <h1>Subscribe to Policy Engine</h1>
+            <h3><b>Subscribe to Policy Engine</b></h3>
         </div>
         <div style={h3Style}>
-        <h3> Get the latest posts delivered right to your inbox</h3>
+        <h5> Get the latest posts delivered right to your inbox</h5>
 
         </div>
         
