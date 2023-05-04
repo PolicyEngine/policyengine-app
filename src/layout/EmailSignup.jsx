@@ -3,7 +3,6 @@ const backgroundStyle = {
     backgroundColor: '#F2F2F2',
     borderRadius: 5,
     padding: 20,
-
     width: '158%',
     // margin: 'auto',
     marginLeft: -150,
@@ -16,6 +15,7 @@ const h2Style ={
         fontSize: 35,
         fontWeight: 'bold',
         marginBottom: 3,
+        textAlign: "center",
 }
 
 
@@ -24,6 +24,7 @@ const h3Style ={
     fontSize: 12,
     marginTop: 3,
     paddingBottom: 10,
+    textAlign: "center",
 
 }
 
