@@ -1,52 +1,62 @@
-
 const backgroundStyle = {
     backgroundColor: '#F2F2F2',
     borderRadius: 5,
     padding: 20,
-    width: '158%',
-    // margin: 'auto',
-    marginLeft: -150,
+    width: '140%',
+    marginLeft: -115,
     marginTop: 20,
-    
-}
-
-const h2Style ={
-        color:'black',
-        fontSize: 35,
-        fontWeight: 'bold',
-        marginBottom: 3,
-        textAlign: "center",
-}
-
-
-const h3Style ={
-    color:'black',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  };
+  
+  const subscribetitleStyle = {
+    color: 'black',
+    fontSize: 35,
+    fontWeight: 'bold',
+    // marginBottom: 10,
+    textAlign: 'center',
+  };
+  
+  const subscribesubStyle = {
+    color: 'black',
     fontSize: 12,
-    marginTop: 3,
-    paddingBottom: 10,
-    textAlign: "center",
+    // marginBottom: 10,
+    textAlign: 'center',
+  };
+  
 
-}
-
-const buttonStyle={
-    marginLeft:10,
-    padding:10,
+  
+  const inputContainerStyle = {
+    alignItems: 'center',
+    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'row', // set flexDirection to 'row'
+    marginBottom: '10px' // add margin to separate from the subscribe button
+  };
+  
+  const inputStyle = {
+    boxSizing: 'border-box',
+    width: '80%',
+    padding: '10px',
+    borderRadius: '5px',
+    border: 'none',
+    marginRight: '10px', // add margin to separate from the subscribe button
+    textAlign: 'center',
+    display: 'inline-block',
+  };
+  
+  const buttonStyle = {
+    padding: 10,
     color: 'white',
     backgroundColor: '#2C6496',
     borderWidth: 0,
     boxShadow: 'none',
     boxSizing: 'border-box',
     display: 'inline-block',
-    verticalAlign: 'top',
-    
-}
-
-const inputStyle = {
-    boxSizing: 'border-box',
-    display: 'inline-block',
-    width: '70%', 
-    verticalAlign: 'top'
-  }
+    textAlign: 'center',
+  };
+  
 
 
 const SIGNUP_FORM_EMBED_HTML = `
@@ -58,7 +68,7 @@ const SIGNUP_FORM_EMBED_HTML = `
 	   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
        #mc_embed_signup input.email,
   #mc_embed_signup input[type="submit"]{
-    display: inline-block;
+display: inline-block;
     
   }
 
@@ -67,13 +77,13 @@ const SIGNUP_FORM_EMBED_HTML = `
     <form action="https://policyengine.us5.list-manage.com/subscribe/post?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
         <div id="mc_embed_signup_scroll">
         
-<div class="mc-field-group">
+<div class="mc-field-group" style=${inputContainerStyle}>
 
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="youremail@example.com" style=${inputStyle} />
     </div>
 
     </div>
-<div class="clear">
+<div>
 <input type="submit" value="Subscribe" name="subscribe" class="button subscribe-button" style="background-color: ${buttonStyle.backgroundColor}; color: ${buttonStyle.color};">
 </div>
 	<div id="mce-responses" class="clear foot">
@@ -89,17 +99,19 @@ const SIGNUP_FORM_EMBED_HTML = `
 
 export default function EmailSignUp() {
 
-    return (
-        <div style={backgroundStyle}>
-        <div style={h2Style}>
-            <h3><b>Subscribe to Policy Engine</b></h3>
-        </div>
-        <div style={h3Style}>
-        <h5> Get the latest posts delivered right to your inbox</h5>
-
-        </div>
-        
-          <div dangerouslySetInnerHTML={{ __html: SIGNUP_FORM_EMBED_HTML }} />
-        </div>
-      );
-    }
+   
+            return (
+              <div style={backgroundStyle}>
+                <div style={subscribetitleStyle}>
+                  <h3><b>Subscribe to Policy Engine</b></h3>
+                </div>
+                <div style={subscribesubStyle}>
+                  <h5>Get the latest posts delivered right to your inbox</h5>
+                </div>
+                <div style={inputContainerStyle}></div>
+                <div dangerouslySetInnerHTML={{ __html: SIGNUP_FORM_EMBED_HTML }} />
+              </div>
+            );
+          }
+          
+    
