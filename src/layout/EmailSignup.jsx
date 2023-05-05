@@ -21,7 +21,6 @@ const backgroundStyle = {
   const subscribesubStyle = {
     color: 'black',
     fontSize: 12,
-    // marginBottom: 10,
     textAlign: 'center',
   };
   
@@ -32,7 +31,7 @@ const backgroundStyle = {
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row', // set flexDirection to 'row'
-    marginBottom: '10px' // add margin to separate from the subscribe button
+    
   };
   
   const inputStyle = {
@@ -41,7 +40,6 @@ const backgroundStyle = {
     padding: '10px',
     borderRadius: '5px',
     border: 'none',
-    marginRight: '10px', // add margin to separate from the subscribe button
     textAlign: 'center',
     display: 'inline-block',
   };
@@ -55,6 +53,7 @@ const backgroundStyle = {
     boxSizing: 'border-box',
     display: 'inline-block',
     textAlign: 'center',
+    
   };
   
 
