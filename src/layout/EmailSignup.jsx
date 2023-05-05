@@ -31,7 +31,7 @@ const backgroundStyle = {
     justifyContent: 'center',
     display: 'flex',
     flexDirection: 'row', // set flexDirection to 'row'
-    
+    marginTop: '5px',
   };
   
   const inputStyle = {
@@ -53,7 +53,7 @@ const backgroundStyle = {
     boxSizing: 'border-box',
     display: 'inline-block',
     textAlign: 'center',
-    
+    marginLeft: '5px',
   };
   
 
@@ -79,8 +79,7 @@ display: inline-block;
 <div class="mc-field-group" style=${inputContainerStyle}>
 
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required placeholder="youremail@example.com" style=${inputStyle} />
-    </div>
-
+   
     </div>
 <div>
 <input type="submit" value="Subscribe" name="subscribe" class="button subscribe-button" style="background-color: ${buttonStyle.backgroundColor}; color: ${buttonStyle.color};">
