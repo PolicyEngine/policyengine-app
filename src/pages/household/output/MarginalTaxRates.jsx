@@ -95,7 +95,7 @@ export default function MarginalTaxRates(props) {
   }, [reformPolicyId, baselinePolicyId, householdId]);
 
   if (error) {
-    return ErrorPane();
+    return <ErrorPane />;
   }
 
   let plot;
@@ -203,7 +203,7 @@ export default function MarginalTaxRates(props) {
       currEarningsIdx = earningsArray.indexOf(currentEarnings);
       reformMtrValue = reformMtrArray[currEarningsIdx];
     } catch (e) {
-      return ErrorPane();
+      return <ErrorPane />;
     }
 
     if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
