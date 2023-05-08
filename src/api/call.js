@@ -72,11 +72,18 @@ export function updateMetadata(countryId, setMetadata) {
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
     .then((dataHolder) => {
-      const data = dataHolder.result;
+      let data = dataHolder.result;
       const variableTree = buildVariableTree(
         data.variables,
         data.variableModules,
         data.basicInputs
+      );
+      // parameters = {p: {parameter: "x.y.z"}}. Filter out parameters with parameter containing "taxsim"
+      data.parameters = Object.fromEntries(
+        Object.entries(data.parameters).filter(
+          // eslint-disable-next-line no-unused-vars
+          ([key, value]) => !value.parameter.includes("taxsim")
+        )
       );
       const parameterTree = buildParameterTree(data.parameters);
       const variablesInOrder = getTreeLeavesInOrder(variableTree);
