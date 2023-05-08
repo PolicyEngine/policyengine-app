@@ -106,7 +106,7 @@ export default function EmailSignUp() {
                 <div style={subscribesubStyle}>
                   <h5>Get the latest posts delivered right to your inbox</h5>
                 </div>
-                <div style={inputContainerStyle}></div>
+                <div style={inputContainerStyle} ></div>
                 <div dangerouslySetInnerHTML={{ __html: SIGNUP_FORM_EMBED_HTML }} />
               </div>
             );
