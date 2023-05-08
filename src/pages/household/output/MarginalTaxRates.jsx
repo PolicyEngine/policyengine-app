@@ -21,8 +21,7 @@ export default function MarginalTaxRates(props) {
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
-  const baselinePolicyId =
-    searchParams.get("baseline") || metadata.current_law_id;
+  const baselinePolicyId = searchParams.get("baseline") || metadata.current_law_id;
   const [reformMtr, setReformMtr] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -54,7 +53,7 @@ export default function MarginalTaxRates(props) {
           period: "2023",
           min: 0,
           max: Math.max((
-            metadata.countryId == "ng" ?
+            metadata.countryId === "ng" ?
               1_200_000 : 200_000
           ), 2 * currentEarnings),
           count: 401,
@@ -96,9 +95,7 @@ export default function MarginalTaxRates(props) {
   }, [reformPolicyId, baselinePolicyId, householdId]);
 
   if (error) {
-    return (
-      <ErrorPage message="We ran into an issue when trying to simulate your household's net income under different earnings. Please try again later." />
-    );
+    return <ErrorPane />;
   }
 
   let plot;
@@ -199,8 +196,15 @@ export default function MarginalTaxRates(props) {
       metadata
     );
 
-    const currEarningsIdx = earningsArray.indexOf(currentEarnings);
-    const reformMtrValue = reformMtrArray[currEarningsIdx];
+    let currEarningsIdx;
+    let reformMtrValue;
+
+    try {
+      currEarningsIdx = earningsArray.indexOf(currentEarnings);
+      reformMtrValue = reformMtrArray[currEarningsIdx];
+    } catch (e) {
+      return <ErrorPane />;
+    }
 
     if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
       title = `${policyLabel} ${
@@ -338,5 +342,11 @@ export default function MarginalTaxRates(props) {
         <div style={{ minHeight: 400 }}>{plot}</div>
       )}
     </ResultsPanel>
+  );
+}
+
+function ErrorPane() {
+  return (
+    <ErrorPage message="We ran into an issue when trying to simulate your household's net income under different earnings. Please try again later." />
   );
 }
