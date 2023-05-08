@@ -38,19 +38,24 @@ export default function BudgetaryImpact(props) {
 
   const [hovercard, setHoverCard] = useState(null);
 
+  console.log(values, labels, valuesBeforeFilter, labelsBeforeFilter);
+
   // Waterfall chart
   const chart = (
     <Plot
       data={[
         {
-          x: labels,
-          y: values,
+          x: labels.length > 0 ? labels : ["Net impact"],
+          y: labels.length > 0 ? values : [budgetaryImpact / 1e9],
           type: "waterfall",
           orientation: "v",
           // 'relative' for all but the last, which is 'total'
-          measure: Array(labels.length - 1)
-            .fill("relative")
-            .concat(["total"]),
+          measure:
+            labels.length > 0
+              ? Array(labels.length - 1)
+                  .fill("relative")
+                  .concat(["total"])
+              : ["total"],
           textposition: "inside",
           text: values.map((value) => aggregateCurrency(value * 1e9, metadata)),
           increasing: { marker: { color: style.colors.DARK_GREEN } },
