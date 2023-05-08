@@ -1,62 +1,61 @@
+import style from "../style";
+
 const backgroundStyle = {
-    backgroundColor: '#F2F2F2',
-    borderRadius: 5,
-    padding: 20,
-    width: '140%',
-    marginLeft: -115,
-    marginTop: 20,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  };
-  
-  const subscribetitleStyle = {
-    color: 'black',
-    fontSize: 35,
-    fontWeight: 'bold',
-    // marginBottom: 10,
-    textAlign: 'center',
-  };
-  
-  const subscribesubStyle = {
-    color: 'black',
-    fontSize: 12,
-    textAlign: 'center',
-  };
-  
+  backgroundColor: style.colors.LIGHT_GRAY,
+  borderRadius: 5,
+  padding: 50,
+  width: "140%",
+  marginLeft: -115,
+  marginTop: 20,
+  marginBottom: 20,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
 
-  
-  const inputContainerStyle = {
-    alignItems: 'center',
-    justifyContent: 'center',
-    display: 'flex',
-    flexDirection: 'row', // set flexDirection to 'row'
-    marginTop: '5px',
-  };
-  
-  const inputStyle = {
-    boxSizing: 'border-box',
-    width: '80%',
-    padding: '10px',
-    borderRadius: '5px',
-    border: 'none',
-    textAlign: 'center',
-    display: 'inline-block',
-  };
-  
-  const buttonStyle = {
-    padding: 10,
-    color: 'white',
-    backgroundColor: '#2C6496',
-    borderWidth: 0,
-    boxShadow: 'none',
-    boxSizing: 'border-box',
-    display: 'inline-block',
-    textAlign: 'center',
-    marginLeft: '5px',
-  };
-  
+const subscribetitleStyle = {
+  color: "black",
+  fontSize: 35,
+  fontWeight: "bold",
+  // marginBottom: 10,
+  textAlign: "center",
+};
 
+const subscribesubStyle = {
+  color: "black",
+  fontSize: 12,
+  textAlign: "center",
+};
+
+const inputContainerStyle = {
+  alignItems: "center",
+  justifyContent: "center",
+  display: "flex",
+  flexDirection: "row", // set flexDirection to 'row'
+  marginTop: "5px",
+};
+
+const inputStyle = {
+  boxSizing: "border-box",
+  width: "80%",
+  padding: "10px",
+  borderRadius: "5px",
+  border: "none",
+  textAlign: "center",
+  display: "inline-block",
+};
+
+const buttonStyle = {
+  padding: 10,
+  color: "white",
+  backgroundColor: style.colors.BLUE,
+  borderWidth: 0,
+  boxShadow: "none",
+  boxSizing: "border-box",
+  display: "inline-block",
+  textAlign: "center",
+  marginLeft: "5px",
+};
 
 const SIGNUP_FORM_EMBED_HTML = `
 <!-- Begin Mailchimp Signup Form -->
@@ -82,7 +81,9 @@ display: inline-block;
    
     </div>
 <div>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
 <input type="submit" value="Subscribe" name="subscribe" class="button subscribe-button" style="background-color: ${buttonStyle.backgroundColor}; color: ${buttonStyle.color};">
+</div>
 </div>
 	<div id="mce-responses" class="clear foot">
 		<div class="response" id="mce-error-response" style="display:none"></div>
@@ -94,22 +95,19 @@ display: inline-block;
 <!--End mc_embed_signup-->
 `;
 
-
 export default function EmailSignUp() {
-
-   
-            return (
-              <div style={backgroundStyle}>
-                <div style={subscribetitleStyle}>
-                  <h3><b>Subscribe to Policy Engine</b></h3>
-                </div>
-                <div style={subscribesubStyle}>
-                  <h5>Get the latest posts delivered right to your inbox</h5>
-                </div>
-                <div style={inputContainerStyle} ></div>
-                <div dangerouslySetInnerHTML={{ __html: SIGNUP_FORM_EMBED_HTML }} />
-              </div>
-            );
-          }
-          
-    
+  return (
+    <div style={backgroundStyle}>
+      <div style={subscribetitleStyle}>
+        <h3>
+          <b>Subscribe to PolicyEngine</b>
+        </h3>
+      </div>
+      <div style={subscribesubStyle}>
+        <h5>Get the latest posts delivered right to your inbox</h5>
+      </div>
+      <div style={inputContainerStyle}></div>
+      <div dangerouslySetInnerHTML={{ __html: SIGNUP_FORM_EMBED_HTML }} />
+    </div>
+  );
+}

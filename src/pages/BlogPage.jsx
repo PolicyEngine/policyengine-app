@@ -3,7 +3,7 @@ import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import { Container } from "react-bootstrap";
-import { Navigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useMobile from "../layout/Responsive";
 import FOF from "./FOF";
@@ -21,8 +21,6 @@ import {
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import EmailSignUp from "../layout/EmailSignup";
-
-
 
 function MarkdownP(props) {
   const mobile = useMobile();
@@ -49,15 +47,15 @@ export function BlogPostMarkdown(props) {
   const renderers = {
     blockquote: (props) => {
       const { children } = props;
-      const anchorTag = children.find(
-        (child) => child?.props?.href?.startsWith('https://twitter.com/')
+      const anchorTag = children.find((child) =>
+        child?.props?.href?.startsWith("https://twitter.com/")
       );
       const tweetId = anchorTag?.props?.href?.split("/")?.pop()?.split("?")[0];
-  
+
       if (tweetId) {
         return <TwitterTweetEmbed tweetId={tweetId} />;
       }
-  
+
       return <blockquote>{children}</blockquote>;
     },
   };
@@ -203,7 +201,7 @@ export function BlogPostMarkdown(props) {
           >
             {children}
           </th>
-        )
+        ),
       }}
     >
       {markdown}
@@ -364,47 +362,33 @@ function SocialMediaIcons(props) {
   );
 }
 
-
-//CHANGES HERE 
 function SubscribeForm() {
-    
+  const [searchTerm, setSearchTerm] = useState("");
+  const [subscribed, setSubscribed] = useState(true);
 
-    const [searchTerm, setSearchTerm] = useState('');
-    const [subscribed, setSubscribed] = useState(true);
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    setSubscribed(true);
+  };
 
-
-    const handleSubscribe = (e) => {
-        e.preventDefault();
-        setSubscribed(true);
-    };
-
-    
-    return (
-
-<div>
-        <form 
+  return (
+    <div>
+      <form
         onSubmit={handleSubscribe}
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}>
-
-<EmailSignUp value={{subscribed}}
-style={{
-    display: "flex",
-    alignItems: "center",
-}} />
-
-</form>
-
-
-</div>
-);
+        onChange={(e) => setSearchTerm(e.target.value)}
+      >
+        <EmailSignUp
+          value={{ subscribed }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        />
+      </form>
+    </div>
+  );
 }
-
-
-
-
-
-    
 
 function LeftContents(props) {
   const { markdown } = props;
@@ -510,7 +494,7 @@ export default function BlogPostPage(props) {
   const postName = url.split("/")[3];
   const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
   if (YYYYMMDDFormat.test(postName)) {
-      return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
+    return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
   }
   let postData = postJson.find(
     (post) => post.filename.split(".")[0] === postName
@@ -522,7 +506,7 @@ export default function BlogPostPage(props) {
     );
   }
   if (postData === undefined) {
-      return <FOF />;
+    return <FOF />;
   }
   const { title, description, image, filename, authors } = postData;
   const imageSrc = require(`../images/posts/${image}`);
@@ -578,16 +562,14 @@ export default function BlogPostPage(props) {
                 flexDirection: "column",
               }}
             >
-        
-          <div style={{ padding: mobile && 20 }}>
-            <SubscribeForm />
-            
+              <div style={{ padding: mobile && 20 }}>
+                <SubscribeForm />
 
-              {authors.map((author, idx) => (
-                <AuthorSection key={idx} author={authorsJson[author]} />
-              ))}
+                {authors.map((author, idx) => (
+                  <AuthorSection key={idx} author={authorsJson[author]} />
+                ))}
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </Container>
