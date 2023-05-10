@@ -96,7 +96,7 @@ export default function PolicyOutput(props) {
   const imageRef = useRef(null);
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
   const [, takeScreenShot] = useScreenshot();
-  const [averageImpactTime, setAverageImpactTime] = useState(100);
+  const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   const handleScreenshot = () => {
@@ -164,9 +164,9 @@ export default function PolicyOutput(props) {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
       }, 1000);
       apiCall(url, null).then(res => res.json()).then(intermediateData => {
-        if(averageImpactTime === 100) {
+        if(averageImpactTime === 20) {
           console.log(intermediateData)
-          setAverageImpactTime(intermediateData.average_time || 100);
+          setAverageImpactTime(intermediateData.average_time || 20);
         }
       })
       asyncApiCall(url, null, 1_000, 1_000)
