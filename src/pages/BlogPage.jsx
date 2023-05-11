@@ -28,13 +28,13 @@ function MarkdownP(props) {
     ? {
         fontSize: 16,
         marginBottom: 20,
-        fontFamily: "Merriweather",
+        fontFamily: "Roboto Serif",
         width: "100%",
       }
     : {
         fontSize: 18,
         marginBottom: 20,
-        fontFamily: "Merriweather",
+        fontFamily: "Roboto Serif",
         width: "100%",
       };
   return <p style={pStyle}>{props.children}</p>;
@@ -92,7 +92,7 @@ export function BlogPostMarkdown(props) {
             style={{
               paddingLeft: 20,
               marginBottom: 20,
-              fontFamily: "Merriweather",
+              fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
             }}
           >
@@ -183,7 +183,7 @@ export function BlogPostMarkdown(props) {
           <td
             style={{
               padding: 5,
-              fontFamily: "Merriweather",
+              fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
             }}
           >
@@ -194,7 +194,7 @@ export function BlogPostMarkdown(props) {
           <th
             style={{
               padding: 5,
-              fontFamily: "Merriweather",
+              fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
               borderBottom: "1px solid black",
             }}
@@ -539,7 +539,7 @@ export default function BlogPostPage(props) {
         >
           <div style={{ padding: mobile && 20 }}>
             <h1>{title}</h1>
-            <h5 style={{ fontFamily: "Merriweather" }}>{description}</h5>
+            <h5 style={{ fontFamily: "Roboto Serif" }}>{description}</h5>
           </div>
           <img
             src={imageSrc}
