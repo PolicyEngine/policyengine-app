@@ -11,7 +11,7 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import FadeIn from "../../../layout/FadeIn";
 import { useSearchParams } from "react-router-dom";
-import { Switch } from "antd";
+import { Radio } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 
@@ -278,18 +278,29 @@ export default function MarginalTaxRates(props) {
         },
       ];
     }
-
+    const options = [
+      {
+        label: "Baseline and reform",
+        value: false,
+      },
+      {
+        label: "Difference",
+        value: true,
+      },
+    ];
+    const onDelta = ({ target: { value } }) => {
+      console.log("checked", value);
+      setShowDelta(value);
+    };
     plot = (
       <FadeIn>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <span style={{ marginRight: 10 }}>Show baseline and reform</span>
-          <Switch
-            checked={showDelta}
-            onChange={(checked) => setShowDelta(checked)}
+          <Radio.Group
+            options={options}
+            onChange={onDelta}
+            value={showDelta}
+            buttonStyle="solid"
           />
-          <span style={{ marginLeft: 10 }}>
-            Show difference between baseline and reform
-          </span>
         </div>
         <Plot
           data={data}
