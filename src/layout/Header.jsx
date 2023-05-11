@@ -17,6 +17,7 @@ export function TopLeftLogo(props) {
       alt="PolicyEngine logo"
       style={{
         cursor: "pointer",
+        padding: 15,
       }}
       height="100%"
       onClick={() => navigate(`/${countryId}`)}

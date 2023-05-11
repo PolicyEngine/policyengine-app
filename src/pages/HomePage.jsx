@@ -371,7 +371,7 @@ function QuoteCarousel(props) {
           height: 280,
         }}>
           <p
-            style={{ fontFamily: "Merriweather", fontSize: 16, marginBottom: 20 }}
+            style={{ fontFamily: "Roboto Serif", fontSize: 16, marginBottom: 20 }}
           >
             {data.quote}
           </p>
@@ -452,7 +452,7 @@ function Collaborations(props) {
           {i + 1} of {countryQuotes.length}
         </p>
         <p
-          style={{ fontFamily: "Merriweather", fontSize: 20, marginBottom: 50 }}
+          style={{ fontFamily: "Roboto Serif", fontSize: 20, marginBottom: 50 }}
         >
           {data.quote}
         </p>
