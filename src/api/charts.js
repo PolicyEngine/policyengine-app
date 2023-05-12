@@ -7,7 +7,7 @@ export const ChartLogo = {
       xref: "paper",
       yref: "paper",
       x: 0.97,
-      y: -0.2,
+      y: -0.15,
       sizex: 0.15,
       sizey: 0.15,
       xanchor: "right",
