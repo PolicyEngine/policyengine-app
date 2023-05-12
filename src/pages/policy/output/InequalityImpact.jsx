@@ -111,7 +111,7 @@ export default function InequalityImpact(props) {
               : change === 0
               ? "This reform would not impact the share of total net income held by people in the top 10% of households."
               : (change > 0 ? "This reform would increase " : "This reform would reduce ") + 
-                "the share of total net income held by people in the top 10% of households by less than 0.1%."
+                " the share of total net income held by people in the top 10% of households by less than 0.1%.";
         } else {
           // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
           const baseline = impact.inequality.top_1_pct_share.baseline;
@@ -129,7 +129,7 @@ export default function InequalityImpact(props) {
               : change === 0
               ? "This reform would not impact the share of total net income held by people in the top 1% of households."
               : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
-                "the share of total net income held by people in the top 10% of households by less than 0.1%."
+                " the share of total net income held by people in the top 10% of households by less than 0.1%.";
         }
         setHoverCard({
           title: label,
