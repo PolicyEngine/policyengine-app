@@ -16,6 +16,9 @@ export default function BudgetaryImpact(props) {
   const spendingImpact = impact.budget.benefit_spending_impact;
   const stateTaxImpact = impact.budget.state_tax_revenue_impact;
   const taxImpact = impact.budget.tax_revenue_impact - stateTaxImpact;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
   const desktopLabels = [
     "Federal tax revenues",
     "State tax revenues",
@@ -23,13 +26,23 @@ export default function BudgetaryImpact(props) {
     "Net impact",
   ];
   const mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
-  const labelsBeforeFilter = mobile ? mobileLabels : desktopLabels;
-  const valuesBeforeFilter = [
-    taxImpact / 1e9,
-    stateTaxImpact / 1e9,
-    -spendingImpact / 1e9,
-    budgetaryImpact / 1e9,
-  ];
+  let valuesBeforeFilter, labelsBeforeFilter;
+  if (region === "us") {
+    valuesBeforeFilter = [
+      taxImpact / 1e9,
+      stateTaxImpact / 1e9,
+      -spendingImpact / 1e9,
+      budgetaryImpact / 1e9,
+    ];
+    labelsBeforeFilter = mobile ? mobileLabels : desktopLabels
+  } else {
+    valuesBeforeFilter = [
+      taxImpact / 1e9,
+      stateTaxImpact / 1e9,
+      -spendingImpact / 1e9,
+    ];
+    labelsBeforeFilter = mobile ? ["Federal taxes", "State taxes", "Benefits"] : ["Federal tax revenues", "State tax revenues", "Benefit spending"];
+  }
   const values = valuesBeforeFilter.filter((value) => value !== 0);
   // Only include labels for which there is a value
   const labels = labelsBeforeFilter.filter(
@@ -138,8 +151,6 @@ export default function BudgetaryImpact(props) {
       }}
     />
   );
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
 
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
