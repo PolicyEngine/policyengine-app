@@ -83,7 +83,10 @@ export default function AverageImpactByWealthDecile(props) {
                 -change,
                 0
               )} per year.`
-            : `This reform has no impact on the income of households in the ${decile} wealth decile.`;
+            : change === 0
+            ? `This reform has no impact on the income of households in the ${decile} wealth decile.`
+            : (change > 0 ? "This reform raises " : "This reform lowers ") +
+              ` the income of households in the ${decile} wealth decile by less than 0.01%.`;
         setHoverCard({
           title: `Decile ${data.points[0].x}`,
           body: message,

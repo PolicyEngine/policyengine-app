@@ -126,7 +126,10 @@ export default function PovertyImpactByRace(props) {
             ? `would rise ${percent(change)} from ${percent(
                 baseline
               )} to ${percent(reform)}.`
-            : `would remain at ${percent(baseline)}.`
+            : change === 0
+            ?  `would remain at ${percent(baseline)}.`
+            : (change > 0 ? "would rise " : "would fall ") +
+              ` by less than 0.1%.`
         }`;
         setHoverCard({
           title: group,
