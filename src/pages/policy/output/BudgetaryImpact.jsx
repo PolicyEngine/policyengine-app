@@ -19,30 +19,25 @@ export default function BudgetaryImpact(props) {
 
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
-  const desktopLabels = [
+
+  let desktopLabels = [
     "Federal tax revenues",
     "State tax revenues",
     "Benefit spending",
     "Net impact",
   ];
-  const mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
-  let valuesBeforeFilter, labelsBeforeFilter;
-  if (region === "us") {
-    valuesBeforeFilter = [
-      taxImpact / 1e9,
-      stateTaxImpact / 1e9,
-      -spendingImpact / 1e9,
-      budgetaryImpact / 1e9,
-    ];
-    labelsBeforeFilter = mobile ? mobileLabels : desktopLabels
-  } else {
-    valuesBeforeFilter = [
-      taxImpact / 1e9,
-      stateTaxImpact / 1e9,
-      -spendingImpact / 1e9,
-    ];
-    labelsBeforeFilter = mobile ? ["Federal taxes", "State taxes", "Benefits"] : ["Federal tax revenues", "State tax revenues", "Benefit spending"];
+  let mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
+  if (region !== "us" && region !== "ca") {
+    desktopLabels[0] = "Tax revenues";
+    mobileLabels[0] = "Taxes";
   }
+  const labelsBeforeFilter = mobile ? mobileLabels : desktopLabels;
+  const valuesBeforeFilter = [
+    taxImpact / 1e9,
+    stateTaxImpact / 1e9,
+    -spendingImpact / 1e9,
+    budgetaryImpact / 1e9,
+  ];
   const values = valuesBeforeFilter.filter((value) => value !== 0);
   // Only include labels for which there is a value
   const labels = labelsBeforeFilter.filter(
