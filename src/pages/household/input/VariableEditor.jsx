@@ -147,8 +147,6 @@ function HouseholdVariableEntity(props) {
 }
 
 function HouseholdVariableEntityInput(props) {
-  // eslint-disable-next-line no-unused-vars
-  const [_, setSearchParams] = useSearchParams();
   const {
     metadata,
     householdInput,
@@ -176,7 +174,7 @@ function HouseholdVariableEntityInput(props) {
         (householdId) => {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
-          setSearchParams(newSearch);
+          window.history.replaceState({}, '', `${window.location.pathname}?${newSearch}`);
         }
       );
     }
@@ -238,51 +236,32 @@ function HouseholdVariableEntityInput(props) {
   } else if (variable.valueType === "Enum") {
     control = (
       <SearchOptions
-        options={variable.possibleValues}
-        defaultValue={inputValue || simulatedValue}
-        onSelect={submitValue}
+        options={variable.enumOptions}
+        value={inputValue || simulatedValue}
+        onChange={submitValue}
+        format={formatValue}
       />
     );
   }
-  // The input field should hide its arrows
   return (
     <>
       <div
         style={{
           display: "flex",
-          flexDirection: mobile ? "col" : "row",
+          justifyContent: "center",
           alignItems: "center",
-          justifyContent: "space-evenly",
-          width: "100%",
           marginBottom: 10,
         }}
       >
-        <h5
-          style={{
-            textAlign: "right",
-            margin: 0,
-            flex: 1,
-            flexBasis: "10%",
-            fontSize: mobile && ".9rem",
-          }}
-        >
-          {capitalize(entityName)}:{" "}
-        </h5>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {control}
-        </div>
-        <h5
-          style={{
-            textAlign: "left",
-            margin: 0,
-            flex: 1,
-            flexBasis: "10%",
-            fontSize: mobile && ".9rem",
-          }}
-        >
-          in {timePeriod}
-        </h5>
+        <h3 style={{ marginRight: 10 }}>{capitalize(timePeriod)}</h3>
+        <h3 style={{ marginRight: 10 }}>{capitalize(entityName)}</h3>
+        <h3 style={{ marginRight: 10 }}>
+          {reformValue !== null
+            ? formatValue(reformValue)
+            : formatValue(inputValue || simulatedValue)}
+        </h3>
       </div>
+      {control}
     </>
   );
 }

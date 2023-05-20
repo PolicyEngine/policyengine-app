@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { apiCall } from "../../../api/call";
 import {
-  formatVariableValue,
+  // formatVariableValue,
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../api/variables";
@@ -17,12 +17,12 @@ import { ChartLogo } from "../../../api/charts";
 
 export default function MarginalTaxRates(props) {
   const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
-  const [baselineMtr, setBaselineMtr] = useState(null);
+  const [baselineMtr, setBaselineMtr] = useState([]);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline") || metadata.current_law_id;
-  const [reformMtr, setReformMtr] = useState(null);
+  const [reformMtr, setReformMtr] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
@@ -35,6 +35,7 @@ export default function MarginalTaxRates(props) {
     householdInput,
     metadata
   );
+  // eslint-disable-next-line no-unused-vars
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2023",
@@ -52,10 +53,10 @@ export default function MarginalTaxRates(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: Math.max((
-            metadata.countryId === "ng" ?
-              1_200_000 : 200_000
-          ), 2 * currentEarnings),
+          max: Math.max(
+            metadata.countryId === "ng" ? 1_200_000 : 200_000,
+            2 * currentEarnings
+          ),
           count: 401,
         },
       ],
@@ -67,6 +68,7 @@ export default function MarginalTaxRates(props) {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log("Baseline MTR data:", data.result);
           setBaselineMtr(data.result);
         })
         .catch((err) => {
@@ -81,6 +83,7 @@ export default function MarginalTaxRates(props) {
         })
           .then((res) => res.json())
           .then((data) => {
+            console.log("Reform MTR data:", data.result);
             setReformMtr(data.result);
           })
           .catch((err) => {
@@ -88,276 +91,128 @@ export default function MarginalTaxRates(props) {
           })
       );
     }
-    Promise.all(requests).then(() => {
-      setLoading(false);
-    });
+    Promise.all(requests)
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+        setLoading(false);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reformPolicyId, baselinePolicyId, householdId]);
+  }, [reformPolicyId, baselinePolicyId, householdId, householdInput, householdBaseline, metadata, policyLabel, policy]);
 
   if (error) {
-    return <ErrorPane />;
+    return <ErrorPane message="We ran into an issue when trying to simulate your household's net income under different earnings. Please try again later." />;
   }
 
-  let plot;
+  if (loading) {
+    return <LoadingCentered />;
+  }
 
-  if (baselineMtr && !reformMtr) {
-    const earningsArray = getValueFromHousehold(
-      "employment_income",
-      "2023",
-      "you",
-      baselineMtr,
-      metadata
-    );
-    const mtrArray = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      baselineMtr,
-      metadata
-    );
-    title = `Your current marginal tax rate is ${formatVariableValue(
-      { unit: "/1" },
-      currentMtr,
-      1
-    )}`;
-    // Add the main line, then add a 'you are here' line
-    plot = (
-      <FadeIn>
-        <Plot
-          data={[
-            {
-              x: earningsArray,
-              y: mtrArray,
-              type: "line",
-              name: "Marginal tax rate",
-              line: {
-                color: style.colors.BLUE,
-                shape: "hv",
-              },
-            },
-            {
-              x: [currentEarnings, currentEarnings],
-              y: [0, currentMtr],
-              type: "line",
-              name: "Your current MTR",
-              line: {
-                color: style.colors.DARK_GRAY,
-              },
-            },
-          ]}
-          layout={{
-            xaxis: {
-              title: "Household head employment income",
-              ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
-              tickformat: ",.0f",
-            },
-            yaxis: {
-              title: "Marginal tax rate",
-              ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
-              tickformat: ".1%",
-            },
-            legend: {
-              // Position above the plot
-              y: 1.1,
-              orientation: "h",
-            },
-            ...ChartLogo,
-          }}
-          config={{
-            displayModeBar: false,
-            responsive: true,
-          }}
-          style={{
-            width: "100%",
-          }}
-        />
-      </FadeIn>
-    );
-  } else if (baselineMtr && reformMtr) {
-    const earningsArray = getValueFromHousehold(
-      "employment_income",
-      "2023",
-      "you",
-      baselineMtr,
-      metadata
-    );
-    const baselineMtrArray = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      baselineMtr,
-      metadata
-    );
-    const reformMtrArray = getValueFromHousehold(
-      "marginal_tax_rate",
-      "2023",
-      "you",
-      reformMtr,
-      metadata
-    );
-
-    let currEarningsIdx;
-    let reformMtrValue;
-
-    try {
-      currEarningsIdx = earningsArray.indexOf(currentEarnings);
-      reformMtrValue = reformMtrArray[currEarningsIdx];
-    } catch (e) {
-      return <ErrorPane />;
-    }
-
-    if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
-      title = `${policyLabel} ${
-        reformMtrValue > currentMtr ? "increases" : "decreases"
-      } your marginal tax rate from ${formatVariableValue(
-        { unit: "/1" },
-        currentMtr,
-        0
-      )} to ${formatVariableValue({ unit: "/1" }, reformMtrValue, 0)}`;
-    } else {
-      title = `${policyLabel} doesn't change your marginal tax rate`;
-    }
-    // Add the main line, then add a 'you are here' line
-    let data;
-    if (showDelta) {
-      data = [
-        {
-          x: earningsArray,
-          y: reformMtrArray.map(
-            (value, index) => value - baselineMtrArray[index]
-          ),
-          type: "line",
-          name: "MTR difference",
-          line: {
-            color: style.colors.BLUE,
-            shape: "hv",
-          },
-        },
-        {
-          x: [currentEarnings, currentEarnings],
-          y: [0, reformMtrValue - currentMtr],
-          type: "line",
-          name: "Your current MTR difference",
-          line: {
-            color: style.colors.MEDIUM_DARK_GRAY,
-            shape: "hv",
-          },
-        },
-      ];
-    } else {
-      data = [
-        {
-          x: earningsArray,
-          y: reformMtrArray,
-          type: "line",
-          name: "Reform MTR",
-          line: {
-            color: style.colors.BLUE,
-            shape: "hv",
-          },
-        },
-        {
-          x: earningsArray,
-          y: baselineMtrArray,
-          type: "line",
-          name: "Baseline MTR",
-          line: {
-            color: style.colors.MEDIUM_DARK_GRAY,
-            shape: "hv",
-          },
-        },
-        {
-          x: [currentEarnings, currentEarnings],
-          y: [0, currentMtr],
-          type: "line",
-          name: "Your current MTR",
-          line: {
-            color: style.colors.DARK_GRAY,
-            shape: "hv",
-          },
-        },
-      ];
-    }
-    const options = [
-      {
-        label: "Baseline and reform",
-        value: false,
+  const data = [
+    {
+      x: baselineMtr.x,
+      y: baselineMtr.y,
+      type: "scatter",
+      mode: "lines",
+      name: "Baseline",
+      line: {
+        color: style.lightGrey,
+        width: 2,
       },
-      {
-        label: "Difference",
-        value: true,
+    },
+    {
+      x: reformMtr.x,
+      y: reformMtr.y,
+      type: "scatter",
+      mode: "lines",
+      name: policyLabel,
+      line: {
+        color: style.pink,
+        width: 2,
       },
-    ];
-    const onDelta = ({ target: { value } }) => {
-      console.log("checked", value);
-      setShowDelta(value);
+    },
+  ];
+
+  const layout = {
+    autosize: true,
+    hovermode: "closest",
+    showlegend: true,
+    legend: {
+      orientation: "h",
+      x: 0.5,
+      y: -0.15,
+      xanchor: "center",
+    },
+    margin: {
+      l: 40,
+      r: 10,
+      t: 0,
+      b: 20,
+    },
+    yaxis: {
+      title: "Marginal Tax Rate",
+      tickformat: getPlotlyAxisFormat("marginal_tax_rate"),
+    },
+    xaxis: {
+      title: "Earnings",
+      tickformat: getPlotlyAxisFormat("employment_income"),
+    },
+    plot_bgcolor: style.backgroundGrey,
+    paper_bgcolor: style.backgroundGrey,
+  };
+
+  if (showDelta) {
+    const delta = {
+      x: baselineMtr.x,
+      y: baselineMtr.y.map((baselineRate, index) => {
+        const reformRate = reformMtr.y[index];
+        return reformRate - baselineRate;
+      }),
+      type: "scatter",
+      mode: "lines",
+      name: "Delta",
+      line: {
+        color: style.yellow,
+        width: 2,
+      },
     };
-    plot = (
-      <FadeIn>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Radio.Group
-            options={options}
-            onChange={onDelta}
-            value={showDelta}
-            buttonStyle="solid"
-          />
-        </div>
-        <Plot
-          data={data}
-          layout={{
-            xaxis: {
-              title: "Household head employment income",
-              ...getPlotlyAxisFormat(
-                metadata.variables.employment_income.unit,
-                0
-              ),
-              tickformat: ",.0f",
-            },
-            yaxis: {
-              title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
-              ...getPlotlyAxisFormat(
-                metadata.variables.marginal_tax_rate.unit,
-                0
-              ),
-              tickformat: (showDelta ? "+" : "") + ".0%",
-            },
-            legend: {
-              // Position above the plot
-              y: 1.1,
-              orientation: "h",
-            },
-            ...ChartLogo,
-          }}
-          config={{
-            displayModeBar: false,
-            responsive: true,
-          }}
-          style={{
-            width: "100%",
-          }}
-        />
-      </FadeIn>
-    );
+    data.push(delta);
   }
+
+  const radioStyle = {
+    display: "block",
+    height: "30px",
+    lineHeight: "30px",
+  };
 
   return (
-    <ResultsPanel
-      title={title}
-      description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
-    >
-      {loading ? (
-        <div style={{ height: 300 }}>
-          <LoadingCentered />
+    <ResultsPanel title="Marginal Tax Rates" {...props}>
+      <FadeIn>
+        <div className="chart">
+          <div className="chart-header">
+            <div className="chart-title">{title}</div>
+            <div className="chart-controls">
+              <Radio.Group value={showDelta} onChange={(e) => setShowDelta(e.target.value)}>
+                <Radio style={radioStyle} value={false}>
+                  Show Rates
+                </Radio>
+                <Radio style={radioStyle} value={true}>
+                  Show Delta
+                </Radio>
+              </Radio.Group>
+            </div>
+          </div>
+          <div className="chart-content">
+            <Plot data={data} layout={layout} config={ChartLogo} />
+          </div>
         </div>
-      ) : (
-        <div style={{ minHeight: 400 }}>{plot}</div>
-      )}
+      </FadeIn>
     </ResultsPanel>
   );
 }
 
-function ErrorPane() {
-  return (
-    <ErrorPage message="We ran into an issue when trying to simulate your household's net income under different earnings. Please try again later." />
-  );
+function ErrorPane({ message }) {
+  return <ErrorPage message={message} />;
 }
