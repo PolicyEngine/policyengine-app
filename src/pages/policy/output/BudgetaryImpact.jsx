@@ -16,13 +16,21 @@ export default function BudgetaryImpact(props) {
   const spendingImpact = impact.budget.benefit_spending_impact;
   const stateTaxImpact = impact.budget.state_tax_revenue_impact;
   const taxImpact = impact.budget.tax_revenue_impact - stateTaxImpact;
-  const desktopLabels = [
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+
+  let desktopLabels = [
     "Federal tax revenues",
     "State tax revenues",
     "Benefit spending",
     "Net impact",
   ];
-  const mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
+  let mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
+  if (region !== "us" && region !== "ca") {
+    desktopLabels[0] = "Tax revenues";
+    mobileLabels[0] = "Taxes";
+  }
   const labelsBeforeFilter = mobile ? mobileLabels : desktopLabels;
   const valuesBeforeFilter = [
     taxImpact / 1e9,
@@ -138,8 +146,6 @@ export default function BudgetaryImpact(props) {
       }}
     />
   );
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
 
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
