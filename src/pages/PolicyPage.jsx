@@ -336,6 +336,7 @@ function MobilePolicyPage(props) {
 }
 
 export default function PolicyPage(props) {
+  document.title = "Policy | PolicyEngine";
   const {
     metadata,
     policy,

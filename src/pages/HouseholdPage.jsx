@@ -24,7 +24,7 @@ import MobileHouseholdPage from "./household/MobileHouseholdPage";
 import { Result } from "antd";
 
 export default function HouseholdPage(props) {
-  // const { metadata, household, setHousehold, policy, loading, setHouseholdInput } = props;
+  document.title = "Household | PolicyEngine";
   const {
     metadata,
     householdId,
