@@ -2,6 +2,7 @@ import { Container } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
 
 export default function DonatePage() {
+  document.title = "Donate | PolicyEngine";
   const contents = (
     <>
       <h1>Donate</h1>

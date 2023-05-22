@@ -182,6 +182,7 @@ export function WidePanel(props) {
 }
 
 export default function HomePage(props) {
+  document.title = "PolicyEngine"
   const { countryId } = props;
   const mobile = useMobile();
   // Items are centered horizontally, and placed in order vertically.

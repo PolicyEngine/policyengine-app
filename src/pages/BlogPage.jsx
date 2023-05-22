@@ -509,6 +509,7 @@ export default function BlogPostPage(props) {
     return <FOF />;
   }
   const { title, description, image, filename, authors } = postData;
+  document.title = `${title} | PolicyEngine Blog`;
   const imageSrc = require(`../images/posts/${image}`);
   const markdownFile = require(`../posts/${filename}`);
   const [markdown, setMarkdown] = useState("");

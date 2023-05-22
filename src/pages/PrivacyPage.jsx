@@ -3,6 +3,7 @@ import useMobile from "../layout/Responsive";
 
 
 export default function PrivacyPage() {
+    document.title = "Privacy | PolicyEngine";
     const mobile = useMobile();
     return <Container style={{paddingTop: 100, paddingLeft: !mobile && 100, paddingRight: !mobile && 100}}>
         <h1>Privacy</h1>

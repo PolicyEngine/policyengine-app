@@ -7,6 +7,7 @@ import NikhilWoodruff from "../images/authors/nikhil-woodruff.jpg";
 
 export default function AboutPage() {
   const mobile = useMobile();
+  document.title = "About | PolicyEngine";
   const nikhilBio = (
     <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
       <p>

@@ -45,7 +45,7 @@ export default function HouseholdOutput(props) {
   if (reformLabel !== "Current law" && baselineLabel === "Current law") {
     policyLabel = reformLabel;
   } else {
-    policyLabel = `${baselineLabel} → ${reformLabel}`;
+    policyLabel = `${reformLabel} (compared to ${reformLabel})`;
   }
   let pane;
   if (loading) {
@@ -67,6 +67,7 @@ export default function HouseholdOutput(props) {
       <ResultsPanel message="Tell us more about your household to see your results here." />
     );
   } else if (focus === "householdOutput.netIncome") {
+    document.title = `${policyLabel} | Household net income | PolicyEngine`;
     pane = (
       <NetIncomeBreakdown
         metadata={metadata}
@@ -77,6 +78,7 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.earnings") {
+    document.title = `${policyLabel} | Earnings variation | PolicyEngine`;
     pane = (
       <EarningsVariation
         metadata={metadata}
@@ -87,6 +89,7 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.mtr") {
+    document.title = `${policyLabel} | Marginal tax rates | PolicyEngine`;
     pane = (
       <MarginalTaxRates
         metadata={metadata}
@@ -98,6 +101,7 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.pythonReproducibility") {
+    document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = (
       <HouseholdReproducibility
         metadata={metadata}

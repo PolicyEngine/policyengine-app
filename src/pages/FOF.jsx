@@ -4,6 +4,7 @@ import React from "react";
  * A 404 page for bad urls.
  */
 export default function FOF() {
+  document.title = "Page not found | PolicyEngine";
   return (
     <div style={{ height: "100%" }}>
       <p
