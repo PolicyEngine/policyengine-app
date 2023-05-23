@@ -12,16 +12,18 @@ export function TopLeftLogo(props) {
   const { countryId } = props;
   const navigate = useNavigate();
   return (
-    <img
-      src={PolicyEngineLogo}
-      alt="PolicyEngine logo"
+    <div
+      onClick={() => navigate(`/${countryId}`)}
       style={{
         cursor: "pointer",
         padding: 15,
-        objectFit: "cover",
+        height: "100%",
+        width: "218px",
+        backgroundImage: `url(${PolicyEngineLogo})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
       }}
-      height="100%"
-      onClick={() => navigate(`/${countryId}`)}
     />
   );
 }
