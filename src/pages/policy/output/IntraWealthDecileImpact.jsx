@@ -246,7 +246,7 @@ export default function IntraWealthDecileImpact(props) {
           minsize: mobile ? 7 : 10,
         },
         showlegend: false,
-        ...ChartLogo,
+        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
         margin: {
           t: 0,
           b: 80,
