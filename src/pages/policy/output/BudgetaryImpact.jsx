@@ -94,7 +94,7 @@ export default function BudgetaryImpact(props) {
           mode: "hide",
           minsize: 12,
         },
-        ...ChartLogo,
+        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
         margin: {
           t: 0,
           b: 100,

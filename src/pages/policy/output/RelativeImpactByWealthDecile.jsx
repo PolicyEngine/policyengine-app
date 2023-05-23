@@ -50,7 +50,7 @@ export default function RelativeImpactByWealthDecile(props) {
           minsize: 8,
         },
         showlegend: false,
-        ...ChartLogo,
+        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
         margin: {
           t: 0,
           b: 80,
