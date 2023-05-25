@@ -124,10 +124,10 @@ export default function RelativeImpactByDecile(props) {
     <>
       <Screenshottable>
         <h2>
-          {policyLabel}{" "}
+          {policyLabel}&nbsp;
           {averageRelChange >= 0 ? "would increase" : "would decrease"} the
-          average household&apos;s net income {label} by{" "}
-          {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
+          average household&apos;s net income {label} by&nbsp;
+          {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average.
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
