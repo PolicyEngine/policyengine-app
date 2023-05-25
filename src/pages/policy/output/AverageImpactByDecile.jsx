@@ -125,14 +125,14 @@ export default function AverageImpactByDecile(props) {
     <>
       <Screenshottable>
         <h2>
-          {policyLabel}{" "}
-          {averageChange >= 0 ? "would increase" : "would decrease"} the average
-          household&apos;s net income {label} by{" "}
+        {policyLabel}&nbsp;
+          {averageChange >= 0 ? "would increase" : "would decrease"} the
+          net income of households {label} by&nbsp;
           {formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),
             0
-          )}
+          )} on average
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
