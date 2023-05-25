@@ -489,9 +489,6 @@ function Collaborations(props) {
       <Container fluid style={{backgroundColor: style.colors.WHITE, padding: 50, paddingBottom: 70 }}>
 
       <Row style={{ justifyContent: "center", alignItems: "center" }}>
-        <Col style={{ textAlign: "center" }}>
-          <h3></h3>
-        </Col>
           {Object.values(orgData[countryId] || {}).map((org) => (
             <Col
               key={org.link}
