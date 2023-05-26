@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 
 export function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, date, width, height, imageHeight, backgroundColor } =
-    props;
+  const { title, description, image, filename, countryId, date } = props;
   let name = filename.split(".")[0];
   if (
     name.startsWith("uk-") ||
@@ -15,7 +14,9 @@ export function BlogPostPreviewRegular(props) {
   ) {
     name = name.substring(3);
   }
-  const imageSrc = require(`../images/posts/${image}`);
+
+  const imageSrc = new URL(`../images/posts/${image}`, import.meta.url);
+
   const navigate = useNavigate();
 
   // Date will be like 2022-01-01. Convert it to 'April 1st, 2022'
@@ -23,39 +24,30 @@ export function BlogPostPreviewRegular(props) {
 
   return (
     <motion.div
-      initial={{
-        backgroundColor: backgroundColor || style.colors.WHITE,
-        color: style.colors.BLACK,
-      }}
       style={{
-        width: width || 300,
+        width: 300,
+        backgroundColor: style.colors.WHITE,
         margin: 10,
         display: "flex",
         flexDirection: "column",
         cursor: "pointer",
-        height: height || 450,
+        height: 450,
       }}
-      whileHover={{ 
-        scale: 1.05,
-        backgroundColor: style.colors.DARK_GRAY,
-        color: style.colors.WHITE,
-      }}
-      transition={{ duration: 0.25 }}
+      whileHover={{ scale: 1.05 }}
       onClick={() => navigate(`/${countryId}/blog/${name}`)}
     >
       <img
         src={imageSrc}
         style={{
-          width: width || 300,
-          height: imageHeight || 180,
-          maxHeight: 180,
+          width: 300,
+          height: 200,
           // Fit inside without stretching
           objectFit: "cover",
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, paddingBottom: 0,  }}>
-        <p style={{fontSize: 18}} >{title}</p>
+      <div style={{ padding: 20, paddingBottom: 0 }}>
+        <h5>{title}</h5>
         <p>{description}</p>
       </div>
       <div
@@ -71,6 +63,7 @@ export function BlogPostPreviewRegular(props) {
           style={{
             marginLeft: "auto",
             marginBottom: 5,
+            color: style.colors.DARK_GRAY,
           }}
         >
           {dateString}

@@ -1,7 +1,6 @@
 import postJson from "../posts/posts.json";
 import authorsJson from "../posts/authors.json";
 import ReactMarkdown from "react-markdown";
-import { TwitterTweetEmbed } from "react-twitter-embed";
 import { Container } from "react-bootstrap";
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -20,7 +19,6 @@ import {
   LinkedinFilled,
 } from "@ant-design/icons";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import EmailSignUp from "../layout/EmailSignup";
 
 function MarkdownP(props) {
   const mobile = useMobile();
@@ -28,13 +26,13 @@ function MarkdownP(props) {
     ? {
         fontSize: 16,
         marginBottom: 20,
-        fontFamily: "Roboto Serif",
+        fontFamily: "Merriweather",
         width: "100%",
       }
     : {
         fontSize: 18,
         marginBottom: 20,
-        fontFamily: "Roboto Serif",
+        fontFamily: "Merriweather",
         width: "100%",
       };
   return <p style={pStyle}>{props.children}</p>;
@@ -43,29 +41,11 @@ function MarkdownP(props) {
 export function BlogPostMarkdown(props) {
   const { markdown } = props;
   const mobile = useMobile();
-
-  const renderers = {
-    blockquote: (props) => {
-      const { children } = props;
-      const anchorTag = children.find((child) =>
-        child?.props?.href?.startsWith("https://twitter.com/")
-      );
-      const tweetId = anchorTag?.props?.href?.split("/")?.pop()?.split("?")[0];
-
-      if (tweetId) {
-        return <TwitterTweetEmbed tweetId={tweetId} />;
-      }
-
-      return <blockquote>{children}</blockquote>;
-    },
-  };
-
   return (
     <ReactMarkdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
       components={{
-        ...renderers,
         p: MarkdownP,
         // Ensure images fit inside the container
         img: ({ src, alt }) => (
@@ -92,7 +72,7 @@ export function BlogPostMarkdown(props) {
             style={{
               paddingLeft: 20,
               marginBottom: 20,
-              fontFamily: "Roboto Serif",
+              fontFamily: "Merriweather",
               fontSize: mobile ? 16 : 18,
             }}
           >
@@ -183,7 +163,7 @@ export function BlogPostMarkdown(props) {
           <td
             style={{
               padding: 5,
-              fontFamily: "Roboto Serif",
+              fontFamily: "Merriweather",
               fontSize: mobile ? 16 : 18,
             }}
           >
@@ -194,7 +174,7 @@ export function BlogPostMarkdown(props) {
           <th
             style={{
               padding: 5,
-              fontFamily: "Roboto Serif",
+              fontFamily: "Merriweather",
               fontSize: mobile ? 16 : 18,
               borderBottom: "1px solid black",
             }}
@@ -209,10 +189,15 @@ export function BlogPostMarkdown(props) {
   );
 }
 
-function AuthorSection(props) {
+const AuthorSection = async (props) => {
   const { author } = props;
   const mobile = useMobile();
-  const authorImage = require(`../images/authors/${author.headshot}`);
+
+  const authorImage = new URL(
+    `../images/authors/${author.headshot}`,
+    import.meta.url
+  );
+
   // Image - name/bio - social icons (floating to the right)
   const mail = (
     <a href={`mailto:${author.email}`} target="_blank" rel="noreferrer">
@@ -287,7 +272,7 @@ function AuthorSection(props) {
       </div>
     </div>
   );
-}
+};
 
 function SocialMediaIcons(props) {
   const url = encodeURIComponent(window.location.href);
@@ -358,34 +343,6 @@ function SocialMediaIcons(props) {
       >
         {linkedIn}
       </div>
-    </div>
-  );
-}
-
-function SubscribeForm() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [subscribed, setSubscribed] = useState(true);
-
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    setSubscribed(true);
-  };
-
-  return (
-    <div>
-      <form
-        onSubmit={handleSubscribe}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      >
-        <EmailSignUp
-          value={{ subscribed }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-          }}
-        />
-      </form>
     </div>
   );
 }
@@ -486,10 +443,11 @@ function LeftContents(props) {
   );
 }
 
-export default function BlogPostPage(props) {
+export default async function ay(props) {
   // The URL will be in the format /uk/blog/post-name
   // We need to extract the countryId and postName from the URL
   const url = window.location.pathname;
+  console.log(props);
   const { countryId } = props;
   const postName = url.split("/")[3];
   const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
@@ -509,10 +467,11 @@ export default function BlogPostPage(props) {
     return <FOF />;
   }
   const { title, description, image, filename, authors } = postData;
-  document.title = `${title} | PolicyEngine Blog`;
-  const imageSrc = require(`../images/posts/${image}`);
-  const markdownFile = require(`../posts/${filename}`);
+  const imageSrc = new URL(`../images/posts/${image}`, import.meta.url);
+  const markdownFile = new URL(`../posts/${filename}`, import.meta.url);
+
   const [markdown, setMarkdown] = useState("");
+
   const printing = useDetectPrint();
   const mobile = useMobile() || printing;
   useEffect(() => {
@@ -540,7 +499,7 @@ export default function BlogPostPage(props) {
         >
           <div style={{ padding: mobile && 20 }}>
             <h1>{title}</h1>
-            <h5 style={{ fontFamily: "Roboto Serif" }}>{description}</h5>
+            <h5 style={{ fontFamily: "Merriweather" }}>{description}</h5>
           </div>
           <img
             src={imageSrc}
@@ -563,13 +522,9 @@ export default function BlogPostPage(props) {
                 flexDirection: "column",
               }}
             >
-              <div style={{ padding: mobile && 20 }}>
-                <SubscribeForm />
-
-                {authors.map((author, idx) => (
-                  <AuthorSection key={idx} author={authorsJson[author]} />
-                ))}
-              </div>
+              {authors.map((author, idx) => (
+                <AuthorSection key={idx} author={authorsJson[author]} />
+              ))}
             </div>
           </div>
         </div>
