@@ -3,6 +3,7 @@ import postJson from "../posts/posts.json";
 import style from "../style";
 
 export default function ResearchPage(props) {
+  document.title = "Research | PolicyEngine";
     const { countryId } = props;
   // postJson is a JSON file containing all the blog posts.
 

@@ -182,6 +182,7 @@ export function WidePanel(props) {
 }
 
 export default function HomePage(props) {
+  document.title = "PolicyEngine"
   const { countryId } = props;
   const mobile = useMobile();
   // Items are centered horizontally, and placed in order vertically.
@@ -488,9 +489,6 @@ function Collaborations(props) {
       <Container fluid style={{backgroundColor: style.colors.WHITE, padding: 50, paddingBottom: 70 }}>
 
       <Row style={{ justifyContent: "center", alignItems: "center" }}>
-        <Col style={{ textAlign: "center" }}>
-          <h3></h3>
-        </Col>
           {Object.values(orgData[countryId] || {}).map((org) => (
             <Col
               key={org.link}

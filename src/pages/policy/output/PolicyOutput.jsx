@@ -337,6 +337,7 @@ export default function PolicyOutput(props) {
       </div>
     );
   } else if (focus === "policyOutput.netIncome") {
+    document.title = `${policyLabel} | Budgetary impact | PolicyEngine`;
     pane = (
       <BudgetaryImpact
         preparingForScreenshot={preparingForScreenshot}
@@ -346,6 +347,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.decileRelativeImpact") {
+    document.title = `${policyLabel} | Relative impact by decile | PolicyEngine`;
     pane = (
       <RelativeImpactByDecile
         preparingForScreenshot={preparingForScreenshot}
@@ -355,6 +357,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.decileAverageImpact") {
+    document.title = `${policyLabel} | Average impact by decile | PolicyEngine`;
     pane = (
       <AverageImpactByDecile
         preparingForScreenshot={preparingForScreenshot}
@@ -364,6 +367,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.intraDecileImpact") {
+    document.title = `${policyLabel} | Income intra-decile impact | PolicyEngine`;
     pane = (
       <IntraDecileImpact
         preparingForScreenshot={preparingForScreenshot}
@@ -373,6 +377,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.povertyImpact") {
+    document.title = `${policyLabel} | Poverty impact | PolicyEngine`;
     pane = (
       <PovertyImpact
         preparingForScreenshot={preparingForScreenshot}
@@ -382,6 +387,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.deepPovertyImpact") {
+    document.title = `${policyLabel} | Deep poverty impact | PolicyEngine`;
     pane = (
       <DeepPovertyImpact
         preparingForScreenshot={preparingForScreenshot}
@@ -391,6 +397,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.genderPovertyImpact") {
+    document.title = `${policyLabel} | Gender poverty impact | PolicyEngine`
     pane = (
       <PovertyImpactByGender
         preparingForScreenshot={preparingForScreenshot}
@@ -400,6 +407,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.genderDeepPovertyImpact") {
+    document.title = `${policyLabel} | Gender deep poverty impact | PolicyEngine`
     pane = (
       <DeepPovertyImpactByGender
         preparingForScreenshot={preparingForScreenshot}
@@ -409,6 +417,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.racialPovertyImpact") {
+    document.title = `${policyLabel} | Racial poverty impact | PolicyEngine`
     pane = (
       <PovertyImpactByRace
         preparingForScreenshot={preparingForScreenshot}
@@ -418,6 +427,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.inequalityImpact") {
+    document.title = `${policyLabel} | Inequality impact | PolicyEngine`;
     pane = (
       <InequalityImpact
         preparingForScreenshot={preparingForScreenshot}
@@ -427,6 +437,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.wealthDecileAverageImpact") {
+    document.title = `${policyLabel} | Average impact by wealth decile | PolicyEngine`;
     pane = (
       <AverageImpactByWealthDecile
         preparingForScreenshot={preparingForScreenshot}
@@ -436,6 +447,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.wealthDecileRelativeImpact") {
+    document.title = `${policyLabel} | Relative impact by wealth decile | PolicyEngine`;
     pane = (
       <RelativeImpactByWealthDecile
         preparingForScreenshot={preparingForScreenshot}
@@ -445,6 +457,7 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.intraWealthDecileImpact") {
+    document.title = `${policyLabel} | Wealth intra-decile impact | PolicyEngine`;
     pane = (
       <IntraWealthDecileImpact
         preparingForScreenshot={preparingForScreenshot}
@@ -454,8 +467,10 @@ export default function PolicyOutput(props) {
       />
     );
   } else if (focus === "policyOutput.codeReproducibility") {
+    document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = <Reproducibility metadata={metadata} policy={policy} />;
   } else if (focus === "policyOutput.analysis") {
+    document.title = `${policyLabel} | Analysis | PolicyEngine`;
     pane = (
       <Analysis
         impact={impact}
@@ -469,6 +484,7 @@ export default function PolicyOutput(props) {
   }
 
   if (focus === "policyOutput.cliffImpact") {
+    document.title = `${policyLabel} | Cliff impact | PolicyEngine`;
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
   }
 

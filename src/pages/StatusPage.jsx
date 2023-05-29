@@ -14,6 +14,7 @@ import {
 } from "./statusPageDefaults";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
+  document.title = "Status | PolicyEngine";
   return (
     <>
       {Object.keys(apiStatus).map((apiRoute, idx) => (

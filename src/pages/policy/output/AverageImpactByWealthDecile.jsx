@@ -50,7 +50,7 @@ export default function AverageImpactByWealthDecile(props) {
           mode: "hide",
           minsize: mobile ? 4 : 8,
         },
-        ...ChartLogo,
+        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
         margin: {
           t: 0,
           b: 80,
