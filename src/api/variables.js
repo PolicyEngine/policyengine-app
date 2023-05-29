@@ -446,6 +446,10 @@ export function getValueFromHousehold(
   } catch (e) {
     return null;
   }
+  if (!timePeriodValues) {
+    console.log("Error getting variable value", variable);
+    return null;
+  }
   if (!timePeriod) {
     const possibleTimePeriods = Object.keys(timePeriodValues);
     let total = 0;
