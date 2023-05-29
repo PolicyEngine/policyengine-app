@@ -86,7 +86,7 @@ export default function EarningsVariation(props) {
     requests.push(
       apiCall(`/${metadata.countryId}/calculate`, {
         household: householdData,
-        policy_id: baselinePolicyId,
+        policy: policy.baseline.data,
       })
         .then((res) => res.json())
         .then((data) => {
