@@ -12,7 +12,7 @@ import NavigationButton from "../../controls/NavigationButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
-import { Alert } from "antd";
+import { Alert, Modal} from "antd";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -200,6 +200,24 @@ export default function PolicyRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
   const hasHousehold = searchParams.get("household") !== null;
   const [showReformSearch, setShowReformSearch] = useState(false);
+  const confirmEconomicImpact = () => {
+    if (region === "us" && focus.startsWith("gov.states")) {
+      Modal.confirm({
+        title: "Confirm",
+        content: "You are about to calculate the economic impact of a state tax reform for the entire US. Are you sure you want to proceed?",
+        onOk() {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("focus", "policyOutput");
+          setSearchParams(newSearch);
+        },
+      });
+    } else {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("focus", "policyOutput");
+      setSearchParams(newSearch);
+    }
+  };
+
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -354,7 +372,7 @@ export default function PolicyRightSidebar(props) {
         <NavigationButton
           primary
           text="Calculate economic impact"
-          focus="policyOutput"
+          onClick={confirmEconomicImpact}
         />
       )}
       {!hideButtons && !hasHousehold && (
