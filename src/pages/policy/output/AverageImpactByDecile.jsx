@@ -8,6 +8,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
+import { avgChangeDirection} from './utils';
 
 export default function AverageImpactByDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -125,14 +126,12 @@ export default function AverageImpactByDecile(props) {
     <>
       <Screenshottable>
         <h2>
-          {policyLabel}&nbsp;
-          {averageChange >= 0 ? "would increase" : "would decrease"} the
-          net income of households {label} by&nbsp;
-          {formatVariableValue(
+          {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
+          formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),
             0
-          )} on average
+          )} on average`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>

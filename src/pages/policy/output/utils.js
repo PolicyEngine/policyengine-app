@@ -1,0 +1,1 @@
+export const avgChangeDirection = change => change >= 0 ? "would increase" : "would decrease";
