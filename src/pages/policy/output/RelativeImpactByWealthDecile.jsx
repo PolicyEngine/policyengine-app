@@ -8,6 +8,7 @@ import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
+import { avgChangeDirection} from './utils';
 
 export default function RelativeImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -123,10 +124,8 @@ export default function RelativeImpactByWealthDecile(props) {
     <>
       <Screenshottable>
         <h2>
-          {policyLabel}{" "}
-          {averageRelChange >= 0 ? "would increase" : "would decrease"} the
-          average household&apos;s net income {label} by{" "}
-          {formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)}
+          {`${policyLabel} ${avgChangeDirection(averageRelChange)} the net income of households ${label} by ${
+            formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
       </Screenshottable>
