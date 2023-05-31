@@ -115,9 +115,6 @@ export default function EarningsVariation(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reformPolicyId, baselinePolicyId, householdId]);
 
-  console.log("baselineNetIncome", baselineNetIncome)
-  console.log("reformNetIncome", reformNetIncome)
-
   if (error) {
     return (
       <ErrorPage message="We ran into an issue when trying to simulate your household's net income under different earnings. Please try again later." />

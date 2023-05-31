@@ -36,7 +36,7 @@ export default function BaselineOnlyChart(props) {
     null,
     householdBaselineVariation,
     metadata,
-    true
+    false
   );
   const currentEarnings = getValueFromHousehold(
     "employment_income",
