@@ -13,6 +13,7 @@ import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
 import { Alert, Modal} from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -198,17 +199,36 @@ export default function PolicyRightSidebar(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const focus = searchParams.get("focus") || "";
+  const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
   const [showReformSearch, setShowReformSearch] = useState(false);
+  const options = metadata.economy_options.region.map((stateAbbreviation) => {
+    return { value: stateAbbreviation.name, label: stateAbbreviation.label };
+  });
+  const label = options.find((option) => option.value === stateAbbreviation)?.label;
   const confirmEconomicImpact = () => {
     if (region === "us" && focus.startsWith("gov.states")) {
       Modal.confirm({
-        title: "Confirm",
-        content: "You are about to calculate the economic impact of a state tax reform for the entire US. Are you sure you want to proceed?",
+        title: " You are about to calculate the economic impact of a state tax reform for the entire US",
+        content: `To compute economic impacts over ${label} only, select that option in the region selector on the right pane.
+         Are you sure you want to proceed?`,
+        icon: <ExclamationCircleOutlined style={{ color: "#2C6496" }} />,
         onOk() {
           let newSearch = copySearchParams(searchParams);
           newSearch.set("focus", "policyOutput");
           setSearchParams(newSearch);
+        },
+        okButtonProps: {
+          style: {
+            backgroundColor: "#2C6496", 
+            borderColor: "#2C6496", 
+          },
+        },
+        bodyStyle: {
+          paddingLeft: '9px' 
+        },
+        style: {
+          top: "25%", 
         },
       });
     } else {
