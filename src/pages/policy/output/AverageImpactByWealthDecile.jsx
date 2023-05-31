@@ -8,6 +8,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
+import { getLabel } from './utils'
 
 export default function AverageImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -107,10 +108,9 @@ export default function AverageImpactByWealthDecile(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
+
+  const label = getLabel(region, options)
+
   const data = Object.entries(impact.wealth_decile.average).map(([key, value]) => [
     `Decile ${key}`,
     value,

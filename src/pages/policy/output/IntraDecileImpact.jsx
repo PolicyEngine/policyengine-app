@@ -8,6 +8,7 @@ import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
+import { getLabelForPopulation } from './utils'
 
 export default function IntraDecileImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -290,10 +291,7 @@ export default function IntraDecileImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label =
-  region === "us" || region === "uk"
-    ? " of the population"
-    : " of " + options.find((option) => option.value === region)?.label + " residents";
+  const label = getLabelForPopulation(region, options)
   
   const csvHeader = [
     "Decile",

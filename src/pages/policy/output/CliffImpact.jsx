@@ -12,6 +12,7 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
+import { getLabel } from './utils'
 
 export default function CliffImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -184,10 +185,7 @@ export default function CliffImpact(props) {
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : " in " + options.find((option) => option.value === region)?.label;
+  const label = getLabel(region, options)
 
   const title = `${policyLabel} ${
     cliff_share_change === 0 && cliff_gap_change === 0
