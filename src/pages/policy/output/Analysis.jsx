@@ -33,7 +33,7 @@ export default function Analysis(props) {
     },
     {}
   );
-  const baseResultsUrl = `http://localhost:3000/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
+  const baseResultsUrl = `https://policyengine.org/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
   const buildIFrame = (chartName) => 
     `<iframe src="${baseResultsUrl}&focus=policyOutput.${chartName}" width="800px" height="418px" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>`;
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
