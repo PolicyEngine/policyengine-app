@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   Navigate,
+  useSearchParams,
 } from "react-router-dom";
 import PolicyEngineCountry from "./PolicyEngineCountry";
 import gtag from "./api/analytics";
@@ -34,6 +35,7 @@ function CookieConsent() {
   }
   const [show, setShow] = React.useState(false);
   const [accepted, setAccepted] = React.useState(false);
+  const [searchParams] = useSearchParams();
   React.useEffect(() => {
     setTimeout(() => {
       setShow(true);
@@ -67,10 +69,10 @@ function CookieConsent() {
   }
 
   const mobile = useMobile();
-
+  searchParams;
   return (
     <>
-    {show &&
+    {show && !searchParams.get("embed") && 
       <motion.div
         initial={{ opacity: 0, y: 200 }}
         animate={{ opacity: accepted ? 0 : 1, y: accepted ? 200 : 0 }}

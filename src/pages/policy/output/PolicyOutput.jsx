@@ -578,11 +578,11 @@ export default function PolicyOutput(props) {
             position: "absolute",
             top: 0,
             left: 0,
-            width: 800 * 1.5,
-            height: 418 * 1.5,
+            width: embed ? "100%" : 800 * 1.5,
+            height: embed ? "100%" : 418 * 1.5,
             zIndex: 1001,
-            padding: 50,
-            paddingBottom: 100,
+            padding: embed ? 0 : 50,
+            paddingBottom: embed ? 0 : 100,
           }}
         >
           {pane}
