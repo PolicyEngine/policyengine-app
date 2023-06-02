@@ -205,19 +205,30 @@ export default function PolicyRightSidebar(props) {
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
+  options.push({ value: region, label: region });
   const label = options.find((option) => option.value === stateAbbreviation)?.label;
+  const regionLabel = options.find((option) => option.value === region)?.label;
   const confirmEconomicImpact = () => {
+    let message = "";
+    if (stateAbbreviation && stateAbbreviation !== region) {
+      message = `You are about to calculate the economic impact of a tax reform in ${label} for ${regionLabel} `;
+    }
     if (region === "us" && focus.startsWith("gov.states")) {
+      message = "You are about to calculate the economic impact of a state tax reform for the entire US ";
+    }
+    if (message) {
       Modal.confirm({
-        title: " You are about to calculate the economic impact of a state tax reform for the entire US",
-        content: `To compute economic impacts over ${label} only, select that option in the region selector on the right pane.
-         Are you sure you want to proceed?`,
+        title: message,
+        content: `Change the simulation region to ${label} by clicking "Change State".`,
         icon: <ExclamationCircleOutlined style={{ color: "#2C6496" }} />,
         onOk() {
           let newSearch = copySearchParams(searchParams);
-          newSearch.set("focus", "policyOutput");
+          newSearch.set("region", stateAbbreviation);
           setSearchParams(newSearch);
+          window.location.reload();
         },
+        okText: "Change State", // Customize the OK button text
+        cancelText: "Continue",
         okButtonProps: {
           style: {
             backgroundColor: "#2C6496", 
