@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   Navigate,
-  useSearchParams,
 } from "react-router-dom";
 import PolicyEngineCountry from "./PolicyEngineCountry";
 import gtag from "./api/analytics";
@@ -35,7 +34,8 @@ function CookieConsent() {
   }
   const [show, setShow] = React.useState(false);
   const [accepted, setAccepted] = React.useState(false);
-  const [searchParams] = useSearchParams();
+  // get searchParams from the URL without using useSearchParams
+  const searchParams = new URLSearchParams(window.location.search);
   React.useEffect(() => {
     setTimeout(() => {
       setShow(true);
