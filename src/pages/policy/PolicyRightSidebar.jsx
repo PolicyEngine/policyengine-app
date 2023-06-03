@@ -214,7 +214,7 @@ export default function PolicyRightSidebar(props) {
       message = `You are about to calculate the economic impact of a tax reform in ${label} for ${regionLabel} `;
     }
     if (region === "us" && focus.startsWith("gov.states")) {
-      message = "You are about to calculate the economic impact of a state tax reform for the entire US ";
+      message = "You are about to calculate the economic impact of a state tax reform for the entire US, which PolicyEngine does not currently support. ";
     }
     if (message) {
       Modal.confirm({
