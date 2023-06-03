@@ -12,7 +12,7 @@ import NavigationButton from "../../controls/NavigationButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal} from "antd";
+import { Alert, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 function PolicyNamer(props) {
@@ -138,7 +138,8 @@ function PolicyItem(props) {
 }
 
 function PolicyDisplay(props) {
-  const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } = props;
+  const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } =
+    props;
   const reformLength = Object.keys(policy.reform.data).length;
   const navigate = useNavigate();
   return (
@@ -206,15 +207,21 @@ export default function PolicyRightSidebar(props) {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
   options.push({ value: region, label: region });
-  const label = options.find((option) => option.value === stateAbbreviation)?.label;
+  const label = options.find(
+    (option) => option.value === stateAbbreviation
+  )?.label;
   const regionLabel = options.find((option) => option.value === region)?.label;
+  const validatedStateAbbreviation = options.find(
+    (option) => option.value === stateAbbreviation
+  )?.value;
   const confirmEconomicImpact = () => {
     let message = "";
-    if (stateAbbreviation && stateAbbreviation !== region) {
+    if (validatedStateAbbreviation && stateAbbreviation !== region) {
       message = `You are about to calculate the economic impact of a tax reform in ${label} for ${regionLabel} `;
     }
     if (region === "us" && focus.startsWith("gov.states")) {
-      message = "You are about to calculate the economic impact of a state tax reform for the entire US, which PolicyEngine does not currently support. ";
+      message =
+        "You are about to calculate the economic impact of a state tax reform for the entire US, which PolicyEngine does not currently support. ";
     }
     if (message) {
       Modal.confirm({
@@ -231,15 +238,15 @@ export default function PolicyRightSidebar(props) {
         cancelText: "Continue",
         okButtonProps: {
           style: {
-            backgroundColor: "#2C6496", 
-            borderColor: "#2C6496", 
+            backgroundColor: "#2C6496",
+            borderColor: "#2C6496",
           },
         },
         bodyStyle: {
-          paddingLeft: '9px' 
+          paddingLeft: "9px",
         },
         style: {
-          top: "25%", 
+          top: "25%",
         },
       });
     } else {
