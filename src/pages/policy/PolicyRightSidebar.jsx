@@ -12,7 +12,8 @@ import NavigationButton from "../../controls/NavigationButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
-import { Alert } from "antd";
+import { Alert, Modal} from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -198,8 +199,56 @@ export default function PolicyRightSidebar(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const focus = searchParams.get("focus") || "";
+  const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
   const [showReformSearch, setShowReformSearch] = useState(false);
+  const options = metadata.economy_options.region.map((stateAbbreviation) => {
+    return { value: stateAbbreviation.name, label: stateAbbreviation.label };
+  });
+  options.push({ value: region, label: region });
+  const label = options.find((option) => option.value === stateAbbreviation)?.label;
+  const regionLabel = options.find((option) => option.value === region)?.label;
+  const confirmEconomicImpact = () => {
+    let message = "";
+    if (stateAbbreviation && stateAbbreviation !== region) {
+      message = `You are about to calculate the economic impact of a tax reform in ${label} for ${regionLabel} `;
+    }
+    if (region === "us" && focus.startsWith("gov.states")) {
+      message = "You are about to calculate the economic impact of a state tax reform for the entire US, which PolicyEngine does not currently support. ";
+    }
+    if (message) {
+      Modal.confirm({
+        title: message,
+        content: `Change the simulation region to ${label} by clicking "Change State".`,
+        icon: <ExclamationCircleOutlined style={{ color: "#2C6496" }} />,
+        onOk() {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("region", stateAbbreviation);
+          setSearchParams(newSearch);
+          window.location.reload();
+        },
+        okText: "Change State", // Customize the OK button text
+        cancelText: "Continue",
+        okButtonProps: {
+          style: {
+            backgroundColor: "#2C6496", 
+            borderColor: "#2C6496", 
+          },
+        },
+        bodyStyle: {
+          paddingLeft: '9px' 
+        },
+        style: {
+          top: "25%", 
+        },
+      });
+    } else {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("focus", "policyOutput");
+      setSearchParams(newSearch);
+    }
+  };
+
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
       const defaults = {
@@ -354,7 +403,7 @@ export default function PolicyRightSidebar(props) {
         <NavigationButton
           primary
           text="Calculate economic impact"
-          focus="policyOutput"
+          onClick={confirmEconomicImpact}
         />
       )}
       {!hideButtons && !hasHousehold && (
