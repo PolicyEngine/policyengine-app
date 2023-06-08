@@ -7,6 +7,7 @@ import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
+import { plotLayoutFont } from 'pages/policy/output/utils';
 
 export default function PovertyImpactByGender(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -76,6 +77,7 @@ export default function PovertyImpactByGender(props) {
           r: 0,
         },
         height: mobile ? 350 : 450,
+        ...plotLayoutFont
       }}
       config={{
         displayModeBar: false,

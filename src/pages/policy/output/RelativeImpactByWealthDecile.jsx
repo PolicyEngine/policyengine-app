@@ -8,7 +8,7 @@ import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
-import { avgChangeDirection} from './utils';
+import { avgChangeDirection, plotLayoutFont } from './utils';
 
 export default function RelativeImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -59,6 +59,7 @@ export default function RelativeImpactByWealthDecile(props) {
           l: 60,
         },
         height: mobile ? 300 : 500,
+        ...plotLayoutFont
       }}
       config={{
         displayModeBar: false,

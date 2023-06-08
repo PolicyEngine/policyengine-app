@@ -8,6 +8,7 @@ import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
+import { plotLayoutFont } from 'pages/policy/output/utils';
 
 export default function IntraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -254,6 +255,7 @@ export default function IntraWealthDecileImpact(props) {
           r: 0,
         },
         height: mobile ? 300 : 450,
+        ...plotLayoutFont
       }}
       config={{
         displayModeBar: false,

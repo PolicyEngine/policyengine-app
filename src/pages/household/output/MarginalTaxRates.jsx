@@ -14,6 +14,7 @@ import { useSearchParams } from "react-router-dom";
 import { Radio } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
+import { plotLayoutFont } from 'pages/policy/output/utils';
 
 export default function MarginalTaxRates(props) {
   const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
@@ -162,6 +163,7 @@ export default function MarginalTaxRates(props) {
               orientation: "h",
             },
             ...ChartLogo,
+            ...plotLayoutFont
           }}
           config={{
             displayModeBar: false,
@@ -327,6 +329,7 @@ export default function MarginalTaxRates(props) {
               orientation: "h",
             },
             ...ChartLogo,
+            ...plotLayoutFont
           }}
           config={{
             displayModeBar: false,

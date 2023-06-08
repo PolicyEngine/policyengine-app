@@ -10,6 +10,7 @@ import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
 import HoverCard from "../../../../layout/HoverCard";
+import { plotLayoutFont } from 'pages/policy/output/utils';
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
 
@@ -111,6 +112,7 @@ export default function BaselineOnlyChart(props) {
           margin: {
             t: 0,
           },
+          ...plotLayoutFont
         }}
         config={{
           displayModeBar: false,
