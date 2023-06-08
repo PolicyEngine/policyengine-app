@@ -12,6 +12,7 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
+import { plotLayoutFont } from 'pages/policy/output/utils';
 
 export default function CliffImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -136,6 +137,7 @@ export default function CliffImpact(props) {
           b: 80,
         },
         height: mobile ? 300 : 450,
+        ...plotLayoutFont
       }}
       config={{
         displayModeBar: false,

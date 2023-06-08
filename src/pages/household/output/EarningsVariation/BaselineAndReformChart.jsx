@@ -12,6 +12,7 @@ import style from "../../../../style";
 import { getCliffs } from "./cliffs";
 import HoverCard from "../../../../layout/HoverCard";
 import { convertToCurrencyString } from "./convertToCurrencyString";
+import { plotLayoutFont } from 'pages/policy/output/utils';
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -200,6 +201,7 @@ function BaselineAndReformTogetherChart(props) {
           orientation: "h",
         },
         ...ChartLogo,
+        ...plotLayoutFont
       }}
       config={{
         displayModeBar: false,
@@ -321,6 +323,7 @@ function BaselineReformDeltaChart(props) {
         margin: {
           t: 0,
         },
+        ...plotLayoutFont
       }}
       config={{
         displayModeBar: false,
