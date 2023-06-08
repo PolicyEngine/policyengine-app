@@ -11,8 +11,8 @@ import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { plotLayoutFont } from 'pages/policy/output/utils';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function CliffImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -137,7 +137,7 @@ export default function CliffImpact(props) {
           b: 80,
         },
         height: mobile ? 300 : 450,
-        ...plotLayoutFont
+        ...plotLayoutFont,
       }}
       config={{
         displayModeBar: false,
@@ -187,9 +187,9 @@ export default function CliffImpact(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : " in " + options.find((option) => option.value === region)?.label;
+    region === "us" || region === "uk"
+      ? ""
+      : " in " + options.find((option) => option.value === region)?.label;
 
   const title = `${policyLabel} ${
     cliff_share_change === 0 && cliff_gap_change === 0
@@ -205,44 +205,44 @@ export default function CliffImpact(props) {
   const data = [
     csvHeader,
     ...[
-    {
-      Metric: "Cliff rate",
-      Baseline: impact.baseline.cliff_share,
-      Reform: impact.reform.cliff_share,
-      Change: cliff_share_change,
-    },
-    {
-      Metric: "Cliff gap",
-      Baseline: impact.baseline.cliff_gap,
-      Reform: impact.reform.cliff_gap,
-      Change: cliff_gap_change,
-    },
+      {
+        Metric: "Cliff rate",
+        Baseline: impact.baseline.cliff_share,
+        Reform: impact.reform.cliff_share,
+        Change: cliff_share_change,
+      },
+      {
+        Metric: "Cliff gap",
+        Baseline: impact.baseline.cliff_gap,
+        Reform: impact.reform.cliff_gap,
+        Change: cliff_gap_change,
+      },
     ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
   ];
 
-  
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "5px",
     left: "100px",
   };
-  
 
   return (
-    <ResultsPanel title={title}>
+    <ResultsPanel>
       <Screenshottable>
+        <h2>{title}</h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-        <div className="chart-container">
-          {!mobile && 
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="cliffImpact.csv"
-              style={downloadButtonStyle}
-            />
-          }
-       </div>
       </Screenshottable>
-      <p style={{ marginTop: '10px' }}>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename="cliffImpact.csv"
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
+      <p style={{ marginTop: "10px" }}>
         The cliff rate is the share of households whose net income falls if each
         adult earned an additional {metadata.currency}2,000. The cliff gap is
         the sum of the losses incurred by all households on a cliff if their
