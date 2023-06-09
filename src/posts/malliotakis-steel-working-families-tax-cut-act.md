@@ -12,8 +12,6 @@ The bill reduces this additional standard deduction by 5% of adjusted gross inco
 
 * $400,000 for married and widowed filers
 
-This report shows the impact on a sample household, the US, New York, and California. Overall, we estimate that the WFTCA would:
-
 [**See how the Working Families Tax Credit Act would affect you.**](https://policyengine.org/us/household?focus=intro&reform=14512&region=us&timePeriod=2023&baseline=2)
 
 ## Household impacts
