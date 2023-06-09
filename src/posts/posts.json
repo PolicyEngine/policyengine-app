@@ -827,5 +827,19 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Analysis of the Working Families Tax Cut Act",
+    "description": "How the proposal to increase the standard deduction would affect households and society.",
+    "date": "2023-06-08 20:00:00",
+    "filename": "malliotakis-steel-working-families-tax-cut-act.md",
+    "tags": [
+      "us"
+    ],
+    "image": "malliotakis-steel-working-families-tax-credit-act.png",
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff"
+    ]
   }
 ]
