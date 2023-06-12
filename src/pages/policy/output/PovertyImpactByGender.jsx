@@ -64,6 +64,7 @@ export default function PovertyImpactByGender(props) {
         yaxis: {
           title: "Relative change",
           tickformat: "+,.1%",
+          range: [-0.05, 0.05],
         },
         showlegend: false,
         uniformtext: {
