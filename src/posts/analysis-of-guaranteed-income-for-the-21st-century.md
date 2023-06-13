@@ -56,7 +56,7 @@ While we apply the benefit and phase-out to tax units in the 2021 Current Popula
 
 As an example, suppose a 22-year-old, who earns $30,000, lives with their parent, who earns $100,000. 21GI would provide the parent nothing and the child $6,250, half the maximum benefit, given their earnings fall halfway within the $10,000–50,000 phase-out range. But the SCF would show the household as a single tax filing unit with $130,000 income, and thus disqualified from any 21GI benefit.
 
-21GI would alter incentives to file separately; neither PolicyEngine nor New School models changing filing behavior as a result.
+21GI would alter incentives to file separately; however, neither PolicyEngine nor New School models changing filing behavior as a result.
 
 ### Impact by income decile
 
