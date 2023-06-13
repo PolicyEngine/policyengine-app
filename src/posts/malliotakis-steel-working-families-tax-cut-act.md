@@ -16,7 +16,7 @@ The bill reduces this additional standard deduction by 5% of adjusted gross inco
 
 ## Household impacts
 
-Consider a [single filer in New York](https://policyengine.org/us/household?focus=householdOutput.mtr&reform=14512&region=ny&timePeriod=2023&baseline=2&household=31355) with no itemized deductions other than state income tax. The WFTCA would provide [benefits](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=14512&region=ny&timePeriod=2023&baseline=2&household=31356) if they earn between $11,000 and $240,000, with the maximum dollar benefit of $640 at around $200,000 earnings.
+Consider a [single filer in New York](https://policyengine.org/us/household?focus=householdOutput.mtr&reform=14512&region=ny&timePeriod=2023&baseline=2&household=31355) with no itemized deductions other than state income tax. The WFTCA would provide [benefits](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=14512&region=ny&timePeriod=2023&baseline=2&household=31356) if they earn between $13,851 ($1 above the current standard deduction) and $240,000, with the maximum dollar benefit of $640 at around $200,000 earnings.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*dv92M9FKwiIP5zCY)
 
