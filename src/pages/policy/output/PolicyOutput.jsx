@@ -35,6 +35,7 @@ import React from "react";
 import { message } from "antd";
 import Analysis from "./Analysis";
 import style from "../../../style";
+import { PovertyChangeProvider } from './PovertyChangeContext';
 
 import { useScreenshot } from "use-react-screenshot";
 
@@ -379,52 +380,63 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.povertyImpact") {
     document.title = `${policyLabel} | Poverty impact | PolicyEngine`;
     pane = (
-      <PovertyImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
+      <PovertyChangeProvider>
+        <PovertyImpact
+          preparingForScreenshot={preparingForScreenshot}
+          metadata={metadata}
+          impact={impact}
+          policyLabel={policyLabel}
+        />
+      </PovertyChangeProvider>
+      
     );
   } else if (focus === "policyOutput.deepPovertyImpact") {
     document.title = `${policyLabel} | Deep poverty impact | PolicyEngine`;
     pane = (
-      <DeepPovertyImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
+      <PovertyChangeProvider>
+        <DeepPovertyImpact
+          preparingForScreenshot={preparingForScreenshot}
+          metadata={metadata}
+          impact={impact}
+          policyLabel={policyLabel}
+        />
+      </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.genderPovertyImpact") {
     document.title = `${policyLabel} | Gender poverty impact | PolicyEngine`
     pane = (
-      <PovertyImpactByGender
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
+      <PovertyChangeProvider>
+        <PovertyImpactByGender
+          preparingForScreenshot={preparingForScreenshot}
+          metadata={metadata}
+          impact={impact}
+          policyLabel={policyLabel}
+        />
+      </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.genderDeepPovertyImpact") {
     document.title = `${policyLabel} | Gender deep poverty impact | PolicyEngine`
     pane = (
-      <DeepPovertyImpactByGender
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
+      <PovertyChangeProvider>
+        <DeepPovertyImpactByGender
+          preparingForScreenshot={preparingForScreenshot}
+          metadata={metadata}
+          impact={impact}
+          policyLabel={policyLabel}
+        />
+      </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.racialPovertyImpact") {
     document.title = `${policyLabel} | Racial poverty impact | PolicyEngine`
     pane = (
-      <PovertyImpactByRace
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
+      <PovertyChangeProvider>
+        <PovertyImpactByRace
+          preparingForScreenshot={preparingForScreenshot}
+          metadata={metadata}
+          impact={impact}
+          policyLabel={policyLabel}
+        />
+      </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.inequalityImpact") {
     document.title = `${policyLabel} | Inequality impact | PolicyEngine`;
