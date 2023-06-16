@@ -112,7 +112,7 @@ export default function PolicyReproducibility(props) {
   const { policy, metadata } = props;
 
   let initialLines = [
-    "from policyengine_" + metadata.countryId + " import Microsimulation",
+    "from " + metadata.package + " import Microsimulation",
   ];
 
   initialLines = initialLines.concat(getReformDefinitionCode(metadata, policy));

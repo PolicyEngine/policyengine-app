@@ -89,7 +89,7 @@ export default function HouseholdReproducibility(props) {
   const [ earningVariation, setEarningVariation ] = useState(false);
 
   let initialLines = [
-    "from policyengine_" + metadata.countryId + " import Simulation",
+    "from " + metadata.package + " import Simulation",
   ];
 
   if (policy.reform.data) {
