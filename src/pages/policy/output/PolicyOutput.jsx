@@ -148,6 +148,9 @@ export default function PolicyOutput(props) {
   const selectedVersion = searchParams.get("version") || metadata.version;
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
+  const skipImpacts = POLICY_OUTPUT_TREE[0].children.find(
+    (item) => item.name === focus
+  ).skipImpacts;
   useEffect(() => {
     if (
       !!region &&
@@ -227,7 +230,7 @@ export default function PolicyOutput(props) {
     return null;
   }
 
-  if (error) {
+  if (error & !skipImpacts) {
     const baselineOK = error.baseline_economy.status === "ok";
     const reformOK = error.reform_economy.status === "ok";
     return (
@@ -309,9 +312,6 @@ export default function PolicyOutput(props) {
     policyLabel = `${baselineLabel} → ${reformLabel}`;
   }
   let pane;
-  const skipImpacts = POLICY_OUTPUT_TREE[0].children.find(
-    (item) => item.name === focus
-  ).skipImpacts;
 
   if (!impact & !skipImpacts) {
     // Show a Progress bar that fills up over time, taking 100 seconds to fill.

@@ -93,6 +93,11 @@ export function updateMetadata(countryId, setMetadata) {
         variablesInOrder: variablesInOrder,
         parameterTree: parameterTree,
         countryId: countryId,
+        package: {
+          uk: "policyengine_uk",
+          us: "policyengine_us",
+          ca: "policyengine_canada",
+        }[countryId],
         currency: countryId === "uk" ? "£" : "$",
       };
       setMetadata(metadata);
