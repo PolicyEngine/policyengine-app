@@ -8,6 +8,8 @@ import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import { useContext, useEffect } from 'react';
+import { PovertyChangeContext } from './PovertyChangeContext';
 
 export default function PovertyImpactByRace(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -37,6 +39,10 @@ export default function PovertyImpactByRace(props) {
     otherPovertyChange,
     totalPovertyChange,
   ];
+  const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
+  useEffect(() => {
+    addChanges(povertyChanges);
+  }, [povertyChanges, addChanges]);
   const povertyLabels = ["White (non-Hispanic)", "Black (non-Hispanic)", "Hispanic", "Other", "All"];
   const labelToKey = {
     "White (non-Hispanic)": "white",
@@ -77,6 +83,7 @@ export default function PovertyImpactByRace(props) {
         yaxis: {
           title: "Relative change",
           tickformat: "+,.1%",
+          range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },
         showlegend: false,
         uniformtext: {

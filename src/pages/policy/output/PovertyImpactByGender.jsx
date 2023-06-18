@@ -8,6 +8,8 @@ import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import { useContext, useEffect } from 'react';
+import { PovertyChangeContext } from './PovertyChangeContext';
 
 export default function PovertyImpactByGender(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -26,6 +28,10 @@ export default function PovertyImpactByGender(props) {
     femalePovertyChange,
     totalPovertyChange,
   ];
+  const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
+  useEffect(() => {
+    addChanges(povertyChanges);
+  }, [povertyChanges, addChanges]);
   const povertyLabels = ["Male", "Female", "All"];
   const labelToKey = {
     Male: "male",
@@ -64,6 +70,7 @@ export default function PovertyImpactByGender(props) {
         yaxis: {
           title: "Relative change",
           tickformat: "+,.1%",
+          range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },
         showlegend: false,
         uniformtext: {
