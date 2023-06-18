@@ -78,7 +78,7 @@ export default function DeepPovertyImpact(props) {
         yaxis: {
           title: "Relative change",
           tickformat: "+,.1%",
-          range: [minChange, maxChange],
+          range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },
         showlegend: false,
         uniformtext: {
