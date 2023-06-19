@@ -841,5 +841,18 @@
       "max-ghenis",
       "nikhil-woodruff"
     ]
+  },
+  {
+    "title": "Unveiling poverty impacts by race and ethnicity",
+    "description": "A new feature from PolicyEngine reveals how customizable tax and benefit reforms affect poverty rates for Black, White, Hispanic, and other Americans.",
+    "date": "2023-06-19 20:00:00",
+    "filename": "poverty-race-ethnicity.md",
+    "tags": [
+      "us"
+    ],
+    "image": "poverty-race-ethnicity.jpg",
+    "authors": [
+      "max-ghenis"
+    ]
   }
 ]
