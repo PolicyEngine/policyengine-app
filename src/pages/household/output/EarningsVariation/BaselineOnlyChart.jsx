@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
@@ -9,7 +9,7 @@ import {
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
-import HoverCard from "../../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
 import { plotLayoutFont } from 'pages/policy/output/utils';
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
@@ -22,7 +22,6 @@ export default function BaselineOnlyChart(props) {
     variable,
     variableLabel,
   } = props;
-  const [hovercard, setHoverCard] = useState(null);
 
   const earningsArray = getValueFromHousehold(
     "employment_income",
@@ -53,8 +52,36 @@ export default function BaselineOnlyChart(props) {
     householdBaseline,
     metadata
   );
+
+  const plotProps = {
+    metadata,
+    variable,
+    variableLabel,
+    earningsArray,
+    netIncomeArray,
+    currentEarnings,
+    currentNetIncome,
+  };
+  return (
+    <HoverCard>
+      <BaselineOnlyPlot {...plotProps} />
+    </HoverCard>
+  );
+}
+
+function BaselineOnlyPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {
+    metadata,
+    variable,
+    variableLabel,
+    earningsArray,
+    netIncomeArray,
+    currentEarnings,
+    currentNetIncome,
+  } = props;
   // Add the main line, then add a 'you are here' line
-  const plot = (
+  return (
     <FadeIn key="baseline">
       <Plot
         key="baseline"
@@ -160,5 +187,4 @@ export default function BaselineOnlyChart(props) {
       />
     </FadeIn>
   );
-  return <HoverCard content={hovercard}>{plot}</HoverCard>;
 }

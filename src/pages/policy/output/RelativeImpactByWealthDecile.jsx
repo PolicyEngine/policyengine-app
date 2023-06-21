@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
@@ -12,10 +12,69 @@ import { avgChangeDirection, plotLayoutFont } from './utils';
 
 export default function RelativeImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
-  const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
+
+  const averageRelChange =
+    -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+  const csvHeader = ['Wealth Decile', 'Relative Change'];
+  const data = [
+    csvHeader,
+    ...Object.entries(impact.wealth_decile.relative).map(([decile, relativeChange]) => {
+      return [decile, relativeChange];
+    }),
+  ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "48px",
+    left: "70px",
+  };
+
+  const plotProps = {impact, mobile};
+
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {`${policyLabel} ${avgChangeDirection(averageRelChange)} the net income of households ${label} by ${
+            formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average`}
+        </h2>
+        <HoverCard>
+          <RelativeImpactByWealthDecilePlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
+              content={data}
+              filename="relativeImpactByWealthDecile.csv"
+              style={downloadButtonStyle}
+            />
+          )}
+        </div>
+      <p>
+        The chart above shows the relative change in income for each wealth
+        decile. Households are sorted into ten equally-populated groups
+        according to their equivalised household net wealth.
+      </p>
+    </>
+  );
+}
+
+function RelativeImpactByWealthDecilePlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {impact, mobile} = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
-  const chart = (
+  return (
     <Plot
       data={[
         {
@@ -94,56 +153,5 @@ export default function RelativeImpactByWealthDecile(props) {
         setHoverCard(null);
       }}
     />
-  );
-
-  const averageRelChange =
-    -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  const csvHeader = ['Wealth Decile', 'Relative Change'];
-  const data = [
-    csvHeader,
-    ...Object.entries(impact.wealth_decile.relative).map(([decile, relativeChange]) => {
-      return [decile, relativeChange];
-    }),
-  ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "48px",
-    left: "70px",
-  };
-    
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {`${policyLabel} ${avgChangeDirection(averageRelChange)} the net income of households ${label} by ${
-            formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average`}
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="relativeImpactByWealthDecile.csv"
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
-      <p>
-        The chart above shows the relative change in income for each wealth
-        decile. Households are sorted into ten equally-populated groups
-        according to their equivalised household net wealth.
-      </p>
-    </>
   );
 }

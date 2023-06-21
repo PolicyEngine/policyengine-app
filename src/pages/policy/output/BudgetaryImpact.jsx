@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
@@ -45,12 +45,57 @@ export default function BudgetaryImpact(props) {
     (label, index) => valuesBeforeFilter[index] !== 0
   );
 
-  const [hovercard, setHoverCard] = useState(null);
-
   console.log(values, labels, valuesBeforeFilter, labelsBeforeFilter);
 
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
+
+  // rewrite above but using labels/values
+  const data = labels.map((label, index) => {
+    return [label, values[index]];
+  });
+
+  const plotProps = {metadata, mobile, labels, values, budgetaryImpact};
+
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {policyLabel}
+          {" would "}
+          {budgetaryImpact > 0 ? "raise " : "cost "}
+          {aggregateCurrency(budgetaryImpact, metadata)}
+          {" this year "}
+          {label}
+        </h2>
+        <HoverCard>
+          <BudgetaryImpactPlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename="budgetaryImpact.csv"
+            className="download-button"
+          />
+        )}
+      </div>
+    </>
+  );
+}
+
+function BudgetaryImpactPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {metadata, mobile, labels, values, budgetaryImpact} = props;
   // Waterfall chart
-  const chart = (
+  return (
     <Plot
       data={[
         {
@@ -147,44 +192,5 @@ export default function BudgetaryImpact(props) {
         setHoverCard(null);
       }}
     />
-  );
-
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-    region === "us" || region === "uk"
-      ? ""
-      : "in " + options.find((option) => option.value === region)?.label;
-
-  // rewrite above but using labels/values
-  const data = labels.map((label, index) => {
-    return [label, values[index]];
-  });
-
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {policyLabel}
-          {" would "}
-          {budgetaryImpact > 0 ? "raise " : "cost "}
-          {aggregateCurrency(budgetaryImpact, metadata)}
-          {" this year "}
-          {label}
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename="budgetaryImpact.csv"
-            className="download-button"
-          />
-        )}
-      </div>
-    </>
   );
 }

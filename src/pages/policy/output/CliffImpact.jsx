@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, percent } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -23,7 +23,6 @@ export default function CliffImpact(props) {
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const { metadata, policyLabel, preparingForScreenshot } = props;
-  const [hovercard, setHovercard] = useState(null);
   const mobile = useMobile();
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
@@ -92,7 +91,83 @@ export default function CliffImpact(props) {
       (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000
     ) / 1000;
 
-  const chart = (
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+    region === "us" || region === "uk"
+      ? ""
+      : " in " + options.find((option) => option.value === region)?.label;
+
+  const title = `${policyLabel} ${
+    cliff_share_change === 0 && cliff_gap_change === 0
+      ? "wouldn't affect cliffs"
+      : cliff_share_change >= 0 && cliff_gap_change >= 0
+      ? "would make cliffs more prevalent"
+      : cliff_share_change <= 0 && cliff_gap_change <= 0
+      ? "would make cliffs less prevalent"
+      : "would have an ambiguous effect on cliffs"
+  } ${label}`;
+
+  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
+  const data = [
+    csvHeader,
+    ...[
+      {
+        Metric: "Cliff rate",
+        Baseline: impact.baseline.cliff_share,
+        Reform: impact.reform.cliff_share,
+        Change: cliff_share_change,
+      },
+      {
+        Metric: "Cliff gap",
+        Baseline: impact.baseline.cliff_gap,
+        Reform: impact.reform.cliff_gap,
+        Change: cliff_gap_change,
+      },
+    ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
+  ];
+
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "5px",
+    left: "100px",
+  };
+
+  const plotProps = {metadata, mobile, impact, cliff_share_change, cliff_gap_change};
+
+  return (
+    <ResultsPanel>
+      <Screenshottable>
+        <h2>{title}</h2>
+        <HoverCard>
+          <CliffImpactPlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename="cliffImpact.csv"
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
+      <p style={{ marginTop: "10px" }}>
+        The cliff rate is the share of households whose net income falls if each
+        adult earned an additional {metadata.currency}2,000. The cliff gap is
+        the sum of the losses incurred by all households on a cliff if their
+        income rose in this way.
+      </p>
+    </ResultsPanel>
+  );
+}
+
+function CliffImpactPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {metadata, mobile, impact, cliff_share_change, cliff_gap_change} = props;
+  return (
     <Plot
       data={[
         {
@@ -172,82 +247,14 @@ export default function CliffImpact(props) {
               )} to ${formatter(reform)}`
             : `would remain at ${percent(baseline)}`
         }.`;
-        setHovercard({
+        setHoverCard({
           title: data.points[0].x,
           body: message,
         });
       }}
       onUnhover={() => {
-        setHovercard(null);
+        setHoverCard(null);
       }}
     />
-  );
-
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-    region === "us" || region === "uk"
-      ? ""
-      : " in " + options.find((option) => option.value === region)?.label;
-
-  const title = `${policyLabel} ${
-    cliff_share_change === 0 && cliff_gap_change === 0
-      ? "wouldn't affect cliffs"
-      : cliff_share_change >= 0 && cliff_gap_change >= 0
-      ? "would make cliffs more prevalent"
-      : cliff_share_change <= 0 && cliff_gap_change <= 0
-      ? "would make cliffs less prevalent"
-      : "would have an ambiguous effect on cliffs"
-  } ${label}`;
-
-  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
-  const data = [
-    csvHeader,
-    ...[
-      {
-        Metric: "Cliff rate",
-        Baseline: impact.baseline.cliff_share,
-        Reform: impact.reform.cliff_share,
-        Change: cliff_share_change,
-      },
-      {
-        Metric: "Cliff gap",
-        Baseline: impact.baseline.cliff_gap,
-        Reform: impact.reform.cliff_gap,
-        Change: cliff_gap_change,
-      },
-    ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
-  ];
-
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "5px",
-    left: "100px",
-  };
-
-  return (
-    <ResultsPanel>
-      <Screenshottable>
-        <h2>{title}</h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename="cliffImpact.csv"
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
-      <p style={{ marginTop: "10px" }}>
-        The cliff rate is the share of households whose net income falls if each
-        adult earned an additional {metadata.currency}2,000. The cliff gap is
-        the sum of the losses incurred by all households on a cliff if their
-        income rose in this way.
-      </p>
-    </ResultsPanel>
   );
 }

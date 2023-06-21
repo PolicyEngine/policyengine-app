@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Radio } from "antd";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
@@ -10,7 +10,7 @@ import {
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
-import HoverCard from "../../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import { plotLayoutFont } from 'pages/policy/output/utils';
 
@@ -25,31 +25,6 @@ export default function BaselineAndReformChart(props) {
     variableLabel,
     policy,
   } = props;
-  const [showDelta, setShowDelta] = useState(false);
-  const options = [
-    {
-      label: "Baseline and reform",
-      value: false,
-    },
-    {
-      label: "Difference",
-      value: true,
-    },
-  ];
-  const onDelta = ({ target: { value } }) => {
-    console.log("checked", value);
-    setShowDelta(value);
-  };
-  const toggle = (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Radio.Group
-        options={options}
-        onChange={onDelta}
-        value={showDelta}
-        buttonStyle="solid"
-      />
-    </div>
-  );
   const earningsArray = getValueFromHousehold(
     "employment_income",
     "2023",
@@ -92,11 +67,62 @@ export default function BaselineAndReformChart(props) {
     householdBaseline,
     metadata
   );
-  return (
-    <>
-      {toggle}
-      {showDelta ? (
-        <BaselineReformDeltaChart
+  const plotProps = {
+    metadata,
+    variable,
+    variableLabel,
+    policy,
+    earningsArray,
+    baselineArray,
+    reformArray,
+    currentEarnings,
+    currentValue,
+    baselineValue,
+  };
+  return <BaselineAndReformChartWithToggle {...plotProps} />;
+}
+
+function BaselineAndReformChartWithToggle(props) {
+  const {
+    metadata,
+    variable,
+    variableLabel,
+    policy,
+    earningsArray,
+    baselineArray,
+    reformArray,
+    currentEarnings,
+    currentValue,
+    baselineValue,
+  } = props;
+  const [showDelta, setShowDelta] = useState(false);
+  const options = [
+    {
+      label: "Baseline and reform",
+      value: false,
+    },
+    {
+      label: "Difference",
+      value: true,
+    },
+  ];
+  const onDelta = ({ target: { value } }) => {
+    console.log("checked", value);
+    setShowDelta(value);
+  };
+  const toggle = (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Radio.Group
+        options={options}
+        onChange={onDelta}
+        value={showDelta}
+        buttonStyle="solid"
+      />
+    </div>
+  );
+  const plot = (
+      showDelta ? (
+        <BaselineReformDeltaPlot
           earningsArray={earningsArray}
           baselineArray={baselineArray}
           reformArray={reformArray}
@@ -108,7 +134,7 @@ export default function BaselineAndReformChart(props) {
           variable={variable}
         />
       ) : (
-        <BaselineAndReformTogetherChart
+        <BaselineAndReformTogetherPlot
           earningsArray={earningsArray}
           baselineArray={baselineArray}
           reformArray={reformArray}
@@ -120,12 +146,18 @@ export default function BaselineAndReformChart(props) {
           variable={variable}
           policy={policy}
         />
-      )}
+      )
+  );
+  return (
+    <>
+      {toggle}
+      <HoverCard>{plot}</HoverCard>
     </>
   );
 }
 
-function BaselineAndReformTogetherChart(props) {
+function BaselineAndReformTogetherPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
   const {
     earningsArray,
     baselineArray,
@@ -136,7 +168,6 @@ function BaselineAndReformTogetherChart(props) {
     metadata,
     variable,
   } = props;
-  const [hovercard, setHoverCard] = useState(null);
   let data = [
     ...(variable === "household_net_income"
       ? getCliffs(baselineArray, earningsArray)
@@ -251,14 +282,11 @@ function BaselineAndReformTogetherChart(props) {
     />
   );
 
-  return (
-    <HoverCard content={hovercard}>
-      <FadeIn>{plotObject}</FadeIn>
-    </HoverCard>
-  );
+  return <FadeIn>{plotObject}</FadeIn>;
 }
 
-function BaselineReformDeltaChart(props) {
+function BaselineReformDeltaPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
   const {
     earningsArray,
     baselineArray,
@@ -270,7 +298,6 @@ function BaselineReformDeltaChart(props) {
     metadata,
     variable,
   } = props;
-  const [hovercard, setHoverCard] = useState(null);
   let data = [
     {
       x: earningsArray,
@@ -356,9 +383,5 @@ function BaselineReformDeltaChart(props) {
     />
   );
 
-  return (
-    <HoverCard content={hovercard}>
-      <FadeIn>{plotObject}</FadeIn>
-    </HoverCard>
-  );
+  return <FadeIn>{plotObject}</FadeIn>;
 }

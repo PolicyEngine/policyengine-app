@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
@@ -16,8 +16,89 @@ export default function IntraWealthDecileImpact(props) {
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const all = impact.intra_wealth_decile.all;
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
-  const [hovercard, setHovercard] = useState(null);
   const mobile = useMobile();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? " of the population"
+    : " of " + options.find((option) => option.value === region)?.label + " residents";
+
+  const csvHeader = [
+    "Wealth Decile",
+    "Gain more than 5%",
+    "Gain less than 5%",
+    "No change",
+    "Lose less than 5%",
+    "Lose more than 5%"
+  ];
+  const csvData = [
+    csvHeader,
+    ...decileNumbers.map((decile) => {
+      return [
+        decile,
+        deciles["Gain more than 5%"][decile - 1],
+        deciles["Gain less than 5%"][decile - 1],
+        deciles["No change"][decile - 1],
+        deciles["Lose less than 5%"][decile - 1],
+        deciles["Lose more than 5%"][decile - 1]
+      ];
+    }),
+    [
+       "All",
+      all["Gain more than 5%"],
+      all["Gain less than 5%"],
+      all["No change"],
+      all["Lose less than 5%"],
+      all["Lose more than 5%"]
+    ]
+  ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "60px",
+    left: "40px",
+  };
+
+  const plotProps = {mobile, deciles, decileNumbers, all};
+
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {policyLabel} would benefit{" "}
+          {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
+        </h2>
+        <HoverCard>
+          <IntraWealthDecileImpactPlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
+              content={csvData}
+              filename="intraWealthDecileImpact.csv"
+              style={downloadButtonStyle}
+            />
+          )}
+        </div>
+      <p>
+        The chart above shows percentage of of people in each household wealth
+        decile who experience different outcomes. Households are sorted into ten
+        equally-populated groups according to their equivalised household net
+        wealth (including property and corporate holdings).
+      </p>
+    </>
+  );
+}
+
+function IntraWealthDecileImpactPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {mobile, deciles, decileNumbers, all} = props;
+
   const data = [
     {
       type: "bar",
@@ -208,7 +289,7 @@ export default function IntraWealthDecileImpact(props) {
     },
   ];
 
-  const chart = (
+  return (
     <Plot
       data={data}
       layout={{
@@ -275,86 +356,14 @@ export default function IntraWealthDecileImpact(props) {
             ? "all households"
             : `households in the ${cardinal(group)} decile`
         } ${category.toLowerCase()}.`;
-        setHovercard({
+        setHoverCard({
           title: title,
           body: message,
         });
       }}
       onUnhover={() => {
-        setHovercard(null);
+        setHoverCard(null);
       }}
     />
-  );
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-  region === "us" || region === "uk"
-    ? " of the population"
-    : " of " + options.find((option) => option.value === region)?.label + " residents";
-
-  const csvHeader = [
-    "Wealth Decile",
-    "Gain more than 5%",
-    "Gain less than 5%",
-    "No change",
-    "Lose less than 5%",
-    "Lose more than 5%"
-  ];
-  const csvData = [
-    csvHeader,
-    ...decileNumbers.map((decile) => {
-      return [
-        decile,
-        deciles["Gain more than 5%"][decile - 1],
-        deciles["Gain less than 5%"][decile - 1],
-        deciles["No change"][decile - 1],
-        deciles["Lose less than 5%"][decile - 1],
-        deciles["Lose more than 5%"][decile - 1]
-      ];
-    }),
-    [
-       "All",
-      all["Gain more than 5%"],
-      all["Gain less than 5%"],
-      all["No change"],
-      all["Lose less than 5%"],
-      all["Lose more than 5%"]
-    ]
-  ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "60px",
-    left: "40px",
-  };
-
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {policyLabel} would benefit{" "}
-          {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={csvData}
-              filename="intraWealthDecileImpact.csv"
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
-      <p>
-        The chart above shows percentage of of people in each household wealth
-        decile who experience different outcomes. Households are sorted into ten
-        equally-populated groups according to their equivalised household net
-        wealth (including property and corporate holdings).
-      </p>
-    </>
   );
 }

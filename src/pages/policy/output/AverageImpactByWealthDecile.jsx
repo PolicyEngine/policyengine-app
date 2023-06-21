@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
@@ -12,10 +12,71 @@ import { avgChangeDirection, plotLayoutFont } from './utils';
 
 export default function AverageImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
-  // Decile bar chart. Bars are grey if negative, green if positive.
-  const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
-  const chart = (
+
+  const averageChange =
+    -impact.budget.budgetary_impact / impact.budget.households;
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+    
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+  const data = Object.entries(impact.wealth_decile.average).map(([key, value]) => [
+    `Decile ${key}`,
+    value,
+  ]);    
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "48px",
+    left: "70px",
+  };
+
+  const plotProps = {impact, metadata, mobile};
+
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
+            formatVariableValue(
+            metadata.variables.household_net_income,
+            Math.abs(averageChange),
+            0
+          )} on average`}
+        </h2>
+        <HoverCard>
+          <AverageImpactByWealthDecilePlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+        <div className="chart-container"> 
+          {!mobile &&
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
+              content={data}
+              filename="absoluteImpactByWealthDecile.csv"
+              style={downloadButtonStyle}
+            />
+          }
+        </div>
+      <p>
+        The chart above shows the relative change in income for each wealth
+        decile. Households are sorted into ten equally-populated groups
+        according to their equivalised household net income.
+      </p>
+    </>
+  );
+}
+
+function AverageImpactByWealthDecilePlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {impact, metadata, mobile} = props;
+  // Decile bar chart. Bars are grey if negative, green if positive.
+  return (
     <Plot
       data={[
         {
@@ -98,58 +159,5 @@ export default function AverageImpactByWealthDecile(props) {
         setHoverCard(null);
       }}
     />
-  );
-
-  const averageChange =
-    -impact.budget.budgetary_impact / impact.budget.households;
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-    
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  const data = Object.entries(impact.wealth_decile.average).map(([key, value]) => [
-    `Decile ${key}`,
-    value,
-  ]);    
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "48px",
-    left: "70px",
-  };
-
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
-            formatVariableValue(
-            metadata.variables.household_net_income,
-            Math.abs(averageChange),
-            0
-          )} on average`}
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-        <div className="chart-container"> 
-          {!mobile &&
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="absoluteImpactByWealthDecile.csv"
-              style={downloadButtonStyle}
-            />
-          }
-        </div>
-      <p>
-        The chart above shows the relative change in income for each wealth
-        decile. Households are sorted into ten equally-populated groups
-        according to their equivalised household net income.
-      </p>
-    </>
   );
 }

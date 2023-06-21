@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useContext, useEffect } from 'react';
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
-import { useContext, useEffect } from 'react';
 import { PovertyChangeContext } from './PovertyChangeContext';
 
 export default function DeepPovertyImpact(props) {
@@ -47,9 +46,77 @@ export default function DeepPovertyImpact(props) {
     All: "all",
   };
   const mobile = useMobile();
-  const [hovercard, setHoverCard] = useState(null);
+
+  const povertyRateChange = percent(Math.abs(totalPovertyChange));
+  const percentagePointChange =
+    Math.round(
+      Math.abs(
+        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
+      ) * 1000
+    ) / 10;
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+  
+  const csvHeader = ['Age Group', 'Baseline', 'Reform', 'Change'];
+  const data = [
+    csvHeader,
+    ...povertyLabels.map((label, index) => {
+      return [
+        label,
+        impact.poverty.deep_poverty[labelToKey[label]].baseline,
+        impact.poverty.deep_poverty[labelToKey[label]].reform,
+        povertyChanges[index],
+      ];
+    }),
+  ];
+
+  const plotProps = {impact, mobile, povertyLabels, povertyChanges, minChange, maxChange, labelToKey};
+
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {policyLabel}{" "}
+          {totalPovertyChange > 0
+            ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : totalPovertyChange < 0
+            ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : `wouldn't change the deep poverty rate ${label}`}
+        </h2>
+        <HoverCard>
+          <DeepPovertyImpactPlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
+              content={data}
+              filename="deeppPovertyImpactByAge.csv"
+              className="download-button"
+            />
+          )}
+        </div>
+      <p>
+        The chart above shows the relative change in the deep poverty rate for
+        each age group.
+      </p>
+    </>
+  );
+}
+
+function DeepPovertyImpactPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {impact, mobile, povertyLabels, povertyChanges, minChange, maxChange, labelToKey} = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
-  const chart = (
+  return (
     <Plot
       data={[
         {
@@ -132,65 +199,5 @@ export default function DeepPovertyImpact(props) {
         setHoverCard(null);
       }}
     />
-  );
-
-  const povertyRateChange = percent(Math.abs(totalPovertyChange));
-  const percentagePointChange =
-    Math.round(
-      Math.abs(
-        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
-      ) * 1000
-    ) / 10;
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  
-  const csvHeader = ['Age Group', 'Baseline', 'Reform', 'Change'];
-  const data = [
-    csvHeader,
-    ...povertyLabels.map((label, index) => {
-      return [
-        label,
-        impact.poverty.deep_poverty[labelToKey[label]].baseline,
-        impact.poverty.deep_poverty[labelToKey[label]].reform,
-        povertyChanges[index],
-      ];
-    }),
-  ];
-    
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {policyLabel}{" "}
-          {totalPovertyChange > 0
-            ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : totalPovertyChange < 0
-            ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="deeppPovertyImpactByAge.csv"
-              className="download-button"
-            />
-          )}
-        </div>
-      <p>
-        The chart above shows the relative change in the deep poverty rate for
-        each age group.
-      </p>
-    </>
   );
 }

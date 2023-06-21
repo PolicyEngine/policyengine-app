@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useContext, useEffect } from 'react';
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
-import { useContext, useEffect } from 'react';
 import { PovertyChangeContext } from './PovertyChangeContext';
 
 export default function DeepPovertyImpactByGender(props) {
@@ -40,10 +39,83 @@ export default function DeepPovertyImpactByGender(props) {
     Female: "female",
     All: "all",
   };
-  const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
+
+  const povertyRateChange = percent(Math.abs(totalPovertyChange));
+  const percentagePointChange =
+    Math.round(
+      Math.abs(
+        impact.poverty.deep_poverty.all.reform -
+          impact.poverty.deep_poverty.all.baseline
+      ) * 1000
+    ) / 10;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+  
+  const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
+  const data = [
+    csvHeader,
+      ...povertyLabels.map((label) => {
+      const baseline =
+        label === "All"
+          ? impact.poverty.deep_poverty[labelToKey[label]].baseline
+          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].baseline;
+      const reform =
+        label === "All"
+          ? impact.poverty.deep_poverty[labelToKey[label]].reform
+          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].reform;
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+    
+  const plotProps = {impact, mobile, povertyLabels, povertyChanges, minChange, maxChange, labelToKey};
+  
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {policyLabel}{" "}
+          {totalPovertyChange > 0
+            ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : totalPovertyChange < 0
+            ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : `wouldn't change the deep poverty rate ${label}`}
+        </h2>
+        <HoverCard>
+          <DeepPovertyImpactByGenderPlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
+              content={data}
+              filename="deepPovertyImpactBySex.csv"
+              className="download-button"
+            />
+          )}
+        </div>
+      <p>
+        The chart above shows the relative change in the deep poverty rate for
+        each sex.
+      </p>
+    </>
+  );
+}
+
+function DeepPovertyImpactByGenderPlot(props) {
+  const setHoverCard = useContext(HoverCardContext);
+  const {impact, mobile, povertyLabels, povertyChanges, minChange, maxChange, labelToKey} = props;
   // Decile bar chart. Bars are grey if negative, green if positive.
-  const chart = (
+  return (
     <Plot
       data={[
         {
@@ -130,71 +202,5 @@ export default function DeepPovertyImpactByGender(props) {
         setHoverCard(null);
       }}
     />
-  );
-
-  const povertyRateChange = percent(Math.abs(totalPovertyChange));
-  const percentagePointChange =
-    Math.round(
-      Math.abs(
-        impact.poverty.deep_poverty.all.reform -
-          impact.poverty.deep_poverty.all.baseline
-      ) * 1000
-    ) / 10;
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  
-  const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
-  const data = [
-    csvHeader,
-      ...povertyLabels.map((label) => {
-      const baseline =
-        label === "All"
-          ? impact.poverty.deep_poverty[labelToKey[label]].baseline
-          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].baseline;
-      const reform =
-        label === "All"
-          ? impact.poverty.deep_poverty[labelToKey[label]].reform
-          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].reform;
-      const change = reform / baseline - 1;
-      return [label, baseline, reform, change];
-    }),
-  ];
-    
-
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {policyLabel}{" "}
-          {totalPovertyChange > 0
-            ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : totalPovertyChange < 0
-            ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="deepPovertyImpactBySex.csv"
-              className="download-button"
-            />
-          )}
-        </div>
-      <p>
-        The chart above shows the relative change in the deep poverty rate for
-        each sex.
-      </p>
-    </>
   );
 }

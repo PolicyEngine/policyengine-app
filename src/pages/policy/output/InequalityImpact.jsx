@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
@@ -22,10 +22,87 @@ export default function InequalityImpact(props) {
       1,
   ];
 
-  const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
 
-  const chart = (
+  // Impact is ambiguous if all three metrics are not the same sign (sign can be -ive, zero or +ive). Impact is positive if all three metrics are +ive. Impact is negative if all three metrics are -ive.
+
+  const impactLabel =
+    metricChanges[0] > 0 && metricChanges[1] > 0 && metricChanges[2] > 0
+      ? "positive"
+      : metricChanges[0] < 0 && metricChanges[1] < 0 && metricChanges[2] < 0
+      ? "negative"
+      : "ambiguous";
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+  region === "us" || region === "uk"
+    ? ""
+    : "in " + options.find((option) => option.value === region)?.label;
+  
+  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
+  const metricLabels = ["Gini index", "Top 10% share", "Top 1% share"];
+  const baselineValues = [
+    impact.inequality.gini.baseline,
+    impact.inequality.top_10_pct_share.baseline,
+    impact.inequality.top_1_pct_share.baseline,
+  ];
+  const reformValues = [
+    impact.inequality.gini.reform,
+    impact.inequality.top_10_pct_share.reform,
+    impact.inequality.top_1_pct_share.reform,
+  ];
+  const data = [
+    csvHeader,
+    ...metricLabels.map((label, index) => {
+      const baseline = baselineValues[index];
+      const reform = reformValues[index];
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+
+  const plotProps = {impact, mobile, metricChanges};
+
+  return (
+    <>
+      <Screenshottable>
+        <h2>
+          {policyLabel}
+          {impactLabel === "positive"
+            ? ` would increase inequality ${label}`
+            : impactLabel === "negative"
+            ? ` would reduce inequality ${label}` 
+            : ` would have an ambiguous effect on inequality ${label}` }
+        </h2>
+        <HoverCard>
+          <InequalityImpactPlot {...plotProps} />
+        </HoverCard>
+      </Screenshottable>
+        <div className="chart-container">
+          {!mobile && (
+            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
+              content={data}
+              filename="incomeInequilityImpact.csv"
+              className="download-button"
+            />
+          )}
+        </div>
+      <p>
+        The chart above shows how this policy reform affects different measures
+        of income inequality.
+      </p>
+    </>
+  );
+}
+
+function InequalityImpactPlot(props) {
+  const setHoverCard = useContext(HoverCardContext)
+  const {impact, mobile, metricChanges} = props;
+  return (
     <Plot
       data={[
         {
@@ -142,75 +219,5 @@ export default function InequalityImpact(props) {
         setHoverCard(null);
       }}
     />
-  );
-
-  // Impact is ambiguous if all three metrics are not the same sign (sign can be -ive, zero or +ive). Impact is positive if all three metrics are +ive. Impact is negative if all three metrics are -ive.
-
-  const impactLabel =
-    metricChanges[0] > 0 && metricChanges[1] > 0 && metricChanges[2] > 0
-      ? "positive"
-      : metricChanges[0] < 0 && metricChanges[1] < 0 && metricChanges[2] < 0
-      ? "negative"
-      : "ambiguous";
-  
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  
-  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
-  const metricLabels = ["Gini index", "Top 10% share", "Top 1% share"];
-  const baselineValues = [
-    impact.inequality.gini.baseline,
-    impact.inequality.top_10_pct_share.baseline,
-    impact.inequality.top_1_pct_share.baseline,
-  ];
-  const reformValues = [
-    impact.inequality.gini.reform,
-    impact.inequality.top_10_pct_share.reform,
-    impact.inequality.top_1_pct_share.reform,
-  ];
-  const data = [
-    csvHeader,
-    ...metricLabels.map((label, index) => {
-      const baseline = baselineValues[index];
-      const reform = reformValues[index];
-      const change = reform / baseline - 1;
-      return [label, baseline, reform, change];
-    }),
-  ];
-    
-  return (
-    <>
-      <Screenshottable>
-        <h2>
-          {policyLabel}
-          {impactLabel === "positive"
-            ? ` would increase inequality ${label}`
-            : impactLabel === "negative"
-            ? ` would reduce inequality ${label}` 
-            : ` would have an ambiguous effect on inequality ${label}` }
-        </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="incomeInequilityImpact.csv"
-              className="download-button"
-            />
-          )}
-        </div>
-      <p>
-        The chart above shows how this policy reform affects different measures
-        of income inequality.
-      </p>
-    </>
   );
 }
