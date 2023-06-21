@@ -52,6 +52,107 @@ export default function PovertyImpactByRace(props) {
   };
   const mobile = useMobile();
 
+  function PovertyImpactByRacePlot() {
+    const setHoverCard = useContext(HoverCardContext);
+    // Decile bar chart. Bars are grey if negative, green if positive.
+    return (
+      <Plot
+        data={[
+          {
+            x: povertyLabels,
+            y: povertyChanges,
+            type: "bar",
+            marker: {
+              color: povertyChanges.map((value) =>
+                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
+              ),
+            },
+            text: povertyChanges.map(
+              (value) =>
+                (value >= 0 ? "+" : "") +
+                (value * 100).toFixed(1).toString() +
+                "%"
+            ),
+            textangle: 0,
+            hoverinfo: "none",
+          },
+        ]}
+        layout={{
+          xaxis: {
+            title: "Race",
+          },
+          yaxis: {
+            title: "Relative change",
+            tickformat: "+,.1%",
+            range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
+          },
+          showlegend: false,
+          uniformtext: {
+            mode: "hide",
+            minsize: 8,
+          },
+          ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
+          margin: {
+            t: 0,
+            b: 100,
+            r: 0,
+          },
+          height: mobile ? 350 : 450,
+          ...plotLayoutFont
+        }}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+        style={{
+          width: "100%",
+        }}
+        onHover={(data) => {
+          const group = data.points[0].x;
+          const change = data.points[0].y;
+          const baseline =
+            group === "All"
+              ? impact.poverty.poverty[labelToKey[group]].baseline
+              : impact.poverty_by_race.poverty[labelToKey[group]].baseline;
+          const reform =
+            group === "All"
+              ? impact.poverty.poverty[labelToKey[group]].reform
+              : impact.poverty_by_race.poverty[labelToKey[group]].reform;
+          const message = `The percentage of ${
+            group === "All"
+              ? "people"
+              : {
+                white: "White (non-Hispanic) people",
+                black: "Black (non-Hispanic) people",
+                hispanic: "Hispanic people",
+                other: "people of other racial groups",
+              }[group.toLowerCase()]
+          } in poverty ${
+            change < -0.001
+              ? `would fall ${percent(-change)} from ${percent(
+                baseline
+              )} to ${percent(reform)}.`
+              : change > 0.001
+                ? `would rise ${percent(change)} from ${percent(
+                  baseline
+                )} to ${percent(reform)}.`
+                : change === 0
+                  ?  `would remain at ${percent(baseline)}.`
+                  : (change > 0 ? "would rise " : "would fall ") +
+                  ` by less than 0.1%.`
+          }`;
+          setHoverCard({
+            title: group,
+            body: message,
+          });
+        }}
+        onUnhover={() => {
+          setHoverCard(null);
+        }}
+      />
+    );
+  }
+
   const povertyRateChange = percent(Math.abs(totalPovertyChange));
   const percentagePointChange =
     Math.round(
@@ -90,8 +191,6 @@ export default function PovertyImpactByRace(props) {
     left: "40px",
   };
 
-  const plotProps = {impact, mobile, povertyLabels, povertyChanges, minChange, maxChange, labelToKey};
-
   return (
     <>
       <Screenshottable>
@@ -104,7 +203,7 @@ export default function PovertyImpactByRace(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard>
-          <PovertyImpactByRacePlot {...plotProps} />
+          <PovertyImpactByRacePlot/>
         </HoverCard>
       </Screenshottable>
         <div className="chart-container">
@@ -121,107 +220,5 @@ export default function PovertyImpactByRace(props) {
         top-level racial and ethnic group.
       </p>
     </>
-  );
-}
-
-function PovertyImpactByRacePlot(props) {
-  const setHoverCard = useContext(HoverCardContext);
-  const {impact, mobile, povertyLabels, povertyChanges, minChange, maxChange, labelToKey} = props;
-  // Decile bar chart. Bars are grey if negative, green if positive.
-  return (
-    <Plot
-      data={[
-        {
-          x: povertyLabels,
-          y: povertyChanges,
-          type: "bar",
-          marker: {
-            color: povertyChanges.map((value) =>
-              value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
-            ),
-          },
-          text: povertyChanges.map(
-            (value) =>
-              (value >= 0 ? "+" : "") +
-              (value * 100).toFixed(1).toString() +
-              "%"
-          ),
-          textangle: 0,
-          hoverinfo: "none",
-        },
-      ]}
-      layout={{
-        xaxis: {
-          title: "Race",
-        },
-        yaxis: {
-          title: "Relative change",
-          tickformat: "+,.1%",
-          range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
-        },
-        showlegend: false,
-        uniformtext: {
-          mode: "hide",
-          minsize: 8,
-        },
-        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
-        margin: {
-          t: 0,
-          b: 100,
-          r: 0,
-        },
-        height: mobile ? 350 : 450,
-        ...plotLayoutFont
-      }}
-      config={{
-        displayModeBar: false,
-        responsive: true,
-      }}
-      style={{
-        width: "100%",
-      }}
-      onHover={(data) => {
-        const group = data.points[0].x;
-        const change = data.points[0].y;
-        const baseline =
-          group === "All"
-            ? impact.poverty.poverty[labelToKey[group]].baseline
-            : impact.poverty_by_race.poverty[labelToKey[group]].baseline;
-        const reform =
-          group === "All"
-            ? impact.poverty.poverty[labelToKey[group]].reform
-            : impact.poverty_by_race.poverty[labelToKey[group]].reform;
-        const message = `The percentage of ${
-          group === "All"
-            ? "people"
-            : { 
-                white: "White (non-Hispanic) people", 
-                black: "Black (non-Hispanic) people",
-                hispanic: "Hispanic people",
-                other: "people of other racial groups",
-            }[group.toLowerCase()]
-        } in poverty ${
-          change < -0.001
-            ? `would fall ${percent(-change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-            : change > 0.001
-            ? `would rise ${percent(change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-            : change === 0
-            ?  `would remain at ${percent(baseline)}.`
-            : (change > 0 ? "would rise " : "would fall ") +
-              ` by less than 0.1%.`
-        }`;
-        setHoverCard({
-          title: group,
-          body: message,
-        });
-      }}
-      onUnhover={() => {
-        setHoverCard(null);
-      }}
-    />
   );
 }

@@ -25,6 +25,7 @@ export default function BaselineAndReformChart(props) {
     variableLabel,
     policy,
   } = props;
+
   const earningsArray = getValueFromHousehold(
     "employment_income",
     "2023",
@@ -67,60 +68,34 @@ export default function BaselineAndReformChart(props) {
     householdBaseline,
     metadata
   );
-  const plotProps = {
-    metadata,
-    variable,
-    variableLabel,
-    policy,
-    earningsArray,
-    baselineArray,
-    reformArray,
-    currentEarnings,
-    currentValue,
-    baselineValue,
-  };
-  return <BaselineAndReformChartWithToggle {...plotProps} />;
-}
 
-function BaselineAndReformChartWithToggle(props) {
-  const {
-    metadata,
-    variable,
-    variableLabel,
-    policy,
-    earningsArray,
-    baselineArray,
-    reformArray,
-    currentEarnings,
-    currentValue,
-    baselineValue,
-  } = props;
-  const [showDelta, setShowDelta] = useState(false);
-  const options = [
-    {
-      label: "Baseline and reform",
-      value: false,
-    },
-    {
-      label: "Difference",
-      value: true,
-    },
-  ];
-  const onDelta = ({ target: { value } }) => {
-    console.log("checked", value);
-    setShowDelta(value);
-  };
-  const toggle = (
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Radio.Group
-        options={options}
-        onChange={onDelta}
-        value={showDelta}
-        buttonStyle="solid"
-      />
-    </div>
-  );
-  const plot = (
+  function BaselineAndReformChartWithToggle() {
+    const [showDelta, setShowDelta] = useState(false);
+    const options = [
+      {
+        label: "Baseline and reform",
+        value: false,
+      },
+      {
+        label: "Difference",
+        value: true,
+      },
+    ];
+    const onDelta = ({ target: { value } }) => {
+      console.log("checked", value);
+      setShowDelta(value);
+    };
+    const toggle = (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Radio.Group
+          options={options}
+          onChange={onDelta}
+          value={showDelta}
+          buttonStyle="solid"
+        />
+      </div>
+    );
+    const plot = (
       showDelta ? (
         <BaselineReformDeltaPlot
           earningsArray={earningsArray}
@@ -147,13 +122,16 @@ function BaselineAndReformChartWithToggle(props) {
           policy={policy}
         />
       )
-  );
-  return (
-    <>
-      {toggle}
-      <HoverCard>{plot}</HoverCard>
-    </>
-  );
+    );
+    return (
+      <>
+        {toggle}
+        <HoverCard>{plot}</HoverCard>
+      </>
+    );
+  }
+
+  return <BaselineAndReformChartWithToggle/>;
 }
 
 function BaselineAndReformTogetherPlot(props) {

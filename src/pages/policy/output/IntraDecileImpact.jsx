@@ -18,6 +18,279 @@ export default function IntraDecileImpact(props) {
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const mobile = useMobile();
 
+  function IntraDecileImpactPlot() {
+    const setHoverCard = useContext(HoverCardContext);
+
+    const data = [
+      {
+        type: "bar",
+        y: ["All"],
+        x: [all["Gain more than 5%"]],
+        name: "Gain more than 5%",
+        legendgroup: "Gain more than 5%",
+        offsetgroup: "Gain more than 5%",
+        marker: {
+          color: style.colors.DARK_GREEN,
+        },
+        orientation: "h",
+        text: [all["Gain more than 5%"]].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x",
+        yaxis: "y",
+        showlegend: false,
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: ["All"],
+        x: [all["Gain less than 5%"]],
+        name: "Gain less than 5%",
+        marker: {
+          color: style.colors.LIGHT_GREEN,
+        },
+        orientation: "h",
+        text: [all["Gain less than 5%"]].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x",
+        yaxis: "y",
+        showlegend: false,
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: ["All"],
+        x: [all["No change"]],
+        name: "No change",
+        marker: {
+          color: style.colors.LIGHT_GRAY,
+        },
+        orientation: "h",
+        text: [all["No change"]].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x",
+        yaxis: "y",
+        showlegend: false,
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: ["All"],
+        x: [all["Lose less than 5%"]],
+        name: "Lose less than 5%",
+        marker: {
+          color: style.colors.GRAY,
+        },
+        orientation: "h",
+        text: [all["Lose less than 5%"]].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x",
+        yaxis: "y",
+        showlegend: false,
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: ["All"],
+        x: [all["Lose more than 5%"]],
+        name: "Lose more than 5%",
+        marker: {
+          color: style.colors.DARK_GRAY,
+        },
+        orientation: "h",
+        text: [all["Lose more than 5%"]].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x",
+        yaxis: "y",
+        showlegend: false,
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: decileNumbers,
+        x: deciles["Gain more than 5%"],
+        name: "Gain more than 5%",
+        marker: {
+          color: style.colors.DARK_GREEN,
+        },
+        orientation: "h",
+        text: deciles["Gain more than 5%"].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x2",
+        yaxis: "y2",
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: decileNumbers,
+        x: deciles["Gain less than 5%"],
+        name: "Gain less than 5%",
+        marker: {
+          color: style.colors.LIGHT_GREEN,
+        },
+        orientation: "h",
+        text: deciles["Gain less than 5%"].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x2",
+        yaxis: "y2",
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: decileNumbers,
+        x: deciles["No change"],
+        name: "No change",
+        marker: {
+          color: style.colors.LIGHT_GRAY,
+        },
+        orientation: "h",
+        text: deciles["No change"].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x2",
+        yaxis: "y2",
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: decileNumbers,
+        x: deciles["Lose less than 5%"],
+        name: "Lose less than 5%",
+        marker: {
+          color: style.colors.GRAY,
+        },
+        orientation: "h",
+        text: deciles["Lose less than 5%"].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x2",
+        yaxis: "y2",
+        hoverinfo: "none",
+      },
+      {
+        type: "bar",
+        y: decileNumbers,
+        x: deciles["Lose more than 5%"],
+        name: "Lose more than 5%",
+        marker: {
+          color: style.colors.DARK_GRAY,
+        },
+        orientation: "h",
+        text: deciles["Lose more than 5%"].map(
+          (value) => (value * 100).toFixed(0).toString() + "%"
+        ),
+        textposition: "inside",
+        textangle: 0,
+        xaxis: "x2",
+        yaxis: "y2",
+        hoverinfo: "none",
+      },
+    ];
+
+    return (
+      <Plot
+        data={data}
+        layout={{
+          barmode: "stack",
+          orientation: "h",
+          grid: {
+            rows: 2,
+            columns: 1,
+          },
+          yaxis: {
+            title: "",
+            tickvals: ["All"],
+            domain: [0.91, 1],
+          },
+          xaxis: {
+            title: "",
+            tickformat: ".0%",
+            anchor: "y",
+            matches: "x2",
+            showgrid: false,
+            showticklabels: false,
+          },
+          xaxis2: {
+            title: "Population share",
+            tickformat: ".0%",
+            anchor: "y2",
+          },
+          yaxis2: {
+            title: "Income decile",
+            tickvals: decileNumbers,
+            anchor: "x2",
+            domain: [0, 0.85],
+          },
+          uniformtext: {
+            mode: "hide",
+            minsize: mobile ? 7 : 10,
+          },
+          showlegend: false,
+          ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
+          margin: {
+            t: 0,
+            b: 80,
+            l: 40,
+            r: 0,
+          },
+          height: mobile ? 300 : 450,
+          ...plotLayoutFont
+        }}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+        style={{
+          width: "100%",
+          marginBottom: !mobile && 50,
+        }}
+        onHover={(data) => {
+          const group = data.points[0].y;
+          const title = group === "All" ? "All households" : `Decile ${group}`;
+          const category = data.points[0].data.name;
+          const value = data.points[0].x;
+          const message = `Of ${
+            group === "All"
+              ? "all households"
+              : `households in the ${cardinal(group)} decile`
+          }, ${policyLabel} would cause ${percent(value)} of people to
+        ${category.toLowerCase()} of their net income.`;
+          setHoverCard({
+            title: title,
+            body: message,
+          });
+        }}
+        onUnhover={() => {
+          setHoverCard(null);
+        }}
+      />
+    );
+  }
+
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
@@ -63,8 +336,6 @@ export default function IntraDecileImpact(props) {
     left: "40px",
   };
 
-  const plotProps = {mobile, deciles, decileNumbers, all, policyLabel};
-
   return (
     <>
       <Screenshottable>
@@ -73,7 +344,7 @@ export default function IntraDecileImpact(props) {
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard>
-          <IntraDecileImpactPlot {...plotProps} />
+          <IntraDecileImpactPlot/>
         </HoverCard>
       </Screenshottable>
         <div className="chart-container">
@@ -92,279 +363,5 @@ export default function IntraDecileImpact(props) {
         income.
       </p>
     </>
-  );
-}
-
-function IntraDecileImpactPlot(props) {
-  const setHoverCard = useContext(HoverCardContext);
-  const {mobile, deciles, decileNumbers, all, policyLabel} = props;
-
-  const data = [
-    {
-      type: "bar",
-      y: ["All"],
-      x: [all["Gain more than 5%"]],
-      name: "Gain more than 5%",
-      legendgroup: "Gain more than 5%",
-      offsetgroup: "Gain more than 5%",
-      marker: {
-        color: style.colors.DARK_GREEN,
-      },
-      orientation: "h",
-      text: [all["Gain more than 5%"]].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x",
-      yaxis: "y",
-      showlegend: false,
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: ["All"],
-      x: [all["Gain less than 5%"]],
-      name: "Gain less than 5%",
-      marker: {
-        color: style.colors.LIGHT_GREEN,
-      },
-      orientation: "h",
-      text: [all["Gain less than 5%"]].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x",
-      yaxis: "y",
-      showlegend: false,
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: ["All"],
-      x: [all["No change"]],
-      name: "No change",
-      marker: {
-        color: style.colors.LIGHT_GRAY,
-      },
-      orientation: "h",
-      text: [all["No change"]].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x",
-      yaxis: "y",
-      showlegend: false,
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: ["All"],
-      x: [all["Lose less than 5%"]],
-      name: "Lose less than 5%",
-      marker: {
-        color: style.colors.GRAY,
-      },
-      orientation: "h",
-      text: [all["Lose less than 5%"]].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x",
-      yaxis: "y",
-      showlegend: false,
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: ["All"],
-      x: [all["Lose more than 5%"]],
-      name: "Lose more than 5%",
-      marker: {
-        color: style.colors.DARK_GRAY,
-      },
-      orientation: "h",
-      text: [all["Lose more than 5%"]].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x",
-      yaxis: "y",
-      showlegend: false,
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: decileNumbers,
-      x: deciles["Gain more than 5%"],
-      name: "Gain more than 5%",
-      marker: {
-        color: style.colors.DARK_GREEN,
-      },
-      orientation: "h",
-      text: deciles["Gain more than 5%"].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x2",
-      yaxis: "y2",
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: decileNumbers,
-      x: deciles["Gain less than 5%"],
-      name: "Gain less than 5%",
-      marker: {
-        color: style.colors.LIGHT_GREEN,
-      },
-      orientation: "h",
-      text: deciles["Gain less than 5%"].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x2",
-      yaxis: "y2",
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: decileNumbers,
-      x: deciles["No change"],
-      name: "No change",
-      marker: {
-        color: style.colors.LIGHT_GRAY,
-      },
-      orientation: "h",
-      text: deciles["No change"].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x2",
-      yaxis: "y2",
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: decileNumbers,
-      x: deciles["Lose less than 5%"],
-      name: "Lose less than 5%",
-      marker: {
-        color: style.colors.GRAY,
-      },
-      orientation: "h",
-      text: deciles["Lose less than 5%"].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x2",
-      yaxis: "y2",
-      hoverinfo: "none",
-    },
-    {
-      type: "bar",
-      y: decileNumbers,
-      x: deciles["Lose more than 5%"],
-      name: "Lose more than 5%",
-      marker: {
-        color: style.colors.DARK_GRAY,
-      },
-      orientation: "h",
-      text: deciles["Lose more than 5%"].map(
-        (value) => (value * 100).toFixed(0).toString() + "%"
-      ),
-      textposition: "inside",
-      textangle: 0,
-      xaxis: "x2",
-      yaxis: "y2",
-      hoverinfo: "none",
-    },
-  ];
-
-  return (
-    <Plot
-      data={data}
-      layout={{
-        barmode: "stack",
-        orientation: "h",
-        grid: {
-          rows: 2,
-          columns: 1,
-        },
-        yaxis: {
-          title: "",
-          tickvals: ["All"],
-          domain: [0.91, 1],
-        },
-        xaxis: {
-          title: "",
-          tickformat: ".0%",
-          anchor: "y",
-          matches: "x2",
-          showgrid: false,
-          showticklabels: false,
-        },
-        xaxis2: {
-          title: "Population share",
-          tickformat: ".0%",
-          anchor: "y2",
-        },
-        yaxis2: {
-          title: "Income decile",
-          tickvals: decileNumbers,
-          anchor: "x2",
-          domain: [0, 0.85],
-        },
-        uniformtext: {
-          mode: "hide",
-          minsize: mobile ? 7 : 10,
-        },
-        showlegend: false,
-        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
-        margin: {
-          t: 0,
-          b: 80,
-          l: 40,
-          r: 0,
-        },
-        height: mobile ? 300 : 450,
-        ...plotLayoutFont
-      }}
-      config={{
-        displayModeBar: false,
-        responsive: true,
-      }}
-      style={{
-        width: "100%",
-        marginBottom: !mobile && 50,
-      }}
-      onHover={(data) => {
-        const group = data.points[0].y;
-        const title = group === "All" ? "All households" : `Decile ${group}`;
-        const category = data.points[0].data.name;
-        const value = data.points[0].x;
-        const message = `Of ${
-          group === "All"
-            ? "all households"
-            : `households in the ${cardinal(group)} decile`
-        }, ${policyLabel} would cause ${percent(value)} of people to
-        ${category.toLowerCase()} of their net income.`;
-        setHoverCard({
-          title: title,
-          body: message,
-        });
-      }}
-      onUnhover={() => {
-        setHoverCard(null);
-      }}
-    />
   );
 }
