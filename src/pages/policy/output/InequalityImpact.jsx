@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
@@ -22,127 +22,129 @@ export default function InequalityImpact(props) {
       1,
   ];
 
-  const [hovercard, setHoverCard] = useState(null);
   const mobile = useMobile();
 
-  const chart = (
-    <Plot
-      data={[
-        {
-          x: ["Gini index", "Top 10% share", "Top 1% share"],
-          y: metricChanges,
-          type: "bar",
-          marker: {
-            color: metricChanges.map((value) =>
-              value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
+  function InequalityImpactPlot() {
+    const setHoverCard = useContext(HoverCardContext)
+    return (
+      <Plot
+        data={[
+          {
+            x: ["Gini index", "Top 10% share", "Top 1% share"],
+            y: metricChanges,
+            type: "bar",
+            marker: {
+              color: metricChanges.map((value) =>
+                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
+              ),
+            },
+            text: metricChanges.map(
+              (value) =>
+                (value >= 0 ? "+" : "") +
+                (value * 100).toFixed(1).toString() +
+                "%"
             ),
+            textangle: 0,
+            hoverinfo: "none",
           },
-          text: metricChanges.map(
-            (value) =>
-              (value >= 0 ? "+" : "") +
-              (value * 100).toFixed(1).toString() +
-              "%"
-          ),
-          textangle: 0,
-          hoverinfo: "none",
-        },
-      ]}
-      layout={{
-        xaxis: {
-          title: "",
-        },
-        yaxis: {
-          title: "Relative change",
-          tickformat: ",.1%",
-        },
-        uniformtext: {
-          mode: "hide",
-          minsize: 12,
-        },
-        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
-        margin: {
-          t: 0,
-          b: 100,
-          r: 0,
-        },
-        height: mobile ? 300 : 500,
-        ...plotLayoutFont
-      }}
-      config={{
-        displayModeBar: false,
-        responsive: true,
-      }}
-      style={{
-        width: "100%",
-      }}
-      onHover={(data) => {
-        const label = data.points[0].x;
-        let body = null;
-        if (label === "Gini index") {
-          // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
-          const baseline = impact.inequality.gini.baseline;
-          const reform = impact.inequality.gini.reform;
-          const change = reform / baseline - 1;
-          body =
-            change > 0.001
-              ? `This reform would increase the Gini index of net income from
+        ]}
+        layout={{
+          xaxis: {
+            title: "",
+          },
+          yaxis: {
+            title: "Relative change",
+            tickformat: ",.1%",
+          },
+          uniformtext: {
+            mode: "hide",
+            minsize: 12,
+          },
+          ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
+          margin: {
+            t: 0,
+            b: 100,
+            r: 0,
+          },
+          height: mobile ? 300 : 500,
+          ...plotLayoutFont
+        }}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+        style={{
+          width: "100%",
+        }}
+        onHover={(data) => {
+          const label = data.points[0].x;
+          let body = null;
+          if (label === "Gini index") {
+            // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
+            const baseline = impact.inequality.gini.baseline;
+            const reform = impact.inequality.gini.reform;
+            const change = reform / baseline - 1;
+            body =
+              change > 0.001
+                ? `This reform would increase the Gini index of net income from
                   ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
                   ${change.toFixed(3)}.`
-              : change < -0.001
-              ? `This reform would reduce the Gini index of net income from
+                : change < -0.001
+                  ? `This reform would reduce the Gini index of net income from
                   ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
                   ${percent(change)}.`
-              : change === 0
-              ? "This reform would not impact the Gini index of net income."
-              : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
-                " the Gini index of net income by less than 0.1%.";
-        } else if (label === "Top 10% share") {
-          // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
-          const baseline = impact.inequality.top_10_pct_share.baseline;
-          const reform = impact.inequality.top_10_pct_share.reform;
-          const change = reform / baseline - 1;
-          body =
-            change > 0.001
-              ? `This reform would increase the share of total net income held by people in the top 10% of households from
+                  : change === 0
+                    ? "This reform would not impact the Gini index of net income."
+                    : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
+                    " the Gini index of net income by less than 0.1%.";
+          } else if (label === "Top 10% share") {
+            // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
+            const baseline = impact.inequality.top_10_pct_share.baseline;
+            const reform = impact.inequality.top_10_pct_share.reform;
+            const change = reform / baseline - 1;
+            body =
+              change > 0.001
+                ? `This reform would increase the share of total net income held by people in the top 10% of households from
                   ${percent(baseline)} to ${percent(reform)}, an increase of
                   ${percent(change)}.`
-              : change < -0.001
-              ? `This reform would reduce the share of total net income held by people in the top 10% of households from
+                : change < -0.001
+                  ? `This reform would reduce the share of total net income held by people in the top 10% of households from
                   ${percent(baseline)} to ${percent(reform)}, a reduction of
                   ${percent(-change)}.`
-              : change === 0
-              ? "This reform would not impact the share of total net income held by people in the top 10% of households."
-              : (change > 0 ? "This reform would increase " : "This reform would reduce ") + 
-                " the share of total net income held by people in the top 10% of households by less than 0.1%.";
-        } else {
-          // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
-          const baseline = impact.inequality.top_1_pct_share.baseline;
-          const reform = impact.inequality.top_1_pct_share.reform;
-          const change = reform / baseline - 1;
-          body =
-            change > 0.001
-              ? `This reform would increase the share of total net income held by people in the top 1% of households from
+                  : change === 0
+                    ? "This reform would not impact the share of total net income held by people in the top 10% of households."
+                    : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
+                    " the share of total net income held by people in the top 10% of households by less than 0.1%.";
+          } else {
+            // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
+            const baseline = impact.inequality.top_1_pct_share.baseline;
+            const reform = impact.inequality.top_1_pct_share.reform;
+            const change = reform / baseline - 1;
+            body =
+              change > 0.001
+                ? `This reform would increase the share of total net income held by people in the top 1% of households from
                   ${percent(baseline)} to ${percent(reform)}, an increase of
                   ${percent(change)}.`
-              : change < -0.001
-              ? `This reform would reduce the share of total net income held by people in the top 1% of households from
+                : change < -0.001
+                  ? `This reform would reduce the share of total net income held by people in the top 1% of households from
                   ${percent(baseline)} to ${percent(reform)}, a reduction of
                   ${percent(-change)}.`
-              : change === 0
-              ? "This reform would not impact the share of total net income held by people in the top 1% of households."
-              : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
-                " the share of total net income held by people in the top 10% of households by less than 0.1%.";
-        }
-        setHoverCard({
-          title: label,
-          body: body,
-        });
-      }}
-      onUnhover={() => {
-        setHoverCard(null);
-      }}
-    />
-  );
+                  : change === 0
+                    ? "This reform would not impact the share of total net income held by people in the top 1% of households."
+                    : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
+                    " the share of total net income held by people in the top 10% of households by less than 0.1%.";
+          }
+          setHoverCard({
+            title: label,
+            body: body,
+          });
+        }}
+        onUnhover={() => {
+          setHoverCard(null);
+        }}
+      />
+    );
+  }
 
   // Impact is ambiguous if all three metrics are not the same sign (sign can be -ive, zero or +ive). Impact is positive if all three metrics are +ive. Impact is negative if all three metrics are -ive.
 
@@ -184,7 +186,7 @@ export default function InequalityImpact(props) {
       return [label, baseline, reform, change];
     }),
   ];
-    
+
   return (
     <>
       <Screenshottable>
@@ -196,7 +198,9 @@ export default function InequalityImpact(props) {
             ? ` would reduce inequality ${label}` 
             : ` would have an ambiguous effect on inequality ${label}` }
         </h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
+        <HoverCard>
+          <InequalityImpactPlot/>
+        </HoverCard>
       </Screenshottable>
         <div className="chart-container">
           {!mobile && (
