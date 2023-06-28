@@ -1,6 +1,8 @@
 import React from 'react';
+import html2canvas from 'html2canvas';  
+import { saveAs } from 'file-saver';
 
-const DownloadCsvButton = ({ content, filename, className, style, preparingForScreenshot }) => {
+const DownloadCsvButton = ({ content, filename, preparingForScreenshot, style }) => {
   const downloadCSV = (event) => {
     event.preventDefault();
 
@@ -20,6 +22,18 @@ const DownloadCsvButton = ({ content, filename, className, style, preparingForSc
     URL.revokeObjectURL(url);
   };
 
+  const handleDownloadImage = async () => {
+    setTimeout(async () => {
+      const downloadableContent = document.getElementById('downloadable-content');
+      if (downloadableContent) {
+        const canvas = await html2canvas(downloadableContent);
+        canvas.toBlob((blob) => {
+          saveAs(blob, 'chart.png');
+        });
+      }
+    }, 500);
+  };
+
   if (preparingForScreenshot) {
     return null;
   }
@@ -33,23 +47,22 @@ const DownloadCsvButton = ({ content, filename, className, style, preparingForSc
     padding: "8px 16px",
     borderRadius: "4px",
     cursor: "pointer",
-    margin: "16px, 0",
+    margin: "-65px 0 18px 0",
     float: "left",
     ...style,
   };
 
   return (
-    // eslint-disable-next-line
-    <a
-      href="#"
-      onClick={downloadCSV}
-      className={className}
-      style={downloadButtonStyle}
-    >
-      Download CSV
-    </a>
+    <div style={downloadButtonStyle}>
+      <a href="#" onClick={downloadCSV}>
+        Download CSV
+      </a>
+      {" | "}
+      <a href="#" onClick={handleDownloadImage}>
+        Download PNG
+      </a>
+    </div>
   );
 };
 
 export default DownloadCsvButton;
-

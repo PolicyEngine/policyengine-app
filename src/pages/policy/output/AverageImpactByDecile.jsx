@@ -5,10 +5,11 @@ import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { avgChangeDirection, plotLayoutFont} from './utils';
+import React, { useRef } from "react";
 
 export default function AverageImpactByDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -102,7 +103,7 @@ export default function AverageImpactByDecile(props) {
 
   const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
-  
+  const screenshotRef = useRef();
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
@@ -117,15 +118,10 @@ export default function AverageImpactByDecile(props) {
     `Decile ${key}`,
     value,
   ]);    
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "48px",
-    left: "70px",
-  };
 
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
           formatVariableValue(
@@ -135,13 +131,13 @@ export default function AverageImpactByDecile(props) {
           )} on average`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container"> 
           {!mobile &&
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="absoluteImpactByIncomeDecile.csv"
-              style={downloadButtonStyle}
+              className="download-button"
             />
           }
         </div>

@@ -4,12 +4,13 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
 import { useContext, useEffect } from 'react';
 import { PovertyChangeContext } from './PovertyChangeContext';
+import React, { useRef } from "react";
 
 export default function PovertyImpactByRace(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -168,7 +169,7 @@ export default function PovertyImpactByRace(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-  
+  const screenshotRef = useRef();
   const csvHeader = ['Race', 'Baseline', 'Reform', 'Change'];
   const data = [
     csvHeader,
@@ -183,15 +184,10 @@ export default function PovertyImpactByRace(props) {
       return [label, baseline, reform, change];
     }),
   ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "27px",
-    left: "40px",
-  };
 
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
@@ -201,13 +197,13 @@ export default function PovertyImpactByRace(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="povertyImpactByRace.csv"
-              style={downloadButtonStyle}
+              className="download-button"
             />
           )}
         </div>

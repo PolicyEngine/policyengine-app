@@ -4,12 +4,13 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
 import { useContext, useEffect } from 'react';
 import { PovertyChangeContext } from './PovertyChangeContext';
+import React, { useRef } from "react";
 
 export default function PovertyImpactByGender(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -150,7 +151,7 @@ export default function PovertyImpactByGender(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-  
+  const screenshotRef = useRef();
   const csvHeader = ['Sex', 'Baseline', 'Reform', 'Change'];
   const data = [
     csvHeader,
@@ -168,7 +169,7 @@ export default function PovertyImpactByGender(props) {
     
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
@@ -178,7 +179,7 @@ export default function PovertyImpactByGender(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}

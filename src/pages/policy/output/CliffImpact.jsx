@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
@@ -9,7 +9,7 @@ import HoverCard from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
@@ -25,6 +25,7 @@ export default function CliffImpact(props) {
   const { metadata, policyLabel, preparingForScreenshot } = props;
   const [hovercard, setHovercard] = useState(null);
   const mobile = useMobile();
+  const screenshotRef = useRef();
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
@@ -72,7 +73,7 @@ export default function CliffImpact(props) {
       />
     );
   }
-
+  
   if (!reformPolicyId) {
     return <ErrorPage message="No policy selected." />;
   }
@@ -228,10 +229,10 @@ export default function CliffImpact(props) {
 
   return (
     <ResultsPanel>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>{title}</h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
       <div className="chart-container">
         {!mobile && (
           <DownloadCsvButton

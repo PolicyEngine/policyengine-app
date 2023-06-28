@@ -4,10 +4,11 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import React, { useRef } from "react";
 
 export default function InequalityImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -162,7 +163,7 @@ export default function InequalityImpact(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-  
+  const screenshotRef = useRef();
   const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
   const metricLabels = ["Gini index", "Top 10% share", "Top 1% share"];
   const baselineValues = [
@@ -187,7 +188,7 @@ export default function InequalityImpact(props) {
     
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel}
           {impactLabel === "positive"
@@ -197,7 +198,7 @@ export default function InequalityImpact(props) {
             : ` would have an ambiguous effect on inequality ${label}` }
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}

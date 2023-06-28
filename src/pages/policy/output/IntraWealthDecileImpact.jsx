@@ -6,9 +6,10 @@ import style from "../../../style";
 import HoverCard from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import React, { useRef } from "react";
 
 export default function IntraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -295,7 +296,7 @@ export default function IntraWealthDecileImpact(props) {
   region === "us" || region === "uk"
     ? " of the population"
     : " of " + options.find((option) => option.value === region)?.label + " residents";
-
+  const screenshotRef = useRef();
   const csvHeader = [
     "Wealth Decile",
     "Gain more than 5%",
@@ -333,13 +334,13 @@ export default function IntraWealthDecileImpact(props) {
 
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel} would benefit{" "}
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}

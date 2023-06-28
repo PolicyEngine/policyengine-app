@@ -6,9 +6,10 @@ import style from "../../../style";
 import HoverCard from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
 import { avgChangeDirection, plotLayoutFont } from './utils';
+import React, { useRef } from "react";
 
 export default function RelativeImpactByDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -108,7 +109,7 @@ export default function RelativeImpactByDecile(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-  
+  const screenshotRef = useRef();
   const csvHeader = ['Income Decile', 'Relative Change'];
   const data = [
     csvHeader,
@@ -124,13 +125,13 @@ export default function RelativeImpactByDecile(props) {
     
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {`${policyLabel} ${avgChangeDirection(averageRelChange)} the net income of households ${label} by ${
             formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average`}
         </h2>
         <HoverCard content={hovercard}>{chart}</HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
