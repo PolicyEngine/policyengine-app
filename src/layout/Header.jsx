@@ -5,6 +5,8 @@ import Spinner from "./Spinner";
 import ResponsiveComponent from "./ResponsiveComponent";
 import SocialLinks from "./SocialLinks";
 import CountrySelector from "./CountrySelector";
+import { motion } from "framer-motion";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const HEADER_HEIGHT = 75;
 
@@ -135,6 +137,7 @@ function DesktopHeader(props) {
               display: "flex",
             }}
           >
+            <SignIn />
             <CountrySelector countryId={countryId} />
             <SocialLinks color="white" />
           </div>
@@ -152,4 +155,53 @@ export default function Header(props) {
       desktop={<DesktopHeader {...props} />}
     />
   );
+}
+
+function SignIn() {
+  // Light grey full-height box with "Sign In" text
+  const {
+    user,
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+  } = useAuth0();
+  user;
+  isAuthenticated;
+  loginWithRedirect;
+  logout;
+  if (!isAuthenticated) {
+    return (
+      <motion.div
+        initial={{
+          backgroundColor: style.colors.WHITE,
+          color: style.colors.BLACK,
+        }}
+        whileHover={{
+          backgroundColor: style.colors.DARK_GRAY,
+          color: style.colors.WHITE,
+        }}
+        style={{
+          height: HEADER_HEIGHT,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 20,
+          marginRight: 20,
+          width: 120,
+          cursor: "pointer",
+        }}
+        onClick={() => loginWithRedirect()}
+      >
+        Sign in
+        {JSON.stringify({
+          isAuthenticated: isAuthenticated,
+          user: user,
+        })}
+      </motion.div>
+    );
+  } else {
+    return <div>
+      {user.name}
+    </div>
+  }
 }

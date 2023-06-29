@@ -13,12 +13,20 @@ import React from "react";
 import Button from "./controls/Button";
 import style from "./style";
 import useMobile from "./layout/Responsive";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 /*
  * This component is split out of the main
  * component for testing purposes: you can't
  * have nested routers in a test.
  */
+
+const onRedirectCallback = (appState) => {
+  alert("Redirecting")
+  history.push(
+    appState && appState.returnTo ? appState.returnTo : window.location.pathname
+  );
+};
 
 function CookieConsent() {
   /* An animated bottom-left popup that asks the user to accept cookies */
@@ -134,11 +142,19 @@ clearCookies;
 
 export default function PolicyEngine() {
   return (
-    <>
+    <Auth0Provider
+      domain="policyengine.uk.auth0.com"
+      clientId="Xi2zDRKXE00YEUSpNn2TKHYhDQvcJ2oS"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+      onRedirectCallback={onRedirectCallback}
+      handleRedirectCallback={onRedirectCallback}
+    >
     <Router>
       <PolicyEngineRoutes />
     </Router>
     <CookieConsent />
-    </>
+    </Auth0Provider>
   );
 }

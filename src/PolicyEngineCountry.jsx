@@ -12,6 +12,7 @@ CountryPackageDocs;
 import ModelDocumentation from "./pages/model/ModelDocumentation";
 import PrivacyPage from "./pages/PrivacyPage";
 import ResearchPage from "./pages/ResearchPage";
+import { useAuth0 } from "auth0-react";
 
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -40,6 +41,8 @@ export default function PolicyEngineCountry(props) {
 
   const [metadata, setMetadata] = useState(null);
   const [error] = useState(null);
+  const { isLoading } = useAuth0();
+
 
   const [baselinePolicy, setBaselinePolicy] = useState({
     id: baselinePolicyId,
@@ -130,6 +133,10 @@ export default function PolicyEngineCountry(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, searchParams.get("renamed")]);
+
+  if (isLoading) {
+    return <LoadingCentered />;
+  }
 
   const loadingPage = <LoadingCentered />;
   const homePage = <HomePage countryId={countryId} />;
