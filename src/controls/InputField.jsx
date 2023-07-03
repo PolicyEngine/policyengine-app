@@ -1,15 +1,17 @@
 import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
 import style from "../style";
+import { useRef, useState } from "react";
 
 export default function InputField(props) {
-  const { placeholder, onChange, padding, width, type, inputmode, pattern } =
+  const { onChange, padding, width, type, inputmode, pattern, value } =
     props;
+  const [inputValue, setInputValue] = useState(value ? value : "");
+  const placeholder = useRef(props.placeholder);
   const mobile = useMobile();
   const re = /^[0-9\b]*[.]?[0-9\b]*?$/;
   const onInput = (e) => {
     let value = e.target.value;
-    e.target.value = null;
     if (value !== "") {
       onChange(value);
     }
@@ -38,7 +40,6 @@ export default function InputField(props) {
           if (value !== "") {
             onChange(value);
           }
-          e.target.value = null;
           if (!mobile) {
             e.target.blur();
           }
@@ -49,28 +50,26 @@ export default function InputField(props) {
 
         // evaluating percentage input
         if (pattern === "%") {
-          if (!value.includes("%")) {
+          if (!value.includes("%") && value !== "") {
             e.target.value += "%";
-            e.target.setSelectionRange(
-              e.target.value.length - 1,
-              e.target.value.length - 1
-            );
-          } else {
+          } else if (value !== "") {
             let val = value.slice(0, e.target.value.length - 1);
             e.target.value = val + "%";
-            e.target.setSelectionRange(
-              e.target.value.length - 1,
-              e.target.value.length - 1
-            );
           }
+          e.target.setSelectionRange(
+            e.target.value.length - 1,
+            e.target.value.length - 1
+          );
         } else if (pattern === "number") {
           if (value !== "" && !re.test(value)) {
             const val = value.replace(/[^\d.]+/g, "");
             e.target.value = val.includes(".") ? parseFloat(val) : val;
           }
         }
+        setInputValue(e.target.value);
       }}
-      placeholder={placeholder}
+      value = {inputValue}
+      placeholder={placeholder.current}
     />
   );
 }
