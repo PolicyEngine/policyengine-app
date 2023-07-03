@@ -43,7 +43,7 @@ export default function VariableEditor(props) {
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
     (entity) => householdInput[entityPlural][entity][variable.name]
   );
-
+  
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity
@@ -77,17 +77,11 @@ export default function VariableEditor(props) {
       >
         <h1 style={{ marginBottom: 20, textAlign: "center" }}>
           What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
-          {variable.label}?
+          {variable.label.toLowerCase()}?
         </h1>
         <h4 style={{ textAlign: "center", paddingBottom: 10 }}>
           {variable.documentation}
         </h4>
-        {isSimulated && (
-          <p style={{ textAlign: "center" }}>
-            This variable is calculated from other variables you&apos;ve
-            entered. Editing it will override the simulated value.
-          </p>
-        )}
         {entityInputs}
         {nextVariable && (
           <NavigationButton
