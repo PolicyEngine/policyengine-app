@@ -213,7 +213,7 @@ export default function InequalityImpact(props) {
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="incomeInequilityImpact.csv"
+              filename={`incomeInequilityImpact${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}

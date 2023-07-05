@@ -352,7 +352,7 @@ export default function IntraDecileImpact(props) {
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={csvData}
-              filename="intraDecileImpact.csv"
+              filename={`intraDecileImpact${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}

@@ -190,7 +190,7 @@ export default function BudgetaryImpact(props) {
           <DownloadCsvButton
             preparingForScreenshot={preparingForScreenshot}
             content={data}
-            filename="budgetaryImpact.csv"
+            filename={`budgetaryImpact${policyLabel}.csv`}
             style={downloadButtonStyle}
           />
         )}

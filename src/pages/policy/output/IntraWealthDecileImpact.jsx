@@ -351,7 +351,7 @@ export default function IntraWealthDecileImpact(props) {
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={csvData}
-              filename="intraWealthDecileImpact.csv"
+              filename={`intraWealthDecileImpact${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}

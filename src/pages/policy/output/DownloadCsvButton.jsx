@@ -37,9 +37,9 @@ const DownloadCsvButton = ({ content, filename, className, style, preparingForSc
         const canvas = await html2canvas(paddedDiv);
   
         document.body.removeChild(paddedDiv);
-  
         canvas.toBlob((blob) => {
-          saveAs(blob, `${filename}.png`);
+          const pngFileName = filename.replace('.csv', ''); 
+          saveAs(blob, `${pngFileName}.png`); 
         });
       }
     }, 500);

@@ -193,7 +193,7 @@ export default function DeepPovertyImpact(props) {
           <DownloadCsvButton
             preparingForScreenshot={preparingForScreenshot}
             content={data}
-            filename="deepPovertyImpactByAge.csv"
+            filename={`deepPovertyImpactByAge${policyLabel}.csv`}
             style={downloadButtonStyle}
             screenshotRef={screenshotRef}
           />

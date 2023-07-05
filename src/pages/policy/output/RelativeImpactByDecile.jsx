@@ -141,7 +141,7 @@ export default function RelativeImpactByDecile(props) {
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="relativeImpactByDecile.csv"
+              filename={`relativeImpactByDecile${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}

@@ -211,7 +211,7 @@ export default function PovertyImpactByRace(props) {
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="povertyImpactByRace.csv"
+              filename={`povertyImpactByRace${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}

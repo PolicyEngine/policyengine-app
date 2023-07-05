@@ -242,7 +242,7 @@ export default function CliffImpact(props) {
           <DownloadCsvButton
             preparingForScreenshot={preparingForScreenshot}
             content={data}
-            filename="cliffImpact.csv"
+            filename={`cliffImpact${policyLabel.csv}`}
             style={downloadButtonStyle}
           />
         )}

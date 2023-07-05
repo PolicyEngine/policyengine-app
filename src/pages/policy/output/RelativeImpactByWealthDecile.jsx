@@ -141,7 +141,7 @@ export default function RelativeImpactByWealthDecile(props) {
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="relativeImpactByWealthDecile.csv"
+              filename={`relativeImpactByWealthDecile${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}
