@@ -335,7 +335,7 @@ export default function IntraWealthDecileImpact(props) {
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2>
+        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
           {policyLabel} would benefit{" "}
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
