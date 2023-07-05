@@ -11,6 +11,10 @@ const getPolicyOutputTree = (countryId) => {
           label: "Budgetary impact",
         },
         {
+          name: "policyOutput.detailedBudgetaryImpact",
+          label: "Budgetary impact by program",
+        },
+        {
           name: "policyOutput.decileAverageImpact",
           label: "Absolute impact by income decile",
         },
