@@ -33,6 +33,8 @@ export default function PolicyEngineCountry(props) {
       ? 3
       : countryId === "ng"
       ? 4
+      : countryId === "il"
+      ? 5
       : 1;
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
   const baselinePolicyId =
