@@ -118,11 +118,16 @@ export default function AverageImpactByWealthDecile(props) {
     `Decile ${key}`,
     value,
   ]);    
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "40px",
+    left: "55px",
+  };  
 
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2>
+        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
           {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
             formatVariableValue(
             metadata.variables.household_net_income,
@@ -138,7 +143,7 @@ export default function AverageImpactByWealthDecile(props) {
               preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="absoluteImpactByWealthDecile.csv"
-              className="download-button"
+              style={downloadButtonStyle}
             />
           }
         </div>

@@ -329,8 +329,8 @@ export default function IntraDecileImpact(props) {
   ];
   const downloadButtonStyle = {
     position: "absolute",
-    bottom: "60px",
-    left: "40px",
+    bottom: "47px",
+    left: "46px",
   };
 
   return (

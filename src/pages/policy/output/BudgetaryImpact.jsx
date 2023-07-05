@@ -163,6 +163,12 @@ export default function BudgetaryImpact(props) {
     return [label, values[index]];
   });
 
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "11px",
+    left: "80px",
+  };
+
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
@@ -182,7 +188,7 @@ export default function BudgetaryImpact(props) {
             preparingForScreenshot={preparingForScreenshot}
             content={data}
             filename="budgetaryImpact.csv"
-            className="download-button"
+            style={downloadButtonStyle}
           />
         )}
       </div>

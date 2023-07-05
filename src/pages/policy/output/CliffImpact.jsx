@@ -223,8 +223,8 @@ export default function CliffImpact(props) {
 
   const downloadButtonStyle = {
     position: "absolute",
-    bottom: "5px",
-    left: "100px",
+    bottom: "-1px",
+    left: "80px",
   };
 
   return (

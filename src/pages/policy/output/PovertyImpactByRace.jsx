@@ -184,6 +184,11 @@ export default function PovertyImpactByRace(props) {
       return [label, baseline, reform, change];
     }),
   ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "19px",
+    left: "80px",
+  };
 
   return (
     <>
@@ -203,7 +208,7 @@ export default function PovertyImpactByRace(props) {
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="povertyImpactByRace.csv"
-              className="download-button"
+              style={downloadButtonStyle}
             />
           )}
         </div>

@@ -168,7 +168,11 @@ export default function DeepPovertyImpactByGender(props) {
       return [label, baseline, reform, change];
     }),
   ];
-    
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "19px",
+    left: "80px",
+  };
 
   return (
     <>
@@ -189,6 +193,7 @@ export default function DeepPovertyImpactByGender(props) {
               content={data}
               filename="deepPovertyImpactBySex.csv"
               className="download-button"
+              style={downloadButtonStyle}
             />
           )}
         </div>

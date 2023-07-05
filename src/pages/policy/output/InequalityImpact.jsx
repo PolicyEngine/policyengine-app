@@ -185,6 +185,12 @@ export default function InequalityImpact(props) {
       return [label, baseline, reform, change];
     }),
   ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "15px",
+    left: "80px",
+  };
+
     
   return (
     <>
@@ -204,7 +210,7 @@ export default function InequalityImpact(props) {
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="incomeInequilityImpact.csv"
-              className="download-button"
+              style={downloadButtonStyle}
             />
           )}
         </div>

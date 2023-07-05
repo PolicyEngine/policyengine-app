@@ -160,7 +160,12 @@ export default function PovertyImpact(props) {
       return [label, baseline, reform, change];
     }),
   ];
-    
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "15px",
+    left: "65px",
+  };
+
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
@@ -179,7 +184,7 @@ export default function PovertyImpact(props) {
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
               filename="povertyImpactByAge.csv"
-              className="download-button"
+              style={downloadButtonStyle}
             />
           )}
         </div>

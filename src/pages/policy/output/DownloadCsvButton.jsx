@@ -1,11 +1,11 @@
 import React from 'react';
 import html2canvas from 'html2canvas';  
 import { saveAs } from 'file-saver';
+import { Dropdown, Menu } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 
-const DownloadCsvButton = ({ content, filename, preparingForScreenshot, style }) => {
-  const downloadCSV = (event) => {
-    event.preventDefault();
-
+const DownloadCsvButton = ({ content, filename, className, style, preparingForScreenshot }) => {
+  const downloadCSV = () => {
     const csvContent =
       content.map((row) => row.map((cell) => `"${cell}"`).join(',')).join('\r\n');
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -21,19 +21,30 @@ const DownloadCsvButton = ({ content, filename, preparingForScreenshot, style })
 
     URL.revokeObjectURL(url);
   };
-
   const handleDownloadImage = async () => {
     setTimeout(async () => {
       const downloadableContent = document.getElementById('downloadable-content');
       if (downloadableContent) {
-        const canvas = await html2canvas(downloadableContent);
+        const paddedDiv = document.createElement('div');
+        paddedDiv.style.padding = '20px';
+        paddedDiv.style.backgroundColor = 'white';
+        paddedDiv.style.display = 'inline-block'; 
+        paddedDiv.style.boxSizing = 'content-box'; // Add this line
+        paddedDiv.appendChild(downloadableContent.cloneNode(true));
+  
+        document.body.appendChild(paddedDiv);
+  
+        const canvas = await html2canvas(paddedDiv);
+  
+        document.body.removeChild(paddedDiv);
+  
         canvas.toBlob((blob) => {
-          saveAs(blob, 'chart.png');
+          saveAs(blob, `${filename}.png`);
         });
       }
     }, 500);
   };
-
+  
   if (preparingForScreenshot) {
     return null;
   }
@@ -47,21 +58,32 @@ const DownloadCsvButton = ({ content, filename, preparingForScreenshot, style })
     padding: "8px 16px",
     borderRadius: "4px",
     cursor: "pointer",
-    margin: "-65px 0 18px 0",
+    margin: "16px 0",
     float: "left",
     ...style,
   };
 
-  return (
-    <div style={downloadButtonStyle}>
-      <a href="#" onClick={downloadCSV}>
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" onClick={downloadCSV}>
         Download CSV
-      </a>
-      {" | "}
-      <a href="#" onClick={handleDownloadImage}>
+      </Menu.Item>
+      <Menu.Item key="2" onClick={handleDownloadImage}>
         Download PNG
+      </Menu.Item>
+    </Menu>
+  );
+
+  return (
+    <Dropdown overlay={menu} trigger={['hover']}>
+      <a
+        className={className}
+        style={downloadButtonStyle}
+        onClick={(e) => e.preventDefault()}
+      >
+        Download <DownOutlined />
       </a>
-    </div>
+    </Dropdown>
   );
 };
 

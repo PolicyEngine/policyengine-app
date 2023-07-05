@@ -165,7 +165,12 @@ export default function DeepPovertyImpact(props) {
       ];
     }),
   ];
-    
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "17px",
+    left: "80px",
+  };
+
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
@@ -185,7 +190,7 @@ export default function DeepPovertyImpact(props) {
             preparingForScreenshot={preparingForScreenshot}
             content={data}
             filename="deepPovertyImpactByAge.csv"
-            className="download-button"
+            style={downloadButtonStyle}
             screenshotRef={screenshotRef}
           />
         )}

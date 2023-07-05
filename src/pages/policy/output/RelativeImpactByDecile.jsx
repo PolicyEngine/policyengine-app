@@ -119,14 +119,14 @@ export default function RelativeImpactByDecile(props) {
   ];
   const downloadButtonStyle = {
     position: "absolute",
-    bottom: "48px",
-    left: "70px",
-  };
+    bottom: "40px",
+    left: "55px",
+  };  
     
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2>
+        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
           {`${policyLabel} ${avgChangeDirection(averageRelChange)} the net income of households ${label} by ${
             formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average`}
         </h2>
