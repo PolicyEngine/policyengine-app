@@ -1,29 +1,27 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { createContext, useEffect, useState, memo } from "react";
 import style from "../style";
 import Divider from "./Divider";
 
+export const HoverCardContext = createContext((obj) => obj);
+
 export default function HoverCard(props) {
   const { children } = props;
-  let { content } = props;
-  if (!content) {
-    content = {
-      title: "",
-      body: "",
-    };
-  }
-  const notEmpty = content.title.length !== 0 || content.body.length !== 0;
-
-  const [visible, setVisible] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+  const [position, setPosition] = useState({left: 0, top: 0});
+  const [content, setContent] = useState({title: "", body: ""});
+  const title = content && content.title ? content.title : "";
+  const body = content && content.body ? content.body : "";
+  const notEmpty = title.length !== 0 || body.length !== 0;
+  const visible = enabled && notEmpty;
 
   const hoverCardElement = (
     <motion.div
-      id="hovercard"
       style={{
         backgroundColor: style.colors.WHITE,
         position: "absolute",
-        left: 0,
-        top: 0,
+        left: position.left,
+        top: position.top,
         zIndex: 1002,
         padding: 10,
         borderRadius: 15,
@@ -36,35 +34,53 @@ export default function HoverCard(props) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
-      <h5>{content.title}</h5>
+      <h5>{title}</h5>
       <Divider />
-      {content.body}
+      {body}
     </motion.div>
   );
 
-  window.addEventListener("mousemove", (e) => {
-    const element = document.getElementById("hovercard");
-    if (visible && element) {
-      element.style.left = e.clientX + 10 + "px";
-      element.style.top = e.clientY + 10 + "px";
-    }
-  });
+  useEffect(() => {
+    const mouseMoveHandler = (e) => {
+      if (visible) {
+        setPosition({left: e.clientX + 10, top: e.clientY + 10});
+      }
+    };
+    window.addEventListener("mousemove", mouseMoveHandler);
+    return () => {
+      window.removeEventListener("mousemove", mouseMoveHandler);
+    };
+  }, [visible]);
 
   return (
     <>
       <AnimatePresence>
-        {visible && notEmpty && hoverCardElement}
+        {visible && hoverCardElement}
       </AnimatePresence>
+      <MemoizedChildren
+        setContent={setContent}
+        setEnabled={setEnabled}
+      >
+        {children}
+      </MemoizedChildren>
+    </>
+  );
+}
+
+const MemoizedChildren = memo(function MemoizedChildren(props) {
+  const {children, setContent, setEnabled} = props;
+  return (
+    <HoverCardContext.Provider value={setContent}>
       <div
         onMouseEnter={() => {
-          setVisible(true);
+          setEnabled(true);
         }}
         onMouseLeave={() => {
-          setVisible(false);
+          setEnabled(false);
         }}
       >
         {children}
       </div>
-    </>
+    </HoverCardContext.Provider>
   );
-}
+});

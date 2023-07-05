@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef} from "react";
+import { useContext, useEffect, useState, useRef} from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, percent } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
-import HoverCard from "../../../layout/HoverCard";
+import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -23,7 +23,6 @@ export default function CliffImpact(props) {
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const { metadata, policyLabel, preparingForScreenshot } = props;
-  const [hovercard, setHovercard] = useState(null);
   const mobile = useMobile();
   const screenshotRef = useRef();
   useEffect(() => {
@@ -93,96 +92,99 @@ export default function CliffImpact(props) {
       (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000
     ) / 1000;
 
-  const chart = (
-    <Plot
-      data={[
-        {
-          x: ["Cliff rate", "Cliff gap"],
-          y: [cliff_share_change, cliff_gap_change],
-          type: "bar",
-          marker: {
-            color: [
-              cliff_share_change > 0
-                ? style.colors.DARK_GRAY
-                : style.colors.DARK_GREEN,
-              cliff_gap_change > 0
-                ? style.colors.DARK_GRAY
-                : style.colors.DARK_GREEN,
+  function CliffImpactPlot() {
+    const setHoverCard = useContext(HoverCardContext);
+    return (
+      <Plot
+        data={[
+          {
+            x: ["Cliff rate", "Cliff gap"],
+            y: [cliff_share_change, cliff_gap_change],
+            type: "bar",
+            marker: {
+              color: [
+                cliff_share_change > 0
+                  ? style.colors.DARK_GRAY
+                  : style.colors.DARK_GREEN,
+                cliff_gap_change > 0
+                  ? style.colors.DARK_GRAY
+                  : style.colors.DARK_GREEN,
+              ],
+            },
+            text: [
+              `${cliff_share_change >= 0 ? "+" : ""}${(
+                cliff_share_change * 100
+              ).toFixed(1)}%`,
+              `${cliff_gap_change >= 0 ? "+" : ""}${(
+                cliff_gap_change * 100
+              ).toFixed(1)}%`,
             ],
+            textposition: "auto",
+            textangle: 0,
+            hoverinfo: "none",
           },
-          text: [
-            `${cliff_share_change >= 0 ? "+" : ""}${(
-              cliff_share_change * 100
-            ).toFixed(1)}%`,
-            `${cliff_gap_change >= 0 ? "+" : ""}${(
-              cliff_gap_change * 100
-            ).toFixed(1)}%`,
-          ],
-          textposition: "auto",
-          textangle: 0,
-          hoverinfo: "none",
-        },
-      ]}
-      layout={{
-        yaxis: {
-          title: "Relative change",
-          tickformat: "+,.0%",
-        },
-        uniformtext: {
-          mode: "hide",
-          minsize: 8,
-        },
-        ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
-        margin: {
-          t: 0,
-          b: 80,
-        },
-        height: mobile ? 300 : 450,
-        ...plotLayoutFont,
-      }}
-      config={{
-        displayModeBar: false,
-        responsive: true,
-      }}
-      style={{
-        width: "100%",
-      }}
-      onHover={(data) => {
-        const metric = data.points[0].x;
-        const baseline =
-          metric === "Cliff rate"
-            ? impact.baseline.cliff_share
-            : impact.baseline.cliff_gap;
-        const reform =
-          metric === "Cliff rate"
-            ? impact.reform.cliff_share
-            : impact.reform.cliff_gap;
-        const change = reform / baseline - 1;
-        const formatter =
-          metric === "Cliff rate"
-            ? percent
-            : (x) => aggregateCurrency(x, metadata);
-        const message = `The ${metric.toLowerCase()} ${
-          change > 0.0001
-            ? `would rise ${percent(change)} from ${formatter(
+        ]}
+        layout={{
+          yaxis: {
+            title: "Relative change",
+            tickformat: "+,.0%",
+          },
+          uniformtext: {
+            mode: "hide",
+            minsize: 8,
+          },
+          ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
+          margin: {
+            t: 0,
+            b: 80,
+          },
+          height: mobile ? 300 : 450,
+          ...plotLayoutFont,
+        }}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+        style={{
+          width: "100%",
+        }}
+        onHover={(data) => {
+          const metric = data.points[0].x;
+          const baseline =
+            metric === "Cliff rate"
+              ? impact.baseline.cliff_share
+              : impact.baseline.cliff_gap;
+          const reform =
+            metric === "Cliff rate"
+              ? impact.reform.cliff_share
+              : impact.reform.cliff_gap;
+          const change = reform / baseline - 1;
+          const formatter =
+            metric === "Cliff rate"
+              ? percent
+              : (x) => aggregateCurrency(x, metadata);
+          const message = `The ${metric.toLowerCase()} ${
+            change > 0.0001
+              ? `would rise ${percent(change)} from ${formatter(
                 baseline
               )} to ${formatter(reform)}`
-            : change < -0.0001
-            ? `would fall ${percent(-change)} from ${formatter(
-                baseline
-              )} to ${formatter(reform)}`
-            : `would remain at ${percent(baseline)}`
-        }.`;
-        setHovercard({
-          title: data.points[0].x,
-          body: message,
-        });
-      }}
-      onUnhover={() => {
-        setHovercard(null);
-      }}
-    />
-  );
+              : change < -0.0001
+                ? `would fall ${percent(-change)} from ${formatter(
+                  baseline
+                )} to ${formatter(reform)}`
+                : `would remain at ${percent(baseline)}`
+          }.`;
+          setHoverCard({
+            title: data.points[0].x,
+            body: message,
+          });
+        }}
+        onUnhover={() => {
+          setHoverCard(null);
+        }}
+      />
+    );
+  }
 
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
@@ -231,7 +233,9 @@ export default function CliffImpact(props) {
     <ResultsPanel>
       <DownloadableScreenshottable ref={screenshotRef}>
         <h2>{title}</h2>
-        <HoverCard content={hovercard}>{chart}</HoverCard>
+        <HoverCard>
+          <CliffImpactPlot/>
+        </HoverCard>
       </DownloadableScreenshottable>
       <div className="chart-container">
         {!mobile && (
