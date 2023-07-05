@@ -141,12 +141,14 @@ export default function CountChildren(props) {
     us: getUSCountChildren,
     ca: getCACountChildren,
     ng: getCACountChildren,
+    il: getCACountChildren,
   }[metadata.countryId];
   const setCountChildrenInHousehold = {
     uk: setUKCountChildren,
     us: setUSCountChildren,
     ca: setCACountChildren,
     ng: setCACountChildren,
+    il: setCACountChildren,
   }[metadata.countryId];
   const setCountChildren = (countChildren) => {
     let newHousehold = setCountChildrenInHousehold(
