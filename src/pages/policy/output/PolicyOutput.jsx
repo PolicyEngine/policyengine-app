@@ -5,6 +5,7 @@ import SearchOptions from "../../../controls/SearchOptions";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BudgetaryImpact from "./BudgetaryImpact";
+import DetailedBudgetaryImpact from "./DetailedBudgetaryImpact";
 import PovertyImpact from "./PovertyImpact";
 import DeepPovertyImpact from "./DeepPovertyImpact";
 import PovertyImpactByGender from "./PovertyImpactByGender";
@@ -341,6 +342,16 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Budgetary impact | PolicyEngine`;
     pane = (
       <BudgetaryImpact
+        preparingForScreenshot={preparingForScreenshot}
+        metadata={metadata}
+        impact={impact}
+        policyLabel={policyLabel}
+      />
+    );
+  } else if (focus === "policyOutput.detailedBudgetaryImpact") {
+    document.title = `${policyLabel} | Detailed budgetary impact | PolicyEngine`;
+    pane = (
+      <DetailedBudgetaryImpact
         preparingForScreenshot={preparingForScreenshot}
         metadata={metadata}
         impact={impact}
