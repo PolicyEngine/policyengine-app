@@ -1,60 +1,71 @@
-import style from "../style";
+import { useLocation } from 'react-router-dom';
+import style from '../style';
 
 const backgroundStyle = {
   backgroundColor: style.colors.LIGHT_GRAY,
   borderRadius: 5,
   padding: 50,
-  width: "140%",
+  width: '140%',
   marginLeft: -115,
   marginTop: 20,
   marginBottom: 20,
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+
+const homeBackgroundStyle = {
+  backgroundColor: style.colors.LIGHT_GRAY,
+  borderRadius: 5,
+  padding: 50,
+  width: '100%%',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
 };
 
 const subscribetitleStyle = {
-  color: "black",
+  color: 'black',
   fontSize: 35,
-  fontWeight: "bold",
+  fontWeight: 'bold',
   // marginBottom: 10,
-  textAlign: "center",
+  textAlign: 'center',
 };
 
 const subscribesubStyle = {
-  color: "black",
+  color: 'black',
   fontSize: 12,
-  textAlign: "center",
+  textAlign: 'center',
 };
 
 const inputContainerStyle = {
-  alignItems: "center",
-  justifyContent: "center",
-  display: "flex",
-  flexDirection: "row", // set flexDirection to 'row'
-  marginTop: "5px",
+  alignItems: 'center',
+  justifyContent: 'center',
+  display: 'flex',
+  flexDirection: 'row', // set flexDirection to 'row'
+  marginTop: '5px',
 };
 
 const inputStyle = {
-  boxSizing: "border-box",
-  width: "80%",
-  padding: "10px",
-  borderRadius: "5px",
-  border: "none",
-  textAlign: "center",
-  display: "inline-block",
+  boxSizing: 'border-box',
+  width: '80%',
+  padding: '10px',
+  borderRadius: '5px',
+  border: 'none',
+  textAlign: 'center',
+  display: 'inline-block',
 };
 
 const buttonStyle = {
   padding: 10,
-  color: "white",
+  color: 'white',
   backgroundColor: style.colors.BLUE,
   borderWidth: 0,
-  boxShadow: "none",
-  boxSizing: "border-box",
-  display: "inline-block",
-  textAlign: "center",
-  marginLeft: "5px",
+  boxShadow: 'none',
+  boxSizing: 'border-box',
+  display: 'inline-block',
+  textAlign: 'center',
+  marginLeft: '5px',
 };
 
 const SIGNUP_FORM_EMBED_HTML = `
@@ -96,8 +107,14 @@ display: inline-block;
 `;
 
 export default function EmailSignUp() {
+  const location = useLocation();
+
   return (
-    <div style={backgroundStyle}>
+    <div
+      style={
+        location.pathname === '/us' ? homeBackgroundStyle : backgroundStyle
+      }
+    >
       <div style={subscribetitleStyle}>
         <h3>
           <b>Subscribe to PolicyEngine</b>
