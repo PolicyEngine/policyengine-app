@@ -1,6 +1,7 @@
 const getPolicyOutputTree = (countryId) => {
   const shouldShowWealth = countryId === "uk";
   const shouldShowRacialPoverty = countryId === "us";
+  const shouldShowProgramBreakdown = countryId === "uk";
   return [
     {
       name: "policyOutput",
@@ -9,6 +10,10 @@ const getPolicyOutputTree = (countryId) => {
         {
           name: "policyOutput.netIncome",
           label: "Budgetary impact",
+        },
+        shouldShowProgramBreakdown && {
+          name: "policyOutput.detailedBudgetaryImpact",
+          label: "Budgetary impact by program",
         },
         {
           name: "policyOutput.decileAverageImpact",

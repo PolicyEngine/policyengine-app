@@ -100,12 +100,14 @@ export default function MaritalStatus(props) {
     us: getUSMaritalStatus,
     ca: getCAMaritalStatus,
     ng: getCAMaritalStatus,
+    il: getCAMaritalStatus,
   }[metadata.countryId];
   const setMaritalStatusInHousehold = {
     uk: setUKMaritalStatus,
     us: setUSMaritalStatus,
     ca: setCAMaritalStatus,
     ng: setCAMaritalStatus,
+    il: setCAMaritalStatus,
   }[metadata.countryId];
   const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {
