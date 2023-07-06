@@ -4,11 +4,12 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
 import { PovertyChangeContext } from './PovertyChangeContext';
+import React, { useRef } from "react";
 
 export default function DeepPovertyImpactByGender(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -152,7 +153,7 @@ export default function DeepPovertyImpactByGender(props) {
   region === "us" || region === "uk"
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
-  
+  const screenshotRef = useRef();
   const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
   const data = [
     csvHeader,
@@ -169,10 +170,15 @@ export default function DeepPovertyImpactByGender(props) {
       return [label, baseline, reform, change];
     }),
   ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "19px",
+    left: "80px",
+  };
 
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
@@ -184,13 +190,14 @@ export default function DeepPovertyImpactByGender(props) {
         <HoverCard>
           <DeepPovertyImpactByGenderPlot/>
         </HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="deepPovertyImpactBySex.csv"
+              filename={`deepPovertyImpactBySex${policyLabel}.csv`}
               className="download-button"
+              style={downloadButtonStyle}
             />
           )}
         </div>

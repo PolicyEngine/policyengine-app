@@ -4,10 +4,11 @@ import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import React, { useRef } from "react";
 
 export default function BudgetaryImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -44,7 +45,7 @@ export default function BudgetaryImpact(props) {
   const labels = labelsBeforeFilter.filter(
     (label, index) => valuesBeforeFilter[index] !== 0
   );
-
+  const screenshotRef = useRef();
   console.log(values, labels, valuesBeforeFilter, labelsBeforeFilter);
 
   function BudgetaryImpactPlot() {
@@ -163,10 +164,15 @@ export default function BudgetaryImpact(props) {
     return [label, values[index]];
   });
 
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "11px",
+    left: "80px",
+  };
 
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel}
           {" would "}
@@ -178,14 +184,14 @@ export default function BudgetaryImpact(props) {
         <HoverCard>
           <BudgetaryImpactPlot/>
         </HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
       <div className="chart-container">
         {!mobile && (
           <DownloadCsvButton
             preparingForScreenshot={preparingForScreenshot}
             content={data}
-            filename="budgetaryImpact.csv"
-            className="download-button"
+            filename={`budgetaryImpact${policyLabel}.csv`}
+            style={downloadButtonStyle}
           />
         )}
       </div>

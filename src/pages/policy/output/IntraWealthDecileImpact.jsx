@@ -6,9 +6,10 @@ import style from "../../../style";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import DownloadCsvButton from './DownloadCsvButton';
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import React, { useRef } from "react";
 
 export default function IntraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -299,7 +300,7 @@ export default function IntraWealthDecileImpact(props) {
   region === "us" || region === "uk"
     ? " of the population"
     : " of " + options.find((option) => option.value === region)?.label + " residents";
-
+  const screenshotRef = useRef();
   const csvHeader = [
     "Wealth Decile",
     "Gain more than 5%",
@@ -331,26 +332,26 @@ export default function IntraWealthDecileImpact(props) {
   ];
   const downloadButtonStyle = {
     position: "absolute",
-    bottom: "60px",
-    left: "40px",
+    bottom: "47px",
+    left: "46px",
   };
 
   return (
     <>
-      <Screenshottable>
-        <h2>
+      <DownloadableScreenshottable ref={screenshotRef}>
+        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
           {policyLabel} would benefit{" "}
           {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
         </h2>
         <HoverCard>
           <IntraWealthDecileImpactPlot/>
         </HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container">
           {!mobile && (
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={csvData}
-              filename="intraWealthDecileImpact.csv"
+              filename={`intraWealthDecileImpact${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           )}

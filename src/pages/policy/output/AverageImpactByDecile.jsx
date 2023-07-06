@@ -5,10 +5,11 @@ import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
 import { avgChangeDirection, plotLayoutFont} from './utils';
+import React, { useRef } from "react";
 
 export default function AverageImpactByDecile(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -105,7 +106,7 @@ export default function AverageImpactByDecile(props) {
 
   const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
-  
+  const screenshotRef = useRef();
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
@@ -119,17 +120,17 @@ export default function AverageImpactByDecile(props) {
   const data = Object.entries(impact.decile.average).map(([key, value]) => [
     `Decile ${key}`,
     value,
-  ]);    
+  ]);  
   const downloadButtonStyle = {
     position: "absolute",
-    bottom: "48px",
-    left: "70px",
-  };
+    bottom: "40px",
+    left: "55px",
+  };  
 
   return (
     <>
-      <Screenshottable>
-        <h2>
+      <DownloadableScreenshottable ref={screenshotRef}>
+        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
           {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
           formatVariableValue(
             metadata.variables.household_net_income,
@@ -140,12 +141,12 @@ export default function AverageImpactByDecile(props) {
         <HoverCard>
           <AverageImpactByDecilePlot/>
         </HoverCard>
-      </Screenshottable>
+      </DownloadableScreenshottable>
         <div className="chart-container"> 
           {!mobile &&
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="absoluteImpactByIncomeDecile.csv"
+              filename={`absoluteImpactByIncomeDecile${policyLabel}.csv`}
               style={downloadButtonStyle}
             />
           }

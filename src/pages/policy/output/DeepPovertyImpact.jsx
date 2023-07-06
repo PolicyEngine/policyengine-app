@@ -4,9 +4,10 @@ import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
-import Screenshottable from "../../../layout/Screenshottable";
+import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from './DownloadCsvButton';
+import React, { useRef } from "react";
 import { plotLayoutFont } from 'pages/policy/output/utils';
 import { PovertyChangeContext } from './PovertyChangeContext';
 
@@ -143,7 +144,7 @@ export default function DeepPovertyImpact(props) {
         impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
       ) * 1000
     ) / 10;
-  
+  const screenshotRef = useRef();
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
@@ -166,10 +167,15 @@ export default function DeepPovertyImpact(props) {
       ];
     }),
   ];
+  const downloadButtonStyle = {
+    position: "absolute",
+    bottom: "17px",
+    left: "80px",
+  };
 
   return (
     <>
-      <Screenshottable>
+      <DownloadableScreenshottable ref={screenshotRef}>
         <h2>
           {policyLabel}{" "}
           {totalPovertyChange > 0
@@ -181,16 +187,18 @@ export default function DeepPovertyImpact(props) {
         <HoverCard>
           <DeepPovertyImpactPlot/>
         </HoverCard>
-      </Screenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="deeppPovertyImpactByAge.csv"
-              className="download-button"
-            />
-          )}
-        </div>
+      </DownloadableScreenshottable>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`deepPovertyImpactByAge${policyLabel}.csv`}
+            style={downloadButtonStyle}
+            screenshotRef={screenshotRef}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in the deep poverty rate for
         each age group.
