@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency, cardinal } from "../../../api/language";
-import { formatVariableValue } from "../../../api/variables";
+import { aggregateCurrency } from "../../../api/language";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
@@ -27,7 +26,7 @@ export default function DetailedBudgetaryImpact(props) {
 
     Object.entries(impact.detailed_budget).forEach(([program, values]) => {
         if (values.difference !== 0) {
-            yValues.push(values.difference);
+            yValues.push(values.difference / 1e9);
             const programLabel = metadata.variables[program].label;
             xValues.push(programLabel);
             // [label]'s budgetary impact [rises/falls] by [abs(value)], from [baseline] to [reform].
@@ -59,7 +58,7 @@ export default function DetailedBudgetaryImpact(props) {
             orientation: "v",
             measure:
               textValues.length > 0
-                ? Array(textValues.length - 1)
+                ? Array(textValues.length)
                   .fill("relative")
                   .concat(["total"])
                 : ["total"],
@@ -86,13 +85,12 @@ export default function DetailedBudgetaryImpact(props) {
         ]}
         layout={{
           xaxis: {
-            title: "Income decile",
-            tickvals: Object.keys(impact.decile.average),
+            title: "Program",
           },
           yaxis: {
-            title: "Average change",
-            tickprefix: metadata.countryId === "uk" ? "£" : "$",
-            tickformat: ",.0f",
+            title: "Budgetary impact (bn)",
+            tickprefix: metadata.currency,
+            tickformat: ",.1f",
           },
           showlegend: false,
           uniformtext: {
@@ -118,28 +116,11 @@ export default function DetailedBudgetaryImpact(props) {
           marginBottom: !mobile && 50,
         }}
         onHover={(data) => {
-          const decile = cardinal(data.points[0].x);
+          const program = data.points[0].x;
           const change = data.points[0].y;
-          const message =
-            change > 0.0001
-              ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                metadata.variables.household_net_income,
-                change,
-                0
-              )} per year.`
-              : change < -0.0001
-                ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                  metadata.variables.household_net_income,
-                  -change,
-                  0
-                )} per year.`
-                : change === 0
-                  ? `This reform has no impact on the income of households in the ${decile} decile.`
-                  : (change > 0 ? "This reform raises " : "This reform lowers ") +
-                  ` the income of households in the ${decile} decile by less than 0.01%.`;
           setHoverCard({
-            title: `Decile ${data.points[0].x}`,
-            body: message,
+            title: `${program}`,
+            body: aggregateCurrency(change, metadata)
           });
         }}
         onUnhover={() => {
@@ -149,8 +130,7 @@ export default function DetailedBudgetaryImpact(props) {
     );
   }
 
-  const averageChange =
-    -impact.budget.budgetary_impact / impact.budget.households;
+  const budgetaryImpact = impact.budget.budgetary_impact;
   
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
@@ -162,26 +142,37 @@ export default function DetailedBudgetaryImpact(props) {
     ? ""
     : "in " + options.find((option) => option.value === region)?.label;
   
-  const data = Object.entries(impact.decile.average).map(([key, value]) => [
-    `Decile ${key}`,
-    value,
-  ]);    
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "48px",
     left: "70px",
   };
 
+  // We have data in the form {child_benefit: {baseline: -14664753735.275948, difference: 0, reform: -14664753735.275948}, ...}
+  // We need it in the form: [["Program", "Baseline", "Reform", "Difference"], ["Child benefit", -14664753735.275948, -14664753735.275948, 0], ...]
+
+  let data = Object.entries(impact.detailed_budget).map(([program, values]) => {
+    const programLabel = metadata.variables[program].label;
+    return [
+      programLabel,
+      values.baseline,
+      values.reform,
+      values.difference,
+    ];
+  });
+  data.unshift(["Program", "Baseline", "Reform", "Difference"]);
+
+
   return (
     <>
       <Screenshottable>
-        <h2>
-          {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
-          formatVariableValue(
-            metadata.variables.household_net_income,
-            Math.abs(averageChange),
-            0
-          )} on average`}
+      <h2>
+          {policyLabel}
+          {" would "}
+          {budgetaryImpact > 0 ? "raise " : "cost "}
+          {aggregateCurrency(budgetaryImpact, metadata)}
+          {" this year "}
+          {label}
         </h2>
         <HoverCard>
           <DetailedBudgetaryImpactPlot/>
@@ -191,14 +182,11 @@ export default function DetailedBudgetaryImpact(props) {
           {!mobile &&
             <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
               content={data}
-              filename="absoluteImpactByIncomeDecile.csv"
+              filename="budgetaryImpactByProgram.csv"
               style={downloadButtonStyle}
             />
           }
         </div>
-      <p>
-        {JSON.stringify(impact.detailed_budget)}
-      </p>
     </>
   );
 }

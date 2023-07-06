@@ -163,6 +163,7 @@ export default function BudgetaryImpact(props) {
     return [label, values[index]];
   });
 
+
   return (
     <>
       <Screenshottable>
