@@ -362,7 +362,7 @@ function SocialMediaIcons(props) {
   );
 }
 
-function SubscribeForm() {
+export function SubscribeForm() {
   const [searchTerm, setSearchTerm] = useState("");
   const [subscribed, setSubscribed] = useState(true);
 

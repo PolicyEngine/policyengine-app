@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import style from "../style";
 
 const backgroundStyle = {
@@ -8,6 +9,16 @@ const backgroundStyle = {
   marginLeft: -115,
   marginTop: 20,
   marginBottom: 20,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
+
+const homeBackgroundStyle = {
+  backgroundColor: style.colors.LIGHT_GRAY,
+  borderRadius: 5,
+  padding: 50,
+  width: "100%%",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -96,8 +107,14 @@ display: inline-block;
 `;
 
 export default function EmailSignUp() {
+  const location = useLocation();
+
   return (
-    <div style={backgroundStyle}>
+    <div
+      style={
+        location.pathname === "/us" ? homeBackgroundStyle : backgroundStyle
+      }
+    >
       <div style={subscribetitleStyle}>
         <h3>
           <b>Subscribe to PolicyEngine</b>

@@ -41,6 +41,7 @@ import MCA from "../images/logos/orgs/mca.jpg";
 import UBICenter from "../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
 import PRCarousel from "./home/GitHubActivity";
+import { SubscribeForm } from "./BlogPage";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -71,7 +72,7 @@ function HouseholdPolicyOptions(props) {
           marginRight: mobile ? 0 : 20,
           marginBottom: mobile ? 20 : 0,
         }}
-        whileHover={{ 
+        whileHover={{
           scale: 1.05,
           backgroundColor: style.colors.DARK_GRAY,
           color: style.colors.WHITE,
@@ -85,7 +86,9 @@ function HouseholdPolicyOptions(props) {
           });
         }}
       >
-        <h3 style={{color: "inherit"}}>Compute my household income, taxes and benefits →</h3>
+        <h3 style={{ color: "inherit" }}>
+          Compute my household income, taxes and benefits →
+        </h3>
       </motion.div>
       <motion.div
         style={{
@@ -96,7 +99,7 @@ function HouseholdPolicyOptions(props) {
           padding: 20,
           cursor: "pointer",
         }}
-        whileHover={{ 
+        whileHover={{
           scale: 1.05,
           backgroundColor: style.colors.DARK_GRAY,
           color: style.colors.WHITE,
@@ -110,7 +113,9 @@ function HouseholdPolicyOptions(props) {
           });
         }}
       >
-        <h3 style={{color: "inherit"}}>Compute the impact of policy reforms →</h3>
+        <h3 style={{ color: "inherit" }}>
+          Compute the impact of policy reforms →
+        </h3>
       </motion.div>
     </div>
   );
@@ -182,47 +187,53 @@ export function WidePanel(props) {
 }
 
 export default function HomePage(props) {
-  document.title = "PolicyEngine"
+  document.title = "PolicyEngine";
   const { countryId } = props;
   const mobile = useMobile();
   // Items are centered horizontally, and placed in order vertically.
   return (
     <>
-    <div style={{
-      width: mobile ? "100%" : "50%",
-    }}>
-    <div
-      style={{
-        display: "flex",
-      }}
-    >
+      <div
+        style={{
+          width: mobile ? "100%" : "50%",
+        }}
+      >
         <div
           style={{
-            paddingLeft: 50,
-            paddingRight: 50,
-            paddingTop: 40,
             display: "flex",
-            flexDirection: "column",
-            alignItems: !mobile && "center",
-            marginBottom: 30,
           }}
         >
           <div
             style={{
-              paddingRight: 0,
-              paddingLeft: 0,
-              width: mobile ? "100%" : "50vw"
+              paddingLeft: 50,
+              paddingRight: 50,
+              paddingTop: 40,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: !mobile && "center",
+              marginBottom: 30,
             }}
           >
-            <h1>Computing the impact of public policy</h1>
-            <h4>PolicyEngine is a free, open-source app enabling anyone to compute how tax-benefit policy affects them.</h4>
+            <div
+              style={{
+                paddingRight: 0,
+                paddingLeft: 0,
+                width: mobile ? "100%" : "50vw",
+              }}
+            >
+              <h1>Computing the impact of public policy</h1>
+              <h4>
+                PolicyEngine is a free, open-source app enabling anyone to
+                compute how tax-benefit policy affects them.
+              </h4>
+            </div>
+            <HouseholdPolicyOptions countryId={countryId} />
           </div>
-          <HouseholdPolicyOptions countryId={countryId} />
-          </div>
-          {!mobile && <QuoteCarousel countryId={countryId}/>}
-      </div>
+          {!mobile && <QuoteCarousel countryId={countryId} />}
+        </div>
       </div>
       <BlogPostHolder countryId={countryId} />
+      <SubscribeForm />
       <Collaborations countryId={countryId} />
       <WidePanel
         direction="right"
@@ -313,39 +324,39 @@ export default function HomePage(props) {
 function CountryPackages(props) {
   const { countryId } = props;
 
-  return <WidePanel
-    direction="right"
-    backgroundColor={style.colors.WHITE}
-    right={
-      <>
-        <h1 style={{ paddingBottom: 30 }}>
-          Advanced analysis with our Python packages
-        </h1>
-        <h5>
-          Dive deeper into policy impact analysis using PolicyEngine&apos;s open-source Python packages. Customize your simulations and perform advanced reforms for thorough insights, all on your own computer.
-        </h5>
-        <div style={{paddingTop: 10}} />
-        <a 
-          href={`/${countryId}/docs`}
-        ><h4>Explore the documentation &#8594;</h4></a>
-      </>
-    }
-    left={
-      <img
-        src={
-          countryId === "us" ?
-            usDocs :
-            ukDocs
-        }
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
-        }}
-        alt="Policy impact"
-      />
-    }
-  />
+  return (
+    <WidePanel
+      direction="right"
+      backgroundColor={style.colors.WHITE}
+      right={
+        <>
+          <h1 style={{ paddingBottom: 30 }}>
+            Advanced analysis with our Python packages
+          </h1>
+          <h5>
+            Dive deeper into policy impact analysis using PolicyEngine&apos;s
+            open-source Python packages. Customize your simulations and perform
+            advanced reforms for thorough insights, all on your own computer.
+          </h5>
+          <div style={{ paddingTop: 10 }} />
+          <a href={`/${countryId}/docs`}>
+            <h4>Explore the documentation &#8594;</h4>
+          </a>
+        </>
+      }
+      left={
+        <img
+          src={countryId === "us" ? usDocs : ukDocs}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+          alt="Policy impact"
+        />
+      }
+    />
+  );
 }
 
 function QuoteCarousel(props) {
@@ -361,43 +372,45 @@ function QuoteCarousel(props) {
   for (let i = 0; i < countryQuotes.length; i++) {
     const data = countryQuotes[i];
     quoteBlocks.push(
-      <div
-        key={data.name}
-      >
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          height: 280,
-        }}>
+      <div key={data.name}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            height: 280,
+          }}
+        >
           <p
-            style={{ fontFamily: "Roboto Serif", fontSize: 16, marginBottom: 20 }}
+            style={{
+              fontFamily: "Roboto Serif",
+              fontSize: 16,
+              marginBottom: 20,
+            }}
           >
             {data.quote}
           </p>
-          <div style={{display: "flex"}}>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <img
-              src={data.headshot}
-              alt={`${data.name} headshot`}
-              style={{
-                width: 50,
-                height: 50,
-                borderRadius: 50,
-                marginBottom: 20,
-                objectFit: "cover",
-              }}
-            />
-          </div>
-          <div style={{paddingLeft: 30}}>
-          <h6 style={{ textAlign: "left" }}>
-            <b>{data.name}</b>
-          </h6>
-          <h6 style={{ textAlign: "left" }}>
-            {data.position}
-          </h6>
-          </div>
+          <div style={{ display: "flex" }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <img
+                src={data.headshot}
+                alt={`${data.name} headshot`}
+                style={{
+                  width: 50,
+                  height: 50,
+                  borderRadius: 50,
+                  marginBottom: 20,
+                  objectFit: "cover",
+                }}
+              />
+            </div>
+            <div style={{ paddingLeft: 30 }}>
+              <h6 style={{ textAlign: "left" }}>
+                <b>{data.name}</b>
+              </h6>
+              <h6 style={{ textAlign: "left" }}>{data.position}</h6>
+            </div>
           </div>
         </div>
       </div>
@@ -486,9 +499,15 @@ function Collaborations(props) {
         marginTop: 25,
       }}
     >
-      <Container fluid style={{backgroundColor: style.colors.WHITE, padding: 50, paddingBottom: 70 }}>
-
-      <Row style={{ justifyContent: "center", alignItems: "center" }}>
+      <Container
+        fluid
+        style={{
+          backgroundColor: style.colors.WHITE,
+          padding: 50,
+          paddingBottom: 70,
+        }}
+      >
+        <Row style={{ justifyContent: "center", alignItems: "center" }}>
           {Object.values(orgData[countryId] || {}).map((org) => (
             <Col
               key={org.link}
@@ -538,10 +557,20 @@ function APIDemo(props) {
             paddingTop: 100,
           }}
         >
-          <h2 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90 }}>
+          <h2
+            style={{
+              paddingLeft: mobile ? 5 : 90,
+              paddingRight: mobile ? 5 : 90,
+            }}
+          >
             PolicyEngine&apos;s free API computes policy impacts
           </h2>
-          <h5 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90 }}>
+          <h5
+            style={{
+              paddingLeft: mobile ? 5 : 90,
+              paddingRight: mobile ? 5 : 90,
+            }}
+          >
             Instantly compute taxes and benefits for any household under current
             or reformed policy rules, using the PolicyEngine REST API.
           </h5>
@@ -556,7 +585,6 @@ function APIDemo(props) {
     </div>
   );
 }
-
 
 const quoteData = {
   uk: [
@@ -610,7 +638,7 @@ const quoteData = {
       name: "Nate Golden",
       position: "Founder and President of the Maryland Child Alliance",
       quote:
-        "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality.",// The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
+        "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality.", // The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
       headshot: NateGolden,
     },
     {
