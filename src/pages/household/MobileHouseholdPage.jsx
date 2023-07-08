@@ -59,6 +59,7 @@ function MobileTreeNavigationHolder(props) {
         flexDirection: "row",
         padding: 15,
         backgroundColor: style.colors.LIGHT_GRAY,
+        overflowX: "scroll",
         height: 50,
         alignItems: "center",
         width: "100%",
@@ -77,7 +78,6 @@ function MobileTreeNavigationHolder(props) {
             paddingRight: 10,
             whiteSpace: "nowrap",
             margin: 0,
-
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);

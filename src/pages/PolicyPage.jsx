@@ -190,6 +190,7 @@ function MobileTreeNavigationHolder(props) {
             paddingRight: 10,
             whiteSpace: "nowrap",
             margin: 0,
+            height: '100%'
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
