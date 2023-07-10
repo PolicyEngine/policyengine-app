@@ -15,8 +15,8 @@ export default function AboutPage() {
         also the UK Research Director at the UBI Center, a think tank
         researching universal basic income policies, and was previously a data
         scientist at Caspian, where he worked in improving anti-money laundering
-        investigations. Nikhil is currently on leave from Durham
-        University&apos;s Computer Science program.
+        investigations. Nikhil has a bachelor&apos;s degree in Computer Science from the
+        University of Durham.
       </p>
     </Col>
   );
