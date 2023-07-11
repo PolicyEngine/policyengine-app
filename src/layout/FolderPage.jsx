@@ -92,7 +92,8 @@ export default function FolderPage(props) {
             <motion.div
               key={child.name}
               style={{
-                width: mobile ? 100 : 150,
+                minWidth: mobile ? 100 : 150,
+                maxWidth: 150,
                 height: mobile ? 100 : 100,
                 backgroundColor: style.colors.LIGHT_GRAY,
                 margin: 10,
@@ -100,7 +101,7 @@ export default function FolderPage(props) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                cursor: "pointer",
+                cursor: "pointer"
               }}
               whileHover={{ scale: 1.05, backgroundColor: style.colors.DARK_GRAY, color: "white" }}
               transition={{ duration: 0.25 }}
