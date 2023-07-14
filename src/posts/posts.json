@@ -854,5 +854,19 @@
     "authors": [
       "max-ghenis"
     ]
+  },
+  {
+    "title": "Scott Winship’s individualized Earned Income Tax Credit proposal",
+    "description": "An analysis and note on the value of open-source models.",
+    "date": "2023-07-14 08:00:00",
+    "filename": "winship-individualized-eitc.md",
+    "tags": [
+      "us",
+      "reforms"
+    ],
+    "image": "winship-individualized-eitc.jpg",
+    "authors": [
+      "max-ghenis"
+    ]
   }
 ]
