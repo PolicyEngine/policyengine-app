@@ -29,6 +29,8 @@ function PolicyNamer(props) {
           inputmode="text"
           padding={10}
           width="100%"
+          value={label}
+          key={label}
           onChange={(name) => {
             getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
               (data) => {
