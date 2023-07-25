@@ -2,7 +2,7 @@ import { Modal } from "antd";
 import { useCallback, useEffect, useState } from "react";
 
 export default function Screenshottable(props) {
-  const { children } = props;
+  const { children, title } = props;
   // This component watches for the keyboard shortcut Ctrl + K, and when it
   // is pressed, it shows the children in a modal dialog with lots of whitespace
   // around them, so that they can be easily copied and pasted into a document.
@@ -52,8 +52,14 @@ export default function Screenshottable(props) {
             paddingBottom: 120,
             borderWidth: 1,
             borderStyle: "dashed",
+            minHeight: 800,
           }}
         >
+          {
+            title && (
+              <h2>{title}</h2>
+            )
+          }
           {children}
         </div>
       </Modal>

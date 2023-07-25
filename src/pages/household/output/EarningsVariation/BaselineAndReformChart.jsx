@@ -13,6 +13,8 @@ import { getCliffs } from "./cliffs";
 import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import useMobile from "layout/Responsive";
+import Screenshottable from "layout/Screenshottable";
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -136,6 +138,7 @@ export default function BaselineAndReformChart(props) {
 
 function BaselineAndReformTogetherPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
+  const mobile = useMobile();
   const {
     earningsArray,
     baselineArray,
@@ -185,6 +188,7 @@ function BaselineAndReformTogetherPlot(props) {
     },
   ];
   const plotObject = (
+    <Screenshottable title="Household net income by employment income">
     <Plot
       data={data}
       key="reform"
@@ -209,7 +213,7 @@ function BaselineAndReformTogetherPlot(props) {
           y: 1.2,
           orientation: "h",
         },
-        ...ChartLogo,
+        ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
         ...plotLayoutFont
       }}
       config={{
@@ -258,6 +262,7 @@ function BaselineAndReformTogetherPlot(props) {
         setHoverCard(null);
       }}
     />
+    </Screenshottable>
   );
 
   return <FadeIn>{plotObject}</FadeIn>;
@@ -265,6 +270,7 @@ function BaselineAndReformTogetherPlot(props) {
 
 function BaselineReformDeltaPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
+  const mobile = useMobile();
   const {
     earningsArray,
     baselineArray,
@@ -299,6 +305,7 @@ function BaselineReformDeltaPlot(props) {
     },
   ];
   const plotObject = (
+    <Screenshottable title={`Change to household net income by employment income`}>
     <Plot
       data={data}
       key="reform"
@@ -328,7 +335,8 @@ function BaselineReformDeltaPlot(props) {
         margin: {
           t: 0,
         },
-        ...plotLayoutFont
+        ...plotLayoutFont,
+        ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
       }}
       config={{
         displayModeBar: false,
@@ -358,8 +366,10 @@ function BaselineReformDeltaPlot(props) {
       onUnhover={() => {
         setHoverCard(null);
       }}
-    />
+    /></Screenshottable>
   );
 
-  return <FadeIn>{plotObject}</FadeIn>;
+  return <FadeIn>
+      {plotObject}
+  </FadeIn>;
 }
