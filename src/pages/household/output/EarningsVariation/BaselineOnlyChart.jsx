@@ -13,6 +13,7 @@ import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
 import { plotLayoutFont } from 'pages/policy/output/utils';
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
+import useMobile from "layout/Responsive";
 
 export default function BaselineOnlyChart(props) {
   const {
@@ -55,6 +56,7 @@ export default function BaselineOnlyChart(props) {
 
   function BaselineOnlyPlot() {
     const setHoverCard = useContext(HoverCardContext);
+    const mobile = useMobile();
     // Add the main line, then add a 'you are here' line
     return (
       <FadeIn key="baseline">
@@ -110,7 +112,7 @@ export default function BaselineOnlyChart(props) {
               y: 1.2,
               orientation: "h",
             },
-            ...ChartLogo,
+            ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
             margin: {
               t: 0,
             },

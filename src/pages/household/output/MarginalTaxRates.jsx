@@ -15,6 +15,7 @@ import { Radio } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import useMobile from "layout/Responsive";
 
 export default function MarginalTaxRates(props) {
   const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
@@ -27,6 +28,7 @@ export default function MarginalTaxRates(props) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
+  const mobile = useMobile();
   let title;
 
   const currentEarnings = getValueFromHousehold(
@@ -162,7 +164,7 @@ export default function MarginalTaxRates(props) {
               y: 1.1,
               orientation: "h",
             },
-            ...ChartLogo,
+            ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.2),
             ...plotLayoutFont
           }}
           config={{

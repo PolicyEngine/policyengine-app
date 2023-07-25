@@ -13,6 +13,7 @@ import { getCliffs } from "./cliffs";
 import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import { plotLayoutFont } from 'pages/policy/output/utils';
+import useMobile from "layout/Responsive";
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -136,6 +137,7 @@ export default function BaselineAndReformChart(props) {
 
 function BaselineAndReformTogetherPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
+  const mobile = useMobile();
   const {
     earningsArray,
     baselineArray,
@@ -209,7 +211,7 @@ function BaselineAndReformTogetherPlot(props) {
           y: 1.2,
           orientation: "h",
         },
-        ...ChartLogo,
+        ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
         ...plotLayoutFont
       }}
       config={{
@@ -265,6 +267,7 @@ function BaselineAndReformTogetherPlot(props) {
 
 function BaselineReformDeltaPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
+  const mobile = useMobile();
   const {
     earningsArray,
     baselineArray,
@@ -328,7 +331,8 @@ function BaselineReformDeltaPlot(props) {
         margin: {
           t: 0,
         },
-        ...plotLayoutFont
+        ...plotLayoutFont,
+        ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
       }}
       config={{
         displayModeBar: false,
