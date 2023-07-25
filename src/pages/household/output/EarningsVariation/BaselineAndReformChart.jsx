@@ -14,6 +14,7 @@ import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import { plotLayoutFont } from 'pages/policy/output/utils';
 import useMobile from "layout/Responsive";
+import Screenshottable from "layout/Screenshottable";
 
 export default function BaselineAndReformChart(props) {
   const {
@@ -187,6 +188,7 @@ function BaselineAndReformTogetherPlot(props) {
     },
   ];
   const plotObject = (
+    <Screenshottable title="Household net income by employment income">
     <Plot
       data={data}
       key="reform"
@@ -260,6 +262,7 @@ function BaselineAndReformTogetherPlot(props) {
         setHoverCard(null);
       }}
     />
+    </Screenshottable>
   );
 
   return <FadeIn>{plotObject}</FadeIn>;
@@ -302,6 +305,7 @@ function BaselineReformDeltaPlot(props) {
     },
   ];
   const plotObject = (
+    <Screenshottable title={`Change to household net income by employment income`}>
     <Plot
       data={data}
       key="reform"
@@ -362,8 +366,10 @@ function BaselineReformDeltaPlot(props) {
       onUnhover={() => {
         setHoverCard(null);
       }}
-    />
+    /></Screenshottable>
   );
 
-  return <FadeIn>{plotObject}</FadeIn>;
+  return <FadeIn>
+      {plotObject}
+  </FadeIn>;
 }

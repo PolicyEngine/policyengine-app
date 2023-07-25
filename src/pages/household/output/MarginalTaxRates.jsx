@@ -16,6 +16,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from 'pages/policy/output/utils';
 import useMobile from "layout/Responsive";
+import Screenshottable from "layout/Screenshottable";
 
 export default function MarginalTaxRates(props) {
   const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
@@ -126,6 +127,8 @@ export default function MarginalTaxRates(props) {
     // Add the main line, then add a 'you are here' line
     plot = (
       <FadeIn>
+        
+        <Screenshottable title="Marginal tax rate by employment income">
         <Plot
           data={[
             {
@@ -154,6 +157,9 @@ export default function MarginalTaxRates(props) {
               ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
               tickformat: ",.0f",
             },
+            margin: {
+              t: 0,
+            },
             yaxis: {
               title: "Marginal tax rate",
               ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
@@ -175,6 +181,7 @@ export default function MarginalTaxRates(props) {
             width: "100%",
           }}
         />
+        </Screenshottable>
       </FadeIn>
     );
   } else if (baselineMtr && reformMtr) {
@@ -306,6 +313,11 @@ export default function MarginalTaxRates(props) {
             buttonStyle="solid"
           />
         </div>
+        <Screenshottable title={
+          showDelta ?
+            "Change to marginal tax rate by employment income" :
+            "Marginal tax rate by employment income"
+        }>
         <Plot
           data={data}
           layout={{
@@ -330,7 +342,10 @@ export default function MarginalTaxRates(props) {
               y: 1.1,
               orientation: "h",
             },
-            ...ChartLogo,
+            margin: {
+              t: 0,
+            },
+            ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.2),
             ...plotLayoutFont
           }}
           config={{
@@ -341,6 +356,7 @@ export default function MarginalTaxRates(props) {
             width: "100%",
           }}
         />
+        </Screenshottable>
       </FadeIn>
     );
   }

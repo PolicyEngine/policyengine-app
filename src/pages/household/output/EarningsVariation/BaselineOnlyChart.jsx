@@ -14,6 +14,7 @@ import { plotLayoutFont } from 'pages/policy/output/utils';
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import useMobile from "layout/Responsive";
+import Screenshottable from "layout/Screenshottable";
 
 export default function BaselineOnlyChart(props) {
   const {
@@ -60,6 +61,7 @@ export default function BaselineOnlyChart(props) {
     // Add the main line, then add a 'you are here' line
     return (
       <FadeIn key="baseline">
+        <Screenshottable title="Household net income by employment income">
         <Plot
           key="baseline"
           data={[
@@ -162,6 +164,7 @@ export default function BaselineOnlyChart(props) {
             setHoverCard(null);
           }}
         />
+        </Screenshottable>
       </FadeIn>
     );
   }
