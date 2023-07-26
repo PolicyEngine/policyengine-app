@@ -47,7 +47,44 @@ export default function PovertyImpact(props) {
   const mobile = useMobile();
 
   function PovertyImpactPlot() {
-    const setHoverCard = useContext(HoverCardContext);
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
+
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const group = point.x;
+      const change = point.y;
+      const plotLeft = point.xaxis.d2p(group);
+      const left = plotLeft + point.xaxis._offset;
+      const top = point.yaxis.d2p(change) + point.yaxis._offset;
+      if (plotLeft <= point.xaxis._length / 2) {
+        setCoordinates(left, top, change >= 0 ? "bottom-left" : "top-left");
+      } else {
+        setCoordinates(left, top, change >= 0 ? "bottom-right" : "top-right");
+      }
+      const baseline = impact.poverty.poverty[labelToKey[group]].baseline;
+      const reform = impact.poverty.poverty[labelToKey[group]].reform;
+      const message = `The percentage of ${
+        group === "All" ? "people" : group.toLowerCase()
+      } in poverty ${
+        change < -0.001
+          ? `would fall ${percent(-change)} from ${percent(
+            baseline
+          )} to ${percent(reform)}.`
+          : change > 0.001
+            ? `would rise ${percent(change)} from ${percent(
+              baseline
+            )} to ${percent(reform)}.`
+            : change === 0
+              ? `would remain at ${percent(baseline)}.`
+              : (change > 0 ? "would rise " : "would fall ") +
+              ` by less than 0.1%.`
+      }`;
+      setContent({
+        title: group,
+        body: message,
+      });
+    };
+
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -101,34 +138,10 @@ export default function PovertyImpact(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          const group = data.points[0].x;
-          const change = data.points[0].y;
-          const baseline = impact.poverty.poverty[labelToKey[group]].baseline;
-          const reform = impact.poverty.poverty[labelToKey[group]].reform;
-          const message = `The percentage of ${
-            group === "All" ? "people" : group.toLowerCase()
-          } in poverty ${
-            change < -0.001
-              ? `would fall ${percent(-change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-              : change > 0.001
-                ? `would rise ${percent(change)} from ${percent(
-                  baseline
-                )} to ${percent(reform)}.`
-                : change === 0
-                  ? `would remain at ${percent(baseline)}.`
-                  : (change > 0 ? "would rise " : "would fall ") +
-                  ` by less than 0.1%.`
-          }`;
-          setHoverCard({
-            title: group,
-            body: message,
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );

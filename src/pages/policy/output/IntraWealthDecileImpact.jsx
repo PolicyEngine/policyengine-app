@@ -20,7 +20,7 @@ export default function IntraWealthDecileImpact(props) {
   const mobile = useMobile();
 
   function IntraWealthDecileImpactPlot() {
-    const setHoverCard = useContext(HoverCardContext);
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
 
     const data = [
       {
@@ -212,6 +212,29 @@ export default function IntraWealthDecileImpact(props) {
       },
     ];
 
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const group = point.y;
+      const value = point.x;
+      const top = point.yaxis.d2p(group) + point.yaxis._offset;
+      const category = point.data.name;
+      if (category.includes("Lose")) {
+        setCoordinates(point.xaxis._offset, top);
+      } else {
+        setCoordinates(point.xaxis._length + point.xaxis._offset, top, "top-right");
+      }
+      const title = group === "All" ? "All households" : `Decile ${group}`;
+      const message = `${percent(value)} of ${
+        group === "All"
+          ? "all households"
+          : `households in the ${cardinal(group)} decile`
+      } ${category.toLowerCase()}.`;
+      setContent({
+        title: title,
+        body: message,
+      });
+    };
+
     return (
       <Plot
         data={data}
@@ -269,23 +292,10 @@ export default function IntraWealthDecileImpact(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const group = data.points[0].y;
-          const title = group === "All" ? "All households" : `Decile ${group}`;
-          const category = data.points[0].data.name;
-          const value = data.points[0].x;
-          const message = `${percent(value)} of ${
-            group === "All"
-              ? "all households"
-              : `households in the ${cardinal(group)} decile`
-          } ${category.toLowerCase()}.`;
-          setHoverCard({
-            title: title,
-            body: message,
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );

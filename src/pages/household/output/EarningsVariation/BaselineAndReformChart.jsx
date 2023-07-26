@@ -137,8 +137,8 @@ export default function BaselineAndReformChart(props) {
 }
 
 function BaselineAndReformTogetherPlot(props) {
-  const setHoverCard = useContext(HoverCardContext);
   const mobile = useMobile();
+  const {setContent, setCoordinates} = useContext(HoverCardContext);
   const {
     earningsArray,
     baselineArray,
@@ -187,6 +187,60 @@ function BaselineAndReformTogetherPlot(props) {
       hoverinfo: "none",
     },
   ];
+  const dataHandler = (data) => {
+    const point = data.points[0];
+    if (point.x !== undefined && point.y !== undefined) {
+      const plotLeft = point.xaxis.d2p(point.x);
+      const left = plotLeft + point.xaxis._offset;
+      const top = point.yaxis.d2p(point.y) + point.yaxis._offset;
+      if (plotLeft <= point.xaxis._length / 2) {
+        setCoordinates(left, top);
+      } else {
+        setCoordinates(left, top, "bottom-right");
+      }
+      const variableLabelAmount = convertToCurrencyString(
+        metadata.currency,
+        point.y
+      );
+      const employmentIncome = convertToCurrencyString(
+        metadata.currency,
+        point.x
+      );
+      const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`;
+      setContent({
+        title: point.data.name,
+        body: message,
+      });
+    } else {
+      const plotLeftMax = point.xaxis.d2p(Math.max(...point.data.x));
+      const plotLeftMin = point.xaxis.d2p(Math.min(...point.data.x));
+      const top = point.yaxis.d2p((point.yaxis.range[0] + point.yaxis.range.at(-1)) / 2) + point.yaxis._offset;
+      if ((plotLeftMin + plotLeftMax) / 2 <= point.xaxis._length / 2) {
+        const left = plotLeftMax + point.xaxis._offset;
+        setCoordinates(left, top);
+      } else {
+        const left = plotLeftMin + point.xaxis._offset;
+        setCoordinates(left, top, "top-right");
+      }
+      setContent({
+        title: point.data.name,
+        body: `Your net income falls after earning 
+              ${convertToCurrencyString(
+          metadata.currency,
+          Math.min(...point.data.x)
+        )} until earning 
+              ${convertToCurrencyString(
+          metadata.currency,
+          Math.max(...point.data.x)
+        )} in the 
+              ${
+          point.data.name.includes("reform")
+            ? "reform"
+            : "baseline"
+        } scenario.`,
+      });
+    }
+  };
   const plotObject = (
     <Screenshottable title="Household net income by employment income">
     <Plot
@@ -223,43 +277,10 @@ function BaselineAndReformTogetherPlot(props) {
       style={{
         width: "100%",
       }}
-      onHover={(data) => {
-        if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-          const variableLabelAmount = convertToCurrencyString(
-            metadata.currency,
-            data.points[0].y
-          );
-          const employmentIncome = convertToCurrencyString(
-            metadata.currency,
-            data.points[0].x
-          );
-          const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`;
-          setHoverCard({
-            title: data.points[0].data.name,
-            body: message,
-          });
-        } else {
-          setHoverCard({
-            title: data.points[0].data.name,
-            body: `Your net income falls after earning 
-              ${convertToCurrencyString(
-                metadata.currency,
-                Math.min(...data.points[0].data.x)
-              )} until earning 
-              ${convertToCurrencyString(
-                metadata.currency,
-                Math.max(...data.points[0].data.x)
-              )} in the 
-              ${
-                data.points[0].data.name.includes("reform")
-                  ? "reform"
-                  : "baseline"
-              } scenario.`,
-          });
-        }
-      }}
+      onClick={dataHandler}
+      onHover={dataHandler}
       onUnhover={() => {
-        setHoverCard(null);
+        setContent(null);
       }}
     />
     </Screenshottable>
@@ -269,8 +290,8 @@ function BaselineAndReformTogetherPlot(props) {
 }
 
 function BaselineReformDeltaPlot(props) {
-  const setHoverCard = useContext(HoverCardContext);
   const mobile = useMobile();
+  const {setContent, setCoordinates} = useContext(HoverCardContext);
   const {
     earningsArray,
     baselineArray,
@@ -304,6 +325,32 @@ function BaselineReformDeltaPlot(props) {
       hoverinfo: "none",
     },
   ];
+  const dataHandler = (data) => {
+    const point = data.points[0];
+    const plotLeft = point.xaxis.d2p(point.x);
+    const left = plotLeft + point.xaxis._offset;
+    const top = point.yaxis.d2p(point.y) + point.yaxis._offset;
+    if (plotLeft <= point.xaxis._length / 2) {
+      setCoordinates(left, top, point.y > 0 ? "bottom-left" : "top-left");
+    } else {
+      setCoordinates(left, top, point.y > 0 ? "bottom-right" : "top-right");
+    }
+    if (point.x !== undefined && point.y !== undefined) {
+      const variableLabelAmount = convertToCurrencyString(
+        metadata.currency,
+        point.y
+      );
+      const employmentIncome = convertToCurrencyString(
+        metadata.currency,
+        point.x
+      );
+      const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`;
+      setContent({
+        title: point.data.name,
+        body: message,
+      });
+    }
+  };
   const plotObject = (
     <Screenshottable title={`Change to household net income by employment income`}>
     <Plot
@@ -346,25 +393,10 @@ function BaselineReformDeltaPlot(props) {
         width: "100%",
         marginTop: "3rem",
       }}
-      onHover={(data) => {
-        if (data.points[0].x !== undefined && data.points[0].y !== undefined) {
-          const variableLabelAmount = convertToCurrencyString(
-            metadata.currency,
-            data.points[0].y
-          );
-          const employmentIncome = convertToCurrencyString(
-            metadata.currency,
-            data.points[0].x
-          );
-          const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`;
-          setHoverCard({
-            title: data.points[0].data.name,
-            body: message,
-          });
-        }
-      }}
+      onClick={dataHandler}
+      onHover={dataHandler}
       onUnhover={() => {
-        setHoverCard(null);
+        setContent(null);
       }}
     /></Screenshottable>
   );

@@ -26,7 +26,81 @@ export default function InequalityImpact(props) {
   const mobile = useMobile();
 
   function InequalityImpactPlot() {
-    const setHoverCard = useContext(HoverCardContext)
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
+
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const label = point.x;
+      const plotLeft = point.xaxis.d2p(label);
+      const left = plotLeft + point.xaxis._offset;
+      const top = point.yaxis.d2p(point.y) + point.yaxis._offset;
+      if (plotLeft <= point.xaxis._length / 2) {
+        setCoordinates(left, top, point.y >= 0 ? "bottom-left" : "top-left");
+      } else {
+        setCoordinates(left, top, point.y >= 0 ? "bottom-right" : "top-right");
+      }
+      let body = null;
+      if (label === "Gini index") {
+        // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
+        const baseline = impact.inequality.gini.baseline;
+        const reform = impact.inequality.gini.reform;
+        const change = reform / baseline - 1;
+        body =
+          change > 0.001
+            ? `This reform would increase the Gini index of net income from
+                  ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
+                  ${change.toFixed(3)}.`
+            : change < -0.001
+              ? `This reform would reduce the Gini index of net income from
+                  ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
+                  ${percent(change)}.`
+              : change === 0
+                ? "This reform would not impact the Gini index of net income."
+                : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
+                " the Gini index of net income by less than 0.1%.";
+      } else if (label === "Top 10% share") {
+        // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
+        const baseline = impact.inequality.top_10_pct_share.baseline;
+        const reform = impact.inequality.top_10_pct_share.reform;
+        const change = reform / baseline - 1;
+        body =
+          change > 0.001
+            ? `This reform would increase the share of total net income held by people in the top 10% of households from
+                  ${percent(baseline)} to ${percent(reform)}, an increase of
+                  ${percent(change)}.`
+            : change < -0.001
+              ? `This reform would reduce the share of total net income held by people in the top 10% of households from
+                  ${percent(baseline)} to ${percent(reform)}, a reduction of
+                  ${percent(-change)}.`
+              : change === 0
+                ? "This reform would not impact the share of total net income held by people in the top 10% of households."
+                : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
+                " the share of total net income held by people in the top 10% of households by less than 0.1%.";
+      } else {
+        // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
+        const baseline = impact.inequality.top_1_pct_share.baseline;
+        const reform = impact.inequality.top_1_pct_share.reform;
+        const change = reform / baseline - 1;
+        body =
+          change > 0.001
+            ? `This reform would increase the share of total net income held by people in the top 1% of households from
+                  ${percent(baseline)} to ${percent(reform)}, an increase of
+                  ${percent(change)}.`
+            : change < -0.001
+              ? `This reform would reduce the share of total net income held by people in the top 1% of households from
+                  ${percent(baseline)} to ${percent(reform)}, a reduction of
+                  ${percent(-change)}.`
+              : change === 0
+                ? "This reform would not impact the share of total net income held by people in the top 1% of households."
+                : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
+                " the share of total net income held by people in the top 10% of households by less than 0.1%.";
+      }
+      setContent({
+        title: label,
+        body: body,
+      });
+    };
+
     return (
       <Plot
         data={[
@@ -77,71 +151,10 @@ export default function InequalityImpact(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          const label = data.points[0].x;
-          let body = null;
-          if (label === "Gini index") {
-            // 'This reform reduces/increases tax revenues by £X/This reform has no impact on tax revenues'
-            const baseline = impact.inequality.gini.baseline;
-            const reform = impact.inequality.gini.reform;
-            const change = reform / baseline - 1;
-            body =
-              change > 0.001
-                ? `This reform would increase the Gini index of net income from
-                  ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
-                  ${change.toFixed(3)}.`
-                : change < -0.001
-                  ? `This reform would reduce the Gini index of net income from
-                  ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
-                  ${percent(change)}.`
-                  : change === 0
-                    ? "This reform would not impact the Gini index of net income."
-                    : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
-                    " the Gini index of net income by less than 0.1%.";
-          } else if (label === "Top 10% share") {
-            // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
-            const baseline = impact.inequality.top_10_pct_share.baseline;
-            const reform = impact.inequality.top_10_pct_share.reform;
-            const change = reform / baseline - 1;
-            body =
-              change > 0.001
-                ? `This reform would increase the share of total net income held by people in the top 10% of households from
-                  ${percent(baseline)} to ${percent(reform)}, an increase of
-                  ${percent(change)}.`
-                : change < -0.001
-                  ? `This reform would reduce the share of total net income held by people in the top 10% of households from
-                  ${percent(baseline)} to ${percent(reform)}, a reduction of
-                  ${percent(-change)}.`
-                  : change === 0
-                    ? "This reform would not impact the share of total net income held by people in the top 10% of households."
-                    : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
-                    " the share of total net income held by people in the top 10% of households by less than 0.1%.";
-          } else {
-            // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
-            const baseline = impact.inequality.top_1_pct_share.baseline;
-            const reform = impact.inequality.top_1_pct_share.reform;
-            const change = reform / baseline - 1;
-            body =
-              change > 0.001
-                ? `This reform would increase the share of total net income held by people in the top 1% of households from
-                  ${percent(baseline)} to ${percent(reform)}, an increase of
-                  ${percent(change)}.`
-                : change < -0.001
-                  ? `This reform would reduce the share of total net income held by people in the top 1% of households from
-                  ${percent(baseline)} to ${percent(reform)}, a reduction of
-                  ${percent(-change)}.`
-                  : change === 0
-                    ? "This reform would not impact the share of total net income held by people in the top 1% of households."
-                    : (change > 0 ? "This reform would increase " : "This reform would reduce ") +
-                    " the share of total net income held by people in the top 10% of households by less than 0.1%.";
-          }
-          setHoverCard({
-            title: label,
-            body: body,
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );

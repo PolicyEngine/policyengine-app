@@ -20,7 +20,7 @@ export default function IntraDecileImpact(props) {
   const mobile = useMobile();
 
   function IntraDecileImpactPlot() {
-    const setHoverCard = useContext(HoverCardContext);
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
 
     const data = [
       {
@@ -212,6 +212,30 @@ export default function IntraDecileImpact(props) {
       },
     ];
 
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const group = point.y;
+      const value = point.x;
+      const top = point.yaxis.d2p(group) + point.yaxis._offset;
+      const category = point.data.name;
+      if (category.includes("Lose")) {
+        setCoordinates(point.xaxis._offset, top);
+      } else {
+        setCoordinates(point.xaxis._length + point.xaxis._offset, top, "top-right");
+      }
+      const title = group === "All" ? "All households" : `Decile ${group}`;
+      const message = `Of ${
+        group === "All"
+          ? "all households"
+          : `households in the ${cardinal(group)} decile`
+      }, ${policyLabel} would cause ${percent(value)} of people to
+        ${category.toLowerCase()} of their net income.`;
+      setContent({
+        title: title,
+        body: message,
+      });
+    };
+
     return (
       <Plot
         data={data}
@@ -269,24 +293,10 @@ export default function IntraDecileImpact(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const group = data.points[0].y;
-          const title = group === "All" ? "All households" : `Decile ${group}`;
-          const category = data.points[0].data.name;
-          const value = data.points[0].x;
-          const message = `Of ${
-            group === "All"
-              ? "all households"
-              : `households in the ${cardinal(group)} decile`
-          }, ${policyLabel} would cause ${percent(value)} of people to
-        ${category.toLowerCase()} of their net income.`;
-          setHoverCard({
-            title: title,
-            body: message,
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );

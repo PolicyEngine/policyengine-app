@@ -16,7 +16,39 @@ export default function RelativeImpactByWealthDecile(props) {
   const mobile = useMobile();
 
   function RelativeImpactByWealthDecilePlot() {
-    const setHoverCard = useContext(HoverCardContext);
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
+
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const relativeChange = point.y;
+      const plotLeft = point.xaxis.d2p(point.x);
+      const left = plotLeft + point.xaxis._offset;
+      const top = point.yaxis.d2p(relativeChange) + point.yaxis._offset;
+      if (plotLeft <= point.xaxis._length / 2) {
+        setCoordinates(left, top, relativeChange >= 0 ? "bottom-left" : "top-left");
+      } else {
+        setCoordinates(left, top, relativeChange >= 0 ? "bottom-right" : "top-right");
+      }
+      const decile = cardinal(point.x);
+      const message =
+        relativeChange > 0.001
+          ? `This reform would raise the income of households in the ${decile} decile by an average of ${percent(
+            relativeChange
+          )}.`
+          : relativeChange < -0.001
+            ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
+              -relativeChange
+            )}.`
+            : relativeChange === 0
+              ? `This reform would not impact the income of households in the ${decile} decile.`
+              : (relativeChange > 0 ? "This reform would raise " : "This reform would lower ") +
+              ` the income of households in the ${decile} decile by less than 0.1%.`;
+      setContent({
+        title: `Decile ${point.x}`,
+        body: message,
+      });
+    };
+
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -72,29 +104,10 @@ export default function RelativeImpactByWealthDecile(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const decile = cardinal(data.points[0].x);
-          const relativeChange = data.points[0].y;
-          const message =
-            relativeChange > 0.001
-              ? `This reform would raise the income of households in the ${decile} decile by an average of ${percent(
-                relativeChange
-              )}.`
-              : relativeChange < -0.001
-                ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
-                  -relativeChange
-                )}.`
-                : relativeChange === 0
-                  ? `This reform would ot impact the income of households in the ${decile} decile.`
-                  : (relativeChange > 0 ? "This reform would raise " : "This reform would lower ") +
-                  ` the income of households in the ${decile} decile by less than 0.1%.`;
-          setHoverCard({
-            title: `Decile ${data.points[0].x}`,
-            body: message,
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );

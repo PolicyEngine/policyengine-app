@@ -56,8 +56,62 @@ export default function BaselineOnlyChart(props) {
   );
 
   function BaselineOnlyPlot() {
-    const setHoverCard = useContext(HoverCardContext);
     const mobile = useMobile();
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
+
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      if (
+        point.x !== undefined &&
+        point.y !== undefined
+      ) {
+        const plotLeft = point.xaxis.d2p(point.x);
+        const left = plotLeft + point.xaxis._offset;
+        const top = point.yaxis.d2p(point.y) + point.yaxis._offset;
+        if (plotLeft <= point.xaxis._length / 2) {
+          setCoordinates(left, top);
+        } else {
+          setCoordinates(left, top, "bottom-right");
+        }
+        const variableLabelAmount = convertToCurrencyString(
+          metadata.currency,
+          point.y
+        );
+        const employmentIncome = convertToCurrencyString(
+          metadata.currency,
+          point.x
+        );
+        const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
+        setContent({
+          title: point.data.name,
+          body: message,
+        });
+      } else {
+        const plotLeftMax = point.xaxis.d2p(Math.max(...point.data.x));
+        const plotLeftMin = point.xaxis.d2p(Math.min(...point.data.x));
+        const top = point.yaxis.d2p((point.yaxis.range[0] + point.yaxis.range.at(-1)) / 2) + point.yaxis._offset;
+        if ((plotLeftMin + plotLeftMax) / 2 <= point.xaxis._length / 2) {
+          const left = plotLeftMax + point.xaxis._offset;
+          setCoordinates(left, top);
+        } else {
+          const left = plotLeftMin + point.xaxis._offset;
+          setCoordinates(left, top, "top-right");
+        }
+        setContent({
+          title: point.data.name,
+          body: `Your net income falls after earning 
+                ${convertToCurrencyString(
+            metadata.currency,
+            Math.min(...point.data.x)
+          )} until earning 
+                ${convertToCurrencyString(
+            metadata.currency,
+            Math.max(...point.data.x)
+          )}.`,
+        });
+      }
+    };
+
     // Add the main line, then add a 'you are here' line
     return (
       <FadeIn key="baseline">
@@ -127,41 +181,10 @@ export default function BaselineOnlyChart(props) {
           style={{
             width: "100%",
           }}
-          onHover={(data) => {
-            if (
-              data.points[0].x !== undefined &&
-              data.points[0].y !== undefined
-            ) {
-              const variableLabelAmount = convertToCurrencyString(
-                metadata.currency,
-                data.points[0].y
-              );
-              const employmentIncome = convertToCurrencyString(
-                metadata.currency,
-                data.points[0].x
-              );
-              const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
-              setHoverCard({
-                title: data.points[0].data.name,
-                body: message,
-              });
-            } else {
-              setHoverCard({
-                title: data.points[0].data.name,
-                body: `Your net income falls after earning 
-                ${convertToCurrencyString(
-                  metadata.currency,
-                  Math.min(...data.points[0].data.x)
-                )} until earning 
-                ${convertToCurrencyString(
-                  metadata.currency,
-                  Math.max(...data.points[0].data.x)
-                )}.`,
-              });
-            }
-          }}
+          onClick={dataHandler}
+          onHover={dataHandler}
           onUnhover={() => {
-            setHoverCard(null);
+            setContent(null);
           }}
         />
         </Screenshottable>

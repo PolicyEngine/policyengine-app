@@ -16,7 +16,43 @@ export default function AverageImpactByDecile(props) {
   const mobile = useMobile();
 
   function AverageImpactByDecilePlot() {
-    const setHoverCard = useContext(HoverCardContext);
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
+
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const change = point.y;
+      const plotLeft = point.xaxis.d2p(point.x);
+      const left = plotLeft + point.xaxis._offset;
+      const top = point.yaxis.d2p(change) + point.yaxis._offset;
+      if (plotLeft <= point.xaxis._length / 2) {
+        setCoordinates(left, top, change >= 0 ? "bottom-left" : "top-left");
+      } else {
+        setCoordinates(left, top, change >= 0 ? "bottom-right" : "top-right");
+      }
+      const decile = cardinal(point.x);
+      const message =
+        change > 0.0001
+          ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
+            metadata.variables.household_net_income,
+            change,
+            0
+          )} per year.`
+          : change < -0.0001
+            ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
+              metadata.variables.household_net_income,
+              -change,
+              0
+            )} per year.`
+            : change === 0
+              ? `This reform has no impact on the income of households in the ${decile} decile.`
+              : (change > 0 ? "This reform raises " : "This reform lowers ") +
+              ` the income of households in the ${decile} decile by less than 0.01%.`;
+      setContent({
+        title: `Decile ${point.x}`,
+        body: message,
+      });
+    };
+
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -72,33 +108,10 @@ export default function AverageImpactByDecile(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const decile = cardinal(data.points[0].x);
-          const change = data.points[0].y;
-          const message =
-            change > 0.0001
-              ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                metadata.variables.household_net_income,
-                change,
-                0
-              )} per year.`
-              : change < -0.0001
-                ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                  metadata.variables.household_net_income,
-                  -change,
-                  0
-                )} per year.`
-                : change === 0
-                  ? `This reform has no impact on the income of households in the ${decile} decile.`
-                  : (change > 0 ? "This reform raises " : "This reform lowers ") +
-                  ` the income of households in the ${decile} decile by less than 0.01%.`;
-          setHoverCard({
-            title: `Decile ${data.points[0].x}`,
-            body: message,
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );

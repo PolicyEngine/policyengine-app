@@ -46,7 +46,26 @@ export default function DetailedBudgetaryImpact(props) {
 
 
   function DetailedBudgetaryImpactPlot() {
-    const setHoverCard = useContext(HoverCardContext);
+    const {setContent, setCoordinates} = useContext(HoverCardContext);
+
+    const dataHandler = (data) => {
+      const point = data.points[0];
+      const program = point.x;
+      const change = point.y;
+      const plotLeft = point.xaxis.d2p(program);
+      const left = plotLeft + point.xaxis._offset;
+      const top = point.yaxis.d2p(change) + point.yaxis._offset;
+      if (plotLeft <= point.xaxis._length / 2) {
+        setCoordinates(left, top, change >= 0 ? "bottom-left" : "top-left");
+      } else {
+        setCoordinates(left, top, change >= 0 ? "bottom-right" : "top-right");
+      }
+      setContent({
+        title: `${program}`,
+        body: aggregateCurrency(change, metadata)
+      });
+    };
+
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -115,16 +134,10 @@ export default function DetailedBudgetaryImpact(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const program = data.points[0].x;
-          const change = data.points[0].y;
-          setHoverCard({
-            title: `${program}`,
-            body: aggregateCurrency(change, metadata)
-          });
-        }}
+        onClick={dataHandler}
+        onHover={dataHandler}
         onUnhover={() => {
-          setHoverCard(null);
+          setContent(null);
         }}
       />
     );
