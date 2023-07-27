@@ -145,6 +145,7 @@ function BaselineAndReformTogetherPlot(props) {
     variableLabel,
     metadata,
     variable,
+    baselineValue
   } = props;
   let data = [
     ...(variable === "household_net_income"
@@ -174,15 +175,27 @@ function BaselineAndReformTogetherPlot(props) {
       hoverinfo: "none",
     },
     {
-      x: [currentEarnings, currentEarnings],
-      y: [0, currentValue],
-      type: "line",
-      name: `Your current ${variableLabel}`,
+      x: [currentEarnings],
+      y: [currentValue],
+      type: "scatter",
+      mode: "markers",
+      name: `Your reform ${variableLabel}`,
+      line: {
+        color: style.colors.BLUE,
+      },
+      hoverinfo: "none",
+    },
+    {
+      x: [currentEarnings],
+      y: [baselineValue],
+      type: "scatter",
+      mode: "markers",
+      name: `Your baseline ${variableLabel}`,
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
       hoverinfo: "none",
-    },
+    }
   ];
   const plotObject = (
     <Plot
@@ -229,7 +242,7 @@ function BaselineAndReformTogetherPlot(props) {
             metadata.currency,
             data.points[0].x
           );
-          const message = `If you earn ${employmentIncome}, your reform ${variableLabel} will be ${variableLabelAmount}.`;
+          const message = `If you earn ${employmentIncome}, your ${data.points[0].data.name.toLocaleLowerCase().includes("reform") ? "reform" : "baseline"} ${variableLabel} will be ${variableLabelAmount}.`;
           setHoverCard({
             title: data.points[0].data.name,
             body: message,
