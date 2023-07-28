@@ -301,12 +301,12 @@ function BaselineReformDeltaPlot(props) {
       hoverinfo: "none",
     },
     {
-      x: [currentEarnings, currentEarnings],
-      y: [0, currentValue - baselineValue],
-      type: "line",
+      x: [currentEarnings],
+      y: [currentValue - baselineValue],
+      type: "scatter",
       name: `Your current change in ${variableLabel}`,
       line: {
-        color: style.colors.MEDIUM_DARK_GRAY,
+        color: style.colors.BLUE,
       },
       hoverinfo: "none",
     },
