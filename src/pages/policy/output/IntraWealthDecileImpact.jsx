@@ -212,20 +212,48 @@ export default function IntraWealthDecileImpact(props) {
       },
     ];
 
+    const categories = [
+      "Gain more than 5%",
+      "Gain less than 5%",
+      "No change",
+      "Lose less than 5%",
+      "Lose more than 5%"
+    ];
+    const indices = new Map();
+    indices.set(categories[0], 0);
+    indices.set(categories[1], 1);
+    indices.set(categories[2], 2);
+    indices.set(categories[3], 3);
+    indices.set(categories[4], 4);
+
     const dataHandler = (data) => {
       const point = data.points[0];
       const group = point.y;
       const value = point.x;
-      const top = point.yaxis.d2p(group) + point.yaxis._offset;
+      let left = point.xaxis.d2p(value) + point.xaxis._offset;
+      const topOffset = (point.yaxis.d2p(1) - point.yaxis.d2p(2)) / 2;
+      const top = point.yaxis.d2p(group) + point.yaxis._offset + topOffset;
       const category = point.data.name;
-      if (category.includes("Lose")) {
-        setCoordinates(point.xaxis._offset, top);
-      } else {
-        setCoordinates(point.xaxis._length + point.xaxis._offset, top, "top-right");
+      const index = indices.get(category);
+      const isAll = group === "All";
+      if (index >= 1) {
+        left += point.xaxis.d2p(isAll ? all[categories[0]] : deciles[categories[0]][group - 1]);
       }
-      const title = group === "All" ? "All households" : `Decile ${group}`;
+      if (index >= 2) {
+        left += point.xaxis.d2p(isAll ? all[categories[1]] : deciles[categories[1]][group - 1]);
+      }
+      if (index >= 3) {
+        left += point.xaxis.d2p(isAll ? all[categories[2]] : deciles[categories[2]][group - 1]);
+      }
+      if (index >= 4) {
+        left += point.xaxis.d2p(isAll ? all[categories[3]] : deciles[categories[3]][group - 1]);
+      }
+      const leftHalf = left - point.xaxis._offset <= point.xaxis._length / 2;
+      const corner = leftHalf ? "top-left" : "top-right";
+      setCoordinates(left, top, corner);
+      const title = isAll ? "All households" : `Decile ${group}`;
       const message = `${percent(value)} of ${
-        group === "All"
+        isAll
           ? "all households"
           : `households in the ${cardinal(group)} decile`
       } ${category.toLowerCase()}.`;
