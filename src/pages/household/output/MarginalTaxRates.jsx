@@ -68,6 +68,7 @@ export default function MarginalTaxRates(props) {
     requests.push(
       apiCall(`/${metadata.countryId}/calculate`, {
         household: householdData,
+        policy: policy.baseline.data,
       })
         .then((res) => res.json())
         .then((data) => {
@@ -127,7 +128,6 @@ export default function MarginalTaxRates(props) {
     // Add the main line, then add a 'you are here' line
     plot = (
       <FadeIn>
-        
         <Screenshottable title="Marginal tax rate by employment income">
         <Plot
           data={[
