@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { percent } from "../../../api/language";
+import { percent, formatPercentageChange } from "../../../api/language";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
@@ -39,12 +39,9 @@ export default function InequalityImpact(props) {
                 value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
               ),
             },
-            text: metricChanges.map(
-              (value) =>
-                (value >= 0 ? "+" : "") +
-                (value * 100).toFixed(1).toString() +
-                "%"
-            ),
+            text: metricChanges.map((value) => {
+              return formatPercentageChange(value);
+            }),
             textangle: 0,
             hoverinfo: "none",
           },
@@ -58,7 +55,7 @@ export default function InequalityImpact(props) {
             tickformat: ",.1%",
           },
           uniformtext: {
-            mode: "hide",
+            mode: "show",
             minsize: 12,
           },
           ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),

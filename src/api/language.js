@@ -41,6 +41,13 @@ export function percent(number) {
   );
 }
 
+export function formatPercentageChange(number) {
+  const changePercentage = (number * 100).toFixed(6); 
+  const roundedPercentage = parseFloat(changePercentage);
+  const significantDigits = roundedPercentage.toPrecision(1);
+  return `${significantDigits}%`;
+}
+
 export function cardinal(number) {
   // E.g. 1 -> 'first', 2 -> 'second', 3 -> 'third'
   const suffixes = ["th", "st", "nd", "rd"];

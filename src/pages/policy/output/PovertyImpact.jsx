@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { percent } from "../../../api/language";
+import { percent, formatPercentageChange } from "../../../api/language";
 import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
@@ -61,12 +61,9 @@ export default function PovertyImpact(props) {
                 value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
               ),
             },
-            text: povertyChanges.map(
-              (value) =>
-                (value >= 0 ? "+" : "") +
-                (value * 100).toFixed(1).toString() +
-                "%"
-            ),
+            text: povertyChanges.map((value) => {
+              return formatPercentageChange(value);
+            }),
             textangle: 0,
             hoverinfo: "none",
           },
@@ -134,7 +131,7 @@ export default function PovertyImpact(props) {
     );
   }
 
-  const povertyRateChange = percent(Math.abs(totalPovertyChange));
+  const povertyRateChange = formatPercentageChange(Math.abs(totalPovertyChange));
   const percentagePointChange =
     Math.round(
       Math.abs(
