@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 const DisplaySize = {
   Mobile: 0,
   Tablet: 768,
-  Desktop: 1080,
+  Desktop: 1200,
 };
 
 const determineDisplayCategory = (width) => {

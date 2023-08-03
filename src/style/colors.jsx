@@ -9,6 +9,8 @@ const LIGHT_GREEN = "#C5E1A5";
 const DARK_GREEN = "#558B2F";
 const DARK_RED = "#b50d0d";
 const BLACK = "#000";
+const TEAL_ACCENT = "#39C6C0";
+const TEAL_PRESSED = "#227773";
 
 const colors = {
   WHITE,
@@ -22,6 +24,8 @@ const colors = {
   DARK_RED,
   BLACK,
   MEDIUM_DARK_GRAY,
+  TEAL_ACCENT,
+  TEAL_PRESSED,
 };
 
 export default colors;
