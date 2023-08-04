@@ -4,7 +4,9 @@ import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
 import CalculatorIcon from "./images/icons/calculator.png";
 import HamburgerIcon from "./images/icons/hamburger.png";
+import CloseIcon from "./images/icons/close.svg";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 
 export default function PolicyEngine() {
@@ -102,25 +104,37 @@ function MobileCalculatorButton() {
 }
 
 function Hamburger() {
-    return <div style={{
-        height: 50,
-        width: 50,
-        margin: 20,
-        alignItems: "center",
-        display: "flex",
-        justifyContent: "center",
-        padding: 15,
-        color: "white",
-        border: "1px solid white",
-        fontSize: 20,
-        cursor: "pointer",
-    }}>
-        <img src={HamburgerIcon} alt="Hamburger icon" style={{
-            height: 30,
-            width: 30,
-            objectFit: "contain",
-        }}/>
-    </div>
+    const [isOpen, setIsOpen] = useState(false);
+    return <>
+        <div style={{
+            height: 50,
+            width: 50,
+            margin: 20,
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "center",
+            padding: 15,
+            color: "white",
+            border: "1px solid white",
+            fontSize: 20,
+            cursor: "pointer",
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+        >
+            <img src={
+                isOpen ?
+                CloseIcon :
+                HamburgerIcon
+            } alt="Hamburger icon" style={{
+                height: 30,
+                width: 30,
+                objectFit: "contain",
+                color: "white",
+            }}
+            />
+        </div>
+        <LeftNavigationMenu isOpen={isOpen} />
+    </>
 }
 
 function DesktopCalculatorButton() {
@@ -191,7 +205,6 @@ function PageLinks() {
             key="link"
             >
                 <HoverBox hoverBackgroundColor={style.colors.WHITE} direction="bottom">
-
                 <motion.div style={{
                     display: "flex",
                     alignItems: "center",
@@ -222,33 +235,36 @@ function HoverBox(props) {
         hoverBackgroundColor,
         direction,
         children,
+        size,
         ...rest
     } = props;
 
     let topStart, leftStart, topEnd, leftEnd, spread;
+
+    const boxSize = size || "200px";
 
     spread = "0px";
 
     if (direction === "top") {
         topStart = "0px";
         leftStart = "0px";
-        topEnd = "200px";
+        topEnd = boxSize;
         leftEnd = "0px";
     } else if (direction === "bottom") {
         topStart = "0px";
         leftStart = "0px";
-        topEnd = "-200px";
+        topEnd = `-${boxSize}`;
         leftEnd = "0px";
     } else if (direction === "left") {
         topStart = "0px";
         leftStart = "0px";
         topEnd = "0px";
-        leftEnd = "200px";
+        leftEnd = boxSize
     } else if (direction === "right") {
         topStart = "0px";
         leftStart = "0px";
         topEnd = "0px";
-        leftEnd = "-200px";
+        leftEnd = `-${boxSize}`;
     }
 
     const containerStyle = {
@@ -273,4 +289,86 @@ function HoverBox(props) {
     >
         {children}
     </div>
+}
+
+function LeftNavigationMenu(props) {
+    // The menu that slides in from the left when the hamburger is clicked
+    const { isOpen } = props;
+    return <motion.div style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: style.colors.BLUE_PRIMARY,
+        zIndex: -1,
+        paddingTop: 100,
+    }}
+    initial={{
+        y: "-100vh",
+    }}
+    animate={{
+        y: isOpen ? 0 : "-100vh",
+    }}
+    transition={{
+        duration: 0.4,
+    }}
+    >
+        {["Research", "About", "Contact", "Donate"].map((link, i) => {
+            return <HoverBox 
+                key={link} 
+                direction="left"
+                size="100vw"
+                hoverBackgroundColor={style.colors.WHITE}
+                style={{
+                    margin: 30,
+                }}
+            ><motion.div style={{
+                cursor: "pointer",
+                color: "white",
+                fontSize: 20,
+                fontFamily: "Roboto",
+                fontWeight: 500,
+                letterSpacing: 2.4,
+                textTransform: "uppercase",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 90,
+                padding: 15,
+                border: "1px solid white",
+                zIndex: 100,
+            }}
+            key={link}
+            initial={{
+                opacity: 0,
+                x: -50,
+                color: style.colors.WHITE,
+            }}
+            whileHover={{
+                color: style.colors.BLUE_PRIMARY,
+            }}
+            animate={
+                isOpen ? {
+                    opacity: 1,
+                    x: 0,
+                } : {
+                    opacity: 0,
+                    x: -50,
+                }
+            }
+            transition={{
+                duration: isOpen ? 0.3 : 0.1,
+                delay: isOpen ? 0.1 * i + 0.2 : 0,
+                color: {
+                    duration: 0.1,
+                    delay: 0,
+                }
+            }}
+            >
+                {link}
+            </motion.div>
+            </HoverBox>
+        })}
+    </motion.div>
 }
