@@ -1,4 +1,4 @@
-*We’re grateful to the [**Fund for Humanity**](https://fundforhumanity.org/), which funded the development of this PolicyEngine feature and report.*
+*We’re grateful to the [**Gerald Huff Fund for Humanity**](https://fundforhumanity.org/), which funded the development of this PolicyEngine feature and report.*
 
 Today we’ve added New Mexico income taxes to PolicyEngine, enabling any New Mexican to estimate their own income taxes, as well as to design a state tax policy reform and see how it affects their household and the state overall. Here we describe New Mexico’s tax system and show it in action.
 
@@ -46,13 +46,13 @@ Simulating over the 2021 Current Population Survey, and reversing the abolition 
 
 * [Raises $1.3 billion per year](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=nm&timePeriod=2023&baseline=22000)
 
-* [Benefits 42% of New Mexicans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2), including 96% of those in the bottom income decile and 0% in the top income decile
+* [Benefits 41% of New Mexicans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2), including 96% of those in the bottom income decile and 0% in the top income decile
 
-* Lowers the Gini index of [income inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2) by 3.5%
+* Lowers the Gini index of [income inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2) by 3.6%
 
 * Has no discernible impact on [poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=nm&timePeriod=2023&baseline=22000) or [cliffs](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=2&region=nm&timePeriod=2023&baseline=22000)
 
-![](https://cdn-images-1.medium.com/max/3408/1*g8h5e_bhSp2AiUKBMNmcFA.png)
+![](https://cdn-images-1.medium.com/max/3064/1*mT4JTaCi2c6PT1eIG69epg.png)
 
 These estimates may not align with official government figures, given inaccuracies and gaps in the Current Population Survey. For instance, the CPS does not capture incomes above $1 million, which could deflate tax revenues, though it also does not capture rent or property tax, which could work in the opposite direction via New Mexico’s property tax rebate. We are currently working to [fill these gaps with modern data analytics](https://policyengine.org/us/blog/enhancing-the-current-population-survey-for-policy-analysis).
 
