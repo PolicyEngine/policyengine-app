@@ -24,7 +24,7 @@ https://github.com/PolicyEngine/policyengine-app.git
 2. Install dependencies
 
 ```
-npm install
+npm ci
 ```
 
 3. Start a server on localhost to see your changes
