@@ -21,10 +21,12 @@ export default function Footer(props) {
     "Privacy",
   ];
   if (mobile) {
-    footer = <div>
-      <SpacedLinks links={links.slice(0, 3)} labels={labels.slice(0, 3)} />
-      <SpacedLinks links={links.slice(3)} labels={labels.slice(3)} />
-    </div>
+    footer = (
+      <div>
+        <SpacedLinks links={links.slice(0, 3)} labels={labels.slice(0, 3)} />
+        <SpacedLinks links={links.slice(3)} labels={labels.slice(3)} />
+      </div>
+    );
   } else {
     footer = <SpacedLinks links={links} labels={labels} />;
   }

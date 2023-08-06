@@ -13,7 +13,7 @@ import gtag from "../../../api/analytics";
 
 function getUKCountChildren(situation) {
   return Object.values(situation.people).filter(
-    (person) => person.age["2023"] < 18
+    (person) => person.age["2023"] < 18,
   ).length;
 }
 
@@ -42,7 +42,7 @@ function setUKCountChildren(situation, countChildren, variables, entities) {
   while (getUKCountChildren(situation) > countChildren) {
     situation = removePerson(
       situation,
-      getUKChildName(getUKCountChildren(situation) - 1)
+      getUKChildName(getUKCountChildren(situation) - 1),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
@@ -51,7 +51,7 @@ function setUKCountChildren(situation, countChildren, variables, entities) {
 
 function getUSCountChildren(situation) {
   return Object.values(situation.people).filter(
-    (person) => person.is_tax_unit_dependent["2023"]
+    (person) => person.is_tax_unit_dependent["2023"],
   ).length;
 }
 
@@ -89,7 +89,7 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
   while (getUSCountChildren(situation) > countChildren) {
     situation = removePerson(
       situation,
-      getUSChildName(getUSCountChildren(situation) - 1)
+      getUSChildName(getUSCountChildren(situation) - 1),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
@@ -98,7 +98,7 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
 
 function getCACountChildren(situation) {
   return Object.values(situation.people).filter(
-    (person) => person.age["2023"] < 18
+    (person) => person.age["2023"] < 18,
   ).length;
 }
 
@@ -126,7 +126,7 @@ function setCACountChildren(situation, countChildren, variables, entities) {
   while (getCACountChildren(situation) > countChildren) {
     situation = removePerson(
       situation,
-      getCAChildName(getCACountChildren(situation) - 1)
+      getCAChildName(getCACountChildren(situation) - 1),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
@@ -155,7 +155,7 @@ export default function CountChildren(props) {
       householdInput,
       countChildren,
       metadata.variables,
-      metadata.entities
+      metadata.entities,
     );
     setHouseholdInput(newHousehold);
     let newSearch = copySearchParams(searchParams);
@@ -167,7 +167,7 @@ export default function CountChildren(props) {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
           setSearchParams(newSearch);
-        }
+        },
       );
     }
   };

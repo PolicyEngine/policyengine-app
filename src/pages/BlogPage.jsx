@@ -48,7 +48,7 @@ export function BlogPostMarkdown(props) {
     blockquote: (props) => {
       const { children } = props;
       const anchorTag = children.find((child) =>
-        child?.props?.href?.startsWith("https://twitter.com/")
+        child?.props?.href?.startsWith("https://twitter.com/"),
       );
       const tweetId = anchorTag?.props?.href?.split("/")?.pop()?.split("?")[0];
 
@@ -414,7 +414,7 @@ function LeftContents(props) {
       .split(" ")
       .join("-")
       .replace("\\", "")
-      .replace(/,/g, "")
+      .replace(/,/g, ""),
   );
   const headerStartYs = headerSlugs.map((slug) => {
     const element = document.getElementById(slug);
@@ -468,7 +468,7 @@ function LeftContents(props) {
         }}
       >
         {isSelected && <>&#8594;</>} {headerText}
-      </p>
+      </p>,
     );
   }
 
@@ -497,12 +497,12 @@ export default function BlogPostPage(props) {
     return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
   }
   let postData = postJson.find(
-    (post) => post.filename.split(".")[0] === postName
+    (post) => post.filename.split(".")[0] === postName,
   );
   if (!postData) {
     // Try appending {countryId}- to the postName
     postData = postJson.find(
-      (post) => post.filename.split(".")[0] === `${countryId}-${postName}`
+      (post) => post.filename.split(".")[0] === `${countryId}-${postName}`,
     );
   }
   if (postData === undefined) {

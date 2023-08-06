@@ -1,15 +1,15 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
+import DownloadCsvButton from "./DownloadCsvButton";
 import React, { useRef } from "react";
-import { plotLayoutFont } from 'pages/policy/output/utils';
-import { PovertyChangeContext } from './PovertyChangeContext';
+import { plotLayoutFont } from "pages/policy/output/utils";
+import { PovertyChangeContext } from "./PovertyChangeContext";
 
 export default function DeepPovertyImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -60,14 +60,14 @@ export default function DeepPovertyImpact(props) {
             type: "bar",
             marker: {
               color: povertyChanges.map((value) =>
-                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
+                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY,
               ),
             },
             text: povertyChanges.map(
               (value) =>
                 (value >= 0 ? "+" : "") +
                 (value * 100).toFixed(1).toString() +
-                "%"
+                "%",
             ),
             textangle: 0,
             hoverinfo: "none",
@@ -94,7 +94,7 @@ export default function DeepPovertyImpact(props) {
             r: 0,
           },
           height: mobile ? 350 : 450,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -114,16 +114,16 @@ export default function DeepPovertyImpact(props) {
           } in deep poverty ${
             change < -0.001
               ? `would fall ${percent(-change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-              : change > 0.001
-                ? `would rise ${percent(change)} from ${percent(
-                  baseline
+                  baseline,
                 )} to ${percent(reform)}.`
-                : change === 0
-                  ? `would remain at ${percent(baseline)}.`
-                  :(change > 0 ? "would rise " : "would fall ") +
-                  ` by less than 0.1%.`
+              : change > 0.001
+              ? `would rise ${percent(change)} from ${percent(
+                  baseline,
+                )} to ${percent(reform)}.`
+              : change === 0
+              ? `would remain at ${percent(baseline)}.`
+              : (change > 0 ? "would rise " : "would fall ") +
+                ` by less than 0.1%.`
           }`;
           setHoverCard({
             title: group,
@@ -141,8 +141,8 @@ export default function DeepPovertyImpact(props) {
   const percentagePointChange =
     Math.round(
       Math.abs(
-        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
-      ) * 1000
+        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline,
+      ) * 1000,
     ) / 10;
   const screenshotRef = useRef();
   const urlParams = new URLSearchParams(window.location.search);
@@ -151,11 +151,11 @@ export default function DeepPovertyImpact(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  
-  const csvHeader = ['Age Group', 'Baseline', 'Reform', 'Change'];
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
+
+  const csvHeader = ["Age Group", "Baseline", "Reform", "Change"];
   const data = [
     csvHeader,
     ...povertyLabels.map((label, index) => {
@@ -185,7 +185,7 @@ export default function DeepPovertyImpact(props) {
             : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard>
-          <DeepPovertyImpactPlot/>
+          <DeepPovertyImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
       <div className="chart-container">

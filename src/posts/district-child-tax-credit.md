@@ -1,4 +1,4 @@
-*We thank the [Mother’s Outreach Network](https://mothersoutreachnetwork.org/) for supporting this research. PolicyEngine conducts all research independently of our funders.*
+_We thank the [Mother’s Outreach Network](https://mothersoutreachnetwork.org/) for supporting this research. PolicyEngine conducts all research independently of our funders._
 
 On March 3, 2023, DC Councilmember Zachary Parker, along with eight other councilmembers, introduced the [District Child Tax Credit Amendment Act of 2023](http://ward5.us/dctc) (DCTC), which proposes a credit of up to $500 per child for eligible filers, depending on their income and family structure.
 
@@ -18,7 +18,7 @@ For a single filer with two children, the credit fully phases out if their incom
 
 **To see how the DCTC would affect your own household, [enter your information into our personalized calculator](https://policyengine.org/us/household?focus=intro&region=dc&timePeriod=2023&baseline=2&reform=6201).**
 
-*Note that our calculator does not reflect the limit of three children or the one-year tenure requirement. It also assumes that your household files taxes together, not married filing separately on the same return.*
+_Note that our calculator does not reflect the limit of three children or the one-year tenure requirement. It also assumes that your household files taxes together, not married filing separately on the same return._
 
 ## Scenario analysis
 
@@ -46,13 +46,13 @@ The DCTC would [reduce the poverty rate by 1.3%](https://policyengine.org/us/pol
 
 As a refundable tax credit, the DCTC would effectively serve as a benefit paid through the tax system. Some other refundable tax credits and cash benefits in DC include:
 
-* [DC Earned Income Tax Credit](https://eitc.dc.gov/page/frequently-asked-questions-10) (EITC), which currently matches 70% of the federal EITC and will match 100% beginning in 2026
+- [DC Earned Income Tax Credit](https://eitc.dc.gov/page/frequently-asked-questions-10) (EITC), which currently matches 70% of the federal EITC and will match 100% beginning in 2026
 
-* [DC Homeowner and Renter Property Tax Credit](https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_Sch_H.pdf) provides a credit based on property tax or rent paid, age, and income
+- [DC Homeowner and Renter Property Tax Credit](https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_Sch_H.pdf) provides a credit based on property tax or rent paid, age, and income
 
-* [DC Keep Child Care Affordable Credit](https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_Sch_ELC.pdf) provides a credit based on childcare expenses, children and their ages, and income
+- [DC Keep Child Care Affordable Credit](https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_Sch_ELC.pdf) provides a credit based on childcare expenses, children and their ages, and income
 
-* [DC Temporary Assistance for Needy Families](https://dhs.dc.gov/service/tanf-district-families) (TANF), which provides cash assistance to low-income families with children
+- [DC Temporary Assistance for Needy Families](https://dhs.dc.gov/service/tanf-district-families) (TANF), which provides cash assistance to low-income families with children
 
 While PolicyEngine does not yet model these programs for a quantitative comparison, we can describe some ways in which the DCTC diverges from them.
 

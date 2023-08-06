@@ -8,7 +8,7 @@ describe("test routing", () => {
     render(
       <MemoryRouter initialEntries={["/invalidCountry"]}>
         <PolicyEngineRoutes />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     // Render the uk site.
@@ -22,7 +22,7 @@ describe("test routing", () => {
     render(
       <MemoryRouter initialEntries={["/uk/nonsense"]}>
         <PolicyEngineCountry countryId="uk" />
-      </MemoryRouter>
+      </MemoryRouter>,
     );
 
     expect(screen.getByText(/Sorry/).textContent).toMatchSnapshot();

@@ -6,19 +6,19 @@ Kansas levies income taxes at different rates for joint and non-joint filers. Th
 
 For joint filers:
 
-* 3.1% on income up to $30,000
+- 3.1% on income up to $30,000
 
-* 5.25% on income between $30,000 and $60,000
+- 5.25% on income between $30,000 and $60,000
 
-* 5.7% on income over $60,000
+- 5.7% on income over $60,000
 
 For non-joint filers:
 
-* 3.1% on income up to $15,000
+- 3.1% on income up to $15,000
 
-* 5.25% on income between $15,000 and $30,000
+- 5.25% on income between $15,000 and $30,000
 
-* 5.7% on income over $30,000
+- 5.7% on income over $30,000
 
 Kansas offers a personal exemption of $2,250 per person. It allows either itemized deductions or a standard deduction ranging from $3,500 to $8,000, depending on filing status, with a bonus for elderly and blind filers. The state also limits its taxable Social Security subtraction to filers with an adjusted gross income (AGI) at or below $75,000.
 
@@ -28,4 +28,4 @@ The addition of the Kansas income tax code to PolicyEngine will enable users to 
 
 We encourage you to explore the new Kansas tax policies on PolicyEngine and see how they affect your own tax situation or the broader population. Our team remains committed to expanding the platform’s capabilities and providing you with the most comprehensive tax policy analysis tool available. Stay tuned for more updates and new features!
 
-*[Martin Holmer](https://martinholmer.github.io/) developed PolicyEngine’s Kansas state income tax model.*
+_[Martin Holmer](https://martinholmer.github.io/) developed PolicyEngine’s Kansas state income tax model._

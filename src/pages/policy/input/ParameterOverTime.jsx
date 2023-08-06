@@ -4,7 +4,7 @@ import { getReformedParameter } from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
-import { plotLayoutFont } from 'pages/policy/output/utils';
+import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function ParameterOverTime(props) {
   const { parameter, policy } = props;
@@ -35,7 +35,7 @@ export default function ParameterOverTime(props) {
   if (policy.reform.data[parameter.parameter]) {
     let reformedValues = getReformedParameter(
       parameter,
-      policy.reform.data
+      policy.reform.data,
     ).values;
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
@@ -45,7 +45,7 @@ export default function ParameterOverTime(props) {
 
   let yAxisFormat = getPlotlyAxisFormat(
     parameter.unit,
-    Object.values(parameter.values)
+    Object.values(parameter.values),
   );
   let yAxisTickVals;
   let yAxisTickLabels;
@@ -105,7 +105,7 @@ export default function ParameterOverTime(props) {
             t: 0,
             r: mobile && 30,
           },
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         style={{
           width: "100%",
