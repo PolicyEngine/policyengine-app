@@ -31,9 +31,8 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
+          cache: npm
           node-version: ${{ matrix.node-version }}
-        # https://docs.npmjs.com/cli/v9/commands/npm-ci
-      - run: npm ci
       - run: npm run lint
       - run: npm run build
       - run: npm test
