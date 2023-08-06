@@ -304,6 +304,7 @@ function BaselineReformDeltaPlot(props) {
       x: [currentEarnings],
       y: [currentValue - baselineValue],
       type: "scatter",
+      mode: "markers",
       name: `Your current change in ${variableLabel}`,
       line: {
         color: style.colors.BLUE,

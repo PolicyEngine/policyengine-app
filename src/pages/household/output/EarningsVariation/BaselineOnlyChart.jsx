@@ -75,12 +75,13 @@ export default function BaselineOnlyChart(props) {
               hoverinfo: "none",
             },
             {
-              x: [currentEarnings, currentEarnings],
-              y: [0, currentNetIncome],
+              x: [currentEarnings],
+              y: [currentNetIncome],
               type: "line",
+              mode: "markers",
               name: `Your current ${variableLabel}`,
               line: {
-                color: style.colors.MEDIUM_DARK_GRAY,
+                color: style.colors.BLUE,
               },
               hoverinfo: "none",
             },
