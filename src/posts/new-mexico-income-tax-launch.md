@@ -26,15 +26,15 @@ PolicyEngine now models these rules from 2021 to 2023 (as available).
 
 ## Example household
 
-To illustrate the New Mexico income tax, consider a single parent with two children, paying $1,000 per month in rent and $500 per month in childcare. If they earn $30,000, they will pay no state income tax and [receive $2,127 from four refundable tax credits](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=33012).
+To illustrate the New Mexico income tax, consider a single parent with two children, paying $1,000 per month in rent and $500 per month in childcare. If they earn $30,000, they will pay no state income tax and [receive $2,127 from four refundable tax credits](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=33113).
 
 ![](https://cdn-images-1.medium.com/max/2948/0*GfIZU3Qdmhw82mfM)
 
-This filer would have negative [net state tax liability](https://policyengine.org/us/household?focus=householdOutput.earnings&household=33012) if they earn $50,000 or less.
+This filer would have negative [net state tax liability](https://policyengine.org/us/household?focus=householdOutput.earnings&household=33113) if they earn $50,000 or less.
 
 ![](https://cdn-images-1.medium.com/max/3104/0*l58k4e3xc5HUKbBZ)
 
-To show the effect of the state’s income taxes on marginal tax rates, we can abolish New Mexico income taxes (separately as before refundable credits and refundable credits) and swap the baseline and reform. From there, view the [marginal tax rate chart](https://policyengine.org/us/household?focus=householdOutput.mtr&household=33012&region=us&timePeriod=2023&baseline=22176&reform=2) and select *Difference*.
+To show the effect of the state’s income taxes on marginal tax rates, we can abolish New Mexico income taxes (separately as before refundable credits and refundable credits) and swap the baseline and reform. From there, view the [marginal tax rate chart](https://policyengine.org/us/household?focus=householdOutput.mtr&household=33113&region=us&timePeriod=2023&baseline=22176&reform=2) and select *Difference*.
 
 ![](https://cdn-images-1.medium.com/max/3076/0*wC8StujJOgS34Kj4)
 
