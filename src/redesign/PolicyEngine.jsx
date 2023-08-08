@@ -215,6 +215,7 @@ export default function PolicyEngine() {
       <HeaderBar />
       <IntroductionToPolicyEngine countryId={countryId} />
       <CalculatorCallToAction />
+      <SubscribeToPolicyEngine />
     </div>
   );
 }
@@ -231,6 +232,7 @@ function HeaderBar() {
           display: "flex",
           alignItems: "center",
           position: "fixed",
+          zIndex: 100,
         }}
       >
         {
@@ -1074,6 +1076,39 @@ function ReadMoreAboutThisQuote() {
   );
 }
 
+function ActionButton(props) {
+  const { text, onClick, width, size } = props;
+  return (
+    <HoverBox
+      hoverBackgroundColor={style.colors.TEAL_PRESSED}
+      direction="left"
+      style={{
+        marginTop: 20,
+        alignItems: "center",
+        display: "flex",
+        backgroundColor: style.colors.TEAL_ACCENT,
+        color: "white",
+        padding: 15,
+        paddingLeft: 30,
+        paddingRight: 30,
+        fontSize: 15,
+        fontFamily: "Roboto",
+        fontWeight: 500,
+        letterSpacing: 2.4,
+        cursor: "pointer",
+        textTransform: "uppercase",
+        width: width || "min(300px, 70vw)",
+      }}
+      size={size ? size : width ? `${width}px` : "300px"}
+      onClick={onClick}
+    >
+      {text}
+      <div style={{ marginLeft: "auto" }} />
+      <span className="material-symbols-outlined">arrow_forward</span>
+    </HoverBox>
+  );
+}
+
 function CalculatorCallToAction() {
   const displayCategory = useDisplayCategory();
   return (
@@ -1091,32 +1126,154 @@ function CalculatorCallToAction() {
       <h3 style={{ fontFamily: "Roboto Serif" }}>
         Compute any public policy reform
       </h3>
-      <HoverBox
-        hoverBackgroundColor={style.colors.TEAL_PRESSED}
-        direction="left"
+      <ActionButton text="Calculate" onClick={() => {}} />
+    </div>
+  );
+}
+
+function SubscribeToPolicyEngine() {
+  const displayCategory = useDisplayCategory();
+  return (
+    <div
+      style={{
+        backgroundColor: style.colors.BLUE_PRESSED,
+      }}
+    >
+      {
+        {
+          mobile: <SubscribeToPolicyEngineMobile />,
+          tablet: <SubscribeToPolicyEngineTablet />,
+          desktop: <SubscribeToPolicyEngineDesktop />,
+        }[displayCategory]
+      }
+    </div>
+  );
+}
+
+function SubscribeToPolicyEngineDesktop() {
+  return (
+    <div
+      style={{
+        padding: 100,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: 300,
+      }}
+    >
+      <div style={{ width: "40vw" }}>
+        <h2 style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+          Subscribe to PolicyEngine
+        </h2>
+        <p style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+          Get the latests posts delivered right to your inbox.
+        </p>
+      </div>
+      <div style={{ width: "40vw" }}>
+        <TextBox
+          title="Email"
+          placeholder="Enter your email address"
+          width={500}
+        />
+        <ActionButton text="Subscribe" onClick={() => {}} width={500} />
+      </div>
+    </div>
+  );
+}
+
+function SubscribeToPolicyEngineTablet() {
+  return (
+    <div
+      style={{
+        padding: 100,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: 300,
+      }}
+    >
+      <div style={{ width: "40vw", paddingRight: 50 }}>
+        <h2 style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+          Subscribe to PolicyEngine
+        </h2>
+        <p style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+          Get the latests posts delivered right to your inbox.
+        </p>
+      </div>
+      <div style={{ width: "40vw" }}>
+        <TextBox
+          title="Email"
+          placeholder="Enter your email address"
+          width={400}
+        />
+        <ActionButton text="Subscribe" onClick={() => {}} width={400} />
+      </div>
+    </div>
+  );
+}
+
+function SubscribeToPolicyEngineMobile() {
+  return (
+    <div
+      style={{
+        padding: 30,
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div style={{ marginBottom: 50 }}>
+        <h2 style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+          Subscribe to PolicyEngine
+        </h2>
+        <p style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+          Get the latests posts delivered right to your inbox.
+        </p>
+      </div>
+      <div>
+        <TextBox
+          title="Email"
+          placeholder="Enter your email address"
+          width="100%"
+        />
+        <ActionButton
+          text="Subscribe"
+          onClick={() => {}}
+          width="100%"
+          size="500px"
+        />
+      </div>
+    </div>
+  );
+}
+
+function TextBox(props) {
+  const { placeholder, title, width } = props;
+
+  return (
+    <div>
+      <h6
         style={{
-          marginTop: 20,
-          alignItems: "center",
-          display: "flex",
-          backgroundColor: style.colors.TEAL_ACCENT,
-          color: "white",
-          padding: 15,
-          paddingLeft: 30,
-          paddingRight: 30,
-          fontSize: 15,
-          fontFamily: "Roboto",
-          fontWeight: 500,
-          letterSpacing: 2.4,
-          cursor: "pointer",
+          color: style.colors.WHITE,
           textTransform: "uppercase",
-          width: "min(300px, 70vw)",
+          letterSpacing: 2,
         }}
-        size="300px"
       >
-        Try PolicyEngine
-        <div style={{ marginLeft: "auto" }} />
-        <span className="material-symbols-outlined">arrow_forward</span>
-      </HoverBox>
+        {title}
+      </h6>
+      <input
+        placeholder={placeholder}
+        style={{
+          border: "none",
+          borderBottom: `1px solid ${style.colors.WHITE}`,
+          backgroundColor: style.colors.LIGHT_GRAY,
+          color: style.colors.DARK_GRAY,
+          width: width || "100%",
+          height: 50,
+          fontSize: 20,
+          fontWeight: 300,
+          padding: 10,
+        }}
+      />
     </div>
   );
 }

@@ -11,6 +11,13 @@ div {
   font-family: "Roboto", sans-serif;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 a {
   color: black;
 }
