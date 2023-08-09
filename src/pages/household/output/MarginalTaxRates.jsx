@@ -19,7 +19,7 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
 export default function MarginalTaxRates(props) {
-  const { householdInput, householdBaseline, metadata, policyLabel, policy } = props;
+  const { householdInput, householdBaseline, householdReform, metadata, policyLabel, policy } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -142,12 +142,13 @@ export default function MarginalTaxRates(props) {
               },
             },
             {
-              x: [currentEarnings, currentEarnings],
-              y: [0, currentMtr],
-              type: "line",
+              x: [currentEarnings],
+              y: [currentMtr],
+              type: "scatter",
               name: "Your current MTR",
+              mode: "markers",
               line: {
-                color: style.colors.DARK_GRAY,
+                color: style.colors.BLUE,
               },
             },
           ]}
@@ -207,15 +208,13 @@ export default function MarginalTaxRates(props) {
       metadata
     );
 
-    let currEarningsIdx;
-    let reformMtrValue;
-
-    try {
-      currEarningsIdx = earningsArray.indexOf(currentEarnings);
-      reformMtrValue = reformMtrArray[currEarningsIdx];
-    } catch (e) {
-      return <ErrorPane />;
-    }
+    const reformMtrValue = getValueFromHousehold(
+      "marginal_tax_rate",
+      "2023",
+      "you",
+      householdReform,
+      metadata
+    );
 
     if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
       title = `${policyLabel} ${
@@ -228,7 +227,7 @@ export default function MarginalTaxRates(props) {
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
-    // Add the main line, then add a 'you are here' line
+    // Add the main line, then add a 'you are here' points
     let data;
     if (showDelta) {
       data = [
@@ -245,13 +244,13 @@ export default function MarginalTaxRates(props) {
           },
         },
         {
-          x: [currentEarnings, currentEarnings],
-          y: [0, reformMtrValue - currentMtr],
-          type: "line",
+          x: [currentEarnings],
+          y: [reformMtrValue - currentMtr],
+          type: "scatter",
           name: "Your current MTR difference",
+          mode: "markers",
           line: {
-            color: style.colors.MEDIUM_DARK_GRAY,
-            shape: "hv",
+            color: style.colors.BLUE,
           },
         },
       ];
@@ -278,13 +277,23 @@ export default function MarginalTaxRates(props) {
           },
         },
         {
-          x: [currentEarnings, currentEarnings],
-          y: [0, currentMtr],
-          type: "line",
+          x: [currentEarnings],
+          y: [currentMtr],
+          type: "scatter",
           name: "Your current MTR",
+          mode: "markers",
           line: {
-            color: style.colors.DARK_GRAY,
-            shape: "hv",
+            color: style.colors.GRAY,
+          },
+        },
+        {
+          x: [currentEarnings],
+          y: [reformMtrValue],
+          type: "scatter",
+          name: "Your reform MTR",
+          mode: "markers",
+          line: {
+            color: style.colors.BLUE,
           },
         },
       ];
