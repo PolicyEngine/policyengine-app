@@ -170,7 +170,6 @@ export default function MarginalTaxRates(props) {
                 ),
                 tickformat: ".1%",
               },
-            },
               legend: {
                 // Position above the plot
                 y: 1.1,
