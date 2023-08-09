@@ -19,12 +19,20 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
 export default function MarginalTaxRates(props) {
-  const { householdInput, householdBaseline, householdReform, metadata, policyLabel, policy } = props;
+  const {
+    householdInput,
+    householdBaseline,
+    householdReform,
+    metadata,
+    policyLabel,
+    policy,
+  } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
   const reformPolicyId = searchParams.get("reform");
-  const baselinePolicyId = searchParams.get("baseline") || metadata.current_law_id;
+  const baselinePolicyId =
+    searchParams.get("baseline") || metadata.current_law_id;
   const [reformMtr, setReformMtr] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -217,7 +225,7 @@ export default function MarginalTaxRates(props) {
       "2023",
       "you",
       householdReform,
-      metadata
+      metadata,
     );
 
     if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
