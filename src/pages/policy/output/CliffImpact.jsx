@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState, useRef} from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, percent } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -52,11 +52,11 @@ export default function CliffImpact(props) {
       newSearch.set("region", searchParams.get("region") || defaults.region);
       newSearch.set(
         "timePeriod",
-        searchParams.get("timePeriod") || defaults.timePeriod
+        searchParams.get("timePeriod") || defaults.timePeriod,
       );
       newSearch.set(
         "baseline",
-        searchParams.get("baseline") || defaults.baseline
+        searchParams.get("baseline") || defaults.baseline,
       );
       setSearchParams(newSearch);
     }
@@ -67,12 +67,12 @@ export default function CliffImpact(props) {
     return (
       <ErrorPage
         message={`We ran into an issue when trying to simulate your policy. Please try again later. The full message is ${JSON.stringify(
-          error
+          error,
         )}`}
       />
     );
   }
-  
+
   if (!reformPolicyId) {
     return <ErrorPage message="No policy selected." />;
   }
@@ -85,11 +85,11 @@ export default function CliffImpact(props) {
 
   const cliff_share_change =
     Math.round(
-      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100
+      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100,
     ) / 100;
   const cliff_gap_change =
     Math.round(
-      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000
+      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000,
     ) / 1000;
 
   function CliffImpactPlot() {
@@ -166,13 +166,13 @@ export default function CliffImpact(props) {
           const message = `The ${metric.toLowerCase()} ${
             change > 0.0001
               ? `would rise ${percent(change)} from ${formatter(
-                baseline
-              )} to ${formatter(reform)}`
-              : change < -0.0001
-                ? `would fall ${percent(-change)} from ${formatter(
-                  baseline
+                  baseline,
                 )} to ${formatter(reform)}`
-                : `would remain at ${percent(baseline)}`
+              : change < -0.0001
+              ? `would fall ${percent(-change)} from ${formatter(
+                  baseline,
+                )} to ${formatter(reform)}`
+              : `would remain at ${percent(baseline)}`
           }.`;
           setHoverCard({
             title: data.points[0].x,
@@ -234,7 +234,7 @@ export default function CliffImpact(props) {
       <DownloadableScreenshottable ref={screenshotRef}>
         <h2>{title}</h2>
         <HoverCard>
-          <CliffImpactPlot/>
+          <CliffImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
       <div className="chart-container">

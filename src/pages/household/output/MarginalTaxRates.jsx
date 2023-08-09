@@ -14,7 +14,7 @@ import { useSearchParams } from "react-router-dom";
 import { Radio } from "antd";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
-import { plotLayoutFont } from 'pages/policy/output/utils';
+import { plotLayoutFont } from "pages/policy/output/utils";
 import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
@@ -37,14 +37,14 @@ export default function MarginalTaxRates(props) {
     "2023",
     "you",
     householdInput,
-    metadata
+    metadata,
   );
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2023",
     "you",
     householdBaseline,
-    metadata
+    metadata,
   );
 
   useEffect(() => {
@@ -56,10 +56,10 @@ export default function MarginalTaxRates(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: Math.max((
-            metadata.countryId === "ng" ?
-              1_200_000 : 200_000
-          ), 2 * currentEarnings),
+          max: Math.max(
+            metadata.countryId === "ng" ? 1_200_000 : 200_000,
+            2 * currentEarnings,
+          ),
           count: 401,
         },
       ],
@@ -76,7 +76,7 @@ export default function MarginalTaxRates(props) {
         })
         .catch((err) => {
           setError(err);
-        })
+        }),
     );
     if (reformPolicyId) {
       requests.push(
@@ -90,7 +90,7 @@ export default function MarginalTaxRates(props) {
           })
           .catch((err) => {
             setError(err);
-          })
+          }),
       );
     }
     Promise.all(requests).then(() => {
@@ -111,77 +111,82 @@ export default function MarginalTaxRates(props) {
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     const mtrArray = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
-      1
+      1,
     )}`;
     // Add the main line, then add a 'you are here' line
     plot = (
       <FadeIn>
         <Screenshottable title="Marginal tax rate by employment income">
-        <Plot
-          data={[
-            {
-              x: earningsArray,
-              y: mtrArray,
-              type: "line",
-              name: "Marginal tax rate",
-              line: {
-                color: style.colors.BLUE,
-                shape: "hv",
+          <Plot
+            data={[
+              {
+                x: earningsArray,
+                y: mtrArray,
+                type: "line",
+                name: "Marginal tax rate",
+                line: {
+                  color: style.colors.BLUE,
+                  shape: "hv",
+                },
+              },
+              {
+                x: [currentEarnings],
+                y: [currentMtr],
+                type: "scatter",
+                name: "Your current MTR",
+                mode: "markers",
+                line: {
+                  color: style.colors.BLUE,
+                },
+              },
+            ]}
+            layout={{
+              xaxis: {
+                title: "Household head employment income",
+                ...getPlotlyAxisFormat(
+                  metadata.variables.employment_income.unit,
+                ),
+                tickformat: ",.0f",
+              },
+              margin: {
+                t: 0,
+              },
+              yaxis: {
+                title: "Marginal tax rate",
+                ...getPlotlyAxisFormat(
+                  metadata.variables.marginal_tax_rate.unit,
+                ),
+                tickformat: ".1%",
               },
             },
-            {
-              x: [currentEarnings],
-              y: [currentMtr],
-              type: "scatter",
-              name: "Your current MTR",
-              mode: "markers",
-              line: {
-                color: style.colors.BLUE,
+              legend: {
+                // Position above the plot
+                y: 1.1,
+                orientation: "h",
               },
-            },
-          ]}
-          layout={{
-            xaxis: {
-              title: "Household head employment income",
-              ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
-              tickformat: ",.0f",
-            },
-            margin: {
-              t: 0,
-            },
-            yaxis: {
-              title: "Marginal tax rate",
-              ...getPlotlyAxisFormat(metadata.variables.marginal_tax_rate.unit),
-              tickformat: ".1%",
-            },
-            legend: {
-              // Position above the plot
-              y: 1.1,
-              orientation: "h",
-            },
-            ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.2),
-            ...plotLayoutFont
-          }}
-          config={{
-            displayModeBar: false,
-            responsive: true,
-          }}
-          style={{
-            width: "100%",
-          }}
-        />
+              ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.2),
+              ...plotLayoutFont,
+            }}
+            config={{
+              displayModeBar: false,
+              responsive: true,
+            }}
+            style={{
+              width: "100%",
+            }}
+          />
         </Screenshottable>
       </FadeIn>
     );
@@ -191,21 +196,21 @@ export default function MarginalTaxRates(props) {
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     const baselineMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     const reformMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
       "you",
       reformMtr,
-      metadata
+      metadata,
     );
 
     const reformMtrValue = getValueFromHousehold(
@@ -222,7 +227,7 @@ export default function MarginalTaxRates(props) {
       } your marginal tax rate from ${formatVariableValue(
         { unit: "/1" },
         currentMtr,
-        0
+        0,
       )} to ${formatVariableValue({ unit: "/1" }, reformMtrValue, 0)}`;
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
@@ -234,7 +239,7 @@ export default function MarginalTaxRates(props) {
         {
           x: earningsArray,
           y: reformMtrArray.map(
-            (value, index) => value - baselineMtrArray[index]
+            (value, index) => value - baselineMtrArray[index],
           ),
           type: "line",
           name: "MTR difference",
@@ -322,49 +327,51 @@ export default function MarginalTaxRates(props) {
             buttonStyle="solid"
           />
         </div>
-        <Screenshottable title={
-          showDelta ?
-            "Change to marginal tax rate by employment income" :
-            "Marginal tax rate by employment income"
-        }>
-        <Plot
-          data={data}
-          layout={{
-            xaxis: {
-              title: "Household head employment income",
-              ...getPlotlyAxisFormat(
-                metadata.variables.employment_income.unit,
-                0
-              ),
-              tickformat: ",.0f",
-            },
-            yaxis: {
-              title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
-              ...getPlotlyAxisFormat(
-                metadata.variables.marginal_tax_rate.unit,
-                0
-              ),
-              tickformat: (showDelta ? "+" : "") + ".0%",
-            },
-            legend: {
-              // Position above the plot
-              y: 1.1,
-              orientation: "h",
-            },
-            margin: {
-              t: 0,
-            },
-            ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.2),
-            ...plotLayoutFont
-          }}
-          config={{
-            displayModeBar: false,
-            responsive: true,
-          }}
-          style={{
-            width: "100%",
-          }}
-        />
+        <Screenshottable
+          title={
+            showDelta
+              ? "Change to marginal tax rate by employment income"
+              : "Marginal tax rate by employment income"
+          }
+        >
+          <Plot
+            data={data}
+            layout={{
+              xaxis: {
+                title: "Household head employment income",
+                ...getPlotlyAxisFormat(
+                  metadata.variables.employment_income.unit,
+                  0,
+                ),
+                tickformat: ",.0f",
+              },
+              yaxis: {
+                title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
+                ...getPlotlyAxisFormat(
+                  metadata.variables.marginal_tax_rate.unit,
+                  0,
+                ),
+                tickformat: (showDelta ? "+" : "") + ".0%",
+              },
+              legend: {
+                // Position above the plot
+                y: 1.1,
+                orientation: "h",
+              },
+              margin: {
+                t: 0,
+              },
+              ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.2),
+              ...plotLayoutFont,
+            }}
+            config={{
+              displayModeBar: false,
+              responsive: true,
+            }}
+            style={{
+              width: "100%",
+            }}
+          />
         </Screenshottable>
       </FadeIn>
     );

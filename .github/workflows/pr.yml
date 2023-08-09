@@ -2,7 +2,7 @@ name: Pull request
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   lint:
@@ -25,14 +25,15 @@ jobs:
         # Hopefully this allows us to catch problems
         # with differing versions ahead of time.
         node-version: [19.x]
-      
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
+          cache: npm
           node-version: ${{ matrix.node-version }}
-        # https://docs.npmjs.com/cli/v9/commands/npm-ci
-      - run: npm install --force
+      - run: npm ci
+      - run: npm run lint
       - run: npm run build
       - run: npm test

@@ -3,12 +3,12 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
-import DownloadCsvButton from './DownloadCsvButton';
-import { plotLayoutFont } from 'pages/policy/output/utils';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { plotLayoutFont } from "pages/policy/output/utils";
 import React, { useRef } from "react";
 
 export default function IntraWealthDecileImpact(props) {
@@ -35,7 +35,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: [all["Gain more than 5%"]].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -54,7 +54,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: [all["Gain less than 5%"]].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -73,7 +73,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: [all["No change"]].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -92,7 +92,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: [all["Lose less than 5%"]].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -111,7 +111,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: [all["Lose more than 5%"]].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -130,7 +130,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: deciles["Gain more than 5%"].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -148,7 +148,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: deciles["Gain less than 5%"].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -166,7 +166,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: deciles["No change"].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -184,7 +184,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: deciles["Lose less than 5%"].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -202,7 +202,7 @@ export default function IntraWealthDecileImpact(props) {
         },
         orientation: "h",
         text: deciles["Lose more than 5%"].map(
-          (value) => (value * 100).toFixed(0).toString() + "%"
+          (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
@@ -259,7 +259,7 @@ export default function IntraWealthDecileImpact(props) {
             r: 0,
           },
           height: mobile ? 300 : 450,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -297,9 +297,11 @@ export default function IntraWealthDecileImpact(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? " of the population"
-    : " of " + options.find((option) => option.value === region)?.label + " residents";
+    region === "us" || region === "uk"
+      ? " of the population"
+      : " of " +
+        options.find((option) => option.value === region)?.label +
+        " residents";
   const screenshotRef = useRef();
   const csvHeader = [
     "Wealth Decile",
@@ -307,7 +309,7 @@ export default function IntraWealthDecileImpact(props) {
     "Gain less than 5%",
     "No change",
     "Lose less than 5%",
-    "Lose more than 5%"
+    "Lose more than 5%",
   ];
   const csvData = [
     csvHeader,
@@ -318,17 +320,17 @@ export default function IntraWealthDecileImpact(props) {
         deciles["Gain less than 5%"][decile - 1],
         deciles["No change"][decile - 1],
         deciles["Lose less than 5%"][decile - 1],
-        deciles["Lose more than 5%"][decile - 1]
+        deciles["Lose more than 5%"][decile - 1],
       ];
     }),
     [
-       "All",
+      "All",
       all["Gain more than 5%"],
       all["Gain less than 5%"],
       all["No change"],
       all["Lose less than 5%"],
-      all["Lose more than 5%"]
-    ]
+      all["Lose more than 5%"],
+    ],
   ];
   const downloadButtonStyle = {
     position: "absolute",
@@ -339,23 +341,25 @@ export default function IntraWealthDecileImpact(props) {
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
+        <h2 style={{ width: "700px", wordWrap: "break-word" }}>
           {policyLabel} would benefit{" "}
-          {formatVariableValue({ unit: "/1" }, totalAhead, 0)}{label}
+          {formatVariableValue({ unit: "/1" }, totalAhead, 0)}
+          {label}
         </h2>
         <HoverCard>
-          <IntraWealthDecileImpactPlot/>
+          <IntraWealthDecileImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={csvData}
-              filename={`intraWealthDecileImpact${policyLabel}.csv`}
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={csvData}
+            filename={`intraWealthDecileImpact${policyLabel}.csv`}
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows percentage of of people in each household wealth
         decile who experience different outcomes. Households are sorted into ten

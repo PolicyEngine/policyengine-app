@@ -4,8 +4,7 @@ import style from "../style";
 import { useRef, useState } from "react";
 
 export default function InputField(props) {
-  const { onChange, padding, width, type, inputmode, pattern, value } =
-    props;
+  const { onChange, padding, width, type, inputmode, pattern, value } = props;
   const [inputValue, setInputValue] = useState(value ? value : "");
   const placeholder = useRef(props.placeholder);
   const mobile = useMobile();
@@ -58,7 +57,7 @@ export default function InputField(props) {
           }
           e.target.setSelectionRange(
             e.target.value.length - 1,
-            e.target.value.length - 1
+            e.target.value.length - 1,
           );
         } else if (pattern === "number") {
           if (value !== "" && !re.test(value)) {
@@ -68,7 +67,7 @@ export default function InputField(props) {
         }
         setInputValue(e.target.value);
       }}
-      value = {inputValue}
+      value={inputValue}
       placeholder={placeholder.current}
     />
   );

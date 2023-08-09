@@ -24,7 +24,7 @@ export function asyncApiCall(
   body,
   interval = 1000,
   firstInterval = 200,
-  computingCallback = () => {}
+  computingCallback = () => {},
 ) {
   // Call an API endpoint which may respond with a {status: computing} response.
   // If so, poll until the response is ready.
@@ -76,14 +76,14 @@ export function updateMetadata(countryId, setMetadata) {
       const variableTree = buildVariableTree(
         data.variables,
         data.variableModules,
-        data.basicInputs
+        data.basicInputs,
       );
       // parameters = {p: {parameter: "x.y.z"}}. Filter out parameters with parameter containing "taxsim"
       data.parameters = Object.fromEntries(
         Object.entries(data.parameters).filter(
           // eslint-disable-next-line no-unused-vars
-          ([key, value]) => !value.parameter.includes("taxsim")
-        )
+          ([key, value]) => !value.parameter.includes("taxsim"),
+        ),
       );
       const parameterTree = buildParameterTree(data.parameters);
       const variablesInOrder = getTreeLeavesInOrder(variableTree);

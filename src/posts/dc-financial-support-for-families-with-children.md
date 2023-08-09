@@ -1,4 +1,4 @@
-*We thank the [Mother’s Outreach Network](https://mothersoutreachnetwork.org/) for supporting this research. PolicyEngine conducts all research independently of our funders.*
+_We thank the [Mother’s Outreach Network](https://mothersoutreachnetwork.org/) for supporting this research. PolicyEngine conducts all research independently of our funders._
 
 [We recently examined the District Child Tax Credit (DCTC)](https://policyengine.org/us/blog/district-child-tax-credit), a proposed bill from DC Councilmember Zachary Parker. Today, we will examine another proposal from Councilmember Parker called the [Financial Support for Families with Children Amendment Act (FSFC)](https://www.dropbox.com/s/14865nw8firxgo2/CM%20Parker%20Basic%20Income%20Bill%203.21.23_FINAL.pdf?dl=0) and its potential economic impact on Washington, D.C. residents.
 
@@ -14,7 +14,7 @@ For a joint filer with two children, the credit fully phases out if their income
 
 **To see how the FSFC would affect your own household, [enter your information into our personalized calculator](https://policyengine.org/us/household?focus=intro&reform=8007&region=us&timePeriod=2023&baseline=2).**
 
-*Note that our calculator assumes that your household files taxes together, not married filing separately on the same return.*
+_Note that our calculator assumes that your household files taxes together, not married filing separately on the same return._
 
 ## Scenario analysis
 

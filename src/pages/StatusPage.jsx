@@ -55,10 +55,10 @@ function ApiStatus({ apiStatus, apiCategory, countryNames }) {
 export function StatusPage() {
   const mobile = useMobile();
   const [countryStatuses, setCountryStatuses] = useState(
-    INITIAL_COUNTRY_STATUSES
+    INITIAL_COUNTRY_STATUSES,
   );
   const [metaDataStatuses, setMetaDataStatuses] = useState(
-    INITIAL_COUNTRY_STATUSES
+    INITIAL_COUNTRY_STATUSES,
   );
   const [calculateStatuses, setCalculateStatuses] = useState({
     uk: "Pending",
@@ -100,7 +100,7 @@ export function StatusPage() {
         country,
         `/policy/${baselinePolicyId[country]}`,
         setCountryStatuses,
-        countryApiCall
+        countryApiCall,
       );
       getAPIRoute(country, "/metadata", setMetaDataStatuses, countryApiCall);
       getAPIRoute(
@@ -111,7 +111,7 @@ export function StatusPage() {
         {
           household: DEFAULT_COUNTRY_HOUSEHOULD_INPUTS[country],
           policyId: `${baselinePolicyId[country]}`,
-        }
+        },
       );
     }
   }, []);
@@ -138,7 +138,11 @@ export function StatusPage() {
           }}
         >
           <h1>PolicyEngine API status</h1>
-          <iframe src="https://policyengine.betteruptime.com" width="1000" height="800"></iframe>
+          <iframe
+            src="https://policyengine.betteruptime.com"
+            width="1000"
+            height="800"
+          ></iframe>
           <section style={{ display: "flex", marginBottom: 2 }}>
             <div style={{ flex: "50", textAlign: "left" }}>
               <h3>Country pages</h3>

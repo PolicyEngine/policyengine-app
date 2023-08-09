@@ -1,5 +1,5 @@
 # Welcome :wave: !
- 
+
 This is the official web app of the PolicyEngine project. <br/><br/>
 ![PolicyEngineWebApp](https://user-images.githubusercontent.com/117248915/221730075-b368a1df-d0d4-455c-8768-329e1eb9318e.png)
 
@@ -24,7 +24,7 @@ https://github.com/PolicyEngine/policyengine-app.git
 2. Install dependencies
 
 ```
-npm install
+npm ci
 ```
 
 3. Start a server on localhost to see your changes

@@ -1,14 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { plotLayoutFont } from 'pages/policy/output/utils';
-import { PovertyChangeContext } from './PovertyChangeContext';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { plotLayoutFont } from "pages/policy/output/utils";
+import { PovertyChangeContext } from "./PovertyChangeContext";
 import React, { useRef } from "react";
 
 export default function DeepPovertyImpactByGender(props) {
@@ -54,14 +54,14 @@ export default function DeepPovertyImpactByGender(props) {
             type: "bar",
             marker: {
               color: povertyChanges.map((value) =>
-                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
+                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY,
               ),
             },
             text: povertyChanges.map(
               (value) =>
                 (value >= 0 ? "+" : "") +
                 (value * 100).toFixed(1).toString() +
-                "%"
+                "%",
             ),
             textangle: 0,
             hoverinfo: "none",
@@ -88,7 +88,7 @@ export default function DeepPovertyImpactByGender(props) {
             r: 0,
           },
           height: mobile ? 350 : 450,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -103,7 +103,8 @@ export default function DeepPovertyImpactByGender(props) {
           const baseline =
             group === "All"
               ? impact.poverty.deep_poverty[labelToKey[group]].baseline
-              : impact.poverty_by_gender.deep_poverty[labelToKey[group]].baseline;
+              : impact.poverty_by_gender.deep_poverty[labelToKey[group]]
+                  .baseline;
           const reform =
             group === "All"
               ? impact.poverty.deep_poverty[labelToKey[group]].reform
@@ -115,13 +116,13 @@ export default function DeepPovertyImpactByGender(props) {
           } in deep poverty ${
             change < -0.001
               ? `would fall ${percent(-change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-              : change > 0.001
-                ? `would rise ${percent(change)} from ${percent(
-                  baseline
+                  baseline,
                 )} to ${percent(reform)}.`
-                : `would remain at ${percent(baseline)}.`
+              : change > 0.001
+              ? `would rise ${percent(change)} from ${percent(
+                  baseline,
+                )} to ${percent(reform)}.`
+              : `would remain at ${percent(baseline)}.`
           }`;
           setHoverCard({
             title: group,
@@ -140,8 +141,8 @@ export default function DeepPovertyImpactByGender(props) {
     Math.round(
       Math.abs(
         impact.poverty.deep_poverty.all.reform -
-          impact.poverty.deep_poverty.all.baseline
-      ) * 1000
+          impact.poverty.deep_poverty.all.baseline,
+      ) * 1000,
     ) / 10;
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -150,14 +151,14 @@ export default function DeepPovertyImpactByGender(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
   const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
   const data = [
     csvHeader,
-      ...povertyLabels.map((label) => {
+    ...povertyLabels.map((label) => {
       const baseline =
         label === "All"
           ? impact.poverty.deep_poverty[labelToKey[label]].baseline
@@ -188,19 +189,20 @@ export default function DeepPovertyImpactByGender(props) {
             : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard>
-          <DeepPovertyImpactByGenderPlot/>
+          <DeepPovertyImpactByGenderPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename={`deepPovertyImpactBySex${policyLabel}.csv`}
-              className="download-button"
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`deepPovertyImpactBySex${policyLabel}.csv`}
+            className="download-button"
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in the deep poverty rate for
         each sex.
