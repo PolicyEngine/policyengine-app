@@ -12,7 +12,7 @@ jest.mock("react-router-dom", () => ({
 }));
 
 describe("Test button types", () => {
-  test("Test that Button renders and fires onClick properly", () => {
+  test("that Button renders and fires onClick properly", () => {
     const mockOnClick = jest.fn();
 
     const testButton = <Button text="Test Button" onClick={mockOnClick()} />;
@@ -22,7 +22,7 @@ describe("Test button types", () => {
     fireEvent.click(getByText("Test Button"));
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
-  test("Test that LinkButton renders properly and properly navigates to internal link", () => {
+  test("that LinkButton renders properly and properly navigates to internal link", () => {
     const testButton = <LinkButton text="Test Button" link="/test" />;
 
     const { getByText } = render(testButton);

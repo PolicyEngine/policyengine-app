@@ -18,7 +18,7 @@ jest.mock("react-router-dom", () => {
 });
 
 describe("Test cookie consent pop-up", () => {
-  test("Test that pop-up appears without cookie existing", async () => {
+  test("that pop-up appears without cookie existing", async () => {
     // Launch CookieConsent
     const { getByText } = render(<CookieConsent />);
 
@@ -31,7 +31,7 @@ describe("Test cookie consent pop-up", () => {
     });
   });
 
-  test("Test that pop-up does not appear if cookies have been accepted", async () => {
+  test("that pop-up does not appear if cookies have been accepted", async () => {
     // Mock cookie that matches desired
     Object.defineProperty(window.document, "cookie", {
       configurable: true,
@@ -56,7 +56,7 @@ describe("Test cookie consent pop-up", () => {
   });
 });
 describe("Test PoliciesModelledPopup", () => {
-  test("Test that pop-up appears after beginning calculations", () => {
+  test("that pop-up appears after beginning calculations", () => {
     const testProps = {
       policy: {
         reform: {
