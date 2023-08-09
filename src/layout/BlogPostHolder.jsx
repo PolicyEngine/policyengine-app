@@ -5,8 +5,18 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 
 export function BlogPostPreviewRegular(props) {
-  const { title, description, image, filename, countryId, date, width, height, imageHeight, backgroundColor } =
-    props;
+  const {
+    title,
+    description,
+    image,
+    filename,
+    countryId,
+    date,
+    width,
+    height,
+    imageHeight,
+    backgroundColor,
+  } = props;
   let name = filename.split(".")[0];
   if (
     name.startsWith("uk-") ||
@@ -35,7 +45,7 @@ export function BlogPostPreviewRegular(props) {
         cursor: "pointer",
         height: height || 450,
       }}
-      whileHover={{ 
+      whileHover={{
         scale: 1.05,
         backgroundColor: style.colors.DARK_GRAY,
         color: style.colors.WHITE,
@@ -54,8 +64,8 @@ export function BlogPostPreviewRegular(props) {
         }}
         alt="Preview"
       />
-      <div style={{ padding: 20, paddingBottom: 0,  }}>
-        <p style={{fontSize: 18}} >{title}</p>
+      <div style={{ padding: 20, paddingBottom: 0 }}>
+        <p style={{ fontSize: 18 }}>{title}</p>
         <p>{description}</p>
       </div>
       <div
@@ -105,7 +115,7 @@ export default function BlogPostHolder(props) {
           key={i}
           {...postJson[i]}
           countryId={countryId}
-        />
+        />,
       );
   }
 

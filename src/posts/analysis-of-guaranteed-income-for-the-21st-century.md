@@ -1,18 +1,18 @@
-In May 2021, researchers at the [New School’s Institute on Race and Political Economy](https://www.newschool.edu/institute-race-power-political-economy/), with support from the [Economic Security Project](https://www.economicsecurityproject.org/), released a paper titled, *[“Guaranteed Income for the 21st Century.”](https://drive.google.com/file/d/1UDFPwUYu2Rf4RGgXuOTacmBj2Gt9paAV/view)* The paper proposed a policy that expands the Earned Income Tax Credit by guaranteeing $12,500 per adult and $4,500 per child, phasing out for income above certain thresholds.
+In May 2021, researchers at the [New School’s Institute on Race and Political Economy](https://www.newschool.edu/institute-race-power-political-economy/), with support from the [Economic Security Project](https://www.economicsecurityproject.org/), released a paper titled, _[“Guaranteed Income for the 21st Century.”](https://drive.google.com/file/d/1UDFPwUYu2Rf4RGgXuOTacmBj2Gt9paAV/view)_ The paper proposed a policy that expands the Earned Income Tax Credit by guaranteeing $12,500 per adult and $4,500 per child, phasing out for income above certain thresholds.
 
 In this report, we depict the impact on a sample household, as well as on US-wide metrics like the budget, poverty, inequality, and cliffs. We also compare some estimates to the New School’s.
 
 Overall, we find that the reform would, in 2023:
 
-* [Cost $1.26 trillion](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Cost $1.26 trillion](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-* [Benefit three in five Americans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Benefit three in five Americans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-* [Cut poverty 94%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Cut poverty 94%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-* [Lower the Gini index of income inequality 19%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Lower the Gini index of income inequality 19%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
-* [Increase the prevalence and severity of cliffs by 466% and 100%, respectively](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
+- [Increase the prevalence and severity of cliffs by 466% and 100%, respectively](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=1006&region=us&timePeriod=2023&baseline=2)
 
 This report describes and compares the New School’s proposal and analysis; calculates the impact for a sample household; and goes into these US-wide results in greater depth.
 
@@ -20,7 +20,7 @@ This report describes and compares the New School’s proposal and analysis; cal
 
 ## The Guaranteed Income for the 21st Century proposal
 
-*Guaranteed Income for the 21st Century*, or *21GI* as the New School abbreviates it, would abolish the Earned Income Tax Credit and provide $12,500 per adult and $4,500 per child. The proposal then phases out the new benefit linearly with respect to the tax unit’s adjusted gross income, depending on number of adults: It would phase out from $10,000 to $50,000 for single-adult tax units, and from $15,000 to $70,000 for two-adult tax units. The below graphic, from 39:18 of the New School’s [video](https://vimeo.com/552064973), depicts the reform.
+_Guaranteed Income for the 21st Century_, or _21GI_ as the New School abbreviates it, would abolish the Earned Income Tax Credit and provide $12,500 per adult and $4,500 per child. The proposal then phases out the new benefit linearly with respect to the tax unit’s adjusted gross income, depending on number of adults: It would phase out from $10,000 to $50,000 for single-adult tax units, and from $15,000 to $70,000 for two-adult tax units. The below graphic, from 39:18 of the New School’s [video](https://vimeo.com/552064973), depicts the reform.
 
 ![](https://cdn-images-1.medium.com/max/3740/1*DHxTvbjPGSJggUDISIbuzg.jpeg)
 

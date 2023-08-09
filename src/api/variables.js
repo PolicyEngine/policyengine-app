@@ -204,7 +204,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
         }
         if (
           !currentNode.children.find(
-            (child) => child.name === fixedCumulativePath
+            (child) => child.name === fixedCumulativePath,
           )
         ) {
           const moduleData = variableModules[cumulativePath] || {};
@@ -216,7 +216,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
           });
         }
         currentNode = currentNode.children.find(
-          (child) => child.name === fixedCumulativePath
+          (child) => child.name === fixedCumulativePath,
         );
         cumulativePath += ".";
       }
@@ -225,7 +225,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
     parentNode.children.push(nodeToInsert);
   }
   const inputModule = tree.children.find(
-    (child) => child.name === "input"
+    (child) => child.name === "input",
   ).children;
   return {
     name: "input",
@@ -342,7 +342,7 @@ export function getPlotlyAxisFormat(
   unit,
   values,
   precisionOverride,
-  valueType
+  valueType,
 ) {
   // Possible units: currency-GBP, currency-USD, /1
   // If values (an array) is passed, we need to calculate the
@@ -410,7 +410,7 @@ export function getValueFromHousehold(
   entityName,
   household,
   metadata,
-  valueFromFirstOnly = false
+  valueFromFirstOnly = false,
 ) {
   household = JSON.parse(JSON.stringify(household));
   let entityPlural;
@@ -433,7 +433,7 @@ export function getValueFromHousehold(
         timePeriod,
         possibleEntities[0],
         household,
-        metadata
+        metadata,
       );
     }
     let total = 0;
@@ -443,7 +443,7 @@ export function getValueFromHousehold(
         timePeriod,
         entity,
         household,
-        metadata
+        metadata,
       );
       // If the entity data is an array, change total to an array and add each element.
       if (Array.isArray(entityData)) {
@@ -478,7 +478,7 @@ export function getValueFromHousehold(
         timePeriod,
         entityName,
         household,
-        metadata
+        metadata,
       );
     }
     return total;
@@ -491,7 +491,7 @@ export function getNewHouseholdId(countryId, newHouseholdData) {
     countryId,
     "/household",
     { data: newHouseholdData },
-    "POST"
+    "POST",
   )
     .then((response) => response.json())
     .then((data) => {
@@ -504,13 +504,13 @@ export function getDefaultHouseholdId(metadata) {
   const defaultHousehold = createDefaultHousehold(
     metadata.countryId,
     metadata.variables,
-    metadata.entities
+    metadata.entities,
   );
   return countryApiCall(
     metadata.countryId,
     "/household",
     { data: defaultHousehold },
-    "POST"
+    "POST",
   )
     .then((res) => res.json())
     .then((dataHolder) => {
@@ -529,7 +529,7 @@ export function optimiseHousehold(household, metadata, removeEmpty = false) {
     for (let entityName of Object.keys(household[entityPlural])) {
       for (let variable of Object.keys(household[entityPlural][entityName])) {
         for (let timePeriod of Object.keys(
-          household[entityPlural][entityName][variable]
+          household[entityPlural][entityName][variable],
         )) {
           let variableData = newHousehold[entityPlural][entityName][variable];
           if (

@@ -1,26 +1,26 @@
 On Monday, Scott Winship, senior fellow and the director of the Center on Opportunity and Social Mobility at the American Enterprise Institute, published [“Reforming the EITC to Reduce Single Parenthood and Ease Work-Family Balance”](https://ifstudies.org/blog/reforming-the-eitc-to-reduce-single-parenthood-and-ease-work-family-balance) for the Institute for Family Studies. The blog proposed a set of reforms to the Earned Income Tax Credit, most notably basing eligibility on individual rather than joint earnings for married earners. It would also limit EITC eligibility to filers with combined income below $100,000. This report reviews the individual, budgetary, and distributional impacts of that reform using PolicyEngine.
 
-[***See how an individualized EITC would affect you.***](https://policyengine.org/us/household?focus=intro&reform=17331&region=us&timePeriod=2023&baseline=2)
+[**_See how an individualized EITC would affect you._**](https://policyengine.org/us/household?focus=intro&reform=17331&region=us&timePeriod=2023&baseline=2)
 
 ## EITC marriage incentives
 
 The Earned Income Tax Credit is a refundable tax credit based, as all other federal income tax programs are, on a filer’s total income, including the combined income of spouses for joint filers. The credit increases with the number of children (up to three), phases in with respect to total earned income, and phases out with respect to adjusted gross income.
 
 The structure of the EITC can create a marriage penalty for some people. A marriage penalty occurs when a couple’s total tax bill as a result of getting married exceeds what it would be if they were single and filing individually. As Winship notes:
+
 > Consider an unmarried couple, in which one partner with two children makes $20,000 per year and the other (childless) partner makes $30,000 per year. Under current policy, while they remain unmarried, the parent gets a $6,604 EITC benefit, so their combined income is $56,604. If they get married, their EITC drops to $1,991 because the couple’s income is relatively high and the benefit phases out. They are worse off by $4,613.
 
 PolicyEngine confirms these results, and also provides total net income after taxes and benefits. Table 1 illustrates how this penalty would work for a couple in Texas.
 
 **Table 1: EITC and net income for a sample household under current law**
 
-| Household                                | EITC    | Net income |
-| ---------------------------------------- | ------- | ---------- |
-| [Single parent of two, $20,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32119)   | $6,604  | $35,073    |
-| [Single person, no kids, $30,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32120) | $0      | $25,987    |
-| Total if unmarried                       | $6,604  | $61,060    |
-| [Married parents of two, $50,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32121) | $1,998  | $51,600    |
-| Marriage penalty                         | $4,606  | $9,460     |
-
+| Household                                                                                                                         | EITC   | Net income |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------ | ---------- |
+| [Single parent of two, $20,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32119)   | $6,604 | $35,073    |
+| [Single person, no kids, $30,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32120) | $0     | $25,987    |
+| Total if unmarried                                                                                                                | $6,604 | $61,060    |
+| [Married parents of two, $50,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32121) | $1,998 | $51,600    |
+| Marriage penalty                                                                                                                  | $4,606 | $9,460     |
 
 The EITC therefore contributes about half of the total marriage penalty faced by this couple, with other tax and benefit provisions contributing the other half. If they marry, they will lose $9,460, or 15% of their net income if unmarried.
 
@@ -32,13 +32,13 @@ Returning to the previous household (if married), they would see their EITC rise
 
 **Table 2: EITC and net income for a sample household under Winship’s individualized EITC**
 
-| Household                                | EITC       | Net income |
-| ---------------------------------------- | ---------- | ---------- |
-| [Single parent of two, $20,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32119&region=us&timePeriod=2023&baseline=2&reform=17331)   | $6,604     | $35,073    |
-| [Single person, no kids, $30,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32120&region=us&timePeriod=2023&baseline=2&reform=17331) | $0         | $25,987    |
-| Total if unmarried                       | $6,604     | $61,060    |
-| [Married parents of two, $50,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32121&region=us&timePeriod=2023&baseline=2&reform=17331) | $12,814    | $62,416    |
-| Marriage penalty                         | -$6,210    | -$1,356    |
+| Household                                                                                                                                                                           | EITC    | Net income |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------- |
+| [Single parent of two, $20,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32119&region=us&timePeriod=2023&baseline=2&reform=17331)   | $6,604  | $35,073    |
+| [Single person, no kids, $30,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32120&region=us&timePeriod=2023&baseline=2&reform=17331) | $0      | $25,987    |
+| Total if unmarried                                                                                                                                                                  | $6,604  | $61,060    |
+| [Married parents of two, $50,000 earnings](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=32121&region=us&timePeriod=2023&baseline=2&reform=17331) | $12,814 | $62,416    |
+| Marriage penalty                                                                                                                                                                    | -$6,210 | -$1,356    |
 
 We can also examine the “shape” of the reform by [varying the head’s earnings](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=17331&region=us&timePeriod=2023&baseline=2&household=32055), holding the spouse’s earnings constant at $20,000.
 
@@ -54,17 +54,17 @@ The difference between these lines indicates the net effect of the reform. For s
 
 PolicyEngine’s microsimulation model estimates budgetary and distributional impacts of policy reforms. The model runs over the Current Population Survey and is static: it does not assume any behavioral effects with respect to labor supply, marriage, child development, fertility, economic growth, or other factors. The model finds that Winship’s reform would:
 
-* [Cost $38.2 billion in 2023](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=17331&region=us&timePeriod=2023&baseline=2)
+- [Cost $38.2 billion in 2023](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=17331&region=us&timePeriod=2023&baseline=2)
 
-* [Benefit 13% of the population](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
+- [Benefit 13% of the population](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
 
-* [Lower poverty by 0.7% and child poverty by 1.3%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=17331&region=us&timePeriod=2023&baseline=2), [disproportionately among Hispanic Americans](https://policyengine.org/us/policy?focus=policyOutput.racialPovertyImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
+- [Lower poverty by 0.7% and child poverty by 1.3%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=17331&region=us&timePeriod=2023&baseline=2), [disproportionately among Hispanic Americans](https://policyengine.org/us/policy?focus=policyOutput.racialPovertyImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
 
-* [Lower deep poverty by 0.4% and deep child poverty by 0.6%](https://policyengine.org/us/policy?focus=policyOutput.deepPovertyImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
+- [Lower deep poverty by 0.4% and deep child poverty by 0.6%](https://policyengine.org/us/policy?focus=policyOutput.deepPovertyImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
 
-* [Lower the Gini index of income inequality by 0.7%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
+- [Lower the Gini index of income inequality by 0.7%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=17331&region=us&timePeriod=2023&baseline=2)
 
-* [Increase the share of households facing cliffs by 16%](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=17331&region=us&timePeriod=2023&baseline=2)[^1]
+- [Increase the share of households facing cliffs by 16%](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=17331&region=us&timePeriod=2023&baseline=2)[^1]
 
 [^1]: Winship shared with me that he intended for legislative staff to shift the cliff to a phase-out.
 

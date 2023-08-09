@@ -41,7 +41,7 @@ function MobileTreeNavigationHolder(props) {
       stem += name;
       const fixedStem = stem;
       currentNode = currentNode.children.find(
-        (node) => node.name === fixedStem
+        (node) => node.name === fixedStem,
       );
       breadcrumbs.push({
         name: stem,
@@ -182,7 +182,7 @@ function MobileBottomMenu(props) {
       } by ${formatVariableValue(
         metadata.variables.household_net_income,
         Math.abs(difference),
-        0
+        0,
       )}`;
     }
   } else if (autoCompute) {

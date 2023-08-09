@@ -55,11 +55,7 @@ export default function Screenshottable(props) {
             minHeight: 800,
           }}
         >
-          {
-            title && (
-              <h2>{title}</h2>
-            )
-          }
+          {title && <h2>{title}</h2>}
           {children}
         </div>
       </Modal>

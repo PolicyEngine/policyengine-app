@@ -199,7 +199,12 @@ export default function PolicyEngineCountry(props) {
       />
       <Route path="/cec" element={<CEC />} />
       <Route path="/citizens-economic-council" element={<CEC />} />
-      <Route path="/docs" element={<ModelDocumentation countryId={countryId} metadata={metadata} />} />
+      <Route
+        path="/docs"
+        element={
+          <ModelDocumentation countryId={countryId} metadata={metadata} />
+        }
+      />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/blog" element={<ResearchPage countryId={countryId} />} />
       <Route path="/*" element={<FOF />} />

@@ -41,9 +41,9 @@ export default function VariableEditor(props) {
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
-    (entity) => householdInput[entityPlural][entity][variable.name]
+    (entity) => householdInput[entityPlural][entity][variable.name],
   );
-  
+
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity
@@ -112,7 +112,7 @@ function HouseholdVariableEntity(props) {
     setEdited,
   } = props;
   const possibleTimePeriods = Object.keys(
-    householdInput[entityPlural][entityName][variable.name]
+    householdInput[entityPlural][entityName][variable.name],
   );
   return (
     <>
@@ -171,7 +171,7 @@ function HouseholdVariableEntityInput(props) {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
           setSearchParams(newSearch);
-        }
+        },
       );
     }
     setEdited(true);
@@ -182,14 +182,14 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     entityName,
     householdBaseline,
-    metadata
+    metadata,
   );
   const inputValue = getValueFromHousehold(
     variable.name,
     timePeriod,
     entityName,
     householdInput,
-    metadata
+    metadata,
   );
   const reformValue = householdReform
     ? getValueFromHousehold(
@@ -197,7 +197,7 @@ function HouseholdVariableEntityInput(props) {
         timePeriod,
         entityName,
         householdReform,
-        metadata
+        metadata,
       )
     : null;
   const mobile = useMobile();
@@ -208,9 +208,7 @@ function HouseholdVariableEntityInput(props) {
         onChange={submitValue}
         placeholder={
           reformValue !== null
-            ? `${formatValue(
-                reformValue
-              )}`
+            ? `${formatValue(reformValue)}`
             : formatValue(inputValue || simulatedValue)
         }
         autofocus={true}

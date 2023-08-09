@@ -45,7 +45,7 @@ function PolicyNamer(props) {
                   setSearchParams(newSearch);
                   setError(null);
                 }
-              }
+              },
             );
           }}
         />
@@ -129,7 +129,7 @@ function PolicyItem(props) {
         endDateStr={endDateStr}
         parameterMetadata={parameter}
         value={value}
-      />
+      />,
     );
   }
   return (
@@ -171,7 +171,7 @@ function PolicyDisplay(props) {
               newSearchParams.region = region;
               newSearchParams.timePeriod = timePeriod;
               const newUrl = `/${country}/policy?${new URLSearchParams(
-                newSearchParams
+                newSearchParams,
               )}`;
               navigate(newUrl);
               hideButtons && closeDrawer();
@@ -210,11 +210,11 @@ export default function PolicyRightSidebar(props) {
   });
   options.push({ value: region, label: region });
   const label = options.find(
-    (option) => option.value === stateAbbreviation
+    (option) => option.value === stateAbbreviation,
   )?.label;
   const regionLabel = options.find((option) => option.value === region)?.label;
   const validatedStateAbbreviation = options.find(
-    (option) => option.value === stateAbbreviation
+    (option) => option.value === stateAbbreviation,
   )?.value;
   const confirmEconomicImpact = () => {
     let message = "";
@@ -270,11 +270,11 @@ export default function PolicyRightSidebar(props) {
       newSearch.set("region", searchParams.get("region") || defaults.region);
       newSearch.set(
         "timePeriod",
-        searchParams.get("timePeriod") || defaults.timePeriod
+        searchParams.get("timePeriod") || defaults.timePeriod,
       );
       newSearch.set(
         "baseline",
-        searchParams.get("baseline") || defaults.baseline
+        searchParams.get("baseline") || defaults.baseline,
       );
       setSearchParams(newSearch);
     }
@@ -303,7 +303,7 @@ export default function PolicyRightSidebar(props) {
             }
             newSearchParams.focus = "gov";
             const newUrl = `/${country}/policy?${new URLSearchParams(
-              newSearchParams
+              newSearchParams,
             )}`;
             navigate(newUrl);
           }}
@@ -394,7 +394,7 @@ export default function PolicyRightSidebar(props) {
             const newSearch = copySearchParams(searchParams);
             newSearch.set(
               "reform",
-              baselinePolicyId || metadata.current_law_id
+              baselinePolicyId || metadata.current_law_id,
             );
             if (!reformPolicyId) {
               newSearch.delete("baseline");

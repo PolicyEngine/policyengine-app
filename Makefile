@@ -1,5 +1,5 @@
 install:
-	npm install --force
+	npm ci
 build:
 	npm run build
 debug:

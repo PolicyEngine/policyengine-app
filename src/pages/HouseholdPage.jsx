@@ -45,7 +45,6 @@ export default function HouseholdPage(props) {
   let middle;
   const focus = searchParams.get("focus") || "";
 
-
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
     if (focus === "") {
@@ -62,7 +61,7 @@ export default function HouseholdPage(props) {
       const defaultHousehold = createDefaultHousehold(
         metadata.countryId,
         metadata.variables,
-        metadata.entities
+        metadata.entities,
       );
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
@@ -89,7 +88,7 @@ export default function HouseholdPage(props) {
             })
             .then((dataHolder) => {
               setHouseholdInput(dataHolder.input);
-            })
+            }),
         );
       }
       requests.push(
@@ -98,7 +97,7 @@ export default function HouseholdPage(props) {
           `/household/${householdId}/policy/${
             policy.baseline.id ||
             (metadata ? metadata.current_law_id : "current-law")
-          }`
+          }`,
         )
           .then((res) => res.json())
           .then((dataHolder) => {
@@ -112,13 +111,13 @@ export default function HouseholdPage(props) {
           })
           .then((dataHolder) => {
             setHouseholdBaseline(dataHolder.baseline);
-          })
+          }),
       );
       if (policy.reform.id && policy.reform.id !== policy.baseline.id) {
         requests.push(
           countryApiCall(
             countryId,
-            `/household/${householdId}/policy/${policy.reform.id}`
+            `/household/${householdId}/policy/${policy.reform.id}`,
           )
             .then((res) => res.json())
             .then((dataHolder) => {
@@ -132,7 +131,7 @@ export default function HouseholdPage(props) {
             })
             .then((dataHolder) => {
               setHouseholdReform(dataHolder.reform);
-            })
+            }),
         );
       } else {
         requests.push(Promise.resolve({}));
@@ -147,7 +146,7 @@ export default function HouseholdPage(props) {
       const defaultHousehold = createDefaultHousehold(
         metadata.countryId,
         metadata.variables,
-        metadata.entities
+        metadata.entities,
       );
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
@@ -165,7 +164,7 @@ export default function HouseholdPage(props) {
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.variables).includes(
-      focus.split(".")[focus.split(".").length - 1]
+      focus.split(".")[focus.split(".").length - 1],
     )
   ) {
     const variableNames = focus.includes("input.household.")
@@ -233,7 +232,7 @@ export default function HouseholdPage(props) {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
           setSearchParams(newSearch);
-        }
+        },
       );
       setLoading(true);
     }

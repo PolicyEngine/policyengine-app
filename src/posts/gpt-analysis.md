@@ -8,11 +8,11 @@ PolicyEngine now comes with built-in GPT-4 integration, automatically generating
 
 Our new audience modes include:
 
-* **ELI5:** Explain Like I’m 5 — For users who prefer simple language and basic explanations.
+- **ELI5:** Explain Like I’m 5 — For users who prefer simple language and basic explanations.
 
-* **Normal:** For policy analysts with some background in economics and policy.
+- **Normal:** For policy analysts with some background in economics and policy.
 
-* **Wonk:** For seasoned policy analysts who prefer concise, technical language.
+- **Wonk:** For seasoned policy analysts who prefer concise, technical language.
 
 These modes allow users to customize the analysis based on their target audience, making the generated content more accessible and relevant.
 
