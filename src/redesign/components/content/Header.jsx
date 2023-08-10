@@ -176,9 +176,10 @@ function DesktopCalculatorButton() {
           fontWeight: 500,
           letterSpacing: 2.4,
           cursor: "pointer",
+          textTransform: "uppercase",
         }}
       >
-        CALCULATE
+        Policy impacts
       </HoverBox>
     </>
   );
