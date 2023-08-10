@@ -1,0 +1,95 @@
+import style from "../../style";
+import { useDisplayCategory } from "./Responsive";
+
+
+export function Carousel(props) {
+    const { current, total, setCurrent } = props;
+  
+    const displayCategory = useDisplayCategory();
+    const isDesktop = displayCategory === "desktop";
+  
+    // Grey boxes horizontally next to each other, with the current one being a different colour
+  
+    let leftArrow = (
+      <span
+        className="material-symbols-outlined"
+        style={{
+          color:
+            current > 0 ? style.colors.DARK_GRAY : style.colors.MEDIUM_DARK_GRAY,
+          fontSize: 20,
+          cursor: current > 0 ? "pointer" : "default",
+          marginRight: "auto",
+          padding: 10,
+        }}
+        onClick={() => {
+          if (current > 0) {
+            setCurrent(current - 1);
+          }
+        }}
+      >
+        arrow_back
+      </span>
+    );
+  
+    leftArrow = isDesktop ? leftArrow : null;
+  
+    let rightArrow = (
+      <span
+        className="material-symbols-outlined"
+        style={{
+          color:
+            current < total - 1
+              ? style.colors.DARK_GRAY
+              : style.colors.MEDIUM_DARK_GRAY,
+          fontSize: 20,
+          cursor: current < total - 1 ? "pointer" : "default",
+          padding: 10,
+            marginLeft: "auto",
+        }}
+        onClick={() => {
+          if (current < total - 1) {
+            setCurrent(current + 1);
+          }
+        }}
+      >
+        arrow_forward
+      </span>
+    );
+  
+    rightArrow = isDesktop ? rightArrow : null;
+  
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 10,
+          width: "100%",
+        }}
+      >
+        {leftArrow}
+        {Array(total)
+          .fill(0)
+          .map((_, i) => {
+            return (
+              <div
+                style={{
+                  height: 15,
+                  width: 15,
+                  backgroundColor:
+                    i === current
+                      ? style.colors.TEAL_ACCENT
+                      : style.colors.MEDIUM_DARK_GRAY,
+                  margin: 5,
+                  cursor: "pointer",
+                  border: `2px solid ${style.colors.DARK_GRAY}`,
+                }}
+                key={i}
+              />
+            );
+          })}
+        {rightArrow}
+      </div>
+    );
+  }
