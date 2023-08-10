@@ -1,8 +1,15 @@
 import style from "../../../../style";
+import { convertToCurrencyString } from "./convertToCurrencyString";
 
 const ROUNDING_FACTOR = 50000;
 
-export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
+export function getCliffs(
+  netIncomeArray,
+  earningsArray,
+  isReform = false,
+  currency = "$",
+  useHoverCard = false,
+) {
   // Return a list of [(start, end), ...] where the net income does not increase
   if (!netIncomeArray || !earningsArray) return [];
   let cliffs = [];
@@ -36,7 +43,18 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
       mode: "lines",
       fillcolor: style.colors.DARK_GRAY,
       name: `Cliff ${i + 1}${isReform ? " (reform)" : ""}`,
-      text: "",
+      ...(useHoverCard
+        ? {
+            text: "",
+          }
+        : {
+            text:
+              `<b>Cliff ${i + 1}${isReform ? " (reform)" : ""}</b><br><br>` +
+              `Your net income falls after earning ` +
+              `${convertToCurrencyString(currency, points[0])}<br>` +
+              `until earning ${convertToCurrencyString(currency, points[1])} ` +
+              `in the ${isReform ? "reform" : "baseline"} scenario.`,
+          }),
       opacity: 0.1,
       line_width: 0,
       showlegend: true,
@@ -44,7 +62,13 @@ export function getCliffs(netIncomeArray, earningsArray, isReform = false) {
       line: {
         color: style.colors.DARK_GRAY,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hoverinfo: "text",
+          }),
     };
   });
 }
