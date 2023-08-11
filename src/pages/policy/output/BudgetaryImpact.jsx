@@ -29,14 +29,7 @@ export default function BudgetaryImpact(props) {
     "Net impact",
   ];
   let mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
-  let usInitials = [
-    "al", "ak", "az", "ar", "ca", "co", "ct", "de", "fl", "ga", "hi", "id", "il",
-    "in", "ia", "ks", "ky", "la", "me", "md", "ma", "mi", "mn", "ms", "mo", "mt",
-    "ne", "nv", "nh", "nj", "nm", "ny", "nc", "nd", "oh", "ok", "or", "pa", "ri",
-    "sc", "sd", "tn", "tx", "ut", "vt", "va", "wa", "wv", "wi", "wy", "dc","us"
-  ];
-  
-  if (!(usInitials.includes(region))){
+  if (!window.location.pathname.includes("/us/")){
     desktopLabels[0] = "Tax revenues";
     mobileLabels[0] = "Taxes";
   }
