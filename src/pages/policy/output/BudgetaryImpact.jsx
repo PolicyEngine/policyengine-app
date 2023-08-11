@@ -29,7 +29,7 @@ export default function BudgetaryImpact(props) {
     "Net impact",
   ];
   let mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
-  if (!window.location.pathname.includes("/us/")){
+  if (!window.location.pathname.includes("/us/")) {
     desktopLabels[0] = "Tax revenues";
     mobileLabels[0] = "Taxes";
   }
