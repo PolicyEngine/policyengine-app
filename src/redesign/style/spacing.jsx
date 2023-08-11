@@ -1,20 +1,20 @@
 export const HEADER_HEIGHT = 90;
 
-const desktopPadding = {
+export const desktopPadding = {
 	top: '120px',
 	bottom: '160px',
 	left: '188px',
 	right: '188px'
 };
 
-const tabletPadding = {
+export const tabletPadding = {
 	top: '80px',
 	bottom: '100px',
 	left: '64px',
 	right: '64px'
 };
 
-const mobilePadding = {
+export const mobilePadding = {
 	top: '48px',
 	bottom: '60px',
 	left: '34px',
