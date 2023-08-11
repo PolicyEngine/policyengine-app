@@ -1,11 +1,19 @@
-// External imports
 
-// Define styles?
+// Style imports
+import { desktopPadding } from '../../../../style/spacing.jsx';
 
-export default function DesktopStaffSection(props) {
+const wrapperStyles = {
+	paddingTop: desktopPadding.top,
+	paddingBottom: desktopPadding.bottom,
+	paddingLeft: desktopPadding.left,
+	paddingRight: desktopPadding.right
+};
+
+export default function DesktopStaffSection(/*props*/) {
 
 	// Define props
-	const staff = {props};
+	// const staff = {props};
+
 
 	// Iterate over data in order to create JSX
 	// const staffCards = staff.map( (member) => {
@@ -20,7 +28,10 @@ export default function DesktopStaffSection(props) {
 	// })
 
 	return (
-		<h1>Test</h1>
+		<section style={wrapperStyles}>
+
+			<h1>Test</h1>
+		</section>
 
 	)
 
