@@ -1,8 +1,11 @@
 import { useState } from "react";
 import style from "redesign/style";
 import { Carousel } from "../controls/Carousel";
+import { motion } from "framer-motion";
+import { useDisplayCategory } from "../controls/Responsive";
 
 export function BlogPreview() {
+  const displayCategory = useDisplayCategory();
   return (
     <div
       style={{
@@ -12,10 +15,16 @@ export function BlogPreview() {
       <h2 style={{ fontFamily: "Roboto Serif", marginBottom: 50 }}>
         Expert policy analysis
       </h2>
-      <div style={{ display: "flex" }}>
+      <div style={{ 
+        display: "flex",
+        flexDirection: displayCategory === "mobile" ? "column" : "row",
+      }}>
         <FeaturedBlogPost posts={[blogPost, blogPost]} />
         <div style={{ width: "30vw", paddingLeft: 50 }}>
-          <SmallBlogPost />
+          <SmallBlogPost post={blogPost} />
+          <SmallBlogPost post={blogPost} />
+          <SmallBlogPost post={blogPost} />
+          <SmallBlogPost post={blogPost} />
         </div>
       </div>
     </div>
@@ -30,14 +39,27 @@ const blogPost = {
   tags: ["featured", "in-the-news", "uk"],
 }
 
+function SmallBlogPost(props) {
+  const { post } = props;
+  return <div style={{ backgroundColor: style.colors.LIGHT_GRAY, height: 600 / 4, marginBottom: 20 }}>
+    <div style={{ padding: 20 }}>
+      <p style={{ textTransform: "uppercase" }}>April 26, 2023</p>
+      <h5 style={{ fontFamily: "Roboto Serif", fontWeight: "bold" }}>
+      {post.title}
+      </h5>
+    </div>
+  </div>;
+}
+
 function FeaturedBlogPost(props) {
   const { posts } = props;
   const [postIndex, setPostIndex] = useState(0);
   return (
-    <div
+    <motion.div
       style={{
         backgroundColor: style.colors.LIGHT_GRAY,
         width: "50vw",
+        cursor: "pointer",
       }}
     >
       <div style={{ height: 300, backgroundColor: "lightgray" }}></div>
@@ -58,7 +80,7 @@ function FeaturedBlogPost(props) {
         </div>
       </div>
       <Carousel total={posts.length} current={postIndex} setCurrent={setPostIndex} />
-    </div>
+    </motion.div>
   );
 }
 
@@ -80,60 +102,10 @@ function Tags(props) {
           backgroundColor: colors[tag],
           textTransform: "uppercase",
           padding: 10,
-          border: `2px solid ${style.colors.LIGHT}`,
-          borderRight: i === filteredTags.length - 1 ? `2px solid ${style.colors.LIGHT}` : "none",
+          border: `2px solid ${style.colors.GRAY}`,
+          borderRight: i === filteredTags.length - 1 ? `2px solid ${style.colors.GRAY}` : "none",
         }}>{tag.replaceAll("-", " ")}</div>
       }
     })}
   </div>
-}
-
-function SmallBlogPost() {
-  return (
-    <div
-      style={{
-        width: "100%",
-        backgroundColor: style.colors.MEDIUM_DARK_GRAY,
-      }}
-    >
-      <div style={{ display: "flex" }}>
-        <div
-          style={{
-            backgroundColor: style.colors.TEAL_LIGHT,
-            textTransform: "uppercase",
-            height: 40,
-            padding: 10,
-            border: `1px solid ${style.colors.DARK_GRAY}`,
-          }}
-        >
-          Featured
-        </div>
-        <div
-          style={{
-            backgroundColor: style.colors.LIGHT_GRAY,
-            textTransform: "uppercase",
-            height: 40,
-            padding: 10,
-            border: `1px solid ${style.colors.DARK_GRAY}`,
-          }}
-        >
-          Blog
-        </div>
-        <p
-          style={{
-            textTransform: "uppercase",
-            marginLeft: "auto",
-            padding: 10,
-          }}
-        >
-          April 26, 2023
-        </p>
-      </div>
-      <div style={{ width: "80%", padding: 20, marginBottom: 20 }}>
-        <h5 style={{ fontFamily: "Roboto Serif", fontWeight: "bold" }}>
-          Introducing Utah State Income Tax Analysis on PolicyEngine
-        </h5>
-      </div>
-    </div>
-  );
 }

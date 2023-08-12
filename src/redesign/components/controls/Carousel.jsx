@@ -20,6 +20,7 @@ export function Carousel(props) {
           cursor: current > 0 ? "pointer" : "default",
           marginRight: "auto",
           padding: 10,
+          borderRight: `2px solid ${style.colors.MEDIUM_DARK_GRAY}`,
         }}
         onClick={() => {
           if (current > 0) {
@@ -45,6 +46,7 @@ export function Carousel(props) {
           cursor: current < total - 1 ? "pointer" : "default",
           padding: 10,
             marginLeft: "auto",
+            borderLeft: `2px solid ${style.colors.MEDIUM_DARK_GRAY}`,
         }}
         onClick={() => {
           if (current < total - 1) {
@@ -64,11 +66,12 @@ export function Carousel(props) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: 10,
           width: "100%",
+          borderTop: `2px solid ${style.colors.MEDIUM_DARK_GRAY}`,
         }}
       >
         {leftArrow}
+        <div style={{ marginTop: 0 }} />
         {Array(total)
           .fill(0)
           .map((_, i) => {

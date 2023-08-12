@@ -145,7 +145,7 @@ function QuoteBox(props) {
   return (
     <div
       style={{
-        backgroundColor: style.colors.TEAL_LIGHT,
+        backgroundColor: style.colors.TEAL_98,
         width: displayCategory === "desktop" ? "50vw" : "75vw",
         minHeight: displayCategory === "desktop" ? 250 : 200,
         display: "flex",
@@ -158,7 +158,7 @@ function QuoteBox(props) {
       <QuoteText text={currentQuote.quote} />
       <div
         style={{
-          border: `0.5px solid ${style.colors.MEDIUM_DARK_GRAY}`,
+          border: `1px solid ${style.colors.MEDIUM_DARK_GRAY}`,
           marginTop: 10,
           marginBottom: 10,
           width: "100%",
@@ -182,18 +182,12 @@ function QuoteBox(props) {
       </div>
       <div
         style={{
-          border: `0.5px solid ${style.colors.MEDIUM_DARK_GRAY}`,
-          marginTop: 10,
-          width: "100%",
-        }}
-      ></div>
-      <div
-        style={{
           height: "100%",
           width: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          marginTop: 10,
         }}
       >
         <Carousel
