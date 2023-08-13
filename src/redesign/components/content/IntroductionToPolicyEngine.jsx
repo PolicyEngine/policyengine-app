@@ -241,7 +241,7 @@ function QuoteText(props) {
       style={{
         paddingLeft: displayCategory === "mobile" ? 20 : 40,
         paddingRight: displayCategory === "mobile" ? 20 : 40,
-        minHeight: displayCategory === "desktop" ? 120 : 50,
+        height: displayCategory === "desktop" ? 120 : 150,
         display: "flex",
         alignItems: "center",
       }}
@@ -323,7 +323,6 @@ function QuoteImages(props) {
     </div>
   );
 }
-
 
 function ReadMoreAboutThisQuote() {
   const [hover, setHovering] = useState(false);

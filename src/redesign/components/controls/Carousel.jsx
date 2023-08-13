@@ -85,6 +85,8 @@ export function Carousel(props) {
                       ? style.colors.TEAL_ACCENT
                       : style.colors.MEDIUM_DARK_GRAY,
                   margin: 5,
+                  marginTop: isDesktop ? 0 : 10,
+                  marginBottom: isDesktop ? 0 : 10,
                   cursor: "pointer",
                   border: `2px solid ${style.colors.DARK_GRAY}`,
                 }}
