@@ -46,15 +46,18 @@ export default function DetailedBudgetaryImpact(props) {
 
   console.log(xValues, yValues, textValues);
 
-  function DetailedBudgetaryImpactPlot() {
+  function DetailedBudgetaryImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
+    const xArray = xValues.concat(["Total"]);
+    const yArray = yValues.concat([impact.budget.budgetary_impact]);
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
         data={[
           {
-            x: xValues.concat(["Total"]),
-            y: yValues.concat([impact.budget.budgetary_impact]),
+            x: xArray,
+            y: yArray,
             type: "waterfall",
             orientation: "v",
             measure:
@@ -79,7 +82,16 @@ export default function DetailedBudgetaryImpact(props) {
             },
             text: textValues,
             textangle: 0,
-            hoverinfo: "none",
+            ...(useHoverCard
+              ? {
+                  hoverinfo: "none",
+                }
+              : {
+                  customdata: yArray.map((change) =>
+                    aggregateCurrency(change, metadata),
+                  ),
+                  hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                }),
           },
         ]}
         layout={{
@@ -91,6 +103,15 @@ export default function DetailedBudgetaryImpact(props) {
             tickprefix: metadata.currency,
             tickformat: ",.1f",
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           showlegend: false,
           uniformtext: {
             mode: "hide",
@@ -114,17 +135,21 @@ export default function DetailedBudgetaryImpact(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const program = data.points[0].x;
-          const change = data.points[0].y;
-          setHoverCard({
-            title: `${program}`,
-            body: aggregateCurrency(change, metadata),
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const program = data.points[0].x;
+                const change = data.points[0].y;
+                setHoverCard({
+                  title: `${program}`,
+                  body: aggregateCurrency(change, metadata),
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }
