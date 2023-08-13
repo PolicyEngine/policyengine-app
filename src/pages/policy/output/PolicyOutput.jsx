@@ -36,7 +36,7 @@ import React from "react";
 import { message } from "antd";
 import Analysis from "./Analysis";
 import style from "../../../style";
-import { PovertyChangeProvider } from './PovertyChangeContext';
+import { PovertyChangeProvider } from "./PovertyChangeContext";
 
 import { useScreenshot } from "use-react-screenshot";
 
@@ -69,7 +69,7 @@ export function TimePeriodSelector(props) {
     return { value: time_period.name.toString(), label: time_period.label };
   });
   const [value] = useState(
-    (searchParams.get("timePeriod") || "").toString() || options[0].value
+    (searchParams.get("timePeriod") || "").toString() || options[0].value,
   );
 
   return (
@@ -151,7 +151,7 @@ export default function PolicyOutput(props) {
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
   const skipImpacts = POLICY_OUTPUT_TREE[0].children.find(
-    (item) => item.name === focus
+    (item) => item.name === focus,
   ).skipImpacts;
   useEffect(() => {
     if (
@@ -168,12 +168,14 @@ export default function PolicyOutput(props) {
       const interval = setInterval(() => {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
       }, 1000);
-      apiCall(url, null).then(res => res.json()).then(intermediateData => {
-        if(averageImpactTime === 20) {
-          console.log(intermediateData)
-          setAverageImpactTime(intermediateData.average_time || 20);
-        }
-      })
+      apiCall(url, null)
+        .then((res) => res.json())
+        .then((intermediateData) => {
+          if (averageImpactTime === 20) {
+            console.log(intermediateData);
+            setAverageImpactTime(intermediateData.average_time || 20);
+          }
+        });
       asyncApiCall(url, null, 1_000, 1_000)
         .then((data) => {
           if (data.status === "error") {
@@ -217,11 +219,11 @@ export default function PolicyOutput(props) {
       newSearch.set("region", searchParams.get("region") || defaults.region);
       newSearch.set(
         "timePeriod",
-        searchParams.get("timePeriod") || defaults.timePeriod
+        searchParams.get("timePeriod") || defaults.timePeriod,
       );
       newSearch.set(
         "baseline",
-        searchParams.get("baseline") || defaults.baseline
+        searchParams.get("baseline") || defaults.baseline,
       );
       setSearchParams(newSearch);
     }
@@ -324,17 +326,14 @@ export default function PolicyOutput(props) {
           showInfo={false}
           percent={
             averageImpactTime
-              ? Math.min(
-                  90,
-                  (secondsElapsed / averageImpactTime) * 100
-                )
+              ? Math.min(90, (secondsElapsed / averageImpactTime) * 100)
               : 0
           }
           strokeColor={style.colors.BLUE}
         />
         <p>
-          This usually takes around{" "}
-          {Math.round(averageImpactTime / 5) * 5} seconds, but may take longer.
+          This usually takes around {Math.round(averageImpactTime / 5) * 5}{" "}
+          seconds, but may take longer.
         </p>
       </div>
     );
@@ -399,7 +398,6 @@ export default function PolicyOutput(props) {
           policyLabel={policyLabel}
         />
       </PovertyChangeProvider>
-      
     );
   } else if (focus === "policyOutput.deepPovertyImpact") {
     document.title = `${policyLabel} | Deep poverty impact | PolicyEngine`;
@@ -414,7 +412,7 @@ export default function PolicyOutput(props) {
       </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.genderPovertyImpact") {
-    document.title = `${policyLabel} | Gender poverty impact | PolicyEngine`
+    document.title = `${policyLabel} | Gender poverty impact | PolicyEngine`;
     pane = (
       <PovertyChangeProvider>
         <PovertyImpactByGender
@@ -426,7 +424,7 @@ export default function PolicyOutput(props) {
       </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.genderDeepPovertyImpact") {
-    document.title = `${policyLabel} | Gender deep poverty impact | PolicyEngine`
+    document.title = `${policyLabel} | Gender deep poverty impact | PolicyEngine`;
     pane = (
       <PovertyChangeProvider>
         <DeepPovertyImpactByGender
@@ -438,7 +436,7 @@ export default function PolicyOutput(props) {
       </PovertyChangeProvider>
     );
   } else if (focus === "policyOutput.racialPovertyImpact") {
-    document.title = `${policyLabel} | Racial poverty impact | PolicyEngine`
+    document.title = `${policyLabel} | Racial poverty impact | PolicyEngine`;
     pane = (
       <PovertyChangeProvider>
         <PovertyImpactByRace

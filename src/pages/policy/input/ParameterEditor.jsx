@@ -30,7 +30,7 @@ export default function ParameterEditor(props) {
 
   // eslint-disable-next-line no-unused-vars
   const [_, setValue] = useState(
-    getParameterAtInstant(reformedParameter, startDate)
+    getParameterAtInstant(reformedParameter, startDate),
   );
 
   let control;
@@ -52,7 +52,7 @@ export default function ParameterEditor(props) {
                 let newSearch = copySearchParams(searchParams);
                 newSearch.set("reform", newPolicyId);
                 setSearchParams(newSearch);
-              }
+              },
             );
           }}
         />

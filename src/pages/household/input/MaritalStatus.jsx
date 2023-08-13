@@ -115,7 +115,7 @@ export default function MaritalStatus(props) {
       householdInput,
       status,
       metadata.variables,
-      metadata.entities
+      metadata.entities,
     );
     setHouseholdInput(newHousehold);
     let newSearch = copySearchParams(searchParams);
@@ -131,7 +131,7 @@ export default function MaritalStatus(props) {
             event_category: "household",
             event_label: "Set marital status",
           });
-        }
+        },
       );
     }
   };

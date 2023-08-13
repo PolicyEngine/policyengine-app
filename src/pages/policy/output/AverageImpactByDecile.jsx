@@ -3,12 +3,12 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { avgChangeDirection, plotLayoutFont} from './utils';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React, { useRef } from "react";
 
 export default function AverageImpactByDecile(props) {
@@ -27,13 +27,13 @@ export default function AverageImpactByDecile(props) {
             type: "bar",
             marker: {
               color: Object.values(impact.decile.average).map((value) =>
-                value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
+                value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN,
               ),
             },
             text: Object.values(impact.decile.average).map(
               (value) =>
                 metadata.currency +
-                value.toLocaleString("en-GB", { maximumFractionDigits: 0 })
+                value.toLocaleString("en-GB", { maximumFractionDigits: 0 }),
             ),
             textangle: 0,
             hoverinfo: "none",
@@ -62,7 +62,7 @@ export default function AverageImpactByDecile(props) {
             r: 20,
           },
           height: mobile ? 300 : 500,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -78,20 +78,20 @@ export default function AverageImpactByDecile(props) {
           const message =
             change > 0.0001
               ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                metadata.variables.household_net_income,
-                change,
-                0
-              )} per year.`
+                  metadata.variables.household_net_income,
+                  change,
+                  0,
+                )} per year.`
               : change < -0.0001
-                ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
+              ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
                   metadata.variables.household_net_income,
                   -change,
-                  0
+                  0,
                 )} per year.`
-                : change === 0
-                  ? `This reform has no impact on the income of households in the ${decile} decile.`
-                  : (change > 0 ? "This reform raises " : "This reform lowers ") +
-                  ` the income of households in the ${decile} decile by less than 0.01%.`;
+              : change === 0
+              ? `This reform has no impact on the income of households in the ${decile} decile.`
+              : (change > 0 ? "This reform raises " : "This reform lowers ") +
+                ` the income of households in the ${decile} decile by less than 0.01%.`;
           setHoverCard({
             title: `Decile ${data.points[0].x}`,
             body: message,
@@ -113,44 +113,46 @@ export default function AverageImpactByDecile(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
+
   const data = Object.entries(impact.decile.average).map(([key, value]) => [
     `Decile ${key}`,
     value,
-  ]);  
+  ]);
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "40px",
     left: "55px",
-  };  
+  };
 
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
-          {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
-          formatVariableValue(
+        <h2 style={{ width: "700px", wordWrap: "break-word" }}>
+          {`${policyLabel} ${avgChangeDirection(
+            averageChange,
+          )} the net income of households ${label} by ${formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),
-            0
+            0,
           )} on average`}
         </h2>
         <HoverCard>
-          <AverageImpactByDecilePlot/>
+          <AverageImpactByDecilePlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container"> 
-          {!mobile &&
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename={`absoluteImpactByIncomeDecile${policyLabel}.csv`}
-              style={downloadButtonStyle}
-            />
-          }
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`absoluteImpactByIncomeDecile${policyLabel}.csv`}
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in income for each income
         decile. Households are sorted into ten equally-populated groups

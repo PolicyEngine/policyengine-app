@@ -86,26 +86,24 @@ function PythonCodeBlock({ lines }) {
 
 export default function HouseholdReproducibility(props) {
   const { policy, metadata, householdInput } = props;
-  const [ earningVariation, setEarningVariation ] = useState(false);
+  const [earningVariation, setEarningVariation] = useState(false);
 
-  let initialLines = [
-    "from " + metadata.package + " import Simulation",
-  ];
+  let initialLines = ["from " + metadata.package + " import Simulation"];
 
   if (policy.reform.data) {
     initialLines = initialLines.concat(
-      getReformDefinitionCode(metadata, policy)
+      getReformDefinitionCode(metadata, policy),
     );
   }
 
   let householdInputCopy = JSON.parse(
-    JSON.stringify(optimiseHousehold(householdInput, metadata, true))
+    JSON.stringify(optimiseHousehold(householdInput, metadata, true)),
   );
 
   for (const entityPlural of Object.keys(householdInputCopy)) {
     for (const entity of Object.keys(householdInputCopy[entityPlural])) {
       for (const variable of Object.keys(
-        householdInputCopy[entityPlural][entity]
+        householdInputCopy[entityPlural][entity],
       )) {
         if (variable !== "members") {
           if (
@@ -122,7 +120,9 @@ export default function HouseholdReproducibility(props) {
   }
 
   if (earningVariation) {
-    householdInputCopy["axes"] = [[{"name": "employment_income", "count": 200, "min": 0, "max": 200_000}]];
+    householdInputCopy["axes"] = [
+      [{ name: "employment_income", count: 200, min: 0, max: 200_000 }],
+    ];
   }
 
   let householdJson = JSON.stringify(householdInputCopy, null, 2);
@@ -161,9 +161,7 @@ export default function HouseholdReproducibility(props) {
           paddingBottom: 20,
         }}
       >
-        <p style={{margin: 0}}>
-          Include earning variation
-        </p>
+        <p style={{ margin: 0 }}>Include earning variation</p>
         <Switch
           checked={earningVariation}
           onChange={() => setEarningVariation(!earningVariation)}

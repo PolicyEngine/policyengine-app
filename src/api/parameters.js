@@ -4,7 +4,7 @@ export function buildParameterTree(parameters) {
   let tree = {};
 
   for (const parameter of Object.values(parameters).filter(
-    (parameter) => parameter.economy || parameter.household
+    (parameter) => parameter.economy || parameter.household,
   )) {
     const nodeToInsert = {
       name: parameter.parameter,
@@ -35,7 +35,7 @@ export function buildParameterTree(parameters) {
       }
       if (
         !currentNode.children.find(
-          (child) => child.name === fixedCumulativePath
+          (child) => child.name === fixedCumulativePath,
         )
       ) {
         currentNode.children.push({
@@ -46,7 +46,7 @@ export function buildParameterTree(parameters) {
         });
       }
       currentNode = currentNode.children.find(
-        (child) => child.name === fixedCumulativePath
+        (child) => child.name === fixedCumulativePath,
       );
       // Re-add the delimiter to the cumulative path
       if (delimiters) {
