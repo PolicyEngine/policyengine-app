@@ -3,6 +3,7 @@ import style from "../../style";
 import { Carousel } from "../controls/Carousel";
 import { useDisplayCategory } from "../controls/Responsive";
 import { posts } from "../../data/Posts";
+import moment from "moment";
 
 export function BlogPreview() {
   // eslint-disable-next-line no-unused-vars
@@ -201,7 +202,7 @@ function FeaturedBlogPost(props) {
 }
 
 function Tags(props) {
-  const { tags } = props;
+  const { tags, children } = props;
   const colors = {
     featured: style.colors.TEAL_LIGHT,
     "in-the-news": style.colors.BLUE_LIGHT,
@@ -236,12 +237,13 @@ function Tags(props) {
           );
         }
       })}
+      <div style={{ marginLeft: "auto", padding: 10 }}>{children}</div>
     </div>
   );
 }
 
 function TaggedBox(props) {
-  const { tags, children, ...rest } = props;
+  const { tags, topRight, children, ...rest } = props;
   return (
     <div
       style={{
@@ -249,7 +251,7 @@ function TaggedBox(props) {
         ...(rest.style || {}),
       }}
     >
-      <Tags tags={tags} />
+      <Tags tags={tags}>{topRight}</Tags>
       {children}
     </div>
   );
@@ -260,6 +262,7 @@ function SmallBlogPost(props) {
   return (
     <TaggedBox
       tags={post.tags}
+      topRight={moment(post.date).format("MMM DD, YYYY")}
       style={{ backgroundColor: style.colors.LIGHT_GRAY, height: "100%" }}
     >
       <div style={{ padding: 10 }}>
@@ -267,6 +270,7 @@ function SmallBlogPost(props) {
           {post.title}
         </h5>
         <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ marginRight: "auto" }}>{post.title}</div>
           <div
             style={{
               marginLeft: "auto",
