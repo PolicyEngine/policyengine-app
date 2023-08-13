@@ -14,7 +14,7 @@ children. The repeal would also lower absolute child poverty before
 housing costs by 310,000 this year.
 
 While the Cameron-led Conservative government introduced the two-child
-limit, last Sunday, Labour Party leader Sir Keir Starmer [confirmed that
+limit, last month, Labour Party leader Sir Keir Starmer [confirmed that
 a Labour government would keep the
 policy](https://www.theguardian.com/politics/2023/jul/16/labour-keep-two-child-benefit-cap-says-keir-starmer)
 due to the cost of repealing it.
