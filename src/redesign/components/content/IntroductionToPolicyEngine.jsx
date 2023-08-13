@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { quoteData } from "../../data/Quotes";
 import { orgData } from "../../data/Organisations";
+import { Carousel } from "../controls/Carousel";
 
 export function IntroductionToPolicyEngine(props) {
   const { countryId } = props;
@@ -144,7 +145,7 @@ function QuoteBox(props) {
   return (
     <div
       style={{
-        backgroundColor: style.colors.TEAL_LIGHT,
+        backgroundColor: style.colors.TEAL_98,
         width: displayCategory === "desktop" ? "50vw" : "75vw",
         minHeight: displayCategory === "desktop" ? 250 : 200,
         display: "flex",
@@ -157,7 +158,7 @@ function QuoteBox(props) {
       <QuoteText text={currentQuote.quote} />
       <div
         style={{
-          border: `0.5px solid ${style.colors.MEDIUM_DARK_GRAY}`,
+          border: `1px solid ${style.colors.MEDIUM_DARK_GRAY}`,
           marginTop: 10,
           marginBottom: 10,
           width: "100%",
@@ -181,20 +182,15 @@ function QuoteBox(props) {
       </div>
       <div
         style={{
-          border: `0.5px solid ${style.colors.MEDIUM_DARK_GRAY}`,
-          marginTop: 10,
-          width: "100%",
-        }}
-      ></div>
-      <div
-        style={{
           height: "100%",
+          width: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          marginTop: 10,
         }}
       >
-        <QuoteBoxProgressIndicator
+        <Carousel
           current={currentQuoteIndex}
           total={quoteData[countryId].length}
           setCurrent={setCurrentQuoteIndex}
@@ -245,7 +241,7 @@ function QuoteText(props) {
       style={{
         paddingLeft: displayCategory === "mobile" ? 20 : 40,
         paddingRight: displayCategory === "mobile" ? 20 : 40,
-        minHeight: displayCategory === "desktop" ? 120 : 50,
+        height: displayCategory === "desktop" ? 120 : 150,
         display: "flex",
         alignItems: "center",
       }}
@@ -324,93 +320,6 @@ function QuoteImages(props) {
       }}
     >
       {images}
-    </div>
-  );
-}
-
-function QuoteBoxProgressIndicator(props) {
-  const { current, total, setCurrent } = props;
-
-  const displayCategory = useDisplayCategory();
-  const isDesktop = displayCategory === "desktop";
-
-  // Grey boxes horizontally next to each other, with the current one being a different colour
-
-  let leftArrow = (
-    <span
-      className="material-symbols-outlined"
-      style={{
-        color:
-          current > 0 ? style.colors.DARK_GRAY : style.colors.MEDIUM_DARK_GRAY,
-        fontSize: 20,
-        cursor: current > 0 ? "pointer" : "default",
-      }}
-      onClick={() => {
-        if (current > 0) {
-          setCurrent(current - 1);
-        }
-      }}
-    >
-      arrow_back
-    </span>
-  );
-
-  leftArrow = isDesktop ? leftArrow : null;
-
-  let rightArrow = (
-    <span
-      className="material-symbols-outlined"
-      style={{
-        color:
-          current < total - 1
-            ? style.colors.DARK_GRAY
-            : style.colors.MEDIUM_DARK_GRAY,
-        fontSize: 20,
-        cursor: current < total - 1 ? "pointer" : "default",
-      }}
-      onClick={() => {
-        if (current < total - 1) {
-          setCurrent(current + 1);
-        }
-      }}
-    >
-      arrow_forward
-    </span>
-  );
-
-  rightArrow = isDesktop ? rightArrow : null;
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        margin: 10,
-      }}
-    >
-      {leftArrow}
-      {Array(total)
-        .fill(0)
-        .map((_, i) => {
-          return (
-            <div
-              style={{
-                height: 15,
-                width: 15,
-                backgroundColor:
-                  i === current
-                    ? style.colors.TEAL_ACCENT
-                    : style.colors.MEDIUM_DARK_GRAY,
-                border: `2px solid ${style.colors.DARK_GRAY}`,
-                margin: 5,
-                cursor: "pointer",
-              }}
-              key={i}
-            />
-          );
-        })}
-      {rightArrow}
     </div>
   );
 }

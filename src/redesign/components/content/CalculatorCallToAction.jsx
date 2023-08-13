@@ -4,6 +4,7 @@ import { ActionButton } from "../controls/ActionButton";
 
 export function CalculatorCallToAction() {
   const displayCategory = useDisplayCategory();
+  const buttonSize = displayCategory === "desktop" ? 700 : "60%";
   return (
     <div
       style={{
@@ -20,7 +21,8 @@ export function CalculatorCallToAction() {
       <h3 style={{ fontFamily: "Roboto Serif" }}>
         Compute any public policy reform
       </h3>
-      <ActionButton text="Calculate" onClick={() => {}} />
+      <ActionButton width={buttonSize} text="Calculate my household income, taxes and benefits" onClick={() => {}} />
+      <ActionButton width={buttonSize} text="Calculate the impact of policy reforms" onClick={() => {}} />
     </div>
   );
 }
