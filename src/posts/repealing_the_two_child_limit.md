@@ -1,5 +1,5 @@
 *[See the full, customisable impacts on PolicyEngine
-here.](https://policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=7226&region=uk&timePeriod=2023&baseline=1)*
+here.](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1)*
 
 ## Summary
 
@@ -8,7 +8,7 @@ parents from receiving financial support for more than two children
 (with children born before 2017 exempt). Using the PolicyEngine
 microsimulation model, we estimate that [repealing it would cost £1.8
 billion in
-2023](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=7226&region=uk&timePeriod=2023&baseline=1),
+2023](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1),
 rising to £2.8 billion in 2025 as non-exempt age cohorts replace exempt
 children. The repeal would also lower absolute child poverty before
 housing costs by 310,000 this year.
