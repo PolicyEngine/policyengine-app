@@ -6,8 +6,6 @@ import DesktopStaffSection from '../templates/DesktopStaffSection.jsx';
 import TabletStaffSection from '../templates/TabletStaffSection.jsx';
 import MobileStaffSection from '../templates/MobileStaffSection.jsx';
 
-// Data imports
-
 // Style imports
 import fonts from '../../../../style/fonts.jsx';
 import colors from '../../../../style/colors.jsx';
