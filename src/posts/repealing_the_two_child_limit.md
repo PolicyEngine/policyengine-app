@@ -142,7 +142,7 @@ do [get in touch](mailto:hello@policyengine.org).
 
 ## Appendix: reconciling administrative and survey data
 
-When first estimating the impacts of this reform, we used our FRS-based
+When first estimating the impacts of this reform, we used our Family Resources Survey-based
 microdata and reached impacts of lower magnitude. However,
 administrative statistics suggested that the true impacts may in fact be
 larger, so we extended our data enhancement process to repair the
