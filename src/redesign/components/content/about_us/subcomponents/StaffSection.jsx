@@ -1,11 +1,10 @@
-
 // Internal package imports
 import { useDisplayCategory } from '../../../controls/Responsive.jsx';
 
 // Responsive template imports
 import DesktopStaffSection from '../templates/DesktopStaffSection.jsx';
 import TabletStaffSection from '../templates/TabletStaffSection.jsx';
-// import MobileStaffSection from '../templates/MobileStaffSection.jsx';
+import MobileStaffSection from '../templates/MobileStaffSection.jsx';
 
 // Data imports
 
@@ -20,7 +19,7 @@ const TABLET = 'tablet';
 const MOBILE = 'mobile';
 
 // Shared styles
-const imageHeight = '250px';
+const desktopImageHeight = '250px';
 
 // Padding values and gap will be overwritten in child components
 const wrapperStyle = {
@@ -43,7 +42,7 @@ const headerStyle = {
 };
 
 const borderContainerStyle = {
-	height: imageHeight,
+	height: desktopImageHeight,
 	width: '100%',
 	borderBottom: standardBorder,
 	display: 'flex',
@@ -73,7 +72,7 @@ const textStyle = {
 };
 
 const imageStyle = {
-	height: imageHeight,
+	height: desktopImageHeight,
 	aspectRatio: '1/1',
 	objectFit: 'cover'
 };
@@ -108,7 +107,7 @@ export default function StaffSection() {
 		return (<TabletStaffSection sharedStyles={sharedStyles} />);
 	}
 	else if (display === MOBILE) {
-		return (<></>)
+		return (<MobileStaffSection sharedStyles={sharedStyles} />);
 	}
 
 }

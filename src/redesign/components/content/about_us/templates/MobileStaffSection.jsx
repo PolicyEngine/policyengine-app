@@ -1,0 +1,63 @@
+// Data imports
+import { staff } from '../../../../data/Staff.js';
+
+// Style imports
+import { mobilePadding } from '../../../../style/spacing.jsx';
+
+const wrapperStyle = {
+	paddingTop: mobilePadding.top,
+	paddingBottom: mobilePadding.bottom,
+	paddingLeft: mobilePadding.left,
+	paddingRight: mobilePadding.right,
+	gap: '48px'
+};
+
+const innerStyle = {
+	gap: '16px',
+	flexDirection: 'column',
+	height: '100%'
+};
+
+const imageStyle = {
+	width: '100%',
+	height: 'unset',
+	aspectRation: '1.0'
+};
+
+export default function MobileStaffSection(props) {
+
+	// Define props
+	const {sharedStyles} = props;
+
+	// Map over keys from staff
+	const staffKeys = Object.keys(staff);
+
+	// Iterate over data in order to create JSX
+	const staffCards = staffKeys.map( (member) => {
+		return (
+			<div key={member}>
+				<div style={{...sharedStyles.innerStyle, ...innerStyle}}>
+					<img src={staff[member].image} style={{...sharedStyles.imageStyle, ...imageStyle}}/>
+					<div style={sharedStyles.borderContainerStyle}>
+						<p style={sharedStyles.textStyle}>
+							{/*Please note the extra space within the span tag*/}
+							<span style={sharedStyles.nameStyle}>{staff[member].name} </span>{staff[member].bio}
+						</p>
+					</div>
+				</div>
+			</div>
+		)
+	});
+
+	return (
+		<section style={{...sharedStyles.wrapperStyle, ...wrapperStyle}}>
+			<h1 style={sharedStyles.headerStyle}>Staff</h1>
+			{staffCards}
+		</section>
+
+	)
+
+
+
+
+}
