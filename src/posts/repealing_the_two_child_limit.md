@@ -1,5 +1,5 @@
-*[See the full, customisable impacts on PolicyEngine
-here.](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1)*
+_[See the full, customisable impacts on PolicyEngine
+here.](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=18304&region=uk&timePeriod=2023&baseline=1)_
 
 ## Summary
 
@@ -28,8 +28,8 @@ reproduce claims made using other microsimulation models. The
 found
 here](https://gist.github.com/nikhilwoodruff/447d86032ff481bdeb1e35aeeb3ea18c).
 
-[***See how repealing the two-child limit would affect your household
-here.***](https://policyengine.org/uk/household?focus=intro&reform=7226&region=uk&timePeriod=2023&baseline=1)
+[**_See how repealing the two-child limit would affect your household
+here._**](https://policyengine.org/uk/household?focus=intro&reform=7226&region=uk&timePeriod=2023&baseline=1)
 
 # How the policy affects households
 
@@ -52,10 +52,10 @@ reduced to zero before more than £60,000 in earnings.
 ![A graph with numbers and lines Description automatically
 generated](/images/posts/repealing_the_two_child_limit/hh_impact.png)
 
-*Figure 1: the impact of removing the UC child limit on net income for a
+_Figure 1: the impact of removing the UC child limit on net income for a
 single parent by number of children and employment income. Note: this
 does not incorporate housing costs, which would extend the phase-out
-region to the right.*
+region to the right._
 
 ## Repealing the cap
 
@@ -77,28 +77,27 @@ replications for comparison. The appendix contains more details about
 the reasons PolicyEngine's microsimulation modelling differs from other
 estimates.
 
-| Estimate                                 | CPAG/UKMOD   | PolicyEngine | Difference | Relative |
-|------------------------------------------|--------------|--------------|------------|----------|
-| Net cost                                 | £1.3bn       | £1.8bn       | +£500m     | +38%     |
-| Child poverty reduction (relative, AHC)   | 250,000      | 162,000      | -88,000    | -35%     |
-| Children in affected households           | 1,500,000    | 1,780,000    | +280,000   | +19%     |
-| Children benefitting but remaining in poverty (relative, AHC) | 850,000 | 1,320,000 | +470,000 | +55%     |
+| Estimate                                                      | CPAG/UKMOD | PolicyEngine | Difference | Relative |
+| ------------------------------------------------------------- | ---------- | ------------ | ---------- | -------- |
+| Net cost                                                      | £1.3bn     | £1.8bn       | +£500m     | +38%     |
+| Child poverty reduction (relative, AHC)                       | 250,000    | 162,000      | -88,000    | -35%     |
+| Children in affected households                               | 1,500,000  | 1,780,000    | +280,000   | +19%     |
+| Children benefitting but remaining in poverty (relative, AHC) | 850,000    | 1,320,000    | +470,000   | +55%     |
 
-
-*Table 1: comparisons between CPAG's UKMOD-based modelling results and
-PolicyEngine's replications* *for 2023.*
+_Table 1: comparisons between CPAG's UKMOD-based modelling results and
+PolicyEngine's replications_ _for 2023._
 
 ## Alternative repeal methods
 
-The Fabian Society's 2021 report *"Going with the grain"* proposes
+The Fabian Society's 2021 report _"Going with the grain"_ proposes
 instead repealing the two-child limit for families with a parent who
 meets one of the following conditions:
 
--   Having employment or self-employment income
+- Having employment or self-employment income
 
--   Receiving disability benefits
+- Receiving disability benefits
 
--   Having a child aged two or under
+- Having a child aged two or under
 
 We estimate this partial abolition would cost £1.3 billion in 2023,
 saving £500m compared to the full repeal. The Fabian Society modelling,
@@ -131,9 +130,9 @@ Figure 2).
 ![A graph of a graph showing the amount of income decile Description
 automatically generated](/images/posts/repealing_the_two_child_limit/decile_chart.png)
 
-*Figure 2: [the distributional impacts of funding the two-child limit
+_Figure 2: [the distributional impacts of funding the two-child limit
 repeal with a 1p higher rate
-increase.](https://policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=18067&region=uk&timePeriod=2023&baseline=1)*
+increase.](https://policyengine.org/uk/policy?focus=policyOutput.decileRelativeImpact&reform=18067&region=uk&timePeriod=2023&baseline=1)_
 
 PolicyEngine's microsimulation modelling is completely open-source. [See
 the full analysis for the repeal on PolicyEngine
@@ -160,17 +159,16 @@ administrative totals.
 To illustrate, take the following example (based on completely
 hypothetical characteristics).
 
-| Household        | Total income | Original weight | Calibrated weight |
-|------------------|--------------|-----------------|-------------------|
-| High-earner      | £80,000      | 2m              | 5m                |
-| Low-earner       | £25,000      | 25m             | 22m               |
-| Original survey  | £785bn       | 27m             | 27m               |
-| total            |              |                 |                   |
-| Administrative   | £950bn       | 27m             |                   |
-| total            |              |                 |                   |
-| Calibrated       | £950bn       | 27m             |                   |
-| survey total     |              |                 |                   |
-
+| Household       | Total income | Original weight | Calibrated weight |
+| --------------- | ------------ | --------------- | ----------------- |
+| High-earner     | £80,000      | 2m              | 5m                |
+| Low-earner      | £25,000      | 25m             | 22m               |
+| Original survey | £785bn       | 27m             | 27m               |
+| total           |              |                 |                   |
+| Administrative  | £950bn       | 27m             |                   |
+| total           |              |                 |                   |
+| Calibrated      | £950bn       | 27m             |                   |
+| survey total    |              |                 |                   |
 
 By adjusting survey weights, we can shift the distributions of survey
 variables to reconcile them with more trusted administrative data. This
@@ -186,10 +184,10 @@ Using benefit administrative databases, the Department for Work and
 Pensions estimated that in April 2023 around 1.5 million children lived
 in households meeting two conditions:
 
--   The household claims Universal Credit or the Child Tax Credit.
+- The household claims Universal Credit or the Child Tax Credit.
 
--   The household does not receive a child element for at least one
-    child.
+- The household does not receive a child element for at least one
+  child.
 
 Our initial model estimate was lower than this (around £1.3m children),
 largely due to biases in the Family Resources Survey not fully countered
@@ -200,11 +198,11 @@ include this specific intersection).
 To correct this underestimate, we recalibrated the survey microdata,
 applying an extra penalty to the algorithm for deviating from:
 
--   The number of households affected by the UC and CTC two-child
-    limits, respectively.
+- The number of households affected by the UC and CTC two-child
+  limits, respectively.
 
--   The number of children living in UC- and CTC-claiming households
-    with 3, 4, and 5-plus children, respectively.
+- The number of children living in UC- and CTC-claiming households
+  with 3, 4, and 5-plus children, respectively.
 
 Figure 3 shows how this process operates for the first of these
 parameters. Note that PolicyEngine still carries out this process for
@@ -214,9 +212,9 @@ do not over-calibrate towards this new set of statistical targets.
 ![A graph of a graph Description automatically
 generated](/images/posts/repealing_the_two_child_limit/calibration.png)
 
-*Figure 3: An example of PolicyEngine's calibration process, in which
+_Figure 3: An example of PolicyEngine's calibration process, in which
 survey weights are adjusted to shift the FRS projection of UC-claiming,
-child limit-affected households towards the administrative estimate.*
+child limit-affected households towards the administrative estimate._
 
 PolicyEngine now reproduces this 1.5m statistic. However, what we
 subsequently found suggests that the 1.5m figure is an underestimate of
@@ -231,7 +229,8 @@ We estimate 200,000 children fall into this category, bringing the
 number of children living in households affected by the two-child limit
 to 1.7 million.
 
-[^1]: Our cost estimate of £1.8bn is 38% higher than the widely-reported
+[^1]:
+    Our cost estimate of £1.8bn is 38% higher than the widely-reported
     £1.3bn [estimate by the Child Poverty Action
     Group](https://cpag.org.uk/sites/default/files/files/policypost/CPAG_Budget_Submission_March_2023.pdf),
     drawn from the UKMOD microsimulation model. PolicyEngine [applies
@@ -240,11 +239,13 @@ to 1.7 million.
     to counter measurement and sampling bias present in the input data,
     which could explain some of the disparity.
 
-[^2]: For example, in 2019 only children aged below two could be
+[^2]:
+    For example, in 2019 only children aged below two could be
     affected. This age of exemption increases until 2035, at which point
     no children can be exempt under the transitional protection rule.
 
-[^3]: Administrative data might in practice include a small number of
+[^3]:
+    Administrative data might in practice include a small number of
     these households, because households whose income fluctuations mean
     they move along the edge of entitlement might stay on administrative
     databases.
