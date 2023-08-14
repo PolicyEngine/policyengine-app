@@ -1,111 +1,65 @@
 // Internal package imports
 import { useDisplayCategory } from '../../../controls/Responsive.jsx';
 
-// Responsive template imports
-import DesktopStaffSection from '../templates/DesktopStaffSection.jsx';
-import TabletStaffSection from '../templates/TabletStaffSection.jsx';
-import MobileStaffSection from '../templates/MobileStaffSection.jsx';
+// Data imports
+import { staff } from '../../../../data/Staff.js';
 
-// Style imports
-import fonts from '../../../../style/fonts.jsx';
-import colors from '../../../../style/colors.jsx';
-import { standardBorder } from '../../../../style/spacing.jsx';
+// Template imports
+import {
+	sharedStyles,
+	desktopStyles,
+	tabletStyles,
+	mobileStyles
+} from '../styles/StaffSectionStyles.jsx';
 
-// Constants
-const DESKTOP = 'desktop';
-const TABLET = 'tablet';
-const MOBILE = 'mobile';
-
-// Shared styles
-const desktopImageHeight = '250px';
-
-// Padding values and gap will be overwritten in child components
-const wrapperStyle = {
-	paddingTop: '100px',
-	paddingBottom: '100px',
-	paddingLeft: '100px',
-	paddingRight: '100px',
-	display: 'flex',
-	flexDirection: 'column',
-	gap: '80px',
-	borderBottom: standardBorder
-};
-
-const headerStyle = {
-	fontFamily: fonts.HEADER_FONT,
-	color: colors.BLUE_PRESSED,
-	fontWeight: 'medium',
-	padding: 0,
-	margin: 0
-};
-
-const borderContainerStyle = {
-	height: desktopImageHeight,
-	width: '100%',
-	borderBottom: standardBorder,
-	display: 'flex',
-	flexDirection: 'column',
-	alignItems: 'center',
-	justifyContent: 'center'
-};
-
-// Gap will be overwritten in each component;
-// added here to default in case of CSS issues
-const innerStyle = {
-	gap: '100px',
-	display: 'flex',
-	flexDirection: 'row',
-	width: '100%',
-	alignItems: 'center',
-	justifyContent: 'center'
-}
-
-const textStyle = {
-	width: '100%',
-	fontFamily: fonts.BODY_FONT,
-	fontSize: '1rem',
-	padding: 0,
-	marginBottom: 0,
-	color: colors.DARKEST_BLUE,
-};
-
-const imageStyle = {
-	height: desktopImageHeight,
-	aspectRatio: '1/1',
-	objectFit: 'cover'
-};
-
-const nameStyle = {
-	fontFamily: fonts.BODY_FONT,
-	textTransform: 'uppercase',
-	fontSize: '1.25rem',
-	fontWeight: 600
-};
-
-const sharedStyles = {
-	wrapperStyle,
-	headerStyle,
-	borderContainerStyle,
-	textStyle,
-	imageStyle,
-	nameStyle,
-	innerStyle
-};
-
-// Shared styling component for the entirety of the staff section, which delegates to
-// breakpoint components that handle logic
+// Logic and display component, which applies styles from StaffSectionStyles
 export default function StaffSection() {
 
 	const display = useDisplayCategory();
-	if (display === DESKTOP) {
-		return (<DesktopStaffSection sharedStyles={sharedStyles}/>);
+	let localStyles = null;
+
+	// Define localStyles based on window size
+	switch(display) {
+		case 'desktop':
+			localStyles = desktopStyles;
+			break;
+		case 'tablet':
+			localStyles = tabletStyles;
+			break;
+		case 'mobile':
+			localStyles = mobileStyles;
+			break;
+		default:
+			throw new Error(`Error within useDisplayCategory() hook; 
+			this may be the result of a changed or added display category`);
 	}
-	// The below will be implemented when the components exist
-	else if (display === TABLET) {
-		return (<TabletStaffSection sharedStyles={sharedStyles} />);
-	}
-	else if (display === MOBILE) {
-		return (<MobileStaffSection sharedStyles={sharedStyles} />);
-	}
+
+	// Map over keys from staff
+	const staffKeys = Object.keys(staff);
+
+	// Iterate over data in order to create JSX
+	const staffCards = staffKeys.map( (member) => {
+		return (
+			<div key={member}>
+				<div style={{...sharedStyles.inner, ...localStyles.inner}}>
+					<img src={staff[member].image} style={{...sharedStyles.image, ...localStyles.image}}/>
+					<div style={sharedStyles.borderContainer}>
+						<p style={sharedStyles.text}>
+							{/*Please note the extra space within the span tag*/}
+							<span style={sharedStyles.name}>{staff[member].name} </span>{staff[member].bio}
+						</p>
+					</div>
+				</div>
+			</div>
+		)
+	});
+	
+	return (
+		<section style={{...sharedStyles.wrapper, ...localStyles.wrapper}}>
+			<h1 style={sharedStyles.header}>Staff</h1>
+			{staffCards}
+		</section>
+	
+	)
 
 }
