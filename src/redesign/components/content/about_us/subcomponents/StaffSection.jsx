@@ -45,8 +45,7 @@ export default function StaffSection() {
 					<img src={staff[member].image} style={{...sharedStyles.image, ...localStyles.image}}/>
 					<div style={sharedStyles.borderContainer}>
 						<p style={sharedStyles.text}>
-							{/*Please note the extra space within the span tag*/}
-							<span style={sharedStyles.name}>{staff[member].name} </span>{staff[member].bio}
+							<span style={sharedStyles.name}>{staff[member].name}</span>{staff[member].bio}
 						</p>
 					</div>
 				</div>

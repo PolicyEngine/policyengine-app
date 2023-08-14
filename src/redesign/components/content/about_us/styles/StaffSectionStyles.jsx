@@ -70,7 +70,8 @@ const name = {
 	fontFamily: fonts.BODY_FONT,
 	textTransform: 'uppercase',
 	fontSize: '1.25rem',
-	fontWeight: 600
+	fontWeight: 600,
+	paddingRight: '0.25em'
 };
 
 export const sharedStyles = {
