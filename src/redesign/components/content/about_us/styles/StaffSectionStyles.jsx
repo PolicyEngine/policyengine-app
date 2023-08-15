@@ -125,12 +125,13 @@ export const mobileStyles = {
 		gap: '48px'
 	},
 	inner: {
-		gap: '16px',
+		gap: '0px',
 		flexDirection: 'column',
-		height: '100%'
+		height: '100%',
+		alignItems: 'flex-start'
 	},
 	image: {
-		width: '100%',
+		width: '60%',
 		height: 'unset',
 		aspectRation: '1.0'
 	}

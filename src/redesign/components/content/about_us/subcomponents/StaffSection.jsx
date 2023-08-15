@@ -12,7 +12,10 @@ import {
 	mobileStyles
 } from '../styles/StaffSectionStyles.jsx';
 
-// Logic and display component, which applies styles from StaffSectionStyles
+/**
+ * Component that imports populates the staff section of the About Us page
+ * @returns {JSX}
+ */
 export default function StaffSection() {
 
 	const display = useDisplayCategory();
