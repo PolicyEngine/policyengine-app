@@ -29,335 +29,11 @@ export const STATUS_TEXT_COLORS = {
 };
 
 const DEFAULT_US_HOUSEHOLD = {
-  families: {
-    "your family": {
-      family_id: {
-        2023: 0,
-      },
-      family_weight: {
-        2023: 0,
-      },
-      is_married: {
-        2023: null,
-      },
-      members: ["you"],
-    },
-  },
-  households: {
-    "your household": {
-      AK: {
-        2023: null,
-      },
-      AL: {
-        2023: null,
-      },
-      AR: {
-        2023: null,
-      },
-      AZ: {
-        2023: null,
-      },
-      CA: {
-        2023: null,
-      },
-      CO: {
-        2023: null,
-      },
-      CT: {
-        2023: null,
-      },
-      DC: {
-        2023: null,
-      },
-      DE: {
-        2023: null,
-      },
-      FL: {
-        2023: null,
-      },
-      GA: {
-        2023: null,
-      },
-      HI: {
-        2023: null,
-      },
-      IA: {
-        2023: null,
-      },
-      ID: {
-        2023: null,
-      },
-      IL: {
-        2023: null,
-      },
-      IN: {
-        2023: null,
-      },
-      KS: {
-        2023: null,
-      },
-      KY: {
-        2023: null,
-      },
-      LA: {
-        2023: null,
-      },
-      MA: {
-        2023: null,
-      },
-      MD: {
-        2023: null,
-      },
-      ME: {
-        2023: null,
-      },
-      MI: {
-        2023: null,
-      },
-      MN: {
-        2023: null,
-      },
-      MO: {
-        2023: null,
-      },
-      MS: {
-        2023: null,
-      },
-      MT: {
-        2023: null,
-      },
-      NC: {
-        2023: null,
-      },
-      ND: {
-        2023: null,
-      },
-      NE: {
-        2023: null,
-      },
-      NH: {
-        2023: null,
-      },
-      NJ: {
-        2023: null,
-      },
-      NM: {
-        2023: null,
-      },
-      NV: {
-        2023: null,
-      },
-      NY: {
-        2023: null,
-      },
-      OH: {
-        2023: null,
-      },
-      OK: {
-        2023: null,
-      },
-      OR: {
-        2023: null,
-      },
-      PA: {
-        2023: null,
-      },
-      RI: {
-        2023: null,
-      },
-      SC: {
-        2023: null,
-      },
-      SD: {
-        2023: null,
-      },
-      TN: {
-        2023: null,
-      },
-      TX: {
-        2023: null,
-      },
-      UT: {
-        2023: null,
-      },
-      VA: {
-        2023: null,
-      },
-      VT: {
-        2023: null,
-      },
-      WA: {
-        2023: null,
-      },
-      WI: {
-        2023: null,
-      },
-      WV: {
-        2023: null,
-      },
-      WY: {
-        2023: null,
-      },
-      average_home_energy_use_in_state: {
-        2023: 0,
-      },
-      ca_care: {
-        2023: null,
-      },
-      ca_care_amount_if_eligible: {
-        2023: null,
-      },
-      ca_care_categorically_eligible: {
-        2023: null,
-      },
-      ca_care_eligible: {
-        2023: null,
-      },
-      ca_care_income_eligible: {
-        2023: null,
-      },
-      ca_care_poverty_line: {
-        2023: null,
-      },
-      ca_fera: {
-        2023: null,
-      },
-      ca_fera_amount_if_eligible: {
-        2023: null,
-      },
-      ca_fera_eligible: {
-        2023: null,
-      },
-      ccdf_county_cluster: {
-        2023: null,
-      },
-      county: {
-        2023: null,
-      },
-      county_fips: {
-        2023: 0,
-      },
-      county_str: {
-        2023: null,
-      },
-      current_home_energy_use: {
-        2023: 0,
-      },
-      equiv_household_net_income: {
-        2023: null,
-      },
-      fips: {
-        2023: 6,
-      },
-      household_benefits: {
-        2023: null,
-      },
-      household_count_people: {
-        2023: null,
-      },
-      household_id: {
-        2023: 0,
-      },
-      household_income_ami_ratio: {
-        2023: 0,
-      },
-      household_income_decile: {
-        2023: null,
-      },
-      household_market_income: {
-        2023: null,
-      },
-      household_net_income: {
-        2023: null,
-      },
-      household_refundable_tax_credits: {
-        2023: null,
-      },
-      household_size: {
-        2023: null,
-      },
-      household_tax: {
-        2023: null,
-      },
-      household_tax_before_refundable_credits: {
-        2023: null,
-      },
-      household_vehicles_owned: {
-        2023: 0,
-      },
-      household_weight: {
-        2023: 0,
-      },
-      in_nyc: {
-        2023: false,
-      },
-      is_homeless: {
-        2023: false,
-      },
-      is_on_tribal_land: {
-        2023: false,
-      },
-      is_rural: {
-        2023: false,
-      },
-      medicaid_rating_area: {
-        2023: null,
-      },
-      members: ["you"],
-      snap_region: {
-        2023: null,
-      },
-      snap_region_str: {
-        2023: null,
-      },
-      snap_utility_region: {
-        2023: null,
-      },
-      snap_utility_region_str: {
-        2023: null,
-      },
-      state_code: {
-        2023: null,
-      },
-      state_code_str: {
-        2023: null,
-      },
-      state_fips: {
-        2023: 6,
-      },
-      state_group: {
-        2023: null,
-      },
-      state_group_str: {
-        2023: null,
-      },
-      state_living_arrangement: {
-        2023: "FULL_COST",
-      },
-      state_name: {
-        2023: "CA",
-      },
-      three_digit_zip_code: {
-        2023: null,
-      },
-      zip_code: {
-        2023: null,
-      },
-    },
-  },
-  marital_units: {
-    "your marital unit": {
-      marital_unit_id: {
-        2023: 0,
-      },
-      marital_unit_weight: {
-        2023: null,
-      },
-      members: ["you"],
-    },
-  },
   people: {
     you: {
+      adjusted_gross_income_person: {
+        2023: null,
+      },
       adult_index: {
         2023: null,
       },
@@ -394,7 +70,7 @@ const DEFAULT_US_HOUSEHOLD = {
       capital_gains: {
         2023: null,
       },
-      capital_loss: {
+      capital_losses: {
         2023: null,
       },
       casualty_loss: {
@@ -448,6 +124,21 @@ const DEFAULT_US_HOUSEHOLD = {
       cmbtp: {
         2023: 0,
       },
+      co_oap: {
+        2023: null,
+      },
+      co_oap_eligible: {
+        2023: null,
+      },
+      co_state_supplement: {
+        2023: null,
+      },
+      co_state_supplement_eligible: {
+        2023: null,
+      },
+      cost_of_attending_college: {
+        2023: 0,
+      },
       count_days_postpartum: {
         2023: null,
       },
@@ -467,6 +158,27 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       ctc_qualifying_child: {
+        2023: null,
+      },
+      dc_agi: {
+        2023: null,
+      },
+      dc_deduction_indiv: {
+        2023: null,
+      },
+      dc_disabled_exclusion_subtraction: {
+        2023: null,
+      },
+      dc_income_additions: {
+        2023: null,
+      },
+      dc_income_subtractions: {
+        2023: null,
+      },
+      dc_self_employment_loss_addition: {
+        2023: null,
+      },
+      dc_taxable_income_indiv: {
         2023: null,
       },
       debt_relief: {
@@ -512,7 +224,7 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       employment_income: {
-        2023: null,
+        2023: 20000,
       },
       farm_income: {
         2023: 0,
@@ -534,6 +246,78 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       health_insurance_premiums: {
         2023: 0,
+      },
+      hi_food_excise_credit_child_receiving_public_support: {
+        2023: null,
+      },
+      ia_alternate_tax_indiv: {
+        2023: null,
+      },
+      ia_alternate_tax_joint: {
+        2023: null,
+      },
+      ia_amt_indiv: {
+        2023: null,
+      },
+      ia_amt_joint: {
+        2023: null,
+      },
+      ia_base_tax_indiv: {
+        2023: null,
+      },
+      ia_base_tax_joint: {
+        2023: null,
+      },
+      ia_basic_deduction_indiv: {
+        2023: null,
+      },
+      ia_basic_deduction_joint: {
+        2023: null,
+      },
+      ia_fedtax_deduction: {
+        2023: null,
+      },
+      ia_gross_income: {
+        2023: null,
+      },
+      ia_income_adjustments: {
+        2023: null,
+      },
+      ia_itemized_deductions_indiv: {
+        2023: null,
+      },
+      ia_itemized_deductions_joint: {
+        2023: null,
+      },
+      ia_net_income: {
+        2023: null,
+      },
+      ia_pension_exclusion: {
+        2023: null,
+      },
+      ia_prorate_fraction: {
+        2023: null,
+      },
+      ia_qbi_deduction: {
+        2023: null,
+      },
+      ia_regular_tax_indiv: {
+        2023: null,
+      },
+      ia_regular_tax_joint: {
+        2023: null,
+      },
+      ia_standard_deduction_indiv: {
+        2023: null,
+      },
+      ia_standard_deduction_joint: {
+        2023: null,
+      },
+      ia_taxable_income_indiv: {
+        2023: null,
+      },
+      ia_taxable_income_joint: {
+        2023: null,
       },
       illicit_income: {
         2023: 0,
@@ -808,9 +592,6 @@ const DEFAULT_US_HOUSEHOLD = {
       long_term_capital_gains_on_small_business_stock: {
         2023: 0,
       },
-      long_term_capital_losses: {
-        2023: 0,
-      },
       ma_covid_19_essential_employee_premium_pay_program: {
         2023: null,
       },
@@ -892,6 +673,27 @@ const DEFAULT_US_HOUSEHOLD = {
       net_income: {
         2023: 0,
       },
+      never_eligible_for_social_security_benefits: {
+        2023: null,
+      },
+      nj_agi_additions: {
+        2023: 0,
+      },
+      nj_agi_subtractions: {
+        2023: null,
+      },
+      nj_eligible_pension_income: {
+        2023: null,
+      },
+      nj_total_income: {
+        2023: null,
+      },
+      nm_cdcc_eligible_child: {
+        2023: null,
+      },
+      non_public_school_tuition: {
+        2023: 0,
+      },
       non_qualified_dividend_income: {
         2023: 0,
       },
@@ -900,6 +702,9 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       oh_has_not_taken_oh_lump_sum_credits: {
         2023: false,
+      },
+      or_retirement_credit_eligible: {
+        2023: null,
       },
       own_children_in_household: {
         2023: 0,
@@ -911,6 +716,45 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: 0,
       },
       payroll_tax_gross_wages: {
+        2023: null,
+      },
+      pell_grant: {
+        2023: 0,
+      },
+      pell_grant_countable_assets: {
+        2023: 0,
+      },
+      pell_grant_dependent_allowances: {
+        2023: null,
+      },
+      pell_grant_dependent_available_income: {
+        2023: 0,
+      },
+      pell_grant_dependent_contribution: {
+        2023: null,
+      },
+      pell_grant_dependent_other_allowances: {
+        2023: 0,
+      },
+      pell_grant_efc: {
+        2023: 0,
+      },
+      pell_grant_formula: {
+        2023: null,
+      },
+      pell_grant_head_allowances: {
+        2023: 0,
+      },
+      pell_grant_head_available_income: {
+        2023: null,
+      },
+      pell_grant_head_contribution: {
+        2023: 0,
+      },
+      pell_grant_months_in_school: {
+        2023: 0,
+      },
+      pell_grant_simplified_formula_applies: {
         2023: null,
       },
       pencon: {
@@ -1000,6 +844,9 @@ const DEFAULT_US_HOUSEHOLD = {
       salt_refund_income: {
         2023: 0,
       },
+      sc_gross_earned_income: {
+        2023: null,
+      },
       self_employed_health_insurance_ald_person: {
         2023: null,
       },
@@ -1034,9 +881,6 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       short_term_capital_gains: {
-        2023: 0,
-      },
-      short_term_capital_losses: {
         2023: 0,
       },
       social_security: {
@@ -1102,6 +946,9 @@ const DEFAULT_US_HOUSEHOLD = {
       ssi_unearned_income_deemed_from_ineligible_spouse: {
         2023: null,
       },
+      state_or_federal_salary: {
+        2023: 0,
+      },
       state_supplement: {
         2023: null,
       },
@@ -1134,6 +981,9 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       taxable_earnings_for_social_security: {
         2023: null,
+      },
+      taxable_federal_pension_income: {
+        2023: 0,
       },
       taxable_interest_income: {
         2023: 0,
@@ -1206,622 +1056,34 @@ const DEFAULT_US_HOUSEHOLD = {
       },
     },
   },
-  spm_units: {
-    "your household": {
-      acp: {
-        2023: null,
-      },
-      ami: {
-        2023: 0,
-      },
-      broadband_cost: {
-        2023: 0,
-      },
-      broadband_cost_after_lifeline: {
-        2023: null,
-      },
-      ccdf_income: {
-        2023: null,
-      },
-      ccdf_income_to_smi_ratio: {
-        2023: null,
-      },
-      childcare_expenses: {
-        2023: 0,
-      },
-      co_tanf: {
-        2023: null,
-      },
-      co_tanf_count_children: {
-        2023: null,
-      },
-      co_tanf_countable_earned_income_grant_standard: {
-        2023: null,
-      },
-      co_tanf_countable_earned_income_need: {
-        2023: null,
-      },
-      co_tanf_countable_gross_earned_income: {
-        2023: null,
-      },
-      co_tanf_countable_gross_unearned_income: {
-        2023: null,
-      },
-      co_tanf_eligible: {
-        2023: null,
-      },
-      co_tanf_grant_standard: {
-        2023: null,
-      },
-      co_tanf_income_eligible: {
-        2023: null,
-      },
-      co_tanf_need_standard: {
-        2023: null,
-      },
-      count_distinct_utility_expenses: {
-        2023: null,
-      },
-      dc_tanf: {
-        2023: null,
-      },
-      dc_tanf_countable_earned_income: {
-        2023: null,
-      },
-      dc_tanf_countable_gross_unearned_income: {
-        2023: null,
-      },
-      dc_tanf_countable_income: {
-        2023: null,
-      },
-      dc_tanf_countable_resources: {
-        2023: 0,
-      },
-      dc_tanf_eligible: {
-        2023: null,
-      },
-      dc_tanf_grant_standard: {
-        2023: null,
-      },
-      dc_tanf_gross_earned_income: {
-        2023: null,
-      },
-      dc_tanf_income_eligible: {
-        2023: null,
-      },
-      dc_tanf_need_standard: {
-        2023: null,
-      },
-      dc_tanf_resources_eligible: {
-        2023: null,
-      },
-      deep_poverty_gap: {
-        2023: null,
-      },
-      deep_poverty_line: {
-        2023: null,
-      },
-      ebb: {
-        2023: null,
-      },
-      electricity_expense: {
-        2023: 0,
-      },
-      enrolled_in_ebb: {
-        2023: false,
-      },
-      experienced_covid_income_loss: {
-        2023: false,
-      },
-      fcc_fpg_ratio: {
-        2023: null,
-      },
-      fdpir: {
-        2023: 0,
-      },
-      free_school_meals: {
-        2023: null,
-      },
-      free_school_meals_reported: {
-        2023: 0,
-      },
-      gas_expense: {
-        2023: 0,
-      },
-      has_all_usda_elderly_disabled: {
-        2023: null,
-      },
-      has_heating_cooling_expense: {
-        2023: null,
-      },
-      has_phone_expense: {
-        2023: null,
-      },
-      has_usda_elderly_disabled: {
-        2023: null,
-      },
-      heating_cooling_expense: {
-        2023: 0,
-      },
-      hhs_smi: {
-        2023: null,
-      },
-      housing_assistance: {
-        2023: null,
-      },
-      housing_cost: {
-        2023: null,
-      },
-      housing_designated_welfare: {
-        2023: 0,
-      },
-      hud_adjusted_income: {
-        2023: null,
-      },
-      hud_annual_income: {
-        2023: null,
-      },
-      hud_gross_rent: {
-        2023: null,
-      },
-      hud_hap: {
-        2023: null,
-      },
-      hud_income_level: {
-        2023: null,
-      },
-      hud_max_subsidy: {
-        2023: null,
-      },
-      hud_minimum_rent: {
-        2023: 0,
-      },
-      hud_ttp: {
-        2023: null,
-      },
-      hud_ttp_adjusted_income_share: {
-        2023: null,
-      },
-      hud_ttp_income_share: {
-        2023: null,
-      },
-      hud_utility_allowance: {
-        2023: 0,
-      },
-      in_deep_poverty: {
-        2023: null,
-      },
-      in_poverty: {
-        2023: null,
-      },
-      is_acp_eligible: {
-        2023: null,
-      },
-      is_ccdf_asset_eligible: {
-        2023: null,
-      },
-      is_ccdf_continuous_income_eligible: {
-        2023: false,
-      },
-      is_ccdf_income_eligible: {
-        2023: null,
-      },
-      is_ccdf_initial_income_eligible: {
-        2023: false,
-      },
-      is_demographic_tanf_eligible: {
-        2023: null,
-      },
-      is_ebb_eligible: {
-        2023: null,
-      },
-      is_eligible_for_housing_assistance: {
-        2023: null,
-      },
-      is_hud_elderly_disabled_family: {
-        2023: null,
-      },
-      is_lifeline_eligible: {
-        2023: null,
-      },
-      is_snap_eligible: {
-        2023: null,
-      },
-      is_tanf_continuous_eligible: {
-        2023: null,
-      },
-      is_tanf_eligible: {
-        2023: null,
-      },
-      is_tanf_enrolled: {
-        2023: false,
-      },
-      is_tanf_initial_eligible: {
-        2023: null,
-      },
-      is_tanf_non_cash_eligible: {
-        2023: null,
-      },
-      is_tanf_non_cash_hheod: {
-        2023: null,
-      },
-      lifeline: {
-        2023: null,
-      },
-      md_tanf_count_children: {
-        2023: null,
-      },
-      md_tanf_eligible: {
-        2023: false,
-      },
-      md_tanf_gross_earned_income_deduction: {
-        2023: null,
-      },
-      md_tanf_maximum_benefit: {
-        2023: null,
-      },
-      meets_ccdf_activity_test: {
-        2023: false,
-      },
-      meets_school_meal_categorical_eligibility: {
-        2023: null,
-      },
-      meets_snap_asset_test: {
-        2023: null,
-      },
-      meets_snap_categorical_eligibility: {
-        2023: null,
-      },
-      meets_snap_gross_income_test: {
-        2023: null,
-      },
-      meets_snap_net_income_test: {
-        2023: null,
-      },
-      meets_tanf_non_cash_asset_test: {
-        2023: null,
-      },
-      meets_tanf_non_cash_gross_income_test: {
-        2023: null,
-      },
-      meets_tanf_non_cash_net_income_test: {
-        2023: null,
-      },
-      meets_wic_income_test: {
-        2023: null,
-      },
+  families: {
+    "your family": {
       members: ["you"],
-      mo_tanf_income_limit: {
-        2023: null,
-      },
-      nj_tanf_countable_gross_unearned_income: {
-        2023: null,
-      },
-      nj_tanf_countable_resources: {
+      family_id: {
         2023: 0,
       },
-      nj_tanf_gross_earned_income: {
-        2023: null,
-      },
-      nj_tanf_maximum_allowable_income: {
-        2023: null,
-      },
-      nj_tanf_maximum_benefit: {
-        2023: null,
-      },
-      nj_tanf_resources_eligible: {
-        2023: null,
-      },
-      ny_tanf: {
-        2023: null,
-      },
-      ny_tanf_countable_earned_income: {
-        2023: null,
-      },
-      ny_tanf_countable_gross_unearned_income: {
-        2023: null,
-      },
-      ny_tanf_countable_resources: {
+      family_weight: {
         2023: 0,
       },
-      ny_tanf_eligible: {
+      is_married: {
         2023: null,
       },
-      ny_tanf_grant_standard: {
-        2023: null,
-      },
-      ny_tanf_gross_earned_income: {
-        2023: null,
-      },
-      ny_tanf_income_eligible: {
-        2023: null,
-      },
-      ny_tanf_need_standard: {
-        2023: null,
-      },
-      ny_tanf_resources_eligible: {
-        2023: null,
-      },
-      ok_tanf: {
+    },
+  },
+  marital_units: {
+    "your marital unit": {
+      members: ["you"],
+      marital_unit_id: {
         2023: 0,
       },
-      pell_grant: {
-        2023: 0,
-      },
-      pha_payment_standard: {
-        2023: 0,
-      },
-      phone_cost: {
-        2023: 0,
-      },
-      phone_expense: {
-        2023: null,
-      },
-      poverty_gap: {
-        2023: null,
-      },
-      poverty_line: {
-        2023: null,
-      },
-      receives_housing_assistance: {
-        2023: false,
-      },
-      reduced_price_school_meals: {
-        2023: null,
-      },
-      school_meal_countable_income: {
-        2023: null,
-      },
-      school_meal_daily_subsidy: {
-        2023: null,
-      },
-      school_meal_fpg_ratio: {
-        2023: null,
-      },
-      school_meal_net_subsidy: {
-        2023: null,
-      },
-      school_meal_paid_daily_subsidy: {
-        2023: null,
-      },
-      school_meal_tier: {
-        2023: null,
-      },
-      sewage_expense: {
-        2023: 0,
-      },
-      snap: {
-        2023: null,
-      },
-      snap_assets: {
-        2023: 0,
-      },
-      snap_child_support_deduction: {
-        2023: null,
-      },
-      snap_deductions: {
-        2023: null,
-      },
-      snap_dependent_care_deduction: {
-        2023: null,
-      },
-      snap_earned_income: {
-        2023: null,
-      },
-      snap_earned_income_deduction: {
-        2023: null,
-      },
-      snap_emergency_allotment: {
-        2023: null,
-      },
-      snap_excess_medical_expense_deduction: {
-        2023: null,
-      },
-      snap_excess_shelter_expense_deduction: {
-        2023: null,
-      },
-      snap_expected_contribution: {
-        2023: null,
-      },
-      snap_gross_income: {
-        2023: null,
-      },
-      snap_gross_income_fpg_ratio: {
-        2023: null,
-      },
-      snap_max_allotment: {
-        2023: null,
-      },
-      snap_min_allotment: {
-        2023: null,
-      },
-      snap_net_income: {
-        2023: null,
-      },
-      snap_net_income_fpg_ratio: {
-        2023: null,
-      },
-      snap_net_income_pre_shelter: {
-        2023: null,
-      },
-      snap_normal_allotment: {
-        2023: null,
-      },
-      snap_reported: {
-        2023: 0,
-      },
-      snap_standard_deduction: {
-        2023: null,
-      },
-      snap_unearned_income: {
-        2023: null,
-      },
-      snap_utility_allowance: {
-        2023: null,
-      },
-      snap_utility_allowance_type: {
-        2023: null,
-      },
-      spm_unit_assets: {
-        2023: 0,
-      },
-      spm_unit_benefits: {
-        2023: null,
-      },
-      spm_unit_capped_housing_subsidy: {
-        2023: null,
-      },
-      spm_unit_capped_housing_subsidy_reported: {
-        2023: 0,
-      },
-      spm_unit_capped_work_childcare_expenses: {
-        2023: 0,
-      },
-      spm_unit_ccdf_subsidy: {
-        2023: null,
-      },
-      spm_unit_count_adults: {
-        2023: null,
-      },
-      spm_unit_count_children: {
-        2023: null,
-      },
-      spm_unit_energy_subsidy: {
-        2023: null,
-      },
-      spm_unit_energy_subsidy_reported: {
-        2023: 0,
-      },
-      spm_unit_federal_tax: {
-        2023: null,
-      },
-      spm_unit_federal_tax_reported: {
-        2023: 0,
-      },
-      spm_unit_fpg: {
-        2023: null,
-      },
-      spm_unit_id: {
-        2023: 0,
-      },
-      spm_unit_income_decile: {
-        2023: null,
-      },
-      spm_unit_is_in_deep_spm_poverty: {
-        2023: null,
-      },
-      spm_unit_is_in_spm_poverty: {
-        2023: null,
-      },
-      spm_unit_market_income: {
-        2023: null,
-      },
-      spm_unit_medical_expenses: {
-        2023: null,
-      },
-      spm_unit_net_income: {
-        2023: null,
-      },
-      spm_unit_net_income_reported: {
-        2023: 0,
-      },
-      spm_unit_oecd_equiv_net_income: {
-        2023: null,
-      },
-      spm_unit_payroll_tax: {
-        2023: null,
-      },
-      spm_unit_payroll_tax_reported: {
-        2023: 0,
-      },
-      spm_unit_school_lunch_subsidy: {
-        2023: 0,
-      },
-      spm_unit_self_employment_tax: {
-        2023: null,
-      },
-      spm_unit_size: {
-        2023: null,
-      },
-      spm_unit_snap: {
-        2023: 0,
-      },
-      spm_unit_spm_threshold: {
-        2023: 0,
-      },
-      spm_unit_state_fips: {
-        2023: null,
-      },
-      spm_unit_state_tax: {
-        2023: null,
-      },
-      spm_unit_state_tax_reported: {
-        2023: 0,
-      },
-      spm_unit_taxes: {
-        2023: null,
-      },
-      spm_unit_total_ccdf_copay: {
-        2023: null,
-      },
-      spm_unit_total_income_reported: {
-        2023: 0,
-      },
-      spm_unit_weight: {
-        2023: null,
-      },
-      spm_unit_wic: {
-        2023: null,
-      },
-      spm_unit_wic_reported: {
-        2023: 0,
-      },
-      tanf: {
-        2023: null,
-      },
-      tanf_amount_if_eligible: {
-        2023: null,
-      },
-      tanf_countable_income: {
-        2023: null,
-      },
-      tanf_gross_earned_income: {
-        2023: null,
-      },
-      tanf_gross_unearned_income: {
-        2023: null,
-      },
-      tanf_initial_employment_deduction: {
-        2023: null,
-      },
-      tanf_max_amount: {
-        2023: null,
-      },
-      trash_expense: {
-        2023: 0,
-      },
-      tx_tanf_income_limit: {
-        2023: null,
-      },
-      utility_expense: {
-        2023: null,
-      },
-      wa_tanf_countable_resources: {
-        2023: 0,
-      },
-      wa_tanf_resources_eligible: {
-        2023: null,
-      },
-      water_expense: {
-        2023: 0,
-      },
-      wic_fpg: {
+      marital_unit_weight: {
         2023: null,
       },
     },
   },
   tax_units: {
     "your tax unit": {
+      members: ["you"],
       a_lineno: {
         2023: 0,
       },
@@ -1897,8 +1159,53 @@ const DEFAULT_US_HOUSEHOLD = {
       amt_non_agi_income: {
         2023: 0,
       },
+      ar_income_tax: {
+        2023: null,
+      },
+      ar_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      ar_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      ar_non_refundable_credits: {
+        2023: 0,
+      },
+      ar_refundable_credits: {
+        2023: 0,
+      },
+      ar_standard_deduction: {
+        2023: null,
+      },
+      ar_taxable_income: {
+        2023: 0,
+      },
+      az_income_tax: {
+        2023: null,
+      },
+      az_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      az_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      az_increased_excise_tax_credit: {
+        2023: null,
+      },
+      az_increased_excise_tax_credit_eligible: {
+        2023: null,
+      },
+      az_non_refundable_credits: {
+        2023: 0,
+      },
+      az_refundable_credits: {
+        2023: 0,
+      },
       az_standard_deduction: {
         2023: null,
+      },
+      az_taxable_income: {
+        2023: 0,
       },
       basic_income: {
         2023: null,
@@ -1925,6 +1232,9 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       blind_spouse: {
+        2023: null,
+      },
+      bonus_guaranteed_deduction: {
         2023: null,
       },
       c01000: {
@@ -2095,6 +1405,9 @@ const DEFAULT_US_HOUSEHOLD = {
       capped_insulation_air_sealing_ventilation_rebate: {
         2023: null,
       },
+      capped_property_taxes: {
+        2023: null,
+      },
       capped_qualified_furnace_or_hot_water_boiler_credit: {
         2023: null,
       },
@@ -2119,13 +1432,76 @@ const DEFAULT_US_HOUSEHOLD = {
       charity_credit: {
         2023: 0,
       },
+      co_cdcc: {
+        2023: null,
+      },
       co_eitc: {
         2023: null,
+      },
+      co_income_tax: {
+        2023: null,
+      },
+      co_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      co_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      co_non_refundable_credits: {
+        2023: 0,
+      },
+      co_refundable_credits: {
+        2023: 0,
+      },
+      co_taxable_income: {
+        2023: 0,
+      },
+      cohabitating_spouses: {
+        2023: false,
       },
       combined: {
         2023: null,
       },
       count_cdcc_eligible: {
+        2023: null,
+      },
+      ct_agi: {
+        2023: 0,
+      },
+      ct_income_tax: {
+        2023: null,
+      },
+      ct_income_tax_after_personal_credits: {
+        2023: null,
+      },
+      ct_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      ct_income_tax_higher_tax_recapture: {
+        2023: null,
+      },
+      ct_income_tax_lower_tax_recapture: {
+        2023: null,
+      },
+      ct_income_tax_phase_out_add_back: {
+        2023: null,
+      },
+      ct_income_tax_recapture: {
+        2023: null,
+      },
+      ct_non_refundable_credits: {
+        2023: 0,
+      },
+      ct_personal_credits: {
+        2023: 0,
+      },
+      ct_personal_exemptions: {
+        2023: null,
+      },
+      ct_refundable_credits: {
+        2023: 0,
+      },
+      ct_taxable_income: {
         2023: null,
       },
       ctc: {
@@ -2179,6 +1555,12 @@ const DEFAULT_US_HOUSEHOLD = {
       data_source: {
         2023: false,
       },
+      dc_cdcc: {
+        2023: null,
+      },
+      dc_deduction_joint: {
+        2023: null,
+      },
       dc_eitc: {
         2023: null,
       },
@@ -2188,8 +1570,101 @@ const DEFAULT_US_HOUSEHOLD = {
       dc_eitc_without_qualifying_child: {
         2023: null,
       },
+      dc_files_separately: {
+        2023: null,
+      },
+      dc_income_tax: {
+        2023: null,
+      },
+      dc_income_tax_before_credits: {
+        2023: null,
+      },
+      dc_income_tax_before_credits_indiv: {
+        2023: null,
+      },
+      dc_income_tax_before_credits_joint: {
+        2023: null,
+      },
+      dc_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      dc_itemized_deductions: {
+        2023: null,
+      },
+      dc_kccatc: {
+        2023: null,
+      },
+      dc_non_refundable_credits: {
+        2023: null,
+      },
+      dc_ptc: {
+        2023: null,
+      },
+      dc_refundable_credits: {
+        2023: null,
+      },
       dc_standard_deduction: {
         2023: null,
+      },
+      dc_taxable_income_joint: {
+        2023: null,
+      },
+      de_additional_standard_deduction: {
+        2023: null,
+      },
+      de_aged_personal_credit: {
+        2023: null,
+      },
+      de_cdcc: {
+        2023: null,
+      },
+      de_claims_refundable_eitc: {
+        2023: null,
+      },
+      de_eitc: {
+        2023: null,
+      },
+      de_income_tax: {
+        2023: null,
+      },
+      de_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      de_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      de_income_tax_if_claiming_non_refundable_eitc: {
+        2023: null,
+      },
+      de_income_tax_if_claiming_refundable_eitc: {
+        2023: null,
+      },
+      de_non_refundable_credits: {
+        2023: null,
+      },
+      de_non_refundable_eitc: {
+        2023: null,
+      },
+      de_non_refundable_eitc_if_claimed: {
+        2023: null,
+      },
+      de_personal_credit: {
+        2023: null,
+      },
+      de_refundable_credits: {
+        2023: null,
+      },
+      de_refundable_eitc: {
+        2023: null,
+      },
+      de_refundable_eitc_if_claimed: {
+        2023: null,
+      },
+      de_standard_deduction: {
+        2023: null,
+      },
+      de_taxable_income: {
+        2023: 0,
       },
       disabled_head: {
         2023: null,
@@ -2257,7 +1732,13 @@ const DEFAULT_US_HOUSEHOLD = {
       eitc_child_count: {
         2023: null,
       },
+      eitc_demographic_eligible: {
+        2023: null,
+      },
       eitc_eligible: {
+        2023: null,
+      },
+      eitc_investment_income_eligible: {
         2023: null,
       },
       eitc_maximum: {
@@ -2392,6 +1873,27 @@ const DEFAULT_US_HOUSEHOLD = {
       fuel_cell_property_expenditures: {
         2023: 0,
       },
+      ga_cdcc: {
+        2023: null,
+      },
+      ga_exemptions: {
+        2023: null,
+      },
+      ga_income_tax: {
+        2023: null,
+      },
+      ga_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      ga_low_income_credit: {
+        2023: null,
+      },
+      ga_refundable_credits: {
+        2023: 0,
+      },
+      ga_taxable_income: {
+        2023: 0,
+      },
       geothermal_heat_pump_property_expenditures: {
         2023: 0,
       },
@@ -2422,6 +1924,21 @@ const DEFAULT_US_HOUSEHOLD = {
       hi_agi: {
         2023: 0,
       },
+      hi_eitc: {
+        2023: null,
+      },
+      hi_food_excise_credit: {
+        2023: null,
+      },
+      hi_food_excise_credit_minor_child_amount: {
+        2023: null,
+      },
+      hi_food_excise_credit_minor_child_count: {
+        2023: null,
+      },
+      hi_food_excise_exemption_amount: {
+        2023: null,
+      },
       hi_income_tax_before_credits: {
         2023: null,
       },
@@ -2438,6 +1955,81 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       home_energy_audit_expenditures: {
+        2023: 0,
+      },
+      household_state_income_tax: {
+        2023: null,
+      },
+      ia_alternate_tax_unit: {
+        2023: null,
+      },
+      ia_cdcc: {
+        2023: null,
+      },
+      ia_eitc: {
+        2023: null,
+      },
+      ia_exemption_credit: {
+        2023: null,
+      },
+      ia_files_separately: {
+        2023: null,
+      },
+      ia_income_tax: {
+        2023: null,
+      },
+      ia_income_tax_before_credits: {
+        2023: null,
+      },
+      ia_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      ia_income_tax_indiv: {
+        2023: null,
+      },
+      ia_income_tax_joint: {
+        2023: null,
+      },
+      ia_is_tax_exempt: {
+        2023: null,
+      },
+      ia_itemized_deductions_unit: {
+        2023: null,
+      },
+      ia_modified_income: {
+        2023: null,
+      },
+      ia_nonrefundable_credits: {
+        2023: null,
+      },
+      ia_reduced_tax: {
+        2023: null,
+      },
+      ia_refundable_credits: {
+        2023: null,
+      },
+      ia_reportable_social_security: {
+        2023: null,
+      },
+      id_ctc: {
+        2023: null,
+      },
+      id_income_tax: {
+        2023: null,
+      },
+      id_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      id_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      id_non_refundable_credits: {
+        2023: 0,
+      },
+      id_refundable_credits: {
+        2023: 0,
+      },
+      id_taxable_income: {
         2023: 0,
       },
       iitax: {
@@ -2542,13 +2134,22 @@ const DEFAULT_US_HOUSEHOLD = {
       in_deductions: {
         2023: null,
       },
+      in_eitc: {
+        2023: null,
+      },
+      in_eitc_eligible: {
+        2023: null,
+      },
       in_exemptions: {
         2023: null,
       },
-      in_homeowners_property_tax: {
-        2023: 0,
-      },
       in_homeowners_property_tax_deduction: {
+        2023: null,
+      },
+      in_income_tax: {
+        2023: null,
+      },
+      in_income_tax_before_refundable_credits: {
         2023: null,
       },
       in_military_service_deduction: {
@@ -2572,10 +2173,10 @@ const DEFAULT_US_HOUSEHOLD = {
       in_other_deductions: {
         2023: 0,
       },
-      in_other_taxes: {
-        2023: 0,
-      },
       in_qualifying_child_count: {
+        2023: null,
+      },
+      in_refundable_credits: {
         2023: null,
       },
       in_renters_deduction: {
@@ -2589,6 +2190,12 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       in_unemployment_compensation_deduction: {
         2023: null,
+      },
+      in_unified_elderly_tax_credit: {
+        2023: null,
+      },
+      in_use_tax: {
+        2023: 0,
       },
       income_tax: {
         2023: null,
@@ -2630,6 +2237,9 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       is_ptc_eligible: {
+        2023: null,
+      },
+      itemized_deductions_less_salt: {
         2023: null,
       },
       itemized_taxable_income_deductions: {
@@ -2692,7 +2302,28 @@ const DEFAULT_US_HOUSEHOLD = {
       ks_total_eitc: {
         2023: null,
       },
+      ky_cdcc: {
+        2023: null,
+      },
+      ky_income_tax: {
+        2023: null,
+      },
+      ky_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      ky_refundable_credits: {
+        2023: 0,
+      },
+      ky_standard_deduction: {
+        2023: null,
+      },
+      ky_taxable_income: {
+        2023: 0,
+      },
       lifetime_learning_credit: {
+        2023: null,
+      },
+      limited_capital_loss: {
         2023: null,
       },
       local_income_tax: {
@@ -2803,9 +2434,6 @@ const DEFAULT_US_HOUSEHOLD = {
       mars: {
         2023: null,
       },
-      maximum_capital_loss: {
-        2023: null,
-      },
       md_aged_blind_exemptions: {
         2023: null,
       },
@@ -2825,6 +2453,9 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       md_ctc: {
+        2023: null,
+      },
+      md_ctc_eligible: {
         2023: null,
       },
       md_deductions: {
@@ -2854,6 +2485,9 @@ const DEFAULT_US_HOUSEHOLD = {
       md_non_refundable_credits: {
         2023: null,
       },
+      md_non_refundable_ctc: {
+        2023: null,
+      },
       md_non_refundable_eitc: {
         2023: null,
       },
@@ -2879,6 +2513,12 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       md_refundable_credits: {
+        2023: null,
+      },
+      md_refundable_ctc: {
+        2023: null,
+      },
+      md_refundable_ctc_eligible: {
         2023: null,
       },
       md_refundable_eitc: {
@@ -2923,11 +2563,11 @@ const DEFAULT_US_HOUSEHOLD = {
       me_child_care_credit: {
         2023: null,
       },
-      me_deduction: {
+      me_deduction_phaseout_percentage: {
         2023: null,
       },
       me_deductions: {
-        2023: 0,
+        2023: null,
       },
       me_dependent_exemption: {
         2023: null,
@@ -2938,13 +2578,22 @@ const DEFAULT_US_HOUSEHOLD = {
       me_exemptions: {
         2023: null,
       },
+      me_income_tax: {
+        2023: null,
+      },
       me_income_tax_before_credits: {
         2023: null,
       },
-      me_itemized_deductions: {
-        2023: 0,
+      me_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      me_itemized_deductions_pre_phaseout: {
+        2023: null,
       },
       me_non_refundable_child_care_credit: {
+        2023: null,
+      },
+      me_non_refundable_credits: {
         2023: null,
       },
       me_pension_income_deduction: {
@@ -2956,7 +2605,7 @@ const DEFAULT_US_HOUSEHOLD = {
       me_refundable_child_care_credit: {
         2023: null,
       },
-      me_standard_deduction: {
+      me_refundable_credits: {
         2023: null,
       },
       me_step_4_share_of_child_care_expenses: {
@@ -2971,7 +2620,18 @@ const DEFAULT_US_HOUSEHOLD = {
       medical_expense_deduction: {
         2023: null,
       },
-      members: ["you"],
+      mi_eitc: {
+        2023: null,
+      },
+      mi_exemptions: {
+        2023: null,
+      },
+      mi_income_tax_before_credits: {
+        2023: null,
+      },
+      mi_taxable_income: {
+        2023: 0,
+      },
       military_disabled_head: {
         2023: null,
       },
@@ -3095,11 +2755,44 @@ const DEFAULT_US_HOUSEHOLD = {
       mo_wftc: {
         2023: null,
       },
+      ms_aged_exemption: {
+        2023: null,
+      },
+      ms_blind_exemption: {
+        2023: null,
+      },
       ms_dependents_exemption: {
         2023: null,
       },
       ms_regular_exemption: {
         2023: null,
+      },
+      ms_standard_deduction: {
+        2023: null,
+      },
+      ms_total_exemptions: {
+        2023: null,
+      },
+      mt_agi: {
+        2023: 0,
+      },
+      mt_eitc: {
+        2023: null,
+      },
+      mt_income_tax: {
+        2023: null,
+      },
+      mt_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      mt_refundable_credits: {
+        2023: 0,
+      },
+      mt_standard_deduction: {
+        2023: null,
+      },
+      mt_taxable_income: {
+        2023: 0,
       },
       n1820: {
         2023: 0,
@@ -3108,6 +2801,21 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: 0,
       },
       n24: {
+        2023: 0,
+      },
+      nc_ctc: {
+        2023: null,
+      },
+      nc_income_tax: {
+        2023: null,
+      },
+      nc_income_tax_before_credits: {
+        2023: null,
+      },
+      nc_non_refundable_credits: {
+        2023: 0,
+      },
+      nc_taxable_income: {
         2023: 0,
       },
       nd_additions: {
@@ -3203,18 +2911,6 @@ const DEFAULT_US_HOUSEHOLD = {
       net_investment_income_tax: {
         2023: null,
       },
-      net_long_term_capital_gain: {
-        2023: null,
-      },
-      net_long_term_capital_loss: {
-        2023: null,
-      },
-      net_short_term_capital_gain: {
-        2023: null,
-      },
-      net_short_term_capital_loss: {
-        2023: null,
-      },
       new_clean_vehicle_battery_capacity: {
         2023: 0,
       },
@@ -3237,14 +2933,38 @@ const DEFAULT_US_HOUSEHOLD = {
       new_clean_vehicle_msrp: {
         2023: 0,
       },
-      nj_agi: {
+      nh_base_exemption: {
         2023: null,
       },
-      nj_agi_additions: {
+      nh_blind_exemption: {
+        2023: null,
+      },
+      nh_disabled_exemption: {
+        2023: null,
+      },
+      nh_education_tax_credit: {
+        2023: null,
+      },
+      nh_income_tax: {
+        2023: null,
+      },
+      nh_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      nh_old_age_exemption: {
+        2023: null,
+      },
+      nh_refundable_credits: {
         2023: 0,
       },
-      nj_agi_subtractions: {
-        2023: 0,
+      nh_taxable_income: {
+        2023: null,
+      },
+      nh_total_exemptions: {
+        2023: null,
+      },
+      nj_agi: {
+        2023: null,
       },
       nj_blind_or_disabled_exemption: {
         2023: null,
@@ -3252,10 +2972,10 @@ const DEFAULT_US_HOUSEHOLD = {
       nj_cdcc: {
         2023: null,
       },
-      nj_child_tax_credit: {
+      nj_childless_eitc_age_eligible: {
         2023: null,
       },
-      nj_childless_eitc_age_eligible: {
+      nj_ctc: {
         2023: null,
       },
       nj_dependents_attending_college_exemption: {
@@ -3274,21 +2994,57 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       nj_income_tax_before_refundable_credits: {
-        2023: 0,
+        2023: null,
       },
       nj_main_income_tax: {
         2023: null,
       },
-      nj_refundable_credits: {
+      nj_non_refundable_credits: {
         2023: 0,
       },
+      nj_other_retirement_income_exclusion: {
+        2023: null,
+      },
+      nj_other_retirement_special_exclusion: {
+        2023: null,
+      },
+      nj_pension_retirement_exclusion: {
+        2023: null,
+      },
+      nj_potential_property_tax_deduction: {
+        2023: null,
+      },
+      nj_property_tax_credit: {
+        2023: null,
+      },
+      nj_property_tax_credit_eligible: {
+        2023: null,
+      },
+      nj_property_tax_deduction: {
+        2023: null,
+      },
+      nj_property_tax_deduction_eligible: {
+        2023: null,
+      },
+      nj_refundable_credits: {
+        2023: null,
+      },
       nj_regular_exemption: {
+        2023: null,
+      },
+      nj_retirement_exclusion_fraction: {
         2023: null,
       },
       nj_senior_exemption: {
         2023: null,
       },
+      nj_taking_property_tax_deduction: {
+        2023: null,
+      },
       nj_taxable_income: {
+        2023: null,
+      },
+      nj_taxable_income_before_property_tax_deduction: {
         2023: null,
       },
       nj_total_deductions: {
@@ -3297,7 +3053,112 @@ const DEFAULT_US_HOUSEHOLD = {
       nj_total_exemptions: {
         2023: null,
       },
-      no_salt_income_tax: {
+      nm_2021_income_rebate: {
+        2023: null,
+      },
+      nm_additional_2021_income_rebate: {
+        2023: null,
+      },
+      nm_additions: {
+        2023: 0,
+      },
+      nm_aged_blind_exemption: {
+        2023: null,
+      },
+      nm_cdcc: {
+        2023: null,
+      },
+      nm_cdcc_eligible: {
+        2023: null,
+      },
+      nm_cdcc_max_amount: {
+        2023: null,
+      },
+      nm_ctc: {
+        2023: null,
+      },
+      nm_deduction_for_certain_dependents: {
+        2023: null,
+      },
+      nm_deduction_for_certain_dependents_eligible: {
+        2023: null,
+      },
+      nm_deductions: {
+        2023: null,
+      },
+      nm_eitc: {
+        2023: null,
+      },
+      nm_eitc_demographic_eligible: {
+        2023: null,
+      },
+      nm_eitc_eligible: {
+        2023: null,
+      },
+      nm_exemptions: {
+        2023: null,
+      },
+      nm_hundred_year_exemption: {
+        2023: null,
+      },
+      nm_income_tax: {
+        2023: null,
+      },
+      nm_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      nm_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      nm_itemized_deductions: {
+        2023: null,
+      },
+      nm_low_and_middle_income_exemption: {
+        2023: null,
+      },
+      nm_low_income_comprehensive_tax_rebate: {
+        2023: null,
+      },
+      nm_low_income_comprehensive_tax_rebate_exemptions: {
+        2023: null,
+      },
+      nm_medical_care_expense_deduction: {
+        2023: null,
+      },
+      nm_medical_expense_credit: {
+        2023: null,
+      },
+      nm_medical_expense_exemption: {
+        2023: null,
+      },
+      nm_modified_gross_income: {
+        2023: null,
+      },
+      nm_net_capital_gains_deduction: {
+        2023: null,
+      },
+      nm_non_refundable_credits: {
+        2023: 0,
+      },
+      nm_other_deductions_and_exemptions: {
+        2023: null,
+      },
+      nm_property_tax_rebate: {
+        2023: null,
+      },
+      nm_property_tax_rebate_eligible: {
+        2023: null,
+      },
+      nm_refundable_credits: {
+        2023: null,
+      },
+      nm_social_security_income_exemption: {
+        2023: null,
+      },
+      nm_supplemental_2021_income_rebate: {
+        2023: null,
+      },
+      nm_taxable_income: {
         2023: null,
       },
       non_refundable_american_opportunity_credit: {
@@ -3456,6 +3317,12 @@ const DEFAULT_US_HOUSEHOLD = {
       oh_bonus_depreciation_add_back: {
         2023: 0,
       },
+      oh_cdcc: {
+        2023: null,
+      },
+      oh_eitc: {
+        2023: null,
+      },
       oh_federal_conformity_deductions: {
         2023: 0,
       },
@@ -3465,11 +3332,17 @@ const DEFAULT_US_HOUSEHOLD = {
       oh_income_tax_exempt: {
         2023: null,
       },
+      oh_non_public_school_credits: {
+        2023: null,
+      },
       oh_other_add_backs: {
         2023: 0,
       },
       oh_section_179_expense_add_back: {
         2023: 0,
+      },
+      oh_senior_citizen_credit: {
+        2023: null,
       },
       oh_taxable_income: {
         2023: 0,
@@ -3537,6 +3410,9 @@ const DEFAULT_US_HOUSEHOLD = {
       ok_use_tax: {
         2023: null,
       },
+      or_ctc: {
+        2023: null,
+      },
       or_deductions: {
         2023: null,
       },
@@ -3548,6 +3424,9 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       or_exemption_credit: {
         2023: null,
+      },
+      or_federal_pension_subtraction: {
+        2023: 0,
       },
       or_federal_tax_liability_subtraction: {
         2023: null,
@@ -3586,6 +3465,12 @@ const DEFAULT_US_HOUSEHOLD = {
         2023: null,
       },
       or_regular_exemptions: {
+        2023: null,
+      },
+      or_retirement_credit: {
+        2023: null,
+      },
+      or_retirement_credit_household_income: {
         2023: null,
       },
       or_severely_disabled_exemptions: {
@@ -3635,6 +3520,15 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       pa_use_tax: {
         2023: null,
+      },
+      pell_grant_dependents_in_college: {
+        2023: null,
+      },
+      pell_grant_head_assets: {
+        2023: null,
+      },
+      pell_grant_primary_income: {
+        2023: 0,
       },
       positive_agi: {
         2023: null,
@@ -3717,6 +3611,27 @@ const DEFAULT_US_HOUSEHOLD = {
       retirement_savings_credit: {
         2023: null,
       },
+      ri_cdcc: {
+        2023: null,
+      },
+      ri_eitc: {
+        2023: null,
+      },
+      ri_income_tax: {
+        2023: null,
+      },
+      ri_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      ri_refundable_credits: {
+        2023: 0,
+      },
+      ri_standard_deduction: {
+        2023: null,
+      },
+      ri_taxable_income: {
+        2023: 0,
+      },
       rptc: {
         2023: null,
       },
@@ -3735,11 +3650,38 @@ const DEFAULT_US_HOUSEHOLD = {
       salt_refund_last_year: {
         2023: 0,
       },
+      sc_cdcc: {
+        2023: null,
+      },
+      sc_eitc: {
+        2023: null,
+      },
       sc_income_tax_before_credits: {
+        2023: null,
+      },
+      sc_military_retirement_income_deduction_head: {
+        2023: 0,
+      },
+      sc_military_retirement_income_deduction_spouse: {
+        2023: 0,
+      },
+      sc_retirement_income_deduction_head: {
+        2023: 0,
+      },
+      sc_retirement_income_deduction_spouse: {
+        2023: 0,
+      },
+      sc_senior_exemption: {
+        2023: null,
+      },
+      sc_state_tax_addback: {
         2023: null,
       },
       sc_taxable_income: {
         2023: 0,
+      },
+      sc_two_wage_earner_credit: {
+        2023: null,
       },
       sc_young_child_exemption: {
         2023: null,
@@ -3822,9 +3764,6 @@ const DEFAULT_US_HOUSEHOLD = {
       tax_liability_if_not_itemizing: {
         2023: null,
       },
-      tax_unit_capital_loss: {
-        2023: null,
-      },
       tax_unit_childcare_expenses: {
         2023: null,
       },
@@ -3887,6 +3826,9 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       tax_unit_state: {
         2023: null,
+      },
+      tax_unit_stillborn_children: {
+        2023: 0,
       },
       tax_unit_taxable_social_security: {
         2023: null,
@@ -4335,16 +4277,28 @@ const DEFAULT_US_HOUSEHOLD = {
       ut_total_income: {
         2023: null,
       },
+      va_afagi: {
+        2023: 0,
+      },
+      va_age_deduction: {
+        2023: null,
+      },
       va_aged_blind_exemption: {
         2023: null,
       },
       va_disability_income_subtraction: {
         2023: null,
       },
+      va_federal_state_employees_subtraction: {
+        2023: null,
+      },
       va_income_tax_before_credits: {
         2023: null,
       },
       va_military_basic_pay_subtraction: {
+        2023: null,
+      },
+      va_military_benefit_subtraction: {
         2023: null,
       },
       va_personal_exemption: {
@@ -4355,6 +4309,42 @@ const DEFAULT_US_HOUSEHOLD = {
       },
       va_taxable_income: {
         2023: 0,
+      },
+      va_total_exemptions: {
+        2023: null,
+      },
+      vt_agi: {
+        2023: null,
+      },
+      vt_agi_additions: {
+        2023: 0,
+      },
+      vt_agi_subtractions: {
+        2023: 0,
+      },
+      vt_income_tax: {
+        2023: null,
+      },
+      vt_income_tax_before_non_refundable_credits: {
+        2023: null,
+      },
+      vt_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      vt_non_refundable_credits: {
+        2023: 0,
+      },
+      vt_personal_exemptions: {
+        2023: null,
+      },
+      vt_refundable_credits: {
+        2023: 0,
+      },
+      vt_standard_deduction: {
+        2023: null,
+      },
+      vt_taxable_income: {
+        2023: null,
       },
       wa_capital_gains_tax: {
         2023: null,
@@ -4371,22 +4361,1035 @@ const DEFAULT_US_HOUSEHOLD = {
       wa_working_families_tax_credit: {
         2023: null,
       },
+      wi_agi: {
+        2023: null,
+      },
+      wi_capital_gain_loss_addition: {
+        2023: null,
+      },
+      wi_capital_gain_loss_subtraction: {
+        2023: null,
+      },
+      wi_capital_loss: {
+        2023: null,
+      },
+      wi_childcare_expense_credit: {
+        2023: null,
+      },
+      wi_childcare_expense_subtraction: {
+        2023: null,
+      },
+      wi_earned_income_credit: {
+        2023: null,
+      },
+      wi_exemption: {
+        2023: null,
+      },
+      wi_homestead_credit: {
+        2023: null,
+      },
+      wi_homestead_eligible: {
+        2023: null,
+      },
+      wi_homestead_income: {
+        2023: null,
+      },
+      wi_homestead_property_tax: {
+        2023: null,
+      },
+      wi_income_additions: {
+        2023: null,
+      },
+      wi_income_subtractions: {
+        2023: null,
+      },
+      wi_income_tax: {
+        2023: null,
+      },
+      wi_income_tax_before_credits: {
+        2023: null,
+      },
+      wi_income_tax_before_refundable_credits: {
+        2023: null,
+      },
+      wi_itemized_deduction_credit: {
+        2023: null,
+      },
+      wi_married_couple_credit: {
+        2023: null,
+      },
+      wi_nonrefundable_credits: {
+        2023: null,
+      },
+      wi_property_tax_credit: {
+        2023: null,
+      },
+      wi_refundable_credits: {
+        2023: null,
+      },
+      wi_retirement_income_subtraction: {
+        2023: null,
+      },
+      wi_retirement_income_subtraction_agi_eligible: {
+        2023: null,
+      },
+      wi_standard_deduction: {
+        2023: null,
+      },
+      wi_taxable_income: {
+        2023: null,
+      },
+      wi_unemployment_compensation_subtraction: {
+        2023: null,
+      },
+      wv_income_tax_before_credits: {
+        2023: null,
+      },
+      wv_personal_exemption: {
+        2023: null,
+      },
+      wv_public_pension_subtraction: {
+        2023: null,
+      },
+      wv_taxable_income: {
+        2023: 0,
+      },
       xtot: {
         2023: null,
       },
     },
   },
-  axes: [
-    [
-      {
-        name: "employment_income",
-        period: "2023",
-        min: 0,
-        max: 200000,
-        count: 401,
+  spm_units: {
+    "your household": {
+      members: ["you"],
+      acp: {
+        2023: null,
       },
-    ],
-  ],
+      ami: {
+        2023: 0,
+      },
+      broadband_cost: {
+        2023: 0,
+      },
+      broadband_cost_after_lifeline: {
+        2023: null,
+      },
+      ccdf_income: {
+        2023: null,
+      },
+      ccdf_income_to_smi_ratio: {
+        2023: null,
+      },
+      childcare_expenses: {
+        2023: 0,
+      },
+      co_tanf: {
+        2023: null,
+      },
+      co_tanf_count_children: {
+        2023: null,
+      },
+      co_tanf_countable_earned_income_grant_standard: {
+        2023: null,
+      },
+      co_tanf_countable_earned_income_need: {
+        2023: null,
+      },
+      co_tanf_countable_gross_earned_income: {
+        2023: null,
+      },
+      co_tanf_countable_gross_unearned_income: {
+        2023: null,
+      },
+      co_tanf_eligible: {
+        2023: null,
+      },
+      co_tanf_grant_standard: {
+        2023: null,
+      },
+      co_tanf_income_eligible: {
+        2023: null,
+      },
+      co_tanf_need_standard: {
+        2023: null,
+      },
+      count_distinct_utility_expenses: {
+        2023: null,
+      },
+      dc_tanf: {
+        2023: null,
+      },
+      dc_tanf_countable_earned_income: {
+        2023: null,
+      },
+      dc_tanf_countable_gross_unearned_income: {
+        2023: null,
+      },
+      dc_tanf_countable_income: {
+        2023: null,
+      },
+      dc_tanf_countable_resources: {
+        2023: 0,
+      },
+      dc_tanf_eligible: {
+        2023: null,
+      },
+      dc_tanf_grant_standard: {
+        2023: null,
+      },
+      dc_tanf_gross_earned_income: {
+        2023: null,
+      },
+      dc_tanf_income_eligible: {
+        2023: null,
+      },
+      dc_tanf_need_standard: {
+        2023: null,
+      },
+      dc_tanf_resources_eligible: {
+        2023: null,
+      },
+      deep_poverty_gap: {
+        2023: null,
+      },
+      deep_poverty_line: {
+        2023: null,
+      },
+      ebb: {
+        2023: null,
+      },
+      electricity_expense: {
+        2023: 0,
+      },
+      enrolled_in_ebb: {
+        2023: false,
+      },
+      experienced_covid_income_loss: {
+        2023: false,
+      },
+      fcc_fpg_ratio: {
+        2023: null,
+      },
+      fdpir: {
+        2023: 0,
+      },
+      free_school_meals: {
+        2023: null,
+      },
+      free_school_meals_reported: {
+        2023: 0,
+      },
+      gas_expense: {
+        2023: 0,
+      },
+      has_all_usda_elderly_disabled: {
+        2023: null,
+      },
+      has_heating_cooling_expense: {
+        2023: null,
+      },
+      has_phone_expense: {
+        2023: null,
+      },
+      has_usda_elderly_disabled: {
+        2023: null,
+      },
+      heating_cooling_expense: {
+        2023: 0,
+      },
+      hhs_smi: {
+        2023: null,
+      },
+      housing_assistance: {
+        2023: null,
+      },
+      housing_cost: {
+        2023: null,
+      },
+      housing_designated_welfare: {
+        2023: 0,
+      },
+      hud_adjusted_income: {
+        2023: null,
+      },
+      hud_annual_income: {
+        2023: null,
+      },
+      hud_gross_rent: {
+        2023: null,
+      },
+      hud_hap: {
+        2023: null,
+      },
+      hud_income_level: {
+        2023: null,
+      },
+      hud_max_subsidy: {
+        2023: null,
+      },
+      hud_minimum_rent: {
+        2023: 0,
+      },
+      hud_ttp: {
+        2023: null,
+      },
+      hud_ttp_adjusted_income_share: {
+        2023: null,
+      },
+      hud_ttp_income_share: {
+        2023: null,
+      },
+      hud_utility_allowance: {
+        2023: 0,
+      },
+      in_deep_poverty: {
+        2023: null,
+      },
+      in_poverty: {
+        2023: null,
+      },
+      is_acp_eligible: {
+        2023: null,
+      },
+      is_ccdf_asset_eligible: {
+        2023: null,
+      },
+      is_ccdf_continuous_income_eligible: {
+        2023: false,
+      },
+      is_ccdf_income_eligible: {
+        2023: null,
+      },
+      is_ccdf_initial_income_eligible: {
+        2023: false,
+      },
+      is_demographic_tanf_eligible: {
+        2023: null,
+      },
+      is_ebb_eligible: {
+        2023: null,
+      },
+      is_eligible_for_housing_assistance: {
+        2023: null,
+      },
+      is_hud_elderly_disabled_family: {
+        2023: null,
+      },
+      is_lifeline_eligible: {
+        2023: null,
+      },
+      is_snap_eligible: {
+        2023: null,
+      },
+      is_tanf_continuous_eligible: {
+        2023: null,
+      },
+      is_tanf_eligible: {
+        2023: null,
+      },
+      is_tanf_enrolled: {
+        2023: false,
+      },
+      is_tanf_initial_eligible: {
+        2023: null,
+      },
+      is_tanf_non_cash_eligible: {
+        2023: null,
+      },
+      is_tanf_non_cash_hheod: {
+        2023: null,
+      },
+      lifeline: {
+        2023: null,
+      },
+      md_tanf_count_children: {
+        2023: null,
+      },
+      md_tanf_eligible: {
+        2023: false,
+      },
+      md_tanf_gross_earned_income_deduction: {
+        2023: null,
+      },
+      md_tanf_maximum_benefit: {
+        2023: null,
+      },
+      meets_ccdf_activity_test: {
+        2023: false,
+      },
+      meets_school_meal_categorical_eligibility: {
+        2023: null,
+      },
+      meets_snap_asset_test: {
+        2023: null,
+      },
+      meets_snap_categorical_eligibility: {
+        2023: null,
+      },
+      meets_snap_gross_income_test: {
+        2023: null,
+      },
+      meets_snap_net_income_test: {
+        2023: null,
+      },
+      meets_tanf_non_cash_asset_test: {
+        2023: null,
+      },
+      meets_tanf_non_cash_gross_income_test: {
+        2023: null,
+      },
+      meets_tanf_non_cash_net_income_test: {
+        2023: null,
+      },
+      meets_wic_income_test: {
+        2023: null,
+      },
+      mo_tanf_income_limit: {
+        2023: null,
+      },
+      nj_tanf_countable_gross_unearned_income: {
+        2023: null,
+      },
+      nj_tanf_countable_resources: {
+        2023: 0,
+      },
+      nj_tanf_gross_earned_income: {
+        2023: null,
+      },
+      nj_tanf_maximum_allowable_income: {
+        2023: null,
+      },
+      nj_tanf_maximum_benefit: {
+        2023: null,
+      },
+      nj_tanf_resources_eligible: {
+        2023: null,
+      },
+      ny_tanf: {
+        2023: null,
+      },
+      ny_tanf_countable_earned_income: {
+        2023: null,
+      },
+      ny_tanf_countable_gross_unearned_income: {
+        2023: null,
+      },
+      ny_tanf_countable_resources: {
+        2023: 0,
+      },
+      ny_tanf_eligible: {
+        2023: null,
+      },
+      ny_tanf_grant_standard: {
+        2023: null,
+      },
+      ny_tanf_gross_earned_income: {
+        2023: null,
+      },
+      ny_tanf_income_eligible: {
+        2023: null,
+      },
+      ny_tanf_need_standard: {
+        2023: null,
+      },
+      ny_tanf_resources_eligible: {
+        2023: null,
+      },
+      ok_tanf: {
+        2023: 0,
+      },
+      pa_tanf_age_eligible: {
+        2023: null,
+      },
+      pa_tanf_age_eligible_on_pregnant_women_limitation: {
+        2023: null,
+      },
+      pa_tanf_countable_resources: {
+        2023: 0,
+      },
+      pa_tanf_resources_eligible: {
+        2023: null,
+      },
+      pha_payment_standard: {
+        2023: 0,
+      },
+      phone_cost: {
+        2023: 0,
+      },
+      phone_expense: {
+        2023: null,
+      },
+      poverty_gap: {
+        2023: null,
+      },
+      poverty_line: {
+        2023: null,
+      },
+      receives_housing_assistance: {
+        2023: false,
+      },
+      reduced_price_school_meals: {
+        2023: null,
+      },
+      school_meal_countable_income: {
+        2023: null,
+      },
+      school_meal_daily_subsidy: {
+        2023: null,
+      },
+      school_meal_fpg_ratio: {
+        2023: null,
+      },
+      school_meal_net_subsidy: {
+        2023: null,
+      },
+      school_meal_paid_daily_subsidy: {
+        2023: null,
+      },
+      school_meal_tier: {
+        2023: null,
+      },
+      sewage_expense: {
+        2023: 0,
+      },
+      snap: {
+        2023: null,
+      },
+      snap_assets: {
+        2023: 0,
+      },
+      snap_child_support_deduction: {
+        2023: null,
+      },
+      snap_child_support_gross_income_deduction: {
+        2023: null,
+      },
+      snap_deductions: {
+        2023: null,
+      },
+      snap_dependent_care_deduction: {
+        2023: null,
+      },
+      snap_earned_income: {
+        2023: null,
+      },
+      snap_earned_income_deduction: {
+        2023: null,
+      },
+      snap_emergency_allotment: {
+        2023: null,
+      },
+      snap_excess_medical_expense_deduction: {
+        2023: null,
+      },
+      snap_excess_shelter_expense_deduction: {
+        2023: null,
+      },
+      snap_expected_contribution: {
+        2023: null,
+      },
+      snap_gross_income: {
+        2023: null,
+      },
+      snap_gross_income_fpg_ratio: {
+        2023: null,
+      },
+      snap_max_allotment: {
+        2023: null,
+      },
+      snap_min_allotment: {
+        2023: null,
+      },
+      snap_net_income: {
+        2023: null,
+      },
+      snap_net_income_fpg_ratio: {
+        2023: null,
+      },
+      snap_net_income_pre_shelter: {
+        2023: null,
+      },
+      snap_normal_allotment: {
+        2023: null,
+      },
+      snap_reported: {
+        2023: 0,
+      },
+      snap_standard_deduction: {
+        2023: null,
+      },
+      snap_unearned_income: {
+        2023: null,
+      },
+      snap_utility_allowance: {
+        2023: null,
+      },
+      snap_utility_allowance_type: {
+        2023: null,
+      },
+      spm_unit_assets: {
+        2023: 0,
+      },
+      spm_unit_benefits: {
+        2023: null,
+      },
+      spm_unit_capped_housing_subsidy: {
+        2023: null,
+      },
+      spm_unit_capped_housing_subsidy_reported: {
+        2023: 0,
+      },
+      spm_unit_capped_work_childcare_expenses: {
+        2023: 0,
+      },
+      spm_unit_ccdf_subsidy: {
+        2023: null,
+      },
+      spm_unit_count_adults: {
+        2023: null,
+      },
+      spm_unit_count_children: {
+        2023: null,
+      },
+      spm_unit_energy_subsidy: {
+        2023: null,
+      },
+      spm_unit_energy_subsidy_reported: {
+        2023: 0,
+      },
+      spm_unit_federal_tax: {
+        2023: null,
+      },
+      spm_unit_federal_tax_reported: {
+        2023: 0,
+      },
+      spm_unit_fpg: {
+        2023: null,
+      },
+      spm_unit_id: {
+        2023: 0,
+      },
+      spm_unit_income_decile: {
+        2023: null,
+      },
+      spm_unit_is_in_deep_spm_poverty: {
+        2023: null,
+      },
+      spm_unit_is_in_spm_poverty: {
+        2023: null,
+      },
+      spm_unit_market_income: {
+        2023: null,
+      },
+      spm_unit_medical_expenses: {
+        2023: null,
+      },
+      spm_unit_net_income: {
+        2023: null,
+      },
+      spm_unit_net_income_reported: {
+        2023: 0,
+      },
+      spm_unit_oecd_equiv_net_income: {
+        2023: null,
+      },
+      spm_unit_payroll_tax: {
+        2023: null,
+      },
+      spm_unit_payroll_tax_reported: {
+        2023: 0,
+      },
+      spm_unit_pell_grant: {
+        2023: null,
+      },
+      spm_unit_school_lunch_subsidy: {
+        2023: 0,
+      },
+      spm_unit_self_employment_tax: {
+        2023: null,
+      },
+      spm_unit_size: {
+        2023: null,
+      },
+      spm_unit_snap: {
+        2023: 0,
+      },
+      spm_unit_spm_threshold: {
+        2023: 0,
+      },
+      spm_unit_state_fips: {
+        2023: null,
+      },
+      spm_unit_state_tax: {
+        2023: null,
+      },
+      spm_unit_state_tax_reported: {
+        2023: 0,
+      },
+      spm_unit_taxes: {
+        2023: null,
+      },
+      spm_unit_total_ccdf_copay: {
+        2023: null,
+      },
+      spm_unit_total_income_reported: {
+        2023: 0,
+      },
+      spm_unit_weight: {
+        2023: null,
+      },
+      spm_unit_wic: {
+        2023: null,
+      },
+      spm_unit_wic_reported: {
+        2023: 0,
+      },
+      tanf: {
+        2023: null,
+      },
+      tanf_amount_if_eligible: {
+        2023: null,
+      },
+      tanf_countable_income: {
+        2023: null,
+      },
+      tanf_gross_earned_income: {
+        2023: null,
+      },
+      tanf_gross_unearned_income: {
+        2023: null,
+      },
+      tanf_initial_employment_deduction: {
+        2023: null,
+      },
+      tanf_max_amount: {
+        2023: null,
+      },
+      trash_expense: {
+        2023: 0,
+      },
+      tx_tanf_income_limit: {
+        2023: null,
+      },
+      utility_expense: {
+        2023: null,
+      },
+      wa_tanf_countable_resources: {
+        2023: 0,
+      },
+      wa_tanf_resources_eligible: {
+        2023: null,
+      },
+      water_expense: {
+        2023: 0,
+      },
+      wic_fpg: {
+        2023: null,
+      },
+    },
+  },
+  households: {
+    "your household": {
+      members: ["you"],
+      AK: {
+        2023: null,
+      },
+      AL: {
+        2023: null,
+      },
+      AR: {
+        2023: null,
+      },
+      AZ: {
+        2023: null,
+      },
+      CA: {
+        2023: null,
+      },
+      CO: {
+        2023: null,
+      },
+      CT: {
+        2023: null,
+      },
+      DC: {
+        2023: null,
+      },
+      DE: {
+        2023: null,
+      },
+      FL: {
+        2023: null,
+      },
+      GA: {
+        2023: null,
+      },
+      HI: {
+        2023: null,
+      },
+      IA: {
+        2023: null,
+      },
+      ID: {
+        2023: null,
+      },
+      IL: {
+        2023: null,
+      },
+      IN: {
+        2023: null,
+      },
+      KS: {
+        2023: null,
+      },
+      KY: {
+        2023: null,
+      },
+      LA: {
+        2023: null,
+      },
+      MA: {
+        2023: null,
+      },
+      MD: {
+        2023: null,
+      },
+      ME: {
+        2023: null,
+      },
+      MI: {
+        2023: null,
+      },
+      MN: {
+        2023: null,
+      },
+      MO: {
+        2023: null,
+      },
+      MS: {
+        2023: null,
+      },
+      MT: {
+        2023: null,
+      },
+      NC: {
+        2023: null,
+      },
+      ND: {
+        2023: null,
+      },
+      NE: {
+        2023: null,
+      },
+      NH: {
+        2023: null,
+      },
+      NJ: {
+        2023: null,
+      },
+      NM: {
+        2023: null,
+      },
+      NV: {
+        2023: null,
+      },
+      NY: {
+        2023: null,
+      },
+      OH: {
+        2023: null,
+      },
+      OK: {
+        2023: null,
+      },
+      OR: {
+        2023: null,
+      },
+      PA: {
+        2023: null,
+      },
+      RI: {
+        2023: null,
+      },
+      SC: {
+        2023: null,
+      },
+      SD: {
+        2023: null,
+      },
+      TN: {
+        2023: null,
+      },
+      TX: {
+        2023: null,
+      },
+      UT: {
+        2023: null,
+      },
+      VA: {
+        2023: null,
+      },
+      VT: {
+        2023: null,
+      },
+      WA: {
+        2023: null,
+      },
+      WI: {
+        2023: null,
+      },
+      WV: {
+        2023: null,
+      },
+      WY: {
+        2023: null,
+      },
+      average_home_energy_use_in_state: {
+        2023: 0,
+      },
+      ca_care: {
+        2023: null,
+      },
+      ca_care_amount_if_eligible: {
+        2023: null,
+      },
+      ca_care_categorically_eligible: {
+        2023: null,
+      },
+      ca_care_eligible: {
+        2023: null,
+      },
+      ca_care_income_eligible: {
+        2023: null,
+      },
+      ca_care_poverty_line: {
+        2023: null,
+      },
+      ca_fera: {
+        2023: null,
+      },
+      ca_fera_amount_if_eligible: {
+        2023: null,
+      },
+      ca_fera_eligible: {
+        2023: null,
+      },
+      ccdf_county_cluster: {
+        2023: null,
+      },
+      county: {
+        2023: null,
+      },
+      county_fips: {
+        2023: 0,
+      },
+      county_str: {
+        2023: null,
+      },
+      current_home_energy_use: {
+        2023: 0,
+      },
+      equiv_household_net_income: {
+        2023: null,
+      },
+      fips: {
+        2023: 6,
+      },
+      household_benefits: {
+        2023: null,
+      },
+      household_count_people: {
+        2023: null,
+      },
+      household_id: {
+        2023: 0,
+      },
+      household_income_ami_ratio: {
+        2023: 0,
+      },
+      household_income_decile: {
+        2023: null,
+      },
+      household_market_income: {
+        2023: null,
+      },
+      household_net_income: {
+        2023: null,
+      },
+      household_refundable_tax_credits: {
+        2023: null,
+      },
+      household_size: {
+        2023: null,
+      },
+      household_tax: {
+        2023: null,
+      },
+      household_tax_before_refundable_credits: {
+        2023: null,
+      },
+      household_vehicles_owned: {
+        2023: 0,
+      },
+      household_weight: {
+        2023: 0,
+      },
+      in_nyc: {
+        2023: false,
+      },
+      is_homeless: {
+        2023: false,
+      },
+      is_on_tribal_land: {
+        2023: false,
+      },
+      is_rural: {
+        2023: false,
+      },
+      medicaid_rating_area: {
+        2023: null,
+      },
+      snap_region: {
+        2023: null,
+      },
+      snap_region_str: {
+        2023: null,
+      },
+      snap_utility_region: {
+        2023: null,
+      },
+      snap_utility_region_str: {
+        2023: null,
+      },
+      state_code: {
+        2023: null,
+      },
+      state_code_str: {
+        2023: null,
+      },
+      state_fips: {
+        2023: 6,
+      },
+      state_group: {
+        2023: null,
+      },
+      state_group_str: {
+        2023: null,
+      },
+      state_living_arrangement: {
+        2023: "FULL_COST",
+      },
+      state_name: {
+        2023: "CA",
+      },
+      three_digit_zip_code: {
+        2023: null,
+      },
+      zip_code: {
+        2023: null,
+      },
+    },
+  },
 };
 const DEFAULT_UK_HOUSEHOLD = {
   people: {
