@@ -56,7 +56,7 @@ export function addYearlyVariables(situation, variables, entities) {
   return situation;
 }
 
-export function createDefaultHousehold(country, variables, entities) {
+export function createDefaultHousehold(country) {
   let situation = {};
   if (country === "uk") {
     situation = {
@@ -139,7 +139,6 @@ export function createDefaultHousehold(country, variables, entities) {
       },
     };
   }
-  situation = addYearlyVariables(situation, variables, entities);
   return situation;
 }
 
