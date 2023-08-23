@@ -10,9 +10,9 @@ export function BlogPreview() {
   const displayCategory = useDisplayCategory();
   //const isDesktop = displayCategory === "desktop";
   if (displayCategory === "desktop") {
-    return <DesktopBlogPostPreview posts={posts}/>;
+    return <DesktopBlogPostPreview posts={posts} />;
   } else if (displayCategory === "mobile") {
-    return <MobileBlogPostPreview posts={posts}/>;
+    return <MobileBlogPostPreview posts={posts} />;
   }
   return (
     <div>
@@ -36,48 +36,51 @@ function MobileBlogPostPreview(props) {
       <FeaturedBlogPost
         posts={posts.filter((post) => post.tags.includes("featured"))}
       />
-      <div style={{
-        padding: 50,
-        display: "flex",
-        flexDirection: "column",
-      }}>
+      <div
+        style={{
+          padding: 50,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <SmallBlogPost post={posts[1]} />
-          <div style={{height: 20}} />
+        <div style={{ height: 20 }} />
         <SmallBlogPost post={posts[2]} />
-          <div style={{height: 20}} />
+        <div style={{ height: 20 }} />
         <SmallBlogPost post={posts[3]} />
-          <div style={{height: 20}} />
+        <div style={{ height: 20 }} />
         <SmallBlogPost post={posts[4]} />
       </div>
     </div>
   );
-  }
+}
 
 function DesktopBlogPostPreview(props) {
-    const { posts } = props;
-    return (
-      <div>
-        <h2 style={{ fontFamily: "Roboto Serif", padding: 50 }}>
-          Expert policy research and analysis
-        </h2>
-        <FeaturedBlogPost
-          posts={posts.filter((post) => post.tags.includes("featured"))}
-        />
-        <div style={{
+  const { posts } = props;
+  return (
+    <div>
+      <h2 style={{ fontFamily: "Roboto Serif", padding: 50 }}>
+        Expert policy research and analysis
+      </h2>
+      <FeaturedBlogPost
+        posts={posts.filter((post) => post.tags.includes("featured"))}
+      />
+      <div
+        style={{
           padding: 50,
           display: "flex",
           flexDirection: "row",
-        }}>
-          <MediumBlogPostPreview post={posts[1]} />
-          <div style={{width: 50}} />
-          <MediumBlogPostPreview post={posts[2]} />
-          <div style={{width: 50}} />
-          <MediumBlogPostPreview post={posts[3]} />
-        </div>
+        }}
+      >
+        <MediumBlogPostPreview post={posts[1]} />
+        <div style={{ width: 50 }} />
+        <MediumBlogPostPreview post={posts[2]} />
+        <div style={{ width: 50 }} />
+        <MediumBlogPostPreview post={posts[3]} />
       </div>
-    );
-    }
-  
+    </div>
+  );
+}
 
 function MediumBlogPostPreview(props) {
   const { post } = props;
@@ -278,7 +281,7 @@ function Tags(props) {
     "in-the-news": style.colors.BLUE_LIGHT,
     us: style.colors.TEAL_LIGHT,
     uk: style.colors.BLUE_LIGHT,
-    global: style.colors.DARKEST_BLUE
+    global: style.colors.DARKEST_BLUE,
   };
   const filteredTags = tags.filter((tag) => tag in colors);
   return (
@@ -336,7 +339,11 @@ function SmallBlogPost(props) {
     <TaggedBox
       tags={post.tags}
       topRight={moment(post.date).format("MMM DD, YYYY")}
-      style={{ backgroundColor: style.colors.LIGHT_GRAY, height: "100%", cursor: "pointer" }}
+      style={{
+        backgroundColor: style.colors.LIGHT_GRAY,
+        height: "100%",
+        cursor: "pointer",
+      }}
     >
       <div style={{ padding: 10 }}>
         <h5 style={{ fontFamily: "Roboto Serif", fontWeight: "bold" }}>

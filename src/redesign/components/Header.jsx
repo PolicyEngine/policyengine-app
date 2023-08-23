@@ -1,4 +1,5 @@
-import { useDisplayCategory } from "./Responsive";
+import useDisplayCategory from "./useDisplayCategory";
+import useCountryId from "./useCountryId";
 import style from "../style";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
@@ -6,6 +7,7 @@ import CalculatorIcon from "../images/icons/calculator.png";
 import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const displayCategory = useDisplayCategory();
@@ -187,29 +189,33 @@ function DesktopCalculatorButton() {
 }
 
 function MainHeaderLogo() {
+  const countryId = useCountryId();
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        width: "min(300px, 25vw)",
-        margin: 20,
-      }}
-    >
-      <img
-        src={PolicyEngineMainLogo}
-        alt="PolicyEngine logo"
+    <Link to={`/${countryId}`}>
+      <div
         style={{
-          // make whatever height fits the container
+          display: "flex",
+          alignItems: "center",
           width: "min(300px, 25vw)",
-          objectFit: "contain",
+          margin: 20,
         }}
-      />
-    </div>
+      >
+        <img
+          src={PolicyEngineMainLogo}
+          alt="PolicyEngine logo"
+          style={{
+            // make whatever height fits the container
+            width: "min(300px, 25vw)",
+            objectFit: "contain",
+          }}
+        />
+      </div>
+    </Link>
   );
 }
 
 function PageLinks() {
+  const countryId = useCountryId();
   return (
     <div
       style={{
@@ -222,42 +228,43 @@ function PageLinks() {
     >
       {["Research", "About", "Contact", "Donate"].map((link) => {
         return (
-          <div
-            style={{
-              color: "white",
-              margin: 15,
-              fontSize: 20,
-              fontFamily: "Roboto",
-              fontWeight: 500,
-              letterSpacing: 2.4,
-              textTransform: "uppercase",
-            }}
-            key={link}
-          >
-            <HoverBox
-              hoverBackgroundColor={style.colors.WHITE}
-              direction="bottom"
+          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+            <div
+              style={{
+                color: "white",
+                margin: 15,
+                fontSize: 20,
+                fontFamily: "Roboto",
+                fontWeight: 500,
+                letterSpacing: 2.4,
+                textTransform: "uppercase",
+              }}
             >
-              <motion.div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: 90,
-                  padding: 15,
-                  cursor: "pointer",
-                }}
-                whileHover={{
-                  color: style.colors.BLUE_PRIMARY,
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
+              <HoverBox
+                hoverBackgroundColor={style.colors.WHITE}
+                direction="bottom"
               >
-                {link}
-              </motion.div>
-            </HoverBox>
-          </div>
+                <motion.div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    height: 90,
+                    padding: 15,
+                    cursor: "pointer",
+                  }}
+                  whileHover={{
+                    color: style.colors.BLUE_PRIMARY,
+                  }}
+                  transition={{
+                    duration: 0.2,
+                  }}
+                >
+                  {link}
+                </motion.div>
+              </HoverBox>
+            </div>
+          </Link>
         );
       })}
     </div>
@@ -267,6 +274,7 @@ function PageLinks() {
 function LeftNavigationMenu(props) {
   // The menu that slides in from the left when the hamburger is clicked
   const { isOpen } = props;
+  const countryId = useCountryId();
   return (
     <motion.div
       style={{
@@ -291,64 +299,65 @@ function LeftNavigationMenu(props) {
     >
       {["Research", "About", "Contact", "Donate"].map((link, i) => {
         return (
-          <HoverBox
-            key={link}
-            direction="left"
-            size="100vw"
-            hoverBackgroundColor={style.colors.WHITE}
-            style={{
-              margin: 30,
-            }}
-          >
-            <motion.div
+          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+            <HoverBox
+              direction="left"
+              size="100vw"
+              hoverBackgroundColor={style.colors.WHITE}
               style={{
-                cursor: "pointer",
-                color: "white",
-                fontSize: 20,
-                fontFamily: "Roboto",
-                fontWeight: 500,
-                letterSpacing: 2.4,
-                textTransform: "uppercase",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 90,
-                padding: 15,
-                border: "1px solid white",
-                zIndex: 100,
-              }}
-              key={link}
-              initial={{
-                opacity: 0,
-                x: -50,
-                color: style.colors.WHITE,
-              }}
-              whileHover={{
-                color: style.colors.BLUE_PRIMARY,
-              }}
-              animate={
-                isOpen
-                  ? {
-                      opacity: 1,
-                      x: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      x: -50,
-                    }
-              }
-              transition={{
-                duration: isOpen ? 0.3 : 0.1,
-                delay: isOpen ? 0.1 * i + 0.2 : 0,
-                color: {
-                  duration: 0.1,
-                  delay: 0,
-                },
+                margin: 30,
               }}
             >
-              {link}
-            </motion.div>
-          </HoverBox>
+              <motion.div
+                style={{
+                  cursor: "pointer",
+                  color: "white",
+                  fontSize: 20,
+                  fontFamily: "Roboto",
+                  fontWeight: 500,
+                  letterSpacing: 2.4,
+                  textTransform: "uppercase",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 90,
+                  padding: 15,
+                  border: "1px solid white",
+                  zIndex: 100,
+                }}
+                key={link}
+                initial={{
+                  opacity: 0,
+                  x: -50,
+                  color: style.colors.WHITE,
+                }}
+                whileHover={{
+                  color: style.colors.BLUE_PRIMARY,
+                }}
+                animate={
+                  isOpen
+                    ? {
+                        opacity: 1,
+                        x: 0,
+                      }
+                    : {
+                        opacity: 0,
+                        x: -50,
+                      }
+                }
+                transition={{
+                  duration: isOpen ? 0.3 : 0.1,
+                  delay: isOpen ? 0.1 * i + 0.2 : 0,
+                  color: {
+                    duration: 0.1,
+                    delay: 0,
+                  },
+                }}
+              >
+                {link}
+              </motion.div>
+            </HoverBox>
+          </Link>
         );
       })}
     </motion.div>

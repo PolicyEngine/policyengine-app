@@ -1,13 +1,12 @@
 import Home from "./Home";
-
-function About({ countryId }) {
-  return <div data-testid="about-component">About page for {countryId}</div>;
-}
-
-function Research({ countryId }) {
-  return <div>Research page for {countryId}</div>;
-}
-
+import Research from "./Research";
+import About from "./About";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 
 export default function PolicyEngine({ pathname }) {
   const COUNTRIES = ["us", "uk", "ca", "ng", "il"];
@@ -30,19 +29,29 @@ export default function PolicyEngine({ pathname }) {
   }
 
   // If the path is /, redirect to /[countryId]
-  if (path === "/") {
-    window.location.replace("/" + countryId);
-  } else if (pathParts.length === 2) {
-    // If the path is /[countryId], render the homepage
-    return <Home countryId={countryId} />;
-  } else if (pathParts[2] === "about") {
-    // If the path is /[countryId]/about, render the about page
-    return <About countryId={countryId} />;
-  } else if (pathParts[2] === "research") {
-    // If the path is /[countryId]/research, render the research page
-    return <Research countryId={countryId} />;
-  } else {
-    // If the path is not recognized, redirect to /[countryId]
-    window.location.replace("/" + countryId);
-  }
+  // If the path is /[countryId], render the homepage
+  // If the path is /[countryId]/about, render the about page
+  // If the path is /[countryId]/research, render the research page
+  // If the path is not recognized, redirect to /[countryId]
+
+  return (
+    <Router>
+      <Routes>
+        {/* Redirect from / to /[countryId] */}
+        <Route path="/" element={<Navigate to={`/${countryId}`} />} />
+
+        {/* Route for /[countryId] */}
+        <Route path="/:countryId" element={<Home />} />
+
+        {/* Route for /[countryId]/about */}
+        <Route path="/:countryId/about" element={<About />} />
+
+        {/* Route for /[countryId]/research */}
+        <Route path="/:countryId/research" element={<Research />} />
+
+        {/* Redirect for unrecognized paths */}
+        <Route path="*" element={<Navigate to={`/${countryId}`} />} />
+      </Routes>
+    </Router>
+  );
 }

@@ -7,7 +7,7 @@ import HomePolicyEngineFeatures from "./HomePolicyEngineFeatures";
 import HomeUsedBy from "./HomeUsedBy";
 import Footer from "./Footer";
 
-export default function Home() {
+export default function About() {
   return (
     <div>
       <Header />
