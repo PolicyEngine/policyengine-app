@@ -12,6 +12,7 @@ h6 {
 
 body {
   font-family: "Roboto Serif", serif;
+  color: "inherit !important";
 }
 
 /* icons */
@@ -23,4 +24,13 @@ body {
 a {
   /* no underline */
   text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Roboto";
+  font-weight: 500;
+  letter-spacing: 2.4px;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
 }

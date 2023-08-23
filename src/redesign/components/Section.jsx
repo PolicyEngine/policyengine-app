@@ -29,6 +29,7 @@ export default function Section({ height, backgroundColor, title, children }) {
         display: "flex",
         justifyContent: "center",
         borderBottom: `1px solid ${style.colors.BLACK}`,
+        color: titleColor,
       }}
     >
       <div
@@ -45,11 +46,7 @@ export default function Section({ height, backgroundColor, title, children }) {
         }}
       >
         {title && (
-          <h2
-            style={{
-              color: titleColor,
-            }}
-          >
+          <h2>
             {title}
           </h2>
         )}

@@ -42,10 +42,10 @@ function SubscribeToPolicyEngineDesktop() {
       }}
     >
       <div style={{ width: "40vw" }}>
-        <h2 style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+        <h2>
           Subscribe to PolicyEngine
         </h2>
-        <p style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+        <p>
           Get the latests posts delivered right to your inbox.
         </p>
       </div>
@@ -72,10 +72,10 @@ function SubscribeToPolicyEngineTablet() {
       }}
     >
       <div style={{ width: "40vw", paddingRight: 50 }}>
-        <h2 style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+        <h2>
           Subscribe to PolicyEngine
         </h2>
-        <p style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+        <p>
           Get the latests posts delivered right to your inbox.
         </p>
       </div>
@@ -100,10 +100,10 @@ function SubscribeToPolicyEngineMobile() {
       }}
     >
       <div style={{ marginBottom: 50 }}>
-        <h2 style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+        <h2>
           Subscribe to PolicyEngine
         </h2>
-        <p style={{ fontFamily: "Roboto Serif", color: style.colors.WHITE }}>
+        <p>
           Get the latests posts delivered right to your inbox.
         </p>
       </div>

@@ -35,7 +35,7 @@ function QuoteBox(props) {
     <div
       style={{
         backgroundColor: style.colors.TEAL_98,
-        width: displayCategory === "desktop" ? "50vw" : "75vw",
+        width: displayCategory === "desktop" ? "50vw" : "100%",
         minHeight: displayCategory === "desktop" ? 250 : 200,
         display: "flex",
         flexDirection: "column",
@@ -132,6 +132,7 @@ function QuoteText(props) {
         paddingRight: displayCategory === "mobile" ? 20 : 40,
         display: "flex",
         alignItems: "center",
+        minHeight: 200
       }}
     >
       {text}

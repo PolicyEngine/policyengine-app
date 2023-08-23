@@ -90,6 +90,9 @@ export default function Carousel(props) {
                 border: `2px solid ${style.colors.DARK_GRAY}`,
               }}
               key={i}
+              onClick={() => {
+                setCurrent(i);
+              }}
             />
           );
         })}

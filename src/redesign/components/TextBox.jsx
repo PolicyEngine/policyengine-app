@@ -9,7 +9,7 @@ export default function TextBox(props) {
         style={{
           color: style.colors.WHITE,
           textTransform: "uppercase",
-          letterSpacing: 2,
+          letterSpacing: 2.4,
         }}
       >
         {title}
