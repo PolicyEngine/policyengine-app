@@ -11,6 +11,7 @@ const LIGHT_GRAY = "#F2F2F2";
 const MEDIUM_DARK_GRAY = "#D2D2D2";
 const WHITE = "#FFFFFF";
 const TEAL_98 = "#F7FDFC";
+const BLACK = "#000000";
 
 const colors = {
   BLUE_LIGHT,
@@ -26,6 +27,7 @@ const colors = {
   MEDIUM_DARK_GRAY,
   WHITE,
   TEAL_98,
+  BLACK,
 };
 
 export default colors;

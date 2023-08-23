@@ -1,6 +1,6 @@
 import { useDisplayCategory } from "../controls/Responsive";
 import style from "../../style";
-import { HoverBox } from "../controls/HoverBox";
+import { HoverBox } from "../HoverBox";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { quoteData } from "../../data/Quotes";

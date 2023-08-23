@@ -1,13 +1,13 @@
-import { useDisplayCategory } from "../controls/Responsive";
-import style from "../../style";
-import PolicyEngineMainLogo from "../../images/logos/policyengine/white.svg";
-import PolicyEngineSmallLogo from "../../images/logos/policyengine/profile/white.svg";
-import CalculatorIcon from "../../images/icons/calculator.png";
-import { HoverBox } from "../HoverBox";
+import { useDisplayCategory } from "./Responsive";
+import style from "../style";
+import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
+import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
+import CalculatorIcon from "../images/icons/calculator.png";
+import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export function HeaderBar() {
+export default function Header() {
   const displayCategory = useDisplayCategory();
   return (
     <>
