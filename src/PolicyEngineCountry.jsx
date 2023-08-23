@@ -16,7 +16,7 @@ import ResearchPage from "./pages/ResearchPage";
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPage"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
+const AboutPage = lazy(() => import("./redesign/components/content/about_us/pages/AboutUs.jsx"));
 const DonatePage = lazy(() => import("./pages/DonatePage"));
 
 export default function PolicyEngineCountry(props) {
