@@ -1,7 +1,7 @@
-import style from "../../style";
-import { useDisplayCategory } from "./Responsive";
+import style from "../style";
+import useDisplayCategory from "./useDisplayCategory";
 
-export function Carousel(props) {
+export default function Carousel(props) {
   const { current, total, setCurrent } = props;
 
   const displayCategory = useDisplayCategory();

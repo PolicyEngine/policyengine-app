@@ -1,7 +1,7 @@
 import { useDisplayCategory } from "../controls/Responsive";
 import style from "../../style";
-import { TextBox } from "../controls/TextBox";
-import { ActionButton } from "../controls/ActionButton";
+import { TextBox } from "../TextBox";
+import { ActionButton } from "../ActionButton";
 
 export function SubscribeToPolicyEngine() {
   const displayCategory = useDisplayCategory();

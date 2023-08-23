@@ -3,29 +3,23 @@ import Section from "./Section";
 import useDisplayCategory from "./useDisplayCategory";
 
 
-export default function PageHeader({ title, children }) {
+export default function PageHeader({ title, collapseTablet, children }) {
     const displayCategory = useDisplayCategory();
-
     const dividerBorderStyle = `0.5px solid ${style.colors.BLACK}`;
-    const divider = displayCategory !== "mobile" ?
-        <div style={{borderRight: dividerBorderStyle, height: 100, marginLeft: 30, marginRight: 30 }} /> :
+    const collapsed = displayCategory === "mobile" || (displayCategory === "tablet" && collapseTablet);
+    const divider = !collapsed ?
+        <div style={{borderRight: dividerBorderStyle, height: "100%", marginLeft: 30, marginRight: 30 }} /> :
         <div style={{borderTop: dividerBorderStyle, width: "100%", marginBottom: 30 }} />;
-    return <Section><div
+    return <Section>
+        <div
         style={{
             display: "flex",
-            alignItems: displayCategory !== "mobile" ? "center" : null,
-            flexDirection: {
-                desktop: "row",
-                tablet: "row",
-                mobile: "column",
-            }[displayCategory],
+            alignItems: collapsed ? "flex-start" : "center",
+            flexDirection: collapsed ? "column" : "row",
+            height: "100%",
         }}>
             <div style={{
-                width: {
-                    desktop: 300,
-                    tablet: 300,
-                    mobile: "100%",
-                }[displayCategory],
+                width: collapsed ? "100%" : 300,
             }}>
                 <h2 style={{
                     color: style.colors.BLUE_PRIMARY,

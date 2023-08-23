@@ -1,6 +1,6 @@
-import style from "../../style";
+import style from "../style";
 
-export function TextBox(props) {
+export default function TextBox(props) {
   const { placeholder, title, width } = props;
 
   return (

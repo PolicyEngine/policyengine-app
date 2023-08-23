@@ -1,6 +1,6 @@
 import { useState } from "react";
 import style from "../../style";
-import { Carousel } from "../controls/Carousel";
+import { Carousel } from "../Carousel";
 import { useDisplayCategory } from "../controls/Responsive";
 import { posts } from "../../data/Posts";
 import moment from "moment";
