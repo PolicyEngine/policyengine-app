@@ -2,14 +2,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Section from "./Section";
 import style from "../style";
+import PageHeader from "./PageHeader";
 
 export default function About() {
   return (
     <div>
       <Header />
-      <Section>
-        <h2>Our people</h2>
-      </Section>
+      <PageHeader title="Our people" />
       <Section height={500}>
         <h2>Founders</h2>
       </Section>

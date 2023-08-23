@@ -2,12 +2,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Section from "./Section";
 import style from "../style";
+import PageHeader from "./PageHeader";
 
 export default function Donate() {
   return (
     <div>
       <Header />
-      <Section title="Donate" />
+      <PageHeader title="Donate" />
       <Section
         height={400}
         backgroundColor={style.colors.BLUE_PRIMARY}
