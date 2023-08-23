@@ -21,8 +21,16 @@ export function CalculatorCallToAction() {
       <h3 style={{ fontFamily: "Roboto Serif" }}>
         Compute any public policy reform
       </h3>
-      <ActionButton width={buttonSize} text="Calculate my household income, taxes and benefits" onClick={() => {}} />
-      <ActionButton width={buttonSize} text="Calculate the impact of policy reforms" onClick={() => {}} />
+      <ActionButton
+        width={buttonSize}
+        text="Calculate my household income, taxes and benefits"
+        onClick={() => {}}
+      />
+      <ActionButton
+        width={buttonSize}
+        text="Calculate the impact of policy reforms"
+        onClick={() => {}}
+      />
     </div>
   );
 }

@@ -6,7 +6,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Serif", serif;
+  font-weight: 300;
 }
 
 body {
@@ -17,4 +18,9 @@ body {
 
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+}
+
+a {
+  /* no underline */
+  text-decoration: none;
 }
