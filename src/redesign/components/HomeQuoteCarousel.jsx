@@ -7,30 +7,34 @@ import { HoverBox } from "./HoverBox";
 import {quoteData} from "../data/Quotes.jsx";
 import {orgData} from "../data/Organisations.jsx";
 import Carousel from "./Carousel";
+import useCountryId from "./useCountryId";
 
 export default function HomeQuoteCarousel() {
   return (
     <PageHeader title="Computing public policy for everyone" collapseTablet>
-      <QuoteBox countryId="us" />
+      <QuoteBox />
     </PageHeader>
   );
 }
 
-function QuoteBox(props) {
-  const { countryId } = props;
+function QuoteBox() {
+  const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const countryQuotes = quoteData[countryId] || [];
+  const countryOrgs = orgData[countryId] || [];
 
   // Automatically cycle through quotes, moving once every 10 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuoteIndex(
-        (currentQuoteIndex + 1) % quoteData[countryId].length
+        (currentQuoteIndex + 1) % countryQuotes.length
       );
     }, 10000);
     return () => clearInterval(interval);
   }, [currentQuoteIndex, countryId]);
-  const currentQuote = quoteData[countryId][currentQuoteIndex];
+  const currentQuote = countryQuotes[currentQuoteIndex] || {};
+  const currentOrg = countryOrgs[currentQuote.org] || {};
   return (
     <div
       style={{
@@ -56,10 +60,10 @@ function QuoteBox(props) {
       <div style={{ width: "100%" }}>
         <QuoteBio
           headshot={currentQuote.headshot}
-          orgLink={orgData[countryId][currentQuote.org].link}
-          orgLogo={orgData[countryId][currentQuote.org].logo}
+          orgLink={currentOrg.link}
+          orgLogo={currentOrg.logo}
           author={currentQuote.name}
-          org={orgData[countryId][currentQuote.org].name}
+          org={currentOrg.name}
         />
         {displayCategory === "mobile" && (
           <div
@@ -81,7 +85,7 @@ function QuoteBox(props) {
       >
         <Carousel
           current={currentQuoteIndex}
-          total={quoteData[countryId].length}
+          total={countryQuotes.length}
           setCurrent={setCurrentQuoteIndex}
         />
       </div>
@@ -132,7 +136,8 @@ function QuoteText(props) {
         paddingRight: displayCategory === "mobile" ? 20 : 40,
         display: "flex",
         alignItems: "center",
-        minHeight: 200
+        minHeight: 200,
+        fontFamily: "Roboto Serif",
       }}
     >
       {text}
@@ -180,10 +185,11 @@ function QuoteImages(props) {
   const { headshot, orgLogo, orgLink } = props;
   const displayCategory = useDisplayCategory();
   const headshotImg = (
-    <img src={headshot} alt="Headshot" style={{ height: 40 }} />
+    <img key="headshot" src={headshot} alt="Headshot" style={{ height: 40 }} />
   );
   const orgLogoImg = (
     <img
+      key="orgLogo"
       src={orgLogo}
       alt="Org logo"
       style={{ height: 40, cursor: "pointer" }}
@@ -193,7 +199,7 @@ function QuoteImages(props) {
       }
     />
   );
-  const padding = <div style={{ width: 10 }} />;
+  const padding = <div key="padding" style={{ width: 10 }} />;
   const images =
     displayCategory === "mobile"
       ? [headshotImg, padding, orgLogoImg]

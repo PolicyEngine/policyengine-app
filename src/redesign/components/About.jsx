@@ -8,7 +8,7 @@ export default function About() {
   return (
     <div>
       <Header />
-      <PageHeader title="Our people" />
+      <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98} />
       <Section height={500}>
         <h2>Founders</h2>
       </Section>

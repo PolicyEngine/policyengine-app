@@ -8,7 +8,7 @@ export default function Donate() {
   return (
     <div>
       <Header />
-      <PageHeader title="Donate" />
+      <PageHeader title="Donate" backgroundColor={style.colors.BLUE_98}/>
       <Section
         height={400}
         backgroundColor={style.colors.BLUE_PRIMARY}

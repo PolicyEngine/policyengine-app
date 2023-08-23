@@ -15,6 +15,11 @@ body {
   color: "inherit !important";
 }
 
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+
 /* icons */
 
 .material-symbols-outlined {

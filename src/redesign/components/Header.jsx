@@ -22,6 +22,7 @@ export default function Header() {
           alignItems: "center",
           position: "fixed",
           zIndex: 100,
+          borderBottom: `1px solid ${style.colors.BLACK}`,
         }}
       >
         {

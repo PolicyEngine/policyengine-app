@@ -3,14 +3,14 @@ import Section from "./Section";
 import useDisplayCategory from "./useDisplayCategory";
 
 
-export default function PageHeader({ title, collapseTablet, children }) {
+export default function PageHeader({ title, collapseTablet, backgroundColor, children }) {
     const displayCategory = useDisplayCategory();
     const dividerBorderStyle = `0.5px solid ${style.colors.BLACK}`;
     const collapsed = displayCategory === "mobile" || (displayCategory === "tablet" && collapseTablet);
     const divider = !collapsed ?
         <div style={{borderRight: dividerBorderStyle, height: "100%", marginLeft: 30, marginRight: 30 }} /> :
         <div style={{borderTop: dividerBorderStyle, width: "100%", marginBottom: 30 }} />;
-    return <Section>
+    return <Section backgroundColor={backgroundColor}>
         <div
         style={{
             display: "flex",

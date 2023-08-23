@@ -37,7 +37,7 @@ export default function Section({ height, backgroundColor, title, children }) {
           width: {
             mobile: "100%",
             tablet: "100%",
-            desktop: 1_200,
+            desktop: 1_000,
           }[displayCategory],
           marginLeft: sideMargin,
           marginRight: sideMargin,
