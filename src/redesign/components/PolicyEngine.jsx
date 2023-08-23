@@ -7,6 +7,8 @@ import {
   BrowserRouter as Router,
   Routes,
 } from "react-router-dom";
+import Contact from "./Contact";
+import Donate from "./Donate";
 
 export default function PolicyEngine({ pathname }) {
   const COUNTRIES = ["us", "uk", "ca", "ng", "il"];
@@ -40,14 +42,11 @@ export default function PolicyEngine({ pathname }) {
         {/* Redirect from / to /[countryId] */}
         <Route path="/" element={<Navigate to={`/${countryId}`} />} />
 
-        {/* Route for /[countryId] */}
         <Route path="/:countryId" element={<Home />} />
-
-        {/* Route for /[countryId]/about */}
         <Route path="/:countryId/about" element={<About />} />
-
-        {/* Route for /[countryId]/research */}
         <Route path="/:countryId/research" element={<Research />} />
+        <Route path="/:countryId/contact" element={<Contact />} />
+        <Route path="/:countryId/donate" element={<Donate />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />

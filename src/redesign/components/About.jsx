@@ -1,22 +1,30 @@
 import Header from "./Header";
-import HomeQuoteCarousel from "./HomeQuoteCarousel";
-import HomeCallToAction from "./HomeCallToAction";
-import HomeBlogPreview from "./HomeBlogPreview";
-import HomeSubscribe from "./HomeSubscribe";
-import HomePolicyEngineFeatures from "./HomePolicyEngineFeatures";
-import HomeUsedBy from "./HomeUsedBy";
 import Footer from "./Footer";
+import Section from "./Section";
+import style from "../style";
 
 export default function About() {
   return (
     <div>
       <Header />
-      <HomeQuoteCarousel />
-      <HomeCallToAction />
-      <HomeBlogPreview />
-      <HomeSubscribe />
-      <HomePolicyEngineFeatures />
-      <HomeUsedBy />
+      <Section>
+        <h2>Our people</h2>
+      </Section>
+      <Section height={500}>
+        <h2>Founders</h2>
+      </Section>
+      <Section height={500} backgroundColor={style.colors.BLUE_PRIMARY}>
+        <h2
+          style={{
+            color: style.colors.WHITE,
+          }}
+        >
+          Advisory board
+        </h2>
+      </Section>
+      <Section height={500}>
+        <h2>Staff</h2>
+      </Section>
       <Footer />
     </div>
   );

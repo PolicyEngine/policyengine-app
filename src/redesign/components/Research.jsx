@@ -1,22 +1,14 @@
 import Header from "./Header";
-import HomeQuoteCarousel from "./HomeQuoteCarousel";
-import HomeCallToAction from "./HomeCallToAction";
-import HomeBlogPreview from "./HomeBlogPreview";
-import HomeSubscribe from "./HomeSubscribe";
-import HomePolicyEngineFeatures from "./HomePolicyEngineFeatures";
-import HomeUsedBy from "./HomeUsedBy";
 import Footer from "./Footer";
+import Section from "./Section";
 
 export default function Research() {
   return (
     <div>
       <Header />
-      <HomeQuoteCarousel />
-      <HomeCallToAction />
-      <HomeBlogPreview />
-      <HomeSubscribe />
-      <HomePolicyEngineFeatures />
-      <HomeUsedBy />
+      <Section title="Research and analysis" />
+      <Section height={800} title="Federal law" />
+      <Section height={800} title="State law" />
       <Footer />
     </div>
   );

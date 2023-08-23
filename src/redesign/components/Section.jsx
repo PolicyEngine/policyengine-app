@@ -1,7 +1,7 @@
 import useDisplayCategory from "./useDisplayCategory";
 import style from "../style";
 
-export default function Section({ height, backgroundColor, children }) {
+export default function Section({ height, backgroundColor, title, children }) {
   const displayCategory = useDisplayCategory();
   const sideMargin = {
     mobile: 40,
@@ -13,6 +13,14 @@ export default function Section({ height, backgroundColor, children }) {
     tablet: 40,
     desktop: 80,
   }[displayCategory];
+  let titleColor = null;
+  if (
+    [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
+      backgroundColor
+    )
+  ) {
+    titleColor = style.colors.WHITE;
+  }
   return (
     <div
       style={{
@@ -36,6 +44,15 @@ export default function Section({ height, backgroundColor, children }) {
           marginBottom: topBottomMargins,
         }}
       >
+        {title && (
+          <h2
+            style={{
+              color: titleColor,
+            }}
+          >
+            {title}
+          </h2>
+        )}
         {children}
       </div>
     </div>
