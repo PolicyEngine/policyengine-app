@@ -4,6 +4,8 @@ build:
 	npm run build
 debug:
 	npm start
+test:
+	npm run test
 deploy-setup:
 	cp gcp/.gcloudignore ./.gcloudignore
 	cp gcp/app.yaml ./app.yaml
