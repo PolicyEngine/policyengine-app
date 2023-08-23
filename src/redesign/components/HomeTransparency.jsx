@@ -5,7 +5,7 @@ import ShowcaseItem from "./ShowcaseItem";
 
 export default function HomeTransparency() {
   return (
-    <Section backgroundColor={style.colors.LIGHT_GRAY} title="With PolicyEngine">
+    <Section backgroundColor={style.colors.LIGHT_GRAY} title="Transparency">
       <ShowcaseItem
         title="Advanced analysis with our Python packages"
         description="Dive deeper into policy impact analysis using PolicyEngine's open-source Python packages. Customize your simulations and perform advanced reforms for thorough insights, all on your own computer."

@@ -136,7 +136,11 @@ function QuoteText(props) {
         paddingRight: displayCategory === "mobile" ? 20 : 40,
         display: "flex",
         alignItems: "center",
-        minHeight: 200,
+        minHeight: {
+          mobile: 380,
+          tablet: 100,
+          desktop: 200,
+        }[displayCategory],
         fontFamily: "Roboto Serif",
       }}
     >

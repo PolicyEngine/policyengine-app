@@ -14,7 +14,7 @@ export default function HomeCallToAction() {
 
 export function CalculatorCallToAction() {
   const displayCategory = useDisplayCategory();
-  const buttonSize = displayCategory === "desktop" ? 700 : "60%";
+  const buttonSize = displayCategory === "desktop" ? 700 : "100%";
   return (
     <div
       style={{
