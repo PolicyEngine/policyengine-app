@@ -18,7 +18,9 @@ export default function Research() {
         title="Research and analysis"
         backgroundColor={style.colors.BLUE_98}
       >
-        Our research...
+        <p style={{margin: 0}}>
+        Explore Brookings’ research and commentary to deepen your understanding of local, national, and global challenges. Our experts offer evidence-based analysis and innovative policy solutions that inform decision-making and drive positive change.
+        </p>
       </PageHeader>
       <Section>
       {{

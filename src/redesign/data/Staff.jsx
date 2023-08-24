@@ -1,7 +1,7 @@
 // A JSON data structure that describes all PolicyEngine staff members,
 // for use on the About Us page
 
-export const staff = {
+export const founders = {
   max_ghenis: {
     name: "Max Ghenis",
     bio: `is the co-founder and CEO of PolicyEngine. He is
