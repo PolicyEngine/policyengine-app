@@ -50,6 +50,19 @@ export default function HomeBlogPreview() {
   );
 }
 
+function ReadMore() {
+  const displayCategory = useDisplayCategory();
+  const mobile = displayCategory === "mobile";
+
+  return <div style={{display: "flex", justifyContent: mobile ? "center" : "flex-end"}}>
+    <div style={{
+      margin: 40,
+    }}>
+      <EmphasisedLink text="Read more" url="/" size={14} />
+    </div>
+  </div>
+}
+
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
   return (
     <SectionBottom>
@@ -87,6 +100,7 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
         <div style={{ width: 40 }} />
         <MediumBlogPreview blog={allPosts[6]} />
       </div>
+      <ReadMore />
     </SectionBottom>
   );
 }
@@ -138,6 +152,7 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
         <div style={{ width: 40 }} />
         <MediumBlogPreview blog={allPosts[5]} />
       </div>
+      <ReadMore />
     </SectionBottom>
   );
 }
@@ -179,6 +194,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
           <div style={{ height: 40 }} />
           <SmallBlogPreview blog={allPosts[8]} />
         </div>
+      <ReadMore />
       </SectionBottom>
     </div>
   );
@@ -202,7 +218,9 @@ function BlogBox({
         ...style,
       }}
     >
+      <div style={{display: "flex"}}>
       {left}
+      </div>
       <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>{topLeft}</div>
@@ -366,6 +384,7 @@ function SideTags({ tags }) {
         display: "flex",
         flexDirection: "column",
         height: "100%",
+        backgroundColor: "red"
       }}
     >
       {tags.slice(0, 2).map((tag, i) => (

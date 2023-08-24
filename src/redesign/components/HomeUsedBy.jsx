@@ -30,7 +30,7 @@ export default function HomeUsedBy() {
           style={{
             display: "flex",
             justifyContent: {
-              mobile: "flex-start",
+              mobile: "space-around",
               tablet: "center",
               desktop: "center",
             }[displayCategory],
@@ -68,6 +68,7 @@ function IndividualOrg({ name, logo, link }) {
           marginRight: 40,
           marginLeft: 0,
           alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <img
@@ -77,7 +78,7 @@ function IndividualOrg({ name, logo, link }) {
           height={size}
           style={{
             objectFit: "contain",
-            marginRight: displayCategory === "mobile" ? 50 : 0,
+            marginRight: displayCategory === "mobile" ? 30 : 0,
             marginBottom: displayCategory !== "mobile" ? 20 : 0,
           }}
         />
