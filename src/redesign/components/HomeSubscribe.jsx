@@ -42,12 +42,8 @@ function SubscribeToPolicyEngineDesktop() {
       }}
     >
       <div style={{ width: "40vw" }}>
-        <h2>
-          Subscribe to PolicyEngine
-        </h2>
-        <p>
-          Get the latests posts delivered right to your inbox.
-        </p>
+        <h2>Subscribe to PolicyEngine</h2>
+        <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <div style={{ width: "40vw" }}>
         <TextBox
@@ -72,12 +68,8 @@ function SubscribeToPolicyEngineTablet() {
       }}
     >
       <div style={{ width: "40vw", paddingRight: 50 }}>
-        <h2>
-          Subscribe to PolicyEngine
-        </h2>
-        <p>
-          Get the latests posts delivered right to your inbox.
-        </p>
+        <h2>Subscribe to PolicyEngine</h2>
+        <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <div style={{ width: "40vw" }}>
         <TextBox
@@ -100,12 +92,8 @@ export function SubscribeToPolicyEngineMobile() {
       }}
     >
       <div style={{ marginBottom: 50 }}>
-        <h2>
-          Subscribe to PolicyEngine
-        </h2>
-        <p>
-          Get the latests posts delivered right to your inbox.
-        </p>
+        <h2>Subscribe to PolicyEngine</h2>
+        <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <div>
         <TextBox

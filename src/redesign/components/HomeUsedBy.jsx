@@ -9,14 +9,14 @@ export default function HomeUsedBy() {
   const displayCategory = useDisplayCategory();
   if (!orgData[countryId]) return null;
   const orgs = Object.values(orgData[countryId]);
-  
+
   const itemsPerRow = {
     mobile: 1,
     tablet: 4,
     desktop: 8,
   }[displayCategory];
 
-  let rows = []
+  let rows = [];
 
   for (let i = 0; i < orgs.length; i += itemsPerRow) {
     rows.push(orgs.slice(i, i + itemsPerRow));
@@ -24,8 +24,7 @@ export default function HomeUsedBy() {
 
   return (
     <Section backgroundColor={style.colors.WHITE} title="Used by">
-    {
-      rows.map((row, i) => (
+      {rows.map((row, i) => (
         <div
           key={i}
           style={{
@@ -43,8 +42,7 @@ export default function HomeUsedBy() {
             <IndividualOrg key={org.name} {...org} />
           ))}
         </div>
-      ))
-    }
+      ))}
     </Section>
   );
 }
@@ -55,28 +53,36 @@ function IndividualOrg({ name, logo, link }) {
     mobile: 150,
     tablet: 100,
     desktop: 100,
-  }[displayCategory]
+  }[displayCategory];
   return (
     <a href={link}>
-    <div style={{
-      width: size,
-      display: "flex",
-      flexDirection: {
-        mobile: "row",
-        tablet: "column",
-        desktop: "column",
-      }[displayCategory],
-      marginRight: 40,
-      marginLeft: 0,
-      alignItems: "center",
-    }}>
-      <img src={logo} alt={name} width={size} height={size} style={{
-        objectFit: "contain",
-        marginRight: displayCategory === "mobile" ? 50 : 0,
-        marginBottom: displayCategory !== "mobile" ? 20 : 0,
-      }} />
-      <h6 style={{textTransform: "none", letterSpacing: 0.5 }}>{name}</h6>
-    </div>
+      <div
+        style={{
+          width: size,
+          display: "flex",
+          flexDirection: {
+            mobile: "row",
+            tablet: "column",
+            desktop: "column",
+          }[displayCategory],
+          marginRight: 40,
+          marginLeft: 0,
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={logo}
+          alt={name}
+          width={size}
+          height={size}
+          style={{
+            objectFit: "contain",
+            marginRight: displayCategory === "mobile" ? 50 : 0,
+            marginBottom: displayCategory !== "mobile" ? 20 : 0,
+          }}
+        />
+        <h6 style={{ textTransform: "none", letterSpacing: 0.5 }}>{name}</h6>
+      </div>
     </a>
   );
 }

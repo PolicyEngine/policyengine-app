@@ -29,7 +29,7 @@ const colors = {
   MEDIUM_DARK_GRAY,
   WHITE,
   TEAL_98,
-  BLACK
+  BLACK,
 };
 
 export default colors;

@@ -45,11 +45,7 @@ export default function Section({ height, backgroundColor, title, children }) {
           marginBottom: topBottomMargins,
         }}
       >
-        {title && (
-          <h2>
-            {title}
-          </h2>
-        )}
+        {title && <h2>{title}</h2>}
         {children}
       </div>
     </div>
@@ -98,17 +94,11 @@ export function SectionTop({ height, backgroundColor, title }) {
           marginTop: topBottomMargins,
         }}
       >
-        {title && (
-          <h2>
-            {title}
-          </h2>
-        )}
+        {title && <h2>{title}</h2>}
       </div>
     </div>
   );
 }
-
-
 
 export function SectionBottom({ height, backgroundColor, children }) {
   const displayCategory = useDisplayCategory();

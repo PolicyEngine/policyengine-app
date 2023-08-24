@@ -4,14 +4,18 @@ import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
 import { useState, useEffect } from "react";
 import { HoverBox } from "./HoverBox";
-import {quoteData} from "../data/Quotes.jsx";
-import {orgData} from "../data/Organisations.jsx";
+import { quoteData } from "../data/Quotes.jsx";
+import { orgData } from "../data/Organisations.jsx";
 import Carousel from "./Carousel";
 import useCountryId from "./useCountryId";
 
 export default function HomeQuoteCarousel() {
   return (
-    <PageHeader title="Computing public policy for everyone" collapseTablet subtitle="PolicyEngine maintains a free, open-source tool enabling anyone to see how public policy affects them.">
+    <PageHeader
+      title="Computing public policy for everyone"
+      collapseTablet
+      subtitle="PolicyEngine maintains a free, open-source tool enabling anyone to see how public policy affects them."
+    >
       <QuoteBox />
     </PageHeader>
   );
@@ -27,9 +31,7 @@ function QuoteBox() {
   // Automatically cycle through quotes, moving once every 10 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentQuoteIndex(
-        (currentQuoteIndex + 1) % countryQuotes.length
-      );
+      setCurrentQuoteIndex((currentQuoteIndex + 1) % countryQuotes.length);
     }, 10000);
     return () => clearInterval(interval);
   }, [currentQuoteIndex, countryId]);

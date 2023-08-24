@@ -14,130 +14,174 @@ export default function HomeBlogPreview() {
     posts.filter(
       (post) => post.tags.includes("featured") && post.tags.includes(countryId)
     ) || [];
-  const allPosts = posts.filter((post) => post.tags.includes(countryId) || post.tags.includes("global"));
+  const allPosts = posts.filter(
+    (post) => post.tags.includes(countryId) || post.tags.includes("global")
+  );
   const displayCategory = useDisplayCategory();
   return (
     <>
-    <SectionTop
-      backgroundColor={style.colors.WHITE}
-      title="Expert policy analysis"
-    />
-      {{
-        mobile: <MobileBlogPreview featuredPosts={featuredPosts} allPosts={allPosts} />,
-        tablet: <TabletBlogPreview featuredPosts={featuredPosts} allPosts={allPosts} />,
-        desktop: <DesktopBlogPreview featuredPosts={featuredPosts} allPosts={allPosts} />,
-      }[displayCategory]}
+      <SectionTop
+        backgroundColor={style.colors.WHITE}
+        title="Expert policy analysis"
+      />
+      {
+        {
+          mobile: (
+            <MobileBlogPreview
+              featuredPosts={featuredPosts}
+              allPosts={allPosts}
+            />
+          ),
+          tablet: (
+            <TabletBlogPreview
+              featuredPosts={featuredPosts}
+              allPosts={allPosts}
+            />
+          ),
+          desktop: (
+            <DesktopBlogPreview
+              featuredPosts={featuredPosts}
+              allPosts={allPosts}
+            />
+          ),
+        }[displayCategory]
+      }
     </>
   );
 }
 
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
-  return <SectionBottom>
-    <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
-      <FeaturedBlogPreview blogs={featuredPosts} />
+  return (
+    <SectionBottom>
+      <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
+        <FeaturedBlogPreview blogs={featuredPosts} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            width: "40%",
+            marginLeft: 20,
+          }}
+        >
+          <SmallBlogPreview blog={allPosts[0]} />
+          <div style={{ height: 20 }} />
+          <SmallBlogPreview blog={allPosts[1]} />
+          <div style={{ height: 20 }} />
+          <SmallBlogPreview blog={allPosts[2]} />
+          <div style={{ height: 20 }} />
+          <SmallBlogPreview blog={allPosts[3]} />
+        </div>
+      </div>
       <div
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           justifyContent: "space-between",
-          width: "40%",
-          marginLeft: 20,
+          marginTop: 40,
         }}
       >
-        <SmallBlogPreview blog={allPosts[0]} />
-        <div style={{ height: 20 }} />
-        <SmallBlogPreview blog={allPosts[1]} />
-        <div style={{ height: 20 }} />
-        <SmallBlogPreview blog={allPosts[2]} />
-        <div style={{ height: 20 }} />
-        <SmallBlogPreview blog={allPosts[3]} />
+        <MediumBlogPreview blog={allPosts[4]} />
+        <div style={{ width: 40 }} />
+        <MediumBlogPreview blog={allPosts[5]} />
+        <div style={{ width: 40 }} />
+        <MediumBlogPreview blog={allPosts[6]} />
       </div>
-    </div>
-    <div style={{
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: 40,
-    }}>
-      <MediumBlogPreview blog={allPosts[4]} />
-        <div style={{ width: 40 }} />
-      <MediumBlogPreview blog={allPosts[5]} />
-        <div style={{ width: 40 }} />
-      <MediumBlogPreview blog={allPosts[6]} />
-    </div>
-  </SectionBottom>
+    </SectionBottom>
+  );
 }
 
 function TabletBlogPreview({ featuredPosts, allPosts }) {
-  return <SectionBottom>
-    <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
-      <FeaturedBlogPreview blogs={featuredPosts} />
-    </div>
-    <div style={{
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: 40,
-    }}>
-      <div style={{flex: 1}}><MediumBlogPreview blog={allPosts[4]} /></div>
-        <div style={{ width: 40 }} />
-        <div style={{
+  return (
+    <SectionBottom>
+      <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
+        <FeaturedBlogPreview blogs={featuredPosts} />
+      </div>
+      <div
+        style={{
           display: "flex",
-          flex: 1,
-          flexDirection: "column",
+          flexDirection: "row",
           justifyContent: "space-between",
-        }}>
-        <SmallBlogPreview blog={allPosts[5]} />
-        <div style={{ height: 40 }} />
-        <SmallBlogPreview blog={allPosts[6]} />
-        <div style={{ height: 40 }} />
-        <SmallBlogPreview blog={allPosts[7]} />
-        <div style={{ height: 40 }} />
-        <SmallBlogPreview blog={allPosts[8]} />
+          marginTop: 40,
+        }}
+      >
+        <div style={{ flex: 1 }}>
+          <MediumBlogPreview blog={allPosts[4]} />
         </div>
-
-    </div>
-    <div style={{
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: 40,
-    }}>
-      <MediumBlogPreview blog={allPosts[4]} />
         <div style={{ width: 40 }} />
-      <MediumBlogPreview blog={allPosts[5]} />
-    </div>
-  </SectionBottom>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <SmallBlogPreview blog={allPosts[5]} />
+          <div style={{ height: 40 }} />
+          <SmallBlogPreview blog={allPosts[6]} />
+          <div style={{ height: 40 }} />
+          <SmallBlogPreview blog={allPosts[7]} />
+          <div style={{ height: 40 }} />
+          <SmallBlogPreview blog={allPosts[8]} />
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginTop: 40,
+        }}
+      >
+        <MediumBlogPreview blog={allPosts[4]} />
+        <div style={{ width: 40 }} />
+        <MediumBlogPreview blog={allPosts[5]} />
+      </div>
+    </SectionBottom>
+  );
 }
 
-
 function MobileBlogPreview({ featuredPosts, allPosts }) {
-  return <div>
-    <div style={{display: "flex", overflowX: "scroll", marginBottom: 40, marginTop: 40,
-    }}>
-      {featuredPosts.map((blog, i) => (
-        <div key={i} style={{minWidth: 350, marginLeft: 40, marginRight: 40 }}>
-          <MediumBlogPreview blog={blog} />
-        </div>
+  return (
+    <div>
+      <div
+        style={{
+          display: "flex",
+          overflowX: "scroll",
+          marginBottom: 40,
+          marginTop: 40,
+        }}
+      >
+        {featuredPosts.map((blog, i) => (
+          <div
+            key={i}
+            style={{ minWidth: 350, marginLeft: 40, marginRight: 40 }}
+          >
+            <MediumBlogPreview blog={blog} />
+          </div>
         ))}
+      </div>
+      <SectionBottom>
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <SmallBlogPreview blog={allPosts[5]} />
+          <div style={{ height: 40 }} />
+          <SmallBlogPreview blog={allPosts[6]} />
+          <div style={{ height: 40 }} />
+          <SmallBlogPreview blog={allPosts[7]} />
+          <div style={{ height: 40 }} />
+          <SmallBlogPreview blog={allPosts[8]} />
+        </div>
+      </SectionBottom>
     </div>
-    <SectionBottom>
-    <div style={{
-      display: "flex",
-      flex: 1,
-      flexDirection: "column",
-      justifyContent: "space-between",
-    }}>
-    <SmallBlogPreview blog={allPosts[5]} />
-    <div style={{ height: 40 }} />
-    <SmallBlogPreview blog={allPosts[6]} />
-    <div style={{ height: 40 }} />
-    <SmallBlogPreview blog={allPosts[7]} />
-    <div style={{ height: 40 }} />
-    <SmallBlogPreview blog={allPosts[8]} />
-    </div>
-    </SectionBottom>
-  </div>
+  );
 }
 
 function BlogBox({
@@ -235,9 +279,11 @@ function FeaturedBlogPreview({ blogs }) {
           objectFit: "cover",
         }}
       />
-      <div style={{
-        border: `1px solid ${style.colors.BLACK}`,
-      }}>
+      <div
+        style={{
+          border: `1px solid ${style.colors.BLACK}`,
+        }}
+      >
         <BlogBox
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
@@ -273,88 +319,113 @@ function MediumBlogPreview({ blog }) {
   const imageUrl = blog.image
     ? require("../images/posts/" + blog.image)
     : require("../images/placeholder.png");
-  return <div style={{
-    flex: 1,
-  }}>
-    <div>
-      <img src={imageUrl} height={300} width="100%" style={{objectFit: "cover"}} />
-    </div>
-    <BlogBox
+  return (
+    <div
       style={{
-        backgroundColor: blog.tags.includes(["in-the-news"]) ? style.colors.BLUE_LIGHT : style.colors.LIGHT_GRAY,
-        minHeight: displayCategory === "mobile" ? 450 : 500,
+        flex: 1,
       }}
-      topLeft={<BlogTags tags={blog.tags} />}
-      bottomRight={
-        <div style={{ margin: 30 }}>
-          <EmphasisedLink text="Read" url="/" size={14} />
-        </div>
+    >
+      <div>
+        <img
+          src={imageUrl}
+          height={300}
+          width="100%"
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      <BlogBox
+        style={{
+          backgroundColor: blog.tags.includes(["in-the-news"])
+            ? style.colors.BLUE_LIGHT
+            : style.colors.LIGHT_GRAY,
+          minHeight: displayCategory === "mobile" ? 450 : 500,
+        }}
+        topLeft={<BlogTags tags={blog.tags} />}
+        bottomRight={
+          <div style={{ margin: 30 }}>
+            <EmphasisedLink text="Read" url="/" size={14} />
+          </div>
         }
       >
-      <div style={{ padding: 20 }}>
-        <p style={{ textTransform: "uppercase" }}>
-          {moment(blog.date).format("MMMM D, YYYY")}
-        </p>
-        <h3>{blog.title}</h3>
-        <p>{blog.description}</p>
-      </div>
+        <div style={{ padding: 20 }}>
+          <p style={{ textTransform: "uppercase" }}>
+            {moment(blog.date).format("MMMM D, YYYY")}
+          </p>
+          <h3>{blog.title}</h3>
+          <p>{blog.description}</p>
+        </div>
       </BlogBox>
-  </div>
+    </div>
+  );
 }
 
 function SideTags({ tags }) {
-  return <div style={{
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-  }}>
-    {tags.slice(0, 2).map((tag, i) => (
-      <div
-        key={tag}
-        style={{
-          flex: 1,
-          backgroundColor:
-            {
-              featured: style.colors.TEAL_LIGHT,
-              "in-the-news": style.colors.BLUE_LIGHT,
-            }[tag] || style.colors.WHITE,
-          padding: 20,
-          fontFamily: "Roboto",
-          fontSize: 12,
-          textTransform: "uppercase",
-          borderTop: i == 1 ? `1px solid ${style.colors.BLACK}` : "none",
-          borderRight: `1px solid ${style.colors.BLACK}`,
-          width: 50,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div style={{
-          transform: "rotate(-90deg)",
-        }}>
-        {tag.replaceAll("-", " ")}
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
+      {tags.slice(0, 2).map((tag, i) => (
+        <div
+          key={tag}
+          style={{
+            flex: 1,
+            backgroundColor:
+              {
+                featured: style.colors.TEAL_LIGHT,
+                "in-the-news": style.colors.BLUE_LIGHT,
+              }[tag] || style.colors.WHITE,
+            padding: 20,
+            fontFamily: "Roboto",
+            fontSize: 12,
+            textTransform: "uppercase",
+            borderTop: i == 1 ? `1px solid ${style.colors.BLACK}` : "none",
+            borderRight: `1px solid ${style.colors.BLACK}`,
+            width: 50,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              transform: "rotate(-90deg)",
+            }}
+          >
+            {tag.replaceAll("-", " ")}
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
+  );
 }
 
 function SmallBlogPreview({ blog }) {
   const displayCategory = useDisplayCategory();
-  let topLeft = null, left = null;
+  let topLeft = null,
+    left = null;
   if (displayCategory === "desktop") {
-    topLeft = <BlogTags tags={blog.tags} />
+    topLeft = <BlogTags tags={blog.tags} />;
   } else {
-    left = <SideTags tags={blog.tags} />
-    }
-  
+    left = <SideTags tags={blog.tags} />;
+  }
+
   return (
     <BlogBox
       topLeft={topLeft}
       left={left}
       topRight={
-        <p style={{ fontSize: 14, padding: 10, paddingBottom: 0, textTransform: "uppercase" }}>
+        <p
+          style={{
+            fontSize: 14,
+            padding: 10,
+            paddingBottom: 0,
+            textTransform: "uppercase",
+          }}
+        >
           {moment(blog.date).format("MMMM D, YYYY")}
         </p>
       }
@@ -364,7 +435,9 @@ function SmallBlogPreview({ blog }) {
         </div>
       }
       style={{
-        backgroundColor: blog.tags.includes(["in-the-news"]) ? style.colors.BLUE_LIGHT : style.colors.LIGHT_GRAY,
+        backgroundColor: blog.tags.includes(["in-the-news"])
+          ? style.colors.BLUE_LIGHT
+          : style.colors.LIGHT_GRAY,
         height: "100%",
       }}
     >
