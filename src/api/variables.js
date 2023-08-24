@@ -57,8 +57,13 @@ export function addYearlyVariables(situation, variables, entities) {
   return situation;
 }
 
+/**
+ * Creates a default household JSON object and returns it
+ * @param {String} country Two-letter country code defined as a PolicyEngine "Country" object
+ * @returns {JSON} Household object
+ */
 export function createDefaultHousehold(country) {
-  return defaultHouseholds[country];
+  return defaultHouseholds[country] || null;
 }
 
 export function findInTree(tree, path) {

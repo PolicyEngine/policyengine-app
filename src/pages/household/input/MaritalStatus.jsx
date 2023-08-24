@@ -1,6 +1,6 @@
 import RadioButton from "../../../controls/RadioButton";
 import {
-  addYearlyVariables,
+  /*addYearlyVariables,*/
   getNewHouseholdId,
   removePerson,
 } from "../../../api/variables";
@@ -20,7 +20,7 @@ function getUKMaritalStatus(situation) {
   }
 }
 
-function setUKMaritalStatus(situation, status, variables, entities) {
+export function setUKMaritalStatus(situation, status, variables) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
     age: { 2023: 40 },
@@ -29,9 +29,14 @@ function setUKMaritalStatus(situation, status, variables, entities) {
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
+    situation = Object.assign(
+      situation.benunits["your immediate family"],
+      variables.is_married,
+    );
+    situation.benunits["your immediate family"].push(variables.is_married);
     situation.benunits["your immediate family"].is_married["2023"] = true;
     situation.households["your household"].members.push(partnerName);
-    situation = addYearlyVariables(situation, variables, entities);
+    console.log(situation);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
   }
@@ -47,7 +52,7 @@ function getUSMaritalStatus(situation) {
   }
 }
 
-function setUSMaritalStatus(situation, status, variables, entities) {
+export function setUSMaritalStatus(situation, status) {
   const currentStatus = getUSMaritalStatus(situation);
   const defaultPartner = {
     age: { 2023: 40 },
@@ -60,7 +65,6 @@ function setUSMaritalStatus(situation, status, variables, entities) {
     situation.tax_units["your tax unit"].members.push(partnerName);
     situation.spm_units["your household"].members.push(partnerName);
     situation.households["your household"].members.push(partnerName);
-    situation = addYearlyVariables(situation, variables, entities);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
   }
@@ -76,7 +80,8 @@ function getCAMaritalStatus(situation) {
   }
 }
 
-function setCAMaritalStatus(situation, status, variables, entities) {
+// function setCAMaritalStatus(situation, status, variables, entities) {
+function setCAMaritalStatus(situation, status) {
   const currentStatus = getCAMaritalStatus(situation);
   const defaultPartner = {
     age: { 2023: 40 },
@@ -85,7 +90,7 @@ function setCAMaritalStatus(situation, status, variables, entities) {
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.households["your household"].members.push(partnerName);
-    situation = addYearlyVariables(situation, variables, entities);
+    // situation = addYearlyVariables(situation, variables, entities);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
   }

@@ -1,5 +1,3 @@
-// External imports
-
 // Internal imports
 import { createDefaultHousehold, addYearlyVariables } from "api/variables.js";
 
