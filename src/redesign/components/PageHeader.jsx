@@ -8,7 +8,7 @@ export default function PageHeader({ title, children }) {
 
     const dividerBorderStyle = `0.5px solid ${style.colors.BLACK}`;
     const divider = displayCategory !== "mobile" ?
-        <div style={{borderRight: dividerBorderStyle, height: 100, marginLeft: 30, marginRight: 30 }} /> :
+        <div style={{borderRight: dividerBorderStyle, height: 145, marginLeft: 30, marginRight: 30 }} /> :
         <div style={{borderTop: dividerBorderStyle, width: "100%", marginBottom: 30 }} />;
     return <Section><div
         style={{
@@ -34,7 +34,11 @@ export default function PageHeader({ title, children }) {
                 </h2>
             </div>
             {divider}
-            {children}
+            <p style={{
+                paddingTop: 10
+            }}>
+                {children}
+            </p>
         </div>
     </Section>
 }
