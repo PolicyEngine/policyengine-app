@@ -1,5 +1,6 @@
 import { countryApiCall } from "./call";
 import { capitalize } from "./language";
+import { defaultHouseholds } from "./defaultHouseholds";
 
 export function removePerson(situation, name) {
   // Remove a person from the situation
@@ -57,89 +58,7 @@ export function addYearlyVariables(situation, variables, entities) {
 }
 
 export function createDefaultHousehold(country) {
-  let situation = {};
-  if (country === "uk") {
-    situation = {
-      people: {
-        you: {},
-      },
-      benunits: {
-        "your immediate family": {
-          members: ["you"],
-        },
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "us") {
-    situation = {
-      people: {
-        you: {},
-      },
-      families: {
-        "your family": {
-          members: ["you"],
-        },
-      },
-      marital_units: {
-        "your marital unit": {
-          members: ["you"],
-        },
-      },
-      tax_units: {
-        "your tax unit": {
-          members: ["you"],
-        },
-      },
-      spm_units: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "ca") {
-    situation = {
-      people: {
-        you: {},
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "ng") {
-    situation = {
-      people: {
-        you: {},
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "il") {
-    situation = {
-      people: {
-        you: {},
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  }
-  return situation;
+  return defaultHouseholds[country];
 }
 
 export function findInTree(tree, path) {
