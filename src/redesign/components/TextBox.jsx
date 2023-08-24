@@ -10,6 +10,7 @@ export default function TextBox(props) {
           color: style.colors.WHITE,
           textTransform: "uppercase",
           letterSpacing: 2.4,
+          fontFamily: "Roboto",
         }}
       >
         {title}

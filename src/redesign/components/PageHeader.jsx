@@ -3,7 +3,7 @@ import Section from "./Section";
 import useDisplayCategory from "./useDisplayCategory";
 
 
-export default function PageHeader({ title, collapseTablet, backgroundColor, children }) {
+export default function PageHeader({ title, subtitle, collapseTablet, backgroundColor, children }) {
     const displayCategory = useDisplayCategory();
     const dividerBorderStyle = `0.5px solid ${style.colors.BLACK}`;
     const collapsed = displayCategory === "mobile" || (displayCategory === "tablet" && collapseTablet);
@@ -26,6 +26,7 @@ export default function PageHeader({ title, collapseTablet, backgroundColor, chi
                 }}>
                     {title}
                 </h2>
+                {subtitle && <h5 style={{marginTop: 20}}>{subtitle}</h5>}
             </div>
             {divider}
             {children}

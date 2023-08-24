@@ -6,7 +6,7 @@ import useDisplayCategory from "./useDisplayCategory";
 
 export default function HomeSubscribe() {
   return (
-    <Section height={500} backgroundColor={style.colors.BLUE_PRESSED}>
+    <Section backgroundColor={style.colors.BLUE_PRESSED}>
       <SubscribeToPolicyEngine />
     </Section>
   );
@@ -91,7 +91,7 @@ function SubscribeToPolicyEngineTablet() {
   );
 }
 
-function SubscribeToPolicyEngineMobile() {
+export function SubscribeToPolicyEngineMobile() {
   return (
     <div
       style={{

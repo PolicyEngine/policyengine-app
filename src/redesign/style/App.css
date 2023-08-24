@@ -29,11 +29,14 @@ p {
 a {
   /* no underline */
   text-decoration: none;
+  color: inherit;
+}
+
+.spaced-sans-serif {
   text-transform: uppercase;
   font-family: "Roboto";
   font-weight: 500;
   letter-spacing: 2.4px;
-  color: inherit;
 }
 
 a:hover {

@@ -1,6 +1,6 @@
 import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
-import FontIcon from "./FontIcon";
+import EmphasisedLink from "./EmphasisedLink";
 
 export default function ShowcaseItem({ title, description, linkTitle, link, image, borderColor }) {
     const displayCategory = useDisplayCategory();
@@ -26,7 +26,7 @@ export default function ShowcaseItem({ title, description, linkTitle, link, imag
           marginBottom: displayCategory !== "desktop" ? 20 : 0,
         }}>
         <p>{description}</p>
-        <a href={link}>{linkTitle.toUpperCase()}<FontIcon name="arrow_forward" /></a>
+        <EmphasisedLink link={link} text={linkTitle} />
         </div>
         <img src={image} width={
             displayCategory === "desktop" ? 400 : "100%"

@@ -13,7 +13,7 @@ export default function HomeUsedBy() {
   const itemsPerRow = {
     mobile: 1,
     tablet: 4,
-    desktop: 6,
+    desktop: 8,
   }[displayCategory];
 
   let rows = []
@@ -75,7 +75,7 @@ function IndividualOrg({ name, logo, link }) {
         marginRight: displayCategory === "mobile" ? 50 : 0,
         marginBottom: displayCategory !== "mobile" ? 20 : 0,
       }} />
-      <h6 style={{textTransform: "none", letterSpacing: 1 }}>{name}</h6>
+      <h6 style={{textTransform: "none", letterSpacing: 0.5 }}>{name}</h6>
     </div>
     </a>
   );

@@ -442,7 +442,7 @@ const posts = [
     description:
       "PolicyEngine estimates the impact of customisable policy reforms on poverty — overall, by age, and now by sex.",
     date: "2023-03-08 07:30:00",
-    tags: ["uk"],
+    tags: ["uk", "featured"],
     filename: "breaking-down-uk-poverty-impacts-by-sex.md",
     image: "breaking-down-poverty-impacts-by-sex.png",
     authors: ["nikhil-woodruff"],
@@ -452,7 +452,7 @@ const posts = [
     description:
       "PolicyEngine analysis estimates the impact of the EPG extension and the fuel duty freeze.",
     date: "2023-03-15 18:10:00",
-    tags: ["uk"],
+    tags: ["uk", "featured"],
     filename: "analysis-of-the-spring-budget-2023.md",
     image: "analysis-of-the-spring-budget-2023.jpeg",
     authors: ["nikhil-woodruff"],
@@ -685,6 +685,6 @@ const posts = [
     image: "new-mexico-income-tax-launch.png",
     authors: ["max-ghenis"],
   },
-];
+].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export { posts };
