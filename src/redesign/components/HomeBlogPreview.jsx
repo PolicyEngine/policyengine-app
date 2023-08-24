@@ -168,14 +168,16 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
           marginTop: 40,
         }}
       >
+        <div style={{minWidth: 20}} />
         {featuredPosts.map((blog, i) => (
           <div
             key={i}
-            style={{ minWidth: 350, marginLeft: 40, marginRight: 40 }}
+            style={{ minWidth: 250, marginLeft: 20, marginRight: 20 }}
           >
             <MediumBlogPreview blog={blog} />
           </div>
         ))}
+        <div style={{minWidth: 20}} />
       </div>
       <SectionBottom>
         <div
@@ -332,7 +334,7 @@ function FeaturedBlogPreview({ blogs }) {
   );
 }
 
-function MediumBlogPreview({ blog }) {
+export function MediumBlogPreview({ blog }) {
   const displayCategory = useDisplayCategory();
   const imageUrl = blog.image
     ? require("../images/posts/" + blog.image)
@@ -356,7 +358,7 @@ function MediumBlogPreview({ blog }) {
           backgroundColor: blog.tags.includes(["in-the-news"])
             ? style.colors.BLUE_LIGHT
             : style.colors.LIGHT_GRAY,
-          minHeight: displayCategory === "mobile" ? 450 : 500,
+          minHeight: displayCategory === "mobile" ? 300 : 350,
         }}
         topLeft={<BlogTags tags={blog.tags} />}
         bottomRight={
@@ -369,7 +371,7 @@ function MediumBlogPreview({ blog }) {
           <p style={{ textTransform: "uppercase" }}>
             {moment(blog.date).format("MMMM D, YYYY")}
           </p>
-          <h3>{blog.title}</h3>
+          <h5>{blog.title}</h5>
           <p>{blog.description}</p>
         </div>
       </BlogBox>

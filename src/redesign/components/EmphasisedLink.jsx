@@ -1,7 +1,7 @@
 import FontIcon from "./FontIcon";
 
 export default function EmphasisedLink({ text, url, size }) {
-  const fontSize = 15 | size;
+  const fontSize = size || 15;
   return (
     <a
       style={{

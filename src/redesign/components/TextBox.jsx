@@ -1,7 +1,8 @@
 import style from "../style";
+import { motion } from "framer-motion";
 
 export default function TextBox(props) {
-  const { placeholder, title, width } = props;
+  const { placeholder, title, width, fontSize, onSubmit, inputType } = props;
 
   return (
     <div>
@@ -15,7 +16,9 @@ export default function TextBox(props) {
       >
         {title}
       </h6>
-      <input
+      <motion.input
+        type={inputType || "text"}
+        onSubmit={onSubmit}
         placeholder={placeholder}
         style={{
           border: "none",
@@ -24,9 +27,14 @@ export default function TextBox(props) {
           color: style.colors.DARK_GRAY,
           width: width || "100%",
           height: 50,
-          fontSize: 20,
+          fontSize: fontSize || 20,
           fontWeight: 300,
           padding: 10,
+          boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
+        }}
+        // While focussing, make the bottom border blue from left to right
+        whileFocus={{
+          boxShadow: `0px 5px 10px ${style.colors.BLUE_PRIMARY}`,
         }}
       />
     </div>

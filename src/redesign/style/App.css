@@ -42,3 +42,7 @@ a {
 a:hover {
   color: inherit;
 }
+
+input:focus {
+  outline: none;
+}
