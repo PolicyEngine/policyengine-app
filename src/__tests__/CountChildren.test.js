@@ -1,8 +1,10 @@
 import {
-  getChildName
+  getChildName,
+  getCountChildren
 } from "pages/household/input/CountChildren.jsx";
+import { defaultHouseholds } from "api/defaultHouseholds.js";
 
-describe("Test refactored CountChildren functions", () => {
+describe("Test refactored CountChildren getChildName function", () => {
   test("Confirm that getChildName works for UK", () => {
 
     expect(getChildName(2, "uk")).toBe("your third child");
@@ -22,3 +24,39 @@ describe("Test refactored CountChildren functions", () => {
   });
 
 });
+
+describe("Test refactored CountChildren getCountChildren func", () => {
+  test("Confirm that getCountChildren works for UK", () => {
+
+    let testHousehold = defaultHouseholds.uk;
+
+    testHousehold.people["your first child"] = {
+      age: {
+        2023: 15
+      }
+    };
+    testHousehold.people["your second child"] = {
+      age: {
+        2023: 4
+      }
+    };
+
+    expect(getCountChildren(testHousehold, "uk")).toBe(2);
+
+  });
+
+  test("Confirm that getCountChildren works for US", () => {
+
+    let testHousehold = defaultHouseholds.us;
+
+    testHousehold.people["your first child"] = {
+      is_tax_unit_dependent: {
+        2023: true
+      }
+    };
+
+    expect(getCountChildren(testHousehold, "us")).toBe(1);
+
+  });
+
+})

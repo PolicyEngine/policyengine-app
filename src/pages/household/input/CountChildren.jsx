@@ -10,7 +10,7 @@ import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import NavigationButton from "../../../controls/NavigationButton";
 import gtag from "../../../api/analytics";
-import { childNames } from "./countChildrenVars.js";
+import { childNames, childCountFilters } from "./countChildrenVars.js";
 
 /**
  * Returns `your ${number} child`, unless a country situation calls for a custom term
@@ -33,17 +33,34 @@ export function getChildName(index, countryId) {
   return `your ${number} ${childTerm}`;
 }
 
-function getUKCountChildren(situation) {
-  return Object.values(situation.people).filter(
-    (person) => person.age["2023"] < 18,
-  ).length;
+/**
+ * Returns the number of children in situation
+ * @param {Object} situation
+ * @param {String} countryId Two-letter country ID string
+ * @returns {Number} Number of children currently included in situation
+ */
+export function getCountChildren(situation, countryId) {
+  let filter = null;
+  if (countryId in childCountFilters) {
+    filter = childCountFilters[countryId];
+  } else {
+    filter = childCountFilters.default;
+  }
+
+  console.log(situation.people);
+  console.log(Object.values(situation.people));
+  console.log(Object.values(situation.people));
+
+  console.log(situation.people["your first child"]);
+
+  return Object.values(situation.people).filter(filter).length;
 }
 
 function addUKChild(situation) {
   const defaultChild = {
     age: { 2023: 10 },
   };
-  const childName = getChildName(getUKCountChildren(situation), "uk");
+  const childName = getChildName(getCountChildren(situation, "uk"), "uk");
   situation.people[childName] = defaultChild;
   situation.benunits["your immediate family"].members.push(childName);
   situation.households["your household"].members.push(childName);
@@ -51,23 +68,17 @@ function addUKChild(situation) {
 }
 
 function setUKCountChildren(situation, countChildren, variables, entities) {
-  while (getUKCountChildren(situation) < countChildren) {
+  while (getCountChildren(situation, "uk") < countChildren) {
     situation = addUKChild(situation);
   }
-  while (getUKCountChildren(situation) > countChildren) {
+  while (getCountChildren(situation, "uk") > countChildren) {
     situation = removePerson(
       situation,
-      getChildName(getUKCountChildren(situation) - 1, "uk"),
+      getChildName(getCountChildren(situation, "uk") - 1, "uk"),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
   return situation;
-}
-
-function getUSCountChildren(situation) {
-  return Object.values(situation.people).filter(
-    (person) => person.is_tax_unit_dependent["2023"],
-  ).length;
 }
 
 function addUSChild(situation) {
@@ -75,7 +86,7 @@ function addUSChild(situation) {
     age: { 2023: 10 },
     is_tax_unit_dependent: { 2023: true },
   };
-  const childName = getChildName(getUSCountChildren(situation), "us");
+  const childName = getChildName(getCountChildren(situation, "us"), "us");
   situation.people[childName] = defaultChild;
   situation.tax_units["your tax unit"].members.push(childName);
   situation.families["your family"].members.push(childName);
@@ -83,49 +94,43 @@ function addUSChild(situation) {
   situation.households["your household"].members.push(childName);
   situation.marital_units[`${childName}'s marital unit`] = {
     members: [childName],
-    marital_unit_id: { 2023: getUSCountChildren(situation) + 1 },
+    marital_unit_id: { 2023: getCountChildren(situation, "us") + 1 },
   };
   return situation;
 }
 
 function setUSCountChildren(situation, countChildren, variables, entities) {
-  while (getUSCountChildren(situation) < countChildren) {
+  while (getCountChildren(situation, "us") < countChildren) {
     situation = addUSChild(situation);
   }
-  while (getUSCountChildren(situation) > countChildren) {
+  while (getCountChildren(situation, "us") > countChildren) {
     situation = removePerson(
       situation,
-      getChildName(getUSCountChildren(situation) - 1, "us"),
+      getChildName(getCountChildren(situation, "us") - 1, "us"),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
   return situation;
 }
 
-function getCACountChildren(situation) {
-  return Object.values(situation.people).filter(
-    (person) => person.age["2023"] < 18,
-  ).length;
-}
-
 function addCAChild(situation) {
   const defaultChild = {
     age: { 2023: 10 },
   };
-  const childName = getChildName(getCACountChildren(situation), "ca");
+  const childName = getChildName(getCountChildren(situation, "ca"), "ca");
   situation.people[childName] = defaultChild;
   situation.households["your household"].members.push(childName);
   return situation;
 }
 
 function setCACountChildren(situation, countChildren, variables, entities) {
-  while (getCACountChildren(situation) < countChildren) {
+  while (getCountChildren(situation, "ca") < countChildren) {
     situation = addCAChild(situation);
   }
-  while (getCACountChildren(situation) > countChildren) {
+  while (getCountChildren(situation, "ca") > countChildren) {
     situation = removePerson(
       situation,
-      getChildName(getCACountChildren(situation) - 1, "ca"),
+      getChildName(getCountChildren(situation, "ca") - 1, "ca"),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
@@ -135,13 +140,6 @@ function setCACountChildren(situation, countChildren, variables, entities) {
 export default function CountChildren(props) {
   const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const getCountChildren = {
-    uk: getUKCountChildren,
-    us: getUSCountChildren,
-    ca: getCACountChildren,
-    ng: getCACountChildren,
-    il: getCACountChildren,
-  }[metadata.countryId];
   const setCountChildrenInHousehold = {
     uk: setUKCountChildren,
     us: setUSCountChildren,
@@ -176,7 +174,7 @@ export default function CountChildren(props) {
       <RadioButton
         keys={[0, 1, 2, 3, 4, 5]}
         labels={["None", "1", "2", "3", "4", "5"]}
-        defaultValue={getCountChildren(householdInput)}
+        defaultValue={getCountChildren(householdInput, metadata.countryId)}
         value={value}
         onChange={(children) => {
           setValue(children);
