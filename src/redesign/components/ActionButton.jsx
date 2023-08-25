@@ -1,7 +1,7 @@
-import style from "../../style";
-import { HoverBox } from "../HoverBox";
+import style from "../style";
+import { HoverBox } from "./HoverBox";
 
-export function ActionButton(props) {
+export default function ActionButton(props) {
   const { text, onClick, width, size } = props;
   return (
     <HoverBox

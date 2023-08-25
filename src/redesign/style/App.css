@@ -12,6 +12,12 @@ h6 {
 
 body {
   font-family: "Roboto Serif", serif;
+  color: "inherit !important";
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
 
 /* icons */
@@ -23,4 +29,20 @@ body {
 a {
   /* no underline */
   text-decoration: none;
+  color: inherit;
+}
+
+.spaced-sans-serif {
+  text-transform: uppercase;
+  font-family: "Roboto";
+  font-weight: 500;
+  letter-spacing: 2.4px;
+}
+
+a:hover {
+  color: inherit;
+}
+
+input:focus {
+  outline: none;
 }

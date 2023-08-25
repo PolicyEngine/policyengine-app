@@ -21,8 +21,9 @@ const useDisplayCategory = () => {
   );
 
   useEffect(() => {
-    const handler = () =>
+    const handler = () => {
       setcurrentDisplayCategory(determineDisplayCategory(window.innerWidth));
+    };
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);

@@ -10,6 +10,19 @@ import {
 import Contact from "./Contact";
 import Donate from "./Donate";
 
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function PolicyEngine({ pathname }) {
   const COUNTRIES = ["us", "uk", "ca", "ng", "il"];
 
@@ -38,6 +51,7 @@ export default function PolicyEngine({ pathname }) {
 
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         {/* Redirect from / to /[countryId] */}
         <Route path="/" element={<Navigate to={`/${countryId}`} />} />

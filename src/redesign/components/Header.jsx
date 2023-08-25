@@ -17,11 +17,12 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height: 90,
+          height: style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
           position: "fixed",
           zIndex: 100,
+          borderBottom: `1px solid ${style.colors.BLACK}`,
         }}
       >
         {
@@ -182,7 +183,7 @@ function DesktopCalculatorButton() {
         }}
         size="300px"
       >
-        Policy impacts
+        Compute policy impacts
       </HoverBox>
     </>
   );
@@ -222,11 +223,11 @@ function PageLinks() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        width: "min(600px, 50vw)",
+        width: "min(600px, 35vw)",
         paddingLeft: 30,
       }}
     >
-      {["Research", "About", "Contact", "Donate"].map((link) => {
+      {["Research", "About", "Donate"].map((link) => {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <div
@@ -297,7 +298,7 @@ function LeftNavigationMenu(props) {
         duration: 0.4,
       }}
     >
-      {["Research", "About", "Contact", "Donate"].map((link, i) => {
+      {["Research", "About", "Donate"].map((link, i) => {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <HoverBox

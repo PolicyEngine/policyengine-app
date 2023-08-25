@@ -1,8 +1,8 @@
-import style from "../../style";
-import { useDisplayCategory } from "./Responsive";
+import style from "../style";
+import useDisplayCategory from "./useDisplayCategory";
 
-export function Carousel(props) {
-  const { current, total, setCurrent } = props;
+export default function Carousel(props) {
+  const { current, total, setCurrent, noArrows } = props;
 
   const displayCategory = useDisplayCategory();
   const isDesktop = displayCategory === "desktop";
@@ -30,7 +30,7 @@ export function Carousel(props) {
       arrow_back
     </span>
   );
-
+      noArrows;
   leftArrow = isDesktop ? leftArrow : null;
 
   let rightArrow = (
@@ -69,7 +69,8 @@ export function Carousel(props) {
         borderTop: `2px solid ${style.colors.MEDIUM_DARK_GRAY}`,
       }}
     >
-      {leftArrow}
+      {!noArrows && leftArrow}
+      {noArrows && <div style={{height: 50}} />}
       <div style={{ marginTop: 0 }} />
       {Array(total)
         .fill(0)
@@ -90,10 +91,13 @@ export function Carousel(props) {
                 border: `2px solid ${style.colors.DARK_GRAY}`,
               }}
               key={i}
+              onClick={() => {
+                setCurrent(i);
+              }}
             />
           );
         })}
-      {rightArrow}
+      {!noArrows && rightArrow}
     </div>
   );
 }
