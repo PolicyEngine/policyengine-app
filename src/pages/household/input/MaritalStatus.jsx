@@ -25,14 +25,11 @@ export function setUKMaritalStatus(situation, status, variables) {
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
-    situation = Object.assign(
-      situation.benunits["your immediate family"],
+    situation.benunits["your immediate family"].is_married = Object.assign(
       variables.is_married,
     );
-    situation.benunits["your immediate family"].push(variables.is_married);
     situation.benunits["your immediate family"].is_married["2023"] = true;
     situation.households["your household"].members.push(partnerName);
-    console.log(situation);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
   }
