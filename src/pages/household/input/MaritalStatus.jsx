@@ -1,9 +1,5 @@
 import RadioButton from "../../../controls/RadioButton";
-import {
-  /*addYearlyVariables,*/
-  getNewHouseholdId,
-  removePerson,
-} from "../../../api/variables";
+import { getNewHouseholdId, removePerson } from "../../../api/variables";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
@@ -80,8 +76,7 @@ function getCAMaritalStatus(situation) {
   }
 }
 
-// function setCAMaritalStatus(situation, status, variables, entities) {
-function setCAMaritalStatus(situation, status) {
+export function setCAMaritalStatus(situation, status) {
   const currentStatus = getCAMaritalStatus(situation);
   const defaultPartner = {
     age: { 2023: 40 },
@@ -90,7 +85,6 @@ function setCAMaritalStatus(situation, status) {
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.households["your household"].members.push(partnerName);
-    // situation = addYearlyVariables(situation, variables, entities);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
   }

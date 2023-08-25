@@ -71,8 +71,35 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     testStruct.spm_units["your household"].members.push(partnerName);
     testStruct.households["your household"].members.push(partnerName);
 
-    // Compare the populated default struct against invocation of setUKMaritalStatus
+    // Compare the populated default struct against invocation of setUSMaritalStatus
     const output = setUSMaritalStatus(defaultHouseholds.us, newStatus, metadata.variables);
+
+    expect(output).toStrictEqual(testStruct);
+  });
+});
+
+describe("Setting Canada marital status within MaritalStatus.jsx", () => {
+  test("functions with empty Canada dataset, without adding empty tax variables", async () => {
+
+    // Fetch Canada metadata
+    const metadata = await fetchMetadata("ca");
+
+    // Take the default Canada household struct, then following code from MaritalStatus.jsx,
+    // edit the struct
+
+    let testStruct = defaultHouseholds.ca;
+    const newStatus = "married";
+    const defaultPartner = {
+      age: { 
+        2023: 40
+      },
+    };
+    const partnerName = "your partner";
+    testStruct.people[partnerName] = defaultPartner;
+    testStruct.households["your household"].members.push(partnerName);
+
+    // Compare the populated default struct against invocation of setCAMaritalStatus
+    const output = setCAMaritalStatus(defaultHouseholds.ca, newStatus, metadata.variables);
 
     expect(output).toStrictEqual(testStruct);
   });
