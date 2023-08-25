@@ -47,12 +47,6 @@ export function getCountChildren(situation, countryId) {
     filter = childCountFilters.default;
   }
 
-  console.log(situation.people);
-  console.log(Object.values(situation.people));
-  console.log(Object.values(situation.people));
-
-  console.log(situation.people["your first child"]);
-
   return Object.values(situation.people).filter(filter).length;
 }
 
