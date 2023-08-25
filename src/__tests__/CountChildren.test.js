@@ -1,9 +1,34 @@
+import { render, screen, fireEvent } from "@testing-library/react";
+import { BrowserRouter as Router, useSearchParams } from "react-router-dom";
+
 import {
   getChildName,
   getCountChildren,
   addChild
 } from "pages/household/input/CountChildren.jsx";
 import { defaultHouseholds } from "api/defaultHouseholds.js";
+import * as call from "api/call";
+import CountChildren from "pages/household/input/CountChildren.jsx";
+
+jest.mock("react-plotly.js", () => jest.fn());
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+  return {
+    __esModule: true,
+    ...originalModule,
+    useSearchParams: jest.fn(),
+    setSearchParams: jest.fn(),
+  };
+});
+
+
+let metadata = {
+  basicInputs: [
+    "Garbage Value"
+  ]
+};
+const autocompute = false;
+const emptyFunction = () => {return};
 
 describe("Test refactored CountChildren getChildName function", () => {
   test("Confirm that getChildName works for UK", () => {
@@ -29,7 +54,7 @@ describe("Test refactored CountChildren getChildName function", () => {
 describe("Test refactored CountChildren getCountChildren func", () => {
   test("Confirm that getCountChildren works for UK", () => {
 
-    let testHousehold = defaultHouseholds.uk;
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.uk));
 
     testHousehold.people["your first child"] = {
       age: {
@@ -48,9 +73,9 @@ describe("Test refactored CountChildren getCountChildren func", () => {
 
   test("Confirm that getCountChildren works for US", () => {
 
-    let testHousehold = defaultHouseholds.us;
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
 
-    testHousehold.people["your first child"] = {
+    testHousehold.people["your first dependent"] = {
       is_tax_unit_dependent: {
         2023: true
       }
@@ -64,7 +89,7 @@ describe("Test refactored CountChildren getCountChildren func", () => {
 
 describe("Test refactored addChild function", () => {
   test("Confirm that addChild works for UK", () => {
-    let testHousehold = defaultHouseholds.uk;
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.uk));
 
     const defaultChild = {
       age: { 2023: 10 },
@@ -81,13 +106,13 @@ describe("Test refactored addChild function", () => {
   });
   test("Confirm that addChild works for US", () => {
 
-    let testHousehold = defaultHouseholds.us;
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
 
     const defaultChild = {
       age: { 2023: 10 },
     };
-    const childCount = getCountChildren(testHousehold, "uk");
-    const childName = getChildName(childCount, "uk");
+    const childCount = getCountChildren(testHousehold, "us");
+    const childName = getChildName(childCount, "us");
 
     testHousehold.people[childName] = defaultChild;
     testHousehold.tax_units["your tax unit"].members.push(childName);
@@ -105,7 +130,7 @@ describe("Test refactored addChild function", () => {
 
   test("Confirm that addChild works for Nigeria", () => {
     
-    let testHousehold = defaultHouseholds.ng;
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.ng));
 
     const defaultChild = {
       age: { 2023: 10 },
@@ -117,5 +142,82 @@ describe("Test refactored addChild function", () => {
     testHousehold.households["your household"].members.push(childName);
 
     expect(addChild(defaultHouseholds.ng, "ng")).toStrictEqual(testHousehold);
+  });
+});
+
+describe("Test rendered CountChildren component", () => {
+  test("Should function correctly for UK", () => {
+    useSearchParams.mockImplementation(() => {
+      const get = (param) => {
+        if (param === "focus") {
+          return "input.household.children";
+        }
+      };
+      return [{ get }];
+    });
+
+    call.copySearchParams = jest.fn(() => {
+      const returnVal = new URLSearchParams();
+      returnVal.set('foo', 'bar');
+      return returnVal;
+    })
+
+    const householdInput = JSON.parse(JSON.stringify(defaultHouseholds.uk));
+
+    const testObject = {
+      "people": {
+        "you": {},
+        "your first child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your second child": {
+          "age": {
+            "2023": 10
+          }
+        }
+      },
+      "benunits": {
+        "your immediate family": {
+          "members": [
+            "you",
+            "your first child",
+            "your second child"
+          ],
+        }
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your first child",
+            "your second child"
+          ]
+        }
+      }
+    }
+
+    metadata = {
+      ...metadata,
+      countryId: "uk"
+    };
+
+    render(
+      <Router>
+        <CountChildren
+          metadata={metadata}
+          autocompute={autocompute}
+          householdInput={householdInput}
+          setHouseholdInput={emptyFunction}
+        />
+      </Router>
+    );
+    
+    const buttonTwo = screen.getByText("2");
+
+    fireEvent.click(buttonTwo);
+    expect(householdInput).toStrictEqual(testObject);
+    
   });
 });

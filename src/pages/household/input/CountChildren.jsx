@@ -1,9 +1,5 @@
 import RadioButton from "../../../controls/RadioButton";
-import {
-  addYearlyVariables,
-  getNewHouseholdId,
-  removePerson,
-} from "../../../api/variables";
+import { getNewHouseholdId, removePerson } from "../../../api/variables";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
@@ -61,6 +57,7 @@ export function getCountChildren(situation, countryId) {
  * @returns {Object} The updated situation
  */
 export function addChild(situation, countryId) {
+  let newSituation = Object.assign(situation);
   const defaultChild = {
     age: { 2023: 10 },
   };
@@ -68,14 +65,14 @@ export function addChild(situation, countryId) {
   const childName = getChildName(childCount, countryId);
 
   if (countryId in childAdders) {
-    situation = childAdders[countryId](
+    newSituation = childAdders[countryId](
       situation,
       defaultChild,
       childName,
       childCount,
     );
   } else {
-    situation = childAdders.default(
+    newSituation = childAdders.default(
       situation,
       defaultChild,
       childName,
@@ -83,72 +80,57 @@ export function addChild(situation, countryId) {
     );
   }
 
-  return situation;
+  return newSituation;
 }
 
-function setUKCountChildren(situation, countChildren, variables, entities) {
-  while (getCountChildren(situation, "uk") < countChildren) {
-    situation = addChild(situation, "uk");
+/**
+ * Updates children in household input based on front-end user input
+ * @param {Object} situation A user's household input
+ * @param {Number} countChildren Front-end numeric input
+ * @param {String} countryId A two-letter country ID
+ * @returns {Object} The updated household input object
+ */
+export function updateChildCount(situation, countChildren, countryId) {
+  while (getCountChildren(situation, countryId) < countChildren) {
+    situation = addChild(situation, countryId);
   }
-  while (getCountChildren(situation, "uk") > countChildren) {
-    situation = removePerson(
-      situation,
-      getChildName(getCountChildren(situation, "uk") - 1, "uk"),
-    );
-  }
-  situation = addYearlyVariables(situation, variables, entities);
-  return situation;
-}
+  while (getCountChildren(situation, countryId) > countChildren) {
+    const childCount = getCountChildren(situation, countryId);
 
-function setUSCountChildren(situation, countChildren, variables, entities) {
-  while (getCountChildren(situation, "us") < countChildren) {
-    situation = addChild(situation, "us");
-  }
-  while (getCountChildren(situation, "us") > countChildren) {
     situation = removePerson(
       situation,
-      getChildName(getCountChildren(situation, "us") - 1, "us"),
+      getChildName(childCount - 1, countryId),
     );
   }
-  situation = addYearlyVariables(situation, variables, entities);
-  return situation;
-}
-
-function setCACountChildren(situation, countChildren, variables, entities) {
-  while (getCountChildren(situation, "ca") < countChildren) {
-    situation = addChild(situation, "ca");
-  }
-  while (getCountChildren(situation, "ca") > countChildren) {
-    situation = removePerson(
-      situation,
-      getChildName(getCountChildren(situation, "ca") - 1, "ca"),
-    );
-  }
-  situation = addYearlyVariables(situation, variables, entities);
   return situation;
 }
 
 export default function CountChildren(props) {
   const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
+
   const [searchParams, setSearchParams] = useSearchParams();
-  const setCountChildrenInHousehold = {
-    uk: setUKCountChildren,
-    us: setUSCountChildren,
-    ca: setCACountChildren,
-    ng: setCACountChildren,
-    il: setCACountChildren,
-  }[metadata.countryId];
-  const setCountChildren = (countChildren) => {
-    let newHousehold = setCountChildrenInHousehold(
+  const [formValue, setFormValue] = useState(null);
+  function handleChildInputChange(numberOfChildren) {
+    // First, update visible value in form (React controlled input)
+    setFormValue(numberOfChildren);
+
+    // Update household input object
+    let newHousehold = updateChildCount(
       householdInput,
-      countChildren,
-      metadata.variables,
-      metadata.entities,
+      numberOfChildren,
+      metadata.countryId,
     );
-    setHouseholdInput(newHousehold);
+
+    // Update browser search params
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", `input.household.${metadata.basicInputs[0]}`);
-    setSearchParams(newSearch);
+
+    gtag("event", "set_count_children", {
+      event_category: "household",
+      event_label: "Set children",
+    });
+
+    // Potential legacy function; unclear if necessary to preserve
     if (autoCompute) {
       getNewHouseholdId(metadata.countryId, newHousehold).then(
         (householdId) => {
@@ -158,22 +140,22 @@ export default function CountChildren(props) {
         },
       );
     }
-  };
-  const [value, setValue] = useState(null);
+
+    // State setting
+    setHouseholdInput(newHousehold);
+    setSearchParams(newSearch);
+  }
+
   const radioButtonComponent = (
     <>
       <RadioButton
         keys={[0, 1, 2, 3, 4, 5]}
         labels={["None", "1", "2", "3", "4", "5"]}
         defaultValue={getCountChildren(householdInput, metadata.countryId)}
-        value={value}
-        onChange={(children) => {
-          setValue(children);
-          setCountChildren(children);
-          gtag("event", "set_count_children", {
-            event_category: "household",
-            event_label: "Set children",
-          });
+        value={formValue}
+        onChange={(numberOfChildren) => {
+          handleChildInputChange(numberOfChildren);
+          console.log("Change");
         }}
       />
       <NavigationButton

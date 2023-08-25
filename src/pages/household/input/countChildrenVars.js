@@ -11,28 +11,31 @@ export const childCountFilters = {
 export const childAdders = {
   // prettier-ignore
   uk: function(situation, defaultChild, childName) {
-    situation.people[childName] = defaultChild;
-    situation.benunits["your immediate family"].members.push(childName);
-    situation.households["your household"].members.push(childName);
-    return situation;
+    const newSituation = Object.assign(situation);
+    newSituation.people[childName] = defaultChild;
+    newSituation.benunits["your immediate family"].members.push(childName);
+    newSituation.households["your household"].members.push(childName);
+    return newSituation;
   },
   // prettier-ignore
   us: function(situation, defaultChild, childName, childCount) { 
-    situation.people[childName] = defaultChild;
-    situation.tax_units["your tax unit"].members.push(childName);
-    situation.families["your family"].members.push(childName);
-    situation.spm_units["your household"].members.push(childName);
-    situation.households["your household"].members.push(childName);
-    situation.marital_units[`${childName}'s marital unit`] = {
+    const newSituation = Object.assign(situation);
+    newSituation.people[childName] = defaultChild;
+    newSituation.tax_units["your tax unit"].members.push(childName);
+    newSituation.families["your family"].members.push(childName);
+    newSituation.spm_units["your household"].members.push(childName);
+    newSituation.households["your household"].members.push(childName);
+    newSituation.marital_units[`${childName}'s marital unit`] = {
       members: [childName],
       marital_unit_id: { 2023: childCount + 1 },
     };
-    return situation;
+    return newSituation;
   },
   // prettier-ignore
   default: function(situation, defaultChild, childName) {
-    situation.people[childName] = defaultChild;
-    situation.households["your household"].members.push(childName);
-    return situation;
+    const newSituation = Object.assign(situation);
+    newSituation.people[childName] = defaultChild;
+    newSituation.households["your household"].members.push(childName);
+    return newSituation;
   },
 };
