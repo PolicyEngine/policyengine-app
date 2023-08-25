@@ -10,6 +10,28 @@ import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import NavigationButton from "../../../controls/NavigationButton";
 import gtag from "../../../api/analytics";
+import { childNames } from "./countChildrenVars.js";
+
+/**
+ * Returns `your ${number} child`, unless a country situation calls for a custom term
+ * @param {Number} index The number child
+ * @param {String} countryId The two-letter country code
+ * @returns {String} A formatted string of format `your ${index} ${term}`, usually "child"
+ */
+export function getChildName(index, countryId) {
+  // 'your first child', 'your second child', etc.
+
+  let childTerm = null;
+  if (countryId in childNames) {
+    childTerm = childNames[countryId];
+  } else {
+    childTerm = childNames.default;
+  }
+
+  const number = ["first", "second", "third", "fourth", "fifth"][index];
+
+  return `your ${number} ${childTerm}`;
+}
 
 function getUKCountChildren(situation) {
   return Object.values(situation.people).filter(
@@ -17,18 +39,11 @@ function getUKCountChildren(situation) {
   ).length;
 }
 
-function getUKChildName(index) {
-  // 'your first child', 'your second child', etc.
-  return (
-    "your " + ["first", "second", "third", "fourth", "fifth"][index] + " child"
-  );
-}
-
 function addUKChild(situation) {
   const defaultChild = {
     age: { 2023: 10 },
   };
-  const childName = getUKChildName(getUKCountChildren(situation));
+  const childName = getChildName(getUKCountChildren(situation), "uk");
   situation.people[childName] = defaultChild;
   situation.benunits["your immediate family"].members.push(childName);
   situation.households["your household"].members.push(childName);
@@ -42,7 +57,7 @@ function setUKCountChildren(situation, countChildren, variables, entities) {
   while (getUKCountChildren(situation) > countChildren) {
     situation = removePerson(
       situation,
-      getUKChildName(getUKCountChildren(situation) - 1),
+      getChildName(getUKCountChildren(situation) - 1, "uk"),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
@@ -60,7 +75,7 @@ function addUSChild(situation) {
     age: { 2023: 10 },
     is_tax_unit_dependent: { 2023: true },
   };
-  const childName = getUSChildName(getUSCountChildren(situation));
+  const childName = getChildName(getUSCountChildren(situation), "us");
   situation.people[childName] = defaultChild;
   situation.tax_units["your tax unit"].members.push(childName);
   situation.families["your family"].members.push(childName);
@@ -73,15 +88,6 @@ function addUSChild(situation) {
   return situation;
 }
 
-function getUSChildName(index) {
-  // 'your first child', 'your second child', etc.
-  return (
-    "your " +
-    ["first", "second", "third", "fourth", "fifth"][index] +
-    " dependent"
-  );
-}
-
 function setUSCountChildren(situation, countChildren, variables, entities) {
   while (getUSCountChildren(situation) < countChildren) {
     situation = addUSChild(situation);
@@ -89,7 +95,7 @@ function setUSCountChildren(situation, countChildren, variables, entities) {
   while (getUSCountChildren(situation) > countChildren) {
     situation = removePerson(
       situation,
-      getUSChildName(getUSCountChildren(situation) - 1),
+      getChildName(getUSCountChildren(situation) - 1, "us"),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
@@ -106,17 +112,10 @@ function addCAChild(situation) {
   const defaultChild = {
     age: { 2023: 10 },
   };
-  const childName = getUKChildName(getCACountChildren(situation));
+  const childName = getChildName(getCACountChildren(situation), "ca");
   situation.people[childName] = defaultChild;
   situation.households["your household"].members.push(childName);
   return situation;
-}
-
-function getCAChildName(index) {
-  // 'your first child', 'your second child', etc.
-  return (
-    "your " + ["first", "second", "third", "fourth", "fifth"][index] + " child"
-  );
 }
 
 function setCACountChildren(situation, countChildren, variables, entities) {
@@ -126,7 +125,7 @@ function setCACountChildren(situation, countChildren, variables, entities) {
   while (getCACountChildren(situation) > countChildren) {
     situation = removePerson(
       situation,
-      getCAChildName(getCACountChildren(situation) - 1),
+      getChildName(getCACountChildren(situation) - 1, "ca"),
     );
   }
   situation = addYearlyVariables(situation, variables, entities);
