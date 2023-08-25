@@ -33,9 +33,9 @@ describe("Setting UK marital status within MaritalStatus.jsx", () => {
     const partnerName = "your partner";
     testStruct.people[partnerName] = defaultPartner;
     testStruct.benunits["your immediate family"].members.push(partnerName);
-    testStruct.benunits["your immediate family"].is_married = Object.assign(
-      metadata.variables.is_married,
-    );
+    testStruct.benunits["your immediate family"].is_married = {
+      2023: true
+    };
     testStruct.benunits["your immediate family"].is_married["2023"] = true;
     testStruct.households["your household"].members.push(partnerName);
 

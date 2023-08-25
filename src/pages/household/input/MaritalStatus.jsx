@@ -16,7 +16,7 @@ function getUKMaritalStatus(situation) {
   }
 }
 
-export function setUKMaritalStatus(situation, status, variables) {
+export function setUKMaritalStatus(situation, status) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
     age: { 2023: 40 },
@@ -25,9 +25,9 @@ export function setUKMaritalStatus(situation, status, variables) {
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
-    situation.benunits["your immediate family"].is_married = Object.assign(
-      variables.is_married,
-    );
+    situation.benunits["your immediate family"].is_married = {
+      2023: true,
+    };
     situation.benunits["your immediate family"].is_married["2023"] = true;
     situation.households["your household"].members.push(partnerName);
   } else if (status === "single" && currentStatus === "married") {
@@ -107,12 +107,7 @@ export default function MaritalStatus(props) {
   }[metadata.countryId];
   const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {
-    let newHousehold = setMaritalStatusInHousehold(
-      householdInput,
-      status,
-      metadata.variables,
-      metadata.entities,
-    );
+    let newHousehold = setMaritalStatusInHousehold(householdInput, status);
     setHouseholdInput(newHousehold);
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", "input.household.children");
