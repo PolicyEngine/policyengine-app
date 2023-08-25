@@ -1,5 +1,5 @@
 import Header from "./Header";
-import HomeQuoteCarousel from "./HomeQuoteCarousel";
+import HomeLanding from "./HomeLanding";
 import HomeCallToAction from "./HomeCallToAction";
 import HomeBlogPreview from "./HomeBlogPreview";
 import HomeSubscribe from "./HomeSubscribe";
@@ -12,9 +12,9 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <HomeQuoteCarousel />
-      <HomeBlogPreview />
+      <HomeLanding />
       <HomeCallToAction />
+      <HomeBlogPreview />
       <HomeSubscribe />
       <HomePolicyEngineFeatures />
       <HomeUsedBy />

@@ -21,7 +21,7 @@ export default function HomeQuoteCarousel() {
   );
 }
 
-function QuoteBox() {
+export function QuoteBox({ noArrows }) {
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
@@ -40,9 +40,8 @@ function QuoteBox() {
   return (
     <div
       style={{
-        backgroundColor: style.colors.TEAL_98,
-        width: displayCategory === "desktop" ? "50vw" : "100%",
-        minHeight: displayCategory === "desktop" ? 250 : 200,
+        backgroundColor: style.colors.WHITE,
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -89,6 +88,7 @@ function QuoteBox() {
           current={currentQuoteIndex}
           total={countryQuotes.length}
           setCurrent={setCurrentQuoteIndex}
+          noArrows={noArrows}
         />
       </div>
     </div>
@@ -134,14 +134,13 @@ function QuoteText(props) {
   return (
     <p
       style={{
-        paddingLeft: displayCategory === "mobile" ? 20 : 40,
+        paddingLeft: displayCategory === "mobile" ? 20 : 0,
         paddingRight: displayCategory === "mobile" ? 20 : 40,
         display: "flex",
-        alignItems: "center",
         minHeight: {
           mobile: 380,
           tablet: 100,
-          desktop: 200,
+          desktop: null,
         }[displayCategory],
         fontFamily: "Roboto Serif",
       }}
@@ -191,14 +190,14 @@ function QuoteImages(props) {
   const { headshot, orgLogo, orgLink } = props;
   const displayCategory = useDisplayCategory();
   const headshotImg = (
-    <img key="headshot" src={headshot} alt="Headshot" style={{ height: 40 }} />
+    <img key="headshot" src={headshot} alt="Headshot" style={{ height: 40, width: 40, objectFit: "cover" }} />
   );
   const orgLogoImg = (
     <img
       key="orgLogo"
       src={orgLogo}
       alt="Org logo"
-      style={{ height: 40, cursor: "pointer" }}
+      style={{ height: 40, width: 40, cursor: "pointer", objectFit: "contain" }}
       onClick={
         // Open orgLink in new tab
         () => window.open(orgLink, "_blank")
@@ -216,7 +215,7 @@ function QuoteImages(props) {
       style={{
         display: "flex",
         alignItems: "center",
-        paddingLeft: displayCategory === "mobile" ? 20 : 40,
+        paddingLeft: displayCategory === "mobile" ? 20 : 0,
         paddingRight: 10,
       }}
     >
@@ -259,7 +258,7 @@ function ReadMoreAboutThisQuote() {
             marginRight: 10,
           }}
         >
-          Read more about this
+          More
         </p>
         <span className="material-symbols-outlined">arrow_forward</span>
       </motion.div>

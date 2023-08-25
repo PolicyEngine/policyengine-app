@@ -2,7 +2,7 @@ import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
 
 export default function Carousel(props) {
-  const { current, total, setCurrent } = props;
+  const { current, total, setCurrent, noArrows } = props;
 
   const displayCategory = useDisplayCategory();
   const isDesktop = displayCategory === "desktop";
@@ -30,7 +30,7 @@ export default function Carousel(props) {
       arrow_back
     </span>
   );
-
+      noArrows;
   leftArrow = isDesktop ? leftArrow : null;
 
   let rightArrow = (
@@ -69,7 +69,8 @@ export default function Carousel(props) {
         borderTop: `2px solid ${style.colors.MEDIUM_DARK_GRAY}`,
       }}
     >
-      {leftArrow}
+      {!noArrows && leftArrow}
+      {noArrows && <div style={{height: 50}} />}
       <div style={{ marginTop: 0 }} />
       {Array(total)
         .fill(0)
@@ -96,7 +97,7 @@ export default function Carousel(props) {
             />
           );
         })}
-      {rightArrow}
+      {!noArrows && rightArrow}
     </div>
   );
 }

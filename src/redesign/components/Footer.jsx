@@ -56,7 +56,6 @@ function TwitterEmbed() {
           "data-height": "300",
         }}
       >
-        Tweets by ThePolicyEngine
       </a>
     </div>
   );

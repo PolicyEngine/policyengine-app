@@ -172,7 +172,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
         {featuredPosts.map((blog, i) => (
           <div
             key={i}
-            style={{ minWidth: 250, marginLeft: 20, marginRight: 20 }}
+            style={{ minWidth: 250, marginLeft: 20, marginRight: 20, height: "100%" }}
           >
             <MediumBlogPreview blog={blog} />
           </div>
@@ -276,7 +276,7 @@ function BlogTags({ tags }) {
   );
 }
 
-function FeaturedBlogPreview({ blogs }) {
+export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   // Only defined for desktop and tablet displays
   const displayCategory = useDisplayCategory();
   const [currentBlogIndex, setCurrentBlogIndex] = useState(0);
@@ -287,14 +287,13 @@ function FeaturedBlogPreview({ blogs }) {
   return (
     <div
       style={{
-        width: displayCategory === "desktop" ? "60%" : "100%",
-        height: "100%",
+        width: width || (displayCategory === "desktop" ? "60%" : "100%"),
       }}
     >
       <img
         src={imageUrl}
         width="100%"
-        height={displayCategory === "desktop" ? 450 : 400}
+        height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
         style={{
           objectFit: "cover",
         }}
@@ -308,7 +307,7 @@ function FeaturedBlogPreview({ blogs }) {
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
           bottomRight={
-            <div style={{ margin: 30 }}>
+            <div style={{ margin: 10 }}>
               <EmphasisedLink text="Read" url="/" size={14} />
             </div>
           }
@@ -316,7 +315,7 @@ function FeaturedBlogPreview({ blogs }) {
             backgroundColor: style.colors.TEAL_LIGHT,
           }}
         >
-          <div style={{ padding: 30 }}>
+          <div style={{ padding: 20 }}>
             <p style={{ textTransform: "uppercase" }}>
               {moment(currentBlog.date).format("MMMM D, YYYY")}
             </p>
@@ -334,7 +333,7 @@ function FeaturedBlogPreview({ blogs }) {
   );
 }
 
-export function MediumBlogPreview({ blog }) {
+export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const imageUrl = blog.image
     ? require("../images/posts/" + blog.image)
@@ -343,6 +342,7 @@ export function MediumBlogPreview({ blog }) {
     <div
       style={{
         flex: 1,
+        height: "100%",
       }}
     >
       <div>
@@ -358,7 +358,7 @@ export function MediumBlogPreview({ blog }) {
           backgroundColor: blog.tags.includes(["in-the-news"])
             ? style.colors.BLUE_LIGHT
             : style.colors.LIGHT_GRAY,
-          minHeight: displayCategory === "mobile" ? 300 : 350,
+          minHeight: minHeight || (displayCategory === "mobile" ? 300 : 350),
         }}
         topLeft={<BlogTags tags={blog.tags} />}
         bottomRight={
@@ -424,7 +424,7 @@ function SideTags({ tags }) {
   );
 }
 
-function SmallBlogPreview({ blog }) {
+export function SmallBlogPreview({ blog }) {
   const displayCategory = useDisplayCategory();
   let topLeft = null,
     left = null;
