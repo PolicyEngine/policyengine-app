@@ -155,7 +155,6 @@ export default function CountChildren(props) {
         value={formValue}
         onChange={(numberOfChildren) => {
           handleChildInputChange(numberOfChildren);
-          console.log("Change");
         }}
       />
       <NavigationButton
