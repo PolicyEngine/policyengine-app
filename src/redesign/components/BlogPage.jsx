@@ -180,14 +180,9 @@ function BlogContent({ markdown }) {
         ),
         strong: ({ children }) => <b>{children}</b>,
         a: ({ href, children }) => (
-          <a
-            href={href}
-            style={{ color: style.colors.BLUE_PRIMARY, textDecoration: "underline" }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {children}
-          </a>
+          <a href={href} target="_blank" rel="noopener noreferrer" className="highlighted-link">
+            <nobr>{children}</nobr>
+            </a>
         ),
         h1: ({ children }) => {
           const headerText = children[0];
