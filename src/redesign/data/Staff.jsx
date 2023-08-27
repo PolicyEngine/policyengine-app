@@ -22,4 +22,9 @@ export const founders = {
         University of Durham.`,
     image: require("../../images/authors/nikhil-woodruff.jpg"),
   },
+  pavel_makarchuk: {
+    name: "Pavel Makarchuk",
+    bio: `is a Policy Modelling Manager at PolicyEngine.`,
+    image: require("../images/authors/pavel-makarchuk.jpeg"),
+  }
 };
