@@ -70,12 +70,12 @@ function BlogPostResults({ posts }) {
 
 function BlogPostSearchTools() {
   return (
-    <div>
+    <div style={{
+      position: "sticky",
+      top: 150,
+    }}>
       <TextBox placeholder="Search by keyword, author, etc." fontSize={15} />
       <ActionButton text="Search" />
     </div>
   );
 }
-
-BlogPostResults;
-BlogPostSearchTools;
