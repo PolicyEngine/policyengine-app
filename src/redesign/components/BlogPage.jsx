@@ -155,6 +155,14 @@ function BlogContent({ markdown }) {
             {children}
           </ul>
         ),
+        li: ({ children }) => (
+            <li
+                style={{
+                    marginLeft: 10,
+                }}>
+                {children}
+                </li>
+        ),
         iframe: ({ src, width, height }) => (
           <div
             style={{

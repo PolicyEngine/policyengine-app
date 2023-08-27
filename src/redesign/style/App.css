@@ -56,7 +56,7 @@ a.highlighted-link {
   transition: color .2s ease-in-out, box-shadow .2s ease-in-out, padding-left .2s ease-in-out, padding-right .2s ease-in-out;
 }
 a.highlighted-link:hover {
-  box-shadow: inset 500px 0 0 0 #2C6496;
+  box-shadow: inset 800px 0 0 0 #2C6496;
   color: white;
   padding-left: 5px;
   padding-right: 5px;
