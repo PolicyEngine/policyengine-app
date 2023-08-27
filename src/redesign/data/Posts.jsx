@@ -1,4 +1,4 @@
-const posts = [
+let posts = [
   {
     title: "PolicyEngine's 2022 year in review",
     description: "A year of launches, analysis, and building for the future.",
@@ -686,5 +686,9 @@ const posts = [
     authors: ["max-ghenis"],
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
+
+for (let post of posts) {
+  post.slug = post.filename.replace(".md", "");
+}
 
 export { posts };

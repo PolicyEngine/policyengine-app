@@ -1,6 +1,4 @@
-export function HoverBox(props) {
-  const { hoverBackgroundColor, direction, children, size, ...rest } = props;
-
+export function HoverBox({ hoverBackgroundColor, direction, children, size, style, ...rest }) {
   let topStart, leftStart, topEnd, leftEnd, spread;
 
   const boxSize = size || "200px";
@@ -44,7 +42,7 @@ export function HoverBox(props) {
   return (
     <div
       {...rest}
-      style={{ ...containerStyle, ...(props.style || {}) }}
+      style={{ ...containerStyle, ...(style || {}) }}
       onMouseOver={(e) =>
         (e.currentTarget.style.boxShadow = hoverStyle.boxShadow)
       }

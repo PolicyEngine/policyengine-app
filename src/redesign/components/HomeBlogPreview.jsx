@@ -7,6 +7,7 @@ import moment from "moment";
 import { useState } from "react";
 import useCountryId from "./useCountryId";
 import EmphasisedLink from "./EmphasisedLink";
+import { Link } from "react-router-dom";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
@@ -211,6 +212,7 @@ function BlogBox({
   bottomRight,
   noBorder,
   style,
+  link,
 }) {
   return (
     <div
@@ -220,6 +222,7 @@ function BlogBox({
         ...style,
       }}
     >
+      <Link to={link} style={{width: "100%"}}>
       <div style={{display: "flex"}}>
       {left}
       </div>
@@ -240,6 +243,7 @@ function BlogBox({
           <div>{bottomRight}</div>
         </div>
       </div>
+      </Link>
     </div>
   );
 }
@@ -284,12 +288,14 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   const imageUrl = currentBlog.image
     ? require("../images/posts/" + currentBlog.image)
     : require("../images/placeholder.png");
+  const countryId = useCountryId();
   return (
     <div
       style={{
         width: width || (displayCategory === "desktop" ? "60%" : "100%"),
       }}
     >
+    <Link to={`/${countryId}/research/${currentBlog.slug}`}>
       <img
         src={imageUrl}
         width="100%"
@@ -329,16 +335,20 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           setCurrent={setCurrentBlogIndex}
         />
       </div>
+    </Link>
     </div>
   );
 }
 
 export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
+  const countryId = useCountryId();
   const imageUrl = blog.image
     ? require("../images/posts/" + blog.image)
     : require("../images/placeholder.png");
+  const slug = blog.filename.split(".")[0];
   return (
+    <Link to={`/${countryId}/research/${slug}`}>
     <div
       style={{
         flex: 1,
@@ -376,6 +386,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
         </div>
       </BlogBox>
     </div>
+    </Link>
   );
 }
 
@@ -426,6 +437,7 @@ function SideTags({ tags }) {
 
 export function SmallBlogPreview({ blog }) {
   const displayCategory = useDisplayCategory();
+  const countryId = useCountryId();
   let topLeft = null,
     left = null;
   if (displayCategory === "desktop") {
@@ -434,10 +446,13 @@ export function SmallBlogPreview({ blog }) {
     left = <SideTags tags={blog.tags} />;
   }
 
+  const slug = blog.filename.split(".")[0];
+
   return (
     <BlogBox
       topLeft={topLeft}
       left={left}
+      link={`/${countryId}/research/${slug}`}
       topRight={
         <p
           style={{
