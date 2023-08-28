@@ -137,7 +137,7 @@ function SocialLinks() {
   );
 }
 
-function SocialLink({ icon, url }) {
+export function SocialLink({ icon, url, backgroundColor, color }) {
   const displayCategory = useDisplayCategory();
   const size = {
     mobile: 65,
@@ -153,7 +153,7 @@ function SocialLink({ icon, url }) {
     <a href={url}>
       <div
         style={{
-          backgroundColor: style.colors.WHITE,
+          backgroundColor: backgroundColor || style.colors.WHITE,
           height: size,
           width: size,
           display: "flex",
@@ -165,7 +165,7 @@ function SocialLink({ icon, url }) {
       >
         {React.createElement(icon, {
           style: {
-            color: style.colors.BLUE_PRESSED,
+            color: color || style.colors.BLUE_PRESSED,
             fontSize,
           },
         })}

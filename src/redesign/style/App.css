@@ -61,3 +61,7 @@ a.highlighted-link:hover {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+:target {
+  scroll-margin-top: 300px;
+}

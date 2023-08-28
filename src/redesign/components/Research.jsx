@@ -36,7 +36,6 @@ export default function Research() {
 
 function ResearchExplorer() {
   const displayCategory = useDisplayCategory();
-  displayCategory;
   const [searchParams, setSearchParams] = useSearchParams()
   const onSearch = (search) => {
     if (!search) {
@@ -44,9 +43,10 @@ function ResearchExplorer() {
     } else {
       setSearchParams({search})
     }
+    scrollTo(0, 0);
   }
-  const [filteredTopics, setFilteredTopics] = useState(topicTags);
-  const [filteredLocations, setFilteredLocations] = useState(locationTags);
+  const [filteredTopics, setFilteredTopics] = useState(searchParams.get("topics")?.split(",") || topicTags);
+  const [filteredLocations, setFilteredLocations] = useState(searchParams.get("locations")?.split(",") || locationTags);
   const filterFunction = (post) => {
     let hasMetAtLeastOneFilteredTopic = false
     for(const tag of filteredTopics) {
