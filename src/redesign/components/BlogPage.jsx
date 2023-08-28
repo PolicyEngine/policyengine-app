@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import useCountryId from "./useCountryId";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -92,20 +92,20 @@ function MoreOn({post}) {
   const categoryLinks = post.tags.map(tag => {
     console.log(tag, locationTags.includes(tag), topicTags.includes(tag));
     if (locationTags.includes(tag)) {
-      return <div key={tag} style={{marginBottom: 10}} ><a 
+      return <div key={tag} style={{marginBottom: 10}} ><Link 
         className="highlighted-link" 
-        href={`/${countryId}/research?locations=${tag}`}
+        to={`/${countryId}/research?locations=${tag}`}
         style={{marginBottom: 0, marginTop: 20}}>
         {locationLabels[tag]}
-      </a></div>
+      </Link></div>
     }
     if (topicTags.includes(tag)) {
-      return <div key={tag} style={{marginBottom: 10}} ><a 
+      return <div key={tag} style={{marginBottom: 10}} ><Link 
         className="highlighted-link" 
-        href={`/${countryId}/research?topics=${tag}`}
+        to={`/${countryId}/research?topics=${tag}`}
         style={{marginBottom: 0, marginTop: 20}}>
         {topicLabels[tag]}
-      </a></div>
+      </Link></div>
     }
   })
   return <>
