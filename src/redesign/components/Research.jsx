@@ -8,6 +8,8 @@ import TextBox from "./TextBox";
 import ActionButton from "./ActionButton";
 import { posts } from "../data/Posts";
 import { MediumBlogPreview } from "./HomeBlogPreview";
+import Fuse from 'fuse.js';
+import { useSearchParams } from "react-router-dom";
 
 export default function Research() {
   const displayCategory = useDisplayCategory();
@@ -33,20 +35,33 @@ export default function Research() {
 }
 
 function ResearchDesktop() {
+  const fuse = new Fuse(posts, {
+    keys: ['title'],
+  });
+  const [searchParams, setSearchParams] = useSearchParams()
+  const onSearch = (search) => {
+    setSearchParams({search})
+  }
+  const searchField = searchParams.get("search")
+  const filteredPosts = searchField ?
+    fuse.search(searchField, {
+      distance: 10,
+    }).map((result) => result.item) :
+    posts;
   return <div style={{
     display: "flex",
   }}>
     <div style={{
       flex: 1,
     }}>
-      <BlogPostSearchTools />
+      <BlogPostSearchTools onSearch={onSearch} />
     </div>
     <div style={{
       flex: 3,
       marginLeft: 50,
     }}>
       <h2 style={{marginBottom: 30}}>Results</h2>
-      <BlogPostResults posts={posts} />
+      <BlogPostResults posts={filteredPosts} />
     </div>
   </div>
 }
@@ -68,14 +83,18 @@ function BlogPostResults({ posts }) {
     </div>;
 }
 
-function BlogPostSearchTools() {
+function BlogPostSearchTools({ onSearch }) {
   return (
     <div style={{
       position: "sticky",
       top: 150,
     }}>
-      <TextBox placeholder="Search by keyword, author, etc." fontSize={15} />
-      <ActionButton text="Search" />
+      <TextBox placeholder="Search by keyword, author, etc." fontSize={15} id="blogpost-search-box" onSubmit={onSearch} />
+      <ActionButton text="Search" onClick={() => {
+        const searchBox = document.getElementById("blogpost-search-box");
+        const searchQuery = searchBox.value;
+        onSearch(searchQuery);
+      }}/>
     </div>
   );
 }

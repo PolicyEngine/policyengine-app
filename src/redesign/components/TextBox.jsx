@@ -1,11 +1,14 @@
 import style from "../style";
 import { motion } from "framer-motion";
 
-export default function TextBox(props) {
-  const { placeholder, title, width, fontSize, onSubmit, inputType } = props;
-
+export default function TextBox({ placeholder, id, title, width, fontSize, onSubmit, inputType }) {
   return (
     <div>
+      <form onSubmit={(e) => {
+        e.preventDefault()
+        onSubmit(e.target[0].value)
+      }
+      }>
       <h6
         style={{
           color: style.colors.WHITE,
@@ -18,8 +21,8 @@ export default function TextBox(props) {
       </h6>
       <motion.input
         type={inputType || "text"}
-        onSubmit={onSubmit}
         placeholder={placeholder}
+        id={id}
         style={{
           border: "none",
           borderBottom: `1px solid ${style.colors.WHITE}`,
@@ -37,6 +40,7 @@ export default function TextBox(props) {
           boxShadow: `0px 5px 10px ${style.colors.BLUE_PRIMARY}`,
         }}
       />
+      </form>
     </div>
   );
 }

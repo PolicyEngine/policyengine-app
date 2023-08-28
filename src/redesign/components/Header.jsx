@@ -158,11 +158,13 @@ function Hamburger() {
 }
 
 function DesktopCalculatorButton() {
+  const countryId = useCountryId();
   return (
     <>
       <HoverBox
         hoverBackgroundColor={style.colors.TEAL_PRESSED}
         direction="left"
+        link={`/${countryId}/policy`}
         style={{
           margin: 20,
           marginLeft: "auto",
@@ -181,7 +183,7 @@ function DesktopCalculatorButton() {
           cursor: "pointer",
           textTransform: "uppercase",
         }}
-        size="300px"
+        size="400px"
       >
         Compute policy impacts
       </HoverBox>

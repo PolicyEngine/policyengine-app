@@ -1,4 +1,4 @@
-export function HoverBox({ hoverBackgroundColor, direction, children, size, style, ...rest }) {
+export function HoverBox({ hoverBackgroundColor, direction, children, size, onClick, style, link, ...rest }) {
   let topStart, leftStart, topEnd, leftEnd, spread;
 
   const boxSize = size || "200px";
@@ -49,6 +49,9 @@ export function HoverBox({ hoverBackgroundColor, direction, children, size, styl
       onMouseOut={(e) =>
         (e.currentTarget.style.boxShadow = containerStyle.boxShadow)
       }
+      onClick={onClick || (link && (() => {
+        window.open(link)
+      }))}
     >
       {children}
     </div>

@@ -312,6 +312,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
         <BlogBox
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
+          link={`/${countryId}/research/${currentBlog.slug}`}
           bottomRight={
             <div style={{ margin: 10 }}>
               <EmphasisedLink text="Read" url="/" size={14} />
@@ -347,8 +348,9 @@ export function MediumBlogPreview({ blog, minHeight }) {
     ? require("../images/posts/" + blog.image)
     : require("../images/placeholder.png");
   const slug = blog.filename.split(".")[0];
+  const link = `/${countryId}/research/${slug}`;
   return (
-    <Link to={`/${countryId}/research/${slug}`}>
+    <Link to={link}>
     <div
       style={{
         flex: 1,
@@ -364,6 +366,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
         />
       </div>
       <BlogBox
+        link={link}
         style={{
           backgroundColor: blog.tags.includes(["in-the-news"])
             ? style.colors.BLUE_LIGHT

@@ -13,6 +13,7 @@ import Donate from "./Donate";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./BlogPage";
+import Calculator from "./Calculator";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -63,6 +64,7 @@ export default function PolicyEngine({ pathname }) {
         <Route path="/:countryId/contact" element={<Contact />} />
         <Route path="/:countryId/donate" element={<Donate />} />
         <Route path="/:countryId/research/*" element={<BlogPage />} />
+        <Route path="/:countryId/policy" element={<Calculator />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />

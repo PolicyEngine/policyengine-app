@@ -1,8 +1,7 @@
 import style from "../style";
 import { HoverBox } from "./HoverBox";
 
-export default function ActionButton(props) {
-  const { text, onClick, width, size } = props;
+export default function ActionButton({ text, onClick, width, size }) {
   return (
     <HoverBox
       hoverBackgroundColor={style.colors.TEAL_PRESSED}
