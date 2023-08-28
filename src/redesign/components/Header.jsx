@@ -73,8 +73,9 @@ function DesktopHeaderBar() {
 }
 
 function MobileHeaderLogo() {
+  const countryId = useCountryId();
   return (
-    <div
+    <Link to={`/${countryId}`}><div
       style={{
         display: "flex",
         alignItems: "center",
@@ -89,7 +90,7 @@ function MobileHeaderLogo() {
           margin: 20,
         }}
       />
-    </div>
+    </div></Link>
   );
 }
 

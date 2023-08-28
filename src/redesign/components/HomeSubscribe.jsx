@@ -101,6 +101,7 @@ export function SubscribeToPolicyEngineMobile() {
           placeholder="Enter your email address"
           width="100%"
         />
+        <div style={{marginTop: 20}} />
         <ActionButton
           text="Subscribe"
           onClick={() => {}}

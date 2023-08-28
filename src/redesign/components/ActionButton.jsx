@@ -1,13 +1,13 @@
 import style from "../style";
 import { HoverBox } from "./HoverBox";
 
-export default function ActionButton({ text, onClick, width, size }) {
+export default function ActionButton({ text, onClick, width, size, height }) {
   return (
     <HoverBox
       hoverBackgroundColor={style.colors.TEAL_PRESSED}
       direction="left"
       style={{
-        marginTop: 20,
+        marginTop: 0,
         alignItems: "center",
         display: "flex",
         backgroundColor: style.colors.TEAL_ACCENT,
@@ -22,6 +22,7 @@ export default function ActionButton({ text, onClick, width, size }) {
         cursor: "pointer",
         textTransform: "uppercase",
         width: width || "min(300px, 70vw)",
+        height: height,
       }}
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}

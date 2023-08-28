@@ -214,15 +214,17 @@ function BlogBox({
   style,
   link,
 }) {
+  link;
   return (
+    <Link to={link}>
     <div
       style={{
         display: "flex",
         border: noBorder ? null : `1px solid black`,
         ...style,
+        flexDirection: "row",
       }}
     >
-      <Link to={link} style={{width: "100%"}}>
       <div style={{display: "flex"}}>
       {left}
       </div>
@@ -243,8 +245,8 @@ function BlogBox({
           <div>{bottomRight}</div>
         </div>
       </div>
-      </Link>
     </div>
+    </Link>
   );
 }
 
@@ -256,7 +258,7 @@ function BlogTags({ tags }) {
         display: "flex",
       }}
     >
-      {tags.map((tag) => (
+      {tags.slice(0, 3).map((tag) => (
         <div
           key={tag}
           style={{
@@ -371,7 +373,8 @@ export function MediumBlogPreview({ blog, minHeight }) {
           backgroundColor: blog.tags.includes(["in-the-news"])
             ? style.colors.BLUE_LIGHT
             : style.colors.LIGHT_GRAY,
-          minHeight: minHeight || (displayCategory === "mobile" ? 300 : 350),
+          minHeight: minHeight || (displayCategory === "mobile" ? 400 : 350),
+          maxHeight: displayCategory === "mobile" ? 400 : null,
         }}
         topLeft={<BlogTags tags={blog.tags} />}
         bottomRight={
