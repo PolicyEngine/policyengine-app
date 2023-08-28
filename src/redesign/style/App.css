@@ -30,6 +30,7 @@ a {
   /* no underline */
   text-decoration: none;
   color: inherit;
+  outline: none;
 }
 
 .spaced-sans-serif {
