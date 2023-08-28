@@ -14,6 +14,7 @@ import remarkGfm from "remark-gfm";
 import React, { useEffect, useState } from "react";
 import { useReadingTime } from "react-hook-reading-time";
 import { FacebookOutlined, LinkedinOutlined, MailOutlined, PrinterOutlined, TwitterOutlined } from "@ant-design/icons";
+import FontIcon from "./FontIcon";
 
 
 export default function BlogPage() {
@@ -50,12 +51,12 @@ export default function BlogPage() {
             <div style={{display: "flex"}}>
                 <div style={{flex: 1}}>
                     <p className="spaced-sans-serif">{postDate.format("MMMM DD, YYYY")}</p>
-                    <p className="spaced-sans-serif" style={{marginBottom: 100}}>By <span style={{color: style.colors.BLUE_PRIMARY}}>{post.authors[0].replaceAll("-", " ")}</span></p>
+                    <Authorship post={post} />
                     <ReadTime markdown={markdown} />
                     <div style={{marginTop: 100}} />
                     <DesktopShareLinks post={post} />
                 </div>
-                <div style={{flex: 3}}>
+                <div style={{flex: 2}}>
                     <h1>{post.title}</h1>
                     <h5 style={{marginTop: 50}}>
                         {post.description}
@@ -71,9 +72,10 @@ export default function BlogPage() {
                 <div style={{flex: 1}}>
                     <div style={{position: "sticky", top: 150}}>
                     <p className="spaced-sans-serif">Contents</p>
+                    <LeftContents markdown={markdown} />
                     </div>
                 </div>
-                <div style={{flex: 3}}>
+                <div style={{flex: 2}}>
                     <BlogContent markdown={markdown} />
                 </div>
                 <div style={{flex: 1, paddingLeft: 30 }}>
@@ -87,10 +89,32 @@ export default function BlogPage() {
     </>
 }
 
+function Authorship({ post }) {
+  const countryId = useCountryId();
+  const authorNames = post.authors.map((author) => <nobr key={author}>
+    <span style={{color: style.colors.BLUE_PRIMARY}}>
+    <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link" style={{marginBottom: 0, marginTop: 20}}>
+    {author.replaceAll("-", " ")}
+    </Link>
+    </span>
+  </nobr>);
+  let sentenceStructure;
+  if (authorNames.length === 1) {
+    sentenceStructure = <>By {authorNames}</>;
+  } else if (authorNames.length === 2) {
+    sentenceStructure = <>By {authorNames[0]} and {authorNames[1]}</>;
+  } else {
+    const lastAuthor = authorNames.pop();
+    sentenceStructure = <>By {authorNames.join(", ")}, and {lastAuthor}</>;
+  }
+  return <p className="spaced-sans-serif" style={{marginBottom: 100}}>
+    {sentenceStructure}
+    </p>
+}
+
 function MoreOn({post}) {
   const countryId = useCountryId();
   const categoryLinks = post.tags.map(tag => {
-    console.log(tag, locationTags.includes(tag), topicTags.includes(tag));
     if (locationTags.includes(tag)) {
       return <div key={tag} style={{marginBottom: 10}} ><Link 
         className="highlighted-link" 
@@ -345,4 +369,75 @@ function DesktopShareLinks({ post }) {
     <DesktopShareLink icon={MailOutlined} url={`mailto:?subject=${post.title}&body=${window.location.href}`} text="Email" />
     <DesktopShareLink icon={PrinterOutlined} url={`javascript:window.print();`} text="Print" />
   </div>
+}
+
+
+function LeftContents(props) {
+  const { markdown } = props;
+
+  // Look for ##, ###, and ### to create a table of contents.
+  // Split the markdown into an array of lines
+  const lines = markdown.split("\n");
+  // Find the lines that start with ##, ###, or ####
+  const headers = lines.filter((line) => line.startsWith("##"));
+  const headerLevels = headers.map((header) => header.split("#").length - 1);
+  const headerTexts = headers.map((header) => {
+    const text = header.split(" ").slice(1).join(" ");
+    if (text.includes("[")) {
+      return text.split("[").slice(1).join("[").split("]")[0];
+    }
+    return text;
+  });
+  const headerSlugs = headers.map((header) =>
+    header
+      .split(" ")
+      .slice(1)
+      .join(" ")
+      .split(" ")
+      .join("-")
+      .replace("\\", "")
+      .replace(/,/g, "")
+  );
+
+  let contents = [];
+  for (let i = 0; i < headers.length; i++) {
+    const headerLevel = headerLevels[i];
+    const headerText = headerTexts[i];
+    const headerSlug = headerSlugs[i];
+    contents.push(
+      <div style={{display: "flex", alignItems: "center", marginBottom: 5}}>
+      <FontIcon name="arrow_forward" size={16} style={{marginRight: 5}} />
+      <p
+        key={headerSlug}
+        style={{
+          fontSize: 16 - 2 * (headerLevel - 2),
+          cursor: "pointer",
+          margin: 5,
+          paddingLeft: 10 * (headerLevel - 2),
+          padding: 5,
+          fontFamily: "Roboto Serif",
+          marginBottom: 0,
+          marginTop: 0,
+        }}
+        onClick={() => {
+          const element = document.getElementById(headerSlug);
+          if (element) {
+            window.scrollTo({
+              top: element.offsetTop - 200,
+              behavior: "smooth",
+            });
+          }
+        }}
+      >
+        {headerText}
+      </p>
+      </div>
+    );
+  }
+
+  if (contents.length === 0) {
+    return null;
+  }
+
+  return contents;
 }

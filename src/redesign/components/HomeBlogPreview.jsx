@@ -306,6 +306,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           objectFit: "cover",
         }}
       />
+      </Link>
       <div
         style={{
           border: `1px solid ${style.colors.BLACK}`,
@@ -338,7 +339,6 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           setCurrent={setCurrentBlogIndex}
         />
       </div>
-    </Link>
     </div>
   );
 }

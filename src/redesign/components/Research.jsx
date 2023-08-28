@@ -13,6 +13,7 @@ import { useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "./FontIcon";
+import { authorKeys, authorKeyToLabel } from "redesign/data/Authors";
 
 export default function Research() {
   return (
@@ -47,6 +48,7 @@ function ResearchExplorer() {
   }
   const [filteredTopics, setFilteredTopics] = useState(searchParams.get("topics")?.split(",") || topicTags);
   const [filteredLocations, setFilteredLocations] = useState(searchParams.get("locations")?.split(",") || locationTags);
+  const [filteredAuthors, setFilteredAuthors] = useState(searchParams.get("authors")?.split(",") || authorKeys);
   const filterFunction = (post) => {
     let hasMetAtLeastOneFilteredTopic = false
     for(const tag of filteredTopics) {
@@ -60,7 +62,13 @@ function ResearchExplorer() {
         hasMetAtLeastOneFilteredLocation = true;
       }
     }
-    return hasMetAtLeastOneFilteredLocation & hasMetAtLeastOneFilteredTopic;
+    let hasMetAtLeastOneFilteredAuthor = false
+    for(const author of filteredAuthors) {
+      if (post.authors.includes(author)) {
+        hasMetAtLeastOneFilteredAuthor = true;
+      }
+    }
+    return hasMetAtLeastOneFilteredLocation & hasMetAtLeastOneFilteredTopic & hasMetAtLeastOneFilteredAuthor;
   }
 
   const preFilteredPosts = posts.filter(filterFunction);
@@ -80,6 +88,8 @@ function ResearchExplorer() {
     filteredLocations={filteredLocations}
     setFilteredTopics={setFilteredTopics}
     setFilteredLocations={setFilteredLocations}
+    filteredAuthors={filteredAuthors}
+    setFilteredAuthors={setFilteredAuthors}
   />
 
   const postResults = <>
@@ -142,7 +152,7 @@ function BlogPostResults({ posts }) {
     </div>;
 }
 
-function BlogPostSearchTools({ onSearch, filteredTopics, setFilteredTopics, filteredLocations, setFilteredLocations }) {
+function BlogPostSearchTools({ onSearch, filteredTopics, setFilteredTopics, filteredLocations, setFilteredLocations, filteredAuthors, setFilteredAuthors }) {
   const textBox = <TextBox placeholder="Search by keyword, author, etc." fontSize={15} id="blogpost-search-box" onSubmit={onSearch} enterKeyHint="Search" />;
   const searchButton = <ActionButton text="Search" onClick={() => {
     const searchBox = document.getElementById("blogpost-search-box");
@@ -167,6 +177,13 @@ function BlogPostSearchTools({ onSearch, filteredTopics, setFilteredTopics, filt
       keyToLabel={locationLabels}
       checkedValues={filteredLocations}
       setCheckedValues={setFilteredLocations}
+    />
+    <ExpandableCheckBoxList
+      title="Author"
+      keys={authorKeys}
+      keyToLabel={authorKeyToLabel}
+      checkedValues={filteredAuthors}
+      setCheckedValues={setFilteredAuthors}
     />
     </>
   const displayCategory = useDisplayCategory();
