@@ -214,15 +214,17 @@ function BlogBox({
   style,
   link,
 }) {
+  link;
   return (
+    <Link to={link}>
     <div
       style={{
         display: "flex",
         border: noBorder ? null : `1px solid black`,
         ...style,
+        flexDirection: "row",
       }}
     >
-      <Link to={link} style={{width: "100%"}}>
       <div style={{display: "flex"}}>
       {left}
       </div>
@@ -243,8 +245,8 @@ function BlogBox({
           <div>{bottomRight}</div>
         </div>
       </div>
-      </Link>
     </div>
+    </Link>
   );
 }
 
@@ -256,7 +258,7 @@ function BlogTags({ tags }) {
         display: "flex",
       }}
     >
-      {tags.map((tag) => (
+      {tags.slice(0, 3).map((tag) => (
         <div
           key={tag}
           style={{
@@ -304,6 +306,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           objectFit: "cover",
         }}
       />
+      </Link>
       <div
         style={{
           border: `1px solid ${style.colors.BLACK}`,
@@ -312,6 +315,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
         <BlogBox
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
+          link={`/${countryId}/research/${currentBlog.slug}`}
           bottomRight={
             <div style={{ margin: 10 }}>
               <EmphasisedLink text="Read" url="/" size={14} />
@@ -335,7 +339,6 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           setCurrent={setCurrentBlogIndex}
         />
       </div>
-    </Link>
     </div>
   );
 }
@@ -347,8 +350,9 @@ export function MediumBlogPreview({ blog, minHeight }) {
     ? require("../images/posts/" + blog.image)
     : require("../images/placeholder.png");
   const slug = blog.filename.split(".")[0];
+  const link = `/${countryId}/research/${slug}`;
   return (
-    <Link to={`/${countryId}/research/${slug}`}>
+    <Link to={link}>
     <div
       style={{
         flex: 1,
@@ -364,11 +368,13 @@ export function MediumBlogPreview({ blog, minHeight }) {
         />
       </div>
       <BlogBox
+        link={link}
         style={{
           backgroundColor: blog.tags.includes(["in-the-news"])
             ? style.colors.BLUE_LIGHT
             : style.colors.LIGHT_GRAY,
-          minHeight: minHeight || (displayCategory === "mobile" ? 300 : 350),
+          minHeight: minHeight || (displayCategory === "mobile" ? 400 : 350),
+          maxHeight: displayCategory === "mobile" ? 400 : null,
         }}
         topLeft={<BlogTags tags={blog.tags} />}
         bottomRight={

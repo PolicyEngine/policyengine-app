@@ -51,6 +51,7 @@ function SubscribeToPolicyEngineDesktop() {
           placeholder="Enter your email address"
           width={500}
         />
+        <div style={{marginTop: 20}} />
         <ActionButton text="Subscribe" onClick={() => {}} width={500} />
       </div>
     </div>
@@ -77,6 +78,7 @@ function SubscribeToPolicyEngineTablet() {
           placeholder="Enter your email address"
           width={400}
         />
+        <div style={{marginTop: 20}} />
         <ActionButton text="Subscribe" onClick={() => {}} width={400} />
       </div>
     </div>
@@ -101,6 +103,7 @@ export function SubscribeToPolicyEngineMobile() {
           placeholder="Enter your email address"
           width="100%"
         />
+        <div style={{marginTop: 20}} />
         <ActionButton
           text="Subscribe"
           onClick={() => {}}

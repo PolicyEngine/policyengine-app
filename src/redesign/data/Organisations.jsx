@@ -14,6 +14,7 @@ import GCV from "../../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../../images/logos/orgs/mca.jpg";
 import UBICenter from "../../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../../images/logos/orgs/mothers-outreach-network.png";
+import NIESR from "../images/logos/orgs/niesr.jpeg";
 
 // eslint-disable-next-line
 export const orgData = {
@@ -22,6 +23,11 @@ export const orgData = {
       name: "UK in a Changing Europe",
       logo: UKEU,
       link: "https://ukandeu.ac.uk/energy-subsidy/",
+    },
+    niesr: {
+      name: "National Institute of Economic and Social Research",
+      logo: NIESR,
+      link: "https://www.niesr.ac.uk/",
     },
     green_party: {
       name: "Green Party of England and Wales",
@@ -107,3 +113,5 @@ export const orgData = {
     },
   },
 };
+
+export const allOrgs = Object.assign({}, ...Object.values(orgData));

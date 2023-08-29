@@ -1,12 +1,15 @@
 import style from "../style";
 import { motion } from "framer-motion";
 
-export default function TextBox(props) {
-  const { placeholder, title, width, fontSize, onSubmit, inputType } = props;
-
+export default function TextBox({ placeholder, id, title, width, fontSize, onSubmit, inputType, enterKeyHint }) {
   return (
-    <div>
-      <h6
+    <div style={{width: width || "100%"}}>
+      <form onSubmit={(e) => {
+        e.preventDefault()
+        onSubmit(e.target[0].value)
+      }
+      }>
+      {title && <h6
         style={{
           color: style.colors.WHITE,
           textTransform: "uppercase",
@@ -15,11 +18,12 @@ export default function TextBox(props) {
         }}
       >
         {title}
-      </h6>
+      </h6>}
       <motion.input
         type={inputType || "text"}
-        onSubmit={onSubmit}
         placeholder={placeholder}
+        id={id}
+        enterKeyHint={enterKeyHint}
         style={{
           border: "none",
           borderBottom: `1px solid ${style.colors.WHITE}`,
@@ -37,6 +41,7 @@ export default function TextBox(props) {
           boxShadow: `0px 5px 10px ${style.colors.BLUE_PRIMARY}`,
         }}
       />
+      </form>
     </div>
   );
 }
