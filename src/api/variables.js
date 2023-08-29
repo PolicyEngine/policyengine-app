@@ -18,7 +18,7 @@ export function removePerson(situation, name) {
   for (const entityPlural of Object.keys(situation)) {
     let toRemove = [];
     for (const entity of Object.keys(situation[entityPlural])) {
-      if (situation[entityPlural][entity].members.length === 0) {
+      if (situation[entityPlural]?.[entity]?.members?.length === 0) {
         toRemove.push(entity);
       }
     }

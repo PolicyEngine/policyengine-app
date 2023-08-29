@@ -147,13 +147,15 @@ describe("Test refactored addChild function", () => {
 
 describe("Test rendered CountChildren component", () => {
   test("Should function correctly for UK", () => {
+
+    // Empty implementation of useSearchParams
     useSearchParams.mockImplementation(() => {
-      const get = (param) => {
-        if (param === "focus") {
-          return "input.household.children";
+      return [
+        null,
+        function() {
+          return null;
         }
-      };
-      return [{ get }];
+      ]
     });
 
     call.copySearchParams = jest.fn(() => {
