@@ -56,7 +56,7 @@ export default function BlogPage() {
                     <div style={{marginTop: 100}} />
                     <DesktopShareLinks post={post} />
                 </div>
-                <div style={{flex: 2}}>
+                <div style={{flex: 3}}>
                     <h1>{post.title}</h1>
                     <h5 style={{marginTop: 50}}>
                         {post.description}
@@ -75,7 +75,7 @@ export default function BlogPage() {
                     <LeftContents markdown={markdown} />
                     </div>
                 </div>
-                <div style={{flex: 2}}>
+                <div style={{flex: 3}}>
                     <BlogContent markdown={markdown} />
                 </div>
                 <div style={{flex: 1, marginLeft: 30 }}>
