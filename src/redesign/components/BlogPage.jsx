@@ -69,7 +69,7 @@ export default function BlogPage() {
         </Section>
         <Section>
             <div style={{display: "flex"}}>
-                <div style={{flex: 1}}>
+                <div style={{flex: 1, marginRight: 50}}>
                     <div style={{position: "sticky", top: 150}}>
                     <p className="spaced-sans-serif">Contents</p>
                     <LeftContents markdown={markdown} />
@@ -78,7 +78,7 @@ export default function BlogPage() {
                 <div style={{flex: 2}}>
                     <BlogContent markdown={markdown} />
                 </div>
-                <div style={{flex: 1, paddingLeft: 30 }}>
+                <div style={{flex: 1, marginLeft: 30 }}>
                     <div style={{position: "sticky", top: 150}}>
                       <MoreOn post={post} />
                     </div>

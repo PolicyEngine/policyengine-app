@@ -1,13 +1,13 @@
 import PageHeader from "./PageHeader";
-import { motion } from "framer-motion";
 import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
 import { useState, useEffect } from "react";
-import { HoverBox } from "./HoverBox";
 import { quoteData } from "../data/Quotes.jsx";
 import { orgData } from "../data/Organisations.jsx";
 import Carousel from "./Carousel";
 import useCountryId from "./useCountryId";
+import { Link } from "react-router-dom";
+import FontIcon from "./FontIcon";
 
 export default function HomeQuoteCarousel() {
   return (
@@ -70,7 +70,7 @@ export function QuoteBox({ noArrows }) {
           <div
             style={{ display: "flex", justifyContent: "center", margin: 10 }}
           >
-            <ReadMoreAboutThisQuote />
+            <ReadMoreAboutThisQuote author={currentQuote.name}/>
           </div>
         )}
       </div>
@@ -112,7 +112,7 @@ function QuoteBio(props) {
           <QuoteAuthor author={author} />
         </div>
         <div style={{ marginLeft: "auto" }} />
-        <ReadMoreAboutThisQuote />
+        <ReadMoreAboutThisQuote author={author}/>
       </div>
     );
   } else {
@@ -224,44 +224,13 @@ function QuoteImages(props) {
   );
 }
 
-function ReadMoreAboutThisQuote() {
-  const [hover, setHovering] = useState(false);
+function ReadMoreAboutThisQuote({author}) {
+  const countryId = useCountryId();
+  console.log(author);
+  const slug = author?.replace(" ", "-").toLowerCase();
   return (
-    <HoverBox
-      hoverBackgroundColor={style.colors.BLUE_PRIMARY}
-      direction="left"
-      size="300px"
-    >
-      <motion.div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          cursor: "pointer",
-          padding: 10,
-        }}
-        onMouseEnter={() => setHovering(true)}
-        onMouseLeave={() => setHovering(false)}
-        initial={{
-          color: style.colors.BLUE_PRIMARY,
-        }}
-        animate={{
-          color: hover ? style.colors.BLUE_LIGHT : style.colors.BLUE_PRIMARY,
-        }}
-      >
-        <p
-          style={{
-            color: "inherit",
-            margin: 0,
-            textTransform: "uppercase",
-            fontFamily: "Roboto",
-            fontWeight: 500,
-            marginRight: 10,
-          }}
-        >
-          More
-        </p>
-        <span className="material-symbols-outlined">arrow_forward</span>
-      </motion.div>
-    </HoverBox>
+    <Link to={`/${countryId}/about#${slug}`} className="highlighted-link spaced-sans-serif">
+      More <FontIcon name="arrow_forward" size={15} />
+    </Link>
   );
 }

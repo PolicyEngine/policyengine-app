@@ -93,7 +93,10 @@ function ResearchExplorer() {
   />
 
   const postResults = <>
-    <h2 style={{marginBottom: 30}}>{filteredPosts.length} results</h2>
+    <h2 style={{marginBottom: 30}}>{filteredPosts.length} result{
+      filteredPosts.length === 1 ? "" : "s"
+    }
+    </h2>
     <BlogPostResults 
       posts={filteredPosts}
     />
