@@ -71,11 +71,11 @@ function SocialLinks() {
       />
       <SocialLink
         icon={FacebookFilled}
-        url="https://twitter.com/ThePolicyEngine"
+        url="https://www.facebook.com/PolicyEngine"
       />
       <SocialLink
         icon={LinkedinFilled}
-        url="https://twitter.com/ThePolicyEngine"
+        url="https://www.linkedin.com/company/thepolicyengine"
       />
     </>
   );
@@ -83,15 +83,15 @@ function SocialLinks() {
     <>
       <SocialLink
         icon={YoutubeFilled}
-        url="https://twitter.com/ThePolicyEngine"
+        url="https://www.youtube.com/@policyengine"
       />
       <SocialLink
         icon={InstagramFilled}
-        url="https://twitter.com/ThePolicyEngine"
+        url="https://www.instagram.com/PolicyEngine/"
       />
       <SocialLink
         icon={GithubFilled}
-        url="https://twitter.com/ThePolicyEngine"
+        url="https://github.com/PolicyEngine"
       />
     </>
   );

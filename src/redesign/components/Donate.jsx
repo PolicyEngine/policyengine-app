@@ -8,6 +8,10 @@ import ActionButton from "./ActionButton";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
+  const handleButtonClick = () => {
+    window.open('https://opencollective.com/psl-foundation', '_blank'); 
+  };
+
   return (
     <div>
       <Header />
@@ -36,7 +40,7 @@ export default function Donate() {
             </p>
         </div>
         <div style={{flex: 1, display: "flex", justifyContent: "center", maxHeight: 100}}>
-          <ActionButton text="Donate on Open Collective" width={
+          <ActionButton text="Donate on Open Collective" onClick={handleButtonClick} width={
             displayCategory === "mobile" ? "100%" : null
           }/>
         </div>
