@@ -5,7 +5,7 @@ import {
 } from "pages/household/input/MaritalStatus";
 import {
   defaultHouseholds
-} from "api/defaultHouseholds";
+} from "data/defaultHouseholds";
 
 // Metadata fetching function
 async function fetchMetadata(countryId) {

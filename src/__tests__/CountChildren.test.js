@@ -7,7 +7,7 @@ import {
   addChild
 } from "pages/household/input/CountChildren.jsx";
 import { removePerson } from "api/variables.js";
-import { defaultHouseholds } from "api/defaultHouseholds.js";
+import { defaultHouseholds } from "data/defaultHouseholds.js";
 import * as call from "api/call";
 import CountChildren from "pages/household/input/CountChildren.jsx";
 

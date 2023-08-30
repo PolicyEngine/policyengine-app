@@ -11,7 +11,7 @@ import {
   childCountFilters,
   childAdders,
   defaultChildren,
-} from "./countChildrenVars.js";
+} from "../../../data/countChildrenVars.js";
 
 /**
  * Returns `your ${number} child`, unless a country situation calls for a custom term

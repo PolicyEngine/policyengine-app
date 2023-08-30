@@ -1,6 +1,6 @@
 // Internal imports
 import { createDefaultHousehold } from "api/variables.js";
-import { defaultHouseholds } from "api/defaultHouseholds.js";
+import { defaultHouseholds } from "data/defaultHouseholds.js";
 
 function constructTestSituationUS() {
   let testHousehold = JSON.parse(JSON.stringify((defaultHouseholds.us)));

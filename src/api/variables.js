@@ -1,6 +1,6 @@
 import { countryApiCall } from "./call";
 import { capitalize } from "./language";
-import { defaultHouseholds } from "./defaultHouseholds";
+import { defaultHouseholds } from "../data/defaultHouseholds";
 
 export function removePerson(situation, name) {
   // Remove a person from the situation
