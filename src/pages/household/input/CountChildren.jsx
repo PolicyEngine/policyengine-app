@@ -58,7 +58,7 @@ export function getCountChildren(situation, countryId) {
  * @returns {Object} The updated situation
  */
 export function addChild(situation, countryId) {
-  let newSituation = JSON.parse(JSON.stringify((situation)));
+  let newSituation = JSON.parse(JSON.stringify(situation));
 
   let defaultChild = null;
   if (countryId in defaultChildren) {
