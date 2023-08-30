@@ -1,7 +1,7 @@
 import style from "../style";
 import { motion } from "framer-motion";
 
-export default function TextBox({ placeholder, id, title, width, fontSize, onSubmit, inputType, enterKeyHint }) {
+export default function TextBox({ placeholder, id, title, titleColor, width, fontSize, onSubmit, inputType, enterKeyHint, onChange }) {
   return (
     <div style={{width: width || "100%"}}>
       <form onSubmit={(e) => {
@@ -11,7 +11,7 @@ export default function TextBox({ placeholder, id, title, width, fontSize, onSub
       }>
       {title && <h6
         style={{
-          color: style.colors.WHITE,
+          color: titleColor || style.colors.WHITE,
           textTransform: "uppercase",
           letterSpacing: 2.4,
           fontFamily: "Roboto",
@@ -24,6 +24,7 @@ export default function TextBox({ placeholder, id, title, width, fontSize, onSub
         placeholder={placeholder}
         id={id}
         enterKeyHint={enterKeyHint}
+        onChange={e => onChange(e.target.value)}
         style={{
           border: "none",
           borderBottom: `1px solid ${style.colors.WHITE}`,
@@ -38,7 +39,7 @@ export default function TextBox({ placeholder, id, title, width, fontSize, onSub
         }}
         // While focussing, make the bottom border blue from left to right
         whileFocus={{
-          boxShadow: `0px 5px 10px ${style.colors.BLUE_PRIMARY}`,
+          boxShadow: `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
         }}
       />
       </form>

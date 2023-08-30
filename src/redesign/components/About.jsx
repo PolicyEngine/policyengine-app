@@ -6,6 +6,7 @@ import PageHeader from "./PageHeader";
 import { founders } from "../data/Staff";
 import { fullQuotes } from "../data/Quotes";
 import { allOrgs } from "redesign/data/Organisations";
+import useDisplayCategory from "./useDisplayCategory";
 
 export default function About() {
   return (
@@ -40,17 +41,11 @@ function IndividualQuoteDetail({ quote }) {
   const text = quote.longQuote || quote.quote;
   const lines = text.split("\n");
   const slug = quote.name.replace(" ", "-").toLowerCase();
-  return <div 
-    id={slug}
-    style={{display: "flex", marginBottom: 50, alignItems: "flex-end", borderBottom: `1px solid ${style.colors.GRAY}`}}>
-    <div>
-      <img src={quote.headshot} height={150} width={150} style={{objectFit: "cover"}} />
-    </div>
-    <div style={{marginLeft: 20}}>
-      <img src={allOrgs[quote.org]?.logo}  width={150} style={{objectFit: "cover"}} />
-    </div>
-    <div style={{marginLeft: 50}}>
-      {lines.map(line => 
+  const displayCategory = useDisplayCategory();
+  const headshot = <img src={quote.headshot} height={150} width={150} style={{objectFit: "cover"}} />;
+  const orgLogo = <img src={allOrgs[quote.org]?.logo}  width={150} style={{objectFit: "cover"}} />;
+  const quoteContent = <>
+    {lines.map(line => 
         <p key={line} style={{
           fontFamily: "Roboto Serif",
           fontSize: 16,
@@ -58,13 +53,38 @@ function IndividualQuoteDetail({ quote }) {
       )}
       <h6 className="spaced-sans-serif">{quote.name}</h6>
       <h6>{quote.position}</h6>
+  </>;
+  const mobile = displayCategory !== "desktop";
+  const authorship = mobile ?
+    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+      {headshot}
+      <div style={{marginLeft: 20}} />
+      {orgLogo}
+    </div> :
+    <><div>
+    {headshot}
+  </div>
+  <div style={{marginLeft: 20}}>
+    {orgLogo}
+  </div></>;
+  return <div 
+    id={slug}
+    style={{
+      flexDirection: mobile ? "column" : "row",
+      display: "flex", marginBottom: 50, paddingBottom: 50, alignItems: mobile ? "flex-start"  : "flex-end", borderBottom: `1px solid ${style.colors.GRAY}`}}>
+    {!mobile && authorship}
+    <div style={{marginLeft: mobile ? 0 : 50}}>
+      {quoteContent}
     </div>
+    {mobile && authorship}
   </div>
 }
 
 function TeamMember({ member }) {
+  const displayCategory = useDisplayCategory();
   return <div style={{
     display: "flex",
+    flexDirection: displayCategory === "mobile" ? "column" : "row",
     marginTop: 50,
   }}>
     <div>
@@ -77,7 +97,8 @@ function TeamMember({ member }) {
     />
     </div>
     <div style={{
-      marginLeft: 100,
+      marginLeft: displayCategory === "mobile" ? 0 : 100,
+      marginTop: displayCategory === "mobile" ? 30 : 0,
       borderBottom: `1px solid ${style.colors.BLACK}`,
     }}>
     <p><span className="spaced-sans-serif">{member.name}</span> {member.bio}</p>
