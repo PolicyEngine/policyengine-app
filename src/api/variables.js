@@ -35,6 +35,7 @@ export function removePerson(situation, name) {
  * @param {Object} metadata The national metadata object
  * @return {Object} An updated household input situation object
  */
+/*
 export function addBasicInputVariables(situation, metadata) {
   const basicInputs = metadata.basicInputs;
   const variables = metadata.variables;
@@ -81,6 +82,7 @@ export function addBasicInputVariables(situation, metadata) {
   });
   return situation;
 }
+*/
 
 export function addYearlyVariables(situation, variables, entities) {
   // Add yearly variables to the situation (with their input value if they are an input variable, else null).
@@ -124,7 +126,7 @@ export function createDefaultHousehold(metadata) {
   } else {
     newHousehold = JSON.parse(JSON.stringify(defaultHouseholds.default));
   }
-  newHousehold = addBasicInputVariables(newHousehold, metadata);
+  // newHousehold = addBasicInputVariables(newHousehold, metadata);
   return newHousehold;
 }
 
