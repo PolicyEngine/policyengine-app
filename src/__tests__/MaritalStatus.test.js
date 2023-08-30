@@ -23,7 +23,7 @@ describe("Setting UK marital status within MaritalStatus.jsx", () => {
 
     // Take the default UK household struct, then following code from MaritalStatus.jsx,
     // edit the struct
-    let testStruct = defaultHouseholds.uk;
+    let testStruct = JSON.parse(JSON.stringify(defaultHouseholds.uk));
     const newStatus = "married";
     const defaultPartner = {
       age: {
@@ -31,7 +31,7 @@ describe("Setting UK marital status within MaritalStatus.jsx", () => {
       }
     };
     const partnerName = "your partner";
-    testStruct.people[partnerName] = defaultPartner;
+    testStruct.people[partnerName] = JSON.parse(JSON.stringify(defaultPartner));
     testStruct.benunits["your immediate family"].members.push(partnerName);
     testStruct.benunits["your immediate family"].is_married = {
       2023: true
@@ -56,7 +56,7 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     // Take the default US household struct, then following code from MaritalStatus.jsx,
     // edit the struct
 
-    let testStruct = defaultHouseholds.us;
+    let testStruct = JSON.parse(JSON.stringify(defaultHouseholds.us));
     const newStatus = "married";
     const defaultPartner = {
       age: { 
@@ -64,7 +64,7 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
       },
     };
     const partnerName = "your partner";
-    testStruct.people[partnerName] = defaultPartner;
+    testStruct.people[partnerName] = JSON.parse(JSON.stringify(defaultPartner));
     testStruct.families["your family"].members.push(partnerName);
     testStruct.marital_units["your marital unit"].members.push(partnerName);
     testStruct.tax_units["your tax unit"].members.push(partnerName);
@@ -95,7 +95,7 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
       },
     };
     const partnerName = "your partner";
-    testStruct.people[partnerName] = defaultPartner;
+    testStruct.people[partnerName] = JSON.parse(JSON.stringify(defaultPartner));
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setCAMaritalStatus

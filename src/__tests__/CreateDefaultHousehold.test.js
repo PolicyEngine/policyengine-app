@@ -35,7 +35,7 @@ async function fetchMetadata(countryId) {
 }
 
 describe('createDefaultHousehold', () => {
-	test('creates household without yearly variables', async () => {
+	test('creates default household for US', async () => {
 
 		let metadata = await fetchMetadata("us");
     metadata.countryId = "us";
@@ -43,5 +43,5 @@ describe('createDefaultHousehold', () => {
 
 		const output = createDefaultHousehold(metadata);
 		expect(output).toStrictEqual(expectedDefaultHousehold);
-	})
-})
+	});
+});

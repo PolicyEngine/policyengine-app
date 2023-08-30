@@ -62,9 +62,9 @@ export function addChild(situation, countryId) {
 
   let defaultChild = null;
   if (countryId in defaultChildren) {
-    defaultChild = defaultChildren[countryId];
+    defaultChild = JSON.parse(JSON.stringify(defaultChildren[countryId]));
   } else {
-    defaultChild = defaultChildren.default;
+    defaultChild = JSON.parse(JSON.stringify(defaultChildren.default));
   }
 
   const childCount = getCountChildren(situation, countryId);

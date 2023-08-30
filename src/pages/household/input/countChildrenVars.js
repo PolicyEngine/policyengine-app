@@ -35,7 +35,7 @@ export const childAdders = {
   },
   // prettier-ignore
   us: function(situation, defaultChild, childName, childCount) { 
-    const newSituation = Object.assign(situation);
+    const newSituation = JSON.parse(JSON.stringify(situation));
     newSituation.people[childName] = defaultChild;
     newSituation.tax_units["your tax unit"].members.push(childName);
     newSituation.families["your family"].members.push(childName);
@@ -49,7 +49,7 @@ export const childAdders = {
   },
   // prettier-ignore
   default: function(situation, defaultChild, childName) {
-    const newSituation = Object.assign(situation);
+    const newSituation = JSON.parse(JSON.stringify(situation));
     newSituation.people[childName] = defaultChild;
     newSituation.households["your household"].members.push(childName);
     return newSituation;
