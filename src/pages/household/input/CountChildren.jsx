@@ -15,7 +15,7 @@ import {
 
 /**
  * Returns `your ${number} child`, unless a country situation calls for a custom term
- * @param {Number} index The number child
+ * @param {Number} index The zero-indexed number child
  * @param {String} countryId The two-letter country code
  * @returns {String} A formatted string of format `your ${index} ${term}`, usually "child"
  */
@@ -169,6 +169,7 @@ export default function CountChildren(props) {
       />
     </>
   );
+
   return (
     <CenteredMiddleColumn
       title={`How many ${

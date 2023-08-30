@@ -6,6 +6,7 @@ import {
   getCountChildren,
   addChild
 } from "pages/household/input/CountChildren.jsx";
+import { removePerson } from "api/variables.js";
 import { defaultHouseholds } from "api/defaultHouseholds.js";
 import * as call from "api/call";
 import CountChildren from "pages/household/input/CountChildren.jsx";
@@ -110,6 +111,7 @@ describe("Test refactored addChild function", () => {
 
     const defaultChild = {
       age: { 2023: 10 },
+      is_tax_unit_dependent: { 2023: true }
     };
     const childCount = getCountChildren(testHousehold, "us");
     const childName = getChildName(childCount, "us");
@@ -221,5 +223,461 @@ describe("Test rendered CountChildren component", () => {
     fireEvent.click(buttonTwo);
     expect(householdInput).toStrictEqual(testObject);
     
+  });
+});
+
+describe("Test that removePerson functions correctly", () => {
+  test("With the UK", () => {
+
+    const testSituation = {
+      "people": {
+        "you": {},
+        "your partner": {
+          "age": {
+            "2023": 40
+          }
+        },
+        "your first child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your second child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your third child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your fourth child": {
+          "age": {
+            "2023": 10
+          }
+        }
+      },
+      "benunits": {
+        "your immediate family": {
+          "members": [
+            "you",
+            "your partner",
+            "your first child",
+            "your second child",
+            "your third child",
+            "your fourth child"
+          ],
+          "is_married": {
+            "2023": true
+          }
+        }
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first child",
+            "your second child",
+            "your third child",
+            "your fourth child"
+          ]
+        }
+      }
+    };
+
+    const expectedSituation = {
+      "people": {
+        "you": {},
+        "your partner": {
+          "age": {
+            "2023": 40
+          }
+        },
+        "your first child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your second child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your third child": {
+          "age": {
+            "2023": 10
+          }
+        },
+      },
+      "benunits": {
+        "your immediate family": {
+          "members": [
+            "you",
+            "your partner",
+            "your first child",
+            "your second child",
+            "your third child",
+          ],
+          "is_married": {
+            "2023": true
+          }
+        }
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first child",
+            "your second child",
+            "your third child",
+          ]
+        }
+      }
+  };
+
+    const resultSituation = removePerson(testSituation, "your fourth child");
+
+    expect(resultSituation).toStrictEqual(expectedSituation);
+
+  });
+  test("With the US", () => {
+
+    const testSituation = {
+      "people": {
+        "you": {},
+        "your partner": {
+          "age": {
+            "2023": 40
+          }
+        },
+        "your first dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        },
+        "your second dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        },
+        "your third dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        },
+        "your fourth dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        }
+      },
+      "families": {
+        "your family": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+            "your fourth dependent"
+          ]
+        }
+      },
+      "marital_units": {
+        "your marital unit": {
+          "members": [
+            "you",
+            "your partner"
+          ]
+        },
+        "your first dependent's marital unit": {
+          "members": [
+            "your first dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 1
+          }
+        },
+        "your second dependent's marital unit": {
+          "members": [
+            "your second dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 2
+          }
+        },
+        "your third dependent's marital unit": {
+          "members": [
+            "your third dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 3
+          }
+        },
+        "your fourth dependent's marital unit": {
+          "members": [
+            "your fourth dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 4
+          }
+        }
+      },
+      "tax_units": {
+        "your tax unit": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+            "your fourth dependent"
+          ]
+        }
+      },
+      "spm_units": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+            "your fourth dependent"
+          ]
+        }
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+            "your fourth dependent"
+          ]
+        }
+      }
+    };
+
+    const expectedSituation = {
+      "people": {
+        "you": {},
+        "your partner": {
+          "age": {
+            "2023": 40
+          }
+        },
+        "your first dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        },
+        "your second dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        },
+        "your third dependent": {
+          "age": {
+            "2023": 10
+          },
+          "is_tax_unit_dependent": {
+            "2023": true
+          }
+        },
+      },
+      "families": {
+        "your family": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+          ]
+        }
+      },
+      "marital_units": {
+        "your marital unit": {
+          "members": [
+            "you",
+            "your partner"
+          ]
+        },
+        "your first dependent's marital unit": {
+          "members": [
+            "your first dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 1
+          }
+        },
+        "your second dependent's marital unit": {
+          "members": [
+            "your second dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 2
+          }
+        },
+        "your third dependent's marital unit": {
+          "members": [
+            "your third dependent"
+          ],
+          "marital_unit_id": {
+            "2023": 3
+          }
+        },
+      },
+      "tax_units": {
+        "your tax unit": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+          ]
+        }
+      },
+      "spm_units": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+          ]
+        }
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first dependent",
+            "your second dependent",
+            "your third dependent",
+          ]
+        }
+      }
+    }; 
+
+    const resultSituation = removePerson(testSituation, "your fourth dependent");
+
+    expect(resultSituation).toStrictEqual(expectedSituation);
+
+  });
+  test("With default cases", () => {
+
+    const testSituation = {
+      "people": {
+        "you": {},
+        "your partner": {
+          "age": {
+            "2023": 40
+          }
+        },
+        "your first child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your second child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your third child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your fourth child": {
+          "age": {
+            "2023": 10
+          }
+        }
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first child",
+            "your second child",
+            "your third child",
+            "your fourth child"
+          ]
+        }
+      }
+    };
+
+    const expectedSituation = {
+      "people": {
+        "you": {},
+        "your partner": {
+          "age": {
+            "2023": 40
+          }
+        },
+        "your first child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your second child": {
+          "age": {
+            "2023": 10
+          }
+        },
+        "your third child": {
+          "age": {
+            "2023": 10
+          }
+        },
+      },
+      "households": {
+        "your household": {
+          "members": [
+            "you",
+            "your partner",
+            "your first child",
+            "your second child",
+            "your third child",
+          ]
+        }
+      }
+    };
+
+    const resultSituation = removePerson(testSituation, "your fourth child");
+
+    expect(resultSituation).toStrictEqual(expectedSituation);
+
+
   });
 });
