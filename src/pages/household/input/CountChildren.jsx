@@ -10,6 +10,7 @@ import {
   childNames,
   childCountFilters,
   childAdders,
+  defaultChildren,
 } from "./countChildrenVars.js";
 
 /**
@@ -58,9 +59,14 @@ export function getCountChildren(situation, countryId) {
  */
 export function addChild(situation, countryId) {
   let newSituation = Object.assign(situation);
-  const defaultChild = {
-    age: { 2023: 10 },
-  };
+
+  let defaultChild = null;
+  if (countryId in defaultChildren) {
+    defaultChild = defaultChildren[countryId];
+  } else {
+    defaultChild = defaultChildren.default;
+  }
+
   const childCount = getCountChildren(situation, countryId);
   const childName = getChildName(childCount, countryId);
 

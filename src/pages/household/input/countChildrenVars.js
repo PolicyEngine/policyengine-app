@@ -3,6 +3,22 @@ export const childNames = {
   default: "child",
 };
 
+export const defaultChildren = {
+  us: {
+    age: {
+      2023: 10,
+    },
+    is_tax_unit_dependent: {
+      2023: true,
+    },
+  },
+  default: {
+    age: {
+      2023: 10,
+    },
+  },
+};
+
 export const childCountFilters = {
   us: (person) => person?.is_tax_unit_dependent?.["2023"],
   default: (person) => person?.age?.[2023] < 18,
