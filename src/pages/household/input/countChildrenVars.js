@@ -27,7 +27,7 @@ export const childCountFilters = {
 export const childAdders = {
   // prettier-ignore
   uk: function(situation, defaultChild, childName) {
-    const newSituation = Object.assign(situation);
+    const newSituation = JSON.parse(JSON.stringify(situation));
     newSituation.people[childName] = defaultChild;
     newSituation.benunits["your immediate family"].members.push(childName);
     newSituation.households["your household"].members.push(childName);

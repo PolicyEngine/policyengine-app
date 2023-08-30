@@ -85,7 +85,6 @@ export function addChild(situation, countryId) {
       childCount,
     );
   }
-
   return newSituation;
 }
 
