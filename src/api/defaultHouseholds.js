@@ -44,27 +44,7 @@ export const defaultHouseholds = {
       },
     },
   },
-  ca: {
-    people: {
-      you: {},
-    },
-    households: {
-      "your household": {
-        members: ["you"],
-      },
-    },
-  },
-  ng: {
-    people: {
-      you: {},
-    },
-    households: {
-      "your household": {
-        members: ["you"],
-      },
-    },
-  },
-  il: {
+  default: {
     people: {
       you: {},
     },

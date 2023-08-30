@@ -132,7 +132,7 @@ describe("Test refactored addChild function", () => {
 
   test("Confirm that addChild works for Nigeria", () => {
     
-    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.ng));
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.default));
 
     const defaultChild = {
       age: { 2023: 10 },
@@ -143,7 +143,7 @@ describe("Test refactored addChild function", () => {
     testHousehold.people[childName] = defaultChild;
     testHousehold.households["your household"].members.push(childName);
 
-    expect(addChild(defaultHouseholds.ng, "ng")).toStrictEqual(testHousehold);
+    expect(addChild(defaultHouseholds.default, "ng")).toStrictEqual(testHousehold);
   });
 });
 

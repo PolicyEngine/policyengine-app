@@ -87,7 +87,7 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     // Take the default Canada household struct, then following code from MaritalStatus.jsx,
     // edit the struct
 
-    let testStruct = defaultHouseholds.ca;
+    let testStruct = defaultHouseholds.default;
     const newStatus = "married";
     const defaultPartner = {
       age: { 
@@ -99,7 +99,7 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setCAMaritalStatus
-    const output = setCAMaritalStatus(defaultHouseholds.ca, newStatus, metadata.variables);
+    const output = setCAMaritalStatus(defaultHouseholds.default, newStatus, metadata.variables);
 
     expect(output).toStrictEqual(testStruct);
   });

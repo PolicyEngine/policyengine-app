@@ -31,7 +31,6 @@ export const childAdders = {
     newSituation.people[childName] = defaultChild;
     newSituation.benunits["your immediate family"].members.push(childName);
     newSituation.households["your household"].members.push(childName);
-    console.log(newSituation);
     return newSituation;
   },
   // prettier-ignore
@@ -46,7 +45,6 @@ export const childAdders = {
       members: [childName],
       marital_unit_id: { 2023: childCount + 1 },
     };
-    console.log(newSituation);
     return newSituation;
   },
   // prettier-ignore
@@ -54,7 +52,6 @@ export const childAdders = {
     const newSituation = Object.assign(situation);
     newSituation.people[childName] = defaultChild;
     newSituation.households["your household"].members.push(childName);
-    console.log(newSituation);
     return newSituation;
   },
 };

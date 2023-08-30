@@ -29,6 +29,59 @@ export function removePerson(situation, name) {
   return situation;
 }
 
+/**
+ * Adds all basic input variables, as described in country metadata, to a household input object
+ * @param {Object} situation A household input situation object
+ * @param {Object} metadata The national metadata object
+ * @return {Object} An updated household input situation object
+ */
+export function addBasicInputVariables(situation, metadata) {
+  const basicInputs = metadata.basicInputs;
+  const variables = metadata.variables;
+  const entities = metadata.entities;
+  let entityPlural = null;
+  let possibleEntities = null;
+
+  // Map over array of basic input variables
+  basicInputs.forEach((basicInput) => {
+    // Variable to store var data for basic input var
+    const basicInputData = variables[basicInput];
+
+    // If the variable is defined as occurring over a year...
+    if (basicInputData.definitionPeriod === "year") {
+      // Store an entity's plural term
+      entityPlural = entities[basicInputData.entity].plural;
+      // If plural entity term is in household situation...
+      if (entityPlural in situation) {
+        // Pull all individual entities stored within the umbrella entity
+        // (e.g., within "people", "you", "your first dependent", etc.)
+        possibleEntities = Object.keys(situation[entityPlural]);
+        // For each possible entity...
+        possibleEntities.forEach((entity) => {
+          // If the basic input variable isn't already stored in the situation...
+          if (!(basicInputData.name in situation[entityPlural][entity])) {
+            // If the basic input is an "input variable" (input by user)...
+            if (basicInputData.isInputVariable) {
+              // Then add it to the relevant part of the situation, along with
+              // its default value
+              situation[entityPlural][entity][basicInputData.name] = {
+                2023: basicInputData.defaultValue,
+              };
+            } else {
+              // Otherwise, add it to the relevant part of the situation, along with
+              // a null value
+              situation[entityPlural][entity][basicInputData.name] = {
+                2023: null,
+              };
+            }
+          }
+        });
+      }
+    }
+  });
+  return situation;
+}
+
 export function addYearlyVariables(situation, variables, entities) {
   // Add yearly variables to the situation (with their input value if they are an input variable, else null).
   let entityPlural;
@@ -59,11 +112,20 @@ export function addYearlyVariables(situation, variables, entities) {
 
 /**
  * Creates a default household JSON object and returns it
- * @param {String} country Two-letter country code defined as a PolicyEngine "Country" object
+ * @param {Object} metadata National metadata object
  * @returns {JSON} Household object
  */
-export function createDefaultHousehold(country) {
-  return defaultHouseholds[country] || null;
+export function createDefaultHousehold(metadata) {
+  const countryId = metadata.countryId;
+  let newHousehold = null;
+
+  if (countryId in defaultHouseholds) {
+    newHousehold = JSON.parse(JSON.stringify(defaultHouseholds[countryId]));
+  } else {
+    newHousehold = JSON.parse(JSON.stringify(defaultHouseholds.default));
+  }
+  newHousehold = addBasicInputVariables(newHousehold, metadata);
+  return newHousehold;
 }
 
 export function findInTree(tree, path) {

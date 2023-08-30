@@ -58,11 +58,14 @@ export default function HouseholdPage(props) {
   // If we've landed on the page without a household, create a new one.
   useEffect(() => {
     if (!householdInput && !householdId) {
+      /*
       const defaultHousehold = createDefaultHousehold(
         metadata.countryId,
         metadata.variables,
         metadata.entities,
       );
+      */
+      const defaultHousehold = createDefaultHousehold(metadata);
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
         getDefaultHouseholdId(metadata).then((householdId) => {
@@ -143,11 +146,14 @@ export default function HouseholdPage(props) {
     } else {
       setHouseholdBaseline(null);
       setHouseholdReform(null);
+      /*
       const defaultHousehold = createDefaultHousehold(
         metadata.countryId,
         metadata.variables,
         metadata.entities,
       );
+      */
+      const defaultHousehold = createDefaultHousehold(metadata);
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
         getDefaultHouseholdId(metadata).then((householdId) => {
