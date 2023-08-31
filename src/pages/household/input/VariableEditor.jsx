@@ -12,7 +12,7 @@ import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
 import NavigationButton from "../../../controls/NavigationButton";
 import gtag from "../../../api/analytics";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -40,15 +40,19 @@ export default function VariableEditor(props) {
   const required = ["state_name"].includes(variableName);
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
-
-  // TODO: Need to change the implementation of this
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
     (entity) => householdInput[entityPlural][entity][variable.name],
   );
 
   // Add the variable to the relevant portions of the household input object
-  const newHouseholdInput = addVariable(householdInput, variable, entityPlural);
-  setHouseholdInput(newHouseholdInput);
+  useEffect(() => {
+    const newHouseholdInput = addVariable(
+      householdInput,
+      variable,
+      entityPlural,
+    );
+    setHouseholdInput(newHouseholdInput);
+  }, [variable]);
 
   const entityInputs = possibleEntities.map((entity) => {
     return (
@@ -329,5 +333,6 @@ export function addVariable(householdInput, variable, entityPlural) {
       });
     }
   }
+  console.log(newHouseholdInput);
   return newHouseholdInput;
 }
