@@ -40,9 +40,15 @@ export default function VariableEditor(props) {
   const required = ["state_name"].includes(variableName);
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
+
+  // TODO: Need to change the implementation of this
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
     (entity) => householdInput[entityPlural][entity][variable.name],
   );
+
+  // Add the variable to the relevant portions of the household input object
+  const newHouseholdInput = addVariable(householdInput, variable, entityPlural);
+  setHouseholdInput(newHouseholdInput);
 
   const entityInputs = possibleEntities.map((entity) => {
     return (
@@ -277,4 +283,51 @@ function HouseholdVariableEntityInput(props) {
       </div>
     </>
   );
+}
+
+/**
+ * Adds the VariableEditor's focus variable to a household input object
+ * and returns the resulting object
+ * @param {Object} householdInput The household input object passed as a param
+ * to VariableEditor
+ * @param {Object} variable The relevant variable metadata
+ * @param {String} entityPlural The plural term for the entity the variable
+ * applies to
+ * @returns {Object} A new householdInput object that contains the variable
+ */
+export function addVariable(householdInput, variable, entityPlural) {
+  let newHouseholdInput = JSON.parse(JSON.stringify(householdInput));
+
+  let possibleEntities = null;
+
+  // If the variable is defined as occurring over a year...
+  if (variable.definitionPeriod === "year") {
+    // If plural entity term is in household situation...
+    if (entityPlural in householdInput) {
+      // Pull all individual entities stored within the umbrella entity
+      // (e.g., within "people", "you", "your first dependent", etc.)
+      possibleEntities = Object.keys(householdInput[entityPlural]);
+      // For each possible entity...
+      possibleEntities.forEach((entity) => {
+        // If the variable isn't already stored in the situation...
+        if (!(variable.name in householdInput[entityPlural][entity])) {
+          // If the basic input is an "input variable" (input by user)...
+          if (variable.isInputVariable) {
+            // Then add it to the relevant part of the situation, along with
+            // its default value
+            newHouseholdInput[entityPlural][entity][variable.name] = {
+              2023: variable.defaultValue,
+            };
+          } else {
+            // Otherwise, add it to the relevant part of the situation, along with
+            // a null value
+            newHouseholdInput[entityPlural][entity][variable.name] = {
+              2023: null,
+            };
+          }
+        }
+      });
+    }
+  }
+  return newHouseholdInput;
 }

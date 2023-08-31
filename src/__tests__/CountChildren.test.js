@@ -1,6 +1,3 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { BrowserRouter as Router, useSearchParams } from "react-router-dom";
-
 import {
   getChildName,
   getCountChildren,
@@ -8,28 +5,6 @@ import {
 } from "pages/household/input/CountChildren.jsx";
 import { removePerson } from "api/variables.js";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
-import * as call from "api/call";
-import CountChildren from "pages/household/input/CountChildren.jsx";
-
-jest.mock("react-plotly.js", () => jest.fn());
-jest.mock("react-router-dom", () => {
-  const originalModule = jest.requireActual("react-router-dom");
-  return {
-    __esModule: true,
-    ...originalModule,
-    useSearchParams: jest.fn(),
-    setSearchParams: jest.fn(),
-  };
-});
-
-
-let metadata = {
-  basicInputs: [
-    "Garbage Value"
-  ]
-};
-const autocompute = false;
-const emptyFunction = () => {return};
 
 describe("Test refactored CountChildren getChildName function", () => {
   test("Confirm that getChildName works for UK", () => {
