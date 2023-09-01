@@ -139,13 +139,6 @@ export default function HouseholdPage(props) {
     } else {
       setHouseholdBaseline(null);
       setHouseholdReform(null);
-      /*
-      const defaultHousehold = createDefaultHousehold(
-        metadata.countryId,
-        metadata.variables,
-        metadata.entities,
-      );
-      */
       const defaultHousehold = createDefaultHousehold(metadata);
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
