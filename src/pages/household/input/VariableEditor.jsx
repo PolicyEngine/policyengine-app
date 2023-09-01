@@ -333,6 +333,5 @@ export function addVariable(householdInput, variable, entityPlural) {
       });
     }
   }
-  console.log(newHouseholdInput);
   return newHouseholdInput;
 }
