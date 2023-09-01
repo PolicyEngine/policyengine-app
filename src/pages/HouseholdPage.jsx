@@ -58,13 +58,6 @@ export default function HouseholdPage(props) {
   // If we've landed on the page without a household, create a new one.
   useEffect(() => {
     if (!householdInput && !householdId) {
-      /*
-      const defaultHousehold = createDefaultHousehold(
-        metadata.countryId,
-        metadata.variables,
-        metadata.entities,
-      );
-      */
       const defaultHousehold = createDefaultHousehold(metadata);
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
