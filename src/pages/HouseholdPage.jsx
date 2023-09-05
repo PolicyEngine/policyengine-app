@@ -23,6 +23,61 @@ import VariableSearch from "./household/VariableSearch";
 import MobileHouseholdPage from "./household/MobileHouseholdPage";
 import { Result } from "antd";
 
+/**
+ * Updates households to remove yearly variables and bring them in line with
+ * newest API version
+ * @param {Object} householdInput The existing household input object
+ * @returns {Object|false} If household contains a non-default
+ */
+export function updateHousehold(householdInput, metadata) {
+  const variables = metadata.variables;
+
+  let reservedInputs = [
+    ...Object.values(metadata.basicInputs),
+    "members",
+    "marital_unit_id"
+  ];
+
+
+  // Copy householdInput into mutable variable
+  let editedHousehold = JSON.parse(JSON.stringify(householdInput));
+
+  Object.keys(householdInput).forEach((entityPlural) => {
+    // Then map over all entities
+    Object.keys(householdInput[entityPlural]).forEach((entity) => {
+      // Then map over all variables in each entity;
+      // for each variable...
+      Object.keys(householdInput[entityPlural][entity]).forEach((variable) => {
+        const currentVal = householdInput[entityPlural][entity][variable][2023];
+
+        // If the variable is a reserved one, do nothing and return
+        if (reservedInputs.includes(variable)) {
+          return;
+        }
+        // Otherwise, if the variable exists in the current tax system...
+        else if (variable in variables) {
+          // Remove it if it is at its default value
+          if (currentVal === variables[variable].defaultValue || currentVal === null) {
+            delete editedHousehold[entityPlural][entity][variable];
+          }
+        }
+        // Otherwise, if it's not in the system and is a falsy value, delete it
+        else if (!currentVal) {
+          delete editedHousehold[entityPlural][entity][variable];
+        }
+        // Otherwise, if it's not in the current tax system and is truthy, 
+        // throw modal for user to re-create household
+        else {
+          // Throw modal for user to re-create household
+        }
+      });
+
+    });
+  });
+
+  return editedHousehold;
+}
+
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";
   const {
