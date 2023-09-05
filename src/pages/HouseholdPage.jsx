@@ -35,9 +35,8 @@ export function updateHousehold(householdInput, metadata) {
   let reservedInputs = [
     ...Object.values(metadata.basicInputs),
     "members",
-    "marital_unit_id"
+    "marital_unit_id",
   ];
-
 
   // Copy householdInput into mutable variable
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
@@ -57,7 +56,10 @@ export function updateHousehold(householdInput, metadata) {
         // Otherwise, if the variable exists in the current tax system...
         else if (variable in variables) {
           // Remove it if it is at its default value
-          if (currentVal === variables[variable].defaultValue || currentVal === null) {
+          if (
+            currentVal === variables[variable].defaultValue ||
+            currentVal === null
+          ) {
             delete editedHousehold[entityPlural][entity][variable];
           }
         }
@@ -65,13 +67,12 @@ export function updateHousehold(householdInput, metadata) {
         else if (!currentVal) {
           delete editedHousehold[entityPlural][entity][variable];
         }
-        // Otherwise, if it's not in the current tax system and is truthy, 
+        // Otherwise, if it's not in the current tax system and is truthy,
         // throw modal for user to re-create household
         else {
           // Throw modal for user to re-create household
         }
       });
-
     });
   });
 
