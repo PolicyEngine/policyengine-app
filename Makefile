@@ -2,6 +2,8 @@ install:
 	npm ci
 build:
 	npm run build
+debug-no-lint:
+	ESLINT_NO_DEV_ERRORS=true npm start
 debug:
 	npm start
 test:
