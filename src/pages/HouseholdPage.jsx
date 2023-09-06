@@ -139,7 +139,7 @@ export default function HouseholdPage(props) {
               return { input: dataHolder.result.household_json };
             })
             .then((dataHolder) => {
-              setHouseholdInput(dataHolder.input);
+              setHouseholdInput(updateHousehold(dataHolder.input, metadata));
             }),
         );
       }
