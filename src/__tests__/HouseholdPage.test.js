@@ -1,6 +1,8 @@
+import HouseholdPage from "pages/HouseholdPage.jsx";
 import { updateHousehold } from "pages/HouseholdPage.jsx";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
 import { addChild } from "pages/household/input/CountChildren.jsx";
+import { countryApiCall } from "api/call.js";
 
 jest.mock("react-plotly.js", () => jest.fn());
 
@@ -155,6 +157,29 @@ describe("Test updateHousehold function", () => {
     const resultHousehold = updateHousehold(seedHousehold, metadata);
 
     expect(resultHousehold).toStrictEqual(testHousehold);
+
+  });
+  test("Ensure function opens modal when householdInput contains deleted input variable with truthy value", async () => {
+    let metadata = null;
+
+    // Fetch US metadata
+    try {
+      const res = await fetch("https://api.policyengine.org/us/metadata");
+      const resJSON = await res.json();
+      metadata = resJSON.result;
+    }
+    catch (err) {
+      console.error(err);
+    }
+
+    // Create false household that contains non-existent input variable with truthy value
+    let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
+    testHousehold.people.you = {
+      ...testHousehold.people.you,
+      garbageVariable: {
+        2023: 7
+      }
+    };
 
   });
 });
