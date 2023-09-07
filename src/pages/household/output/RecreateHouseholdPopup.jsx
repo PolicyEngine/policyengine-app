@@ -11,29 +11,23 @@ const styles = {
   },
   title: {
     marginBottom: "16px",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   submitButton: {
-    width: "fit-content"
-  }
-}
+    width: "fit-content",
+  },
+};
 
 export default function RecreateHouseholdPopup(props) {
+  const { countryId, isRHPOpen, setIsRHPOpen } = props;
 
-  const {
-    countryId,
-    householdId,
-    isRHPOpen,
-    setIsRHPOpen
-  } = props;
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const title = "Household Input Error";
   const content = `Unfortunately, this household contains data that 
@@ -48,11 +42,10 @@ export default function RecreateHouseholdPopup(props) {
 
   if (!isRHPOpen) {
     return;
-  }
-  else {
+  } else {
     return (
       <>
-        <Modal 
+        <Modal
           open={isRHPOpen}
           header={null}
           footer={null}
@@ -62,9 +55,7 @@ export default function RecreateHouseholdPopup(props) {
           keyboard={false}
         >
           <div style={styles.container}>
-            <h6 style={styles.title}>
-              {title}
-            </h6>
+            <h6 style={styles.title}>{title}</h6>
             <p>{content}</p>
             <Button
               text={buttonText}
@@ -78,5 +69,4 @@ export default function RecreateHouseholdPopup(props) {
       </>
     );
   }
-
 }

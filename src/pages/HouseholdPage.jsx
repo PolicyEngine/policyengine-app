@@ -85,7 +85,9 @@ export default function HouseholdPage(props) {
               return { input: dataHolder.result.household_json };
             })
             .then((dataHolder) => {
-              setHouseholdInput(updateHousehold(dataHolder.input, metadata));
+              setHouseholdInput(
+                updateHousehold(dataHolder.input, metadata, setIsRHPOpen),
+              );
             }),
         );
       }
@@ -278,7 +280,7 @@ export default function HouseholdPage(props) {
   }
   return (
     <>
-      <RecreateHouseholdPopup 
+      <RecreateHouseholdPopup
         householdId={householdId}
         isRHPOpen={isRHPOpen}
         setIsRHPOpen={setIsRHPOpen}
@@ -333,9 +335,11 @@ function HouseholdLeftSidebar(props) {
  * Updates households to remove yearly variables and bring them in line with
  * newest API version
  * @param {Object} householdInput The existing household input object
+ * @param {Object} metadata The country metadata object
+ * @param {Function} setIsRHPOpen The state setting function that handles modal opening
  * @returns {Object|false} If household contains a non-default
  */
-export function updateHousehold(householdInput, metadata) {
+export function updateHousehold(householdInput, metadata, setIsRHPOpen) {
   const variables = metadata.variables;
 
   let reservedInputs = [
