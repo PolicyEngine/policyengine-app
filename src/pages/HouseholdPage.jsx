@@ -85,9 +85,19 @@ export default function HouseholdPage(props) {
               return { input: dataHolder.result.household_json };
             })
             .then((dataHolder) => {
-              setHouseholdInput(
-                updateHousehold(dataHolder.input, metadata, setIsRHPOpen),
+              // Take data and update household
+              const updatedHousehold = updateHousehold(
+                dataHolder.input,
+                metadata,
               );
+              // If updateHousehold returns truthy, then set this to householdInput
+              if (updatedHousehold) {
+                setHouseholdInput(updateHousehold);
+              } else {
+                // Otherwise, householdInput contains a truthy value for a deleted variable;
+                // redirect user to create new household via RecreateHouseholdPopup
+                setIsRHPOpen(true);
+              }
             }),
         );
       }
@@ -336,10 +346,11 @@ function HouseholdLeftSidebar(props) {
  * newest API version
  * @param {Object} householdInput The existing household input object
  * @param {Object} metadata The country metadata object
- * @param {Function} setIsRHPOpen The state setting function that handles modal opening
- * @returns {Object|false} If household contains a non-default
+ * @returns {Object|false} If household contains a deleted variable with a truthy value,
+ * returns false, allowing for state setting to happen within main component and trigger
+ * RecreateHouseholdPopup to display; otherwise, returns updated household
  */
-export function updateHousehold(householdInput, metadata, setIsRHPOpen) {
+export function updateHousehold(householdInput, metadata) {
   const variables = metadata.variables;
 
   let reservedInputs = [
@@ -378,10 +389,10 @@ export function updateHousehold(householdInput, metadata, setIsRHPOpen) {
           delete editedHousehold[entityPlural][entity][variable];
         }
         // Otherwise, if it's not in the current tax system and is truthy,
-        // throw modal for user to re-create household
+        // return "false", signalling to calling function that household
+        // must be recreated
         else {
-          // Throw modal for user to re-create household
-          setIsRHPOpen(true);
+          return false;
         }
       });
     });
