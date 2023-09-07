@@ -1,8 +1,6 @@
-import HouseholdPage from "pages/HouseholdPage.jsx";
 import { updateHousehold } from "pages/HouseholdPage.jsx";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
 import { addChild } from "pages/household/input/CountChildren.jsx";
-import { countryApiCall } from "api/call.js";
 
 jest.mock("react-plotly.js", () => jest.fn());
 
@@ -159,7 +157,7 @@ describe("Test updateHousehold function", () => {
     expect(resultHousehold).toStrictEqual(testHousehold);
 
   });
-  test("Ensure function opens modal when householdInput contains deleted input variable with truthy value", async () => {
+  test("Ensure function returns false when householdInput contains deleted input variable with truthy value", async () => {
     let metadata = null;
 
     // Fetch US metadata
@@ -180,6 +178,9 @@ describe("Test updateHousehold function", () => {
         2023: 7
       }
     };
+
+    const resultHousehold = updateHousehold(testHousehold, metadata);
+    expect(resultHousehold).toBe(false);
 
   });
 });

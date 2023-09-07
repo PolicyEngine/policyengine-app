@@ -362,17 +362,17 @@ export function updateHousehold(householdInput, metadata) {
   // Copy householdInput into mutable variable
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
 
-  Object.keys(householdInput).forEach((entityPlural) => {
-    // Then map over all entities
-    Object.keys(householdInput[entityPlural]).forEach((entity) => {
-      // Then map over all variables in each entity;
-      // for each variable...
-      Object.keys(householdInput[entityPlural][entity]).forEach((variable) => {
+  // Map over all plural entity terms...
+  for (const entityPlural in householdInput) {
+    // Then over all entities...
+    for (const entity in householdInput[entityPlural]) {
+      // Then over all variables within each entity...
+      for (const variable in householdInput[entityPlural][entity]) {
         const currentVal = householdInput[entityPlural][entity][variable][2023];
 
-        // If the variable is a reserved one, do nothing and return
+        // If the variable is a reserved one, do nothing and continue
         if (reservedInputs.includes(variable)) {
-          return;
+          continue;
         }
         // Otherwise, if the variable exists in the current tax system...
         else if (variable in variables) {
@@ -390,13 +390,14 @@ export function updateHousehold(householdInput, metadata) {
         }
         // Otherwise, if it's not in the current tax system and is truthy,
         // return "false", signalling to calling function that household
-        // must be recreated
+        // must be re-created
         else {
           return false;
         }
-      });
-    });
-  });
+      }
+    }
+  }
 
   return editedHousehold;
+
 }
