@@ -21,63 +21,8 @@ import HouseholdIntro from "./household/HouseholdIntro";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileHouseholdPage from "./household/MobileHouseholdPage";
+import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
 import { Result } from "antd";
-
-/**
- * Updates households to remove yearly variables and bring them in line with
- * newest API version
- * @param {Object} householdInput The existing household input object
- * @returns {Object|false} If household contains a non-default
- */
-export function updateHousehold(householdInput, metadata) {
-  const variables = metadata.variables;
-
-  let reservedInputs = [
-    ...Object.values(metadata.basicInputs),
-    "members",
-    "marital_unit_id",
-  ];
-
-  // Copy householdInput into mutable variable
-  let editedHousehold = JSON.parse(JSON.stringify(householdInput));
-
-  Object.keys(householdInput).forEach((entityPlural) => {
-    // Then map over all entities
-    Object.keys(householdInput[entityPlural]).forEach((entity) => {
-      // Then map over all variables in each entity;
-      // for each variable...
-      Object.keys(householdInput[entityPlural][entity]).forEach((variable) => {
-        const currentVal = householdInput[entityPlural][entity][variable][2023];
-
-        // If the variable is a reserved one, do nothing and return
-        if (reservedInputs.includes(variable)) {
-          return;
-        }
-        // Otherwise, if the variable exists in the current tax system...
-        else if (variable in variables) {
-          // Remove it if it is at its default value
-          if (
-            currentVal === variables[variable].defaultValue ||
-            currentVal === null
-          ) {
-            delete editedHousehold[entityPlural][entity][variable];
-          }
-        }
-        // Otherwise, if it's not in the system and is a falsy value, delete it
-        else if (!currentVal) {
-          delete editedHousehold[entityPlural][entity][variable];
-        }
-        // Otherwise, if it's not in the current tax system and is truthy,
-        // throw modal for user to re-create household
-        else {
-          // Throw modal for user to re-create household
-        }
-      });
-    });
-  });
-
-  return editedHousehold;
-}
 
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";
@@ -97,6 +42,7 @@ export default function HouseholdPage(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [autoCompute, setAutoCompute] = useState(false);
+  const [isRHPOpen, setIsRHPOpen] = useState(false);
 
   let middle;
   const focus = searchParams.get("focus") || "";
@@ -331,21 +277,30 @@ export default function HouseholdPage(props) {
     );
   }
   return (
-    <ThreeColumnPage
-      left={<HouseholdLeftSidebar metadata={metadata} />}
-      middle={middle}
-      right={
-        <HouseholdRightSidebar
-          metadata={metadata}
-          householdBaseline={householdBaseline}
-          householdInput={householdInput}
-          autoCompute={autoCompute}
-          loading={loading}
-          policy={policy}
-        />
-      }
-      noMiddleScroll={!mobile && focus && focus.startsWith("householdOutput.")}
-    />
+    <>
+      <RecreateHouseholdPopup 
+        householdId={householdId}
+        isRHPOpen={isRHPOpen}
+        setIsRHPOpen={setIsRHPOpen}
+      />
+      <ThreeColumnPage
+        left={<HouseholdLeftSidebar metadata={metadata} />}
+        middle={middle}
+        right={
+          <HouseholdRightSidebar
+            metadata={metadata}
+            householdBaseline={householdBaseline}
+            householdInput={householdInput}
+            autoCompute={autoCompute}
+            loading={loading}
+            policy={policy}
+          />
+        }
+        noMiddleScroll={
+          !mobile && focus && focus.startsWith("householdOutput.")
+        }
+      />
+    </>
   );
 }
 
@@ -372,4 +327,61 @@ function HouseholdLeftSidebar(props) {
       />
     </div>
   );
+}
+
+/**
+ * Updates households to remove yearly variables and bring them in line with
+ * newest API version
+ * @param {Object} householdInput The existing household input object
+ * @returns {Object|false} If household contains a non-default
+ */
+export function updateHousehold(householdInput, metadata) {
+  const variables = metadata.variables;
+
+  let reservedInputs = [
+    ...Object.values(metadata.basicInputs),
+    "members",
+    "marital_unit_id",
+  ];
+
+  // Copy householdInput into mutable variable
+  let editedHousehold = JSON.parse(JSON.stringify(householdInput));
+
+  Object.keys(householdInput).forEach((entityPlural) => {
+    // Then map over all entities
+    Object.keys(householdInput[entityPlural]).forEach((entity) => {
+      // Then map over all variables in each entity;
+      // for each variable...
+      Object.keys(householdInput[entityPlural][entity]).forEach((variable) => {
+        const currentVal = householdInput[entityPlural][entity][variable][2023];
+
+        // If the variable is a reserved one, do nothing and return
+        if (reservedInputs.includes(variable)) {
+          return;
+        }
+        // Otherwise, if the variable exists in the current tax system...
+        else if (variable in variables) {
+          // Remove it if it is at its default value
+          if (
+            currentVal === variables[variable].defaultValue ||
+            currentVal === null
+          ) {
+            delete editedHousehold[entityPlural][entity][variable];
+          }
+        }
+        // Otherwise, if it's not in the system and is a falsy value, delete it
+        else if (!currentVal) {
+          delete editedHousehold[entityPlural][entity][variable];
+        }
+        // Otherwise, if it's not in the current tax system and is truthy,
+        // throw modal for user to re-create household
+        else {
+          // Throw modal for user to re-create household
+          setIsRHPOpen(true);
+        }
+      });
+    });
+  });
+
+  return editedHousehold;
 }
