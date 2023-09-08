@@ -76,7 +76,7 @@ export default function HouseholdPage(props) {
   // If the household input changes, update the household.
   useEffect(() => {
     let requests = [];
-    if (householdId || autoCompute) {
+    if ((householdId || autoCompute) && metadata) {
       if (!householdInput) {
         requests.push(
           countryApiCall(countryId, `/household/${householdId}`)
@@ -92,7 +92,7 @@ export default function HouseholdPage(props) {
               );
               // If updateHousehold returns truthy, then set this to householdInput
               if (updatedHousehold) {
-                setHouseholdInput(updateHousehold);
+                setHouseholdInput(updatedHousehold);
               } else {
                 // Otherwise, householdInput contains a truthy value for a deleted variable;
                 // redirect user to create new household via RecreateHouseholdPopup
@@ -164,9 +164,9 @@ export default function HouseholdPage(props) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, householdId, policy.reform]);
+  }, [countryId, householdId, policy.reform, metadata]);
 
-  if (!householdInput) {
+  if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.variables).includes(
@@ -340,7 +340,6 @@ function HouseholdLeftSidebar(props) {
     </div>
   );
 }
-
 /**
  * Updates households to remove yearly variables and bring them in line with
  * newest API version
