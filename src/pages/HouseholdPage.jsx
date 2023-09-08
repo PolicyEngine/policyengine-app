@@ -399,5 +399,4 @@ export function updateHousehold(householdInput, metadata) {
   }
 
   return editedHousehold;
-
 }
