@@ -75,46 +75,77 @@ export default function HouseholdPage(props) {
 
   // If the household input changes, update the household.
   useEffect(() => {
+    /**
+     * Fetches a household, then updates said household in the back end
+     * @param {Number} householdId The household's ID
+     * @param {Object} metadata The country metadata relevant to the household
+     * @returns {void}
+     */
+    async function fetchAndUpdateHousehold(householdId, metadata) {
+      let dataHolder = null;
+
+      try {
+        const res = await countryApiCall(
+          countryId,
+          `/household/${householdId}`,
+        );
+
+        // Note that try/catch won't catch a 500, only a connection error,
+        // hence the code below
+        if (!res.ok) {
+          console.error("Back-end error while attempting to get household");
+        }
+
+        const resJSON = await res.json();
+        dataHolder = {
+          input: resJSON.result.household_json,
+        };
+      } catch (err) {
+        console.error(`Error while fetching household: ${err}`);
+      }
+
+      const updatedHousehold = updateHousehold(dataHolder.input, metadata);
+
+      // If updatedHousehold is truthy, all vars are either in the current tax system
+      // or in an old version, but default or false; set householdInput
+      if (updatedHousehold) {
+        setHouseholdInput(updatedHousehold);
+
+        // Update the household on the back end via PUT request
+        try {
+          const res = await countryApiCall(
+            countryId,
+            `/household/${householdId}`,
+            { data: updatedHousehold },
+            "PUT",
+          );
+
+          // Note that try/catch won't catch a 500, only a connection error,
+          // hence the code below
+          if (!res.ok) {
+            console.error("Back-end error while updating household");
+          }
+        } catch (err) {
+          console.error(`Error while updating household: ${err}`);
+        }
+      } else {
+        // Otherwise, householdInput contains a truthy value for a deleted variable;
+        // redirect user to create new household via RecreateHouseholdPopup
+        setIsRHPOpen(true);
+      }
+    }
+
     let requests = [];
+
+    // If the household was previously created and is being accessed via URL,
+    // update the household before doing anything else
     if ((householdId || autoCompute) && metadata) {
       if (!householdInput) {
-        requests.push(
-          countryApiCall(countryId, `/household/${householdId}`)
-            .then((res) => res.json())
-            .then((dataHolder) => {
-              return { input: dataHolder.result.household_json };
-            })
-            .then((dataHolder) => {
-              // Take data and update household
-              const updatedHousehold = updateHousehold(
-                dataHolder.input,
-                metadata,
-              );
-              // If updateHousehold returns truthy, then set this to householdInput
-              if (updatedHousehold) {
-                setHouseholdInput(updatedHousehold);
-                requests.push(
-                  countryApiCall(
-                    countryId,
-                    `/household/${householdId}`,
-                    { data: updatedHousehold },
-                    "PUT",
-                  )
-                    .then((res) => res.json())
-                    .then((dataHolder) => {
-                      if (dataHolder.status !== "ok") {
-                        console.error("Error while updating household");
-                      }
-                    }),
-                );
-              } else {
-                // Otherwise, householdInput contains a truthy value for a deleted variable;
-                // redirect user to create new household via RecreateHouseholdPopup
-                setIsRHPOpen(true);
-              }
-            }),
+        fetchAndUpdateHousehold(householdId, metadata).catch((err) =>
+          console.error(err),
         );
       }
+
       requests.push(
         countryApiCall(
           countryId,
