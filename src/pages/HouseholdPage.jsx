@@ -93,6 +93,20 @@ export default function HouseholdPage(props) {
               // If updateHousehold returns truthy, then set this to householdInput
               if (updatedHousehold) {
                 setHouseholdInput(updatedHousehold);
+                requests.push(
+                  countryApiCall(
+                    countryId,
+                    `/household/${householdId}`,
+                    { data: updatedHousehold },
+                    "PUT",
+                  )
+                    .then((res) => res.json())
+                    .then((dataHolder) => {
+                      if (dataHolder.status !== "ok") {
+                        console.error("Error while updating household");
+                      }
+                    }),
+                );
               } else {
                 // Otherwise, householdInput contains a truthy value for a deleted variable;
                 // redirect user to create new household via RecreateHouseholdPopup
