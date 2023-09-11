@@ -3,6 +3,16 @@ import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
 
+/**
+ * Makes an API call to the back end and returns response
+ * @param {String} path API URL, beginning with a slash
+ * @param {Object} [body] The body of the request for a non-GET request
+ * @param {String} [method] The HTTP method; defaults to GET if no body is passed,
+ * or to POST if a body is passed
+ * @param {boolean} [secondAttempt=false] Whether or not to attempt the request a second
+ * time if it fails the first time
+ * @returns {JSON} The API call's response JSON object
+ */
 export function apiCall(path, body, method, secondAttempt = false) {
   return fetch(POLICYENGINE_API + path, {
     method: method || (body ? "POST" : "GET"),
