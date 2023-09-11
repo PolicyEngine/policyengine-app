@@ -291,7 +291,7 @@ export default function HouseholdPage(props) {
   return (
     <>
       <RecreateHouseholdPopup
-        householdId={householdId}
+        countryId={countryId}
         isRHPOpen={isRHPOpen}
         setIsRHPOpen={setIsRHPOpen}
       />

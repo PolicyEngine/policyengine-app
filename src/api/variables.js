@@ -29,34 +29,6 @@ export function removePerson(situation, name) {
   return situation;
 }
 
-export function addYearlyVariables(situation, variables, entities) {
-  // Add yearly variables to the situation (with their input value if they are an input variable, else null).
-  let entityPlural;
-  let possibleEntities;
-  for (const variable of Object.values(variables)) {
-    if (variable.definitionPeriod === "year") {
-      entityPlural = entities[variable.entity].plural;
-      if (entityPlural in situation) {
-        possibleEntities = Object.keys(situation[entityPlural]);
-        for (const entity of possibleEntities) {
-          if (!(variable.name in situation[entityPlural][entity])) {
-            if (variable.isInputVariable) {
-              situation[entityPlural][entity][variable.name] = {
-                2023: variable.defaultValue,
-              };
-            } else {
-              situation[entityPlural][entity][variable.name] = {
-                2023: null,
-              };
-            }
-          }
-        }
-      }
-    }
-  }
-  return situation;
-}
-
 /**
  * Creates a default household JSON object and returns it
  * @param {Object} metadata National metadata object
@@ -71,7 +43,6 @@ export function createDefaultHousehold(metadata) {
   } else {
     newHousehold = JSON.parse(JSON.stringify(defaultHouseholds.default));
   }
-  // newHousehold = addBasicInputVariables(newHousehold, metadata);
   return newHousehold;
 }
 

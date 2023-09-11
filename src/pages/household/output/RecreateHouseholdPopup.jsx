@@ -37,7 +37,7 @@ export default function RecreateHouseholdPopup(props) {
 
   function handleClick() {
     setIsRHPOpen(false);
-    navigate(`${countryId}/household?focus=intro`);
+    navigate(`/${countryId}/household?focus=intro`);
   }
 
   if (!isRHPOpen) {
