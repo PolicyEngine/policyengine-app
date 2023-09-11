@@ -1,23 +1,20 @@
-import { 
+import {
   setUKMaritalStatus,
   setUSMaritalStatus,
-  setCAMaritalStatus
+  setCAMaritalStatus,
 } from "pages/household/input/MaritalStatus";
-import {
-  defaultHouseholds
-} from "data/defaultHouseholds";
+import { defaultHouseholds } from "data/defaultHouseholds";
 
 // Metadata fetching function
 async function fetchMetadata(countryId) {
-	const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
-	const metadataRaw = await res.json();
+  const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
+  const metadataRaw = await res.json();
   const metadata = metadataRaw.result;
-	return metadata;
+  return metadata;
 }
 
 describe("Setting UK marital status within MaritalStatus.jsx", () => {
   test("functions with empty UK dataset, without adding empty tax variables", async () => {
-
     // Fetch UK metadata
     const metadata = await fetchMetadata("uk");
 
@@ -27,29 +24,31 @@ describe("Setting UK marital status within MaritalStatus.jsx", () => {
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2023: 40
-      }
+        2023: 40,
+      },
     };
     const partnerName = "your partner";
     testStruct.people[partnerName] = JSON.parse(JSON.stringify(defaultPartner));
     testStruct.benunits["your immediate family"].members.push(partnerName);
     testStruct.benunits["your immediate family"].is_married = {
-      2023: true
+      2023: true,
     };
     testStruct.benunits["your immediate family"].is_married["2023"] = true;
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setUKMaritalStatus
-    const output = setUKMaritalStatus(defaultHouseholds.uk, newStatus, metadata.variables);
+    const output = setUKMaritalStatus(
+      defaultHouseholds.uk,
+      newStatus,
+      metadata.variables,
+    );
 
     expect(output).toStrictEqual(testStruct);
-
-  })
-})
+  });
+});
 
 describe("Setting US marital status within MaritalStatus.jsx", () => {
   test("functions with empty US dataset, without adding empty tax variables", async () => {
-
     // Fetch US metadata
     const metadata = await fetchMetadata("us");
 
@@ -59,8 +58,8 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     let testStruct = JSON.parse(JSON.stringify(defaultHouseholds.us));
     const newStatus = "married";
     const defaultPartner = {
-      age: { 
-        2023: 40
+      age: {
+        2023: 40,
       },
     };
     const partnerName = "your partner";
@@ -72,7 +71,11 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setUSMaritalStatus
-    const output = setUSMaritalStatus(defaultHouseholds.us, newStatus, metadata.variables);
+    const output = setUSMaritalStatus(
+      defaultHouseholds.us,
+      newStatus,
+      metadata.variables,
+    );
 
     expect(output).toStrictEqual(testStruct);
   });
@@ -80,7 +83,6 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
 
 describe("Setting Canada marital status within MaritalStatus.jsx", () => {
   test("functions with empty Canada dataset, without adding empty tax variables", async () => {
-
     // Fetch Canada metadata
     const metadata = await fetchMetadata("ca");
 
@@ -90,8 +92,8 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     let testStruct = defaultHouseholds.default;
     const newStatus = "married";
     const defaultPartner = {
-      age: { 
-        2023: 40
+      age: {
+        2023: 40,
       },
     };
     const partnerName = "your partner";
@@ -99,7 +101,11 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setCAMaritalStatus
-    const output = setCAMaritalStatus(defaultHouseholds.default, newStatus, metadata.variables);
+    const output = setCAMaritalStatus(
+      defaultHouseholds.default,
+      newStatus,
+      metadata.variables,
+    );
 
     expect(output).toStrictEqual(testStruct);
   });

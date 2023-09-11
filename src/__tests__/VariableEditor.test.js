@@ -4,15 +4,14 @@ import { addChild } from "pages/household/input/CountChildren.jsx";
 
 // Metadata fetching function
 async function fetchMetadata(countryId) {
-	const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
-	const metadataRaw = await res.json();
+  const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
+  const metadataRaw = await res.json();
   const metadata = metadataRaw.result;
-	return metadata;
+  return metadata;
 }
 
 describe("Test addVariable function", () => {
   test("Add a variable to default UK household", async () => {
-
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.uk));
     let metadataUK = await fetchMetadata("uk");
     const testVariable = metadataUK.variables.is_blind;
@@ -20,20 +19,19 @@ describe("Test addVariable function", () => {
     testHousehold.people.you = {
       ...testHousehold.people.you,
       is_blind: {
-        2023: false
-      }
+        2023: false,
+      },
     };
 
     const resultHousehold = addVariable(
       defaultHouseholds.uk,
       testVariable,
-      "people"
+      "people",
     );
 
     expect(resultHousehold).toStrictEqual(testHousehold);
   });
   test("Add variable to UK household with multiple people", async () => {
-
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.uk));
     let setupHousehold = JSON.parse(JSON.stringify(defaultHouseholds.uk));
     let metadataUK = await fetchMetadata("uk");
@@ -50,24 +48,18 @@ describe("Test addVariable function", () => {
       testHousehold.people[person] = {
         ...testHousehold.people[person],
         is_blind: {
-          2023: false
-        }
+          2023: false,
+        },
       };
     });
 
     // Create a 2-child household to use within addVariable
 
-    const resultHousehold = addVariable(
-      setupHousehold,
-      testVariable,
-      "people"
-    );
+    const resultHousehold = addVariable(setupHousehold, testVariable, "people");
 
     expect(resultHousehold).toStrictEqual(testHousehold);
-
   });
   test("Add variable to US default household", async () => {
-
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
     let metadataUS = await fetchMetadata("us");
     const testVariable = metadataUS.variables.is_blind;
@@ -75,20 +67,19 @@ describe("Test addVariable function", () => {
     testHousehold.people.you = {
       ...testHousehold.people.you,
       is_blind: {
-        2023: false
-      }
+        2023: false,
+      },
     };
 
     const resultHousehold = addVariable(
       defaultHouseholds.us,
       testVariable,
-      "people"
+      "people",
     );
 
     expect(resultHousehold).toStrictEqual(testHousehold);
   });
   test("Add variable to US household with multiple people", async () => {
-
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
     let setupHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
     let metadataUS = await fetchMetadata("us");
@@ -105,20 +96,15 @@ describe("Test addVariable function", () => {
       testHousehold.people[person] = {
         ...testHousehold.people[person],
         is_blind: {
-          2023: false
-        }
+          2023: false,
+        },
       };
     });
 
     // Create a 2-child household to use within addVariable
 
-    const resultHousehold = addVariable(
-      setupHousehold,
-      testVariable,
-      "people"
-    );
+    const resultHousehold = addVariable(setupHousehold, testVariable, "people");
 
     expect(resultHousehold).toStrictEqual(testHousehold);
-
   });
 });
