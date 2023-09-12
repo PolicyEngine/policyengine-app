@@ -36,7 +36,7 @@ export default function PolicySearch(props) {
                 value: item.id,
                 label: (
                   <>
-                    <b>#{item.id}</b> {item.label}
+                    #{item.id} {item.label}
                   </>
                 ),
               };

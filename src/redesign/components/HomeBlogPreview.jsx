@@ -67,8 +67,12 @@ function ReadMore() {
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
   return (
     <SectionBottom backgroundColor={style.colors.LIGHT_GRAY}>
-      <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
-        <FeaturedBlogPreview blogs={featuredPosts} />
+      <div style={{ marginTop: 50, display: "flex", flexDirection: "row", position: "relative" }}>
+        <div style={{width: "60%"}}>
+        <div style={{position: "sticky", top: style.spacing.HEADER_HEIGHT + 20}}>
+          <FeaturedBlogPreview blogs={featuredPosts} />
+        </div>
+        </div>
         <div
           style={{
             display: "flex",
@@ -85,6 +89,10 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
           <SmallBlogPreview blog={allPosts[2]} />
           <div style={{ height: 20 }} />
           <SmallBlogPreview blog={allPosts[3]} />
+          <div style={{ height: 20 }} />
+          <SmallBlogPreview blog={allPosts[4]} />
+          <div style={{ height: 20 }} />
+          <SmallBlogPreview blog={allPosts[5]} />
         </div>
       </div>
       <div
@@ -95,11 +103,11 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
           marginTop: 40,
         }}
       >
-        <MediumBlogPreview blog={allPosts[4]} />
-        <div style={{ width: 40 }} />
-        <MediumBlogPreview blog={allPosts[5]} />
-        <div style={{ width: 40 }} />
         <MediumBlogPreview blog={allPosts[6]} />
+        <div style={{ width: 40 }} />
+        <MediumBlogPreview blog={allPosts[7]} />
+        <div style={{ width: 40 }} />
+        <MediumBlogPreview blog={allPosts[8]} />
       </div>
       <ReadMore />
     </SectionBottom>
@@ -109,7 +117,7 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
 function TabletBlogPreview({ featuredPosts, allPosts }) {
   return (
     <SectionBottom>
-      <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
+      <div style={{ marginTop: 50, display: "flex", flexDirection: "row",  }}>
         <FeaturedBlogPreview blogs={featuredPosts} />
       </div>
       <div
@@ -294,7 +302,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   return (
     <div
       style={{
-        width: width || (displayCategory === "desktop" ? "60%" : "100%"),
+        width: width || "100%",
       }}
     >
     <Link to={`/${countryId}/research/${currentBlog.slug}`}>
@@ -352,10 +360,9 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
   return (
-    <Link to={link}>
+    <Link to={link} style={{flex: 1}}>
     <div
       style={{
-        flex: 1,
         height: "100%",
       }}
     >
@@ -384,7 +391,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
         }
       >
         <div style={{ padding: 20 }}>
-          <p style={{ textTransform: "uppercase" }}>
+          <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
             {moment(blog.date).format("MMMM D, YYYY")}
           </p>
           <h5>{blog.title}</h5>
@@ -466,6 +473,7 @@ export function SmallBlogPreview({ blog }) {
             padding: 10,
             paddingBottom: 0,
             textTransform: "uppercase",
+            fontFamily: "Roboto",
           }}
         >
           {moment(blog.date).format("MMMM D, YYYY")}
@@ -484,7 +492,7 @@ export function SmallBlogPreview({ blog }) {
       }}
     >
       <div style={{ padding: 10, paddingTop: 0 }}>
-        <h5>{blog.title}</h5>
+        <h4>{blog.title}</h4>
       </div>
     </BlogBox>
   );

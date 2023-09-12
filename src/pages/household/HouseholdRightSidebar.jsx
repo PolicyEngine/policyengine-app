@@ -119,7 +119,6 @@ export default function HouseholdRightSidebar(props) {
         style={{
           textAlign: "center",
           fontSize: 11,
-          fontWeight: "bold",
           marginBottom: 0,
           marginTop: 15,
         }}
@@ -143,7 +142,6 @@ export default function HouseholdRightSidebar(props) {
         style={{
           textAlign: "center",
           fontSize: 11,
-          fontWeight: "bold",
           marginBottom: 0,
           marginTop: 15,
         }}
@@ -155,7 +153,6 @@ export default function HouseholdRightSidebar(props) {
           style={{
             textAlign: "center",
             fontSize: 11,
-            fontWeight: "bold",
             marginBottom: 0,
             marginTop: 5,
           }}

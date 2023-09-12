@@ -88,7 +88,7 @@ function SinglePolicyChange(props) {
     >
       <div>
         <span
-          style={isBool ? { color: style.colors.BLUE, fontWeight: "bold" } : {}}
+          style={isBool ? { color: style.colors.BLUE } : {}}
         >
           {prefix}{" "}
         </span>
@@ -96,11 +96,10 @@ function SinglePolicyChange(props) {
         {!isBool && (
           <>
             {" "}
-            from <span style={{ fontWeight: "bold" }}>{oldValStr}</span> to{" "}
+            from <span>{oldValStr}</span> to{" "}
             <span
               style={{
                 color: style.colors.BLUE,
-                fontWeight: "bold",
               }}
             >
               {newValueStr}
@@ -187,7 +186,7 @@ function PolicyDisplay(props) {
         ))}
       </Carousel>
       {Object.keys(policy.reform.data).length === 0 && (
-        <h6 style={{ textAlign: "center" }}>Your reform is empty</h6>
+        <p style={{ textAlign: "center" }}>Your reform is empty</p>
       )}
     </div>
   );

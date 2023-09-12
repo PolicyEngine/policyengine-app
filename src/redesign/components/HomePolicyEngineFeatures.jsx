@@ -8,6 +8,7 @@ export default function HomePolicyEngineFeatures() {
     <Section
       backgroundColor={style.colors.BLUE_PRIMARY}
       title="With PolicyEngine"
+      color="white"
     >
       <ShowcaseItem
         title="Advanced analysis with our Python packages"
@@ -15,6 +16,7 @@ export default function HomePolicyEngineFeatures() {
         linkTitle="Try it out"
         link="/"
         image={placeholderImage}
+        color="white"
       />
       <ShowcaseItem
         title="Design custom policy reforms"
@@ -22,6 +24,7 @@ export default function HomePolicyEngineFeatures() {
         linkTitle="Explore the documentation"
         link="/"
         image={placeholderImage}
+        color="white"
       />
       <ShowcaseItem
         title="See how reforms affect households"
@@ -29,6 +32,7 @@ export default function HomePolicyEngineFeatures() {
         linkTitle="Explore the documentation"
         link="/"
         image={placeholderImage}
+        color="white"
       />
     </Section>
   );

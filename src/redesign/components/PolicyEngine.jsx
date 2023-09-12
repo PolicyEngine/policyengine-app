@@ -166,6 +166,7 @@ export default function PolicyEngine({ pathname }) {
 
   const householdPage = (
     <Suspense fallback={loadingPage}>
+      <Header />
       <HouseholdPage
         metadata={metadata}
         householdId={householdId}
