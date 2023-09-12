@@ -19,6 +19,14 @@ body {
   color: "inherit !important";
 }
 
+:root {
+  --bs-body-font-weight: 300;
+}
+
+.ant-select-selection-item {
+  font-weight: 300;
+}
+
 p {
   font-family: "Roboto Serif", serif;
   font-weight: 300;
