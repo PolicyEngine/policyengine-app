@@ -22,7 +22,7 @@ export default function HomeBlogPreview() {
   return (
     <>
       <SectionTop
-        backgroundColor={style.colors.WHITE}
+        backgroundColor={style.colors.LIGHT_GRAY}
         title="Expert policy analysis"
       />
       {
@@ -66,7 +66,7 @@ function ReadMore() {
 
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
   return (
-    <SectionBottom>
+    <SectionBottom backgroundColor={style.colors.LIGHT_GRAY}>
       <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
         <FeaturedBlogPreview blogs={featuredPosts} />
         <div

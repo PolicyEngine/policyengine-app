@@ -1,4 +1,3 @@
-import PageHeader from "./PageHeader";
 import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
 import { useState, useEffect } from "react";
@@ -10,15 +9,7 @@ import { Link } from "react-router-dom";
 import FontIcon from "./FontIcon";
 
 export default function HomeQuoteCarousel() {
-  return (
-    <PageHeader
-      title="Computing public policy for everyone"
-      collapseTablet
-      subtitle="PolicyEngine maintains a free, open-source tool enabling anyone to see how public policy affects them."
-    >
-      <QuoteBox />
-    </PageHeader>
-  );
+  return <QuoteBox />;
 }
 
 export function QuoteBox({ noArrows }) {
