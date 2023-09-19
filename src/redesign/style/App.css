@@ -1,22 +1,34 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&family=Roboto:wght@300;500&display=swap");
 
+h5,
+h6 {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+h4 {
   font-family: "Roboto Serif", serif;
   font-weight: 300;
 }
 
 body {
-  font-family: "Roboto Serif", serif;
+  font-family: "Roboto";
   color: "inherit !important";
 }
 
+:root {
+  --bs-body-font-weight: 300;
+}
+
+.ant-select-selection-item {
+  font-weight: 300;
+}
+
 p {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Serif", serif;
   font-weight: 300;
 }
 

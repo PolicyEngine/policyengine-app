@@ -13,8 +13,8 @@ export default function Home() {
     <div>
       <Header />
       <HomeLanding />
-      <HomeCallToAction />
       <HomeBlogPreview />
+      <HomeCallToAction />
       <HomeSubscribe />
       <HomePolicyEngineFeatures />
       <HomeUsedBy />

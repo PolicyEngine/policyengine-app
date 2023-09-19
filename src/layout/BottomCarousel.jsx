@@ -41,7 +41,7 @@ export default function BottomCarousel(props) {
         {previous.label ? (
           <NavigationButton
             focus={previous.name}
-            text={"←"}
+            text="left"
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (
@@ -51,7 +51,7 @@ export default function BottomCarousel(props) {
         {next.label ? (
           <NavigationButton
             focus={next.name}
-            text={"→"}
+            text={"right"}
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (

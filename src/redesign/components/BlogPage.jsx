@@ -48,45 +48,124 @@ export default function BlogPage() {
     return <>
         <Header />
         <Section backgroundColor={style.colors.BLUE_98}>
-            <div style={{display: "flex"}}>
-                <div style={{flex: 1}}>
-                    <p className="spaced-sans-serif">{postDate.format("MMMM DD, YYYY")}</p>
-                    <Authorship post={post} />
-                    <ReadTime markdown={markdown} />
-                    <div style={{marginTop: 100}} />
-                    <DesktopShareLinks post={post} />
-                </div>
-                <div style={{flex: 3}}>
-                    <h1>{post.title}</h1>
-                    <h5 style={{marginTop: 50}}>
-                        {post.description}
-                    </h5>
-                    <img src={imageUrl} style={{width: "100%", marginTop: 50}} />
-                </div>
-                <div style={{flex: 1}}>
-                </div>
-            </div>
+            <PostHeadingSection post={post} markdown={markdown} postDate={postDate} imageUrl={imageUrl} />
         </Section>
         <Section>
-            <div style={{display: "flex"}}>
-                <div style={{flex: 1, marginRight: 50}}>
-                    <div style={{position: "sticky", top: 150}}>
-                    <p className="spaced-sans-serif">Contents</p>
-                    <LeftContents markdown={markdown} />
-                    </div>
-                </div>
-                <div style={{flex: 3}}>
-                    <BlogContent markdown={markdown} />
-                </div>
-                <div style={{flex: 1, marginLeft: 30 }}>
-                    <div style={{position: "sticky", top: 150}}>
-                      <MoreOn post={post} />
-                    </div>
-                </div>
-            </div>
+            <PostBodySection post={post} markdown={markdown} />
         </Section>
         <Footer />
     </>
+}
+
+function PostBodySection({ post, markdown }) {
+  const displayCategory = useDisplayCategory();
+  if (displayCategory === "desktop") {
+    return <div style={{display: "flex"}}>
+      <div style={{flex: 1, marginRight: 50}}>
+          <div style={{position: "sticky", top: 150}}>
+          <p className="spaced-sans-serif">Contents</p>
+          <LeftContents markdown={markdown} />
+          </div>
+      </div>
+      <div style={{flex: 4}}>
+          <BlogContent markdown={markdown} />
+      </div>
+      <div style={{flex: 1, marginLeft: 30 }}>
+          <div style={{position: "sticky", top: 150}}>
+            <MoreOn post={post} />
+          </div>
+      </div>
+    </div>
+  } else if (displayCategory === "tablet") {
+    return <div style={{display: "flex"}}>
+      <div style={{flex: 1, marginRight: 50}}>
+          <div style={{position: "sticky", top: 150}}>
+          <p className="spaced-sans-serif">Contents</p>
+          <LeftContents markdown={markdown} />
+          <div style={{marginTop: 20}} />
+          <MoreOn post={post} />
+          </div>
+      </div>
+      <div style={{flex: 3}}>
+          <BlogContent markdown={markdown} />
+      </div>
+    </div>
+  } else {
+    return <div style={{display: "flex", flexDirection: "column"}}>
+    <div style={{flex: 1}}>
+        <div style={{marginBottom: 30}}>
+        <p className="spaced-sans-serif">Contents</p>
+        <LeftContents markdown={markdown} />
+        </div>
+      <div style={{flex: 1}}>
+          <BlogContent markdown={markdown} />
+      </div>
+      <div style={{flex: 1}}>
+          <div style={{marginTop: 20}} />
+          <MoreOn post={post} />
+          </div>
+      </div>
+    </div>
+  }
+}
+
+function PostHeadingSection({ post, markdown, postDate, imageUrl }) {
+  const displayCategory = useDisplayCategory();
+  if (displayCategory === "desktop") {
+    return <div style={{display: "flex"}}>
+      <div style={{flex: 1}}>
+          <p className="spaced-sans-serif">{postDate.format("MMMM DD, YYYY")}</p>
+          <Authorship post={post} />
+          <div style={{marginBottom: 100}} />
+          <ReadTime markdown={markdown} />
+          <div style={{marginTop: 100}} />
+          <ShareLinks post={post} />
+      </div>
+      <div style={{flex: 3}}>
+          <h1>{post.title}</h1>
+          <h5 style={{marginTop: 50}}>
+              {post.description}
+          </h5>
+          <img src={imageUrl} style={{width: "100%", marginTop: 50}} />
+      </div>
+      <div style={{flex: 1}}>
+      </div>
+    </div>;
+  } else if (displayCategory === "tablet") {
+    return <div style={{display: "flex"}}>
+      <div>
+          <h1>{post.title}</h1>
+          <h5 style={{marginTop: 50}}>
+              {post.description}
+          </h5>
+          <div style={{display: "flex", justifyContent: "space-between", marginTop: 30}}>
+            <Authorship post={post} />
+            <p className="spaced-sans-serif">{postDate.format("MMMM DD, YYYY")}</p>
+            <ReadTime markdown={markdown} />
+          </div>
+          <img src={imageUrl} style={{width: "100%"}} />
+          <ShareLinks post={post} />
+      </div>
+    </div>;
+  } else {
+    return <div style={{display: "flex"}}>
+      <div>
+          <h1>{post.title}</h1>
+          <h5 style={{marginTop: 50}}>
+              {post.description}
+          </h5>
+          <div style={{display: "flex", justifyContent: "space-between", marginTop: 30}}>
+            <div>
+            <p className="spaced-sans-serif">{postDate.format("MMMM DD, YYYY")}</p>
+            <Authorship post={post} />
+            </div>
+            <ReadTime markdown={markdown} />
+          </div>
+          <img src={imageUrl} style={{width: "100%"}} />
+          <ShareLinks post={post} />
+      </div>
+    </div>;
+  }
 }
 
 function Authorship({ post }) {
@@ -107,7 +186,7 @@ function Authorship({ post }) {
     const lastAuthor = authorNames.pop();
     sentenceStructure = <>By {authorNames.join(", ")}, and {lastAuthor}</>;
   }
-  return <p className="spaced-sans-serif" style={{marginBottom: 100}}>
+  return <p className="spaced-sans-serif">
     {sentenceStructure}
     </p>
 }
@@ -343,31 +422,35 @@ function ReadTime({ markdown }) {
 }
 
 function DesktopShareLink({ icon, url, text }) {
+  const displayCategory = useDisplayCategory();
+  const desktop = displayCategory === "desktop";
   return <div style={{display: "flex", alignItems: "center", cursor: "pointer"}} onClick={() => window.open(url, "_blank")}>
     {React.createElement(icon, {
           style: {
-            color: style.colors.WHITE,
-            backgroundColor: style.colors.GRAY,
-            fontSize: 15,
+            color: desktop ? style.colors.WHITE : style.colors.DARK_GRAY,
+            border: !desktop && `2px solid ${style.colors.DARK_GRAY}`,
+            backgroundColor: desktop ? style.colors.GRAY : "transparent",
+            fontSize: displayCategory === "desktop" ? 15 : 40,
             padding: 10,
-            marginTop: 10,
+            marginTop: displayCategory === "desktop" ? 10 : 40,
             marginBottom: 10,
-            marginRight: 10,
+            marginRight: displayCategory === "desktop" ? 10 : 0,
           },
     })}
     <p className="spaced-sans-serif" style={{marginLeft: 35, margin: 0, color: style.colors.GRAY}}>{text}</p>
   </div>
 }
 
-function DesktopShareLinks({ post }) {
-  post;
-  return <div>
-    <p className="spaced-sans-serif">Share</p>
-    <DesktopShareLink icon={TwitterOutlined} url={`https://twitter.com/intent/tweet?text=${post.title}&url=${window.location.href}`} text="Twitter" />
-    <DesktopShareLink icon={FacebookOutlined} url={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} text="Facebook" />
-    <DesktopShareLink icon={LinkedinOutlined} url={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${post.title}&summary=${post.description}`} text="LinkedIn" />
-    <DesktopShareLink icon={MailOutlined} url={`mailto:?subject=${post.title}&body=${window.location.href}`} text="Email" />
-    <DesktopShareLink icon={PrinterOutlined} url={`javascript:window.print();`} text="Print" />
+function ShareLinks({ post }) {
+  const displayCategory = useDisplayCategory();
+  const desktop = displayCategory === "desktop";
+  return <div style={{display: "flex", flexDirection: desktop ? "column" : "row", width: "100%", justifyContent: desktop ? null : "space-between"}}>
+    {desktop && <p className="spaced-sans-serif">Share</p>}
+    <DesktopShareLink icon={TwitterOutlined} url={`https://twitter.com/intent/tweet?text=${post.title}&url=${window.location.href}`} text={desktop && "Twitter"} />
+    <DesktopShareLink icon={FacebookOutlined} url={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`} text={desktop && "Facebook"} />
+    <DesktopShareLink icon={LinkedinOutlined} url={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${post.title}&summary=${post.description}`} text={desktop && "LinkedIn"} />
+    <DesktopShareLink icon={MailOutlined} url={`mailto:?subject=${post.title}&body=${window.location.href}`} text={desktop && "Email"} />
+    <DesktopShareLink icon={PrinterOutlined} url={`javascript:window.print();`} text={desktop && "Print"} />
   </div>
 }
 
@@ -378,7 +461,7 @@ function LeftContents(props) {
   // Look for ##, ###, and ### to create a table of contents.
   // Split the markdown into an array of lines
   const lines = markdown.split("\n");
-  // Find the lines that start with ##, ###, or ####
+  // Find theShareLinks lines that start with ##, ###, or ####
   const headers = lines.filter((line) => line.startsWith("##"));
   const headerLevels = headers.map((header) => header.split("#").length - 1);
   const headerTexts = headers.map((header) => {

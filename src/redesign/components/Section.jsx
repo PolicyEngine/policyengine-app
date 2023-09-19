@@ -1,7 +1,7 @@
 import useDisplayCategory from "./useDisplayCategory";
 import style from "../style";
 
-export default function Section({ height, backgroundColor, title, children }) {
+export default function Section({ height, backgroundColor, title, color, children }) {
   const displayCategory = useDisplayCategory();
   const sideMargin = {
     mobile: 40,
@@ -29,7 +29,7 @@ export default function Section({ height, backgroundColor, title, children }) {
         display: "flex",
         justifyContent: "center",
         borderBottom: `1px solid ${style.colors.BLACK}`,
-        color: titleColor,
+        color: color || titleColor,
       }}
     >
       <div
@@ -45,7 +45,7 @@ export default function Section({ height, backgroundColor, title, children }) {
           marginBottom: topBottomMargins,
         }}
       >
-        {title && <h2>{title}</h2>}
+        {title && <h2 style={{color: "inherit"}}>{title}</h2>}
         {children}
       </div>
     </div>

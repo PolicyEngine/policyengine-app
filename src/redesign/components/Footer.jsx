@@ -36,7 +36,7 @@ function ContactUs() {
         marginTop: 30,
       }}
     >
-      <h2>Contact</h2>
+      <h2 style={{color: "white"}}>Contact</h2>
       <p><a href="mailto:hello@policyengine.org">hello@policyengine.org<FontIcon name="arrow_forward" /></a></p>
     </div>
   );

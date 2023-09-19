@@ -1,11 +1,11 @@
 import style from "../style";
 import { HoverBox } from "./HoverBox";
 
-export default function ActionButton({ text, onClick, width, size, height }) {
+export default function ActionButton({ text, onClick, width, size, height, noArrow, direction }) {
   return (
     <HoverBox
       hoverBackgroundColor={style.colors.TEAL_PRESSED}
-      direction="left"
+      direction={direction || "left"}
       style={{
         marginTop: 0,
         alignItems: "center",
@@ -23,13 +23,14 @@ export default function ActionButton({ text, onClick, width, size, height }) {
         textTransform: "uppercase",
         width: width || "min(300px, 70vw)",
         height: height,
+        justifyContent: "center",
       }}
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
     >
       {text}
-      <div style={{ marginLeft: "auto" }} />
-      <span className="material-symbols-outlined">arrow_forward</span>
+      {!noArrow && <div style={{ marginLeft: "auto" }} />}
+      {!noArrow && <span className="material-symbols-outlined">arrow_forward</span>}
     </HoverBox>
   );
 }

@@ -1,9 +1,10 @@
 import style from "../style";
 import { posts } from "../data/Posts";
 import { FeaturedBlogPreview, MediumBlogPreview, SmallBlogPreview } from "./HomeBlogPreview";
-import { QuoteBox } from "./HomeQuoteCarousel";
+import HomeQuoteCarousel from "./HomeQuoteCarousel";
 import ActionButton from "./ActionButton";
 import useDisplayCategory from "./useDisplayCategory";
+import PageHeader from "./PageHeader";
 
 function LandingAboutPolicyEngine() {
     const displayCategory = useDisplayCategory();
@@ -54,47 +55,17 @@ function RelevantBlogPosts() {
     </>
 }
 
+RelevantBlogPosts;
+LandingAboutPolicyEngine;
+
 export default function HomeLanding() {
     const displayCategory = useDisplayCategory();
     const mobile = displayCategory === "mobile";
-    return <div style={{
-        display: "flex",
-    }}>
-        <div style={{
-            position: "sticky",
-            top: style.spacing.HEADER_HEIGHT,
-            height: mobile ? null : "95vh",
-            marginTop: mobile ? 30 : 0,
-            marginBottom: mobile ? 30 : 0,
-            display: "flex",
-            flexDirection: "column",
-            flex: {
-                mobile: 1,
-                tablet: 2,
-                desktop: 1,
-            }[displayCategory],
-        }}>
-            <LandingAboutPolicyEngine />
-            {!mobile ? 
-                <div style={{
-                    height: 300,
-                    margin: 30,
-                    marginRight: 0,
-                    marginTop: 0,
-                }}>
-                <QuoteBox noArrows />
-                </div> :
-                null
-            }
-        </div>
-        {
-            displayCategory !== "mobile" &&
-            <div style={{
-                flex: 1,
-                margin: 30,
-            }}>
-            <RelevantBlogPosts />
-            </div>
-        }
-    </div>
+    mobile;
+    return <PageHeader
+        title="Computing public policy for all"
+        subtitle="PolicyEngine is a non-profit organisation that uses data science to build open-source tools that help policymakers and the public understand how public policy affects them."
+    >
+        <HomeQuoteCarousel />
+    </PageHeader>
 }

@@ -50,7 +50,7 @@ export function HoverBox({ hoverBackgroundColor, direction, children, size, onCl
         (e.currentTarget.style.boxShadow = containerStyle.boxShadow)
       }
       onClick={onClick || (link && (() => {
-        window.open(link)
+        window.open(link, "_self")
       }))}
     >
       {children}
