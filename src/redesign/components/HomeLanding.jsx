@@ -1,10 +1,9 @@
 import style from "../style";
 import { posts } from "../data/Posts";
 import { FeaturedBlogPreview, MediumBlogPreview, SmallBlogPreview } from "./HomeBlogPreview";
-import HomeQuoteCarousel from "./HomeQuoteCarousel";
 import ActionButton from "./ActionButton";
 import useDisplayCategory from "./useDisplayCategory";
-import PageHeader from "./PageHeader";
+import Hero from "../images/hero.png"
 
 function LandingAboutPolicyEngine() {
     const displayCategory = useDisplayCategory();
@@ -62,10 +61,29 @@ export default function HomeLanding() {
     const displayCategory = useDisplayCategory();
     const mobile = displayCategory === "mobile";
     mobile;
-    return <PageHeader
-        title="Computing public policy for all"
-        subtitle="PolicyEngine is a non-profit organisation that uses data science to build open-source tools that help policymakers and the public understand how public policy affects them."
-    >
-        <HomeQuoteCarousel />
-    </PageHeader>
+    return <div style={{
+        height: 500,
+    }}>
+        <img src={Hero} style={{
+            width: "100%",
+            height: 500,
+            objectFit: "cover",
+            position: "absolute",
+        }} />
+        <div style={{
+            width: "60vw",
+            height: 300,
+            top: 200,
+            left: "20vw",
+            position: "absolute",
+            display: "flex",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            backgroundColor: "rgb(23, 53, 79, 0.7)",
+        }}>
+            <div style={{width: 400, heiight: "100%", padding: 20, display: "flex", flexDirection: "column"}}>
+            <h1 style={{color: "white", fontSize: 55, alignItems: "center", margin: 0}}>Computing Public Policy for Everyone</h1>
+            </div>
+        </div>
+    </div>
 }
