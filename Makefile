@@ -2,8 +2,12 @@ install:
 	npm ci
 build:
 	npm run build
+debug-no-lint:
+	ESLINT_NO_DEV_ERRORS=true npm start
 debug:
 	npm start
+test:
+	npm run test
 deploy-setup:
 	cp gcp/.gcloudignore ./.gcloudignore
 	cp gcp/app.yaml ./app.yaml
