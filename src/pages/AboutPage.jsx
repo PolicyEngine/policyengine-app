@@ -2,7 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
 
-import MaxGhenis from "../images/authors/max-ghenis.jpg";
+import MaxGhenis from "../images/authors/max-ghenis.png";
 import NikhilWoodruff from "../images/authors/nikhil-woodruff.jpg";
 
 export default function AboutPage() {
@@ -14,8 +14,9 @@ export default function AboutPage() {
         <b>Nikhil Woodruff</b> is the co-founder and CTO of PolicyEngine. He
         previously worked at the UBI Center, a think tank researching universal
         basic income policies, and as a data scientist at Caspian, contributing
-        to improvements in anti-money laundering investigations. Nikhil earned
-        a bachelor's degree in Computer Science from the University of Durham.
+        to improvements in anti-money laundering investigations. Nikhil earned a
+        bachelor&apos;s degree in Computer Science from the University of
+        Durham.
       </p>
     </Col>
   );
@@ -75,11 +76,10 @@ export default function AboutPage() {
             <p>
               <b>Max Ghenis</b> is the co-founder and CEO of PolicyEngine. He
               previously founded the UBI Center, a think tank researching
-              universal basic income policies, and worked as a data scientist
-              at Google. Max has a bachelor&apos;s degree in Operations
-              Research and Management Science from UC Berkeley, and a
-              master&apos;s degree in Data, Economics, and Development Policy
-              from MIT.
+              universal basic income policies, and worked as a data scientist at
+              Google. Max has a bachelor&apos;s degree in Operations Research
+              and Management Science from UC Berkeley, and a master&apos;s
+              degree in Data, Economics, and Development Policy from MIT.
             </p>
           </Col>
         </Row>
