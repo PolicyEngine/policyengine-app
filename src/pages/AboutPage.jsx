@@ -11,12 +11,11 @@ export default function AboutPage() {
   const nikhilBio = (
     <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
       <p>
-        <b>Nikhil Woodruff</b> is the co-founder and CTO of PolicyEngine. He is
-        also the UK Research Director at the UBI Center, a think tank
-        researching universal basic income policies, and was previously a data
-        scientist at Caspian, where he worked in improving anti-money laundering
-        investigations. Nikhil has a bachelor&apos;s degree in Computer Science
-        from the University of Durham.
+        <b>Nikhil Woodruff</b> is the co-founder and CTO of PolicyEngine. He
+        previously worked at the UBI Center, a think tank researching universal
+        basic income policies, and as a data scientist at Caspian, contributing
+        to improvements in anti-money laundering investigations. Nikhil earned
+        a bachelor's degree in Computer Science from the University of Durham.
       </p>
     </Col>
   );
@@ -74,12 +73,13 @@ export default function AboutPage() {
           </Col>
           <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
             <p>
-              <b>Max Ghenis</b> is the co-founder and CEO of PolicyEngine. He is
-              also the founder and president of the UBI Center, a think tank
-              researching universal basic income policies, and was previously a
-              data scientist at Google. Max has a master&apos;s degree in Data,
-              Economics, and Development Policy from MIT and a bachelor&apos;s
-              degree in operations research from UC Berkeley.
+              <b>Max Ghenis</b> is the co-founder and CEO of PolicyEngine. He
+              previously founded the UBI Center, a think tank researching
+              universal basic income policies, and worked as a data scientist
+              at Google. Max has a bachelor&apos;s degree in Operations
+              Research and Management Science from UC Berkeley, and a
+              master&apos;s degree in Data, Economics, and Development Policy
+              from MIT.
             </p>
           </Col>
         </Row>
