@@ -15,7 +15,7 @@ import React, { useEffect, useState } from "react";
 import { useReadingTime } from "react-hook-reading-time";
 import { FacebookOutlined, LinkedinOutlined, MailOutlined, PrinterOutlined, TwitterOutlined } from "@ant-design/icons";
 import FontIcon from "./FontIcon";
-
+import { Authors } from "../data/Authors";
 
 export default function BlogPage() {
     // /uk/research/blog-slug-here
@@ -69,6 +69,7 @@ function PostBodySection({ post, markdown }) {
       </div>
       <div style={{flex: 4}}>
           <BlogContent markdown={markdown} />
+          <AuthorSection post={post} />
       </div>
       <div style={{flex: 1, marginLeft: 30 }}>
           <div style={{position: "sticky", top: 150}}>
@@ -88,6 +89,7 @@ function PostBodySection({ post, markdown }) {
       </div>
       <div style={{flex: 3}}>
           <BlogContent markdown={markdown} />
+          <AuthorSection post={post} />
       </div>
     </div>
   } else {
@@ -99,6 +101,7 @@ function PostBodySection({ post, markdown }) {
         </div>
       <div style={{flex: 1}}>
           <BlogContent markdown={markdown} />
+          <AuthorSection post={post} />
       </div>
       <div style={{flex: 1}}>
           <div style={{marginTop: 20}} />
@@ -189,6 +192,47 @@ function Authorship({ post }) {
   return <p className="spaced-sans-serif">
     {sentenceStructure}
     </p>
+}
+
+function AuthorSection({ post }) {
+  const countryId = useCountryId();
+  const authorDescriptions = post.authors.map((author) => <div key={author}
+    style= {{
+      display: "flex",
+      justifyContent: "start",
+      gap: 15,
+      padding: "1rem .5rem",
+      marginTop: 5,
+      borderTop: "4px solid lightgray",
+      width: "100%"
+  }}>
+    <img src={Authors[author].headshot} 
+    height={75}
+    width={75}
+    style={{
+      objectFit: "cover",
+    }}
+    />
+    <p className="spaced-sans-serif" style={{paddingTop: 5}}>
+      <span style={{color: style.colors.BLUE_PRIMARY}}>
+        <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link" 
+        style={{
+          // padding: "3px 4px", 
+          marginRight: 3,
+          fontSize: 15
+          }}>
+        {author.replaceAll("-", " ")}
+        </Link> 
+      </span><br></br>
+      <span style={{fontSize: 10}}>
+        {Authors[author].bio}
+      </span>
+    </p>
+  </div>);
+
+  return <ul className="spaced-sans-serif" style={{marginTop: 50}}>
+    {authorDescriptions}
+    </ul>
 }
 
 function MoreOn({post}) {
