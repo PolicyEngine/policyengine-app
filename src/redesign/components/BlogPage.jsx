@@ -217,7 +217,6 @@ function AuthorSection({ post }) {
       <span style={{color: style.colors.BLUE_PRIMARY}}>
         <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link" 
         style={{
-          // padding: "3px 4px", 
           marginRight: 3,
           fontSize: 15
           }}>
