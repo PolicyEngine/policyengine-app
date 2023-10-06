@@ -138,7 +138,11 @@ export function StatusPage() {
           }}
         >
           <h1>PolicyEngine API status</h1>
-          <iframe src="https://policyengine.betteruptime.com" width="1000" height="800"></iframe>
+          <iframe
+            src="https://policyengine.betteruptime.com"
+            width="1000"
+            height="800"
+          ></iframe>
           <section style={{ display: "flex", marginBottom: 2 }}>
             <div style={{ flex: "50", textAlign: "left" }}>
               <h3>Country pages</h3>

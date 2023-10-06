@@ -20,9 +20,9 @@ export function TopLeftLogo(props) {
         height: "100%",
         width: "218px",
         backgroundImage: `url(${PolicyEngineLogo})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'contain',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "contain",
       }}
     />
   );
@@ -81,12 +81,7 @@ function DesktopHeader(props) {
     "mailto:hello@policyengine.org",
     `/${countryId}/donate`,
   ];
-  const labels = [
-    "Research",
-    "About",
-    "Contact",
-    "Donate",
-  ];
+  const labels = ["Research", "About", "Contact", "Donate"];
   return (
     <>
       <div

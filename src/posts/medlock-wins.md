@@ -8,7 +8,7 @@ In [our March 23 blog post](https://policyengine.org/us/blog/medlock-donation-ca
 
 ![Medlock’s optimal donation size, assuming he and his wife each earn $100,000.](https://miro.medium.com/v2/0*BG6ygtFTdgcXdm_a)
 
-*Medlock’s optimal donation size, assuming he and his wife each earn $100,000.*
+_Medlock’s optimal donation size, assuming he and his wife each earn $100,000._
 
 Our free tax calculator and custom app informed Medlock and Srinivasan’s decision on a $500,000 donation to GiveDirectly, highlighting the impact of PolicyEngine’s tools in real-life decision-making scenarios.
 

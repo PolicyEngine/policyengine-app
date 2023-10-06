@@ -11,9 +11,9 @@ export default function HomeUsedBy() {
   const orgs = Object.values(orgData[countryId]);
 
   const itemsPerRow = {
-    mobile: 1,
-    tablet: 4,
-    desktop: 8,
+    mobile: 3,
+    tablet: 6,
+    desktop: 12,
   }[displayCategory];
 
   let rows = [];
@@ -23,19 +23,30 @@ export default function HomeUsedBy() {
   }
 
   return (
-    <Section backgroundColor={style.colors.WHITE} title="Used by">
+    <Section
+      backgroundColor={style.colors.WHITE}
+      title={`Trusted across the ${countryId.toUpperCase()}`}
+      titleStyle={{
+        fontFamily: "Roboto",
+        letterSpacing: 2.4,
+        fontWeight: 300,
+        fontSize: 20,
+        textTransform: "uppercase",
+      }}
+      centeredTitle
+    >
       {rows.map((row, i) => (
         <div
           key={i}
           style={{
             display: "flex",
             justifyContent: {
-              mobile: "space-around",
+              mobile: "center",
               tablet: "center",
               desktop: "center",
             }[displayCategory],
             marginBottom: 30,
-            marginTop: displayCategory !== "mobile" ? 50 : 0,
+            marginTop: 50,
           }}
         >
           {row.map((org) => (
@@ -52,7 +63,7 @@ function IndividualOrg({ name, logo, link }) {
   const size = {
     mobile: 80,
     tablet: 100,
-    desktop: 100,
+    desktop: 60,
   }[displayCategory];
   return (
     <a href={link}>
@@ -65,8 +76,8 @@ function IndividualOrg({ name, logo, link }) {
             tablet: "column",
             desktop: "column",
           }[displayCategory],
-          marginRight: 40,
-          marginLeft: 0,
+          marginRight: 20,
+          marginLeft: 20,
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -82,7 +93,6 @@ function IndividualOrg({ name, logo, link }) {
             marginBottom: displayCategory !== "mobile" ? 20 : 0,
           }}
         />
-        <h6 style={{ textTransform: "none", letterSpacing: 0.5 }}>{name}</h6>
       </div>
     </a>
   );

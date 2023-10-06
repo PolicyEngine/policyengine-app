@@ -55,23 +55,44 @@ function ReadMore() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
 
-  return <div style={{display: "flex", justifyContent: mobile ? "center" : "flex-end"}}>
-    <div style={{
-      margin: 40,
-    }}>
-      <EmphasisedLink text="Read more" url="/" size={14} />
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: mobile ? "center" : "flex-end",
+      }}
+    >
+      <div
+        style={{
+          margin: 40,
+        }}
+      >
+        <EmphasisedLink text="Read more" url="/" size={14} />
+      </div>
     </div>
-  </div>
+  );
 }
 
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
   return (
     <SectionBottom backgroundColor={style.colors.LIGHT_GRAY}>
-      <div style={{ marginTop: 50, display: "flex", flexDirection: "row", position: "relative" }}>
-        <div style={{width: "60%"}}>
-        <div style={{position: "sticky", top: style.spacing.HEADER_HEIGHT + 20}}>
-          <FeaturedBlogPreview blogs={featuredPosts} />
-        </div>
+      <div
+        style={{
+          marginTop: 50,
+          display: "flex",
+          flexDirection: "row",
+          position: "relative",
+        }}
+      >
+        <div style={{ width: "60%" }}>
+          <div
+            style={{
+              position: "sticky",
+              top: style.spacing.HEADER_HEIGHT + 20,
+            }}
+          >
+            <FeaturedBlogPreview blogs={featuredPosts} />
+          </div>
         </div>
         <div
           style={{
@@ -117,7 +138,7 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
 function TabletBlogPreview({ featuredPosts, allPosts }) {
   return (
     <SectionBottom>
-      <div style={{ marginTop: 50, display: "flex", flexDirection: "row",  }}>
+      <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
         <FeaturedBlogPreview blogs={featuredPosts} />
       </div>
       <div
@@ -177,16 +198,21 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
           marginTop: 40,
         }}
       >
-        <div style={{minWidth: 20}} />
+        <div style={{ minWidth: 20 }} />
         {featuredPosts.map((blog, i) => (
           <div
             key={i}
-            style={{ minWidth: 250, marginLeft: 20, marginRight: 20, height: "100%" }}
+            style={{
+              minWidth: 250,
+              marginLeft: 20,
+              marginRight: 20,
+              height: "100%",
+            }}
           >
             <MediumBlogPreview blog={blog} />
           </div>
         ))}
-        <div style={{minWidth: 20}} />
+        <div style={{ minWidth: 20 }} />
       </div>
       <SectionBottom>
         <div
@@ -205,7 +231,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
           <div style={{ height: 40 }} />
           <SmallBlogPreview blog={allPosts[8]} />
         </div>
-      <ReadMore />
+        <ReadMore />
       </SectionBottom>
     </div>
   );
@@ -225,35 +251,35 @@ function BlogBox({
   link;
   return (
     <Link to={link}>
-    <div
-      style={{
-        display: "flex",
-        border: noBorder ? null : `1px solid black`,
-        ...style,
-        flexDirection: "row",
-      }}
-    >
-      <div style={{display: "flex"}}>
-      {left}
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div>{topLeft}</div>
-          <div>{topRight}</div>
-        </div>
-        {children}
+      <div
+        style={{
+          display: "flex",
+          border: noBorder ? null : `1px solid black`,
+          ...style,
+          flexDirection: "row",
+        }}
+      >
+        <div style={{ display: "flex" }}>{left}</div>
         <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginTop: "auto",
-          }}
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
         >
-          <div>{bottomLeft}</div>
-          <div>{bottomRight}</div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div>{topLeft}</div>
+            <div>{topRight}</div>
+          </div>
+          {children}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "auto",
+            }}
+          >
+            <div>{bottomLeft}</div>
+            <div>{bottomRight}</div>
+          </div>
         </div>
       </div>
-    </div>
     </Link>
   );
 }
@@ -305,15 +331,15 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
         width: width || "100%",
       }}
     >
-    <Link to={`/${countryId}/research/${currentBlog.slug}`}>
-      <img
-        src={imageUrl}
-        width="100%"
-        height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
-        style={{
-          objectFit: "cover",
-        }}
-      />
+      <Link to={`/${countryId}/research/${currentBlog.slug}`}>
+        <img
+          src={imageUrl}
+          width="100%"
+          height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
+          style={{
+            objectFit: "cover",
+          }}
+        />
       </Link>
       <div
         style={{
@@ -360,45 +386,45 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
   return (
-    <Link to={link} style={{flex: 1}}>
-    <div
-      style={{
-        height: "100%",
-      }}
-    >
-      <div>
-        <img
-          src={imageUrl}
-          height={300}
-          width="100%"
-          style={{ objectFit: "cover" }}
-        />
-      </div>
-      <BlogBox
-        link={link}
+    <Link to={link} style={{ flex: 1 }}>
+      <div
         style={{
-          backgroundColor: blog.tags.includes(["in-the-news"])
-            ? style.colors.BLUE_LIGHT
-            : style.colors.LIGHT_GRAY,
-          minHeight: minHeight || (displayCategory === "mobile" ? 400 : 350),
-          maxHeight: displayCategory === "mobile" ? 400 : null,
+          height: "100%",
         }}
-        topLeft={<BlogTags tags={blog.tags} />}
-        bottomRight={
-          <div style={{ margin: 30 }}>
-            <EmphasisedLink text="Read" url="/" size={14} />
-          </div>
-        }
       >
-        <div style={{ padding: 20 }}>
-          <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
-            {moment(blog.date).format("MMMM D, YYYY")}
-          </p>
-          <h5>{blog.title}</h5>
-          <p>{blog.description}</p>
+        <div>
+          <img
+            src={imageUrl}
+            height={300}
+            width="100%"
+            style={{ objectFit: "cover" }}
+          />
         </div>
-      </BlogBox>
-    </div>
+        <BlogBox
+          link={link}
+          style={{
+            backgroundColor: blog.tags.includes(["in-the-news"])
+              ? style.colors.BLUE_LIGHT
+              : style.colors.LIGHT_GRAY,
+            minHeight: minHeight || (displayCategory === "mobile" ? 400 : 350),
+            maxHeight: displayCategory === "mobile" ? 400 : null,
+          }}
+          topLeft={<BlogTags tags={blog.tags} />}
+          bottomRight={
+            <div style={{ margin: 30 }}>
+              <EmphasisedLink text="Read" url="/" size={14} />
+            </div>
+          }
+        >
+          <div style={{ padding: 20 }}>
+            <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
+              {moment(blog.date).format("MMMM D, YYYY")}
+            </p>
+            <h5>{blog.title}</h5>
+            <p>{blog.description}</p>
+          </div>
+        </BlogBox>
+      </div>
     </Link>
   );
 }
@@ -410,7 +436,7 @@ function SideTags({ tags }) {
         display: "flex",
         flexDirection: "column",
         height: "100%",
-        backgroundColor: "red"
+        backgroundColor: "red",
       }}
     >
       {tags.slice(0, 2).map((tag, i) => (

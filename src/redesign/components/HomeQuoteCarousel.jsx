@@ -61,7 +61,7 @@ export function QuoteBox({ noArrows }) {
           <div
             style={{ display: "flex", justifyContent: "center", margin: 10 }}
           >
-            <ReadMoreAboutThisQuote author={currentQuote.name}/>
+            <ReadMoreAboutThisQuote author={currentQuote.name} />
           </div>
         )}
       </div>
@@ -103,7 +103,7 @@ function QuoteBio(props) {
           <QuoteAuthor author={author} />
         </div>
         <div style={{ marginLeft: "auto" }} />
-        <ReadMoreAboutThisQuote author={author}/>
+        <ReadMoreAboutThisQuote author={author} />
       </div>
     );
   } else {
@@ -181,7 +181,12 @@ function QuoteImages(props) {
   const { headshot, orgLogo, orgLink } = props;
   const displayCategory = useDisplayCategory();
   const headshotImg = (
-    <img key="headshot" src={headshot} alt="Headshot" style={{ height: 40, width: 40, objectFit: "cover" }} />
+    <img
+      key="headshot"
+      src={headshot}
+      alt="Headshot"
+      style={{ height: 40, width: 40, objectFit: "cover" }}
+    />
   );
   const orgLogoImg = (
     <img
@@ -215,12 +220,15 @@ function QuoteImages(props) {
   );
 }
 
-function ReadMoreAboutThisQuote({author}) {
+function ReadMoreAboutThisQuote({ author }) {
   const countryId = useCountryId();
   console.log(author);
   const slug = author?.replace(" ", "-").toLowerCase();
   return (
-    <Link to={`/${countryId}/about#${slug}`} className="highlighted-link spaced-sans-serif">
+    <Link
+      to={`/${countryId}/about#${slug}`}
+      className="highlighted-link spaced-sans-serif"
+    >
       More <FontIcon name="arrow_forward" size={15} />
     </Link>
   );

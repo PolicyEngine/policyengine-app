@@ -43,7 +43,7 @@ export default function VariableEditor(props) {
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
     (entity) => householdInput[entityPlural][entity][variable.name]
   );
-  
+
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity
@@ -208,9 +208,7 @@ function HouseholdVariableEntityInput(props) {
         onChange={submitValue}
         placeholder={
           reformValue !== null
-            ? `${formatValue(
-                reformValue
-              )}`
+            ? `${formatValue(reformValue)}`
             : formatValue(inputValue || simulatedValue)
         }
         autofocus={true}

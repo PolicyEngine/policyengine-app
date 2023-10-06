@@ -19,7 +19,7 @@ const useDisplayCategory = () => {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
     determineDisplayCategory(window.innerWidth)
   );
-    
+
   useEffect(() => {
     const handler = () =>
       setcurrentDisplayCategory(determineDisplayCategory(window.innerWidth));

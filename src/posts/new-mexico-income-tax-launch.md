@@ -1,4 +1,4 @@
-*We’re grateful to the [**Gerald Huff Fund for Humanity**](https://fundforhumanity.org/), which funded the development of this PolicyEngine feature and report.*
+_We’re grateful to the [**Gerald Huff Fund for Humanity**](https://fundforhumanity.org/), which funded the development of this PolicyEngine feature and report._
 
 Today we’ve added New Mexico income taxes to PolicyEngine, enabling any New Mexican to estimate their own income taxes, as well as to design a state tax policy reform and see how it affects their household and the state overall. Here we describe New Mexico’s tax system and show it in action.
 
@@ -8,19 +8,19 @@ New Mexico uses a progressive tax system on individual income, meaning the tax r
 
 New Mexico also provides several rebates and refundable income tax credits:
 
-* **Earned Income Tax Credit:** 25% of the federal EITC, also including filers age 18–24 without children
+- **Earned Income Tax Credit:** 25% of the federal EITC, also including filers age 18–24 without children
 
-* **Child and Dependent Care Credit:** Up to 40% of the federal CDCC
+- **Child and Dependent Care Credit:** Up to 40% of the federal CDCC
 
-* **Child Tax Credit:** Up to $600 per child
+- **Child Tax Credit:** Up to $600 per child
 
-* **Unreimbursed Medical Care Expense Credit:** Up to $2,800 per filer
+- **Unreimbursed Medical Care Expense Credit:** Up to $2,800 per filer
 
-* **Low income comprehensive tax rebate:** Up to $730 per filer
+- **Low income comprehensive tax rebate:** Up to $730 per filer
 
-* **Property tax rebate:** Up to $250 per filer
+- **Property tax rebate:** Up to $250 per filer
 
-* **Rebates for 2021 only:** Up to $2,500 per filer ($500 main, $1,000 additional, $1,000 supplemental)
+- **Rebates for 2021 only:** Up to $2,500 per filer ($500 main, $1,000 additional, $1,000 supplemental)
 
 PolicyEngine now models these rules from 2021 to 2023 (as available).
 
@@ -34,7 +34,7 @@ This filer would have negative [net state tax liability](https://policyengine.or
 
 ![](https://cdn-images-1.medium.com/max/3104/0*l58k4e3xc5HUKbBZ)
 
-To show the effect of the state’s income taxes on marginal tax rates, we can abolish New Mexico income taxes (separately as before refundable credits and refundable credits) and swap the baseline and reform. From there, view the [marginal tax rate chart](https://policyengine.org/us/household?focus=householdOutput.mtr&household=33113&region=us&timePeriod=2023&baseline=22176&reform=2) and select *Difference*.
+To show the effect of the state’s income taxes on marginal tax rates, we can abolish New Mexico income taxes (separately as before refundable credits and refundable credits) and swap the baseline and reform. From there, view the [marginal tax rate chart](https://policyengine.org/us/household?focus=householdOutput.mtr&household=33113&region=us&timePeriod=2023&baseline=22176&reform=2) and select _Difference_.
 
 ![](https://cdn-images-1.medium.com/max/3076/0*wC8StujJOgS34Kj4)
 
@@ -44,13 +44,13 @@ As the filer earns up to $15,000 or so, their state tax credits and rebates phas
 
 Simulating over the 2021 Current Population Survey, and reversing the abolition of New Mexico taxes, we can estimate the impact of New Mexico’s state income taxes. PolicyEngine estimates that the full system:
 
-* [Raises $1.3 billion per year](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=nm&timePeriod=2023&baseline=22000)
+- [Raises $1.3 billion per year](https://policyengine.org/us/policy?focus=policyOutput.netIncome&reform=2&region=nm&timePeriod=2023&baseline=22000)
 
-* [Benefits 41% of New Mexicans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2), including 96% of those in the bottom income decile and 0% in the top income decile
+- [Benefits 41% of New Mexicans](https://policyengine.org/us/policy?focus=policyOutput.intraDecileImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2), including 96% of those in the bottom income decile and 0% in the top income decile
 
-* Lowers the Gini index of [income inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2) by 3.6%
+- Lowers the Gini index of [income inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&household=32970&region=nm&timePeriod=2023&baseline=21992&reform=2) by 3.6%
 
-* Has no discernible impact on [poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=nm&timePeriod=2023&baseline=22000) or [cliffs](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=2&region=nm&timePeriod=2023&baseline=22000)
+- Has no discernible impact on [poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact&reform=2&region=nm&timePeriod=2023&baseline=22000) or [cliffs](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=2&region=nm&timePeriod=2023&baseline=22000)
 
 ![](https://cdn-images-1.medium.com/max/3064/1*mT4JTaCi2c6PT1eIG69epg.png)
 

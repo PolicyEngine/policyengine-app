@@ -75,22 +75,24 @@ function DesktopHeaderBar() {
 function MobileHeaderLogo() {
   const countryId = useCountryId();
   return (
-    <Link to={`/${countryId}`}><div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        maxWidth: "20vw",
-      }}
-    >
-      <img
-        src={PolicyEngineSmallLogo}
-        alt="PolicyEngine logo"
+    <Link to={`/${countryId}`}>
+      <div
         style={{
-          height: 50,
-          margin: 20,
+          display: "flex",
+          alignItems: "center",
+          maxWidth: "20vw",
         }}
-      />
-    </div></Link>
+      >
+        <img
+          src={PolicyEngineSmallLogo}
+          alt="PolicyEngine logo"
+          style={{
+            height: 50,
+            margin: 20,
+          }}
+        />
+      </div>
+    </Link>
   );
 }
 
@@ -242,10 +244,11 @@ function PageLinks() {
                 fontWeight: 500,
                 letterSpacing: 2.4,
                 textTransform: "uppercase",
+                width: 150,
               }}
             >
               <HoverBox
-                hoverBackgroundColor={style.colors.WHITE}
+                hoverBackgroundColor={style.colors.BLUE_LIGHT}
                 direction="bottom"
               >
                 <motion.div

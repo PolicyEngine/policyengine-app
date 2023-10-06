@@ -691,24 +691,30 @@ for (let post of posts) {
   post.slug = post.filename.replace(".md", "");
 }
 
-const tags = posts.map(post => post.tags);
+const tags = posts.map((post) => post.tags);
 const uniqueTags = [...new Set([].concat(...tags))].sort();
 
-const locationTags = uniqueTags.filter(tag => ["us", "uk", "ng", "ca", "global"].some(countryId => tag.startsWith(countryId + "-") || tag === countryId))
-const topicTags = uniqueTags.filter(tag => !locationTags.includes(tag)).sort();
+const locationTags = uniqueTags.filter((tag) =>
+  ["us", "uk", "ng", "ca", "global"].some(
+    (countryId) => tag.startsWith(countryId + "-") || tag === countryId
+  )
+);
+const topicTags = uniqueTags
+  .filter((tag) => !locationTags.includes(tag))
+  .sort();
 
 const topicLabels = {
-  "featured": "Featured",
-  "impact": "Impact",
-  "policy": "Policy analysis",
-  "technical": "Technical report",
-}
+  featured: "Featured",
+  impact: "Impact",
+  policy: "Policy analysis",
+  technical: "Technical report",
+};
 
 const locationLabels = {
-  "us": "United States",
-  "uk": "United Kingdom",
-  "global": "Global",
-  "ng": "Nigeria",
+  us: "United States",
+  uk: "United Kingdom",
+  global: "Global",
+  ng: "Nigeria",
   "us-dc": "District of Columbia, U.S.",
   "us-ak": "Alaska, U.S.",
   "us-al": "Alabama, U.S.",
@@ -762,5 +768,11 @@ const locationLabels = {
   "us-wy": "Wyoming, U.S.",
 };
 
-
-export { posts, locationTags, uniqueTags, topicTags, locationLabels, topicLabels };
+export {
+  posts,
+  locationTags,
+  uniqueTags,
+  topicTags,
+  locationLabels,
+  topicLabels,
+};

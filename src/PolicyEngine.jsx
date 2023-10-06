@@ -1,7 +1,5 @@
 import "./style/App.css";
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import PolicyEngineCountry from "./redesign/PolicyEngine";
 import gtag from "./api/analytics";
 import { motion } from "framer-motion";
@@ -47,14 +45,13 @@ function CookieConsent() {
       document.cookie = "consent=granted;max-age=31536000;path=/";
     }, 500);
 
-    
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'analytics_storage': 'denied'
+    gtag("consent", "default", {
+      ad_storage: "denied",
+      analytics_storage: "denied",
     });
     gtag("js", new Date());
     gtag("config", "G-91M4529HE7");
-  }
+  };
 
   const noCookies = () => {
     // Give animation time to finish
@@ -62,40 +59,56 @@ function CookieConsent() {
     setTimeout(() => {
       setShow(false);
     }, 500);
-  }
+  };
 
   const mobile = useMobile();
   searchParams;
   return (
     <>
-    {show && !searchParams.get("embed") && 
-      <motion.div
-        initial={{ opacity: 0, y: 200 }}
-        animate={{ opacity: accepted ? 0 : 1, y: accepted ? 200 : 0 }}
-        transition={{ 
-          duration: 0.25,
-          ease: "easeInOut",
-        }}
-        className="cookie-consent"
-        style={{ 
-          position: "fixed", bottom: 20, left: 0,
-          padding: "1em", background: style.colors.WHITE,
-          zIndex: 1000, borderRadius: 50, x: mobile ? 0 : "30vw",
-          display: "flex", alignItems: "center",
-          flexDirection: mobile ? "column" : "row",
-          boxShadow: "0 0 10px rgba(0,0,0,0.2)",
-          paddingLeft: 20, paddingRight: 20,
-      }}
-      >
-        <p style={{margin: 0, marginBottom: mobile && 10, marginTop: 10}}>
-          This site uses cookies to improve your experience.
-        </p>
-        <div style={{display: "flex"}}>
-        <Button onClick={acceptCookies} text="Accept" style={{marginLeft: 20}} primary/>
-        <Button onClick={noCookies} text="Decline" style={{marginLeft: 20}} />
-        </div>
-      </motion.div>
-    }
+      {show && !searchParams.get("embed") && (
+        <motion.div
+          initial={{ opacity: 0, y: 200 }}
+          animate={{ opacity: accepted ? 0 : 1, y: accepted ? 200 : 0 }}
+          transition={{
+            duration: 0.25,
+            ease: "easeInOut",
+          }}
+          className="cookie-consent"
+          style={{
+            position: "fixed",
+            bottom: 20,
+            left: 0,
+            padding: "1em",
+            background: style.colors.WHITE,
+            zIndex: 1000,
+            borderRadius: 50,
+            x: mobile ? 0 : "30vw",
+            display: "flex",
+            alignItems: "center",
+            flexDirection: mobile ? "column" : "row",
+            boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+            paddingLeft: 20,
+            paddingRight: 20,
+          }}
+        >
+          <p style={{ margin: 0, marginBottom: mobile && 10, marginTop: 10 }}>
+            This site uses cookies to improve your experience.
+          </p>
+          <div style={{ display: "flex" }}>
+            <Button
+              onClick={acceptCookies}
+              text="Accept"
+              style={{ marginLeft: 20 }}
+              primary
+            />
+            <Button
+              onClick={noCookies}
+              text="Decline"
+              style={{ marginLeft: 20 }}
+            />
+          </div>
+        </motion.div>
+      )}
     </>
   );
 }
@@ -116,10 +129,10 @@ clearCookies;
 export default function PolicyEngine() {
   return (
     <>
-    <Router>
-      <PolicyEngineCountry />
-    </Router>
-    <CookieConsent />
+      <Router>
+        <PolicyEngineCountry />
+      </Router>
+      <CookieConsent />
     </>
   );
 }

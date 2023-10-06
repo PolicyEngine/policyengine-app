@@ -1,14 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { plotLayoutFont } from 'pages/policy/output/utils';
-import { PovertyChangeContext } from './PovertyChangeContext';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { plotLayoutFont } from "pages/policy/output/utils";
+import { PovertyChangeContext } from "./PovertyChangeContext";
 import React, { useRef } from "react";
 
 export default function PovertyImpact(props) {
@@ -92,7 +92,7 @@ export default function PovertyImpact(props) {
             r: 0,
           },
           height: mobile ? 300 : 500,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -111,16 +111,16 @@ export default function PovertyImpact(props) {
           } in poverty ${
             change < -0.001
               ? `would fall ${percent(-change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-              : change > 0.001
-                ? `would rise ${percent(change)} from ${percent(
                   baseline
                 )} to ${percent(reform)}.`
-                : change === 0
-                  ? `would remain at ${percent(baseline)}.`
-                  : (change > 0 ? "would rise " : "would fall ") +
-                  ` by less than 0.1%.`
+              : change > 0.001
+              ? `would rise ${percent(change)} from ${percent(
+                  baseline
+                )} to ${percent(reform)}.`
+              : change === 0
+              ? `would remain at ${percent(baseline)}.`
+              : (change > 0 ? "would rise " : "would fall ") +
+                ` by less than 0.1%.`
           }`;
           setHoverCard({
             title: group,
@@ -148,11 +148,11 @@ export default function PovertyImpact(props) {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ['Age Group', 'Baseline', 'Reform', 'Change'];
+  const csvHeader = ["Age Group", "Baseline", "Reform", "Change"];
   const data = [
     csvHeader,
     ...povertyLabels.map((label) => {
@@ -180,18 +180,19 @@ export default function PovertyImpact(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard>
-          <PovertyImpactPlot/>
+          <PovertyImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename={`povertyImpactByAge${policyLabel}.csv`}
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`povertyImpactByAge${policyLabel}.csv`}
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in the poverty rate for each
         age group.

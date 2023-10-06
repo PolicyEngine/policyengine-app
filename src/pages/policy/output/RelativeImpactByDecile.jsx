@@ -3,12 +3,12 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
-import DownloadCsvButton from './DownloadCsvButton';
-import { avgChangeDirection, plotLayoutFont } from './utils';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React, { useRef } from "react";
 
 export default function RelativeImpactByDecile(props) {
@@ -62,7 +62,7 @@ export default function RelativeImpactByDecile(props) {
             l: 60,
           },
           height: mobile ? 300 : 500,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -78,16 +78,18 @@ export default function RelativeImpactByDecile(props) {
           const message =
             relativeChange > 0.001
               ? `This reform would raise the income of households in the ${decile} decile by an average of ${percent(
-                relativeChange
-              )}.`
+                  relativeChange
+                )}.`
               : relativeChange < -0.001
-                ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
+              ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
                   -relativeChange
                 )}.`
-                : relativeChange === 0
-                  ?  `This reform would not impact the income of households in the ${decile} decile.`
-                  : (relativeChange > 0 ? "This reform would raise " : "This reform would lower ") +
-                  ` the income of households in the ${decile} decile by less than 0.1%.`;
+              : relativeChange === 0
+              ? `This reform would not impact the income of households in the ${decile} decile.`
+              : (relativeChange > 0
+                  ? "This reform would raise "
+                  : "This reform would lower ") +
+                ` the income of households in the ${decile} decile by less than 0.1%.`;
           setHoverCard({
             title: `Decile ${data.points[0].x}`,
             body: message,
@@ -102,50 +104,58 @@ export default function RelativeImpactByDecile(props) {
 
   const averageRelChange =
     -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
-  
+
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ['Income Decile', 'Relative Change'];
+  const csvHeader = ["Income Decile", "Relative Change"];
   const data = [
     csvHeader,
-    ...Object.entries(impact.decile.relative).map(([decile, relativeChange]) => {
-      return [decile, relativeChange];
-    }),
+    ...Object.entries(impact.decile.relative).map(
+      ([decile, relativeChange]) => {
+        return [decile, relativeChange];
+      }
+    ),
   ];
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "40px",
     left: "55px",
-  };  
-    
+  };
+
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
-          {`${policyLabel} ${avgChangeDirection(averageRelChange)} the net income of households ${label} by ${
-            formatVariableValue({ unit: "/1" }, Math.abs(averageRelChange), 1)} on average`}
+        <h2 style={{ width: "700px", wordWrap: "break-word" }}>
+          {`${policyLabel} ${avgChangeDirection(
+            averageRelChange
+          )} the net income of households ${label} by ${formatVariableValue(
+            { unit: "/1" },
+            Math.abs(averageRelChange),
+            1
+          )} on average`}
         </h2>
         <HoverCard>
-          <RelativeImpactByDecilePlot/>
+          <RelativeImpactByDecilePlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename={`relativeImpactByDecile${policyLabel}.csv`}
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`relativeImpactByDecile${policyLabel}.csv`}
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in income for each income
         decile. Households are sorted into ten equally-populated groups

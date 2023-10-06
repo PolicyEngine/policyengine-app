@@ -53,14 +53,16 @@ export default function PageHeader({
           {subtitle && <h5 style={{ marginTop: 20 }}>{subtitle}</h5>}
         </div>
         {divider}
-        <div style={{
-          maxWidth: displayCategory === "mobile" ? "100%" : 800,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
-        }}>
-        {children}
+        <div
+          style={{
+            maxWidth: displayCategory === "mobile" ? "100%" : 800,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          {children}
         </div>
       </div>
     </Section>

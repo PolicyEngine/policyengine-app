@@ -1,16 +1,16 @@
 On Tuesday, Representatives Nicole Malliotakis (R-NY-11) and Michelle Steel (R-CA-45) introduced the [Working Families Tax Cut Act (WFTCA](https://waysandmeans.house.gov/malliotakis-steel-lead-legislation-to-provide-tax-relief-to-working-families/)) in the House, proposing a broad tax cut through increasing the federal standard deduction.
 
-The standard deduction (which the [bill](https://acrobat.adobe.com/link/review?uri=urn:aaid:scds:US:f2203ce9-a41a-3a28-8b45-509e0b364e45) renames to *“Guaranteed Deduction”*) reduces taxable income for taxpayers who choose not to itemize their deductions. The proposals would increase it by between $2,000 and $4,000 depending on filing status in 2024 and 2025.
+The standard deduction (which the [bill](https://acrobat.adobe.com/link/review?uri=urn:aaid:scds:US:f2203ce9-a41a-3a28-8b45-509e0b364e45) renames to _“Guaranteed Deduction”_) reduces taxable income for taxpayers who choose not to itemize their deductions. The proposals would increase it by between $2,000 and $4,000 depending on filing status in 2024 and 2025.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*WkVYnCrwjLgDdnQp)
 
 The bill reduces this additional standard deduction by 5% of adjusted gross income exceeding:
 
-* $200,000 for single and separate filers
+- $200,000 for single and separate filers
 
-* $300,000 for head of household filers
+- $300,000 for head of household filers
 
-* $400,000 for married and widowed filers
+- $400,000 for married and widowed filers
 
 [**See how the Working Families Tax Credit Act would affect you.**](https://policyengine.org/us/household?focus=intro&reform=14512&region=us&timePeriod=2023&baseline=2)
 

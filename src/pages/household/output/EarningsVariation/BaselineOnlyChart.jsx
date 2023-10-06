@@ -9,8 +9,8 @@ import {
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
-import HoverCard, {HoverCardContext} from "../../../../layout/HoverCard";
-import { plotLayoutFont } from 'pages/policy/output/utils';
+import HoverCard, { HoverCardContext } from "../../../../layout/HoverCard";
+import { plotLayoutFont } from "pages/policy/output/utils";
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import useMobile from "layout/Responsive";
@@ -62,94 +62,96 @@ export default function BaselineOnlyChart(props) {
     return (
       <FadeIn key="baseline">
         <Screenshottable title="Household net income by employment income">
-        <Plot
-          key="baseline"
-          data={[
-            ...(variable === "household_net_income"
-              ? getCliffs(netIncomeArray, earningsArray)
-              : []),
-            {
-              x: earningsArray,
-              y: netIncomeArray,
-              type: "line",
-              name: capitalize(variableLabel),
-              line: {
-                color: style.colors.BLUE,
+          <Plot
+            key="baseline"
+            data={[
+              ...(variable === "household_net_income"
+                ? getCliffs(netIncomeArray, earningsArray)
+                : []),
+              {
+                x: earningsArray,
+                y: netIncomeArray,
+                type: "line",
+                name: capitalize(variableLabel),
+                line: {
+                  color: style.colors.BLUE,
+                },
+                hoverinfo: "none",
               },
-              hoverinfo: "none",
-            },
-            {
-              x: [currentEarnings],
-              y: [currentNetIncome],
-              type: "line",
-              mode: "markers",
-              name: `Your current ${variableLabel}`,
-              line: {
-                color: style.colors.BLUE,
+              {
+                x: [currentEarnings],
+                y: [currentNetIncome],
+                type: "line",
+                mode: "markers",
+                name: `Your current ${variableLabel}`,
+                line: {
+                  color: style.colors.BLUE,
+                },
+                hoverinfo: "none",
               },
-              hoverinfo: "none",
-            },
-          ]}
-          layout={{
-            xaxis: {
-              title: "Household head employment income",
-              ...getPlotlyAxisFormat(metadata.variables.employment_income.unit),
-              tickformat: ",.0f",
-              uirevision: metadata.variables.employment_income.unit,
-            },
-            yaxis: {
-              title: {
-                text: capitalize(variableLabel),
+            ]}
+            layout={{
+              xaxis: {
+                title: "Household head employment income",
+                ...getPlotlyAxisFormat(
+                  metadata.variables.employment_income.unit
+                ),
+                tickformat: ",.0f",
+                uirevision: metadata.variables.employment_income.unit,
               },
-              ...getPlotlyAxisFormat(
-                metadata.variables[variable].unit,
-                0,
-                null,
-                metadata.variables[variable].valueType
-              ),
-              tickformat: ",.0f",
-              uirevision: metadata.variables[variable].unit,
-            },
-            legend: {
-              // Position above the plot
-              y: 1.2,
-              orientation: "h",
-            },
-            ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
-            margin: {
-              t: 0,
-            },
-            ...plotLayoutFont
-          }}
-          config={{
-            displayModeBar: false,
-            responsive: true,
-          }}
-          style={{
-            width: "100%",
-          }}
-          onHover={(data) => {
-            if (
-              data.points[0].x !== undefined &&
-              data.points[0].y !== undefined
-            ) {
-              const variableLabelAmount = convertToCurrencyString(
-                metadata.currency,
-                data.points[0].y
-              );
-              const employmentIncome = convertToCurrencyString(
-                metadata.currency,
-                data.points[0].x
-              );
-              const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
-              setHoverCard({
-                title: data.points[0].data.name,
-                body: message,
-              });
-            } else {
-              setHoverCard({
-                title: data.points[0].data.name,
-                body: `Your net income falls after earning 
+              yaxis: {
+                title: {
+                  text: capitalize(variableLabel),
+                },
+                ...getPlotlyAxisFormat(
+                  metadata.variables[variable].unit,
+                  0,
+                  null,
+                  metadata.variables[variable].valueType
+                ),
+                tickformat: ",.0f",
+                uirevision: metadata.variables[variable].unit,
+              },
+              legend: {
+                // Position above the plot
+                y: 1.2,
+                orientation: "h",
+              },
+              ...ChartLogo(mobile ? 0.97 : 1.05, mobile ? -0.25 : -0.17),
+              margin: {
+                t: 0,
+              },
+              ...plotLayoutFont,
+            }}
+            config={{
+              displayModeBar: false,
+              responsive: true,
+            }}
+            style={{
+              width: "100%",
+            }}
+            onHover={(data) => {
+              if (
+                data.points[0].x !== undefined &&
+                data.points[0].y !== undefined
+              ) {
+                const variableLabelAmount = convertToCurrencyString(
+                  metadata.currency,
+                  data.points[0].y
+                );
+                const employmentIncome = convertToCurrencyString(
+                  metadata.currency,
+                  data.points[0].x
+                );
+                const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
+                setHoverCard({
+                  title: data.points[0].data.name,
+                  body: message,
+                });
+              } else {
+                setHoverCard({
+                  title: data.points[0].data.name,
+                  body: `Your net income falls after earning 
                 ${convertToCurrencyString(
                   metadata.currency,
                   Math.min(...data.points[0].data.x)
@@ -158,13 +160,13 @@ export default function BaselineOnlyChart(props) {
                   metadata.currency,
                   Math.max(...data.points[0].data.x)
                 )}.`,
-              });
-            }
-          }}
-          onUnhover={() => {
-            setHoverCard(null);
-          }}
-        />
+                });
+              }
+            }}
+            onUnhover={() => {
+              setHoverCard(null);
+            }}
+          />
         </Screenshottable>
       </FadeIn>
     );
@@ -172,7 +174,7 @@ export default function BaselineOnlyChart(props) {
 
   return (
     <HoverCard>
-      <BaselineOnlyPlot/>
+      <BaselineOnlyPlot />
     </HoverCard>
   );
 }

@@ -84,7 +84,7 @@ export default function CountrySelector(props) {
     us: USLogo,
     ca: CALogo,
     ng: NGLogo,
-    il: ILLogo
+    il: ILLogo,
   }[countryId];
 
   // Only show on the homepage (/uk and /us)
@@ -104,7 +104,7 @@ export default function CountrySelector(props) {
     { label: USLogo, onClick: () => navigateToCountry("us") },
     { label: CALogo, onClick: () => navigateToCountry("ca") },
     { label: NGLogo, onClick: () => navigateToCountry("ng") },
-    { label: ILLogo, onClick: () => navigateToCountry("il")}
+    { label: ILLogo, onClick: () => navigateToCountry("il") },
   ];
 
   const items = itemsList.filter((item) => item.label !== countryLabel);

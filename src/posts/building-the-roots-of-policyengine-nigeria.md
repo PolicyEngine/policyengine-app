@@ -12,11 +12,11 @@ Next, provide information about your marital status, number of children, their a
 
 After entering your data, the app shows a breakdown of your disposable income, including market income, taxes, and benefits. We currently only model Nigeria’s personal income tax.
 
-* Market income: Total income from non-government sources (e.g., employment or dividend income).
+- Market income: Total income from non-government sources (e.g., employment or dividend income).
 
-* Tax: Government programs reducing your net income, such as personal income tax. PolicyEngine models Nigeria’s core rate structure, consolidated relief allowance, tax-exempt threshold, and minimum tax.
+- Tax: Government programs reducing your net income, such as personal income tax. PolicyEngine models Nigeria’s core rate structure, consolidated relief allowance, tax-exempt threshold, and minimum tax.
 
-* Benefits: Government payments or subsidies received, like child benefits or tax credits. PolicyEngine Nigeria does not currently model any benefits.
+- Benefits: Government payments or subsidies received, like child benefits or tax credits. PolicyEngine Nigeria does not currently model any benefits.
 
 Consider an [individual with ₦1,000,000 earnings](https://policyengine.org/ng/household?focus=householdOutput.netIncome&household=30071) ($2,170 USD, roughly Nigeria’s GDP per capita). We calculate that they would owe ₦54,000 in tax.
 
