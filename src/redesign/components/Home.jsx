@@ -13,11 +13,11 @@ export default function Home() {
     <div>
       <Header />
       <HomeLanding />
+      <HomeUsedBy />
       <HomeBlogPreview />
       <HomeCallToAction />
       <HomeSubscribe />
       <HomePolicyEngineFeatures />
-      <HomeUsedBy />
       <HomeTransparency />
       <Footer />
     </div>

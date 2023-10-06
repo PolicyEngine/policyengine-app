@@ -134,7 +134,9 @@ function VariableArithmetic(props) {
           householdReform,
           metadata
         ) !== 0;
-      return isNonZeroInBaseline || isNonZeroInReform || forceShowChildValuesIfZero;
+      return (
+        isNonZeroInBaseline || isNonZeroInReform || forceShowChildValuesIfZero
+      );
     };
   } else {
     valueStr = (
@@ -161,8 +163,8 @@ function VariableArithmetic(props) {
           null,
           householdBaseline,
           metadata
-        ) !== 0
-      ) || forceShowChildValuesIfZero;
+        ) !== 0 || forceShowChildValuesIfZero
+      );
     };
   }
 

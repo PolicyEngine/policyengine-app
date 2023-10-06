@@ -3,12 +3,12 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { cardinal } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { avgChangeDirection, plotLayoutFont } from './utils';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React, { useRef } from "react";
 
 export default function AverageImpactByWealthDecile(props) {
@@ -62,7 +62,7 @@ export default function AverageImpactByWealthDecile(props) {
             r: 20,
           },
           height: mobile ? 300 : 500,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -78,20 +78,20 @@ export default function AverageImpactByWealthDecile(props) {
           const message =
             change > 0.0001
               ? `This reform raises the income of households in the ${decile} wealth decile by an average of ${formatVariableValue(
-                metadata.variables.household_net_income,
-                change,
-                0
-              )} per year.`
+                  metadata.variables.household_net_income,
+                  change,
+                  0
+                )} per year.`
               : change < -0.0001
-                ? `This reform lowers the income of households in the ${decile} wealth decile by an average of ${formatVariableValue(
+              ? `This reform lowers the income of households in the ${decile} wealth decile by an average of ${formatVariableValue(
                   metadata.variables.household_net_income,
                   -change,
                   0
                 )} per year.`
-                : change === 0
-                  ? `This reform has no impact on the income of households in the ${decile} wealth decile.`
-                  : (change > 0 ? "This reform raises " : "This reform lowers ") +
-                  ` the income of households in the ${decile} wealth decile by less than 0.01%.`;
+              : change === 0
+              ? `This reform has no impact on the income of households in the ${decile} wealth decile.`
+              : (change > 0 ? "This reform raises " : "This reform lowers ") +
+                ` the income of households in the ${decile} wealth decile by less than 0.01%.`;
           setHoverCard({
             title: `Decile ${data.points[0].x}`,
             body: message,
@@ -106,52 +106,52 @@ export default function AverageImpactByWealthDecile(props) {
 
   const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
-  
+
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
-  const screenshotRef = useRef(); 
+  const screenshotRef = useRef();
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  const data = Object.entries(impact.wealth_decile.average).map(([key, value]) => [
-    `Decile ${key}`,
-    value,
-  ]);    
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
+  const data = Object.entries(impact.wealth_decile.average).map(
+    ([key, value]) => [`Decile ${key}`, value]
+  );
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "40px",
     left: "55px",
-  };  
+  };
 
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2 style={{ width: '700px', wordWrap: 'break-word' }}>
-          {`${policyLabel} ${avgChangeDirection(averageChange)} the net income of households ${label} by ${
-            formatVariableValue(
+        <h2 style={{ width: "700px", wordWrap: "break-word" }}>
+          {`${policyLabel} ${avgChangeDirection(
+            averageChange
+          )} the net income of households ${label} by ${formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),
             0
           )} on average`}
         </h2>
         <HoverCard>
-          <AverageImpactByWealthDecilePlot/>
+          <AverageImpactByWealthDecilePlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container"> 
-          {!mobile &&
-            <DownloadCsvButton 
-              preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename={`absoluteImpactByWealthDecile${policyLabel}.csv`}
-              style={downloadButtonStyle}
-            />
-          }
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`absoluteImpactByWealthDecile${policyLabel}.csv`}
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in income for each wealth
         decile. Households are sorted into ten equally-populated groups

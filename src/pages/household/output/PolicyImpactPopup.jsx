@@ -16,7 +16,10 @@ export default function PolicyImpactPopup(props) {
         {metadata.countryId === "us" ? (
           <p>
             PolicyEngine estimates reform impacts using microsimulation.{" "}
-            <a href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis" target="_blank">
+            <a
+              href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis"
+              target="_blank"
+            >
               Learn more
             </a>
           </p>

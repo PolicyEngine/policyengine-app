@@ -42,7 +42,7 @@ function SubscribeToPolicyEngineDesktop() {
       }}
     >
       <div style={{ width: "40vw" }}>
-        <h2 style={{color: "white"}}>Subscribe to PolicyEngine</h2>
+        <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <div style={{ width: "40vw" }}>
@@ -51,7 +51,7 @@ function SubscribeToPolicyEngineDesktop() {
           placeholder="Enter your email address"
           width={500}
         />
-        <div style={{marginTop: 20}} />
+        <div style={{ marginTop: 20 }} />
         <ActionButton text="Subscribe" onClick={() => {}} width={500} />
       </div>
     </div>
@@ -69,7 +69,7 @@ function SubscribeToPolicyEngineTablet() {
       }}
     >
       <div style={{ width: "40vw", paddingRight: 50 }}>
-        <h2 style={{color: "white"}}>Subscribe to PolicyEngine</h2>
+        <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <div style={{ width: "40vw" }}>
@@ -78,7 +78,7 @@ function SubscribeToPolicyEngineTablet() {
           placeholder="Enter your email address"
           width={400}
         />
-        <div style={{marginTop: 20}} />
+        <div style={{ marginTop: 20 }} />
         <ActionButton text="Subscribe" onClick={() => {}} width={400} />
       </div>
     </div>
@@ -94,7 +94,7 @@ export function SubscribeToPolicyEngineMobile() {
       }}
     >
       <div style={{ marginBottom: 50 }}>
-        <h2 style={{color: "white"}}>Subscribe to PolicyEngine</h2>
+        <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <div>
@@ -103,7 +103,7 @@ export function SubscribeToPolicyEngineMobile() {
           placeholder="Enter your email address"
           width="100%"
         />
-        <div style={{marginTop: 20}} />
+        <div style={{ marginTop: 20 }} />
         <ActionButton
           text="Subscribe"
           onClick={() => {}}

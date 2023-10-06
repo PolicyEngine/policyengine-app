@@ -30,7 +30,7 @@ export default function Carousel(props) {
       arrow_back
     </span>
   );
-      noArrows;
+  noArrows;
   leftArrow = isDesktop ? leftArrow : null;
 
   let rightArrow = (
@@ -70,7 +70,7 @@ export default function Carousel(props) {
       }}
     >
       {!noArrows && leftArrow}
-      {noArrows && <div style={{height: 50}} />}
+      {noArrows && <div style={{ height: 50 }} />}
       <div style={{ marginTop: 0 }} />
       {Array(total)
         .fill(0)

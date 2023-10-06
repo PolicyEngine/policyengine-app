@@ -13,7 +13,10 @@ export default function About() {
     <div>
       <Header />
       <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98}>
-        <p style={{margin: 0}}>PolicyEngine&apos;s team lead a global movement of open-source contributors.</p>
+        <p style={{ margin: 0 }}>
+          PolicyEngine&apos;s team lead a global movement of open-source
+          contributors.
+        </p>
       </PageHeader>
       <Section>
         <h2>Team</h2>
@@ -21,7 +24,10 @@ export default function About() {
         <TeamMember member={founders.nikhil_woodruff} />
         <TeamMember member={founders.pavel_makarchuk} />
       </Section>
-      <Section title="What people say about PolicyEngine" backgroundColor={style.colors.LIGHT_GRAY}>
+      <Section
+        title="What people say about PolicyEngine"
+        backgroundColor={style.colors.LIGHT_GRAY}
+      >
         <QuotesDetail />
       </Section>
       <Footer />
@@ -30,11 +36,13 @@ export default function About() {
 }
 
 function QuotesDetail() {
-  return <div style={{marginTop: 50}}>
-    {fullQuotes.map((quote) => {
-      return <IndividualQuoteDetail quote={quote} key={quote.name} />
-    })}
-  </div>
+  return (
+    <div style={{ marginTop: 50 }}>
+      {fullQuotes.map((quote) => {
+        return <IndividualQuoteDetail quote={quote} key={quote.name} />;
+      })}
+    </div>
+  );
 }
 
 function IndividualQuoteDetail({ quote }) {
@@ -42,66 +50,103 @@ function IndividualQuoteDetail({ quote }) {
   const lines = text.split("\n");
   const slug = quote.name.replace(" ", "-").toLowerCase();
   const displayCategory = useDisplayCategory();
-  const headshot = <img src={quote.headshot} height={150} width={150} style={{objectFit: "cover"}} />;
-  const orgLogo = <img src={allOrgs[quote.org]?.logo}  width={150} style={{objectFit: "cover"}} />;
-  const quoteContent = <>
-    {lines.map(line => 
-        <p key={line} style={{
-          fontFamily: "Roboto Serif",
-          fontSize: 16,
-        }}>{line}</p>
-      )}
+  const headshot = (
+    <img
+      src={quote.headshot}
+      height={150}
+      width={150}
+      style={{ objectFit: "cover" }}
+    />
+  );
+  const orgLogo = (
+    <img
+      src={allOrgs[quote.org]?.logo}
+      width={150}
+      style={{ objectFit: "cover" }}
+    />
+  );
+  const quoteContent = (
+    <>
+      {lines.map((line) => (
+        <p
+          key={line}
+          style={{
+            fontFamily: "Roboto Serif",
+            fontSize: 16,
+          }}
+        >
+          {line}
+        </p>
+      ))}
       <h6 className="spaced-sans-serif">{quote.name}</h6>
       <h6>{quote.position}</h6>
-  </>;
+    </>
+  );
   const mobile = displayCategory !== "desktop";
-  const authorship = mobile ?
-    <div style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
+  const authorship = mobile ? (
+    <div
+      style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+    >
       {headshot}
-      <div style={{marginLeft: 20}} />
+      <div style={{ marginLeft: 20 }} />
       {orgLogo}
-    </div> :
-    <><div>
-    {headshot}
-  </div>
-  <div style={{marginLeft: 20}}>
-    {orgLogo}
-  </div></>;
-  return <div 
-    id={slug}
-    style={{
-      flexDirection: mobile ? "column" : "row",
-      display: "flex", marginBottom: 50, paddingBottom: 50, alignItems: mobile ? "flex-start"  : "flex-end", borderBottom: `1px solid ${style.colors.GRAY}`}}>
-    {!mobile && authorship}
-    <div style={{marginLeft: mobile ? 0 : 50}}>
-      {quoteContent}
     </div>
-    {mobile && authorship}
-  </div>
+  ) : (
+    <>
+      <div>{headshot}</div>
+      <div style={{ marginLeft: 20 }}>{orgLogo}</div>
+    </>
+  );
+  return (
+    <div
+      id={slug}
+      style={{
+        flexDirection: mobile ? "column" : "row",
+        display: "flex",
+        marginBottom: 50,
+        paddingBottom: 50,
+        alignItems: mobile ? "flex-start" : "flex-end",
+        borderBottom: `1px solid ${style.colors.GRAY}`,
+      }}
+    >
+      {!mobile && authorship}
+      <div style={{ marginLeft: mobile ? 0 : 50 }}>{quoteContent}</div>
+      {mobile && authorship}
+    </div>
+  );
 }
 
 function TeamMember({ member }) {
   const displayCategory = useDisplayCategory();
-  return <div style={{
-    display: "flex",
-    flexDirection: displayCategory === "mobile" ? "column" : "row",
-    marginTop: 50,
-  }}>
-    <div>
-    <img src={member.image} 
-    height={250}
-    width={250}
-    style={{
-      objectFit: "cover",
-    }}
-    />
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: displayCategory === "mobile" ? "column" : "row",
+        marginTop: 50,
+      }}
+    >
+      <div>
+        <img
+          src={member.image}
+          height={250}
+          width={250}
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          marginLeft: displayCategory === "mobile" ? 0 : 100,
+          marginTop: displayCategory === "mobile" ? 30 : 0,
+          borderBottom: `1px solid ${style.colors.BLACK}`,
+        }}
+      >
+        <p>
+          <span className="spaced-sans-serif">{member.name}</span> {member.bio}
+        </p>
+      </div>
     </div>
-    <div style={{
-      marginLeft: displayCategory === "mobile" ? 0 : 100,
-      marginTop: displayCategory === "mobile" ? 30 : 0,
-      borderBottom: `1px solid ${style.colors.BLACK}`,
-    }}>
-    <p><span className="spaced-sans-serif">{member.name}</span> {member.bio}</p>
-    </div>
-  </div>
+  );
 }

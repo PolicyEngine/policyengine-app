@@ -8,8 +8,8 @@ export const HoverCardContext = createContext((obj) => obj);
 export default function HoverCard(props) {
   const { children } = props;
   const [enabled, setEnabled] = useState(false);
-  const [position, setPosition] = useState({left: 0, top: 0});
-  const [content, setContent] = useState({title: "", body: ""});
+  const [position, setPosition] = useState({ left: 0, top: 0 });
+  const [content, setContent] = useState({ title: "", body: "" });
   const title = content && content.title ? content.title : "";
   const body = content && content.body ? content.body : "";
   const notEmpty = title.length !== 0 || body.length !== 0;
@@ -43,7 +43,7 @@ export default function HoverCard(props) {
   useEffect(() => {
     const mouseMoveHandler = (e) => {
       if (visible) {
-        setPosition({left: e.clientX + 10, top: e.clientY + 10});
+        setPosition({ left: e.clientX + 10, top: e.clientY + 10 });
       }
     };
     window.addEventListener("mousemove", mouseMoveHandler);
@@ -54,13 +54,8 @@ export default function HoverCard(props) {
 
   return (
     <>
-      <AnimatePresence>
-        {visible && hoverCardElement}
-      </AnimatePresence>
-      <MemoizedChildren
-        setContent={setContent}
-        setEnabled={setEnabled}
-      >
+      <AnimatePresence>{visible && hoverCardElement}</AnimatePresence>
+      <MemoizedChildren setContent={setContent} setEnabled={setEnabled}>
         {children}
       </MemoizedChildren>
     </>
@@ -68,7 +63,7 @@ export default function HoverCard(props) {
 }
 
 const MemoizedChildren = memo(function MemoizedChildren(props) {
-  const {children, setContent, setEnabled} = props;
+  const { children, setContent, setEnabled } = props;
   return (
     <HoverCardContext.Provider value={setContent}>
       <div

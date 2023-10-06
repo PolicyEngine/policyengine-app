@@ -40,33 +40,37 @@ function FolderPageDescription(props) {
   } catch (e) {
     currentNode = null;
   }
-  return <>
-    <h3>
-      {
-      inPolicySide ?
-        "Policy parameters" :
-        "Household variables"
-      }
-    </h3>
-    <h5>{
-      inPolicySide ?
-        <>Build a tax-benefit reform by selecting parameters from the menu items below. Then when you&apos;re ready, click <i>Calculate economic impact</i> on the right to see how your reform would affect the economy.</> :
-        "Select a household variable from the menu items below to enter your own information."
-    }
-    </h5>
-    <Divider />
-    {breadcrumbs.map((breadcrumb, i) => (
-      <h5 
-      onClick={() => {
-        let newSearch = copySearchParams(searchParams);
-        newSearch.set("focus", breadcrumb.name);
-        setSearchParams(newSearch);
-      }}
-      key={breadcrumb.name} 
-      style={{paddingLeft: i * 15, cursor: "pointer"}}>{(i > 0) && <>&#x2514;</>}  {capitalize(breadcrumb.label)}</h5>
-    )
-    )}
-  </>
+  return (
+    <>
+      <h3>{inPolicySide ? "Policy parameters" : "Household variables"}</h3>
+      <h5>
+        {inPolicySide ? (
+          <>
+            Build a tax-benefit reform by selecting parameters from the menu
+            items below. Then when you&apos;re ready, click{" "}
+            <i>Calculate economic impact</i> on the right to see how your reform
+            would affect the economy.
+          </>
+        ) : (
+          "Select a household variable from the menu items below to enter your own information."
+        )}
+      </h5>
+      <Divider />
+      {breadcrumbs.map((breadcrumb, i) => (
+        <h5
+          onClick={() => {
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set("focus", breadcrumb.name);
+            setSearchParams(newSearch);
+          }}
+          key={breadcrumb.name}
+          style={{ paddingLeft: i * 15, cursor: "pointer" }}
+        >
+          {i > 0 && <>&#x2514;</>} {capitalize(breadcrumb.label)}
+        </h5>
+      ))}
+    </>
+  );
 }
 
 export default function FolderPage(props) {
@@ -77,7 +81,12 @@ export default function FolderPage(props) {
 
   return (
     <ResultsPanel>
-      {!mobile && inPolicySide && <FolderPageDescription metadata={metadata} inPolicySide={inPolicySide} />}
+      {!mobile && inPolicySide && (
+        <FolderPageDescription
+          metadata={metadata}
+          inPolicySide={inPolicySide}
+        />
+      )}
       <div
         style={{
           display: "flex",
@@ -101,9 +110,13 @@ export default function FolderPage(props) {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                cursor: "pointer"
+                cursor: "pointer",
               }}
-              whileHover={{ scale: 1.05, backgroundColor: style.colors.DARK_GRAY, color: "white" }}
+              whileHover={{
+                scale: 1.05,
+                backgroundColor: style.colors.DARK_GRAY,
+                color: "white",
+              }}
               transition={{ duration: 0.25 }}
               onClick={() => {
                 let newSearch = copySearchParams(searchParams);
@@ -111,7 +124,9 @@ export default function FolderPage(props) {
                 setSearchParams(newSearch);
               }}
             >
-              <h6 style={{ textAlign: "center", color: "inherit" }}>{capitalize(child.label)}</h6>
+              <h6 style={{ textAlign: "center", color: "inherit" }}>
+                {capitalize(child.label)}
+              </h6>
             </motion.div>
           ))}
       </div>

@@ -31,7 +31,7 @@ export default function ShowcaseItem({
           marginBottom: displayCategory !== "desktop" ? 20 : 0,
         }}
       >
-        <h2 style={{color: color}}>{title}</h2>
+        <h2 style={{ color: color }}>{title}</h2>
       </div>
       <div
         style={{
