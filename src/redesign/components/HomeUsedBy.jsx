@@ -11,8 +11,8 @@ export default function HomeUsedBy() {
   const orgs = Object.values(orgData[countryId]);
 
   const itemsPerRow = {
-    mobile: 4,
-    tablet: 4,
+    mobile: 3,
+    tablet: 6,
     desktop: 7,
   }[displayCategory];
 
@@ -52,7 +52,6 @@ export default function HomeUsedBy() {
 
 function IndividualOrg({ name, logo, link }) {
   const displayCategory = useDisplayCategory();
-  const mobile = displayCategory === "mobile";
   const size = {
     mobile: 80,
     tablet: 100,
@@ -86,9 +85,6 @@ function IndividualOrg({ name, logo, link }) {
             marginBottom: displayCategory !== "mobile" ? 20 : 0,
           }}
         />
-        {!mobile && (
-          <h6 style={{ textTransform: "none", letterSpacing: 0.5 }}>{name}</h6>
-        )}
       </div>
     </a>
   );

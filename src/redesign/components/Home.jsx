@@ -9,6 +9,7 @@ import HomeTransparency from "./HomeTransparency";
 import Footer from "./Footer";
 
 export default function Home() {
+  document.title = "PolicyEngine";
   return (
     <div>
       <Header />
