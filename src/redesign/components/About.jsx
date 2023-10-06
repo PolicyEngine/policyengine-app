@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Section from "./Section";
 import style from "../style";
 import PageHeader from "./PageHeader";
-import { founders } from "../data/Staff";
+import { founders, advisors } from "../data/Staff";
 import { fullQuotes } from "../data/Quotes";
 import { allOrgs } from "redesign/data/Organisations";
 import useDisplayCategory from "./useDisplayCategory";
@@ -23,6 +23,13 @@ export default function About() {
         <TeamMember member={founders.max_ghenis} />
         <TeamMember member={founders.nikhil_woodruff} />
         <TeamMember member={founders.pavel_makarchuk} />
+      </Section>
+      <Section backgroundColor={style.colors.BLUE_PRIMARY}>
+        <h2 style={{color: style.colors.WHITE}}>Advisory board</h2>
+        <Advisor member={advisors.george_sadowsky} />
+        <Advisor member={advisors.damiola_ogundipe} />
+        <Advisor member={advisors.jesse_horwitz} />
+        <Advisor member={advisors.matt_jensen} />
       </Section>
       <Section
         title="What people say about PolicyEngine"
@@ -141,6 +148,43 @@ function TeamMember({ member }) {
           marginLeft: displayCategory === "mobile" ? 0 : 100,
           marginTop: displayCategory === "mobile" ? 30 : 0,
           borderBottom: `1px solid ${style.colors.BLACK}`,
+        }}
+      >
+        <p>
+          <span className="spaced-sans-serif">{member.name}</span> {member.bio}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+
+
+function Advisor({ member }) {
+  const displayCategory = useDisplayCategory();
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: displayCategory === "mobile" ? "column" : "row",
+        marginTop: 50,
+      }}
+    >
+      <div>
+        <img
+          src={member.image}
+          height={250}
+          width={250}
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          marginLeft: displayCategory === "mobile" ? 0 : 100,
+          marginTop: displayCategory === "mobile" ? 30 : 0,
+          borderBottom: `1px solid ${style.colors.WHITE}`,
         }}
       >
         <p>
