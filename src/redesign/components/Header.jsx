@@ -244,10 +244,11 @@ function PageLinks() {
                 fontWeight: 500,
                 letterSpacing: 2.4,
                 textTransform: "uppercase",
+                width: 150,
               }}
             >
               <HoverBox
-                hoverBackgroundColor={style.colors.WHITE}
+                hoverBackgroundColor={style.colors.BLUE_LIGHT}
                 direction="bottom"
               >
                 <motion.div

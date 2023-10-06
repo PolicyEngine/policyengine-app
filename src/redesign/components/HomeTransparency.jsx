@@ -25,7 +25,7 @@ export default function HomeTransparency() {
         borderColor={style.colors.BLACK}
       />
       <ShowcaseItem
-        title="PolicyEngine's free API computes policy impacts"
+        title="PolicyEngine's API computes policy impacts"
         description="Instantly compute taxes and benefits for any household under current or reformed policy rules, using the PolicyEngine REST API, reproducing any result in the web app."
         linkTitle="Explore the documentation"
         link="/"

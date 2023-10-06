@@ -13,7 +13,7 @@ export default function HomeUsedBy() {
   const itemsPerRow = {
     mobile: 3,
     tablet: 6,
-    desktop: 7,
+    desktop: 12,
   }[displayCategory];
 
   let rows = [];
@@ -25,7 +25,15 @@ export default function HomeUsedBy() {
   return (
     <Section
       backgroundColor={style.colors.WHITE}
-      title={`Trusted by organisations across the ${countryId.toUpperCase()}`}
+      title={`Trusted across the ${countryId.toUpperCase()}`}
+      titleStyle={{
+        fontFamily: "Roboto",
+        letterSpacing: 2.4,
+        fontWeight: 300,
+        fontSize: 20,
+        textTransform: "uppercase",
+      }}
+      centeredTitle
     >
       {rows.map((row, i) => (
         <div
@@ -55,7 +63,7 @@ function IndividualOrg({ name, logo, link }) {
   const size = {
     mobile: 80,
     tablet: 100,
-    desktop: 120,
+    desktop: 60,
   }[displayCategory];
   return (
     <a href={link}>
