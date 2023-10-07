@@ -167,7 +167,7 @@ function DesktopCalculatorButton() {
       <HoverBox
         hoverBackgroundColor={style.colors.TEAL_PRESSED}
         direction="left"
-        link={`/${countryId}/policy`}
+        link={`/${countryId}/calculator`}
         style={{
           margin: 20,
           marginLeft: "auto",

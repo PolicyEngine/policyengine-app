@@ -8,11 +8,13 @@ import HomeUsedBy from "./HomeUsedBy";
 import HomeTransparency from "./HomeTransparency";
 import Footer from "./Footer";
 import Section from "./Section";
-import NavigationButton from "controls/NavigationButton";
 import style from "style";
+import useCountryId from "./useCountryId";
+import ActionButton from "./ActionButton";
 
 export default function Home() {
   document.title = "PolicyEngine";
+  const countryId = useCountryId();
   return (
     <div>
       <Header />
@@ -33,10 +35,10 @@ export default function Home() {
         height: "100%",
       }}
     >
-      <h3 style={{ fontFamily: "Roboto Serif" }}>
+      <h3 style={{ fontFamily: "Roboto Serif", marginBottom: 30 }}>
         What people say about PolicyEngine
       </h3>
-        <NavigationButton to="/about" text="Read testimonials from our users">See more</NavigationButton>
+        <ActionButton width={500} link={`/${countryId}/testimonials`} text="Read testimonials from our users"></ActionButton>
         </div>
       </Section>
       <HomeTransparency />
