@@ -3,6 +3,8 @@ import Header from "./Header";
 import ActionButton from "./ActionButton";
 import useDisplayCategory from "./useDisplayCategory";
 import useCountryId from "./useCountryId";
+import HouseholdScreenshot from "../images/home/household_screenshot.png";
+import PolicyScreenshot from "../images/home/policy_screenshot.png";
 
 export default function CalculatorInterstitial() {
     const displayCategory = useDisplayCategory();
@@ -32,11 +34,13 @@ export default function CalculatorInterstitial() {
                 title="Calculate my taxes and benefits"
                 link={`/${countryId}/household`}
                 description="Enter your household details and see how tax-benefit policy affects you."
+                image={HouseholdScreenshot}
             />
             <CalculatorOption
                 title="Calculate policy reform impacts"
                 link={`/${countryId}/policy`}
                 description="See how different policy reforms affect your household and the economy."
+                image={PolicyScreenshot}
             />
         </div>
     </>
@@ -49,6 +53,7 @@ function CalculatorOption({
     title,
     description,
     link,
+    image,
 }) {
     const arrow = left ?
         <span className="material-symbols-outlined" style={{marginRight: 20}}>arrow_back</span> :
@@ -61,10 +66,17 @@ function CalculatorOption({
         alignItems: "center",
         justifyContent: "center",
     }}>
+        <img
+            src={image}
+            style={{
+                height: 300,
+                width: 300,
+                objectFit: "contain",
+            }}
+        />
         <ActionButton
             direction={left ? "right" : "left"}
             text={<>{left && arrow}{title}{!left && arrow}</>}
-            height={300}
             width={300}
             noArrow
             link={link}

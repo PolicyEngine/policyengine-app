@@ -46,7 +46,7 @@ export default function HomeUsedBy() {
               desktop: "center",
             }[displayCategory],
             marginBottom: 30,
-            marginTop: 50,
+            marginTop: 20,
           }}
         >
           {row.map((org) => (
