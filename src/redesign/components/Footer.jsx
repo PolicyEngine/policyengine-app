@@ -12,7 +12,6 @@ import {
   YoutubeFilled,
 } from "@ant-design/icons";
 import React from "react";
-import FontIcon from "./FontIcon";
 
 export default function Footer() {
   const displayCategory = useDisplayCategory();
@@ -38,10 +37,8 @@ function ContactUs() {
     >
       <h2 style={{ color: "white" }}>Contact</h2>
       <p>
-        <a href="mailto:hello@policyengine.org">
-          hello@policyengine.org
-          <FontIcon name="arrow_forward" />
-        </a>
+        <a href="mailto:hello@policyengine.org"><u>Email us</u></a> at{" "}
+            hello@policyengine.org
       </p>
     </div>
   );

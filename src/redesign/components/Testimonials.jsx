@@ -12,7 +12,7 @@ export default function Testimonials() {
       <Header />
       <Section
         title="What people say about PolicyEngine"
-        backgroundColor={style.colors.LIGHT_GRAY}
+        backgroundColor={style.colors.WHITE}
       >
         <QuotesDetail />
       </Section>

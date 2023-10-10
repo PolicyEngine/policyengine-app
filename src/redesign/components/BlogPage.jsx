@@ -230,7 +230,7 @@ function Authorship({ post }) {
   } else if (authorNames.length === 2) {
     sentenceStructure = (
       <>
-        By {authorNames[0]} and {authorNames[1]}
+        By {authorNames[0]} <nobr>and {authorNames[1]}</nobr>
       </>
     );
   } else {
