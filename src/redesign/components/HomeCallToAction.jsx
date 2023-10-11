@@ -2,6 +2,7 @@ import style from "../style";
 import Section from "./Section";
 import useDisplayCategory from "./useDisplayCategory";
 import ActionButton from "./ActionButton";
+import useCountryId from "./useCountryId";
 
 export default function HomeCallToAction() {
   return (
@@ -14,6 +15,7 @@ export default function HomeCallToAction() {
 export function CalculatorCallToAction() {
   const displayCategory = useDisplayCategory();
   const buttonSize = displayCategory === "desktop" ? 700 : "100%";
+  const countryId = useCountryId();
   return (
     <div
       style={{
@@ -28,17 +30,17 @@ export function CalculatorCallToAction() {
       <h3 style={{ fontFamily: "Roboto Serif" }}>
         Compute any public policy reform
       </h3>
-      <div style={{marginTop: 20}} />
+      <div style={{ marginTop: 20 }} />
       <ActionButton
         width={buttonSize}
         text="Calculate my household income, taxes and benefits"
-        onClick={() => {}}
+        link={`/${countryId}/household`}
       />
-      <div style={{marginTop: 20}} />
+      <div style={{ marginTop: 20 }} />
       <ActionButton
         width={buttonSize}
         text="Calculate the impact of policy reforms"
-        onClick={() => {}}
+        link={`/${countryId}/policy`}
       />
     </div>
   );

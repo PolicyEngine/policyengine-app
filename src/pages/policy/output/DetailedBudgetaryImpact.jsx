@@ -2,12 +2,12 @@ import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { avgChangeDirection, plotLayoutFont} from './utils';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { avgChangeDirection, plotLayoutFont } from "./utils";
 
 export default function DetailedBudgetaryImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -24,26 +24,27 @@ export default function DetailedBudgetaryImpact(props) {
     return null;
   }
 
-    Object.entries(impact.detailed_budget).forEach(([program, values]) => {
-        if (values.difference !== 0) {
-            yValues.push(values.difference / 1e9);
-            const programLabel = metadata.variables[program].label;
-            xValues.push(programLabel);
-            // [label]'s budgetary impact [rises/falls] by [abs(value)], from [baseline] to [reform].
-            textValues.push(
-                `${programLabel}'s budgetary impact ${avgChangeDirection(values.different)} by ${aggregateCurrency(
-                values.difference,
-                metadata.countryId
-                )}, from ${aggregateCurrency(
-                values.baseline,
-                metadata.countryId
-                )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`
-            );
-        }
-    });
-    
-    console.log(xValues, yValues, textValues)
+  Object.entries(impact.detailed_budget).forEach(([program, values]) => {
+    if (values.difference !== 0) {
+      yValues.push(values.difference / 1e9);
+      const programLabel = metadata.variables[program].label;
+      xValues.push(programLabel);
+      // [label]'s budgetary impact [rises/falls] by [abs(value)], from [baseline] to [reform].
+      textValues.push(
+        `${programLabel}'s budgetary impact ${avgChangeDirection(
+          values.different
+        )} by ${aggregateCurrency(
+          values.difference,
+          metadata.countryId
+        )}, from ${aggregateCurrency(
+          values.baseline,
+          metadata.countryId
+        )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`
+      );
+    }
+  });
 
+  console.log(xValues, yValues, textValues);
 
   function DetailedBudgetaryImpactPlot() {
     const setHoverCard = useContext(HoverCardContext);
@@ -58,9 +59,7 @@ export default function DetailedBudgetaryImpact(props) {
             orientation: "v",
             measure:
               textValues.length > 0
-                ? Array(textValues.length)
-                  .fill("relative")
-                  .concat(["total"])
+                ? Array(textValues.length).fill("relative").concat(["total"])
                 : ["total"],
             marker: {
               color: Object.values(impact.decile.average).map((value) =>
@@ -105,7 +104,7 @@ export default function DetailedBudgetaryImpact(props) {
             r: 20,
           },
           height: mobile ? 300 : 500,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -120,7 +119,7 @@ export default function DetailedBudgetaryImpact(props) {
           const change = data.points[0].y;
           setHoverCard({
             title: `${program}`,
-            body: aggregateCurrency(change, metadata)
+            body: aggregateCurrency(change, metadata),
           });
         }}
         onUnhover={() => {
@@ -131,17 +130,17 @@ export default function DetailedBudgetaryImpact(props) {
   }
 
   const budgetaryImpact = impact.budget.budgetary_impact;
-  
+
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
-  
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
+
   const downloadButtonStyle = {
     position: "absolute",
     bottom: "48px",
@@ -153,20 +152,14 @@ export default function DetailedBudgetaryImpact(props) {
 
   let data = Object.entries(impact.detailed_budget).map(([program, values]) => {
     const programLabel = metadata.variables[program].label;
-    return [
-      programLabel,
-      values.baseline,
-      values.reform,
-      values.difference,
-    ];
+    return [programLabel, values.baseline, values.reform, values.difference];
   });
   data.unshift(["Program", "Baseline", "Reform", "Difference"]);
-
 
   return (
     <>
       <Screenshottable>
-      <h2>
+        <h2>
           {policyLabel}
           {" would "}
           {budgetaryImpact > 0 ? "raise " : "cost "}
@@ -175,18 +168,19 @@ export default function DetailedBudgetaryImpact(props) {
           {label}
         </h2>
         <HoverCard>
-          <DetailedBudgetaryImpactPlot/>
+          <DetailedBudgetaryImpactPlot />
         </HoverCard>
       </Screenshottable>
-        <div className="chart-container"> 
-          {!mobile &&
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename="budgetaryImpactByProgram.csv"
-              style={downloadButtonStyle}
-            />
-          }
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename="budgetaryImpactByProgram.csv"
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
     </>
   );
 }

@@ -10,14 +10,17 @@ export default function Donate() {
   const displayCategory = useDisplayCategory();
 
   const handleButtonClick = () => {
-    window.open('https://opencollective.com/psl-foundation', '_blank'); 
+    window.open("https://opencollective.com/psl-foundation", "_blank");
   };
 
   return (
     <div>
       <Header />
       <PageHeader title="Donate" backgroundColor={style.colors.BLUE_98}>
-        <p style={{margin: 0}}>PolicyEngine is a nonprofit fiscally sponsored by the PSL Foundation in the United States.</p>
+        <p style={{ margin: 0 }}>
+          PolicyEngine is a nonprofit fiscally sponsored by the PSL Foundation
+          in the United States.
+        </p>
       </PageHeader>
       
       {/* Donate Online Section */}

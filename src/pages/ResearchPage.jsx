@@ -4,7 +4,7 @@ import style from "../style";
 
 export default function ResearchPage(props) {
   document.title = "Research | PolicyEngine";
-    const { countryId } = props;
+  const { countryId } = props;
   // postJson is a JSON file containing all the blog posts.
 
   // Each post in the list has the following fields:
@@ -26,19 +26,19 @@ export default function ResearchPage(props) {
     ) {
       posts.push(
         <div
-            key={i}
-            style={{
-                padding: 10,
-            }}
+          key={i}
+          style={{
+            padding: 10,
+          }}
         >
-        <BlogPostPreviewRegular
-          {...postJson[i]}
-          countryId={countryId}
-          width={j == 0 ? "30vw" : "30vw"}
-          height={400}
-          imageHeight={200}
-          backgroundColor={style.colors.LIGHT_GRAY}
-        />
+          <BlogPostPreviewRegular
+            {...postJson[i]}
+            countryId={countryId}
+            width={j == 0 ? "30vw" : "30vw"}
+            height={400}
+            imageHeight={200}
+            backgroundColor={style.colors.LIGHT_GRAY}
+          />
         </div>
       );
       j++;
@@ -47,19 +47,19 @@ export default function ResearchPage(props) {
   style;
 
   // Left to right, top to bottom (wrap)
-    return (
-        <>
-            <div style={{padding: 50}}>
-            <h1>Research</h1>
-            </div>
-            <div
-                style={{
-                    display: "flex",
-                    flexWrap: "wrap",
-                }}
-            >
-                {posts}
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div style={{ padding: 50 }}>
+        <h1>Research</h1>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+        }}
+      >
+        {posts}
+      </div>
+    </>
+  );
 }

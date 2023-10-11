@@ -1,14 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from './DownloadCsvButton';
-import { plotLayoutFont } from 'pages/policy/output/utils';
-import { PovertyChangeContext } from './PovertyChangeContext';
+import DownloadCsvButton from "./DownloadCsvButton";
+import { plotLayoutFont } from "pages/policy/output/utils";
+import { PovertyChangeContext } from "./PovertyChangeContext";
 import React, { useRef } from "react";
 
 export default function PovertyImpactByRace(props) {
@@ -29,7 +29,7 @@ export default function PovertyImpactByRace(props) {
   const otherPovertyChange =
     impact.poverty_by_race.poverty.other.reform /
       impact.poverty_by_race.poverty.other.baseline -
-      1;
+    1;
   const totalPovertyChange =
     impact.poverty.poverty.all.reform / impact.poverty.poverty.all.baseline - 1;
   const povertyChanges = [
@@ -43,13 +43,19 @@ export default function PovertyImpactByRace(props) {
   useEffect(() => {
     addChanges(povertyChanges);
   }, [povertyChanges, addChanges]);
-  const povertyLabels = ["White (non-Hispanic)", "Black (non-Hispanic)", "Hispanic", "Other", "All"];
+  const povertyLabels = [
+    "White (non-Hispanic)",
+    "Black (non-Hispanic)",
+    "Hispanic",
+    "Other",
+    "All",
+  ];
   const labelToKey = {
     "White (non-Hispanic)": "white",
     "Black (non-Hispanic)": "black",
-    "Hispanic": "hispanic",
-    "Other": "other",
-    "All": "all",
+    Hispanic: "hispanic",
+    Other: "other",
+    All: "all",
   };
   const mobile = useMobile();
 
@@ -99,7 +105,7 @@ export default function PovertyImpactByRace(props) {
             r: 0,
           },
           height: mobile ? 350 : 450,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -123,24 +129,24 @@ export default function PovertyImpactByRace(props) {
             group === "All"
               ? "people"
               : {
-                white: "White (non-Hispanic) people",
-                black: "Black (non-Hispanic) people",
-                hispanic: "Hispanic people",
-                other: "people of other racial groups",
-              }[group.toLowerCase()]
+                  white: "White (non-Hispanic) people",
+                  black: "Black (non-Hispanic) people",
+                  hispanic: "Hispanic people",
+                  other: "people of other racial groups",
+                }[group.toLowerCase()]
           } in poverty ${
             change < -0.001
               ? `would fall ${percent(-change)} from ${percent(
-                baseline
-              )} to ${percent(reform)}.`
-              : change > 0.001
-                ? `would rise ${percent(change)} from ${percent(
                   baseline
                 )} to ${percent(reform)}.`
-                : change === 0
-                  ?  `would remain at ${percent(baseline)}.`
-                  : (change > 0 ? "would rise " : "would fall ") +
-                  ` by less than 0.1%.`
+              : change > 0.001
+              ? `would rise ${percent(change)} from ${percent(
+                  baseline
+                )} to ${percent(reform)}.`
+              : change === 0
+              ? `would remain at ${percent(baseline)}.`
+              : (change > 0 ? "would rise " : "would fall ") +
+                ` by less than 0.1%.`
           }`;
           setHoverCard({
             title: group,
@@ -161,27 +167,29 @@ export default function PovertyImpactByRace(props) {
         impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline
       ) * 1000
     ) / 10;
-  
+
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
   const label =
-  region === "us" || region === "uk"
-    ? ""
-    : "in " + options.find((option) => option.value === region)?.label;
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ['Race', 'Baseline', 'Reform', 'Change'];
+  const csvHeader = ["Race", "Baseline", "Reform", "Change"];
   const data = [
     csvHeader,
     ...povertyLabels.map((label) => {
-      const baseline = label === 'All'
-        ? impact.poverty.poverty[labelToKey[label]].baseline
-        : impact.poverty_by_race.poverty[labelToKey[label]].baseline;
-      const reform = label === 'All'
-        ? impact.poverty.poverty[labelToKey[label]].reform
-        : impact.poverty_by_race.poverty[labelToKey[label]].reform;
+      const baseline =
+        label === "All"
+          ? impact.poverty.poverty[labelToKey[label]].baseline
+          : impact.poverty_by_race.poverty[labelToKey[label]].baseline;
+      const reform =
+        label === "All"
+          ? impact.poverty.poverty[labelToKey[label]].reform
+          : impact.poverty_by_race.poverty[labelToKey[label]].reform;
       const change = reform / baseline - 1;
       return [label, baseline, reform, change];
     }),
@@ -204,18 +212,19 @@ export default function PovertyImpactByRace(props) {
             : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard>
-          <PovertyImpactByRacePlot/>
+          <PovertyImpactByRacePlot />
         </HoverCard>
       </DownloadableScreenshottable>
-        <div className="chart-container">
-          {!mobile && (
-            <DownloadCsvButton preparingForScreenshot={preparingForScreenshot}
-              content={data}
-              filename={`povertyImpactByRace${policyLabel}.csv`}
-              style={downloadButtonStyle}
-            />
-          )}
-        </div>
+      <div className="chart-container">
+        {!mobile && (
+          <DownloadCsvButton
+            preparingForScreenshot={preparingForScreenshot}
+            content={data}
+            filename={`povertyImpactByRace${policyLabel}.csv`}
+            style={downloadButtonStyle}
+          />
+        )}
+      </div>
       <p>
         The chart above shows the relative change in the poverty rate for each
         top-level racial and ethnic group.

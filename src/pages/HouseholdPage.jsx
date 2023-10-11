@@ -45,7 +45,6 @@ export default function HouseholdPage(props) {
   let middle;
   const focus = searchParams.get("focus") || "";
 
-
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
     if (focus === "") {

@@ -28,8 +28,7 @@ export const quoteData = {
         "PolicyEngine has transformed the Green Party's ability to measure and understand the impact of its policy platform in a way that seemed impossible before.",
       headshot: MartinFarley,
       org: "green_party",
-      longQuote:
-        `It's difficult to overstate just how useful PolicyEngine has been in allowing the Green Party to fully assess its policy platform. Being able to measure fiscal balance, alongside the social and economic impacts of our key policies has given us a 3 dimensional mechanism to create, amend and connect policy in a way that simply was not possible before.
+      longQuote: `It's difficult to overstate just how useful PolicyEngine has been in allowing the Green Party to fully assess its policy platform. Being able to measure fiscal balance, alongside the social and economic impacts of our key policies has given us a 3 dimensional mechanism to create, amend and connect policy in a way that simply was not possible before.
 
         \nThere is still much for us to do present a full picture of our proposals to policy makers and voters alike, but PolicyEngine's ability to show the consequences of policy in terms of household incomes, poverty rates and rates of inequality will help us get there very soon.
         
@@ -46,7 +45,7 @@ export const quoteData = {
       headshot: ChrisHolmes,
       org: "cec",
       longQuote:
-        "PolicyEngine is an essential tool in the fight to democratise economics, because it gives a much wider group of people and organisations the ability to test out fiscal policy decisions, and see the potential impacts for themselves. Their input has been really important for our project, helping us to show ordinary citizens the effects of various tax/spend decisions on different types of households in the UK."
+        "PolicyEngine is an essential tool in the fight to democratise economics, because it gives a much wider group of people and organisations the ability to test out fiscal policy decisions, and see the potential impacts for themselves. Their input has been really important for our project, helping us to show ordinary citizens the effects of various tax/spend decisions on different types of households in the UK.",
     },
     {
       name: "Dr Simon Duffy",
@@ -70,7 +69,8 @@ export const quoteData = {
     },
     {
       name: "Max Mosley",
-      position: "Economist at National Institute of Social and Economic Research",
+      position:
+        "Economist at National Institute of Social and Economic Research",
       quote:
         "PolicyEngine could revolutionise public debate, taking complex policy analysis out of the hands of a select few and into the hands of everyone.",
       longQuote:
@@ -81,10 +81,11 @@ export const quoteData = {
     {
       name: "Maxwell Marlow",
       position: "Director of Research at the Adam Smith Institute",
-      quote: "PolicyEngine provides an indispensable resource, helping us quantify the previously unquantifiable and tell a more convincing story with data.",
+      quote:
+        "PolicyEngine provides an indispensable resource, helping us quantify the previously unquantifiable and tell a more convincing story with data.",
       org: "asi",
       headshot: MaxwellMarlow,
-    }
+    },
   ],
   us: [
     {
@@ -103,7 +104,7 @@ export const quoteData = {
       headshot: NateGolden,
       org: "mca",
       longQuote:
-        "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol."
+        "As an advocacy organization, it is crucial that we approach conversations with elected officials armed with the most accurate and relevant data possible. PolicyEngine is a valuable tool in this regard, enabling us not only to effectively address concerns about funding, but also to present detailed and robust analyses of how our proposals would affect the state economy in a variety of ways, such as reducing poverty and inequality. The use of PolicyEngine's data has been instrumental in establishing our organization as a credible and respected voice in the state capitol.",
     },
     {
       name: "Brian Hiatt",
@@ -122,7 +123,7 @@ export const quoteData = {
       headshot: NikaSoonShiong,
       org: "f4gi",
       longQuote:
-        "As low-income families face a web of opaque, disconnected welfare systems, millions are left excluded or unsupported from the benefits they deserve. It’s critical for organizations such as PolicyEngine to chart new research, technology, and coalitions that can change this unacceptable status quo. I’m very excited to show our new Benefits Screener to the world this year."
+        "As low-income families face a web of opaque, disconnected welfare systems, millions are left excluded or unsupported from the benefits they deserve. It’s critical for organizations such as PolicyEngine to chart new research, technology, and coalitions that can change this unacceptable status quo. I’m very excited to show our new Benefits Screener to the world this year.",
     },
   ],
 };

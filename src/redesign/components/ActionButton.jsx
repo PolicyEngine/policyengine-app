@@ -1,7 +1,18 @@
 import style from "../style";
 import { HoverBox } from "./HoverBox";
+import { useNavigate } from "react-router-dom";
 
-export default function ActionButton({ text, onClick, width, size, height, noArrow, direction }) {
+export default function ActionButton({
+  text,
+  link,
+  onClick,
+  width,
+  size,
+  height,
+  noArrow,
+  direction,
+}) {
+  const navigate = useNavigate();
   return (
     <HoverBox
       hoverBackgroundColor={style.colors.TEAL_PRESSED}
@@ -26,11 +37,18 @@ export default function ActionButton({ text, onClick, width, size, height, noArr
         justifyContent: "center",
       }}
       size={size ? size : width ? `${width}px` : "300px"}
-      onClick={onClick}
+      onClick={
+        link
+          ? // Navigate with react router
+            () => navigate(link)
+          : onClick
+      }
     >
       {text}
       {!noArrow && <div style={{ marginLeft: "auto" }} />}
-      {!noArrow && <span className="material-symbols-outlined">arrow_forward</span>}
+      {!noArrow && (
+        <span className="material-symbols-outlined">arrow_forward</span>
+      )}
     </HoverBox>
   );
 }
