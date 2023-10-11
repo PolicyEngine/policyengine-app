@@ -17,7 +17,7 @@ import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import useDisplayCategory from "./useDisplayCategory";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useReadingTime } from "react-hook-reading-time";
 import {
   FacebookOutlined,
@@ -27,6 +27,7 @@ import {
   TwitterOutlined,
 } from "@ant-design/icons";
 import FontIcon from "./FontIcon";
+import Plot from "react-plotly.js";
 
 export default function BlogPage() {
   // /uk/research/blog-slug-here
@@ -493,11 +494,80 @@ function BlogContent({ markdown }) {
             {children}
           </th>
         ),
+        code: ({ children, className }) => {
+          // if language == 'highlighted-block', render a highlighted block
+          // else render a code block
+          if (className === "language-highlighted-block") {
+            return <HighlightedBlock data={children} />;
+          } else if (className === "language-plotly") {
+            return <PlotlyChartCode data={children} />;
+          } else {
+            return <code>{children}</code>;
+          }
+        },
+        pre: ({ children }) => children,
       }}
     >
       {markdown}
     </ReactMarkdown>
   );
+}
+
+function HighlightedBlock({ data }) {
+  const content = data[0];
+  const [leftContent, rightContent] = content.split("\n---\n");
+  const ref = useRef(null);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    setHeight(ref.current?.clientHeight);
+  }, [ref.current?.clientHeight]);
+  return <>
+  <div style={{
+    display: "flex",
+    position: "absolute",
+    left: 0,
+    width: "100%",
+    backgroundColor: "white",
+    zIndex: 999,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingLeft: "10vw",
+    paddingRight: "10vw",
+    // add a shadow around
+    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+    marginBottom: 50,
+    marginTop: 50,
+  }}
+  ref={ref}
+  >
+    <div style={{
+      width: "50vw",
+      display: "flex",
+      position: "sticky",
+      top: 250,
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+    ><BlogContent markdown={leftContent} /></div>
+    <div style={{
+      width: "50vw",
+    }}
+    ><BlogContent markdown={rightContent} /></div>
+  </div>
+  <div style={{
+    // Set the height of the container to the height of the content
+    height: height,
+    marginBottom: 50,
+    marginTop: 50,
+  }}></div>
+  </>
+}
+
+function PlotlyChartCode({ data }) {
+  const plotlyData = JSON.parse(data);
+  return <Plot data={plotlyData.data} layout={
+    Object.assign(plotlyData.layout, {width: "100%", height: 600})
+  } />;
 }
 
 function ReadTime({ markdown }) {
