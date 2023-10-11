@@ -17,9 +17,7 @@ export default function Donate() {
     <div>
       <Header />
       <PageHeader title="Donate" backgroundColor={style.colors.BLUE_98}>
-        <p style={{margin: 0, fontFamily: style.fonts.BODY_FONT}}>Explore Brookings&apos; research and commentary to deepen your 
-        understanding of local, national,and global challenges. Our experts otter evidence-based analysis and innovative polici
-        solutions that inform decision-making and drive positive change</p>
+        <p style={{margin: 0}}>PolicyEngine is a nonprofit fiscally sponsored by the PSL Foundation in the United States.</p>
       </PageHeader>
       
       {/* Donate Online Section */}
