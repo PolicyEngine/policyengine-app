@@ -356,13 +356,14 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           }
           style={{
             backgroundColor: style.colors.TEAL_LIGHT,
+            minHeight: 320 
           }}
         >
           <div style={{ padding: 20 }}>
             <p style={{ textTransform: "uppercase" }}>
               {moment(currentBlog.date).format("MMMM D, YYYY")}
             </p>
-            <h3>{currentBlog.title}</h3>
+            <h3 style={{ minHeight: 70 }}>{currentBlog.title}</h3>
             <p>{currentBlog.description}</p>
           </div>
         </BlogBox>
@@ -405,7 +406,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
             backgroundColor: blog.tags.includes(["in-the-news"])
               ? style.colors.BLUE_LIGHT
               : style.colors.LIGHT_GRAY,
-            minHeight: minHeight || (displayCategory === "mobile" ? 400 : 350),
+            minHeight: minHeight || (displayCategory === "mobile" ? 460 : 430),
             maxHeight: displayCategory === "mobile" ? 400 : null,
           }}
           topLeft={<BlogTags tags={blog.tags} />}
@@ -419,7 +420,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
             <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
               {moment(blog.date).format("MMMM D, YYYY")}
             </p>
-            <h5>{blog.title}</h5>
+            <h4>{blog.title}</h4>
             <p>{blog.description}</p>
           </div>
         </BlogBox>
@@ -516,7 +517,11 @@ export function SmallBlogPreview({ blog }) {
         height: "100%",
       }}
     >
-      <div style={{ padding: 10, paddingTop: 0 }}>
+      <div style={{ 
+        padding: 10, 
+        paddingTop: 0, 
+        minHeight: displayCategory === "desktop" ? 100 : null 
+        }}>
         <h4>{blog.title}</h4>
       </div>
     </BlogBox>
