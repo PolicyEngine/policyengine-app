@@ -111,10 +111,6 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
           <SmallBlogPreview blog={allPosts[2]} />
           <div style={{ height: 20 }} />
           <SmallBlogPreview blog={allPosts[3]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[4]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[5]} />
         </div>
       </div>
       <div
@@ -162,13 +158,13 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
             justifyContent: "space-between",
           }}
         >
-          <SmallBlogPreview blog={allPosts[5]} />
+          <SmallBlogPreview blog={allPosts[0]} />
           <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[6]} />
+          <SmallBlogPreview blog={allPosts[1]} />
           <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[7]} />
+          <SmallBlogPreview blog={allPosts[2]} />
           <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[8]} />
+          <SmallBlogPreview blog={allPosts[3]} />
         </div>
       </div>
       <div
@@ -179,9 +175,9 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
           marginTop: 40,
         }}
       >
-        <MediumBlogPreview blog={allPosts[4]} />
+        <MediumBlogPreview blog={allPosts[7]} />
         <div style={{ width: 40 }} />
-        <MediumBlogPreview blog={allPosts[5]} />
+        <MediumBlogPreview blog={allPosts[8]} />
       </div>
       <ReadMore />
     </SectionBottom>
