@@ -187,7 +187,7 @@ function Authorship({ post }) {
     sentenceStructure = <>By {authorNames[0]} and {authorNames[1]}</>;
   } else {
     const lastAuthor = authorNames.pop();
-    sentenceStructure = <>By {authorNames.join(", ")}, and {lastAuthor}</>;
+    sentenceStructure = <>By {authorNames.reduce((prev, curr) => [prev, ', ', curr])}, and {lastAuthor}</>;
   }
   return <p className="spaced-sans-serif">
     {sentenceStructure}
