@@ -15,8 +15,8 @@ import {
   LinkedinFilled,
   LinkOutlined,
 } from "@ant-design/icons";
-import React from 'react';
-import {message} from 'antd';
+import React from "react";
+import { message } from "antd";
 import style from "../../../style";
 
 export default function HouseholdOutput(props) {
@@ -128,45 +128,63 @@ export default function HouseholdOutput(props) {
 
   const url = encodeURIComponent(window.location.href);
   const link = (
-    <a onClick={() => {
-      navigator.clipboard.writeText(window.location.href);
-      message.info('Link copied to clipboard');
-    }}>
+    <a
+      onClick={() => {
+        navigator.clipboard.writeText(window.location.href);
+        message.info("Link copied to clipboard");
+      }}
+    >
       <LinkOutlined style={{ fontSize: 23 }} />
     </a>
   );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
   const urlParams = new URLSearchParams(window.location.search);
-  const householdId = urlParams.get('household');
+  const householdId = urlParams.get("household");
   let twitter;
-  if (reformLabel == "Current law"){
+  if (reformLabel == "Current law") {
     twitter = (
-      <a href={`https://twitter.com/intent/tweet?url=${url}&text=Household%20%23${householdId}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+      <a
+        href={`https://twitter.com/intent/tweet?url=${url}&text=Household%20%23${householdId}%2C%20on%20PolicyEngine`}
+        target="_blank"
+        rel="noreferrer"
+      >
         <TwitterOutlined style={{ fontSize: 23 }} />
       </a>
     );
-  }else{
+  } else {
     twitter = (
-      <a href={`https://twitter.com/intent/tweet?url=${url}&text=Impacts%20of%20${encodedPolicyLabel}%20on%20Household%20%23${householdId}%2C%20on%20PolicyEngine`} target="_blank" rel="noreferrer">
+      <a
+        href={`https://twitter.com/intent/tweet?url=${url}&text=Impacts%20of%20${encodedPolicyLabel}%20on%20Household%20%23${householdId}%2C%20on%20PolicyEngine`}
+        target="_blank"
+        rel="noreferrer"
+      >
         <TwitterOutlined style={{ fontSize: 23 }} />
       </a>
     );
   }
-  
+
   const facebook = (
-    <a href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} target="_blank" rel="noreferrer">
+    <a
+      href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <FacebookFilled style={{ fontSize: 23 }} />
     </a>
   );
   const linkedIn = (
-    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${(url)}`} target="_blank" rel="noreferrer">
+    <a
+      href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <LinkedinFilled style={{ fontSize: 23 }} />
     </a>
   );
   const commonStyle = {
-    border: "1px solid #ccc", 
-    borderRadius: "0px", 
-    padding: "6px", 
+    border: "1px solid #ccc",
+    borderRadius: "0px",
+    padding: "6px",
     marginRight: "-1px",
   };
   const shareItems = [link, twitter, facebook, linkedIn];
@@ -178,21 +196,33 @@ export default function HouseholdOutput(props) {
 
   pane = (
     <>
-      <div style={{ display: "flex", flexDirection: "row", backgroundColor: style.colors.WHITE,
-      justifyContent: "center", alignItems: "center", paddingBottom: 20,
-     }}>
-      <h6 style={{
-        margin: 0,
-        paddingRight: 20,
-      }}><b>Share this result</b></h6>
-     <div 
-      style={{ 
-        display: "flex", 
-        flexDirection: "row",
-      }}>
-      {shareDivs}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          backgroundColor: style.colors.WHITE,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: 20,
+        }}
+      >
+        <h6
+          style={{
+            margin: 0,
+            paddingRight: 20,
+          }}
+        >
+          <b>Share this result</b>
+        </h6>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+          }}
+        >
+          {shareDivs}
+        </div>
       </div>
-    </div>
       {pane}
       <BottomCarousel
         selected={focus}

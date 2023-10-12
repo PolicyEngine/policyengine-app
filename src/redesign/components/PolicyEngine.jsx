@@ -1,19 +1,18 @@
 import Home from "./Home";
 import Research from "./Research";
 import About from "./About";
-import {
-  Navigate,
-  Route,
-  Routes,
-  useSearchParams,
-} from "react-router-dom";
+import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Contact from "./Contact";
 import Donate from "./Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./BlogPage";
 
 import { useEffect, useState, lazy, Suspense } from "react";
-import { copySearchParams, countryApiCall, updateMetadata } from "../../api/call";
+import {
+  copySearchParams,
+  countryApiCall,
+  updateMetadata,
+} from "../../api/call";
 import LoadingCentered from "../../layout/LoadingCentered";
 import ErrorPage from "../../layout/Error";
 import Header from "./Header";
@@ -211,7 +210,6 @@ export default function PolicyEngine({ pathname }) {
         <Route path="/:countryId/contact" element={<Contact />} />
         <Route path="/:countryId/donate" element={<Donate />} />
         <Route path="/:countryId/research/*" element={<BlogPage />} />
-
 
         <Route
           path="/:countryId/household/*"

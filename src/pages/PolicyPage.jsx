@@ -190,7 +190,7 @@ function MobileTreeNavigationHolder(props) {
             paddingRight: 10,
             whiteSpace: "nowrap",
             margin: 0,
-            height: '100%'
+            height: "100%",
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
@@ -390,7 +390,11 @@ export default function PolicyPage(props) {
     );
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
-    middle = <FolderPage label={node.label} metadata={metadata} inPolicySide>{node.children}</FolderPage>;
+    middle = (
+      <FolderPage label={node.label} metadata={metadata} inPolicySide>
+        {node.children}
+      </FolderPage>
+    );
   } else if (focus === "policyOutput") {
     middle = (
       <FolderPage label="Policy impact" metadata={metadata}>

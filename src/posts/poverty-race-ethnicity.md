@@ -8,13 +8,13 @@ To provide a comprehensive perspective, we use the Supplemental Poverty Measure 
 
 Applying current law to the 2021 Current Population Survey March Supplement, we estimate that 8.8% of the population currently falls below their SPM poverty threshold. However, this figure diverges significantly when examined through the lens of race and ethnicity, revealing the following rates of poverty:
 
-* 6.1% for White non-Hispanic individuals
+- 6.1% for White non-Hispanic individuals
 
-* 10.9% for Other non-Hispanic individuals
+- 10.9% for Other non-Hispanic individuals
 
-* 12.2% for Hispanic individuals
+- 12.2% for Hispanic individuals
 
-* 15.0% for Black non-Hispanic individuals
+- 15.0% for Black non-Hispanic individuals
 
 ## Policy reforms through a racial and ethnic lens
 

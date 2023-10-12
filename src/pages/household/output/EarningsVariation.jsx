@@ -73,10 +73,10 @@ export default function EarningsVariation(props) {
           name: "employment_income",
           period: "2023",
           min: 0,
-          max: Math.max((
-            metadata.countryId == "ng" ?
-              1_200_000 : 200_000
-          ), 2 * currentEarnings),
+          max: Math.max(
+            metadata.countryId == "ng" ? 1_200_000 : 200_000,
+            2 * currentEarnings
+          ),
           count: 401,
         },
       ],

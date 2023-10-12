@@ -36,8 +36,13 @@ function ContactUs() {
         marginTop: 30,
       }}
     >
-      <h2 style={{color: "white"}}>Contact</h2>
-      <p><a href="mailto:hello@policyengine.org">hello@policyengine.org<FontIcon name="arrow_forward" /></a></p>
+      <h2 style={{ color: "white" }}>Contact</h2>
+      <p>
+        <a href="mailto:hello@policyengine.org">
+          hello@policyengine.org
+          <FontIcon name="arrow_forward" />
+        </a>
+      </p>
     </div>
   );
 }
@@ -52,12 +57,11 @@ function TwitterEmbed() {
     >
       <a
         className="twitter-timeline"
-        href="https://twitter.com/thepolicyengine"
+        href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
         {...{
           "data-height": "300",
         }}
-      >
-      </a>
+      ></a>
     </div>
   );
 }
@@ -89,10 +93,7 @@ function SocialLinks() {
         icon={InstagramFilled}
         url="https://www.instagram.com/PolicyEngine/"
       />
-      <SocialLink
-        icon={GithubFilled}
-        url="https://github.com/PolicyEngine"
-      />
+      <SocialLink icon={GithubFilled} url="https://github.com/PolicyEngine" />
     </>
   );
   const displayCategory = useDisplayCategory();

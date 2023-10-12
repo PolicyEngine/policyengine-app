@@ -34,7 +34,7 @@ export default function Analysis(props) {
     {}
   );
   const baseResultsUrl = `https://policyengine.org/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
-  const buildIFrame = (chartName) => 
+  const buildIFrame = (chartName) =>
     `<iframe src="${baseResultsUrl}&focus=policyOutput.${chartName}" width="800px" height="418px" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>`;
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
@@ -67,9 +67,10 @@ export default function Analysis(props) {
   * Include the following embeds inline, without a header so it flows.
   * Immediately after you describe the changes by decile, include the text: {{decileRelativeImpact}}
   * And after the poverty rate changes, include the text: {{povertyImpact}}
-  ${metadata.countryId === "us" ?
-    "* After the racial breakdown of poverty rate changes, include the text: {{racialPovertyImpact}}" :
-    ""
+  ${
+    metadata.countryId === "us"
+      ? "* After the racial breakdown of poverty rate changes, include the text: {{racialPovertyImpact}}"
+      : ""
   }
   * And after the inequality changes, include the text: {{inequalityImpact}}
   * Make sure to accurately represent the changes observed in the data.
@@ -110,7 +111,11 @@ export default function Analysis(props) {
     impact.poverty_by_gender
   )}
 
-  ${metadata.countryId === "us" && "This JSON describes the baseline and reform poverty impacts by racial group (briefly describe the relative changes): " + JSON.stringify(impact.poverty_by_race.poverty)}
+  ${
+    metadata.countryId === "us" &&
+    "This JSON describes the baseline and reform poverty impacts by racial group (briefly describe the relative changes): " +
+      JSON.stringify(impact.poverty_by_race.poverty)
+  }
 
   This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(
     impact.inequality
@@ -214,14 +219,19 @@ export default function Analysis(props) {
             for (let i = 0; i < analysisWords.length; i++) {
               setTimeout(() => {
                 setAnalysis((analysis) =>
-                  displayCharts(analysis + " " + analysisWords[i]).replaceAll("  ", " ")
+                  displayCharts(analysis + " " + analysisWords[i]).replaceAll(
+                    "  ",
+                    " "
+                  )
                 );
               }, 100 * i);
             }
             fullAnalysis = analysisFromCall;
           }
         ).then((data) => {
-          setAnalysis(displayCharts(data.result.analysis).replaceAll("  ", " "));
+          setAnalysis(
+            displayCharts(data.result.analysis).replaceAll("  ", " ")
+          );
           setLoading(false);
         });
       });
@@ -235,7 +245,7 @@ export default function Analysis(props) {
     </>
   ) : null;
 
-  console.log(analysis)
+  console.log(analysis);
 
   return (
     <>
@@ -282,12 +292,14 @@ export default function Analysis(props) {
             handleAudienceChange={handleAudienceChange}
           />
         </div>
-        {buttonText && <Button
-          primary
-          text={buttonText}
-          onClick={onGenerate}
-          style={{ maxWidth: 250, marginBottom: 25 }}
-        />}
+        {buttonText && (
+          <Button
+            primary
+            text={buttonText}
+            onClick={onGenerate}
+            style={{ maxWidth: 250, marginBottom: 25 }}
+          />
+        )}
         {!hasClickedGenerate ? (
           <BlogPostMarkdown markdown={analysis} />
         ) : analysis ? (

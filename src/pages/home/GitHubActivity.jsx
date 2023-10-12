@@ -161,10 +161,22 @@ const PRCarousel = () => {
             paddingBottom: 20,
           }}
         >
-          <h1 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90, color: "white" }}>
+          <h1
+            style={{
+              paddingLeft: mobile ? 5 : 90,
+              paddingRight: mobile ? 5 : 90,
+              color: "white",
+            }}
+          >
             We&apos;re fully open source
           </h1>
-          <h5 style={{ paddingLeft: mobile ? 5 : 90, paddingRight: mobile ? 5 : 90, color: "white" }}>
+          <h5
+            style={{
+              paddingLeft: mobile ? 5 : 90,
+              paddingRight: mobile ? 5 : 90,
+              color: "white",
+            }}
+          >
             All PolicyEngine models, code, and data are open source and
             available in their latest form on GitHub, with code, documentation
             and validation from over fifty open-source contributors. This is our

@@ -2,13 +2,13 @@ We are excited to announce that the Digital Public Goods Alliance (DPGA) has add
 
 In recognizing PolicyEngine as a DPG, the DPGA affirms that we meet the [DPG Standard](http://digitalpublicgoods.net/standard/): open-source software, open data, open AI models, open standards, and open content that adhere to privacy and other applicable laws and best practices, do no harm, and help attain the United Nations’ Sustainable Development Goals (SDGs). In particular, the DPGA affirmed our view that PolicyEngine’s free, open source tax-benefit microsimulation software enables policymakers, researchers, and organizations to analyze and develop effective policies for addressing:
 
-* [SDG1:](https://sdgs.un.org/goals/goal1) End poverty in all its forms everywhere
+- [SDG1:](https://sdgs.un.org/goals/goal1) End poverty in all its forms everywhere
 
-* [SDG5:](https://sdgs.un.org/goals/goal5) Achieve gender equality and empower all women and girls
+- [SDG5:](https://sdgs.un.org/goals/goal5) Achieve gender equality and empower all women and girls
 
-* [SDG8:](https://sdgs.un.org/goals/goal8) Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all
+- [SDG8:](https://sdgs.un.org/goals/goal8) Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all
 
-* [SDG10:](https://sdgs.un.org/goals/goal10) Reduce inequality within and among countries
+- [SDG10:](https://sdgs.un.org/goals/goal10) Reduce inequality within and among countries
 
 [You can see our full DPG registry listing here.](https://app.digitalpublicgoods.net/a/10482)
 

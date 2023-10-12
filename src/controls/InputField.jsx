@@ -4,8 +4,7 @@ import style from "../style";
 import { useRef, useState } from "react";
 
 export default function InputField(props) {
-  const { onChange, padding, width, type, inputmode, pattern, value } =
-    props;
+  const { onChange, padding, width, type, inputmode, pattern, value } = props;
   const [inputValue, setInputValue] = useState(value ? value : "");
   const placeholder = useRef(props.placeholder);
   const mobile = useMobile();
@@ -68,7 +67,7 @@ export default function InputField(props) {
         }
         setInputValue(e.target.value);
       }}
-      value = {inputValue}
+      value={inputValue}
       placeholder={placeholder.current}
     />
   );

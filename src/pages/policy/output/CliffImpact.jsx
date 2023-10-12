@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState, useRef} from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, percent } from "../../../api/language";
 import ErrorPage from "../../../layout/Error";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -72,7 +72,7 @@ export default function CliffImpact(props) {
       />
     );
   }
-  
+
   if (!reformPolicyId) {
     return <ErrorPage message="No policy selected." />;
   }
@@ -166,13 +166,13 @@ export default function CliffImpact(props) {
           const message = `The ${metric.toLowerCase()} ${
             change > 0.0001
               ? `would rise ${percent(change)} from ${formatter(
-                baseline
-              )} to ${formatter(reform)}`
-              : change < -0.0001
-                ? `would fall ${percent(-change)} from ${formatter(
                   baseline
                 )} to ${formatter(reform)}`
-                : `would remain at ${percent(baseline)}`
+              : change < -0.0001
+              ? `would fall ${percent(-change)} from ${formatter(
+                  baseline
+                )} to ${formatter(reform)}`
+              : `would remain at ${percent(baseline)}`
           }.`;
           setHoverCard({
             title: data.points[0].x,
@@ -234,7 +234,7 @@ export default function CliffImpact(props) {
       <DownloadableScreenshottable ref={screenshotRef}>
         <h2>{title}</h2>
         <HoverCard>
-          <CliffImpactPlot/>
+          <CliffImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
       <div className="chart-container">

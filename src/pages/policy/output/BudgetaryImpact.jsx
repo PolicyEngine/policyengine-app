@@ -2,12 +2,12 @@ import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency } from "../../../api/language";
-import HoverCard, {HoverCardContext} from "../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import DownloadCsvButton from "./DownloadCsvButton";
-import { plotLayoutFont } from 'pages/policy/output/utils';
+import { plotLayoutFont } from "pages/policy/output/utils";
 import React, { useRef } from "react";
 
 export default function BudgetaryImpact(props) {
@@ -63,11 +63,13 @@ export default function BudgetaryImpact(props) {
             measure:
               labels.length > 0
                 ? Array(labels.length - 1)
-                  .fill("relative")
-                  .concat(["total"])
+                    .fill("relative")
+                    .concat(["total"])
                 : ["total"],
             textposition: "inside",
-            text: values.map((value) => aggregateCurrency(value * 1e9, metadata)),
+            text: values.map((value) =>
+              aggregateCurrency(value * 1e9, metadata)
+            ),
             increasing: { marker: { color: style.colors.DARK_GREEN } },
             decreasing: { marker: { color: style.colors.DARK_GRAY } },
             // Total should be dark gray if negative, dark green if positive
@@ -103,7 +105,7 @@ export default function BudgetaryImpact(props) {
             r: 0,
           },
           height: mobile ? 300 : 500,
-          ...plotLayoutFont
+          ...plotLayoutFont,
         }}
         config={{
           displayModeBar: false,
@@ -124,13 +126,13 @@ export default function BudgetaryImpact(props) {
             relevantFigure < 0
               ? "This reform would increase "
               : relevantFigure > 0
-                ? "This reform would reduce "
-                : "This reform would not impact ";
+              ? "This reform would reduce "
+              : "This reform would not impact ";
           body += label.toLowerCase().includes("tax")
             ? label.toLowerCase()
             : label.toLowerCase().includes("benefit")
-              ? "benefit spending"
-              : "the budget deficit";
+            ? "benefit spending"
+            : "the budget deficit";
           if (relevantFigure === 0) {
             body += ".";
           } else {
@@ -182,7 +184,7 @@ export default function BudgetaryImpact(props) {
           {label}
         </h2>
         <HoverCard>
-          <BudgetaryImpactPlot/>
+          <BudgetaryImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
       <div className="chart-container">

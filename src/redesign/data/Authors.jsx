@@ -1,4 +1,3 @@
-
 const Authors = {
     "nikhil-woodruff": {
       "name": "Nikhil Woodruff",
@@ -75,6 +74,8 @@ const Authors = {
   }
 
 const authorKeys = Object.keys(Authors);
-const authorKeyToLabel = Object.fromEntries(authorKeys.map(key => [key, Authors[key].name]));
+const authorKeyToLabel = Object.fromEntries(
+  authorKeys.map((key) => [key, Authors[key].name])
+);
 
 export { Authors, authorKeys, authorKeyToLabel };

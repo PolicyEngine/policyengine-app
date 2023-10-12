@@ -1,4 +1,13 @@
-export function HoverBox({ hoverBackgroundColor, direction, children, size, onClick, style, link, ...rest }) {
+export function HoverBox({
+  hoverBackgroundColor,
+  direction,
+  children,
+  size,
+  onClick,
+  style,
+  link,
+  ...rest
+}) {
   let topStart, leftStart, topEnd, leftEnd, spread;
 
   const boxSize = size || "200px";
@@ -49,9 +58,13 @@ export function HoverBox({ hoverBackgroundColor, direction, children, size, onCl
       onMouseOut={(e) =>
         (e.currentTarget.style.boxShadow = containerStyle.boxShadow)
       }
-      onClick={onClick || (link && (() => {
-        window.open(link, "_self")
-      }))}
+      onClick={
+        onClick ||
+        (link &&
+          (() => {
+            window.open(link, "_self");
+          }))
+      }
     >
       {children}
     </div>
