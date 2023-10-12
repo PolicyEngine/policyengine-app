@@ -202,34 +202,28 @@ function AuthorSection({ post }) {
       justifyContent: "start",
       gap: 15,
       padding: "1rem .5rem",
-      marginTop: 5,
-      borderTop: "4px solid lightgray",
-      width: "100%"
+      borderTop: "1px solid black",
   }}>
-    <img src={Authors[author].headshot} 
-    height={75}
-    width={75}
+    <img src={Authors[author].headshot}
+    width={70}
+    height={70}
     style={{
       objectFit: "cover",
     }}
     />
-    <p className="spaced-sans-serif" style={{paddingTop: 5}}>
-      <span style={{color: style.colors.BLUE_PRIMARY}}>
-        <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link" 
-        style={{
-          marginRight: 3,
-          fontSize: 15
-          }}>
+    <p  style={{paddingTop: 5}}>
+      <span className="spaced-sans-serif" style={{color: style.colors.BLUE_PRIMARY}}>
+        <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link"> 
         {author.replaceAll("-", " ")}
         </Link> 
       </span><br></br>
-      <span style={{fontSize: 10}}>
-        {Authors[author].bio}
+      <span style={{fontSize: 12}}>
+        {Authors[author].title}
       </span>
     </p>
   </div>);
 
-  return <ul className="spaced-sans-serif" style={{marginTop: 50}}>
+  return <ul style={{marginTop: 50, marginLeft: "-2rem"}}>
     {authorDescriptions}
     </ul>
 }
