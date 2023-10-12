@@ -54,6 +54,7 @@ export default function HomeBlogPreview() {
 function ReadMore() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
+  const countryId = useCountryId();
 
   return (
     <div
@@ -67,7 +68,7 @@ function ReadMore() {
           margin: 40,
         }}
       >
-        <EmphasisedLink text="Read more" url="/" size={14} />
+        <EmphasisedLink text="Read more" url={`/${countryId}/research`} size={14} />
       </div>
     </div>
   );
