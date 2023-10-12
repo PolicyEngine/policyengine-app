@@ -48,8 +48,9 @@ export default function DeepPovertyImpact(props) {
   };
   const mobile = useMobile();
 
-  function DeepPovertyImpactPlot() {
+  function DeepPovertyImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -70,7 +71,37 @@ export default function DeepPovertyImpact(props) {
                 "%",
             ),
             textangle: 0,
-            hoverinfo: "none",
+            ...(useHoverCard
+              ? {
+                  hoverinfo: "none",
+                }
+              : {
+                  customdata: povertyLabels.map((x, i) => {
+                    const group = x;
+                    const change = povertyChanges[i];
+                    const baseline =
+                      impact.poverty.deep_poverty[labelToKey[group]].baseline;
+                    const reform =
+                      impact.poverty.deep_poverty[labelToKey[group]].reform;
+                    return `The percentage of ${
+                      group === "All" ? "people" : group.toLowerCase()
+                    } in deep poverty<br>${
+                      change < -0.001
+                        ? `would fall ${percent(-change)} from ${percent(
+                            baseline,
+                          )} to ${percent(reform)}.`
+                        : change > 0.001
+                        ? `would rise ${percent(change)} from ${percent(
+                            baseline,
+                          )} to ${percent(reform)}.`
+                        : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
+                    }`;
+                  }),
+                  hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                }),
           },
         ]}
         layout={{
@@ -82,6 +113,15 @@ export default function DeepPovertyImpact(props) {
             tickformat: "+,.1%",
             range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           showlegend: false,
           uniformtext: {
             mode: "hide",
@@ -103,36 +143,41 @@ export default function DeepPovertyImpact(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          const group = data.points[0].x;
-          const change = data.points[0].y;
-          const baseline =
-            impact.poverty.deep_poverty[labelToKey[group]].baseline;
-          const reform = impact.poverty.deep_poverty[labelToKey[group]].reform;
-          const message = `The percentage of ${
-            group === "All" ? "people" : group.toLowerCase()
-          } in deep poverty ${
-            change < -0.001
-              ? `would fall ${percent(-change)} from ${percent(
-                  baseline,
-                )} to ${percent(reform)}.`
-              : change > 0.001
-              ? `would rise ${percent(change)} from ${percent(
-                  baseline,
-                )} to ${percent(reform)}.`
-              : change === 0
-              ? `would remain at ${percent(baseline)}.`
-              : (change > 0 ? "would rise " : "would fall ") +
-                ` by less than 0.1%.`
-          }`;
-          setHoverCard({
-            title: group,
-            body: message,
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const group = data.points[0].x;
+                const change = data.points[0].y;
+                const baseline =
+                  impact.poverty.deep_poverty[labelToKey[group]].baseline;
+                const reform =
+                  impact.poverty.deep_poverty[labelToKey[group]].reform;
+                const message = `The percentage of ${
+                  group === "All" ? "people" : group.toLowerCase()
+                } in deep poverty ${
+                  change < -0.001
+                    ? `would fall ${percent(-change)} from ${percent(
+                        baseline,
+                      )} to ${percent(reform)}.`
+                    : change > 0.001
+                    ? `would rise ${percent(change)} from ${percent(
+                        baseline,
+                      )} to ${percent(reform)}.`
+                    : change === 0
+                    ? `would remain at ${percent(baseline)}.`
+                    : (change > 0 ? "would rise " : "would fall ") +
+                      `by less than 0.1%.`
+                }`;
+                setHoverCard({
+                  title: group,
+                  body: message,
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }

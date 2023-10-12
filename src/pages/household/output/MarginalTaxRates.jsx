@@ -148,6 +148,11 @@ export default function MarginalTaxRates(props) {
                   color: style.colors.BLUE,
                   shape: "hv",
                 },
+                hovertemplate:
+                  `<b>Marginal tax rate</b><br><br>` +
+                  `If you earn %{x}, your<br>` +
+                  `marginal tax rate will be %{y}.` +
+                  `<extra></extra>`,
               },
               {
                 x: [currentEarnings],
@@ -158,6 +163,11 @@ export default function MarginalTaxRates(props) {
                 line: {
                   color: style.colors.BLUE,
                 },
+                hovertemplate:
+                  `<b>Your current MTR</b><br><br>` +
+                  `If you earn %{x}, your<br>` +
+                  `marginal tax rate will be %{y}.` +
+                  `<extra></extra>`,
               },
             ]}
             layout={{
@@ -177,6 +187,11 @@ export default function MarginalTaxRates(props) {
                   metadata.variables.marginal_tax_rate.unit,
                 ),
                 tickformat: ".1%",
+              },
+              hoverlabel: {
+                align: "left",
+                bgcolor: "#FFF",
+                font: { size: "16" },
               },
               legend: {
                 // Position above the plot
@@ -254,6 +269,11 @@ export default function MarginalTaxRates(props) {
             color: style.colors.BLUE,
             shape: "hv",
           },
+          hovertemplate:
+            `<b>MTR difference</b><br><br>` +
+            `If you earn %{x}, your marginal<br>` +
+            `tax rate difference will be %{y}.` +
+            `<extra></extra>`,
         },
         {
           x: [currentEarnings],
@@ -264,6 +284,11 @@ export default function MarginalTaxRates(props) {
           line: {
             color: style.colors.BLUE,
           },
+          hovertemplate:
+            `<b>Your current MTR difference</b><br><br>` +
+            `If you earn %{x}, your marginal<br>` +
+            `tax rate difference will be %{y}.` +
+            `<extra></extra>`,
         },
       ];
     } else {
@@ -277,6 +302,11 @@ export default function MarginalTaxRates(props) {
             color: style.colors.BLUE,
             shape: "hv",
           },
+          hovertemplate:
+            `<b>Reform MTR</b><br><br>` +
+            `If you earn %{x}, your reform<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
         {
           x: earningsArray,
@@ -287,16 +317,26 @@ export default function MarginalTaxRates(props) {
             color: style.colors.MEDIUM_DARK_GRAY,
             shape: "hv",
           },
+          hovertemplate:
+            `<b>Baseline MTR</b><br><br>` +
+            `If you earn %{x}, your baseline<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
         {
           x: [currentEarnings],
           y: [currentMtr],
           type: "scatter",
-          name: "Your current MTR",
+          name: "Your baseline MTR",
           mode: "markers",
           line: {
             color: style.colors.GRAY,
           },
+          hovertemplate:
+            `<b>Your baseline MTR</b><br><br>` +
+            `If you earn %{x}, your baseline<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
         {
           x: [currentEarnings],
@@ -307,6 +347,11 @@ export default function MarginalTaxRates(props) {
           line: {
             color: style.colors.BLUE,
           },
+          hovertemplate:
+            `<b>Your reform MTR</b><br><br>` +
+            `If you earn %{x}, your reform<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
       ];
     }
@@ -359,6 +404,11 @@ export default function MarginalTaxRates(props) {
                   0,
                 ),
                 tickformat: (showDelta ? "+" : "") + ".0%",
+              },
+              hoverlabel: {
+                align: "left",
+                bgcolor: "#FFF",
+                font: { size: "16" },
               },
               legend: {
                 // Position above the plot

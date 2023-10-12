@@ -40,8 +40,9 @@ export default function PovertyImpactByGender(props) {
   };
   const mobile = useMobile();
 
-  function PovertyImpactByGenderPlot() {
+  function PovertyImpactByGenderPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -62,7 +63,45 @@ export default function PovertyImpactByGender(props) {
                 "%",
             ),
             textangle: 0,
-            hoverinfo: "none",
+            ...(useHoverCard
+              ? {
+                  hoverinfo: "none",
+                }
+              : {
+                  customdata: povertyLabels.map((x, i) => {
+                    const group = x;
+                    const change = povertyChanges[i];
+                    const baseline =
+                      group === "All"
+                        ? impact.poverty.poverty[labelToKey[group]].baseline
+                        : impact.poverty_by_gender.poverty[labelToKey[group]]
+                            .baseline;
+                    const reform =
+                      group === "All"
+                        ? impact.poverty.poverty[labelToKey[group]].reform
+                        : impact.poverty_by_gender.poverty[labelToKey[group]]
+                            .reform;
+                    return `The percentage of ${
+                      group === "All"
+                        ? "people"
+                        : { male: "men", female: "women" }[group.toLowerCase()]
+                    } in poverty<br>${
+                      change < -0.001
+                        ? `would fall ${percent(-change)} from ${percent(
+                            baseline,
+                          )} to ${percent(reform)}.`
+                        : change > 0.001
+                        ? `would rise ${percent(change)} from ${percent(
+                            baseline,
+                          )} to ${percent(reform)}.`
+                        : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
+                    }`;
+                  }),
+                  hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                }),
           },
         ]}
         layout={{
@@ -74,6 +113,15 @@ export default function PovertyImpactByGender(props) {
             tickformat: "+,.1%",
             range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           showlegend: false,
           uniformtext: {
             mode: "hide",
@@ -95,43 +143,49 @@ export default function PovertyImpactByGender(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          const group = data.points[0].x;
-          const change = data.points[0].y;
-          const baseline =
-            group === "All"
-              ? impact.poverty.poverty[labelToKey[group]].baseline
-              : impact.poverty_by_gender.poverty[labelToKey[group]].baseline;
-          const reform =
-            group === "All"
-              ? impact.poverty.poverty[labelToKey[group]].reform
-              : impact.poverty_by_gender.poverty[labelToKey[group]].reform;
-          const message = `The percentage of ${
-            group === "All"
-              ? "people"
-              : { male: "men", female: "women" }[group.toLowerCase()]
-          } in poverty ${
-            change < -0.001
-              ? `would fall ${percent(-change)} from ${percent(
-                  baseline,
-                )} to ${percent(reform)}.`
-              : change > 0.001
-              ? `would rise ${percent(change)} from ${percent(
-                  baseline,
-                )} to ${percent(reform)}.`
-              : change === 0
-              ? `would remain at ${percent(baseline)}.`
-              : (change > 0 ? "would rise " : "would fall ") +
-                ` by less than 0.1%.`
-          }`;
-          setHoverCard({
-            title: group,
-            body: message,
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const group = data.points[0].x;
+                const change = data.points[0].y;
+                const baseline =
+                  group === "All"
+                    ? impact.poverty.poverty[labelToKey[group]].baseline
+                    : impact.poverty_by_gender.poverty[labelToKey[group]]
+                        .baseline;
+                const reform =
+                  group === "All"
+                    ? impact.poverty.poverty[labelToKey[group]].reform
+                    : impact.poverty_by_gender.poverty[labelToKey[group]]
+                        .reform;
+                const message = `The percentage of ${
+                  group === "All"
+                    ? "people"
+                    : { male: "men", female: "women" }[group.toLowerCase()]
+                } in poverty ${
+                  change < -0.001
+                    ? `would fall ${percent(-change)} from ${percent(
+                        baseline,
+                      )} to ${percent(reform)}.`
+                    : change > 0.001
+                    ? `would rise ${percent(change)} from ${percent(
+                        baseline,
+                      )} to ${percent(reform)}.`
+                    : change === 0
+                    ? `would remain at ${percent(baseline)}.`
+                    : (change > 0 ? "would rise " : "would fall ") +
+                      `by less than 0.1%.`
+                }`;
+                setHoverCard({
+                  title: group,
+                  body: message,
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }

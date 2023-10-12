@@ -19,14 +19,27 @@ export default function IntraDecileImpact(props) {
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const mobile = useMobile();
 
-  function IntraDecileImpactPlot() {
+  function IntraDecileImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
+
+    const gainMoreThan5ForAll = [all["Gain more than 5%"]];
+    const gainLessThan5ForAll = [all["Gain less than 5%"]];
+    const noChangeForAll = [all["No change"]];
+    const loseLessThan5ForAll = [all["Lose less than 5%"]];
+    const loseMoreThan5ForAll = [all["Lose more than 5%"]];
+
+    const gainMoreThan5ForDeciles = deciles["Gain more than 5%"];
+    const gainLessThan5ForDeciles = deciles["Gain less than 5%"];
+    const noChangeForDeciles = deciles["No change"];
+    const loseLessThan5ForDeciles = deciles["Lose less than 5%"];
+    const loseMoreThan5ForDeciles = deciles["Lose more than 5%"];
 
     const data = [
       {
         type: "bar",
         y: ["All"],
-        x: [all["Gain more than 5%"]],
+        x: gainMoreThan5ForAll,
         name: "Gain more than 5%",
         legendgroup: "Gain more than 5%",
         offsetgroup: "Gain more than 5%",
@@ -34,7 +47,7 @@ export default function IntraDecileImpact(props) {
           color: style.colors.DARK_GREEN,
         },
         orientation: "h",
-        text: [all["Gain more than 5%"]].map(
+        text: gainMoreThan5ForAll.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
@@ -42,18 +55,29 @@ export default function IntraDecileImpact(props) {
         xaxis: "x",
         yaxis: "y",
         showlegend: false,
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: gainMoreThan5ForAll.map((x) => percent(x)),
+              hovertemplate:
+                `<b>All households</b><br><br>` +
+                `Of all households, ${policyLabel}<br>would cause ` +
+                `%{customdata} of people to gain<br>more than 5% of their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: ["All"],
-        x: [all["Gain less than 5%"]],
+        x: gainLessThan5ForAll,
         name: "Gain less than 5%",
         marker: {
           color: style.colors.LIGHT_GREEN,
         },
         orientation: "h",
-        text: [all["Gain less than 5%"]].map(
+        text: gainLessThan5ForAll.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
@@ -61,18 +85,29 @@ export default function IntraDecileImpact(props) {
         xaxis: "x",
         yaxis: "y",
         showlegend: false,
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: gainLessThan5ForAll.map((x) => percent(x)),
+              hovertemplate:
+                `<b>All households</b><br><br>` +
+                `Of all households, ${policyLabel}<br>would cause ` +
+                `%{customdata} of people to gain<br>less than 5% of their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: ["All"],
-        x: [all["No change"]],
+        x: noChangeForAll,
         name: "No change",
         marker: {
           color: style.colors.LIGHT_GRAY,
         },
         orientation: "h",
-        text: [all["No change"]].map(
+        text: noChangeForAll.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
@@ -80,18 +115,29 @@ export default function IntraDecileImpact(props) {
         xaxis: "x",
         yaxis: "y",
         showlegend: false,
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: noChangeForAll.map((x) => percent(x)),
+              hovertemplate:
+                `<b>All households</b><br><br>` +
+                `Of all households, ${policyLabel}<br>would cause ` +
+                `%{customdata} of people to<br>neither gain nor lose their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: ["All"],
-        x: [all["Lose less than 5%"]],
+        x: loseLessThan5ForAll,
         name: "Lose less than 5%",
         marker: {
           color: style.colors.GRAY,
         },
         orientation: "h",
-        text: [all["Lose less than 5%"]].map(
+        text: loseLessThan5ForAll.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
@@ -99,18 +145,29 @@ export default function IntraDecileImpact(props) {
         xaxis: "x",
         yaxis: "y",
         showlegend: false,
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: loseLessThan5ForAll.map((x) => percent(x)),
+              hovertemplate:
+                `<b>All households</b><br><br>` +
+                `Of all households, ${policyLabel}<br>would cause ` +
+                `%{customdata} of people to lose<br>less than 5% their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: ["All"],
-        x: [all["Lose more than 5%"]],
+        x: loseMoreThan5ForAll,
         name: "Lose more than 5%",
         marker: {
           color: style.colors.DARK_GRAY,
         },
         orientation: "h",
-        text: [all["Lose more than 5%"]].map(
+        text: loseMoreThan5ForAll.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
@@ -118,97 +175,198 @@ export default function IntraDecileImpact(props) {
         xaxis: "x",
         yaxis: "y",
         showlegend: false,
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: loseMoreThan5ForAll.map((x) => percent(x)),
+              hovertemplate:
+                `<b>All households</b><br><br>` +
+                `Of all households, ${policyLabel}<br>would cause ` +
+                `%{customdata} of people to lose<br>more than 5% their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: decileNumbers,
-        x: deciles["Gain more than 5%"],
+        x: gainMoreThan5ForDeciles,
         name: "Gain more than 5%",
         marker: {
           color: style.colors.DARK_GREEN,
         },
         orientation: "h",
-        text: deciles["Gain more than 5%"].map(
+        text: gainMoreThan5ForDeciles.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
         xaxis: "x2",
         yaxis: "y2",
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: gainMoreThan5ForDeciles.map((x, i) => {
+                return {
+                  group: cardinal(decileNumbers[i]),
+                  value: percent(x),
+                };
+              }),
+              hovertemplate:
+                `<b>Decile %{y}</b><br><br>` +
+                `Of households in the %{customdata.group} decile,<br>` +
+                `${policyLabel} would cause<br>` +
+                `%{customdata.value}of people to gain more<br>` +
+                `than 5% of their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: decileNumbers,
-        x: deciles["Gain less than 5%"],
+        x: gainLessThan5ForDeciles,
         name: "Gain less than 5%",
         marker: {
           color: style.colors.LIGHT_GREEN,
         },
         orientation: "h",
-        text: deciles["Gain less than 5%"].map(
+        text: gainLessThan5ForDeciles.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
         xaxis: "x2",
         yaxis: "y2",
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: gainLessThan5ForDeciles.map((x, i) => {
+                return {
+                  group: cardinal(decileNumbers[i]),
+                  value: percent(x),
+                };
+              }),
+              hovertemplate:
+                `<b>Decile %{y}</b><br><br>` +
+                `Of households in the %{customdata.group} decile,<br>` +
+                `${policyLabel} would cause<br>` +
+                `%{customdata.value} of people to gain less<br>` +
+                `than 5% of their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: decileNumbers,
-        x: deciles["No change"],
+        x: noChangeForDeciles,
         name: "No change",
         marker: {
           color: style.colors.LIGHT_GRAY,
         },
         orientation: "h",
-        text: deciles["No change"].map(
+        text: noChangeForDeciles.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
         xaxis: "x2",
         yaxis: "y2",
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: noChangeForDeciles.map((x, i) => {
+                return {
+                  group: cardinal(decileNumbers[i]),
+                  value: percent(x),
+                };
+              }),
+              hovertemplate:
+                `<b>Decile %{y}</b><br><br>` +
+                `Of households in the %{customdata.group} decile,<br>` +
+                `${policyLabel} would cause<br>` +
+                `%{customdata.value} of people to neither gain nor<br>` +
+                `lose their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: decileNumbers,
-        x: deciles["Lose less than 5%"],
+        x: loseLessThan5ForDeciles,
         name: "Lose less than 5%",
         marker: {
           color: style.colors.GRAY,
         },
         orientation: "h",
-        text: deciles["Lose less than 5%"].map(
+        text: loseLessThan5ForDeciles.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
         xaxis: "x2",
         yaxis: "y2",
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: loseLessThan5ForDeciles.map((x, i) => {
+                return {
+                  group: cardinal(decileNumbers[i]),
+                  value: percent(x),
+                };
+              }),
+              hovertemplate:
+                `<b>Decile %{y}</b><br><br>` +
+                `Of households in the %{customdata.group} decile,<br>` +
+                `${policyLabel} would cause<br>` +
+                `%{customdata.value} of people to lose less<br>` +
+                `than 5% of their net income.` +
+                `<extra></extra>`,
+            }),
       },
       {
         type: "bar",
         y: decileNumbers,
-        x: deciles["Lose more than 5%"],
+        x: loseMoreThan5ForDeciles,
         name: "Lose more than 5%",
         marker: {
           color: style.colors.DARK_GRAY,
         },
         orientation: "h",
-        text: deciles["Lose more than 5%"].map(
+        text: loseMoreThan5ForDeciles.map(
           (value) => (value * 100).toFixed(0).toString() + "%",
         ),
         textposition: "inside",
         textangle: 0,
         xaxis: "x2",
         yaxis: "y2",
-        hoverinfo: "none",
+        ...(useHoverCard
+          ? {
+              hoverinfo: "none",
+            }
+          : {
+              customdata: loseMoreThan5ForDeciles.map((x, i) => {
+                return {
+                  group: cardinal(decileNumbers[i]),
+                  value: percent(x),
+                };
+              }),
+              hovertemplate:
+                `<b>Decile %{y}</b><br><br>` +
+                `Of households in the %{customdata.group} decile,<br>` +
+                `${policyLabel} would cause<br>` +
+                `%{customdata.value} of people to lose more<br>` +
+                `than 5% of their net income.` +
+                `<extra></extra>`,
+            }),
       },
     ];
 
@@ -246,6 +404,15 @@ export default function IntraDecileImpact(props) {
             anchor: "x2",
             domain: [0, 0.85],
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           uniformtext: {
             mode: "hide",
             minsize: mobile ? 7 : 10,
@@ -269,25 +436,30 @@ export default function IntraDecileImpact(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const group = data.points[0].y;
-          const title = group === "All" ? "All households" : `Decile ${group}`;
-          const category = data.points[0].data.name;
-          const value = data.points[0].x;
-          const message = `Of ${
-            group === "All"
-              ? "all households"
-              : `households in the ${cardinal(group)} decile`
-          }, ${policyLabel} would cause ${percent(value)} of people to
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const group = data.points[0].y;
+                const title =
+                  group === "All" ? "All households" : `Decile ${group}`;
+                const category = data.points[0].data.name;
+                const value = data.points[0].x;
+                const message = `Of ${
+                  group === "All"
+                    ? "all households"
+                    : `households in the ${cardinal(group)} decile`
+                }, ${policyLabel} would cause ${percent(value)} of people to
         ${category.toLowerCase()} of their net income.`;
-          setHoverCard({
-            title: title,
-            body: message,
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+                setHoverCard({
+                  title: title,
+                  body: message,
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }
