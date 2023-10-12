@@ -114,8 +114,10 @@ function PostBodySection({ post, markdown }) {
           <AuthorSection post={post} />
       </div>
     </div>
+    );
   } else {
-    return <div style={{display: "flex", flexDirection: "column"}}>
+    return (
+    <div style={{display: "flex", flexDirection: "column"}}>
     <div style={{flex: 1}}>
         <div style={{marginBottom: 30}}>
         <p className="spaced-sans-serif">Contents</p>
