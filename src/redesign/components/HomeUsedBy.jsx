@@ -8,7 +8,7 @@ export default function HomeUsedBy() {
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
   if (!orgData[countryId]) return null;
-  const orgs = Object.values(orgData[countryId]);
+  const orgs = Object.values(orgData[countryId]).slice(0, 7);
 
   const itemsPerRow = {
     mobile: 3,
@@ -46,7 +46,7 @@ export default function HomeUsedBy() {
               desktop: "center",
             }[displayCategory],
             marginBottom: 30,
-            marginTop: 50,
+            marginTop: 20,
           }}
         >
           {row.map((org) => (

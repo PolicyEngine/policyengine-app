@@ -7,9 +7,7 @@ import HomePolicyEngineFeatures from "./HomePolicyEngineFeatures";
 import HomeUsedBy from "./HomeUsedBy";
 import HomeTransparency from "./HomeTransparency";
 import Footer from "./Footer";
-import Section from "./Section";
-import NavigationButton from "controls/NavigationButton";
-import style from "style";
+import HomeQuoteCarousel from "./HomeQuoteCarousel";
 
 export default function Home() {
   document.title = "PolicyEngine";
@@ -22,23 +20,7 @@ export default function Home() {
       <HomeSubscribe />
       <HomeCallToAction />
       <HomePolicyEngineFeatures />
-      <Section>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: style.colors.WHITE,
-        height: "100%",
-      }}
-    >
-      <h3 style={{ fontFamily: "Roboto Serif" }}>
-        What people say about PolicyEngine
-      </h3>
-        <NavigationButton to="/about" text="Read testimonials from our users">See more</NavigationButton>
-        </div>
-      </Section>
+      <HomeQuoteCarousel />
       <HomeTransparency />
       <Footer />
     </div>

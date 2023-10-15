@@ -8,6 +8,7 @@ export default function ShowcaseItem({
   linkTitle,
   link,
   image,
+  altText,
   borderColor,
   color,
 }) {
@@ -45,8 +46,10 @@ export default function ShowcaseItem({
       </div>
       <img src={image} width={displayCategory === "desktop" ? 400 : "100%"} height="100%" style={{
         objectFit: "contain",
-        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.9)",
-      }} />
+        // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.9)",
+      }} 
+      alt={altText}
+      />
     </div>
   );
 }

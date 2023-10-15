@@ -685,10 +685,20 @@ let posts = [
     image: "new-mexico-income-tax-launch.png",
     authors: ["max-ghenis"],
   },
+  {
+    title: "Northern Ireland UBI Feasibility Study",
+    description:
+      "PolicyEngine estimates the impact of a UBI policy on Northern Ireland.",
+    date: "2023-10-02 16:00:00",
+    filename: "northern-ireland-feasibility.ipynb",
+    tags: ["uk", "featured", "policy"],
+    image: "new-mexico-income-tax-launch.png",
+    authors: ["nikhil-woodruff", "max-ghenis"],
+  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
-  post.slug = post.filename.replace(".md", "");
+  post.slug = post.filename.substring(0, post.filename.indexOf("."));
 }
 
 const tags = posts.map((post) => post.tags);
