@@ -26,7 +26,6 @@ import {
   PrinterOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
-import FontIcon from "./FontIcon";
 import { Authors } from "../data/Authors";
 import Plot from "react-plotly.js";
 
@@ -263,7 +262,6 @@ function PostBodySection({ post, markdown, notebook }) {
           <AuthorSection post={post} />
         </div>
       </div>
-    </div>
     );
   } else {
     return (
