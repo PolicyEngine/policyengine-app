@@ -7,9 +7,13 @@ import Carousel from "./Carousel";
 import useCountryId from "./useCountryId";
 import { Link } from "react-router-dom";
 import FontIcon from "./FontIcon";
+import Section from "./Section";
 
 export default function HomeQuoteCarousel() {
-  return <QuoteBox />;
+  return <Section
+    >
+      <QuoteBox noArrows />
+    </Section>;
 }
 
 export function QuoteBox({ noArrows }) {
@@ -61,7 +65,7 @@ export function QuoteBox({ noArrows }) {
           <div
             style={{ display: "flex", justifyContent: "center", margin: 10 }}
           >
-            <ReadMoreAboutThisQuote author={currentQuote.name} />
+            <ReadMoreAboutThisQuote />
           </div>
         )}
       </div>
@@ -123,21 +127,27 @@ function QuoteText(props) {
   const { text } = props;
   const displayCategory = useDisplayCategory();
   return (
+    <div style={{display: "table",
+    minHeight: {
+      mobile: 380,
+      tablet: 100,
+      desktop: 100,
+    }[displayCategory],}}>
     <p
       style={{
         paddingLeft: displayCategory === "mobile" ? 20 : 0,
         paddingRight: displayCategory === "mobile" ? 20 : 40,
-        display: "flex",
-        minHeight: {
-          mobile: 380,
-          tablet: 100,
-          desktop: null,
-        }[displayCategory],
         fontFamily: "Roboto Serif",
+        textAlign: "center",
+        verticalAlign: "middle",
+        display: "table-cell",
+        alignItems: "center",
+        fontSize: 20,
       }}
     >
       {text}
     </p>
+    </div>
   );
 }
 
@@ -185,7 +195,7 @@ function QuoteImages(props) {
       key="headshot"
       src={headshot}
       alt="Headshot"
-      style={{ height: 40, width: 40, objectFit: "cover" }}
+      style={{ height: 80, width: 80, objectFit: "cover" }}
     />
   );
   const orgLogoImg = (
@@ -193,7 +203,7 @@ function QuoteImages(props) {
       key="orgLogo"
       src={orgLogo}
       alt="Org logo"
-      style={{ height: 40, width: 40, cursor: "pointer", objectFit: "contain" }}
+      style={{ height: 80, width: 80, cursor: "pointer", objectFit: "contain" }}
       onClick={
         // Open orgLink in new tab
         () => window.open(orgLink, "_blank")
@@ -220,16 +230,14 @@ function QuoteImages(props) {
   );
 }
 
-function ReadMoreAboutThisQuote({ author }) {
+function ReadMoreAboutThisQuote() {
   const countryId = useCountryId();
-  console.log(author);
-  const slug = author?.replace(" ", "-").toLowerCase();
   return (
     <Link
-      to={`/${countryId}/about#${slug}`}
+      to={`/${countryId}/testimonials`}
       className="highlighted-link spaced-sans-serif"
     >
-      More <FontIcon name="arrow_forward" size={15} />
+      Read more testimonials <FontIcon name="arrow_forward" size={15} />
     </Link>
   );
 }

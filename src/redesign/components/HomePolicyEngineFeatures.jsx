@@ -8,7 +8,7 @@ import ShowcaseItem from "./ShowcaseItem";
 export default function HomePolicyEngineFeatures() {
   return (
     <Section
-      backgroundColor={style.colors.BLUE_PRIMARY}
+      backgroundColor={style.colors.BLUE_PRESSED}
       title="With PolicyEngine"
       color="white"
     >

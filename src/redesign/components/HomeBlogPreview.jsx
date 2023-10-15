@@ -335,8 +335,8 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
           style={{
             objectFit: "cover",
-            border: "1px solid black", 
-            borderBottom: "0px"
+            border: `1px solid ${style.colors.BLACK}`,
+            borderBottom: "none",
           }}
         />
       </Link>
@@ -397,7 +397,11 @@ export function MediumBlogPreview({ blog, minHeight }) {
             src={imageUrl}
             height={300}
             width="100%"
-            style={{ objectFit: "cover", border: "1px solid black", borderBottom: "0px" }}
+            style={{ 
+              objectFit: "cover",
+              border: `1px solid ${style.colors.BLACK}`,
+              borderBottom: "none",
+             }}
           />
         </div>
         <BlogBox

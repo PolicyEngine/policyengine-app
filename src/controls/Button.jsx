@@ -1,7 +1,7 @@
 import ActionButton from "../redesign/components/ActionButton";
 
 export default function Button(props) {
-  const { text, onClick, primary, disabled } = props;
+  const { text, onClick, primary, disabled, width } = props;
 
   if (text === "left") {
     return (
@@ -66,6 +66,7 @@ export default function Button(props) {
         onClick={onClick}
         primary={primary}
         disabled={disabled}
+        width={width}
       />
     </div>
   );
