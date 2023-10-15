@@ -44,10 +44,12 @@ export default function ShowcaseItem({
         <p>{description}</p>
         <EmphasisedLink link={link} text={linkTitle} />
       </div>
-      <img src={image} width={displayCategory === "desktop" ? 400 : "100%"} height="100%" style={{
-        objectFit: "contain",
-        // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.9)",
-      }} 
+      <img src={image} 
+        width={displayCategory === "desktop" ? 400 : "100%"} 
+        height="100%" style={{
+          objectFit: "contain",
+          // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.9)",
+        }} 
       alt={altText}
       />
     </div>

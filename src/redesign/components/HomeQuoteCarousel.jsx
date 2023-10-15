@@ -101,7 +101,7 @@ function QuoteBio(props) {
           alignItems: "center",
         }}
       >
-        <QuoteImages headshot={headshot} orgLogo={orgLogo} orgLink={orgLink} />
+        <QuoteImages headshot={headshot} orgLogo={orgLogo} orgLink={orgLink} name={author.name} orgName={org.name} />
         <div>
           <QuoteOrg org={org} />
           <QuoteAuthor author={author} />
@@ -117,7 +117,7 @@ function QuoteBio(props) {
           <QuoteAuthor author={author} />
           <QuoteOrg org={org} />
         </div>
-        <QuoteImages headshot={headshot} orgLogo={orgLogo} />
+        <QuoteImages headshot={headshot} orgLogo={orgLogo} name={author.name} orgName={org.name} />
       </>
     );
   }
@@ -188,13 +188,13 @@ function QuoteOrg(props) {
 }
 
 function QuoteImages(props) {
-  const { headshot, orgLogo, orgLink } = props;
+  const { headshot, orgLogo, orgLink, name, orgName } = props;
   const displayCategory = useDisplayCategory();
   const headshotImg = (
     <img
       key="headshot"
       src={headshot}
-      alt="Headshot"
+      alt={`${name} headshot`}
       style={{ height: 80, width: 80, objectFit: "cover" }}
     />
   );
@@ -202,7 +202,7 @@ function QuoteImages(props) {
     <img
       key="orgLogo"
       src={orgLogo}
-      alt="Org logo"
+      alt={`${orgName} logo`}
       style={{ height: 80, width: 80, cursor: "pointer", objectFit: "contain" }}
       onClick={
         // Open orgLink in new tab

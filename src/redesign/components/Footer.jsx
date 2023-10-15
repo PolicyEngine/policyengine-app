@@ -177,6 +177,7 @@ function MobileFooter() {
     <>
       <img
         src={PolicyEngineMainLogo}
+        alt="PolicyEngine logo"
         width="100%"
         style={{ marginBottom: 50 }}
       />
@@ -195,6 +196,7 @@ function TabletFooter() {
         src={PolicyEngineMainLogo}
         width={350}
         style={{ marginBottom: 50 }}
+        alt="PolicyEngine logo"
       />
       <div
         style={{
@@ -220,6 +222,7 @@ function DesktopFooter() {
         src={PolicyEngineMainLogo}
         width={350}
         style={{ marginBottom: 50 }}
+        alt="PolicyEngine logo"
       />
       <div
         style={{

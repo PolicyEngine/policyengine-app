@@ -84,7 +84,7 @@ function IndividualOrg({ name, logo, link }) {
       >
         <img
           src={logo}
-          alt={name}
+          alt={`${name} logo`}
           width={size}
           height={size}
           style={{

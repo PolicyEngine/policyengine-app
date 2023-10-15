@@ -14,6 +14,7 @@ export default function HomeTransparency() {
         linkTitle="See our GitHub activity"
         link="/"
         image={githubScreenshot}
+        altText="Screenshot of PolicyEngine's GitHub activity"
         borderColor={style.colors.BLACK}
       />
       <ShowcaseItem
@@ -22,6 +23,7 @@ export default function HomeTransparency() {
         linkTitle="Explore the documentation"
         link="/"
         image={testingScreenshot}
+        altText="Screenshot of PolicyEngine's test coverage"
         borderColor={style.colors.BLACK}
       />
       <ShowcaseItem
@@ -30,6 +32,7 @@ export default function HomeTransparency() {
         linkTitle="Explore the documentation"
         link="/"
         image={apiScreenshot}
+        altText="Screenshot of PolicyEngine's API documentation"
         borderColor={style.colors.BLACK}
       />
     </Section>

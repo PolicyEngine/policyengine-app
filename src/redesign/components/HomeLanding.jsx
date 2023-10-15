@@ -100,6 +100,7 @@ export default function HomeLanding() {
           objectFit: "cover",
           position: "absolute",
         }}
+        alt="Neon-style abstract lights background"
       />
       <div
         style={{

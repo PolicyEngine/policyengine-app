@@ -331,6 +331,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
       <Link to={`/${countryId}/research/${currentBlog.slug}`}>
         <img
           src={imageUrl}
+          alt={currentBlog.coverAltText || `{blog.title} cover image`}
           width="100%"
           height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
           style={{
@@ -395,6 +396,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
         <div>
           <img
             src={imageUrl}
+            alt={blog.coverAltText || `{blog.title} cover image`}
             height={300}
             width="100%"
             style={{ 

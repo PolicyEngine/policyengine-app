@@ -40,6 +40,7 @@ function QuotesDetail() {
     const headshot = (
       <img
         src={quote.headshot}
+        alt={`${quote.name} headshot`}
         height={150}
         width={150}
         style={{ objectFit: "cover" }}
@@ -48,6 +49,7 @@ function QuotesDetail() {
     const orgLogo = (
       <img
         src={allOrgs[quote.org]?.logo}
+        alt={`${quote.org} logo`}
         width={150}
         style={{ objectFit: "cover" }}
       />
