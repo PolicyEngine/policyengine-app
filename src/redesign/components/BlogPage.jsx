@@ -26,7 +26,6 @@ import {
   PrinterOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
-import FontIcon from "./FontIcon";
 import Plot from "react-plotly.js";
 
 export default function BlogPage() {
@@ -925,13 +924,13 @@ function LeftContents(props) {
     const headerSlug = headerSlugs[i];
     contents.push(
       <div style={{ display: "flex", alignItems: "center", marginBottom: 5 }}>
-        <FontIcon name="arrow_forward" size={16} style={{ marginRight: 5 }} />
         <p
           key={headerSlug}
           style={{
             fontSize: 16 - 2 * (headerLevel - 2),
             cursor: "pointer",
             margin: 5,
+            marginLeft: 0,
             paddingLeft: 10 * (headerLevel - 2),
             padding: 5,
             fontFamily: "Roboto Serif",
