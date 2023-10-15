@@ -54,6 +54,7 @@ export default function HomeBlogPreview() {
 function ReadMore() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
+  const countryId = useCountryId();
 
   return (
     <div
@@ -67,7 +68,7 @@ function ReadMore() {
           margin: 40,
         }}
       >
-        <EmphasisedLink text="Read more" url="/" size={14} />
+        <EmphasisedLink text="Read more" url={`/${countryId}/research`} size={14} />
       </div>
     </div>
   );
@@ -110,10 +111,6 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
           <SmallBlogPreview blog={allPosts[2]} />
           <div style={{ height: 20 }} />
           <SmallBlogPreview blog={allPosts[3]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[4]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[5]} />
         </div>
       </div>
       <div
@@ -161,13 +158,13 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
             justifyContent: "space-between",
           }}
         >
-          <SmallBlogPreview blog={allPosts[5]} />
+          <SmallBlogPreview blog={allPosts[0]} />
           <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[6]} />
+          <SmallBlogPreview blog={allPosts[1]} />
           <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[7]} />
+          <SmallBlogPreview blog={allPosts[2]} />
           <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[8]} />
+          <SmallBlogPreview blog={allPosts[3]} />
         </div>
       </div>
       <div
@@ -178,9 +175,9 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
           marginTop: 40,
         }}
       >
-        <MediumBlogPreview blog={allPosts[4]} />
+        <MediumBlogPreview blog={allPosts[7]} />
         <div style={{ width: 40 }} />
-        <MediumBlogPreview blog={allPosts[5]} />
+        <MediumBlogPreview blog={allPosts[8]} />
       </div>
       <ReadMore />
     </SectionBottom>
@@ -359,13 +356,14 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           }
           style={{
             backgroundColor: style.colors.TEAL_LIGHT,
+            minHeight: 320 
           }}
         >
           <div style={{ padding: 20 }}>
             <p style={{ textTransform: "uppercase" }}>
               {moment(currentBlog.date).format("MMMM D, YYYY")}
             </p>
-            <h3>{currentBlog.title}</h3>
+            <h3 style={{ minHeight: 70 }}>{currentBlog.title}</h3>
             <p>{currentBlog.description}</p>
           </div>
         </BlogBox>
@@ -412,7 +410,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
             backgroundColor: blog.tags.includes(["in-the-news"])
               ? style.colors.BLUE_LIGHT
               : style.colors.LIGHT_GRAY,
-            minHeight: minHeight || (displayCategory === "mobile" ? 400 : 350),
+            minHeight: minHeight || (displayCategory === "mobile" ? 460 : 430),
             maxHeight: displayCategory === "mobile" ? 400 : null,
           }}
           topLeft={<BlogTags tags={blog.tags} />}
@@ -426,7 +424,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
             <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
               {moment(blog.date).format("MMMM D, YYYY")}
             </p>
-            <h5>{blog.title}</h5>
+            <h4>{blog.title}</h4>
             <p>{blog.description}</p>
           </div>
         </BlogBox>
@@ -523,7 +521,11 @@ export function SmallBlogPreview({ blog }) {
         height: "100%",
       }}
     >
-      <div style={{ padding: 10, paddingTop: 0 }}>
+      <div style={{ 
+        padding: 10, 
+        paddingTop: 0, 
+        minHeight: displayCategory === "desktop" ? 100 : null 
+        }}>
         <h4>{blog.title}</h4>
       </div>
     </BlogBox>
