@@ -694,6 +694,7 @@ let posts = [
     tags: ["uk", "featured", "policy"],
     image: "new-mexico-income-tax-launch.png",
     authors: ["nikhil-woodruff", "max-ghenis"],
+    coverAltText: "Northern Ireland"
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 

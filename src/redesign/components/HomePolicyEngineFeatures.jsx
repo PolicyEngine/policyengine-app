@@ -18,6 +18,7 @@ export default function HomePolicyEngineFeatures() {
         linkTitle="Try it out"
         link="/"
         image={codingScreenshot}
+        altText="Screenshot of a Python terminal using PolicyEngine's Python package"
         color="white"
       />
       <ShowcaseItem
@@ -26,6 +27,7 @@ export default function HomePolicyEngineFeatures() {
         linkTitle="Explore the documentation"
         link="/"
         image={parameterScreenshot}
+        altText="Screenshot of PolicyEngine's parameter editor"
         color="white"
       />
       <ShowcaseItem
@@ -34,6 +36,7 @@ export default function HomePolicyEngineFeatures() {
         linkTitle="Explore the documentation"
         link="/"
         image={decileChartScreenshot}
+        altText="Screenshot of PolicyEngine's decile chart feature"
         color="white"
       />
     </Section>
