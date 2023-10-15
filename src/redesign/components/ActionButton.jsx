@@ -11,17 +11,33 @@ export default function ActionButton({
   height,
   noArrow,
   direction,
+  secondary,
+  backgroundColor,
+  activeBackgroundColor,
 }) {
   const navigate = useNavigate();
   return (
     <HoverBox
-      hoverBackgroundColor={style.colors.TEAL_PRESSED}
+      hoverBackgroundColor={
+        activeBackgroundColor ||
+        ( 
+          !secondary ?
+            style.colors.TEAL_PRESSED
+            : style.colors.BLUE_PRESSED
+        )
+        }
       direction={direction || "left"}
       style={{
         marginTop: 0,
         alignItems: "center",
         display: "flex",
-        backgroundColor: style.colors.TEAL_ACCENT,
+        backgroundColor: 
+          backgroundColor ||
+          (
+            !secondary ?
+              style.colors.TEAL_ACCENT
+              : style.colors.BLUE_LIGHT
+          ),
         color: "white",
         padding: 15,
         paddingLeft: 30,

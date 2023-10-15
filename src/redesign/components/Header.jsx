@@ -21,7 +21,7 @@ export default function Header() {
           display: "flex",
           alignItems: "center",
           position: "fixed",
-          zIndex: 100,
+          zIndex: 1000,
           borderBottom: `1px solid ${style.colors.BLACK}`,
         }}
       >
@@ -167,7 +167,7 @@ function DesktopCalculatorButton() {
       <HoverBox
         hoverBackgroundColor={style.colors.TEAL_PRESSED}
         direction="left"
-        link={`/${countryId}/policy`}
+        link={`/${countryId}/calculator`}
         style={{
           margin: 20,
           marginLeft: "auto",

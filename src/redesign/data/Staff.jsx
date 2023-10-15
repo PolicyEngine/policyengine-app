@@ -24,7 +24,7 @@ export const founders = {
   },
   pavel_makarchuk: {
     name: "Pavel Makarchuk",
-    bio: `is a Policy Modelling Manager at PolicyEngine.`,
+    bio: `is a Policy Modeling Manager at PolicyEngine. He has graduated with a Bachelor’s degree in Economics from Marist College where he researched the economic implications of forced migration. Pavel is currently enrolled in the International Economics Master’s program at the Hochschule für Wirtschaft und Recht in Berlin.`,
     image: require("../images/authors/pavel-makarchuk.jpeg"),
   },
 };
@@ -36,7 +36,7 @@ export const advisors = {
     image: require("../images/headshots/george_sadowsky.jpeg"),
   },
   damiola_ogundipe: {
-    name: "Damiola Ogundipe",
+    name: "Damola Ogundipe",
     bio: `is the co-founder and CEO of Plural Policy, a software company that helps government relations and public policy teams influence and shape public policy. He previously worked as a Senior Consultant at Oxford Strategic Consulting. Damola holds a B.S. in Finance from the University of Minnesota.`,
     image: require("../images/headshots/damiola_ogundipe.jpeg"),
   },
