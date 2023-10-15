@@ -138,7 +138,7 @@ export default function ParameterEditor(props) {
     <CenteredMiddleColumn
       marginTop="5%"
       marginBottom={0}
-      title={capitalize(parameter.label.toLowerCase())}
+      title={capitalize(parameter.label)}
       description={description + timePeriodSentence}
     >
       {editControl}
