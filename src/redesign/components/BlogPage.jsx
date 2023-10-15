@@ -26,6 +26,7 @@ import {
   PrinterOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
+import { Authors } from "../data/Authors";
 import Plot from "react-plotly.js";
 
 export default function BlogPage() {
@@ -236,6 +237,7 @@ function PostBodySection({ post, markdown, notebook }) {
         </div>
         <div style={{ flex: 4 }}>
           {bodyContent}
+          <AuthorSection post={post} />
         </div>
         <div style={{ flex: 1, marginLeft: 30 }}>
           <div style={{ position: "sticky", top: 150 }}>
@@ -257,6 +259,7 @@ function PostBodySection({ post, markdown, notebook }) {
         </div>
         <div style={{ flex: 3 }}>
           {bodyContent}
+          <AuthorSection post={post} />
         </div>
       </div>
     );
@@ -270,6 +273,7 @@ function PostBodySection({ post, markdown, notebook }) {
           </div>
           <div style={{ flex: 1 }}>
             {bodyContent}
+          <AuthorSection post={post} />
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ marginTop: 20 }} />
@@ -386,16 +390,48 @@ function Authorship({ post }) {
     );
   } else {
     const lastAuthor = authorNames.pop();
-    sentenceStructure = (
-      <>
-        By {authorNames.join(", ")}, and {lastAuthor}
-      </>
-    );
+    sentenceStructure = <>By {authorNames.reduce((prev, curr) => [prev, ', ', curr])}, and {lastAuthor}</>;
   }
-  return <p className="spaced-sans-serif">{sentenceStructure}</p>;
+  return <p className="spaced-sans-serif">
+    {sentenceStructure}
+    </p>
 }
 
-function MoreOn({ post }) {
+function AuthorSection({ post }) {
+  const countryId = useCountryId();
+  const authorDescriptions = post.authors.map((author) => <div key={author}
+    style= {{
+      display: "flex",
+      justifyContent: "start",
+      gap: 15,
+      padding: "1rem .5rem",
+      borderTop: "1px solid black",
+  }}>
+    <img src={Authors[author].headshot}
+    width={70}
+    height={70}
+    style={{
+      objectFit: "cover",
+    }}
+    />
+    <p  style={{paddingTop: 5}}>
+      <span className="spaced-sans-serif" style={{color: style.colors.BLUE_PRIMARY}}>
+        <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link"> 
+        {author.replaceAll("-", " ")}
+        </Link> 
+      </span><br></br>
+      <span style={{fontSize: 12}}>
+        {Authors[author].title}
+      </span>
+    </p>
+  </div>);
+
+  return <ul style={{marginTop: 50, marginLeft: "-2rem"}}>
+    {authorDescriptions}
+    </ul>
+}
+
+function MoreOn({post}) {
   const countryId = useCountryId();
   const categoryLinks = post.tags.map((tag) => {
     if (locationTags.includes(tag)) {
