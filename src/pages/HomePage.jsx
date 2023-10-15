@@ -39,6 +39,7 @@ import F4GI from "../images/logos/orgs/f4gi.jpg";
 import GCV from "../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../images/logos/orgs/mca.jpg";
 import UBICenter from "../images/logos/orgs/ubicenter.png";
+import CFI from "../images/logos/orgs/cfi.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
 import PeoplesPolicyProject from "../images/logos/orgs/peoples-policy-project.png";
 import PRCarousel from "./home/GitHubActivity";
@@ -734,6 +735,10 @@ const orgData = {
     peoples_policy_project: {
       logo: PeoplesPolicyProject,
       link: "https://www.peoplespolicyproject.org/2023/08/10/the-end-child-poverty-act-would-dramatically-reduce-poverty/",
+    },
+    cfi: {
+      logo: CFI,
+      link: "https://www.coloradofiscal.org/",
     },
   },
 };
