@@ -9,7 +9,6 @@ export default function ActionButton({
   width,
   size,
   height,
-  noArrow,
   direction,
   secondary,
   backgroundColor,
@@ -51,6 +50,7 @@ export default function ActionButton({
         width: width || "min(300px, 70vw)",
         height: height,
         justifyContent: "center",
+        textAlign: "center",
       }}
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={
@@ -61,10 +61,6 @@ export default function ActionButton({
       }
     >
       {text}
-      {!noArrow && <div style={{ marginLeft: "auto" }} />}
-      {!noArrow && (
-        <span className="material-symbols-outlined">arrow_forward</span>
-      )}
     </HoverBox>
   );
 }

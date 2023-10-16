@@ -58,7 +58,7 @@ export function QuoteBox({ noArrows }) {
           headshot={currentQuote.headshot}
           orgLink={currentOrg.link}
           orgLogo={currentOrg.logo}
-          author={currentQuote.name}
+          author={currentQuote?.name}
           org={currentOrg.name}
         />
         {displayCategory === "mobile" && (
@@ -101,7 +101,7 @@ function QuoteBio(props) {
           alignItems: "center",
         }}
       >
-        <QuoteImages headshot={headshot} orgLogo={orgLogo} orgLink={orgLink} name={author.name} orgName={org.name} />
+        <QuoteImages headshot={headshot} orgLogo={orgLogo} orgLink={orgLink} name={author} orgName={org} />
         <div>
           <QuoteOrg org={org} />
           <QuoteAuthor author={author} />
@@ -117,7 +117,7 @@ function QuoteBio(props) {
           <QuoteAuthor author={author} />
           <QuoteOrg org={org} />
         </div>
-        <QuoteImages headshot={headshot} orgLogo={orgLogo} name={author.name} orgName={org.name} />
+        <QuoteImages headshot={headshot} orgLogo={orgLogo} name={author} orgName={org} />
       </>
     );
   }

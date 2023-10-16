@@ -175,11 +175,12 @@ function NotebookOutputMarkdown({ data }) {
 
 function NotebookOutputPlotly({ data }) {
   const title = data.layout.title.text;
+  const displayCategory = useDisplayCategory();
   
   return <>
   {title && <h3>{title}</h3>}
   <Plot data={data.data} layout={Object.assign(data.layout, {
-    width: "100%", height: 600,
+    width: displayCategory === "mobile" ? 600 : "100%", height: 600,
     title: {
       text: "",
     },
@@ -203,7 +204,7 @@ function PostBodySection({ post, markdown, notebook }) {
   }
   if (notebook) {
     const cellHandler = (cell) => {
-      if (cell.metadata?.tags?.includes("highlighted-left")) {
+      if (cell.metadata?.tags?.includes("highlighted-left") && displayCategory === "desktop") {
         const nextCell = notebook.cells[notebook.cells.indexOf(cell) + 1];
         let currentCellData = cell.outputs[0].data["text/plain"][0];
         currentCellData = JSON.stringify(parseJSONSafe(currentCellData));
@@ -212,7 +213,7 @@ function PostBodySection({ post, markdown, notebook }) {
           leftContent = {<PlotlyChartCode data={currentCellData} />}
           rightContent = {<BlogContent markdown={nextCellData} />}
         />;
-      } else if (cell.metadata?.tags?.includes("highlighted-right")) {
+      } else if (cell.metadata?.tags?.includes("highlighted-right") && displayCategory === "desktop") {
         return null
       } else if (cell.cell_type === "markdown") {
         return <BlogContent markdown={cell.source.join("")}/>;
@@ -826,11 +827,13 @@ function HighlightedBlock({ data, leftContent, rightContent }) {
 function PlotlyChartCode({ data }) {
   const plotlyData = JSON.parse(data);
   const title = plotlyData.layout.title.text;
+  const displayCategory = useDisplayCategory();
   return <>
   {title && <h3 style={{marginBottom: 50}}>{title}</h3>}
   <Plot data={plotlyData.data} layout={
     Object.assign(plotlyData.layout, {
-      width: "100%", height: 600,
+      width: displayCategory === "mobile" ? 400 : "100%", 
+      height: 600,
       title: {
         text: "",
       },
