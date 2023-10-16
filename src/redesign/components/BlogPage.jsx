@@ -174,7 +174,7 @@ function NotebookOutputMarkdown({ data }) {
 }
 
 function NotebookOutputPlotly({ data }) {
-  const title = data.layout.title.text;
+  const title = data.layout?.title?.text;
   const displayCategory = useDisplayCategory();
   
   return <>
@@ -210,7 +210,7 @@ function PostBodySection({ post, markdown, notebook }) {
         currentCellData = JSON.stringify(parseJSONSafe(currentCellData));
         const nextCellData = nextCell.source.join("");
         return <HighlightedBlock
-          leftContent = {<PlotlyChartCode data={currentCellData} />}
+          leftContent = {<PlotlyChartCode data={currentCellData} backgroundColor={style.colors.LIGHT_GRAY} />}
           rightContent = {<BlogContent markdown={nextCellData} />}
         />;
       } else if (cell.metadata?.tags?.includes("highlighted-right") && displayCategory === "desktop") {
@@ -824,9 +824,17 @@ function HighlightedBlock({ data, leftContent, rightContent }) {
   </>
 }
 
-function PlotlyChartCode({ data }) {
-  const plotlyData = JSON.parse(data);
-  const title = plotlyData.layout.title.text;
+function PlotlyChartCode({ data, backgroundColor }) {
+  console.log(data)
+  let plotlyData = null;
+  try {
+    plotlyData = JSON.parse(data);
+  } catch {
+
+    console.log(data[0])
+    plotlyData = JSON.parse(data[0]);
+  }
+  const title = plotlyData.layout?.title?.text;
   const displayCategory = useDisplayCategory();
   return <>
   {title && <h3 style={{marginBottom: 50}}>{title}</h3>}
@@ -837,8 +845,8 @@ function PlotlyChartCode({ data }) {
       title: {
         text: "",
       },
-      paper_bgcolor: style.colors.LIGHT_GRAY,
-      plot_bgcolor: style.colors.LIGHT_GRAY,
+      plot_bgcolor: backgroundColor || "transparent",
+      paper_bgcolor: backgroundColor || "transparent",
     })
   } 
   config={{
