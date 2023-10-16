@@ -1,13 +1,11 @@
 import style from "style";
 import Header from "./Header";
 import ActionButton from "./ActionButton";
-import useDisplayCategory from "./useDisplayCategory";
 import useCountryId from "./useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";
 import PolicyScreenshot from "../images/home/policy_screenshot.png";
 
 export default function CalculatorInterstitial() {
-    const displayCategory = useDisplayCategory();
     const countryId = useCountryId();
     return <>
         <Header />
@@ -27,10 +25,9 @@ export default function CalculatorInterstitial() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            flexDirection: displayCategory === "mobile" ? "column" : "row",
+            flexDirection: "column",
         }}>
             <CalculatorOption 
-                left
                 title="Calculate my taxes and benefits"
                 link={`/${countryId}/household`}
                 description="Enter your household details and see how tax-benefit policy affects you."
@@ -55,39 +52,39 @@ function CalculatorOption({
     link,
     image,
 }) {
-    const arrow = left ?
-        <span className="material-symbols-outlined" style={{marginRight: 20}}>arrow_back</span> :
-        <span className="material-symbols-outlined" style={{marginLeft: 20}}>arrow_forward</span>
     return <div style={{
         margin: 20,
         width: 300,
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
     }}>
         <img
             src={image}
             style={{
-                height: 300,
                 width: 300,
                 objectFit: "contain",
             }}
         />
+        <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+        }}>
         <ActionButton
             direction={left ? "right" : "left"}
-            text={<>{left && arrow}{title}{!left && arrow}</>}
+            text={<>{title}</>}
             width={300}
-            noArrow
             link={link}
         />
         <div style={{
-            height: 100,
             paddingTop: 20,
         }}>
         <p>
             {description}
         </p>
+        </div>
         </div>
     </div>
 }

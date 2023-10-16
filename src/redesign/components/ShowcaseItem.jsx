@@ -42,7 +42,7 @@ export default function ShowcaseItem({
         }}
       >
         <p>{description}</p>
-        <EmphasisedLink link={link} text={linkTitle} />
+        <EmphasisedLink url={link} text={linkTitle} />
       </div>
       <img src={image} 
         width={displayCategory === "desktop" ? 400 : "100%"} 
