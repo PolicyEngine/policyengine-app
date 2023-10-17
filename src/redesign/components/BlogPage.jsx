@@ -549,6 +549,18 @@ function BlogContent({ markdown, backgroundColor }) {
             {children}
           </ul>
         ),
+        ol: ({ children }) => (
+          <ol
+            style={{
+              paddingLeft: 20,
+              marginBottom: 20,
+              fontFamily: "Roboto Serif",
+              fontSize: mobile ? 16 : 18,
+            }}
+          >
+            {children}
+          </ol>
+        ),
         li: ({ children }) => {
           // Check if li p a exists. If it does, get the ID of the a tag.
           let value = null;
