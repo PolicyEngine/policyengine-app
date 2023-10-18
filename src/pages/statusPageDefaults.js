@@ -23,7 +23,7 @@ export const STATUS_COLORS = {
 };
 
 export const STATUS_TEXT_COLORS = {
-  OK: colors.DARK_GREEN,
+  OK: colors.BLUE,
   ERROR: colors.WHITE,
   Pending: colors.BLACK,
 };

@@ -30,7 +30,7 @@ export default function AverageImpactByWealthDecile(props) {
             type: "bar",
             marker: {
               color: yArray.map((value) =>
-                value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN,
+                value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
               ),
             },
             text: yArray.map(

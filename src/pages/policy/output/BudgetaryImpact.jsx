@@ -73,7 +73,7 @@ export default function BudgetaryImpact(props) {
             text: values.map((value) =>
               aggregateCurrency(value * 1e9, metadata),
             ),
-            increasing: { marker: { color: style.colors.DARK_GREEN } },
+            increasing: { marker: { color: style.colors.BLUE } },
             decreasing: { marker: { color: style.colors.DARK_GRAY } },
             // Total should be dark gray if negative, dark green if positive
             totals: {
@@ -81,7 +81,7 @@ export default function BudgetaryImpact(props) {
                 color:
                   budgetaryImpact < 0
                     ? style.colors.DARK_GRAY
-                    : style.colors.DARK_GREEN,
+                    : style.colors.BLUE,
               },
             },
             connector: { line: { color: style.colors.DARK_GRAY } },

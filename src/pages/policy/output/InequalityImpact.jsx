@@ -38,7 +38,7 @@ export default function InequalityImpact(props) {
             type: "bar",
             marker: {
               color: metricChanges.map((value) =>
-                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY,
+                value < 0 ? style.colors.BLUE : style.colors.DARK_GRAY,
               ),
             },
             text: metricChanges.map(

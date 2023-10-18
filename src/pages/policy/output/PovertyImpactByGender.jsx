@@ -53,7 +53,7 @@ export default function PovertyImpactByGender(props) {
             type: "bar",
             marker: {
               color: povertyChanges.map((value) =>
-                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY,
+                value < 0 ? style.colors.BLUE : style.colors.DARK_GRAY,
               ),
             },
             text: povertyChanges.map(

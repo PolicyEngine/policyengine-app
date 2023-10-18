@@ -44,7 +44,7 @@ export default function IntraWealthDecileImpact(props) {
         legendgroup: "Gain more than 5%",
         offsetgroup: "Gain more than 5%",
         marker: {
-          color: style.colors.DARK_GREEN,
+          color: style.colors.BLUE,
         },
         orientation: "h",
         text: gainMoreThan5ForAll.map(
@@ -189,7 +189,7 @@ export default function IntraWealthDecileImpact(props) {
         x: gainMoreThan5ForDeciles,
         name: "Gain more than 5%",
         marker: {
-          color: style.colors.DARK_GREEN,
+          color: style.colors.BLUE,
         },
         orientation: "h",
         text: gainMoreThan5ForDeciles.map(
