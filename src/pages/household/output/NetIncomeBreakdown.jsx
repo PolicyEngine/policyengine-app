@@ -16,7 +16,7 @@ import style from "../../../style";
 const UpArrow = () => (
   <CaretUpFilled
     style={{
-      color: style.colors.DARK_GREEN,
+      color: style.colors.BLUE,
       display: "inline-flex",
       alignItems: "center",
     }}
@@ -36,7 +36,7 @@ const DownArrow = () => (
 // to net income for colorblind users.
 const nodeArrow = (nodeSign) => (nodeSign ? <UpArrow /> : <DownArrow />);
 const nodeColor = (nodeSign) =>
-  nodeSign ? style.colors.DARK_GREEN : style.colors.DARK_GRAY;
+  nodeSign ? style.colors.BLUE : style.colors.DARK_GRAY;
 const nodeStyle = (nodeSign) => ({
   color: nodeColor(nodeSign),
   alignItems: "center",
