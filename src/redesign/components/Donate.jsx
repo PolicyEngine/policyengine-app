@@ -71,7 +71,7 @@ export default function Donate() {
       {/* Donate By Check Section */}
       <Section
         backgroundColor={style.colors.WHITE}
-        title="Donate by Check"
+        title="Donate by check"
       >
         <div style={{
           display: "flex",
