@@ -14,10 +14,11 @@ export default function HomeQuoteCarousel() {
   const countryQuotes = quoteData[countryId] || [];
 
   if (countryQuotes.length === 0) return null;
-  return <Section
-    >
+  return (
+    <Section>
       <QuoteBox noArrows />
-    </Section>;
+    </Section>
+  );
 }
 
 export function QuoteBox({ noArrows }) {
@@ -105,7 +106,13 @@ function QuoteBio(props) {
           alignItems: "center",
         }}
       >
-        <QuoteImages headshot={headshot} orgLogo={orgLogo} orgLink={orgLink} name={author} orgName={org} />
+        <QuoteImages
+          headshot={headshot}
+          orgLogo={orgLogo}
+          orgLink={orgLink}
+          name={author}
+          orgName={org}
+        />
         <div>
           <QuoteOrg org={org} />
           <QuoteAuthor author={author} />
@@ -121,7 +128,12 @@ function QuoteBio(props) {
           <QuoteAuthor author={author} />
           <QuoteOrg org={org} />
         </div>
-        <QuoteImages headshot={headshot} orgLogo={orgLogo} name={author} orgName={org} />
+        <QuoteImages
+          headshot={headshot}
+          orgLogo={orgLogo}
+          name={author}
+          orgName={org}
+        />
       </>
     );
   }
@@ -131,26 +143,30 @@ function QuoteText(props) {
   const { text } = props;
   const displayCategory = useDisplayCategory();
   return (
-    <div style={{display: "table",
-    minHeight: {
-      mobile: 380,
-      tablet: 100,
-      desktop: 100,
-    }[displayCategory],}}>
-    <p
+    <div
       style={{
-        paddingLeft: displayCategory === "mobile" ? 20 : 0,
-        paddingRight: displayCategory === "mobile" ? 20 : 40,
-        fontFamily: "Roboto Serif",
-        textAlign: "center",
-        verticalAlign: "middle",
-        display: "table-cell",
-        alignItems: "center",
-        fontSize: 20,
+        display: "table",
+        minHeight: {
+          mobile: 380,
+          tablet: 100,
+          desktop: 100,
+        }[displayCategory],
       }}
     >
-      {text}
-    </p>
+      <p
+        style={{
+          paddingLeft: displayCategory === "mobile" ? 20 : 0,
+          paddingRight: displayCategory === "mobile" ? 20 : 40,
+          fontFamily: "Roboto Serif",
+          textAlign: "center",
+          verticalAlign: "middle",
+          display: "table-cell",
+          alignItems: "center",
+          fontSize: 20,
+        }}
+      >
+        {text}
+      </p>
     </div>
   );
 }

@@ -35,7 +35,11 @@ p {
 /* icons */
 
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
 }
 
 a {
@@ -66,8 +70,11 @@ a.highlighted-link {
   padding-top: 5px;
   padding-right: 10px;
   padding-bottom: 5px;
-  transition: color 0.2s ease-in-out, box-shadow 0.2s ease-in-out,
-    padding-left 0.2s ease-in-out, padding-right 0.2s ease-in-out;
+  transition:
+    color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    padding-left 0.2s ease-in-out,
+    padding-right 0.2s ease-in-out;
 }
 a.highlighted-link:hover {
   box-shadow: inset 800px 0 0 0 #2c6496;

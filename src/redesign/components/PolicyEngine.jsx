@@ -209,7 +209,10 @@ export default function PolicyEngine({ pathname }) {
         <Route path="/:countryId" element={<Home />} />
         <Route path="/:countryId/about" element={<About />} />
         <Route path="/:countryId/testimonials" element={<Testimonials />} />
-        <Route path="/:countryId/calculator" element={<CalculatorInterstitial />} />
+        <Route
+          path="/:countryId/calculator"
+          element={<CalculatorInterstitial />}
+        />
         <Route path="/:countryId/research" element={<Research />} />
         <Route path="/:countryId/contact" element={<Contact />} />
         <Route path="/:countryId/donate" element={<Donate />} />

@@ -23,7 +23,7 @@ export default function About() {
         <TeamMember member={founders.pavel_makarchuk} />
       </Section>
       <Section backgroundColor={style.colors.BLUE_PRIMARY}>
-        <h2 style={{color: style.colors.WHITE}}>Advisory board</h2>
+        <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
         <Advisor member={advisors.george_sadowsky} />
         <Advisor member={advisors.damiola_ogundipe} />
         <Advisor member={advisors.jesse_horwitz} />
@@ -68,8 +68,6 @@ function TeamMember({ member }) {
     </div>
   );
 }
-
-
 
 function Advisor({ member }) {
   const displayCategory = useDisplayCategory();

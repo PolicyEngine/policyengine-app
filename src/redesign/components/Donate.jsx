@@ -22,45 +22,56 @@ export default function Donate() {
           in the United States.
         </p>
       </PageHeader>
-      
+
       {/* Donate Online Section */}
       <Section
         backgroundColor={style.colors.BLUE_PRIMARY}
         title="Donate online"
       >
-        <div style={{
-          display: "flex",
-          flexDirection: displayCategory === "mobile" ? "column" : "row",
-          alignItems: "center",
-        }}>
-          <div style={{
-            flex: 1.5, 
-            marginRight: displayCategory === "mobile" ? 0 : 100,
-            marginTop: 20,
-          }}>
-            <p style={{fontFamily: style.fonts.BODY_FONT}}>You can support PolicyEngine&apos;s work by donating through our fiscal sponsor, the PSL Foundation.</p>
-            <p style={{fontFamily: style.fonts.BODY_FONT}}>
-              Donate by credit card here or email the PSL Foundation for other options. Please email us or the PSL Foundation when you&apos;ve donated to ensure your gift is directed to PolicyEngine.
+        <div
+          style={{
+            display: "flex",
+            flexDirection: displayCategory === "mobile" ? "column" : "row",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              flex: 1.5,
+              marginRight: displayCategory === "mobile" ? 0 : 100,
+              marginTop: 20,
+            }}
+          >
+            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+              You can support PolicyEngine&apos;s work by donating through our
+              fiscal sponsor, the PSL Foundation.
             </p>
-            <p style={{fontFamily: style.fonts.BODY_FONT}}>
+            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+              Donate by credit card here or email the PSL Foundation for other
+              options. Please email us or the PSL Foundation when you&apos;ve
+              donated to ensure your gift is directed to PolicyEngine.
+            </p>
+            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
               Your donation is tax-deductible in the US.
             </p>
           </div>
-          <div style={{
-            flex: 1, 
-            display: "flex", 
-            justifyContent: "center", 
-            maxHeight: 100
-          }}>
-            <ActionButton 
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              maxHeight: 100,
+            }}
+          >
+            <ActionButton
               text={
-                <div style={{ textAlign: 'center', color: 'white' }}>
+                <div style={{ textAlign: "center", color: "white" }}>
                   <span style={{ whiteSpace: "pre-line" }}>
-                    Donate on{'\n'}Open Collective
+                    Donate on{"\n"}Open Collective
                   </span>
                 </div>
-              } 
-              onClick={handleButtonClick} 
+              }
+              onClick={handleButtonClick}
               width={displayCategory === "mobile" ? "420px" : "130%"}
               noArrow={true}
             />
@@ -69,45 +80,64 @@ export default function Donate() {
       </Section>
 
       {/* Donate By Check Section */}
-      <Section
-        backgroundColor={style.colors.WHITE}
-        title="Donate by check"
-      >
-        <div style={{
-          display: "flex",
-          flexDirection: displayCategory === "mobile" ? "column" : "row",
-          alignItems: "center",
-          color: style.colors.BLACK,
-        }}>
-          <div style={{
-            flex: 1.5, 
-            marginTop: 20, 
-            marginRight: displayCategory === "mobile" ? 0 : 100,
-          }}>
-            <p style={{fontFamily: style.fonts.BODY_FONT}}>You can support PolicyEngine&apos;s work by donating through our fiscal sponsor, the PSL Foundation.</p>
-            <p style={{fontFamily: style.fonts.BODY_FONT}}>
-              Donate by credit card here or email the PSL Foundation for other options. Please email us or the PSL Foundation when you&apos;ve donated to ensure your gift is directed to PolicyEngine.
-            </p>
-            <p style={{fontFamily: style.fonts.BODY_FONT}}>Your donation is tax-deductible in the US.</p>
-          </div>
-          
-          <div style={{
-            flex: 1, 
+      <Section backgroundColor={style.colors.WHITE} title="Donate by check">
+        <div
+          style={{
             display: "flex",
-            justifyContent: "center",
+            flexDirection: displayCategory === "mobile" ? "column" : "row",
             alignItems: "center",
-            backgroundColor: "#D7F4F2", 
-            padding: "15px",
             color: style.colors.BLACK,
-            textAlign: "left",
-            width: displayCategory === "mobile" ? '100%' : null,
-          }}>
+          }}
+        >
+          <div
+            style={{
+              flex: 1.5,
+              marginTop: 20,
+              marginRight: displayCategory === "mobile" ? 0 : 100,
+            }}
+          >
+            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+              You can support PolicyEngine&apos;s work by donating through our
+              fiscal sponsor, the PSL Foundation.
+            </p>
+            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+              Donate by credit card here or email the PSL Foundation for other
+              options. Please email us or the PSL Foundation when you&apos;ve
+              donated to ensure your gift is directed to PolicyEngine.
+            </p>
+            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+              Your donation is tax-deductible in the US.
+            </p>
+          </div>
+
+          <div
+            style={{
+              flex: 1,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#D7F4F2",
+              padding: "15px",
+              color: style.colors.BLACK,
+              textAlign: "left",
+              width: displayCategory === "mobile" ? "100%" : null,
+            }}
+          >
             <div>
-              <p style={{color: "#808080", fontFamily: style.fonts.BODY_FONT}}>ADDRESS CHECKS TO:</p>
-              <p style={{fontFamily: style.fonts.BODY_FONT}}>PolicyEngine LLC<br/>
-                 124 Streetname<br/>
-                 Washington, DC<br/>
-                 10001</p>
+              <p
+                style={{ color: "#808080", fontFamily: style.fonts.BODY_FONT }}
+              >
+                ADDRESS CHECKS TO:
+              </p>
+              <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+                PolicyEngine LLC
+                <br />
+                124 Streetname
+                <br />
+                Washington, DC
+                <br />
+                10001
+              </p>
             </div>
           </div>
         </div>

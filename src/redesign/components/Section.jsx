@@ -8,7 +8,7 @@ export default function Section({
   color,
   children,
   centeredTitle,
-  titleStyle
+  titleStyle,
 }) {
   const displayCategory = useDisplayCategory();
   const sideMargin = {
@@ -24,7 +24,7 @@ export default function Section({
   let titleColor = null;
   if (
     [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
-      backgroundColor
+      backgroundColor,
     )
   ) {
     titleColor = style.colors.WHITE;
@@ -53,12 +53,17 @@ export default function Section({
           marginBottom: topBottomMargins,
         }}
       >
-        {title && <div style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: centeredTitle ? "center" : "baseline",
-        }}>
-          <h2 style={{ color: "inherit", ...titleStyle }}>{title}</h2></div>}
+        {title && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: centeredTitle ? "center" : "baseline",
+            }}
+          >
+            <h2 style={{ color: "inherit", ...titleStyle }}>{title}</h2>
+          </div>
+        )}
         {children}
       </div>
     </div>
@@ -80,7 +85,7 @@ export function SectionTop({ height, backgroundColor, title }) {
   let titleColor = null;
   if (
     [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
-      backgroundColor
+      backgroundColor,
     )
   ) {
     titleColor = style.colors.WHITE;
@@ -128,7 +133,7 @@ export function SectionBottom({ height, backgroundColor, children }) {
   let titleColor = null;
   if (
     [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
-      backgroundColor
+      backgroundColor,
     )
   ) {
     titleColor = style.colors.WHITE;

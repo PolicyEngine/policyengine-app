@@ -49,5 +49,5 @@ export const advisors = {
     name: "Matt Jensen",
     bio: `is the founding director of the Open Source Policy Center at the American Enterprise Institute. He is also a co-founder of the Open Research Group, the Policy Simulation Library, and Compute Tooling. Jensen is a graduate of Pomona College with a degree in math.`,
     image: require("../images/headshots/matt_jensen.png"),
-  }
+  },
 };

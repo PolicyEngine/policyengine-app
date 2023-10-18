@@ -17,7 +17,7 @@ const determineDisplayCategory = (width) => {
 
 const useDisplayCategory = () => {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
-    determineDisplayCategory(window.innerWidth)
+    determineDisplayCategory(window.innerWidth),
   );
 
   useEffect(() => {

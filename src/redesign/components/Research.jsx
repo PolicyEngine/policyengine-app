@@ -55,13 +55,13 @@ function ResearchExplorer() {
     scrollTo(0, 0);
   };
   const [filteredTopics, setFilteredTopics] = useState(
-    searchParams.get("topics")?.split(",") || topicTags
+    searchParams.get("topics")?.split(",") || topicTags,
   );
   const [filteredLocations, setFilteredLocations] = useState(
-    searchParams.get("locations")?.split(",") || locationTags
+    searchParams.get("locations")?.split(",") || locationTags,
   );
   const [filteredAuthors, setFilteredAuthors] = useState(
-    searchParams.get("authors")?.split(",") || authorKeys
+    searchParams.get("authors")?.split(",") || authorKeys,
   );
   const filterFunction = (post) => {
     let hasMetAtLeastOneFilteredTopic = false;

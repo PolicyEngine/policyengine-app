@@ -60,14 +60,16 @@ export default function BlogPage() {
         } else {
           setContent(text);
         }
-      })
+      });
   }, [file]);
-
 
   let markdown;
 
   if (isNotebook && content) {
-    markdown = content.cells.filter((cell) => cell.cell_type === "markdown").map((cell) => cell.source.join("")).join("\n");
+    markdown = content.cells
+      .filter((cell) => cell.cell_type === "markdown")
+      .map((cell) => cell.source.join(""))
+      .join("\n");
   } else {
     markdown = content;
   }
@@ -85,7 +87,11 @@ export default function BlogPage() {
         />
       </Section>
       <Section>
-        <PostBodySection post={post} markdown={markdown} notebook={isNotebook && content} />
+        <PostBodySection
+          post={post}
+          markdown={markdown}
+          notebook={isNotebook && content}
+        />
       </Section>
       <Footer />
     </>
@@ -101,21 +107,31 @@ function NotebookCell({ data }) {
   } else {
     const outputType = Object.keys(outputCell)[0];
     if (outputType === "text/plain") {
-      outputCellComponent = <NotebookOutputPlain data={outputCell[outputType]} />;
+      outputCellComponent = (
+        <NotebookOutputPlain data={outputCell[outputType]} />
+      );
     } else if (outputType === "application/vnd.plotly.v1+json") {
-      outputCellComponent = <NotebookOutputPlotly data={outputCell[outputType]} />;
+      outputCellComponent = (
+        <NotebookOutputPlotly data={outputCell[outputType]} />
+      );
     } else if (outputType === "text/html") {
-      outputCellComponent = <NotebookOutputHTML data={outputCell[outputType]} />;
+      outputCellComponent = (
+        <NotebookOutputHTML data={outputCell[outputType]} />
+      );
     } else if (outputType === "text/markdown") {
-      outputCellComponent = <NotebookOutputMarkdown data={outputCell[outputType]} />;
+      outputCellComponent = (
+        <NotebookOutputMarkdown data={outputCell[outputType]} />
+      );
     } else {
       outputCellComponent = <p>Unknown output type: {outputType}</p>;
     }
   }
-  return <>
-    <PythonCodeCell data={inputCell} />
-    {outputCellComponent}
+  return (
+    <>
+      <PythonCodeCell data={inputCell} />
+      {outputCellComponent}
     </>
+  );
 }
 
 function PythonCodeCell({ data }) {
@@ -134,8 +150,13 @@ function recursivelyDecode(obj) {
     return obj.map(recursivelyDecode);
   } else if (!obj) {
     return obj;
-  }else if (typeof obj === "object") {
-    return Object.fromEntries(Object.entries(obj).map(([key, value]) => [key, recursivelyDecode(value)]));
+  } else if (typeof obj === "object") {
+    return Object.fromEntries(
+      Object.entries(obj).map(([key, value]) => [
+        key,
+        recursivelyDecode(value),
+      ]),
+    );
   } else {
     return obj;
   }
@@ -161,12 +182,12 @@ function NotebookOutputPlain({ data }) {
     console.log(e, data);
     content = data;
   }
-  return <p>{JSON.stringify(data)}</p>
+  return <p>{JSON.stringify(data)}</p>;
 }
 
 function NotebookOutputHTML({ data }) {
   data;
-  return null
+  return null;
 }
 
 function NotebookOutputMarkdown({ data }) {
@@ -176,24 +197,34 @@ function NotebookOutputMarkdown({ data }) {
 function NotebookOutputPlotly({ data }) {
   const title = data.layout?.title?.text;
   const displayCategory = useDisplayCategory();
-  
-  return <>
-  {title && <h3>{title}</h3>}
-  <Plot data={data.data} layout={Object.assign(data.layout, {
-    width: displayCategory === "mobile" ? 600 : "100%", height: 600,
-    title: {
-      text: "",
-    },
-    paper_bgcolor: "transparent",
-    plot_bgcolor: "transparent",
-    margin: {
-      l: 20, r: 20, t: 20, b: 20,
-    }
-  })} config={{
-    displayModeBar: false,
-    responsive: true,
-  }}
-    /></>
+
+  return (
+    <>
+      {title && <h3>{title}</h3>}
+      <Plot
+        data={data.data}
+        layout={Object.assign(data.layout, {
+          width: displayCategory === "mobile" ? 600 : "100%",
+          height: 600,
+          title: {
+            text: "",
+          },
+          paper_bgcolor: "transparent",
+          plot_bgcolor: "transparent",
+          margin: {
+            l: 20,
+            r: 20,
+            t: 20,
+            b: 20,
+          },
+        })}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+      />
+    </>
+  );
 }
 
 function PostBodySection({ post, markdown, notebook }) {
@@ -204,25 +235,38 @@ function PostBodySection({ post, markdown, notebook }) {
   }
   if (notebook) {
     const cellHandler = (cell) => {
-      if (cell.metadata?.tags?.includes("highlighted-left") && displayCategory === "desktop") {
+      if (
+        cell.metadata?.tags?.includes("highlighted-left") &&
+        displayCategory === "desktop"
+      ) {
         const nextCell = notebook.cells[notebook.cells.indexOf(cell) + 1];
         let currentCellData = cell.outputs[0].data["text/plain"][0];
         currentCellData = JSON.stringify(parseJSONSafe(currentCellData));
         const nextCellData = nextCell.source.join("");
-        return <HighlightedBlock
-          leftContent = {<PlotlyChartCode data={currentCellData} backgroundColor={style.colors.LIGHT_GRAY} />}
-          rightContent = {<BlogContent markdown={nextCellData} />}
-        />;
-      } else if (cell.metadata?.tags?.includes("highlighted-right") && displayCategory === "desktop") {
-        return null
+        return (
+          <HighlightedBlock
+            leftContent={
+              <PlotlyChartCode
+                data={currentCellData}
+                backgroundColor={style.colors.LIGHT_GRAY}
+              />
+            }
+            rightContent={<BlogContent markdown={nextCellData} />}
+          />
+        );
+      } else if (
+        cell.metadata?.tags?.includes("highlighted-right") &&
+        displayCategory === "desktop"
+      ) {
+        return null;
       } else if (cell.cell_type === "markdown") {
-        return <BlogContent markdown={cell.source.join("")}/>;
+        return <BlogContent markdown={cell.source.join("")} />;
       } else if (cell.cell_type === "code") {
         return <NotebookCell data={cell} />;
       } else {
         return JSON.stringify(cell);
       }
-    }
+    };
     bodyContent = notebook.cells.map(cellHandler);
   } else {
     bodyContent = <BlogContent markdown={markdown} />;
@@ -274,7 +318,7 @@ function PostBodySection({ post, markdown, notebook }) {
           </div>
           <div style={{ flex: 1 }}>
             {bodyContent}
-          <AuthorSection post={post} />
+            <AuthorSection post={post} />
           </div>
           <div style={{ flex: 1 }}>
             <div style={{ marginTop: 20 }} />
@@ -391,48 +435,61 @@ function Authorship({ post }) {
     );
   } else {
     const lastAuthor = authorNames.pop();
-    sentenceStructure = <>By {authorNames.reduce((prev, curr) => [prev, ', ', curr])}, and {lastAuthor}</>;
+    sentenceStructure = (
+      <>
+        By {authorNames.reduce((prev, curr) => [prev, ", ", curr])}, and{" "}
+        {lastAuthor}
+      </>
+    );
   }
-  return <p className="spaced-sans-serif">
-    {sentenceStructure}
-    </p>
+  return <p className="spaced-sans-serif">{sentenceStructure}</p>;
 }
 
 function AuthorSection({ post }) {
   const countryId = useCountryId();
-  const authorDescriptions = post.authors.map((author) => <div key={author}
-    style= {{
-      display: "flex",
-      justifyContent: "start",
-      gap: 15,
-      padding: "1rem .5rem",
-      borderTop: "1px solid black",
-  }}>
-    <img src={Authors[author].headshot}
-    width={70}
-    height={70}
-    style={{
-      objectFit: "cover",
-    }}
-    />
-    <p  style={{paddingTop: 5}}>
-      <span className="spaced-sans-serif" style={{color: style.colors.BLUE_PRIMARY}}>
-        <Link to={`/${countryId}/research?authors=${author}`} className="highlighted-link"> 
-        {author.replaceAll("-", " ")}
-        </Link> 
-      </span><br></br>
-      <span style={{fontSize: 12}}>
-        {Authors[author].title}
-      </span>
-    </p>
-  </div>);
+  const authorDescriptions = post.authors.map((author) => (
+    <div
+      key={author}
+      style={{
+        display: "flex",
+        justifyContent: "start",
+        gap: 15,
+        padding: "1rem .5rem",
+        borderTop: "1px solid black",
+      }}
+    >
+      <img
+        src={Authors[author].headshot}
+        width={70}
+        height={70}
+        style={{
+          objectFit: "cover",
+        }}
+      />
+      <p style={{ paddingTop: 5 }}>
+        <span
+          className="spaced-sans-serif"
+          style={{ color: style.colors.BLUE_PRIMARY }}
+        >
+          <Link
+            to={`/${countryId}/research?authors=${author}`}
+            className="highlighted-link"
+          >
+            {author.replaceAll("-", " ")}
+          </Link>
+        </span>
+        <br></br>
+        <span style={{ fontSize: 12 }}>{Authors[author].title}</span>
+      </p>
+    </div>
+  ));
 
-  return <ul style={{marginTop: 50, marginLeft: "-2rem"}}>
-    {authorDescriptions}
-    </ul>
+  return (
+    <ul style={{ marginTop: 50, marginLeft: "-2rem" }}>{authorDescriptions}</ul>
+  );
 }
 
-function MoreOn({post}) {
+function MoreOn({ post }) {
   const countryId = useCountryId();
   const categoryLinks = post.tags.map((tag) => {
     if (locationTags.includes(tag)) {
@@ -482,7 +539,7 @@ function BlogContent({ markdown, backgroundColor }) {
     blockquote: (props) => {
       const { children } = props;
       const anchorTag = children.find((child) =>
-        child?.props?.href?.startsWith("https://twitter.com/")
+        child?.props?.href?.startsWith("https://twitter.com/"),
       );
       const tweetId = anchorTag?.props?.href?.split("/")?.pop()?.split("?")[0];
 
@@ -565,19 +622,25 @@ function BlogContent({ markdown, backgroundColor }) {
           // Check if li p a exists. If it does, get the ID of the a tag.
           let value = null;
           try {
-            let footnoteLinkBack = children.find(child => child?.props?.node.tagName === "p").props.children.find(child => child?.props?.node.tagName === "a").props.node.properties.href;
+            let footnoteLinkBack = children
+              .find((child) => child?.props?.node.tagName === "p")
+              .props.children.find(
+                (child) => child?.props?.node.tagName === "a",
+              ).props.node.properties.href;
             value = footnoteLinkBack.split("-").pop();
           } catch (e) {
             // Do nothing
           }
-          return <li
-            style={{
-              marginLeft: 10,
-            }}
-            value={value}
-          >
-            {children}
-          </li>
+          return (
+            <li
+              style={{
+                marginLeft: 10,
+              }}
+              value={value}
+            >
+              {children}
+            </li>
+          );
         },
         iframe: ({ src, width, height }) => (
           <div
@@ -642,17 +705,23 @@ function BlogContent({ markdown, backgroundColor }) {
           );
         },
         section: ({ children, className }) => {
-          children = children.filter(child => child.props?.id !== "footnote-label")
+          children = children.filter(
+            (child) => child.props?.id !== "footnote-label",
+          );
           if (className === "footnotes") {
-            return <div style={{
-              borderTop: "1px solid black",
-              borderBottom: "1px solid black",
-              paddingTop: 20,
-              marginBottom: 20,
-              backgroundColor: style.colors.LIGHT_GRAY,
-            }}>
-              {children}
-            </div>
+            return (
+              <div
+                style={{
+                  borderTop: "1px solid black",
+                  borderBottom: "1px solid black",
+                  paddingTop: 20,
+                  marginBottom: 20,
+                  backgroundColor: style.colors.LIGHT_GRAY,
+                }}
+              >
+                {children}
+              </div>
+            );
           } else {
             return <section>{children}</section>;
           }
@@ -711,19 +780,21 @@ function BlogContent({ markdown, backgroundColor }) {
           useEffect(() => {
             setColumnNumber(ref.current?.cellIndex);
           }, [ref.current?.cellIndex]);
-          return <td
-            ref={ref}
-            style={{
-              padding: 5,
-              fontFamily: "Roboto Serif",
-              fontSize: mobile ? 16 : 18,
-              borderRight: columnNumber === 0 ? "1px solid black" : "",
-              textAlign: columnNumber === 0 ? "left" : "center",
-              verticalAlign: "middle",
-            }}
-          >
-            {children}
-          </td>
+          return (
+            <td
+              ref={ref}
+              style={{
+                padding: 5,
+                fontFamily: "Roboto Serif",
+                fontSize: mobile ? 16 : 18,
+                borderRight: columnNumber === 0 ? "1px solid black" : "",
+                textAlign: columnNumber === 0 ? "left" : "center",
+                verticalAlign: "middle",
+              }}
+            >
+              {children}
+            </td>
+          );
         },
         tr: ({ children }) => {
           // get row index
@@ -756,7 +827,6 @@ function BlogContent({ markdown, backgroundColor }) {
               verticalAlign: "middle",
               color: "white",
               width: "100%",
-
             }}
           >
             {children}
@@ -786,86 +856,104 @@ function HighlightedBlock({ data, leftContent, rightContent }) {
     const content = data[0];
     [leftContent, rightContent] = content.split("&&&");
     leftContent = <BlogContent markdown={leftContent} />;
-    rightContent = <BlogContent backgroundColor={style.colors.LIGHT_GRAY} markdown={rightContent} />;
+    rightContent = (
+      <BlogContent
+        backgroundColor={style.colors.LIGHT_GRAY}
+        markdown={rightContent}
+      />
+    );
   }
   const ref = useRef(null);
   const [height, setHeight] = useState(0);
   useEffect(() => {
     setHeight(ref.current?.clientHeight);
   }, [ref.current?.clientHeight]);
-  return <>
-  <div style={{
-    display: "flex",
-    position: "absolute",
-    left: 0,
-    width: "100%",
-    backgroundColor: style.colors.LIGHT_GRAY,
-    zIndex: 999,
-    alignItems: "start",
-    justifyContent: "center",
-    paddingLeft: "10vw",
-    paddingRight: "10vw",
-    boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-    paddingBottom: 0,
-    paddingTop: 50,
-  }}
-  ref={ref}
-  >
-    <div style={{
-      width: "50vw",
-      display: "flex",
-      flexDirection: "column",
-      backgroundColor: style.colors.LIGHT_GRAY,
-      position: "sticky",
-      top: 150,
-      paddingBottom: 20,
-    }}
-    >{leftContent}</div>
-    <div style={{
-      width: "30vw",
-      backgroundColor: style.colors.LIGHT_GRAY,
-    }}
-    >{rightContent}</div>
-  </div>
-  <div style={{
-    // Set the height of the container to the height of the content
-    height: height,
-    marginBottom: 50,
-    marginTop: 50,
-  }}></div>
-  </>
+  return (
+    <>
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          left: 0,
+          width: "100%",
+          backgroundColor: style.colors.LIGHT_GRAY,
+          zIndex: 999,
+          alignItems: "start",
+          justifyContent: "center",
+          paddingLeft: "10vw",
+          paddingRight: "10vw",
+          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+          paddingBottom: 0,
+          paddingTop: 50,
+        }}
+        ref={ref}
+      >
+        <div
+          style={{
+            width: "50vw",
+            display: "flex",
+            flexDirection: "column",
+            backgroundColor: style.colors.LIGHT_GRAY,
+            position: "sticky",
+            top: 150,
+            paddingBottom: 20,
+          }}
+        >
+          {leftContent}
+        </div>
+        <div
+          style={{
+            width: "30vw",
+            backgroundColor: style.colors.LIGHT_GRAY,
+          }}
+        >
+          {rightContent}
+        </div>
+      </div>
+      <div
+        style={{
+          // Set the height of the container to the height of the content
+          height: height,
+          marginBottom: 50,
+          marginTop: 50,
+        }}
+      ></div>
+    </>
+  );
 }
 
 function PlotlyChartCode({ data, backgroundColor }) {
-  console.log(data)
+  console.log(data);
   let plotlyData = null;
   try {
     plotlyData = JSON.parse(data);
   } catch {
-
-    console.log(data[0])
+    console.log(data[0]);
     plotlyData = JSON.parse(data[0]);
   }
   const title = plotlyData.layout?.title?.text;
   const displayCategory = useDisplayCategory();
-  return <>
-  {title && <h3 style={{marginBottom: 50}}>{title}</h3>}
-  <Plot data={plotlyData.data} layout={
-    Object.assign(plotlyData.layout, {
-      width: displayCategory === "mobile" ? 400 : "100%", 
-      height: 600,
-      title: {
-        text: "",
-      },
-      plot_bgcolor: backgroundColor || "transparent",
-      paper_bgcolor: backgroundColor || "transparent",
-    })
-  } 
-  config={{
-    displayModeBar: false,
-    responsive: true,
-  }}
-  /></>;
+  return (
+    <>
+      {title && <h3 style={{ marginBottom: 50 }}>{title}</h3>}
+      <Plot
+        data={plotlyData.data}
+        layout={Object.assign(plotlyData.layout, {
+          width: displayCategory === "mobile" ? 400 : "100%",
+          height: 600,
+          title: {
+            text: "",
+          },
+          plot_bgcolor: backgroundColor || "transparent",
+          paper_bgcolor: backgroundColor || "transparent",
+        })}
+        config={{
+          displayModeBar: false,
+          responsive: true,
+        }}
+      />
+    </>
+  );
 }
 
 function ReadTime({ markdown }) {
@@ -973,7 +1061,7 @@ function LeftContents(props) {
       .split(" ")
       .join("-")
       .replace("\\", "")
-      .replace(/,/g, "")
+      .replace(/,/g, ""),
   );
 
   let contents = [];
@@ -1008,7 +1096,7 @@ function LeftContents(props) {
         >
           {headerText}
         </p>
-      </div>
+      </div>,
     );
   }
 

@@ -13,13 +13,12 @@ export default function HomeBlogPreview() {
   const countryId = useCountryId();
   const featuredPosts =
     posts.filter(
-      (post) => post.tags.includes("featured") && (
-        post.tags.includes(countryId)
-        || post.tags.includes("global")
-      )
+      (post) =>
+        post.tags.includes("featured") &&
+        (post.tags.includes(countryId) || post.tags.includes("global")),
     ) || [];
   const allPosts = posts.filter(
-    (post) => post.tags.includes(countryId) || post.tags.includes("global")
+    (post) => post.tags.includes(countryId) || post.tags.includes("global"),
   );
   const displayCategory = useDisplayCategory();
   return (
@@ -71,7 +70,11 @@ function ReadMore() {
           margin: 40,
         }}
       >
-        <EmphasisedLink text="Read more" url={`/${countryId}/research`} size={14} />
+        <EmphasisedLink
+          text="Read more"
+          url={`/${countryId}/research`}
+          size={14}
+        />
       </div>
     </div>
   );
@@ -360,7 +363,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           }
           style={{
             backgroundColor: style.colors.TEAL_LIGHT,
-            minHeight: 320 
+            minHeight: 320,
           }}
         >
           <div style={{ padding: 20 }}>
@@ -402,11 +405,11 @@ export function MediumBlogPreview({ blog, minHeight }) {
             alt={blog.coverAltText || `{blog.title} cover image`}
             height={300}
             width="100%"
-            style={{ 
+            style={{
               objectFit: "cover",
               border: `1px solid ${style.colors.BLACK}`,
               borderBottom: "none",
-             }}
+            }}
           />
         </div>
         <BlogBox
@@ -526,11 +529,13 @@ export function SmallBlogPreview({ blog }) {
         height: "100%",
       }}
     >
-      <div style={{ 
-        padding: 10, 
-        paddingTop: 0, 
-        minHeight: displayCategory === "desktop" ? 100 : null 
-        }}>
+      <div
+        style={{
+          padding: 10,
+          paddingTop: 0,
+          minHeight: displayCategory === "desktop" ? 100 : null,
+        }}
+      >
         <h4>{blog.title}</h4>
       </div>
     </BlogBox>

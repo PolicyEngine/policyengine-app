@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <PolicyEngine />
-  </Router>
+  </Router>,
 );
 
 serviceWorkerRegistration.unregister();
