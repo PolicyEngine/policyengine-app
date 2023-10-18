@@ -10,7 +10,7 @@ export const founders = {
 		data scientist at Google. Max has a master's degree in Data,
 		Economics, and Development Policy from MIT and a bachelor's
 		degree in operations research from UC Berkeley.`,
-    image: require("../../images/authors/max-ghenis.jpg"),
+    image: require("../../images/authors/max-ghenis.png"),
   },
   nikhil_woodruff: {
     name: "Nikhil Woodruff",

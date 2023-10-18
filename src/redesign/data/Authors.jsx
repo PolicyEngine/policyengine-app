@@ -15,7 +15,7 @@ const Authors = {
       "twitter": "https://twitter.com/maxghenis",
       "github": "https://github.com/MaxGhenis",
       "linkedin": "https://www.linkedin.com/in/maxghenis/",
-      "headshot": require("../../images/authors/max-ghenis.jpg"),
+      "headshot": require("../../images/authors/max-ghenis.png"),
       "bio": "is PolicyEngine's co-founder and CEO.",
       "title": "PolicyEngine's Co-founder and CEO"
     },
