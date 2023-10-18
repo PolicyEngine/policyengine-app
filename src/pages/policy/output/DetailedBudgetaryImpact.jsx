@@ -66,10 +66,10 @@ export default function DetailedBudgetaryImpact(props) {
                 : ["total"],
             marker: {
               color: Object.values(impact.decile.average).map((value) =>
-                value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN,
+                value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
               ),
             },
-            increasing: { marker: { color: style.colors.DARK_GREEN } },
+            increasing: { marker: { color: style.colors.BLUE } },
             decreasing: { marker: { color: style.colors.DARK_GRAY } },
             // Total should be dark gray if negative, dark green if positive
             totals: {
@@ -77,7 +77,7 @@ export default function DetailedBudgetaryImpact(props) {
                 color:
                   impact.budget.budgetary_impact < 0
                     ? style.colors.DARK_GRAY
-                    : style.colors.DARK_GREEN,
+                    : style.colors.BLUE,
               },
             },
             text: textValues,

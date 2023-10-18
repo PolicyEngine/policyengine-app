@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&family=Roboto:wght@300;500&display=swap");
+
+h5,
+h6 {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Roboto Serif", serif;
+  font-weight: 300;
+}
+
+body {
+  font-family: "Roboto";
+  color: "inherit !important";
+}
+
+:root {
+  --bs-body-font-weight: 300;
+}
+
+.ant-select-selection-item {
+  font-weight: 300;
+}
+
+p {
+  font-family: "Roboto Serif", serif;
+  font-weight: 300;
+}
+
+/* icons */
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+a {
+  /* no underline */
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.spaced-sans-serif {
+  text-transform: uppercase;
+  font-family: "Roboto";
+  font-weight: 500;
+  letter-spacing: 2.4px;
+}
+
+a:hover {
+  color: inherit;
+}
+
+input:focus {
+  outline: none;
+}
+
+a.highlighted-link {
+  box-shadow: inset 0 0 0 0 #227773;
+  color: #2c6496;
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  transition:
+    color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    padding-left 0.2s ease-in-out,
+    padding-right 0.2s ease-in-out;
+}
+a.highlighted-link:hover {
+  box-shadow: inset 800px 0 0 0 #2c6496;
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:target {
+  scroll-margin-top: 300px;
+}

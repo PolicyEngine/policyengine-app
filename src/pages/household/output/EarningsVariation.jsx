@@ -59,6 +59,7 @@ export default function EarningsVariation(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
+    console.log(householdInput);
     householdData.people.you.employment_income["2023"] = null;
     const currentEarnings = getValueFromHousehold(
       "employment_income",

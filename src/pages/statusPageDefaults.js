@@ -17,13 +17,13 @@ export const COUNTRY_NAMES = {
 };
 
 export const STATUS_COLORS = {
-  OK: colors.LIGHT_GREEN,
+  OK: colors.BLUE_98,
   ERROR: colors.DARK_RED,
   Pending: colors.LIGHT_GRAY,
 };
 
 export const STATUS_TEXT_COLORS = {
-  OK: colors.DARK_GREEN,
+  OK: colors.BLUE,
   ERROR: colors.WHITE,
   Pending: colors.BLACK,
 };

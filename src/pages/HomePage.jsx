@@ -17,7 +17,6 @@ import SimonDuffy from "../images/headshots/simon-duffy.jpeg";
 import MartinFarley from "../images/headshots/martin-farley.jpeg";
 import TorrinWilkins from "../images/headshots/torrin-wilkins.webp";
 import ChrisHolmes from "../images/headshots/chris-holmes.webp";
-
 import BrianHiatt from "../images/headshots/brian-hiatt.png";
 import DarrylFinkton from "../images/headshots/darryl-finkton.jpeg";
 import NateGolden from "../images/headshots/nate-golden.jpg";
@@ -32,7 +31,6 @@ import UBILabs from "../images/logos/orgs/ubilabs.png";
 import UKEU from "../images/logos/orgs/ukeu.svg";
 import ASI from "../images/logos/orgs/asi.webp";
 import CEC from "../images/logos/orgs/cec.svg";
-
 import CGO from "../images/logos/orgs/cgo.jpg";
 import EPMT from "../images/logos/orgs/epmt.jpg";
 import F4GI from "../images/logos/orgs/f4gi.jpg";

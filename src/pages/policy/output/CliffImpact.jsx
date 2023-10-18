@@ -107,10 +107,10 @@ export default function CliffImpact(props) {
               color: [
                 cliff_share_change > 0
                   ? style.colors.DARK_GRAY
-                  : style.colors.DARK_GREEN,
+                  : style.colors.BLUE,
                 cliff_gap_change > 0
                   ? style.colors.DARK_GRAY
-                  : style.colors.DARK_GREEN,
+                  : style.colors.BLUE,
               ],
             },
             text: [

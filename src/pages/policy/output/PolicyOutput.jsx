@@ -642,7 +642,7 @@ export default function PolicyOutput(props) {
               paddingRight: 20,
             }}
           >
-            <b>Share this result</b>
+            Share this result
           </h6>
         )}
         <div

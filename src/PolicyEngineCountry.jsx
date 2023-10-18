@@ -16,10 +16,9 @@ import ResearchPage from "./pages/ResearchPage";
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPage"));
-const AboutPage = lazy(() => import("./pages/AboutPage"));
 const DonatePage = lazy(() => import("./pages/DonatePage"));
 
-export default function PolicyEngineCountry(props) {
+export default function LegacyPolicyEngineCountry(props) {
   const { countryId } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -170,7 +169,7 @@ export default function PolicyEngineCountry(props) {
         element={metadata ? householdPage : error ? errorPage : loadingPage}
       />
       <Route
-        path="/policy/*"
+        path="/policy"
         element={metadata ? policyPage : error ? errorPage : loadingPage}
       />
       <Route
@@ -183,11 +182,7 @@ export default function PolicyEngineCountry(props) {
       />
       <Route
         path="/about"
-        element={
-          <Suspense fallback={loadingPage}>
-            <AboutPage />
-          </Suspense>
-        }
+        element={<Suspense fallback={loadingPage}></Suspense>}
       />
       <Route
         path="/donate"
