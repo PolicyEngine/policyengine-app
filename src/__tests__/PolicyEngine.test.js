@@ -1,13 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { PolicyEngineRoutes } from "../PolicyEngine";
-import PolicyEngineCountry from "../PolicyEngineCountry";
+import PolicyEngine from "../redesign/components/PolicyEngine";
 
 describe("test routing", () => {
   test("should redirect an invalid country to the uk page", async () => {
     render(
       <MemoryRouter initialEntries={["/invalidCountry"]}>
-        <PolicyEngineRoutes />
+        <PolicyEngine />
       </MemoryRouter>,
     );
 
