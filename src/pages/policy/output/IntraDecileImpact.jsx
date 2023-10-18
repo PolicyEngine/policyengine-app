@@ -74,7 +74,7 @@ export default function IntraDecileImpact(props) {
         x: gainLessThan5ForAll,
         name: "Gain less than 5%",
         marker: {
-          color: style.colors.LIGHT_GREEN,
+          color: style.colors.BLUE_98,
         },
         orientation: "h",
         text: gainLessThan5ForAll.map(
@@ -230,7 +230,7 @@ export default function IntraDecileImpact(props) {
         x: gainLessThan5ForDeciles,
         name: "Gain less than 5%",
         marker: {
-          color: style.colors.LIGHT_GREEN,
+          color: style.colors.BLUE_98,
         },
         orientation: "h",
         text: gainLessThan5ForDeciles.map(
