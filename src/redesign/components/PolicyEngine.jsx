@@ -227,6 +227,12 @@ export default function PolicyEngine({ pathname }) {
           element={metadata ? policyPage : error ? errorPage : loadingPage}
         />
 
+        {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
+        <Route
+          path="/:countryId/blog/:slug"
+          element={<Navigate to={`/${countryId}/research/${pathParts[3]}`} />}
+        />
+
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
       </Routes>
