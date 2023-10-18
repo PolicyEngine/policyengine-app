@@ -54,7 +54,7 @@ export default function Donate() {
           }}>
             <ActionButton 
               text={
-                <div style={{ textAlign: 'center', color: 'black' }}>
+                <div style={{ textAlign: 'center', color: 'white' }}>
                   <span style={{ whiteSpace: "pre-line" }}>
                     Donate on{'\n'}Open Collective
                   </span>
