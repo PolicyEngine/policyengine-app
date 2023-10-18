@@ -29,7 +29,7 @@ function FolderPageDescription(props) {
       stem += name;
       const fixedStem = stem;
       currentNode = currentNode.children.find(
-        (node) => node.name === fixedStem
+        (node) => node.name === fixedStem,
       );
       breadcrumbs.push({
         name: stem,

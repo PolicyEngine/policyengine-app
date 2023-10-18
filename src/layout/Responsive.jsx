@@ -32,13 +32,13 @@ const useDisplayCategory = () => {
 
 const useMobile = () => {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
-    determineDisplayCategory(window.innerWidth) === "mobile"
+    determineDisplayCategory(window.innerWidth) === "mobile",
   );
 
   useEffect(() => {
     const handler = () =>
       setcurrentDisplayCategory(
-        determineDisplayCategory(window.innerWidth) === "mobile"
+        determineDisplayCategory(window.innerWidth) === "mobile",
       );
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);

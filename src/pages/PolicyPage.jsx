@@ -153,7 +153,7 @@ function MobileTreeNavigationHolder(props) {
       stem += name;
       const fixedStem = stem;
       currentNode = currentNode.children.find(
-        (node) => node.name === fixedStem
+        (node) => node.name === fixedStem,
       );
       breadcrumbs.push({
         name: stem,
@@ -365,7 +365,7 @@ export default function PolicyPage(props) {
       let newSearch = copySearchParams(searchParams);
       newSearch.set(
         "reform",
-        metadata.countryId === "us" ? 2 : metadata.countryId === "uk" ? 1 : 3
+        metadata.countryId === "us" ? 2 : metadata.countryId === "uk" ? 1 : 3,
       );
       setSearchParams(newSearch);
     }

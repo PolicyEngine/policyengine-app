@@ -52,11 +52,11 @@ export default function CliffImpact(props) {
       newSearch.set("region", searchParams.get("region") || defaults.region);
       newSearch.set(
         "timePeriod",
-        searchParams.get("timePeriod") || defaults.timePeriod
+        searchParams.get("timePeriod") || defaults.timePeriod,
       );
       newSearch.set(
         "baseline",
-        searchParams.get("baseline") || defaults.baseline
+        searchParams.get("baseline") || defaults.baseline,
       );
       setSearchParams(newSearch);
     }
@@ -67,7 +67,7 @@ export default function CliffImpact(props) {
     return (
       <ErrorPage
         message={`We ran into an issue when trying to simulate your policy. Please try again later. The full message is ${JSON.stringify(
-          error
+          error,
         )}`}
       />
     );
@@ -85,20 +85,22 @@ export default function CliffImpact(props) {
 
   const cliff_share_change =
     Math.round(
-      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100
+      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100,
     ) / 100;
   const cliff_gap_change =
     Math.round(
-      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000
+      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000,
     ) / 1000;
 
-  function CliffImpactPlot() {
+  function CliffImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
+    const metrics = ["Cliff rate", "Cliff gap"];
     return (
       <Plot
         data={[
           {
-            x: ["Cliff rate", "Cliff gap"],
+            x: metrics,
             y: [cliff_share_change, cliff_gap_change],
             type: "bar",
             marker: {
@@ -121,7 +123,39 @@ export default function CliffImpact(props) {
             ],
             textposition: "auto",
             textangle: 0,
-            hoverinfo: "none",
+            ...(useHoverCard
+              ? {
+                  hoverinfo: "none",
+                }
+              : {
+                  customdata: metrics.map((metric) => {
+                    const baseline =
+                      metric === "Cliff rate"
+                        ? impact.baseline.cliff_share
+                        : impact.baseline.cliff_gap;
+                    const reform =
+                      metric === "Cliff rate"
+                        ? impact.reform.cliff_share
+                        : impact.reform.cliff_gap;
+                    const change = reform / baseline - 1;
+                    const formatter =
+                      metric === "Cliff rate"
+                        ? percent
+                        : (x) => aggregateCurrency(x, metadata);
+                    return `The ${metric.toLowerCase()} ${
+                      change > 0.0001
+                        ? `would rise ${percent(change)}<br>from ${formatter(
+                            baseline,
+                          )} to ${formatter(reform)}`
+                        : change < -0.0001
+                        ? `would fall ${percent(-change)}<br>from ${formatter(
+                            baseline,
+                          )} to ${formatter(reform)}`
+                        : `would remain at ${percent(baseline)}`
+                    }.`;
+                  }),
+                  hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                }),
           },
         ]}
         layout={{
@@ -129,6 +163,15 @@ export default function CliffImpact(props) {
             title: "Relative change",
             tickformat: "+,.0%",
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           uniformtext: {
             mode: "hide",
             minsize: 8,
@@ -148,40 +191,44 @@ export default function CliffImpact(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          const metric = data.points[0].x;
-          const baseline =
-            metric === "Cliff rate"
-              ? impact.baseline.cliff_share
-              : impact.baseline.cliff_gap;
-          const reform =
-            metric === "Cliff rate"
-              ? impact.reform.cliff_share
-              : impact.reform.cliff_gap;
-          const change = reform / baseline - 1;
-          const formatter =
-            metric === "Cliff rate"
-              ? percent
-              : (x) => aggregateCurrency(x, metadata);
-          const message = `The ${metric.toLowerCase()} ${
-            change > 0.0001
-              ? `would rise ${percent(change)} from ${formatter(
-                  baseline
-                )} to ${formatter(reform)}`
-              : change < -0.0001
-              ? `would fall ${percent(-change)} from ${formatter(
-                  baseline
-                )} to ${formatter(reform)}`
-              : `would remain at ${percent(baseline)}`
-          }.`;
-          setHoverCard({
-            title: data.points[0].x,
-            body: message,
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const metric = data.points[0].x;
+                const baseline =
+                  metric === "Cliff rate"
+                    ? impact.baseline.cliff_share
+                    : impact.baseline.cliff_gap;
+                const reform =
+                  metric === "Cliff rate"
+                    ? impact.reform.cliff_share
+                    : impact.reform.cliff_gap;
+                const change = reform / baseline - 1;
+                const formatter =
+                  metric === "Cliff rate"
+                    ? percent
+                    : (x) => aggregateCurrency(x, metadata);
+                const message = `The ${metric.toLowerCase()} ${
+                  change > 0.0001
+                    ? `would rise ${percent(change)} from ${formatter(
+                        baseline,
+                      )} to ${formatter(reform)}`
+                    : change < -0.0001
+                    ? `would fall ${percent(-change)} from ${formatter(
+                        baseline,
+                      )} to ${formatter(reform)}`
+                    : `would remain at ${percent(baseline)}`
+                }.`;
+                setHoverCard({
+                  title: data.points[0].x,
+                  body: message,
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }

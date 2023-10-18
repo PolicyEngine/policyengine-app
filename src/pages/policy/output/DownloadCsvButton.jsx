@@ -31,7 +31,7 @@ const DownloadCsvButton = ({
   const handleDownloadImage = async () => {
     setTimeout(async () => {
       const downloadableContent = document.getElementById(
-        "downloadable-content"
+        "downloadable-content",
       );
       if (downloadableContent) {
         const paddedDiv = document.createElement("div");

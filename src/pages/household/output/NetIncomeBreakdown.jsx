@@ -60,7 +60,7 @@ function VariableArithmetic(props) {
     null,
     null,
     householdBaseline,
-    metadata
+    metadata,
   );
   let valueStr;
   let shouldShowVariable;
@@ -75,7 +75,7 @@ function VariableArithmetic(props) {
       null,
       null,
       householdReform,
-      metadata
+      metadata,
     );
     const diff = reformValue - value;
     doesIncomeChange = diff != 0;
@@ -124,7 +124,7 @@ function VariableArithmetic(props) {
           null,
           null,
           householdBaseline,
-          metadata
+          metadata,
         ) !== 0;
       const isNonZeroInReform =
         getValueFromHousehold(
@@ -132,7 +132,7 @@ function VariableArithmetic(props) {
           null,
           null,
           householdReform,
-          metadata
+          metadata,
         ) !== 0;
       return (
         isNonZeroInBaseline || isNonZeroInReform || forceShowChildValuesIfZero
@@ -162,7 +162,7 @@ function VariableArithmetic(props) {
           null,
           null,
           householdBaseline,
-          metadata
+          metadata,
         ) !== 0 || forceShowChildValuesIfZero
       );
     };
@@ -331,7 +331,7 @@ export default function NetIncomeBreakdown(props) {
             {formatVariableValue(
               metadata.variables.household_net_income,
               Math.abs(difference),
-              0
+              0,
             )}
           </span>
         </>

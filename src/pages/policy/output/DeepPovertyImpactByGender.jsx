@@ -42,8 +42,9 @@ export default function DeepPovertyImpactByGender(props) {
   };
   const mobile = useMobile();
 
-  function DeepPovertyImpactByGenderPlot() {
+  function DeepPovertyImpactByGenderPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
@@ -54,17 +55,55 @@ export default function DeepPovertyImpactByGender(props) {
             type: "bar",
             marker: {
               color: povertyChanges.map((value) =>
-                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY
+                value < 0 ? style.colors.DARK_GREEN : style.colors.DARK_GRAY,
               ),
             },
             text: povertyChanges.map(
               (value) =>
                 (value >= 0 ? "+" : "") +
                 (value * 100).toFixed(1).toString() +
-                "%"
+                "%",
             ),
             textangle: 0,
-            hoverinfo: "none",
+            ...(useHoverCard
+              ? {
+                  hoverinfo: "none",
+                }
+              : {
+                  customdata: povertyLabels.map((x, i) => {
+                    const group = x;
+                    const change = povertyChanges[i];
+                    const baseline =
+                      group === "All"
+                        ? impact.poverty.deep_poverty[labelToKey[group]]
+                            .baseline
+                        : impact.poverty_by_gender.deep_poverty[
+                            labelToKey[group]
+                          ].baseline;
+                    const reform =
+                      group === "All"
+                        ? impact.poverty.deep_poverty[labelToKey[group]].reform
+                        : impact.poverty_by_gender.deep_poverty[
+                            labelToKey[group]
+                          ].reform;
+                    return `The percentage of ${
+                      group === "All"
+                        ? "people"
+                        : { male: "men", female: "women" }[group.toLowerCase()]
+                    } in deep poverty<br>${
+                      change < -0.001
+                        ? `would fall ${percent(-change)} from ${percent(
+                            baseline,
+                          )} to ${percent(reform)}.`
+                        : change > 0.001
+                        ? `would rise ${percent(change)} from ${percent(
+                            baseline,
+                          )} to ${percent(reform)}.`
+                        : `would remain at ${percent(baseline)}.`
+                    }`;
+                  }),
+                  hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                }),
           },
         ]}
         layout={{
@@ -76,6 +115,15 @@ export default function DeepPovertyImpactByGender(props) {
             tickformat: "+,.1%",
             range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           showlegend: false,
           uniformtext: {
             mode: "hide",
@@ -97,41 +145,46 @@ export default function DeepPovertyImpactByGender(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          const group = data.points[0].x;
-          const change = data.points[0].y;
-          const baseline =
-            group === "All"
-              ? impact.poverty.deep_poverty[labelToKey[group]].baseline
-              : impact.poverty_by_gender.deep_poverty[labelToKey[group]]
-                  .baseline;
-          const reform =
-            group === "All"
-              ? impact.poverty.deep_poverty[labelToKey[group]].reform
-              : impact.poverty_by_gender.deep_poverty[labelToKey[group]].reform;
-          const message = `The percentage of ${
-            group === "All"
-              ? "people"
-              : { male: "men", female: "women" }[group.toLowerCase()]
-          } in deep poverty ${
-            change < -0.001
-              ? `would fall ${percent(-change)} from ${percent(
-                  baseline
-                )} to ${percent(reform)}.`
-              : change > 0.001
-              ? `would rise ${percent(change)} from ${percent(
-                  baseline
-                )} to ${percent(reform)}.`
-              : `would remain at ${percent(baseline)}.`
-          }`;
-          setHoverCard({
-            title: group,
-            body: message,
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const group = data.points[0].x;
+                const change = data.points[0].y;
+                const baseline =
+                  group === "All"
+                    ? impact.poverty.deep_poverty[labelToKey[group]].baseline
+                    : impact.poverty_by_gender.deep_poverty[labelToKey[group]]
+                        .baseline;
+                const reform =
+                  group === "All"
+                    ? impact.poverty.deep_poverty[labelToKey[group]].reform
+                    : impact.poverty_by_gender.deep_poverty[labelToKey[group]]
+                        .reform;
+                const message = `The percentage of ${
+                  group === "All"
+                    ? "people"
+                    : { male: "men", female: "women" }[group.toLowerCase()]
+                } in deep poverty ${
+                  change < -0.001
+                    ? `would fall ${percent(-change)} from ${percent(
+                        baseline,
+                      )} to ${percent(reform)}.`
+                    : change > 0.001
+                    ? `would rise ${percent(change)} from ${percent(
+                        baseline,
+                      )} to ${percent(reform)}.`
+                    : `would remain at ${percent(baseline)}.`
+                }`;
+                setHoverCard({
+                  title: group,
+                  body: message,
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }
@@ -141,8 +194,8 @@ export default function DeepPovertyImpactByGender(props) {
     Math.round(
       Math.abs(
         impact.poverty.deep_poverty.all.reform -
-          impact.poverty.deep_poverty.all.baseline
-      ) * 1000
+          impact.poverty.deep_poverty.all.baseline,
+      ) * 1000,
     ) / 10;
 
   const urlParams = new URLSearchParams(window.location.search);

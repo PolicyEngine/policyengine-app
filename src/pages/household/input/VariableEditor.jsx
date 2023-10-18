@@ -12,7 +12,7 @@ import SearchOptions from "../../../controls/SearchOptions";
 import useMobile from "../../../layout/Responsive";
 import NavigationButton from "../../../controls/NavigationButton";
 import gtag from "../../../api/analytics";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -41,8 +41,18 @@ export default function VariableEditor(props) {
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
-    (entity) => householdInput[entityPlural][entity][variable.name]
+    (entity) => householdInput[entityPlural][entity][variable.name],
   );
+
+  // Add the variable to the relevant portions of the household input object
+  useEffect(() => {
+    const newHouseholdInput = addVariable(
+      householdInput,
+      variable,
+      entityPlural,
+    );
+    setHouseholdInput(newHouseholdInput);
+  }, [variable]);
 
   const entityInputs = possibleEntities.map((entity) => {
     return (
@@ -112,7 +122,7 @@ function HouseholdVariableEntity(props) {
     setEdited,
   } = props;
   const possibleTimePeriods = Object.keys(
-    householdInput[entityPlural][entityName][variable.name]
+    householdInput[entityPlural][entityName][variable.name],
   );
   return (
     <>
@@ -171,7 +181,7 @@ function HouseholdVariableEntityInput(props) {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
           setSearchParams(newSearch);
-        }
+        },
       );
     }
     setEdited(true);
@@ -182,14 +192,14 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     entityName,
     householdBaseline,
-    metadata
+    metadata,
   );
   const inputValue = getValueFromHousehold(
     variable.name,
     timePeriod,
     entityName,
     householdInput,
-    metadata
+    metadata,
   );
   const reformValue = householdReform
     ? getValueFromHousehold(
@@ -197,7 +207,7 @@ function HouseholdVariableEntityInput(props) {
         timePeriod,
         entityName,
         householdReform,
-        metadata
+        metadata,
       )
     : null;
   const mobile = useMobile();
@@ -277,4 +287,51 @@ function HouseholdVariableEntityInput(props) {
       </div>
     </>
   );
+}
+
+/**
+ * Adds the VariableEditor's focus variable to a household input object
+ * and returns the resulting object
+ * @param {Object} householdInput The household input object passed as a param
+ * to VariableEditor
+ * @param {Object} variable The relevant variable metadata
+ * @param {String} entityPlural The plural term for the entity the variable
+ * applies to
+ * @returns {Object} A new householdInput object that contains the variable
+ */
+export function addVariable(householdInput, variable, entityPlural) {
+  let newHouseholdInput = JSON.parse(JSON.stringify(householdInput));
+
+  let possibleEntities = null;
+
+  // If the variable is defined as occurring over a year...
+  if (variable.definitionPeriod === "year") {
+    // If plural entity term is in household situation...
+    if (entityPlural in householdInput) {
+      // Pull all individual entities stored within the umbrella entity
+      // (e.g., within "people", "you", "your first dependent", etc.)
+      possibleEntities = Object.keys(householdInput[entityPlural]);
+      // For each possible entity...
+      possibleEntities.forEach((entity) => {
+        // If the variable isn't already stored in the situation...
+        if (!(variable.name in householdInput[entityPlural][entity])) {
+          // If the basic input is an "input variable" (input by user)...
+          if (variable.isInputVariable) {
+            // Then add it to the relevant part of the situation, along with
+            // its default value
+            newHouseholdInput[entityPlural][entity][variable.name] = {
+              2023: variable.defaultValue,
+            };
+          } else {
+            // Otherwise, add it to the relevant part of the situation, along with
+            // a null value
+            newHouseholdInput[entityPlural][entity][variable.name] = {
+              2023: null,
+            };
+          }
+        }
+      });
+    }
+  }
+  return newHouseholdInput;
 }

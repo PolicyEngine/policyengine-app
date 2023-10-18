@@ -32,7 +32,7 @@ export default function EarningsVariation(props) {
   const possibleEntities = Object.keys(
     householdInput[
       metadata.entities[metadata.variables[variable].entity].plural
-    ]
+    ],
   );
   // eslint-disable-next-line
   const [selectedEntity, setSelectedEntity] = useState(possibleEntities[0]);
@@ -48,8 +48,8 @@ export default function EarningsVariation(props) {
         ];
       validVariables = validVariables.concat(
         Object.keys(firstEntity).filter((variable) =>
-          Array.isArray(firstEntity[variable][2023])
-        )
+          Array.isArray(firstEntity[variable][2023]),
+        ),
       );
     }
   }
@@ -65,7 +65,7 @@ export default function EarningsVariation(props) {
       "2023",
       "you",
       householdInput,
-      metadata
+      metadata,
     );
     householdData.axes = [
       [
@@ -75,7 +75,7 @@ export default function EarningsVariation(props) {
           min: 0,
           max: Math.max(
             metadata.countryId == "ng" ? 1_200_000 : 200_000,
-            2 * currentEarnings
+            2 * currentEarnings,
           ),
           count: 401,
         },
@@ -94,7 +94,7 @@ export default function EarningsVariation(props) {
         })
         .catch((err) => {
           setError(err);
-        })
+        }),
     );
     if (reformPolicyId) {
       requests.push(
@@ -108,7 +108,7 @@ export default function EarningsVariation(props) {
           })
           .catch((err) => {
             setError(err);
-          })
+          }),
       );
     }
     Promise.all(requests).then(() => setLoading(false));

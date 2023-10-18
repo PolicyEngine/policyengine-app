@@ -33,42 +33,42 @@ export default function BaselineAndReformChart(props) {
     "2023",
     "you",
     householdBaselineVariation,
-    metadata
+    metadata,
   );
   const baselineArray = getValueFromHousehold(
     variable,
     "2023",
     null,
     householdBaselineVariation,
-    metadata
+    metadata,
   );
   const reformArray = getValueFromHousehold(
     variable,
     "2023",
     null,
     householdReformVariation,
-    metadata
+    metadata,
   );
   const currentEarnings = getValueFromHousehold(
     "employment_income",
     "2023",
     "you",
     householdBaseline,
-    metadata
+    metadata,
   );
   const currentValue = getValueFromHousehold(
     variable,
     "2023",
     null,
     householdReform,
-    metadata
+    metadata,
   );
   const baselineValue = getValueFromHousehold(
     variable,
     "2023",
     null,
     householdBaseline,
-    metadata
+    metadata,
   );
 
   function BaselineAndReformChartWithToggle() {
@@ -147,13 +147,14 @@ function BaselineAndReformTogetherPlot(props) {
     metadata,
     variable,
     baselineValue,
+    useHoverCard = false,
   } = props;
   let data = [
     ...(variable === "household_net_income"
-      ? getCliffs(baselineArray, earningsArray)
+      ? getCliffs(baselineArray, earningsArray, false, "$", useHoverCard)
       : []),
     ...(variable === "household_net_income"
-      ? getCliffs(reformArray, earningsArray, true)
+      ? getCliffs(reformArray, earningsArray, true, "$", useHoverCard)
       : []),
     {
       x: earningsArray,
@@ -163,7 +164,17 @@ function BaselineAndReformTogetherPlot(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Baseline ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your baseline<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
     },
     {
       x: earningsArray,
@@ -173,7 +184,17 @@ function BaselineAndReformTogetherPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Reform ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your reform<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
     },
     {
       x: [currentEarnings],
@@ -184,7 +205,17 @@ function BaselineAndReformTogetherPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Your reform ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your reform<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
     },
     {
       x: [currentEarnings],
@@ -195,7 +226,17 @@ function BaselineAndReformTogetherPlot(props) {
       line: {
         color: style.colors.MEDIUM_DARK_GRAY,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Your baseline ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your baseline<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
     },
   ];
   const plotObject = (
@@ -208,7 +249,7 @@ function BaselineAndReformTogetherPlot(props) {
             title: "Household head employment income",
             ...getPlotlyAxisFormat(
               metadata.variables.employment_income.unit,
-              0
+              0,
             ),
             tickformat: ",.0f",
             uirevision: metadata.variables.employment_income.unit,
@@ -217,11 +258,20 @@ function BaselineAndReformTogetherPlot(props) {
             title: capitalize(variableLabel),
             ...getPlotlyAxisFormat(
               metadata.variables.household_net_income.unit,
-              0
+              0,
             ),
             tickformat: ",.0f",
             uirevision: metadata.variables.household_net_income.unit,
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           legend: {
             // Position above the plot
             y: 1.2,
@@ -237,51 +287,57 @@ function BaselineAndReformTogetherPlot(props) {
         style={{
           width: "100%",
         }}
-        onHover={(data) => {
-          if (
-            data.points[0].x !== undefined &&
-            data.points[0].y !== undefined
-          ) {
-            const variableLabelAmount = convertToCurrencyString(
-              metadata.currency,
-              data.points[0].y
-            );
-            const employmentIncome = convertToCurrencyString(
-              metadata.currency,
-              data.points[0].x
-            );
-            const message = `If you earn ${employmentIncome}, your ${
-              data.points[0].data.name.toLocaleLowerCase().includes("reform")
-                ? "reform"
-                : "baseline"
-            } ${variableLabel} will be ${variableLabelAmount}.`;
-            setHoverCard({
-              title: data.points[0].data.name,
-              body: message,
-            });
-          } else {
-            setHoverCard({
-              title: data.points[0].data.name,
-              body: `Your net income falls after earning 
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                if (
+                  data.points[0].x !== undefined &&
+                  data.points[0].y !== undefined
+                ) {
+                  const variableLabelAmount = convertToCurrencyString(
+                    metadata.currency,
+                    data.points[0].y,
+                  );
+                  const employmentIncome = convertToCurrencyString(
+                    metadata.currency,
+                    data.points[0].x,
+                  );
+                  const message = `If you earn ${employmentIncome}, your ${
+                    data.points[0].data.name
+                      .toLocaleLowerCase()
+                      .includes("reform")
+                      ? "reform"
+                      : "baseline"
+                  } ${variableLabel} will be ${variableLabelAmount}.`;
+                  setHoverCard({
+                    title: data.points[0].data.name,
+                    body: message,
+                  });
+                } else {
+                  setHoverCard({
+                    title: data.points[0].data.name,
+                    body: `Your net income falls after earning 
               ${convertToCurrencyString(
                 metadata.currency,
-                Math.min(...data.points[0].data.x)
+                Math.min(...data.points[0].data.x),
               )} until earning 
               ${convertToCurrencyString(
                 metadata.currency,
-                Math.max(...data.points[0].data.x)
+                Math.max(...data.points[0].data.x),
               )} in the 
               ${
                 data.points[0].data.name.includes("reform")
                   ? "reform"
                   : "baseline"
               } scenario.`,
-            });
-          }
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+                  });
+                }
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     </Screenshottable>
   );
@@ -302,6 +358,7 @@ function BaselineReformDeltaPlot(props) {
     variableLabel,
     metadata,
     variable,
+    useHoverCard = false,
   } = props;
   let data = [
     {
@@ -312,7 +369,17 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Change in ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your change in<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
     },
     {
       x: [currentEarnings],
@@ -323,7 +390,17 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
-      hoverinfo: "none",
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Your current change in ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your change in<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
     },
   ];
   const plotObject = (
@@ -338,7 +415,7 @@ function BaselineReformDeltaPlot(props) {
             title: "Household head employment income",
             ...getPlotlyAxisFormat(
               metadata.variables.employment_income.unit,
-              0
+              0,
             ),
             tickformat: ",.0f",
             uirevision: metadata.variables.employment_income.unit,
@@ -349,11 +426,20 @@ function BaselineReformDeltaPlot(props) {
               metadata.variables[variable].unit,
               0,
               null,
-              metadata.variables[variable].valueType
+              metadata.variables[variable].valueType,
             ),
             tickformat: ",.0f",
             uirevision: metadata.variables[variable].unit,
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           legend: {
             // Position above the plot
             y: 1.2,
@@ -373,29 +459,33 @@ function BaselineReformDeltaPlot(props) {
           width: "100%",
           marginTop: "3rem",
         }}
-        onHover={(data) => {
-          if (
-            data.points[0].x !== undefined &&
-            data.points[0].y !== undefined
-          ) {
-            const variableLabelAmount = convertToCurrencyString(
-              metadata.currency,
-              data.points[0].y
-            );
-            const employmentIncome = convertToCurrencyString(
-              metadata.currency,
-              data.points[0].x
-            );
-            const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`;
-            setHoverCard({
-              title: data.points[0].data.name,
-              body: message,
-            });
-          }
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                if (
+                  data.points[0].x !== undefined &&
+                  data.points[0].y !== undefined
+                ) {
+                  const variableLabelAmount = convertToCurrencyString(
+                    metadata.currency,
+                    data.points[0].y,
+                  );
+                  const employmentIncome = convertToCurrencyString(
+                    metadata.currency,
+                    data.points[0].x,
+                  );
+                  const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`;
+                  setHoverCard({
+                    title: data.points[0].data.name,
+                    body: message,
+                  });
+                }
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     </Screenshottable>
   );

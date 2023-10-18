@@ -82,7 +82,7 @@ const fetchPRs = async () => {
   const PRs = [];
   for (const repo of REPOS) {
     const response = await fetch(
-      `https://api.github.com/repos/${repo}/pulls?state=all&per_page=10`
+      `https://api.github.com/repos/${repo}/pulls?state=all&per_page=10`,
     ).then((res) => res.json());
     PRs.push(...response);
   }

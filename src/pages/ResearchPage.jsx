@@ -39,7 +39,7 @@ export default function ResearchPage(props) {
             imageHeight={200}
             backgroundColor={style.colors.LIGHT_GRAY}
           />
-        </div>
+        </div>,
       );
       j++;
     }

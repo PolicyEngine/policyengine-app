@@ -1,5 +1,6 @@
 import { countryApiCall } from "./call";
 import { capitalize } from "./language";
+import { defaultHouseholds } from "../data/defaultHouseholds";
 
 export function removePerson(situation, name) {
   // Remove a person from the situation
@@ -17,7 +18,7 @@ export function removePerson(situation, name) {
   for (const entityPlural of Object.keys(situation)) {
     let toRemove = [];
     for (const entity of Object.keys(situation[entityPlural])) {
-      if (situation[entityPlural][entity].members.length === 0) {
+      if (situation[entityPlural]?.[entity]?.members?.length === 0) {
         toRemove.push(entity);
       }
     }
@@ -28,119 +29,21 @@ export function removePerson(situation, name) {
   return situation;
 }
 
-export function addYearlyVariables(situation, variables, entities) {
-  // Add yearly variables to the situation (with their input value if they are an input variable, else null).
-  let entityPlural;
-  let possibleEntities;
-  for (const variable of Object.values(variables)) {
-    if (variable.definitionPeriod === "year") {
-      entityPlural = entities[variable.entity].plural;
-      if (entityPlural in situation) {
-        possibleEntities = Object.keys(situation[entityPlural]);
-        for (const entity of possibleEntities) {
-          if (!(variable.name in situation[entityPlural][entity])) {
-            if (variable.isInputVariable) {
-              situation[entityPlural][entity][variable.name] = {
-                2023: variable.defaultValue,
-              };
-            } else {
-              situation[entityPlural][entity][variable.name] = {
-                2023: null,
-              };
-            }
-          }
-        }
-      }
-    }
-  }
-  return situation;
-}
+/**
+ * Creates a default household JSON object and returns it
+ * @param {Object} metadata National metadata object
+ * @returns {JSON} Household object
+ */
+export function createDefaultHousehold(metadata) {
+  const countryId = metadata.countryId;
+  let newHousehold = null;
 
-export function createDefaultHousehold(country, variables, entities) {
-  let situation = {};
-  if (country === "uk") {
-    situation = {
-      people: {
-        you: {},
-      },
-      benunits: {
-        "your immediate family": {
-          members: ["you"],
-        },
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "us") {
-    situation = {
-      people: {
-        you: {},
-      },
-      families: {
-        "your family": {
-          members: ["you"],
-        },
-      },
-      marital_units: {
-        "your marital unit": {
-          members: ["you"],
-        },
-      },
-      tax_units: {
-        "your tax unit": {
-          members: ["you"],
-        },
-      },
-      spm_units: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "ca") {
-    situation = {
-      people: {
-        you: {},
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "ng") {
-    situation = {
-      people: {
-        you: {},
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
-  } else if (country === "il") {
-    situation = {
-      people: {
-        you: {},
-      },
-      households: {
-        "your household": {
-          members: ["you"],
-        },
-      },
-    };
+  if (countryId in defaultHouseholds) {
+    newHousehold = JSON.parse(JSON.stringify(defaultHouseholds[countryId]));
+  } else {
+    newHousehold = JSON.parse(JSON.stringify(defaultHouseholds.default));
   }
-  situation = addYearlyVariables(situation, variables, entities);
-  return situation;
+  return newHousehold;
 }
 
 export function findInTree(tree, path) {
@@ -204,7 +107,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
         }
         if (
           !currentNode.children.find(
-            (child) => child.name === fixedCumulativePath
+            (child) => child.name === fixedCumulativePath,
           )
         ) {
           const moduleData = variableModules[cumulativePath] || {};
@@ -216,7 +119,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
           });
         }
         currentNode = currentNode.children.find(
-          (child) => child.name === fixedCumulativePath
+          (child) => child.name === fixedCumulativePath,
         );
         cumulativePath += ".";
       }
@@ -225,7 +128,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
     parentNode.children.push(nodeToInsert);
   }
   const inputModule = tree.children.find(
-    (child) => child.name === "input"
+    (child) => child.name === "input",
   ).children;
   return {
     name: "input",
@@ -342,7 +245,7 @@ export function getPlotlyAxisFormat(
   unit,
   values,
   precisionOverride,
-  valueType
+  valueType,
 ) {
   // Possible units: currency-GBP, currency-USD, /1
   // If values (an array) is passed, we need to calculate the
@@ -410,7 +313,7 @@ export function getValueFromHousehold(
   entityName,
   household,
   metadata,
-  valueFromFirstOnly = false
+  valueFromFirstOnly = false,
 ) {
   household = JSON.parse(JSON.stringify(household));
   let entityPlural;
@@ -433,7 +336,7 @@ export function getValueFromHousehold(
         timePeriod,
         possibleEntities[0],
         household,
-        metadata
+        metadata,
       );
     }
     let total = 0;
@@ -443,7 +346,7 @@ export function getValueFromHousehold(
         timePeriod,
         entity,
         household,
-        metadata
+        metadata,
       );
       // If the entity data is an array, change total to an array and add each element.
       if (Array.isArray(entityData)) {
@@ -478,7 +381,7 @@ export function getValueFromHousehold(
         timePeriod,
         entityName,
         household,
-        metadata
+        metadata,
       );
     }
     return total;
@@ -491,7 +394,7 @@ export function getNewHouseholdId(countryId, newHouseholdData) {
     countryId,
     "/household",
     { data: newHouseholdData },
-    "POST"
+    "POST",
   )
     .then((response) => response.json())
     .then((data) => {
@@ -504,13 +407,13 @@ export function getDefaultHouseholdId(metadata) {
   const defaultHousehold = createDefaultHousehold(
     metadata.countryId,
     metadata.variables,
-    metadata.entities
+    metadata.entities,
   );
   return countryApiCall(
     metadata.countryId,
     "/household",
     { data: defaultHousehold },
-    "POST"
+    "POST",
   )
     .then((res) => res.json())
     .then((dataHolder) => {
@@ -529,7 +432,7 @@ export function optimiseHousehold(household, metadata, removeEmpty = false) {
     for (let entityName of Object.keys(household[entityPlural])) {
       for (let variable of Object.keys(household[entityPlural][entityName])) {
         for (let timePeriod of Object.keys(
-          household[entityPlural][entityName][variable]
+          household[entityPlural][entityName][variable],
         )) {
           let variableData = newHousehold[entityPlural][entityName][variable];
           if (

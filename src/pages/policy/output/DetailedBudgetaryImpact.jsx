@@ -32,29 +32,32 @@ export default function DetailedBudgetaryImpact(props) {
       // [label]'s budgetary impact [rises/falls] by [abs(value)], from [baseline] to [reform].
       textValues.push(
         `${programLabel}'s budgetary impact ${avgChangeDirection(
-          values.different
+          values.different,
         )} by ${aggregateCurrency(
           values.difference,
-          metadata.countryId
+          metadata.countryId,
         )}, from ${aggregateCurrency(
           values.baseline,
-          metadata.countryId
-        )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`
+          metadata.countryId,
+        )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`,
       );
     }
   });
 
   console.log(xValues, yValues, textValues);
 
-  function DetailedBudgetaryImpactPlot() {
+  function DetailedBudgetaryImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
+    const { useHoverCard = false } = props;
+    const xArray = xValues.concat(["Total"]);
+    const yArray = yValues.concat([impact.budget.budgetary_impact]);
     // Decile bar chart. Bars are grey if negative, green if positive.
     return (
       <Plot
         data={[
           {
-            x: xValues.concat(["Total"]),
-            y: yValues.concat([impact.budget.budgetary_impact]),
+            x: xArray,
+            y: yArray,
             type: "waterfall",
             orientation: "v",
             measure:
@@ -63,7 +66,7 @@ export default function DetailedBudgetaryImpact(props) {
                 : ["total"],
             marker: {
               color: Object.values(impact.decile.average).map((value) =>
-                value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN
+                value < 0 ? style.colors.DARK_GRAY : style.colors.DARK_GREEN,
               ),
             },
             increasing: { marker: { color: style.colors.DARK_GREEN } },
@@ -79,7 +82,16 @@ export default function DetailedBudgetaryImpact(props) {
             },
             text: textValues,
             textangle: 0,
-            hoverinfo: "none",
+            ...(useHoverCard
+              ? {
+                  hoverinfo: "none",
+                }
+              : {
+                  customdata: yArray.map((change) =>
+                    aggregateCurrency(change, metadata),
+                  ),
+                  hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                }),
           },
         ]}
         layout={{
@@ -91,6 +103,15 @@ export default function DetailedBudgetaryImpact(props) {
             tickprefix: metadata.currency,
             tickformat: ",.1f",
           },
+          ...(useHoverCard
+            ? {}
+            : {
+                hoverlabel: {
+                  align: "left",
+                  bgcolor: "#FFF",
+                  font: { size: "16" },
+                },
+              }),
           showlegend: false,
           uniformtext: {
             mode: "hide",
@@ -114,17 +135,21 @@ export default function DetailedBudgetaryImpact(props) {
           width: "100%",
           marginBottom: !mobile && 50,
         }}
-        onHover={(data) => {
-          const program = data.points[0].x;
-          const change = data.points[0].y;
-          setHoverCard({
-            title: `${program}`,
-            body: aggregateCurrency(change, metadata),
-          });
-        }}
-        onUnhover={() => {
-          setHoverCard(null);
-        }}
+        {...(useHoverCard
+          ? {
+              onHover: (data) => {
+                const program = data.points[0].x;
+                const change = data.points[0].y;
+                setHoverCard({
+                  title: `${program}`,
+                  body: aggregateCurrency(change, metadata),
+                });
+              },
+              onUnhover: () => {
+                setHoverCard(null);
+              },
+            }
+          : {})}
       />
     );
   }

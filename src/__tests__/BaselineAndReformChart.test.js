@@ -1,6 +1,6 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import BaselineAndReformChart from "pages/household/output/EarningsVariation/BaselineAndReformChart";
-import { formatVariableValue, getValueFromHousehold } from "api/variables.js";
+import { getValueFromHousehold } from "api/variables.js";
 
 jest.mock("react-plotly.js", () => jest.fn());
 jest.mock("../api/variables.js", () => ({

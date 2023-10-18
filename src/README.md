@@ -11,7 +11,7 @@ PolicyEngine React commandments:
 
 ## Running locally
 
-`npm install` and then `npm start`.
+`npm ci` and then `npm start`.
 
 ## Tips from things I've learned
 

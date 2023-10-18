@@ -4,7 +4,7 @@ import { copySearchParams } from "../api/call";
 import Button from "./Button";
 
 export default function NavigationButton(props) {
-  const { text, focus, target, style, primary, disabled, onClick, width } = props;
+  const { text, focus, target, style, primary, disabled, onClick } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -32,7 +32,6 @@ export default function NavigationButton(props) {
     <Button
       primary={primary}
       disabled={disabled}
-      width={width}
       text={text}
       style={{ ...style, margin: 10 }}
       onClick={handleClick}

@@ -40,7 +40,7 @@ export default function PolicySearch(props) {
                   </>
                 ),
               };
-            }) || []
+            }) || [],
           );
           setLastRequestTime(new Date().getTime());
           setLastSearch(searchText);

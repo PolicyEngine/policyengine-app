@@ -92,18 +92,18 @@ export default function HouseholdReproducibility(props) {
 
   if (policy.reform.data) {
     initialLines = initialLines.concat(
-      getReformDefinitionCode(metadata, policy)
+      getReformDefinitionCode(metadata, policy),
     );
   }
 
   let householdInputCopy = JSON.parse(
-    JSON.stringify(optimiseHousehold(householdInput, metadata, true))
+    JSON.stringify(optimiseHousehold(householdInput, metadata, true)),
   );
 
   for (const entityPlural of Object.keys(householdInputCopy)) {
     for (const entity of Object.keys(householdInputCopy[entityPlural])) {
       for (const variable of Object.keys(
-        householdInputCopy[entityPlural][entity]
+        householdInputCopy[entityPlural][entity],
       )) {
         if (variable !== "members") {
           if (

@@ -81,7 +81,7 @@ function MenuItemGroup(props) {
             onSelect={onSelect}
           >
             {child.children}
-          </MenuItemGroup>
+          </MenuItemGroup>,
         );
       } else {
         expandedChildren.push(
@@ -91,7 +91,7 @@ function MenuItemGroup(props) {
             label={capitalize(child.label)}
             selected={selected}
             onSelect={onSelect}
-          />
+          />,
         );
       }
     }
@@ -171,7 +171,7 @@ export default function Menu(props) {
           onSelect={onSelect}
         >
           {item.children}
-        </MenuItemGroup>
+        </MenuItemGroup>,
       );
     } else {
       menuItems.push(
@@ -181,7 +181,7 @@ export default function Menu(props) {
           label={item.label}
           selected={selected || ""}
           onSelect={onSelect}
-        />
+        />,
       );
     }
   }

@@ -35,7 +35,7 @@ export default function ParameterOverTime(props) {
   if (policy.reform.data[parameter.parameter]) {
     let reformedValues = getReformedParameter(
       parameter,
-      policy.reform.data
+      policy.reform.data,
     ).values;
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
@@ -45,7 +45,7 @@ export default function ParameterOverTime(props) {
 
   let yAxisFormat = getPlotlyAxisFormat(
     parameter.unit,
-    Object.values(parameter.values)
+    Object.values(parameter.values),
   );
   let yAxisTickVals;
   let yAxisTickLabels;

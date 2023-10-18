@@ -19,8 +19,14 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
 export default function MarginalTaxRates(props) {
-  const { householdInput, householdBaseline, metadata, policyLabel, policy } =
-    props;
+  const {
+    householdInput,
+    householdBaseline,
+    householdReform,
+    metadata,
+    policyLabel,
+    policy,
+  } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -39,14 +45,14 @@ export default function MarginalTaxRates(props) {
     "2023",
     "you",
     householdInput,
-    metadata
+    metadata,
   );
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2023",
     "you",
     householdBaseline,
-    metadata
+    metadata,
   );
 
   useEffect(() => {
@@ -60,7 +66,7 @@ export default function MarginalTaxRates(props) {
           min: 0,
           max: Math.max(
             metadata.countryId === "ng" ? 1_200_000 : 200_000,
-            2 * currentEarnings
+            2 * currentEarnings,
           ),
           count: 401,
         },
@@ -78,7 +84,7 @@ export default function MarginalTaxRates(props) {
         })
         .catch((err) => {
           setError(err);
-        })
+        }),
     );
     if (reformPolicyId) {
       requests.push(
@@ -92,7 +98,7 @@ export default function MarginalTaxRates(props) {
           })
           .catch((err) => {
             setError(err);
-          })
+          }),
       );
     }
     Promise.all(requests).then(() => {
@@ -113,19 +119,19 @@ export default function MarginalTaxRates(props) {
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     const mtrArray = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
-      1
+      1,
     )}`;
     // Add the main line, then add a 'you are here' line
     plot = (
@@ -142,22 +148,33 @@ export default function MarginalTaxRates(props) {
                   color: style.colors.BLUE,
                   shape: "hv",
                 },
+                hovertemplate:
+                  `<b>Marginal tax rate</b><br><br>` +
+                  `If you earn %{x}, your<br>` +
+                  `marginal tax rate will be %{y}.` +
+                  `<extra></extra>`,
               },
               {
-                x: [currentEarnings, currentEarnings],
-                y: [0, currentMtr],
-                type: "line",
+                x: [currentEarnings],
+                y: [currentMtr],
+                type: "scatter",
                 name: "Your current MTR",
+                mode: "markers",
                 line: {
-                  color: style.colors.DARK_GRAY,
+                  color: style.colors.BLUE,
                 },
+                hovertemplate:
+                  `<b>Your current MTR</b><br><br>` +
+                  `If you earn %{x}, your<br>` +
+                  `marginal tax rate will be %{y}.` +
+                  `<extra></extra>`,
               },
             ]}
             layout={{
               xaxis: {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit
+                  metadata.variables.employment_income.unit,
                 ),
                 tickformat: ",.0f",
               },
@@ -167,9 +184,14 @@ export default function MarginalTaxRates(props) {
               yaxis: {
                 title: "Marginal tax rate",
                 ...getPlotlyAxisFormat(
-                  metadata.variables.marginal_tax_rate.unit
+                  metadata.variables.marginal_tax_rate.unit,
                 ),
                 tickformat: ".1%",
+              },
+              hoverlabel: {
+                align: "left",
+                bgcolor: "#FFF",
+                font: { size: "16" },
               },
               legend: {
                 // Position above the plot
@@ -196,32 +218,30 @@ export default function MarginalTaxRates(props) {
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     const baselineMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
       "you",
       baselineMtr,
-      metadata
+      metadata,
     );
     const reformMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
       "you",
       reformMtr,
-      metadata
+      metadata,
     );
 
-    let currEarningsIdx;
-    let reformMtrValue;
-
-    try {
-      currEarningsIdx = earningsArray.indexOf(currentEarnings);
-      reformMtrValue = reformMtrArray[currEarningsIdx];
-    } catch (e) {
-      return <ErrorPane />;
-    }
+    const reformMtrValue = getValueFromHousehold(
+      "marginal_tax_rate",
+      "2023",
+      "you",
+      householdReform,
+      metadata,
+    );
 
     if (Math.abs(currentMtr - reformMtrValue) > 0.001) {
       title = `${policyLabel} ${
@@ -229,19 +249,19 @@ export default function MarginalTaxRates(props) {
       } your marginal tax rate from ${formatVariableValue(
         { unit: "/1" },
         currentMtr,
-        0
+        0,
       )} to ${formatVariableValue({ unit: "/1" }, reformMtrValue, 0)}`;
     } else {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
-    // Add the main line, then add a 'you are here' line
+    // Add the main line, then add a 'you are here' points
     let data;
     if (showDelta) {
       data = [
         {
           x: earningsArray,
           y: reformMtrArray.map(
-            (value, index) => value - baselineMtrArray[index]
+            (value, index) => value - baselineMtrArray[index],
           ),
           type: "line",
           name: "MTR difference",
@@ -249,16 +269,26 @@ export default function MarginalTaxRates(props) {
             color: style.colors.BLUE,
             shape: "hv",
           },
+          hovertemplate:
+            `<b>MTR difference</b><br><br>` +
+            `If you earn %{x}, your marginal<br>` +
+            `tax rate difference will be %{y}.` +
+            `<extra></extra>`,
         },
         {
-          x: [currentEarnings, currentEarnings],
-          y: [0, reformMtrValue - currentMtr],
-          type: "line",
+          x: [currentEarnings],
+          y: [reformMtrValue - currentMtr],
+          type: "scatter",
           name: "Your current MTR difference",
+          mode: "markers",
           line: {
-            color: style.colors.MEDIUM_DARK_GRAY,
-            shape: "hv",
+            color: style.colors.BLUE,
           },
+          hovertemplate:
+            `<b>Your current MTR difference</b><br><br>` +
+            `If you earn %{x}, your marginal<br>` +
+            `tax rate difference will be %{y}.` +
+            `<extra></extra>`,
         },
       ];
     } else {
@@ -272,6 +302,11 @@ export default function MarginalTaxRates(props) {
             color: style.colors.BLUE,
             shape: "hv",
           },
+          hovertemplate:
+            `<b>Reform MTR</b><br><br>` +
+            `If you earn %{x}, your reform<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
         {
           x: earningsArray,
@@ -282,16 +317,41 @@ export default function MarginalTaxRates(props) {
             color: style.colors.MEDIUM_DARK_GRAY,
             shape: "hv",
           },
+          hovertemplate:
+            `<b>Baseline MTR</b><br><br>` +
+            `If you earn %{x}, your baseline<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
         {
-          x: [currentEarnings, currentEarnings],
-          y: [0, currentMtr],
-          type: "line",
-          name: "Your current MTR",
+          x: [currentEarnings],
+          y: [currentMtr],
+          type: "scatter",
+          name: "Your baseline MTR",
+          mode: "markers",
           line: {
-            color: style.colors.DARK_GRAY,
-            shape: "hv",
+            color: style.colors.GRAY,
           },
+          hovertemplate:
+            `<b>Your baseline MTR</b><br><br>` +
+            `If you earn %{x}, your baseline<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
+        },
+        {
+          x: [currentEarnings],
+          y: [reformMtrValue],
+          type: "scatter",
+          name: "Your reform MTR",
+          mode: "markers",
+          line: {
+            color: style.colors.BLUE,
+          },
+          hovertemplate:
+            `<b>Your reform MTR</b><br><br>` +
+            `If you earn %{x}, your reform<br>` +
+            `marginal tax rate will be %{y}.` +
+            `<extra></extra>`,
         },
       ];
     }
@@ -333,7 +393,7 @@ export default function MarginalTaxRates(props) {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
                   metadata.variables.employment_income.unit,
-                  0
+                  0,
                 ),
                 tickformat: ",.0f",
               },
@@ -341,9 +401,14 @@ export default function MarginalTaxRates(props) {
                 title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
                 ...getPlotlyAxisFormat(
                   metadata.variables.marginal_tax_rate.unit,
-                  0
+                  0,
                 ),
                 tickformat: (showDelta ? "+" : "") + ".0%",
+              },
+              hoverlabel: {
+                align: "left",
+                bgcolor: "#FFF",
+                font: { size: "16" },
               },
               legend: {
                 // Position above the plot

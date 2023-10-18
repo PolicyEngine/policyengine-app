@@ -69,21 +69,21 @@ export default function HouseholdRightSidebar(props) {
     null,
     null,
     householdBaseline,
-    metadata
+    metadata,
   );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
     "2023",
     "you",
     householdBaseline,
-    metadata
+    metadata,
   );
   const household_net_income = metadata.variables.household_net_income;
   let netIncomeComponents = household_net_income.adds.concat(
-    household_net_income.subtracts
+    household_net_income.subtracts,
   );
   netIncomeComponents = netIncomeComponents.filter(
-    (component) => component !== "household_market_income"
+    (component) => component !== "household_market_income",
   );
   netIncomeComponents = ["household_net_income"].concat(netIncomeComponents);
 
@@ -96,7 +96,7 @@ export default function HouseholdRightSidebar(props) {
           null,
           null,
           householdBaseline,
-          metadata
+          metadata,
         );
         return (
           <Figure
@@ -133,7 +133,7 @@ export default function HouseholdRightSidebar(props) {
         left={formatVariableValue(
           metadata.variables.household_market_income,
           marketIncome,
-          0
+          0,
         )}
         right={"market income"}
       />

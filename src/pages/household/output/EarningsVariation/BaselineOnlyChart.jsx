@@ -30,7 +30,7 @@ export default function BaselineOnlyChart(props) {
     "2023",
     "you",
     householdBaselineVariation,
-    metadata
+    metadata,
   );
   const netIncomeArray = getValueFromHousehold(
     variable,
@@ -38,26 +38,27 @@ export default function BaselineOnlyChart(props) {
     null,
     householdBaselineVariation,
     metadata,
-    false
+    false,
   );
   const currentEarnings = getValueFromHousehold(
     "employment_income",
     "2023",
     "you",
     householdBaseline,
-    metadata
+    metadata,
   );
   const currentNetIncome = getValueFromHousehold(
     variable,
     "2023",
     null,
     householdBaseline,
-    metadata
+    metadata,
   );
 
-  function BaselineOnlyPlot() {
+  function BaselineOnlyPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
     const mobile = useMobile();
+    const { useHoverCard = false } = props;
     // Add the main line, then add a 'you are here' line
     return (
       <FadeIn key="baseline">
@@ -66,7 +67,13 @@ export default function BaselineOnlyChart(props) {
             key="baseline"
             data={[
               ...(variable === "household_net_income"
-                ? getCliffs(netIncomeArray, earningsArray)
+                ? getCliffs(
+                    netIncomeArray,
+                    earningsArray,
+                    false,
+                    "$",
+                    useHoverCard,
+                  )
                 : []),
               {
                 x: earningsArray,
@@ -76,7 +83,17 @@ export default function BaselineOnlyChart(props) {
                 line: {
                   color: style.colors.BLUE,
                 },
-                hoverinfo: "none",
+                ...(useHoverCard
+                  ? {
+                      hoverinfo: "none",
+                    }
+                  : {
+                      hovertemplate:
+                        `<b>${capitalize(variableLabel)}</b><br><br>` +
+                        `If you earn %{x}, your<br>` +
+                        `${variableLabel} will be %{y}.` +
+                        `<extra></extra>`,
+                    }),
               },
               {
                 x: [currentEarnings],
@@ -87,14 +104,24 @@ export default function BaselineOnlyChart(props) {
                 line: {
                   color: style.colors.BLUE,
                 },
-                hoverinfo: "none",
+                ...(useHoverCard
+                  ? {
+                      hoverinfo: "none",
+                    }
+                  : {
+                      hovertemplate:
+                        `<b>Your current ${variableLabel}</b><br><br>` +
+                        `If you earn %{x}, your<br>` +
+                        `${variableLabel} will be %{y}.` +
+                        `<extra></extra>`,
+                    }),
               },
             ]}
             layout={{
               xaxis: {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit
+                  metadata.variables.employment_income.unit,
                 ),
                 tickformat: ",.0f",
                 uirevision: metadata.variables.employment_income.unit,
@@ -107,11 +134,20 @@ export default function BaselineOnlyChart(props) {
                   metadata.variables[variable].unit,
                   0,
                   null,
-                  metadata.variables[variable].valueType
+                  metadata.variables[variable].valueType,
                 ),
                 tickformat: ",.0f",
                 uirevision: metadata.variables[variable].unit,
               },
+              ...(useHoverCard
+                ? {}
+                : {
+                    hoverlabel: {
+                      align: "left",
+                      bgcolor: "#FFF",
+                      font: { size: "16" },
+                    },
+                  }),
               legend: {
                 // Position above the plot
                 y: 1.2,
@@ -130,42 +166,46 @@ export default function BaselineOnlyChart(props) {
             style={{
               width: "100%",
             }}
-            onHover={(data) => {
-              if (
-                data.points[0].x !== undefined &&
-                data.points[0].y !== undefined
-              ) {
-                const variableLabelAmount = convertToCurrencyString(
-                  metadata.currency,
-                  data.points[0].y
-                );
-                const employmentIncome = convertToCurrencyString(
-                  metadata.currency,
-                  data.points[0].x
-                );
-                const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
-                setHoverCard({
-                  title: data.points[0].data.name,
-                  body: message,
-                });
-              } else {
-                setHoverCard({
-                  title: data.points[0].data.name,
-                  body: `Your net income falls after earning 
+            {...(useHoverCard
+              ? {
+                  onHover: (data) => {
+                    if (
+                      data.points[0].x !== undefined &&
+                      data.points[0].y !== undefined
+                    ) {
+                      const variableLabelAmount = convertToCurrencyString(
+                        metadata.currency,
+                        data.points[0].y,
+                      );
+                      const employmentIncome = convertToCurrencyString(
+                        metadata.currency,
+                        data.points[0].x,
+                      );
+                      const message = `If you earn ${employmentIncome}, your ${variableLabel} will be ${variableLabelAmount}.`;
+                      setHoverCard({
+                        title: data.points[0].data.name,
+                        body: message,
+                      });
+                    } else {
+                      setHoverCard({
+                        title: data.points[0].data.name,
+                        body: `Your net income falls after earning 
                 ${convertToCurrencyString(
                   metadata.currency,
-                  Math.min(...data.points[0].data.x)
+                  Math.min(...data.points[0].data.x),
                 )} until earning 
                 ${convertToCurrencyString(
                   metadata.currency,
-                  Math.max(...data.points[0].data.x)
+                  Math.max(...data.points[0].data.x),
                 )}.`,
-                });
-              }
-            }}
-            onUnhover={() => {
-              setHoverCard(null);
-            }}
+                      });
+                    }
+                  },
+                  onUnhover: () => {
+                    setHoverCard(null);
+                  },
+                }
+              : {})}
           />
         </Screenshottable>
       </FadeIn>

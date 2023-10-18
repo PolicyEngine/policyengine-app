@@ -115,7 +115,7 @@ export default function BlogPostHolder(props) {
           key={i}
           {...postJson[i]}
           countryId={countryId}
-        />
+        />,
       );
   }
 

@@ -21,6 +21,7 @@ import HouseholdIntro from "./household/HouseholdIntro";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileHouseholdPage from "./household/MobileHouseholdPage";
+import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
 import { Result } from "antd";
 
 export default function HouseholdPage(props) {
@@ -41,6 +42,7 @@ export default function HouseholdPage(props) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [autoCompute, setAutoCompute] = useState(false);
+  const [isRHPOpen, setIsRHPOpen] = useState(false);
 
   let middle;
   const focus = searchParams.get("focus") || "";
@@ -58,11 +60,7 @@ export default function HouseholdPage(props) {
   // If we've landed on the page without a household, create a new one.
   useEffect(() => {
     if (!householdInput && !householdId) {
-      const defaultHousehold = createDefaultHousehold(
-        metadata.countryId,
-        metadata.variables,
-        metadata.entities
-      );
+      const defaultHousehold = createDefaultHousehold(metadata);
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
         getDefaultHouseholdId(metadata).then((householdId) => {
@@ -77,27 +75,84 @@ export default function HouseholdPage(props) {
 
   // If the household input changes, update the household.
   useEffect(() => {
+    /**
+     * Fetches a household, then updates said household in the back end
+     * @param {Number} householdId The household's ID
+     * @param {Object} metadata The country metadata relevant to the household
+     * @returns {void}
+     */
+    async function fetchAndUpdateHousehold(householdId, metadata) {
+      let dataHolder = null;
+
+      try {
+        const res = await countryApiCall(
+          countryId,
+          `/household/${householdId}`,
+        );
+
+        // Note that try/catch won't catch a 500, only a connection error,
+        // hence the code below
+        if (!res.ok) {
+          console.error("Back-end error while attempting to get household");
+        }
+
+        const resJSON = await res.json();
+        dataHolder = {
+          input: resJSON.result.household_json,
+        };
+      } catch (err) {
+        console.error(`Error while fetching household: ${err}`);
+      }
+
+      const updatedHousehold = updateHousehold(dataHolder.input, metadata);
+
+      // If updatedHousehold is truthy, all vars are either in the current tax system
+      // or in an old version, but default or false; set householdInput
+      if (updatedHousehold) {
+        setHouseholdInput(updatedHousehold);
+
+        // Update the household on the back end via PUT request
+        try {
+          const res = await countryApiCall(
+            countryId,
+            `/household/${householdId}`,
+            { data: updatedHousehold },
+            "PUT",
+          );
+
+          // Note that try/catch won't catch a 500, only a connection error,
+          // hence the code below
+          if (!res.ok) {
+            console.error("Back-end error while updating household");
+          }
+        } catch (err) {
+          console.error(`Error while updating household: ${err}`);
+        }
+      } else {
+        // Otherwise, householdInput contains a truthy value for a deleted variable;
+        // redirect user to create new household via RecreateHouseholdPopup
+        setIsRHPOpen(true);
+      }
+    }
+
     let requests = [];
-    if (householdId || autoCompute) {
+
+    // If the household was previously created and is being accessed via URL,
+    // update the household before doing anything else
+    if ((householdId || autoCompute) && metadata) {
       if (!householdInput) {
-        requests.push(
-          countryApiCall(countryId, `/household/${householdId}`)
-            .then((res) => res.json())
-            .then((dataHolder) => {
-              return { input: dataHolder.result.household_json };
-            })
-            .then((dataHolder) => {
-              setHouseholdInput(dataHolder.input);
-            })
+        fetchAndUpdateHousehold(householdId, metadata).catch((err) =>
+          console.error(err),
         );
       }
+
       requests.push(
         countryApiCall(
           countryId,
           `/household/${householdId}/policy/${
             policy.baseline.id ||
             (metadata ? metadata.current_law_id : "current-law")
-          }`
+          }`,
         )
           .then((res) => res.json())
           .then((dataHolder) => {
@@ -111,13 +166,13 @@ export default function HouseholdPage(props) {
           })
           .then((dataHolder) => {
             setHouseholdBaseline(dataHolder.baseline);
-          })
+          }),
       );
       if (policy.reform.id && policy.reform.id !== policy.baseline.id) {
         requests.push(
           countryApiCall(
             countryId,
-            `/household/${householdId}/policy/${policy.reform.id}`
+            `/household/${householdId}/policy/${policy.reform.id}`,
           )
             .then((res) => res.json())
             .then((dataHolder) => {
@@ -131,7 +186,7 @@ export default function HouseholdPage(props) {
             })
             .then((dataHolder) => {
               setHouseholdReform(dataHolder.reform);
-            })
+            }),
         );
       } else {
         requests.push(Promise.resolve({}));
@@ -143,11 +198,7 @@ export default function HouseholdPage(props) {
     } else {
       setHouseholdBaseline(null);
       setHouseholdReform(null);
-      const defaultHousehold = createDefaultHousehold(
-        metadata.countryId,
-        metadata.variables,
-        metadata.entities
-      );
+      const defaultHousehold = createDefaultHousehold(metadata);
       setHouseholdInput(defaultHousehold);
       if (autoCompute) {
         getDefaultHouseholdId(metadata).then((householdId) => {
@@ -158,13 +209,13 @@ export default function HouseholdPage(props) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, householdId, policy.reform]);
+  }, [countryId, householdId, policy.reform, metadata]);
 
-  if (!householdInput) {
+  if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.variables).includes(
-      focus.split(".")[focus.split(".").length - 1]
+      focus.split(".")[focus.split(".").length - 1],
     )
   ) {
     const variableNames = focus.includes("input.household.")
@@ -232,7 +283,7 @@ export default function HouseholdPage(props) {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
           setSearchParams(newSearch);
-        }
+        },
       );
       setLoading(true);
     }
@@ -283,21 +334,30 @@ export default function HouseholdPage(props) {
     );
   }
   return (
-    <ThreeColumnPage
-      left={<HouseholdLeftSidebar metadata={metadata} />}
-      middle={middle}
-      right={
-        <HouseholdRightSidebar
-          metadata={metadata}
-          householdBaseline={householdBaseline}
-          householdInput={householdInput}
-          autoCompute={autoCompute}
-          loading={loading}
-          policy={policy}
-        />
-      }
-      noMiddleScroll={!mobile && focus && focus.startsWith("householdOutput.")}
-    />
+    <>
+      <RecreateHouseholdPopup
+        countryId={countryId}
+        isRHPOpen={isRHPOpen}
+        setIsRHPOpen={setIsRHPOpen}
+      />
+      <ThreeColumnPage
+        left={<HouseholdLeftSidebar metadata={metadata} />}
+        middle={middle}
+        right={
+          <HouseholdRightSidebar
+            metadata={metadata}
+            householdBaseline={householdBaseline}
+            householdInput={householdInput}
+            autoCompute={autoCompute}
+            loading={loading}
+            policy={policy}
+          />
+        }
+        noMiddleScroll={
+          !mobile && focus && focus.startsWith("householdOutput.")
+        }
+      />
+    </>
   );
 }
 
@@ -324,4 +384,63 @@ function HouseholdLeftSidebar(props) {
       />
     </div>
   );
+}
+/**
+ * Updates households to remove yearly variables and bring them in line with
+ * newest API version
+ * @param {Object} householdInput The existing household input object
+ * @param {Object} metadata The country metadata object
+ * @returns {Object|false} If household contains a deleted variable with a truthy value,
+ * returns false, allowing for state setting to happen within main component and trigger
+ * RecreateHouseholdPopup to display; otherwise, returns updated household
+ */
+export function updateHousehold(householdInput, metadata) {
+  const variables = metadata.variables;
+
+  let reservedInputs = [
+    ...Object.values(metadata.basicInputs),
+    "members",
+    "marital_unit_id",
+  ];
+
+  // Copy householdInput into mutable variable
+  let editedHousehold = JSON.parse(JSON.stringify(householdInput));
+
+  // Map over all plural entity terms...
+  for (const entityPlural in householdInput) {
+    // Then over all entities...
+    for (const entity in householdInput[entityPlural]) {
+      // Then over all variables within each entity...
+      for (const variable in householdInput[entityPlural][entity]) {
+        const currentVal = householdInput[entityPlural][entity][variable][2023];
+
+        // If the variable is a reserved one, do nothing and continue
+        if (reservedInputs.includes(variable)) {
+          continue;
+        }
+        // Otherwise, if the variable exists in the current tax system...
+        else if (variable in variables) {
+          // Remove it if it is at its default value
+          if (
+            currentVal === variables[variable].defaultValue ||
+            currentVal === null
+          ) {
+            delete editedHousehold[entityPlural][entity][variable];
+          }
+        }
+        // Otherwise, if it's not in the system and is a falsy value, delete it
+        else if (!currentVal) {
+          delete editedHousehold[entityPlural][entity][variable];
+        }
+        // Otherwise, if it's not in the current tax system and is truthy,
+        // return "false", signalling to calling function that household
+        // must be re-created
+        else {
+          return false;
+        }
+      }
+    }
+  }
+
+  return editedHousehold;
 }

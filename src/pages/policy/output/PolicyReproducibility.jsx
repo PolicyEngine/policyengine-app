@@ -90,7 +90,7 @@ export function getReformDefinitionCode(metadata, policy) {
           end +
           '"), value=' +
           value +
-          ")"
+          ")",
       );
     }
   }

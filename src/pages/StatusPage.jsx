@@ -55,10 +55,10 @@ function ApiStatus({ apiStatus, apiCategory, countryNames }) {
 export function StatusPage() {
   const mobile = useMobile();
   const [countryStatuses, setCountryStatuses] = useState(
-    INITIAL_COUNTRY_STATUSES
+    INITIAL_COUNTRY_STATUSES,
   );
   const [metaDataStatuses, setMetaDataStatuses] = useState(
-    INITIAL_COUNTRY_STATUSES
+    INITIAL_COUNTRY_STATUSES,
   );
   const [calculateStatuses, setCalculateStatuses] = useState({
     uk: "Pending",
@@ -100,7 +100,7 @@ export function StatusPage() {
         country,
         `/policy/${baselinePolicyId[country]}`,
         setCountryStatuses,
-        countryApiCall
+        countryApiCall,
       );
       getAPIRoute(country, "/metadata", setMetaDataStatuses, countryApiCall);
       getAPIRoute(
@@ -111,7 +111,7 @@ export function StatusPage() {
         {
           household: DEFAULT_COUNTRY_HOUSEHOULD_INPUTS[country],
           policyId: `${baselinePolicyId[country]}`,
-        }
+        },
       );
     }
   }, []);

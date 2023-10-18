@@ -13,17 +13,17 @@ export default function Analysis(props) {
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
   const relevantParameters = Object.keys(policy.reform.data).map(
-    (parameter) => metadata.parameters[parameter]
+    (parameter) => metadata.parameters[parameter],
   );
   const relevantParameterBaselineValues = relevantParameters.map(
     (parameter) => {
       return {
         [parameter.parameter]: getParameterAtInstant(
           parameter,
-          `${timePeriod}-01-01`
+          `${timePeriod}-01-01`,
         ),
       };
-    }
+    },
   );
   // metadata.economy_options.region = [{name: "uk", label: "United Kingdom"}]
   const regionKeyToLabel = metadata.economy_options.region.reduce(
@@ -31,7 +31,7 @@ export default function Analysis(props) {
       acc[name] = label;
       return acc;
     },
-    {}
+    {},
   );
   const baseResultsUrl = `https://policyengine.org/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
   const buildIFrame = (chartName) =>
@@ -76,39 +76,39 @@ export default function Analysis(props) {
   * Make sure to accurately represent the changes observed in the data.
 
   This JSON snippet describes the default parameter values: ${JSON.stringify(
-    relevantParameterBaselineValues
+    relevantParameterBaselineValues,
   )}\n
   This JSON snippet describes the baseline and reform policies being compared: ${JSON.stringify(
-    policy
+    policy,
   )}\n`;
   const description = `${policyLabel} has the following impacts from the PolicyEngine microsimulation model: 
 
   This JSON snippet describes the relevant parameters with more details: ${JSON.stringify(
-    relevantParameters
+    relevantParameters,
   )}
 
   This JSON describes the total budgetary impact, the change to tax revenues and benefit spending (ignore 'households' and 'baseline_net_income': ${JSON.stringify(
-    impact.budget
+    impact.budget,
   )}
 
   This JSON describes how common different outcomes were at each income decile: ${JSON.stringify(
-    impact.intra_decile
+    impact.intra_decile,
   )}
 
   This JSON describes the average and relative changes to income by each income decile: ${JSON.stringify(
-    impact.decile
+    impact.decile,
   )}
 
   This JSON describes the baseline and reform poverty rates by age group (describe the relative changes): ${JSON.stringify(
-    impact.poverty.poverty
+    impact.poverty.poverty,
   )}
 
   This JSON describes the baseline and reform deep poverty rates by age group (describe the relative changes): ${JSON.stringify(
-    impact.poverty.deep_poverty
+    impact.poverty.deep_poverty,
   )}
 
   This JSON describes the baseline and reform poverty and deep poverty rates by gender (briefly describe the relative changes): ${JSON.stringify(
-    impact.poverty_by_gender
+    impact.poverty_by_gender,
   )}
 
   ${
@@ -118,7 +118,7 @@ export default function Analysis(props) {
   }
 
   This JSON describes three inequality metrics in the baseline and reform, the Gini coefficient of income inequality, the share of income held by the top 10% of households and the share held by the top 1% (describe the relative changes): ${JSON.stringify(
-    impact.inequality
+    impact.inequality,
   )}
   
   `;
@@ -186,7 +186,7 @@ export default function Analysis(props) {
 
   const displayCharts = (markdown) =>
     markdown.replace(/{{(.*?)}}/g, (match, chartName) =>
-      buildIFrame(chartName)
+      buildIFrame(chartName),
     );
 
   const onGenerate = () => {
@@ -221,16 +221,16 @@ export default function Analysis(props) {
                 setAnalysis((analysis) =>
                   displayCharts(analysis + " " + analysisWords[i]).replaceAll(
                     "  ",
-                    " "
-                  )
+                    " ",
+                  ),
                 );
               }, 100 * i);
             }
             fullAnalysis = analysisFromCall;
-          }
+          },
         ).then((data) => {
           setAnalysis(
-            displayCharts(data.result.analysis).replaceAll("  ", " ")
+            displayCharts(data.result.analysis).replaceAll("  ", " "),
           );
           setLoading(false);
         });

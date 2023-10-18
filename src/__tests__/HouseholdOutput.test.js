@@ -2,10 +2,6 @@ import { render, screen } from "@testing-library/react";
 import HousholdOutput from "../pages/household/output/HouseholdOutput.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import {
-  formatVariableValue,
-  getValueFromHousehold,
-} from "../api/variables.js";
 
 const policy = {
   reform: { label: "Reform Label" },
@@ -56,13 +52,13 @@ describe("Test Render Output", () => {
           householdBaseline={householdBaseline}
           householdReform={householdReform}
         />
-      </Router>
+      </Router>,
     );
     expect(
       screen.getByText(
         policy.reform.label + " (compared against " + policy.baseline.label,
-        { exact: false }
-      )
+        { exact: false },
+      ),
     ).toBeTruthy();
   });
 });
