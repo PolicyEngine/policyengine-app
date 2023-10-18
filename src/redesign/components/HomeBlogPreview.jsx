@@ -13,7 +13,10 @@ export default function HomeBlogPreview() {
   const countryId = useCountryId();
   const featuredPosts =
     posts.filter(
-      (post) => post.tags.includes("featured") && post.tags.includes(countryId)
+      (post) => post.tags.includes("featured") && (
+        post.tags.includes(countryId)
+        || post.tags.includes("global")
+      )
     ) || [];
   const allPosts = posts.filter(
     (post) => post.tags.includes(countryId) || post.tags.includes("global")
@@ -200,7 +203,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
           <div
             key={i}
             style={{
-              minWidth: 250,
+              minWidth: 400,
               marginLeft: 20,
               marginRight: 20,
               height: "100%",

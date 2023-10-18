@@ -618,7 +618,7 @@ let posts = [
     description:
       "The UN-endorsed initiative highlights PolicyEngine’s open source approach to supporting the Sustainable Development Goals.",
     date: "2023-04-26 09:00:00",
-    tags: ["global", "impact"],
+    tags: ["global", "impact", "featured"],
     filename:
       "digital-public-goods-alliance-recognizes-policyengine-as-a-digital-public-good.md",
     image:

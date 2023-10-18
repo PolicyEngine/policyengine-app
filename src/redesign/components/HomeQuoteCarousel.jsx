@@ -10,6 +10,10 @@ import FontIcon from "./FontIcon";
 import Section from "./Section";
 
 export default function HomeQuoteCarousel() {
+  const countryId = useCountryId();
+  const countryQuotes = quoteData[countryId] || [];
+
+  if (countryQuotes.length === 0) return null;
   return <Section
     >
       <QuoteBox noArrows />
