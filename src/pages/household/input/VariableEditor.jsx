@@ -41,7 +41,7 @@ export default function VariableEditor(props) {
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
-    (entity) => householdInput[entityPlural][entity][variable.name],
+    (entity) => householdInput[entityPlural][entity][variable.name]
   );
 
   // Add the variable to the relevant portions of the household input object
@@ -49,7 +49,7 @@ export default function VariableEditor(props) {
     const newHouseholdInput = addVariable(
       householdInput,
       variable,
-      entityPlural,
+      entityPlural
     );
     setHouseholdInput(newHouseholdInput);
   }, [variable]);
@@ -122,7 +122,7 @@ function HouseholdVariableEntity(props) {
     setEdited,
   } = props;
   const possibleTimePeriods = Object.keys(
-    householdInput[entityPlural][entityName][variable.name],
+    householdInput[entityPlural][entityName][variable.name]
   );
   return (
     <>
@@ -181,7 +181,7 @@ function HouseholdVariableEntityInput(props) {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
           setSearchParams(newSearch);
-        },
+        }
       );
     }
     setEdited(true);
@@ -192,14 +192,14 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     entityName,
     householdBaseline,
-    metadata,
+    metadata
   );
   const inputValue = getValueFromHousehold(
     variable.name,
     timePeriod,
     entityName,
     householdInput,
-    metadata,
+    metadata
   );
   const reformValue = householdReform
     ? getValueFromHousehold(
@@ -207,7 +207,7 @@ function HouseholdVariableEntityInput(props) {
         timePeriod,
         entityName,
         householdReform,
-        metadata,
+        metadata
       )
     : null;
   const mobile = useMobile();
@@ -305,7 +305,7 @@ export function addVariable(householdInput, variable, entityPlural) {
   let possibleEntities = null;
 
   // If the variable is defined as occurring over a year...
-  if (variable.definitionPeriod === "year") {
+  if (["year", "eternity"].includes(variable.definitionPeriod)) {
     // If plural entity term is in household situation...
     if (entityPlural in householdInput) {
       // Pull all individual entities stored within the umbrella entity
