@@ -305,7 +305,7 @@ export function addVariable(householdInput, variable, entityPlural) {
   let possibleEntities = null;
 
   // If the variable is defined as occurring over a year...
-  if (variable.definitionPeriod === "year") {
+  if (["year", "eternity"].includes(variable.definitionPeriod)) {
     // If plural entity term is in household situation...
     if (entityPlural in householdInput) {
       // Pull all individual entities stored within the umbrella entity
