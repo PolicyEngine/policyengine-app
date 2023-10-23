@@ -3,7 +3,7 @@ import gtag from "../api/analytics";
 import { copySearchParams } from "../api/call";
 import Button from "./Button";
 
-export default function NavigationButton(props) {
+export default function SearchParamNavButton(props) {
   const { text, focus, target, style, primary, disabled, onClick } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();

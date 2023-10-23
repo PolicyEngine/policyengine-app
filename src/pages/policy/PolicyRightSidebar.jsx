@@ -8,7 +8,7 @@ import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
-import NavigationButton from "../../controls/NavigationButton";
+import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
@@ -403,24 +403,24 @@ export default function PolicyRightSidebar(props) {
         />
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
-        <NavigationButton primary text="Edit my policy" focus="gov" />
+        <SearchParamNavButton primary text="Edit my policy" focus="gov" />
       )}
       {!hideButtons && focus && !focus.startsWith("policyOutput") && (
-        <NavigationButton
+        <SearchParamNavButton
           primary
           text="Calculate economic impact"
           onClick={confirmEconomicImpact}
         />
       )}
       {!hideButtons && !hasHousehold && (
-        <NavigationButton
+        <SearchParamNavButton
           text="Enter my household"
           focus="intro"
           target={`/${metadata.countryId}/household`}
         />
       )}
       {!hideButtons && hasHousehold && (
-        <NavigationButton
+        <SearchParamNavButton
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
           target={`/${metadata.countryId}/household`}

@@ -6,7 +6,7 @@ import {
 import { copySearchParams } from "../../api/call";
 import { useEffect, useState } from "react";
 import style from "../../style";
-import NavigationButton from "../../controls/NavigationButton";
+import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
@@ -204,24 +204,24 @@ function MobileBottomMenu(props) {
       <div>
         <h5 style={{ marginBottom: 20 }}>{text}</h5>
         {focus && focus.startsWith("householdOutput") && (
-          <NavigationButton primary text="Edit my household" focus="input" />
+          <SearchParamNavButton primary text="Edit my household" focus="input" />
         )}
         {focus && !focus.startsWith("householdOutput") && (
-          <NavigationButton
+          <SearchParamNavButton
             primary
             text="See my household details"
             focus="householdOutput"
           />
         )}
         {!hasReform && (
-          <NavigationButton
+          <SearchParamNavButton
             text="Create a reform"
             focus="gov"
             target={`/${metadata.countryId}/policy`}
           />
         )}
         {hasReform && (
-          <NavigationButton
+          <SearchParamNavButton
             text="Edit my reform"
             focus="gov"
             target={`/${metadata.countryId}/policy`}

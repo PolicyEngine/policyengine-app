@@ -1,4 +1,4 @@
-import NavigationButton from "../../controls/NavigationButton";
+import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import CenteredMiddleColumn from "../../layout/CenteredMiddleColumn";
 
 export default function HouseholdIntro() {
@@ -7,7 +7,7 @@ export default function HouseholdIntro() {
       title="Enter your household details"
       description="Tell us about your household to calculate your net income after taxes and benefits."
     >
-      <NavigationButton
+      <SearchParamNavButton
         text="Enter my household"
         focus="input.household.maritalStatus"
       />

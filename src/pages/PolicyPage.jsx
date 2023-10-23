@@ -5,7 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 import { findInTree } from "../api/variables";
 import Button from "../controls/Button";
-import NavigationButton from "../controls/NavigationButton";
+import SearchParamNavButton from "../controls/SearchParamNavButton";
 import SearchOptions from "../controls/SearchOptions";
 import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../layout/LoadingCentered";
@@ -246,7 +246,7 @@ function MobileBottomMenu(props) {
               alignItems: "center",
             }}
           >
-            <NavigationButton primary text="Edit my policy" focus="gov" />
+            <SearchParamNavButton primary text="Edit my policy" focus="gov" />
             <Button
               style={{
                 margin: 5,
@@ -264,7 +264,7 @@ function MobileBottomMenu(props) {
               alignItems: "center",
             }}
           >
-            <NavigationButton
+            <SearchParamNavButton
               primary
               text="Calculate economic impact"
               focus="policyOutput"
@@ -279,14 +279,14 @@ function MobileBottomMenu(props) {
           </div>
         )}
         {!hasReform && (
-          <NavigationButton
+          <SearchParamNavButton
             text="Enter my household"
             focus="input"
             target={`/${metadata.countryId}/household`}
           />
         )}
         {hasReform && (
-          <NavigationButton
+          <SearchParamNavButton
             text="Calculate my household impact"
             focus="input"
             target={`/${metadata.countryId}/household`}
