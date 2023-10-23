@@ -18,6 +18,7 @@ import ErrorPage from "../../layout/Error";
 import Header from "./Header";
 import Testimonials from "./Testimonials";
 import CalculatorInterstitial from "./CalculatorInterstitial";
+import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -226,6 +227,7 @@ export default function PolicyEngine({ pathname }) {
           path="/:countryId/policy/*"
           element={metadata ? policyPage : error ? errorPage : loadingPage}
         />
+        <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
 
         {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
         <Route
