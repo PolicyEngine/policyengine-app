@@ -36,7 +36,7 @@
     "react-twitter-embed": "^4.0.4",
     "reading-time": "^1.5.0",
     "rehype-raw": "^6.1.1",
-    "remark-gfm": "^3.0.1",
+    "remark-gfm": "^4.0.0",
     "styled-components": "^5.3.9",
     "use-react-screenshot": "^3.0.0",
     "workbox-background-sync": "^6.5.4",
