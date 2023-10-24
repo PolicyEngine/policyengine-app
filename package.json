@@ -20,7 +20,7 @@
     "markdown-to-jsx": "^7.1.7",
     "moment": "^2.29.4",
     "npm": "^9.8.1",
-    "openai": "^3.2.1",
+    "openai": "^4.13.0",
     "plotly.js": "^2.27.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
