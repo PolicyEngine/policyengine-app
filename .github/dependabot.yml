@@ -7,7 +7,7 @@ updates:
     groups:
       sub-major:
         patterns:
-          - *
+          - "*"
         update-types:
           - minor
           - patch
@@ -18,7 +18,7 @@ updates:
     groups:
       sub-major:
         patterns:
-          - *
+          - "*"
         update-types:
           - minor
           - patch
