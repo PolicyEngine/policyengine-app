@@ -8,6 +8,9 @@ export function HoverBox({
   link,
   ...rest
 }) {
+  // Note that the 'direction' prop refers to where the onHover
+  // color swipe animation STARTS (i.e., a "left" direction
+  // has an animation that moves to the RIGHT)
   let topStart, leftStart, topEnd, leftEnd, spread;
 
   const boxSize = size || "200px";

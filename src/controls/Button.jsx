@@ -11,14 +11,15 @@ export default function Button(props) {
     disabled,
     size,
     height,
-    direction,
+    hoverEffectStart,
     backgroundColor,
     activeBackgroundColor,
     noPadding
   } = props;
 
-  let hoverBackgroundColor = "black";
-  let standardBackgroundColor = "gray";
+  // Fallback values
+  let hoverBackgroundColor = "blue";
+  let standardBackgroundColor = "teal";
 
   // The else if and else clauses are maintained here for backwards compatibility
   // with older buttons that can declare primary and disabled
@@ -45,7 +46,7 @@ export default function Button(props) {
   const completeButton = (
     <HoverBox
       hoverBackgroundColor={activeBackgroundColor || hoverBackgroundColor}
-      direction={direction || "left"}
+      direction={hoverEffectStart || "left"}
       style={{
         marginTop: 0,
         alignItems: "center",
@@ -73,6 +74,8 @@ export default function Button(props) {
     </HoverBox>
   );
 
+  // The conditional rendering is also to maintain backward
+  // compatibility with old Button components
   if (!noPadding) {
     return (
       <div style={paddingStyling}>
@@ -86,56 +89,5 @@ export default function Button(props) {
       </>
     )
   }
-
-/*
-  if (text === "left") {
-    return (
-      <div
-        style={{
-          padding: 10,
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: 20,
-        }}
-      >
-        <ActionButton
-          text={<span className="material-symbols-outlined">arrow_back</span>}
-          width={30}
-          size={"60px"}
-          onClick={onClick}
-          primary={primary}
-          disabled={disabled}
-          noArrow
-          center
-          direction="right"
-        />
-      </div>
-    );
-  } else if (text === "right") {
-    return (
-      <div
-        style={{
-          padding: 10,
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: 20,
-        }}
-      >
-        <ActionButton
-          text={
-            <span className="material-symbols-outlined">arrow_forward</span>
-          }
-          width={30}
-          size={"60px"}
-          onClick={onClick}
-          primary={primary}
-          disabled={disabled}
-          noArrow
-          center
-        />
-      </div>
-    );
-  }
-*/
 
 }

@@ -41,7 +41,7 @@ export default function BottomCarousel(props) {
         {previous.label ? (
           <SearchParamNavButton
             focus={previous.name}
-            text="left"
+            direction="left"
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (
@@ -51,7 +51,7 @@ export default function BottomCarousel(props) {
         {next.label ? (
           <SearchParamNavButton
             focus={next.name}
-            text={"right"}
+            direction="right"
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (
