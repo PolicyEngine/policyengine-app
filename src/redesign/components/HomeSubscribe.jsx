@@ -1,6 +1,6 @@
 import style from "../style";
 import Section from "./Section";
-import ActionButton from "./ActionButton";
+import Button from "controls/Button";
 import TextBox from "./TextBox";
 import useDisplayCategory from "./useDisplayCategory";
 
@@ -52,7 +52,7 @@ function SubscribeToPolicyEngineDesktop() {
           width={500}
         />
         <div style={{ marginTop: 20 }} />
-        <ActionButton text="Subscribe" onClick={() => {}} width={500} />
+        <Button text="Subscribe" onClick={() => {}} width={500} noPadding />
       </div>
     </div>
   );
@@ -79,7 +79,7 @@ function SubscribeToPolicyEngineTablet() {
           width={400}
         />
         <div style={{ marginTop: 20 }} />
-        <ActionButton text="Subscribe" onClick={() => {}} width={400} />
+        <Button text="Subscribe" onClick={() => {}} width={400} noPadding />
       </div>
     </div>
   );
@@ -104,11 +104,12 @@ export function SubscribeToPolicyEngineMobile() {
           width="100%"
         />
         <div style={{ marginTop: 20 }} />
-        <ActionButton
+        <Button
           text="Subscribe"
           onClick={() => {}}
           width="100%"
           size="500px"
+          noPadding
         />
       </div>
     </div>

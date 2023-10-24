@@ -1,5 +1,3 @@
-
-// import ActionButton from "../redesign/components/ActionButton";
 import style from "../redesign/style";
 import { HoverBox } from "../redesign/components/HoverBox";
 
@@ -16,12 +14,14 @@ export default function Button(props) {
     direction,
     backgroundColor,
     activeBackgroundColor,
+    noPadding
   } = props;
 
   let hoverBackgroundColor = "black";
   let standardBackgroundColor = "gray";
+
   // The else if and else clauses are maintained here for backwards compatibility
-  // and because the linter will complain about unused variables
+  // with older buttons that can declare primary and disabled
   if (primary) {
     hoverBackgroundColor = style.colors.TEAL_PRESSED;
     standardBackgroundColor = style.colors.TEAL_ACCENT;
@@ -32,47 +32,60 @@ export default function Button(props) {
     hoverBackgroundColor = style.colors.TEAL_PRESSED;
     standardBackgroundColor = style.colors.TEAL_ACCENT;
   }
-  console.log(hoverBackgroundColor);
 
-  return (
-    <div
+  // This is to allow compatibility with old Button component, which wraps
+  // the button in a padded div, and newer components, which do not
+  const paddingStyling = {
+      padding: 10,
+      display: "flex",
+      justifyContent: "center",
+      paddingTop: 20,
+  };
+
+  const completeButton = (
+    <HoverBox
+      hoverBackgroundColor={activeBackgroundColor || hoverBackgroundColor}
+      direction={direction || "left"}
       style={{
-        padding: 10,
+        marginTop: 0,
+        alignItems: "center",
         display: "flex",
+        backgroundColor: backgroundColor || standardBackgroundColor,
+        color: "white",
+        padding: 15,
+        paddingLeft: 30,
+        paddingRight: 30,
+        fontSize: 15,
+        fontFamily: "Roboto",
+        fontWeight: 500,
+        letterSpacing: 2.4,
+        cursor: "pointer",
+        textTransform: "uppercase",
+        width: width || "min(300px, 70vw)",
+        height: height,
         justifyContent: "center",
-        paddingTop: 20,
+        textAlign: "center",
       }}
+      size={size ? size : width ? `${width}px` : "300px"}
+      onClick={onClick}
     >
-      <HoverBox
-        hoverBackgroundColor={activeBackgroundColor || hoverBackgroundColor}
-        direction={direction || "left"}
-        style={{
-          marginTop: 0,
-          alignItems: "center",
-          display: "flex",
-          backgroundColor: backgroundColor || standardBackgroundColor,
-          color: "white",
-          padding: 15,
-          paddingLeft: 30,
-          paddingRight: 30,
-          fontSize: 15,
-          fontFamily: "Roboto",
-          fontWeight: 500,
-          letterSpacing: 2.4,
-          cursor: "pointer",
-          textTransform: "uppercase",
-          width: width || "min(300px, 70vw)",
-          height: height,
-          justifyContent: "center",
-          textAlign: "center",
-        }}
-        size={size ? size : width ? `${width}px` : "300px"}
-        onClick={onClick}
-      >
-        {text}
-      </HoverBox>
-    </div>
+      {text}
+    </HoverBox>
   );
+
+  if (!noPadding) {
+    return (
+      <div style={paddingStyling}>
+        {completeButton}
+      </div>
+    );
+  } else {
+    return (
+      <>
+        {completeButton}
+      </>
+    )
+  }
 
 /*
   if (text === "left") {
@@ -125,25 +138,4 @@ export default function Button(props) {
   }
 */
 
-/*
-
-  return (
-    <div
-      style={{
-        padding: 10,
-        display: "flex",
-        justifyContent: "center",
-        paddingTop: 20,
-      }}
-    >
-      <ActionButton
-        text={text}
-        onClick={onClick}
-        primary={primary}
-        disabled={disabled}
-        width={width}
-      />
-    </div>
-  );
-*/
 }

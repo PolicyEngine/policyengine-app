@@ -5,7 +5,7 @@ import PageHeader from "./PageHeader";
 import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
 import TextBox from "./TextBox";
-import ActionButton from "./ActionButton";
+import Button from "controls/Button";
 import {
   posts,
   topicTags,
@@ -216,7 +216,7 @@ function BlogPostSearchTools({
     />
   );
   const searchButton = (
-    <ActionButton
+    <Button
       text="Search"
       onClick={() => {
         const searchBox = document.getElementById("blogpost-search-box");
@@ -224,6 +224,7 @@ function BlogPostSearchTools({
         onSearch(searchQuery);
       }}
       height={50}
+      noPadding
     />
   );
   const filterTools = (
