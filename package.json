@@ -83,7 +83,7 @@
     "*.{js,jsx}": "eslint --fix"
   },
   "devDependencies": {
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^14.0.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jest": "^27.4.3",
