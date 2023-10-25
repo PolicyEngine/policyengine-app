@@ -99,7 +99,7 @@ function CookieConsent() {
               onClick={acceptCookies}
               text="Accept"
               style={{ marginLeft: 20 }}
-              primary
+              type="primary"
             />
             <Button
               onClick={noCookies}

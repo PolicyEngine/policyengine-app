@@ -5,7 +5,7 @@ import Button from "./Button";
 import ArrowButton from "./ArrowButton";
 
 export default function SearchParamNavButton(props) {
-  const { text, focus, target, style, primary, disabled, onClick, direction } = props;
+  const { text, focus, target, style, type, onClick, direction } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -33,8 +33,7 @@ export default function SearchParamNavButton(props) {
     return (
       <ArrowButton
         direction={direction}
-        primary={primary}
-        disabled={disabled}
+        type={type}
         style={{...style}}
         onClick={handleClick}
       />
@@ -43,8 +42,7 @@ export default function SearchParamNavButton(props) {
 
   return (
     <Button
-      primary={primary}
-      disabled={disabled}
+      type={type}
       text={text}
       style={{ ...style}}
       onClick={handleClick}

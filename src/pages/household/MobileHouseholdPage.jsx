@@ -205,7 +205,7 @@ function MobileBottomMenu(props) {
         <h5 style={{ marginBottom: 20 }}>{text}</h5>
         {focus && focus.startsWith("householdOutput") && (
           <SearchParamNavButton 
-            primary 
+            type="primary"
             text="Edit my household" 
             focus="input" 
             style={{margin: "20px auto 10px"}} 
@@ -213,7 +213,7 @@ function MobileBottomMenu(props) {
         )}
         {focus && !focus.startsWith("householdOutput") && (
           <SearchParamNavButton
-            primary
+            type="primary"
             text="See my household details"
             focus="householdOutput"
             style={{margin: "20px auto 10px"}}

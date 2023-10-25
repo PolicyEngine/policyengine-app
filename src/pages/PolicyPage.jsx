@@ -247,7 +247,7 @@ function MobileBottomMenu(props) {
             }}
           >
             <SearchParamNavButton 
-              primary 
+              type="primary" 
               text="Edit my policy" 
               focus="gov" 
               style={{margin: "20px auto 10px"}}
@@ -270,7 +270,7 @@ function MobileBottomMenu(props) {
             }}
           >
             <SearchParamNavButton
-              primary
+              type="primary"
               text="Calculate economic impact"
               focus="policyOutput"
               style={{margin: "20px auto 10px"}}

@@ -405,7 +405,7 @@ export default function PolicyRightSidebar(props) {
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton 
-          primary 
+          type="primary"
           text="Edit my policy" 
           focus="gov" 
           style={{margin: "20px auto 10px"}} 
@@ -413,7 +413,7 @@ export default function PolicyRightSidebar(props) {
       )}
       {!hideButtons && focus && !focus.startsWith("policyOutput") && (
         <SearchParamNavButton
-          primary
+          type="primary"
           text="Calculate economic impact"
           onClick={confirmEconomicImpact}
           style={{margin: "20px auto 10px"}}

@@ -97,8 +97,7 @@ export default function VariableEditor(props) {
           <SearchParamNavButton
             text="Enter"
             focus={nextVariable}
-            primary
-            disabled={required && !edited}
+            type={required && !edited ? "disabled" : "primary"}
             style={{margin: "20px auto 10px"}}
           />
         )}

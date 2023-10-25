@@ -294,7 +294,7 @@ export default function Analysis(props) {
         </div>
         {buttonText && (
           <Button
-            primary
+            type="primary"
             text={buttonText}
             onClick={onGenerate}
             style={{ maxWidth: 250, margin: "20px auto 25px" }}

@@ -210,7 +210,7 @@ export default function HouseholdRightSidebar(props) {
       {autoCompute && householdBaseline ? situationOverview : notEnoughInfo}
       {focus && focus.startsWith("householdOutput") && (
         <SearchParamNavButton
-          primary
+          type="primary"
           text="Add more household details"
           focus="input"
           style={{margin: "20px auto 10px"}}
@@ -218,7 +218,7 @@ export default function HouseholdRightSidebar(props) {
       )}
       {focus && !focus.startsWith("householdOutput") && (
         <SearchParamNavButton
-          primary
+          type="primary"
           text="See my household details"
           focus="householdOutput"
           style={{margin: "20px auto 10px"}}

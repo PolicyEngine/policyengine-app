@@ -1,14 +1,31 @@
 import styles from "../redesign/style";
 import { HoverBox } from "../redesign/components/HoverBox";
 
+const buttonStyles = {
+  primary: {
+    hoverBackgroundColor: styles.colors.TEAL_PRESSED,
+    standardBackgroundColor: styles.colors.TEAL_ACCENT,
+  },
+  secondary: {
+    hoverBackgroundColor: styles.colors.BLUE_PRESSED,
+    standardBackgroundColor: styles.colors.BLUE_LIGHT,
+  },
+  disabled: {
+    hoverBackgroundColor: styles.colors.BLUE_PRESSED,
+    standardBackgroundColor: styles.colors.BLUE_LIGHT,
+  },
+  default: {
+    hoverBackgroundColor: styles.colors.TEAL_PRESSED,
+    standardBackgroundColor: styles.colors.TEAL_ACCENT,
+  }
+};
+
 export default function Button(props) {
-  const {
+  let {
     text,
     onClick,
     width,
-    primary,
-    secondary,
-    disabled,
+    type,
     size,
     height,
     hoverStart,
@@ -17,33 +34,19 @@ export default function Button(props) {
     style
   } = props;
 
-  // Fallback values
-  let hoverBackgroundColor = "blue";
-  let standardBackgroundColor = "teal";
-
-  // The else if and else clauses are maintained here for backwards compatibility
-  // with older buttons that can declare primary and disabled; the counterintuitive
-  // inclusion of an else fallback is used because the linter complains if all three
-  // of these options are not included
-  if (primary) {
-    hoverBackgroundColor = styles.colors.TEAL_PRESSED;
-    standardBackgroundColor = styles.colors.TEAL_ACCENT;
-  } else if (secondary || disabled) {
-    hoverBackgroundColor = styles.colors.BLUE_PRESSED;
-    standardBackgroundColor = styles.colors.BLUE_LIGHT;
-  } else {
-    hoverBackgroundColor = styles.colors.TEAL_PRESSED;
-    standardBackgroundColor = styles.colors.TEAL_ACCENT;
+  // Assign fallback values for styling
+  if (!type || !(type in Object.keys(buttonStyles))) {
+    type = "default";
   }
 
   return (
     <HoverBox
-      hoverBackgroundColor={activeBackgroundColor || hoverBackgroundColor}
+      hoverBackgroundColor={activeBackgroundColor || buttonStyles[type].hoverBackgroundColor}
       hoverStart={hoverStart || "left"}
       style={{
         alignItems: "center",
         display: "flex",
-        backgroundColor: backgroundColor || standardBackgroundColor,
+        backgroundColor: backgroundColor || buttonStyles[type].standardBackgroundColor,
         color: "white",
         padding: 15,
         paddingLeft: 30,

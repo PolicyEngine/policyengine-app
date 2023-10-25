@@ -5,10 +5,8 @@ export default function LinkButton(props) {
   const {
     text,
     width,
-    primary,
-    secondary,
-    disabled,
     size,
+    type,
     height,
     hoverStart,
     backgroundColor,
@@ -31,10 +29,8 @@ export default function LinkButton(props) {
     <Button
       text={text}
       width={width}
-      primary={primary}
-      secondary={secondary}
-      disabled={disabled}
       size={size}
+      type={type}
       height={height}
       hoverStart={hoverStart}
       backgroundColor={backgroundColor}

@@ -61,7 +61,7 @@ export default function RecreateHouseholdPopup(props) {
             <Button
               text={buttonText}
               onClick={handleClick}
-              primary={true}
+              type="primary"
               style={styles.submitButton}
               centered
             />
