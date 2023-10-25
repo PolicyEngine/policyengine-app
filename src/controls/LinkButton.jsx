@@ -10,7 +10,7 @@ export default function LinkButton(props) {
     disabled,
     size,
     height,
-    direction,
+    hoverStart,
     backgroundColor,
     activeBackgroundColor,
     link,
@@ -36,7 +36,7 @@ export default function LinkButton(props) {
       disabled={disabled}
       size={size}
       height={height}
-      direction={direction}
+      hoverStart={hoverStart}
       backgroundColor={backgroundColor}
       activeBackgroundColor={activeBackgroundColor}
       onClick={handleNavigate}

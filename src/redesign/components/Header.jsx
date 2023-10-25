@@ -166,7 +166,7 @@ function DesktopCalculatorButton() {
     <>
       <HoverBox
         hoverBackgroundColor={style.colors.TEAL_PRESSED}
-        direction="left"
+        hoverStart="left"
         link={`/${countryId}/calculator`}
         style={{
           margin: 20,
@@ -250,7 +250,7 @@ function PageLinks() {
             >
               <HoverBox
                 hoverBackgroundColor={style.colors.BLUE_LIGHT}
-                direction="bottom"
+                hoverStart="bottom"
               >
                 <motion.div
                   style={{
@@ -309,7 +309,7 @@ function LeftNavigationMenu(props) {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <HoverBox
-              direction="left"
+              hoverStart="left"
               size="100vw"
               hoverBackgroundColor={style.colors.WHITE}
               style={{

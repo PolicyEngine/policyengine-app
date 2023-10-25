@@ -81,7 +81,7 @@ function CalculatorOption({ left, title, description, link, image }) {
         }}
       >
         <LinkButton
-          direction={left ? "right" : "left"}
+          hoverStart={left ? "right" : "left"}
           text={<>{title}</>}
           width={300}
           link={link}

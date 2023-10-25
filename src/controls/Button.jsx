@@ -11,7 +11,7 @@ export default function Button(props) {
     disabled,
     size,
     height,
-    hoverEffectStart,
+    hoverStart,
     backgroundColor,
     activeBackgroundColor,
     noPadding
@@ -48,7 +48,7 @@ export default function Button(props) {
   const completeButton = (
     <HoverBox
       hoverBackgroundColor={activeBackgroundColor || hoverBackgroundColor}
-      direction={hoverEffectStart || "left"}
+      hoverStart={hoverStart || "left"}
       style={{
         marginTop: 0,
         alignItems: "center",

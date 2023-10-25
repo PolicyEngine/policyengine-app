@@ -17,7 +17,7 @@ export default function ArrowButton(props) {
       primary={primary}
       disabled={disabled}
       style={style}
-      hoverEffectStart={
+      hoverStart={
         direction === "left" ? "right" : "left"
       }
     />
