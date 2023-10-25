@@ -35,7 +35,7 @@ export default function SearchParamNavButton(props) {
         direction={direction}
         primary={primary}
         disabled={disabled}
-        style={{...style, margin: 10}}
+        style={{...style}}
         onClick={handleClick}
       />
     );
@@ -46,7 +46,7 @@ export default function SearchParamNavButton(props) {
       primary={primary}
       disabled={disabled}
       text={text}
-      style={{ ...style, margin: 10 }}
+      style={{ ...style}}
       onClick={handleClick}
     />
   );

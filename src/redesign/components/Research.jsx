@@ -224,7 +224,6 @@ function BlogPostSearchTools({
         onSearch(searchQuery);
       }}
       height={50}
-      noPadding
     />
   );
   const filterTools = (

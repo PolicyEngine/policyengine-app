@@ -40,7 +40,6 @@ export default function LinkButton(props) {
       backgroundColor={backgroundColor}
       activeBackgroundColor={activeBackgroundColor}
       onClick={handleNavigate}
-      noPadding
     />
   );
 

@@ -52,7 +52,7 @@ function SubscribeToPolicyEngineDesktop() {
           width={500}
         />
         <div style={{ marginTop: 20 }} />
-        <Button text="Subscribe" onClick={() => {}} width={500} noPadding />
+        <Button text="Subscribe" onClick={() => {}} width={500} />
       </div>
     </div>
   );
@@ -79,7 +79,7 @@ function SubscribeToPolicyEngineTablet() {
           width={400}
         />
         <div style={{ marginTop: 20 }} />
-        <Button text="Subscribe" onClick={() => {}} width={400} noPadding />
+        <Button text="Subscribe" onClick={() => {}} width={400} />
       </div>
     </div>
   );
@@ -109,7 +109,6 @@ export function SubscribeToPolicyEngineMobile() {
           onClick={() => {}}
           width="100%"
           size="500px"
-          noPadding
         />
       </div>
     </div>

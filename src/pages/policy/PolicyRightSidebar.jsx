@@ -291,6 +291,7 @@ export default function PolicyRightSidebar(props) {
         <h4 style={{ marginBottom: 20 }}>No reform specified</h4>
         <Button
           text="Create a reform"
+          style={{margin: "20px auto 10px"}}
           onClick={() => {
             // Navigate to /<country>/household, preserving URL parameters
             const country = metadata.countryId;
@@ -403,19 +404,26 @@ export default function PolicyRightSidebar(props) {
         />
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
-        <SearchParamNavButton primary text="Edit my policy" focus="gov" />
+        <SearchParamNavButton 
+          primary 
+          text="Edit my policy" 
+          focus="gov" 
+          style={{margin: "20px auto 10px"}} 
+        />
       )}
       {!hideButtons && focus && !focus.startsWith("policyOutput") && (
         <SearchParamNavButton
           primary
           text="Calculate economic impact"
           onClick={confirmEconomicImpact}
+          style={{margin: "20px auto 10px"}}
         />
       )}
       {!hideButtons && !hasHousehold && (
         <SearchParamNavButton
           text="Enter my household"
           focus="intro"
+          style={{margin: "20px auto 10px"}}
           target={`/${metadata.countryId}/household`}
         />
       )}
@@ -424,6 +432,7 @@ export default function PolicyRightSidebar(props) {
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
           target={`/${metadata.countryId}/household`}
+          style={{margin: "20px auto 10px"}}
         />
       )}
     </div>

@@ -213,6 +213,7 @@ export default function HouseholdRightSidebar(props) {
           primary
           text="Add more household details"
           focus="input"
+          style={{margin: "20px auto 10px"}}
         />
       )}
       {focus && !focus.startsWith("householdOutput") && (
@@ -220,6 +221,7 @@ export default function HouseholdRightSidebar(props) {
           primary
           text="See my household details"
           focus="householdOutput"
+          style={{margin: "20px auto 10px"}}
         />
       )}
       {!hasReform && (
@@ -227,6 +229,7 @@ export default function HouseholdRightSidebar(props) {
           text="Create a reform"
           focus="gov"
           target={`/${metadata.countryId}/policy`}
+          style={{margin: "20px auto 10px"}}
         />
       )}
       {hasReform && (
@@ -234,6 +237,7 @@ export default function HouseholdRightSidebar(props) {
           text="Edit my reform"
           focus="gov"
           target={`/${metadata.countryId}/policy`}
+          style={{margin: "20px auto 10px"}}
         />
       )}
     </>

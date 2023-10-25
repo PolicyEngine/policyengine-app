@@ -204,13 +204,19 @@ function MobileBottomMenu(props) {
       <div>
         <h5 style={{ marginBottom: 20 }}>{text}</h5>
         {focus && focus.startsWith("householdOutput") && (
-          <SearchParamNavButton primary text="Edit my household" focus="input" />
+          <SearchParamNavButton 
+            primary 
+            text="Edit my household" 
+            focus="input" 
+            style={{margin: "20px auto 10px"}} 
+          />
         )}
         {focus && !focus.startsWith("householdOutput") && (
           <SearchParamNavButton
             primary
             text="See my household details"
             focus="householdOutput"
+            style={{margin: "20px auto 10px"}}
           />
         )}
         {!hasReform && (
@@ -218,6 +224,7 @@ function MobileBottomMenu(props) {
             text="Create a reform"
             focus="gov"
             target={`/${metadata.countryId}/policy`}
+            style={{margin: "20px auto 10px"}}
           />
         )}
         {hasReform && (
@@ -225,6 +232,7 @@ function MobileBottomMenu(props) {
             text="Edit my reform"
             focus="gov"
             target={`/${metadata.countryId}/policy`}
+            style={{margin: "20px auto 10px"}}
           />
         )}
       </div>

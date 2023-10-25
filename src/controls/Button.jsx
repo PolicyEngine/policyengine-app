@@ -1,4 +1,4 @@
-import style from "../redesign/style";
+import styles from "../redesign/style";
 import { HoverBox } from "../redesign/components/HoverBox";
 
 export default function Button(props) {
@@ -14,7 +14,7 @@ export default function Button(props) {
     hoverStart,
     backgroundColor,
     activeBackgroundColor,
-    noPadding
+    style
   } = props;
 
   // Fallback values
@@ -26,31 +26,21 @@ export default function Button(props) {
   // inclusion of an else fallback is used because the linter complains if all three
   // of these options are not included
   if (primary) {
-    hoverBackgroundColor = style.colors.TEAL_PRESSED;
-    standardBackgroundColor = style.colors.TEAL_ACCENT;
+    hoverBackgroundColor = styles.colors.TEAL_PRESSED;
+    standardBackgroundColor = styles.colors.TEAL_ACCENT;
   } else if (secondary || disabled) {
-    hoverBackgroundColor = style.colors.BLUE_PRESSED;
-    standardBackgroundColor = style.colors.BLUE_LIGHT;
+    hoverBackgroundColor = styles.colors.BLUE_PRESSED;
+    standardBackgroundColor = styles.colors.BLUE_LIGHT;
   } else {
-    hoverBackgroundColor = style.colors.TEAL_PRESSED;
-    standardBackgroundColor = style.colors.TEAL_ACCENT;
+    hoverBackgroundColor = styles.colors.TEAL_PRESSED;
+    standardBackgroundColor = styles.colors.TEAL_ACCENT;
   }
 
-  // This is to allow compatibility with old Button component, which wraps
-  // the button in a padded div, and newer components, which do not
-  const paddingStyling = {
-      padding: 10,
-      display: "flex",
-      justifyContent: "center",
-      paddingTop: 20,
-  };
-
-  const completeButton = (
+  return (
     <HoverBox
       hoverBackgroundColor={activeBackgroundColor || hoverBackgroundColor}
       hoverStart={hoverStart || "left"}
       style={{
-        marginTop: 0,
         alignItems: "center",
         display: "flex",
         backgroundColor: backgroundColor || standardBackgroundColor,
@@ -68,6 +58,7 @@ export default function Button(props) {
         height: height,
         justifyContent: "center",
         textAlign: "center",
+        ...style
       }}
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
@@ -75,21 +66,5 @@ export default function Button(props) {
       {text}
     </HoverBox>
   );
-
-  // The conditional rendering is also to maintain backward
-  // compatibility with old Button components
-  if (!noPadding) {
-    return (
-      <div style={paddingStyling}>
-        {completeButton}
-      </div>
-    );
-  } else {
-    return (
-      <>
-        {completeButton}
-      </>
-    )
-  }
 
 }

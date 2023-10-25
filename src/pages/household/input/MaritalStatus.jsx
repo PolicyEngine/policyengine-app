@@ -142,7 +142,7 @@ export default function MaritalStatus(props) {
     <CenteredMiddleColumn title="What is your marital status?">
       <>
         {radioButtonComponent}
-        <SearchParamNavButton text="Enter" focus="input.household.children" />
+        <SearchParamNavButton text="Enter" focus="input.household.children" style={{margin: "20px auto 10px"}}/>
       </>
     </CenteredMiddleColumn>
   );

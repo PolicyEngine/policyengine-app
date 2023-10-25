@@ -99,6 +99,7 @@ export default function VariableEditor(props) {
             focus={nextVariable}
             primary
             disabled={required && !edited}
+            style={{margin: "20px auto 10px"}}
           />
         )}
       </div>
