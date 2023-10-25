@@ -22,7 +22,9 @@ export default function Button(props) {
   let standardBackgroundColor = "teal";
 
   // The else if and else clauses are maintained here for backwards compatibility
-  // with older buttons that can declare primary and disabled
+  // with older buttons that can declare primary and disabled; the counterintuitive
+  // inclusion of an else fallback is used because the linter complains if all three
+  // of these options are not included
   if (primary) {
     hoverBackgroundColor = style.colors.TEAL_PRESSED;
     standardBackgroundColor = style.colors.TEAL_ACCENT;
