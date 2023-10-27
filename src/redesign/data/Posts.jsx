@@ -716,8 +716,8 @@ const uniqueTags = [...new Set([].concat(...tags))].sort();
 
 const locationTags = uniqueTags.filter((tag) =>
   ["us", "uk", "ng", "ca", "global"].some(
-    (countryId) => tag.startsWith(countryId + "-") || tag === countryId
-  )
+    (countryId) => tag.startsWith(countryId + "-") || tag === countryId,
+  ),
 );
 const topicTags = uniqueTags
   .filter((tag) => !locationTags.includes(tag))
