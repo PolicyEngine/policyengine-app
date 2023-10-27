@@ -43,7 +43,7 @@ export default function BudgetaryImpact(props) {
   const values = valuesBeforeFilter.filter((value) => value !== 0);
   // Only include labels for which there is a value
   const labels = labelsBeforeFilter.filter(
-    (label, index) => valuesBeforeFilter[index] !== 0
+    (label, index) => valuesBeforeFilter[index] !== 0,
   );
   const screenshotRef = useRef();
   console.log(values, labels, valuesBeforeFilter, labelsBeforeFilter);
@@ -71,7 +71,7 @@ export default function BudgetaryImpact(props) {
                 : ["total"],
             textposition: "inside",
             text: values.map((value) =>
-              aggregateCurrency(value * 1e9, metadata)
+              aggregateCurrency(value * 1e9, metadata),
             ),
             increasing: { marker: { color: style.colors.BLUE } },
             decreasing: { marker: { color: style.colors.DARK_GRAY } },
@@ -114,7 +114,7 @@ export default function BudgetaryImpact(props) {
                     } else {
                       body += ` by ${aggregateCurrency(
                         Math.abs(relevantFigure),
-                        metadata
+                        metadata,
                       )}.`;
                     }
                     return body;
@@ -187,7 +187,7 @@ export default function BudgetaryImpact(props) {
                 } else {
                   body += ` by ${aggregateCurrency(
                     Math.abs(relevantFigure),
-                    metadata
+                    metadata,
                   )}.`;
                 }
                 setHoverCard({

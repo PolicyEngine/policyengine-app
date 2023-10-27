@@ -30,7 +30,7 @@ export default function AverageImpactByDecile(props) {
             type: "bar",
             marker: {
               color: yArray.map((value) =>
-                value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE
+                value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
               ),
             },
             text: yArray.map((value) => currencyString(value, metadata, 0)),
@@ -47,13 +47,13 @@ export default function AverageImpactByDecile(props) {
                       ? `This reform raises the income<br>of households in the ${decile} decile<br>by an average of ${formatVariableValue(
                           metadata.variables.household_net_income,
                           change,
-                          0
+                          0,
                         )} per year.`
                       : change < -0.0001
                       ? `This reform lowers the income<br>of households in the ${decile} decile<br>by an average of ${formatVariableValue(
                           metadata.variables.household_net_income,
                           -change,
-                          0
+                          0,
                         )} per year.`
                       : change === 0
                       ? `This reform has no impact on the income<br>of households in the ${decile} decile.`
@@ -118,13 +118,13 @@ export default function AverageImpactByDecile(props) {
                     ? `This reform raises the income of households in the ${decile} decile by an average of ${formatVariableValue(
                         metadata.variables.household_net_income,
                         change,
-                        0
+                        0,
                       )} per year.`
                     : change < -0.0001
                     ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
                         metadata.variables.household_net_income,
                         -change,
-                        0
+                        0,
                       )} per year.`
                     : change === 0
                     ? `This reform has no impact on the income of households in the ${decile} decile.`
@@ -174,11 +174,11 @@ export default function AverageImpactByDecile(props) {
       <DownloadableScreenshottable ref={screenshotRef}>
         <h2 style={{ width: "700px", wordWrap: "break-word" }}>
           {`${policyLabel} ${avgChangeDirection(
-            averageChange
+            averageChange,
           )} the net income of households ${label} by ${formatVariableValue(
             metadata.variables.household_net_income,
             Math.abs(averageChange),
-            0
+            0,
           )} on average`}
         </h2>
         <HoverCard>

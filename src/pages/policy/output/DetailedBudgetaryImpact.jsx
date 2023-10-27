@@ -32,14 +32,14 @@ export default function DetailedBudgetaryImpact(props) {
       // [label]'s budgetary impact [rises/falls] by [abs(value)], from [baseline] to [reform].
       textValues.push(
         `${programLabel}'s budgetary impact ${avgChangeDirection(
-          values.different
+          values.different,
         )} by ${aggregateCurrency(
           values.difference,
-          metadata.countryId
+          metadata.countryId,
         )}, from ${aggregateCurrency(
           values.baseline,
-          metadata.countryId
-        )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`
+          metadata.countryId,
+        )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`,
       );
     }
   });
@@ -66,7 +66,7 @@ export default function DetailedBudgetaryImpact(props) {
                 : ["total"],
             marker: {
               color: Object.values(impact.decile.average).map((value) =>
-                value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE
+                value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
               ),
             },
             increasing: { marker: { color: style.colors.BLUE } },
@@ -88,7 +88,7 @@ export default function DetailedBudgetaryImpact(props) {
                 }
               : {
                   customdata: yArray.map((change) =>
-                    aggregateCurrency(change, metadata)
+                    aggregateCurrency(change, metadata),
                   ),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
                 }),
