@@ -695,16 +695,6 @@ let posts = [
     image: "two_child_limit.png",
     authors: ["nikhil-woodruff"],
   },
-  {
-    title: "Northern Ireland UBI Feasibility Study",
-    description:
-      "Evaluating universal basic income policies in Northern Ireland.",
-    date: "2023-10-27 16:00:00",
-    filename: "northern-ireland-feasibility.ipynb",
-    tags: ["uk"],
-    image: "two_child_limit.png",
-    authors: ["nikhil-woodruff"],
-  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
