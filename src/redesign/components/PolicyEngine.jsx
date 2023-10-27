@@ -19,6 +19,8 @@ import Header from "./Header";
 import Testimonials from "./Testimonials";
 import CalculatorInterstitial from "./CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
+import loc_en from "../../plotly_locales/locale-en.js";
+import loc_en_us from "../../plotly_locales/locale-en-us.js";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -34,6 +36,9 @@ function ScrollToTop() {
 }
 
 export default function PolicyEngine({ pathname }) {
+  var Plotly = require("plotly.js/dist/plotly.js");
+  Plotly.register(loc_en);
+  Plotly.register(loc_en_us);
   const COUNTRIES = ["us", "uk", "ca", "ng", "il"];
 
   // First, check if the country is specified (.org/[country]/...)

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency } from "../../../api/language";
+import { aggregateCurrency, localeString } from "../../../api/language";
 import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
@@ -129,8 +129,7 @@ export default function BudgetaryImpact(props) {
           },
           yaxis: {
             title: "Budgetary impact (bn)",
-            tickprefix: metadata.currency,
-            tickformat: ",.1f",
+            tickformat: "$,.1f",
           },
           ...(useHoverCard
             ? {}
@@ -157,6 +156,7 @@ export default function BudgetaryImpact(props) {
         config={{
           displayModeBar: false,
           responsive: true,
+          locale: localeString(metadata),
         }}
         style={{
           width: "100%",
