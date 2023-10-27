@@ -159,16 +159,13 @@ administrative totals.
 To illustrate, take the following example (based on completely
 hypothetical characteristics).
 
-| Household       | Total income | Original weight | Calibrated weight |
-| --------------- | ------------ | --------------- | ----------------- |
-| High-earner     | £80,000      | 2m              | 5m                |
-| Low-earner      | £25,000      | 25m             | 22m               |
-| Original survey | £785bn       | 27m             | 27m               |
-| total           |              |                 |                   |
-| Administrative  | £950bn       | 27m             |                   |
-| total           |              |                 |                   |
-| Calibrated      | £950bn       | 27m             |                   |
-| survey total    |              |                 |                   |
+| Household               | Total income | Original weight | Calibrated weight |
+| ----------------------- | ------------ | --------------- | ----------------- |
+| High-earner             | £80,000      | 2m              | 5m                |
+| Low-earner              | £25,000      | 25m             | 22m               |
+| Original survey total   | £785bn       | 27m             | 27m               |
+| Administrative total    | £950bn       | 27m             |                   |
+| Calibrated survey total | £950bn       | 27m             |                   |
 
 By adjusting survey weights, we can shift the distributions of survey
 variables to reconcile them with more trusted administrative data. This
