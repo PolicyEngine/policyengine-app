@@ -38,7 +38,7 @@ export default function TextBox({
           placeholder={placeholder}
           id={id}
           enterKeyHint={enterKeyHint}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange?.(e.target.value)}
           style={{
             border: "none",
             borderBottom: `1px solid ${style.colors.WHITE}`,
