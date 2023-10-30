@@ -170,6 +170,7 @@ function DesktopCalculatorButton() {
         link={`/${countryId}/calculator`}
         style={{
           margin: 20,
+          marginRight: 15,
           marginLeft: "auto",
           alignItems: "center",
           display: "flex",
