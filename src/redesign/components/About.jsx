@@ -22,13 +22,15 @@ export default function About() {
         <TeamMember member={founders.nikhil_woodruff} />
         <TeamMember member={founders.pavel_makarchuk} />
       </Section>
-      <Section backgroundColor={style.colors.BLUE_PRIMARY}>
-        <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
-        <Advisor member={advisors.george_sadowsky} />
-        <Advisor member={advisors.damiola_ogundipe} />
-        <Advisor member={advisors.jesse_horwitz} />
-        <Advisor member={advisors.matt_jensen} />
-      </Section>
+      <div style={{ display:"none" }}>
+        <Section backgroundColor={style.colors.BLUE_PRIMARY}>
+          <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
+          <Advisor member={advisors.george_sadowsky} />
+          <Advisor member={advisors.damiola_ogundipe} />
+          <Advisor member={advisors.jesse_horwitz} />
+          <Advisor member={advisors.matt_jensen} />
+        </Section>
+      </div>
       <Footer />
     </div>
   );
