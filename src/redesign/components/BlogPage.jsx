@@ -199,7 +199,7 @@ function NotebookOutputPlotly({ data }) {
   const displayCategory = useDisplayCategory();
 
   return (
-    <>
+    <div style={{marginBottom: 20}}>
       {title && <h3>{title}</h3>}
       <Plot
         data={data.data}
@@ -215,7 +215,7 @@ function NotebookOutputPlotly({ data }) {
             l: 20,
             r: 20,
             t: 20,
-            b: 20,
+            b: 80,
           },
         })}
         config={{
@@ -223,7 +223,7 @@ function NotebookOutputPlotly({ data }) {
           responsive: true,
         }}
       />
-    </>
+    </div>
   );
 }
 
@@ -784,7 +784,8 @@ function BlogContent({ markdown, backgroundColor }) {
             <td
               ref={ref}
               style={{
-                padding: 5,
+                paddingTop: 5,
+                paddingBottom: 5,
                 fontFamily: "Roboto Serif",
                 fontSize: mobile ? 16 : 18,
                 borderRight: columnNumber === 0 ? "1px solid black" : "",
@@ -923,7 +924,6 @@ function HighlightedBlock({ data, leftContent, rightContent }) {
 }
 
 function PlotlyChartCode({ data, backgroundColor }) {
-  console.log(data);
   let plotlyData = null;
   try {
     plotlyData = JSON.parse(data);
