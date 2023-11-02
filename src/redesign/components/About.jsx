@@ -22,7 +22,7 @@ export default function About() {
         <TeamMember member={founders.nikhil_woodruff} />
         <TeamMember member={founders.pavel_makarchuk} />
       </Section>
-      <div style={{ display:"none" }}>
+      <div style={{ display: "none" }}>
         <Section backgroundColor={style.colors.BLUE_PRIMARY}>
           <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
           <Advisor member={advisors.george_sadowsky} />
