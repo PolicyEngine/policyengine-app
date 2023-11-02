@@ -60,21 +60,21 @@ function ResearchExplorer() {
   useEffect(() => {
     searchParams.set("topics", filteredTopics.join(', '));
     setSearchParams(searchParams)
-  },[filteredTopics]);
+  }, [filteredTopics]);
   const [filteredLocations, setFilteredLocations] = useState(
     searchParams.get("locations")?.split(",") || locationTags,
   );
   useEffect(() => {
     searchParams.set("locations", filteredLocations.join(', '));
     setSearchParams(searchParams)
-  },[filteredLocations]);
+  }, [filteredLocations]);
   const [filteredAuthors, setFilteredAuthors] = useState(
     searchParams.get("authors")?.split(",") || authorKeys,
   );
   useEffect(() => {
     searchParams.set("authors", filteredAuthors.join(', '));
     setSearchParams(searchParams)
-  },[filteredAuthors]);
+  }, [filteredAuthors]);
   const filterFunction = (post) => {
     let hasMetAtLeastOneFilteredTopic = false;
     for (const tag of filteredTopics) {
@@ -108,10 +108,10 @@ function ResearchExplorer() {
   const searchField = searchParams.get("search");
   const filteredPosts = searchField
     ? fuse
-        .search(searchField, {
-          distance: 10,
-        })
-        .map((result) => result.item)
+      .search(searchField, {
+        distance: 10,
+      })
+      .map((result) => result.item)
     : preFilteredPosts;
 
   const searchTools = (
@@ -397,7 +397,7 @@ function Expandable({ title, children }) {
       animate={{
         maxHeight: expanded
           ? contentRef.current?.getBoundingClientRect().height +
-            titleRef.current?.getBoundingClientRect().height
+          titleRef.current?.getBoundingClientRect().height
           : titleRef.current?.getBoundingClientRect().height,
       }}
       transition={{
