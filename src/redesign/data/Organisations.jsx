@@ -1,4 +1,4 @@
-import Centre from "../../images/logos/orgs/centre.webp";
+import Centre from "../images/logos/orgs/centre.png";
 import CPS from "../../images/logos/orgs/cps.png";
 import GPEW from "../../images/logos/orgs/gpew.png";
 import LiberalParty from "../../images/logos/orgs/liberal-party.jpeg";
