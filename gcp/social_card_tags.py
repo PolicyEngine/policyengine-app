@@ -60,13 +60,16 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
         if slug not in post_by_slug:
             slug = f"{country.lower()}-{slug}"
         post = post_by_slug[slug]
-        filename = post["image"].split(".")[0]
-        # React builds the image filename as 'original_name.hash.extension'. Find it by searching for the original name
         image_folder = Path("./build/static/media")
+        filename = post["image"].split(".")[0]
+        if len(list(image_folder.glob(f"{filename}_with_title.*"))) > 0:
+            filename = f"{filename}_with_title"
+        # React builds the image filename as 'original_name.hash.extension'. Find it by searching for the original name
+        
         image_files = list(image_folder.glob(f"{filename}.*"))
         if len(image_files) > 0:
             # In order of preference: file ending with .png, then jpeg, then jpg
-            for extension in ["_with_title.png", ".png", ".jpeg", ".jpg"]: # Twitter doesn't show the title so we include alternative versions.
+            for extension in [".png", ".jpeg", ".jpg"]: # Twitter doesn't show the title so we include alternative versions.
                 for image_file in image_files:
                     if image_file.name.endswith(extension):
                         return f"https://policyengine.org/static/media/{image_file.name}"
@@ -112,6 +115,7 @@ def add_social_card_tags(
     title = get_title(path, query_params)
     description = get_description(path, query_params)
     image_url = get_image(path, query_params, social_cards)
+    print('Image URL:', image_url)
 
     # Use beautiful soup to add the tags for Twitter and Facebook
     soup = BeautifulSoup(html_file, "html.parser")
