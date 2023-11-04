@@ -14,8 +14,8 @@ def get_title(path: str, query_params: dict):
 
     country = path.split("/")[1].upper()
 
-    if "/blog/" in path:
-        slug = path.split("/blog/")[1]
+    if "/research/" in path:
+        slug = path.split("/research/")[1]
         if slug not in post_by_slug:
             slug = f"{country.lower()}-{slug}"
         post = post_by_slug[slug]
@@ -55,8 +55,8 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
     )
 
     # Search the "./social_cards" directory for a file with the same name as the path and any extension
-    if "/blog/" in original_path:
-        slug = original_path.split("/blog/")[1]
+    if "/research/" in original_path:
+        slug = original_path.split("/research/")[1]
         if slug not in post_by_slug:
             slug = f"{country.lower()}-{slug}"
         post = post_by_slug[slug]
@@ -66,7 +66,7 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
         image_files = list(image_folder.glob(f"{filename}.*"))
         if len(image_files) > 0:
             # In order of preference: file ending with .png, then jpeg, then jpg
-            for extension in [".png", ".jpeg", ".jpg"]:
+            for extension in ["_with_title.png", ".png", ".jpeg", ".jpg"]: # Twitter doesn't show the title so we include alternative versions.
                 for image_file in image_files:
                     if image_file.name.endswith(extension):
                         return f"https://policyengine.org/static/media/{image_file.name}"
@@ -85,8 +85,8 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
 def get_description(path: str, query_params: dict):
     country = path.split("/")[1].upper()
 
-    if "/blog/" in path:
-        slug = path.split("/blog/")[1]
+    if "/research/" in path:
+        slug = path.split("/research/")[1]
         if slug not in post_by_slug:
             slug = f"{country.lower()}-{slug}"
         post = post_by_slug[slug]
