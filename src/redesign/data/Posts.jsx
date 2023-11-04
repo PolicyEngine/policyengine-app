@@ -691,8 +691,18 @@ let posts = [
       "How removing the limit of some benefits to two children would affect the UK in 2023.",
     date: "2023-08-07 16:00:00",
     filename: "repealing_the_two_child_limit.md",
-    tags: ["uk"],
+    tags: ["uk", "policy"],
     image: "two_child_limit.png",
+    authors: ["nikhil-woodruff"],
+  },
+  {
+    title: "New King's College London research uses PolicyEngine",
+    description:
+      "A ‘Citizens’ Economic Council’ explores PolicyEngine-scored tax-benefit impacts.",
+    date: "2023-11-04 09:00:00",
+    filename: "citizens-economic-council.md",
+    tags: ["uk", "impact", "featured"],
+    image: "citizens-economic-council.png",
     authors: ["nikhil-woodruff"],
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
