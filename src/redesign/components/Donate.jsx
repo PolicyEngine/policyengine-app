@@ -8,6 +8,8 @@ import ActionButton from "./ActionButton";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
+  const mobile = displayCategory === "mobile";
+  const desktop = displayCategory === "top";
 
   const handleButtonClick = () => {
     window.open("https://opencollective.com/psl-foundation", "_blank");
@@ -72,7 +74,7 @@ export default function Donate() {
                 </div>
               }
               onClick={handleButtonClick}
-              width={displayCategory === "mobile" ? "420px" : "130%"}
+              width={desktop ? 450 : mobile ? "70vw" : "30vw"}
               noArrow={true}
             />
           </div>
