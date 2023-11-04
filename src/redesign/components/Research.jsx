@@ -16,7 +16,7 @@ import {
 import { MediumBlogPreview } from "./HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "./FontIcon";
 import { authorKeys, authorKeyToLabel } from "redesign/data/Authors";
@@ -57,12 +57,24 @@ function ResearchExplorer() {
   const [filteredTopics, setFilteredTopics] = useState(
     searchParams.get("topics")?.split(",") || topicTags,
   );
+  useEffect(() => {
+    searchParams.set("topics", filteredTopics.join(", "));
+    setSearchParams(searchParams);
+  }, [filteredTopics]);
   const [filteredLocations, setFilteredLocations] = useState(
     searchParams.get("locations")?.split(",") || locationTags,
   );
+  useEffect(() => {
+    searchParams.set("locations", filteredLocations.join(", "));
+    setSearchParams(searchParams);
+  }, [filteredLocations]);
   const [filteredAuthors, setFilteredAuthors] = useState(
     searchParams.get("authors")?.split(",") || authorKeys,
   );
+  useEffect(() => {
+    searchParams.set("authors", filteredAuthors.join(", "));
+    setSearchParams(searchParams);
+  }, [filteredAuthors]);
   const filterFunction = (post) => {
     let hasMetAtLeastOneFilteredTopic = false;
     for (const tag of filteredTopics) {
