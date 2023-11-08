@@ -108,7 +108,7 @@ export function SubscribeToPolicyEngineMobile() {
           text="Subscribe"
           onClick={() => {}}
           width="100%"
-          size="500px"
+          size="768px"
         />
       </div>
     </div>
