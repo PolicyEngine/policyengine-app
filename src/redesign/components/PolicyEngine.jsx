@@ -21,6 +21,7 @@ import CalculatorInterstitial from "./CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import loc_en from "../../plotly_locales/locale-en.js";
 import loc_en_us from "../../plotly_locales/locale-en-us.js";
+import APIDocumentationPage from "./APIDocumentationPage";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -232,6 +233,8 @@ export default function PolicyEngine({ pathname }) {
           path="/:countryId/policy/*"
           element={metadata ? policyPage : error ? errorPage : loadingPage}
         />
+
+        <Route path="/:countryId/api" element={<APIDocumentationPage metadata={metadata} />} />
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
 
         {/* redirect from /countryId/blog/slug to /countryId/research/slug */}

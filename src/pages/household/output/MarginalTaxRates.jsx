@@ -74,7 +74,7 @@ export default function MarginalTaxRates(props) {
     ];
     let requests = [];
     requests.push(
-      apiCall(`/${metadata.countryId}/calculate`, {
+      apiCall(`/${metadata.countryId}/calculate-full`, {
         household: householdData,
         policy: policy.baseline.data,
       })
@@ -88,7 +88,7 @@ export default function MarginalTaxRates(props) {
     );
     if (reformPolicyId) {
       requests.push(
-        apiCall(`/${metadata.countryId}/calculate`, {
+        apiCall(`/${metadata.countryId}/calculate-full`, {
           household: householdData,
           policy: policy.reform.data,
         })
