@@ -200,223 +200,251 @@ function CardDrawer(props) {
   );
 }
 
-
-export default function APIDocumentationPage({
-    metadata,
-}) {
-    const countryId = useCountryId();
+export default function APIDocumentationPage({ metadata }) {
+  const countryId = useCountryId();
   return (
     <>
-        <Header />
-        <Section title="PolicyEngine API Documentation" backgroundColor={style.colors.BLUE_98}>
-            <p>
-                PolicyEngine&apos;s REST API (https://api.policyengine.org) simulates tax-benefit policy outcomes for households and populations.
-            </p>
-            <h4>
-                On this page
-            </h4>
-            <ul>
-                <li><a href="#metadata">Get country-level metadata</a></li>
-                <li><a href="#calculate">Calculate household-level policy outcomes</a></li>
-                <li><a href="#variables">Variable and parameter metadata search</a></li>
-            </ul>
-        </Section>
-        <APIEndpoint
-            pattern={`/${countryId}/metadata`}
-            method="GET"
-            title="Get country-level metadata"
-            description="Returns country-level metadata."
-            exampleOutputJson={{
-                status: "ok",
-                message: null,
-                result: {
-                    basicInputs: ["variables in the default household questionnaire", "age"],
-                    current_law_id: "current-law policy ID",
-                    economy_options: {
-                        region: [{
-                            name: "identifier of a geography, e.g. 'ut'",
-                            label: "sentence-safe label of a geography, e.g. 'Utah'",
-                        }],
-                        time_period: [{
-                            name: "identifier of a time period, e.g. '2022'",
-                            label: "sentence-safe label, e.g. '2022'",
-                        }],
-                    },
-                    entities: {
-                        "entity name": {
-                            doc: "entity description",
-                            is_person: "whether the entity is a person or group",
-                            key: "entity name",
-                            label: "entity label",
-                            plural: "entity plural",
-                            roles: {
-                                "role name": {
-                                    doc: "role description",
-                                    label: "role label",
-                                    plural: "role plural",
-                                },
-                            },
-                        },
-                    },
-                    parameters: {
-                        "parameter name": {
-                            description: "parameter description",
-                            economy: "whether the parameter can be simulated for populations",
-                            household: "whether the parameter can be simulated for households",
-                            label: "parameter label",
-                            parameter: "parameter address",
-                            period: "period",
-                            type: "parameter type",
-                            unit: "parameter unit",
-                            values: {
-                                "YYYY-MM-DD start date": "value",
-                            },
-                        },
-                    },
-                    variables: {
-                        "variable name": {
-                            adds: "summing variables if applicable",
-                            category: "variable category",
-                            defaultValue: "default value",
-                            definitionPeriod: "definition period",
-                            documentation: "variable description",
-                            entity: "applicable entity key",
-                            hidden_input: "whether the variable is hidden in the UI",
-                            indexInModule: "index in parent folder",
-                            isInputVariable: "whether the variable is an input variable",
-                            label: "variable label",
-                            moduleName: "folder name",
-                            name: "variable name",
-                            subtracts: "subtracting variables if applicable",
-                            unit: "variable unit",
-                            valueType: "variable type",
-                        },
-                    },
-                    version: "version number",
+      <Header />
+      <Section
+        title="PolicyEngine API Documentation"
+        backgroundColor={style.colors.BLUE_98}
+      >
+        <p>
+          PolicyEngine&apos;s REST API (https://api.policyengine.org) simulates
+          tax-benefit policy outcomes for households and populations.
+        </p>
+        <h4>On this page</h4>
+        <ul>
+          <li>
+            <a href="#metadata">Get country-level metadata</a>
+          </li>
+          <li>
+            <a href="#calculate">Calculate household-level policy outcomes</a>
+          </li>
+          <li>
+            <a href="#variables">Variable and parameter metadata search</a>
+          </li>
+        </ul>
+      </Section>
+      <APIEndpoint
+        pattern={`/${countryId}/metadata`}
+        method="GET"
+        title="Get country-level metadata"
+        description="Returns country-level metadata."
+        exampleOutputJson={{
+          status: "ok",
+          message: null,
+          result: {
+            basicInputs: [
+              "variables in the default household questionnaire",
+              "age",
+            ],
+            current_law_id: "current-law policy ID",
+            economy_options: {
+              region: [
+                {
+                  name: "identifier of a geography, e.g. 'ut'",
+                  label: "sentence-safe label of a geography, e.g. 'Utah'",
                 },
-            }}
-        ></APIEndpoint>
-        <APIEndpoint
-            pattern={`/${countryId}/calculate`}
-            method="POST"
-            title="Calculate household-level policy outcomes"
-            description="Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best practise to use the group/name/variable/optional time period/value structure."
-            exampleInputJson={{
-                household: {
-                        people: {
-                        parent: {
-                            age: 30,
-                            employment_income: 20_000,
-                        },
-                        child: {
-                            age: 5,
-                        }
-                    },
-                    spm_units: {
-                        spm_unit: {
-                            members: ["parent", "child"],
-                            snap: {
-                                2023: null,
-                            }
-                        }
-                    }
+              ],
+              time_period: [
+                {
+                  name: "identifier of a time period, e.g. '2022'",
+                  label: "sentence-safe label, e.g. '2022'",
                 },
-            }}
-            exampleOutputJson={{
-                status: "ok",
-                message: null,
-                result: {
-                    people: {
-                        parent: {
-                            age: 30,
-                            employment_income: 20_000,
-                        },
-                        child: {
-                            age: 5,
-                        }
-                    },
-                    spm_units: {
-                        spm_unit: {
-                            members: ["parent", "child"],
-                            snap: {
-                                2023: 2833.5,
-                            }
-                        }
-                    }
+              ],
+            },
+            entities: {
+              "entity name": {
+                doc: "entity description",
+                is_person: "whether the entity is a person or group",
+                key: "entity name",
+                label: "entity label",
+                plural: "entity plural",
+                roles: {
+                  "role name": {
+                    doc: "role description",
+                    label: "role label",
+                    plural: "role plural",
+                  },
                 },
-            }}
+              },
+            },
+            parameters: {
+              "parameter name": {
+                description: "parameter description",
+                economy:
+                  "whether the parameter can be simulated for populations",
+                household:
+                  "whether the parameter can be simulated for households",
+                label: "parameter label",
+                parameter: "parameter address",
+                period: "period",
+                type: "parameter type",
+                unit: "parameter unit",
+                values: {
+                  "YYYY-MM-DD start date": "value",
+                },
+              },
+            },
+            variables: {
+              "variable name": {
+                adds: "summing variables if applicable",
+                category: "variable category",
+                defaultValue: "default value",
+                definitionPeriod: "definition period",
+                documentation: "variable description",
+                entity: "applicable entity key",
+                hidden_input: "whether the variable is hidden in the UI",
+                indexInModule: "index in parent folder",
+                isInputVariable: "whether the variable is an input variable",
+                label: "variable label",
+                moduleName: "folder name",
+                name: "variable name",
+                subtracts: "subtracting variables if applicable",
+                unit: "variable unit",
+                valueType: "variable type",
+              },
+            },
+            version: "version number",
+          },
+        }}
+      ></APIEndpoint>
+      <APIEndpoint
+        pattern={`/${countryId}/calculate`}
+        method="POST"
+        title="Calculate household-level policy outcomes"
+        description="Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best practise to use the group/name/variable/optional time period/value structure."
+        exampleInputJson={{
+          household: {
+            people: {
+              parent: {
+                age: 30,
+                employment_income: 20_000,
+              },
+              child: {
+                age: 5,
+              },
+            },
+            spm_units: {
+              spm_unit: {
+                members: ["parent", "child"],
+                snap: {
+                  2023: null,
+                },
+              },
+            },
+          },
+        }}
+        exampleOutputJson={{
+          status: "ok",
+          message: null,
+          result: {
+            people: {
+              parent: {
+                age: 30,
+                employment_income: 20_000,
+              },
+              child: {
+                age: 5,
+              },
+            },
+            spm_units: {
+              spm_unit: {
+                members: ["parent", "child"],
+                snap: {
+                  2023: 2833.5,
+                },
+              },
+            },
+          },
+        }}
+      />
+      <VariableParameterExplorer countryId={countryId} metadata={metadata} />
+      <Section title="API playground">
+        <p>Try out the API in this interactive demo.</p>
+        <iframe
+          src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`}
+          title="PolicyEngine API demo"
+          height="500px"
+          width={"100%"}
         />
-        <VariableParameterExplorer countryId={countryId} metadata={metadata} />
-        <Section title="API playground">
-            <p>
-                Try out the API in this interactive demo.
-            </p>
-            <iframe
-                src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`}
-                title="PolicyEngine API demo"
-                height="500px"
-                width={"100%"}
-            />
-        </Section>
-        <Footer />
+      </Section>
+      <Footer />
     </>
-  )
+  );
 }
 
 function JSONBlock({ json }) {
-    return <div style={{
+  return (
+    <div
+      style={{
         backgroundColor: style.colors.DARK_GRAY,
         width: "100%",
         borderRadius: 25,
         fontFamily: "Courier New",
         padding: 30,
         color: "white",
-    }}>
-        <pre>
-        {JSON.stringify(json, null, 2)}
-        </pre>
+      }}
+    >
+      <pre>{JSON.stringify(json, null, 2)}</pre>
     </div>
+  );
 }
 
 function APIEndpoint({
-    pattern,
-    method,
-    title,
-    description,
-    children,
-    exampleInputJson,
-    exampleOutputJson,
+  pattern,
+  method,
+  title,
+  description,
+  children,
+  exampleInputJson,
+  exampleOutputJson,
 }) {
-    return <Section>
-        <div style={{
-            display: "flex",
-        }}>
-            <div style={{
-                position: "sticky",
-                top: 200,
-                height: "100%",
-                flex: 1,
-            }}>
-                <h3>{title}</h3>
-                <h5><code>{method} {pattern}</code></h5>
-                <p>{description}</p>
-                {
-                    exampleInputJson && <div style={{
-                        width: "100%",
-                    }}>
-                        <h4>Example input</h4>
-                        <JSONBlock json={exampleInputJson} />
-                    </div>
-                }
+  return (
+    <Section>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
+        <div
+          style={{
+            position: "sticky",
+            top: 200,
+            height: "100%",
+            flex: 1,
+          }}
+        >
+          <h3>{title}</h3>
+          <h5>
+            <code>
+              {method} {pattern}
+            </code>
+          </h5>
+          <p>{description}</p>
+          {exampleInputJson && (
+            <div
+              style={{
+                width: "100%",
+              }}
+            >
+              <h4>Example input</h4>
+              <JSONBlock json={exampleInputJson} />
             </div>
-            <div style={{
-                marginLeft: 50,
-                flex: 1,
-            }}>
-                <h4>Output format</h4>
-                <JSONBlock json={exampleOutputJson} />
-            </div>
+          )}
         </div>
-        {children}
+        <div
+          style={{
+            marginLeft: 50,
+            flex: 1,
+          }}
+        >
+          <h4>Output format</h4>
+          <JSONBlock json={exampleOutputJson} />
+        </div>
+      </div>
+      {children}
     </Section>
+  );
 }

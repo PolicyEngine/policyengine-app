@@ -234,7 +234,10 @@ export default function PolicyEngine({ pathname }) {
           element={metadata ? policyPage : error ? errorPage : loadingPage}
         />
 
-        <Route path="/:countryId/api" element={<APIDocumentationPage metadata={metadata} />} />
+        <Route
+          path="/:countryId/api"
+          element={<APIDocumentationPage metadata={metadata} />}
+        />
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
 
         {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
