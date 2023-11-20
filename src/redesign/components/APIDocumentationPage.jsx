@@ -347,6 +347,17 @@ export default function APIDocumentationPage({
             }}
         />
         <VariableParameterExplorer countryId={countryId} metadata={metadata} />
+        <Section title="API playground">
+            <p>
+                Try out the API in this interactive demo.
+            </p>
+            <iframe
+                src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`}
+                title="PolicyEngine API demo"
+                height="500px"
+                width={"100%"}
+            />
+        </Section>
         <Footer />
     </>
   )
