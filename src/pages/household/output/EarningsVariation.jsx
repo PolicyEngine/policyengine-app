@@ -84,7 +84,7 @@ export default function EarningsVariation(props) {
     setLoading(true);
     let requests = [];
     requests.push(
-      apiCall(`/${metadata.countryId}/calculate`, {
+      apiCall(`/${metadata.countryId}/calculate-full`, {
         household: householdData,
         policy: policy.baseline.data,
       })
@@ -98,7 +98,7 @@ export default function EarningsVariation(props) {
     );
     if (reformPolicyId) {
       requests.push(
-        apiCall(`/${metadata.countryId}/calculate`, {
+        apiCall(`/${metadata.countryId}/calculate-full`, {
           household: householdData,
           policy: policy.reform.data,
         })
