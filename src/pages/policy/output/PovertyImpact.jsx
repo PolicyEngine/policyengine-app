@@ -1,4 +1,9 @@
-import { useContext, useEffect } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useImperativeHandle,
+} from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -6,13 +11,11 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
-import React, { useRef } from "react";
 
-export default function PovertyImpact(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const PovertyImpact = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const childPovertyChange =
     impact.poverty.poverty.child.reform /
       impact.poverty.poverty.child.baseline -
@@ -195,7 +198,7 @@ export default function PovertyImpact(props) {
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
   const csvHeader = ["Age Group", "Baseline", "Reform", "Change"];
-  const data = [
+  const csvData = [
     csvHeader,
     ...povertyLabels.map((label) => {
       const baseline = impact.poverty.poverty[labelToKey[label]].baseline;
@@ -204,11 +207,12 @@ export default function PovertyImpact(props) {
       return [label, baseline, reform, change];
     }),
   ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "15px",
-    left: "65px",
-  };
+
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -225,20 +229,13 @@ export default function PovertyImpact(props) {
           <PovertyImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`povertyImpactByAge${policyLabel}.csv`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p>
         The chart above shows the relative change in the poverty rate for each
         age group.
       </p>
     </>
   );
-}
+});
+PovertyImpact.displayName = "PovertyImpact";
+
+export default PovertyImpact;

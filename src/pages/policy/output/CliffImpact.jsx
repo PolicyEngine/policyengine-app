@@ -1,4 +1,10 @@
-import { useContext, useEffect, useState, useRef } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+  useImperativeHandle,
+} from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
@@ -11,10 +17,9 @@ import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-export default function CliffImpact(props) {
+const CliffImpact = React.forwardRef((props, ref) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
@@ -22,7 +27,7 @@ export default function CliffImpact(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const { metadata, policyLabel, preparingForScreenshot } = props;
+  const { metadata, policyLabel } = props;
   const mobile = useMobile();
   const screenshotRef = useRef();
   useEffect(() => {
@@ -62,6 +67,33 @@ export default function CliffImpact(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
+
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      if (impact === null) {
+        return null;
+      }
+      const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
+      const csvData = [
+        csvHeader,
+        ...[
+          {
+            Metric: "Cliff rate",
+            Baseline: impact.baseline.cliff_share,
+            Reform: impact.reform.cliff_share,
+            Change: cliff_share_change,
+          },
+          {
+            Metric: "Cliff gap",
+            Baseline: impact.baseline.cliff_gap,
+            Reform: impact.reform.cliff_gap,
+            Change: cliff_gap_change,
+          },
+        ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
+      ];
+      return csvData;
+    },
+  }));
 
   if (error) {
     return (
@@ -251,31 +283,6 @@ export default function CliffImpact(props) {
       : "would have an ambiguous effect on cliffs"
   } ${label}`;
 
-  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
-  const data = [
-    csvHeader,
-    ...[
-      {
-        Metric: "Cliff rate",
-        Baseline: impact.baseline.cliff_share,
-        Reform: impact.reform.cliff_share,
-        Change: cliff_share_change,
-      },
-      {
-        Metric: "Cliff gap",
-        Baseline: impact.baseline.cliff_gap,
-        Reform: impact.reform.cliff_gap,
-        Change: cliff_gap_change,
-      },
-    ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
-  ];
-
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "-1px",
-    left: "80px",
-  };
-
   return (
     <ResultsPanel>
       <DownloadableScreenshottable ref={screenshotRef}>
@@ -284,16 +291,6 @@ export default function CliffImpact(props) {
           <CliffImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`cliffImpact${policyLabel.csv}`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p style={{ marginTop: "10px" }}>
         The cliff rate is the share of households whose net income falls if each
         adult earned an additional {metadata.currency}2,000. The cliff gap is
@@ -302,4 +299,7 @@ export default function CliffImpact(props) {
       </p>
     </ResultsPanel>
   );
-}
+});
+CliffImpact.displayName = "CliffImpact";
+
+export default CliffImpact;

@@ -1,4 +1,9 @@
-import { useContext, useEffect } from "react";
+import React, {
+  useContext,
+  useImperativeHandle,
+  useRef,
+  useEffect,
+} from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -6,13 +11,11 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
-import React, { useRef } from "react";
 
-export default function DeepPovertyImpactByGender(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const malePovertyChange =
     impact.poverty_by_gender.deep_poverty.male.reform /
       impact.poverty_by_gender.deep_poverty.male.baseline -
@@ -206,7 +209,7 @@ export default function DeepPovertyImpactByGender(props) {
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
   const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
-  const data = [
+  const csvData = [
     csvHeader,
     ...povertyLabels.map((label) => {
       const baseline =
@@ -221,11 +224,11 @@ export default function DeepPovertyImpactByGender(props) {
       return [label, baseline, reform, change];
     }),
   ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "19px",
-    left: "80px",
-  };
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -242,21 +245,13 @@ export default function DeepPovertyImpactByGender(props) {
           <DeepPovertyImpactByGenderPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`deepPovertyImpactBySex${policyLabel}.csv`}
-            className="download-button"
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p>
         The chart above shows the relative change in the deep poverty rate for
         each sex.
       </p>
     </>
   );
-}
+});
+DeepPovertyImpactByGender.displayName = "DeepPovertyImpactByGender";
+
+export default DeepPovertyImpactByGender;

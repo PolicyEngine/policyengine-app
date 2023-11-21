@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useImperativeHandle, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { cardinal, localeCode, currencyCode } from "../../../api/language";
@@ -7,12 +7,10 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
-import React, { useRef } from "react";
 
-export default function AverageImpactByWealthDecile(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const AverageImpactByWealthDecile = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
   function AverageImpactByWealthDecilePlot(props) {
@@ -165,14 +163,14 @@ export default function AverageImpactByWealthDecile(props) {
     region === "us" || region === "uk"
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
-  const data = Object.entries(impact.wealth_decile.average).map(
+  const csvData = Object.entries(impact.wealth_decile.average).map(
     ([key, value]) => [`Decile ${key}`, value],
   );
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "40px",
-    left: "55px",
-  };
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -190,16 +188,6 @@ export default function AverageImpactByWealthDecile(props) {
           <AverageImpactByWealthDecilePlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`absoluteImpactByWealthDecile${policyLabel}.csv`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p>
         The chart above shows the relative change in income for each wealth
         decile. Households are sorted into ten equally-populated groups
@@ -207,4 +195,7 @@ export default function AverageImpactByWealthDecile(props) {
       </p>
     </>
   );
-}
+});
+AverageImpactByWealthDecile.displayName = "AverageImpactByWealthDecile";
+
+export default AverageImpactByWealthDecile;

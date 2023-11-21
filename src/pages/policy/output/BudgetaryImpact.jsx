@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useImperativeHandle, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, localeCode } from "../../../api/language";
@@ -6,12 +6,10 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import React, { useRef } from "react";
 
-export default function BudgetaryImpact(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const BudgetaryImpact = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
   const budgetaryImpact = impact.budget.budgetary_impact;
@@ -211,17 +209,14 @@ export default function BudgetaryImpact(props) {
     region === "us" || region === "uk"
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
-
-  // rewrite above but using labels/values
-  const data = labels.map((label, index) => {
+  const csvData = labels.map((label, index) => {
     return [label, values[index]];
   });
-
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "11px",
-    left: "80px",
-  };
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -238,16 +233,9 @@ export default function BudgetaryImpact(props) {
           <BudgetaryImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`budgetaryImpact${policyLabel}.csv`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
     </>
   );
-}
+});
+BudgetaryImpact.displayName = "BudgetaryImpact";
+
+export default BudgetaryImpact;

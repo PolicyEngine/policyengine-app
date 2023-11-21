@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useImperativeHandle } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, localeCode } from "../../../api/language";
@@ -6,11 +6,11 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
+import React from "react";
 
-export default function DetailedBudgetaryImpact(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const DetailedBudgetaryImpact = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
   // impact.budget_detail[program] = { baseline: x, reform: y, different: y - z }
@@ -166,20 +166,21 @@ export default function DetailedBudgetaryImpact(props) {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
 
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "48px",
-    left: "70px",
-  };
-
   // We have data in the form {child_benefit: {baseline: -14664753735.275948, difference: 0, reform: -14664753735.275948}, ...}
   // We need it in the form: [["Program", "Baseline", "Reform", "Difference"], ["Child benefit", -14664753735.275948, -14664753735.275948, 0], ...]
+  let csvData = Object.entries(impact.detailed_budget).map(
+    ([program, values]) => {
+      const programLabel = metadata.variables[program].label;
+      return [programLabel, values.baseline, values.reform, values.difference];
+    },
+  );
+  csvData.unshift(["Program", "Baseline", "Reform", "Difference"]);
 
-  let data = Object.entries(impact.detailed_budget).map(([program, values]) => {
-    const programLabel = metadata.variables[program].label;
-    return [programLabel, values.baseline, values.reform, values.difference];
-  });
-  data.unshift(["Program", "Baseline", "Reform", "Difference"]);
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -196,16 +197,9 @@ export default function DetailedBudgetaryImpact(props) {
           <DetailedBudgetaryImpactPlot />
         </HoverCard>
       </Screenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename="budgetaryImpactByProgram.csv"
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
     </>
   );
-}
+});
+DetailedBudgetaryImpact.displayName = "DetailedBudgetaryImpact";
+
+export default DetailedBudgetaryImpact;

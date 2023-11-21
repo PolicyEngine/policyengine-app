@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useImperativeHandle } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
@@ -7,12 +7,11 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React, { useRef } from "react";
 
-export default function RelativeImpactByDecile(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const RelativeImpactByDecile = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
   function RelativeImpactByDecilePlot(props) {
@@ -156,7 +155,7 @@ export default function RelativeImpactByDecile(props) {
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
   const csvHeader = ["Income Decile", "Relative Change"];
-  const data = [
+  const csvData = [
     csvHeader,
     ...Object.entries(impact.decile.relative).map(
       ([decile, relativeChange]) => {
@@ -164,11 +163,11 @@ export default function RelativeImpactByDecile(props) {
       },
     ),
   ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "40px",
-    left: "55px",
-  };
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -186,16 +185,6 @@ export default function RelativeImpactByDecile(props) {
           <RelativeImpactByDecilePlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`relativeImpactByDecile${policyLabel}.csv`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p>
         The chart above shows the relative change in income for each income
         decile. Households are sorted into ten equally-populated groups
@@ -203,4 +192,7 @@ export default function RelativeImpactByDecile(props) {
       </p>
     </>
   );
-}
+});
+RelativeImpactByDecile.displayName = "RelativeImpactByDecile";
+
+export default RelativeImpactByDecile;

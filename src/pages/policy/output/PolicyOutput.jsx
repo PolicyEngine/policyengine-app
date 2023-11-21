@@ -18,25 +18,30 @@ import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import getPolicyOutputTree from "./tree";
 import InequalityImpact from "./InequalityImpact";
-import { Result, Steps, Progress } from "antd";
-import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import useMobile from "../../../layout/Responsive";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
 import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
+import { Result, Steps, Progress, Button, Tooltip } from "antd";
 import {
   TwitterOutlined,
   FacebookFilled,
   LinkedinFilled,
   LinkOutlined,
+  FileImageOutlined,
+  CheckCircleFilled,
+  CloseCircleFilled,
+  FileTextOutlined,
 } from "@ant-design/icons";
 import React from "react";
 import { message } from "antd";
 import Analysis from "./Analysis";
 import style from "../../../style";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
+import html2canvas from "html2canvas";
+import { saveAs } from "file-saver";
 
 import { useScreenshot } from "use-react-screenshot";
 
@@ -100,11 +105,6 @@ export default function PolicyOutput(props) {
   const [, takeScreenShot] = useScreenshot();
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-
-  const handleScreenshot = () => {
-    console.log(imageRef.current);
-    setPreparingForScreenshot(true);
-  };
 
   useEffect(() => {
     if (preparingForScreenshot) {
@@ -316,8 +316,11 @@ export default function PolicyOutput(props) {
     policyLabel = `${baselineLabel} → ${reformLabel}`;
   }
   let pane;
+  const filename = /policyOutput\.(.+)/.exec(focus)[1] + `${policyLabel}`;
+  const childRef = useRef();
+  let showFileDownloadButtons = !mobile;
 
-  if (!impact & !skipImpacts) {
+  if (!impact && !skipImpacts) {
     // Show a Progress bar that fills up over time, taking 100 seconds to fill.
     pane = (
       <div style={{ textAlign: "center", paddingTop: 50 }}>
@@ -341,7 +344,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Budgetary impact | PolicyEngine`;
     pane = (
       <BudgetaryImpact
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -351,7 +354,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Detailed budgetary impact | PolicyEngine`;
     pane = (
       <DetailedBudgetaryImpact
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -361,7 +364,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Relative impact by decile | PolicyEngine`;
     pane = (
       <RelativeImpactByDecile
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -371,7 +374,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Average impact by decile | PolicyEngine`;
     pane = (
       <AverageImpactByDecile
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -381,7 +384,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Income intra-decile impact | PolicyEngine`;
     pane = (
       <IntraDecileImpact
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -392,7 +395,7 @@ export default function PolicyOutput(props) {
     pane = (
       <PovertyChangeProvider>
         <PovertyImpact
-          preparingForScreenshot={preparingForScreenshot}
+          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
@@ -404,7 +407,7 @@ export default function PolicyOutput(props) {
     pane = (
       <PovertyChangeProvider>
         <DeepPovertyImpact
-          preparingForScreenshot={preparingForScreenshot}
+          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
@@ -416,7 +419,7 @@ export default function PolicyOutput(props) {
     pane = (
       <PovertyChangeProvider>
         <PovertyImpactByGender
-          preparingForScreenshot={preparingForScreenshot}
+          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
@@ -428,7 +431,7 @@ export default function PolicyOutput(props) {
     pane = (
       <PovertyChangeProvider>
         <DeepPovertyImpactByGender
-          preparingForScreenshot={preparingForScreenshot}
+          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
@@ -440,7 +443,7 @@ export default function PolicyOutput(props) {
     pane = (
       <PovertyChangeProvider>
         <PovertyImpactByRace
-          preparingForScreenshot={preparingForScreenshot}
+          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
@@ -451,7 +454,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Inequality impact | PolicyEngine`;
     pane = (
       <InequalityImpact
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -461,7 +464,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Average impact by wealth decile | PolicyEngine`;
     pane = (
       <AverageImpactByWealthDecile
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -471,7 +474,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Relative impact by wealth decile | PolicyEngine`;
     pane = (
       <RelativeImpactByWealthDecile
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -481,7 +484,7 @@ export default function PolicyOutput(props) {
     document.title = `${policyLabel} | Wealth intra-decile impact | PolicyEngine`;
     pane = (
       <IntraWealthDecileImpact
-        preparingForScreenshot={preparingForScreenshot}
+        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
@@ -490,6 +493,7 @@ export default function PolicyOutput(props) {
   } else if (focus === "policyOutput.codeReproducibility") {
     document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = <Reproducibility metadata={metadata} policy={policy} />;
+    showFileDownloadButtons = false;
   } else if (focus === "policyOutput.analysis") {
     document.title = `${policyLabel} | Analysis | PolicyEngine`;
     pane = (
@@ -502,69 +506,65 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
+    showFileDownloadButtons = false;
   }
 
   if (focus === "policyOutput.cliffImpact") {
     document.title = `${policyLabel} | Cliff impact | PolicyEngine`;
-    pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
+    pane = (
+      <CliffImpact
+        ref={childRef}
+        metadata={metadata}
+        policyLabel={policyLabel}
+      />
+    );
   }
 
   const url = encodeURIComponent(window.location.href);
-  const link = (
-    // eslint-disable-next-line
-    <a
-      onClick={() => {
-        handleScreenshot();
-        navigator.clipboard.writeText(window.location.href);
-        message.info("Link copied to clipboard");
-      }}
-    >
-      <LinkOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
-  const twitter = (
-    <a
-      onClick={() => {
-        handleScreenshot();
-      }}
-      href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <TwitterOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
-  const facebook = (
-    <a
-      href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FacebookFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const linkedIn = (
-    <a
-      href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <LinkedinFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const commonStyle = {
-    border: "1px solid #ccc",
-    borderRadius: "0px",
-    padding: "6px",
-    marginRight: "-1px",
+
+  const downloadCSV = () => {
+    const data = childRef.current.getCsvData();
+    if (data !== null) {
+      const csvContent = data
+        .map((row) => row.map((cell) => `"${cell}"`).join(","))
+        .join("\r\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const tempLink = document.createElement("a");
+      tempLink.href = url;
+      tempLink.setAttribute("download", filename);
+      tempLink.style.display = "none";
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+
+      URL.revokeObjectURL(url);
+    }
   };
-  const shareItems = [link, twitter, facebook, linkedIn];
-  const shareDivs = shareItems.map((item, index) => (
-    <div key={index} style={commonStyle}>
-      {item}
-    </div>
-  ));
+
+  const downloadImage = async () => {
+    const downloadableContent = document.getElementById("downloadable-content");
+    if (downloadableContent) {
+      const paddedDiv = document.createElement("div");
+      paddedDiv.style.padding = "20px";
+      paddedDiv.style.backgroundColor = "white";
+      paddedDiv.style.display = "inline-block";
+      paddedDiv.style.boxSizing = "content-box"; // Add this line
+      paddedDiv.appendChild(downloadableContent.cloneNode(true));
+
+      document.body.appendChild(paddedDiv);
+
+      const canvas = await html2canvas(paddedDiv);
+
+      document.body.removeChild(paddedDiv);
+      canvas.toBlob((blob) => {
+        saveAs(blob, filename + ".png");
+      });
+    }
+  };
+
   const embed = new URLSearchParams(window.location.search).get("embed");
   const bottomElements =
     mobile & !embed ? null : metadata.countryId === "us" ? (
@@ -625,41 +625,79 @@ export default function PolicyOutput(props) {
 
   pane = (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          backgroundColor: style.colors.WHITE,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingBottom: 20,
-        }}
-      >
-        {!preparingForScreenshot && (
-          <h6
-            style={{
-              margin: 0,
-              paddingRight: 20,
-            }}
-          >
-            Share this result
-          </h6>
-        )}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          {!preparingForScreenshot && shareDivs}
-        </div>
-      </div>
       <PolicyImpactPopup
         metadata={metadata}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {pane}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          backgroundColor: style.colors.WHITE,
+          justifyContent: "center",
+          alignItems: "center",
+          paddingBottom: 20,
+          gap: 5,
+        }}
+      >
+        {!preparingForScreenshot && (
+          <>
+            {showFileDownloadButtons && (
+              <Tooltip title="Download the chart as a png file.">
+                <Button
+                  type="text"
+                  icon={<FileImageOutlined style={{ fontSize: 20 }} />}
+                  onClick={downloadImage}
+                />
+              </Tooltip>
+            )}
+            {showFileDownloadButtons && (
+              <Tooltip title="Download the data as a csv file.">
+                <Button
+                  type="text"
+                  icon={<FileTextOutlined style={{ fontSize: 20 }} />}
+                  onClick={downloadCSV}
+                />
+              </Tooltip>
+            )}
+            <Tooltip title="Share the link for the result.">
+              <Button
+                type="text"
+                icon={<LinkOutlined style={{ fontSize: 20 }} />}
+                onClick={() => {
+                  navigator.clipboard.writeText(window.location.href);
+                  message.info("Link copied to clipboard");
+                }}
+              />
+            </Tooltip>
+            <Tooltip title="Share the result on Twitter.">
+              <Button
+                type="link"
+                icon={<TwitterOutlined style={{ fontSize: 20 }} />}
+                href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`}
+              />
+            </Tooltip>
+            <Tooltip title="Share the result on Facebook.">
+              <Button
+                type="link"
+                icon={<FacebookFilled style={{ fontSize: 20 }} />}
+                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
+              />
+            </Tooltip>
+            <Tooltip title="Share the result on LinkedIn.">
+              <Button
+                type="link"
+                size="small"
+                icon={<LinkedinFilled style={{ fontSize: 20 }} />}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
+              />
+            </Tooltip>
+          </>
+        )}
+      </div>
       {!preparingForScreenshot && (
         <BottomCarousel
           selected={focus}

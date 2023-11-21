@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useImperativeHandle, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -6,12 +6,10 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import React, { useRef } from "react";
 
-export default function InequalityImpact(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const InequalityImpact = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
 
   const metricChanges = [
     impact.inequality.gini.reform / impact.inequality.gini.baseline - 1,
@@ -279,7 +277,7 @@ export default function InequalityImpact(props) {
     impact.inequality.top_10_pct_share.reform,
     impact.inequality.top_1_pct_share.reform,
   ];
-  const data = [
+  const csvData = [
     csvHeader,
     ...metricLabels.map((label, index) => {
       const baseline = baselineValues[index];
@@ -288,11 +286,11 @@ export default function InequalityImpact(props) {
       return [label, baseline, reform, change];
     }),
   ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "15px",
-    left: "80px",
-  };
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -309,20 +307,13 @@ export default function InequalityImpact(props) {
           <InequalityImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={data}
-            filename={`incomeInequilityImpact${policyLabel}.csv`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p>
         The chart above shows how this policy reform affects different measures
         of income inequality.
       </p>
     </>
   );
-}
+});
+InequalityImpact.displayName = "InequalityImpact";
+
+export default InequalityImpact;

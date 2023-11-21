@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import React, { useContext, useImperativeHandle, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
@@ -7,12 +7,10 @@ import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import { cardinal, percent } from "../../../api/language";
 import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
-import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import React, { useRef } from "react";
 
-export default function IntraWealthDecileImpact(props) {
-  const { impact, policyLabel, metadata, preparingForScreenshot } = props;
+const IntraWealthDecileImpact = React.forwardRef((props, ref) => {
+  const { impact, policyLabel, metadata } = props;
   const deciles = impact.intra_wealth_decile.deciles;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const all = impact.intra_wealth_decile.all;
@@ -489,11 +487,11 @@ export default function IntraWealthDecileImpact(props) {
       all["Lose more than 5%"],
     ],
   ];
-  const downloadButtonStyle = {
-    position: "absolute",
-    bottom: "47px",
-    left: "46px",
-  };
+  useImperativeHandle(ref, () => ({
+    getCsvData() {
+      return csvData;
+    },
+  }));
 
   return (
     <>
@@ -507,16 +505,6 @@ export default function IntraWealthDecileImpact(props) {
           <IntraWealthDecileImpactPlot />
         </HoverCard>
       </DownloadableScreenshottable>
-      <div className="chart-container">
-        {!mobile && (
-          <DownloadCsvButton
-            preparingForScreenshot={preparingForScreenshot}
-            content={csvData}
-            filename={`intraWealthDecileImpact${policyLabel}.csv`}
-            style={downloadButtonStyle}
-          />
-        )}
-      </div>
       <p>
         The chart above shows percentage of of people in each household wealth
         decile who experience different outcomes. Households are sorted into ten
@@ -525,4 +513,7 @@ export default function IntraWealthDecileImpact(props) {
       </p>
     </>
   );
-}
+});
+IntraWealthDecileImpact.displayName = "IntraWealthDecileImpact";
+
+export default IntraWealthDecileImpact;
