@@ -10,7 +10,6 @@ import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import DownloadCsvButton from "./DownloadCsvButton";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import React, { useRef } from "react";
-import wrapAnsi from "wrap-ansi";
 
 export default function IntraDecileImpact(props) {
   const { impact, policyLabel, metadata, preparingForScreenshot } = props;
@@ -56,14 +55,14 @@ export default function IntraDecileImpact(props) {
           : `<b>Decile %{y}</b><br><br>`;
       const body =
         type1 === "all"
-          ? `Of all households, ${policyLabel} would cause %{customdata} of people to ` +
+          ? `Of all households, ${policyLabel} would cause<br>%{customdata} of people to ` +
             hoverTextMap[type2] +
-            ` of their net income.<extra></extra>`
-          : `Of households in the %{customdata.group} decile, ` +
-            `${policyLabel} would cause %{customdata.value} of people to ` +
+            ` of<br>their net income.<extra></extra>`
+          : `Of households in the %{customdata.group} decile,<br>` +
+            `${policyLabel} would cause %{customdata.value} of<br>people to ` +
             hoverTextMap[type2] +
-            ` their net income.<extra></extra>`;
-      return hdr + wrapAnsi(body, 50).replaceAll("\n", "<br>");
+            ` their net<br>income.<extra></extra>`;
+      return hdr + body;
     }
 
     function trace(type1, type2) {
