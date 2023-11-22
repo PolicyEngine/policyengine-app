@@ -706,11 +706,11 @@ let posts = [
     authors: ["nikhil-woodruff"],
   },
   {
-    title: "Autumn Statement 2023 pre-briefing",
+    title: "Autumn Statement 2023 tax-benefit reforms",
     description:
-      "The Times reports that Hunt will cut National Insurance and uprate benefits. PolicyEngine evaluates these proposals.",
-    date: "2023-11-21 22:00:00",
-    filename: "autumn-statement-2023-pre-briefing.md",
+      "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
+    date: "2023-11-22 22:00:00",
+    filename: "autumn-statement-2023.md",
     tags: ["uk", "policy", "featured"],
     image: "jeremy-hunt.jpg",
     authors: ["nikhil-woodruff"],
