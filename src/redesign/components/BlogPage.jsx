@@ -577,19 +577,30 @@ function BlogContent({ markdown, backgroundColor }) {
           <div
             style={{
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
               padding: 0,
-              marginTop: 50,
-              marginBottom: 50,
+              marginTop: 25,
+              marginBottom: 25,
+              paddingTop: 25,
+              paddingBottom: 25,
+              borderTop: "2px solid gray",
+              borderBottom: "2px solid gray",
             }}
           >
+            <p style={{
+              fontFamily: "Roboto Serif",
+              color: style.colors.GRAY,
+              textEmphasis: "italic",
+            }}>
+            {alt}
+          </p>
             <img
               src={src}
               alt={alt}
               style={{
                 width: "100%",
                 objectFit: "contain",
-                maxHeight: 400,
               }}
             />
           </div>
