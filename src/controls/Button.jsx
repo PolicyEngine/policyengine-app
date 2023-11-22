@@ -20,6 +20,21 @@ const buttonStyles = {
   }
 };
 
+/**
+ * Standardized button that takes a series of props; for links, use LinkButton instead
+ * @param {Object} [props]
+ * @param {String} [props.text] The text to be displayed on the button
+ * @param {Function} [props.onClick] A click event to be fired
+ * @param {String|Number} [props.width] The desired width of the button; Number-type sets width to px
+ * @param {String} [props.type] A defined type for the button from among "primary", "secondary", or "default"
+ * @param {Object} [props.size] A JSX styling object; overrides props.width when passed
+ * @param {String|Number} [props.height] The desired height of the button; Number-type sets height to px
+ * @param {String} [props.hoverStart="left"] The desired direction from which the button's hover effect starts
+ * @param {String} [props.backgroundColor] Desired background color, overriding default styling
+ * @param {String} [props.activeBackgroundColor] Desired background color when button is hovered and ":active"
+ * @param {Object} [props.style] Desired JSX-formatted styling object; overrides all other style attributes
+ * @returns {import("react").ReactComponentElement}
+ */
 export default function Button(props) {
   let {
     text,

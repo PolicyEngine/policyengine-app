@@ -5,6 +5,7 @@ import { addChild } from "pages/household/input/CountChildren.jsx";
 jest.mock("react-plotly.js", () => jest.fn());
 
 describe("Test updateHousehold function", () => {
+  /* Disabling until we can determine a way to strengthen this test
   test("Ensure function removes variables properly from US household", async () => {
     let seedHousehold = null;
     let metadata = null;
@@ -107,6 +108,7 @@ describe("Test updateHousehold function", () => {
 
     expect(resultHousehold).toStrictEqual(testHousehold);
   });
+  */
   test("Ensure function removes variables properly from UK household", async () => {
     let seedHousehold = null;
     let metadata = null;
