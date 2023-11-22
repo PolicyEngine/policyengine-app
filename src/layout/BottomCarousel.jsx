@@ -56,7 +56,7 @@ export default function BottomCarousel(props) {
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (
-          <div style={{ width: 50 }} />
+          <div style={{ width: 60 }} />
         )}
       </div>
     </div>
