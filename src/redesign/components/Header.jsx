@@ -97,30 +97,34 @@ function MobileHeaderLogo() {
 }
 
 function MobileCalculatorButton() {
+  const countryId = useCountryId();
+
   return (
-    <div
-      style={{
-        backgroundColor: "#39C6C0",
-        height: 50,
-        width: 50,
-        margin: 20,
-        marginLeft: "auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-      }}
-    >
-      <img
-        src={CalculatorIcon}
-        alt="Calculator icon"
+    <Link to={`/${countryId}/calculator`}>
+      <div
         style={{
-          height: 30,
-          width: 30,
-          objectFit: "contain",
+          backgroundColor: "#39C6C0",
+          height: 50,
+          width: 50,
+          margin: 20,
+          marginLeft: "auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
         }}
-      />
-    </div>
+      >
+        <img
+          src={CalculatorIcon}
+          alt="Calculator icon"
+          style={{
+            height: 30,
+            width: 30,
+            objectFit: "contain",
+          }}
+        />
+      </div>
+    </Link>
   );
 }
 
