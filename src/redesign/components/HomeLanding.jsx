@@ -105,7 +105,7 @@ export default function HomeLanding() {
       <div
         style={{
           width: desktop ? "50vw" : "80vw",
-          height: 300,
+          height: desktop ? 300 : "min-content",
           top: 200,
           left: desktop ? "20vw" : "10vw",
           position: "absolute",
@@ -120,8 +120,8 @@ export default function HomeLanding() {
       >
         <div
           style={{
-            width: 400,
-            heiight: "100%",
+            width: desktop ? 400 : "100%",
+            height: "100%",
             padding: 20,
             display: "flex",
             flexDirection: "column",
@@ -130,7 +130,7 @@ export default function HomeLanding() {
           <h1
             style={{
               color: "white",
-              fontSize: 55,
+              fontSize: desktop ? 55 : 40,
               alignItems: "center",
               margin: 0,
             }}
