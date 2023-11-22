@@ -77,13 +77,15 @@ export default function CookieConsent() {
           className="cookie-consent"
           style={{
             position: "fixed",
+            width: "fit-content",
             bottom: 20,
             left: 0,
+            right: 0,
             padding: "1em",
             background: colors.WHITE,
             zIndex: 1000,
-            borderRadius: 50,
-            x: displayCategory === "mobile" ? 0 : "30vw",
+            borderRadius: 10,
+            margin: "0 auto",
             display: "flex",
             alignItems: "center",
             flexDirection: displayCategory === "mobile" ? "column" : "row",
@@ -92,7 +94,7 @@ export default function CookieConsent() {
             paddingRight: 20,
           }}
         >
-          <p style={{ margin: 0, marginBottom: useDisplayCategory === "mobile" && 10, marginTop: 10 }}>
+          <p style={{ margin: 0 }}>
             This site uses cookies to improve your experience.
           </p>
           <div style={{ display: "flex" }}>
