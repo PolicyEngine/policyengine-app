@@ -705,6 +705,16 @@ let posts = [
     image: "citizens-economic-council.png",
     authors: ["nikhil-woodruff"],
   },
+  {
+    title: "Autumn Statement 2023 tax-benefit reforms",
+    description:
+      "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
+    date: "2023-11-22 17:25",
+    filename: "autumn-statement-2023.md",
+    tags: ["uk", "policy", "featured"],
+    image: "jeremy-hunt.jpg",
+    authors: ["nikhil-woodruff"],
+  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
