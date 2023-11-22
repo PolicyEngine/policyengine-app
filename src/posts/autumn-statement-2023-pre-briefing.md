@@ -1,20 +1,27 @@
-Today, the Chancellor of the Exchequer Jeremy Hunt will deliver the annual [Autumn Statement](https://commonslibrary.parliament.uk/what-is-the-autumn-statement/), widely expected to include policy reforms to both taxes and benefits. Yesterday evening, the Times [reported](https://www.thetimes.co.uk/article/national-living-wage-rise-jeremy-hunt-autumn-statement-j9f0pssxw) that these reforms will specifically include:
+Today, the Chancellor of the Exchequer Jeremy Hunt delivered the annual [Autumn Statement](https://commonslibrary.parliament.uk/what-is-the-autumn-statement/), widely expected to include policy reforms to both taxes and benefits. Yesterday evening, the Times [reported](https://www.thetimes.co.uk/article/national-living-wage-rise-jeremy-hunt-autumn-statement-j9f0pssxw) under consideration were:
 
 * A 1p cut to the main rates of National Insurance
 * A 6.7% increase in non-State Pension benefit payment levels
 * An 8.5% increase in the State Pension payment level
 
-Previous reports have suggested alternative reforms to be under consideration:
+Previous reports also suggested:
 
 * A 1p cut to the basic rate of Income Tax ([the Financial Times](https://www.ft.com/content/aafea716-30d5-4518-98fe-169f6995173e))
 * A less-than-inflation increase in benefit payment levels ([Christians against Poverty](https://capuk.org/news-and-blog/what-will-be-in-the-autumn-statement) and [others](https://www.theguardian.com/society/2023/nov/15/jeremy-hunt-urged-not-to-use-sharp-fall-in-inflation-to-squeeze-benefits))
 * Cuts to Stamp Duty and Inheritance tax ([The Times](https://www.thetimes.co.uk/article/autumn-statement-2023-predictions-jeremy-hunt-budget-tax-cuts-03sms6x82))
 
-In this post, we'll delve into PolicyEngine's budgetary, distributional and poverty impacts for these proposed tax and benefit modifications, examining them both as standalone measures and as a combined reform.
+Instead, the Chancellor announced:
+
+* An abolition of Class 2 National Insurance
+* A 1p cut to the main rates of National Insurance
+* Benefit uprating in line with inflation (6.7%)
+* State Pension uprating in line with earnings (8.5%)
+
+In this post, we'll delve into PolicyEngine's budgetary, distributional and poverty impacts for these tax and benefit modifications, examining them both as standalone measures and as a combined reform.
 
 ## National Insurance cuts
 
-The Times reported that Hunt would lower the main Class 1 and Class 4 National Insurance rates by 1p, from 12p to 11p and from 9p to 8p, respectively.
+
 
 ### Household impact
 
@@ -22,7 +29,7 @@ For a [single person with only employment income](https://policyengine.org/uk/ho
 
 ![Figure 1: Impact of cutting 1p from NI rates on a single person](https://user-images.githubusercontent.com/6076111/284797339-85e26a58-d5f9-4417-a2af-61f7106cf90e.png)
 
-[*See how the National Insurance cuts would affect your own household using our personalised calculator*](https://policyengine.org/uk/household?focus=intro&reform=37170&region=uk&timePeriod=2023&baseline=1)
+*See how the National Insurance cuts would affect your own household using our [personalised calculator](https://policyengine.org/uk/household?focus=intro&reform=37170&region=uk&timePeriod=2023&baseline=1)*
 
 ### Societal impact
 
@@ -45,25 +52,10 @@ The Times reported that Hunt will increase benefits in accordance with separate 
 
 This section compares these combined reforms against a counterfactual where benefits are not uprated at all.
 
-### Household impact
-
-For a [single person](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=37185&region=uk&timePeriod=2023&baseline=1&household=32608), benefit uprating raises net income by the maximum of £279 if they have no earnings. If they earn at least £7,500, the benefit of uprating is reduced to £10, where it remains.
-
-![Figure 4: Impact of benefit uprating on a single person](https://user-images.githubusercontent.com/6076111/284802619-1be7078f-6383-49b4-a351-bf566befa47a.png)
-
-A [family of four](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=37185&region=uk&timePeriod=2023&baseline=1&household=35960) (two adults and two children) will gain the maximum of £989 until they earn about £6,500, at which point it falls to £136 at £38,000 earnings.
-
-![Figure 5: Impact of benefit uprating on a family of four](https://user-images.githubusercontent.com/6076111/284803407-bd64312d-a0a0-4a1c-94b6-8181953512f0.png)
-
-Finally, a [couple of pension age](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=37185&region=uk&timePeriod=2023&baseline=1&household=35963) will gain the maximum of £981, falling to £10 at £17,500 earnings.
-
-![Figure 6: Impact of benefit uprating on a pensioner couple](https://user-images.githubusercontent.com/6076111/284803535-14b3592a-2895-4cb0-a9e2-c0a7d175b56e.png)
-
-[*See how benefit uprating would affect your own household using our personalised calculator*](https://policyengine.org/uk/household?focus=intro&reform=37185&region=uk&timePeriod=2023&baseline=1)
 
 ### Societal impact
 
-Compared to not uprating benefits at all, we estimate that these increases combined would cost [£7.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37191&region=uk&timePeriod=2023&baseline=1) and [£9.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37181&region=uk&timePeriod=2023&baseline=1) in the first year, respectively. Together, they would cost [£16.7 billion](https://policyengine.org/uk/policy?focus=policyOutput.detailedBudgetaryImpact&reform=37185&region=uk&timePeriod=2023&baseline=1).
+Compared to not uprating benefits at all, we estimate that these increases combined would cost [£4.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37508&region=uk&timePeriod=2024&baseline=1) and [£9.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37181&region=uk&timePeriod=2023&baseline=1) in the first year, respectively. Together, they would cost [£12 billion](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37512&region=uk&timePeriod=2024&baseline=1) when interactions between the two are combined (for example, Pension Credit is reduced by increases in the State Pension).
 
 These reforms benefit the lowest income deciles the most: the bottom decile sees an average gain of over 5%, while the top decile sees a gain of 0.3%.
 
