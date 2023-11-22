@@ -100,20 +100,20 @@ function MobileCalculatorButton() {
   const countryId = useCountryId();
 
   return (
-    <Link to={`/${countryId}/calculator`}>
-      <div
-        style={{
-          backgroundColor: "#39C6C0",
-          height: 50,
-          width: 50,
-          margin: 20,
-          marginLeft: "auto",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-        }}
-      >
+    <div
+      style={{
+        backgroundColor: "#39C6C0",
+        height: 50,
+        width: 50,
+        margin: 20,
+        marginLeft: "auto",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+      }}
+    >
+      <Link to={`/${countryId}/calculator`}>
         <img
           src={CalculatorIcon}
           alt="Calculator icon"
@@ -123,8 +123,8 @@ function MobileCalculatorButton() {
             objectFit: "contain",
           }}
         />
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
