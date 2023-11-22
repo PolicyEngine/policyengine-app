@@ -46,13 +46,13 @@ He notably did _not_ announce reforms that outlets had previously reported he wa
 
 ## Household impacts of NIC cuts
 
-For a [single person with only employment income](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=37636&region=uk&timePeriod=2023&baseline=1&household=37636), this reform produces a benefit if they earn at least £12,570. It would produce the maximum benefit of £377 if they earn at least £50,500.
+For a [single person with only employment income](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=37636&region=uk&timePeriod=2023&baseline=1&household=32608), this reform produces a benefit if they earn at least £12,570. It would produce the maximum benefit of £377 if they earn at least £50,500.
 
-![Figure 1: Impact of cutting 2p from NI rates on a single person](https://user-images.githubusercontent.com/35577657/284982425-25baa238-cdff-4beb-8d23-37a243fde848.png)
+![Figure 1: Impact of cutting 2p from NI rates on a single person](https://user-images.githubusercontent.com/6076111/285001945-5d30d660-75c5-4fcd-9651-9b2fccab300a.png)
 
 These reforms lower marginal tax rates for individuals earning within that region by 2 percentage points.
 
-![Figure 2: Impact of cutting 2p from NI rates on a single person's marginal tax rates](https://user-images.githubusercontent.com/35577657/284982742-c1997732-6d33-4763-8597-984f61c798d8.png)
+![Figure 2: Impact of cutting 2p from NI rates on a single person's marginal tax rates](https://user-images.githubusercontent.com/6076111/285002391-620c0fa8-7a39-4bd5-a68f-c0afa987d029.png)
 
 _See how the National Insurance cuts would affect your own household using our [personalised calculator](https://policyengine.org/uk/household?focus=intro&reform=37636&region=uk&timePeriod=2023&baseline=1)._
 
@@ -68,8 +68,8 @@ Our estimates exceed those from HM Treasury by about 12%, disproportionately due
 
 | Reform                             | HM Treasury | PolicyEngine | Relative difference | PolicyEngine link                                                                                                           |
 | ---------------------------------- | ----------- | ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Lower Class 1 NICs from 12% to 10% | 8.715       | 9.69         | 11.3%               | [#28973](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=28973&region=uk&timePeriod=2024&baseline=1) |
-| Lower Class 4 NICs from 9% to 8%   | 0.345       | 0.44         | 26.9%               | [#37642](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37642&region=uk&timePeriod=2024&baseline=1) |
+| Lower Class 1 NICs from 12% to 10% | 8.72       | 9.69         | 11.3%               | [#28973](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=28973&region=uk&timePeriod=2024&baseline=1) |
+| Lower Class 4 NICs from 9% to 8%   | 0.35       | 0.44         | 26.9%               | [#37642](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37642&region=uk&timePeriod=2024&baseline=1) |
 | Abolish Class 2 NICs               | 0.38        | 0.42         | 9.4%                | [#37665](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37665&region=uk&timePeriod=2024&baseline=1) |
 | Total                              | 9.44        | 10.54        | 11.8%               | [#37636](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37636&region=uk&timePeriod=2024&baseline=1) |
 
@@ -87,4 +87,4 @@ The reform has a [small, ambiguous effect on income inequality](https://policyen
 
 ## Conclusion
 
-In summary, PolicyEngine estimates the Autumn Budget 2023's National Insurance reforms will cost £10.5 billion in 2024, and will benefit two in three Britons, disproportionately those in higher-income households. We project a small, ambiguous effect on income inequality, and a 0.5% poverty reduction. We invite readers to [use our personalised calculator to estimate the impact on their own household](https://policyengine.org/uk/household?focus=intro&reform=37636&region=uk&timePeriod=2023&baseline=1), and to follow our work for more analyses of current tax and benefit policies.
+In summary, PolicyEngine estimates the Autumn Budget 2023's National Insurance reforms will cost £10.5 billion in 2024, and will benefit two in three Britons, disproportionately those in higher-income households. We project a small, ambiguous effect on income inequality, and a 0.5% poverty reduction. We invite readers to use our [personalised calculator](https://policyengine.org/uk/household?focus=intro&reform=37636&region=uk&timePeriod=2023&baseline=1) to estimate the impact on their own household, and to follow our work for more analyses of current tax and benefit policies.
