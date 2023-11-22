@@ -82,6 +82,8 @@ export default function CookieConsent() {
             left: 0,
             right: 0,
             padding: "1em",
+            paddingTop: displayCategory === "mobile" ? "calc(1em + 10px)" : "1em",
+            paddingBottom: displayCategory === "mobile" ? "calc(1em + 10px)" : "1em",
             background: colors.WHITE,
             zIndex: 1000,
             borderRadius: 10,
@@ -92,22 +94,29 @@ export default function CookieConsent() {
             boxShadow: "0 0 10px rgba(0,0,0,0.2)",
             paddingLeft: 20,
             paddingRight: 20,
+            gap: "20px"
           }}
         >
           <p style={{ margin: 0 }}>
             This site uses cookies to improve your experience.
           </p>
-          <div style={{ display: "flex" }}>
+          <div 
+            style={{ 
+              display: "flex",
+              flexDirection: displayCategory === "mobile" ? "column" : "row",
+              gap: "20px"
+            }}
+          >
             <Button
               onClick={acceptCookies}
               text="Accept"
-              style={{ marginLeft: 20 }}
+              // style={{ marginLeft: 20 }}
               type="primary"
             />
             <Button
               onClick={noCookies}
               text="Decline"
-              style={{ marginLeft: 20 }}
+              // style={{ marginLeft: 20 }}
             />
           </div>
         </motion.div>
