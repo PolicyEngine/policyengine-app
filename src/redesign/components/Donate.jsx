@@ -4,15 +4,52 @@ import Section from "./Section";
 import style from "../style";
 import PageHeader from "./PageHeader";
 import useDisplayCategory from "./useDisplayCategory";
-import ActionButton from "./ActionButton";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const desktop = displayCategory === "top";
+  const pslFoundUrl = "https://psl-foundation.org";
+  const openCollectiveUrl = "https://opencollective.com/psl-foundation";
+  const pslFoundEmail = "mailto:jason.debacker@psl-foundation.org";
+  const policyEngineEmail = "mailto:hello@policyengine.org";
 
-  const handleButtonClick = () => {
-    window.open("https://opencollective.com/psl-foundation", "_blank");
+  const getDonateContent = () => {
+    return (
+      <>
+        <div
+          style={{
+            flex: 1.5,
+            marginRight: displayCategory === "mobile" ? 0 : 100,
+            marginTop: 20,
+            fontFamily: style.fonts.BODY_FONT,
+          }}
+        >
+          <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+            You can support PolicyEngine&apos;s work by donating through our
+            fiscal sponsor, the{" "}
+            <a href={pslFoundUrl} target="_blank" rel="noreferrer">
+              PSL Foundation
+            </a>
+            .
+          </p>
+          <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+            Donate by credit card{" "}
+            <a href={openCollectiveUrl} target="_blank" rel="noreferrer">
+              here
+            </a>{" "}
+            or <a href={pslFoundEmail}>email</a> the PSL Foundation for other
+            options. Please email <a href={policyEngineEmail}>us</a> or the{" "}
+            <a href={pslFoundEmail}>PSL Foundation </a>
+            when you&apos;ve donated to ensure your gift is directed to
+            PolicyEngine.
+          </p>
+          <p style={{ fontFamily: style.fonts.BODY_FONT }}>
+            Your donation is tax-deductible in the US.
+          </p>
+        </div>
+      </>
+    );
   };
 
   return (
@@ -37,26 +74,7 @@ export default function Donate() {
             alignItems: "center",
           }}
         >
-          <div
-            style={{
-              flex: 1.5,
-              marginRight: displayCategory === "mobile" ? 0 : 100,
-              marginTop: 20,
-            }}
-          >
-            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
-              You can support PolicyEngine&apos;s work by donating through our
-              fiscal sponsor, the PSL Foundation.
-            </p>
-            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
-              Donate by credit card here or email the PSL Foundation for other
-              options. Please email us or the PSL Foundation when you&apos;ve
-              donated to ensure your gift is directed to PolicyEngine.
-            </p>
-            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
-              Your donation is tax-deductible in the US.
-            </p>
-          </div>
+          {getDonateContent()}
           <div
             style={{
               flex: 1,
@@ -65,18 +83,36 @@ export default function Donate() {
               maxHeight: 100,
             }}
           >
-            <ActionButton
-              text={
-                <div style={{ textAlign: "center", color: "white" }}>
-                  <span style={{ whiteSpace: "pre-line" }}>
-                    Donate on{"\n"}Open Collective
-                  </span>
-                </div>
-              }
-              onClick={handleButtonClick}
-              width={desktop ? 450 : mobile ? "70vw" : "30vw"}
-              noArrow={true}
-            />
+            <a
+              href={openCollectiveUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                flex: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: style.colors.TEAL_ACCENT,
+                padding: "15px",
+                textAlign: "center",
+                width: desktop ? 450 : mobile ? "70vw" : "30vw",
+                marginTop: 0,
+                color: "white",
+                paddingLeft: 30,
+                paddingRight: 30,
+                fontSize: 15,
+                fontFamily: "Roboto",
+                fontWeight: 500,
+                letterSpacing: 2.4,
+                textTransform: "uppercase",
+              }}
+            >
+              <div style={{ textAlign: "center", color: "white" }}>
+                <span style={{ whiteSpace: "pre-line" }}>
+                  Donate on{"\n"}Open Collective
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </Section>
@@ -91,27 +127,7 @@ export default function Donate() {
             color: style.colors.BLACK,
           }}
         >
-          <div
-            style={{
-              flex: 1.5,
-              marginTop: 20,
-              marginRight: displayCategory === "mobile" ? 0 : 100,
-            }}
-          >
-            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
-              You can support PolicyEngine&apos;s work by donating through our
-              fiscal sponsor, the PSL Foundation.
-            </p>
-            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
-              Donate by credit card here or email the PSL Foundation for other
-              options. Please email us or the PSL Foundation when you&apos;ve
-              donated to ensure your gift is directed to PolicyEngine.
-            </p>
-            <p style={{ fontFamily: style.fonts.BODY_FONT }}>
-              Your donation is tax-deductible in the US.
-            </p>
-          </div>
-
+          {getDonateContent()}
           <div
             style={{
               flex: 1,
