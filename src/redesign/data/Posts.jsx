@@ -714,7 +714,7 @@ let posts = [
     tags: ["uk", "policy", "featured"],
     image: "jeremy-hunt.jpg",
     authors: ["nikhil-woodruff"],
-  }
+  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {

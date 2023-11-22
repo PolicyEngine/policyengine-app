@@ -588,13 +588,15 @@ function BlogContent({ markdown, backgroundColor }) {
               borderBottom: "2px solid gray",
             }}
           >
-            <p style={{
-              fontFamily: "Roboto Serif",
-              color: style.colors.GRAY,
-              textEmphasis: "italic",
-            }}>
-            {alt}
-          </p>
+            <p
+              style={{
+                fontFamily: "Roboto Serif",
+                color: style.colors.GRAY,
+                textEmphasis: "italic",
+              }}
+            >
+              {alt}
+            </p>
             <img
               src={src}
               alt={alt}
