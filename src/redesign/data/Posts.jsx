@@ -708,11 +708,11 @@ let posts = [
   {
     title: "Autumn Statement 2023 pre-briefing",
     description:
-      "PolicyEngine estimates the impact of reported proposed reforms to National Insurance.",
+      "The Times reports that Hunt will cut National Insurance and uprate benefits. PolicyEngine evaluates these proposals.",
     date: "2023-11-21 22:00:00",
     filename: "autumn-statement-2023-pre-briefing.md",
     tags: ["uk", "policy", "featured"],
-    image: "citizens-economic-council.png",
+    image: "jeremy-hunt.jpg",
     authors: ["nikhil-woodruff"],
   }
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
