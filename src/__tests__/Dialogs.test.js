@@ -1,8 +1,22 @@
+import { useState } from "react";
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { screen } from '@testing-library/react';
+import { BrowserRouter, useSearchParams } from "react-router-dom";
 
 import CookieConsent from "layout/CookieConsent";
+import HouseholdOutput from "pages/household/output/HouseholdOutput";
+
+jest.mock("react-plotly.js", () => jest.fn());
+
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+  return {
+    __esModule: true,
+    ...originalModule,
+    useSearchParams: jest.fn()
+  };
+});
 
 describe("Test cookie consent pop-up", () => {
   test("Test that pop-up appears without cookie existing", async () => {
@@ -43,5 +57,32 @@ describe("Test cookie consent pop-up", () => {
 });
 describe("Test PoliciesModelledPopup", () => {
   test("Test that pop-up appears after beginning calculations", () => {
+    const testProps = {
+      policy: {
+        reform: {
+          label: "testVal"
+        },
+        baseline: {
+          label: "testVal"
+        }
+      }
+    };
+
+    useSearchParams.mockImplementation(() => {
+      const get = () => "gov.irs.ald.loss.capital.max.HEAD_OF_HOUSEHOLD";
+      return [{ get }];
+    });
+
+    const {getByText} = render(
+      <BrowserRouter>
+        <HouseholdOutput
+          loading={true}
+          policy={testProps.policy}
+        />
+      </BrowserRouter>
+    );
+
+    expect(getByText("PolicyEngine results may not constitute exact tax liabilities or benefit entitlements.")).toBeInTheDocument();
+
   });
 });
