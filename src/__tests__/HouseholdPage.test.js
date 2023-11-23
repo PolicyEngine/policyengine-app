@@ -1,6 +1,7 @@
 import { updateHousehold } from "pages/HouseholdPage.jsx";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
-import { addChild } from "pages/household/input/CountChildren.jsx";
+// Temporarily disabling below
+// import { addChild } from "pages/household/input/CountChildren.jsx"; 
 
 jest.mock("react-plotly.js", () => jest.fn());
 
