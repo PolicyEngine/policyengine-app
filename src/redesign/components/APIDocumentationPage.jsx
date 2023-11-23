@@ -414,8 +414,8 @@ function APIEndpoint({
       <p>{description}</p>
 
       <div
-        style={{ 
-          display: "flex", 
+        style={{
+          display: "flex",
         }}
       >
         {hasInput && (
