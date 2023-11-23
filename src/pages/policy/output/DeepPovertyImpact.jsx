@@ -105,9 +105,6 @@ export default function DeepPovertyImpact(props) {
           },
         ]}
         layout={{
-          xaxis: {
-            title: "Age group",
-          },
           yaxis: {
             title: "Relative change",
             tickformat: "+,.1%",
