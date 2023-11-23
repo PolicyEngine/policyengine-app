@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { screen } from '@testing-library/react';
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 
@@ -27,7 +27,9 @@ describe("Test cookie consent pop-up", () => {
     await new Promise((r) => setTimeout(r, 1250));
 
     // Ensure that component returns
-    expect(getByText("Accept")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText("Accept")).toBeInTheDocument();
+    })
 
   });
 
@@ -46,11 +48,13 @@ describe("Test cookie consent pop-up", () => {
     await new Promise((r) => setTimeout(r, 1250));
 
     // Ensure that return is null
-    const acceptButton = screen.queryByText("Accept");
-    expect(acceptButton).toBeNull();
+    await waitFor(() => {
+      const acceptButton = screen.queryByText("Accept");
+      expect(acceptButton).toBeNull();
+    });
 
     // Remove cookie
-    delete window.document.cookie;
+      delete window.document.cookie;
 
   });
 
