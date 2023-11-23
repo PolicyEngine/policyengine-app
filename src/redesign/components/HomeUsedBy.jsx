@@ -41,10 +41,11 @@ export default function HomeUsedBy() {
           style={{
             display: "flex",
             justifyContent: {
-              mobile: "center",
-              tablet: "center",
-              desktop: "center",
+              mobile: "space-around",
+              tablet: "space-around",
+              desktop: "space-around",
             }[displayCategory],
+            flexWrap: "wrap",
             marginBottom: 30,
             marginTop: 20,
           }}
@@ -61,15 +62,15 @@ export default function HomeUsedBy() {
 function IndividualOrg({ name, logo, link }) {
   const displayCategory = useDisplayCategory();
   const size = {
-    mobile: 80,
-    tablet: 100,
-    desktop: 60,
+    mobile: 100,
+    tablet: 120,
+    desktop: 120,
   }[displayCategory];
   return (
     <a href={link}>
       <div
         style={{
-          width: size,
+          maxWidth: size,
           display: "flex",
           flexDirection: {
             mobile: "row",
