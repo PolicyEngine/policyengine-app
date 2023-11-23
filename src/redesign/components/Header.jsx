@@ -97,8 +97,12 @@ function MobileHeaderLogo() {
 }
 
 function MobileCalculatorButton() {
+  const countryId = useCountryId();
   return (
     <div
+      onClick={
+        () => window.open(`/${countryId}/calculator`, "_self")
+      }
       style={{
         backgroundColor: "#39C6C0",
         height: 50,
