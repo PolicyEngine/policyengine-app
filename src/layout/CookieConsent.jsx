@@ -1,6 +1,4 @@
 import "../redesign/style/App.css";
-// gtag likely deprecated
-// import gtag from "./api/analytics"; 
 import { motion } from "framer-motion";
 import React from "react";
 import Button from "../controls/Button";
@@ -43,15 +41,6 @@ export default function CookieConsent() {
       // Set the consent cookie to 'granted'
       document.cookie = "consent=granted;max-age=31536000;path=/";
     }, 500);
-
-    /* Likely deprecated
-    gtag("consent", "default", {
-      ad_storage: "denied",
-      analytics_storage: "denied",
-    });
-    gtag("js", new Date());
-    gtag("config", "G-91M4529HE7");
-    */
   };
 
   const noCookies = () => {
