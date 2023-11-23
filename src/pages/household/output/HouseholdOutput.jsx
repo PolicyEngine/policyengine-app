@@ -9,15 +9,9 @@ import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
 import PoliciesModelledPopup from "./PoliciesModelledPopup";
 import HOUSEHOLD_OUTPUT_TREE from "./tree";
-import {
-  TwitterOutlined,
-  FacebookFilled,
-  LinkedinFilled,
-  LinkOutlined,
-} from "@ant-design/icons";
 import React from "react";
 import { message } from "antd";
-import style from "../../../style";
+import ResultActions from "layout/ResultActions";
 
 export default function HouseholdOutput(props) {
   const [searchParams] = useSearchParams();
@@ -126,104 +120,31 @@ export default function HouseholdOutput(props) {
     );
   }
 
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    message.info("Link copied to clipboard");
+  }
+
   const url = encodeURIComponent(window.location.href);
-  const link = (
-    <a
-      onClick={() => {
-        navigator.clipboard.writeText(window.location.href);
-        message.info("Link copied to clipboard");
-      }}
-    >
-      <LinkOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
   const encodedPolicyLabel = encodeURIComponent(policyLabel);
   const urlParams = new URLSearchParams(window.location.search);
   const householdId = urlParams.get("household");
-  let twitter;
-  if (reformLabel == "Current law") {
-    twitter = (
-      <a
-        href={`https://twitter.com/intent/tweet?url=${url}&text=Household%20%23${householdId}%2C%20on%20PolicyEngine`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <TwitterOutlined style={{ fontSize: 23 }} />
-      </a>
-    );
-  } else {
-    twitter = (
-      <a
-        href={`https://twitter.com/intent/tweet?url=${url}&text=Impacts%20of%20${encodedPolicyLabel}%20on%20Household%20%23${householdId}%2C%20on%20PolicyEngine`}
-        target="_blank"
-        rel="noreferrer"
-      >
-        <TwitterOutlined style={{ fontSize: 23 }} />
-      </a>
-    );
-  }
+  const twitterLink =
+    reformLabel == "Current law"
+      ? `https://twitter.com/intent/tweet?url=${url}&text=Household%20%23${householdId}%2C%20on%20PolicyEngine`
+      : `https://twitter.com/intent/tweet?url=${url}&text=Impacts%20of%20${encodedPolicyLabel}%20on%20Household%20%23${householdId}%2C%20on%20PolicyEngine`;
+  const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 
-  const facebook = (
-    <a
-      href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FacebookFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const linkedIn = (
-    <a
-      href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <LinkedinFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const commonStyle = {
-    border: "1px solid #ccc",
-    borderRadius: "0px",
-    padding: "6px",
-    marginRight: "-1px",
-  };
-  const shareItems = [link, twitter, facebook, linkedIn];
-  const shareDivs = shareItems.map((item, index) => (
-    <div key={index} style={commonStyle}>
-      {item}
-    </div>
-  ));
-
-  pane = (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          backgroundColor: style.colors.WHITE,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingBottom: 20,
-        }}
-      >
-        <h6
-          style={{
-            margin: 0,
-            paddingRight: 20,
-          }}
-        >
-          <b>Share this result</b>
-        </h6>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          {shareDivs}
-        </div>
-      </div>
+  return (
+    <ResultsPanel>
       {pane}
+      <ResultActions
+        copyLink={copyLink}
+        twitterLink={twitterLink}
+        facebookLink={facebookLink}
+        linkedInLink={linkedInLink}
+      />
       <BottomCarousel
         selected={focus}
         options={HOUSEHOLD_OUTPUT_TREE[0].children}
@@ -233,8 +154,6 @@ export default function HouseholdOutput(props) {
             : "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
         }
       />
-    </>
+    </ResultsPanel>
   );
-
-  return <ResultsPanel>{pane}</ResultsPanel>;
 }

@@ -24,19 +24,9 @@ import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
 import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
-import { Result, Steps, Progress, Button, Tooltip } from "antd";
-import {
-  TwitterOutlined,
-  FacebookFilled,
-  LinkedinFilled,
-  LinkOutlined,
-  FileImageOutlined,
-  CheckCircleFilled,
-  CloseCircleFilled,
-  FileTextOutlined,
-} from "@ant-design/icons";
+import { Result, Steps, Progress, message } from "antd";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import React from "react";
-import { message } from "antd";
 import Analysis from "./Analysis";
 import style from "../../../style";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
@@ -44,6 +34,7 @@ import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 
 import { useScreenshot } from "use-react-screenshot";
+import ResultActions from "layout/ResultActions";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -520,31 +511,7 @@ export default function PolicyOutput(props) {
     );
   }
 
-  const url = encodeURIComponent(window.location.href);
-  const encodedPolicyLabel = encodeURIComponent(policyLabel);
-
-  const downloadCSV = () => {
-    const data = childRef.current.getCsvData();
-    if (data !== null) {
-      const csvContent = data
-        .map((row) => row.map((cell) => `"${cell}"`).join(","))
-        .join("\r\n");
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-
-      const tempLink = document.createElement("a");
-      tempLink.href = url;
-      tempLink.setAttribute("download", filename);
-      tempLink.style.display = "none";
-      document.body.appendChild(tempLink);
-      tempLink.click();
-      document.body.removeChild(tempLink);
-
-      URL.revokeObjectURL(url);
-    }
-  };
-
-  const downloadImage = async () => {
+  async function downloadPng() {
     const downloadableContent = document.getElementById("downloadable-content");
     if (downloadableContent) {
       const paddedDiv = document.createElement("div");
@@ -563,7 +530,39 @@ export default function PolicyOutput(props) {
         saveAs(blob, filename + ".png");
       });
     }
-  };
+  }
+
+  function downloadCsv() {
+    const data = childRef.current.getCsvData();
+    if (data !== null) {
+      const csvContent = data
+        .map((row) => row.map((cell) => `"${cell}"`).join(","))
+        .join("\r\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+
+      const tempLink = document.createElement("a");
+      tempLink.href = url;
+      tempLink.setAttribute("download", filename);
+      tempLink.style.display = "none";
+      document.body.appendChild(tempLink);
+      tempLink.click();
+      document.body.removeChild(tempLink);
+
+      URL.revokeObjectURL(url);
+    }
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    message.info("Link copied to clipboard");
+  }
+
+  const url = encodeURIComponent(window.location.href);
+  const encodedPolicyLabel = encodeURIComponent(policyLabel);
+  const twitterLink = `https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`;
+  const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 
   const embed = new URLSearchParams(window.location.search).get("embed");
   const bottomElements =
@@ -631,79 +630,22 @@ export default function PolicyOutput(props) {
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {pane}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          backgroundColor: style.colors.WHITE,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingBottom: 20,
-          gap: 5,
-        }}
-      >
-        {!preparingForScreenshot && (
-          <>
-            {showFileDownloadButtons && (
-              <Tooltip title="Download the chart as a png file.">
-                <Button
-                  type="text"
-                  icon={<FileImageOutlined style={{ fontSize: 20 }} />}
-                  onClick={downloadImage}
-                />
-              </Tooltip>
-            )}
-            {showFileDownloadButtons && (
-              <Tooltip title="Download the data as a csv file.">
-                <Button
-                  type="text"
-                  icon={<FileTextOutlined style={{ fontSize: 20 }} />}
-                  onClick={downloadCSV}
-                />
-              </Tooltip>
-            )}
-            <Tooltip title="Share the link for the result.">
-              <Button
-                type="text"
-                icon={<LinkOutlined style={{ fontSize: 20 }} />}
-                onClick={() => {
-                  navigator.clipboard.writeText(window.location.href);
-                  message.info("Link copied to clipboard");
-                }}
-              />
-            </Tooltip>
-            <Tooltip title="Share the result on Twitter.">
-              <Button
-                type="link"
-                icon={<TwitterOutlined style={{ fontSize: 20 }} />}
-                href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`}
-              />
-            </Tooltip>
-            <Tooltip title="Share the result on Facebook.">
-              <Button
-                type="link"
-                icon={<FacebookFilled style={{ fontSize: 20 }} />}
-                href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-              />
-            </Tooltip>
-            <Tooltip title="Share the result on LinkedIn.">
-              <Button
-                type="link"
-                size="small"
-                icon={<LinkedinFilled style={{ fontSize: 20 }} />}
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-              />
-            </Tooltip>
-          </>
-        )}
-      </div>
       {!preparingForScreenshot && (
-        <BottomCarousel
-          selected={focus}
-          options={POLICY_OUTPUT_TREE[0].children}
-          bottomText={bottomElements}
-        />
+        <>
+          <ResultActions
+            downloadPng={showFileDownloadButtons ? downloadPng : null}
+            downloadCsv={showFileDownloadButtons ? downloadCsv : null}
+            copyLink={copyLink}
+            twitterLink={twitterLink}
+            facebookLink={facebookLink}
+            linkedInLink={linkedInLink}
+          />
+          <BottomCarousel
+            selected={focus}
+            options={POLICY_OUTPUT_TREE[0].children}
+            bottomText={bottomElements}
+          />
+        </>
       )}
     </>
   );
