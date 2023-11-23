@@ -5,15 +5,14 @@ import style from "../style";
 import PageHeader from "./PageHeader";
 import useDisplayCategory from "./useDisplayCategory";
 import ActionButton from "./ActionButton";
+import { Link } from "react-router-dom";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const desktop = displayCategory === "top";
 
-  const handleButtonClick = () => {
-    window.open("https://opencollective.com/psl-foundation", "_blank");
-  };
+  const openCollectiveLink = "https://opencollective.com/psl-foundation";
 
   return (
     <div>
@@ -65,18 +64,19 @@ export default function Donate() {
               maxHeight: 100,
             }}
           >
-            <ActionButton
-              text={
-                <div style={{ textAlign: "center", color: "white" }}>
-                  <span style={{ whiteSpace: "pre-line" }}>
-                    Donate on{"\n"}Open Collective
-                  </span>
-                </div>
-              }
-              onClick={handleButtonClick}
-              width={desktop ? 450 : mobile ? "70vw" : "30vw"}
-              noArrow={true}
-            />
+            <Link to={openCollectiveLink} target="_blank">
+              <ActionButton
+                text={
+                  <div style={{ textAlign: "center", color: "white" }}>
+                    <span style={{ whiteSpace: "pre-line" }}>
+                      Donate on{"\n"}Open Collective
+                    </span>
+                  </div>
+                }
+                width={desktop ? 450 : mobile ? "70vw" : "30vw"}
+                noArrow={true}
+              />
+            </Link>
           </div>
         </div>
       </Section>
