@@ -57,7 +57,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
-    "lint": "eslint --ext js,jsx . && prettier -c ."
+    "lint": "eslint --ext js,jsx . && prettier . --write"
   },
   "eslintConfig": {
     "extends": [
