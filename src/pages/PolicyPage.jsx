@@ -246,11 +246,11 @@ function MobileBottomMenu(props) {
               alignItems: "center",
             }}
           >
-            <SearchParamNavButton 
-              type="primary" 
-              text="Edit my policy" 
-              focus="gov" 
-              style={{margin: "20px auto 10px"}}
+            <SearchParamNavButton
+              type="primary"
+              text="Edit my policy"
+              focus="gov"
+              style={{ margin: "20px auto 10px" }}
             />
             <Button
               style={{
@@ -273,7 +273,7 @@ function MobileBottomMenu(props) {
               type="primary"
               text="Calculate economic impact"
               focus="policyOutput"
-              style={{margin: "20px auto 10px"}}
+              style={{ margin: "20px auto 10px" }}
             />
             <Button
               style={{
@@ -289,7 +289,7 @@ function MobileBottomMenu(props) {
             text="Enter my household"
             focus="input"
             target={`/${metadata.countryId}/household`}
-            style={{margin: "20px auto 10px"}}
+            style={{ margin: "20px auto 10px" }}
           />
         )}
         {hasReform && (
@@ -297,7 +297,7 @@ function MobileBottomMenu(props) {
             text="Calculate my household impact"
             focus="input"
             target={`/${metadata.countryId}/household`}
-            style={{margin: "20px auto 10px"}}
+            style={{ margin: "20px auto 10px" }}
           />
         )}
         <Drawer

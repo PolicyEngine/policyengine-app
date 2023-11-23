@@ -2,9 +2,9 @@ import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
 /**
- * React component used for linking to internal and external pages; must be 
+ * React component used for linking to internal and external pages; must be
  * utilized within the context of a react-router component
- * @param {Object} props 
+ * @param {Object} props
  * @param {String} props.link The link the button should redirect to; external links must include http:// or https://
  * @param {String} [props.text] The text to be displayed on the LinkButton
  * @param {String|Number} [props.width] The desired width of the button; Number-type sets width to px
@@ -53,7 +53,6 @@ export default function LinkButton(props) {
       onClick={handleNavigate}
     />
   );
-
 }
 
 function checkIfExternalLink(link) {

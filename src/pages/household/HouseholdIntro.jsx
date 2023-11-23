@@ -10,7 +10,7 @@ export default function HouseholdIntro() {
       <SearchParamNavButton
         text="Enter my household"
         focus="input.household.maritalStatus"
-        style={{margin: "20px auto 10px"}}
+        style={{ margin: "20px auto 10px" }}
       />
     </CenteredMiddleColumn>
   );

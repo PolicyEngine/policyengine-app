@@ -21,7 +21,7 @@ const styles = {
   },
   submitButton: {
     width: "fit-content",
-    margin: "20px auto 10px"
+    margin: "20px auto 10px",
   },
 };
 

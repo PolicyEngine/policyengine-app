@@ -98,7 +98,7 @@ export default function VariableEditor(props) {
             text="Enter"
             focus={nextVariable}
             type={required && !edited ? "disabled" : "primary"}
-            style={{margin: "20px auto 10px"}}
+            style={{ margin: "20px auto 10px" }}
           />
         )}
       </div>

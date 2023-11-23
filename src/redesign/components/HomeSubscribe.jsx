@@ -104,12 +104,7 @@ export function SubscribeToPolicyEngineMobile() {
           width="100%"
         />
         <div style={{ marginTop: 20 }} />
-        <Button
-          text="Subscribe"
-          onClick={() => {}}
-          width="100%"
-          size="500px"
-        />
+        <Button text="Subscribe" onClick={() => {}} width="100%" size="500px" />
       </div>
     </div>
   );

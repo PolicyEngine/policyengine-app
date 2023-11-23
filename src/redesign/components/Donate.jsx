@@ -72,7 +72,7 @@ export default function Donate() {
                 </div>
               }
               link={link}
-              width={desktop ? 450 : mobile ? "70vw": "30vw"}
+              width={desktop ? 450 : mobile ? "70vw" : "30vw"}
               noArrow={true}
             />
           </div>

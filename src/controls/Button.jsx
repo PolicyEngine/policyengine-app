@@ -17,7 +17,7 @@ const buttonStyles = {
   default: {
     hoverBackgroundColor: styles.colors.TEAL_PRESSED,
     standardBackgroundColor: styles.colors.TEAL_ACCENT,
-  }
+  },
 };
 
 /**
@@ -46,7 +46,7 @@ export default function Button(props) {
     hoverStart,
     backgroundColor,
     activeBackgroundColor,
-    style
+    style,
   } = props;
 
   // Assign fallback values for styling
@@ -56,12 +56,15 @@ export default function Button(props) {
 
   return (
     <HoverBox
-      hoverBackgroundColor={activeBackgroundColor || buttonStyles[type].hoverBackgroundColor}
+      hoverBackgroundColor={
+        activeBackgroundColor || buttonStyles[type].hoverBackgroundColor
+      }
       hoverStart={hoverStart || "left"}
       style={{
         alignItems: "center",
         display: "flex",
-        backgroundColor: backgroundColor || buttonStyles[type].standardBackgroundColor,
+        backgroundColor:
+          backgroundColor || buttonStyles[type].standardBackgroundColor,
         color: "white",
         padding: 15,
         paddingLeft: 30,
@@ -76,7 +79,7 @@ export default function Button(props) {
         height: height,
         justifyContent: "center",
         textAlign: "center",
-        ...style
+        ...style,
       }}
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
@@ -84,5 +87,4 @@ export default function Button(props) {
       {text}
     </HoverBox>
   );
-
 }

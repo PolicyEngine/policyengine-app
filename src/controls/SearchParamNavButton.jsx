@@ -34,7 +34,7 @@ export default function SearchParamNavButton(props) {
       <ArrowButton
         direction={direction}
         type={type}
-        style={{...style}}
+        style={{ ...style }}
         onClick={handleClick}
       />
     );
@@ -44,7 +44,7 @@ export default function SearchParamNavButton(props) {
     <Button
       type={type}
       text={text}
-      style={{ ...style}}
+      style={{ ...style }}
       onClick={handleClick}
     />
   );

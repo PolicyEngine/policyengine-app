@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, waitFor } from "@testing-library/react";
-import { screen } from '@testing-library/react';
+import { screen } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 
 import CookieConsent from "layout/CookieConsent";
@@ -13,14 +13,14 @@ jest.mock("react-router-dom", () => {
   return {
     __esModule: true,
     ...originalModule,
-    useSearchParams: jest.fn()
+    useSearchParams: jest.fn(),
   };
 });
 
 describe("Test cookie consent pop-up", () => {
   test("Test that pop-up appears without cookie existing", async () => {
     // Launch CookieConsent
-    const {getByText} = render(<CookieConsent />);
+    const { getByText } = render(<CookieConsent />);
 
     // Wait for pop-up to appear
     await new Promise((r) => setTimeout(r, 1250));
@@ -28,20 +28,19 @@ describe("Test cookie consent pop-up", () => {
     // Ensure that component returns
     await waitFor(() => {
       expect(getByText("Accept")).toBeInTheDocument();
-    })
-
+    });
   });
 
   test("Test that pop-up does not appear if cookies have been accepted", async () => {
     // Mock cookie that matches desired
-    Object.defineProperty(window.document, 'cookie', {
+    Object.defineProperty(window.document, "cookie", {
       configurable: true,
       writable: true,
-      value: "consent=granted;max-age=31536000;path=/"
+      value: "consent=granted;max-age=31536000;path=/",
     });
 
     // Launch CookieConsent
-    render(<CookieConsent />)
+    render(<CookieConsent />);
 
     // Wait for pop-up to appear
     await new Promise((r) => setTimeout(r, 1250));
@@ -53,22 +52,20 @@ describe("Test cookie consent pop-up", () => {
     });
 
     // Remove cookie
-      delete window.document.cookie;
-
+    delete window.document.cookie;
   });
-
 });
 describe("Test PoliciesModelledPopup", () => {
   test("Test that pop-up appears after beginning calculations", () => {
     const testProps = {
       policy: {
         reform: {
-          label: "testVal"
+          label: "testVal",
         },
         baseline: {
-          label: "testVal"
-        }
-      }
+          label: "testVal",
+        },
+      },
     };
 
     useSearchParams.mockImplementation(() => {
@@ -76,16 +73,16 @@ describe("Test PoliciesModelledPopup", () => {
       return [{ get }];
     });
 
-    const {getByText} = render(
+    const { getByText } = render(
       <BrowserRouter>
-        <HouseholdOutput
-          loading={true}
-          policy={testProps.policy}
-        />
-      </BrowserRouter>
+        <HouseholdOutput loading={true} policy={testProps.policy} />
+      </BrowserRouter>,
     );
 
-    expect(getByText("PolicyEngine results may not constitute exact tax liabilities or benefit entitlements.")).toBeInTheDocument();
-
+    expect(
+      getByText(
+        "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements.",
+      ),
+    ).toBeInTheDocument();
   });
 });

@@ -36,7 +36,7 @@ export default function BottomCarousel(props) {
           display: "flex",
           justifyContent: mobile ? "center" : "right",
           padding: "10px 20px",
-          gap: 20
+          gap: 20,
         }}
       >
         {previous.label ? (
