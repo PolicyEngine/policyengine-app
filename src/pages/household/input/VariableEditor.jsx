@@ -1,14 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 import { capitalize } from "../../../api/language";
 import {
-  formatVariableValue,
+  currencyMap,
   getNewHouseholdId,
   getValueFromHousehold,
 } from "../../../api/variables";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import InputField from "../../../controls/InputField";
-import { Switch } from "antd";
-import SearchOptions from "../../../controls/SearchOptions";
+import { InputNumber, Select, Switch } from "antd";
 import useMobile from "../../../layout/Responsive";
 import NavigationButton from "../../../controls/NavigationButton";
 import gtag from "../../../api/analytics";
@@ -186,7 +184,6 @@ function HouseholdVariableEntityInput(props) {
     }
     setEdited(true);
   };
-  const formatValue = (value) => formatVariableValue(variable, value);
   const simulatedValue = getValueFromHousehold(
     variable.name,
     timePeriod,
@@ -210,43 +207,60 @@ function HouseholdVariableEntityInput(props) {
         metadata,
       )
     : null;
+  let defaultValue =
+    reformValue !== null
+      ? reformValue
+      : inputValue !== null
+      ? inputValue
+      : simulatedValue;
+  if (defaultValue === null) {
+    if (variable.valueType === "float" || variable.valueType === "int") {
+      defaultValue = 0;
+    } else if (variable.valueType === "bool") {
+      defaultValue = false;
+    } else if (variable.valueType === "Enum") {
+      defaultValue = variable.possibleValues[0];
+    }
+  }
   const mobile = useMobile();
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
+    const isCurrency = Object.keys(currencyMap).includes(variable.unit);
     control = (
-      <InputField
+      <InputNumber
+        style={{
+          width: mobile ? 150 : 200,
+        }}
+        addonBefore={isCurrency ? currencyMap[variable.unit] : undefined}
+        min={isCurrency ? 0 : undefined}
+        precision={variable.valueType === "float" ? 2 : undefined}
+        value={defaultValue}
+        autoFocus={true}
         onChange={submitValue}
-        placeholder={
-          reformValue !== null
-            ? `${formatValue(reformValue)}`
-            : formatValue(inputValue || simulatedValue)
-        }
-        autofocus={true}
-        width={mobile && 150}
-        padding={mobile && 10}
       />
     );
   } else if (variable.valueType === "bool") {
     control = (
-      <div style={{ margin: 20 }}>
-        <Switch
-          onChange={submitValue}
-          checked={inputValue || simulatedValue}
-          checkedChildren="Yes"
-          unCheckedChildren="No"
-        />
-      </div>
+      <Switch
+        style={{
+          width: mobile ? 150 : 200,
+        }}
+        checked={defaultValue}
+        checkedChildren="Yes"
+        unCheckedChildren="No"
+        onChange={submitValue}
+      />
     );
   } else if (variable.valueType === "Enum") {
     control = (
-      <SearchOptions
+      <Select
+        style={{ width: mobile ? 150 : 200 }}
         options={variable.possibleValues}
-        defaultValue={inputValue || simulatedValue}
+        value={defaultValue}
         onSelect={submitValue}
       />
     );
   }
-  // The input field should hide its arrows
   return (
     <>
       <div
@@ -257,6 +271,7 @@ function HouseholdVariableEntityInput(props) {
           justifyContent: "space-evenly",
           width: "100%",
           marginBottom: 10,
+          gap: mobile ? 10 : 20,
         }}
       >
         <h5
@@ -270,9 +285,7 @@ function HouseholdVariableEntityInput(props) {
         >
           {capitalize(entityName)}:{" "}
         </h5>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {control}
-        </div>
+        {control}
         <h5
           style={{
             textAlign: "left",
