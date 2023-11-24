@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency, localeString } from "../../../api/language";
+import { aggregateCurrency, localeCode } from "../../../api/language";
 import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
 import Screenshottable from "../../../layout/Screenshottable";
@@ -129,7 +129,7 @@ export default function DetailedBudgetaryImpact(props) {
         config={{
           displayModeBar: false,
           responsive: true,
-          locale: localeString(metadata),
+          locale: localeCode(metadata.countryId),
         }}
         style={{
           width: "100%",
