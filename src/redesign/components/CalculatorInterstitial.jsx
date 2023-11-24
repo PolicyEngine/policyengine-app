@@ -4,6 +4,7 @@ import LinkButton from "controls/LinkButton";
 import useCountryId from "./useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";
 import PolicyScreenshot from "../images/home/policy_screenshot.png";
+import useDisplayCategory from "./useDisplayCategory";
 
 export default function CalculatorInterstitial() {
   const countryId = useCountryId();
@@ -55,13 +56,15 @@ export default function CalculatorInterstitial() {
 style;
 
 function CalculatorOption({ left, title, description, link, image }) {
+  const displayCategory = useDisplayCategory();
+
   return (
     <div
       style={{
         margin: 20,
         width: 300,
         display: "flex",
-        flexDirection: "row",
+        flexDirection: displayCategory === "mobile" ? "column" : "row",
         alignItems: "center",
         justifyContent: "center",
       }}
@@ -89,6 +92,7 @@ function CalculatorOption({ left, title, description, link, image }) {
         <div
           style={{
             paddingTop: 20,
+            order: displayCategory==="mobile" ? -1 : 0
           }}
         >
           <p>{description}</p>
