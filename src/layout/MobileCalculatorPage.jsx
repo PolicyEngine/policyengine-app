@@ -141,7 +141,7 @@ function MobileBottomMenu(props) {
         }}
       >
         <MobileTreeNavigationHolder metadata={metadata} type={type}/>
-        <MobileBottomNavButtons focus={focus} />
+        <MobileBottomNavButtons focus={focus} type={type}/>
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
       <OpenedNavigationMenu 
@@ -258,12 +258,18 @@ function MobileTreeNavigationHolder(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
-function MobileBottomNavButtons({focus}) {
-  if (!(focus && focus.startsWith("householdOutput."))) {
+function MobileBottomNavButtons({focus, type}) {
+  if (
+    type === "household" &&
+    !(focus && focus.startsWith("householdOutput."))
+  ) {
     return null;
   }
 
-  const options = HOUSEHOLD_OUTPUT_TREE[0].children;
+  let options = null;
+  if (type === "household") {
+    options = HOUSEHOLD_OUTPUT_TREE[0].children;
+  }
   const currentIndex = options.map((option) => option.name).indexOf(focus);
   const previous = options[currentIndex - 1] || {};
   const next = options[currentIndex + 1] || {};
