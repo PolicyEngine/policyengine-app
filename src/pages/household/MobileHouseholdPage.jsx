@@ -37,7 +37,6 @@ export default function MobileHouseholdPage(props) {
           overflow: "scroll",
           width: "100%",
           padding: 20,
-          height: "60vh",
         }}
       >
         {mainContent}
@@ -198,7 +197,7 @@ function MobileBottomMenu(props) {
         justifyContent: "center",
         alignItems: "center",
         width: "100vw",
-        position: "fixed",
+        position: "sticky",
         bottom: 0,
         left: 0,
         zIndex: 5,

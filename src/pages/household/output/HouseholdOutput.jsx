@@ -224,15 +224,13 @@ export default function HouseholdOutput(props) {
         </div>
       </div>
       {pane}
+      {!mobile && (
       <BottomCarousel
         selected={focus}
         options={HOUSEHOLD_OUTPUT_TREE[0].children}
-        bottomText={
-          mobile
-            ? null
-            : "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
-        }
+        bottomText="PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
       />
+      )}
     </>
   );
 
