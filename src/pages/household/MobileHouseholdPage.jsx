@@ -326,6 +326,7 @@ function OpenedNavigationMenu(props) {
           duration: 0.4,
         }}
       >
+        <DividerBar />
         <SearchBar metadata={metadata} />
         <NavOptionsBar 
           focus={focus} 
@@ -334,6 +335,18 @@ function OpenedNavigationMenu(props) {
         />
       </motion.div>
     </>
+  )
+}
+
+function DividerBar() {
+  return (
+    <div 
+      style={{
+        width: "100%",
+        backgroundColor: colors.MEDIUM_DARK_GRAY,
+        height: "1px"
+      }}
+    />
   )
 }
 
