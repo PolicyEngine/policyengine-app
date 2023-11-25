@@ -27,8 +27,9 @@ export default function MobileHouseholdPage(props) {
     householdInput,
     householdBaseline,
     mainContent,
-    autoCompute,
+    autoCompute
   } = props;
+
   return (
     <>
       <div
@@ -140,7 +141,12 @@ function MobileTreeNavigationHolder(props) {
 }
 
 function MobileBottomMenu(props) {
-  const { metadata, householdBaseline, householdReform, autoCompute } = props;
+  const { 
+    metadata, 
+    householdBaseline, 
+    householdReform, 
+    autoCompute
+  } = props;
   const [searchParams] = useSearchParams();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -209,7 +215,7 @@ function MobileBottomMenu(props) {
         }}
       >
         <MobileTreeNavigationHolder metadata={metadata} />
-        {/* Left and right buttons*/}
+        <MobileBottomNavButtons focus={focus} />
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
 <<<<<<< HEAD
@@ -271,13 +277,58 @@ function MobileBottomMenu(props) {
   );
 }
 
+// This function will run into merge conflicts with a button refactor (PR #867),
+// and is dependent upon that refactor for even spacing and styling
+function MobileBottomNavButtons({focus}) {
+  if (!(focus && focus.startsWith("householdOutput."))) {
+    return null;
+  }
+
+  const options = HOUSEHOLD_OUTPUT_TREE[0].children;
+  const currentIndex = options.map((option) => option.name).indexOf(focus);
+  const previous = options[currentIndex - 1] || {};
+  const next = options[currentIndex + 1] || {};
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center"
+      }}
+    >
+      {previous.label ? (
+        <NavigationButton
+          focus={previous.name}
+          text="left"
+          style={{ padding: 0 }}
+        />
+      ) : (
+        <div style={{ width: 80 }} />
+      )}
+      {}
+      {next.label ? (
+        <NavigationButton
+          focus={next.name}
+          text={"right"}
+          style={{ padding: 0 }}
+        />
+      ) : (
+        <div style={{ width: 80 }} />
+      )}
+    </div>
+  );
+}
+
 function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
   return (
     <>
       <div
         style={{
-          height: 50,
-          width: 50,
+          height: 54,
+          width: 60,
+          minWidth: 60,
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
