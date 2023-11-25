@@ -213,6 +213,7 @@ function MobileBottomMenu(props) {
       metadata={metadata}
       focus={focus}
       hasReform={hasReform}
+      text={text}
     />
 
 {/*
@@ -294,7 +295,8 @@ function OpenedNavigationMenu(props) {
     isMenuOpen, 
     metadata, 
     focus,
-    hasReform
+    hasReform,
+    text
   } = props;
 
   if (!isMenuOpen) {
@@ -327,6 +329,7 @@ function OpenedNavigationMenu(props) {
         }}
       >
         <DividerBar />
+        <TopText text={text}/>
         <SearchBar metadata={metadata} />
         <NavOptionsBar 
           focus={focus} 
@@ -335,6 +338,14 @@ function OpenedNavigationMenu(props) {
         />
       </motion.div>
     </>
+  )
+}
+
+function TopText({text}) {
+  return (
+    <h5 style={{margin: 0}}>
+      {text}
+    </h5>
   )
 }
 
