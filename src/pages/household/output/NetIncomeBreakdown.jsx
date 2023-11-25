@@ -12,6 +12,7 @@ import {
 } from "../../../api/variables";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
+import useDisplayCategory from "redesign/components/useDisplayCategory";
 
 const UpArrow = () => (
   <CaretUpFilled
@@ -66,6 +67,7 @@ function VariableArithmetic(props) {
   let shouldShowVariable;
   const hasReform = householdReform !== null;
   const variable = metadata.variables[variableName];
+  const displayCategory = useDisplayCategory();
 
   let doesIncomeChange = false;
   if (hasReform) {
@@ -265,7 +267,11 @@ function VariableArithmetic(props) {
           >
             <h2
               aria-describedby="documentation"
-              style={{ display: "inline-flex", fontSize: 22, margin: 0 }}
+              style={{ 
+                display: "inline-flex", 
+                fontSize: displayCategory === "mobile" ? 18: 22, 
+                margin: 0 
+              }}
             >
               {valueStr}
             </h2>
