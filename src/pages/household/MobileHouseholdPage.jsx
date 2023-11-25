@@ -208,7 +208,12 @@ function MobileBottomMenu(props) {
         {/* Left and right buttons*/}
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
-    <OpenedNavigationMenu isMenuOpen={isMenuOpen} metadata={metadata}/>
+    <OpenedNavigationMenu 
+      isMenuOpen={isMenuOpen} 
+      metadata={metadata}
+      focus={focus}
+      hasReform={hasReform}
+    />
 
 {/*
       <div>
@@ -284,7 +289,14 @@ function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
   );
 }
 
-function OpenedNavigationMenu({isMenuOpen, metadata}) {
+function OpenedNavigationMenu(props) {
+  const {
+    isMenuOpen, 
+    metadata, 
+    focus,
+    hasReform
+  } = props;
+
   if (!isMenuOpen) {
     return null;
   }
@@ -315,7 +327,11 @@ function OpenedNavigationMenu({isMenuOpen, metadata}) {
         }}
       >
         <SearchBar metadata={metadata} />
-        {/* Buttons bar */}
+        <NavOptionsBar 
+          focus={focus} 
+          hasReform={hasReform}
+          metadata={metadata}
+        />
       </motion.div>
     </>
   )
@@ -343,6 +359,49 @@ function SearchBar({metadata}) {
           flexShrink: 0
         }}
       />
+    </div>
+  );
+}
+
+function NavOptionsBar(props) {
+  const {focus, hasReform, metadata} = props;
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        gap: "5px",
+        flexWrap: "wrap"
+      }}
+    >
+      {focus && focus.startsWith("householdOutput") && (
+        <NavigationButton primary text="Edit my household" focus="input" />
+      )}
+      {focus && !focus.startsWith("householdOutput") && (
+        <NavigationButton
+          primary
+          text="See my household details"
+          focus="householdOutput"
+        />
+      )}
+      {!hasReform && (
+        <NavigationButton
+          text="Create a reform"
+          focus="gov"
+          target={`/${metadata.countryId}/policy`}
+        />
+      )}
+      {hasReform && (
+        <NavigationButton
+          text="Edit my reform"
+          focus="gov"
+          target={`/${metadata.countryId}/policy`}
+        />
+      )}
     </div>
   );
 }
