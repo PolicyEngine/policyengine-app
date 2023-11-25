@@ -208,6 +208,7 @@ function MobileBottomMenu(props) {
         {/* Left and right buttons*/}
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
+<<<<<<< HEAD
     <OpenedNavigationMenu 
       isMenuOpen={isMenuOpen} 
       metadata={metadata}
@@ -253,6 +254,15 @@ function MobileBottomMenu(props) {
         )}
       </div>
 */}
+=======
+      <OpenedNavigationMenu 
+        isMenuOpen={isMenuOpen} 
+        metadata={metadata}
+        focus={focus}
+        hasReform={hasReform}
+        text={text}
+      />
+>>>>>>> 7739506 (chore: Removed unused code)
     </div>
   );
 }
