@@ -57,6 +57,10 @@ export default function MobileHouseholdPage(props) {
     }
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  })
+
   return (
     <>
       <div
@@ -214,6 +218,7 @@ function MobileBottomMenu(props) {
   } else {
     text = "";
   }
+
   return (
     <div
       className="mobile-bottom-bar"
@@ -227,8 +232,8 @@ function MobileBottomMenu(props) {
         alignItems: "center",
         width: "100vw",
         position: "fixed",
-        bottom: 0,
         left: 0,
+        bottom: 0,
         zIndex: 5,
         gap: "5px"
       }}
@@ -391,7 +396,6 @@ function OpenedNavigationMenu(props) {
     hasReform,
     text
   } = props;
-
   if (!isMenuOpen) {
     return null;
   }
@@ -402,7 +406,7 @@ function OpenedNavigationMenu(props) {
           paddingTop: "5px",
           paddingBottom: "5px",
           width: "100%",
-          zIndex: -1,
+          zIndex: 3,
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
@@ -410,12 +414,14 @@ function OpenedNavigationMenu(props) {
           gap: "10px"
         }}
         initial={{
-          opacity: 0,
-          visibility: "hidden"
+          opacity: 1,
+          visibility: "hidden",
+          y: "100%"
         }}
         animate={{
           opacity: 1,
-          visibility: "visible"
+          visibility: "visible",
+          y: "0%"
         }}
         transition={{
           duration: 0.4,
