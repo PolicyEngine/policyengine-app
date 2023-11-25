@@ -80,7 +80,7 @@ export default function VariableEditor(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: mobile ? 10 : "15%",
+          marginTop: mobile ? "20%" : "15%",
           paddingLeft: mobile ? 5 : 50,
           paddingRight: mobile ? 5 : 50,
         }}
