@@ -396,6 +396,7 @@ function OpenedNavigationMenu(props) {
           focus={focus} 
           hasReform={hasReform}
           metadata={metadata}
+          type={type}
         />
       </motion.div>
     </>
@@ -498,7 +499,45 @@ function SearchBar({metadata, type}) {
 }
 
 function NavOptionsBar(props) {
-  const {focus, hasReform, metadata} = props;
+  const {
+    focus, 
+    hasReform, 
+    metadata,
+    type
+  } = props;
+
+  let buttonsJSX = null;
+
+  if (type === "household") {
+    buttonsJSX = (
+      <>
+        {focus && focus.startsWith("householdOutput") && (
+          <NavigationButton primary text="Edit my household" focus="input" />
+        )}
+        {focus && !focus.startsWith("householdOutput") && (
+          <NavigationButton
+            primary
+            text="See my household details"
+            focus="householdOutput"
+          />
+        )}
+        {!hasReform && (
+          <NavigationButton
+            text="Create a reform"
+            focus="gov"
+            target={`/${metadata.countryId}/policy`}
+          />
+        )}
+        {hasReform && (
+          <NavigationButton
+            text="Edit my reform"
+            focus="gov"
+            target={`/${metadata.countryId}/policy`}
+          />
+        )}
+      </>
+    );
+  }
 
   return (
     <div
@@ -512,30 +551,7 @@ function NavOptionsBar(props) {
         flexWrap: "wrap"
       }}
     >
-      {focus && focus.startsWith("householdOutput") && (
-        <NavigationButton primary text="Edit my household" focus="input" />
-      )}
-      {focus && !focus.startsWith("householdOutput") && (
-        <NavigationButton
-          primary
-          text="See my household details"
-          focus="householdOutput"
-        />
-      )}
-      {!hasReform && (
-        <NavigationButton
-          text="Create a reform"
-          focus="gov"
-          target={`/${metadata.countryId}/policy`}
-        />
-      )}
-      {hasReform && (
-        <NavigationButton
-          text="Edit my reform"
-          focus="gov"
-          target={`/${metadata.countryId}/policy`}
-        />
-      )}
+      {buttonsJSX}
     </div>
   );
 }
