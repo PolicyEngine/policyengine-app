@@ -419,7 +419,6 @@ function TopText(props) {
 
   const [searchParams] = useSearchParams();
 
-  // let hasReform = searchParams.get("reform") !== null;
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, householdBaseline, metadata);
   const getReformValue = (variable) =>
