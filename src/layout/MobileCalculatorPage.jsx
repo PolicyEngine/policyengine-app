@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, ReactComponentElement } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { SearchOutlined } from "@ant-design/icons";
@@ -20,14 +20,14 @@ import spacing from "../redesign/style/spacing";
  * Layout component that overlays the household and policy pages on mobile
  * @param {Object} props 
  * @param {Object} props.metadata
- * @param {import("react").ReactComponentElement} props.mainContent The React component that would 
+ * @param {ReactComponentElement} props.mainContent The React component that would 
  * typically be displayed in the middle portion of the calculator on desktop
  * @param {Object} [householdInput] Required for "household" type
  * @param {Object} [householdBaseline] Required for "household" type
  * @param {Object} [householdReform] Required for "household" type
  * @param {boolean} [autoComputer] Required for "household" type
  * @param {('household'|'policy')} props.type The type of page to be rendered
- * @returns {import("react").ReactComponentElement}
+ * @returns {ReactComponentElement}
  */
 export default function MobileCalculatorPage(props) {
   const {
@@ -78,22 +78,34 @@ export default function MobileCalculatorPage(props) {
           metadata={metadata}
           householdBaseline={householdBaseline}
           autoCompute={autoCompute}
+          type={type}
         />
       )}
     </>
   );
 }
 
+/**
+ * Function to build a breadcrumb trail based upon an output tree;
+ * currently not extensible for future tree versions
+ * @param {Object} props 
+ * @param {Object} props.metadata
+ * @param {String} props.type
+ * @returns {ReactComponentElement}
+ */
 function MobileTreeNavigationHolder(props) {
-  const { metadata } = props;
+  const { metadata, type } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
   let currentNode;
-  if (focus && focus.startsWith("householdOutput")) {
-    currentNode = { children: HOUSEHOLD_OUTPUT_TREE };
-  } else {
-    currentNode = { children: [metadata.variableTree] };
+
+  if (type === "household") {
+    if (focus && focus.startsWith("householdOutput")) {
+      currentNode = { children: HOUSEHOLD_OUTPUT_TREE };
+    } else {
+      currentNode = { children: [metadata.variableTree] };
+    }
   }
   useEffect(() => {
     // On load, scroll the current breadcrumb into view.
@@ -176,7 +188,8 @@ function MobileBottomMenu(props) {
     metadata, 
     householdBaseline, 
     householdReform, 
-    autoCompute
+    autoCompute,
+    type
   } = props;
   const [searchParams] = useSearchParams();
 
@@ -247,7 +260,7 @@ function MobileBottomMenu(props) {
           alignItems: "center"
         }}
       >
-        <MobileTreeNavigationHolder metadata={metadata} />
+        <MobileTreeNavigationHolder metadata={metadata} type={type}/>
         <MobileBottomNavButtons focus={focus} />
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
