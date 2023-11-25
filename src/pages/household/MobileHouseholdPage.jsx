@@ -94,7 +94,7 @@ function MobileTreeNavigationHolder(props) {
       style={{
         display: "flex",
         flexDirection: "row",
-        padding: 15,
+        padding: 5,
         alignItems: "center",
         width: "100%",
         flexWrap: "wrap"
@@ -314,26 +314,35 @@ function OpenedNavigationMenu({isMenuOpen, metadata}) {
           duration: 0.4,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            width: "100%",
-            gap: "10px"
-          }}
-        >
-          <VariableSearch metadata={metadata} />
-          <SearchOutlined
-            style={{
-              fontSize: 20,
-              color: style.colors.BLACK,
-            }}
-          />
-        </div>
+        <SearchBar metadata={metadata} />
         {/* Buttons bar */}
       </motion.div>
     </>
   )
+}
+
+function SearchBar({metadata}) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        gap: "10px"
+      }}
+    >
+      <VariableSearch metadata={metadata} />
+      <SearchOutlined
+        style={{
+          fontSize: 20,
+          color: style.colors.BLACK,
+          display: "block",
+          width: "50px",
+          flexShrink: 0
+        }}
+      />
+    </div>
+  );
 }
