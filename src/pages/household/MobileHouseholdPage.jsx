@@ -98,6 +98,7 @@ function MobileTreeNavigationHolder(props) {
         padding: 15,
         alignItems: "center",
         width: "100%",
+        flexWrap: "wrap"
       }}
     >
       {breadcrumbs.map((breadcrumb, i) => (
@@ -107,7 +108,7 @@ function MobileTreeNavigationHolder(props) {
           style={{
             cursor: "pointer",
             fontSize: "min(0.85rem, 20px)",
-            whiteSpace: "nowrap",
+            whiteSpace: "wrap",
             margin: 0,
             fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter"
           }}
