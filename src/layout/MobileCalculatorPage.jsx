@@ -391,7 +391,7 @@ function OpenedNavigationMenu(props) {
           householdReform={householdReform}
           autoCompute={autoCompute}
         />
-        <SearchBar metadata={metadata} />
+        <SearchBar metadata={metadata} type={type}/>
         <NavOptionsBar 
           focus={focus} 
           hasReform={hasReform}
@@ -469,7 +469,7 @@ function DividerBar() {
   )
 }
 
-function SearchBar({metadata}) {
+function SearchBar({metadata, type}) {
   return (
     <div
       style={{
@@ -481,13 +481,15 @@ function SearchBar({metadata}) {
         gap: "10px"
       }}
     >
-      <VariableSearch metadata={metadata} />
+      {type === "household" &&
+        <VariableSearch metadata={metadata} />
+      }
       <SearchOutlined
         style={{
           fontSize: 20,
           color: style.colors.BLACK,
           display: "block",
-          width: "50px",
+          width: "60px",
           flexShrink: 0
         }}
       />
