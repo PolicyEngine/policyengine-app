@@ -6,10 +6,48 @@ import {
 import { copySearchParams } from "../../api/call";
 import { useEffect, useState } from "react";
 import style from "../../style";
+<<<<<<< HEAD
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
+=======
+import { motion } from "framer-motion";
+import NavigationButton from "../../controls/NavigationButton";
+>>>>>>> 4f288cd (feat: (Unfinished) mobile bottom bar)
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
+import colors from "../../redesign/style/colors";
+
+export default function MobileHouseholdPage(props) {
+  const {
+    metadata,
+    householdInput,
+    householdBaseline,
+    mainContent,
+    autoCompute,
+  } = props;
+  return (
+    <>
+      <div
+        style={{
+          overflow: "scroll",
+          width: "100%",
+          padding: 20,
+          height: "60vh",
+        }}
+      >
+        {mainContent}
+      </div>
+      <MobileMiddleBar metadata={metadata} />
+      {householdInput && (
+        <MobileBottomMenu
+          metadata={metadata}
+          householdBaseline={householdBaseline}
+          autoCompute={autoCompute}
+        />
+      )}
+    </>
+  );
+}
 
 function MobileTreeNavigationHolder(props) {
   const { metadata } = props;
@@ -58,9 +96,6 @@ function MobileTreeNavigationHolder(props) {
         display: "flex",
         flexDirection: "row",
         padding: 15,
-        backgroundColor: style.colors.LIGHT_GRAY,
-        overflowX: "scroll",
-        height: 50,
         alignItems: "center",
         width: "100%",
       }}
@@ -71,13 +106,10 @@ function MobileTreeNavigationHolder(props) {
           id={i === breadcrumbs.length - 1 ? "current-breadcrumb" : null}
           style={{
             cursor: "pointer",
-            fontSize: 18,
-            maxHeight: 20,
-            maxWidth: 200,
-            paddingLeft: 10,
-            paddingRight: 10,
+            fontSize: "min(0.85rem, 20px)",
             whiteSpace: "nowrap",
             margin: 0,
+            fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter"
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
@@ -91,7 +123,7 @@ function MobileTreeNavigationHolder(props) {
               style={{
                 color: style.colors.DARK_GRAY,
                 paddingRight: 5,
-                paddingLeft: 10,
+                paddingLeft: 5,
               }}
             >
               {"/"}
@@ -157,6 +189,12 @@ function MobileMiddleBar(props) {
 function MobileBottomMenu(props) {
   const { metadata, householdBaseline, householdReform, autoCompute } = props;
   const [searchParams] = useSearchParams();
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  function handleMenuOpen() {
+    setIsMenuOpen(prev => !prev);
+  }
+
   let hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
   const getValue = (variable) =>
@@ -193,14 +231,36 @@ function MobileBottomMenu(props) {
   return (
     <div
       style={{
-        paddingTop: 20,
-        paddingBottom: 20,
+        padding: "5px",
+        backgroundColor: colors.LIGHT_GRAY,
+        borderTop: "1px solid black",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        maxHeight: "25vh",
+        width: "100vw",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        zIndex: 5
       }}
     >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <MobileTreeNavigationHolder metadata={metadata} />
+        {/* Left and right buttons*/}
+        <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
+      </div>
+    <OpenedNavigationMenu isMenuOpen={isMenuOpen} />
+
+{/*
       <div>
         <h5 style={{ marginBottom: 20 }}>{text}</h5>
         {focus && focus.startsWith("householdOutput") && (
@@ -236,38 +296,87 @@ function MobileBottomMenu(props) {
           />
         )}
       </div>
+*/}
     </div>
   );
 }
 
-export default function MobileHouseholdPage(props) {
-  const {
-    metadata,
-    householdInput,
-    householdBaseline,
-    mainContent,
-    autoCompute,
-  } = props;
+function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
   return (
     <>
       <div
         style={{
-          overflow: "scroll",
-          width: "100%",
-          padding: 20,
-          height: "60vh",
+          height: 50,
+          width: 50,
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          padding: 15,
+          color: "white",
+          backgroundColor: colors.TEAL_ACCENT,
+          fontSize: 20,
+          cursor: "pointer",
         }}
+        onClick={handleMenuOpen}
       >
-        {mainContent}
+        <span
+          className="material-symbols-outlined"
+          alt="Open context menu"
+          style={{
+            objectFit: "contain",
+            color: "white",
+          }}
+        >
+          {isMenuOpen ? "close" : "menu"}
+        </span>
       </div>
-      <MobileMiddleBar metadata={metadata} />
-      {householdInput && (
-        <MobileBottomMenu
-          metadata={metadata}
-          householdBaseline={householdBaseline}
-          autoCompute={autoCompute}
-        />
-      )}
     </>
   );
+}
+
+function OpenedNavigationMenu({isMenuOpen}) {
+  if (!isMenuOpen) {
+    return null;
+  }
+  return (
+    <>
+      <motion.div
+        style={{
+          width: "100vw",
+          zIndex: -1,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-end",
+          alignItems: "center"
+        }}
+        initial={{
+          opacity: 0,
+          visibility: "hidden"
+        }}
+        animate={{
+          opacity: 1,
+          visibility: "visible"
+        }}
+        transition={{
+          duration: 0.4,
+        }}
+      >
+        <DividerBar />
+        {/* Search bar */}
+        {/* Buttons bar */}
+      </motion.div>
+    </>
+  )
+}
+
+function DividerBar() {
+  return (
+    <div
+      style={{
+        width: "90vw",
+        height: "1px",
+        backgroundColor: "black"
+      }}
+    />
+  )
 }
