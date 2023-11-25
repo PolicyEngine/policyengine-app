@@ -20,6 +20,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
 import colors from "../../redesign/style/colors";
+import spacing from "../../redesign/style/spacing";
 
 export default function MobileHouseholdPage(props) {
   const {
@@ -37,6 +38,7 @@ export default function MobileHouseholdPage(props) {
           overflow: "scroll",
           width: "100%",
           padding: 20,
+          minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`
         }}
       >
         {mainContent}
@@ -197,7 +199,7 @@ function MobileBottomMenu(props) {
         justifyContent: "center",
         alignItems: "center",
         width: "100vw",
-        position: "sticky",
+        position: "fixed",
         bottom: 0,
         left: 0,
         zIndex: 5,
