@@ -37,7 +37,6 @@ export default function MobileHouseholdPage(props) {
       >
         {mainContent}
       </div>
-      <MobileMiddleBar metadata={metadata} />
       {householdInput && (
         <MobileBottomMenu
           metadata={metadata}
@@ -136,57 +135,6 @@ function MobileTreeNavigationHolder(props) {
   );
 }
 
-function MobileMiddleBar(props) {
-  const { metadata } = props;
-  const [searchMode, setSearchMode] = useState(false);
-  return (
-    <div style={{ display: "flex" }}>
-      <div
-        style={{
-          width: "85%",
-          height: 50,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {!searchMode ? (
-          <></>
-        ) : (
-          <VariableSearch metadata={metadata} />
-        )}
-      </div>
-      <div
-        style={{
-          width: "15%",
-          backgroundColor: style.colors.LIGHT_GRAY,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {!searchMode ? (
-          <SearchOutlined
-            style={{
-              fontSize: 20,
-              color: style.colors.BLACK,
-            }}
-            onClick={() => setSearchMode(!searchMode)}
-          />
-        ) : (
-          <CloseOutlined
-            style={{
-              fontSize: 20,
-              color: style.colors.BLACK,
-            }}
-            onClick={() => setSearchMode(!searchMode)}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
 function MobileBottomMenu(props) {
   const { metadata, householdBaseline, householdReform, autoCompute } = props;
   const [searchParams] = useSearchParams();
@@ -232,7 +180,7 @@ function MobileBottomMenu(props) {
   return (
     <div
       style={{
-        padding: "5px",
+        padding: "10px",
         backgroundColor: colors.LIGHT_GRAY,
         borderTop: "1px solid black",
         display: "flex",
@@ -243,7 +191,8 @@ function MobileBottomMenu(props) {
         position: "fixed",
         bottom: 0,
         left: 0,
-        zIndex: 5
+        zIndex: 5,
+        gap: "5px"
       }}
     >
       <div
@@ -259,7 +208,7 @@ function MobileBottomMenu(props) {
         {/* Left and right buttons*/}
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
-    <OpenedNavigationMenu isMenuOpen={isMenuOpen} />
+    <OpenedNavigationMenu isMenuOpen={isMenuOpen} metadata={metadata}/>
 
 {/*
       <div>
@@ -335,7 +284,7 @@ function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
   );
 }
 
-function OpenedNavigationMenu({isMenuOpen}) {
+function OpenedNavigationMenu({isMenuOpen, metadata}) {
   if (!isMenuOpen) {
     return null;
   }
@@ -343,12 +292,15 @@ function OpenedNavigationMenu({isMenuOpen}) {
     <>
       <motion.div
         style={{
-          width: "100vw",
+          paddingTop: "5px",
+          paddingBottom: "5px",
+          width: "100%",
           zIndex: -1,
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          alignItems: "center"
+          alignItems: "center",
+          gap: "10px"
         }}
         initial={{
           opacity: 0,
@@ -362,22 +314,26 @@ function OpenedNavigationMenu({isMenuOpen}) {
           duration: 0.4,
         }}
       >
-        <DividerBar />
-        {/* Search bar */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            gap: "10px"
+          }}
+        >
+          <VariableSearch metadata={metadata} />
+          <SearchOutlined
+            style={{
+              fontSize: 20,
+              color: style.colors.BLACK,
+            }}
+          />
+        </div>
         {/* Buttons bar */}
       </motion.div>
     </>
-  )
-}
-
-function DividerBar() {
-  return (
-    <div
-      style={{
-        width: "90vw",
-        height: "1px",
-        backgroundColor: "black"
-      }}
-    />
   )
 }
