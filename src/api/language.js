@@ -48,13 +48,14 @@ export function cardinal(number) {
   return number + (suffixes[(rem - 20) % 10] || suffixes[rem] || suffixes[0]);
 }
 
-// returns the Unicode locale identifier for the country id in the metadata
-export function localeCode(countryId) {
-  return countryId === "uk" ? "en-GB" : "en-US";
+export function currencyString(number, metadata, maximumFractionDigits) {
+  return number.toLocaleString("en-US", {
+    style: "currency",
+    currency: metadata.countryId === "uk" ? "GBP" : "USD",
+    maximumFractionDigits: maximumFractionDigits,
+  });
 }
 
-// returns the ISO 4217 currency codes for the currency for the country id in
-// the metadata
-export function currencyCode(countryId) {
-  return countryId === "uk" ? "GBP" : "USD";
+export function localeString(metadata) {
+  return metadata.countryId === "uk" ? "en" : "en-US";
 }
