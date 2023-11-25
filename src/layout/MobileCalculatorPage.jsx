@@ -22,10 +22,10 @@ import spacing from "../redesign/style/spacing";
  * @param {Object} props.metadata
  * @param {ReactComponentElement} props.mainContent The React component that would 
  * typically be displayed in the middle portion of the calculator on desktop
- * @param {Object} [householdInput] Required for "household" type
- * @param {Object} [householdBaseline] Required for "household" type
- * @param {Object} [householdReform] Required for "household" type
- * @param {boolean} [autoComputer] Required for "household" type
+ * @param {Object} [props.householdInput] Required for "household" type
+ * @param {Object} [props.householdBaseline] Required for "household" type
+ * @param {Object} [props.householdReform] Required for "household" type
+ * @param {boolean} [props.autoCompute] Required for "household" type
  * @param {('household'|'policy')} props.type The type of page to be rendered
  * @returns {ReactComponentElement}
  */
@@ -82,6 +82,79 @@ export default function MobileCalculatorPage(props) {
         />
       )}
     </>
+  );
+}
+
+/**
+ * React component for bottom menu on mobile
+ * @param {Object} props 
+ * @param {Object} props.metadata
+ * @param {('household'|'policy')} props.type
+ * @param {Object} [props.householdBaseline] Only required for "household" type
+ * @param {Object} [props.householdReform] Only required for "household" type
+ * @param {Object} [props.autCompute] Only required for "household" type
+ * @returns 
+ */
+function MobileBottomMenu(props) {
+  const { 
+    metadata, 
+    type,
+    householdBaseline, 
+    householdReform, 
+    autoCompute,
+  } = props;
+  const [searchParams] = useSearchParams();
+  let hasReform = searchParams.get("reform") !== null;
+  const focus = searchParams.get("focus") || "";
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  function handleMenuOpen() {
+    setIsMenuOpen(prev => !prev);
+  }
+
+  return (
+    <div
+      className="mobile-bottom-bar"
+      style={{
+        padding: "10px",
+        backgroundColor: colors.LIGHT_GRAY,
+        borderTop: "1px solid black",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        position: "fixed",
+        left: 0,
+        bottom: 0,
+        zIndex: 5,
+        gap: "5px"
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          justifyContent: "center",
+          alignItems: "center"
+        }}
+      >
+        <MobileTreeNavigationHolder metadata={metadata} type={type}/>
+        <MobileBottomNavButtons focus={focus} />
+        <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
+      </div>
+      <OpenedNavigationMenu 
+        householdBaseline={householdBaseline}
+        householdReform={householdReform}
+        autoCompute={autoCompute}
+        isMenuOpen={isMenuOpen} 
+        metadata={metadata}
+        focus={focus}
+        hasReform={hasReform}
+        type={type}
+      />
+    </div>
   );
 }
 
@@ -183,98 +256,6 @@ function MobileTreeNavigationHolder(props) {
   );
 }
 
-function MobileBottomMenu(props) {
-  const { 
-    metadata, 
-    householdBaseline, 
-    householdReform, 
-    autoCompute,
-    type
-  } = props;
-  const [searchParams] = useSearchParams();
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  function handleMenuOpen() {
-    setIsMenuOpen(prev => !prev);
-  }
-
-  let hasReform = searchParams.get("reform") !== null;
-  const focus = searchParams.get("focus") || "";
-  const getValue = (variable) =>
-    getValueFromHousehold(variable, null, null, householdBaseline, metadata);
-  const getReformValue = (variable) =>
-    getValueFromHousehold(variable, null, null, householdReform, metadata);
-  const getValueStr = (variable) =>
-    formatVariableValue(metadata.variables[variable], getValue(variable), 0);
-  let text;
-  try {
-    getReformValue("household_net_income");
-  } catch (e) {
-    hasReform = false;
-  }
-  if (hasReform && autoCompute) {
-    const difference =
-      getReformValue("household_net_income") - getValue("household_net_income");
-    if (Math.abs(difference) < 0.01) {
-      text = `Your net income doesn't change`;
-    } else {
-      text = `Your net income ${
-        difference > 0 ? "increases" : "decreases"
-      } by ${formatVariableValue(
-        metadata.variables.household_net_income,
-        Math.abs(difference),
-        0,
-      )}`;
-    }
-  } else if (autoCompute) {
-    text = `Your net income is ${getValueStr("household_net_income")}`;
-  } else {
-    text = "";
-  }
-
-  return (
-    <div
-      className="mobile-bottom-bar"
-      style={{
-        padding: "10px",
-        backgroundColor: colors.LIGHT_GRAY,
-        borderTop: "1px solid black",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100vw",
-        position: "fixed",
-        left: 0,
-        bottom: 0,
-        zIndex: 5,
-        gap: "5px"
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          width: "100%",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
-        <MobileTreeNavigationHolder metadata={metadata} type={type}/>
-        <MobileBottomNavButtons focus={focus} />
-        <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
-      </div>
-      <OpenedNavigationMenu 
-        isMenuOpen={isMenuOpen} 
-        metadata={metadata}
-        focus={focus}
-        hasReform={hasReform}
-        text={text}
-      />
-    </div>
-  );
-}
-
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
 function MobileBottomNavButtons({focus}) {
@@ -359,7 +340,10 @@ function OpenedNavigationMenu(props) {
     metadata, 
     focus,
     hasReform,
-    text
+    type,
+    householdBaseline,
+    householdReform,
+    autoCompute
   } = props;
   if (!isMenuOpen) {
     return null;
@@ -393,7 +377,14 @@ function OpenedNavigationMenu(props) {
         }}
       >
         <DividerBar />
-        <TopText text={text}/>
+        <TopText 
+          type={type} 
+          metadata={metadata}
+          hasReform={hasReform}
+          householdBaseline={householdBaseline}
+          householdReform={householdReform}
+          autoCompute={autoCompute}
+        />
         <SearchBar metadata={metadata} />
         <NavOptionsBar 
           focus={focus} 
@@ -405,12 +396,59 @@ function OpenedNavigationMenu(props) {
   )
 }
 
-function TopText({text}) {
+function TopText(props) {
+  let {
+    type,
+    metadata,
+    hasReform,
+    householdBaseline,
+    householdReform,
+    autoCompute
+  } = props;
+
+  if (type !== "household") {
+    return null;
+  }
+
+  const [searchParams] = useSearchParams();
+
+  // let hasReform = searchParams.get("reform") !== null;
+  const getValue = (variable) =>
+    getValueFromHousehold(variable, null, null, householdBaseline, metadata);
+  const getReformValue = (variable) =>
+    getValueFromHousehold(variable, null, null, householdReform, metadata);
+  const getValueStr = (variable) =>
+    formatVariableValue(metadata.variables[variable], getValue(variable), 0);
+  let text;
+  try {
+    getReformValue("household_net_income");
+  } catch (e) {
+    hasReform = false;
+  }
+  if (hasReform && autoCompute) {
+    const difference =
+      getReformValue("household_net_income") - getValue("household_net_income");
+    if (Math.abs(difference) < 0.01) {
+      text = `Your net income doesn't change`;
+    } else {
+      text = `Your net income ${
+        difference > 0 ? "increases" : "decreases"
+      } by ${formatVariableValue(
+        metadata.variables.household_net_income,
+        Math.abs(difference),
+        0,
+      )}`;
+    }
+  } else if (autoCompute) {
+    text = `Your net income is ${getValueStr("household_net_income")}`;
+  } else {
+    text = "";
+  }
   return (
     <h5 style={{margin: 0}}>
       {text}
     </h5>
-  )
+  );
 }
 
 function DividerBar() {
