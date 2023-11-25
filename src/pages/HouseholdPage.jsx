@@ -323,10 +323,10 @@ export default function HouseholdPage(props) {
   if (mobile) {
     return (
       <MobileCalculatorPage
+        type="household"
         mainContent={middle}
         metadata={metadata}
         householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         autoCompute={autoCompute}

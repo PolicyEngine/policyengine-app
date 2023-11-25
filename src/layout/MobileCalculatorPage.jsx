@@ -16,13 +16,28 @@ import style from "../style";
 import colors from "../redesign/style/colors";
 import spacing from "../redesign/style/spacing";
 
+/**
+ * Layout component that overlays the household and policy pages on mobile
+ * @param {Object} props 
+ * @param {Object} props.metadata
+ * @param {import("react").ReactComponentElement} props.mainContent The React component that would 
+ * typically be displayed in the middle portion of the calculator on desktop
+ * @param {Object} [householdInput] Required for "household" type
+ * @param {Object} [householdBaseline] Required for "household" type
+ * @param {Object} [householdReform] Required for "household" type
+ * @param {boolean} [autoComputer] Required for "household" type
+ * @param {('household'|'policy')} props.type The type of page to be rendered
+ * @returns {import("react").ReactComponentElement}
+ */
 export default function MobileCalculatorPage(props) {
   const {
     metadata,
     householdInput,
     householdBaseline,
+    householdReform,
     mainContent,
-    autoCompute
+    autoCompute,
+    type
   } = props;
 
   const [bottomPadding, setBottomPadding] = useState(0);
@@ -41,6 +56,7 @@ export default function MobileCalculatorPage(props) {
     }
   });
 
+  // Scroll to top every time a user opens a new page
   useEffect(() => {
     window.scrollTo(0, 0);
   })
@@ -57,7 +73,7 @@ export default function MobileCalculatorPage(props) {
       >
         {mainContent}
       </div>
-      {householdInput && (
+      {type === "household" && householdInput && (
         <MobileBottomMenu
           metadata={metadata}
           householdBaseline={householdBaseline}
