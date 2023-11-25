@@ -150,7 +150,7 @@ function MobileMiddleBar(props) {
         }}
       >
         {!searchMode ? (
-          <MobileTreeNavigationHolder metadata={metadata} />
+          <></>
         ) : (
           <VariableSearch metadata={metadata} />
         )}
