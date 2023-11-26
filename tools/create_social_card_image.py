@@ -27,9 +27,7 @@ def create_social_card(
         # Too tall
         new_width = 800
         new_height = int(800 / aspect_ratio)
-    image = image.resize(
-        (new_width * SIZE_MULTIPLIER, new_height * SIZE_MULTIPLIER)
-    )
+    image = image.resize((new_width * SIZE_MULTIPLIER, new_height * SIZE_MULTIPLIER))
 
     # Create a blank canvas
     canvas = Image.new(
@@ -56,9 +54,7 @@ def create_social_card(
     _, text_height = draw.textsize(title, font=font)
     # Calculate the position of the text. Should be inside the box
     text_x = 20 * SIZE_MULTIPLIER
-    text_y = (418 - 70) * SIZE_MULTIPLIER + (
-        70 * SIZE_MULTIPLIER - text_height
-    ) / 2
+    text_y = (418 - 70) * SIZE_MULTIPLIER + (70 * SIZE_MULTIPLIER - text_height) / 2
     # Draw the text with colour
     draw.text((text_x, text_y), title, font=font)
 

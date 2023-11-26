@@ -51,14 +51,10 @@ def serve(path):
 @app.errorhandler(404)
 def page_not_found(e):
     if request.path.startswith("/static/js/main."):
-        js_file = next(
-            Path(app.static_folder).joinpath("static/js").glob("*.js")
-        )
+        js_file = next(Path(app.static_folder).joinpath("static/js").glob("*.js"))
         return send_from_directory(js_file.parent, js_file.name)
     if request.path.startswith("/static/css/main."):
-        css_file = next(
-            Path(app.static_folder).joinpath("static/css").glob("*.css")
-        )
+        css_file = next(Path(app.static_folder).joinpath("static/css").glob("*.css"))
         return send_from_directory(css_file.parent, css_file.name)
     return send_index_html()
 
