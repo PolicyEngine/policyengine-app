@@ -1,10 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import { useEffect, useState, ReactComponentElement } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  SearchOutlined,
-  BookOutlined
-} from "@ant-design/icons";
+import { SearchOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 
 import {
@@ -14,7 +12,6 @@ import {
 import getPolicyOutputTree from "../pages/policy/output/tree";
 import { copySearchParams } from "../api/call";
 import NavigationButton from "../controls/NavigationButton";
-import Button from "../controls/Button.jsx";
 import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
 import VariableSearch from "../pages/household/VariableSearch";
 import { ParameterSearch } from "../pages/PolicyPage.jsx";
@@ -45,12 +42,11 @@ export default function MobileCalculatorPage(props) {
     type,
     householdInput,
     householdBaseline,
-    householdReform,
     autoCompute,
     policy
   } = props;
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [bottomPadding, setBottomPadding] = useState(0);
 
   const embed = searchParams.get("embed") !== null;
@@ -390,7 +386,7 @@ function PolicyDrawerButton({policy, metadata}) {
 
   function handleClick() {
     setIsPolicyDrawerOpen(prev => !prev);
-  };
+  }
 
   return (
     <>
@@ -533,8 +529,6 @@ function TopText(props) {
     return null;
   }
 
-  const [searchParams] = useSearchParams();
-
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, householdBaseline, metadata);
   const getReformValue = (variable) =>
@@ -628,7 +622,6 @@ function NavOptionsBar(props) {
     type,
     metadata,
     hasReform,
-    policy,
     handleMenuOpen
   } = props;
 

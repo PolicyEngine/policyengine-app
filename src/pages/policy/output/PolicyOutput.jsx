@@ -47,7 +47,6 @@ export function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
   const [value] = useState(searchParams.get("region") || options[0].value);
-  const mobile = useMobile();
 
   return (
     <SearchOptions
@@ -74,7 +73,6 @@ export function TimePeriodSelector(props) {
   const [value] = useState(
     (searchParams.get("timePeriod") || "").toString() || options[0].value,
   );
-  const mobile = useMobile();
 
   return (
     <SearchOptions

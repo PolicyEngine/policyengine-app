@@ -14,7 +14,6 @@ import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
 import { Alert, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
-import { useDisplayCategory } from "../../layout/Responsive.jsx";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -191,7 +190,6 @@ export default function PolicyRightSidebar(props) {
   const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const displayCategory = useDisplayCategory();
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
