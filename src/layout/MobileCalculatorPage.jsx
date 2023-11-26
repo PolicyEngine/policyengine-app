@@ -1,16 +1,24 @@
 import { useEffect, useState, ReactComponentElement } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { SearchOutlined } from "@ant-design/icons";
+import { 
+  SearchOutlined,
+  BookOutlined
+} from "@ant-design/icons";
+import { Drawer } from "antd";
 
 import {
   formatVariableValue,
   getValueFromHousehold,
 } from "../api/variables";
+import getPolicyOutputTree from "../pages/policy/output/tree";
 import { copySearchParams } from "../api/call";
 import NavigationButton from "../controls/NavigationButton";
+import Button from "../controls/Button.jsx";
 import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
 import VariableSearch from "../pages/household/VariableSearch";
+import { ParameterSearch } from "../pages/PolicyPage.jsx";
+import PolicyRightSidebar from "../pages/policy/PolicyRightSidebar.jsx";
 
 import style from "../style";
 import colors from "../redesign/style/colors";
@@ -26,21 +34,29 @@ import spacing from "../redesign/style/spacing";
  * @param {Object} [props.householdBaseline] Required for "household" type
  * @param {Object} [props.householdReform] Required for "household" type
  * @param {boolean} [props.autoCompute] Required for "household" type
+ * @param {Object} [props.policy] Required for "policy" type
  * @param {('household'|'policy')} props.type The type of page to be rendered
  * @returns {ReactComponentElement}
  */
 export default function MobileCalculatorPage(props) {
   const {
+    mainContent,
     metadata,
+    type,
     householdInput,
     householdBaseline,
     householdReform,
-    mainContent,
     autoCompute,
-    type
+    policy
   } = props;
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const [bottomPadding, setBottomPadding] = useState(0);
+
+  const embed = searchParams.get("embed") !== null;
+  if (type === "policy" && embed) {
+    return mainContent;
+  }
 
   useEffect(() => {
     const mobileBottomBar = document.querySelector(".mobile-bottom-bar");
@@ -73,9 +89,11 @@ export default function MobileCalculatorPage(props) {
       >
         {mainContent}
       </div>
-      {type === "household" && householdInput && (
+      {((type === "household" && householdInput) ||
+        (type === "policy")) && (
         <MobileBottomMenu
           metadata={metadata}
+          policy={policy}
           householdBaseline={householdBaseline}
           autoCompute={autoCompute}
           type={type}
@@ -102,6 +120,7 @@ function MobileBottomMenu(props) {
     householdBaseline, 
     householdReform, 
     autoCompute,
+    policy
   } = props;
   const [searchParams] = useSearchParams();
   let hasReform = searchParams.get("reform") !== null;
@@ -141,7 +160,7 @@ function MobileBottomMenu(props) {
         }}
       >
         <MobileTreeNavigationHolder metadata={metadata} type={type}/>
-        <MobileBottomNavButtons focus={focus} type={type}/>
+        <MobileBottomNavButtons focus={focus} type={type} metadata={metadata}/>
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
       <OpenedNavigationMenu 
@@ -153,6 +172,7 @@ function MobileBottomMenu(props) {
         focus={focus}
         hasReform={hasReform}
         type={type}
+        policy={policy}
       />
     </div>
   );
@@ -171,6 +191,7 @@ function MobileTreeNavigationHolder(props) {
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
+
   let currentNode;
 
   if (type === "household") {
@@ -180,6 +201,15 @@ function MobileTreeNavigationHolder(props) {
       currentNode = { children: [metadata.variableTree] };
     }
   }
+  if (type === "policy") {
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    if (focus && focus.startsWith("policyOutput")) {
+      currentNode = { children: POLICY_OUTPUT_TREE };
+    } else {
+      currentNode = { children: [metadata.parameterTree] };
+    }
+  }
+
   useEffect(() => {
     // On load, scroll the current breadcrumb into view.
     const breadcrumb = document.getElementById("current-breadcrumb");
@@ -258,10 +288,16 @@ function MobileTreeNavigationHolder(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
-function MobileBottomNavButtons({focus, type}) {
+function MobileBottomNavButtons({focus, type, metadata}) {
   if (
     type === "household" &&
     !(focus && focus.startsWith("householdOutput."))
+  ) {
+    return null;
+  }
+  if (
+    type === "policy" &&
+    !(focus && focus.startsWith("policyOutput."))
   ) {
     return null;
   }
@@ -269,6 +305,10 @@ function MobileBottomNavButtons({focus, type}) {
   let options = null;
   if (type === "household") {
     options = HOUSEHOLD_OUTPUT_TREE[0].children;
+  }
+  if (type === "policy") {
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    options = POLICY_OUTPUT_TREE[0].children;
   }
   const currentIndex = options.map((option) => option.name).indexOf(focus);
   const previous = options[currentIndex - 1] || {};
@@ -349,7 +389,8 @@ function OpenedNavigationMenu(props) {
     type,
     householdBaseline,
     householdReform,
-    autoCompute
+    autoCompute,
+    policy
   } = props;
   if (!isMenuOpen) {
     return null;
@@ -397,6 +438,7 @@ function OpenedNavigationMenu(props) {
           hasReform={hasReform}
           metadata={metadata}
           type={type}
+          policy={policy}
         />
       </motion.div>
     </>
@@ -484,6 +526,9 @@ function SearchBar({metadata, type}) {
       {type === "household" &&
         <VariableSearch metadata={metadata} />
       }
+      {type === "policy" &&
+        <ParameterSearch metadata={metadata} />
+      }
       <SearchOutlined
         style={{
           fontSize: 20,
@@ -500,10 +545,16 @@ function SearchBar({metadata, type}) {
 function NavOptionsBar(props) {
   const {
     focus, 
-    hasReform, 
+    type,
     metadata,
-    type
+    hasReform,
+    policy
   } = props;
+  const [isPolicyDrawerOpen, setIsPolicyDrawerOpen] = useState(false);
+
+  function handleClick() {
+    setIsPolicyDrawerOpen(prev => !prev);
+  };
 
   let buttonsJSX = null;
 
@@ -534,6 +585,80 @@ function NavOptionsBar(props) {
             target={`/${metadata.countryId}/policy`}
           />
         )}
+      </>
+    );
+  }
+  else if (type === "policy") {
+    buttonsJSX = (
+      <>
+        {focus && focus.startsWith("policyOutput") && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <NavigationButton primary text="Edit my policy" focus="gov" />
+            <Button
+              style={{
+                margin: 5,
+              }}
+              text={<BookOutlined />}
+              onClick={() => setIsPolicyDrawerOpen(true)}
+            />
+          </div>
+        )}
+        {focus && !focus.startsWith("policyOutput") && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <NavigationButton
+              primary
+              text="Calculate economic impact"
+              focus="policyOutput"
+            />
+            <Button
+              style={{
+                margin: 5,
+              }}
+              text={<BookOutlined />}
+              onClick={() => setIsPolicyDrawerOpen(true)}
+            />
+          </div>
+        )}
+        {!hasReform && (
+          <NavigationButton
+            text="Enter my household"
+            focus="input"
+            target={`/${metadata.countryId}/household`}
+          />
+        )}
+        {hasReform && (
+          <NavigationButton
+            text="Calculate my household impact"
+            focus="input"
+            target={`/${metadata.countryId}/household`}
+          />
+        )}
+        <Drawer
+          open={isPolicyDrawerOpen}
+          onClose={(e) => handleClick(e)}
+          placement="bottom"
+          title="Your policy"
+          height="60vh"
+        >
+          <PolicyRightSidebar
+            metadata={metadata}
+            policy={policy}
+            closeDrawer={handleClick}
+            hideButtons
+          />
+        </Drawer>
       </>
     );
   }

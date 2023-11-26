@@ -2,6 +2,7 @@ import { BookOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { copySearchParams } from "../api/call";
 import { findInTree } from "../api/variables";
 import Button from "../controls/Button";
@@ -9,6 +10,7 @@ import SearchParamNavButton from "../controls/SearchParamNavButton";
 import SearchOptions from "../controls/SearchOptions";
 import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../layout/LoadingCentered";
+import MobileCalculatorPage from "layout/MobileCalculatorPage";
 import useMobile from "../layout/Responsive";
 import StackedMenu from "../layout/StackedMenu";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
@@ -19,7 +21,7 @@ import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import getPolicyOutputTree from "./policy/output/tree";
 import { capitalize } from "../api/language";
 
-function ParameterSearch(props) {
+export function ParameterSearch(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = Object.values(metadata.parameters)
@@ -424,10 +426,11 @@ export default function PolicyPage(props) {
 
   if (mobile) {
     return (
-      <MobilePolicyPage
+      <MobileCalculatorPage
         mainContent={middle}
         metadata={metadata}
         policy={policy}
+        type="policy"
       />
     );
   }
