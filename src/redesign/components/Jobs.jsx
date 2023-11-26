@@ -23,47 +23,21 @@ function InternshipOpportunities() {
         sector, equipping you with skills and insights that shape societal
         progress.
       </p>
+      <p>
+        As an intern, you will engage deeply with PolicyEngine software,
+        contributing to its development and enhancing its utility. Collaborative
+        team projects will allow you to share knowledge and learn from others.
+        You will also have the opportunity to present your findings and progress
+        in various internal and external forums, contributing to important
+        policy discussions and decision-making processes.
+      </p>
+      <p>
+        You can apply at any time for spring, summer, and fall semester
+        internships (with the possibility of extension). We welcome
+        international applicants, and prefer candidates who can commit 15 hours
+        per week. Note that all internships are currently unpaid.
+      </p>
     </>
-  );
-}
-
-function InternshipDetails() {
-  return (
-    <div>
-      <h3>Internship Details</h3>
-      <ul>
-        <li>Duration: One semester, with the possibility of extension.</li>
-        <li>Time Commitment: Minimum 15 hours per week.</li>
-        <li>
-          Application Period: Rolling basis for spring, summer, and fall
-          semesters.
-        </li>
-        <li>International applicants are welcome.</li>
-        <li>Note: All internships are currently unpaid.</li>
-      </ul>
-    </div>
-  );
-}
-
-function GeneralResponsibilities() {
-  return (
-    <div>
-      <h3>General Responsibilities Across All Roles</h3>
-      <ul>
-        <li>
-          Use the PolicyEngine software for in-depth policy research and
-          analysis.
-        </li>
-        <li>
-          Suggest and contribute to improvements in the PolicyEngine software.
-        </li>
-        <li>
-          Engage in collaborative team projects and contribute to shared
-          knowledge.
-        </li>
-        <li>Present findings and progress in internal and external forums.</li>
-      </ul>
-    </div>
   );
 }
 
@@ -71,6 +45,11 @@ function SoftwareEngineeringIntern() {
   return (
     <div>
       <h3>Software Engineering Intern</h3>
+      <p>
+        Your software contributions will make policy analysis tools more
+        accessible, from our web app users to our internal team of developers.
+        You will:
+      </p>
       <ul>
         <li>
           Develop and enhance Python libraries, and build new applications using
@@ -125,6 +104,10 @@ function PolicyModelingIntern() {
   return (
     <div>
       <h3>Policy Modeling Intern</h3>
+      <p>
+        Your models of tax and benefit policies will power PolicyEngine&apos;s
+        rules engine, the heart of our software. You will:
+      </p>
       <ul>
         <li>
           Augment the{" "}
@@ -156,6 +139,10 @@ function DataAnalyticsIntern() {
   return (
     <div>
       <h3>Data Analytics Intern</h3>
+      <p>
+        Your policy analyses and data science tools will reveal the quantitative
+        implications of the most visible policy reforms. You will:
+      </p>
       <ul>
         <li>Work with policy analysts to analyze tax and benefit policies.</li>
         <li>
@@ -172,6 +159,10 @@ function EconomicsResearchIntern() {
   return (
     <div>
       <h3>Economics Research Intern</h3>
+      <p>
+        Your economic research will apply PolicyEngine software to discussions
+        that influence top public policy debates. You will:
+      </p>
       <ul>
         <li>Research and summarize economic data and academic research.</li>
         <li>Contribute to policy analysis discussions and write blog posts.</li>
@@ -188,6 +179,11 @@ function CommunicationsIntern() {
   return (
     <div>
       <h3>Communications Intern</h3>
+      <p>
+        Your strategic communications, media engagement, and content creation
+        will amplify PolicyEngine&apos;s impact by connecting more audiences to
+        relevant policy insights. You will:
+      </p>
       <ul>
         <li>
           Assist in distributing PolicyEngine&apos;s findings and analyses.
@@ -264,8 +260,6 @@ export default function Jobs() {
       </PageHeader>
       <Section>
         <InternshipOpportunities />
-        <InternshipDetails />
-        <GeneralResponsibilities />
         <SoftwareEngineeringIntern />
         <PolicyModelingIntern />
         <DataAnalyticsIntern />
