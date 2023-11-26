@@ -504,6 +504,7 @@ function OpenedNavigationMenu(props) {
         <SearchBar 
           metadata={metadata} 
           type={type}
+          handleMenuOpen={handleMenuOpen}
         />
         <NavOptionsBar 
           focus={focus} 
@@ -584,7 +585,7 @@ function DividerBar() {
   )
 }
 
-function SearchBar({metadata, type}) {
+function SearchBar({metadata, type, handleMenuOpen}) {
   return (
     <div
       style={{
@@ -598,10 +599,16 @@ function SearchBar({metadata, type}) {
       }}
     >
       {type === "household" &&
-        <VariableSearch metadata={metadata} />
+        <VariableSearch 
+          metadata={metadata}
+          callback={handleMenuOpen}
+        />
       }
       {type === "policy" &&
-        <ParameterSearch metadata={metadata} />
+        <ParameterSearch 
+          metadata={metadata} 
+          callback={handleMenuOpen}
+        />
       }
       <SearchOutlined
         style={{

@@ -3,7 +3,7 @@ import { copySearchParams } from "../../api/call";
 import SearchOptions from "../../controls/SearchOptions";
 
 export default function VariableSearch(props) {
-  const { metadata } = props;
+  const { metadata, callback } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const showComputed = searchParams.get("showComputedVariables") === "true";
   const options = Object.values(metadata.variables)
@@ -24,6 +24,11 @@ export default function VariableSearch(props) {
         let newSearch = copySearchParams(searchParams);
         newSearch.set("focus", value);
         setSearchParams(newSearch);
+
+        if (callback instanceof Function) {
+          callback();
+        }
+
       }}
     />
   );

@@ -22,7 +22,7 @@ import getPolicyOutputTree from "./policy/output/tree";
 import { capitalize } from "../api/language";
 
 export function ParameterSearch(props) {
-  const { metadata } = props;
+  const { metadata, callback } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = Object.values(metadata.parameters)
     .filter((parameter) => parameter.type === "parameter")
@@ -42,6 +42,10 @@ export function ParameterSearch(props) {
         let newSearch = copySearchParams(searchParams);
         newSearch.set("focus", value);
         setSearchParams(newSearch);
+
+        if (callback instanceof Function) {
+          callback();
+        }
       }}
     />
   );
