@@ -22,5 +22,5 @@ deploy: build deploy-setup
 	rm .gcloudignore
 	rm main.py
 	rm requirements.txt
-format:
-	black . -l 79
+lint:
+    npm run lint
