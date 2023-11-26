@@ -12,7 +12,7 @@ function InternshipOpportunities() {
       <h2>Internship Opportunities</h2>
       <p>
         PolicyEngine invites dedicated individuals to internships in Software
-        Engineering, Data Analytics, Policy Modeling, Economic Research, and
+        Engineering, Policy Modeling, Data Science, Economic Research, and
         Communications. These opportunities immerse you in efforts to make
         public policy more accessible, transparent, and evidence-based. Engaging
         with cutting-edge technology, you will learn how tax and benefit
@@ -20,7 +20,7 @@ function InternshipOpportunities() {
         poverty and inequality. This invaluable experience prepares you for
         diverse career paths in software development, data science, economics,
         and policy, whether in academia, government, NGOs, or the private
-        sector, equipping you with skills and insights that shape societal
+        sector, equipping you with skills and insights to shape societal
         progress.
       </p>
       <p>
@@ -33,9 +33,14 @@ function InternshipOpportunities() {
       </p>
       <p>
         You can apply at any time for spring, summer, and fall semester
-        internships (with the possibility of extension). We welcome
-        international applicants, and prefer candidates who can commit 15 hours
-        per week. Note that all internships are currently unpaid.
+        internships (with the possibility of extension). PolicyEngine believes
+        that a wide range of perspectives enrich our collective understanding
+        and innovation, and we encourage candidates from all backgrounds to
+        apply. We primarily collaborate remotely, ensuring a flexible and
+        inclusive environment for all our team members. For those in the
+        Washington, DC area, we provide additional opportunities for in-person
+        collaboration. We prefer candidates who can commit 15 hours per week.
+        Please note that all internships are currently unpaid.
       </p>
     </>
   );
@@ -48,8 +53,8 @@ function SoftwareEngineeringIntern() {
       <p>
         Your software contributions will make policy analysis tools more
         accessible, from our web app users to our internal team of developers.
-        You will:
       </p>
+      <p> You will:</p>
       <ul>
         <li>
           Develop and enhance Python libraries, and build new applications using
@@ -106,8 +111,9 @@ function PolicyModelingIntern() {
       <h3>Policy Modeling Intern</h3>
       <p>
         Your models of tax and benefit policies will power PolicyEngine&apos;s
-        rules engine, the heart of our software. You will:
+        rules engine, the heart of our software.
       </p>
+      <p> You will:</p>
       <ul>
         <li>
           Augment the{" "}
@@ -159,14 +165,15 @@ function PolicyModelingIntern() {
   );
 }
 
-function DataAnalyticsIntern() {
+function DataScienceIntern() {
   return (
     <div>
-      <h3>Data Analytics Intern</h3>
+      <h3>Data Science Intern</h3>
       <p>
         Your policy analyses and data science tools will reveal the quantitative
-        implications of the most visible policy reforms. You will:
+        implications of the most visible policy reforms.
       </p>
+      <p> You will:</p>
       <ul>
         <li>Work with policy analysts to analyze tax and benefit policies.</li>
         <li>
@@ -179,14 +186,15 @@ function DataAnalyticsIntern() {
   );
 }
 
-function EconomicsResearchIntern() {
+function EconomicResearchIntern() {
   return (
     <div>
-      <h3>Economics Research Intern</h3>
+      <h3>Economic Research Intern</h3>
       <p>
         Your economic research will apply PolicyEngine software to discussions
-        that influence top public policy debates. You will:
+        that influence top public policy debates.
       </p>
+      <p> You will:</p>
       <ul>
         <li>Research and summarize economic data and academic research.</li>
         <li>Contribute to policy analysis discussions and write blog posts.</li>
@@ -206,8 +214,9 @@ function CommunicationsIntern() {
       <p>
         Your strategic communications, media engagement, and content creation
         will amplify PolicyEngine&apos;s impact by connecting more audiences to
-        relevant policy insights. You will:
+        relevant policy insights.
       </p>
+      <p> You will:</p>
       <ul>
         <li>
           Assist in distributing PolicyEngine&apos;s findings and analyses.
@@ -218,21 +227,6 @@ function CommunicationsIntern() {
         <li>Monitor media coverage and maintain contact lists.</li>
       </ul>
     </div>
-  );
-}
-
-function CommitmentToDiversity() {
-  return (
-    <>
-      <h2>PolicyEngine&apos;s Commitment to Diversity and Inclusion</h2>
-      <p>
-        At PolicyEngine, we are dedicated to fostering a diverse and inclusive
-        environment. We believe in the power of varied perspectives and
-        backgrounds in driving innovation and success. We are committed to
-        equality in opportunities and access for all individuals, irrespective
-        of their background.
-      </p>
-    </>
   );
 }
 
@@ -286,10 +280,9 @@ export default function Jobs() {
         <InternshipOpportunities />
         <SoftwareEngineeringIntern />
         <PolicyModelingIntern />
-        <DataAnalyticsIntern />
-        <EconomicsResearchIntern />
+        <DataScienceIntern />
+        <EconomicResearchIntern />
         <CommunicationsIntern />
-        <CommitmentToDiversity />
         <ApplyButton />
       </Section>
       <Footer />
