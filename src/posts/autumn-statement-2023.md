@@ -68,9 +68,9 @@ Our estimates exceed those from HM Treasury by about 12%, disproportionately due
 
 | Reform                             | HM Treasury | PolicyEngine | Relative difference | PolicyEngine link                                                                                                           |
 | ---------------------------------- | ----------- | ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Lower Class 1 NICs from 12% to 10% | 8.72        |  9.69        | 11.2%               | [#28973](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=28973&region=uk&timePeriod=2024&baseline=1) |
-| Lower Class 4 NICs from 9% to 8%   | 0.35        |  0.44        | 26.9%               | [#37642](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37642&region=uk&timePeriod=2024&baseline=1) |
-| Abolish Class 2 NICs               | 0.38        |  0.41        |  8.8%               | [#37665](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37665&region=uk&timePeriod=2024&baseline=1) |
+| Lower Class 1 NICs from 12% to 10% | 8.72        | 9.69         | 11.2%               | [#28973](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=28973&region=uk&timePeriod=2024&baseline=1) |
+| Lower Class 4 NICs from 9% to 8%   | 0.35        | 0.44         | 26.9%               | [#37642](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37642&region=uk&timePeriod=2024&baseline=1) |
+| Abolish Class 2 NICs               | 0.38        | 0.41         | 8.8%                | [#37665](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37665&region=uk&timePeriod=2024&baseline=1) |
 | Total                              | 9.44        | 10.54        | 11.7%               | [#37636](https://policyengine.org/uk/policy?focus=policyOutput.netIncome&reform=37636&region=uk&timePeriod=2024&baseline=1) |
 
 ### Distributional impacts
