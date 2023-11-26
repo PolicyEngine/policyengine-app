@@ -177,6 +177,7 @@ function MobileBottomMenu(props) {
         hasReform={hasReform}
         type={type}
         policy={policy}
+        handleMenuOpen={handleMenuOpen}
       />
     </div>
   );
@@ -456,8 +457,10 @@ function OpenedNavigationMenu(props) {
     householdBaseline,
     householdReform,
     autoCompute,
-    policy
+    policy,
+    handleMenuOpen
   } = props;
+
   if (!isMenuOpen) {
     return null;
   }
@@ -498,13 +501,17 @@ function OpenedNavigationMenu(props) {
           householdReform={householdReform}
           autoCompute={autoCompute}
         />
-        <SearchBar metadata={metadata} type={type}/>
+        <SearchBar 
+          metadata={metadata} 
+          type={type}
+        />
         <NavOptionsBar 
           focus={focus} 
           hasReform={hasReform}
           metadata={metadata}
           type={type}
           policy={policy}
+          handleMenuOpen={handleMenuOpen}
         />
       </motion.div>
     </>
@@ -586,7 +593,8 @@ function SearchBar({metadata, type}) {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        gap: "10px"
+        gap: "10px",
+        paddingRight: "10px"
       }}
     >
       {type === "household" &&
@@ -600,7 +608,6 @@ function SearchBar({metadata, type}) {
           fontSize: 20,
           color: style.colors.BLACK,
           display: "block",
-          width: "60px",
           flexShrink: 0
         }}
       />
@@ -614,87 +621,79 @@ function NavOptionsBar(props) {
     type,
     metadata,
     hasReform,
-    policy
+    policy,
+    handleMenuOpen
   } = props;
 
-  let buttonsJSX = null;
+  let buttonData = [];
 
   if (type === "household") {
-    buttonsJSX = (
-      <>
-        {focus && focus.startsWith("householdOutput") && (
-          <NavigationButton primary text="Edit my household" focus="input" />
-        )}
-        {focus && !focus.startsWith("householdOutput") && (
-          <NavigationButton
-            primary
-            text="See my household details"
-            focus="householdOutput"
-          />
-        )}
-        {!hasReform && (
-          <NavigationButton
-            text="Create a reform"
-            focus="gov"
-            target={`/${metadata.countryId}/policy`}
-          />
-        )}
-        {hasReform && (
-          <NavigationButton
-            text="Edit my reform"
-            focus="gov"
-            target={`/${metadata.countryId}/policy`}
-          />
-        )}
-      </>
-    );
+    if (focus && focus.startsWith("householdOutput")) {
+      buttonData.push({
+        text: "Edit my household",
+        focus: "input"
+      });
+    } else if (focus) {
+      buttonData.push({
+        text: "See my household details",
+        focus: "householdOutput"
+      });
+    }
+
+    if (hasReform) {
+      buttonData.push({
+        text: "Edit my reform",
+        focus: "gov",
+        target: `/${metadata.countryId}/policy`
+      });
+    } else {
+      buttonData.push({
+        text: "Create a reform",
+        focus: "gov",
+        target: `/${metadata.countryId}/policy`
+      });
+    }
   }
-  else if (type === "policy") {
-    buttonsJSX = (
-      <>
-        {focus && focus.startsWith("policyOutput") && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <NavigationButton primary text="Edit my policy" focus="gov" />
-          </div>
-        )}
-        {focus && !focus.startsWith("policyOutput") && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <NavigationButton
-              primary
-              text="Calculate economic impact"
-              focus="policyOutput"
-            />
-          </div>
-        )}
-        {!hasReform && (
-          <NavigationButton
-            text="Enter my household"
-            focus="input"
-            target={`/${metadata.countryId}/household`}
-          />
-        )}
-        {hasReform && (
-          <NavigationButton
-            text="Calculate my household impact"
-            focus="input"
-            target={`/${metadata.countryId}/household`}
-          />
-        )}
-      </>
-    );
+  
+  if (type === "policy") {
+    if (focus && focus.startsWith("policyOutput")) {
+      buttonData.push({
+        text: "Edit my policy",
+        focus: "gov"
+      });
+    } else if (focus) {
+      buttonData.push({
+        text: "Calculate economic impact",
+        focus: "policyOutput"
+      });
+    }
+
+    if (hasReform) {
+      buttonData.push({
+        text: "Calculate my household impact",
+        focus: "input",
+        target: `/${metadata.countryId}/household`
+      });
+    } else {
+      buttonData.push({
+        text: "Enter my household",
+        focus: "input",
+        target: `/${metadata.countryId}/household`
+      });
+    }
   }
+
+  const buttonsJSX = buttonData.map((item, index) => {
+    return (
+      <NavigationButton
+        key={index}
+        primary
+        text={item.text}
+        focus={item.focus}
+        target={item.target}
+      />
+    )
+  })
 
   return (
     <div
