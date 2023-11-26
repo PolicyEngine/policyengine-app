@@ -42,7 +42,7 @@ Compared to a counterfactual where benefits are not uprated at all, we estimate 
 
 Hunt also announced a number of other reforms not modelled in PolicyEngine, including a freeze on alcohol duty, additional business tax breaks, investment in AI and manufacturing, and a rise in the minimum wage.
 
-He notably did _not_ announce reforms that outlets had previously reported he was considering, such as lowering the basic rate of Income Tax from 19p to 18p ([the Financial Times](https://www.ft.com/content/aafea716-30d5-4518-98fe-169f6995173e)) or cutting Stamp Duty and Inheritance tax ([The Times](https://www.thetimes.co.uk/article/autumn-statement-2023-predictions-jeremy-hunt-budget-tax-cuts-03sms6x82)).
+He notably did _not_ announce reforms that outlets had previously reported he was considering, such as lowering the basic rate of Income Tax from 20p to 19p ([the Financial Times](https://www.ft.com/content/aafea716-30d5-4518-98fe-169f6995173e)) or cutting Stamp Duty and Inheritance tax ([The Times](https://www.thetimes.co.uk/article/autumn-statement-2023-predictions-jeremy-hunt-budget-tax-cuts-03sms6x82)).
 
 ## Household impacts of NIC cuts
 
@@ -75,7 +75,7 @@ Our estimates exceed those from HM Treasury by about 12%, disproportionately due
 
 ### Distributional impacts
 
-Households in the bottom income decile would [gain an average of £12](https://policyengine.org/uk/policy?focus=policyOutput.decileAverageImpact&reform=37636&region=uk&timePeriod=2024&baseline=1), while those in the top decile would gain an average of £501.
+Households in the bottom income decile would [gain an average of £12](https://policyengine.org/uk/policy?focus=policyOutput.decileAverageImpact&reform=37636&region=uk&timePeriod=2024&baseline=1), while those in the top decile would gain an average of £1,067.
 
 ![Figure 3: Relative impact by income decile of Autumn Budget NI reforms](https://user-images.githubusercontent.com/6076111/284982468-181d24ac-ff5c-498b-95eb-35a1311af7bb.png)
 
