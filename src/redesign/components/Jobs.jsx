@@ -11,11 +11,17 @@ function InternshipOpportunities() {
     <>
       <h2>Internship Opportunities</h2>
       <p>
-        PolicyEngine invites dedicated individuals for internships in Software
-        Engineering, Data Analytics, Policy Modeling, Economics Research, and
-        Communications. These opportunities are ideal for those eager to delve
-        into the world of policy analysis, focusing on tax and benefit policies
-        and their broader economic implications.
+        PolicyEngine invites dedicated individuals to internships in Software
+        Engineering, Data Analytics, Policy Modeling, Economic Research, and
+        Communications. These opportunities immerse you in efforts to make
+        public policy more accessible, transparent, and evidence-based. Engaging
+        with cutting-edge technology, you will learn how tax and benefit
+        policies affect everything from the budget and economic growth to
+        poverty and inequality. This invaluable experience prepares you for
+        diverse career paths in software development, data science, economics,
+        and policy, whether in academia, government, NGOs, or the private
+        sector, equipping you with skills and insights that shape societal
+        progress.
       </p>
     </>
   );
@@ -71,7 +77,43 @@ function SoftwareEngineeringIntern() {
           emerging technologies like generative AI.
         </li>
         <li>
-          Work on React-based front-end and Flask/Python back-end development.
+          Work on React-based front-end in the{" "}
+          <a
+            href="https://github.com/policyengine/policyengine-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "monospace",
+              color: style.colors.BLUE_PRIMARY,
+            }}
+          >
+            policyengine-app
+          </a>{" "}
+          repo and Flask/Python back-end development in the{" "}
+          <a
+            href="https://github.com/policyengine/policyengine-api"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "monospace",
+              color: style.colors.BLUE_PRIMARY,
+            }}
+          >
+            policyengine-api
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://github.com/policyengine/policyengine-core"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "monospace",
+              color: style.colors.BLUE_PRIMARY,
+            }}
+          >
+            policyengine-core
+          </a>{" "}
+          libraries.
         </li>
         <li>Develop and review code collaboratively in GitHub.</li>
       </ul>
@@ -85,8 +127,20 @@ function PolicyModelingIntern() {
       <h3>Policy Modeling Intern</h3>
       <ul>
         <li>
-          Augment the policyengine-us Python package to model additional tax and
-          benefit rules and regulations.
+          Augment the{" "}
+          <a
+            href="https://github.com/policyengine/policyengine-us"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "monospace",
+              color: style.colors.BLUE_PRIMARY,
+            }}
+          >
+            policyengine-us
+          </a>{" "}
+          Python package to model additional tax and benefit rules and
+          regulations.
         </li>
         <li>
           Monitor legislative and policy proposals, strategizing their
