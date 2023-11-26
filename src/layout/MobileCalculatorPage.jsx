@@ -425,7 +425,11 @@ function PolicyDrawerButton({policy, metadata}) {
         onClose={(e) => handleClick(e)}
         placement="bottom"
         title="Your policy"
-        height="60vh"
+        style={{
+          maxHeight: "100vh",
+          overflow: "scroll",
+          height: "unset"
+        }}
       >
         <PolicyRightSidebar
           metadata={metadata}
