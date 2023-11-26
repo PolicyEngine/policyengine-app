@@ -150,7 +150,7 @@ function CommunicationsIntern() {
 function CommitmentToDiversity() {
   return (
     <>
-      <h2>PolicyEngine's Commitment to Diversity and Inclusion</h2>
+      <h2>PolicyEngine&apos;s Commitment to Diversity and Inclusion</h2>
       <p>
         At PolicyEngine, we are dedicated to fostering a diverse and inclusive
         environment. We believe in the power of varied perspectives and
