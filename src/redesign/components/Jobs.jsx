@@ -121,9 +121,33 @@ function PolicyModelingIntern() {
             }}
           >
             policyengine-us
+          </a>
+          ,{" "}
+          <a
+            href="https://github.com/policyengine/policyengine-uk"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "monospace",
+              color: style.colors.BLUE_PRIMARY,
+            }}
+          >
+            policyengine-uk
+          </a>
+          , and{" "}
+          <a
+            href="https://github.com/policyengine/policyengine-canada"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "monospace",
+              color: style.colors.BLUE_PRIMARY,
+            }}
+          >
+            policyengine-canada
           </a>{" "}
-          Python package to model additional tax and benefit rules and
-          regulations.
+          Python packages to model additional tax and benefit rules and
+          regulations in the US, UK, and Canada, respectively.
         </li>
         <li>
           Monitor legislative and policy proposals, strategizing their
