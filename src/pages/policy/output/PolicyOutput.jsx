@@ -660,7 +660,7 @@ export default function PolicyOutput(props) {
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {pane}
-      {!preparingForScreenshot && (
+      {!mobile && !preparingForScreenshot && (
         <BottomCarousel
           selected={focus}
           options={POLICY_OUTPUT_TREE[0].children}
