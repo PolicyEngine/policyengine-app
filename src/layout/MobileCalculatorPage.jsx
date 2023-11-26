@@ -156,11 +156,15 @@ function MobileBottomMenu(props) {
           flexDirection: "row",
           width: "100%",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
+          gap: "10px"
         }}
       >
         <MobileTreeNavigationHolder metadata={metadata} type={type}/>
         <MobileBottomNavButtons focus={focus} type={type} metadata={metadata}/>
+        {type === "policy" &&
+          <PolicyDrawerButton metadata={metadata} policy={policy} />
+        }
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
       <OpenedNavigationMenu 
@@ -380,6 +384,60 @@ function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
   );
 }
 
+function PolicyDrawerButton({policy, metadata}) {
+  const [isPolicyDrawerOpen, setIsPolicyDrawerOpen] = useState(false);
+
+  function handleClick() {
+    setIsPolicyDrawerOpen(prev => !prev);
+  };
+
+  return (
+    <>
+      <div
+        style={{
+          height: 54,
+          width: 60,
+          minWidth: 60,
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          padding: 15,
+          color: "white",
+          backgroundColor: colors.TEAL_ACCENT,
+          fontSize: 20,
+          cursor: "pointer",
+        }}
+        onClick={handleClick}
+      >
+        <span
+          className="material-symbols-outlined"
+          alt="Open context menu"
+          style={{
+            objectFit: "contain",
+            color: "white",
+          }}
+        >
+          {isPolicyDrawerOpen ? "close" : "book"}
+        </span>
+      </div>
+      <Drawer
+        open={isPolicyDrawerOpen}
+        onClose={(e) => handleClick(e)}
+        placement="bottom"
+        title="Your policy"
+        height="60vh"
+      >
+        <PolicyRightSidebar
+          metadata={metadata}
+          policy={policy}
+          closeDrawer={handleClick}
+          hideButtons
+        />
+      </Drawer>
+    </>
+  );
+}
+
 function OpenedNavigationMenu(props) {
   const {
     isMenuOpen, 
@@ -550,11 +608,6 @@ function NavOptionsBar(props) {
     hasReform,
     policy
   } = props;
-  const [isPolicyDrawerOpen, setIsPolicyDrawerOpen] = useState(false);
-
-  function handleClick() {
-    setIsPolicyDrawerOpen(prev => !prev);
-  };
 
   let buttonsJSX = null;
 
@@ -600,13 +653,6 @@ function NavOptionsBar(props) {
             }}
           >
             <NavigationButton primary text="Edit my policy" focus="gov" />
-            <Button
-              style={{
-                margin: 5,
-              }}
-              text={<BookOutlined />}
-              onClick={() => setIsPolicyDrawerOpen(true)}
-            />
           </div>
         )}
         {focus && !focus.startsWith("policyOutput") && (
@@ -621,13 +667,6 @@ function NavOptionsBar(props) {
               primary
               text="Calculate economic impact"
               focus="policyOutput"
-            />
-            <Button
-              style={{
-                margin: 5,
-              }}
-              text={<BookOutlined />}
-              onClick={() => setIsPolicyDrawerOpen(true)}
             />
           </div>
         )}
@@ -645,20 +684,6 @@ function NavOptionsBar(props) {
             target={`/${metadata.countryId}/household`}
           />
         )}
-        <Drawer
-          open={isPolicyDrawerOpen}
-          onClose={(e) => handleClick(e)}
-          placement="bottom"
-          title="Your policy"
-          height="60vh"
-        >
-          <PolicyRightSidebar
-            metadata={metadata}
-            policy={policy}
-            closeDrawer={handleClick}
-            hideButtons
-          />
-        </Drawer>
       </>
     );
   }
