@@ -24,7 +24,6 @@ export default function InputField(props) {
     let value = e.target.value === "" ? placeholder : e.target.value;
     onChange(value);
   };
-  console.log(width);
   //clears input field and resets placeholder if focus changes for use case of editing policy parameter
   useEffect(() => {
     if (!value) {
