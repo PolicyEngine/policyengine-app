@@ -6,6 +6,61 @@ import style from "../style";
 import PageHeader from "./PageHeader";
 import { HoverBox } from "./HoverBox";
 
+function InternshipOpportunities() {
+  return (
+    <>
+      <h2>Internship Opportunities</h2>
+      <p>
+        PolicyEngine invites dedicated individuals for internships in Software
+        Engineering, Data Analytics, Policy Modeling, Economics Research, and
+        Communications. These opportunities are ideal for those eager to delve
+        into the world of policy analysis, focusing on tax and benefit policies
+        and their broader economic implications.
+      </p>
+    </>
+  );
+}
+
+function InternshipDetails() {
+  return (
+    <div>
+      <h3>Internship Details</h3>
+      <ul>
+        <li>Duration: One semester, with the possibility of extension.</li>
+        <li>Time Commitment: Minimum 15 hours per week.</li>
+        <li>
+          Application Period: Rolling basis for spring, summer, and fall
+          semesters.
+        </li>
+        <li>International applicants are welcome.</li>
+        <li>Note: All internships are currently unpaid.</li>
+      </ul>
+    </div>
+  );
+}
+
+function GeneralResponsibilities() {
+  return (
+    <div>
+      <h3>General Responsibilities Across All Roles</h3>
+      <ul>
+        <li>
+          Use the PolicyEngine software for in-depth policy research and
+          analysis.
+        </li>
+        <li>
+          Suggest and contribute to improvements in the PolicyEngine software.
+        </li>
+        <li>
+          Engage in collaborative team projects and contribute to shared
+          knowledge.
+        </li>
+        <li>Present findings and progress in internal and external forums.</li>
+      </ul>
+    </div>
+  );
+}
+
 function SoftwareEngineeringIntern() {
   return (
     <div>
@@ -92,6 +147,21 @@ function CommunicationsIntern() {
   );
 }
 
+function CommitmentToDiversity() {
+  return (
+    <>
+      <h2>PolicyEngine's Commitment to Diversity and Inclusion</h2>
+      <p>
+        At PolicyEngine, we are dedicated to fostering a diverse and inclusive
+        environment. We believe in the power of varied perspectives and
+        backgrounds in driving innovation and success. We are committed to
+        equality in opportunities and access for all individuals, irrespective
+        of their background.
+      </p>
+    </>
+  );
+}
+
 function ApplyButton() {
   return (
     <a
@@ -139,54 +209,15 @@ export default function Jobs() {
         </p>
       </PageHeader>
       <Section>
-        <h2>Internship Opportunities</h2>
-        <p>
-          PolicyEngine invites dedicated individuals for internships in Software
-          Engineering, Data Analytics, Policy Modeling, Economics Research, and
-          Communications. These opportunities are ideal for those eager to delve
-          into the world of policy analysis, focusing on tax and benefit
-          policies and their broader economic implications.
-        </p>
-        <h3>Internship Details</h3>
-        <ul>
-          <li>Duration: One semester, with the possibility of extension.</li>
-          <li>Time Commitment: Minimum 15 hours per week.</li>
-          <li>
-            Application Period: Rolling basis for spring, summer, and fall
-            semesters.
-          </li>
-          <li>International applicants are welcome.</li>
-        </ul>
-        <h3>General Responsibilities Across All Roles</h3>
-        <ul>
-          <li>
-            Use the PolicyEngine software for in-depth policy research and
-            analysis.
-          </li>
-          <li>
-            Suggest and contribute to improvements in the PolicyEngine software.
-          </li>
-          <li>
-            Engage in collaborative team projects and contribute to shared
-            knowledge.
-          </li>
-          <li>
-            Present findings and progress in internal and external forums.
-          </li>
-        </ul>
+        <InternshipOpportunities />
+        <InternshipDetails />
+        <GeneralResponsibilities />
         <SoftwareEngineeringIntern />
         <PolicyModelingIntern />
         <DataAnalyticsIntern />
         <EconomicsResearchIntern />
         <CommunicationsIntern />
-        <h2>PolicyEngine&apos;s Commitment to Diversity and Inclusion</h2>
-        <p>
-          At PolicyEngine, we are dedicated to fostering a diverse and inclusive
-          environment. We believe in the power of varied perspectives and
-          backgrounds in driving innovation and success. We are committed to
-          equality in opportunities and access for all individuals, irrespective
-          of their background.
-        </p>
+        <CommitmentToDiversity />
         <ApplyButton />
       </Section>
       <Footer />
