@@ -103,9 +103,6 @@ export default function PovertyImpact(props) {
           },
         ]}
         layout={{
-          xaxis: {
-            title: "Age group",
-          },
           yaxis: {
             title: "Relative change",
             tickformat: "+,.1%",
