@@ -47,10 +47,13 @@ export function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
   const [value] = useState(searchParams.get("region") || options[0].value);
+  const mobile = useMobile();
 
   return (
     <SearchOptions
-      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
+      style={{ 
+        width: "100%", 
+      }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -71,10 +74,13 @@ export function TimePeriodSelector(props) {
   const [value] = useState(
     (searchParams.get("timePeriod") || "").toString() || options[0].value,
   );
+  const mobile = useMobile();
 
   return (
     <SearchOptions
-      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
+      style={{ 
+        width: "100%", 
+      }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {

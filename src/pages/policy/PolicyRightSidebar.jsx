@@ -14,6 +14,7 @@ import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
 import { Alert, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { useDisplayCategory } from "../../layout/Responsive.jsx";
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -190,6 +191,7 @@ export default function PolicyRightSidebar(props) {
   const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const displayCategory = useDisplayCategory();
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
@@ -347,57 +349,54 @@ export default function PolicyRightSidebar(props) {
       />
       <div
         style={{
-          display: "flex",
-          justifyContent: "right",
+          display: "grid",
+          gridTemplateColumns: "max-content auto",
+          margin: "0 20px",
+          justifyItems: "right",
           alignItems: "center",
-          marginTop: 20,
+          gap: "10px"
         }}
       >
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "right",
-          alignItems: "center",
-          marginTop: 10,
-        }}
-      >
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "right",
-          alignItems: "center",
-          marginTop: 10,
-        }}
-      >
         <h6 style={{ margin: 0 }}>against</h6>
-        <PolicySearch metadata={metadata} policy={policy} target="baseline" />
-        <SwapOutlined
+        <div
           style={{
-            fontSize: 15,
-            cursor: "pointer",
-            marginRight: 25,
-            marginLeft: 10,
+            display: "flex",
+            flexDirection: "row",
+            width: "100%",
+            gap: "10px"
           }}
-          onClick={() => {
-            const newSearch = copySearchParams(searchParams);
-            newSearch.set(
-              "reform",
-              baselinePolicyId || metadata.current_law_id,
-            );
-            if (!reformPolicyId) {
-              newSearch.delete("baseline");
-            } else {
-              newSearch.set("baseline", reformPolicyId);
-            }
-            setSearchParams(newSearch);
-          }}
-        />
+        >
+          <PolicySearch 
+            metadata={metadata} 
+            policy={policy} 
+            target="baseline" 
+            width="100%"
+          />
+          <SwapOutlined
+            style={{
+              fontSize: 15,
+              cursor: "pointer",
+              marginRight: "10px"
+            }}
+            onClick={() => {
+              const newSearch = copySearchParams(searchParams);
+              newSearch.set(
+                "reform",
+                baselinePolicyId || metadata.current_law_id,
+              );
+              if (!reformPolicyId) {
+                newSearch.delete("baseline");
+              } else {
+                newSearch.set("baseline", reformPolicyId);
+              }
+              setSearchParams(newSearch);
+            }}
+          />
+        </div>
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton
