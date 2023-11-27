@@ -258,9 +258,7 @@ function BlogBox({
       }}
     >
       <div style={{ display: "flex" }}>{left}</div>
-      <div
-        style={{ display: "flex", flexDirection: "column", width: "100%" }}
-      >
+      <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div>{topLeft}</div>
           <div>{topRight}</div>
