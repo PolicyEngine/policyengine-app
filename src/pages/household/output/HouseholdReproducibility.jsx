@@ -172,8 +172,7 @@ export default function HouseholdReproducibility(props) {
         style={{
           display: "flex",
           justifyContent: "center",
-          paddingTop: 30,
-          //marginBottom: 30,
+          paddingTop: 30
         }}
       >
         <Button
