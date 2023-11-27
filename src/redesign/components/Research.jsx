@@ -66,18 +66,18 @@ function ResearchExplorer() {
     (location) =>
       location === extractCountryIdFromPathname() ||
       location.startsWith(extractCountryIdFromPathname() + "-") ||
-      location === "global"
+      location === "global",
   );
 
   const [filteredTopics, setFilteredTopics] = useState(
-    searchParams.get("topics")?.split(",") || topicTags
+    searchParams.get("topics")?.split(",") || topicTags,
   );
   const [filteredLocations, setFilteredLocations] = useState(
-    searchParams.get("locations")?.split(",") || initialLocations
+    searchParams.get("locations")?.split(",") || initialLocations,
   );
 
   const [filteredAuthors, setFilteredAuthors] = useState(
-    searchParams.get("authors")?.split(",") || authorKeys
+    searchParams.get("authors")?.split(",") || authorKeys,
   );
   const filterFunction = (post) => {
     let hasMetAtLeastOneFilteredTopic = false;
