@@ -43,9 +43,12 @@ export default function ParameterOverTime(props) {
     reformedY.push(reformedY[reformedY.length - 1]);
   }
 
+  let xForRange = reformedX ? x.concat(reformedX) : x;
+  xForRange = xForRange.filter((e) => e !== "0000-01-01" && e !== "2099-12-31");
+  let xAxisFormat = getPlotlyAxisFormat("date", xForRange);
   let yAxisFormat = getPlotlyAxisFormat(
     parameter.unit,
-    Object.values(parameter.values),
+    reformedY ? y.concat(reformedY) : y,
   );
   let yAxisTickVals;
   let yAxisTickLabels;
@@ -65,6 +68,7 @@ export default function ParameterOverTime(props) {
             type: "line",
             line: {
               shape: "hv",
+              dash: "dot",
             },
             marker: {
               color: style.colors.GRAY,
@@ -87,9 +91,7 @@ export default function ParameterOverTime(props) {
           .reverse()
           .filter((x) => x)}
         layout={{
-          xaxis: {
-            range: ["2000-01-01", "2025-01-01"],
-          },
+          xaxis: xAxisFormat,
           yaxis: {
             ...yAxisFormat,
             tickvals: yAxisTickVals || null,
