@@ -129,9 +129,6 @@ export default function PovertyImpactByRace(props) {
           },
         ]}
         layout={{
-          xaxis: {
-            title: "Race",
-          },
           yaxis: {
             title: "Relative change",
             tickformat: "+,.1%",

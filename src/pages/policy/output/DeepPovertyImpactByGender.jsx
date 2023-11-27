@@ -107,9 +107,6 @@ export default function DeepPovertyImpactByGender(props) {
           },
         ]}
         layout={{
-          xaxis: {
-            title: "Sex",
-          },
           yaxis: {
             title: "Relative change",
             tickformat: "+,.1%",
