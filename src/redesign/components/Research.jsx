@@ -69,7 +69,6 @@ function ResearchExplorer() {
       location === "global"
   );
 
-  
   const [filteredTopics, setFilteredTopics] = useState(
     searchParams.get("topics")?.split(",") || topicTags
   );
