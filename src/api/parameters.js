@@ -101,19 +101,38 @@ export function getReformedParameter(parameter, reforms) {
   if (!parameterValues) {
     return null;
   }
-  const parameterValuesInOrder = Object.keys(parameterValues).sort();
+  const sortedKeys = Object.keys(parameterValues).sort();
   const reform = reforms[parameter.parameter];
   if (reform) {
     for (const [timePeriod, value] of Object.entries(reform)) {
       const [startDate, endDate] = timePeriod.split(".");
-      // Delete all values in the time period
-      for (const timePeriod of parameterValuesInOrder) {
-        if (timePeriod >= startDate && timePeriod <= endDate) {
-          delete parameterValues[timePeriod];
+      const i1 = sortedKeys.findIndex(
+        (k) => k >= startDate && parameterValues[k] !== value,
+      );
+      const i2 = sortedKeys.findLastIndex(
+        (k) => endDate >= k && parameterValues[k] !== value,
+      );
+      if (i1 !== -1 && i2 !== -1) {
+        // cache the last value
+        let c = parameterValues[sortedKeys[i2]];
+        // delete all values in the time period
+        for (let i = i1; i <= i2; i++) {
+          delete parameterValues[sortedKeys[i]];
         }
+        // add the new values
+        parameterValues[startDate] = value;
+        parameterValues[endDate] = c;
+        sortedKeys.splice(i1, i2 - i1 + 1, startDate, endDate);
+      } else if (i1 !== -1) {
+        parameterValues[startDate] = value;
+        sortedKeys.splice(i1, 0, startDate);
+        // TODO: it is unclear what the value in the range [endDate,
+        // sortedKeys[0]] should be.
+      } else if (i2 !== -1) {
+        parameterValues[startDate] = value;
+        parameterValues[endDate] = parameterValues[sortedKeys[i2]];
+        sortedKeys.splice(i2, 0, startDate, endDate);
       }
-      // Add the new value
-      parameterValues[startDate] = value;
     }
   }
   return newParameter;
