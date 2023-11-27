@@ -1,6 +1,6 @@
 import FontIcon from "./FontIcon";
 
-export default function EmphasisedLink({ text, url, size }) {
+export default function EmphasisedLink({ text, url, size, isStretched }) {
   const fontSize = size || 15;
   return (
     <a
@@ -12,6 +12,7 @@ export default function EmphasisedLink({ text, url, size }) {
         fontSize,
       }}
       href={url}
+      className={`${isStretched ? "stretched-link" : ""}`}
     >
       {text}
       <FontIcon name="arrow_forward" size={fontSize} />
