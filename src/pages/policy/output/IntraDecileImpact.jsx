@@ -38,11 +38,11 @@ export default function IntraDecileImpact(props) {
       "Lose more than 5%": "lose more than 5% of",
     };
     const legendTextMap = {
-      "Gain more than 5%": "gain more than 5%",
-      "Gain less than 5%": "gain less than 5%",
-      "No change": "no change",
-      "Lose less than 5%": "loss less than 5%",
-      "Lose more than 5%": "loss more than 5%",
+      "Gain more than 5%": "Gain more than 5%",
+      "Gain less than 5%": "Gain less than 5%",
+      "No change": "No change",
+      "Lose less than 5%": "Loss less than 5%",
+      "Lose more than 5%": "Loss more than 5%",
     };
 
     // type1: "all" | "deciles"
@@ -166,8 +166,16 @@ export default function IntraDecileImpact(props) {
           showlegend: true,
           legend: {
             title: {
-              text: "<b>Change in income</b>",
+              text: "Change in income<br />",
+              font: {
+                family: "Roboto Serif",
+              }
             },
+            //# add spacing between title and entries
+            tracegroupgap: 10,
+            font: {
+              family: "Roboto Serif",
+            }
           },
           ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
           margin: {
