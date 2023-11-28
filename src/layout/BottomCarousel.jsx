@@ -1,4 +1,4 @@
-import NavigationButton from "../controls/NavigationButton";
+import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import useMobile from "./Responsive";
 
@@ -35,13 +35,14 @@ export default function BottomCarousel(props) {
           flex: 1,
           display: "flex",
           justifyContent: mobile ? "center" : "right",
-          padding: 10,
+          padding: "10px 20px",
+          gap: 20,
         }}
       >
         {previous.label ? (
-          <NavigationButton
+          <SearchParamNavButton
             focus={previous.name}
-            text="left"
+            direction="left"
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (
@@ -49,13 +50,13 @@ export default function BottomCarousel(props) {
         )}
         {}
         {next.label ? (
-          <NavigationButton
+          <SearchParamNavButton
             focus={next.name}
-            text={"right"}
+            direction="right"
             style={{ width: 50, fontSize: 16 }}
           />
         ) : (
-          <div style={{ width: 50 }} />
+          <div style={{ width: 60 }} />
         )}
       </div>
     </div>

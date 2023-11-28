@@ -4,7 +4,7 @@ import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
-import NavigationButton from "../../../controls/NavigationButton";
+import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 
 function getUKMaritalStatus(situation) {
@@ -142,7 +142,11 @@ export default function MaritalStatus(props) {
     <CenteredMiddleColumn title="What is your marital status?">
       <>
         {radioButtonComponent}
-        <NavigationButton text="Enter" focus="input.household.children" />
+        <SearchParamNavButton
+          text="Enter"
+          focus="input.household.children"
+          style={{ margin: "20px auto 10px" }}
+        />
       </>
     </CenteredMiddleColumn>
   );

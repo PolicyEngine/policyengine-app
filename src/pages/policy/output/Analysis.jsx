@@ -294,10 +294,10 @@ export default function Analysis(props) {
         </div>
         {buttonText && (
           <Button
-            primary
+            type="primary"
             text={buttonText}
             onClick={onGenerate}
-            style={{ maxWidth: 250, marginBottom: 25 }}
+            style={{ maxWidth: 250, margin: "20px auto 25px" }}
           />
         )}
         {!hasClickedGenerate ? (
@@ -318,7 +318,7 @@ export default function Analysis(props) {
         <Button
           text={showPrompt ? "Hide prompt" : "Show prompt"}
           onClick={() => setShowPrompt(!showPrompt)}
-          style={{ maxWidth: 250 }}
+          style={{ maxWidth: 250, margin: "20px auto 10px" }}
         />
       </div>
       {showPrompt ? (
@@ -333,7 +333,7 @@ export default function Analysis(props) {
           >
             <Button
               text="Copy"
-              style={{ width: 100 }}
+              style={{ margin: "20px auto 10px" }}
               onClick={() => {
                 navigator.clipboard.writeText(lines.join("\n"));
               }}

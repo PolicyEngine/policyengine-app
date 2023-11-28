@@ -1,7 +1,7 @@
 import style from "../style";
 import Section from "./Section";
 import useDisplayCategory from "./useDisplayCategory";
-import ActionButton from "./ActionButton";
+import LinkButton from "controls/LinkButton";
 import useCountryId from "./useCountryId";
 
 export default function HomeCallToAction() {
@@ -31,13 +31,13 @@ export function CalculatorCallToAction() {
         Compute any public policy reform
       </h3>
       <div style={{ marginTop: 20 }} />
-      <ActionButton
+      <LinkButton
         width={buttonSize}
         text="Calculate my household income, taxes and benefits"
         link={`/${countryId}/household`}
       />
       <div style={{ marginTop: 20 }} />
-      <ActionButton
+      <LinkButton
         width={buttonSize}
         text="Calculate the impact of policy reforms"
         link={`/${countryId}/policy`}

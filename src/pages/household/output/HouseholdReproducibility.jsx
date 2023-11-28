@@ -172,13 +172,12 @@ export default function HouseholdReproducibility(props) {
         style={{
           display: "flex",
           justifyContent: "center",
-          paddingTop: 30,
-          marginBottom: 30,
+          paddingTop: 30
         }}
       >
         <Button
           text="Copy"
-          style={{ width: 100 }}
+          style={{ width: 100, margin: "20px auto 10px" }}
           onClick={() => {
             navigator.clipboard.writeText(initialLines.join("\n"));
           }}
