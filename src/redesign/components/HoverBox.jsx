@@ -1,6 +1,6 @@
 export function HoverBox({
   hoverBackgroundColor,
-  direction,
+  hoverStart,
   children,
   size,
   onClick,
@@ -14,22 +14,22 @@ export function HoverBox({
 
   spread = "0px";
 
-  if (direction === "top") {
+  if (hoverStart === "top") {
     topStart = "0px";
     leftStart = "0px";
     topEnd = boxSize;
     leftEnd = "0px";
-  } else if (direction === "bottom") {
+  } else if (hoverStart === "bottom") {
     topStart = "0px";
     leftStart = "0px";
     topEnd = `-${boxSize}`;
     leftEnd = "0px";
-  } else if (direction === "left") {
+  } else if (hoverStart === "left") {
     topStart = "0px";
     leftStart = "0px";
     topEnd = "0px";
     leftEnd = boxSize;
-  } else if (direction === "right") {
+  } else if (hoverStart === "right") {
     topStart = "0px";
     leftStart = "0px";
     topEnd = "0px";
