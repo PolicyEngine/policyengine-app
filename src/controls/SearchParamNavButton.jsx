@@ -2,9 +2,10 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import gtag from "../api/analytics";
 import { copySearchParams } from "../api/call";
 import Button from "./Button";
+import ArrowButton from "./ArrowButton";
 
-export default function NavigationButton(props) {
-  const { text, focus, target, style, primary, disabled, onClick } = props;
+export default function SearchParamNavButton(props) {
+  const { text, focus, target, style, type, onClick, direction } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -28,12 +29,22 @@ export default function NavigationButton(props) {
       }
     });
 
+  if (direction) {
+    return (
+      <ArrowButton
+        direction={direction}
+        type={type}
+        style={{ ...style }}
+        onClick={handleClick}
+      />
+    );
+  }
+
   return (
     <Button
-      primary={primary}
-      disabled={disabled}
+      type={type}
       text={text}
-      style={{ ...style, margin: 10 }}
+      style={{ ...style }}
       onClick={handleClick}
     />
   );

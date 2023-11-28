@@ -1,12 +1,9 @@
-import "./style/App.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import PolicyEngineCountry from "./redesign/PolicyEngine";
-import gtag from "./api/analytics";
+import "../redesign/style/App.css";
 import { motion } from "framer-motion";
 import React from "react";
-import Button from "./controls/Button";
-import style from "./style";
-import useMobile from "./layout/Responsive";
+import Button from "../controls/Button";
+import useDisplayCategory from "redesign/components/useDisplayCategory";
+import colors from "redesign/style/colors";
 
 /*
  * This component is split out of the main
@@ -14,7 +11,7 @@ import useMobile from "./layout/Responsive";
  * have nested routers in a test.
  */
 
-function CookieConsent() {
+export default function CookieConsent() {
   /* An animated bottom-left popup that asks the user to accept cookies */
   // We'll use a 'consent' cookie to remember the user's choice
   // first, check if it's already set
@@ -44,13 +41,6 @@ function CookieConsent() {
       // Set the consent cookie to 'granted'
       document.cookie = "consent=granted;max-age=31536000;path=/";
     }, 500);
-
-    gtag("consent", "default", {
-      ad_storage: "denied",
-      analytics_storage: "denied",
-    });
-    gtag("js", new Date());
-    gtag("config", "G-91M4529HE7");
   };
 
   const noCookies = () => {
@@ -61,7 +51,7 @@ function CookieConsent() {
     }, 500);
   };
 
-  const mobile = useMobile();
+  const displayCategory = useDisplayCategory();
   searchParams;
   return (
     <>
@@ -76,35 +66,48 @@ function CookieConsent() {
           className="cookie-consent"
           style={{
             position: "fixed",
+            width: "fit-content",
             bottom: 20,
             left: 0,
+            right: 0,
             padding: "1em",
-            background: style.colors.WHITE,
+            paddingTop:
+              displayCategory === "mobile" ? "calc(1em + 10px)" : "1em",
+            paddingBottom:
+              displayCategory === "mobile" ? "calc(1em + 10px)" : "1em",
+            background: colors.WHITE,
             zIndex: 1000,
-            borderRadius: 50,
-            x: mobile ? 0 : "30vw",
+            borderRadius: 0,
+            margin: "0 auto",
             display: "flex",
             alignItems: "center",
-            flexDirection: mobile ? "column" : "row",
+            flexDirection: displayCategory === "mobile" ? "column" : "row",
             boxShadow: "0 0 10px rgba(0,0,0,0.2)",
             paddingLeft: 20,
             paddingRight: 20,
+            gap: "20px",
           }}
         >
-          <p style={{ margin: 0, marginBottom: mobile && 10, marginTop: 10 }}>
+          <p style={{ margin: 0 }}>
             This site uses cookies to improve your experience.
           </p>
-          <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: displayCategory === "mobile" ? "column" : "row",
+              gap: "20px",
+            }}
+          >
             <Button
               onClick={acceptCookies}
               text="Accept"
-              style={{ marginLeft: 20 }}
+              // style={{ marginLeft: 20 }}
               type="primary"
             />
             <Button
               onClick={noCookies}
               text="Decline"
-              style={{ marginLeft: 20 }}
+              // style={{ marginLeft: 20 }}
             />
           </div>
         </motion.div>
@@ -125,14 +128,3 @@ function clearCookies() {
 }
 
 clearCookies;
-
-export default function PolicyEngine() {
-  return (
-    <>
-      <Router>
-        <PolicyEngineCountry />
-      </Router>
-      <CookieConsent />
-    </>
-  );
-}

@@ -1,6 +1,6 @@
 import style from "style";
 import Header from "./Header";
-import ActionButton from "./ActionButton";
+import LinkButton from "controls/LinkButton";
 import useCountryId from "./useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";
 import PolicyScreenshot from "../images/home/policy_screenshot.png";
@@ -80,8 +80,8 @@ function CalculatorOption({ left, title, description, link, image }) {
           alignItems: "center",
         }}
       >
-        <ActionButton
-          direction={left ? "right" : "left"}
+        <LinkButton
+          hoverStart={left ? "right" : "left"}
           text={<>{title}</>}
           width={300}
           link={link}

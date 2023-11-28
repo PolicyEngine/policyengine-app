@@ -4,14 +4,12 @@ import Section from "./Section";
 import style from "../style";
 import PageHeader from "./PageHeader";
 import useDisplayCategory from "./useDisplayCategory";
-import ActionButton from "./ActionButton";
+import LinkButton from "controls/LinkButton";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
 
-  const handleButtonClick = () => {
-    window.open("https://opencollective.com/psl-foundation", "_blank");
-  };
+  const link = "https://opencollective.com/psl-foundation";
 
   return (
     <div>
@@ -107,7 +105,7 @@ export default function Donate() {
               maxHeight: 100,
             }}
           >
-            <ActionButton
+            <LinkButton
               text={
                 <div style={{ textAlign: "center", color: "white" }}>
                   <span style={{ whiteSpace: "pre-line" }}>
@@ -115,14 +113,8 @@ export default function Donate() {
                   </span>
                 </div>
               }
-              onClick={handleButtonClick}
-              width={
-                displayCategory === "desktop"
-                  ? 450
-                  : displayCategory === "mobile"
-                  ? "70vw"
-                  : "30vw"
-              }
+              link={link}
+              width={desktop ? 450 : mobile ? "70vw" : "30vw"}
               noArrow={true}
             />
           </div>

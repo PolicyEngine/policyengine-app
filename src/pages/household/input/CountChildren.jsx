@@ -4,7 +4,7 @@ import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
-import NavigationButton from "../../../controls/NavigationButton";
+import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import {
   childNames,
@@ -162,9 +162,10 @@ export default function CountChildren(props) {
           handleChildInputChange(numberOfChildren);
         }}
       />
-      <NavigationButton
+      <SearchParamNavButton
         text="Enter"
         focus={`input.household.${metadata.basicInputs[0]}`}
+        style={{ margin: "20px auto 10px" }}
       />
     </>
   );
