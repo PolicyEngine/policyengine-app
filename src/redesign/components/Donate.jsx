@@ -8,10 +8,9 @@ import LinkButton from "controls/LinkButton";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
-
-  const link = "https://opencollective.com/psl-foundation";
   const mobile = displayCategory === "mobile";
   const desktop = displayCategory === "top";
+  const link = "https://opencollective.com/psl-foundation";
 
   return (
     <div>
