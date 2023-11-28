@@ -70,7 +70,7 @@ function PoliciesModelledChecklist(props) {
       </p>
       <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
         <Button
-          primary
+          type="primary"
           onClick={() => Modal.destroyAll()}
           text="See my results"
         />

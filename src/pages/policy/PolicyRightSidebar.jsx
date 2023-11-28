@@ -8,7 +8,7 @@ import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
-import NavigationButton from "../../controls/NavigationButton";
+import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
@@ -291,6 +291,7 @@ export default function PolicyRightSidebar(props) {
         <h4 style={{ marginBottom: 20 }}>No reform specified</h4>
         <Button
           text="Create a reform"
+          style={{ margin: "20px auto 10px" }}
           onClick={() => {
             // Navigate to /<country>/household, preserving URL parameters
             const country = metadata.countryId;
@@ -403,27 +404,35 @@ export default function PolicyRightSidebar(props) {
         />
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
-        <NavigationButton primary text="Edit my policy" focus="gov" />
+        <SearchParamNavButton
+          type="primary"
+          text="Edit my policy"
+          focus="gov"
+          style={{ margin: "20px auto 10px" }}
+        />
       )}
       {!hideButtons && focus && !focus.startsWith("policyOutput") && (
-        <NavigationButton
-          primary
+        <SearchParamNavButton
+          type="primary"
           text="Calculate economic impact"
           onClick={confirmEconomicImpact}
+          style={{ margin: "20px auto 10px" }}
         />
       )}
       {!hideButtons && !hasHousehold && (
-        <NavigationButton
+        <SearchParamNavButton
           text="Enter my household"
           focus="intro"
+          style={{ margin: "20px auto 10px" }}
           target={`/${metadata.countryId}/household`}
         />
       )}
       {!hideButtons && hasHousehold && (
-        <NavigationButton
+        <SearchParamNavButton
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
           target={`/${metadata.countryId}/household`}
+          style={{ margin: "20px auto 10px" }}
         />
       )}
     </div>
