@@ -5,15 +5,29 @@ import style from "../style";
 import PageHeader from "./PageHeader";
 import { founders, advisors } from "../data/Staff";
 import useDisplayCategory from "./useDisplayCategory";
+import { Link, useLocation } from "react-router-dom";
 
 export default function About() {
+  const location = useLocation();
+  const pathParts = location.pathname.split("/");
+  const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
+
   return (
     <div>
       <Header />
       <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98}>
         <p style={{ margin: 0 }}>
-          PolicyEngine&apos;s team lead a global movement of open-source
-          contributors.
+          PolicyEngine&apos;s team leads a global movement of open-source
+          contributors.{" "}
+          <Link
+            to={`/${countryId}/jobs`}
+            style={{
+              color: style.colors.BLUE_PRIMARY,
+              textDecoration: "underline",
+            }}
+          >
+            Learn about opportunities to join us.
+          </Link>
         </p>
       </PageHeader>
       <Section>
@@ -22,13 +36,15 @@ export default function About() {
         <TeamMember member={founders.nikhil_woodruff} />
         <TeamMember member={founders.pavel_makarchuk} />
       </Section>
-      <Section backgroundColor={style.colors.BLUE_PRIMARY}>
-        <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
-        <Advisor member={advisors.george_sadowsky} />
-        <Advisor member={advisors.damiola_ogundipe} />
-        <Advisor member={advisors.jesse_horwitz} />
-        <Advisor member={advisors.matt_jensen} />
-      </Section>
+      <div style={{ display: "none" }}>
+        <Section backgroundColor={style.colors.BLUE_PRIMARY}>
+          <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
+          <Advisor member={advisors.george_sadowsky} />
+          <Advisor member={advisors.damiola_ogundipe} />
+          <Advisor member={advisors.jesse_horwitz} />
+          <Advisor member={advisors.matt_jensen} />
+        </Section>
+      </div>
       <Footer />
     </div>
   );

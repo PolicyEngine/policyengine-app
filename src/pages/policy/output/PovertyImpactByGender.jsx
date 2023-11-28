@@ -105,9 +105,6 @@ export default function PovertyImpactByGender(props) {
           },
         ]}
         layout={{
-          xaxis: {
-            title: "Sex",
-          },
           yaxis: {
             title: "Relative change",
             tickformat: "+,.1%",

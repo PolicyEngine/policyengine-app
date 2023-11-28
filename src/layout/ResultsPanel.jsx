@@ -12,15 +12,20 @@ const ResultsPanel = forwardRef((props, ref) => {
         paddingLeft: mobile ? 5 : 20,
         paddingRight: mobile ? 5 : 20,
         height: "100%",
+        overflow: "auto",
         ...style,
       }}
     >
-      <h2>{props.title}</h2>
-      <h5 style={{ marginBottom: mobile ? 5 : 20 }}>{props.description}</h5>
+      <h2 style={{ marginBottom: mobile ? 5 : 20 }}>{props.title}</h2>
       <div ref={ref} style={{ paddingTop: 0, paddingBottom: 50 }}>
         {props.children}
       </div>
       {/* <div style={{ paddingTop: 0, paddingBottom: 150 }}>{props.children}</div> */}
+      <h5 style={{
+            paddingTop: mobile ? 5 : 20, 
+            paddingBottom: mobile ? 5 : 40
+            }}>{props.description}
+      </h5>
     </div>
   );
   // }

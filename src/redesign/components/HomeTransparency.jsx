@@ -32,7 +32,7 @@ export default function HomeTransparency() {
         title="PolicyEngine's API computes policy impacts"
         description="Instantly compute taxes and benefits for any household under current or reformed policy rules, using the PolicyEngine REST API, reproducing any result in the web app."
         linkTitle="Explore the documentation"
-        link={`https://policyengine.github.io/policyengine-${countryId}`}
+        link={`/${countryId}/api`}
         image={apiScreenshot}
         altText="Screenshot of PolicyEngine's API documentation"
         borderColor={style.colors.BLACK}

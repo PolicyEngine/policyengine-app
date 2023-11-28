@@ -97,6 +97,8 @@ function MobileHeaderLogo() {
 }
 
 function MobileCalculatorButton() {
+  const countryId = useCountryId();
+
   return (
     <div
       style={{
@@ -111,15 +113,17 @@ function MobileCalculatorButton() {
         cursor: "pointer",
       }}
     >
-      <img
-        src={CalculatorIcon}
-        alt="Calculator icon"
-        style={{
-          height: 30,
-          width: 30,
-          objectFit: "contain",
-        }}
-      />
+      <Link to={`/${countryId}/calculator`}>
+        <img
+          src={CalculatorIcon}
+          alt="Calculator icon"
+          style={{
+            height: 30,
+            width: 30,
+            objectFit: "contain",
+          }}
+        />
+      </Link>
     </div>
   );
 }
@@ -170,6 +174,7 @@ function DesktopCalculatorButton() {
         link={`/${countryId}/calculator`}
         style={{
           margin: 20,
+          marginRight: 15,
           marginLeft: "auto",
           alignItems: "center",
           display: "flex",

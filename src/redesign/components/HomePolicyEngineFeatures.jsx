@@ -15,15 +15,6 @@ export default function HomePolicyEngineFeatures() {
       color="white"
     >
       <ShowcaseItem
-        title="Advanced analysis with our Python packages"
-        description="Dive deeper into policy impact analysis using PolicyEngine's open-source Python packages. Customize your simulations and perform advanced reforms for thorough insights, all on your own computer."
-        linkTitle="Try it out"
-        link={`https://policyengine.github.io/policyengine-${countryId}`}
-        image={codingScreenshot}
-        altText="Screenshot of a Python terminal using PolicyEngine's Python package"
-        color="white"
-      />
-      <ShowcaseItem
         title="Design custom policy reforms"
         description="PolicyEngine's country models contains hundreds of customisable policy parameters and can handle structural reforms."
         linkTitle="Explore the documentation"
@@ -39,6 +30,15 @@ export default function HomePolicyEngineFeatures() {
         link={`https://policyengine.github.io/policyengine-${countryId}`}
         image={decileChartScreenshot}
         altText="Screenshot of PolicyEngine's decile chart feature"
+        color="white"
+      />
+      <ShowcaseItem
+        title="Advanced analysis with our Python packages"
+        description="Dive deeper into policy impact analysis using PolicyEngine's open-source Python packages. Customize your simulations and perform advanced reforms for thorough insights, all on your own computer."
+        linkTitle="Try it out"
+        link={`https://policyengine.github.io/policyengine-${countryId}`}
+        image={codingScreenshot}
+        altText="Screenshot of a Python terminal using PolicyEngine's Python package"
         color="white"
       />
     </Section>

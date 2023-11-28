@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { cardinal } from "../../../api/language";
+import { cardinal, currencyString, localeString } from "../../../api/language";
 import { formatVariableValue } from "../../../api/variables";
 import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
 import useMobile from "../../../layout/Responsive";
@@ -33,11 +33,7 @@ export default function AverageImpactByDecile(props) {
                 value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
               ),
             },
-            text: yArray.map(
-              (value) =>
-                metadata.currency +
-                value.toLocaleString("en-GB", { maximumFractionDigits: 0 }),
-            ),
+            text: yArray.map((value) => currencyString(value, metadata, 0)),
             textangle: 0,
             ...(useHoverCard
               ? {
@@ -77,8 +73,7 @@ export default function AverageImpactByDecile(props) {
           },
           yaxis: {
             title: "Average change",
-            tickprefix: metadata.countryId === "uk" ? "£" : "$",
-            tickformat: ",.0f",
+            tickformat: "$,.0f",
           },
           ...(useHoverCard
             ? {}
@@ -107,6 +102,7 @@ export default function AverageImpactByDecile(props) {
         config={{
           displayModeBar: false,
           responsive: true,
+          locale: localeString(metadata),
         }}
         style={{
           width: "100%",

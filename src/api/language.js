@@ -47,3 +47,15 @@ export function cardinal(number) {
   const rem = number % 100;
   return number + (suffixes[(rem - 20) % 10] || suffixes[rem] || suffixes[0]);
 }
+
+export function currencyString(number, metadata, maximumFractionDigits) {
+  return number.toLocaleString("en-US", {
+    style: "currency",
+    currency: metadata.countryId === "uk" ? "GBP" : "USD",
+    maximumFractionDigits: maximumFractionDigits,
+  });
+}
+
+export function localeString(metadata) {
+  return metadata.countryId === "uk" ? "en" : "en-US";
+}

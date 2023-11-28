@@ -679,11 +679,41 @@ let posts = [
     title: "Dive Into New Mexico’s Income Tax Analysis on PolicyEngine",
     description:
       "Expanding our tax calculator and reform simulator capabilities to the Land of Enchantment.",
-    date: "2023-08-02 16:00:00",
+    date: "2023-08-02 10:00:00",
     filename: "new-mexico-income-tax-launch.md",
     tags: ["us", "us-nm", "featured", "policy"],
     image: "new-mexico-income-tax-launch.png",
     authors: ["max-ghenis"],
+  },
+  {
+    title: "Repealing the Universal Credit two-child limit",
+    description:
+      "How removing the limit of some benefits to two children would affect the UK in 2023.",
+    date: "2023-08-07 16:00:00",
+    filename: "repealing_the_two_child_limit.md",
+    tags: ["uk", "policy"],
+    image: "two_child_limit.png",
+    authors: ["nikhil-woodruff"],
+  },
+  {
+    title: "New King's College London research uses PolicyEngine",
+    description:
+      "A ‘Citizens’ Economic Council’ explores PolicyEngine-scored tax-benefit impacts.",
+    date: "2023-11-04 09:00:00",
+    filename: "citizens-economic-council.md",
+    tags: ["uk", "impact", "featured"],
+    image: "citizens-economic-council.png",
+    authors: ["nikhil-woodruff"],
+  },
+  {
+    title: "Autumn Statement 2023 tax-benefit reforms",
+    description:
+      "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
+    date: "2023-11-22 17:25",
+    filename: "autumn-statement-2023.md",
+    tags: ["uk", "policy", "featured"],
+    image: "jeremy-hunt.jpg",
+    authors: ["nikhil-woodruff"],
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
