@@ -403,6 +403,8 @@ export function updateHousehold(householdInput, metadata) {
     "marital_unit_id",
   ];
 
+  let excludedVariables = ["fips", "sep"];
+
   // Copy householdInput into mutable variable
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
 
@@ -430,6 +432,9 @@ export function updateHousehold(householdInput, metadata) {
         }
         // Otherwise, if it's not in the system and is a falsy value, delete it
         else if (!currentVal) {
+          delete editedHousehold[entityPlural][entity][variable];
+          // Otherwise, if it's not in the system and has excluded variable, delete it
+        } else if (excludedVariables.includes(variable)) {
           delete editedHousehold[entityPlural][entity][variable];
         }
         // Otherwise, if it's not in the current tax system and is truthy,
