@@ -9,7 +9,7 @@ import ActionButton from "./ActionButton";
 export default function Donate() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
-  const desktop = displayCategory === "top";
+  const desktop = displayCategory === "desktop";
 
   const handleButtonClick = () => {
     window.open("https://opencollective.com/psl-foundation", "_blank");
