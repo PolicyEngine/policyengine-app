@@ -77,7 +77,7 @@ export default function CookieConsent() {
               displayCategory === "mobile" ? "calc(1em + 10px)" : "1em",
             background: colors.WHITE,
             zIndex: 1000,
-            borderRadius: 10,
+            borderRadius: 0,
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
