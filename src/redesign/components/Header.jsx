@@ -17,7 +17,8 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height: style.spacing.HEADER_HEIGHT,
+          //height: style.spacing.HEADER_HEIGHT,
+          height: "10vh",
           display: "flex",
           alignItems: "center",
           position: "fixed",
