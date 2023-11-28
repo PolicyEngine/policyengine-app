@@ -24,5 +24,4 @@ deploy: build deploy-setup
 	rm requirements.txt
 format:
 	black . -l 79
-lint:
     npm run lint
