@@ -21,10 +21,13 @@ const ResultsPanel = forwardRef((props, ref) => {
         {props.children}
       </div>
       {/* <div style={{ paddingTop: 0, paddingBottom: 150 }}>{props.children}</div> */}
-      <h5 style={{
-            paddingTop: mobile ? 5 : 20, 
-            paddingBottom: mobile ? 5 : 40
-            }}>{props.description}
+      <h5
+        style={{
+          paddingTop: mobile ? 5 : 20,
+          paddingBottom: mobile ? 5 : 40,
+        }}
+      >
+        {props.description}
       </h5>
     </div>
   );
