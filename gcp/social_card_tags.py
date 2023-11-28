@@ -40,12 +40,19 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
 
     country = path.split("/")[1].upper()
     if len(query_params) > 0:
-        joined_query_params = "_".join([f"{k}_{v}" for k, v in query_params.items()])
+        joined_query_params = "_".join(
+            [f"{k}_{v}" for k, v in query_params.items()]
+        )
         path = path + "_" + joined_query_params
 
     original_path = path
 
-    path = path.replace("/", "_").replace("?", "_").replace("=", "_").replace(".", "_")
+    path = (
+        path.replace("/", "_")
+        .replace("?", "_")
+        .replace("=", "_")
+        .replace(".", "_")
+    )
 
     # Search the "./social_cards" directory for a file with the same name as the path and any extension
     if "/research/" in original_path:
@@ -69,9 +76,7 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
             ]:  # Twitter doesn't show the title so we include alternative versions.
                 for image_file in image_files:
                     if image_file.name.endswith(extension):
-                        return (
-                            f"https://policyengine.org/static/media/{image_file.name}"
-                        )
+                        return f"https://policyengine.org/static/media/{image_file.name}"
             return f"https://policyengine.org/static/media/{filename}"
 
     # Check if there is a filename in the social_cards dict whose non-extension part matches the path
@@ -79,7 +84,9 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
         print(f"Found a social card for {path}")
         return f"https://policyengine.org/images/social-cards/{path}.png"
     else:
-        return f"https://policyengine.org/static/media/social_cards/main_logo.png"
+        return (
+            f"https://policyengine.org/static/media/social_cards/main_logo.png"
+        )
 
 
 def get_description(path: str, query_params: dict):
@@ -95,7 +102,9 @@ def get_description(path: str, query_params: dict):
         if "reform" in query_params:
             return f"See the impact of reform #{query_params['reform']} on your household on PolicyEngine {country}"
         else:
-            return f"Calculate your taxes and benefits on PolicyEngine {country}"
+            return (
+                f"Calculate your taxes and benefits on PolicyEngine {country}"
+            )
     elif "/policy/" in path:
         if "reform" in query_params:
             return f"See the economic impact of reform #{query_params['reform']} on PolicyEngine {country}"
@@ -138,7 +147,9 @@ def add_social_card_tags(
     soup.head.append(twitter_description)
 
     # Add meta tags for Facebook
-    og_title = soup.new_tag("meta", attrs={"property": "og:title", "content": title})
+    og_title = soup.new_tag(
+        "meta", attrs={"property": "og:title", "content": title}
+    )
     og_description = soup.new_tag(
         "meta", attrs={"property": "og:description", "content": description}
     )
