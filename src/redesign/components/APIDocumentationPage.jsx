@@ -401,46 +401,36 @@ function APIEndpoint({
   exampleInputJson,
   exampleOutputJson,
 }) {
+  const hasInput = Boolean(exampleInputJson);
+
   return (
     <Section>
+      <h3>{title}</h3>
+      <h5>
+        <code>
+          {method} {pattern}
+        </code>
+      </h5>
+      <p>{description}</p>
+
       <div
         style={{
           display: "flex",
         }}
       >
+        {hasInput && (
+          <div style={{ flex: 1 }}>
+            <h4>Example input</h4>
+            <JSONBlock json={exampleInputJson} />
+          </div>
+        )}
         <div
           style={{
-            position: "sticky",
-            top: 200,
-            height: "100%",
             flex: 1,
+            marginLeft: hasInput ? "50px" : "0",
           }}
         >
-          <h3>{title}</h3>
-          <h5>
-            <code>
-              {method} {pattern}
-            </code>
-          </h5>
-          <p>{description}</p>
-          {exampleInputJson && (
-            <div
-              style={{
-                width: "100%",
-              }}
-            >
-              <h4>Example input</h4>
-              <JSONBlock json={exampleInputJson} />
-            </div>
-          )}
-        </div>
-        <div
-          style={{
-            marginLeft: 50,
-            flex: 1,
-          }}
-        >
-          <h4>Output format</h4>
+          {<h4>Output format</h4>}
           <JSONBlock json={exampleOutputJson} />
         </div>
       </div>

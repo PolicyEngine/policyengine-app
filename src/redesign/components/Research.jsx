@@ -54,12 +54,28 @@ function ResearchExplorer() {
     }
     scrollTo(0, 0);
   };
+
+  const extractCountryIdFromPathname = () => {
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    if (pathSegments.length > 0) {
+      return pathSegments[0];
+    }
+  };
+
+  const initialLocations = locationTags.filter(
+    (location) =>
+      location === extractCountryIdFromPathname() ||
+      location.startsWith(extractCountryIdFromPathname() + "-") ||
+      location === "global",
+  );
+
   const [filteredTopics, setFilteredTopics] = useState(
     searchParams.get("topics")?.split(",") || topicTags,
   );
   const [filteredLocations, setFilteredLocations] = useState(
-    searchParams.get("locations")?.split(",") || locationTags,
+    searchParams.get("locations")?.split(",") || initialLocations,
   );
+
   const [filteredAuthors, setFilteredAuthors] = useState(
     searchParams.get("authors")?.split(",") || authorKeys,
   );

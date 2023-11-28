@@ -1,6 +1,7 @@
 import Home from "./Home";
 import Research from "./Research";
 import About from "./About";
+import Jobs from "./Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Contact from "./Contact";
 import Donate from "./Donate";
@@ -203,6 +204,7 @@ export default function PolicyEngine({ pathname }) {
   // If the path is /, redirect to /[countryId]
   // If the path is /[countryId], render the homepage
   // If the path is /[countryId]/about, render the about page
+  // If the path is /[countryId]/jobs, render the jobs page
   // If the path is /[countryId]/research, render the research page
   // If the path is not recognized, redirect to /[countryId]
 
@@ -215,6 +217,7 @@ export default function PolicyEngine({ pathname }) {
 
         <Route path="/:countryId" element={<Home />} />
         <Route path="/:countryId/about" element={<About />} />
+        <Route path="/:countryId/jobs" element={<Jobs />} />
         <Route path="/:countryId/testimonials" element={<Testimonials />} />
         <Route
           path="/:countryId/calculator"

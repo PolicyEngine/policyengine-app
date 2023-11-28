@@ -22,16 +22,46 @@ export default function ParameterEditor(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const parameter = metadata.parameters[parameterName];
-  const reformedParameter = getReformedParameter(parameter, policy.reform.data);
-
   const currentYear = new Date().getFullYear();
   const [startDate, setStartDate] = useState(currentYear + "-01-01");
   const [endDate, setEndDate] = useState(currentYear + 5 + "-12-31");
 
-  // eslint-disable-next-line no-unused-vars
-  const [_, setValue] = useState(
-    getParameterAtInstant(reformedParameter, startDate),
-  );
+  // change reform data using value and current startDate and endDate
+  function newReforms(reforms, value) {
+    let newReforms = { ...policy.reform.data };
+    newReforms[parameterName] = {
+      ...newReforms[parameterName],
+      [`${startDate}.${endDate}`]: value,
+    };
+    const values = getReformedParameter(parameter, newReforms).values;
+    let diff = {},
+      ret = {};
+    for (const key of Object.keys(values)) {
+      diff[key] = values[key] - getParameterAtInstant(parameter, key);
+    }
+    const keys = Object.keys(diff).sort();
+    for (let i = 0; i < keys.length - 1; i++) {
+      const k1 = keys[i],
+        k2 = keys[i + 1];
+      if (diff[k1] !== 0) {
+        ret[`${k1}.${k2}`] = values[k1];
+      }
+    }
+    newReforms = { ...policy.reform.data };
+    newReforms[parameterName] = ret;
+    return newReforms;
+  }
+
+  function onChange(value) {
+    getNewPolicyId(
+      metadata.countryId,
+      newReforms(policy.reform.data, value),
+    ).then((newPolicyId) => {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.set("reform", newPolicyId);
+      setSearchParams(newSearch);
+    });
+  }
 
   let control;
 
@@ -39,65 +69,26 @@ export default function ParameterEditor(props) {
     control = (
       <div style={{ padding: 10 }}>
         <Switch
-          checked={getParameterAtInstant(reformedParameter, startDate)}
-          onChange={(value) => {
-            let newPolicy = { ...policy.reform.data };
-            newPolicy[parameterName] = {
-              ...newPolicy[parameterName],
-              [`${startDate}.${endDate}`]: !!value,
-            };
-            setValue(value);
-            getNewPolicyId(metadata.countryId, newPolicy).then(
-              (newPolicyId) => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("reform", newPolicyId);
-                setSearchParams(newSearch);
-              },
-            );
-          }}
+          defaultChecked={getParameterAtInstant(parameter, startDate)}
+          onChange={(value) => onChange(!!value)}
         />
       </div>
     );
   } else if (parameter.unit === "/1") {
-    let val = getParameterAtInstant(reformedParameter, startDate);
+    let val = getParameterAtInstant(parameter, startDate);
     let valInPercentage = formatVariableValue(parameter, val);
     control = (
       <InputField
         placeholder={valInPercentage}
         pattern={"%"}
-        onChange={(value) => {
-          let newPolicy = { ...policy.reform.data };
-          value = parseFloat(value);
-          newPolicy[parameterName] = {
-            ...newPolicy[parameterName],
-            [`${startDate}.${endDate}`]: value / 100,
-          };
-          setValue(value);
-          getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("reform", newPolicyId);
-            setSearchParams(newSearch);
-          });
-        }}
+        onChange={(value) => onChange(parseFloat(value) / 100)}
       />
     );
   } else {
     control = (
       <InputField
-        placeholder={getParameterAtInstant(reformedParameter, startDate)}
-        onChange={(value) => {
-          let newPolicy = { ...policy.reform.data };
-          newPolicy[parameterName] = {
-            ...newPolicy[parameterName],
-            [`${startDate}.${endDate}`]: value,
-          };
-          setValue(value);
-          getNewPolicyId(metadata.countryId, newPolicy).then((newPolicyId) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("reform", newPolicyId);
-            setSearchParams(newSearch);
-          });
-        }}
+        placeholder={getParameterAtInstant(parameter, startDate)}
+        onChange={(value) => onChange(Number(value))}
       />
     );
   }

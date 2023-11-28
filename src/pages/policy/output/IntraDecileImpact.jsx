@@ -23,356 +23,102 @@ export default function IntraDecileImpact(props) {
     const setHoverCard = useContext(HoverCardContext);
     const { useHoverCard = false } = props;
 
-    const gainMoreThan5ForAll = [all["Gain more than 5%"]];
-    const gainLessThan5ForAll = [all["Gain less than 5%"]];
-    const noChangeForAll = [all["No change"]];
-    const loseLessThan5ForAll = [all["Lose less than 5%"]];
-    const loseMoreThan5ForAll = [all["Lose more than 5%"]];
+    const colorMap = {
+      "Gain more than 5%": style.colors.BLUE,
+      "Gain less than 5%": style.colors.BLUE_98,
+      "No change": style.colors.LIGHT_GRAY,
+      "Lose less than 5%": style.colors.GRAY,
+      "Lose more than 5%": style.colors.DARK_GRAY,
+    };
+    const hoverTextMap = {
+      "Gain more than 5%": "gain more than 5% of",
+      "Gain less than 5%": "gain less than 5% of",
+      "No change": "neither gain nor lose",
+      "Lose less than 5%": "lose less than 5% of",
+      "Lose more than 5%": "lose more than 5% of",
+    };
+    const legendTextMap = {
+      "Gain more than 5%": "Gain more than 5%",
+      "Gain less than 5%": "Gain less than 5%",
+      "No change": "No change",
+      "Lose less than 5%": "Loss less than 5%",
+      "Lose more than 5%": "Loss more than 5%",
+    };
 
-    const gainMoreThan5ForDeciles = deciles["Gain more than 5%"];
-    const gainLessThan5ForDeciles = deciles["Gain less than 5%"];
-    const noChangeForDeciles = deciles["No change"];
-    const loseLessThan5ForDeciles = deciles["Lose less than 5%"];
-    const loseMoreThan5ForDeciles = deciles["Lose more than 5%"];
+    // type1: "all" | "deciles"
+    // type2: "Gain more than 5%" | "Gain less than 5%" | "No change" | "Lose less than 5%" | "Lose more than 5%"
 
-    const data = [
-      {
+    function hoverTemplate(type1, type2) {
+      const hdr =
+        type1 === "all"
+          ? `<b>All households</b><br><br>`
+          : `<b>Decile %{y}</b><br><br>`;
+      const body =
+        type1 === "all"
+          ? `Of all households, ${policyLabel} would cause<br>%{customdata} of people to ` +
+            hoverTextMap[type2] +
+            ` of<br>their net income.<extra></extra>`
+          : `Of households in the %{customdata.group} decile,<br>` +
+            `${policyLabel} would cause %{customdata.value} of<br>people to ` +
+            hoverTextMap[type2] +
+            ` their net<br>income.<extra></extra>`;
+      return hdr + body;
+    }
+
+    function trace(type1, type2) {
+      const x = type1 === "all" ? [all[type2]] : deciles[type2];
+      return {
+        x: x,
+        y: type1 === "all" ? ["All"] : decileNumbers,
+        xaxis: type1 === "all" ? "x" : "x2",
+        yaxis: type1 === "all" ? "y" : "y2",
         type: "bar",
-        y: ["All"],
-        x: gainMoreThan5ForAll,
-        name: "Gain more than 5%",
-        legendgroup: "Gain more than 5%",
-        offsetgroup: "Gain more than 5%",
+        name: legendTextMap[type2],
+        legendgroup: type2,
+        showlegend: type1 === "decile",
         marker: {
-          color: style.colors.BLUE,
+          color: colorMap[type2],
         },
         orientation: "h",
-        text: gainMoreThan5ForAll.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
+        text: x.map((value) => (value * 100).toFixed(0).toString() + "%"),
         textposition: "inside",
         textangle: 0,
-        xaxis: "x",
-        yaxis: "y",
-        showlegend: false,
         ...(useHoverCard
           ? {
               hoverinfo: "none",
             }
           : {
-              customdata: gainMoreThan5ForAll.map((x) => percent(x)),
-              hovertemplate:
-                `<b>All households</b><br><br>` +
-                `Of all households, ${policyLabel}<br>would cause ` +
-                `%{customdata} of people to gain<br>more than 5% of their net income.` +
-                `<extra></extra>`,
+              customdata:
+                type1 === "all"
+                  ? x.map((x) => percent(x))
+                  : x.map((e, i) => {
+                      return {
+                        group: cardinal(decileNumbers[i]),
+                        value: percent(e),
+                      };
+                    }),
+              hovertemplate: hoverTemplate(type1, type2),
             }),
-      },
-      {
-        type: "bar",
-        y: ["All"],
-        x: gainLessThan5ForAll,
-        name: "Gain less than 5%",
-        marker: {
-          color: style.colors.BLUE_98,
-        },
-        orientation: "h",
-        text: gainLessThan5ForAll.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x",
-        yaxis: "y",
-        showlegend: false,
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: gainLessThan5ForAll.map((x) => percent(x)),
-              hovertemplate:
-                `<b>All households</b><br><br>` +
-                `Of all households, ${policyLabel}<br>would cause ` +
-                `%{customdata} of people to gain<br>less than 5% of their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: ["All"],
-        x: noChangeForAll,
-        name: "No change",
-        marker: {
-          color: style.colors.LIGHT_GRAY,
-        },
-        orientation: "h",
-        text: noChangeForAll.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x",
-        yaxis: "y",
-        showlegend: false,
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: noChangeForAll.map((x) => percent(x)),
-              hovertemplate:
-                `<b>All households</b><br><br>` +
-                `Of all households, ${policyLabel}<br>would cause ` +
-                `%{customdata} of people to<br>neither gain nor lose their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: ["All"],
-        x: loseLessThan5ForAll,
-        name: "Lose less than 5%",
-        marker: {
-          color: style.colors.GRAY,
-        },
-        orientation: "h",
-        text: loseLessThan5ForAll.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x",
-        yaxis: "y",
-        showlegend: false,
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: loseLessThan5ForAll.map((x) => percent(x)),
-              hovertemplate:
-                `<b>All households</b><br><br>` +
-                `Of all households, ${policyLabel}<br>would cause ` +
-                `%{customdata} of people to lose<br>less than 5% their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: ["All"],
-        x: loseMoreThan5ForAll,
-        name: "Lose more than 5%",
-        marker: {
-          color: style.colors.DARK_GRAY,
-        },
-        orientation: "h",
-        text: loseMoreThan5ForAll.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x",
-        yaxis: "y",
-        showlegend: false,
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: loseMoreThan5ForAll.map((x) => percent(x)),
-              hovertemplate:
-                `<b>All households</b><br><br>` +
-                `Of all households, ${policyLabel}<br>would cause ` +
-                `%{customdata} of people to lose<br>more than 5% their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: decileNumbers,
-        x: gainMoreThan5ForDeciles,
-        name: "Gain more than 5%",
-        marker: {
-          color: style.colors.BLUE,
-        },
-        orientation: "h",
-        text: gainMoreThan5ForDeciles.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x2",
-        yaxis: "y2",
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: gainMoreThan5ForDeciles.map((x, i) => {
-                return {
-                  group: cardinal(decileNumbers[i]),
-                  value: percent(x),
-                };
-              }),
-              hovertemplate:
-                `<b>Decile %{y}</b><br><br>` +
-                `Of households in the %{customdata.group} decile,<br>` +
-                `${policyLabel} would cause<br>` +
-                `%{customdata.value}of people to gain more<br>` +
-                `than 5% of their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: decileNumbers,
-        x: gainLessThan5ForDeciles,
-        name: "Gain less than 5%",
-        marker: {
-          color: style.colors.BLUE_98,
-        },
-        orientation: "h",
-        text: gainLessThan5ForDeciles.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x2",
-        yaxis: "y2",
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: gainLessThan5ForDeciles.map((x, i) => {
-                return {
-                  group: cardinal(decileNumbers[i]),
-                  value: percent(x),
-                };
-              }),
-              hovertemplate:
-                `<b>Decile %{y}</b><br><br>` +
-                `Of households in the %{customdata.group} decile,<br>` +
-                `${policyLabel} would cause<br>` +
-                `%{customdata.value} of people to gain less<br>` +
-                `than 5% of their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: decileNumbers,
-        x: noChangeForDeciles,
-        name: "No change",
-        marker: {
-          color: style.colors.LIGHT_GRAY,
-        },
-        orientation: "h",
-        text: noChangeForDeciles.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x2",
-        yaxis: "y2",
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: noChangeForDeciles.map((x, i) => {
-                return {
-                  group: cardinal(decileNumbers[i]),
-                  value: percent(x),
-                };
-              }),
-              hovertemplate:
-                `<b>Decile %{y}</b><br><br>` +
-                `Of households in the %{customdata.group} decile,<br>` +
-                `${policyLabel} would cause<br>` +
-                `%{customdata.value} of people to neither gain nor<br>` +
-                `lose their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: decileNumbers,
-        x: loseLessThan5ForDeciles,
-        name: "Lose less than 5%",
-        marker: {
-          color: style.colors.GRAY,
-        },
-        orientation: "h",
-        text: loseLessThan5ForDeciles.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x2",
-        yaxis: "y2",
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: loseLessThan5ForDeciles.map((x, i) => {
-                return {
-                  group: cardinal(decileNumbers[i]),
-                  value: percent(x),
-                };
-              }),
-              hovertemplate:
-                `<b>Decile %{y}</b><br><br>` +
-                `Of households in the %{customdata.group} decile,<br>` +
-                `${policyLabel} would cause<br>` +
-                `%{customdata.value} of people to lose less<br>` +
-                `than 5% of their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-      {
-        type: "bar",
-        y: decileNumbers,
-        x: loseMoreThan5ForDeciles,
-        name: "Lose more than 5%",
-        marker: {
-          color: style.colors.DARK_GRAY,
-        },
-        orientation: "h",
-        text: loseMoreThan5ForDeciles.map(
-          (value) => (value * 100).toFixed(0).toString() + "%",
-        ),
-        textposition: "inside",
-        textangle: 0,
-        xaxis: "x2",
-        yaxis: "y2",
-        ...(useHoverCard
-          ? {
-              hoverinfo: "none",
-            }
-          : {
-              customdata: loseMoreThan5ForDeciles.map((x, i) => {
-                return {
-                  group: cardinal(decileNumbers[i]),
-                  value: percent(x),
-                };
-              }),
-              hovertemplate:
-                `<b>Decile %{y}</b><br><br>` +
-                `Of households in the %{customdata.group} decile,<br>` +
-                `${policyLabel} would cause<br>` +
-                `%{customdata.value} of people to lose more<br>` +
-                `than 5% of their net income.` +
-                `<extra></extra>`,
-            }),
-      },
-    ];
+      };
+    }
+
+    const product = (a, b) =>
+      a.reduce((p, x) => [...p, ...b.map((y) => [x, y])], []);
+
+    const data = product(
+      ["all", "decile"],
+      [
+        "Gain more than 5%",
+        "Gain less than 5%",
+        "No change",
+        "Lose less than 5%",
+        "Lose more than 5%",
+      ],
+    );
 
     return (
       <Plot
-        data={data}
+        data={data.map((types) => trace(types[0], types[1]))}
         layout={{
           barmode: "stack",
           orientation: "h",
@@ -417,7 +163,20 @@ export default function IntraDecileImpact(props) {
             mode: "hide",
             minsize: mobile ? 7 : 10,
           },
-          showlegend: false,
+          showlegend: true,
+          legend: {
+            title: {
+              text: "Change in income<br />",
+              font: {
+                family: "Roboto Serif",
+              }
+            },
+            //# add spacing between title and entries
+            tracegroupgap: 10,
+            font: {
+              family: "Roboto Serif",
+            }
+          },
           ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
           margin: {
             t: 0,
