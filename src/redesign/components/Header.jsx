@@ -169,44 +169,6 @@ function Hamburger() {
   );
 }
 
-//created this new component for mobile display
-
-// function MobileHamburger() {
-//   const [isOpen, setIsOpen] = useState(false);
-//   return (
-//     <>
-//       <div
-//         style={{
-//           height: 30,
-//           width: 30,
-//           margin: 20,
-//           alignItems: "center",
-//           display: "flex",
-//           justifyContent: "center",
-//           padding: 15,
-//           color: "white",
-//           border: "1px solid white",
-//           fontSize: 20,
-//           cursor: "pointer",
-//         }}
-//         onClick={() => setIsOpen(!isOpen)}
-//       >
-//         <span
-//           className="material-symbols-outlined"
-//           alt="Hamburger icon"
-//           style={{
-//             objectFit: "contain",
-//             color: "white",
-//           }}
-//         >
-//           {isOpen ? "close" : "menu"}
-//         </span>
-//       </div>
-//       <LeftNavigationMenu isOpen={isOpen} />
-//     </>
-//   );
-// }
-
 function DesktopCalculatorButton() {
   const countryId = useCountryId();
   return (
