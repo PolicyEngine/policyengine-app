@@ -17,7 +17,9 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height: style.spacing.HEADER_HEIGHT,
+          height: displayCategory === 'mobile'
+            ? style.spacing.MOBILE_HEADER_HEIGHT
+            : style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
           position: "fixed",
@@ -35,7 +37,9 @@ export default function Header() {
       </div>
       <div
         style={{
-          height: 90,
+          height: displayCategory === 'mobile'
+          ? style.spacing.MOBILE_HEADER_HEIGHT
+          : style.spacing.HEADER_HEIGHT
         }}
       />
     </>
@@ -47,7 +51,7 @@ function MobileHeaderBar() {
     <>
       <MobileHeaderLogo />
       <MobileCalculatorButton />
-      <Hamburger />
+      <MobileHamburger />
     </>
   );
 }
@@ -87,7 +91,7 @@ function MobileHeaderLogo() {
           src={PolicyEngineSmallLogo}
           alt="PolicyEngine logo"
           style={{
-            height: 50,
+            height: 30,
             margin: 20,
           }}
         />
@@ -103,8 +107,8 @@ function MobileCalculatorButton() {
     <div
       style={{
         backgroundColor: "#39C6C0",
-        height: 50,
-        width: 50,
+        height: 30,
+        width: 30,
         margin: 20,
         marginLeft: "auto",
         display: "flex",
@@ -118,8 +122,8 @@ function MobileCalculatorButton() {
           src={CalculatorIcon}
           alt="Calculator icon"
           style={{
-            height: 30,
-            width: 30,
+            height: 20,
+            width: 20,
             objectFit: "contain",
           }}
         />
@@ -164,13 +168,51 @@ function Hamburger() {
   );
 }
 
+//created this new component for mobile display
+
+function MobileHamburger() {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <>
+      <div
+        style={{
+          height: 30,
+          width: 30,
+          margin: 20,
+          alignItems: "center",
+          display: "flex",
+          justifyContent: "center",
+          padding: 15,
+          color: "white",
+          border: "1px solid white",
+          fontSize: 20,
+          cursor: "pointer",
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span
+          className="material-symbols-outlined"
+          alt="Hamburger icon"
+          style={{
+            objectFit: "contain",
+            color: "white",
+          }}
+        >
+          {isOpen ? "close" : "menu"}
+        </span>
+      </div>
+      <LeftNavigationMenu isOpen={isOpen} />
+    </>
+  );
+}
+
 function DesktopCalculatorButton() {
   const countryId = useCountryId();
   return (
     <>
       <HoverBox
         hoverBackgroundColor={style.colors.TEAL_PRESSED}
-        direction="left"
+        hoverStart="left"
         link={`/${countryId}/calculator`}
         style={{
           margin: 20,
@@ -254,7 +296,7 @@ function PageLinks() {
             >
               <HoverBox
                 hoverBackgroundColor={style.colors.BLUE_LIGHT}
-                direction="bottom"
+                hoverStart="bottom"
               >
                 <motion.div
                   style={{
@@ -313,7 +355,7 @@ function LeftNavigationMenu(props) {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <HoverBox
-              direction="left"
+              hoverStart="left"
               size="100vw"
               hoverBackgroundColor={style.colors.WHITE}
               style={{
