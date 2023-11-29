@@ -1,7 +1,5 @@
 import style from "../style";
 import Section from "./Section";
-import Button from "controls/Button";
-import TextBox from "./TextBox";
 import SmallForm from "../../layout/SmallForm";
 import useDisplayCategory from "./useDisplayCategory";
 
@@ -13,7 +11,7 @@ export default function HomeSubscribe() {
   );
 }
 
-export function SubscribeToPolicyEngine() {
+export function SubscribeToPolicyEngine({displaySize}) {
   const displayCategory = useDisplayCategory();
 
   const submitLink = "https://policyengine.us5.list-manage.com/subscribe/post?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
@@ -49,7 +47,7 @@ export function SubscribeToPolicyEngine() {
             submitLink={submitLink}
             submitButtonText={submitButtonText}
           />,
-        }[displayCategory]
+        }[displaySize || displayCategory]
       }
     </div>
   );
@@ -121,7 +119,13 @@ function SubscribeToPolicyEngineTablet(props) {
   );
 }
 
-export function SubscribeToPolicyEngineMobile() {
+export function SubscribeToPolicyEngineMobile(props) {
+  const {
+    inputFields,
+    submitLink,
+    submitButtonText
+  } = props;
+
   return (
     <div
       style={{
@@ -133,15 +137,12 @@ export function SubscribeToPolicyEngineMobile() {
         <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
-      <div>
-        <TextBox
-          title="Email"
-          placeholder="Enter your email address"
-          width="100%"
-        />
-        <div style={{ marginTop: 20 }} />
-        <Button text="Subscribe" onClick={() => {}} width="100%" size="500px" />
-      </div>
+      <SmallForm 
+        inputFields={inputFields}
+        action={submitLink}
+        method="post"
+        submitButtonText={submitButtonText}
+      />
     </div>
   );
 }
