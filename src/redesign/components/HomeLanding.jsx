@@ -83,20 +83,21 @@ LandingAboutPolicyEngine;
 export default function HomeLanding() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
-  const desktop = displayCategory === "desktop";
+  const tablet = displayCategory === "tablet";
   const countryId = useCountryId();
-  mobile;
+
   return (
     <div
       style={{
         height: mobile ? 600 : 500,
+        position: "relative",
       }}
     >
       <img
         src={Hero}
         style={{
           width: "100%",
-          height: mobile ? 600 : 500,
+          height: mobile ? 600 : "100%",
           objectFit: "cover",
           position: "absolute",
         }}
@@ -104,58 +105,60 @@ export default function HomeLanding() {
       />
       <div
         style={{
-          width: desktop ? "50vw" : "80vw",
-          height: 300,
-          top: 200,
-          left: desktop ? "20vw" : "10vw",
+          width: mobile ? "80vw" : "60vw",
           position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <div style={{
           display: "flex",
+          alignItems: "center",
+          justifyContent: "between",
+          flexDirection: mobile || tablet ? "column" : "row",
+          gap: mobile || tablet ? 50 : 30,
+          height: "100%",
           backdropFilter: "blur(10px)",
           WebkitBackdropFilter: "blur(10px)",
           backgroundColor: "rgb(23, 53, 79, 0.7)",
-          alignItems: "center",
-          padding: 20,
-          flexDirection: mobile ? "column" : "row",
-        }}
-      >
-        <div
-          style={{
-            width: 400,
-            heiight: "100%",
-            padding: 20,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <h1
+          padding: 40,
+        }}>
+          <div
             style={{
-              color: "white",
-              fontSize: 55,
-              alignItems: "center",
-              margin: 0,
+              width: mobile || tablet ? "100%" : "50%",
             }}
           >
-            Computing Public Policy for Everyone
-          </h1>
-        </div>
-        <div
-          style={{
-            position: mobile ? "relative" : "absolute",
-            left: mobile ? 0 : 450,
-          }}
-        >
-          <div style={{ paddingTop: mobile ? 20 : 50 }} />
-          <LinkButton
-            text="Compute my taxes and benefits"
-            link={`/${countryId}/household`}
-            width={desktop ? 450 : mobile ? "70vw" : "30vw"}
-          />
-          <div style={{ paddingTop: 20 }} />
-          <LinkButton
-            text="Compute policy reform impacts"
-            link={`/${countryId}/policy`}
-            width={desktop ? 450 : mobile ? "70vw" : "30vw"}
-          />
+            <h1
+              style={{
+                color: "white",
+                fontSize: mobile || tablet ? 40 : 55,
+                alignItems: "center",
+                margin: 0,
+              }}
+            >
+              Computing Public Policy for Everyone
+            </h1>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 20,
+              width: mobile || tablet ? "100%" : "50%",
+            }}
+          >
+            <LinkButton
+              text="Compute my taxes and benefits"
+              link={`/${countryId}/household`}
+              width="100%"
+            />
+            <LinkButton
+              text="Compute policy reform impacts"
+              link={`/${countryId}/policy`}
+              width="100%"
+            />
+          </div>
         </div>
       </div>
     </div>
