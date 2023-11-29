@@ -5,7 +5,7 @@ import {
   MediumBlogPreview,
   SmallBlogPreview,
 } from "./HomeBlogPreview";
-import ActionButton from "./ActionButton";
+import LinkButton from "controls/LinkButton";
 import useDisplayCategory from "./useDisplayCategory";
 import Hero from "../images/hero.png";
 import useCountryId from "./useCountryId";
@@ -44,7 +44,7 @@ function LandingAboutPolicyEngine() {
         how public policy affects them.
       </h5>
       {displayCategory === "desktop" && (
-        <ActionButton text="Use the tool" link="/" />
+        <LinkButton text="Use the tool" link="/" />
       )}
     </div>
   );
@@ -148,12 +148,12 @@ export default function HomeLanding() {
               width: mobile || tablet ? "100%" : "50%",
             }}
           >
-            <ActionButton
+            <LinkButton
               text="Compute my taxes and benefits"
               link={`/${countryId}/household`}
               width="100%"
             />
-            <ActionButton
+            <LinkButton
               text="Compute policy reform impacts"
               link={`/${countryId}/policy`}
               width="100%"

@@ -84,7 +84,6 @@ export default function BaselineAndReformChart(props) {
       },
     ];
     const onDelta = ({ target: { value } }) => {
-      console.log("checked", value);
       setShowDelta(value);
     };
     const toggle = (

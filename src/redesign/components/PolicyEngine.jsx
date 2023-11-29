@@ -23,6 +23,7 @@ import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import loc_en from "../../plotly_locales/locale-en.js";
 import loc_en_us from "../../plotly_locales/locale-en-us.js";
 import APIDocumentationPage from "./APIDocumentationPage";
+import CookieConsent from "layout/CookieConsent";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -211,6 +212,7 @@ export default function PolicyEngine({ pathname }) {
   return (
     <>
       <ScrollToTop />
+      <CookieConsent />
       <Routes>
         {/* Redirect from / to /[countryId] */}
         <Route path="/" element={<Navigate to={`/${countryId}`} />} />
