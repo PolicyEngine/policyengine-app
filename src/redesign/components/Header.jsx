@@ -103,8 +103,8 @@ function MobileCalculatorButton() {
     <div
       style={{
         backgroundColor: "#39C6C0",
-        height: 30,
-        width: 30,
+        height: 50,
+        width: 50,
         margin: 20,
         marginLeft: "auto",
         display: "flex",
