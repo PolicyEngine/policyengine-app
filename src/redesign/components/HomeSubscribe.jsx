@@ -88,7 +88,13 @@ function SubscribeToPolicyEngineDesktop(props) {
   );
 }
 
-function SubscribeToPolicyEngineTablet() {
+function SubscribeToPolicyEngineTablet(props) {
+  const {
+    inputFields,
+    submitLink,
+    submitButtonText
+  } = props;
+
   return (
     <div
       style={{
@@ -102,15 +108,15 @@ function SubscribeToPolicyEngineTablet() {
         <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
-      <div style={{ width: "40vw" }}>
-        <TextBox
-          title="Email"
-          placeholder="Enter your email address"
-          width={400}
-        />
-        <div style={{ marginTop: 20 }} />
-        <Button text="Subscribe" onClick={() => {}} width={400} />
-      </div>
+      <SmallForm 
+        inputFields={inputFields}
+        action={submitLink}
+        method="post"
+        submitButtonText={submitButtonText}
+        containerStyle={{width: "40vw"}}
+        formStyle={{width: "400px"}}
+        buttonStyle={{width: "400px"}}
+      />
     </div>
   );
 }
