@@ -2,8 +2,6 @@ import { useState } from "react";
 import style from "redesign/style";
 import { motion } from "framer-motion";
 
-import Button from "controls/Button";
-
 /**
  * React component providing a standardized form component; does not currently handle
  * radio or select menus, but could be expanded to do so in future
