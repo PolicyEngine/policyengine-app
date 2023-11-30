@@ -114,7 +114,7 @@ export default function FormContext(props) {
           lineHeight: "1em"
         }}
       >
-        {submitMsg}
+        {submitMsg || <br/>}
       </p>
     </div>
   );
