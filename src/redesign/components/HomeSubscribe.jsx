@@ -3,7 +3,6 @@ import jsonp from 'jsonp';
 
 import style from "../style";
 import Section from "./Section";
-import SmallForm from "../../layout/SmallForm";
 import FormContext from 'layout/forms/FormContext';
 import FormItem from 'layout/forms/FormItem';
 import useDisplayCategory from "./useDisplayCategory";
@@ -16,14 +15,21 @@ export default function HomeSubscribe() {
   );
 }
 
+/**
+ * Subscription form component
+ * @param {Object} props 
+ * @param {("mobile"|"tablet"|"desktop")} [props.displaySize] Optional; the
+ * desired display category for the form component
+ * @returns {import('react').ReactComponentElement}
+ */
 export function SubscribeToPolicyEngine(props) {
   const {
-    display
+    displaySize
   } = props;
 
   const [submitMsg, setSubmitMsg] = useState("");
 
-  const displayCategory = display || useDisplayCategory();
+  const displayCategory = displaySize || useDisplayCategory();
 
   const submitLink = "https://policyengine.us5.list-manage.com/subscribe/post-json?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
   const submitButtonText = "Subscribe";

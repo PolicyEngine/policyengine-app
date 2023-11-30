@@ -1,10 +1,9 @@
 import React, { Children, useState } from "react";
 
-import useDisplayCategory from "redesign/components/useDisplayCategory";
 import Button from "controls/Button";
 
 /**
- * Form container/wrapper component
+ * Form-wrapping context component
  * @param {Object} props 
  * @param {String} props.submitButtonText="Submit" The text to be placed on
  * the form submission button; defaults to "Submit"
@@ -37,26 +36,20 @@ export default function FormContext(props) {
     buttonStyle,
     submitButtonText,
     submitMsg,
-    display,
     children
   } = props;
 
   const [formInput, setFormInput] = useState({});
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-  const displayCategory = display || useDisplayCategory();
+  // Could be utilized later to introduce validation
+  // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   // FormInput item change handler
   function handleChange(e) {
-    console.log(e.target);
     setFormInput((prev) => ({
         ...prev,
         [e.target.name]: e.target.value
     }));
   }
-
-  React.useEffect(() => {
-    console.log(formInput);
-  }, [formInput])
 
   // Pass change handler to children
   const handledChildren = Children.map(children, (child) => {
@@ -70,8 +63,6 @@ export default function FormContext(props) {
     })
   });
 
-  console.log(handledChildren);
-
   /**
    * Submission handler only employed when onSubmit prop is defined;
    * @param {Event} e
@@ -81,7 +72,8 @@ export default function FormContext(props) {
       onSubmit(e, formInput);
     }
 
-    setIsFormSubmitted(true);
+    // Could be utilized later to introduce validation
+    // setIsFormSubmitted(true);
 
   }
 
