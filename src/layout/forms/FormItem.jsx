@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
  * @param {String} props.label The label to be applied to the form field
  * @param {String} props.type The input type of the field
  * @param {String} [props.placeholder] The item's placeholder text
- * @param {Function} [props.changeHandler] An additional change handler to be run on form
- * component change events; will not override tracked input
+ * @param {Function} [props.changeHandler] An optional change handler to be run on form
+ * component change events, available outside of FormContext component
  * @param {Object} [props.labelStyle] Optional styling for the label
  * @param {Object} [props.containerStyle] Optional styling for the component's div container
  * @param {Object} [props.inputStyle] Optional styling for the input element
@@ -34,9 +34,10 @@ export default function FormItem(props) {
 
   // Field change handler
   function handleChange(e) {
-    setInput(e.target.value);
     if (changeHandler && changeHandler instanceof Function) {
       changeHandler(e, input);
+    } else {
+      setInput(e.target.value);
     }
   }
 
