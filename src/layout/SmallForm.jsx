@@ -28,8 +28,10 @@ import Button from "controls/Button";
  * form labels
  * @param {Object} [props.buttonStyle] Style object for submit button
  * @param {Object} [props.inputStyle] Style object for all inputs
- * @param {Boolean} [props.isLocalSubmit] If "true", sends tracked input
- * object to the optionally provided onSubmit
+ * @param {String} [props.submitMsg] Optional message to be displayed upon
+ * submission
+ * @param {Object} [props.submitMsgTypes] Optional object of msg types and 
+ * validation bar display colors
  * @returns {import("react").ReactComponentElement}
  */
 export default function SmallForm(props) {
@@ -44,11 +46,12 @@ export default function SmallForm(props) {
     inputStyle,
     buttonStyle,
     inputFields,
-    isLocalSubmit,
-    submitButtonText
+    submitButtonText,
+    submitMsg
   } = props;
 
   const [formInput, setFormInput] = useState({});
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   // Field change handler
   function handleChange(e) {
@@ -58,15 +61,32 @@ export default function SmallForm(props) {
     }));
   }
 
-  // Submission handler only used when onSubmit prop is defined
+  /**
+   * Submission handler only employed when onSubmit prop is defined;
+   * @param {Event} e
+   */ 
   function handleSubmit(e) {
-    if (isLocalSubmit) {
-      (e) => {onSubmit(e, formInput)}
-      onSubmit(formInput);
-    } else {
-      onSubmit(e);
+    if (onSubmit instanceof Function) {
+      onSubmit(e, formInput);
     }
+
+    setIsFormSubmitted(true);
+
   }
+
+  /*
+  function handleSubmit(e) {
+    let msg = null;
+    if (onSubmit instanceof Function) {
+      msg = onSubmit(e, formInput);
+      console.log("msg in hS");
+      console.log(msg);
+      setMessage(msg);
+    }
+
+    setIsFormValid(true);
+  }
+  */
 
   const inputFieldsJSX = inputFields.map((field, index) => (
     <div 
@@ -77,7 +97,7 @@ export default function SmallForm(props) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "flex-start",
+        alignItems: "center",
         gap: "8px"
       }}>
       <label
@@ -117,7 +137,9 @@ export default function SmallForm(props) {
         }}
         // While focussing, make the bottom border blue from left to right
         whileFocus={{
-          boxShadow: `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
+          boxShadow: isFormSubmitted ? 
+            (`0px 5px 0px ${style.colors.TEAL_ACCENT}`) :
+            (`0px 5px 0px ${style.colors.BLUE_PRIMARY}`)
         }}
       />
     </div>
@@ -132,11 +154,12 @@ export default function SmallForm(props) {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
+        gap: "20px",
         ...containerStyle
       }}
     >
       <form
-        onSubmit={onSubmit instanceof Function ? ((e) => handleSubmit(e)) : undefined}
+        onSubmit={handleSubmit}
         action={action}
         method={method || "post"}
         style={{
@@ -151,12 +174,18 @@ export default function SmallForm(props) {
         onClick={onClick instanceof Function ? ((e) => onClick(e)) : undefined}
         style={{
           width: "100%",
-          marginTop: "20px",
           ...buttonStyle
         }}
       />
+      <p
+        style={{
+          margin: 0,
+          lineHeight: "1em"
+        }}
+      >
+        {submitMsg}
+      </p>
     </div>
-  )
-
+  );
 
 }

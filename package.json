@@ -17,6 +17,7 @@
     "fuse.js": "^6.6.2",
     "html2canvas": "^1.4.1",
     "install": "^0.13.0",
+    "jsonp": "^0.2.1",
     "markdown-to-jsx": "^7.1.7",
     "moment": "^2.29.4",
     "openai": "^4.13.0",

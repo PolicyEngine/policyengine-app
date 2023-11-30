@@ -1,3 +1,6 @@
+import React, { useState } from 'react';
+import jsonp from 'jsonp';
+
 import style from "../style";
 import Section from "./Section";
 import SmallForm from "../../layout/SmallForm";
@@ -12,9 +15,11 @@ export default function HomeSubscribe() {
 }
 
 export function SubscribeToPolicyEngine({displaySize}) {
+  const [submitMsg, setSubmitMsg] = useState("");
+
   const displayCategory = useDisplayCategory();
 
-  const submitLink = "https://policyengine.us5.list-manage.com/subscribe/post?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
+  const submitLink = "https://policyengine.us5.list-manage.com/subscribe/post-json?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
   const submitButtonText = "Subscribe";
   const inputFields = [
     {
@@ -23,6 +28,26 @@ export function SubscribeToPolicyEngine({displaySize}) {
       placeholder: "Enter your email address"
     }
   ];
+
+  function submitHandler(event, formInput) {
+    event.preventDefault();
+
+    // "error" is if there is a connection issue, while "data" is Mailchimp's
+    // res object, including signup errors
+    jsonp(`${submitLink}&EMAIL=${formInput.email}`, {param: 'c'}, (error, data) => {
+      if (error) {
+        setSubmitMsg("There was an issue processing your subscription; please try again later.");
+      }
+      if (data) {
+        // "data" also contains "result" param 
+        // of either "success" or "error"
+        const {msg} = data;
+        if (typeof msg==="string") {
+          setSubmitMsg(msg);
+        }
+      }
+    });
+  }
 
   return (
     <div
@@ -36,16 +61,22 @@ export function SubscribeToPolicyEngine({displaySize}) {
             inputFields={inputFields}
             submitLink={submitLink}
             submitButtonText={submitButtonText}
+            onSubmit={submitHandler}
+            submitMsg={submitMsg}
           />,
           tablet: <SubscribeToPolicyEngineTablet 
             inputFields={inputFields} 
             submitLink={submitLink}
             submitButtonText={submitButtonText}
+            onSubmit={submitHandler}
+            submitMsg={submitMsg}
           />,
           desktop: <SubscribeToPolicyEngineDesktop 
             inputFields={inputFields} 
             submitLink={submitLink}
             submitButtonText={submitButtonText}
+            onSubmit={submitHandler}
+            submitMsg={submitMsg}
           />,
         }[displaySize || displayCategory]
       }
@@ -57,7 +88,9 @@ function SubscribeToPolicyEngineDesktop(props) {
   const {
     inputFields,
     submitLink,
-    submitButtonText
+    submitButtonText,
+    onSubmit,
+    submitMsg
   } = props;
 
   return (
@@ -78,9 +111,11 @@ function SubscribeToPolicyEngineDesktop(props) {
         action={submitLink}
         method="post"
         submitButtonText={submitButtonText}
+        onSubmit={onSubmit}
         containerStyle={{width: "40vw"}}
         formStyle={{width: "500px"}}
         buttonStyle={{width: "500px"}}
+        submitMsg={submitMsg}
       />
     </div>
   );
@@ -90,7 +125,9 @@ function SubscribeToPolicyEngineTablet(props) {
   const {
     inputFields,
     submitLink,
-    submitButtonText
+    submitButtonText,
+    onSubmit,
+    submitMsg
   } = props;
 
   return (
@@ -109,11 +146,13 @@ function SubscribeToPolicyEngineTablet(props) {
       <SmallForm 
         inputFields={inputFields}
         action={submitLink}
+        onSubmit={onSubmit}
         method="post"
         submitButtonText={submitButtonText}
         containerStyle={{width: "40vw"}}
         formStyle={{width: "400px"}}
         buttonStyle={{width: "400px"}}
+        submitMsg={submitMsg}
       />
     </div>
   );
@@ -123,7 +162,9 @@ export function SubscribeToPolicyEngineMobile(props) {
   const {
     inputFields,
     submitLink,
-    submitButtonText
+    submitButtonText,
+    onSubmit,
+    submitMsg
   } = props;
 
   return (
@@ -140,8 +181,10 @@ export function SubscribeToPolicyEngineMobile(props) {
       <SmallForm 
         inputFields={inputFields}
         action={submitLink}
+        onSubmit={onSubmit}
         method="post"
         submitButtonText={submitButtonText}
+        submitMsg={submitMsg}
       />
     </div>
   );
