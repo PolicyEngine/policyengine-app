@@ -74,20 +74,6 @@ export default function SmallForm(props) {
 
   }
 
-  /*
-  function handleSubmit(e) {
-    let msg = null;
-    if (onSubmit instanceof Function) {
-      msg = onSubmit(e, formInput);
-      console.log("msg in hS");
-      console.log(msg);
-      setMessage(msg);
-    }
-
-    setIsFormValid(true);
-  }
-  */
-
   const inputFieldsJSX = inputFields.map((field, index) => (
     <div 
       key={index}
