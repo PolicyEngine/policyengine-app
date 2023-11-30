@@ -95,6 +95,11 @@ export function SubscribeToPolicyEngine(props) {
         method="post"
         submitButtonText={submitButtonText}
         onSubmit={submitHandler}
+        /*This onClick is a workaround for current limitations within
+        Button component and should be removed if Button is altered*/
+        onClick={() => {
+          return true;
+        }}
         containerStyle={{
           width: displayCategory !== "mobile" ? "40vw" : "100%"
         }}

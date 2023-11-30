@@ -40,8 +40,6 @@ export default function FormContext(props) {
   } = props;
 
   const [formInput, setFormInput] = useState({});
-  // Could be utilized later to introduce validation
-  // const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   // FormInput item change handler
   function handleChange(e) {
@@ -63,18 +61,20 @@ export default function FormContext(props) {
     })
   });
 
-  /**
-   * Submission handler only employed when onSubmit prop is defined;
-   * @param {Event} e
-   */ 
+  // Submission handler only employed when onSubmit prop is defined;
   function handleSubmit(e) {
     if (onSubmit instanceof Function) {
       onSubmit(e, formInput);
     }
+  }
 
-    // Could be utilized later to introduce validation
-    // setIsFormSubmitted(true);
-
+  // This is included due to current limitations of Button and
+  // should be altered if Button is rewritten
+  function handleClick(e) {
+    if (onClick instanceof Function) {
+      onClick(e);
+    }
+    handleSubmit(e);
   }
 
   return (
@@ -102,11 +102,12 @@ export default function FormContext(props) {
       </form>
       <Button 
         text={submitButtonText || "Submit"}
-        onClick={onClick instanceof Function ? ((e) => onClick(e)) : undefined}
+        onClick={handleClick}
         style={{
           width: "100%",
           ...buttonStyle
         }}
+        width="100%"
       />
       <p
         style={{
