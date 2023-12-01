@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 /**
  * React component providing a standardized form component; does not currently handle
  * radio or select menus, but could be expanded to do so in future
- * @param {Object} props 
+ * @param {Object} props
  * @param {String} props.label The label to be applied to the form field
  * @param {String} props.type The input type of the field
  * @param {String} [props.placeholder] The item's placeholder text
@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
  * @param {Object} [props.labelStyle] Optional styling for the label
  * @param {Object} [props.containerStyle] Optional styling for the component's div container
  * @param {Object} [props.inputStyle] Optional styling for the input element
- * @param {String} [props.focusStyle] Optional styling for the box shadow displayed when 
+ * @param {String} [props.focusStyle] Optional styling for the box shadow displayed when
  * component is focused
  * @returns {import("react").ReactComponentElement}
  */
@@ -27,7 +27,7 @@ export default function FormItem(props) {
     labelStyle,
     containerStyle,
     inputStyle,
-    focusStyle
+    focusStyle,
   } = props;
 
   const [input, setInput] = useState(null);
@@ -42,15 +42,16 @@ export default function FormItem(props) {
   }
 
   return (
-    <div 
+    <div
       style={{
         width: "100%",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        ...containerStyle
-      }}>
+        ...containerStyle,
+      }}
+    >
       <label
         style={{
           name: `form-label-${label.toLowerCase()}`,
@@ -62,7 +63,7 @@ export default function FormItem(props) {
           width: "100%",
           fontSize: "1rem",
           lineHeight: "1.2",
-          ...labelStyle
+          ...labelStyle,
         }}
       >
         {label}
@@ -83,13 +84,11 @@ export default function FormItem(props) {
           fontWeight: 300,
           padding: 10,
           boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
-          ...inputStyle
+          ...inputStyle,
         }}
         // While focusing, make the bottom border blue from left to right
         whileFocus={{
-          boxShadow: 
-            focusStyle ||
-            (`0px 5px 0px ${style.colors.BLUE_PRIMARY}`)
+          boxShadow: focusStyle || `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
         }}
       />
     </div>

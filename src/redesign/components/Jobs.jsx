@@ -9,38 +9,38 @@ import { HoverBox } from "./HoverBox";
 function InternshipOpportunities() {
   return (
     <>
-    <p>
-      PolicyEngine invites dedicated individuals to internships in Software
-      Engineering, Policy Modeling, Data Science, Economic Research, and
-      Communications. These opportunities immerse you in efforts to make
-      public policy more accessible, transparent, and evidence-based. Engaging
-      with cutting-edge technology, you will learn how tax and benefit
-      policies affect everything from the budget and economic growth to
-      poverty and inequality. This invaluable experience prepares you for
-      diverse career paths in software development, data science, economics,
-      and policy, whether in academia, government, NGOs, or the private
-      sector, equipping you with skills and insights to shape societal
-      progress.
-    </p>
-    <p>
-      As an intern, you will engage deeply with PolicyEngine software,
-      contributing to its development and enhancing its utility. Collaborative
-      team projects will allow you to share knowledge and learn from others.
-      You will also have the opportunity to present your findings and progress
-      in various internal and external forums, contributing to important
-      policy discussions and decision-making processes.
-    </p>
-    <p>
-      You can apply at any time for spring, summer, and fall semester
-      internships (with the possibility of extension). PolicyEngine believes
-      that a wide range of perspectives enrich our collective understanding
-      and innovation, and we encourage candidates from all backgrounds to
-      apply. We primarily collaborate remotely, ensuring a flexible and
-      inclusive environment for all our team members. For those in the
-      Washington, DC area, we provide additional opportunities for in-person
-      collaboration. We prefer candidates who can commit 15 hours per week.
-      Please note that all internships are currently unpaid.
-    </p>
+      <p>
+        PolicyEngine invites dedicated individuals to internships in Software
+        Engineering, Policy Modeling, Data Science, Economic Research, and
+        Communications. These opportunities immerse you in efforts to make
+        public policy more accessible, transparent, and evidence-based. Engaging
+        with cutting-edge technology, you will learn how tax and benefit
+        policies affect everything from the budget and economic growth to
+        poverty and inequality. This invaluable experience prepares you for
+        diverse career paths in software development, data science, economics,
+        and policy, whether in academia, government, NGOs, or the private
+        sector, equipping you with skills and insights to shape societal
+        progress.
+      </p>
+      <p>
+        As an intern, you will engage deeply with PolicyEngine software,
+        contributing to its development and enhancing its utility. Collaborative
+        team projects will allow you to share knowledge and learn from others.
+        You will also have the opportunity to present your findings and progress
+        in various internal and external forums, contributing to important
+        policy discussions and decision-making processes.
+      </p>
+      <p>
+        You can apply at any time for spring, summer, and fall semester
+        internships (with the possibility of extension). PolicyEngine believes
+        that a wide range of perspectives enrich our collective understanding
+        and innovation, and we encourage candidates from all backgrounds to
+        apply. We primarily collaborate remotely, ensuring a flexible and
+        inclusive environment for all our team members. For those in the
+        Washington, DC area, we provide additional opportunities for in-person
+        collaboration. We prefer candidates who can commit 15 hours per week.
+        Please note that all internships are currently unpaid.
+      </p>
     </>
   );
 }
@@ -267,21 +267,21 @@ export default function Jobs() {
     <DataScienceIntern key={2} />,
     <EconomicResearchIntern key={3} />,
     <CommunicationsIntern key={4} />,
-  ]
+  ];
   const titles = [
     "Software Engineering Intern",
     "Policy Modeling Intern",
     "Data Science Intern",
     "Economic Research Intern",
     "Communications Intern",
-  ]
+  ];
   const colors = [
     style.colors.WHITE,
     style.colors.LIGHT_GRAY,
     style.colors.WHITE,
     style.colors.LIGHT_GRAY,
     style.colors.WHITE,
-  ]
+  ];
   return (
     <div>
       <Header />
@@ -294,15 +294,13 @@ export default function Jobs() {
       <Section title="Internship Opportunities">
         <InternshipOpportunities />
       </Section>
-      {
-        positions.map((position, i) => (
-          <Section key={i} title={titles[i]} backgroundColor={colors[i]}>
-            {position}
-          </Section>
-        ))
-      }
+      {positions.map((position, i) => (
+        <Section key={i} title={titles[i]} backgroundColor={colors[i]}>
+          {position}
+        </Section>
+      ))}
       <Section>
-      <ApplyButton />
+        <ApplyButton />
       </Section>
       <Footer />
     </div>

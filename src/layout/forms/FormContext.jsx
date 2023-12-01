@@ -4,10 +4,10 @@ import Button from "controls/Button";
 
 /**
  * Form-wrapping context component
- * @param {Object} props 
+ * @param {Object} props
  * @param {String} props.submitButtonText="Submit" The text to be placed on
  * the form submission button; defaults to "Submit"
- * @param {String} [props.action] The link to 
+ * @param {String} [props.action] The link to
  * which the form should submit
  * @param {String} [props.method] The relevant HTTP method; defaults to "post"
  * if not provided
@@ -36,7 +36,7 @@ export default function FormContext(props) {
     buttonStyle,
     submitButtonText,
     submitMsg,
-    children
+    children,
   } = props;
 
   const [formInput, setFormInput] = useState({});
@@ -44,21 +44,21 @@ export default function FormContext(props) {
   // FormInput item change handler
   function handleChange(e) {
     setFormInput((prev) => ({
-        ...prev,
-        [e.target.name]: e.target.value
+      ...prev,
+      [e.target.name]: e.target.value,
     }));
   }
 
   // Pass change handler to children
   const handledChildren = Children.map(children, (child) => {
-    return ({
+    return {
       ...child,
       name: child.props.label,
       props: {
         ...child.props,
         changeHandler: (e) => handleChange(e),
-      }
-    })
+      },
+    };
   });
 
   // Submission handler only employed when onSubmit prop is defined;
@@ -86,7 +86,7 @@ export default function FormContext(props) {
         justifyContent: "center",
         alignItems: "flex-start",
         gap: "20px",
-        ...containerStyle
+        ...containerStyle,
       }}
     >
       <form
@@ -95,29 +95,28 @@ export default function FormContext(props) {
         method={method || "post"}
         style={{
           width: "100%",
-          ...formStyle
+          ...formStyle,
         }}
       >
         {handledChildren}
       </form>
-      <Button 
+      <Button
         text={submitButtonText || "Submit"}
         onClick={handleClick}
         style={{
           width: "100%",
-          ...buttonStyle
+          ...buttonStyle,
         }}
         width="100%"
       />
       <p
         style={{
           margin: 0,
-          lineHeight: "1em"
+          lineHeight: "1em",
         }}
       >
-        {submitMsg || <br/>}
+        {submitMsg || <br />}
       </p>
     </div>
   );
-
 }

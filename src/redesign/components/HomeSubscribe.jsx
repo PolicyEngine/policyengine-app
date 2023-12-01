@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import jsonp from 'jsonp';
+import React, { useState } from "react";
+import jsonp from "jsonp";
 
 import style from "../style";
 import Section from "./Section";
-import FormContext from 'layout/forms/FormContext';
-import FormItem from 'layout/forms/FormItem';
+import FormContext from "layout/forms/FormContext";
+import FormItem from "layout/forms/FormItem";
 import useDisplayCategory from "./useDisplayCategory";
 
 export default function HomeSubscribe() {
@@ -17,26 +17,25 @@ export default function HomeSubscribe() {
 
 /**
  * Subscription form component
- * @param {Object} props 
+ * @param {Object} props
  * @param {("mobile"|"tablet"|"desktop")} [props.displaySize] Optional; the
  * desired display category for the form component
  * @returns {import('react').ReactComponentElement}
  */
 export function SubscribeToPolicyEngine(props) {
-  const {
-    displaySize
-  } = props;
+  const { displaySize } = props;
 
   const [submitMsg, setSubmitMsg] = useState("");
 
   const displayCategory = displaySize || useDisplayCategory();
 
-  const submitLink = "https://policyengine.us5.list-manage.com/subscribe/post-json?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
+  const submitLink =
+    "https://policyengine.us5.list-manage.com/subscribe/post-json?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
   const submitButtonText = "Subscribe";
   const inputFields = {
-      label: "email",
-      type: "email",
-      placeholder: "Enter your email address"
+    label: "email",
+    type: "email",
+    placeholder: "Enter your email address",
   };
 
   function submitHandler(event, formInput) {
@@ -44,26 +43,32 @@ export function SubscribeToPolicyEngine(props) {
 
     // "error" is if there is a connection issue, while "data" is Mailchimp's
     // res object, including signup errors
-    jsonp(`${submitLink}&EMAIL=${formInput.email}`, {param: 'c'}, (error, data) => {
-      if (error) {
-        setSubmitMsg("There was an issue processing your subscription; please try again later.");
-      }
-      if (data) {
-        // "data" also contains "result" param 
-        // of either "success" or "error"
-        const {msg} = data;
-        if (typeof msg==="string") {
-          setSubmitMsg(msg);
+    jsonp(
+      `${submitLink}&EMAIL=${formInput.email}`,
+      { param: "c" },
+      (error, data) => {
+        if (error) {
+          setSubmitMsg(
+            "There was an issue processing your subscription; please try again later.",
+          );
         }
-      }
-    });
+        if (data) {
+          // "data" also contains "result" param
+          // of either "success" or "error"
+          const { msg } = data;
+          if (typeof msg === "string") {
+            setSubmitMsg(msg);
+          }
+        }
+      },
+    );
   }
 
   const mobileWrapperStyling = {
     backgroundColor: style.colors.BLUE_PRESSED,
     display: "flex",
-    flexDirection: "column"
-  }
+    flexDirection: "column",
+  };
 
   const nonMobileWrapperStyling = {
     backgroundColor: style.colors.BLUE_PRESSED,
@@ -71,20 +76,21 @@ export function SubscribeToPolicyEngine(props) {
     alignItems: "center",
     justifyContent: "center",
     height: 300,
-  }
+  };
 
   return (
     <div
-      style={displayCategory === "mobile" ?
-        mobileWrapperStyling :
-        nonMobileWrapperStyling
+      style={
+        displayCategory === "mobile"
+          ? mobileWrapperStyling
+          : nonMobileWrapperStyling
       }
     >
-      <div 
-        style={{ 
+      <div
+        style={{
           width: displayCategory !== "mobile" && "40vw",
           paddingRight: displayCategory === "tablet" && 50,
-          marginBottom: displayCategory === "mobile" && 50
+          marginBottom: displayCategory === "mobile" && 50,
         }}
       >
         <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
@@ -101,11 +107,11 @@ export function SubscribeToPolicyEngine(props) {
           return true;
         }}
         containerStyle={{
-          width: displayCategory !== "mobile" ? "40vw" : "100%"
+          width: displayCategory !== "mobile" ? "40vw" : "100%",
         }}
         submitMsg={submitMsg}
       >
-        <FormItem 
+        <FormItem
           label={inputFields.label}
           type={inputFields.type}
           placeholder={inputFields.placeholder}

@@ -243,7 +243,7 @@ function DesktopFooter() {
         </div>
         <TwitterEmbed />
         <div style={{ marginTop: 20 }}>
-          <SubscribeToPolicyEngine displaySize="mobile"/>
+          <SubscribeToPolicyEngine displaySize="mobile" />
         </div>
       </div>
     </div>
