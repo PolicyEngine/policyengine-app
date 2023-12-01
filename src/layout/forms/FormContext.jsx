@@ -109,14 +109,27 @@ export default function FormContext(props) {
         }}
         width="100%"
       />
-      <p
+      <div
         style={{
-          margin: 0,
-          lineHeight: "1em",
+          position: "relative",
+          width: "100%",
+          height: "2em"
         }}
       >
-        {submitMsg || <br />}
-      </p>
+        <p
+          style={{
+            margin: 0,
+            lineHeight: "1em",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            wordWrap: "normal",
+            width: "100%"
+          }}
+        >
+          {submitMsg || <br />}
+        </p>
+      </div>
     </div>
   );
 }
