@@ -8,7 +8,7 @@ import { Drawer } from "antd";
 import { formatVariableValue, getValueFromHousehold } from "../api/variables";
 import getPolicyOutputTree from "../pages/policy/output/tree";
 import { copySearchParams } from "../api/call";
-import NavigationButton from "../controls/NavigationButton";
+import SearchParamNavButton from "controls/SearchParamNavButton";
 import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
 import VariableSearch from "../pages/household/VariableSearch";
 import { ParameterSearch } from "../pages/PolicyPage.jsx";
@@ -318,26 +318,27 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
+        gap: "10px"
       }}
     >
       {previous.label ? (
-        <NavigationButton
+        <SearchParamNavButton
           focus={previous.name}
-          text="left"
+          direction="left"
           style={{ padding: 0 }}
         />
       ) : (
-        <div style={{ width: 80 }} />
+        <div style={{ width: 60 }} />
       )}
       {}
       {next.label ? (
-        <NavigationButton
+        <SearchParamNavButton
           focus={next.name}
-          text={"right"}
+          direction="right"
           style={{ padding: 0 }}
         />
       ) : (
-        <div style={{ width: 80 }} />
+        <div style={{ width: 60 }} />
       )}
     </div>
   );
@@ -348,7 +349,7 @@ function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen }) {
     <>
       <div
         style={{
-          height: 54,
+          height: 60,
           width: 60,
           minWidth: 60,
           alignItems: "center",
@@ -388,7 +389,7 @@ function PolicyDrawerButton({ policy, metadata }) {
     <>
       <div
         style={{
-          height: 54,
+          height: 60,
           width: 60,
           minWidth: 60,
           alignItems: "center",
@@ -665,7 +666,7 @@ function NavOptionsBar(props) {
 
   const buttonsJSX = buttonData.map((item, index) => {
     return (
-      <NavigationButton
+      <SearchParamNavButton
         key={index}
         primary
         text={item.text}

@@ -5,7 +5,16 @@ import Button from "./Button";
 import ArrowButton from "./ArrowButton";
 
 export default function SearchParamNavButton(props) {
-  const { text, focus, target, style, type, onClick, direction } = props;
+  const { 
+    text, 
+    focus, 
+    target, 
+    style, 
+    type, 
+    onClick, 
+    direction,
+    moreOnClick
+  } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 

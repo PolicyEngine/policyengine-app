@@ -11,6 +11,7 @@ export default function ArrowButton(props) {
         </span>
       }
       width={30}
+      height={60}
       size={"60px"}
       onClick={onClick}
       type={type}
