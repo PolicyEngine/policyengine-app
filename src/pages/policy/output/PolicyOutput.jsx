@@ -50,8 +50,8 @@ export function RegionSelector(props) {
 
   return (
     <SearchOptions
-      style={{ 
-        width: "100%", 
+      style={{
+        width: "100%",
       }}
       options={options}
       defaultValue={value}
@@ -76,8 +76,8 @@ export function TimePeriodSelector(props) {
 
   return (
     <SearchOptions
-      style={{ 
-        width: "100%", 
+      style={{
+        width: "100%",
       }}
       options={options}
       defaultValue={value}

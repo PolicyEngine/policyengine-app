@@ -267,10 +267,10 @@ function VariableArithmetic(props) {
           >
             <h2
               aria-describedby="documentation"
-              style={{ 
-                display: "inline-flex", 
-                fontSize: displayCategory === "mobile" ? 18: 22, 
-                margin: 0 
+              style={{
+                display: "inline-flex",
+                fontSize: displayCategory === "mobile" ? 18 : 22,
+                margin: 0,
               }}
             >
               {valueStr}

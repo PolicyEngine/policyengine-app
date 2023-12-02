@@ -28,7 +28,6 @@ export default function VariableSearch(props) {
         if (callback instanceof Function) {
           callback();
         }
-
       }}
     />
   );

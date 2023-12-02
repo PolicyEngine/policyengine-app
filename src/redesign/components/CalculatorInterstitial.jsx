@@ -92,7 +92,7 @@ function CalculatorOption({ left, title, description, link, image }) {
         <div
           style={{
             paddingTop: 20,
-            order: displayCategory==="mobile" ? -1 : 0
+            order: displayCategory === "mobile" ? -1 : 0,
           }}
         >
           <p>{description}</p>

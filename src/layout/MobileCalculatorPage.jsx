@@ -5,10 +5,7 @@ import { motion } from "framer-motion";
 import { SearchOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 
-import {
-  formatVariableValue,
-  getValueFromHousehold,
-} from "../api/variables";
+import { formatVariableValue, getValueFromHousehold } from "../api/variables";
 import getPolicyOutputTree from "../pages/policy/output/tree";
 import { copySearchParams } from "../api/call";
 import NavigationButton from "../controls/NavigationButton";
@@ -23,9 +20,9 @@ import spacing from "../redesign/style/spacing";
 
 /**
  * Layout component that overlays the household and policy pages on mobile
- * @param {Object} props 
+ * @param {Object} props
  * @param {Object} props.metadata
- * @param {ReactComponentElement} props.mainContent The React component that would 
+ * @param {ReactComponentElement} props.mainContent The React component that would
  * typically be displayed in the middle portion of the calculator on desktop
  * @param {Object} [props.householdInput] Required for "household" type
  * @param {Object} [props.householdBaseline] Required for "household" type
@@ -43,7 +40,7 @@ export default function MobileCalculatorPage(props) {
     householdInput,
     householdBaseline,
     autoCompute,
-    policy
+    policy,
   } = props;
 
   const [searchParams] = useSearchParams();
@@ -71,7 +68,7 @@ export default function MobileCalculatorPage(props) {
   // Scroll to top every time a user opens a new page
   useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  });
 
   return (
     <>
@@ -80,13 +77,12 @@ export default function MobileCalculatorPage(props) {
           overflow: "scroll",
           width: "100%",
           padding: `20px 20px ${bottomPadding}px 20px`,
-          minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`
+          minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`,
         }}
       >
         {mainContent}
       </div>
-      {((type === "household" && householdInput) ||
-        (type === "policy")) && (
+      {((type === "household" && householdInput) || type === "policy") && (
         <MobileBottomMenu
           metadata={metadata}
           policy={policy}
@@ -101,22 +97,22 @@ export default function MobileCalculatorPage(props) {
 
 /**
  * React component for bottom menu on mobile
- * @param {Object} props 
+ * @param {Object} props
  * @param {Object} props.metadata
  * @param {('household'|'policy')} props.type
  * @param {Object} [props.householdBaseline] Only required for "household" type
  * @param {Object} [props.householdReform] Only required for "household" type
  * @param {Object} [props.autCompute] Only required for "household" type
- * @returns 
+ * @returns
  */
 function MobileBottomMenu(props) {
-  const { 
-    metadata, 
+  const {
+    metadata,
     type,
-    householdBaseline, 
-    householdReform, 
+    householdBaseline,
+    householdReform,
     autoCompute,
-    policy
+    policy,
   } = props;
   const [searchParams] = useSearchParams();
   let hasReform = searchParams.get("reform") !== null;
@@ -124,7 +120,7 @@ function MobileBottomMenu(props) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   function handleMenuOpen() {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   }
 
   return (
@@ -143,7 +139,7 @@ function MobileBottomMenu(props) {
         left: 0,
         bottom: 0,
         zIndex: 5,
-        gap: "5px"
+        gap: "5px",
       }}
     >
       <div
@@ -153,21 +149,24 @@ function MobileBottomMenu(props) {
           width: "100%",
           justifyContent: "center",
           alignItems: "center",
-          gap: "10px"
+          gap: "10px",
         }}
       >
-        <MobileTreeNavigationHolder metadata={metadata} type={type}/>
-        <MobileBottomNavButtons focus={focus} type={type} metadata={metadata}/>
-        {type === "policy" &&
+        <MobileTreeNavigationHolder metadata={metadata} type={type} />
+        <MobileBottomNavButtons focus={focus} type={type} metadata={metadata} />
+        {type === "policy" && (
           <PolicyDrawerButton metadata={metadata} policy={policy} />
-        }
-        <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
+        )}
+        <MenuOpenCloseButton
+          isMenuOpen={isMenuOpen}
+          handleMenuOpen={handleMenuOpen}
+        />
       </div>
-      <OpenedNavigationMenu 
+      <OpenedNavigationMenu
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         autoCompute={autoCompute}
-        isMenuOpen={isMenuOpen} 
+        isMenuOpen={isMenuOpen}
         metadata={metadata}
         focus={focus}
         hasReform={hasReform}
@@ -182,7 +181,7 @@ function MobileBottomMenu(props) {
 /**
  * Function to build a breadcrumb trail based upon an output tree;
  * currently not extensible for future tree versions
- * @param {Object} props 
+ * @param {Object} props
  * @param {Object} props.metadata
  * @param {String} props.type
  * @returns {ReactComponentElement}
@@ -249,7 +248,7 @@ function MobileTreeNavigationHolder(props) {
         padding: 5,
         alignItems: "center",
         width: "100%",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
       }}
     >
       {breadcrumbs.map((breadcrumb, i) => (
@@ -261,7 +260,7 @@ function MobileTreeNavigationHolder(props) {
             fontSize: "min(0.85rem, 20px)",
             whiteSpace: "wrap",
             margin: 0,
-            fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter"
+            fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter",
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
@@ -289,17 +288,14 @@ function MobileTreeNavigationHolder(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
-function MobileBottomNavButtons({focus, type, metadata}) {
+function MobileBottomNavButtons({ focus, type, metadata }) {
   if (
     type === "household" &&
     !(focus && focus.startsWith("householdOutput."))
   ) {
     return null;
   }
-  if (
-    type === "policy" &&
-    !(focus && focus.startsWith("policyOutput."))
-  ) {
+  if (type === "policy" && !(focus && focus.startsWith("policyOutput."))) {
     return null;
   }
 
@@ -321,7 +317,7 @@ function MobileBottomNavButtons({focus, type, metadata}) {
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       {previous.label ? (
@@ -347,7 +343,7 @@ function MobileBottomNavButtons({focus, type, metadata}) {
   );
 }
 
-function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
+function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen }) {
   return (
     <>
       <div
@@ -381,11 +377,11 @@ function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
   );
 }
 
-function PolicyDrawerButton({policy, metadata}) {
+function PolicyDrawerButton({ policy, metadata }) {
   const [isPolicyDrawerOpen, setIsPolicyDrawerOpen] = useState(false);
 
   function handleClick() {
-    setIsPolicyDrawerOpen(prev => !prev);
+    setIsPolicyDrawerOpen((prev) => !prev);
   }
 
   return (
@@ -426,10 +422,10 @@ function PolicyDrawerButton({policy, metadata}) {
         style={{
           maxHeight: "100vh",
           overflow: "scroll",
-          height: "unset"
+          height: "unset",
         }}
         contentWrapperStyle={{
-          maxHeight: "100vh"
+          maxHeight: "100vh",
         }}
       >
         <PolicyRightSidebar
@@ -445,8 +441,8 @@ function PolicyDrawerButton({policy, metadata}) {
 
 function OpenedNavigationMenu(props) {
   const {
-    isMenuOpen, 
-    metadata, 
+    isMenuOpen,
+    metadata,
     focus,
     hasReform,
     type,
@@ -454,7 +450,7 @@ function OpenedNavigationMenu(props) {
     householdReform,
     autoCompute,
     policy,
-    handleMenuOpen
+    handleMenuOpen,
   } = props;
 
   if (!isMenuOpen) {
@@ -472,38 +468,38 @@ function OpenedNavigationMenu(props) {
           flexDirection: "column",
           justifyContent: "flex-end",
           alignItems: "center",
-          gap: "10px"
+          gap: "10px",
         }}
         initial={{
           opacity: 1,
           visibility: "hidden",
-          y: "100%"
+          y: "100%",
         }}
         animate={{
           opacity: 1,
           visibility: "visible",
-          y: "0%"
+          y: "0%",
         }}
         transition={{
           duration: 0.4,
         }}
       >
         <DividerBar />
-        <TopText 
-          type={type} 
+        <TopText
+          type={type}
           metadata={metadata}
           hasReform={hasReform}
           householdBaseline={householdBaseline}
           householdReform={householdReform}
           autoCompute={autoCompute}
         />
-        <SearchBar 
-          metadata={metadata} 
+        <SearchBar
+          metadata={metadata}
           type={type}
           handleMenuOpen={handleMenuOpen}
         />
-        <NavOptionsBar 
-          focus={focus} 
+        <NavOptionsBar
+          focus={focus}
           hasReform={hasReform}
           metadata={metadata}
           type={type}
@@ -512,7 +508,7 @@ function OpenedNavigationMenu(props) {
         />
       </motion.div>
     </>
-  )
+  );
 }
 
 function TopText(props) {
@@ -522,7 +518,7 @@ function TopText(props) {
     hasReform,
     householdBaseline,
     householdReform,
-    autoCompute
+    autoCompute,
   } = props;
 
   if (type !== "household") {
@@ -560,26 +556,22 @@ function TopText(props) {
   } else {
     text = "";
   }
-  return (
-    <h5 style={{margin: 0}}>
-      {text}
-    </h5>
-  );
+  return <h5 style={{ margin: 0 }}>{text}</h5>;
 }
 
 function DividerBar() {
   return (
-    <div 
+    <div
       style={{
         width: "100%",
         backgroundColor: colors.MEDIUM_DARK_GRAY,
-        height: "1px"
+        height: "1px",
       }}
     />
-  )
+  );
 }
 
-function SearchBar({metadata, type, handleMenuOpen}) {
+function SearchBar({ metadata, type, handleMenuOpen }) {
   return (
     <div
       style={{
@@ -589,27 +581,21 @@ function SearchBar({metadata, type, handleMenuOpen}) {
         alignItems: "center",
         width: "100%",
         gap: "10px",
-        paddingRight: "10px"
+        paddingRight: "10px",
       }}
     >
-      {type === "household" &&
-        <VariableSearch 
-          metadata={metadata}
-          callback={handleMenuOpen}
-        />
-      }
-      {type === "policy" &&
-        <ParameterSearch 
-          metadata={metadata} 
-          callback={handleMenuOpen}
-        />
-      }
+      {type === "household" && (
+        <VariableSearch metadata={metadata} callback={handleMenuOpen} />
+      )}
+      {type === "policy" && (
+        <ParameterSearch metadata={metadata} callback={handleMenuOpen} />
+      )}
       <SearchOutlined
         style={{
           fontSize: 20,
           color: style.colors.BLACK,
           display: "block",
-          flexShrink: 0
+          flexShrink: 0,
         }}
       />
     </div>
@@ -617,13 +603,7 @@ function SearchBar({metadata, type, handleMenuOpen}) {
 }
 
 function NavOptionsBar(props) {
-  const {
-    focus, 
-    type,
-    metadata,
-    hasReform,
-    handleMenuOpen
-  } = props;
+  const { focus, type, metadata, hasReform, handleMenuOpen } = props;
 
   let buttonData = [];
 
@@ -631,12 +611,12 @@ function NavOptionsBar(props) {
     if (focus && focus.startsWith("householdOutput")) {
       buttonData.push({
         text: "Edit my household",
-        focus: "input"
+        focus: "input",
       });
     } else if (focus) {
       buttonData.push({
         text: "See my household details",
-        focus: "householdOutput"
+        focus: "householdOutput",
       });
     }
 
@@ -644,27 +624,27 @@ function NavOptionsBar(props) {
       buttonData.push({
         text: "Edit my reform",
         focus: "gov",
-        target: `/${metadata.countryId}/policy`
+        target: `/${metadata.countryId}/policy`,
       });
     } else {
       buttonData.push({
         text: "Create a reform",
         focus: "gov",
-        target: `/${metadata.countryId}/policy`
+        target: `/${metadata.countryId}/policy`,
       });
     }
   }
-  
+
   if (type === "policy") {
     if (focus && focus.startsWith("policyOutput")) {
       buttonData.push({
         text: "Edit my policy",
-        focus: "gov"
+        focus: "gov",
       });
     } else if (focus) {
       buttonData.push({
         text: "Calculate economic impact",
-        focus: "policyOutput"
+        focus: "policyOutput",
       });
     }
 
@@ -672,13 +652,13 @@ function NavOptionsBar(props) {
       buttonData.push({
         text: "Calculate my household impact",
         focus: "input",
-        target: `/${metadata.countryId}/household`
+        target: `/${metadata.countryId}/household`,
       });
     } else {
       buttonData.push({
         text: "Enter my household",
         focus: "input",
-        target: `/${metadata.countryId}/household`
+        target: `/${metadata.countryId}/household`,
       });
     }
   }
@@ -693,8 +673,8 @@ function NavOptionsBar(props) {
         target={item.target}
         moreOnClick={handleMenuOpen}
       />
-    )
-  })
+    );
+  });
 
   return (
     <div
@@ -705,7 +685,7 @@ function NavOptionsBar(props) {
         alignItems: "center",
         width: "100%",
         gap: "5px",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
       }}
     >
       {buttonsJSX}

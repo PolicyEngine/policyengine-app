@@ -352,7 +352,7 @@ export default function PolicyRightSidebar(props) {
           margin: "0 20px",
           justifyItems: "right",
           alignItems: "center",
-          gap: "10px"
+          gap: "10px",
         }}
       >
         <h6 style={{ margin: 0 }}>in</h6>
@@ -365,20 +365,20 @@ export default function PolicyRightSidebar(props) {
             display: "flex",
             flexDirection: "row",
             width: "100%",
-            gap: "10px"
+            gap: "10px",
           }}
         >
-          <PolicySearch 
-            metadata={metadata} 
-            policy={policy} 
-            target="baseline" 
+          <PolicySearch
+            metadata={metadata}
+            policy={policy}
+            target="baseline"
             width="100%"
           />
           <SwapOutlined
             style={{
               fontSize: 15,
               cursor: "pointer",
-              marginRight: "10px"
+              marginRight: "10px",
             }}
             onClick={() => {
               const newSearch = copySearchParams(searchParams);
