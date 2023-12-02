@@ -21,6 +21,7 @@ const styles = {
   },
   submitButton: {
     width: "fit-content",
+    margin: "20px auto 10px",
   },
 };
 
@@ -60,7 +61,7 @@ export default function RecreateHouseholdPopup(props) {
             <Button
               text={buttonText}
               onClick={handleClick}
-              primary={true}
+              type="primary"
               style={styles.submitButton}
               centered
             />

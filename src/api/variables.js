@@ -223,7 +223,7 @@ export function getPlotlyAxisFormat(
   precisionOverride,
   valueType,
 ) {
-  // Possible units: currency-GBP, currency-USD, /1
+  // Possible units: currency-GBP, currency-USD, /1, date
   // If values (an array) is passed, we need to calculate the
   // appropriate number of decimal places to use.
   let precision;
@@ -274,6 +274,25 @@ export function getPlotlyAxisFormat(
           Math.max(...values) * 1.5,
         ]),
       }),
+    };
+  } else if (unit === "date") {
+    let minYear, maxYear;
+    if (values.length) {
+      minYear = values.reduce(function (a, b) {
+        return a <= b ? a : b;
+      });
+      maxYear = values.reduce(function (a, b) {
+        return a >= b ? a : b;
+      });
+      minYear = Number(minYear.match(/\d+/)[0]);
+      maxYear = Number(maxYear.match(/\d+/)[0]);
+    } else {
+      const currentYear = new Date().getFullYear();
+      minYear = currentYear;
+      maxYear = currentYear;
+    }
+    return {
+      range: sortRange([minYear - 5 + "-01-01", maxYear + 5 + "-12-31"]),
     };
   } else if (valueType === "bool") {
     return {

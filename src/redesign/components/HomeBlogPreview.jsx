@@ -7,7 +7,6 @@ import moment from "moment";
 import { useState } from "react";
 import useCountryId from "./useCountryId";
 import EmphasisedLink from "./EmphasisedLink";
-import { Link } from "react-router-dom";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
@@ -81,6 +80,9 @@ function ReadMore() {
 }
 
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
+  const rightColumnPosts = allPosts?.slice(0, 4);
+  const firstRowPosts = allPosts?.slice(6, 9);
+
   return (
     <SectionBottom backgroundColor={style.colors.LIGHT_GRAY}>
       <div
@@ -108,15 +110,12 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
             justifyContent: "space-between",
             width: "40%",
             marginLeft: 20,
+            gap: 20,
           }}
         >
-          <SmallBlogPreview blog={allPosts[0]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[1]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[2]} />
-          <div style={{ height: 20 }} />
-          <SmallBlogPreview blog={allPosts[3]} />
+          {rightColumnPosts?.map((post) => (
+            <SmallBlogPreview key={post.slug} blog={post} />
+          ))}
         </div>
       </div>
       <div
@@ -125,13 +124,12 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
           flexDirection: "row",
           justifyContent: "space-between",
           marginTop: 40,
+          gap: 40,
         }}
       >
-        <MediumBlogPreview blog={allPosts[6]} />
-        <div style={{ width: 40 }} />
-        <MediumBlogPreview blog={allPosts[7]} />
-        <div style={{ width: 40 }} />
-        <MediumBlogPreview blog={allPosts[8]} />
+        {firstRowPosts?.map((post) => (
+          <MediumBlogPreview key={post.slug} blog={post} />
+        ))}
       </div>
       <ReadMore />
     </SectionBottom>
@@ -249,41 +247,35 @@ function BlogBox({
   bottomRight,
   noBorder,
   style,
-  link,
 }) {
-  link;
   return (
-    <Link to={link}>
-      <div
-        style={{
-          display: "flex",
-          border: noBorder ? null : `1px solid black`,
-          ...style,
-          flexDirection: "row",
-        }}
-      >
-        <div style={{ display: "flex" }}>{left}</div>
+    <div
+      style={{
+        display: "flex",
+        border: noBorder ? null : `1px solid black`,
+        ...style,
+        flexDirection: "row",
+      }}
+    >
+      <div style={{ display: "flex" }}>{left}</div>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div>{topLeft}</div>
+          <div>{topRight}</div>
+        </div>
+        {children}
         <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            marginTop: "auto",
+          }}
         >
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div>{topLeft}</div>
-            <div>{topRight}</div>
-          </div>
-          {children}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: "auto",
-            }}
-          >
-            <div>{bottomLeft}</div>
-            <div>{bottomRight}</div>
-          </div>
+          <div>{bottomLeft}</div>
+          <div>{bottomRight}</div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 
@@ -328,13 +320,19 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
     ? require("../images/posts/" + currentBlog.image)
     : require("../images/placeholder.png");
   const countryId = useCountryId();
+  const link = `/${countryId}/research/${currentBlog.slug}`;
   return (
     <div
       style={{
         width: width || "100%",
+        border: `1px solid ${style.colors.BLACK}`,
       }}
     >
-      <Link to={`/${countryId}/research/${currentBlog.slug}`}>
+      <div
+        style={{
+          position: "relative",
+        }}
+      >
         <img
           src={imageUrl}
           alt={currentBlog.coverAltText || `{blog.title} cover image`}
@@ -342,23 +340,15 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
           style={{
             objectFit: "cover",
-            border: `1px solid ${style.colors.BLACK}`,
-            borderBottom: "none",
+            borderBottom: `1px solid ${style.colors.BLACK}`,
           }}
         />
-      </Link>
-      <div
-        style={{
-          border: `1px solid ${style.colors.BLACK}`,
-        }}
-      >
         <BlogBox
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
-          link={`/${countryId}/research/${currentBlog.slug}`}
           bottomRight={
             <div style={{ margin: 10 }}>
-              <EmphasisedLink text="Read" url="/" size={14} />
+              <EmphasisedLink text="Read" url={link} size={14} isStretched />
             </div>
           }
           style={{
@@ -374,12 +364,12 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
             <p>{currentBlog.description}</p>
           </div>
         </BlogBox>
-        <Carousel
-          current={currentBlogIndex}
-          total={blogs.length}
-          setCurrent={setCurrentBlogIndex}
-        />
       </div>
+      <Carousel
+        current={currentBlogIndex}
+        total={blogs.length}
+        setCurrent={setCurrentBlogIndex}
+      />
     </div>
   );
 }
@@ -393,51 +383,50 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
   return (
-    <Link to={link} style={{ flex: 1 }}>
-      <div
-        style={{
-          height: "100%",
-        }}
-      >
-        <div>
-          <img
-            src={imageUrl}
-            alt={blog.coverAltText || `{blog.title} cover image`}
-            height={300}
-            width="100%"
-            style={{
-              objectFit: "cover",
-              border: `1px solid ${style.colors.BLACK}`,
-              borderBottom: "none",
-            }}
-          />
-        </div>
-        <BlogBox
-          link={link}
+    <div
+      style={{
+        height: "100%",
+        flex: 1,
+        position: "relative",
+      }}
+    >
+      <div>
+        <img
+          src={imageUrl}
+          alt={blog.coverAltText || `{blog.title} cover image`}
+          height={300}
+          width="100%"
           style={{
-            backgroundColor: blog.tags.includes(["in-the-news"])
-              ? style.colors.BLUE_LIGHT
-              : style.colors.LIGHT_GRAY,
-            minHeight: minHeight || (displayCategory === "mobile" ? 460 : 430),
-            maxHeight: displayCategory === "mobile" ? 400 : null,
+            objectFit: "cover",
+            border: `1px solid ${style.colors.BLACK}`,
+            borderBottom: "none",
           }}
-          topLeft={<BlogTags tags={blog.tags} />}
-          bottomRight={
-            <div style={{ margin: 30 }}>
-              <EmphasisedLink text="Read" url="/" size={14} />
-            </div>
-          }
-        >
-          <div style={{ padding: 20 }}>
-            <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
-              {moment(blog.date).format("MMMM D, YYYY")}
-            </p>
-            <h4>{blog.title}</h4>
-            <p>{blog.description}</p>
-          </div>
-        </BlogBox>
+        />
       </div>
-    </Link>
+      <BlogBox
+        style={{
+          backgroundColor: blog.tags.includes(["in-the-news"])
+            ? style.colors.BLUE_LIGHT
+            : style.colors.LIGHT_GRAY,
+          minHeight: minHeight || (displayCategory === "mobile" ? 460 : 430),
+          maxHeight: displayCategory === "mobile" ? 400 : null,
+        }}
+        topLeft={<BlogTags tags={blog.tags} />}
+        bottomRight={
+          <div style={{ margin: 30 }}>
+            <EmphasisedLink text="Read" url={link} size={14} isStretched />
+          </div>
+        }
+      >
+        <div style={{ padding: 20 }}>
+          <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
+            {moment(blog.date).format("MMMM D, YYYY")}
+          </p>
+          <h4>{blog.title}</h4>
+          <p>{blog.description}</p>
+        </div>
+      </BlogBox>
+    </div>
   );
 }
 
@@ -498,12 +487,12 @@ export function SmallBlogPreview({ blog }) {
   }
 
   const slug = blog.filename.split(".")[0];
+  const link = `/${countryId}/research/${slug}`;
 
   return (
     <BlogBox
       topLeft={topLeft}
       left={left}
-      link={`/${countryId}/research/${slug}`}
       topRight={
         <p
           style={{
@@ -519,7 +508,7 @@ export function SmallBlogPreview({ blog }) {
       }
       bottomRight={
         <div style={{ marginRight: 10, marginBottom: 10 }}>
-          <EmphasisedLink text="Read" url="/" size={14} />
+          <EmphasisedLink text="Read" url={link} size={14} isStretched />
         </div>
       }
       style={{
@@ -527,6 +516,7 @@ export function SmallBlogPreview({ blog }) {
           ? style.colors.BLUE_LIGHT
           : style.colors.LIGHT_GRAY,
         height: "100%",
+        position: "relative",
       }}
     >
       <div

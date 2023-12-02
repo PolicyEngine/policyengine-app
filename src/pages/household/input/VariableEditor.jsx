@@ -8,7 +8,7 @@ import {
 import LoadingCentered from "../../../layout/LoadingCentered";
 import { InputNumber, Select, Switch } from "antd";
 import useMobile from "../../../layout/Responsive";
-import NavigationButton from "../../../controls/NavigationButton";
+import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";
 
@@ -92,11 +92,11 @@ export default function VariableEditor(props) {
         </h4>
         {entityInputs}
         {nextVariable && (
-          <NavigationButton
+          <SearchParamNavButton
             text="Enter"
             focus={nextVariable}
-            primary
-            disabled={required && !edited}
+            type={required && !edited ? "disabled" : "primary"}
+            style={{ margin: "20px auto 10px" }}
           />
         )}
       </div>
