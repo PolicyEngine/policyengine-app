@@ -27,6 +27,12 @@ export default function SearchParamNavButton(props) {
           event_label: focus,
         });
       }
+
+      // This is a workaround to add extra onClick functionality;
+      // this should be redone in the future
+      if (moreOnClick instanceof Function) {
+        moreOnClick();
+      }
     });
 
   if (direction) {

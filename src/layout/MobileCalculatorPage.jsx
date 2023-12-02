@@ -691,6 +691,7 @@ function NavOptionsBar(props) {
         text={item.text}
         focus={item.focus}
         target={item.target}
+        moreOnClick={handleMenuOpen}
       />
     )
   })
