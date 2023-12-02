@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { SearchOutlined } from "@ant-design/icons";
+
 import {
   formatVariableValue,
   getValueFromHousehold,
 } from "../../api/variables";
 import { copySearchParams } from "../../api/call";
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import style from "../../style";
 <<<<<<< HEAD
@@ -17,8 +22,13 @@ import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 =======
 import { SearchOutlined } from "@ant-design/icons";
 >>>>>>> 4d45aaa (chore: Remove unused code)
+=======
+import NavigationButton from "../../controls/NavigationButton";
+>>>>>>> 7455079 (fix: Add extra space for mobile bottom bar)
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
+
+import style from "../../style";
 import colors from "../../redesign/style/colors";
 import spacing from "../../redesign/style/spacing";
 
@@ -31,13 +41,29 @@ export default function MobileHouseholdPage(props) {
     autoCompute
   } = props;
 
+  const [bottomPadding, setBottomPadding] = useState(0);
+
+  useEffect(() => {
+    const mobileBottomBar = document.querySelector(".mobile-bottom-bar");
+    if (!mobileBottomBar) {
+      return;
+    }
+
+    const bottomBarHeight = mobileBottomBar.offsetHeight;
+
+    // If it changed, update bottomPadding
+    if (bottomBarHeight !== bottomPadding) {
+      setBottomPadding(bottomBarHeight);
+    }
+  });
+
   return (
     <>
       <div
         style={{
           overflow: "scroll",
           width: "100%",
-          padding: 20,
+          padding: `20px 20px ${bottomPadding}px 20px`,
           minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`
         }}
       >
@@ -190,6 +216,7 @@ function MobileBottomMenu(props) {
   }
   return (
     <div
+      className="mobile-bottom-bar"
       style={{
         padding: "10px",
         backgroundColor: colors.LIGHT_GRAY,
