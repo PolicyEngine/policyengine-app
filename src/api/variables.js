@@ -179,44 +179,20 @@ export function getTreeLeavesInOrder(tree) {
   return leaves;
 }
 
+export const currencyMap = {
+  "currency-GBP": "£",
+  "currency-USD": "$",
+  "currency-CAD": "$",
+  "currency-ILS": "₪",
+  "currency-NGN": "₦",
+};
+
 export function formatVariableValue(variable, value, precision = 2) {
   try {
-    if (variable.unit === "currency-GBP") {
+    if (Object.keys(currencyMap).includes(variable.unit)) {
       // Format like "£1,234.56"
       return (
-        "£" +
-        value.toLocaleString(undefined, {
-          minimumFractionDigits: precision,
-          maximumFractionDigits: precision,
-        })
-      );
-    } else if (variable.unit === "currency-USD") {
-      return (
-        "$" +
-        value.toLocaleString(undefined, {
-          minimumFractionDigits: precision,
-          maximumFractionDigits: precision,
-        })
-      );
-    } else if (variable.unit === "currency-CAD") {
-      return (
-        "$" +
-        value.toLocaleString(undefined, {
-          minimumFractionDigits: precision,
-          maximumFractionDigits: precision,
-        })
-      );
-    } else if (variable.unit === "currency-ILS") {
-      return (
-        "₪" +
-        value.toLocaleString(undefined, {
-          minimumFractionDigits: precision,
-          maximumFractionDigits: precision,
-        })
-      );
-    } else if (variable.unit === "currency-NGN") {
-      return (
-        "₦" +
+        currencyMap[variable.unit] +
         value.toLocaleString(undefined, {
           minimumFractionDigits: precision,
           maximumFractionDigits: precision,
