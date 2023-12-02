@@ -11,8 +11,12 @@ import SearchParamNavButton from "../../controls/SearchParamNavButton";
 =======
 import { motion } from "framer-motion";
 import NavigationButton from "../../controls/NavigationButton";
+<<<<<<< HEAD
 >>>>>>> 4f288cd (feat: (Unfinished) mobile bottom bar)
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
+=======
+import { SearchOutlined } from "@ant-design/icons";
+>>>>>>> 4d45aaa (chore: Remove unused code)
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
 import colors from "../../redesign/style/colors";
