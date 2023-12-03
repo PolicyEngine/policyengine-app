@@ -234,7 +234,7 @@ function HouseholdVariableEntityInput(props) {
         addonBefore={isCurrency ? currencyMap[variable.unit] : undefined}
         min={isCurrency ? 0 : undefined}
         precision={variable.valueType === "float" ? 2 : undefined}
-        value={defaultValue}
+        defaultValue={defaultValue}
         autoFocus={true}
         onChange={submitValue}
       />
@@ -245,7 +245,7 @@ function HouseholdVariableEntityInput(props) {
         style={{
           width: mobile ? 150 : 200,
         }}
-        checked={defaultValue}
+        defaultChecked={defaultValue}
         checkedChildren="Yes"
         unCheckedChildren="No"
         onChange={submitValue}
@@ -256,7 +256,7 @@ function HouseholdVariableEntityInput(props) {
       <Select
         style={{ width: mobile ? 150 : 200 }}
         options={variable.possibleValues}
-        value={defaultValue}
+        defaultValue={defaultValue}
         onSelect={submitValue}
       />
     );
