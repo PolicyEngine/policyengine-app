@@ -242,9 +242,6 @@ function HouseholdVariableEntityInput(props) {
   } else if (variable.valueType === "bool") {
     control = (
       <Switch
-        style={{
-          width: mobile ? 150 : 200,
-        }}
         checked={defaultValue}
         checkedChildren="Yes"
         unCheckedChildren="No"
