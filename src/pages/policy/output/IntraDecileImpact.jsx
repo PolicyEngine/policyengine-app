@@ -169,13 +169,13 @@ export default function IntraDecileImpact(props) {
               text: "Change in income<br />",
               font: {
                 family: "Roboto Serif",
-              }
+              },
             },
             //# add spacing between title and entries
             tracegroupgap: 10,
             font: {
               family: "Roboto Serif",
-            }
+            },
           },
           ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
           margin: {

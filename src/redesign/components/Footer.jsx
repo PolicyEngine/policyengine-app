@@ -2,7 +2,7 @@ import style from "../style";
 import Section from "./Section";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import useDisplayCategory from "./useDisplayCategory";
-import { SubscribeToPolicyEngineMobile } from "./HomeSubscribe";
+import { SubscribeToPolicyEngine } from "./HomeSubscribe";
 import {
   FacebookFilled,
   GithubFilled,
@@ -183,7 +183,7 @@ function MobileFooter() {
         width="100%"
         style={{ marginBottom: 50 }}
       />
-      <SubscribeToPolicyEngineMobile />
+      <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
       <TwitterEmbed />
       <ContactUs />
@@ -207,7 +207,7 @@ function TabletFooter() {
         }}
       >
         <div>
-          <SubscribeToPolicyEngineMobile />
+          <SubscribeToPolicyEngine displaySize="mobile" />
           <ContactUs />
         </div>
         <TwitterEmbed />
@@ -243,7 +243,7 @@ function DesktopFooter() {
         </div>
         <TwitterEmbed />
         <div style={{ marginTop: 20 }}>
-          <SubscribeToPolicyEngineMobile />
+          <SubscribeToPolicyEngine displaySize="mobile" />
         </div>
       </div>
     </div>

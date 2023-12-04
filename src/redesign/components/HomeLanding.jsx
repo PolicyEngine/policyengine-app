@@ -112,18 +112,20 @@ export default function HomeLanding() {
           transform: "translate(-50%, -50%)",
         }}
       >
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "between",
-          flexDirection: mobile || tablet ? "column" : "row",
-          gap: mobile || tablet ? 50 : 30,
-          height: "100%",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-          backgroundColor: "rgb(23, 53, 79, 0.7)",
-          padding: 40,
-        }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            flexDirection: mobile || tablet ? "column" : "row",
+            gap: mobile || tablet ? 50 : 30,
+            height: "100%",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+            backgroundColor: "rgb(23, 53, 79, 0.7)",
+            padding: 40,
+          }}
+        >
           <div
             style={{
               width: mobile || tablet ? "100%" : "50%",
