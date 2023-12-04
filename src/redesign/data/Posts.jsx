@@ -715,6 +715,15 @@ let posts = [
     image: "jeremy-hunt.jpg",
     authors: ["nikhil-woodruff"],
   },
+  {
+    title: "Autumn 2023 model calibration update",
+    description: "Evaluating PolicyEngine's model performance with the latest official statistics.",
+    date: "2023-12-04 09:00:00",
+    filename: "uk-calibration-2023-q4.ipynb",
+    tags: ["uk", "technical"],
+    image: "jeremy-hunt.jpg",
+    authors: ["nikhil-woodruff"],
+  }
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
