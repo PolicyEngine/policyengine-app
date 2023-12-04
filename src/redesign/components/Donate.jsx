@@ -102,6 +102,7 @@ export default function Donate() {
             style={{
               flex: 1,
               display: "flex",
+              flexDirection: "column",
               justifyContent: "center",
               maxHeight: 100,
             }}
@@ -110,7 +111,7 @@ export default function Donate() {
               text={
                 <div style={{ textAlign: "center", color: "white" }}>
                   <span style={{ whiteSpace: "pre-line" }}>
-                    Donate on{"\n"}Open Collective
+                    Support Transparent{"\n"}Policy Access
                   </span>
                 </div>
               }
@@ -118,6 +119,18 @@ export default function Donate() {
               width={desktop ? 450 : mobile ? "70vw" : "30vw"}
               noArrow={true}
             />
+            <div
+              style={{
+                fontSize: 12,
+                marginTop: 8,
+                width: desktop ? 450 : mobile ? "70vw" : "30vw",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              Donate on Open Collective through our fiscal sponsor, the PSL
+              Foundation
+            </div>
           </div>
         </div>
       </Section>
