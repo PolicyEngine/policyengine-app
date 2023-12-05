@@ -104,7 +104,7 @@ export default function Donate() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              maxHeight: 100,
+              maxHeight: 120,
             }}
           >
             <LinkButton
