@@ -17,7 +17,9 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height: style.spacing.HEADER_HEIGHT,
+          height: displayCategory === 'mobile'
+            ? style.spacing.MOBILE_HEADER_HEIGHT
+            : style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
           position: "fixed",
@@ -35,7 +37,9 @@ export default function Header() {
       </div>
       <div
         style={{
-          height: 90,
+          height: displayCategory === 'mobile'
+          ? style.spacing.MOBILE_HEADER_HEIGHT
+          : style.spacing.HEADER_HEIGHT
         }}
       />
     </>
@@ -87,7 +91,7 @@ function MobileHeaderLogo() {
           src={PolicyEngineSmallLogo}
           alt="PolicyEngine logo"
           style={{
-            height: 50,
+            height: 30,
             margin: 20,
           }}
         />
@@ -103,8 +107,8 @@ function MobileCalculatorButton() {
     <div
       style={{
         backgroundColor: "#39C6C0",
-        height: 50,
-        width: 50,
+        height: 30,
+        width: 30,
         margin: 20,
         marginLeft: "auto",
         display: "flex",
@@ -118,8 +122,8 @@ function MobileCalculatorButton() {
           src={CalculatorIcon}
           alt="Calculator icon"
           style={{
-            height: 30,
-            width: 30,
+            height: 20,
+            width: 20,
             objectFit: "contain",
           }}
         />
@@ -130,12 +134,13 @@ function MobileCalculatorButton() {
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
+  const displayCategory = useDisplayCategory();
   return (
     <>
       <div
         style={{
-          height: 50,
-          width: 50,
+          height: displayCategory === 'mobile' ? 30 : 50,
+          width: displayCategory === 'mobile' ? 30 : 50,
           margin: 20,
           alignItems: "center",
           display: "flex",
