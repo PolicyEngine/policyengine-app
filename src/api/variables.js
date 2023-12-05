@@ -223,51 +223,44 @@ export function getPlotlyAxisFormat(
   precisionOverride,
   valueType,
 ) {
-  // Possible units: currency-GBP, currency-USD, /1, date
-  // If values (an array) is passed, we need to calculate the
-  // appropriate number of decimal places to use.
-  let precision;
+  // Possible units: currency-GBP, currency-USD, currency-CAD, currency-ILS,
+  // currency-NGN, /1, date
+
+  const precision = () => {
+    if (precisionOverride !== undefined) {
+      return precisionOverride;
+    }
+
+    if (values) {
+      let maxFractionalDigits = 0;
+      for (const value of values) {
+        if (value === null) {
+          continue;
+        }
+        const fractionalDigits = value.toString().split(".")[1]?.length || 0;
+        if (fractionalDigits > maxFractionalDigits) {
+          maxFractionalDigits = fractionalDigits;
+        }
+      }
+      return maxFractionalDigits < 2 ? maxFractionalDigits : 2;
+    }
+
+    return 0;
+  };
+
   const sortRange = (range) => range.sort((a, b) => a - b);
-  if (values) {
-    precision = 0;
-    for (const value of values) {
-      if (value === null) {
-        continue;
-      }
-      const decimalPlaces = value.toString().split(".")[1]?.length || 0;
-      if (decimalPlaces > precision) {
-        precision = decimalPlaces;
-      }
-    }
-    if (Math.max(...values) / 2 < 1) {
-      precision = 2;
-    }
-  }
-  if (precisionOverride) {
-    precision = precisionOverride;
-  }
-  if (unit === "currency-GBP") {
+
+  if (Object.keys(currencyMap).includes(unit)) {
     return {
-      tickformat: `,.${precision}f`,
-      tickprefix: "£",
+      tickformat: `,.${precision()}f`,
+      tickprefix: currencyMap[unit],
       ...(values && {
         range: [Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5],
       }),
     };
-  } else if (unit === "currency-USD") {
-    return {
-      tickformat: `,.${precision}f`,
-      tickprefix: "$",
-      ...(values && {
-        range: sortRange([
-          Math.min(0, ...values) * 1.5,
-          Math.max(...values) * 1.5,
-        ]),
-      }),
-    };
   } else if (unit === "/1") {
     return {
-      tickformat: `,.${precision - 2}%`,
+      tickformat: `,.${precision()}%`,
       ...(values && {
         range: sortRange([
           Math.min(0, ...values) * 1.5,

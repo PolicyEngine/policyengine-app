@@ -23,12 +23,16 @@ export default function ParameterOverTime(props) {
       return obj;
     }, {});
 
+  // Extend the last value to 2099 so that the line appears to extend to +inf in
+  // the chart
+  const extendForDisplay = (x, y) => {
+    x.push("2099-12-31");
+    y.push(y[y.length - 1]);
+  };
+
   let x = Object.keys(values);
   let y = Object.values(values);
-  // Extend the last value to 2099.
-  x.push("2099-12-31");
-  y.push(y[y.length - 1]);
-
+  extendForDisplay(x, y);
   let reformedX;
   let reformedY;
 
@@ -39,8 +43,7 @@ export default function ParameterOverTime(props) {
     ).values;
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
-    reformedX.push("2099-12-31");
-    reformedY.push(reformedY[reformedY.length - 1]);
+    extendForDisplay(reformedX, reformedY);
   }
 
   let xForRange = reformedX ? x.concat(reformedX) : x;
