@@ -721,7 +721,7 @@ let posts = [
     date: "2023-12-04 09:00:00",
     filename: "uk-calibration-2023-q4.ipynb",
     tags: ["uk", "technical"],
-    image: "jeremy-hunt.jpg",
+    image: "uk-calibration-dec-2023-update.png",
     authors: ["nikhil-woodruff"],
   }
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
