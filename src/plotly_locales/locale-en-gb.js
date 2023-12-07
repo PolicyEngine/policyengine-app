@@ -4,7 +4,7 @@
 
 module.exports = {
   moduleType: "locale",
-  name: "en",
+  name: "en-GB",
   dictionary: {
     "Click to enter Colorscale title": "Click to enter Colourscale title",
   },
