@@ -226,46 +226,36 @@ export function getPlotlyAxisFormat(
   // Possible units: currency-GBP, currency-USD, currency-CAD, currency-ILS,
   // currency-NGN, /1, date
 
-  const precision = () => {
-    if (precisionOverride !== undefined) {
-      return precisionOverride;
-    }
-
-    if (values) {
-      let maxFractionalDigits = 0;
-      for (const value of values) {
-        if (value === null) {
-          continue;
-        }
-        const fractionalDigits = value.toString().split(".")[1]?.length || 0;
-        if (fractionalDigits > maxFractionalDigits) {
-          maxFractionalDigits = fractionalDigits;
-        }
-      }
-      return maxFractionalDigits < 2 ? maxFractionalDigits : 2;
-    }
-
-    return 0;
+  const range = () => {
+    return values
+      ? [Math.min(0, ...values) * 1.5, Math.max(0, ...values) * 1.5]
+      : [0, 0];
   };
 
-  const sortRange = (range) => range.sort((a, b) => a - b);
+  const precision = () => {
+    if (typeof precisionOverride === "number") {
+      return precisionOverride;
+    }
+    const r = range();
+    const d = r[1] - r[0];
+    const s = unit === "/1" ? 100 : 1;
+    const n = d === 0 ? 0 : 1 - Math.round(Math.log(d * s));
+    return Math.max(0, n);
+  };
 
   if (Object.keys(currencyMap).includes(unit)) {
     return {
       tickformat: `,.${precision()}f`,
       tickprefix: currencyMap[unit],
       ...(values && {
-        range: [Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5],
+        range: range(),
       }),
     };
   } else if (unit === "/1") {
     return {
       tickformat: `,.${precision()}%`,
       ...(values && {
-        range: sortRange([
-          Math.min(0, ...values) * 1.5,
-          Math.max(...values) * 1.5,
-        ]),
+        range: range(),
       }),
     };
   } else if (unit === "date") {
@@ -285,7 +275,7 @@ export function getPlotlyAxisFormat(
       maxYear = currentYear;
     }
     return {
-      range: sortRange([minYear - 5 + "-01-01", maxYear + 5 + "-12-31"]),
+      range: [minYear - 5 + "-01-01", maxYear + 5 + "-12-31"],
     };
   } else if (valueType === "bool") {
     return {
