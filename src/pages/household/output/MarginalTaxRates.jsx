@@ -454,7 +454,7 @@ export default function MarginalTaxRates(props) {
   return (
     <ResultsPanel
       title={title}
-      description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
+      description="This chart shows how your marginal tax rate changes under different earnings. It is based on your household's current situation."
     >
       {loading ? (
         <div style={{ height: 300 }}>
