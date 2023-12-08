@@ -39,7 +39,7 @@ function InternshipOpportunities() {
         inclusive environment for all our team members. For those in the
         Washington, DC area, we provide additional opportunities for in-person
         collaboration. We prefer candidates who can commit 15 hours per week.
-        Please note that all internships are currently unpaid.
+        All internships include a paid stipend.
       </p>
     </>
   );
