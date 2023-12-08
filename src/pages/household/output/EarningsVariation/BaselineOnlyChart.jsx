@@ -32,7 +32,7 @@ export default function BaselineOnlyChart(props) {
     householdBaselineVariation,
     metadata,
   );
-  const netIncomeArray = getValueFromHousehold(
+  const baselineArray = getValueFromHousehold(
     variable,
     "2023",
     null,
@@ -47,7 +47,7 @@ export default function BaselineOnlyChart(props) {
     householdBaseline,
     metadata,
   );
-  const currentNetIncome = getValueFromHousehold(
+  const currentBaseline = getValueFromHousehold(
     variable,
     "2023",
     null,
@@ -59,6 +59,19 @@ export default function BaselineOnlyChart(props) {
     const setHoverCard = useContext(HoverCardContext);
     const mobile = useMobile();
     const { useHoverCard = false } = props;
+    const cliffs =
+      variable === "household_net_income"
+        ? getCliffs(baselineArray, earningsArray, false, "$", useHoverCard)
+        : [];
+    const x1 = cliffs.reduce((p, cliff) => p.concat(cliff.x), []);
+    const y1 = cliffs.reduce((p, cliff) => p.concat(cliff.y), []);
+    const x2 = earningsArray;
+    const y2 = baselineArray;
+    const x3 = [currentEarnings];
+    const y3 = [currentBaseline];
+    const xaxisValues = x1.concat(x2, x3);
+    const yaxisValues = y1.concat(y2, y3);
+
     // Add the main line, then add a 'you are here' line
     return (
       <FadeIn key="baseline">
@@ -66,18 +79,10 @@ export default function BaselineOnlyChart(props) {
           <Plot
             key="baseline"
             data={[
-              ...(variable === "household_net_income"
-                ? getCliffs(
-                    netIncomeArray,
-                    earningsArray,
-                    false,
-                    "$",
-                    useHoverCard,
-                  )
-                : []),
+              ...cliffs,
               {
-                x: earningsArray,
-                y: netIncomeArray,
+                x: x2,
+                y: y2,
                 type: "line",
                 name: capitalize(variableLabel),
                 line: {
@@ -96,8 +101,8 @@ export default function BaselineOnlyChart(props) {
                     }),
               },
               {
-                x: [currentEarnings],
-                y: [currentNetIncome],
+                x: x3,
+                y: y3,
                 type: "line",
                 mode: "markers",
                 name: `Your current ${variableLabel}`,
@@ -122,8 +127,8 @@ export default function BaselineOnlyChart(props) {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
                   metadata.variables.employment_income.unit,
+                  xaxisValues,
                 ),
-                tickformat: ",.0f",
                 uirevision: metadata.variables.employment_income.unit,
               },
               yaxis: {
@@ -132,11 +137,8 @@ export default function BaselineOnlyChart(props) {
                 },
                 ...getPlotlyAxisFormat(
                   metadata.variables[variable].unit,
-                  0,
-                  null,
-                  metadata.variables[variable].valueType,
+                  yaxisValues,
                 ),
-                tickformat: ",.0f",
                 uirevision: metadata.variables[variable].unit,
               },
               ...(useHoverCard

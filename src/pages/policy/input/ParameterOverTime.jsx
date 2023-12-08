@@ -46,20 +46,11 @@ export default function ParameterOverTime(props) {
     extendForDisplay(reformedX, reformedY);
   }
 
-  let xForRange = reformedX ? x.concat(reformedX) : x;
-  xForRange = xForRange.filter((e) => e !== "0000-01-01" && e !== "2099-12-31");
-  let xAxisFormat = getPlotlyAxisFormat("date", xForRange);
-  let yAxisFormat = getPlotlyAxisFormat(
-    parameter.unit,
-    reformedY ? y.concat(reformedY) : y,
+  let xaxisValues = reformedX ? x.concat(reformedX) : x;
+  xaxisValues = xaxisValues.filter(
+    (e) => e !== "0000-01-01" && e !== "2099-12-31",
   );
-  let yAxisTickVals;
-  let yAxisTickLabels;
-  if (parameter.unit === "bool" || parameter.unit === "abolition") {
-    yAxisFormat = null;
-    yAxisTickVals = [0, 1];
-    yAxisTickLabels = ["False", "True"];
-  }
+  const yaxisValues = reformedY ? y.concat(reformedY) : y;
 
   return (
     <>
@@ -94,12 +85,8 @@ export default function ParameterOverTime(props) {
           .reverse()
           .filter((x) => x)}
         layout={{
-          xaxis: xAxisFormat,
-          yaxis: {
-            ...yAxisFormat,
-            tickvals: yAxisTickVals || null,
-            ticktext: yAxisTickLabels || null,
-          },
+          xaxis: getPlotlyAxisFormat("date", xaxisValues),
+          yaxis: getPlotlyAxisFormat(parameter.unit, yaxisValues),
           legend: {
             // Position above the plot
             y: 1.1,
