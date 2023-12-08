@@ -177,8 +177,8 @@ export default function EarningsVariation(props) {
 
   return (
     <ResultsPanel
-      title="How your net income changes with your earnings"
-      description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
+      title={`How your ${variableLabel} changes with your earnings`}
+      description={`This chart shows how your ${variableLabel} changes under different earnings. It is based on your household's current situation.`}
     >
       {loading ? (
         <div style={{ height: 300 }}>
