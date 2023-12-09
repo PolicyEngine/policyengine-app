@@ -57,7 +57,7 @@ export function getCliffs(
           }),
       opacity: 0.1,
       line_width: 0,
-      showlegend: true,
+      showlegend: false,
       type: "scatter",
       line: {
         color: style.colors.DARK_GRAY,
