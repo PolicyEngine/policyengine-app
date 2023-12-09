@@ -53,9 +53,14 @@ export default function EarningsVariation(props) {
       );
     }
   }
+  const forbiddenVariableNames = ["marginal_tax_rate"];
   validVariables = validVariables
     .map((variable) => metadata.variables[variable])
-    .filter((variable) => !variable.isInputVariable);
+    .filter(
+      (variable) =>
+        !variable.isInputVariable &&
+        !forbiddenVariableNames.includes(variable.name),
+    );
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
