@@ -140,7 +140,7 @@ function PolicyDisplay(props) {
   const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } =
     props;
   const reformLength = Object.keys(policy.reform.data).length;
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   return (
     <div
       style={{
@@ -161,16 +161,12 @@ function PolicyDisplay(props) {
           <Carousel.Item
             key={parameterName}
             onClick={() => {
-              const country = metadata.countryId;
-              const newSearchParams = {};
-              newSearchParams.focus = parameterName;
-              newSearchParams.reform = policy.reform.id;
-              newSearchParams.region = region;
-              newSearchParams.timePeriod = timePeriod;
-              const newUrl = `/${country}/policy?${new URLSearchParams(
-                newSearchParams,
-              )}`;
-              navigate(newUrl);
+              const newSearchParams = copySearchParams(searchParams);
+              newSearchParams.set("focus", parameterName);
+              newSearchParams.set("reform", policy.reform.id);
+              newSearchParams.set("region", region);
+              newSearchParams.set("timePeriod", timePeriod);
+              setSearchParams(newSearchParams);
               hideButtons && closeDrawer();
             }}
           >

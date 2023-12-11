@@ -25,6 +25,10 @@ export default function ParameterEditor(props) {
   const currentYear = new Date().getFullYear();
   const [startDate, setStartDate] = useState(currentYear + "-01-01");
   const [endDate, setEndDate] = useState(currentYear + 5 + "-12-31");
+  const startValue = getParameterAtInstant(
+    getReformedParameter(parameter, policy.reform.data),
+    startDate,
+  );
 
   // change reform data using value and current startDate and endDate
   function newReforms(reforms, value) {
@@ -69,26 +73,21 @@ export default function ParameterEditor(props) {
     control = (
       <div style={{ padding: 10 }}>
         <Switch
-          defaultChecked={getParameterAtInstant(parameter, startDate)}
+          defaultChecked={startValue}
           onChange={(value) => onChange(!!value)}
         />
       </div>
     );
-  } else if (parameter.unit === "/1") {
-    let val = getParameterAtInstant(parameter, startDate);
-    let valInPercentage = formatVariableValue(parameter, val);
-    control = (
-      <InputField
-        placeholder={valInPercentage}
-        pattern={"%"}
-        onChange={(value) => onChange(parseFloat(value) / 100)}
-      />
-    );
   } else {
+    const isPercent = parameter.unit === "/1";
+    const scale = isPercent ? 100 : 1;
     control = (
       <InputField
-        placeholder={getParameterAtInstant(parameter, startDate)}
-        onChange={(value) => onChange(Number(value))}
+        placeholder={
+          isPercent ? formatVariableValue(parameter, startValue) : startValue
+        }
+        {...(isPercent ? { pattern: "%" } : {})}
+        onChange={(value) => onChange(parseFloat(value) / scale)}
       />
     );
   }
@@ -117,7 +116,7 @@ export default function ParameterEditor(props) {
   );
 
   const timePeriodSentence = parameter.period
-    ? `This parameter is ${parameter.period}ly.`
+    ? ` This parameter is ${parameter.period}ly.`
     : "";
 
   let description = parameter.description;
