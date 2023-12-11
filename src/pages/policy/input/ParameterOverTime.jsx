@@ -23,12 +23,16 @@ export default function ParameterOverTime(props) {
       return obj;
     }, {});
 
+  // Extend the last value to 2099 so that the line appears to extend to +inf in
+  // the chart
+  const extendForDisplay = (x, y) => {
+    x.push("2099-12-31");
+    y.push(y[y.length - 1]);
+  };
+
   let x = Object.keys(values);
   let y = Object.values(values);
-  // Extend the last value to 2099.
-  x.push("2099-12-31");
-  y.push(y[y.length - 1]);
-
+  extendForDisplay(x, y);
   let reformedX;
   let reformedY;
 
@@ -39,24 +43,14 @@ export default function ParameterOverTime(props) {
     ).values;
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
-    reformedX.push("2099-12-31");
-    reformedY.push(reformedY[reformedY.length - 1]);
+    extendForDisplay(reformedX, reformedY);
   }
 
-  let xForRange = reformedX ? x.concat(reformedX) : x;
-  xForRange = xForRange.filter((e) => e !== "0000-01-01" && e !== "2099-12-31");
-  let xAxisFormat = getPlotlyAxisFormat("date", xForRange);
-  let yAxisFormat = getPlotlyAxisFormat(
-    parameter.unit,
-    reformedY ? y.concat(reformedY) : y,
+  let xaxisValues = reformedX ? x.concat(reformedX) : x;
+  xaxisValues = xaxisValues.filter(
+    (e) => e !== "0000-01-01" && e !== "2099-12-31",
   );
-  let yAxisTickVals;
-  let yAxisTickLabels;
-  if (parameter.unit === "bool" || parameter.unit === "abolition") {
-    yAxisFormat = null;
-    yAxisTickVals = [0, 1];
-    yAxisTickLabels = ["False", "True"];
-  }
+  const yaxisValues = reformedY ? y.concat(reformedY) : y;
 
   return (
     <>
@@ -91,12 +85,8 @@ export default function ParameterOverTime(props) {
           .reverse()
           .filter((x) => x)}
         layout={{
-          xaxis: xAxisFormat,
-          yaxis: {
-            ...yAxisFormat,
-            tickvals: yAxisTickVals || null,
-            ticktext: yAxisTickLabels || null,
-          },
+          xaxis: getPlotlyAxisFormat("date", xaxisValues),
+          yaxis: getPlotlyAxisFormat(parameter.unit, yaxisValues),
           legend: {
             // Position above the plot
             y: 1.1,

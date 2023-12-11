@@ -113,7 +113,7 @@ export default function FormContext(props) {
         style={{
           position: "relative",
           width: "100%",
-          height: "2em"
+          height: "2em",
         }}
       >
         <p
@@ -124,7 +124,7 @@ export default function FormContext(props) {
             top: 0,
             left: 0,
             wordWrap: "normal",
-            width: "100%"
+            width: "100%",
           }}
         >
           {submitMsg || <br />}

@@ -64,7 +64,7 @@ describe("Test Render Output", () => {
     );
     expect(
       screen.getByText(
-        "This chart shows how your net income changes under different earnings. It is based on your household's current situation.",
+        "This chart shows how your marginal tax rate changes under different earnings. It is based on your household's current situation.",
       ),
     ).toBeTruthy();
   });

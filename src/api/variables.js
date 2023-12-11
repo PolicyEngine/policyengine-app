@@ -217,62 +217,44 @@ export function formatVariableValue(variable, value, precision = 2) {
   }
 }
 
-export function getPlotlyAxisFormat(
-  unit,
-  values,
-  precisionOverride,
-  valueType,
-) {
-  // Possible units: currency-GBP, currency-USD, /1, date
-  // If values (an array) is passed, we need to calculate the
-  // appropriate number of decimal places to use.
-  let precision;
-  const sortRange = (range) => range.sort((a, b) => a - b);
-  if (values) {
-    precision = 0;
-    for (const value of values) {
-      if (value === null) {
-        continue;
-      }
-      const decimalPlaces = value.toString().split(".")[1]?.length || 0;
-      if (decimalPlaces > precision) {
-        precision = decimalPlaces;
-      }
+export function getPlotlyAxisFormat(unit, values, precisionOverride) {
+  // Possible units: currency-GBP, currency-USD, currency-CAD, currency-ILS,
+  // currency-NGN, /1, date
+
+  const range = () => {
+    return values ? [Math.min(0, ...values), Math.max(0, ...values)] : [0, 0];
+  };
+
+  const paddedRange = () => {
+    const r = range();
+    const d = r[1] - r[0];
+    const p = d * 0.1;
+    return [r[0] - p, r[1] + p];
+  };
+
+  const precision = () => {
+    if (typeof precisionOverride === "number") {
+      return precisionOverride;
     }
-    if (Math.max(...values) / 2 < 1) {
-      precision = 2;
-    }
-  }
-  if (precisionOverride) {
-    precision = precisionOverride;
-  }
-  if (unit === "currency-GBP") {
+    const r = range();
+    const s = unit === "/1" ? 100 : 1;
+    const d = (r[1] - r[0]) * s;
+    return d > 10 ? 0 : d === 0 ? 1 : 1 - Math.round(Math.log10(d));
+  };
+
+  if (Object.keys(currencyMap).includes(unit)) {
     return {
-      tickformat: `,.${precision}f`,
-      tickprefix: "£",
+      tickformat: `,.${precision()}f`,
+      tickprefix: currencyMap[unit],
       ...(values && {
-        range: [Math.min(0, ...values) * 1.5, Math.max(...values) * 1.5],
-      }),
-    };
-  } else if (unit === "currency-USD") {
-    return {
-      tickformat: `,.${precision}f`,
-      tickprefix: "$",
-      ...(values && {
-        range: sortRange([
-          Math.min(0, ...values) * 1.5,
-          Math.max(...values) * 1.5,
-        ]),
+        range: paddedRange(),
       }),
     };
   } else if (unit === "/1") {
     return {
-      tickformat: `,.${precision - 2}%`,
+      tickformat: `,.${precision()}%`,
       ...(values && {
-        range: sortRange([
-          Math.min(0, ...values) * 1.5,
-          Math.max(...values) * 1.5,
-        ]),
+        range: paddedRange(),
       }),
     };
   } else if (unit === "date") {
@@ -292,12 +274,12 @@ export function getPlotlyAxisFormat(
       maxYear = currentYear;
     }
     return {
-      range: sortRange([minYear - 5 + "-01-01", maxYear + 5 + "-12-31"]),
+      range: [minYear - 5 + "-01-01", maxYear + 5 + "-12-31"],
     };
-  } else if (valueType === "bool") {
+  } else if (unit === "bool" || unit === "abolition") {
     return {
       tickvals: [0, 1],
-      ticktext: ["No", "Yes"],
+      ticktext: ["False", "True"],
     };
   }
 }

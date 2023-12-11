@@ -128,6 +128,12 @@ export default function MarginalTaxRates(props) {
       baselineMtr,
       metadata,
     );
+    const x1 = earningsArray;
+    const y1 = mtrArray;
+    const x2 = [currentEarnings];
+    const y2 = [currentMtr];
+    const xaxisValues = x1.concat(x2);
+    const yaxisValues = y1.concat(y2);
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
@@ -140,8 +146,8 @@ export default function MarginalTaxRates(props) {
           <Plot
             data={[
               {
-                x: earningsArray,
-                y: mtrArray,
+                x: x1,
+                y: y1,
                 type: "line",
                 name: "Marginal tax rate",
                 line: {
@@ -155,8 +161,8 @@ export default function MarginalTaxRates(props) {
                   `<extra></extra>`,
               },
               {
-                x: [currentEarnings],
-                y: [currentMtr],
+                x: x2,
+                y: y2,
                 type: "scatter",
                 name: "Your current MTR",
                 mode: "markers",
@@ -175,8 +181,8 @@ export default function MarginalTaxRates(props) {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
                   metadata.variables.employment_income.unit,
+                  xaxisValues,
                 ),
-                tickformat: ",.0f",
               },
               margin: {
                 t: 0,
@@ -185,8 +191,8 @@ export default function MarginalTaxRates(props) {
                 title: "Marginal tax rate",
                 ...getPlotlyAxisFormat(
                   metadata.variables.marginal_tax_rate.unit,
+                  yaxisValues,
                 ),
-                tickformat: ".1%",
               },
               hoverlabel: {
                 align: "left",
@@ -255,14 +261,20 @@ export default function MarginalTaxRates(props) {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
     // Add the main line, then add a 'you are here' points
-    let data;
+    let data, xaxisValues, yaxisValues;
     if (showDelta) {
+      const x1 = earningsArray;
+      const y1 = reformMtrArray.map(
+        (value, index) => value - baselineMtrArray[index],
+      );
+      const x2 = [currentEarnings];
+      const y2 = [reformMtrValue - currentMtr];
+      xaxisValues = x1.concat(x2);
+      yaxisValues = y1.concat(y2);
       data = [
         {
-          x: earningsArray,
-          y: reformMtrArray.map(
-            (value, index) => value - baselineMtrArray[index],
-          ),
+          x: x1,
+          y: y1,
           type: "line",
           name: "MTR difference",
           line: {
@@ -276,8 +288,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: [currentEarnings],
-          y: [reformMtrValue - currentMtr],
+          x: x2,
+          y: y2,
           type: "scatter",
           name: "Your current MTR difference",
           mode: "markers",
@@ -292,10 +304,18 @@ export default function MarginalTaxRates(props) {
         },
       ];
     } else {
+      const x1 = earningsArray;
+      const y1 = reformMtrArray;
+      const y2 = baselineMtrArray;
+      const x2 = [currentEarnings];
+      const y3 = [currentMtr];
+      const y4 = [reformMtrValue];
+      xaxisValues = x1.concat(x2);
+      yaxisValues = y1.concat(y2, y3, y4);
       data = [
         {
-          x: earningsArray,
-          y: reformMtrArray,
+          x: x1,
+          y: y1,
           type: "line",
           name: "Reform MTR",
           line: {
@@ -309,8 +329,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: earningsArray,
-          y: baselineMtrArray,
+          x: x1,
+          y: y2,
           type: "line",
           name: "Baseline MTR",
           line: {
@@ -324,8 +344,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: [currentEarnings],
-          y: [currentMtr],
+          x: x2,
+          y: y3,
           type: "scatter",
           name: "Your baseline MTR",
           mode: "markers",
@@ -339,8 +359,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: [currentEarnings],
-          y: [reformMtrValue],
+          x: x2,
+          y: y4,
           type: "scatter",
           name: "Your reform MTR",
           mode: "markers",
@@ -366,7 +386,6 @@ export default function MarginalTaxRates(props) {
       },
     ];
     const onDelta = ({ target: { value } }) => {
-      console.log("checked", value);
       setShowDelta(value);
     };
     plot = (
@@ -393,17 +412,15 @@ export default function MarginalTaxRates(props) {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
                   metadata.variables.employment_income.unit,
-                  0,
+                  xaxisValues,
                 ),
-                tickformat: ",.0f",
               },
               yaxis: {
                 title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
                 ...getPlotlyAxisFormat(
                   metadata.variables.marginal_tax_rate.unit,
-                  0,
+                  yaxisValues,
                 ),
-                tickformat: (showDelta ? "+" : "") + ".0%",
               },
               hoverlabel: {
                 align: "left",
@@ -437,7 +454,7 @@ export default function MarginalTaxRates(props) {
   return (
     <ResultsPanel
       title={title}
-      description="This chart shows how your net income changes under different earnings. It is based on your household's current situation."
+      description="This chart shows how your marginal tax rate changes under different earnings. It is based on your household's current situation."
     >
       {loading ? (
         <div style={{ height: 300 }}>
