@@ -5,6 +5,7 @@ import style from "../style";
 import PageHeader from "./PageHeader";
 import useDisplayCategory from "./useDisplayCategory";
 import LinkButton from "controls/LinkButton";
+import {Link} from "react-router-dom"
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
@@ -107,18 +108,19 @@ export default function Donate() {
               maxHeight: 120,
             }}
           >
-            <LinkButton
-              text={
-                <div style={{ textAlign: "center", color: "white" }}>
-                  <span style={{ whiteSpace: "pre-line" }}>
-                    Support Transparent{"\n"}Policy Access
-                  </span>
-                </div>
-              }
-              link={link}
-              width={desktop ? 450 : mobile ? "70vw" : "30vw"}
-              noArrow={true}
-            />
+            <Link to={link} target="_blank">
+              <LinkButton
+                text={
+                  <div style={{ textAlign: "center", color: "white" }}>
+                    <span style={{ whiteSpace: "pre-line" }}>
+                      Support Transparent{"\n"}Policy Access
+                    </span>
+                  </div>
+                }
+                link=""
+                width={desktop ? 450 : mobile ? "70vw" : "30vw"}
+              />
+            </Link>
             <div
               style={{
                 fontSize: 12,
