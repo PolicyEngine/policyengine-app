@@ -251,6 +251,8 @@ function HouseholdVariableEntityInput(props) {
   } else if (variable.valueType === "Enum") {
     control = (
       <Select
+        showSearch
+        optionFilterProp="label"
         style={{ width: mobile ? 150 : 200 }}
         options={variable.possibleValues}
         defaultValue={defaultValue}
