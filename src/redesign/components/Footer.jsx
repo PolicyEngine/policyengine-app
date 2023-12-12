@@ -3,6 +3,7 @@ import Section from "./Section";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import useDisplayCategory from "./useDisplayCategory";
 import { SubscribeToPolicyEngine } from "./HomeSubscribe";
+import { TwitterTimelineEmbed } from "react-twitter-embed";
 import {
   FacebookFilled,
   GithubFilled,
@@ -54,13 +55,15 @@ function TwitterEmbed() {
         marginRight: 40,
       }}
     >
-      <a
-        className="twitter-timeline"
-        href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
-        {...{
-          "data-height": "300",
+      <TwitterTimelineEmbed
+        onLoad={function noRefCheck() {}}
+        options={{
+          height: 300,
+          width: 300,
         }}
-      ></a>
+        screenName="ThePolicyEngine"
+        sourceType="profile"
+      />
     </div>
   );
 }
