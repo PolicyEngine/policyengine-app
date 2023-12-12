@@ -223,6 +223,7 @@ function HouseholdVariableEntityInput(props) {
     }
   }
   const mobile = useMobile();
+  const precision = 2;
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     const isCurrency = Object.keys(currencyMap).includes(variable.unit);
@@ -231,15 +232,18 @@ function HouseholdVariableEntityInput(props) {
         style={{
           width: mobile ? 150 : 200,
         }}
-        addonBefore={isCurrency ? currencyMap[variable.unit] : undefined}
-        formatter={
-          isCurrency
-            ? (value) => (+value).toLocaleString(localeCode(metadata.countryId))
-            : undefined
-        }
-        precision={variable.valueType === "float" ? 2 : undefined}
+        {...(isCurrency
+          ? {
+              addonBefore: currencyMap[variable.unit],
+              formatter: (value) =>
+                (+value).toLocaleString(localeCode(metadata.countryId), {
+                  maximumFractionDigits: precision,
+                }),
+            }
+          : {})}
+        {...(variable.valueType === "float" ? { precision: precision } : {})}
         defaultValue={defaultValue}
-        autoFocus={true}
+        autoFocus
         onChange={submitValue}
       />
     );
