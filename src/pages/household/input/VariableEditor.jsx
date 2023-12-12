@@ -223,7 +223,6 @@ function HouseholdVariableEntityInput(props) {
     }
   }
   const mobile = useMobile();
-  const precision = 2;
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     const isCurrency = Object.keys(currencyMap).includes(variable.unit);
@@ -235,13 +234,16 @@ function HouseholdVariableEntityInput(props) {
         {...(isCurrency
           ? {
               addonBefore: currencyMap[variable.unit],
+            }
+          : {})}
+        {...(variable.valueType === "float"
+          ? {
               formatter: (value) =>
                 (+value).toLocaleString(localeCode(metadata.countryId), {
-                  maximumFractionDigits: precision,
+                  maximumFractionDigits: 2,
                 }),
             }
           : {})}
-        {...(variable.valueType === "float" ? { precision: precision } : {})}
         defaultValue={defaultValue}
         autoFocus
         onChange={submitValue}
