@@ -240,10 +240,11 @@ function HouseholdVariableEntityInput(props) {
           ? {
               formatter: (value) =>
                 (+value).toLocaleString(localeCode(metadata.countryId), {
-                  maximumFractionDigits: 2,
+                  maximumFractionDigits: 16,
                 }),
             }
           : {})}
+        precision={2}
         defaultValue={defaultValue}
         autoFocus
         onChange={submitValue}
