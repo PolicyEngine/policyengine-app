@@ -240,11 +240,14 @@ function HouseholdVariableEntityInput(props) {
           : {})}
         {...(variable.valueType === "float"
           ? {
-              formatter: (value, { userTyping }) =>
-                (+value).toLocaleString(localeCode(metadata.countryId), {
-                  minimumFractionDigits: !userTyping && 2,
-                  maximumFractionDigits: 2,
-                }),
+              formatter: (value, { userTyping }) => {
+                const n = +value;
+                const isInteger = Number.isInteger(n);
+                return n.toLocaleString(localeCode(metadata.countryId), {
+                  minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+                  maximumFractionDigits: userTyping ? 16 : 2,
+                });
+              },
             }
           : {})}
         defaultValue={defaultValue}
