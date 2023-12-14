@@ -8,10 +8,7 @@ import {
   getValueFromHousehold,
 } from "../../api/variables";
 import { copySearchParams } from "../../api/call";
-import { useEffect, useState } from "react";
-import style from "../../style";
 import SearchParamNavButton from "controls/SearchParamNavButton";
-import { SearchOutlined } from "@ant-design/icons";
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
 
