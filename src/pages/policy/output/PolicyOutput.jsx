@@ -629,23 +629,23 @@ export default function PolicyOutput(props) {
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
+      {!preparingForScreenshot && impact && (
+        <ResultActions
+          downloadPng={showFileDownloadButtons ? downloadPng : null}
+          downloadCsv={showFileDownloadButtons ? downloadCsv : null}
+          copyLink={copyLink}
+          twitterLink={twitterLink}
+          facebookLink={facebookLink}
+          linkedInLink={linkedInLink}
+        />
+      )}
       {pane}
       {!preparingForScreenshot && (
-        <>
-          <ResultActions
-            downloadPng={showFileDownloadButtons ? downloadPng : null}
-            downloadCsv={showFileDownloadButtons ? downloadCsv : null}
-            copyLink={copyLink}
-            twitterLink={twitterLink}
-            facebookLink={facebookLink}
-            linkedInLink={linkedInLink}
-          />
-          <BottomCarousel
-            selected={focus}
-            options={POLICY_OUTPUT_TREE[0].children}
-            bottomText={bottomElements}
-          />
-        </>
+        <BottomCarousel
+          selected={focus}
+          options={POLICY_OUTPUT_TREE[0].children}
+          bottomText={bottomElements}
+        />
       )}
     </>
   );

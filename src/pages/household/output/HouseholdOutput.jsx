@@ -138,13 +138,13 @@ export default function HouseholdOutput(props) {
 
   return (
     <ResultsPanel>
-      {pane}
       <ResultActions
         copyLink={copyLink}
         twitterLink={twitterLink}
         facebookLink={facebookLink}
         linkedInLink={linkedInLink}
       />
+      {pane}
       <BottomCarousel
         selected={focus}
         options={HOUSEHOLD_OUTPUT_TREE[0].children}
