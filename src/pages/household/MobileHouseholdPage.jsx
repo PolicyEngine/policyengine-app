@@ -8,23 +8,10 @@ import {
   getValueFromHousehold,
 } from "../../api/variables";
 import { copySearchParams } from "../../api/call";
-<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import style from "../../style";
-<<<<<<< HEAD
-import SearchParamNavButton from "../../controls/SearchParamNavButton";
-=======
-import { motion } from "framer-motion";
-import NavigationButton from "../../controls/NavigationButton";
-<<<<<<< HEAD
->>>>>>> 4f288cd (feat: (Unfinished) mobile bottom bar)
-import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-=======
+import SearchParamNavButton from "controls/SearchParamNavButton";
 import { SearchOutlined } from "@ant-design/icons";
->>>>>>> 4d45aaa (chore: Remove unused code)
-=======
-import NavigationButton from "../../controls/NavigationButton";
->>>>>>> 7455079 (fix: Add extra space for mobile bottom bar)
 import HOUSEHOLD_OUTPUT_TREE from "../household/output/tree";
 import VariableSearch from "../household/VariableSearch";
 
@@ -251,53 +238,6 @@ function MobileBottomMenu(props) {
         <MobileBottomNavButtons focus={focus} />
         <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
       </div>
-<<<<<<< HEAD
-    <OpenedNavigationMenu 
-      isMenuOpen={isMenuOpen} 
-      metadata={metadata}
-      focus={focus}
-      hasReform={hasReform}
-      text={text}
-    />
-
-{/*
-      <div>
-        <h5 style={{ marginBottom: 20 }}>{text}</h5>
-        {focus && focus.startsWith("householdOutput") && (
-          <SearchParamNavButton
-            type="primary"
-            text="Edit my household"
-            focus="input"
-            style={{ margin: "20px auto 10px" }}
-          />
-        )}
-        {focus && !focus.startsWith("householdOutput") && (
-          <SearchParamNavButton
-            type="primary"
-            text="See my household details"
-            focus="householdOutput"
-            style={{ margin: "20px auto 10px" }}
-          />
-        )}
-        {!hasReform && (
-          <SearchParamNavButton
-            text="Create a reform"
-            focus="gov"
-            target={`/${metadata.countryId}/policy`}
-            style={{ margin: "20px auto 10px" }}
-          />
-        )}
-        {hasReform && (
-          <SearchParamNavButton
-            text="Edit my reform"
-            focus="gov"
-            target={`/${metadata.countryId}/policy`}
-            style={{ margin: "20px auto 10px" }}
-          />
-        )}
-      </div>
-*/}
-=======
       <OpenedNavigationMenu 
         isMenuOpen={isMenuOpen} 
         metadata={metadata}
@@ -305,7 +245,6 @@ function MobileBottomMenu(props) {
         hasReform={hasReform}
         text={text}
       />
->>>>>>> 7739506 (chore: Removed unused code)
     </div>
   );
 }
@@ -332,9 +271,9 @@ function MobileBottomNavButtons({focus}) {
       }}
     >
       {previous.label ? (
-        <NavigationButton
+        <SearchParamNavButton
           focus={previous.name}
-          text="left"
+          direction="left"
           style={{ padding: 0 }}
         />
       ) : (
@@ -342,9 +281,9 @@ function MobileBottomNavButtons({focus}) {
       )}
       {}
       {next.label ? (
-        <NavigationButton
+        <SearchParamNavButton
           focus={next.name}
-          text={"right"}
+          direction={"right"}
           style={{ padding: 0 }}
         />
       ) : (
@@ -502,24 +441,24 @@ function NavOptionsBar(props) {
       }}
     >
       {focus && focus.startsWith("householdOutput") && (
-        <NavigationButton primary text="Edit my household" focus="input" />
+        <SearchParamNavButton primary text="Edit my household" focus="input" />
       )}
       {focus && !focus.startsWith("householdOutput") && (
-        <NavigationButton
+        <SearchParamNavButton
           primary
           text="See my household details"
           focus="householdOutput"
         />
       )}
       {!hasReform && (
-        <NavigationButton
+        <SearchParamNavButton
           text="Create a reform"
           focus="gov"
           target={`/${metadata.countryId}/policy`}
         />
       )}
       {hasReform && (
-        <NavigationButton
+        <SearchParamNavButton
           text="Edit my reform"
           focus="gov"
           target={`/${metadata.countryId}/policy`}
