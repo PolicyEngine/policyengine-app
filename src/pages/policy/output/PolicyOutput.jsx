@@ -631,8 +631,9 @@ export default function PolicyOutput(props) {
       />
       {!preparingForScreenshot && impact && (
         <ResultActions
-          downloadPng={showFileDownloadButtons ? downloadPng : null}
-          downloadCsv={showFileDownloadButtons ? downloadCsv : null}
+          {...(showFileDownloadButtons
+            ? { downloadPng: downloadPng, downloadCsv: downloadCsv }
+            : {})}
           copyLink={copyLink}
           twitterLink={twitterLink}
           facebookLink={facebookLink}

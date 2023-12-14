@@ -22,7 +22,16 @@ import {
 import React from "react";
 
 export default function ResultActions(props) {
-  const { copyLink, twitterLink, facebookLink, linkedInLink } = props;
+  const {
+    downloadPng,
+    downloadCsv,
+    copyLink,
+    twitterLink,
+    facebookLink,
+    linkedInLink,
+  } = props;
+  const iconStyle = { fontSize: 20 };
+  const btnSize = "small";
   return (
     <div
       style={{
@@ -36,50 +45,55 @@ export default function ResultActions(props) {
         gap: 5,
       }}
     >
-      {props.downloadPng && (
+      {downloadPng && (
         <Tooltip title="Download the chart as a png file">
           <Button
             type="text"
-            icon={<FileImageOutlined style={{ fontSize: 20 }} />}
-            onClick={props.downloadPng}
+            size={btnSize}
+            icon={<FileImageOutlined style={iconStyle} />}
+            onClick={downloadPng}
           />
         </Tooltip>
       )}
-      {props.downloadCsv && (
+      {downloadCsv && (
         <Tooltip title="Download the data as a csv file">
           <Button
             type="text"
-            icon={<FileTextOutlined style={{ fontSize: 20 }} />}
-            onClick={props.downloadCsv}
+            size={btnSize}
+            icon={<FileTextOutlined style={iconStyle} />}
+            onClick={downloadCsv}
           />
         </Tooltip>
       )}
       <Tooltip title="Copy the link for the result">
         <Button
           type="text"
-          icon={<LinkOutlined style={{ fontSize: 20 }} />}
+          size={btnSize}
+          icon={<LinkOutlined style={iconStyle} />}
           onClick={copyLink}
         />
       </Tooltip>
       <Tooltip title="Share the result on Twitter">
         <Button
           type="link"
-          icon={<TwitterOutlined style={{ fontSize: 20 }} />}
+          size={btnSize}
+          icon={<TwitterOutlined style={iconStyle} />}
           href={twitterLink}
         />
       </Tooltip>
       <Tooltip title="Share the result on Facebook">
         <Button
           type="link"
-          icon={<FacebookFilled style={{ fontSize: 20 }} />}
+          size={btnSize}
+          icon={<FacebookFilled style={iconStyle} />}
           href={facebookLink}
         />
       </Tooltip>
       <Tooltip title="Share the result on LinkedIn">
         <Button
           type="link"
-          size="small"
-          icon={<LinkedinFilled style={{ fontSize: 20 }} />}
+          size={btnSize}
+          icon={<LinkedinFilled style={iconStyle} />}
           href={linkedInLink}
         />
       </Tooltip>
