@@ -20,7 +20,7 @@ import Header from "./Header";
 import Testimonials from "./Testimonials";
 import CalculatorInterstitial from "./CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
-import loc_en from "../../plotly_locales/locale-en.js";
+import loc_en_gb from "../../plotly_locales/locale-en-gb.js";
 import loc_en_us from "../../plotly_locales/locale-en-us.js";
 import APIDocumentationPage from "./APIDocumentationPage";
 import CookieConsent from "layout/CookieConsent";
@@ -40,7 +40,7 @@ function ScrollToTop() {
 
 export default function PolicyEngine({ pathname }) {
   var Plotly = require("plotly.js/dist/plotly.js");
-  Plotly.register(loc_en);
+  Plotly.register(loc_en_gb);
   Plotly.register(loc_en_us);
   const COUNTRIES = ["us", "uk", "ca", "ng", "il"];
 

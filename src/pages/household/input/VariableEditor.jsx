@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { capitalize } from "../../../api/language";
+import { capitalize, localeCode } from "../../../api/language";
 import {
   currencyMap,
   getNewHouseholdId,
@@ -231,11 +231,22 @@ function HouseholdVariableEntityInput(props) {
         style={{
           width: mobile ? 150 : 200,
         }}
-        addonBefore={isCurrency ? currencyMap[variable.unit] : undefined}
-        min={isCurrency ? 0 : undefined}
-        precision={variable.valueType === "float" ? 2 : undefined}
+        {...(isCurrency
+          ? {
+              addonBefore: currencyMap[variable.unit],
+            }
+          : {})}
+        {...(variable.valueType === "float"
+          ? {
+              formatter: (value, {userTyping}) =>
+                (+value).toLocaleString(localeCode(metadata.countryId), {
+                  minimumFractionDigits: !userTyping && 2,
+                  maximumFractionDigits: 2,
+                }),
+            }
+          : {})}
         defaultValue={defaultValue}
-        autoFocus={true}
+        autoFocus
         onChange={submitValue}
       />
     );
