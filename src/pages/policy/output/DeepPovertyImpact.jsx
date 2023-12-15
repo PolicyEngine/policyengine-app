@@ -183,7 +183,7 @@ export default function DeepPovertyImpact(props) {
   const percentagePointChange =
     Math.round(
       Math.abs(
-        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline,
+        impact.poverty.deep_poverty.all.reform - impact.poverty.deep_poverty.all.baseline,
       ) * 1000,
     ) / 10;
   const screenshotRef = useRef();
