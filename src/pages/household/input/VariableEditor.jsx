@@ -1,16 +1,18 @@
 import { useSearchParams } from "react-router-dom";
-import { capitalize, localeCode } from "../../../api/language";
+import { capitalize, /*localeCode*/ } from "../../../api/language";
 import {
-  currencyMap,
+  // currencyMap,
+  formatVariableValue,
   getNewHouseholdId,
   getValueFromHousehold,
 } from "../../../api/variables";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import { InputNumber, Select, Switch } from "antd";
+import { /*InputNumber,*/ Select, Switch } from "antd";
 import useMobile from "../../../layout/Responsive";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";
+import InputField from "controls/InputField";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -223,10 +225,13 @@ function HouseholdVariableEntityInput(props) {
     }
   }
   const mobile = useMobile();
+
   let control;
+  const formatValue = (value) => formatVariableValue(variable, value);
   if (variable.valueType === "float" || variable.valueType === "int") {
-    const isCurrency = Object.keys(currencyMap).includes(variable.unit);
+    // const isCurrency = Object.keys(currencyMap).includes(variable.unit);
     control = (
+      /*
       <InputNumber
         style={{
           width: mobile ? 150 : 200,
@@ -248,6 +253,18 @@ function HouseholdVariableEntityInput(props) {
         defaultValue={defaultValue}
         autoFocus
         onChange={submitValue}
+      />
+      */
+      <InputField
+        onChange={submitValue}
+        placeholder={
+          reformValue !== null ?
+          `${formatValue(reformValue)}` :
+          formatValue(inputValue || simulatedValue)
+        }
+        autofocus
+        width={mobile && 150}
+        padding={mobile && 10}
       />
     );
   } else if (variable.valueType === "bool") {
