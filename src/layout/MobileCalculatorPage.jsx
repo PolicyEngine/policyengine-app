@@ -369,9 +369,10 @@ function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen }) {
           style={{
             objectFit: "contain",
             color: "white",
+            fontSize: "30px"
           }}
         >
-          {isMenuOpen ? "close" : "menu"}
+          {isMenuOpen ? "keyboard_arrow_down" : "keyboard_arrow_up"}
         </span>
       </div>
     </>
