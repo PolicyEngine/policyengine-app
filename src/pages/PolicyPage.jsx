@@ -1,24 +1,23 @@
-// import { BookOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
-// import { Drawer } from "antd";
-import { useEffect, /*useState*/ } from "react";
+import { BookOutlined, CloseOutlined, SearchOutlined } from "@ant-design/icons";
+import { Drawer } from "antd";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
-// import { findInTree } from "../api/variables";
-// import Button from "../controls/Button";
-// import SearchParamNavButton from "../controls/SearchParamNavButton";
+import { findInTree } from "../api/variables";
+import Button from "../controls/Button";
+import SearchParamNavButton from "../controls/SearchParamNavButton";
 import SearchOptions from "../controls/SearchOptions";
-// import FolderPage from "../layout/FolderPage";
-// import LoadingCentered from "../layout/LoadingCentered";
-import ErrorPage from "layout/Error";
-// import useMobile from "../layout/Responsive";
+import FolderPage from "../layout/FolderPage";
+import LoadingCentered from "../layout/LoadingCentered";
+import useMobile from "../layout/Responsive";
 import StackedMenu from "../layout/StackedMenu";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
-// import style from "../style";
-// import ParameterEditor from "./policy/input/ParameterEditor";
-// import PolicyOutput from "./policy/output/PolicyOutput";
+import style from "../style";
+import ParameterEditor from "./policy/input/ParameterEditor";
+import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import getPolicyOutputTree from "./policy/output/tree";
-// import { capitalize } from "../api/language";
+import { capitalize } from "../api/language";
 
 function ParameterSearch(props) {
   const { metadata } = props;
@@ -72,7 +71,6 @@ function PolicyLeftSidebar(props) {
   );
 }
 
-/*
 function MobileMiddleBar(props) {
   const { metadata } = props;
   const [searchMode, setSearchMode] = useState(false);
@@ -123,9 +121,7 @@ function MobileMiddleBar(props) {
     </div>
   );
 }
-*/
 
-/*
 function MobileTreeNavigationHolder(props) {
   const { metadata } = props;
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
@@ -219,9 +215,7 @@ function MobileTreeNavigationHolder(props) {
     </div>
   );
 }
-*/
 
-/*
 function MobileBottomMenu(props) {
   const { metadata, policy } = props;
   const [searchParams] = useSearchParams();
@@ -324,9 +318,7 @@ function MobileBottomMenu(props) {
     </div>
   );
 }
-*/
 
-/*
 function MobilePolicyPage(props) {
   const { mainContent, metadata, policy } = props;
   const [searchParams] = useSearchParams();
@@ -351,7 +343,6 @@ function MobilePolicyPage(props) {
     </>
   );
 }
-*/
 
 export default function PolicyPage(props) {
   document.title = "Policy | PolicyEngine";
@@ -359,11 +350,11 @@ export default function PolicyPage(props) {
     metadata,
     policy,
     setPolicy,
-    // hasShownPopulationImpactPopup,
-    // setHasShownPopulationImpactPopup,
+    hasShownPopulationImpactPopup,
+    setHasShownPopulationImpactPopup,
   } = props;
-  // const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
-  // const mobile = useMobile();
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
@@ -390,9 +381,7 @@ export default function PolicyPage(props) {
   }, [!!policy.reform.data]);
 
   let middle = null;
-  middle = <ErrorPage />
 
-  /*
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
   } else if (
@@ -442,7 +431,6 @@ export default function PolicyPage(props) {
       />
     );
   }
-  */
 
   return (
     <ThreeColumnPage
