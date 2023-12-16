@@ -3,26 +3,27 @@ import { useSearchParams } from "react-router-dom";
 import {
   createDefaultHousehold,
   getDefaultHouseholdId,
-  findInTree,
-  getNewHouseholdId,
+  // findInTree,
+  // getNewHouseholdId,
 } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect, useState } from "react";
-import VariableEditor from "./household/input/VariableEditor";
-import LoadingCentered from "../layout/LoadingCentered";
-import MaritalStatus from "./household/input/MaritalStatus";
-import CountChildren from "./household/input/CountChildren";
+// import VariableEditor from "./household/input/VariableEditor";
+// import LoadingCentered from "../layout/LoadingCentered";
+import ErrorPage from "layout/Error";
+// import MaritalStatus from "./household/input/MaritalStatus";
+// import CountChildren from "./household/input/CountChildren";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
-import HouseholdOutput from "./household/output/HouseholdOutput";
+// import HouseholdOutput from "./household/output/HouseholdOutput";
 import useMobile from "../layout/Responsive";
-import FolderPage from "../layout/FolderPage";
+// import FolderPage from "../layout/FolderPage";
 import StackedMenu from "../layout/StackedMenu";
-import HouseholdIntro from "./household/HouseholdIntro";
+// import HouseholdIntro from "./household/HouseholdIntro";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
-import MobileHouseholdPage from "./household/MobileHouseholdPage";
+// import MobileHouseholdPage from "./household/MobileHouseholdPage";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
-import { Result } from "antd";
+// import { Result } from "antd";
 
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";
@@ -30,18 +31,19 @@ export default function HouseholdPage(props) {
     metadata,
     householdId,
     policy,
-    hasShownHouseholdPopup,
-    setHasShownHouseholdPopup,
+    // hasShownHouseholdPopup,
+    // setHasShownHouseholdPopup,
   } = props;
   const countryId = metadata.countryId;
   const [searchParams, setSearchParams] = useSearchParams();
   const mobile = useMobile();
   const [householdInput, setHouseholdInput] = useState(null);
   const [householdBaseline, setHouseholdBaseline] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [householdReform, setHouseholdReform] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [autoCompute, setAutoCompute] = useState(false);
+  const [/*error,*/ setError] = useState(null);
+  const [autoCompute, /*setAutoCompute*/] = useState(false);
   const [isRHPOpen, setIsRHPOpen] = useState(false);
 
   let middle;
@@ -211,6 +213,8 @@ export default function HouseholdPage(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId, policy.reform, metadata]);
 
+  middle=<ErrorPage />;
+  /*
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
   } else if (
@@ -333,6 +337,7 @@ export default function HouseholdPage(props) {
       />
     );
   }
+  */
   return (
     <>
       <RecreateHouseholdPopup
