@@ -38,6 +38,9 @@ export default function MarginalTaxRates(props) {
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
   const mobile = useMobile();
+  // We don't want to show "large" values in this chart. See
+  // https://github.com/PolicyEngine/policyengine-app/issues/66.
+  const showValueOnYAxis = (value) => value >= -2 && value <= 2;
   let title;
 
   const currentEarnings = getValueFromHousehold(
@@ -133,7 +136,8 @@ export default function MarginalTaxRates(props) {
     const x2 = [currentEarnings];
     const y2 = [currentMtr];
     const xaxisValues = x1.concat(x2);
-    const yaxisValues = y1.concat(y2);
+    const yaxisValues = y1.filter(showValueOnYAxis).concat(y2);
+    // note that we do not filter currentMtr
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
@@ -270,7 +274,8 @@ export default function MarginalTaxRates(props) {
       const x2 = [currentEarnings];
       const y2 = [reformMtrValue - currentMtr];
       xaxisValues = x1.concat(x2);
-      yaxisValues = y1.concat(y2);
+      yaxisValues = y1.filter(showValueOnYAxis).concat(y2);
+      // note that we do not filter reformMtrValue - currentMtr
       data = [
         {
           x: x1,
