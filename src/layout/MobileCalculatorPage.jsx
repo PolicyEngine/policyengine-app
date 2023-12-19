@@ -123,11 +123,23 @@ function MobileBottomMenu(props) {
     setIsMenuOpen((prev) => !prev);
   }
 
+  const buttonHeight = 60;
+  const paddingHeight = 10;
+
+  const animationVariants = {
+    open: {
+      transform: "translateY(0px)"
+    },
+    closed: {
+      transform: `translateY(calc(100% - ${buttonHeight + 2 * paddingHeight}px))`
+    }
+  };
+
   return (
-    <div
+    <motion.div
       className="mobile-bottom-bar"
       style={{
-        padding: "10px",
+        padding: paddingHeight,
         backgroundColor: colors.LIGHT_GRAY,
         borderTop: "1px solid black",
         display: "flex",
@@ -137,10 +149,13 @@ function MobileBottomMenu(props) {
         width: "100vw",
         position: "fixed",
         left: 0,
-        bottom: 0,
         zIndex: 5,
-        gap: "5px",
+        gap: `calc(0.5 * ${paddingHeight}px)`,
+        bottom: 0
       }}
+      initial={false}
+      animate={isMenuOpen ? "open" : "closed"}
+      variants={animationVariants}
     >
       <div
         style={{
@@ -152,14 +167,27 @@ function MobileBottomMenu(props) {
           gap: "10px",
         }}
       >
-        <MobileTreeNavigationHolder metadata={metadata} type={type} />
-        <MobileBottomNavButtons focus={focus} type={type} metadata={metadata} />
+        <MobileTreeNavigationHolder 
+          metadata={metadata} 
+          type={type} 
+          buttonHeight={buttonHeight}
+        />
+        <MobileBottomNavButtons 
+          focus={focus} 
+          type={type} 
+          metadata={metadata} 
+        />
         {type === "policy" && (
-          <PolicyDrawerButton metadata={metadata} policy={policy} />
+          <PolicyDrawerButton 
+            metadata={metadata} 
+            policy={policy} 
+            buttonHeight={buttonHeight}
+          />
         )}
         <MenuOpenCloseButton
           isMenuOpen={isMenuOpen}
           handleMenuOpen={handleMenuOpen}
+          buttonHeight={buttonHeight}
         />
       </div>
       <OpenedNavigationMenu
@@ -174,7 +202,7 @@ function MobileBottomMenu(props) {
         policy={policy}
         handleMenuOpen={handleMenuOpen}
       />
-    </div>
+    </motion.div>
   );
 }
 
@@ -187,7 +215,7 @@ function MobileBottomMenu(props) {
  * @returns {ReactComponentElement}
  */
 function MobileTreeNavigationHolder(props) {
-  const { metadata, type } = props;
+  const { metadata, type, buttonHeight } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
@@ -249,6 +277,8 @@ function MobileTreeNavigationHolder(props) {
         alignItems: "center",
         width: "100%",
         flexWrap: "wrap",
+        minHeight: 0,
+        maxHeight: buttonHeight
       }}
     >
       {breadcrumbs.map((breadcrumb, i) => (
@@ -344,12 +374,12 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
   );
 }
 
-function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen }) {
+function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen, buttonHeight }) {
   return (
     <>
       <div
         style={{
-          height: 60,
+          height: buttonHeight,
           width: 60,
           minWidth: 60,
           alignItems: "center",
@@ -379,7 +409,7 @@ function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen }) {
   );
 }
 
-function PolicyDrawerButton({ policy, metadata }) {
+function PolicyDrawerButton({ policy, metadata, buttonHeight }) {
   const [isPolicyDrawerOpen, setIsPolicyDrawerOpen] = useState(false);
 
   function handleClick() {
@@ -390,7 +420,7 @@ function PolicyDrawerButton({ policy, metadata }) {
     <>
       <div
         style={{
-          height: 60,
+          height: buttonHeight,
           width: 60,
           minWidth: 60,
           alignItems: "center",
@@ -443,7 +473,6 @@ function PolicyDrawerButton({ policy, metadata }) {
 
 function OpenedNavigationMenu(props) {
   const {
-    isMenuOpen,
     metadata,
     focus,
     hasReform,
@@ -455,9 +484,6 @@ function OpenedNavigationMenu(props) {
     handleMenuOpen,
   } = props;
 
-  if (!isMenuOpen) {
-    return null;
-  }
   return (
     <>
       <motion.div
