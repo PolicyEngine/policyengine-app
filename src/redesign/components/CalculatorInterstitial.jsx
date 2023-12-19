@@ -8,6 +8,8 @@ import useDisplayCategory from "./useDisplayCategory";
 
 export default function CalculatorInterstitial() {
   const countryId = useCountryId();
+  const displayCategory = useDisplayCategory();
+
   return (
     <>
       <Header />
@@ -16,7 +18,7 @@ export default function CalculatorInterstitial() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 100,
+          marginTop: displayCategory === "mobile" ? 40 : 100,
         }}
       >
         <h3
