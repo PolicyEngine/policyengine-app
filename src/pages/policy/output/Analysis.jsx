@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
-import { PythonCodeBlock } from "./PolicyReproducibility";
+import { PythonCodeBlock } from "layout/Code";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { BlogPostMarkdown } from "../../BlogPage";
