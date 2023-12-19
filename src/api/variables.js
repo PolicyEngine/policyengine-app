@@ -242,17 +242,18 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
     return d > 10 ? 0 : d === 0 ? 1 : 1 - Math.round(Math.log10(d));
   };
 
-  if (Object.keys(currencyMap).includes(unit)) {
+  const isCurrency = Object.keys(currencyMap).includes(unit);
+  const isPercent = unit === "/1";
+  const isYears = unit === "years";
+  const isKwh = unit === "kilowatt-hour";
+  const isNumber = isCurrency || isPercent || isYears || isKwh;
+  // TODO: unhandled units: list, variable, program
+  if (isNumber) {
     return {
-      tickformat: `,.${precision()}f`,
-      tickprefix: currencyMap[unit],
-      ...(values && {
-        range: paddedRange(),
-      }),
-    };
-  } else if (unit === "/1") {
-    return {
-      tickformat: `,.${precision()}%`,
+      tickformat: isPercent ? `,.${precision()}%` : `,.${precision()}f`,
+      ...(isCurrency && { tickprefix: currencyMap[unit] }),
+      ...(isYears && { ticksuffix: "yrs" }),
+      ...(isKwh && { ticksuffix: "kWh" }),
       ...(values && {
         range: paddedRange(),
       }),
