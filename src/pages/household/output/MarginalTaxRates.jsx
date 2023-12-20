@@ -38,9 +38,44 @@ export default function MarginalTaxRates(props) {
   const [loading, setLoading] = useState(true);
   const [showDelta, setShowDelta] = useState(false);
   const mobile = useMobile();
+
   // We don't want to show "large" values in this chart. See
   // https://github.com/PolicyEngine/policyengine-app/issues/66.
-  const showValueOnYAxis = (value) => value >= -2 && value <= 2;
+
+  const lb = -2;
+  const ub = 2;
+
+  const clipBefore = (array) => {
+    if (array !== undefined && array.length) {
+      let i = 0,
+        min = Number.POSITIVE_INFINITY,
+        max = Number.NEGATIVE_INFINITY;
+      while (i < array.length && min > lb && max < ub) {
+        const element = array[i];
+        if (element < min) {
+          min = element;
+        }
+        if (element > max) {
+          max = element;
+        }
+        i++;
+      }
+      return [Math.max(lb, min), Math.min(ub, max)];
+    }
+    return [-1, 1];
+  };
+
+  const clipAfter = (format, currentValues) => {
+    const clip = [
+      Math.min(...currentValues, lb),
+      Math.max(...currentValues, ub),
+    ];
+    if (format !== undefined && Object.keys(format).includes("range")) {
+      const r = format.range;
+      format.range = [Math.max(clip[0], r[0]), Math.min(clip[1], r[1])];
+    }
+  };
+
   let title;
 
   const currentEarnings = getValueFromHousehold(
@@ -131,13 +166,15 @@ export default function MarginalTaxRates(props) {
       baselineMtr,
       metadata,
     );
-    const x1 = earningsArray;
-    const y1 = mtrArray;
-    const x2 = [currentEarnings];
-    const y2 = [currentMtr];
-    const xaxisValues = x1.concat(x2);
-    const yaxisValues = y1.filter(showValueOnYAxis).concat(y2);
-    // note that we do not filter currentMtr
+    const xaxisFormat = getPlotlyAxisFormat(
+      metadata.variables.employment_income.unit,
+      earningsArray.concat(currentEarnings),
+    );
+    const yaxisFormat = getPlotlyAxisFormat(
+      metadata.variables.marginal_tax_rate.unit,
+      clipBefore(mtrArray).concat(currentMtr),
+    );
+    clipAfter(yaxisFormat, [currentMtr]);
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
@@ -150,8 +187,8 @@ export default function MarginalTaxRates(props) {
           <Plot
             data={[
               {
-                x: x1,
-                y: y1,
+                x: earningsArray,
+                y: mtrArray,
                 type: "line",
                 name: "Marginal tax rate",
                 line: {
@@ -165,8 +202,8 @@ export default function MarginalTaxRates(props) {
                   `<extra></extra>`,
               },
               {
-                x: x2,
-                y: y2,
+                x: [currentEarnings],
+                y: [currentMtr],
                 type: "scatter",
                 name: "Your current MTR",
                 mode: "markers",
@@ -183,20 +220,14 @@ export default function MarginalTaxRates(props) {
             layout={{
               xaxis: {
                 title: "Household head employment income",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit,
-                  xaxisValues,
-                ),
+                ...xaxisFormat,
               },
               margin: {
                 t: 0,
               },
               yaxis: {
                 title: "Marginal tax rate",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.marginal_tax_rate.unit,
-                  yaxisValues,
-                ),
+                ...yaxisFormat,
               },
               hoverlabel: {
                 align: "left",
@@ -244,7 +275,6 @@ export default function MarginalTaxRates(props) {
       reformMtr,
       metadata,
     );
-
     const reformMtrValue = getValueFromHousehold(
       "marginal_tax_rate",
       "2023",
@@ -265,21 +295,26 @@ export default function MarginalTaxRates(props) {
       title = `${policyLabel} doesn't change your marginal tax rate`;
     }
     // Add the main line, then add a 'you are here' points
-    let data, xaxisValues, yaxisValues;
+    let data, xaxisFormat, yaxisFormat;
     if (showDelta) {
-      const x1 = earningsArray;
-      const y1 = reformMtrArray.map(
+      const deltaArray = reformMtrArray.map(
         (value, index) => value - baselineMtrArray[index],
       );
-      const x2 = [currentEarnings];
-      const y2 = [reformMtrValue - currentMtr];
-      xaxisValues = x1.concat(x2);
-      yaxisValues = y1.filter(showValueOnYAxis).concat(y2);
+      const currentDelta = reformMtrValue - currentMtr;
+      xaxisFormat = getPlotlyAxisFormat(
+        metadata.variables.employment_income.unit,
+        earningsArray.concat(currentEarnings),
+      );
+      yaxisFormat = getPlotlyAxisFormat(
+        metadata.variables.marginal_tax_rate.unit,
+        clipBefore(deltaArray).concat(currentDelta),
+      );
+      clipAfter(yaxisFormat, [currentDelta]);
       // note that we do not filter reformMtrValue - currentMtr
       data = [
         {
-          x: x1,
-          y: y1,
+          x: earningsArray,
+          y: deltaArray,
           type: "line",
           name: "MTR difference",
           line: {
@@ -293,8 +328,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: x2,
-          y: y2,
+          x: [currentEarnings],
+          y: [currentDelta],
           type: "scatter",
           name: "Your current MTR difference",
           mode: "markers",
@@ -309,18 +344,23 @@ export default function MarginalTaxRates(props) {
         },
       ];
     } else {
-      const x1 = earningsArray;
-      const y1 = reformMtrArray;
-      const y2 = baselineMtrArray;
-      const x2 = [currentEarnings];
-      const y3 = [currentMtr];
-      const y4 = [reformMtrValue];
-      xaxisValues = x1.concat(x2);
-      yaxisValues = y1.concat(y2, y3, y4);
+      xaxisFormat = getPlotlyAxisFormat(
+        metadata.variables.employment_income.unit,
+        earningsArray.concat(currentEarnings),
+      );
+      yaxisFormat = getPlotlyAxisFormat(
+        metadata.variables.marginal_tax_rate.unit,
+        clipBefore(reformMtrArray).concat(
+          clipBefore(baselineMtrArray),
+          currentMtr,
+          reformMtrValue,
+        ),
+      );
+      clipAfter(yaxisFormat, [currentMtr, reformMtrValue]);
       data = [
         {
-          x: x1,
-          y: y1,
+          x: earningsArray,
+          y: reformMtrArray,
           type: "line",
           name: "Reform MTR",
           line: {
@@ -334,8 +374,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: x1,
-          y: y2,
+          x: earningsArray,
+          y: baselineMtrArray,
           type: "line",
           name: "Baseline MTR",
           line: {
@@ -349,8 +389,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: x2,
-          y: y3,
+          x: [currentEarnings],
+          y: [currentMtr],
           type: "scatter",
           name: "Your baseline MTR",
           mode: "markers",
@@ -364,8 +404,8 @@ export default function MarginalTaxRates(props) {
             `<extra></extra>`,
         },
         {
-          x: x2,
-          y: y4,
+          x: [currentEarnings],
+          y: [reformMtrValue],
           type: "scatter",
           name: "Your reform MTR",
           mode: "markers",
@@ -415,17 +455,11 @@ export default function MarginalTaxRates(props) {
             layout={{
               xaxis: {
                 title: "Household head employment income",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.employment_income.unit,
-                  xaxisValues,
-                ),
+                ...xaxisFormat,
               },
               yaxis: {
                 title: (showDelta ? "Change in m" : "M") + "arginal tax rate",
-                ...getPlotlyAxisFormat(
-                  metadata.variables.marginal_tax_rate.unit,
-                  yaxisValues,
-                ),
+                ...yaxisFormat,
               },
               hoverlabel: {
                 align: "left",
