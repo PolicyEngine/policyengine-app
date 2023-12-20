@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -32,15 +33,7 @@ export default function LinkButton(props) {
   const navigate = useNavigate();
   const isExternalLink = checkIfExternalLink(link);
 
-  function handleNavigate() {
-    if (isExternalLink) {
-      window.open(link, "_blank");
-    } else {
-      navigate(link);
-    }
-  }
-
-  return (
+  const button = (
     <Button
       text={text}
       width={width}
@@ -50,9 +43,22 @@ export default function LinkButton(props) {
       hoverStart={hoverStart}
       backgroundColor={backgroundColor}
       activeBackgroundColor={activeBackgroundColor}
-      onClick={handleNavigate}
+      onClick={!isExternalLink && (() => navigate(link))}
     />
   );
+
+  if (isExternalLink) {
+    return (
+      <Link
+        to={link}
+        target="_blank"
+      >
+        {button}
+      </Link>
+    )
+  } else {
+    return button;
+  }
 }
 
 function checkIfExternalLink(link) {
