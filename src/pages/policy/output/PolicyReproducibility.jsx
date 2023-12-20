@@ -1,4 +1,4 @@
-import { CodeBlock } from "layout/Code";
+import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
 import Button from "../../../controls/Button";
 
