@@ -252,8 +252,8 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
     return {
       tickformat: isPercent ? `,.${precision()}%` : `,.${precision()}f`,
       ...(isCurrency && { tickprefix: currencyMap[unit] }),
-      ...(isYears && { ticksuffix: "yrs" }),
-      ...(isKwh && { ticksuffix: "kWh" }),
+      ...(isYears && { ticksuffix: "&nbsp;yrs" }),
+      ...(isKwh && { ticksuffix: "&nbsp;kWh" }),
       ...(values && {
         range: paddedRange(),
       }),
