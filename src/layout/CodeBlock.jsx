@@ -1,6 +1,6 @@
 import { Highlight, themes } from "prism-react-renderer";
 
-export function CodeBlock({ lines, language }) {
+export default function CodeBlock({ lines, language }) {
   const code = lines.join("\r\n");
   return (
     <div
