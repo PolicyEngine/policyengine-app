@@ -15,27 +15,23 @@ export function CodeBlock({ lines, language }) {
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div
-                key={i}
-                style={{ display: "table-row" }}
-                {...getLineProps({ line })}
-              >
-                <span
+              <tr key={i} {...getLineProps({ line, key: i })}>
+                <td
                   style={{
-                    display: "table-cell",
+                    textAlign: "right",
                     paddingRight: "1em",
                     userSelect: "none",
                     opacity: "0.5",
                   }}
                 >
                   {i + 1}
-                </span>
-                <div style={{ display: "table-cell" }}>
+                </td>
+                <td>
                   {line.map((token, key) => (
                     <span key={key} {...getTokenProps({ token })} />
                   ))}
-                </div>
-              </div>
+                </td>
+              </tr>
             ))}
           </pre>
         )}
