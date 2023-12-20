@@ -10,12 +10,10 @@ export default function HouseholdReproducibility(props) {
   const { policy, metadata, householdInput } = props;
   const [earningVariation, setEarningVariation] = useState(false);
 
-  let initialLines = ["from " + metadata.package + " import Simulation"];
+  let lines = ["from " + metadata.package + " import Simulation"];
 
   if (policy.reform.data) {
-    initialLines = initialLines.concat(
-      getReformDefinitionCode(metadata, policy),
-    );
+    lines = lines.concat(getReformDefinitionCode(metadata, policy));
   }
 
   let householdInputCopy = JSON.parse(
@@ -54,11 +52,17 @@ export default function HouseholdReproducibility(props) {
     .replace(/false/g, "False")
     .replace(/null/g, "None");
 
-  initialLines = initialLines.concat([
+  lines = lines.concat([
     "situation = " + householdJson,
     "",
     "simulation = Simulation(",
-    Object.keys(policy.reform.data).length ? "    reform=reform," : "",
+  ]);
+
+  if (Object.keys(policy.reform.data).length) {
+    lines.push("    reform=reform,");
+  }
+
+  lines = lines.concat([
     "    situation=situation,",
     ")",
     "",
@@ -89,7 +93,7 @@ export default function HouseholdReproducibility(props) {
           onChange={() => setEarningVariation(!earningVariation)}
         />
       </div>
-      <PythonCodeBlock lines={initialLines} />
+      <PythonCodeBlock lines={lines} />
       <div
         style={{
           display: "flex",
@@ -101,7 +105,7 @@ export default function HouseholdReproducibility(props) {
           text="Copy"
           style={{ width: 100, margin: "20px auto 10px" }}
           onClick={() => {
-            navigator.clipboard.writeText(initialLines.join("\n"));
+            navigator.clipboard.writeText(lines.join("\n"));
           }}
         />
       </div>
