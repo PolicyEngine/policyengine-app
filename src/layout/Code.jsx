@@ -1,6 +1,6 @@
 import { Highlight, themes } from "prism-react-renderer";
 
-export function PythonCodeBlock({ lines }) {
+export function CodeBlock({ lines, language }) {
   const code = lines.join("\r\n");
   return (
     <div
@@ -11,7 +11,7 @@ export function PythonCodeBlock({ lines }) {
         overflowY: "scroll",
       }}
     >
-      <Highlight theme={themes.vsDark} code={code} language="python">
+      <Highlight theme={themes.vsDark} code={code} language={language}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (

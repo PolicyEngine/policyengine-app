@@ -2,7 +2,7 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
-import { PythonCodeBlock } from "layout/Code";
+import { CodeBlock } from "layout/Code";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { BlogPostMarkdown } from "../../BlogPage";
@@ -168,8 +168,8 @@ export default function Analysis(props) {
             audienceValue === "ELI5"
               ? "5px 0 0 5px"
               : audienceValue === "Wonk"
-              ? "0 5px 5px 0"
-              : 0,
+                ? "0 5px 5px 0"
+                : 0,
           border: borderColor,
           borderRight: audienceValue !== "Wonk" ? "none" : borderColor,
           padding: "5px 10px",
@@ -340,7 +340,7 @@ export default function Analysis(props) {
             />
           </div>
           <p>
-            <PythonCodeBlock lines={lines} />
+            <CodeBlock lines={lines} language={"markdown"} />
           </p>
         </>
       ) : null}

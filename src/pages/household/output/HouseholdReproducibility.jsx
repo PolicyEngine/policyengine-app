@@ -3,7 +3,7 @@ import { optimiseHousehold } from "../../../api/variables";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import Button from "../../../controls/Button";
 import { Switch } from "antd";
-import { PythonCodeBlock } from "layout/Code";
+import { CodeBlock } from "layout/Code";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
 
 export default function HouseholdReproducibility(props) {
@@ -93,7 +93,7 @@ export default function HouseholdReproducibility(props) {
           onChange={() => setEarningVariation(!earningVariation)}
         />
       </div>
-      <PythonCodeBlock lines={lines} />
+      <CodeBlock lines={lines} language={"python"} />
       <div
         style={{
           display: "flex",

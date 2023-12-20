@@ -1,4 +1,4 @@
-import { PythonCodeBlock } from "layout/Code";
+import { CodeBlock } from "layout/Code";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
 import Button from "../../../controls/Button";
 
@@ -42,7 +42,7 @@ export default function PolicyReproducibility(props) {
         Run the code below into a {notebookLink} to reproduce the
         microsimulation results.
       </p>
-      <PythonCodeBlock lines={initialLines} />
+      <CodeBlock lines={initialLines} language={"python"} />
       <div
         style={{
           display: "flex",
