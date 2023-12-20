@@ -1,25 +1,7 @@
-import style from "redesign/style";
+import { Highlight, themes } from "prism-react-renderer";
 
 export function PythonCodeBlock({ lines }) {
-  // Turn 4-space indents into padding-left
-  const lineIndents = lines.map((line) => {
-    let numIndents = 0;
-    if (!line) {
-      return 0;
-    }
-    let lineCopy = line.toString();
-    while (
-      Array.from(lineCopy.slice(0, 4)).filter((char) => char === " ").length ===
-      4
-    ) {
-      lineCopy = lineCopy.slice(4);
-      if (lineCopy.length < 4) {
-        break;
-      }
-      numIndents++;
-    }
-    return numIndents;
-  });
+  const code = lines.join("\r\n");
   return (
     <div
       style={{
@@ -29,51 +11,35 @@ export function PythonCodeBlock({ lines }) {
         overflowY: "scroll",
       }}
     >
-      <div
-        style={{
-          backgroundColor: style.colors.DARK_GRAY,
-          borderRadius: 20,
-          padding: 20,
-          width: 600,
-          overflowX: "scroll",
-        }}
-      >
-        {lines.map((line, i) => {
-          if (line === "") {
-            return <div key={i} style={{ paddingTop: 15 }} />;
-          } else if (line.includes("situation = {")) {
-            return (
-              <pre
+      <Highlight theme={themes.vsDark} code={code} language="python">
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div
                 key={i}
-                style={{
-                  color: style.colors.WHITE,
-                  fontFamily: "monospace",
-                  margin: 0,
-                  paddingTop: 5,
-                }}
+                style={{ display: "table-row" }}
+                {...getLineProps({ line })}
               >
-                {line}
-              </pre>
-            );
-          } else {
-            return (
-              <p
-                key={i}
-                style={{
-                  color: style.colors.WHITE,
-                  fontFamily: "monospace",
-                  paddingLeft: lineIndents[i] * 30,
-                  margin: 0,
-                  whiteSpace: "nowrap",
-                  paddingTop: 5,
-                }}
-              >
-                {line}
-              </p>
-            );
-          }
-        })}
-      </div>
+                <span
+                  style={{
+                    display: "table-cell",
+                    paddingRight: "1em",
+                    userSelect: "none",
+                    opacity: "0.5",
+                  }}
+                >
+                  {i + 1}
+                </span>
+                <div style={{ display: "table-cell" }}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token })} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
     </div>
   );
 }
