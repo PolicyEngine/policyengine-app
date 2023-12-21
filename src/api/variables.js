@@ -228,7 +228,7 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
   const paddedRange = () => {
     const r = range();
     const d = r[1] - r[0];
-    const p = d * 0.1;
+    const p = d * 0.01;
     return [r[0] - p, r[1] + p];
   };
 
