@@ -39,43 +39,6 @@ export default function MarginalTaxRates(props) {
   const [showDelta, setShowDelta] = useState(false);
   const mobile = useMobile();
 
-  // We don't want to show "large" values in this chart. See
-  // https://github.com/PolicyEngine/policyengine-app/issues/66.
-
-  const lb = -2;
-  const ub = 2;
-
-  const clipBefore = (array) => {
-    if (array !== undefined && array.length) {
-      let i = 0,
-        min = Number.POSITIVE_INFINITY,
-        max = Number.NEGATIVE_INFINITY;
-      while (i < array.length && min > lb && max < ub) {
-        const element = array[i];
-        if (element < min) {
-          min = element;
-        }
-        if (element > max) {
-          max = element;
-        }
-        i++;
-      }
-      return [Math.max(lb, min), Math.min(ub, max)];
-    }
-    return [-1, 1];
-  };
-
-  const clipAfter = (format, currentValues) => {
-    const clip = [
-      Math.min(...currentValues, lb),
-      Math.max(...currentValues, ub),
-    ];
-    if (format !== undefined && Object.keys(format).includes("range")) {
-      const r = format.range;
-      format.range = [Math.max(clip[0], r[0]), Math.min(clip[1], r[1])];
-    }
-  };
-
   let title;
 
   const currentEarnings = getValueFromHousehold(
@@ -151,6 +114,41 @@ export default function MarginalTaxRates(props) {
 
   let plot;
 
+  // We don't want to show "large" values in this chart. See
+  // https://github.com/PolicyEngine/policyengine-app/issues/66.
+  const lb = -2;
+  const ub = 2;
+
+  const range = (array) => [Math.min(...array), Math.max(...array)];
+
+  // values in array may get clipped
+  // values in mustArray must be displayed
+  const paddedRange = (array, mustArray) => {
+    const rangeArray = range(array.concat(0));
+    const rangeMustArray = range(mustArray);
+    const padding = [0.1, 0.1];
+    if (rangeArray[0] < lb) {
+      rangeArray[0] = lb;
+      padding[0] = 0;
+    }
+    if (rangeMustArray[0] < rangeArray[0]) {
+      rangeArray[0] = rangeMustArray[0];
+      padding[0] = 0.1;
+    }
+    if (rangeArray[1] > ub) {
+      rangeArray[1] = ub;
+      padding[1] = 0;
+    }
+    if (rangeMustArray[1] > rangeArray[1]) {
+      rangeArray[1] = rangeMustArray[1];
+      padding[1] = 0.1;
+    }
+    const d = rangeArray[1] - rangeArray[0];
+    rangeArray[0] -= padding[0] * d;
+    rangeArray[1] += padding[1] * d;
+    return rangeArray;
+  };
+
   if (baselineMtr && !reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
@@ -172,9 +170,8 @@ export default function MarginalTaxRates(props) {
     );
     const yaxisFormat = getPlotlyAxisFormat(
       metadata.variables.marginal_tax_rate.unit,
-      clipBefore(mtrArray).concat(currentMtr),
     );
-    clipAfter(yaxisFormat, [currentMtr]);
+    yaxisFormat.range = paddedRange(mtrArray, [currentMtr]);
     title = `Your current marginal tax rate is ${formatVariableValue(
       { unit: "/1" },
       currentMtr,
@@ -307,9 +304,8 @@ export default function MarginalTaxRates(props) {
       );
       yaxisFormat = getPlotlyAxisFormat(
         metadata.variables.marginal_tax_rate.unit,
-        clipBefore(deltaArray).concat(currentDelta),
       );
-      clipAfter(yaxisFormat, [currentDelta]);
+      yaxisFormat.range = paddedRange(deltaArray, [currentDelta]);
       // note that we do not filter reformMtrValue - currentMtr
       data = [
         {
@@ -350,13 +346,11 @@ export default function MarginalTaxRates(props) {
       );
       yaxisFormat = getPlotlyAxisFormat(
         metadata.variables.marginal_tax_rate.unit,
-        clipBefore(reformMtrArray).concat(
-          clipBefore(baselineMtrArray),
-          currentMtr,
-          reformMtrValue,
-        ),
       );
-      clipAfter(yaxisFormat, [currentMtr, reformMtrValue]);
+      yaxisFormat.range = paddedRange(reformMtrArray.concat(baselineMtrArray), [
+        currentMtr,
+        reformMtrValue,
+      ]);
       data = [
         {
           x: earningsArray,
