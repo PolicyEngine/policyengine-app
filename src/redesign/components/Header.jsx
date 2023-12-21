@@ -246,15 +246,7 @@ function PageLinks() {
     >
       {["Research", "About", "Donate"].map((link) => {
         return (
-          <Link
-            to={
-              link === "Donate"
-                ? "https://opencollective.com/policyengine"
-                : `/${countryId}/${link.toLowerCase()}`
-            }
-            key={link}
-            target={link === "Donate" ? "_blank" : ""}
-          >
+          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <div
               style={{
                 color: "white",
@@ -326,15 +318,7 @@ function LeftNavigationMenu(props) {
     >
       {["Research", "About", "Donate"].map((link, i) => {
         return (
-          <Link
-            to={
-              link === "Donate"
-                ? "https://opencollective.com/policyengine"
-                : `/${countryId}/${link.toLowerCase()}`
-            }
-            key={link}
-            target={link === "Donate" ? "_blank" : ""}
-          >
+          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <HoverBox
               hoverStart="left"
               size="100vw"
