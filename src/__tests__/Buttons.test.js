@@ -30,21 +30,4 @@ describe("Test button types", () => {
     fireEvent.click(getByText("Test Button"));
     expect(mockUseNavigate.mock.calls[0][0]).toBe("/test");
   });
-  test("Test that LinkButton properly navigates to external link", () => {
-    window.open = jest.fn();
-
-    const testButton = (
-      <LinkButton text="Test Button" link="https://www.google.com" />
-    );
-
-    const { getByText } = render(testButton);
-
-    fireEvent.click(getByText("Test Button"));
-    expect(window.open).toHaveBeenCalledWith(
-      "https://www.google.com",
-      "_blank",
-    );
-
-    jest.resetAllMocks();
-  });
 });

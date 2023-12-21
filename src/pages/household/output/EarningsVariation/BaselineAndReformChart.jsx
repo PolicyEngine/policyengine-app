@@ -72,7 +72,7 @@ export default function BaselineAndReformChart(props) {
   );
 
   function BaselineAndReformChartWithToggle() {
-    const [showDelta, setShowDelta] = useState(false);
+    const [showDelta, setShowDelta] = useState(true);
     const options = [
       {
         label: "Baseline and reform",

@@ -36,7 +36,7 @@ export default function MarginalTaxRates(props) {
   const [reformMtr, setReformMtr] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [showDelta, setShowDelta] = useState(false);
+  const [showDelta, setShowDelta] = useState(true);
   const mobile = useMobile();
   let title;
 
