@@ -249,7 +249,8 @@ function HouseholdVariableEntityInput(props) {
           : {})}
         defaultValue={defaultValue}
         autoFocus
-        onChange={submitValue}
+        onPressEnter={(_, value) => submitValue(value)}
+        onBlur={(_, value) => submitValue(value)}
       />
     );
   } else if (variable.valueType === "bool") {
