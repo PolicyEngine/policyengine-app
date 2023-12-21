@@ -59,12 +59,7 @@ export default function BaselineOnlyChart(props) {
     const setHoverCard = useContext(HoverCardContext);
     const mobile = useMobile();
     const { useHoverCard = false } = props;
-    const x1 = earningsArray;
-    const y1 = baselineArray;
-    const x2 = [currentEarnings];
-    const y2 = [currentBaseline];
-    const xaxisValues = x1.concat(x2);
-    const yaxisValues = y1.concat(y2);
+    const yaxisValues = baselineArray.concat(currentBaseline);
     const yaxisFormat = getPlotlyAxisFormat(
       metadata.variables[variable].unit,
       yaxisValues,
@@ -90,8 +85,8 @@ export default function BaselineOnlyChart(props) {
             data={[
               ...cliffs,
               {
-                x: x1,
-                y: y1,
+                x: earningsArray,
+                y: baselineArray,
                 type: "line",
                 name: capitalize(variableLabel),
                 line: {
@@ -110,8 +105,8 @@ export default function BaselineOnlyChart(props) {
                     }),
               },
               {
-                x: x2,
-                y: y2,
+                x: [currentEarnings],
+                y: [currentBaseline],
                 type: "line",
                 mode: "markers",
                 name: `Your current ${variableLabel}`,
@@ -136,7 +131,7 @@ export default function BaselineOnlyChart(props) {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
                   metadata.variables.employment_income.unit,
-                  xaxisValues,
+                  earningsArray.concat(currentEarnings),
                 ),
                 uirevision: metadata.variables.employment_income.unit,
               },
