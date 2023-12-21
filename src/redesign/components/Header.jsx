@@ -17,9 +17,10 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height: displayCategory === 'mobile'
-            ? style.spacing.MOBILE_HEADER_HEIGHT
-            : style.spacing.HEADER_HEIGHT,
+          height:
+            displayCategory === "mobile"
+              ? style.spacing.MOBILE_HEADER_HEIGHT
+              : style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
           position: "fixed",
@@ -37,9 +38,10 @@ export default function Header() {
       </div>
       <div
         style={{
-          height: displayCategory === 'mobile'
-          ? style.spacing.MOBILE_HEADER_HEIGHT
-          : style.spacing.HEADER_HEIGHT
+          height:
+            displayCategory === "mobile"
+              ? style.spacing.MOBILE_HEADER_HEIGHT
+              : style.spacing.HEADER_HEIGHT,
         }}
       />
     </>
@@ -139,8 +141,8 @@ function Hamburger() {
     <>
       <div
         style={{
-          height: displayCategory === 'mobile' ? 30 : 50,
-          width: displayCategory === 'mobile' ? 30 : 50,
+          height: displayCategory === "mobile" ? 30 : 50,
+          width: displayCategory === "mobile" ? 30 : 50,
           margin: 20,
           alignItems: "center",
           display: "flex",
@@ -244,7 +246,15 @@ function PageLinks() {
     >
       {["Research", "About", "Donate"].map((link) => {
         return (
-          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+          <Link
+            to={
+              link === "Donate"
+                ? "https://opencollective.com/policyengine"
+                : `/${countryId}/${link.toLowerCase()}`
+            }
+            key={link}
+            target={link === "Donate" ? "_blank" : ""}
+          >
             <div
               style={{
                 color: "white",
@@ -316,7 +326,15 @@ function LeftNavigationMenu(props) {
     >
       {["Research", "About", "Donate"].map((link, i) => {
         return (
-          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+          <Link
+            to={
+              link === "Donate"
+                ? "https://opencollective.com/policyengine"
+                : `/${countryId}/${link.toLowerCase()}`
+            }
+            key={link}
+            target={link === "Donate" ? "_blank" : ""}
+          >
             <HoverBox
               hoverStart="left"
               size="100vw"
