@@ -33,7 +33,7 @@ export function getCliffs(
   return cliffs.map((points, i) => {
     return {
       x: [points[0], points[0], points[1], points[1], points[0]],
-      y: [range[0], range[1], range[1], range[0], range[0]],
+      y: [0, range[1], range[1], 0, 0],
       fill: "toself",
       mode: "lines",
       fillcolor: style.colors.DARK_GRAY,
