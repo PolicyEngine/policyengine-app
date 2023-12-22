@@ -102,13 +102,13 @@ export default function BudgetaryImpact(props) {
                       relevantFigure < 0
                         ? `This reform would increase<br>`
                         : relevantFigure > 0
-                        ? `This reform would reduce<br>`
-                        : `This reform would not impact<br>`;
+                          ? `This reform would reduce<br>`
+                          : `This reform would not impact<br>`;
                     body += label.toLowerCase().includes("tax")
                       ? label.toLowerCase()
                       : label.toLowerCase().includes("benefit")
-                      ? "benefit spending"
-                      : "the budget deficit";
+                        ? "benefit spending"
+                        : "the budget deficit";
                     if (relevantFigure === 0) {
                       body += ".";
                     } else {
@@ -175,13 +175,13 @@ export default function BudgetaryImpact(props) {
                   relevantFigure < 0
                     ? "This reform would increase "
                     : relevantFigure > 0
-                    ? "This reform would reduce "
-                    : "This reform would not impact ";
+                      ? "This reform would reduce "
+                      : "This reform would not impact ";
                 body += label.toLowerCase().includes("tax")
                   ? label.toLowerCase()
                   : label.toLowerCase().includes("benefit")
-                  ? "benefit spending"
-                  : "the budget deficit";
+                    ? "benefit spending"
+                    : "the budget deficit";
                 if (relevantFigure === 0) {
                   body += ".";
                 } else {

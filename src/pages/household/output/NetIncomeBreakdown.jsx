@@ -215,7 +215,9 @@ function VariableArithmetic(props) {
     ));
   const childNodes = childAddNodes.concat(childSubtractNodes);
   const expandable =
-    (!hasReform || doesIncomeChange) && adds.length + subtracts.length > 0 && childNodes.length > 0;
+    (!hasReform || doesIncomeChange) &&
+    adds.length + subtracts.length > 0 &&
+    childNodes.length > 0;
 
   if (childrenOnly) {
     return (

@@ -56,17 +56,17 @@ export default function AverageImpactByDecile(props) {
                           0,
                         )} per year.`
                       : change < -0.0001
-                      ? `This reform lowers the income<br>of households in the ${decile} decile<br>by an average of ${formatVariableValue(
-                          metadata.variables.household_net_income,
-                          -change,
-                          0,
-                        )} per year.`
-                      : change === 0
-                      ? `This reform has no impact on the income<br>of households in the ${decile} decile.`
-                      : (change > 0
-                          ? "This reform raises "
-                          : "This reform lowers ") +
-                        `the income<br>of households in the ${decile} decile<br>by less than 0.01%.`;
+                        ? `This reform lowers the income<br>of households in the ${decile} decile<br>by an average of ${formatVariableValue(
+                            metadata.variables.household_net_income,
+                            -change,
+                            0,
+                          )} per year.`
+                        : change === 0
+                          ? `This reform has no impact on the income<br>of households in the ${decile} decile.`
+                          : (change > 0
+                              ? "This reform raises "
+                              : "This reform lowers ") +
+                            `the income<br>of households in the ${decile} decile<br>by less than 0.01%.`;
                   }),
                   hovertemplate: `<b>Decile %{x}</b><br><br>%{customdata}<extra></extra>`,
                 }),
@@ -127,17 +127,17 @@ export default function AverageImpactByDecile(props) {
                         0,
                       )} per year.`
                     : change < -0.0001
-                    ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                        metadata.variables.household_net_income,
-                        -change,
-                        0,
-                      )} per year.`
-                    : change === 0
-                    ? `This reform has no impact on the income of households in the ${decile} decile.`
-                    : (change > 0
-                        ? "This reform raises "
-                        : "This reform lowers ") +
-                      ` the income of households in the ${decile} decile by less than 0.01%.`;
+                      ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
+                          metadata.variables.household_net_income,
+                          -change,
+                          0,
+                        )} per year.`
+                      : change === 0
+                        ? `This reform has no impact on the income of households in the ${decile} decile.`
+                        : (change > 0
+                            ? "This reform raises "
+                            : "This reform lowers ") +
+                          ` the income of households in the ${decile} decile by less than 0.01%.`;
                 setHoverCard({
                   title: `Decile ${data.points[0].x}`,
                   body: message,

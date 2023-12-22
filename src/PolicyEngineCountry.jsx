@@ -27,14 +27,14 @@ export default function LegacyPolicyEngineCountry(props) {
     countryId === "uk"
       ? 1
       : countryId === "us"
-      ? 2
-      : countryId === "ca"
-      ? 3
-      : countryId === "ng"
-      ? 4
-      : countryId === "il"
-      ? 5
-      : 1;
+        ? 2
+        : countryId === "ca"
+          ? 3
+          : countryId === "ng"
+            ? 4
+            : countryId === "il"
+              ? 5
+              : 1;
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;

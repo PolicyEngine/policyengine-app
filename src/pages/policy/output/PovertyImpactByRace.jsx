@@ -115,13 +115,13 @@ export default function PovertyImpactByRace(props) {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                        ? `would remain at ${percent(baseline)}.`
-                        : (change > 0 ? "would rise " : "would fall ") +
-                          `by less than 0.1%.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : change === 0
+                            ? `would remain at ${percent(baseline)}.`
+                            : (change > 0 ? "would rise " : "would fall ") +
+                              `by less than 0.1%.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -193,13 +193,13 @@ export default function PovertyImpactByRace(props) {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                    ? `would remain at ${percent(baseline)}.`
-                    : (change > 0 ? "would rise " : "would fall ") +
-                      `by less than 0.1%.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -263,8 +263,8 @@ export default function PovertyImpactByRace(props) {
           {totalPovertyChange > 0
             ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the poverty rate ${label}`}
+              ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard>
           <PovertyImpactByRacePlot />

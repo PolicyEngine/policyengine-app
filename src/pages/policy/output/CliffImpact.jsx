@@ -148,10 +148,10 @@ export default function CliffImpact(props) {
                             baseline,
                           )} to ${formatter(reform)}`
                         : change < -0.0001
-                        ? `would fall ${percent(-change)}<br>from ${formatter(
-                            baseline,
-                          )} to ${formatter(reform)}`
-                        : `would remain at ${percent(baseline)}`
+                          ? `would fall ${percent(-change)}<br>from ${formatter(
+                              baseline,
+                            )} to ${formatter(reform)}`
+                          : `would remain at ${percent(baseline)}`
                     }.`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -214,10 +214,10 @@ export default function CliffImpact(props) {
                         baseline,
                       )} to ${formatter(reform)}`
                     : change < -0.0001
-                    ? `would fall ${percent(-change)} from ${formatter(
-                        baseline,
-                      )} to ${formatter(reform)}`
-                    : `would remain at ${percent(baseline)}`
+                      ? `would fall ${percent(-change)} from ${formatter(
+                          baseline,
+                        )} to ${formatter(reform)}`
+                      : `would remain at ${percent(baseline)}`
                 }.`;
                 setHoverCard({
                   title: data.points[0].x,
@@ -245,10 +245,10 @@ export default function CliffImpact(props) {
     cliff_share_change === 0 && cliff_gap_change === 0
       ? "wouldn't affect cliffs"
       : cliff_share_change >= 0 && cliff_gap_change >= 0
-      ? "would make cliffs more prevalent"
-      : cliff_share_change <= 0 && cliff_gap_change <= 0
-      ? "would make cliffs less prevalent"
-      : "would have an ambiguous effect on cliffs"
+        ? "would make cliffs more prevalent"
+        : cliff_share_change <= 0 && cliff_gap_change <= 0
+          ? "would make cliffs less prevalent"
+          : "would have an ambiguous effect on cliffs"
   } ${label}`;
 
   const csvHeader = ["Metric", "Baseline", "Reform", "Change"];

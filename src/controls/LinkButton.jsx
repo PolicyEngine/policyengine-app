@@ -49,13 +49,10 @@ export default function LinkButton(props) {
 
   if (isExternalLink) {
     return (
-      <Link
-        to={link}
-        target="_blank"
-      >
+      <Link to={link} target="_blank">
         {button}
       </Link>
-    )
+    );
   } else {
     return button;
   }

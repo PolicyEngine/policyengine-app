@@ -91,13 +91,13 @@ export default function DeepPovertyImpact(props) {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                        ? `would remain at ${percent(baseline)}.`
-                        : (change > 0 ? "would rise " : "would fall ") +
-                          `by less than 0.1%.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : change === 0
+                            ? `would remain at ${percent(baseline)}.`
+                            : (change > 0 ? "would rise " : "would fall ") +
+                              `by less than 0.1%.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -157,13 +157,13 @@ export default function DeepPovertyImpact(props) {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                    ? `would remain at ${percent(baseline)}.`
-                    : (change > 0 ? "would rise " : "would fall ") +
-                      `by less than 0.1%.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -183,7 +183,8 @@ export default function DeepPovertyImpact(props) {
   const percentagePointChange =
     Math.round(
       Math.abs(
-        impact.poverty.deep_poverty.all.reform - impact.poverty.deep_poverty.all.baseline,
+        impact.poverty.deep_poverty.all.reform -
+          impact.poverty.deep_poverty.all.baseline,
       ) * 1000,
     ) / 10;
   const screenshotRef = useRef();
@@ -223,8 +224,8 @@ export default function DeepPovertyImpact(props) {
           {totalPovertyChange > 0
             ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
+              ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard>
           <DeepPovertyImpactPlot />
