@@ -51,6 +51,8 @@ export default function ParameterOverTime(props) {
     (e) => e !== "0000-01-01" && e !== "2099-12-31",
   );
   const yaxisValues = reformedY ? y.concat(reformedY) : y;
+  const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
+  const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
 
   return (
     <>
@@ -85,8 +87,8 @@ export default function ParameterOverTime(props) {
           .reverse()
           .filter((x) => x)}
         layout={{
-          xaxis: getPlotlyAxisFormat("date", xaxisValues),
-          yaxis: getPlotlyAxisFormat(parameter.unit, yaxisValues),
+          xaxis: { ...xaxisFormat },
+          yaxis: { ...yaxisFormat },
           legend: {
             // Position above the plot
             y: 1.1,
