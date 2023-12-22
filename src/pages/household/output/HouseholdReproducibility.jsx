@@ -3,97 +3,17 @@ import { optimiseHousehold } from "../../../api/variables";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import Button from "../../../controls/Button";
 import { Switch } from "antd";
-import style from "../../../style";
-import { getReformDefinitionCode } from "../../policy/output/PolicyReproducibility";
-
-function PythonCodeBlock({ lines }) {
-  // Turn 4-space indents into padding-left
-  const lineIndents = lines.map((line) => {
-    let numIndents = 0;
-    if (!line) {
-      return 0;
-    }
-    let lineCopy = line.toString();
-    while (
-      Array.from(lineCopy.slice(0, 4)).filter((char) => char === " ").length ===
-      4
-    ) {
-      lineCopy = lineCopy.slice(4);
-      if (lineCopy.length < 4) {
-        break;
-      }
-      numIndents++;
-    }
-    return numIndents;
-  });
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        maxHeight: "50vh",
-        overflowY: "scroll",
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: style.colors.DARK_GRAY,
-          borderRadius: 20,
-          padding: 20,
-          width: 600,
-          overflowX: "scroll",
-        }}
-      >
-        {lines.map((line, i) => {
-          if (line === "") {
-            return <div key={i} style={{ paddingTop: 15 }} />;
-          } else if (line.includes("situation = {")) {
-            return (
-              <pre
-                key={i}
-                style={{
-                  color: style.colors.WHITE,
-                  fontFamily: "monospace",
-                  margin: 0,
-                  paddingTop: 5,
-                }}
-              >
-                {line}
-              </pre>
-            );
-          } else {
-            return (
-              <p
-                key={i}
-                style={{
-                  color: style.colors.WHITE,
-                  fontFamily: "monospace",
-                  paddingLeft: lineIndents[i] * 30,
-                  margin: 0,
-                  whiteSpace: "nowrap",
-                  paddingTop: 5,
-                }}
-              >
-                {line}
-              </p>
-            );
-          }
-        })}
-      </div>
-    </div>
-  );
-}
+import CodeBlock from "layout/CodeBlock";
+import { getReformDefinitionCode } from "data/reformDefinitionCode";
 
 export default function HouseholdReproducibility(props) {
   const { policy, metadata, householdInput } = props;
   const [earningVariation, setEarningVariation] = useState(false);
 
-  let initialLines = ["from " + metadata.package + " import Simulation"];
+  let lines = ["from " + metadata.package + " import Simulation"];
 
   if (policy.reform.data) {
-    initialLines = initialLines.concat(
-      getReformDefinitionCode(metadata, policy),
-    );
+    lines = lines.concat(getReformDefinitionCode(metadata, policy));
   }
 
   let householdInputCopy = JSON.parse(
@@ -132,11 +52,17 @@ export default function HouseholdReproducibility(props) {
     .replace(/false/g, "False")
     .replace(/null/g, "None");
 
-  initialLines = initialLines.concat([
+  lines = lines.concat([
     "situation = " + householdJson,
     "",
     "simulation = Simulation(",
-    Object.keys(policy.reform.data).length ? "    reform=reform," : "",
+  ]);
+
+  if (Object.keys(policy.reform.data).length) {
+    lines.push("    reform=reform,");
+  }
+
+  lines = lines.concat([
     "    situation=situation,",
     ")",
     "",
@@ -167,7 +93,7 @@ export default function HouseholdReproducibility(props) {
           onChange={() => setEarningVariation(!earningVariation)}
         />
       </div>
-      <PythonCodeBlock lines={initialLines} />
+      <CodeBlock lines={lines} language={"python"} />
       <div
         style={{
           display: "flex",
@@ -179,7 +105,7 @@ export default function HouseholdReproducibility(props) {
           text="Copy"
           style={{ width: 100, margin: "20px auto 10px" }}
           onClick={() => {
-            navigator.clipboard.writeText(initialLines.join("\n"));
+            navigator.clipboard.writeText(lines.join("\n"));
           }}
         />
       </div>
