@@ -96,10 +96,10 @@ export default function DeepPovertyImpactByGender(props) {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : `would remain at ${percent(baseline)}.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : `would remain at ${percent(baseline)}.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -167,10 +167,10 @@ export default function DeepPovertyImpactByGender(props) {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : `would remain at ${percent(baseline)}.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : `would remain at ${percent(baseline)}.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -235,8 +235,8 @@ export default function DeepPovertyImpactByGender(props) {
           {totalPovertyChange > 0
             ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
+              ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard>
           <DeepPovertyImpactByGenderPlot />

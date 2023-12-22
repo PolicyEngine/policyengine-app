@@ -53,15 +53,15 @@ export default function RelativeImpactByDecile(props) {
                           relativeChange,
                         )}.`
                       : relativeChange < -0.001
-                      ? `This reform would lower the income<br>of households in the ${decile} decile<br>by an average of ${percent(
-                          -relativeChange,
-                        )}.`
-                      : relativeChange === 0
-                      ? `This reform would not impact the income<br>of households in the ${decile} decile.`
-                      : (relativeChange > 0
-                          ? "This reform would raise "
-                          : "This reform would lower ") +
-                        `the income<br>of households in the ${decile} decile<br>by less than 0.1%.`;
+                        ? `This reform would lower the income<br>of households in the ${decile} decile<br>by an average of ${percent(
+                            -relativeChange,
+                          )}.`
+                        : relativeChange === 0
+                          ? `This reform would not impact the income<br>of households in the ${decile} decile.`
+                          : (relativeChange > 0
+                              ? "This reform would raise "
+                              : "This reform would lower ") +
+                            `the income<br>of households in the ${decile} decile<br>by less than 0.1%.`;
                   }),
                   hovertemplate: `<b>Decile %{x}</b><br><br>%{customdata}<extra></extra>`,
                 }),
@@ -119,15 +119,15 @@ export default function RelativeImpactByDecile(props) {
                         relativeChange,
                       )}.`
                     : relativeChange < -0.001
-                    ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
-                        -relativeChange,
-                      )}.`
-                    : relativeChange === 0
-                    ? `This reform would not impact the income of households in the ${decile} decile.`
-                    : (relativeChange > 0
-                        ? "This reform would raise "
-                        : "This reform would lower ") +
-                      ` the income of households in the ${decile} decile by less than 0.1%.`;
+                      ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
+                          -relativeChange,
+                        )}.`
+                      : relativeChange === 0
+                        ? `This reform would not impact the income of households in the ${decile} decile.`
+                        : (relativeChange > 0
+                            ? "This reform would raise "
+                            : "This reform would lower ") +
+                          ` the income of households in the ${decile} decile by less than 0.1%.`;
                 setHoverCard({
                   title: `Decile ${data.points[0].x}`,
                   body: message,

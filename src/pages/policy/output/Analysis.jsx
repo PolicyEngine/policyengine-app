@@ -168,8 +168,8 @@ export default function Analysis(props) {
             audienceValue === "ELI5"
               ? "5px 0 0 5px"
               : audienceValue === "Wonk"
-              ? "0 5px 5px 0"
-              : 0,
+                ? "0 5px 5px 0"
+                : 0,
           border: borderColor,
           borderRight: audienceValue !== "Wonk" ? "none" : borderColor,
           padding: "5px 10px",
