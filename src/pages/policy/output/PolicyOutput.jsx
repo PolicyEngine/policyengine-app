@@ -69,7 +69,7 @@ export function TimePeriodSelector(props) {
     return { value: time_period.name.toString(), label: time_period.label };
   });
   const [value] = useState(
-    (searchParams.get("timePeriod") || "").toString() || options[0].value
+    (searchParams.get("timePeriod") || "").toString() || options[0].value,
   );
 
   return (
@@ -151,7 +151,7 @@ export default function PolicyOutput(props) {
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
   const skipImpacts = POLICY_OUTPUT_TREE[0].children.find(
-    (item) => item.name === focus
+    (item) => item.name === focus,
   ).skipImpacts;
   useEffect(() => {
     if (
@@ -218,11 +218,11 @@ export default function PolicyOutput(props) {
       newSearch.set("region", searchParams.get("region") || defaults.region);
       newSearch.set(
         "timePeriod",
-        searchParams.get("timePeriod") || defaults.timePeriod
+        searchParams.get("timePeriod") || defaults.timePeriod,
       );
       newSearch.set(
         "baseline",
-        searchParams.get("baseline") || defaults.baseline
+        searchParams.get("baseline") || defaults.baseline,
       );
       setSearchParams(newSearch);
     }
