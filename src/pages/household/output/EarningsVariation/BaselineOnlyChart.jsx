@@ -59,18 +59,22 @@ export default function BaselineOnlyChart(props) {
     const setHoverCard = useContext(HoverCardContext);
     const mobile = useMobile();
     const { useHoverCard = false } = props;
+    const yaxisValues = baselineArray.concat(currentBaseline);
+    const yaxisFormat = getPlotlyAxisFormat(
+      metadata.variables[variable].unit,
+      yaxisValues,
+    );
     const cliffs =
       variable === "household_net_income"
-        ? getCliffs(baselineArray, earningsArray, false, "$", useHoverCard)
+        ? getCliffs(
+            baselineArray,
+            earningsArray,
+            yaxisFormat.range,
+            false,
+            "$",
+            useHoverCard,
+          )
         : [];
-    const x1 = cliffs.reduce((p, cliff) => p.concat(cliff.x), []);
-    const y1 = cliffs.reduce((p, cliff) => p.concat(cliff.y), []);
-    const x2 = earningsArray;
-    const y2 = baselineArray;
-    const x3 = [currentEarnings];
-    const y3 = [currentBaseline];
-    const xaxisValues = x1.concat(x2, x3);
-    const yaxisValues = y1.concat(y2, y3);
 
     // Add the main line, then add a 'you are here' line
     return (
@@ -81,8 +85,8 @@ export default function BaselineOnlyChart(props) {
             data={[
               ...cliffs,
               {
-                x: x2,
-                y: y2,
+                x: earningsArray,
+                y: baselineArray,
                 type: "line",
                 name: capitalize(variableLabel),
                 line: {
@@ -101,8 +105,8 @@ export default function BaselineOnlyChart(props) {
                     }),
               },
               {
-                x: x3,
-                y: y3,
+                x: [currentEarnings],
+                y: [currentBaseline],
                 type: "line",
                 mode: "markers",
                 name: `Your current ${variableLabel}`,
@@ -127,7 +131,7 @@ export default function BaselineOnlyChart(props) {
                 title: "Household head employment income",
                 ...getPlotlyAxisFormat(
                   metadata.variables.employment_income.unit,
-                  xaxisValues,
+                  earningsArray.concat(currentEarnings),
                 ),
                 uirevision: metadata.variables.employment_income.unit,
               },
@@ -135,10 +139,7 @@ export default function BaselineOnlyChart(props) {
                 title: {
                   text: capitalize(variableLabel),
                 },
-                ...getPlotlyAxisFormat(
-                  metadata.variables[variable].unit,
-                  yaxisValues,
-                ),
+                ...yaxisFormat,
                 uirevision: metadata.variables[variable].unit,
               },
               ...(useHoverCard
