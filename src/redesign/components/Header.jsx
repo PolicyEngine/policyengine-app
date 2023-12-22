@@ -17,9 +17,10 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height: displayCategory === 'mobile'
-            ? style.spacing.MOBILE_HEADER_HEIGHT
-            : style.spacing.HEADER_HEIGHT,
+          height:
+            displayCategory === "mobile"
+              ? style.spacing.MOBILE_HEADER_HEIGHT
+              : style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
           position: "fixed",
@@ -37,9 +38,10 @@ export default function Header() {
       </div>
       <div
         style={{
-          height: displayCategory === 'mobile'
-          ? style.spacing.MOBILE_HEADER_HEIGHT
-          : style.spacing.HEADER_HEIGHT
+          height:
+            displayCategory === "mobile"
+              ? style.spacing.MOBILE_HEADER_HEIGHT
+              : style.spacing.HEADER_HEIGHT,
         }}
       />
     </>
@@ -139,8 +141,8 @@ function Hamburger() {
     <>
       <div
         style={{
-          height: displayCategory === 'mobile' ? 30 : 50,
-          width: displayCategory === 'mobile' ? 30 : 50,
+          height: displayCategory === "mobile" ? 30 : 50,
+          width: displayCategory === "mobile" ? 30 : 50,
           margin: 20,
           alignItems: "center",
           display: "flex",
