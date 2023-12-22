@@ -23,4 +23,5 @@ deploy: build deploy-setup
 	rm main.py
 	rm requirements.txt
 format:
+	black . -l 79
 	npm run fix
