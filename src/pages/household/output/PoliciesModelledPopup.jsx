@@ -21,14 +21,14 @@ function PoliciesModelledChecklist(props) {
         2023,
         "your household",
         householdInput,
-        metadata
+        metadata,
       );
       if (actualValue === value) {
         modelledNames = modelledNames.concat(
-          modelledPolicies.filtered[variable][value].modelled || []
+          modelledPolicies.filtered[variable][value].modelled || [],
         );
         notModelledNames = notModelledNames.concat(
-          modelledPolicies.filtered[variable][value].not_modelled || []
+          modelledPolicies.filtered[variable][value].not_modelled || [],
         );
       }
     }
