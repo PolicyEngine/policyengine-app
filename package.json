@@ -22,6 +22,7 @@
     "moment": "^2.29.4",
     "openai": "^4.20.1",
     "plotly.js": "^2.27.1",
+    "prism-react-renderer": "^2.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-detect-print": "^0.1.2",
@@ -58,7 +59,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
-    "lint": "eslint --ext js,jsx . && prettier . --write"
+    "lint": "eslint --ext js,jsx . && prettier -c ."
   },
   "eslintConfig": {
     "extends": [

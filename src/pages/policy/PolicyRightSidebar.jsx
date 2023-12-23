@@ -74,8 +74,8 @@ function SinglePolicyChange(props) {
       ? "Enable"
       : "Disable"
     : value > oldVal
-    ? "Raise"
-    : "Lower";
+      ? "Raise"
+      : "Lower";
 
   return (
     <div

@@ -10,7 +10,7 @@ export default function Donate() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const desktop = displayCategory === "top";
-  const link = "https://opencollective.com/psl-foundation";
+  const link = "https://opencollective.com/policyengine";
 
   return (
     <div>
@@ -117,7 +117,6 @@ export default function Donate() {
               }
               link={link}
               width={desktop ? 450 : mobile ? "70vw" : "30vw"}
-              noArrow={true}
             />
             <div
               style={{

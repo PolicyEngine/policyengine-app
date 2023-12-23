@@ -72,7 +72,7 @@ export default function BaselineAndReformChart(props) {
   );
 
   function BaselineAndReformChartWithToggle() {
-    const [showDelta, setShowDelta] = useState(false);
+    const [showDelta, setShowDelta] = useState(true);
     const options = [
       {
         label: "Baseline and reform",
@@ -148,32 +148,38 @@ function BaselineAndReformTogetherPlot(props) {
     baselineValue,
     useHoverCard = false,
   } = props;
+  const yaxisFormat = getPlotlyAxisFormat(
+    metadata.variables[variable].unit,
+    baselineArray.concat(reformArray, currentValue, baselineValue),
+  );
   const cliffs1 =
     variable === "household_net_income"
-      ? getCliffs(baselineArray, earningsArray, false, "$", useHoverCard)
+      ? getCliffs(
+          baselineArray,
+          earningsArray,
+          yaxisFormat.range,
+          false,
+          "$",
+          useHoverCard,
+        )
       : [];
   const cliffs2 =
     variable === "household_net_income"
-      ? getCliffs(reformArray, earningsArray, true, "$", useHoverCard)
+      ? getCliffs(
+          reformArray,
+          earningsArray,
+          yaxisFormat.range,
+          true,
+          "$",
+          useHoverCard,
+        )
       : [];
-  const x1 = cliffs1.reduce((p, cliff) => p.concat(cliff.x), []);
-  const y1 = cliffs1.reduce((p, cliff) => p.concat(cliff.y), []);
-  const x2 = cliffs2.reduce((p, cliff) => p.concat(cliff.x), []);
-  const y2 = cliffs2.reduce((p, cliff) => p.concat(cliff.y), []);
-  const x3 = earningsArray;
-  const y3 = baselineArray;
-  const y4 = reformArray;
-  const x4 = [currentEarnings];
-  const y5 = [currentValue];
-  const y6 = [baselineValue];
-  const xaxisValues = x1.concat(x2, x3, x4);
-  const yaxisValues = y1.concat(y2, y3, y4, y5, y6);
   let data = [
     ...cliffs1,
     ...cliffs2,
     {
-      x: x3,
-      y: y3,
+      x: earningsArray,
+      y: baselineArray,
       type: "line",
       name: `Baseline ${variableLabel}`,
       line: {
@@ -192,8 +198,8 @@ function BaselineAndReformTogetherPlot(props) {
           }),
     },
     {
-      x: x3,
-      y: y4,
+      x: earningsArray,
+      y: reformArray,
       type: "line",
       name: `Reform ${variableLabel}`,
       line: {
@@ -212,8 +218,8 @@ function BaselineAndReformTogetherPlot(props) {
           }),
     },
     {
-      x: x4,
-      y: y5,
+      x: [currentEarnings],
+      y: [currentValue],
       type: "scatter",
       mode: "markers",
       name: `Your reform ${variableLabel}`,
@@ -233,8 +239,8 @@ function BaselineAndReformTogetherPlot(props) {
           }),
     },
     {
-      x: x4,
-      y: y6,
+      x: [currentEarnings],
+      y: [baselineValue],
       type: "scatter",
       mode: "markers",
       name: `Your baseline ${variableLabel}`,
@@ -264,16 +270,13 @@ function BaselineAndReformTogetherPlot(props) {
             title: "Household head employment income",
             ...getPlotlyAxisFormat(
               metadata.variables.employment_income.unit,
-              xaxisValues,
+              earningsArray.concat(currentEarnings),
             ),
             uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
             title: capitalize(variableLabel),
-            ...getPlotlyAxisFormat(
-              metadata.variables[variable].unit,
-              yaxisValues,
-            ),
+            ...yaxisFormat,
             uirevision: metadata.variables.household_net_income.unit,
           },
           ...(useHoverCard
@@ -373,16 +376,14 @@ function BaselineReformDeltaPlot(props) {
     variable,
     useHoverCard = false,
   } = props;
-  const x1 = earningsArray;
-  const y1 = reformArray.map((value, index) => value - baselineArray[index]);
-  const x2 = [currentEarnings];
-  const y2 = [currentValue - baselineValue];
-  const xaxisValues = x1.concat(x2);
-  const yaxisValues = y1.concat(y2);
+  const deltaArray = reformArray.map(
+    (value, index) => value - baselineArray[index],
+  );
+  const currentDelta = [currentValue - baselineValue];
   let data = [
     {
-      x: x1,
-      y: y1,
+      x: earningsArray,
+      y: deltaArray,
       type: "line",
       name: `Change in ${variableLabel}`,
       line: {
@@ -401,8 +402,8 @@ function BaselineReformDeltaPlot(props) {
           }),
     },
     {
-      x: x2,
-      y: y2,
+      x: [currentEarnings],
+      y: [currentDelta],
       type: "scatter",
       mode: "markers",
       name: `Your current change in ${variableLabel}`,
@@ -434,7 +435,7 @@ function BaselineReformDeltaPlot(props) {
             title: "Household head employment income",
             ...getPlotlyAxisFormat(
               metadata.variables.employment_income.unit,
-              xaxisValues,
+              earningsArray.concat(currentEarnings),
             ),
             uirevision: metadata.variables.employment_income.unit,
           },
@@ -442,7 +443,7 @@ function BaselineReformDeltaPlot(props) {
             title: `Change in ${variableLabel}`,
             ...getPlotlyAxisFormat(
               metadata.variables[variable].unit,
-              yaxisValues,
+              deltaArray.concat(currentDelta),
             ),
             uirevision: metadata.variables[variable].unit,
           },

@@ -1,11 +1,10 @@
 import style from "../../../../style";
 import { convertToCurrencyString } from "./convertToCurrencyString";
 
-const ROUNDING_FACTOR = 50000;
-
 export function getCliffs(
   netIncomeArray,
   earningsArray,
+  range,
   isReform = false,
   currency = "$",
   useHoverCard = false,
@@ -31,14 +30,10 @@ export function getCliffs(
     }
   }
 
-  const maxNetIncome = Math.max(...netIncomeArray);
-  const maxCliffShadingHeight =
-    Math.ceil(maxNetIncome / ROUNDING_FACTOR) * ROUNDING_FACTOR;
-
   return cliffs.map((points, i) => {
     return {
       x: [points[0], points[0], points[1], points[1], points[0]],
-      y: [0, maxCliffShadingHeight, maxCliffShadingHeight, 0, 0],
+      y: [0, range[1], range[1], 0, 0],
       fill: "toself",
       mode: "lines",
       fillcolor: style.colors.DARK_GRAY,

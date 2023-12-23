@@ -6,11 +6,12 @@ import {
   getValueFromHousehold,
 } from "../../../api/variables";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import { InputNumber, Select, Switch } from "antd";
+import { Select, Switch } from "antd";
 import useMobile from "../../../layout/Responsive";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";
+import StableInputNumber from "controls/StableInputNumber";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -211,8 +212,8 @@ function HouseholdVariableEntityInput(props) {
     reformValue !== null
       ? reformValue
       : inputValue !== null
-      ? inputValue
-      : simulatedValue;
+        ? inputValue
+        : simulatedValue;
   if (defaultValue === null) {
     if (variable.valueType === "float" || variable.valueType === "int") {
       defaultValue = 0;
@@ -223,11 +224,12 @@ function HouseholdVariableEntityInput(props) {
     }
   }
   const mobile = useMobile();
+
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     const isCurrency = Object.keys(currencyMap).includes(variable.unit);
     control = (
-      <InputNumber
+      <StableInputNumber
         style={{
           width: mobile ? 150 : 200,
         }}
@@ -238,7 +240,7 @@ function HouseholdVariableEntityInput(props) {
           : {})}
         {...(variable.valueType === "float"
           ? {
-              formatter: (value, {userTyping}) =>
+              formatter: (value, { userTyping }) =>
                 (+value).toLocaleString(localeCode(metadata.countryId), {
                   minimumFractionDigits: !userTyping && 2,
                   maximumFractionDigits: 2,
@@ -247,7 +249,8 @@ function HouseholdVariableEntityInput(props) {
           : {})}
         defaultValue={defaultValue}
         autoFocus
-        onChange={submitValue}
+        onPressEnter={(_, value) => submitValue(value)}
+        onBlur={(_, value) => submitValue(value)}
       />
     );
   } else if (variable.valueType === "bool") {
