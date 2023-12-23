@@ -48,7 +48,8 @@ function ContactUs() {
 
 function TwitterEmbed() {
   const displayCategory = useDisplayCategory();
-  const athabascaTwitterLink = "https://www.athabasca.dev/hydra/content/twitteriframes/QOJXetYBdppnFEcjtYUDRuWJmXAMPotTWDeqkkbMQeCkJKwB.html?v=AtCahfJd";
+  const athabascaTwitterLink =
+    "https://www.athabasca.dev/hydra/content/twitteriframes/QOJXetYBdppnFEcjtYUDRuWJmXAMPotTWDeqkkbMQeCkJKwB.html?v=AtCahfJd";
 
   return (
     <div
@@ -57,15 +58,15 @@ function TwitterEmbed() {
         marginRight: 20,
       }}
     >
-      <iframe 
+      <iframe
         scrolling="no" // This is deprecated, but essential to function correctly
         height="100%"
         style={{
           width: "100%",
           height: displayCategory === "mobile" ? "500px" : "100%",
           border: "none",
-          borderRadius: "12px"
-         }}
+          borderRadius: "12px",
+        }}
         src={athabascaTwitterLink}
       />
     </div>
