@@ -1,5 +1,7 @@
 import { useSearchParams } from "react-router-dom";
+
 import { capitalize, localeCode } from "../../../api/language";
+
 import {
   currencyMap,
   getNewHouseholdId,

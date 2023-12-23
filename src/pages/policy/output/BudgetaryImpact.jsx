@@ -46,7 +46,6 @@ export default function BudgetaryImpact(props) {
     (label, index) => valuesBeforeFilter[index] !== 0,
   );
   const screenshotRef = useRef();
-  console.log(values, labels, valuesBeforeFilter, labelsBeforeFilter);
 
   function BudgetaryImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);

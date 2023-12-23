@@ -172,7 +172,6 @@ export default function PolicyOutput(props) {
         .then((res) => res.json())
         .then((intermediateData) => {
           if (averageImpactTime === 20) {
-            console.log(intermediateData);
             setAverageImpactTime(intermediateData.average_time || 20);
           }
         });
