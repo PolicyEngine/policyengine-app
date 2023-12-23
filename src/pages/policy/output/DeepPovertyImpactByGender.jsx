@@ -9,7 +9,6 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
 
-
 const povertyLabels = ["Male", "Female", "All"];
 
 const labelToKey = {
