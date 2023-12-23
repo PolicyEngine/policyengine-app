@@ -83,7 +83,9 @@ export default function BudgetaryImpact(props) {
                     : style.colors.BLUE,
               },
             },
-            connector: { line: { color: style.colors.DARK_GRAY } },
+            connector: {
+              line: { color: style.colors.GRAY, width: 1, dash: "dot" },
+            },
             ...(useHoverCard
               ? {
                   hoverinfo: "none",
