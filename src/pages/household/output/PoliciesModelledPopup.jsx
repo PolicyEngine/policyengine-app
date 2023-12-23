@@ -107,8 +107,8 @@ export default function PoliciesModelledPopup(props) {
             display: "none",
           },
         },
-        icon: null, // Set icon to null to remove the information (i) icon
-        closable: false, // Set closable to false to remove the close button
+        icon: null,
+        closable: false,
         keyboard: true,
       });
     };
