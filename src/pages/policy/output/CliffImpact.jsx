@@ -262,7 +262,11 @@ export default function CliffImpact(props) {
         The cliff rate is the share of households whose net income falls if each
         adult earned an additional {metadata.currency}2,000. The cliff gap is
         the sum of the losses incurred by all households on a cliff if their
-        income rose in this way.
+        income rose in this way.{" "}
+        <a href="https://policyengine.org/us/research/how-would-reforms-affect-cliffs">
+          Read more about how PolicyEngine models the effect of reforms on
+          cliffs.
+        </a>
       </p>
     </ResultsPanel>
   );
