@@ -21,14 +21,14 @@ function PoliciesModelledChecklist(props) {
         2023,
         "your household",
         householdInput,
-        metadata,
+        metadata
       );
       if (actualValue === value) {
         modelledNames = modelledNames.concat(
-          modelledPolicies.filtered[variable][value].modelled || [],
+          modelledPolicies.filtered[variable][value].modelled || []
         );
         notModelledNames = notModelledNames.concat(
-          modelledPolicies.filtered[variable][value].not_modelled || [],
+          modelledPolicies.filtered[variable][value].not_modelled || []
         );
       }
     }
@@ -55,7 +55,7 @@ function PoliciesModelledChecklist(props) {
     );
   });
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       {modelledSteps}
       {notModelledNames.length > 0 && (
         <>
@@ -107,6 +107,8 @@ export default function PoliciesModelledPopup(props) {
             display: "none",
           },
         },
+        icon: null, // Set icon to null to remove the information (i) icon
+        closable: false, // Set closable to false to remove the close button
         keyboard: true,
       });
     };
