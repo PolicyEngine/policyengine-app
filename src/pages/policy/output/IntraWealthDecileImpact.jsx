@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
@@ -9,7 +9,7 @@ import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-const IntraWealthDecileImpact = React.forwardRef((props, ref) => {
+export default function IntraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata } = props;
   const deciles = impact.intra_wealth_decile.deciles;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -458,40 +458,6 @@ const IntraWealthDecileImpact = React.forwardRef((props, ref) => {
         options.find((option) => option.value === region)?.label +
         " residents";
   const screenshotRef = useRef();
-  const csvHeader = [
-    "Wealth Decile",
-    "Gain more than 5%",
-    "Gain less than 5%",
-    "No change",
-    "Lose less than 5%",
-    "Lose more than 5%",
-  ];
-  const csvData = [
-    csvHeader,
-    ...decileNumbers.map((decile) => {
-      return [
-        decile,
-        deciles["Gain more than 5%"][decile - 1],
-        deciles["Gain less than 5%"][decile - 1],
-        deciles["No change"][decile - 1],
-        deciles["Lose less than 5%"][decile - 1],
-        deciles["Lose more than 5%"][decile - 1],
-      ];
-    }),
-    [
-      "All",
-      all["Gain more than 5%"],
-      all["Gain less than 5%"],
-      all["No change"],
-      all["Lose less than 5%"],
-      all["Lose more than 5%"],
-    ],
-  ];
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -513,7 +479,40 @@ const IntraWealthDecileImpact = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-IntraWealthDecileImpact.displayName = "IntraWealthDecileImpact";
+}
 
-export default IntraWealthDecileImpact;
+IntraWealthDecileImpact.getCsvData = (impact) => {
+  const deciles = impact.intra_wealth_decile.deciles;
+  const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const all = impact.intra_wealth_decile.all;
+  const header = [
+    "Wealth Decile",
+    "Gain more than 5%",
+    "Gain less than 5%",
+    "No change",
+    "Lose less than 5%",
+    "Lose more than 5%",
+  ];
+  const data = [
+    header,
+    ...decileNumbers.map((decile) => {
+      return [
+        decile,
+        deciles["Gain more than 5%"][decile - 1],
+        deciles["Gain less than 5%"][decile - 1],
+        deciles["No change"][decile - 1],
+        deciles["Lose less than 5%"][decile - 1],
+        deciles["Lose more than 5%"][decile - 1],
+      ];
+    }),
+    [
+      "All",
+      all["Gain more than 5%"],
+      all["Gain less than 5%"],
+      all["No change"],
+      all["Lose less than 5%"],
+      all["Lose more than 5%"],
+    ],
+  ];
+  return data;
+};

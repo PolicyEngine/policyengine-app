@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  useImperativeHandle,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -14,7 +9,23 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
 
-const PovertyImpactByRace = React.forwardRef((props, ref) => {
+const povertyLabels = [
+  "White (non-Hispanic)",
+  "Black (non-Hispanic)",
+  "Hispanic",
+  "Other",
+  "All",
+];
+
+const labelToKey = {
+  "White (non-Hispanic)": "white",
+  "Black (non-Hispanic)": "black",
+  Hispanic: "hispanic",
+  Other: "other",
+  All: "all",
+};
+
+export default function PovertyImpactByRace(props) {
   const { impact, policyLabel, metadata } = props;
   // white, black, hispanic, other
   const whitePovertyChange =
@@ -46,20 +57,6 @@ const PovertyImpactByRace = React.forwardRef((props, ref) => {
   useEffect(() => {
     addChanges(povertyChanges);
   }, [povertyChanges, addChanges]);
-  const povertyLabels = [
-    "White (non-Hispanic)",
-    "Black (non-Hispanic)",
-    "Hispanic",
-    "Other",
-    "All",
-  ];
-  const labelToKey = {
-    "White (non-Hispanic)": "white",
-    "Black (non-Hispanic)": "black",
-    Hispanic: "hispanic",
-    Other: "other",
-    All: "all",
-  };
   const mobile = useMobile();
 
   function PovertyImpactByRacePlot(props) {
@@ -118,13 +115,13 @@ const PovertyImpactByRace = React.forwardRef((props, ref) => {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                        ? `would remain at ${percent(baseline)}.`
-                        : (change > 0 ? "would rise " : "would fall ") +
-                          `by less than 0.1%.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : change === 0
+                            ? `would remain at ${percent(baseline)}.`
+                            : (change > 0 ? "would rise " : "would fall ") +
+                              `by less than 0.1%.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -196,13 +193,13 @@ const PovertyImpactByRace = React.forwardRef((props, ref) => {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                    ? `would remain at ${percent(baseline)}.`
-                    : (change > 0 ? "would rise " : "would fall ") +
-                      `by less than 0.1%.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -236,9 +233,34 @@ const PovertyImpactByRace = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ["Race", "Baseline", "Reform", "Change"];
-  const csvData = [
-    csvHeader,
+
+  return (
+    <>
+      <DownloadableScreenshottable ref={screenshotRef}>
+        <h2>
+          {policyLabel}{" "}
+          {totalPovertyChange > 0
+            ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : totalPovertyChange < 0
+              ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the poverty rate ${label}`}
+        </h2>
+        <HoverCard>
+          <PovertyImpactByRacePlot />
+        </HoverCard>
+      </DownloadableScreenshottable>
+      <p>
+        The chart above shows the relative change in the poverty rate for each
+        top-level racial and ethnic group.
+      </p>
+    </>
+  );
+}
+
+PovertyImpactByRace.getCsvData = (impact) => {
+  const header = ["Race", "Baseline", "Reform", "Change"];
+  const data = [
+    header,
     ...povertyLabels.map((label) => {
       const baseline =
         label === "All"
@@ -252,34 +274,5 @@ const PovertyImpactByRace = React.forwardRef((props, ref) => {
       return [label, baseline, reform, change];
     }),
   ];
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
-
-  return (
-    <>
-      <DownloadableScreenshottable ref={screenshotRef}>
-        <h2>
-          {policyLabel}{" "}
-          {totalPovertyChange > 0
-            ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : totalPovertyChange < 0
-            ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the poverty rate ${label}`}
-        </h2>
-        <HoverCard>
-          <PovertyImpactByRacePlot />
-        </HoverCard>
-      </DownloadableScreenshottable>
-      <p>
-        The chart above shows the relative change in the poverty rate for each
-        top-level racial and ethnic group.
-      </p>
-    </>
-  );
-});
-PovertyImpactByRace.displayName = "PovertyImpactByRace";
-
-export default PovertyImpactByRace;
+  return data;
+};

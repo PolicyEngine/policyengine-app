@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useImperativeHandle,
-} from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -14,41 +9,61 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
 
-const DeepPovertyImpact = React.forwardRef((props, ref) => {
-  const { impact, policyLabel, metadata } = props;
+const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
+
+const labelToKey = {
+  Children: "child",
+  "Working-age adults": "adult",
+  Seniors: "senior",
+  All: "all",
+};
+
+class DeepPovertyImpact {}
+
+DeepPovertyImpact.getProps = (impact) => {
+  const deepPoverty = impact.poverty.deep_poverty;
   const childPovertyChange =
-    impact.poverty.deep_poverty.child.reform /
-      impact.poverty.deep_poverty.child.baseline -
-    1;
+    deepPoverty.child.reform / deepPoverty.child.baseline - 1;
   const adultPovertyChange =
-    impact.poverty.deep_poverty.adult.reform /
-      impact.poverty.deep_poverty.adult.baseline -
-    1;
+    deepPoverty.adult.reform / deepPoverty.adult.baseline - 1;
   const seniorPovertyChange =
-    impact.poverty.deep_poverty.senior.reform /
-      impact.poverty.deep_poverty.senior.baseline -
-    1;
+    deepPoverty.senior.reform / deepPoverty.senior.baseline - 1;
   const totalPovertyChange =
-    impact.poverty.deep_poverty.all.reform /
-      impact.poverty.deep_poverty.all.baseline -
-    1;
-  const povertyChanges = [
-    childPovertyChange,
-    adultPovertyChange,
-    seniorPovertyChange,
-    totalPovertyChange,
+    deepPoverty.all.reform / deepPoverty.all.baseline - 1;
+  return {
+    deepPoverty: deepPoverty,
+    povertyChanges: [
+      childPovertyChange,
+      adultPovertyChange,
+      seniorPovertyChange,
+      totalPovertyChange,
+    ],
+  };
+};
+
+DeepPovertyImpact.getCsvData = (props) => {
+  const { deepPoverty, povertyChanges } = props;
+  const header = ["Age Group", "Baseline", "Reform", "Change"];
+  const data = [
+    header,
+    ...povertyLabels.map((label, index) => {
+      return [
+        label,
+        deepPoverty[labelToKey[label]].baseline,
+        deepPoverty[labelToKey[label]].reform,
+        povertyChanges[index],
+      ];
+    }),
   ];
+  return data;
+};
+
+DeepPovertyImpact.Chart = (props) => {
+  const { deepPoverty, povertyChanges, policyLabel, metadata } = props;
   const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
   useEffect(() => {
     addChanges(povertyChanges);
   }, [povertyChanges, addChanges]);
-  const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
-  const labelToKey = {
-    Children: "child",
-    "Working-age adults": "adult",
-    Seniors: "senior",
-    All: "all",
-  };
   const mobile = useMobile();
 
   function DeepPovertyImpactPlot(props) {
@@ -82,10 +97,8 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
                   customdata: povertyLabels.map((x, i) => {
                     const group = x;
                     const change = povertyChanges[i];
-                    const baseline =
-                      impact.poverty.deep_poverty[labelToKey[group]].baseline;
-                    const reform =
-                      impact.poverty.deep_poverty[labelToKey[group]].reform;
+                    const baseline = deepPoverty[labelToKey[group]].baseline;
+                    const reform = deepPoverty[labelToKey[group]].reform;
                     return `The percentage of ${
                       group === "All" ? "people" : group.toLowerCase()
                     } in deep poverty<br>${
@@ -94,13 +107,13 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                        ? `would remain at ${percent(baseline)}.`
-                        : (change > 0 ? "would rise " : "would fall ") +
-                          `by less than 0.1%.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : change === 0
+                            ? `would remain at ${percent(baseline)}.`
+                            : (change > 0 ? "would rise " : "would fall ") +
+                              `by less than 0.1%.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -148,10 +161,8 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
               onHover: (data) => {
                 const group = data.points[0].x;
                 const change = data.points[0].y;
-                const baseline =
-                  impact.poverty.deep_poverty[labelToKey[group]].baseline;
-                const reform =
-                  impact.poverty.deep_poverty[labelToKey[group]].reform;
+                const baseline = deepPoverty[labelToKey[group]].baseline;
+                const reform = deepPoverty[labelToKey[group]].reform;
                 const message = `The percentage of ${
                   group === "All" ? "people" : group.toLowerCase()
                 } in deep poverty ${
@@ -160,13 +171,13 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                    ? `would remain at ${percent(baseline)}.`
-                    : (change > 0 ? "would rise " : "would fall ") +
-                      `by less than 0.1%.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -182,12 +193,11 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
     );
   }
 
+  const totalPovertyChange = povertyChanges[3];
   const povertyRateChange = percent(Math.abs(totalPovertyChange));
   const percentagePointChange =
     Math.round(
-      Math.abs(
-        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline,
-      ) * 1000,
+      Math.abs(deepPoverty.all.reform - deepPoverty.all.baseline) * 1000,
     ) / 10;
   const screenshotRef = useRef();
   const urlParams = new URLSearchParams(window.location.search);
@@ -200,25 +210,6 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
 
-  const csvHeader = ["Age Group", "Baseline", "Reform", "Change"];
-  const csvData = [
-    csvHeader,
-    ...povertyLabels.map((label, index) => {
-      return [
-        label,
-        impact.poverty.deep_poverty[labelToKey[label]].baseline,
-        impact.poverty.deep_poverty[labelToKey[label]].reform,
-        povertyChanges[index],
-      ];
-    }),
-  ];
-
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
-
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
@@ -227,8 +218,8 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
           {totalPovertyChange > 0
             ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
+              ? `would lower the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard>
           <DeepPovertyImpactPlot />
@@ -240,7 +231,8 @@ const DeepPovertyImpact = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-DeepPovertyImpact.displayName = "DeepPovertyImpact";
+};
+
+DeepPovertyImpact.Chart.displayName = "DeepPovertyImpact.Chart";
 
 export default DeepPovertyImpact;

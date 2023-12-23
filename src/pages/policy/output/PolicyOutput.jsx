@@ -308,8 +308,8 @@ export default function PolicyOutput(props) {
   }
   let pane;
   const filename = /policyOutput\.(.+)/.exec(focus)[1] + `${policyLabel}`;
-  const childRef = useRef();
   let showFileDownloadButtons = !mobile;
+  let getCsvData;
 
   if (!impact && !skipImpacts) {
     // Show a Progress bar that fills up over time, taking 100 seconds to fill.
@@ -333,154 +333,161 @@ export default function PolicyOutput(props) {
     );
   } else if (focus === "policyOutput.netIncome") {
     document.title = `${policyLabel} | Budgetary impact | PolicyEngine`;
+    const props = BudgetaryImpact.getProps(impact);
     pane = (
-      <BudgetaryImpact
-        ref={childRef}
+      <BudgetaryImpact.Chart
+        {...props}
         metadata={metadata}
-        impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => BudgetaryImpact.getCsvData(props);
   } else if (focus === "policyOutput.detailedBudgetaryImpact") {
     document.title = `${policyLabel} | Detailed budgetary impact | PolicyEngine`;
     pane = (
       <DetailedBudgetaryImpact
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => DetailedBudgetaryImpact.getCsvData(impact, metadata);
   } else if (focus === "policyOutput.decileRelativeImpact") {
     document.title = `${policyLabel} | Relative impact by decile | PolicyEngine`;
     pane = (
       <RelativeImpactByDecile
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => RelativeImpactByDecile.getCsvData(impact);
   } else if (focus === "policyOutput.decileAverageImpact") {
     document.title = `${policyLabel} | Average impact by decile | PolicyEngine`;
     pane = (
       <AverageImpactByDecile
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => AverageImpactByDecile.getCsvData(impact);
   } else if (focus === "policyOutput.intraDecileImpact") {
     document.title = `${policyLabel} | Income intra-decile impact | PolicyEngine`;
     pane = (
       <IntraDecileImpact
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => IntraDecileImpact.getCsvData(impact);
   } else if (focus === "policyOutput.povertyImpact") {
     document.title = `${policyLabel} | Poverty impact | PolicyEngine`;
     pane = (
       <PovertyChangeProvider>
         <PovertyImpact
-          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
         />
       </PovertyChangeProvider>
     );
+    getCsvData = () => PovertyImpact.getCsvData(impact);
   } else if (focus === "policyOutput.deepPovertyImpact") {
     document.title = `${policyLabel} | Deep poverty impact | PolicyEngine`;
+    const props = DeepPovertyImpact.getProps(impact);
     pane = (
       <PovertyChangeProvider>
-        <DeepPovertyImpact
-          ref={childRef}
+        <DeepPovertyImpact.Chart
+          {...props}
           metadata={metadata}
-          impact={impact}
           policyLabel={policyLabel}
         />
       </PovertyChangeProvider>
     );
+    getCsvData = () => DeepPovertyImpact.getCsvData(props);
   } else if (focus === "policyOutput.genderPovertyImpact") {
     document.title = `${policyLabel} | Gender poverty impact | PolicyEngine`;
     pane = (
       <PovertyChangeProvider>
         <PovertyImpactByGender
-          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
         />
       </PovertyChangeProvider>
     );
+    getCsvData = () => PovertyImpactByGender.getCsvData(impact);
   } else if (focus === "policyOutput.genderDeepPovertyImpact") {
     document.title = `${policyLabel} | Gender deep poverty impact | PolicyEngine`;
+    const props = DeepPovertyImpactByGender.getProps(impact);
     pane = (
       <PovertyChangeProvider>
-        <DeepPovertyImpactByGender
-          ref={childRef}
+        <DeepPovertyImpactByGender.Chart
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
         />
       </PovertyChangeProvider>
     );
+    getCsvData = () => DeepPovertyImpactByGender.getCsvData(props);
   } else if (focus === "policyOutput.racialPovertyImpact") {
     document.title = `${policyLabel} | Racial poverty impact | PolicyEngine`;
     pane = (
       <PovertyChangeProvider>
         <PovertyImpactByRace
-          ref={childRef}
           metadata={metadata}
           impact={impact}
           policyLabel={policyLabel}
         />
       </PovertyChangeProvider>
     );
+    getCsvData = () => PovertyImpactByRace.getCsvData(impact);
   } else if (focus === "policyOutput.inequalityImpact") {
     document.title = `${policyLabel} | Inequality impact | PolicyEngine`;
     pane = (
       <InequalityImpact
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => InequalityImpact.getCsvData(impact);
   } else if (focus === "policyOutput.wealthDecileAverageImpact") {
     document.title = `${policyLabel} | Average impact by wealth decile | PolicyEngine`;
     pane = (
       <AverageImpactByWealthDecile
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => AverageImpactByWealthDecile.getCsvData(impact);
   } else if (focus === "policyOutput.wealthDecileRelativeImpact") {
     document.title = `${policyLabel} | Relative impact by wealth decile | PolicyEngine`;
     pane = (
       <RelativeImpactByWealthDecile
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => RelativeImpactByWealthDecile.getCsvData(impact);
   } else if (focus === "policyOutput.intraWealthDecileImpact") {
     document.title = `${policyLabel} | Wealth intra-decile impact | PolicyEngine`;
     pane = (
       <IntraWealthDecileImpact
-        ref={childRef}
         metadata={metadata}
         impact={impact}
         policyLabel={policyLabel}
       />
     );
+    getCsvData = () => IntraWealthDecileImpact.getCsvData(impact);
+  } else if (focus === "policyOutput.cliffImpact") {
+    document.title = `${policyLabel} | Cliff impact | PolicyEngine`;
+    pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
+    getCsvData = () => CliffImpact.getCsvData(impact);
   } else if (focus === "policyOutput.codeReproducibility") {
     document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = <Reproducibility metadata={metadata} policy={policy} />;
@@ -498,17 +505,6 @@ export default function PolicyOutput(props) {
       />
     );
     showFileDownloadButtons = false;
-  }
-
-  if (focus === "policyOutput.cliffImpact") {
-    document.title = `${policyLabel} | Cliff impact | PolicyEngine`;
-    pane = (
-      <CliffImpact
-        ref={childRef}
-        metadata={metadata}
-        policyLabel={policyLabel}
-      />
-    );
   }
 
   async function downloadPng() {
@@ -533,7 +529,7 @@ export default function PolicyOutput(props) {
   }
 
   function downloadCsv() {
-    const data = childRef.current.getCsvData();
+    const data = getCsvData();
     if (data !== null) {
       const csvContent = data
         .map((row) => row.map((cell) => `"${cell}"`).join(","))

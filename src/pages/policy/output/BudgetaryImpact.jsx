@@ -1,24 +1,19 @@
-import React, { useContext, useImperativeHandle, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, localeCode } from "../../../api/language";
 import HoverCard, { HoverCardContext } from "../../../layout/HoverCard";
-import useMobile from "../../../layout/Responsive";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-const BudgetaryImpact = React.forwardRef((props, ref) => {
-  const { impact, policyLabel, metadata } = props;
-  const mobile = useMobile();
+class BudgetaryImpact {}
 
+BudgetaryImpact.getProps = (impact, mobile) => {
   const budgetaryImpact = impact.budget.budgetary_impact;
   const spendingImpact = impact.budget.benefit_spending_impact;
   const stateTaxImpact = impact.budget.state_tax_revenue_impact;
   const taxImpact = impact.budget.tax_revenue_impact - stateTaxImpact;
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
 
   let desktopLabels = [
     "Federal tax revenues",
@@ -43,8 +38,28 @@ const BudgetaryImpact = React.forwardRef((props, ref) => {
   const labels = labelsBeforeFilter.filter(
     (label, index) => valuesBeforeFilter[index] !== 0,
   );
+  return {
+    labels: labels,
+    values: values,
+    budgetaryImpact: budgetaryImpact,
+    mobile: mobile,
+  };
+};
+
+BudgetaryImpact.getCsvData = (props) => {
+  const { labels, values } = props;
+  const data = labels.map((label, index) => {
+    return [label, values[index]];
+  });
+  return data;
+};
+
+BudgetaryImpact.Chart = (props) => {
+  const { labels, values, budgetaryImpact, mobile, policyLabel, metadata } =
+    props;
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
   const screenshotRef = useRef();
-  console.log(values, labels, valuesBeforeFilter, labelsBeforeFilter);
 
   function BudgetaryImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
@@ -100,13 +115,13 @@ const BudgetaryImpact = React.forwardRef((props, ref) => {
                       relevantFigure < 0
                         ? `This reform would increase<br>`
                         : relevantFigure > 0
-                        ? `This reform would reduce<br>`
-                        : `This reform would not impact<br>`;
+                          ? `This reform would reduce<br>`
+                          : `This reform would not impact<br>`;
                     body += label.toLowerCase().includes("tax")
                       ? label.toLowerCase()
                       : label.toLowerCase().includes("benefit")
-                      ? "benefit spending"
-                      : "the budget deficit";
+                        ? "benefit spending"
+                        : "the budget deficit";
                     if (relevantFigure === 0) {
                       body += ".";
                     } else {
@@ -173,13 +188,13 @@ const BudgetaryImpact = React.forwardRef((props, ref) => {
                   relevantFigure < 0
                     ? "This reform would increase "
                     : relevantFigure > 0
-                    ? "This reform would reduce "
-                    : "This reform would not impact ";
+                      ? "This reform would reduce "
+                      : "This reform would not impact ";
                 body += label.toLowerCase().includes("tax")
                   ? label.toLowerCase()
                   : label.toLowerCase().includes("benefit")
-                  ? "benefit spending"
-                  : "the budget deficit";
+                    ? "benefit spending"
+                    : "the budget deficit";
                 if (relevantFigure === 0) {
                   body += ".";
                 } else {
@@ -209,14 +224,6 @@ const BudgetaryImpact = React.forwardRef((props, ref) => {
     region === "us" || region === "uk"
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
-  const csvData = labels.map((label, index) => {
-    return [label, values[index]];
-  });
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -235,7 +242,8 @@ const BudgetaryImpact = React.forwardRef((props, ref) => {
       </DownloadableScreenshottable>
     </>
   );
-});
-BudgetaryImpact.displayName = "BudgetaryImpact";
+};
+
+BudgetaryImpact.Chart.displayName = "BudgetaryImpact.Chart";
 
 export default BudgetaryImpact;

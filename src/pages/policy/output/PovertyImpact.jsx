@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useRef,
-  useImperativeHandle,
-} from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -14,7 +9,16 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
 
-const PovertyImpact = React.forwardRef((props, ref) => {
+const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
+
+const labelToKey = {
+  Children: "child",
+  "Working-age adults": "adult",
+  Seniors: "senior",
+  All: "all",
+};
+
+export default function PovertyImpact(props) {
   const { impact, policyLabel, metadata } = props;
   const childPovertyChange =
     impact.poverty.poverty.child.reform /
@@ -40,13 +44,6 @@ const PovertyImpact = React.forwardRef((props, ref) => {
   useEffect(() => {
     addChanges(povertyChanges);
   }, [povertyChanges, addChanges]);
-  const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
-  const labelToKey = {
-    Children: "child",
-    "Working-age adults": "adult",
-    Seniors: "senior",
-    All: "all",
-  };
   const mobile = useMobile();
 
   function PovertyImpactPlot(props) {
@@ -92,13 +89,13 @@ const PovertyImpact = React.forwardRef((props, ref) => {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                        ? `would remain at ${percent(baseline)}.`
-                        : (change > 0 ? "would rise " : "would fall ") +
-                          `by less than 0.1%.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : change === 0
+                            ? `would remain at ${percent(baseline)}.`
+                            : (change > 0 ? "would rise " : "would fall ") +
+                              `by less than 0.1%.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -157,13 +154,13 @@ const PovertyImpact = React.forwardRef((props, ref) => {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                    ? `would remain at ${percent(baseline)}.`
-                    : (change > 0 ? "would rise " : "would fall ") +
-                      ` by less than 0.1%.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          ` by less than 0.1%.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -197,22 +194,6 @@ const PovertyImpact = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ["Age Group", "Baseline", "Reform", "Change"];
-  const csvData = [
-    csvHeader,
-    ...povertyLabels.map((label) => {
-      const baseline = impact.poverty.poverty[labelToKey[label]].baseline;
-      const reform = impact.poverty.poverty[labelToKey[label]].reform;
-      const change = reform / baseline - 1;
-      return [label, baseline, reform, change];
-    }),
-  ];
-
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -222,8 +203,8 @@ const PovertyImpact = React.forwardRef((props, ref) => {
           {totalPovertyChange > 0
             ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the poverty rate ${label}`}
+              ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the poverty rate ${label}`}
         </h2>
         <HoverCard>
           <PovertyImpactPlot />
@@ -235,7 +216,18 @@ const PovertyImpact = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-PovertyImpact.displayName = "PovertyImpact";
+}
 
-export default PovertyImpact;
+PovertyImpact.getCsvData = (impact) => {
+  const header = ["Age Group", "Baseline", "Reform", "Change"];
+  const data = [
+    header,
+    ...povertyLabels.map((label) => {
+      const baseline = impact.poverty.poverty[labelToKey[label]].baseline;
+      const reform = impact.poverty.poverty[labelToKey[label]].reform;
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+  return data;
+};

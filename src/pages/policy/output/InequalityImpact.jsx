@@ -1,4 +1,4 @@
-import React, { useContext, useImperativeHandle, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -8,7 +8,7 @@ import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-const InequalityImpact = React.forwardRef((props, ref) => {
+export default function InequalityImpact(props) {
   const { impact, policyLabel, metadata } = props;
 
   const metricChanges = [
@@ -64,17 +64,17 @@ const InequalityImpact = React.forwardRef((props, ref) => {
                             )}, a change of ` +
                             `${change.toFixed(3)}.`
                         : change < -0.001
-                        ? `This reform would reduce<br>the Gini index of net income<br>from ` +
-                          `${baseline.toFixed(3)} to ${reform.toFixed(
-                            3,
-                          )}, a change of ` +
-                          `${percent(change)}.`
-                        : change === 0
-                        ? "This reform would not impact<br>the Gini index of net income."
-                        : (change > 0
-                            ? "This reform would increase "
-                            : "This reform would reduce ") +
-                          "<br>the Gini index of net income<br>by less than 0.1%.";
+                          ? `This reform would reduce<br>the Gini index of net income<br>from ` +
+                            `${baseline.toFixed(3)} to ${reform.toFixed(
+                              3,
+                            )}, a change of ` +
+                            `${percent(change)}.`
+                          : change === 0
+                            ? "This reform would not impact<br>the Gini index of net income."
+                            : (change > 0
+                                ? "This reform would increase "
+                                : "This reform would reduce ") +
+                              "<br>the Gini index of net income<br>by less than 0.1%.";
                     } else if (label === "Top 10% share") {
                       // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
                       const baseline =
@@ -88,17 +88,17 @@ const InequalityImpact = React.forwardRef((props, ref) => {
                             )}, an increase of ` +
                             `${percent(change)}.`
                         : change < -0.001
-                        ? `This reform would reduce the share<br>of total net income held by people<br>in the top 10% of households<br>from ` +
-                          `${percent(baseline)} to ${percent(
-                            reform,
-                          )}, a reduction of ` +
-                          `${percent(-change)}.`
-                        : change === 0
-                        ? "This reform would not impact the share<br>of total net income held by people<br>in the top 10% of households."
-                        : (change > 0
-                            ? "This reform would increase "
-                            : "This reform would reduce ") +
-                          "the share<br>of total net income held by people<br>in the top 10% of households<br>by less than 0.1%.";
+                          ? `This reform would reduce the share<br>of total net income held by people<br>in the top 10% of households<br>from ` +
+                            `${percent(baseline)} to ${percent(
+                              reform,
+                            )}, a reduction of ` +
+                            `${percent(-change)}.`
+                          : change === 0
+                            ? "This reform would not impact the share<br>of total net income held by people<br>in the top 10% of households."
+                            : (change > 0
+                                ? "This reform would increase "
+                                : "This reform would reduce ") +
+                              "the share<br>of total net income held by people<br>in the top 10% of households<br>by less than 0.1%.";
                     } else {
                       // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
                       const baseline =
@@ -112,17 +112,17 @@ const InequalityImpact = React.forwardRef((props, ref) => {
                             )}, an increase of ` +
                             `${percent(change)}.`
                         : change < -0.001
-                        ? `This reform would reduce the share<br>of total net income held by people<br>in the top 1% of households<br>from ` +
-                          `${percent(baseline)} to ${percent(
-                            reform,
-                          )}, a reduction of ` +
-                          `${percent(-change)}.`
-                        : change === 0
-                        ? "This reform would not impact the share<br>of total net income held by people<br>in the top 1% of households."
-                        : (change > 0
-                            ? "This reform would increase "
-                            : "This reform would reduce ") +
-                          "the share<br>of total net income held by people<br>in the top 10% of households<br>by less than 0.1%.";
+                          ? `This reform would reduce the share<br>of total net income held by people<br>in the top 1% of households<br>from ` +
+                            `${percent(baseline)} to ${percent(
+                              reform,
+                            )}, a reduction of ` +
+                            `${percent(-change)}.`
+                          : change === 0
+                            ? "This reform would not impact the share<br>of total net income held by people<br>in the top 1% of households."
+                            : (change > 0
+                                ? "This reform would increase "
+                                : "This reform would reduce ") +
+                              "the share<br>of total net income held by people<br>in the top 10% of households<br>by less than 0.1%.";
                     }
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -182,15 +182,15 @@ const InequalityImpact = React.forwardRef((props, ref) => {
                   ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
                   ${change.toFixed(3)}.`
                       : change < -0.001
-                      ? `This reform would reduce the Gini index of net income from
+                        ? `This reform would reduce the Gini index of net income from
                   ${baseline.toFixed(3)} to ${reform.toFixed(3)}, a change of
                   ${percent(change)}.`
-                      : change === 0
-                      ? "This reform would not impact the Gini index of net income."
-                      : (change > 0
-                          ? "This reform would increase "
-                          : "This reform would reduce ") +
-                        "the Gini index of net income by less than 0.1%.";
+                        : change === 0
+                          ? "This reform would not impact the Gini index of net income."
+                          : (change > 0
+                              ? "This reform would increase "
+                              : "This reform would reduce ") +
+                            "the Gini index of net income by less than 0.1%.";
                 } else if (label === "Top 10% share") {
                   // 'This reform reduces/increases benefit spending by £X/This reform has no impact on benefit spending'
                   const baseline = impact.inequality.top_10_pct_share.baseline;
@@ -202,15 +202,15 @@ const InequalityImpact = React.forwardRef((props, ref) => {
                   ${percent(baseline)} to ${percent(reform)}, an increase of
                   ${percent(change)}.`
                       : change < -0.001
-                      ? `This reform would reduce the share of total net income held by people in the top 10% of households from
+                        ? `This reform would reduce the share of total net income held by people in the top 10% of households from
                   ${percent(baseline)} to ${percent(reform)}, a reduction of
                   ${percent(-change)}.`
-                      : change === 0
-                      ? "This reform would not impact the share of total net income held by people in the top 10% of households."
-                      : (change > 0
-                          ? "This reform would increase "
-                          : "This reform would reduce ") +
-                        "the share of total net income held by people in the top 10% of households by less than 0.1%.";
+                        : change === 0
+                          ? "This reform would not impact the share of total net income held by people in the top 10% of households."
+                          : (change > 0
+                              ? "This reform would increase "
+                              : "This reform would reduce ") +
+                            "the share of total net income held by people in the top 10% of households by less than 0.1%.";
                 } else {
                   // 'This reform reduces/increases the budget deficit by £X/This reform has no impact on the budget deficit'
                   const baseline = impact.inequality.top_1_pct_share.baseline;
@@ -222,15 +222,15 @@ const InequalityImpact = React.forwardRef((props, ref) => {
                   ${percent(baseline)} to ${percent(reform)}, an increase of
                   ${percent(change)}.`
                       : change < -0.001
-                      ? `This reform would reduce the share of total net income held by people in the top 1% of households from
+                        ? `This reform would reduce the share of total net income held by people in the top 1% of households from
                   ${percent(baseline)} to ${percent(reform)}, a reduction of
                   ${percent(-change)}.`
-                      : change === 0
-                      ? "This reform would not impact the share of total net income held by people in the top 1% of households."
-                      : (change > 0
-                          ? "This reform would increase "
-                          : "This reform would reduce ") +
-                        "the share of total net income held by people in the top 10% of households by less than 0.1%.";
+                        : change === 0
+                          ? "This reform would not impact the share of total net income held by people in the top 1% of households."
+                          : (change > 0
+                              ? "This reform would increase "
+                              : "This reform would reduce ") +
+                            "the share of total net income held by people in the top 10% of households by less than 0.1%.";
                 }
                 setHoverCard({
                   title: label,
@@ -252,8 +252,8 @@ const InequalityImpact = React.forwardRef((props, ref) => {
     metricChanges[0] > 0 && metricChanges[1] > 0 && metricChanges[2] > 0
       ? "positive"
       : metricChanges[0] < 0 && metricChanges[1] < 0 && metricChanges[2] < 0
-      ? "negative"
-      : "ambiguous";
+        ? "negative"
+        : "ambiguous";
 
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
@@ -265,32 +265,6 @@ const InequalityImpact = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
-  const metricLabels = ["Gini index", "Top 10% share", "Top 1% share"];
-  const baselineValues = [
-    impact.inequality.gini.baseline,
-    impact.inequality.top_10_pct_share.baseline,
-    impact.inequality.top_1_pct_share.baseline,
-  ];
-  const reformValues = [
-    impact.inequality.gini.reform,
-    impact.inequality.top_10_pct_share.reform,
-    impact.inequality.top_1_pct_share.reform,
-  ];
-  const csvData = [
-    csvHeader,
-    ...metricLabels.map((label, index) => {
-      const baseline = baselineValues[index];
-      const reform = reformValues[index];
-      const change = reform / baseline - 1;
-      return [label, baseline, reform, change];
-    }),
-  ];
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -300,8 +274,8 @@ const InequalityImpact = React.forwardRef((props, ref) => {
           {impactLabel === "positive"
             ? ` would increase inequality ${label}`
             : impactLabel === "negative"
-            ? ` would reduce inequality ${label}`
-            : ` would have an ambiguous effect on inequality ${label}`}
+              ? ` would reduce inequality ${label}`
+              : ` would have an ambiguous effect on inequality ${label}`}
         </h2>
         <HoverCard>
           <InequalityImpactPlot />
@@ -313,7 +287,29 @@ const InequalityImpact = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-InequalityImpact.displayName = "InequalityImpact";
+}
 
-export default InequalityImpact;
+InequalityImpact.getCsvData = (impact) => {
+  const header = ["Metric", "Baseline", "Reform", "Change"];
+  const metricLabels = ["Gini index", "Top 10% share", "Top 1% share"];
+  const baselineValues = [
+    impact.inequality.gini.baseline,
+    impact.inequality.top_10_pct_share.baseline,
+    impact.inequality.top_1_pct_share.baseline,
+  ];
+  const reformValues = [
+    impact.inequality.gini.reform,
+    impact.inequality.top_10_pct_share.reform,
+    impact.inequality.top_1_pct_share.reform,
+  ];
+  const data = [
+    header,
+    ...metricLabels.map((label, index) => {
+      const baseline = baselineValues[index];
+      const reform = reformValues[index];
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
+  ];
+  return data;
+};

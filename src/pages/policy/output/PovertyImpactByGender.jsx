@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  useImperativeHandle,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -14,7 +9,15 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
 
-const PovertyImpactByGender = React.forwardRef((props, ref) => {
+const povertyLabels = ["Male", "Female", "All"];
+
+const labelToKey = {
+  Male: "male",
+  Female: "female",
+  All: "all",
+};
+
+export default function PovertyImpactByGender(props) {
   const { impact, policyLabel, metadata } = props;
   const malePovertyChange =
     impact.poverty_by_gender.poverty.male.reform /
@@ -35,12 +38,6 @@ const PovertyImpactByGender = React.forwardRef((props, ref) => {
   useEffect(() => {
     addChanges(povertyChanges);
   }, [povertyChanges, addChanges]);
-  const povertyLabels = ["Male", "Female", "All"];
-  const labelToKey = {
-    Male: "male",
-    Female: "female",
-    All: "all",
-  };
   const mobile = useMobile();
 
   function PovertyImpactByGenderPlot(props) {
@@ -94,13 +91,13 @@ const PovertyImpactByGender = React.forwardRef((props, ref) => {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                        ? `would remain at ${percent(baseline)}.`
-                        : (change > 0 ? "would rise " : "would fall ") +
-                          `by less than 0.1%.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : change === 0
+                            ? `would remain at ${percent(baseline)}.`
+                            : (change > 0 ? "would rise " : "would fall ") +
+                              `by less than 0.1%.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -168,13 +165,13 @@ const PovertyImpactByGender = React.forwardRef((props, ref) => {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                    ? `would remain at ${percent(baseline)}.`
-                    : (change > 0 ? "would rise " : "would fall ") +
-                      `by less than 0.1%.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : change === 0
+                        ? `would remain at ${percent(baseline)}.`
+                        : (change > 0 ? "would rise " : "would fall ") +
+                          `by less than 0.1%.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -208,9 +205,34 @@ const PovertyImpactByGender = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
-  const csvData = [
-    csvHeader,
+
+  return (
+    <>
+      <DownloadableScreenshottable ref={screenshotRef}>
+        <h2>
+          {policyLabel}{" "}
+          {totalPovertyChange > 0
+            ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+            : totalPovertyChange < 0
+              ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the poverty rate ${label}`}
+        </h2>
+        <HoverCard>
+          <PovertyImpactByGenderPlot />
+        </HoverCard>
+      </DownloadableScreenshottable>
+      <p>
+        The chart above shows the relative change in the poverty rate for each
+        sex.
+      </p>
+    </>
+  );
+}
+
+PovertyImpactByGender.getCsvData = (impact) => {
+  const header = ["Sex", "Baseline", "Reform", "Change"];
+  const data = [
+    header,
     ...povertyLabels.map((label) => {
       const baseline =
         label === "All"
@@ -224,35 +246,5 @@ const PovertyImpactByGender = React.forwardRef((props, ref) => {
       return [label, baseline, reform, change];
     }),
   ];
-
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
-
-  return (
-    <>
-      <DownloadableScreenshottable ref={screenshotRef}>
-        <h2>
-          {policyLabel}{" "}
-          {totalPovertyChange > 0
-            ? `would raise the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : totalPovertyChange < 0
-            ? `would reduce the poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the poverty rate ${label}`}
-        </h2>
-        <HoverCard>
-          <PovertyImpactByGenderPlot />
-        </HoverCard>
-      </DownloadableScreenshottable>
-      <p>
-        The chart above shows the relative change in the poverty rate for each
-        sex.
-      </p>
-    </>
-  );
-});
-PovertyImpactByGender.displayName = "PovertyImpactByGender";
-
-export default PovertyImpactByGender;
+  return data;
+};

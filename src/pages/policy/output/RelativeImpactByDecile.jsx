@@ -1,4 +1,4 @@
-import { useContext, useImperativeHandle } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { formatVariableValue } from "../../../api/variables";
@@ -10,7 +10,7 @@ import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React, { useRef } from "react";
 
-const RelativeImpactByDecile = React.forwardRef((props, ref) => {
+export default function RelativeImpactByDecile(props) {
   const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
@@ -52,15 +52,15 @@ const RelativeImpactByDecile = React.forwardRef((props, ref) => {
                           relativeChange,
                         )}.`
                       : relativeChange < -0.001
-                      ? `This reform would lower the income<br>of households in the ${decile} decile<br>by an average of ${percent(
-                          -relativeChange,
-                        )}.`
-                      : relativeChange === 0
-                      ? `This reform would not impact the income<br>of households in the ${decile} decile.`
-                      : (relativeChange > 0
-                          ? "This reform would raise "
-                          : "This reform would lower ") +
-                        `the income<br>of households in the ${decile} decile<br>by less than 0.1%.`;
+                        ? `This reform would lower the income<br>of households in the ${decile} decile<br>by an average of ${percent(
+                            -relativeChange,
+                          )}.`
+                        : relativeChange === 0
+                          ? `This reform would not impact the income<br>of households in the ${decile} decile.`
+                          : (relativeChange > 0
+                              ? "This reform would raise "
+                              : "This reform would lower ") +
+                            `the income<br>of households in the ${decile} decile<br>by less than 0.1%.`;
                   }),
                   hovertemplate: `<b>Decile %{x}</b><br><br>%{customdata}<extra></extra>`,
                 }),
@@ -118,15 +118,15 @@ const RelativeImpactByDecile = React.forwardRef((props, ref) => {
                         relativeChange,
                       )}.`
                     : relativeChange < -0.001
-                    ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
-                        -relativeChange,
-                      )}.`
-                    : relativeChange === 0
-                    ? `This reform would not impact the income of households in the ${decile} decile.`
-                    : (relativeChange > 0
-                        ? "This reform would raise "
-                        : "This reform would lower ") +
-                      ` the income of households in the ${decile} decile by less than 0.1%.`;
+                      ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
+                          -relativeChange,
+                        )}.`
+                      : relativeChange === 0
+                        ? `This reform would not impact the income of households in the ${decile} decile.`
+                        : (relativeChange > 0
+                            ? "This reform would raise "
+                            : "This reform would lower ") +
+                          ` the income of households in the ${decile} decile by less than 0.1%.`;
                 setHoverCard({
                   title: `Decile ${data.points[0].x}`,
                   body: message,
@@ -154,20 +154,6 @@ const RelativeImpactByDecile = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ["Income Decile", "Relative Change"];
-  const csvData = [
-    csvHeader,
-    ...Object.entries(impact.decile.relative).map(
-      ([decile, relativeChange]) => {
-        return [decile, relativeChange];
-      },
-    ),
-  ];
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -192,7 +178,17 @@ const RelativeImpactByDecile = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-RelativeImpactByDecile.displayName = "RelativeImpactByDecile";
+}
 
-export default RelativeImpactByDecile;
+RelativeImpactByDecile.getCsvData = (impact) => {
+  const header = ["Income Decile", "Relative Change"];
+  const data = [
+    header,
+    ...Object.entries(impact.decile.relative).map(
+      ([decile, relativeChange]) => {
+        return [decile, relativeChange];
+      },
+    ),
+  ];
+  return data;
+};

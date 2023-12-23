@@ -1,4 +1,4 @@
-import { useContext, useImperativeHandle } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { aggregateCurrency, localeCode } from "../../../api/language";
@@ -9,7 +9,7 @@ import style from "../../../style";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React from "react";
 
-const DetailedBudgetaryImpact = React.forwardRef((props, ref) => {
+export default function DetailedBudgetaryImpact(props) {
   const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
@@ -43,8 +43,6 @@ const DetailedBudgetaryImpact = React.forwardRef((props, ref) => {
       );
     }
   });
-
-  console.log(xValues, yValues, textValues);
 
   function DetailedBudgetaryImpactPlot(props) {
     const setHoverCard = useContext(HoverCardContext);
@@ -155,7 +153,6 @@ const DetailedBudgetaryImpact = React.forwardRef((props, ref) => {
   }
 
   const budgetaryImpact = impact.budget.budgetary_impact;
-
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   const options = metadata.economy_options.region.map((region) => {
@@ -165,22 +162,6 @@ const DetailedBudgetaryImpact = React.forwardRef((props, ref) => {
     region === "us" || region === "uk"
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
-
-  // We have data in the form {child_benefit: {baseline: -14664753735.275948, difference: 0, reform: -14664753735.275948}, ...}
-  // We need it in the form: [["Program", "Baseline", "Reform", "Difference"], ["Child benefit", -14664753735.275948, -14664753735.275948, 0], ...]
-  let csvData = Object.entries(impact.detailed_budget).map(
-    ([program, values]) => {
-      const programLabel = metadata.variables[program].label;
-      return [programLabel, values.baseline, values.reform, values.difference];
-    },
-  );
-  csvData.unshift(["Program", "Baseline", "Reform", "Difference"]);
-
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -199,7 +180,18 @@ const DetailedBudgetaryImpact = React.forwardRef((props, ref) => {
       </Screenshottable>
     </>
   );
-});
-DetailedBudgetaryImpact.displayName = "DetailedBudgetaryImpact";
+}
 
-export default DetailedBudgetaryImpact;
+DetailedBudgetaryImpact.getCsvData = (impact, metadata) => {
+  if (!impact.detailed_budget) {
+    return null;
+  }
+  // We have data in the form {child_benefit: {baseline: -14664753735.275948, difference: 0, reform: -14664753735.275948}, ...}
+  // We need it in the form: [["Program", "Baseline", "Reform", "Difference"], ["Child benefit", -14664753735.275948, -14664753735.275948, 0], ...]
+  let data = Object.entries(impact.detailed_budget).map(([program, values]) => {
+    const programLabel = metadata.variables[program].label;
+    return [programLabel, values.baseline, values.reform, values.difference];
+  });
+  data.unshift(["Program", "Baseline", "Reform", "Difference"]);
+  return data;
+};

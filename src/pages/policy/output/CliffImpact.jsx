@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  useImperativeHandle,
-} from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Plot from "react-plotly.js";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams } from "../../../api/call";
@@ -19,7 +13,7 @@ import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-const CliffImpact = React.forwardRef((props, ref) => {
+export default function CliffImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
@@ -67,33 +61,6 @@ const CliffImpact = React.forwardRef((props, ref) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
-
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      if (impact === null) {
-        return null;
-      }
-      const csvHeader = ["Metric", "Baseline", "Reform", "Change"];
-      const csvData = [
-        csvHeader,
-        ...[
-          {
-            Metric: "Cliff rate",
-            Baseline: impact.baseline.cliff_share,
-            Reform: impact.reform.cliff_share,
-            Change: cliff_share_change,
-          },
-          {
-            Metric: "Cliff gap",
-            Baseline: impact.baseline.cliff_gap,
-            Reform: impact.reform.cliff_gap,
-            Change: cliff_gap_change,
-          },
-        ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
-      ];
-      return csvData;
-    },
-  }));
 
   if (error) {
     return (
@@ -180,10 +147,10 @@ const CliffImpact = React.forwardRef((props, ref) => {
                             baseline,
                           )} to ${formatter(reform)}`
                         : change < -0.0001
-                        ? `would fall ${percent(-change)}<br>from ${formatter(
-                            baseline,
-                          )} to ${formatter(reform)}`
-                        : `would remain at ${percent(baseline)}`
+                          ? `would fall ${percent(-change)}<br>from ${formatter(
+                              baseline,
+                            )} to ${formatter(reform)}`
+                          : `would remain at ${percent(baseline)}`
                     }.`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -246,10 +213,10 @@ const CliffImpact = React.forwardRef((props, ref) => {
                         baseline,
                       )} to ${formatter(reform)}`
                     : change < -0.0001
-                    ? `would fall ${percent(-change)} from ${formatter(
-                        baseline,
-                      )} to ${formatter(reform)}`
-                    : `would remain at ${percent(baseline)}`
+                      ? `would fall ${percent(-change)} from ${formatter(
+                          baseline,
+                        )} to ${formatter(reform)}`
+                      : `would remain at ${percent(baseline)}`
                 }.`;
                 setHoverCard({
                   title: data.points[0].x,
@@ -277,10 +244,10 @@ const CliffImpact = React.forwardRef((props, ref) => {
     cliff_share_change === 0 && cliff_gap_change === 0
       ? "wouldn't affect cliffs"
       : cliff_share_change >= 0 && cliff_gap_change >= 0
-      ? "would make cliffs more prevalent"
-      : cliff_share_change <= 0 && cliff_gap_change <= 0
-      ? "would make cliffs less prevalent"
-      : "would have an ambiguous effect on cliffs"
+        ? "would make cliffs more prevalent"
+        : cliff_share_change <= 0 && cliff_gap_change <= 0
+          ? "would make cliffs less prevalent"
+          : "would have an ambiguous effect on cliffs"
   } ${label}`;
 
   return (
@@ -299,7 +266,37 @@ const CliffImpact = React.forwardRef((props, ref) => {
       </p>
     </ResultsPanel>
   );
-});
-CliffImpact.displayName = "CliffImpact";
+}
 
-export default CliffImpact;
+CliffImpact.getCsvData = (impact) => {
+  if (impact === null) {
+    return null;
+  }
+  const cliff_share_change =
+    Math.round(
+      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100,
+    ) / 100;
+  const cliff_gap_change =
+    Math.round(
+      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000,
+    ) / 1000;
+  const header = ["Metric", "Baseline", "Reform", "Change"];
+  const data = [
+    header,
+    ...[
+      {
+        Metric: "Cliff rate",
+        Baseline: impact.baseline.cliff_share,
+        Reform: impact.reform.cliff_share,
+        Change: cliff_share_change,
+      },
+      {
+        Metric: "Cliff gap",
+        Baseline: impact.baseline.cliff_gap,
+        Reform: impact.reform.cliff_gap,
+        Change: cliff_gap_change,
+      },
+    ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
+  ];
+  return data;
+};

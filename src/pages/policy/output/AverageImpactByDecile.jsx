@@ -1,4 +1,4 @@
-import { useContext, useImperativeHandle } from "react";
+import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { cardinal, localeCode, currencyCode } from "../../../api/language";
@@ -10,7 +10,7 @@ import style from "../../../style";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React, { useRef } from "react";
 
-const AverageImpactByDecile = React.forwardRef((props, ref) => {
+export default function AverageImpactByDecile(props) {
   const { impact, policyLabel, metadata } = props;
   const mobile = useMobile();
 
@@ -55,17 +55,17 @@ const AverageImpactByDecile = React.forwardRef((props, ref) => {
                           0,
                         )} per year.`
                       : change < -0.0001
-                      ? `This reform lowers the income<br>of households in the ${decile} decile<br>by an average of ${formatVariableValue(
-                          metadata.variables.household_net_income,
-                          -change,
-                          0,
-                        )} per year.`
-                      : change === 0
-                      ? `This reform has no impact on the income<br>of households in the ${decile} decile.`
-                      : (change > 0
-                          ? "This reform raises "
-                          : "This reform lowers ") +
-                        `the income<br>of households in the ${decile} decile<br>by less than 0.01%.`;
+                        ? `This reform lowers the income<br>of households in the ${decile} decile<br>by an average of ${formatVariableValue(
+                            metadata.variables.household_net_income,
+                            -change,
+                            0,
+                          )} per year.`
+                        : change === 0
+                          ? `This reform has no impact on the income<br>of households in the ${decile} decile.`
+                          : (change > 0
+                              ? "This reform raises "
+                              : "This reform lowers ") +
+                            `the income<br>of households in the ${decile} decile<br>by less than 0.01%.`;
                   }),
                   hovertemplate: `<b>Decile %{x}</b><br><br>%{customdata}<extra></extra>`,
                 }),
@@ -126,17 +126,17 @@ const AverageImpactByDecile = React.forwardRef((props, ref) => {
                         0,
                       )} per year.`
                     : change < -0.0001
-                    ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
-                        metadata.variables.household_net_income,
-                        -change,
-                        0,
-                      )} per year.`
-                    : change === 0
-                    ? `This reform has no impact on the income of households in the ${decile} decile.`
-                    : (change > 0
-                        ? "This reform raises "
-                        : "This reform lowers ") +
-                      ` the income of households in the ${decile} decile by less than 0.01%.`;
+                      ? `This reform lowers the income of households in the ${decile} decile by an average of ${formatVariableValue(
+                          metadata.variables.household_net_income,
+                          -change,
+                          0,
+                        )} per year.`
+                      : change === 0
+                        ? `This reform has no impact on the income of households in the ${decile} decile.`
+                        : (change > 0
+                            ? "This reform raises "
+                            : "This reform lowers ") +
+                          ` the income of households in the ${decile} decile by less than 0.01%.`;
                 setHoverCard({
                   title: `Decile ${data.points[0].x}`,
                   body: message,
@@ -163,15 +163,6 @@ const AverageImpactByDecile = React.forwardRef((props, ref) => {
     region === "us" || region === "uk"
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
-  const csvData = Object.entries(impact.decile.average).map(([key, value]) => [
-    `Decile ${key}`,
-    value,
-  ]);
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -196,7 +187,11 @@ const AverageImpactByDecile = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-AverageImpactByDecile.displayName = "AverageImpactByDecile";
+}
 
-export default AverageImpactByDecile;
+AverageImpactByDecile.getCsvData = (impact) => {
+  return Object.entries(impact.decile.average).map(([key, value]) => [
+    `Decile ${key}`,
+    value,
+  ]);
+};

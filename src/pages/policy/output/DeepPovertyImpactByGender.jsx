@@ -1,9 +1,4 @@
-import React, {
-  useContext,
-  useImperativeHandle,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { percent } from "../../../api/language";
@@ -14,35 +9,71 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { PovertyChangeContext } from "./PovertyChangeContext";
 
-const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
-  const { impact, policyLabel, metadata } = props;
+
+const povertyLabels = ["Male", "Female", "All"];
+
+const labelToKey = {
+  Male: "male",
+  Female: "female",
+  All: "all",
+};
+
+class DeepPovertyImpactByGender {}
+
+DeepPovertyImpactByGender.getProps = (impact) => {
+  const deepPovertyByGender = impact.poverty_by_gender.deep_poverty;
+  const deepPovertyAll = impact.poverty.deep_poverty.all;
   const malePovertyChange =
-    impact.poverty_by_gender.deep_poverty.male.reform /
-      impact.poverty_by_gender.deep_poverty.male.baseline -
-    1;
+    deepPovertyByGender.male.reform / deepPovertyByGender.male.baseline - 1;
   const femalePovertyChange =
-    impact.poverty_by_gender.deep_poverty.female.reform /
-      impact.poverty_by_gender.deep_poverty.female.baseline -
-    1;
+    deepPovertyByGender.female.reform / deepPovertyByGender.female.baseline - 1;
   const totalPovertyChange =
-    impact.poverty.deep_poverty.all.reform /
-      impact.poverty.deep_poverty.all.baseline -
-    1;
-  const povertyChanges = [
-    malePovertyChange,
-    femalePovertyChange,
-    totalPovertyChange,
+    deepPovertyAll.reform / deepPovertyAll.baseline - 1;
+  return {
+    deepPovertyByGender: deepPovertyByGender,
+    deepPovertyAll: deepPovertyAll,
+    povertyChanges: [
+      malePovertyChange,
+      femalePovertyChange,
+      totalPovertyChange,
+    ],
+  };
+};
+
+DeepPovertyImpactByGender.getCsvData = (props) => {
+  const { deepPovertyByGender, deepPovertyAll } = props;
+  const header = ["Sex", "Baseline", "Reform", "Change"];
+  const data = [
+    header,
+    ...povertyLabels.map((label) => {
+      const baseline =
+        label === "All"
+          ? deepPovertyAll.baseline
+          : deepPovertyByGender[labelToKey[label]].baseline;
+      const reform =
+        label === "All"
+          ? deepPovertyAll.reform
+          : deepPovertyByGender[labelToKey[label]].reform;
+      const change = reform / baseline - 1;
+      return [label, baseline, reform, change];
+    }),
   ];
+  return data;
+};
+
+DeepPovertyImpactByGender.Chart = (props) => {
+  const {
+    deepPovertyByGender,
+    deepPovertyAll,
+    povertyChanges,
+    policyLabel,
+    metadata,
+  } = props;
+
   const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
   useEffect(() => {
     addChanges(povertyChanges);
   }, [povertyChanges, addChanges]);
-  const povertyLabels = ["Male", "Female", "All"];
-  const labelToKey = {
-    Male: "male",
-    Female: "female",
-    All: "all",
-  };
   const mobile = useMobile();
 
   function DeepPovertyImpactByGenderPlot(props) {
@@ -78,17 +109,12 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
                     const change = povertyChanges[i];
                     const baseline =
                       group === "All"
-                        ? impact.poverty.deep_poverty[labelToKey[group]]
-                            .baseline
-                        : impact.poverty_by_gender.deep_poverty[
-                            labelToKey[group]
-                          ].baseline;
+                        ? deepPovertyAll.baseline
+                        : deepPovertyByGender[labelToKey[group]].baseline;
                     const reform =
                       group === "All"
-                        ? impact.poverty.deep_poverty[labelToKey[group]].reform
-                        : impact.poverty_by_gender.deep_poverty[
-                            labelToKey[group]
-                          ].reform;
+                        ? deepPovertyAll.reform
+                        : deepPovertyByGender[labelToKey[group]].reform;
                     return `The percentage of ${
                       group === "All"
                         ? "people"
@@ -99,10 +125,10 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
                             baseline,
                           )} to ${percent(reform)}.`
                         : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : `would remain at ${percent(baseline)}.`
+                          ? `would rise ${percent(change)} from ${percent(
+                              baseline,
+                            )} to ${percent(reform)}.`
+                          : `would remain at ${percent(baseline)}.`
                     }`;
                   }),
                   hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
@@ -152,14 +178,12 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
                 const change = data.points[0].y;
                 const baseline =
                   group === "All"
-                    ? impact.poverty.deep_poverty[labelToKey[group]].baseline
-                    : impact.poverty_by_gender.deep_poverty[labelToKey[group]]
-                        .baseline;
+                    ? deepPovertyAll.baseline
+                    : deepPovertyByGender[labelToKey[group]].baseline;
                 const reform =
                   group === "All"
-                    ? impact.poverty.deep_poverty[labelToKey[group]].reform
-                    : impact.poverty_by_gender.deep_poverty[labelToKey[group]]
-                        .reform;
+                    ? deepPovertyAll.reform
+                    : deepPovertyByGender[labelToKey[group]].reform;
                 const message = `The percentage of ${
                   group === "All"
                     ? "people"
@@ -170,10 +194,10 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
                         baseline,
                       )} to ${percent(reform)}.`
                     : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : `would remain at ${percent(baseline)}.`
+                      ? `would rise ${percent(change)} from ${percent(
+                          baseline,
+                        )} to ${percent(reform)}.`
+                      : `would remain at ${percent(baseline)}.`
                 }`;
                 setHoverCard({
                   title: group,
@@ -189,13 +213,11 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
     );
   }
 
+  const totalPovertyChange = povertyChanges[2];
   const povertyRateChange = percent(Math.abs(totalPovertyChange));
   const percentagePointChange =
     Math.round(
-      Math.abs(
-        impact.poverty.deep_poverty.all.reform -
-          impact.poverty.deep_poverty.all.baseline,
-      ) * 1000,
+      Math.abs(deepPovertyAll.reform - deepPovertyAll.baseline) * 1000,
     ) / 10;
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -208,27 +230,6 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
       ? ""
       : "in " + options.find((option) => option.value === region)?.label;
   const screenshotRef = useRef();
-  const csvHeader = ["Sex", "Baseline", "Reform", "Change"];
-  const csvData = [
-    csvHeader,
-    ...povertyLabels.map((label) => {
-      const baseline =
-        label === "All"
-          ? impact.poverty.deep_poverty[labelToKey[label]].baseline
-          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].baseline;
-      const reform =
-        label === "All"
-          ? impact.poverty.deep_poverty[labelToKey[label]].reform
-          : impact.poverty_by_gender.deep_poverty[labelToKey[label]].reform;
-      const change = reform / baseline - 1;
-      return [label, baseline, reform, change];
-    }),
-  ];
-  useImperativeHandle(ref, () => ({
-    getCsvData() {
-      return csvData;
-    },
-  }));
 
   return (
     <>
@@ -238,8 +239,8 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
           {totalPovertyChange > 0
             ? `would raise the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
             : totalPovertyChange < 0
-            ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
-            : `wouldn't change the deep poverty rate ${label}`}
+              ? `would reduce the deep poverty rate ${label} by ${povertyRateChange} (${percentagePointChange}pp)`
+              : `wouldn't change the deep poverty rate ${label}`}
         </h2>
         <HoverCard>
           <DeepPovertyImpactByGenderPlot />
@@ -251,7 +252,8 @@ const DeepPovertyImpactByGender = React.forwardRef((props, ref) => {
       </p>
     </>
   );
-});
-DeepPovertyImpactByGender.displayName = "DeepPovertyImpactByGender";
+};
+
+DeepPovertyImpactByGender.Chart.displayName = "DeepPovertyImpactByGender";
 
 export default DeepPovertyImpactByGender;
