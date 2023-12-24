@@ -55,7 +55,7 @@ function PoliciesModelledChecklist(props) {
     );
   });
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       {modelledSteps}
       {notModelledNames.length > 0 && (
         <>
@@ -107,6 +107,8 @@ export default function PoliciesModelledPopup(props) {
             display: "none",
           },
         },
+        icon: null,
+        closable: false,
         keyboard: true,
       });
     };
