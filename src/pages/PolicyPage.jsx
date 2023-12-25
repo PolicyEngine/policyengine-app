@@ -16,8 +16,8 @@ import style from "../style";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-import getPolicyOutputTree from "./policy/output/tree";
 import { capitalize } from "../api/language";
+import { getPolicyOutputTree } from "./policy/output/tree";
 
 function ParameterSearch(props) {
   const { metadata } = props;

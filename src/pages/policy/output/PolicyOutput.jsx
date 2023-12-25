@@ -4,28 +4,14 @@ import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import SearchOptions from "../../../controls/SearchOptions";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import BudgetaryImpact from "./BudgetaryImpact";
-import DetailedBudgetaryImpact from "./DetailedBudgetaryImpact";
-import PovertyImpact from "./PovertyImpact";
-import DeepPovertyImpact from "./DeepPovertyImpact";
-import PovertyImpactByGender from "./PovertyImpactByGender";
-import PovertyImpactByRace from "./PovertyImpactByRace";
-import RelativeImpactByDecile from "./RelativeImpactByDecile";
-import AverageImpactByDecile from "./AverageImpactByDecile";
-import IntraDecileImpact from "./IntraDecileImpact";
 import Reproducibility from "./PolicyReproducibility";
 import CliffImpact from "./CliffImpact";
 import BottomCarousel from "../../../layout/BottomCarousel";
-import getPolicyOutputTree from "./tree";
-import InequalityImpact from "./InequalityImpact";
+import { getPolicyOutputTree } from "./tree";
 import { Result, Steps, Progress } from "antd";
 import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 import useMobile from "../../../layout/Responsive";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
-import AverageImpactByWealthDecile from "./AverageImpactByWealthDecile";
-import RelativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
-import IntraWealthDecileImpact from "./IntraWealthDecileImpact";
-import DeepPovertyImpactByGender from "./DeepPovertyImpactByGender";
 import {
   TwitterOutlined,
   FacebookFilled,
@@ -36,9 +22,8 @@ import React from "react";
 import { message } from "antd";
 import Analysis from "./Analysis";
 import style from "../../../style";
-import { PovertyChangeProvider } from "./PovertyChangeContext";
-
 import { useScreenshot } from "use-react-screenshot";
+import { getImpactReps, impactLabels } from "./ImpactTypes";
 
 export function RegionSelector(props) {
   const { metadata } = props;
@@ -150,16 +135,15 @@ export default function PolicyOutput(props) {
   const selectedVersion = searchParams.get("version") || metadata.version;
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
-  const skipImpacts = POLICY_OUTPUT_TREE[0].children.find(
-    (item) => item.name === focus,
-  ).skipImpacts;
+  const impactType = /policyOutput\.(.+)/.exec(focus)[1];
+  const skipImpacts = impactType === "codeReproducibility";
   useEffect(() => {
     if (
       !!region &&
       !!timePeriod &&
       !!reformPolicyId &&
       !!baselinePolicyId &&
-      focus !== "policyOutput.cliffImpact"
+      impactType !== "cliffImpact"
     ) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}`;
       setImpact(null);
@@ -336,160 +320,10 @@ export default function PolicyOutput(props) {
         </p>
       </div>
     );
-  } else if (focus === "policyOutput.netIncome") {
-    document.title = `${policyLabel} | Budgetary impact | PolicyEngine`;
-    pane = (
-      <BudgetaryImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.detailedBudgetaryImpact") {
-    document.title = `${policyLabel} | Detailed budgetary impact | PolicyEngine`;
-    pane = (
-      <DetailedBudgetaryImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.decileRelativeImpact") {
-    document.title = `${policyLabel} | Relative impact by decile | PolicyEngine`;
-    pane = (
-      <RelativeImpactByDecile
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.decileAverageImpact") {
-    document.title = `${policyLabel} | Average impact by decile | PolicyEngine`;
-    pane = (
-      <AverageImpactByDecile
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.intraDecileImpact") {
-    document.title = `${policyLabel} | Income intra-decile impact | PolicyEngine`;
-    pane = (
-      <IntraDecileImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.povertyImpact") {
-    document.title = `${policyLabel} | Poverty impact | PolicyEngine`;
-    pane = (
-      <PovertyChangeProvider>
-        <PovertyImpact
-          preparingForScreenshot={preparingForScreenshot}
-          metadata={metadata}
-          impact={impact}
-          policyLabel={policyLabel}
-        />
-      </PovertyChangeProvider>
-    );
-  } else if (focus === "policyOutput.deepPovertyImpact") {
-    document.title = `${policyLabel} | Deep poverty impact | PolicyEngine`;
-    pane = (
-      <PovertyChangeProvider>
-        <DeepPovertyImpact
-          preparingForScreenshot={preparingForScreenshot}
-          metadata={metadata}
-          impact={impact}
-          policyLabel={policyLabel}
-        />
-      </PovertyChangeProvider>
-    );
-  } else if (focus === "policyOutput.genderPovertyImpact") {
-    document.title = `${policyLabel} | Gender poverty impact | PolicyEngine`;
-    pane = (
-      <PovertyChangeProvider>
-        <PovertyImpactByGender
-          preparingForScreenshot={preparingForScreenshot}
-          metadata={metadata}
-          impact={impact}
-          policyLabel={policyLabel}
-        />
-      </PovertyChangeProvider>
-    );
-  } else if (focus === "policyOutput.genderDeepPovertyImpact") {
-    document.title = `${policyLabel} | Gender deep poverty impact | PolicyEngine`;
-    pane = (
-      <PovertyChangeProvider>
-        <DeepPovertyImpactByGender
-          preparingForScreenshot={preparingForScreenshot}
-          metadata={metadata}
-          impact={impact}
-          policyLabel={policyLabel}
-        />
-      </PovertyChangeProvider>
-    );
-  } else if (focus === "policyOutput.racialPovertyImpact") {
-    document.title = `${policyLabel} | Racial poverty impact | PolicyEngine`;
-    pane = (
-      <PovertyChangeProvider>
-        <PovertyImpactByRace
-          preparingForScreenshot={preparingForScreenshot}
-          metadata={metadata}
-          impact={impact}
-          policyLabel={policyLabel}
-        />
-      </PovertyChangeProvider>
-    );
-  } else if (focus === "policyOutput.inequalityImpact") {
-    document.title = `${policyLabel} | Inequality impact | PolicyEngine`;
-    pane = (
-      <InequalityImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.wealthDecileAverageImpact") {
-    document.title = `${policyLabel} | Average impact by wealth decile | PolicyEngine`;
-    pane = (
-      <AverageImpactByWealthDecile
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.wealthDecileRelativeImpact") {
-    document.title = `${policyLabel} | Relative impact by wealth decile | PolicyEngine`;
-    pane = (
-      <RelativeImpactByWealthDecile
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.intraWealthDecileImpact") {
-    document.title = `${policyLabel} | Wealth intra-decile impact | PolicyEngine`;
-    pane = (
-      <IntraWealthDecileImpact
-        preparingForScreenshot={preparingForScreenshot}
-        metadata={metadata}
-        impact={impact}
-        policyLabel={policyLabel}
-      />
-    );
-  } else if (focus === "policyOutput.codeReproducibility") {
+  } else if (impactType === "codeReproducibility") {
     document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = <Reproducibility metadata={metadata} policy={policy} />;
-  } else if (focus === "policyOutput.analysis") {
+  } else if (impactType === "analysis") {
     document.title = `${policyLabel} | Analysis | PolicyEngine`;
     pane = (
       <Analysis
@@ -501,11 +335,19 @@ export default function PolicyOutput(props) {
         policyLabel={policyLabel}
       />
     );
-  }
-
-  if (focus === "policyOutput.cliffImpact") {
+  } else if (impactType === "cliffImpact") {
     document.title = `${policyLabel} | Cliff impact | PolicyEngine`;
     pane = <CliffImpact metadata={metadata} policyLabel={policyLabel} />;
+  } else {
+    document.title = `${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`;
+    // TODO: we ignore the csv property in the returned object for now
+    const { chart } = getImpactReps(impactType, {
+      impact: impact,
+      metadata: metadata,
+      policyLabel: policyLabel,
+      mobile: mobile,
+    });
+    pane = chart;
   }
 
   const url = encodeURIComponent(window.location.href);
