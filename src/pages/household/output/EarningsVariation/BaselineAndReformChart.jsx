@@ -404,6 +404,8 @@ function BaselineReformDeltaPlot(props) {
   const mobile = useMobile();
   const {
     earningsArray,
+    baselineArray,
+    reformArray,
     currentEarnings,
     currentValue,
     baselineValue,
@@ -414,13 +416,13 @@ function BaselineReformDeltaPlot(props) {
     showPercentage,
   } = props;
   // Calculate delta values
-  const deltaArray = props.reformArray.map(
-    (value, index) => value - props.baselineArray[index]
+  const deltaArray = reformArray.map(
+    (value, index) => value - baselineArray[index]
   );
 
   // Calculate percentage differences, avoiding divide by zero
-  const percentageDeltaArray = props.reformArray.map((value, index) => {
-    const baselineValue = props.baselineArray[index];
+  const percentageDeltaArray = reformArray.map((value, index) => {
+    const baselineValue = baselineArray[index];
     return baselineValue !== 0 ? (value - baselineValue) / baselineValue : null;
   });
   const currentDelta = [currentValue - baselineValue];
@@ -438,15 +440,24 @@ function BaselineReformDeltaPlot(props) {
         const delta = showPercentage
           ? percentageDeltaArray[index]
           : deltaArray[index];
-        const direction = delta >= 0 ? "rise" : "fall";
-        const formattedDelta = showPercentage
-          ? `${delta.toFixed(1)}%` // For percentage, just format as a number with one decimal place and add the '%' sign
-          : convertToCurrencyString(metadata.currency, delta); // Use the function for currency formatting
-        const formattedEarnings = convertToCurrencyString(
-          metadata.currency,
-          earnings
-        ); // Use the function for formatting earnings
-        return `If you earn ${formattedEarnings}, your net income will ${direction} by ${formattedDelta}.`;
+
+        if (delta === 0) {
+          const formattedEarnings = convertToCurrencyString(
+            metadata.currency,
+            earnings
+          );
+          return `If you earn ${formattedEarnings}, your net income will not change.`;
+        } else {
+          const direction = delta > 0 ? "rise" : "fall";
+          const formattedDelta = showPercentage
+            ? `${(delta * 100).toFixed(1)}%` // For percentage, just format as a number with one decimal place and add the '%' sign
+            : convertToCurrencyString(metadata.currency, Math.abs(delta)); // Use the function for currency formatting
+          const formattedEarnings = convertToCurrencyString(
+            metadata.currency,
+            earnings
+          ); // Use the function for formatting earnings
+          return `If you earn ${formattedEarnings}, your net income will ${direction} by ${formattedDelta}.`;
+        }
       }),
     },
     {
@@ -491,8 +502,8 @@ function BaselineReformDeltaPlot(props) {
             // Conditionally set the y-axis title
             // Set the y-axis title based on whether percentages are already multiplied by 100
             title: showPercentage
-              ? `Change in ${variableLabel} (%)`
-              : `Change in ${variableLabel} ($)`,
+              ? `Relative change in ${variableLabel}`
+              : `Absolute change in ${variableLabel}`,
             // If your percentage values are already in the form of whole numbers (e.g., 10 for 10%)
             // you don't need Plotly to format them as percentages, just set the tick label to include a '%' sign
             tickformat: showPercentage ? ".0%" : ".2s",
