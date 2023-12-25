@@ -495,16 +495,11 @@ function BaselineReformDeltaPlot(props) {
             uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
-            // Conditionally set the y-axis title
-            // Set the y-axis title based on whether percentages are already multiplied by 100
             title: showPercentage
               ? `Relative change in ${variableLabel}`
               : `Absolute change in ${variableLabel}`,
-            // If your percentage values are already in the form of whole numbers (e.g., 10 for 10%)
-            // you don't need Plotly to format them as percentages, just set the tick label to include a '%' sign
             tickformat: showPercentage ? ".0%" : ".2s",
             ...getPlotlyAxisFormat(
-              // Use a different axis format if showing percentage
               showPercentage ? "%" : metadata.variables[variable].unit,
               showPercentage
                 ? percentageDeltaArray
