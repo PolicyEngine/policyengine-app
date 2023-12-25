@@ -3,10 +3,7 @@ import { Radio } from "antd";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
-import {
-  getPlotlyAxisFormat,
-  getValueFromHousehold,
-} from "../../../../api/variables";
+import { getPlotlyAxisFormat } from "../../../../api/variables";
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
@@ -17,111 +14,71 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
 export default function BaselineAndReformChart(props) {
-  const {
-    householdBaseline,
-    householdBaselineVariation,
-    householdReform,
-    householdReformVariation,
-    metadata,
-    variable,
-    variableLabel,
-    policy,
-  } = props;
-
-  const earningsArray = getValueFromHousehold(
-    "employment_income",
-    "2023",
-    "you",
-    householdBaselineVariation,
-    metadata,
-  );
-  const baselineArray = getValueFromHousehold(
-    variable,
-    "2023",
-    null,
-    householdBaselineVariation,
-    metadata,
-  );
-  const reformArray = getValueFromHousehold(
-    variable,
-    "2023",
-    null,
-    householdReformVariation,
-    metadata,
-  );
-  const currentEarnings = getValueFromHousehold(
-    "employment_income",
-    "2023",
-    "you",
-    householdBaseline,
-    metadata,
-  );
-  const currentValue = getValueFromHousehold(
-    variable,
-    "2023",
-    null,
-    householdReform,
-    metadata,
-  );
-  const baselineValue = getValueFromHousehold(
-    variable,
-    "2023",
-    null,
-    householdBaseline,
-    metadata,
-  );
-
   function BaselineAndReformChartWithToggle() {
-    const [showDelta, setShowDelta] = useState(true);
+    const [viewMode, setViewMode] = useState("baselineAndReform");
+
     const options = [
       {
         label: "Baseline and reform",
-        value: false,
+        value: "baselineAndReform",
       },
       {
-        label: "Difference",
-        value: true,
+        label: "Difference in $",
+        value: "differenceDollar",
+      },
+      {
+        label: "Difference in %",
+        value: "differencePercent",
       },
     ];
-    const onDelta = ({ target: { value } }) => {
-      setShowDelta(value);
+
+    const onViewModeChange = ({ target: { value } }) => {
+      setViewMode(value);
     };
+
     const toggle = (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Radio.Group
           options={options}
-          onChange={onDelta}
-          value={showDelta}
+          onChange={onViewModeChange}
+          value={viewMode}
           buttonStyle="solid"
         />
       </div>
     );
-    const plot = showDelta ? (
-      <BaselineReformDeltaPlot
-        earningsArray={earningsArray}
-        baselineArray={baselineArray}
-        reformArray={reformArray}
-        currentEarnings={currentEarnings}
-        currentValue={currentValue}
-        baselineValue={baselineValue}
-        variableLabel={variableLabel}
-        metadata={metadata}
-        variable={variable}
-      />
-    ) : (
-      <BaselineAndReformTogetherPlot
-        earningsArray={earningsArray}
-        baselineArray={baselineArray}
-        reformArray={reformArray}
-        currentEarnings={currentEarnings}
-        currentValue={currentValue}
-        baselineValue={baselineValue}
-        variableLabel={variableLabel}
-        metadata={metadata}
-        variable={variable}
-        policy={policy}
-      />
-    );
+
+    let plot;
+    switch (viewMode) {
+      case "baselineAndReform":
+        plot = (
+          <BaselineAndReformTogetherPlot
+            // Add all the props required for BaselineAndReformTogetherPlot
+            {...props}
+          />
+        );
+        break;
+      case "differenceDollar":
+        plot = (
+          <BaselineReformDeltaPlot
+            // Add all the props required for BaselineReformDeltaPlot
+            {...props}
+            showPercentage={false}
+          />
+        );
+        break;
+      case "differencePercent":
+        plot = (
+          <BaselineReformDeltaPlot
+            // Add all the props required for BaselineReformDeltaPlot
+            {...props}
+            showPercentage={true}
+          />
+        );
+        break;
+      default:
+        plot = <div>Unknown view mode</div>;
+    }
+
     return (
       <>
         {toggle}
@@ -150,7 +107,7 @@ function BaselineAndReformTogetherPlot(props) {
   } = props;
   const yaxisFormat = getPlotlyAxisFormat(
     metadata.variables[variable].unit,
-    baselineArray.concat(reformArray, currentValue, baselineValue),
+    baselineArray.concat(reformArray, currentValue, baselineValue)
   );
   const cliffs1 =
     variable === "household_net_income"
@@ -160,7 +117,7 @@ function BaselineAndReformTogetherPlot(props) {
           yaxisFormat.range,
           false,
           "$",
-          useHoverCard,
+          useHoverCard
         )
       : [];
   const cliffs2 =
@@ -171,7 +128,7 @@ function BaselineAndReformTogetherPlot(props) {
           yaxisFormat.range,
           true,
           "$",
-          useHoverCard,
+          useHoverCard
         )
       : [];
   let data = [
@@ -270,7 +227,7 @@ function BaselineAndReformTogetherPlot(props) {
             title: "Household head employment income",
             ...getPlotlyAxisFormat(
               metadata.variables.employment_income.unit,
-              earningsArray.concat(currentEarnings),
+              earningsArray.concat(currentEarnings)
             ),
             uirevision: metadata.variables.employment_income.unit,
           },
@@ -312,11 +269,11 @@ function BaselineAndReformTogetherPlot(props) {
                 ) {
                   const variableLabelAmount = convertToCurrencyString(
                     metadata.currency,
-                    data.points[0].y,
+                    data.points[0].y
                   );
                   const employmentIncome = convertToCurrencyString(
                     metadata.currency,
-                    data.points[0].x,
+                    data.points[0].x
                   );
                   const message = `If you earn ${employmentIncome}, your ${
                     data.points[0].data.name
@@ -335,11 +292,11 @@ function BaselineAndReformTogetherPlot(props) {
                     body: `Your net income falls after earning 
               ${convertToCurrencyString(
                 metadata.currency,
-                Math.min(...data.points[0].data.x),
+                Math.min(...data.points[0].data.x)
               )} until earning 
               ${convertToCurrencyString(
                 metadata.currency,
-                Math.max(...data.points[0].data.x),
+                Math.max(...data.points[0].data.x)
               )} in the 
               ${
                 data.points[0].data.name.includes("reform")
@@ -366,8 +323,6 @@ function BaselineReformDeltaPlot(props) {
   const mobile = useMobile();
   const {
     earningsArray,
-    baselineArray,
-    reformArray,
     currentEarnings,
     currentValue,
     baselineValue,
@@ -375,15 +330,25 @@ function BaselineReformDeltaPlot(props) {
     metadata,
     variable,
     useHoverCard = false,
+    showPercentage,
   } = props;
-  const deltaArray = reformArray.map(
-    (value, index) => value - baselineArray[index],
+  // Calculate delta values
+  const deltaArray = props.reformArray.map(
+    (value, index) => value - props.baselineArray[index]
   );
+
+  // Calculate percentage differences, avoiding divide by zero
+  const percentageDeltaArray = props.reformArray.map((value, index) => {
+    const baselineValue = props.baselineArray[index];
+    return baselineValue !== 0
+      ? ((value - baselineValue) / baselineValue) * 100
+      : null;
+  });
   const currentDelta = [currentValue - baselineValue];
   let data = [
     {
       x: earningsArray,
-      y: deltaArray,
+      y: showPercentage ? percentageDeltaArray : deltaArray,
       type: "line",
       name: `Change in ${variableLabel}`,
       line: {
@@ -435,7 +400,7 @@ function BaselineReformDeltaPlot(props) {
             title: "Household head employment income",
             ...getPlotlyAxisFormat(
               metadata.variables.employment_income.unit,
-              earningsArray.concat(currentEarnings),
+              earningsArray.concat(currentEarnings)
             ),
             uirevision: metadata.variables.employment_income.unit,
           },
@@ -443,7 +408,7 @@ function BaselineReformDeltaPlot(props) {
             title: `Change in ${variableLabel}`,
             ...getPlotlyAxisFormat(
               metadata.variables[variable].unit,
-              deltaArray.concat(currentDelta),
+              deltaArray.concat(currentDelta)
             ),
             uirevision: metadata.variables[variable].unit,
           },
@@ -484,11 +449,11 @@ function BaselineReformDeltaPlot(props) {
                 ) {
                   const variableLabelAmount = convertToCurrencyString(
                     metadata.currency,
-                    data.points[0].y,
+                    data.points[0].y
                   );
                   const employmentIncome = convertToCurrencyString(
                     metadata.currency,
-                    data.points[0].x,
+                    data.points[0].x
                   );
                   const message = `If you earn ${employmentIncome}, your change in ${variableLabel} will be ${variableLabelAmount}.`;
                   setHoverCard({
