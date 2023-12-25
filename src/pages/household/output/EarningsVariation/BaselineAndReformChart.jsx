@@ -71,7 +71,7 @@ export default function BaselineAndReformChart(props) {
     metadata
   );
   function BaselineAndReformChartWithToggle() {
-    const [viewMode, setViewMode] = useState("baselineAndReform");
+    const [viewMode, setViewMode] = useState("absoluteChange");
 
     const options = [
       {
@@ -79,12 +79,12 @@ export default function BaselineAndReformChart(props) {
         value: "baselineAndReform",
       },
       {
-        label: "Difference in $",
-        value: "differenceDollar",
+        label: "Absolute change",
+        value: "absoluteChange",
       },
       {
-        label: "Difference in %",
-        value: "differencePercent",
+        label: "Relative change",
+        value: "relativeChange",
       },
     ];
 
@@ -122,7 +122,7 @@ export default function BaselineAndReformChart(props) {
           />
         );
         break;
-      case "differenceDollar":
+      case "absoluteChange":
         plot = (
           <BaselineReformDeltaPlot
             earningsArray={earningsArray}
@@ -139,7 +139,7 @@ export default function BaselineAndReformChart(props) {
           />
         );
         break;
-      case "differencePercent":
+      case "relativeChange":
         plot = (
           <BaselineReformDeltaPlot
             earningsArray={earningsArray}
@@ -421,9 +421,7 @@ function BaselineReformDeltaPlot(props) {
   // Calculate percentage differences, avoiding divide by zero
   const percentageDeltaArray = props.reformArray.map((value, index) => {
     const baselineValue = props.baselineArray[index];
-    return baselineValue !== 0
-      ? ((value - baselineValue) / baselineValue) * 100
-      : null;
+    return baselineValue !== 0 ? (value - baselineValue) / baselineValue : null;
   });
   const currentDelta = [currentValue - baselineValue];
   let data = [
@@ -435,17 +433,21 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
-      ...(useHoverCard
-        ? {
-            hoverinfo: "none",
-          }
-        : {
-            hovertemplate:
-              `<b>Change in ${variableLabel}</b><br><br>` +
-              `If you earn %{x}, your change in<br>` +
-              `${variableLabel} will be %{y}.` +
-              `<extra></extra>`,
-          }),
+      hoverinfo: "text",
+      text: earningsArray.map((earnings, index) => {
+        const delta = showPercentage
+          ? percentageDeltaArray[index]
+          : deltaArray[index];
+        const direction = delta >= 0 ? "rise" : "fall";
+        const formattedDelta = showPercentage
+          ? `${delta.toFixed(1)}%` // For percentage, just format as a number with one decimal place and add the '%' sign
+          : convertToCurrencyString(metadata.currency, delta); // Use the function for currency formatting
+        const formattedEarnings = convertToCurrencyString(
+          metadata.currency,
+          earnings
+        ); // Use the function for formatting earnings
+        return `If you earn ${formattedEarnings}, your net income will ${direction} by ${formattedDelta}.`;
+      }),
     },
     {
       x: [currentEarnings],
@@ -486,10 +488,20 @@ function BaselineReformDeltaPlot(props) {
             uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
-            title: `Change in ${variableLabel}`,
+            // Conditionally set the y-axis title
+            // Set the y-axis title based on whether percentages are already multiplied by 100
+            title: showPercentage
+              ? `Change in ${variableLabel} (%)`
+              : `Change in ${variableLabel} ($)`,
+            // If your percentage values are already in the form of whole numbers (e.g., 10 for 10%)
+            // you don't need Plotly to format them as percentages, just set the tick label to include a '%' sign
+            tickformat: showPercentage ? ".0%" : ".2s",
             ...getPlotlyAxisFormat(
-              metadata.variables[variable].unit,
-              deltaArray.concat(currentDelta)
+              // Use a different axis format if showing percentage
+              showPercentage ? "%" : metadata.variables[variable].unit,
+              showPercentage
+                ? percentageDeltaArray
+                : deltaArray.concat(currentDelta)
             ),
             uirevision: metadata.variables[variable].unit,
           },
