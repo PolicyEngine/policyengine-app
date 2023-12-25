@@ -3,7 +3,10 @@ import { Radio } from "antd";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { capitalize } from "../../../../api/language";
-import { getPlotlyAxisFormat } from "../../../../api/variables";
+import {
+  getPlotlyAxisFormat,
+  getValueFromHousehold,
+} from "../../../../api/variables";
 import FadeIn from "../../../../layout/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
@@ -14,6 +17,59 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
 export default function BaselineAndReformChart(props) {
+  const {
+    householdBaseline,
+    householdBaselineVariation,
+    householdReform,
+    householdReformVariation,
+    metadata,
+    variable,
+    variableLabel,
+    policy,
+  } = props;
+
+  const earningsArray = getValueFromHousehold(
+    "employment_income",
+    "2023",
+    "you",
+    householdBaselineVariation,
+    metadata
+  );
+  const baselineArray = getValueFromHousehold(
+    variable,
+    "2023",
+    null,
+    householdBaselineVariation,
+    metadata
+  );
+  const reformArray = getValueFromHousehold(
+    variable,
+    "2023",
+    null,
+    householdReformVariation,
+    metadata
+  );
+  const currentEarnings = getValueFromHousehold(
+    "employment_income",
+    "2023",
+    "you",
+    householdBaseline,
+    metadata
+  );
+  const currentValue = getValueFromHousehold(
+    variable,
+    "2023",
+    null,
+    householdReform,
+    metadata
+  );
+  const baselineValue = getValueFromHousehold(
+    variable,
+    "2023",
+    null,
+    householdBaseline,
+    metadata
+  );
   function BaselineAndReformChartWithToggle() {
     const [viewMode, setViewMode] = useState("baselineAndReform");
 
@@ -53,15 +109,32 @@ export default function BaselineAndReformChart(props) {
         plot = (
           <BaselineAndReformTogetherPlot
             // Add all the props required for BaselineAndReformTogetherPlot
-            {...props}
+            earningsArray={earningsArray}
+            baselineArray={baselineArray}
+            reformArray={reformArray}
+            currentEarnings={currentEarnings}
+            currentValue={currentValue}
+            baselineValue={baselineValue}
+            variableLabel={variableLabel}
+            metadata={metadata}
+            variable={variable}
+            policy={policy}
           />
         );
         break;
       case "differenceDollar":
         plot = (
           <BaselineReformDeltaPlot
-            // Add all the props required for BaselineReformDeltaPlot
-            {...props}
+            earningsArray={earningsArray}
+            baselineArray={baselineArray}
+            reformArray={reformArray}
+            currentEarnings={currentEarnings}
+            currentValue={currentValue}
+            baselineValue={baselineValue}
+            variableLabel={variableLabel}
+            metadata={metadata}
+            variable={variable}
+            policy={policy}
             showPercentage={false}
           />
         );
@@ -69,8 +142,16 @@ export default function BaselineAndReformChart(props) {
       case "differencePercent":
         plot = (
           <BaselineReformDeltaPlot
-            // Add all the props required for BaselineReformDeltaPlot
-            {...props}
+            earningsArray={earningsArray}
+            baselineArray={baselineArray}
+            reformArray={reformArray}
+            currentEarnings={currentEarnings}
+            currentValue={currentValue}
+            baselineValue={baselineValue}
+            variableLabel={variableLabel}
+            metadata={metadata}
+            variable={variable}
+            policy={policy}
             showPercentage={true}
           />
         );
