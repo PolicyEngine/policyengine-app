@@ -437,26 +437,22 @@ function BaselineReformDeltaPlot(props) {
       },
       hoverinfo: "text",
       text: earningsArray.map((earnings, index) => {
-        const delta = showPercentage
+        const deltaValue = showPercentage
           ? percentageDeltaArray[index]
           : deltaArray[index];
+        const formattedEarnings = convertToCurrencyString(
+          metadata.currency,
+          earnings
+        );
 
-        if (delta === 0) {
-          const formattedEarnings = convertToCurrencyString(
-            metadata.currency,
-            earnings
-          );
-          return `If you earn ${formattedEarnings}, your net income will not change.`;
+        if (deltaValue === 0) {
+          return `If you earn ${formattedEarnings}, your ${variableLabel} will have no change.`;
         } else {
-          const direction = delta > 0 ? "rise" : "fall";
+          const direction = deltaValue > 0 ? "rise" : "fall";
           const formattedDelta = showPercentage
-            ? `${(delta * 100).toFixed(1)}%` // For percentage, just format as a number with one decimal place and add the '%' sign
-            : convertToCurrencyString(metadata.currency, Math.abs(delta)); // Use the function for currency formatting
-          const formattedEarnings = convertToCurrencyString(
-            metadata.currency,
-            earnings
-          ); // Use the function for formatting earnings
-          return `If you earn ${formattedEarnings}, your net income will ${direction} by ${formattedDelta}.`;
+            ? `${(deltaValue * 100).toFixed(1)}%`
+            : convertToCurrencyString(metadata.currency, Math.abs(deltaValue));
+          return `If you earn ${formattedEarnings}, your ${variableLabel} will ${direction} by ${formattedDelta}.`;
         }
       }),
     },
