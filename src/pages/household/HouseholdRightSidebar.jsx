@@ -8,6 +8,7 @@ import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import Divider from "../../layout/Divider";
 import LoadingCentered from "../../layout/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
+import { defaultYear } from "data/constants";
 
 function Figure(props) {
   const { left, right } = props;
@@ -73,7 +74,7 @@ export default function HouseholdRightSidebar(props) {
   );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
-    "2024",
+    defaultYear,
     "you",
     householdBaseline,
     metadata,

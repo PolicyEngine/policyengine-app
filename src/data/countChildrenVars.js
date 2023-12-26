@@ -1,3 +1,5 @@
+import { defaultYear } from "./constants";
+
 export const childNames = {
   us: "dependent",
   default: "child",
@@ -6,22 +8,22 @@ export const childNames = {
 export const defaultChildren = {
   us: {
     age: {
-      2024: 10,
+      [defaultYear]: 10,
     },
     is_tax_unit_dependent: {
-      2024: true,
+      [defaultYear]: true,
     },
   },
   default: {
     age: {
-      2024: 10,
+      [defaultYear]: 10,
     },
   },
 };
 
 export const childCountFilters = {
-  us: (person) => person?.is_tax_unit_dependent?.["2024"],
-  default: (person) => person?.age?.[2024] < 18,
+  us: (person) => person?.is_tax_unit_dependent?.[defaultYear],
+  default: (person) => person?.age?.[defaultYear] < 18,
 };
 
 export const childAdders = {
@@ -43,7 +45,7 @@ export const childAdders = {
     newSituation.households["your household"].members.push(childName);
     newSituation.marital_units[`${childName}'s marital unit`] = {
       members: [childName],
-      marital_unit_id: { 2024: childCount + 1 },
+      marital_unit_id: { [defaultYear]: childCount + 1 },
     };
     return newSituation;
   },

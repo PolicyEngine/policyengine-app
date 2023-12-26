@@ -8,6 +8,8 @@ import {
 } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
 import { useEffect, useState } from "react";
+import { Result } from "antd";
+
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
 import MaritalStatus from "./household/input/MaritalStatus";
@@ -22,7 +24,6 @@ import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
-import { Result } from "antd";
 
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";

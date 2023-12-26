@@ -13,6 +13,7 @@ import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";
 import StableInputNumber from "controls/StableInputNumber";
+import { defaultYear } from "data/constants";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -350,13 +351,13 @@ export function addVariable(householdInput, variable, entityPlural) {
             // Then add it to the relevant part of the situation, along with
             // its default value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              2024: variable.defaultValue,
+              [defaultYear]: variable.defaultValue,
             };
           } else {
             // Otherwise, add it to the relevant part of the situation, along with
             // a null value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              2024: null,
+              [defaultYear]: null,
             };
           }
         }
