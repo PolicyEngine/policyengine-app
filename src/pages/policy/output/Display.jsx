@@ -6,17 +6,13 @@ import BottomCarousel from "../../../layout/BottomCarousel";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
 import { getImpactReps, impactLabels } from "./ImpactTypes";
-import { message, Progress } from "antd";
-import {
-  TwitterOutlined,
-  FacebookFilled,
-  LinkedinFilled,
-  LinkOutlined,
-} from "@ant-design/icons";
+import { Progress, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/Error";
+import ResultActions from "layout/ResultActions";
+import { downloadCsv, downloadPng } from "./utils";
 
 /**
  *
@@ -129,7 +125,8 @@ export function DisplayImpact(props) {
   const policyLabel = getPolicyLabel(policy);
   const mobile = useMobile();
   document.title = `${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`;
-  let pane;
+  const filename = impactType + `${policyLabel}`;
+  let pane, downloadCsvFn, downloadPngFn;
   if (impactType === "analysis") {
     pane = (
       <Analysis
@@ -142,17 +139,20 @@ export function DisplayImpact(props) {
       />
     );
   } else {
-    // TODO: we ignore the csv property in the returned object for now
-    const { chart } = getImpactReps(impactType, {
+    const { chart, csv } = getImpactReps(impactType, {
       impact: impact,
       metadata: metadata,
       policyLabel: policyLabel,
       mobile: mobile,
     });
     pane = chart;
+    downloadCsvFn = () => downloadCsv(csv(), filename);
+    downloadPngFn = () => downloadPng(filename);
   }
   return (
     <LowLevelDisplay
+      downloadPng={downloadPngFn}
+      downloadCsv={downloadCsvFn}
       metadata={metadata}
       policy={policy}
       hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
@@ -173,7 +173,8 @@ export function DisplayImpact(props) {
  * DisplayImpact: the higher-level component should be used whenever possible.
  *
  * @param {object} props
- * @param {object} props.impact the impact object
+ * @param {function} props.downloadCsv callback for download csv button
+ * @param {function} props.downloadPng callback for download png button
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
  * @param {boolean} props.hasShownPopulationImpactPopup indicator
@@ -184,6 +185,8 @@ export function DisplayImpact(props) {
 export function LowLevelDisplay(props) {
   const {
     children,
+    downloadCsv,
+    downloadPng,
     metadata,
     policy,
     hasShownPopulationImpactPopup,
@@ -232,57 +235,16 @@ export function LowLevelDisplay(props) {
   const selectedVersion = urlParams.get("version") || metadata.version;
   const policyOutputTree = getPolicyOutputTree(metadata.countryId);
   const url = encodeURIComponent(window.location.href);
-  const link = (
-    // eslint-disable-next-line
-    <a
-      onClick={() => {
-        navigator.clipboard.writeText(window.location.href);
-        message.info("Link copied to clipboard");
-      }}
-    >
-      <LinkOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
-  const twitter = (
-    <a
-      href={`https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <TwitterOutlined style={{ fontSize: 23 }} />
-    </a>
-  );
-  const facebook = (
-    <a
-      href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <FacebookFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const linkedIn = (
-    <a
-      href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-      target="_blank"
-      rel="noreferrer"
-    >
-      <LinkedinFilled style={{ fontSize: 23 }} />
-    </a>
-  );
-  const commonStyle = {
-    border: "1px solid #ccc",
-    borderRadius: "0px",
-    padding: "6px",
-    marginRight: "-1px",
-  };
-  const shareItems = [link, twitter, facebook, linkedIn];
-  const shareDivs = shareItems.map((item, index) => (
-    <div key={index} style={commonStyle}>
-      {item}
-    </div>
-  ));
+  const twitterLink = `https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`;
+  const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+  const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    message.info("Link copied to clipboard");
+  }
+
   const embed = new URLSearchParams(window.location.search).get("embed");
   const bottomElements =
     mobile & !embed ? null : metadata.countryId === "us" ? (
@@ -343,35 +305,16 @@ export function LowLevelDisplay(props) {
 
   return (
     <ResultsPanel ref={imageRef}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          backgroundColor: style.colors.WHITE,
-          justifyContent: "center",
-          alignItems: "center",
-          paddingBottom: 20,
-        }}
-      >
-        {!preparingForScreenshot && (
-          <h6
-            style={{
-              margin: 0,
-              paddingRight: 20,
-            }}
-          >
-            Share this result
-          </h6>
-        )}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-          }}
-        >
-          {!preparingForScreenshot && shareDivs}
-        </div>
-      </div>
+      {!preparingForScreenshot && (
+        <ResultActions
+          downloadPng={downloadPng}
+          downloadCsv={downloadCsv}
+          copyLink={copyLink}
+          twitterLink={twitterLink}
+          facebookLink={facebookLink}
+          linkedInLink={linkedInLink}
+        />
+      )}
       <PolicyImpactPopup
         metadata={metadata}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
