@@ -419,13 +419,7 @@ function BaselineReformDeltaPlot(props) {
   const deltaArray = reformArray.map(
     (value, index) => value - baselineArray[index]
   );
-
-  // Calculate percentage differences, avoiding divide by zero
-  const percentageDeltaArray = reformArray.map((value, index) => {
-    const baselineValue = baselineArray[index];
-    return baselineValue !== 0 ? (value - baselineValue) / baselineValue : null;
-  });
-  const currentDelta = [currentValue - baselineValue];
+  const currentDelta = currentValue - baselineValue;
   let data = [
     {
       x: earningsArray,
