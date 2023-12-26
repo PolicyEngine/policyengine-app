@@ -70,58 +70,71 @@ export default function BaselineAndReformChart(props) {
     householdBaseline,
     metadata,
   );
-
   function BaselineAndReformChartWithToggle() {
-    const [showDelta, setShowDelta] = useState(true);
+    const [viewMode, setViewMode] = useState("absoluteChange");
+
     const options = [
       {
         label: "Baseline and reform",
-        value: false,
+        value: "baselineAndReform",
       },
       {
-        label: "Difference",
-        value: true,
+        label: "Absolute change",
+        value: "absoluteChange",
+      },
+      {
+        label: "Relative change",
+        value: "relativeChange",
       },
     ];
-    const onDelta = ({ target: { value } }) => {
-      setShowDelta(value);
+
+    const onViewModeChange = ({ target: { value } }) => {
+      setViewMode(value);
     };
+
     const toggle = (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Radio.Group
           options={options}
-          onChange={onDelta}
-          value={showDelta}
+          onChange={onViewModeChange}
+          value={viewMode}
           buttonStyle="solid"
         />
       </div>
     );
-    const plot = showDelta ? (
-      <BaselineReformDeltaPlot
-        earningsArray={earningsArray}
-        baselineArray={baselineArray}
-        reformArray={reformArray}
-        currentEarnings={currentEarnings}
-        currentValue={currentValue}
-        baselineValue={baselineValue}
-        variableLabel={variableLabel}
-        metadata={metadata}
-        variable={variable}
-      />
-    ) : (
-      <BaselineAndReformTogetherPlot
-        earningsArray={earningsArray}
-        baselineArray={baselineArray}
-        reformArray={reformArray}
-        currentEarnings={currentEarnings}
-        currentValue={currentValue}
-        baselineValue={baselineValue}
-        variableLabel={variableLabel}
-        metadata={metadata}
-        variable={variable}
-        policy={policy}
-      />
-    );
+
+    const getPlotComponent = (viewMode, sharedProps) => {
+      switch (viewMode) {
+        case "baselineAndReform":
+          return <BaselineAndReformTogetherPlot {...sharedProps} />;
+        case "absoluteChange":
+          return (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={false} />
+          );
+        case "relativeChange":
+          return (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={true} />
+          );
+        default:
+          return <div>Unknown view mode</div>;
+      }
+    };
+
+    let sharedProps = {
+      earningsArray,
+      baselineArray,
+      reformArray,
+      currentEarnings,
+      currentValue,
+      baselineValue,
+      variableLabel,
+      metadata,
+      variable,
+      policy,
+    };
+
+    let plot = getPlotComponent(viewMode, sharedProps);
+
     return (
       <>
         {toggle}
@@ -375,35 +388,54 @@ function BaselineReformDeltaPlot(props) {
     metadata,
     variable,
     useHoverCard = false,
+    showPercentage,
   } = props;
+  // Calculate delta values
   const deltaArray = reformArray.map(
     (value, index) => value - baselineArray[index],
   );
+  // Calculate percentage differences, avoiding divide by zero
+  const percentageDeltaArray = reformArray.map((value, index) => {
+    const baselineValue = baselineArray[index];
+    return baselineValue !== 0 ? (value - baselineValue) / baselineValue : null;
+  });
   const currentDelta = currentValue - baselineValue;
+  const currentPercentageDelta = currentDelta / baselineValue;
   let data = [
     {
       x: earningsArray,
-      y: deltaArray,
+      y: showPercentage ? percentageDeltaArray : deltaArray,
       type: "line",
       name: `Change in ${variableLabel}`,
       line: {
         color: style.colors.BLUE,
       },
-      ...(useHoverCard
-        ? {
-            hoverinfo: "none",
-          }
-        : {
-            hovertemplate:
-              `<b>Change in ${variableLabel}</b><br><br>` +
-              `If you earn %{x}, your change in<br>` +
-              `${variableLabel} will be %{y}.` +
-              `<extra></extra>`,
-          }),
+      hoverinfo: "text",
+      text: earningsArray.map((earnings, index) => {
+        const deltaValue = showPercentage
+          ? percentageDeltaArray[index]
+          : deltaArray[index];
+        const formattedEarnings = convertToCurrencyString(
+          metadata.currency,
+          earnings,
+        );
+
+        if (deltaValue === 0) {
+          return `If you earn ${formattedEarnings}, your ${variableLabel} will have no change.`;
+        } else {
+          const direction = deltaValue > 0 ? "rise" : "fall";
+          const absoluteDeltaValue = Math.abs(deltaValue);
+          const formattedDelta = showPercentage
+            ? `${(absoluteDeltaValue * 100).toFixed(1)}%`
+            : convertToCurrencyString(metadata.currency, absoluteDeltaValue);
+          return `If you earn ${formattedEarnings}, your ${variableLabel} will ${direction} by ${formattedDelta}.`;
+        }
+      }),
     },
     {
       x: [currentEarnings],
-      y: [currentDelta],
+      // Apply delta or % delta based on selection.
+      y: showPercentage ? [currentPercentageDelta] : [currentDelta],
       type: "scatter",
       mode: "markers",
       name: `Your current change in ${variableLabel}`,
@@ -440,10 +472,15 @@ function BaselineReformDeltaPlot(props) {
             uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
-            title: `Change in ${variableLabel}`,
+            title: showPercentage
+              ? `Relative change in ${variableLabel}`
+              : `Absolute change in ${variableLabel}`,
+            tickformat: showPercentage ? ".0%" : ".2s",
             ...getPlotlyAxisFormat(
-              metadata.variables[variable].unit,
-              deltaArray.concat(currentDelta),
+              showPercentage ? "%" : metadata.variables[variable].unit,
+              showPercentage
+                ? percentageDeltaArray
+                : deltaArray.concat(currentDelta),
             ),
             uirevision: metadata.variables[variable].unit,
           },

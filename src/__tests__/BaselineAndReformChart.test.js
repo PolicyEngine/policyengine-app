@@ -30,9 +30,9 @@ describe("Test Render Output", () => {
     });
     render(<BaselineAndReformChart metadata={metadata} variable={"abc"} />);
 
-    fireEvent.click(screen.getByRole("radio", { name: /difference/i }));
+    fireEvent.click(screen.getByRole("radio", { name: /Absolute change/i }));
 
-    const diffButton = screen.getByRole("radio", { name: /difference/i });
+    const diffButton = screen.getByRole("radio", { name: /Absolute change/i });
 
     expect(diffButton).toHaveProperty("checked", true);
   });
