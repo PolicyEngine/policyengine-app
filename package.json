@@ -58,7 +58,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fix": "eslint --fix --ext js,jsx . && prettier -w .",
+    "fix": "prettier -w .",
     "lint": "eslint --ext js,jsx . && prettier -c ."
   },
   "eslintConfig": {
@@ -97,6 +97,6 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.4.3",
     "lint-staged": "^15.2.0",
-    "prettier": "^3.1.0"
+    "prettier": "^3.1.1"
   }
 }
