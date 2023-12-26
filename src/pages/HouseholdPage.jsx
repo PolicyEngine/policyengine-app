@@ -409,13 +409,16 @@ export function updateHousehold(householdInput, metadata) {
   // Copy householdInput into mutable variable
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
 
+  // Determine current year present in household
+  let householdYear = Object.keys(householdInput["people"]["you"]["age"])[0];
+
   // Map over all plural entity terms...
   for (const entityPlural in householdInput) {
     // Then over all entities...
     for (const entity in householdInput[entityPlural]) {
       // Then over all variables within each entity...
       for (const variable in householdInput[entityPlural][entity]) {
-        const currentVal = householdInput[entityPlural][entity][variable][2024];
+        const currentVal = householdInput[entityPlural][entity][variable][householdYear];
 
         // If the variable is a reserved one, do nothing and continue
         if (reservedInputs.includes(variable)) {
