@@ -425,6 +425,7 @@ function BaselineReformDeltaPlot(props) {
     return baselineValue !== 0 ? (value - baselineValue) / baselineValue : null;
   });
   const currentDelta = currentValue - baselineValue;
+  const currentPercentageDelta = currentDelta / baselineValue;
   let data = [
     {
       x: earningsArray,
@@ -457,7 +458,8 @@ function BaselineReformDeltaPlot(props) {
     },
     {
       x: [currentEarnings],
-      y: [currentDelta],
+      // Apply delta or % delta based on selection.
+      y: showPercentage ? [currentPercentageDelta] : [currentDelta],
       type: "scatter",
       mode: "markers",
       name: `Your current change in ${variableLabel}`,
