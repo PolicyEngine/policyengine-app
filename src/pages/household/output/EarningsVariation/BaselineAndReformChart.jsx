@@ -449,9 +449,10 @@ function BaselineReformDeltaPlot(props) {
           return `If you earn ${formattedEarnings}, your ${variableLabel} will have no change.`;
         } else {
           const direction = deltaValue > 0 ? "rise" : "fall";
+          const absoluteDeltaValue = Math.abs(deltaValue);
           const formattedDelta = showPercentage
-            ? `${(deltaValue * 100).toFixed(1)}%`
-            : convertToCurrencyString(metadata.currency, Math.abs(deltaValue));
+            ? `${(absoluteDeltaValue * 100).toFixed(1)}%`
+            : convertToCurrencyString(metadata.currency, absoluteDeltaValue);
           return `If you earn ${formattedEarnings}, your ${variableLabel} will ${direction} by ${formattedDelta}.`;
         }
       }),
