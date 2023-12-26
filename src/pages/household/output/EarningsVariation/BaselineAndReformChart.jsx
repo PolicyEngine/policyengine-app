@@ -103,62 +103,37 @@ export default function BaselineAndReformChart(props) {
       </div>
     );
 
-    let plot;
-    switch (viewMode) {
-      case "baselineAndReform":
-        plot = (
-          <BaselineAndReformTogetherPlot
-            // Add all the props required for BaselineAndReformTogetherPlot
-            earningsArray={earningsArray}
-            baselineArray={baselineArray}
-            reformArray={reformArray}
-            currentEarnings={currentEarnings}
-            currentValue={currentValue}
-            baselineValue={baselineValue}
-            variableLabel={variableLabel}
-            metadata={metadata}
-            variable={variable}
-            policy={policy}
-          />
-        );
-        break;
-      case "absoluteChange":
-        plot = (
-          <BaselineReformDeltaPlot
-            earningsArray={earningsArray}
-            baselineArray={baselineArray}
-            reformArray={reformArray}
-            currentEarnings={currentEarnings}
-            currentValue={currentValue}
-            baselineValue={baselineValue}
-            variableLabel={variableLabel}
-            metadata={metadata}
-            variable={variable}
-            policy={policy}
-            showPercentage={false}
-          />
-        );
-        break;
-      case "relativeChange":
-        plot = (
-          <BaselineReformDeltaPlot
-            earningsArray={earningsArray}
-            baselineArray={baselineArray}
-            reformArray={reformArray}
-            currentEarnings={currentEarnings}
-            currentValue={currentValue}
-            baselineValue={baselineValue}
-            variableLabel={variableLabel}
-            metadata={metadata}
-            variable={variable}
-            policy={policy}
-            showPercentage={true}
-          />
-        );
-        break;
-      default:
-        plot = <div>Unknown view mode</div>;
-    }
+    const getPlotComponent = (viewMode, sharedProps) => {
+      switch (viewMode) {
+        case "baselineAndReform":
+          return <BaselineAndReformTogetherPlot {...sharedProps} />;
+        case "absoluteChange":
+          return (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={false} />
+          );
+        case "relativeChange":
+          return (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={true} />
+          );
+        default:
+          return <div>Unknown view mode</div>;
+      }
+    };
+
+    let sharedProps = {
+      earningsArray,
+      baselineArray,
+      reformArray,
+      currentEarnings,
+      currentValue,
+      baselineValue,
+      variableLabel,
+      metadata,
+      variable,
+      policy,
+    };
+
+    let plot = getPlotComponent(viewMode, sharedProps);
 
     return (
       <>
