@@ -386,6 +386,7 @@ function HouseholdLeftSidebar(props) {
     </div>
   );
 }
+
 /**
  * Updates households to remove yearly variables and bring them in line with
  * newest API version
@@ -410,7 +411,7 @@ export function updateHousehold(householdInput, metadata) {
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
 
   // Determine current year present in household
-  let householdYear = Object.keys(householdInput["people"]["you"]["age"])[0];
+  const householdYear = getHouseholdYear(householdInput);
 
   // Map over all plural entity terms...
   for (const entityPlural in householdInput) {
@@ -453,4 +454,15 @@ export function updateHousehold(householdInput, metadata) {
   }
 
   return editedHousehold;
+}
+
+/**
+ * Determine a household object's current year
+ * @param {Object} householdInput An existing household input object
+ * @returns {Number} The household's default year
+ */
+export function getHouseholdYear(householdInput) {
+  // Determine current year present in household
+  const householdYear = Object.keys(householdInput["people"]["you"]["age"])[0];
+  return householdYear;
 }
