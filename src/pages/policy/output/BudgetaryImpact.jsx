@@ -5,7 +5,7 @@ import { aggregateCurrency, localeCode } from "../../../api/language";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { impactTitle } from "./ImpactChart";
+import ImpactChart from "./ImpactChart";
 
 function ImpactPlot(props) {
   const { budgetaryImpact, values, labels, metadata, mobile, useHoverCard } =
@@ -164,6 +164,24 @@ function ImpactPlot(props) {
   );
 }
 
+export function title(policyLabel, budgetaryImpact, metadata) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const label =
+    region === "us" || region === "uk"
+      ? ""
+      : "in " + options.find((option) => option.value === region)?.label;
+  return (
+    `${policyLabel} would ` +
+    (budgetaryImpact > 0 ? "raise " : "cost ") +
+    aggregateCurrency(budgetaryImpact, metadata) +
+    ` this year ${label}`
+  );
+}
+
 export default function budgetaryImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const budgetaryImpact = impact.budget.budgetary_impact;
@@ -194,16 +212,7 @@ export default function budgetaryImpact(props) {
     (label, index) => valuesBeforeFilter[index] !== 0,
   );
   const chart = (
-    <ImpactChart
-      title={impactTitle(
-        policyLabel,
-        budgetaryImpact,
-        aggregateCurrency(budgetaryImpact, metadata),
-        "the budget",
-        "this year",
-        metadata,
-      )}
-    >
+    <ImpactChart title={title(policyLabel, budgetaryImpact, metadata)}>
       <ImpactPlot
         budgetaryImpact={budgetaryImpact}
         values={values}

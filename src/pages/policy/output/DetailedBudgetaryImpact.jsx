@@ -5,8 +5,9 @@ import { aggregateCurrency, localeCode } from "../../../api/language";
 import style from "../../../style";
 import { avgChangeDirection, plotLayoutFont } from "./utils";
 import React from "react";
-import ImpactChart, { impactTitle } from "./ImpactChart";
+import ImpactChart from "./ImpactChart";
 import { HoverCardContext } from "layout/HoverCard";
+import { title } from "./BudgetaryImpact";
 
 function ImpactPlot(props) {
   const {
@@ -149,16 +150,8 @@ export default function detailedBudgetaryImpact(props) {
       );
     }
   });
-  const title = impactTitle(
-    policyLabel,
-    budgetaryImpact,
-    aggregateCurrency(budgetaryImpact, metadata),
-    "the budget",
-    "this year",
-    metadata,
-  );
   const chart = (
-    <ImpactChart title={title}>
+    <ImpactChart title={title(policyLabel, budgetaryImpact, metadata)}>
       <ImpactPlot
         xValues={xValues}
         yValues={yValues}
