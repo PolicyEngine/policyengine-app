@@ -379,7 +379,7 @@ function BaselineReformDeltaPlot(props) {
   const deltaArray = reformArray.map(
     (value, index) => value - baselineArray[index],
   );
-  const currentDelta = [currentValue - baselineValue];
+  const currentDelta = currentValue - baselineValue;
   let data = [
     {
       x: earningsArray,
