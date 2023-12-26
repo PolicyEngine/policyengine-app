@@ -1,6 +1,7 @@
 import averageImpactByDecile from "./AverageImpactByDecile";
 import averageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import budgetaryImpact from "./BudgetaryImpact";
+import cliffImpact from "./CliffImpact";
 import deepPovertyImpact from "./DeepPovertyImpact";
 import deepPovertyImpactByGender from "./DeepPovertyImpactByGender";
 import detailedBudgetaryImpact from "./DetailedBudgetaryImpact";
@@ -48,6 +49,7 @@ const map = {
   genderDeepPovertyImpact: deepPovertyImpactByGender,
   racialPovertyImpact: povertyImpactByRace,
   inequalityImpact: inequalityImpact,
+  cliffImpact: cliffImpact,
 };
 
 // get representations of the impact as a chart and a csv. The returned object

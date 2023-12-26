@@ -8,12 +8,58 @@ import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
 import InputField from "../../controls/InputField";
+import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
-import { RegionSelector, TimePeriodSelector } from "./output/PolicyOutput";
 import PolicySearch from "./PolicySearch";
 import { Alert, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+
+function RegionSelector(props) {
+  const { metadata } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  const [value] = useState(searchParams.get("region") || options[0].value);
+
+  return (
+    <SearchOptions
+      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
+      options={options}
+      defaultValue={value}
+      onSelect={(value) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("region", value);
+        setSearchParams(newSearch);
+      }}
+    />
+  );
+}
+
+function TimePeriodSelector(props) {
+  const { metadata } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const options = metadata.economy_options.time_period.map((time_period) => {
+    return { value: time_period.name.toString(), label: time_period.label };
+  });
+  const [value] = useState(
+    (searchParams.get("timePeriod") || "").toString() || options[0].value,
+  );
+
+  return (
+    <SearchOptions
+      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
+      options={options}
+      defaultValue={value}
+      onSelect={(value) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("timePeriod", value);
+        setSearchParams(newSearch);
+      }}
+    />
+  );
+}
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
