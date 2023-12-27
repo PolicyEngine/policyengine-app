@@ -1,5 +1,6 @@
 import { Select } from "antd";
 import { useState } from "react";
+import { Empty } from 'antd';
 
 export default function SearchOptions(props) {
   const { options, defaultValue, onSelect, onSearch, placeholder, style } =
@@ -38,6 +39,16 @@ export default function SearchOptions(props) {
           : placeholder
       }
       value={value}
+      notFoundContent={
+        <Empty 
+          image={Empty.PRESENTED_IMAGE_SIMPLE} 
+          style={{marginTop:8,marginBottom:8}}
+          imageStyle={{height:35}}
+          description={
+            <span>No variables</span>
+          }
+        />
+      }
     />
   );
 }
