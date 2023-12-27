@@ -60,7 +60,7 @@ export default function PolicySearch(props) {
         }
       }}
       onSearch={onSearch}
-      style={{ width: width || 200, marginLeft: 10, marginRight: 10 }}
+      style={{ width: width || 200 }}
       placeholder={defaultLabel}
       value={value === defaultLabel ? null : value}
     />

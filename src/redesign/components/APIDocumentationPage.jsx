@@ -365,6 +365,7 @@ export default function APIDocumentationPage({ metadata }) {
         <p>Try out the API in this interactive demo.</p>
         <iframe
           src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?mode=${countryId}`}
+          // the demo is in the policyengine-api-demo repository in PolicyEngine
           title="PolicyEngine API demo"
           height="500px"
           width={"100%"}

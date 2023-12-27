@@ -101,9 +101,8 @@ export default function FolderPage(props) {
             <motion.div
               key={child.name}
               style={{
-                minWidth: mobile ? 100 : 150,
-                maxWidth: 150,
-                height: mobile ? 100 : 100,
+                width: mobile ? 125 : 150,
+                height: 100,
                 backgroundColor: style.colors.LIGHT_GRAY,
                 margin: 10,
                 padding: 10,
@@ -111,6 +110,7 @@ export default function FolderPage(props) {
                 justifyContent: "center",
                 alignItems: "center",
                 cursor: "pointer",
+                flexGrow: mobile && 1.5,
               }}
               whileHover={{
                 scale: 1.05,
@@ -124,7 +124,12 @@ export default function FolderPage(props) {
                 setSearchParams(newSearch);
               }}
             >
-              <h6 style={{ textAlign: "center", color: "inherit" }}>
+              <h6 
+                style={{ 
+                  textAlign: "center", 
+                  color: "inherit"
+                }}
+              >
                 {capitalize(child.label)}
               </h6>
             </motion.div>

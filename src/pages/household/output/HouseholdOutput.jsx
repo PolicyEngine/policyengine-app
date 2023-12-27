@@ -145,15 +145,13 @@ export default function HouseholdOutput(props) {
         linkedInLink={linkedInLink}
       />
       {pane}
-      <BottomCarousel
-        selected={focus}
-        options={HOUSEHOLD_OUTPUT_TREE[0].children}
-        bottomText={
-          mobile
-            ? null
-            : "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
-        }
-      />
+      {!mobile && (
+        <BottomCarousel
+          selected={focus}
+          options={HOUSEHOLD_OUTPUT_TREE[0].children}
+          bottomText="PolicyEngine results may not constitute exact tax liabilities or benefit entitlements."
+        />
+      )}
     </ResultsPanel>
   );
 }

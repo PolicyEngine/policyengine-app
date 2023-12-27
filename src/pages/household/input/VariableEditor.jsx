@@ -81,7 +81,7 @@ export default function VariableEditor(props) {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          marginTop: mobile ? 10 : "15%",
+          marginTop: mobile ? "20%" : "15%",
           paddingLeft: mobile ? 5 : 50,
           paddingRight: mobile ? 5 : 50,
         }}
@@ -242,11 +242,14 @@ function HouseholdVariableEntityInput(props) {
           : {})}
         {...(variable.valueType === "float"
           ? {
-              formatter: (value, { userTyping }) =>
-                (+value).toLocaleString(localeCode(metadata.countryId), {
-                  minimumFractionDigits: !userTyping && 2,
-                  maximumFractionDigits: 2,
-                }),
+              formatter: (value, { userTyping }) => {
+                const n = +value;
+                const isInteger = Number.isInteger(n);
+                return n.toLocaleString(localeCode(metadata.countryId), {
+                  minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+                  maximumFractionDigits: userTyping ? 16 : 2,
+                });
+              },
             }
           : {})}
         defaultValue={defaultValue}
