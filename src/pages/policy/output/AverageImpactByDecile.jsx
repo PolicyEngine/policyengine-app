@@ -178,7 +178,7 @@ export default function AverageImpactByDecile(props) {
   return (
     <>
       <DownloadableScreenshottable ref={screenshotRef}>
-        <h2 style={{ width: "700px", wordWrap: "break-word" }}>
+        <h2 style={{ width: "700px", wordWrap: "break-word", display: "inline" }}>
           {`${policyLabel} ${avgChangeDirection(
             averageChange,
           )} the net income of households ${label} by ${formatVariableValue(

@@ -20,7 +20,7 @@ import StackedMenu from "../layout/StackedMenu";
 import HouseholdIntro from "./household/HouseholdIntro";
 import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
-import MobileHouseholdPage from "./household/MobileHouseholdPage";
+import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
 import { Result } from "antd";
 
@@ -322,11 +322,11 @@ export default function HouseholdPage(props) {
   }
   if (mobile) {
     return (
-      <MobileHouseholdPage
+      <MobileCalculatorPage
+        type="household"
         mainContent={middle}
         metadata={metadata}
         householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         autoCompute={autoCompute}

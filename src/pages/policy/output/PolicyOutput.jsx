@@ -50,7 +50,9 @@ export function RegionSelector(props) {
 
   return (
     <SearchOptions
-      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
+      style={{
+        width: "100%",
+      }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -74,7 +76,9 @@ export function TimePeriodSelector(props) {
 
   return (
     <SearchOptions
-      style={{ width: 250, marginRight: 10, marginLeft: 10 }}
+      style={{
+        width: "100%",
+      }}
       options={options}
       defaultValue={value}
       onSelect={(value) => {
@@ -659,7 +663,7 @@ export default function PolicyOutput(props) {
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {pane}
-      {!preparingForScreenshot && (
+      {!mobile && !preparingForScreenshot && (
         <BottomCarousel
           selected={focus}
           options={POLICY_OUTPUT_TREE[0].children}

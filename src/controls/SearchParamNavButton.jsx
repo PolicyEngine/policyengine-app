@@ -5,7 +5,16 @@ import Button from "./Button";
 import ArrowButton from "./ArrowButton";
 
 export default function SearchParamNavButton(props) {
-  const { text, focus, target, style, type, onClick, direction } = props;
+  const { 
+    text, 
+    focus, 
+    target, 
+    style, 
+    type, 
+    onClick, 
+    direction,
+    moreOnClick
+  } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -26,6 +35,12 @@ export default function SearchParamNavButton(props) {
           event_category: "focus",
           event_label: focus,
         });
+      }
+
+      // This is a workaround to add extra onClick functionality;
+      // this should be redone in the future
+      if (moreOnClick instanceof Function) {
+        moreOnClick();
       }
     });
 

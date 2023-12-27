@@ -3,12 +3,14 @@ import { ChartLogo } from "../../../api/charts";
 import { getReformedParameter } from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
+import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function ParameterOverTime(props) {
   const { parameter, policy } = props;
   const mobile = useMobile();
+  const windowHeight = useWindowHeight();
   let values = parameter.values;
   if (!values) {
     return null;
@@ -96,14 +98,17 @@ export default function ParameterOverTime(props) {
           },
           ...ChartLogo,
           margin: {
-            t: 0,
-            r: mobile && 30,
+            t: mobile && 10,
+            r: mobile && 10,
+            l: mobile && 30,
+            b: mobile && 30
           },
           ...plotLayoutFont,
         }}
+        // Note that plotly does not dynamically resize inside flexbox
         style={{
           width: "100%",
-          height: mobile ? 200 : 400,
+          height: mobile ? 0.5 * windowHeight : 400,
         }}
         config={{
           displayModeBar: false,
