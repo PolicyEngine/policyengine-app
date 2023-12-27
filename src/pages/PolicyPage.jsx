@@ -13,7 +13,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-import getPolicyOutputTree from "./policy/output/tree";
+import { getPolicyOutputTree } from "./policy/output/tree";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;

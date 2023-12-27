@@ -101,7 +101,7 @@ export default function ParameterOverTime(props) {
             t: mobile && 10,
             r: mobile && 10,
             l: mobile && 30,
-            b: mobile && 30
+            b: mobile && 30,
           },
           ...plotLayoutFont,
         }}

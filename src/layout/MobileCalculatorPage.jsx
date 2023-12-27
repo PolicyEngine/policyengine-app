@@ -6,7 +6,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 
 import { formatVariableValue, getValueFromHousehold } from "../api/variables";
-import getPolicyOutputTree from "../pages/policy/output/tree";
+import { getPolicyOutputTree } from "pages/policy/output/tree";
 import { copySearchParams } from "../api/call";
 import SearchParamNavButton from "controls/SearchParamNavButton";
 import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
@@ -128,11 +128,13 @@ function MobileBottomMenu(props) {
 
   const animationVariants = {
     open: {
-      transform: "translateY(0px)"
+      transform: "translateY(0px)",
     },
     closed: {
-      transform: `translateY(calc(100% - ${buttonHeight + 2 * paddingHeight}px))`
-    }
+      transform: `translateY(calc(100% - ${
+        buttonHeight + 2 * paddingHeight
+      }px))`,
+    },
   };
 
   return (
@@ -151,7 +153,7 @@ function MobileBottomMenu(props) {
         left: 0,
         zIndex: 5,
         gap: `calc(0.5 * ${paddingHeight}px)`,
-        bottom: 0
+        bottom: 0,
       }}
       initial={false}
       animate={isMenuOpen ? "open" : "closed"}
@@ -167,20 +169,16 @@ function MobileBottomMenu(props) {
           gap: "10px",
         }}
       >
-        <MobileTreeNavigationHolder 
-          metadata={metadata} 
-          type={type} 
+        <MobileTreeNavigationHolder
+          metadata={metadata}
+          type={type}
           buttonHeight={buttonHeight}
         />
-        <MobileBottomNavButtons 
-          focus={focus} 
-          type={type} 
-          metadata={metadata} 
-        />
+        <MobileBottomNavButtons focus={focus} type={type} metadata={metadata} />
         {type === "policy" && (
-          <PolicyDrawerButton 
-            metadata={metadata} 
-            policy={policy} 
+          <PolicyDrawerButton
+            metadata={metadata}
+            policy={policy}
             buttonHeight={buttonHeight}
           />
         )}
@@ -278,7 +276,7 @@ function MobileTreeNavigationHolder(props) {
         width: "100%",
         flexWrap: "wrap",
         minHeight: 0,
-        maxHeight: buttonHeight
+        maxHeight: buttonHeight,
       }}
     >
       {breadcrumbs.map((breadcrumb, i) => (
@@ -348,7 +346,7 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        gap: "10px"
+        gap: "10px",
       }}
     >
       {previous.label ? (
@@ -399,7 +397,7 @@ function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen, buttonHeight }) {
           style={{
             objectFit: "contain",
             color: "white",
-            fontSize: "30px"
+            fontSize: "30px",
           }}
         >
           {isMenuOpen ? "keyboard_arrow_down" : "keyboard_arrow_up"}

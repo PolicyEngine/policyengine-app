@@ -5,8 +5,8 @@ import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
 import { capitalize } from "../api/language";
-import getPolicyOutputTree from "../pages/policy/output/tree";
 import Divider from "./Divider";
+import { getPolicyOutputTree } from "pages/policy/output/tree";
 
 function FolderPageDescription(props) {
   const { metadata, inPolicySide } = props;
@@ -124,10 +124,10 @@ export default function FolderPage(props) {
                 setSearchParams(newSearch);
               }}
             >
-              <h6 
-                style={{ 
-                  textAlign: "center", 
-                  color: "inherit"
+              <h6
+                style={{
+                  textAlign: "center",
+                  color: "inherit",
                 }}
               >
                 {capitalize(child.label)}

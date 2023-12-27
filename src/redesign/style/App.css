@@ -83,3 +83,11 @@ a.highlighted-link:hover {
 :target {
   scroll-margin-top: 300px;
 }
+
+.ant-btn-link {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.ant-btn-link:hover {
+  color: inherit;
+}
