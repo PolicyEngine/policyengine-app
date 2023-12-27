@@ -6,7 +6,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Drawer } from "antd";
 
 import { formatVariableValue, getValueFromHousehold } from "../api/variables";
-import getPolicyOutputTree from "../pages/policy/output/tree";
+import { getPolicyOutputTree } from "pages/policy/output/tree";
 import { copySearchParams } from "../api/call";
 import SearchParamNavButton from "controls/SearchParamNavButton";
 import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
