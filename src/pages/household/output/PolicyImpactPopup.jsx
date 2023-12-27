@@ -11,7 +11,15 @@ export default function PolicyImpactPopup(props) {
     setHasShownPopulationImpactPopup,
   } = props;
   const content = (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
       <div>
         {metadata.countryId === "us" ? (
           <p>
@@ -32,7 +40,13 @@ export default function PolicyImpactPopup(props) {
           </p>
         )}
       </div>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: 20,
+        }}
+      >
         <Button
           type="primary"
           onClick={() => Modal.destroyAll()}
@@ -49,12 +63,15 @@ export default function PolicyImpactPopup(props) {
         content: content,
         style: {
           borderRadius: 25,
+          textAlign: "center",
         },
         okButtonProps: {
           style: {
             display: "none",
           },
         },
+        icon: null,
+        closable: false,
         keyboard: true,
         centered: true,
       });
