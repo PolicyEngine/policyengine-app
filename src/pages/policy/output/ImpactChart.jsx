@@ -7,7 +7,7 @@ export default function ImpactChart(props) {
   const screenshotRef = useRef();
   return (
     <DownloadableScreenshottable ref={screenshotRef}>
-      <h2 style={{ width: "700px", wordWrap: "break-word" }}>{title}</h2>
+      <h2 style={{ width: "100%", wordWrap: "break-word" }}>{title}</h2>
       <HoverCard>{children}</HoverCard>
       {description}
     </DownloadableScreenshottable>

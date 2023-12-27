@@ -232,6 +232,7 @@ export function LowLevelDisplay(props) {
   }, [preparingForScreenshot, takeScreenShot]);
 
   const urlParams = new URLSearchParams(window.location.search);
+  const focus = urlParams.get("focus");
   const selectedVersion = urlParams.get("version") || metadata.version;
   const policyOutputTree = getPolicyOutputTree(metadata.countryId);
   const url = encodeURIComponent(window.location.href);
