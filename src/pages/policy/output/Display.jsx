@@ -322,7 +322,7 @@ export function LowLevelDisplay(props) {
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
       {children}
-      {!preparingForScreenshot && (
+      {!mobile && !preparingForScreenshot && (
         <BottomCarousel
           selected={focus}
           options={policyOutputTree[0].children}
