@@ -22,7 +22,7 @@ export default function MobileHouseholdPage(props) {
     householdInput,
     householdBaseline,
     mainContent,
-    autoCompute
+    autoCompute,
   } = props;
 
   const [bottomPadding, setBottomPadding] = useState(0);
@@ -43,7 +43,7 @@ export default function MobileHouseholdPage(props) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  })
+  });
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function MobileHouseholdPage(props) {
           overflow: "scroll",
           width: "100%",
           padding: `20px 20px ${bottomPadding}px 20px`,
-          minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`
+          minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`,
         }}
       >
         {mainContent}
@@ -117,7 +117,7 @@ function MobileTreeNavigationHolder(props) {
         padding: 5,
         alignItems: "center",
         width: "100%",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
       }}
     >
       {breadcrumbs.map((breadcrumb, i) => (
@@ -129,7 +129,7 @@ function MobileTreeNavigationHolder(props) {
             fontSize: "min(0.85rem, 20px)",
             whiteSpace: "wrap",
             margin: 0,
-            fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter"
+            fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter",
           }}
           onClick={() => {
             let newSearch = copySearchParams(searchParams);
@@ -156,17 +156,12 @@ function MobileTreeNavigationHolder(props) {
 }
 
 function MobileBottomMenu(props) {
-  const { 
-    metadata, 
-    householdBaseline, 
-    householdReform, 
-    autoCompute
-  } = props;
+  const { metadata, householdBaseline, householdReform, autoCompute } = props;
   const [searchParams] = useSearchParams();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   function handleMenuOpen() {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   }
 
   let hasReform = searchParams.get("reform") !== null;
@@ -219,7 +214,7 @@ function MobileBottomMenu(props) {
         left: 0,
         bottom: 0,
         zIndex: 5,
-        gap: "5px"
+        gap: "5px",
       }}
     >
       <div
@@ -228,15 +223,18 @@ function MobileBottomMenu(props) {
           flexDirection: "row",
           width: "100%",
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}
       >
         <MobileTreeNavigationHolder metadata={metadata} />
         <MobileBottomNavButtons focus={focus} />
-        <MenuOpenCloseButton isMenuOpen={isMenuOpen} handleMenuOpen={handleMenuOpen}/>
+        <MenuOpenCloseButton
+          isMenuOpen={isMenuOpen}
+          handleMenuOpen={handleMenuOpen}
+        />
       </div>
-      <OpenedNavigationMenu 
-        isMenuOpen={isMenuOpen} 
+      <OpenedNavigationMenu
+        isMenuOpen={isMenuOpen}
         metadata={metadata}
         focus={focus}
         hasReform={hasReform}
@@ -248,7 +246,7 @@ function MobileBottomMenu(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
-function MobileBottomNavButtons({focus}) {
+function MobileBottomNavButtons({ focus }) {
   if (!(focus && focus.startsWith("householdOutput."))) {
     return null;
   }
@@ -264,7 +262,7 @@ function MobileBottomNavButtons({focus}) {
         display: "flex",
         flexDirection: "row",
         justifyContent: "flex-start",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       {previous.label ? (
@@ -290,7 +288,7 @@ function MobileBottomNavButtons({focus}) {
   );
 }
 
-function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
+function MenuOpenCloseButton({ isMenuOpen, handleMenuOpen }) {
   return (
     <>
       <div
@@ -325,13 +323,7 @@ function MenuOpenCloseButton({isMenuOpen, handleMenuOpen}) {
 }
 
 function OpenedNavigationMenu(props) {
-  const {
-    isMenuOpen, 
-    metadata, 
-    focus,
-    hasReform,
-    text
-  } = props;
+  const { isMenuOpen, metadata, focus, hasReform, text } = props;
   if (!isMenuOpen) {
     return null;
   }
@@ -347,56 +339,52 @@ function OpenedNavigationMenu(props) {
           flexDirection: "column",
           justifyContent: "flex-end",
           alignItems: "center",
-          gap: "10px"
+          gap: "10px",
         }}
         initial={{
           opacity: 1,
           visibility: "hidden",
-          y: "100%"
+          y: "100%",
         }}
         animate={{
           opacity: 1,
           visibility: "visible",
-          y: "0%"
+          y: "0%",
         }}
         transition={{
           duration: 0.4,
         }}
       >
         <DividerBar />
-        <TopText text={text}/>
+        <TopText text={text} />
         <SearchBar metadata={metadata} />
-        <NavOptionsBar 
-          focus={focus} 
+        <NavOptionsBar
+          focus={focus}
           hasReform={hasReform}
           metadata={metadata}
         />
       </motion.div>
     </>
-  )
+  );
 }
 
-function TopText({text}) {
-  return (
-    <h5 style={{margin: 0}}>
-      {text}
-    </h5>
-  )
+function TopText({ text }) {
+  return <h5 style={{ margin: 0 }}>{text}</h5>;
 }
 
 function DividerBar() {
   return (
-    <div 
+    <div
       style={{
         width: "100%",
         backgroundColor: colors.MEDIUM_DARK_GRAY,
-        height: "1px"
+        height: "1px",
       }}
     />
-  )
+  );
 }
 
-function SearchBar({metadata}) {
+function SearchBar({ metadata }) {
   return (
     <div
       style={{
@@ -405,7 +393,7 @@ function SearchBar({metadata}) {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        gap: "10px"
+        gap: "10px",
       }}
     >
       <VariableSearch metadata={metadata} />
@@ -415,7 +403,7 @@ function SearchBar({metadata}) {
           color: style.colors.BLACK,
           display: "block",
           width: "50px",
-          flexShrink: 0
+          flexShrink: 0,
         }}
       />
     </div>
@@ -423,7 +411,7 @@ function SearchBar({metadata}) {
 }
 
 function NavOptionsBar(props) {
-  const {focus, hasReform, metadata} = props;
+  const { focus, hasReform, metadata } = props;
 
   return (
     <div
@@ -434,7 +422,7 @@ function NavOptionsBar(props) {
         alignItems: "center",
         width: "100%",
         gap: "5px",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
       }}
     >
       {focus && focus.startsWith("householdOutput") && (
