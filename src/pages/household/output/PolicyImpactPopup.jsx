@@ -55,7 +55,6 @@ export default function PolicyImpactPopup(props) {
         content: content,
         style: {
           borderRadius: 25,
-          textAlign: "center",
         },
         okButtonProps: {
           style: {
