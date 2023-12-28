@@ -1,6 +1,5 @@
 import { Modal } from "antd";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../controls/Button";
 
 export default function PolicyImpactPopup(props) {
@@ -10,6 +9,12 @@ export default function PolicyImpactPopup(props) {
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
   } = props;
+
+  const countryLinks = {
+    us: "/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis",
+    uk: "/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate",
+  };
+
   const content = (
     <div
       style={{
@@ -21,24 +26,10 @@ export default function PolicyImpactPopup(props) {
       }}
     >
       <div>
-        {metadata.countryId === "us" ? (
-          <p>
-            PolicyEngine estimates reform impacts using microsimulation.{" "}
-            <a
-              href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis"
-              target="_blank"
-            >
-              Learn more
-            </a>
-          </p>
-        ) : (
-          <p>
-            PolicyEngine estimates reform impacts using microsimulation.{" "}
-            <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
-              Learn more
-            </a>
-          </p>
-        )}
+        <p>
+          PolicyEngine estimates reform impacts using microsimulation.{" "}
+          <a href={countryLinks[metadata.countryId]}>Learn more</a>
+        </p>
       </div>
       <div
         style={{
@@ -55,6 +46,7 @@ export default function PolicyImpactPopup(props) {
       </div>
     </div>
   );
+
   useEffect(() => {
     const openModal = () => {
       Modal.info({
