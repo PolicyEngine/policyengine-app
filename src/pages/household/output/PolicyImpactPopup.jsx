@@ -20,9 +20,8 @@ export default function PolicyImpactPopup(props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         justifyContent: "center",
-        textAlign: "center",
+        alignItems: "center",
       }}
     >
       <div>
