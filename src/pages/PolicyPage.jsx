@@ -130,13 +130,7 @@ export default function PolicyPage(props) {
         {node.children}
       </FolderPage>
     );
-  } else if (focus === "policyOutput") {
-    middle = (
-      <FolderPage label="Policy impact" metadata={metadata}>
-        {POLICY_OUTPUT_TREE[0].children}
-      </FolderPage>
-    );
-  } else if (focus.includes("policyOutput.")) {
+  } else if (focus.includes("policyOutput")) {
     middle = (
       <>
         <PolicyOutput

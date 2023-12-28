@@ -10,7 +10,11 @@ export default function PolicyOutput(props) {
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
   const reformPolicyId = urlParams.get("reform");
-  const impactType = /policyOutput\.(.+)/.exec(focus)[1];
+  let impactType = null;
+  if (focus !== "policyOutput") {
+    impactType = /policyOutput\.(.+)/.exec(focus)[1];
+  }
+
   if (!reformPolicyId) {
     return <DisplayEmpty />;
   }

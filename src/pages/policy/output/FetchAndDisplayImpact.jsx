@@ -5,6 +5,7 @@ import {
   DisplayWait,
   LowLevelDisplay,
 } from "./Display";
+import ImpactBreakdown from "./ImpactBreakdown";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
@@ -28,6 +29,7 @@ import ErrorPage from "layout/Error";
  */
 export function FetchAndDisplayImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const focus = searchParams.get("focus");
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
@@ -124,6 +126,12 @@ export function FetchAndDisplayImpact(props) {
         secondsElapsed={secondsElapsed}
       />
     );
+  }
+
+  if (focus === "policyOutput") {
+    return (
+      <ImpactBreakdown />
+    )
   }
 
   return (
