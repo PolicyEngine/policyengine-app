@@ -47,20 +47,28 @@ function ContactUs() {
 }
 
 function TwitterEmbed() {
+  const displayCategory = useDisplayCategory();
+  const athabascaTwitterLink =
+    "https://www.athabasca.dev/hydra/content/twitteriframes/QOJXetYBdppnFEcjtYUDRuWJmXAMPotTWDeqkkbMQeCkJKwB.html?v=AtCahfJd";
+
   return (
     <div
       style={{
-        marginLeft: 40,
-        marginRight: 40,
+        marginLeft: 20,
+        marginRight: 20,
       }}
     >
-      <a
-        className="twitter-timeline"
-        href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
-        {...{
-          "data-height": "300",
+      <iframe
+        scrolling="no" // This is deprecated, but essential to function correctly
+        height="100%"
+        style={{
+          width: "100%",
+          height: displayCategory === "mobile" ? "500px" : "100%",
+          border: "none",
+          borderRadius: "12px",
         }}
-      ></a>
+        src={athabascaTwitterLink}
+      />
     </div>
   );
 }
