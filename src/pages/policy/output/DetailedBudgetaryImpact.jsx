@@ -123,7 +123,7 @@ function ImpactPlot(props) {
 export default function detailedBudgetaryImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   if (!impact.detailed_budget) {
-    return null;
+    return { chart: null, csv: null };
   }
   const budgetaryImpact = impact.budget.budgetary_impact;
   // impact.budget_detail[program] = { baseline: x, reform: y, different: y - z }
@@ -164,9 +164,6 @@ export default function detailedBudgetaryImpact(props) {
     </ImpactChart>
   );
   const csv = () => {
-    if (!impact.detailed_budget) {
-      return;
-    }
     // We have data in the form {child_benefit: {baseline: -14664753735.275948, difference: 0, reform: -14664753735.275948}, ...}
     // We need it in the form: [["Program", "Baseline", "Reform", "Difference"], ["Child benefit", -14664753735.275948, -14664753735.275948, 0], ...]
     let data = Object.entries(impact.detailed_budget).map(
