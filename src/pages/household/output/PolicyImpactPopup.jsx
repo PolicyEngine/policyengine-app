@@ -33,7 +33,6 @@ export default function PolicyImpactPopup(props) {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: 20,
         }}
       >
         <Button
