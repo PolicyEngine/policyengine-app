@@ -21,6 +21,9 @@ export default function PolicyImpactPopup(props) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+        gap: "8px",
       }}
     >
       <div>
