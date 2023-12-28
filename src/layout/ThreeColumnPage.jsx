@@ -1,4 +1,4 @@
-import { HEADER_HEIGHT } from "../layout/Header";
+import { HEADER_HEIGHT } from "../redesign/style/spacing";
 import style from "../style";
 
 export default function ThreeColumnPage(props) {
