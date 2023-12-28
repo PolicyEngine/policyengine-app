@@ -7,8 +7,7 @@ import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart from "./ImpactChart";
 
 function ImpactPlot(props) {
-  const { values, labels, metadata, mobile, useHoverCard } =
-    props;
+  const { values, labels, metadata, mobile, useHoverCard } = props;
   const xArray = labels;
   const yArray = values;
   // Waterfall chart
@@ -34,10 +33,7 @@ function ImpactPlot(props) {
           // Total should be dark gray if negative, dark green if positive
           totals: {
             marker: {
-              color:
-                values[2] < 0
-                  ? style.colors.DARK_GRAY
-                  : style.colors.BLUE,
+              color: values[2] < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
             },
           },
           connector: {
@@ -108,7 +104,7 @@ export function title(policyLabel, lsrImpact, metadata) {
   return (
     `${policyLabel} would ` +
     (lsrImpact > 0 ? "raise " : "lower ") +
-    "labor supply by " + 
+    "labor supply by " +
     aggregateCurrency(lsrImpact, metadata) +
     ` this year ${label}`
   );
