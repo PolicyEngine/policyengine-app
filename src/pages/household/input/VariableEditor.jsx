@@ -222,7 +222,7 @@ function HouseholdVariableEntityInput(props) {
     } else if (variable.valueType === "bool") {
       defaultValue = false;
     } else if (variable.valueType === "Enum") {
-      defaultValue = variable.possibleValues[0];
+      defaultValue = variable.possibleValues[4];
     }
   }
   const mobile = useMobile();
