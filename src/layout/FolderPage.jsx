@@ -124,10 +124,10 @@ export default function FolderPage(props) {
                 setSearchParams(newSearch);
               }}
             >
-              <h6 
-                style={{ 
-                  textAlign: "center", 
-                  color: "inherit"
+              <h6
+                style={{
+                  textAlign: "center",
+                  color: "inherit",
                 }}
               >
                 {capitalize(child.label)}
