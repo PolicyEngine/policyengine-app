@@ -10,7 +10,7 @@ import { Input, Card, Divider, Tag, Drawer } from "antd";
 function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
   useEffect(() => {
-    document.title = 'API Documentation'
+    document.title = "API Documentation";
   }, []);
 
   // type can be: parameter, variable
