@@ -27,7 +27,11 @@ export default function PolicyImpactPopup(props) {
       }}
     >
       <div>
-        <p>
+        <p
+          style={{
+            textAlign: "left"
+          }}
+        >
           PolicyEngine estimates reform impacts using microsimulation.{" "}
           <a href={countryLinks[metadata.countryId]}>Learn more</a>
         </p>
