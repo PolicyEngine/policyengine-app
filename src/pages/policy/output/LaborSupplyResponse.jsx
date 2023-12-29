@@ -45,7 +45,7 @@ function ImpactPlot(props) {
               }
             : {
                 customdata: xArray.map(() => {}),
-                hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
+                hovertemplate: `<b>%{x}</b><extra></extra>`,
               }),
         },
       ]}
@@ -54,7 +54,7 @@ function ImpactPlot(props) {
           title: "",
         },
         yaxis: {
-          title: "Budgetary impact (bn)",
+          title: "Employment income (bn)",
           tickformat: "$,.1f",
         },
         ...(useHoverCard
@@ -104,9 +104,9 @@ export function title(policyLabel, lsrImpact, metadata) {
   return (
     `${policyLabel} would ` +
     (lsrImpact > 0 ? "raise " : "lower ") +
-    "labor supply by " +
+    "employment income by " +
     aggregateCurrency(lsrImpact, metadata) +
-    ` this year ${label}`
+    `bn this year ${label}`
   );
 }
 
@@ -115,7 +115,7 @@ export default function lsrImpact(props) {
   const incomeEffect = impact.labour_supply_response.income_lsr;
   const substitutionEffect = impact.labour_supply_response.substitution_lsr;
 
-  const labels = ["Income elasticity", "Substitution elasticity", "Net change"];
+  const labels = ["Income effect", "Substitution effect", "Net change"];
   const values = [
     incomeEffect / 1e9,
     substitutionEffect / 1e9,

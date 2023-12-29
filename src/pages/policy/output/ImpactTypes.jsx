@@ -13,12 +13,12 @@ import povertyImpactByGender from "./PovertyImpactByGender";
 import povertyImpactByRace from "./PovertyImpactByRace";
 import relativeImpactByDecile from "./RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
-import laborSupplyImpact from "./LabourSupplyResponse";
+import laborSupplyImpact from "./LaborSupplyResponse";
 
 export const impactLabels = {
   netIncome: "Budgetary impact",
   detailedBudgetaryImpact: "Budgetary impact by program",
-  laborSupplyImpact: "Labour supply impact",
+  laborSupplyImpact: "Labor supply impact",
   decileAverageImpact: "Absolute impact by income decile",
   wealthDecileAverageImpact: "Absolute impact by wealth decile",
   decileRelativeImpact: "Relative impact by income decile",
