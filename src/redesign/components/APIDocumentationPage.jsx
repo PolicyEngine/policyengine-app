@@ -3,12 +3,16 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Section from "./Section";
 import useCountryId from "./useCountryId";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Input, Card, Divider, Tag, Drawer } from "antd";
 
 function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
+  useEffect(() => {
+    document.title = "API Documentation";
+  }, []);
+
   // type can be: parameter, variable
   // parameters look like this: "gov.dcms.bbc.tv_licence.discount.aged.discount":{"description":"Percentage discount for qualifying aged households.","economy":true,"household":true,"label":"Aged TV Licence discount","parameter":"gov.dcms.bbc.tv_licence.discount.aged.discount","period":null,"type":"parameter","unit":"/1","values":{"2003-01-01":1}}
   // variables look like this: "income_tax":{"adds":["earned_income_tax","savings_income_tax","dividend_income_tax","CB_HITC"],"category":"tax","defaultValue":0,"definitionPeriod":"year","documentation":"Total Income Tax liability","entity":"person","hidden_input":false,"indexInModule":22,"isInputVariable":false,"label":"Income Tax","moduleName":"gov.hmrc.income_tax.liability","name":"income_tax","subtracts":["capped_mcad"],"unit":"currency-GBP","valueType":"float"}
