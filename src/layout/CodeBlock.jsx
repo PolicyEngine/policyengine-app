@@ -12,6 +12,7 @@ export default function CodeBlock({ lines, language }) {
                 style={{
                   textAlign: "right",
                   paddingRight: "1em",
+                  paddingLeft: "1.5em",
                   userSelect: "none",
                   opacity: "0.5",
                 }}
