@@ -266,7 +266,7 @@ function title(metricChanges, policyLabel, metadata) {
 
 const description = (
   <p>
-    The chart above shows how this policy reform affects \ different measures of
+    The chart above shows how this policy reform affects different measures of
     income inequality.
   </p>
 );
