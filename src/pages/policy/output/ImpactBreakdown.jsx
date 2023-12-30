@@ -96,8 +96,8 @@ function formatDesc(value, type, options) {
   const templateStringsZero = {
     budgetaryImpact: "Your policy reform would have no impact on the budget",
     povertyRateChange: "Your policy reform would have no impact on the poverty rate",
-    winnersPercent: "Under your reform, no households would receive a higher net income",
-    losersPercent: "Under your reform, no households would receive a lower net income",
+    winnersPercent: "Under your reform, none of the population would receive a higher net income",
+    losersPercent: "Under your reform, none of the population would receive a lower net income",
   };
 
   const templateStringsError = {
@@ -150,10 +150,10 @@ function formatDesc(value, type, options) {
   const templateStrings = {
     budgetaryImpact: `Your reform's projected net budgetary ${action} is`,
     povertyRateChange: `Your reform would ${action} the poverty rate by`,
-    winnersPercent: "Percentage of the population that would receive " +  
-    "higher net income under your reform:",
-    losersPercent: "Percentage of the population that would receive " +
-    "lower net income under your reform:",
+    winnersPercent: "Your reform would raise the net income for this percent " + 
+    "of the population:",
+    losersPercent: "Your reform would lower the net income for this percent " + 
+    "of the population:",
   };
 
   const templateValues = {
