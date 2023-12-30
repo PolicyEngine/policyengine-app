@@ -245,6 +245,7 @@ function formatDesc(value, type, options) {
   let {currencyLabel, percentage} = options;
   let action = "";
   let displayValue = "";
+  let prefixLabel = "";
   let postfixLabel = "";
 
   // Declare template nouns for output when value is 0
@@ -289,7 +290,7 @@ function formatDesc(value, type, options) {
   // Remove negative signs
   displayValue = Math.abs(Number(value));
 
-  // If percentage, multiple by 100
+  // If percentage, multiply by 100
   if (percentage) {
     displayValue *= 100;
   }
@@ -299,6 +300,12 @@ function formatDesc(value, type, options) {
 
   // Round to two decimal points
   displayValue = displayValue.toFixed(2);
+
+  // If display value is now less than 0.01, display as "<0.01"
+  if (displayValue < 0.01) {
+    displayValue = 0.01;
+    prefixLabel = "<";
+  }
 
   // Declare template strings for output; must be after all processing
   // to enable proper string construction
@@ -312,10 +319,10 @@ function formatDesc(value, type, options) {
   };
 
   const templateValues = {
-    budgetaryImpact: `${currencyLabel}${displayValue}${postfixLabel}`,
-    povertyRateChange: `${displayValue}%`,
-    winnersPercent: `${displayValue}%`,
-    losersPercent: `${displayValue}%`,
+    budgetaryImpact: `${prefixLabel}${currencyLabel}${displayValue}${postfixLabel}`,
+    povertyRateChange: `${prefixLabel}${displayValue}%`,
+    winnersPercent: `${prefixLabel}${displayValue}%`,
+    losersPercent: `${prefixLabel}${displayValue}%`,
   }
 
   // Return string and corresponding value
