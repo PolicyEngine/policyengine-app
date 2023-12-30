@@ -351,13 +351,13 @@ export function addVariable(householdInput, variable, entityPlural) {
             // Then add it to the relevant part of the situation, along with
             // its default value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              2023: variable.defaultValue,
+              2024: variable.defaultValue,
             };
           } else {
             // Otherwise, add it to the relevant part of the situation, along with
             // a null value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              2023: null,
+              2024: null,
             };
           }
         }

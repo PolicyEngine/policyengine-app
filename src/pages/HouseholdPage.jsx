@@ -414,7 +414,7 @@ export function updateHousehold(householdInput, metadata) {
     for (const entity in householdInput[entityPlural]) {
       // Then over all variables within each entity...
       for (const variable in householdInput[entityPlural][entity]) {
-        const currentVal = householdInput[entityPlural][entity][variable][2023];
+        const currentVal = householdInput[entityPlural][entity][variable][2024];
 
         // If the variable is a reserved one, do nothing and continue
         if (reservedInputs.includes(variable)) {

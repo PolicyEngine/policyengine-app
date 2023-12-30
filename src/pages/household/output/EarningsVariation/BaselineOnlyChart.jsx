@@ -27,14 +27,14 @@ export default function BaselineOnlyChart(props) {
 
   const earningsArray = getValueFromHousehold(
     "employment_income",
-    "2023",
+    "2024",
     "you",
     householdBaselineVariation,
     metadata,
   );
   const baselineArray = getValueFromHousehold(
     variable,
-    "2023",
+    "2024",
     null,
     householdBaselineVariation,
     metadata,
@@ -42,14 +42,14 @@ export default function BaselineOnlyChart(props) {
   );
   const currentEarnings = getValueFromHousehold(
     "employment_income",
-    "2023",
+    "2024",
     "you",
     householdBaseline,
     metadata,
   );
   const currentBaseline = getValueFromHousehold(
     variable,
-    "2023",
+    "2024",
     null,
     householdBaseline,
     metadata,

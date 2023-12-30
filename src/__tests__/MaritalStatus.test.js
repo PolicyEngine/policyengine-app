@@ -24,16 +24,16 @@ describe("Setting UK marital status within MaritalStatus.jsx", () => {
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2023: 40,
+        2024: 40,
       },
     };
     const partnerName = "your partner";
     testStruct.people[partnerName] = JSON.parse(JSON.stringify(defaultPartner));
     testStruct.benunits["your immediate family"].members.push(partnerName);
     testStruct.benunits["your immediate family"].is_married = {
-      2023: true,
+      2024: true,
     };
-    testStruct.benunits["your immediate family"].is_married["2023"] = true;
+    testStruct.benunits["your immediate family"].is_married["2024"] = true;
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setUKMaritalStatus
@@ -59,7 +59,7 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2023: 40,
+        2024: 40,
       },
     };
     const partnerName = "your partner";
@@ -93,7 +93,7 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2023: 40,
+        2024: 40,
       },
     };
     const partnerName = "your partner";

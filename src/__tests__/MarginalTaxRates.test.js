@@ -20,7 +20,7 @@ const householdInput = {
   people: {
     you: {
       employment_income: {
-        2023: {},
+        2024: {},
       },
     },
   },

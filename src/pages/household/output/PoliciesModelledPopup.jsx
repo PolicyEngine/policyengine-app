@@ -18,7 +18,7 @@ function PoliciesModelledChecklist(props) {
       // Check if the household input matches the filter
       const actualValue = getValueFromHousehold(
         variable,
-        2023,
+        2024,
         "your household",
         householdInput,
         metadata,

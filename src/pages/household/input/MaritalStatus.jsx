@@ -19,16 +19,16 @@ function getUKMaritalStatus(situation) {
 export function setUKMaritalStatus(situation, status) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2023: 40 },
+    age: { 2024: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
     situation.benunits["your immediate family"].is_married = {
-      2023: true,
+      2024: true,
     };
-    situation.benunits["your immediate family"].is_married["2023"] = true;
+    situation.benunits["your immediate family"].is_married["2024"] = true;
     situation.households["your household"].members.push(partnerName);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
@@ -48,7 +48,7 @@ function getUSMaritalStatus(situation) {
 export function setUSMaritalStatus(situation, status) {
   const currentStatus = getUSMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2023: 40 },
+    age: { 2024: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -76,7 +76,7 @@ function getCAMaritalStatus(situation) {
 export function setCAMaritalStatus(situation, status) {
   const currentStatus = getCAMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2023: 40 },
+    age: { 2024: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {

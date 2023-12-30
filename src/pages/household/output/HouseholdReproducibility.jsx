@@ -27,7 +27,7 @@ export default function HouseholdReproducibility(props) {
       )) {
         if (variable !== "members") {
           if (
-            householdInputCopy[entityPlural][entity][variable][2023] === null
+            householdInputCopy[entityPlural][entity][variable][2024] === null
           ) {
             delete householdInputCopy[entityPlural][entity][variable];
           }
@@ -67,7 +67,7 @@ export default function HouseholdReproducibility(props) {
     ")",
     "",
     "simulation.trace = True",
-    'simulation.calculate("household_net_income", 2023)',
+    'simulation.calculate("household_net_income", 2024)',
     "simulation.tracer.print_computation_log()",
   ]);
 

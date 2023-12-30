@@ -19,7 +19,7 @@ describe("Test addVariable function", () => {
     testHousehold.people.you = {
       ...testHousehold.people.you,
       is_blind: {
-        2023: false,
+        2024: false,
       },
     };
 
@@ -48,7 +48,7 @@ describe("Test addVariable function", () => {
       testHousehold.people[person] = {
         ...testHousehold.people[person],
         is_blind: {
-          2023: false,
+          2024: false,
         },
       };
     });
@@ -67,7 +67,7 @@ describe("Test addVariable function", () => {
     testHousehold.people.you = {
       ...testHousehold.people.you,
       is_blind: {
-        2023: false,
+        2024: false,
       },
     };
 
@@ -96,7 +96,7 @@ describe("Test addVariable function", () => {
       testHousehold.people[person] = {
         ...testHousehold.people[person],
         is_blind: {
-          2023: false,
+          2024: false,
         },
       };
     });
