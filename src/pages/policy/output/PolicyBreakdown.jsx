@@ -1,58 +1,70 @@
-import {
-  CaretDownFilled,
-  CaretUpFilled,
-} from "@ant-design/icons";
+import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import style from "../../../style";
 
 export default function PolicyBreakdown(props) {
   const { metadata, impact } = props;
 
   const TITLE = "Your reform impact";
-  const BOTTOM_TEXT = "Here's how we estimated the society-wide impacts of your " +
-  "reform. Click on an option on the left panel to view more details.";
+  const BOTTOM_TEXT =
+    "Here's how we estimated the society-wide impacts of your " +
+    "reform. Click on an option on the left panel to view more details.";
 
   // Define the impact items to be included in the output
   const budgetaryImpact = impact.budget.budgetary_impact;
   const povertyOverview = impact.poverty.poverty.all;
   const decileOverview = impact.intra_decile.all;
   const povertyRateChange = povertyOverview.reform - povertyOverview.baseline;
-  const winnersPercent = decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
-  const losersPercent = decileOverview["Lose more than 5%"] + decileOverview["Lose less than 5%"];
+  const winnersPercent =
+    decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
+  const losersPercent =
+    decileOverview["Lose more than 5%"] + decileOverview["Lose less than 5%"];
 
   const listItems = [
     {
       value: budgetaryImpact,
       type: "budgetaryImpact",
-      formatted: formatDesc(budgetaryImpact, "budgetaryImpact", {currencyLabel: metadata.currency}),
+      formatted: formatDesc(budgetaryImpact, "budgetaryImpact", {
+        currencyLabel: metadata.currency,
+      }),
     },
     {
       value: povertyRateChange,
       type: "povertyRateChange",
-      formatted: formatDesc(povertyRateChange, "povertyRateChange", {percentage: true}),
+      formatted: formatDesc(povertyRateChange, "povertyRateChange", {
+        percentage: true,
+      }),
     },
     {
       value: winnersPercent,
       type: "winnersPercent",
-      formatted: formatDesc(winnersPercent, "winnersPercent", {percentage: true}),
+      formatted: formatDesc(winnersPercent, "winnersPercent", {
+        percentage: true,
+      }),
     },
     {
       value: losersPercent,
       type: "losersPercent",
-      formatted: formatDesc(losersPercent, "losersPercent", {percentage: true})
-    }
+      formatted: formatDesc(losersPercent, "losersPercent", {
+        percentage: true,
+      }),
+    },
   ];
 
   // Pass data structure to template
   return (
     <>
-      <BreakdownTemplate data={listItems} title={TITLE} bottomText={BOTTOM_TEXT}/>
+      <BreakdownTemplate
+        data={listItems}
+        title={TITLE}
+        bottomText={BOTTOM_TEXT}
+      />
     </>
   );
 }
 
 /**
  * Template for taking pre-formatted data and returning JSX of a breakdown page
- * @param {Object} props 
+ * @param {Object} props
  * @param {Array<Object>} props.data An array of individual data objects that will become
  * each line in the template
  * @param {Number} props.data.value The numerical value of each line item
@@ -60,26 +72,19 @@ export default function PolicyBreakdown(props) {
  * @returns {import("react-markdown/lib/react-markdown").ReactElement}
  */
 function BreakdownTemplate(props) {
-  const { 
-    data,
-    title,
-    bottomText
-  } = props;
+  const { data, title, bottomText } = props;
 
   const COLORS = {
     pos: style.colors.BLUE,
-    neg: style.colors.DARK_GRAY
+    neg: style.colors.DARK_GRAY,
   };
 
   // When formatting, treat a negative number
   // as positive (e.g., in case of poverty rate change)
-  const manualSignFlips = [
-    "povertyRateChange",
-    "losersPercent"
-  ];
+  const manualSignFlips = ["povertyRateChange", "losersPercent"];
 
   // Declare arrow buttons
-  const UpArrow = ({color}) => (
+  const UpArrow = ({ color }) => (
     <CaretUpFilled
       style={{
         color: color || COLORS.pos,
@@ -89,7 +94,7 @@ function BreakdownTemplate(props) {
     />
   );
 
-  const DownArrow = ({color}) => (
+  const DownArrow = ({ color }) => (
     <CaretDownFilled
       style={{
         color: color || COLORS.neg,
@@ -101,7 +106,6 @@ function BreakdownTemplate(props) {
 
   // Iterate over the data...
   const lineItems = data.map((item, index) => {
-
     // Return a formatted line containing the string
     // and value, colored based on the value contained
     let color = null;
@@ -121,7 +125,7 @@ function BreakdownTemplate(props) {
     }
 
     const [formattedString, formattedValue] = item.formatted;
-    
+
     return (
       <div
         key={index}
@@ -130,12 +134,12 @@ function BreakdownTemplate(props) {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "20px"
+          gap: "20px",
         }}
       >
         <h2
           style={{
-            fontSize: 22
+            fontSize: 22,
           }}
         >
           {formattedString}
@@ -146,18 +150,18 @@ function BreakdownTemplate(props) {
             justifyContent: "flex-end",
             alignItems: "center",
             gap: "8px",
-            fontSize: "22px"
+            fontSize: "22px",
           }}
         >
-          {(item.value && item.value > 0) ? <UpArrow color={color}/> : null}
-          {(item.value && item.value < 0) ? <DownArrow color={color}/> : null}
+          {item.value && item.value > 0 ? <UpArrow color={color} /> : null}
+          {item.value && item.value < 0 ? <DownArrow color={color} /> : null}
           {formattedValue && (
             <h2
               style={{
                 fontSize: 22,
                 color: color,
                 textAlign: "right",
-                marginBottom: 0
+                marginBottom: 0,
               }}
             >
               {formattedValue}
@@ -172,12 +176,12 @@ function BreakdownTemplate(props) {
     <div
       style={{
         minHeight: "100%",
-        padding: "0px 20px"
+        padding: "0px 20px",
       }}
     >
       <h2
         style={{
-          marginBottom: "30px"
+          marginBottom: "30px",
         }}
       >
         {title}
@@ -192,14 +196,14 @@ function BreakdownTemplate(props) {
           flexDirection: "column",
           gap: "30px",
           alignItems: "flex-start",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
-      {lineItems}
+        {lineItems}
       </div>
       <h5
         style={{
-          paddingTop: "40px"
+          paddingTop: "40px",
         }}
       >
         {bottomText}
@@ -219,7 +223,7 @@ function formatPowers(value) {
     [15, "qa"],
     [12, "tn"],
     [9, "bn"],
-    [6, "mn"]
+    [6, "mn"],
   ]);
   let label = "";
   let displayValue = value;
@@ -232,13 +236,12 @@ function formatPowers(value) {
     }
   }
   return [Number(displayValue), label];
-
 }
 
 /**
  * Creates a display string based on an input value
  * @param {Number|String} value The data value corresponding to the description
- * @param {String} type The type of value to be formatted; corresponds with 
+ * @param {String} type The type of value to be formatted; corresponds with
  * certain default values defined in the function
  * @param {Object} [options] An object containing a series of optional args
  * @param {String} [options.currencyLabel] The currency label to be applied to the text
@@ -246,7 +249,7 @@ function formatPowers(value) {
  * @returns {Array<String, String||null}
  */
 function formatDesc(value, type, options) {
-  let {currencyLabel, percentage} = options;
+  let { currencyLabel, percentage } = options;
   let action = "";
   let displayValue = "";
   let prefixLabel = "";
@@ -255,9 +258,12 @@ function formatDesc(value, type, options) {
   // Declare template nouns for output when value is 0
   const templateStringsZero = {
     budgetaryImpact: "Your policy reform would have no impact on the budget",
-    povertyRateChange: "Your policy reform would have no impact on the poverty rate",
-    winnersPercent: "Under your reform, none of the population would receive a higher net income",
-    losersPercent: "Under your reform, none of the population would receive a lower net income",
+    povertyRateChange:
+      "Your policy reform would have no impact on the poverty rate",
+    winnersPercent:
+      "Under your reform, none of the population would receive a higher net income",
+    losersPercent:
+      "Under your reform, none of the population would receive a lower net income",
   };
 
   const templateStringsError = {
@@ -274,13 +280,16 @@ function formatDesc(value, type, options) {
 
   // Handle error cases; doing so after 0 because 0 is falsy
   if (!value || Number.isNaN(value)) {
-    return [`There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`, null];
+    return [
+      `There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`,
+      null,
+    ];
   }
 
   // Declare default "action" value and manual overrides
   const actions = {
     default: ["raise", "lower"],
-    budgetaryImpact: ["savings", "cost"]
+    budgetaryImpact: ["savings", "cost"],
   };
 
   // Determine action
@@ -316,10 +325,12 @@ function formatDesc(value, type, options) {
   const templateStrings = {
     budgetaryImpact: `Your reform's projected net budgetary ${action} is`,
     povertyRateChange: `Your reform would ${action} the poverty rate by`,
-    winnersPercent: "Your reform would raise the net income for this percent " + 
-    "of the population:",
-    losersPercent: "Your reform would lower the net income for this percent " + 
-    "of the population:",
+    winnersPercent:
+      "Your reform would raise the net income for this percent " +
+      "of the population:",
+    losersPercent:
+      "Your reform would lower the net income for this percent " +
+      "of the population:",
   };
 
   const templateValues = {
@@ -327,9 +338,8 @@ function formatDesc(value, type, options) {
     povertyRateChange: `${prefixLabel}${displayValue}%`,
     winnersPercent: `${prefixLabel}${displayValue}%`,
     losersPercent: `${prefixLabel}${displayValue}%`,
-  }
+  };
 
   // Return string and corresponding value
   return [templateStrings[type], templateValues[type]];
-
 }
