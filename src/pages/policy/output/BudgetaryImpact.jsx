@@ -42,11 +42,10 @@ function ImpactPlot(props) {
           orientation: "v",
           // 'relative' for all but the last, which is 'total'
           measure:
-            yArray.length > 0
-              ? Array(yArray.length - 1)
-                  .fill("relative")
-                  .concat(["total"])
-              : ["total"],
+            yArray.length > 1 &&
+            Array(yArray.length - 1)
+              .fill("relative")
+              .concat(["total"]),
           textposition: "inside",
           text: values.map((value) => formatCur(value * 1e9)),
           increasing: { marker: { color: style.colors.BLUE } },
@@ -61,7 +60,7 @@ function ImpactPlot(props) {
             },
           },
           connector: {
-            line: { color: style.colors.GRAY, width: 1, dash: "dot" },
+            line: { color: style.colors.GRAY, width: 2, dash: "dot" },
           },
           ...(useHoverCard
             ? {
