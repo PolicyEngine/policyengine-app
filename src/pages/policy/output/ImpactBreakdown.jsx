@@ -23,19 +23,19 @@ export default function ImpactBreakdown(props) {
   const listItems = [
     {
       data: budgetaryImpact,
-      desc: formatDesc(budgetaryImpact, "budgetaryImpact", {currencyLabel: metadata.currency}),
+      formatted: formatDesc(budgetaryImpact, "budgetaryImpact", {currencyLabel: metadata.currency}),
     },
     {
       data: povertyRateChange,
-      desc: formatDesc(povertyRateChange, "povertyRateChange", {percentage: true}),
+      formatted: formatDesc(povertyRateChange, "povertyRateChange", {percentage: true}),
     },
     {
-      name: "Population percentage that gains",
-      data: winnersPercent
+      data: winnersPercent,
+      formatted: formatDesc(winnersPercent, "winnersPercent", {percentage: true}),
     },
     {
-      name: "Population percentage that loses",
-      data: losersPercent
+      data: losersPercent,
+      formatted: formatDesc(losersPercent, "losersPercent", {percentage: true})
     }
   ];
 
@@ -44,7 +44,7 @@ export default function ImpactBreakdown(props) {
   // Pass data structure to template
   return (
     <>
-      <p>{`${listItems[0].desc}, ${listItems[1].desc}, ${winnersPercent}, ${losersPercent}`}</p>
+      <p>{`${listItems[0].formatted}, ${listItems[1].formatted}, ${listItems[2].formatted}, ${listItems[3].formatted}`}</p>
     </>
   );
 }
@@ -84,7 +84,7 @@ function formatPowers(value) {
  * @param {Object} [options] An object containing a series of optional args
  * @param {String} [options.currencyLabel] The currency label to be applied to the text
  * @param {boolean} [options.percentage] Whether or not the input is a percentage value
- * @returns {String}
+ * @returns {String || Array<String, String>}
  */
 function formatDesc(value, type, options) {
   let {currencyLabel, percentage} = options;
@@ -94,24 +94,33 @@ function formatDesc(value, type, options) {
 
   // Declare template nouns for output when value is 0
   const templateStringsZero = {
+    budgetaryImpact: "Your policy reform would have no impact on the budget",
+    povertyRateChange: "Your policy reform would have no impact on the poverty rate",
+    winnersPercent: "Under your reform, no households would receive a higher net income",
+    losersPercent: "Under your reform, no households would receive a lower net income",
+  };
+
+  const templateStringsError = {
     budgetaryImpact: "budget",
-    povertyRateChange: "poverty rate"
+    povertyRateChange: "poverty rate",
+    winnersPercent: "percentage of households receiving a higher net income",
+    losersPercent: "percentage of households receiving a lower net income",
   };
 
   // Handle zero cases
   if (value === 0) {
-    return `Your policy reform would have no impact on the ${templateStringsZero[type]}`;
+    return templateStringsZero[type];
   }
 
   // Handle error cases; doing so after 0 because 0 is falsy
   if (!value || Number.isNaN(value)) {
-    return `There was an error in calculating your policy reform's impact on the ${templateStringsZero[type]}`;
+    return `There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`;
   }
 
   // Declare default "action" value and manual overrides
   const actions = {
     default: ["raise", "lower"],
-    budgetaryImpact: ["raise", "cost"]
+    budgetaryImpact: ["savings", "cost"]
   };
 
   // Determine action
@@ -139,11 +148,22 @@ function formatDesc(value, type, options) {
   // Declare template strings for output; must be after all processing
   // to enable proper string construction
   const templateStrings = {
-    budgetaryImpact: `Your policy reform would ${action} ${currencyLabel}${displayValue}${postfixLabel} this year`,
-    povertyRateChange: `Your policy reform would ${action} the poverty rate by ${displayValue}% this year`,
+    budgetaryImpact: `Your reform's projected net budgetary ${action} is`,
+    povertyRateChange: `Your reform would ${action} the poverty rate by`,
+    winnersPercent: "Percentage of the population that would receive " +  
+    "higher net income under your reform:",
+    losersPercent: "Percentage of the population that would receive " +
+    "lower net income under your reform:",
   };
 
-  // Return string
-  return templateStrings.budgetaryImpact;
+  const templateValues = {
+    budgetaryImpact: `${currencyLabel}${displayValue}${postfixLabel}`,
+    povertyRateChange: `${displayValue}%`,
+    winnersPercent: `${displayValue}%`,
+    losersPercent: `${displayValue}%`,
+  }
+
+  // Return string and corresponding value
+  return [templateStrings[type], templateValues[type]];
 
 }
