@@ -116,7 +116,16 @@ function BreakdownTemplate(props) {
     const [formattedString, formattedValue] = item.formatted;
     
     return (
-      <>
+      <div
+        key={index}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "20px"
+        }}
+      >
         <h2
           key={index + "h2"}
           style={{
@@ -149,7 +158,7 @@ function BreakdownTemplate(props) {
             {formattedValue}
           </h2>
         </div>
-      </>
+      </div>
     );
   });
 
@@ -162,7 +171,7 @@ function BreakdownTemplate(props) {
     >
       <h2
         style={{
-          marginBottom: "20px"
+          marginBottom: "30px"
         }}
       >
         {TITLE}
@@ -170,11 +179,14 @@ function BreakdownTemplate(props) {
       <div
         style={{
           width: "100%",
-          display: "grid",
-          alignContent: "center",
-          gridTemplateColumns: "1fr max-content",
-          rowGap: "20px",
-          gap: "20px"
+          padding: "10px 10px 0px 10px",
+          margin: "0 10px",
+          borderLeft: `2px solid ${COLORS.pos}`,
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+          alignItems: "flex-start",
+          justifyContent: "center"
         }}
       >
       {lineItems}
