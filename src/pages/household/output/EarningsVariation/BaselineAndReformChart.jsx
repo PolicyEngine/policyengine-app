@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { Radio } from "antd";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import { capitalize } from "../../../../api/language";
+import { capitalize, localeCode } from "../../../../api/language";
 import {
   getPlotlyAxisFormat,
   getValueFromHousehold,
@@ -312,6 +312,7 @@ function BaselineAndReformTogetherPlot(props) {
         config={{
           displayModeBar: false,
           responsive: true,
+          locale: localeCode(metadata.countryId),
         }}
         style={{
           width: "100%",
@@ -507,6 +508,7 @@ function BaselineReformDeltaPlot(props) {
         config={{
           displayModeBar: false,
           responsive: true,
+          locale: localeCode(metadata.countryId),
         }}
         style={{
           width: "100%",

@@ -138,7 +138,11 @@ export default function ParameterEditor(props) {
           type="warning"
         />
       )}
-      <ParameterOverTime parameter={parameter} policy={policy} />
+      <ParameterOverTime
+        parameter={parameter}
+        policy={policy}
+        metadata={metadata}
+      />
     </CenteredMiddleColumn>
   );
 }
