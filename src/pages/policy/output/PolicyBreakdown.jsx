@@ -4,7 +4,7 @@ import {
 } from "@ant-design/icons";
 import style from "../../../style";
 
-export default function ImpactBreakdown(props) {
+export default function PolicyBreakdown(props) {
   const { metadata, policy, impact } = props;
 
   // Define the impact items to be included in the output

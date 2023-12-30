@@ -14,7 +14,7 @@ import ErrorPage from "layout/Error";
 import ResultActions from "layout/ResultActions";
 import { downloadCsv, downloadPng } from "./utils";
 import { useReactToPrint } from "react-to-print";
-import ImpactBreakdown from "./ImpactBreakdown";
+import PolicyBreakdown from "./PolicyBreakdown";
 
 /**
  *
@@ -144,7 +144,7 @@ export function DisplayImpact(props) {
     );
   } else if (impactType === "policyBreakdown") {
     pane = (
-      <ImpactBreakdown 
+      <PolicyBreakdown 
         metadata={metadata}
         impact={impact}
         policy={policy}

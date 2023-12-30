@@ -29,7 +29,6 @@ import ErrorPage from "layout/Error";
  */
 export function FetchAndDisplayImpact(props) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const focus = searchParams.get("focus");
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
