@@ -1,6 +1,8 @@
-// Breakdown template component that will receive a 
-// JS data structure, iterate, and apply styling
-
+import {
+  CaretDownFilled,
+  CaretUpFilled,
+} from "@ant-design/icons";
+import style from "../../../style";
 
 export default function ImpactBreakdown(props) {
   const { metadata, policy, impact } = props;
@@ -22,19 +24,23 @@ export default function ImpactBreakdown(props) {
 
   const listItems = [
     {
-      data: budgetaryImpact,
+      value: budgetaryImpact,
+      type: "budgetaryImpact",
       formatted: formatDesc(budgetaryImpact, "budgetaryImpact", {currencyLabel: metadata.currency}),
     },
     {
-      data: povertyRateChange,
+      value: povertyRateChange,
+      type: "povertyRateChange",
       formatted: formatDesc(povertyRateChange, "povertyRateChange", {percentage: true}),
     },
     {
-      data: winnersPercent,
+      value: winnersPercent,
+      type: "winnersPercent",
       formatted: formatDesc(winnersPercent, "winnersPercent", {percentage: true}),
     },
     {
-      data: losersPercent,
+      value: losersPercent,
+      type: "losersPercent",
       formatted: formatDesc(losersPercent, "losersPercent", {percentage: true})
     }
   ];
@@ -44,8 +50,97 @@ export default function ImpactBreakdown(props) {
   // Pass data structure to template
   return (
     <>
-      <p>{`${listItems[0].formatted}, ${listItems[1].formatted}, ${listItems[2].formatted}, ${listItems[3].formatted}`}</p>
+      <BreakdownTemplate data={listItems} />
     </>
+  );
+}
+
+/**
+ * Template for taking pre-formatted data and returning JSX of a breakdown page
+ * @param {Object} props 
+ * @param {Array<Object>} props.data An array of individual data objects that will become
+ * each line in the template
+ * @param {Number} props.data.value The numerical value of each line item
+ * @param {Function} props.data.formatted The string formatter function associated with each line
+ * @returns {import("react-markdown/lib/react-markdown").ReactElement}
+ */
+function BreakdownTemplate(props) {
+  const { data } = props;
+
+  const colors = {
+    pos: style.colors.BLUE,
+    neg: style.colors.DARK_GRAY
+  };
+
+  // When formatting, treat a negative number
+  // as positive (e.g., in case of poverty rate change)
+  const manualSignFlips = [
+    "povertyRateChange"
+  ];
+
+  // Declare arrow buttons
+  const UpArrow = () => (
+    <CaretUpFilled
+      style={{
+        color: colors.pos,
+        display: "inline-flex",
+        alignItems: "center",
+      }}
+    />
+  );
+
+  const DownArrow = () => (
+    <CaretDownFilled
+      style={{
+        color: colors.neg,
+        display: "inline-flex",
+        alignItems: "center",
+      }}
+    />
+  );
+
+  // Iterate over the data...
+  const lineItems = data.map((item, index) => {
+
+    // Return a formatted line containing the string
+    // and value, colored based on the value contained
+    let color = null;
+    if (
+      item.value > 0 || 
+      manualSignFlips.includes(item.type) && item.value <= 0
+    ) {
+      color = colors.pos;
+    } else {
+      color = colors.neg;
+    }
+
+    const [string, value] = item.formatted;
+
+    return (
+      <div
+        key={index}
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between"
+        }}
+      >
+        <p>
+          {string}
+        </p>
+        <p>
+          {value}
+        </p>
+      </div>
+    );
+  });
+
+  return (
+    <div>
+      {lineItems}
+    </div>
   );
 }
 
@@ -109,12 +204,12 @@ function formatDesc(value, type, options) {
 
   // Handle zero cases
   if (value === 0) {
-    return templateStringsZero[type];
+    return [templateStringsZero[type], ""];
   }
 
   // Handle error cases; doing so after 0 because 0 is falsy
   if (!value || Number.isNaN(value)) {
-    return `There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`;
+    return [`There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`, ""];
   }
 
   // Declare default "action" value and manual overrides
