@@ -1,7 +1,6 @@
 import React from "react";
-import { formatVariableValue } from "../../../api/variables";
-import ImpactChart, { impactTitle } from "./ImpactChart";
-import { ImpactPlot } from "./AverageImpactByDecile";
+import ImpactChart from "./ImpactChart";
+import { ImpactPlot, title } from "./AverageImpactByDecile";
 
 const description = (
   <p>
@@ -14,22 +13,11 @@ const description = (
 export default function averageImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const wealthDecileAverage = impact.wealth_decile.average;
-  const averageImpactPerHousehold =
+  const relativeChange =
     -impact.budget.budgetary_impact / impact.budget.households;
   const chart = (
     <ImpactChart
-      title={impactTitle(
-        policyLabel,
-        averageImpactPerHousehold,
-        formatVariableValue(
-          metadata.variables.household_net_income,
-          Math.abs(averageImpactPerHousehold),
-          0,
-        ),
-        "the net income of households",
-        "on average",
-        metadata,
-      )}
+      title={title(policyLabel, relativeChange, metadata)}
       description={description}
     >
       <ImpactPlot

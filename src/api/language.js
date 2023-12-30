@@ -5,8 +5,83 @@ export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function aggregateNumber(number) {
-  // e.g. 12.3bn, 301m, 1.2k
+export function cardinal(number) {
+  // E.g. 1 -> 'first', 2 -> 'second', 3 -> 'third'
+  const suffixes = ["th", "st", "nd", "rd"];
+  const rem = number % 100;
+  return number + (suffixes[(rem - 20) % 10] || suffixes[rem] || suffixes[0]);
+}
+
+/**
+ *
+ * @param
+ * @returns the Unicode locale identifier for the country
+ */
+export function localeCode(countryId) {
+  return countryId === "uk" ? "en-GB" : "en-US";
+}
+
+/**
+ *
+ * @param {string} countryId the country id, usually found in the metadata
+ * @returns the ISO 4217 currency codes for the currency for the country
+ */
+export function currencyCode(countryId) {
+  return countryId === "uk" ? "GBP" : "USD";
+}
+
+/**
+ *
+ * @param {number} number a number
+ * @param {object} metadata the metadata object
+ * @param {object?} options an object adjusting the output format. Corresponds
+ * to the options parameter of Number.prototype.toLocaleString().
+ * @returns the formatted number
+ */
+export function formatNumber(number, metadata, options) {
+  return number.toLocaleString(localeCode(metadata.countryId), options);
+}
+
+/**
+ *
+ * @param {number} number a number
+ * @param {object} metadata the metadata object
+ * @param {object?} options an object adjusting the output format. Corresponds
+ * to the options parameter of Number.prototype.toLocaleString().
+ * @returns the formatted currency
+ */
+export function formatCurrency(number, metadata, options) {
+  return number.toLocaleString(localeCode(metadata.countryId), {
+    style: "currency",
+    currency: currencyCode(metadata.countryId),
+    ...options,
+  });
+}
+
+/**
+ *
+ * @param {number} number a number
+ * @param {object} metadata the metadata object
+ * @param {object?} options an object adjusting the output format. Corresponds
+ * to the options parameter of Number.prototype.toLocaleString().
+ * @returns the formatted number with % sign
+ */
+export function formatPercent(number, metadata, options) {
+  return number.toLocaleString(localeCode(metadata.countryId), {
+    style: "percent",
+    ...options,
+  });
+}
+
+/**
+ *
+ * @param {number} number a number
+ * @param {object} metadata the metadata object
+ * @param {object?} options an object adjusting the output format. Corresponds
+ * to the options parameter of Number.prototype.toLocaleString().
+ * @returns the abbreviated number, e.g., 12.3bn, 301m, 1.2k
+ */
+export function formatNumberAbbr(number, metadata, options) {
   let suffix = "";
   const absNumber = Math.abs(number);
   if (absNumber >= 1e9) {
@@ -19,42 +94,17 @@ export function aggregateNumber(number) {
     number /= 1e3;
     suffix = "k";
   }
-  return (
-    Math.abs(number).toLocaleString(undefined, {
-      maximumFractionDigits: 1,
-      minimumFractionDigits: 1,
-    }) + suffix
-  );
+  return formatNumber(number, metadata, options) + suffix;
 }
 
-export function aggregateCurrency(number, metadata) {
-  const currency = metadata.currency;
-  return currency + aggregateNumber(number);
-}
-
-export function percent(number) {
-  return (
-    (number * 100).toLocaleString(undefined, {
-      maximumFractionDigits: 1,
-      minimumFractionDigits: 1,
-    }) + "%"
-  );
-}
-
-export function cardinal(number) {
-  // E.g. 1 -> 'first', 2 -> 'second', 3 -> 'third'
-  const suffixes = ["th", "st", "nd", "rd"];
-  const rem = number % 100;
-  return number + (suffixes[(rem - 20) % 10] || suffixes[rem] || suffixes[0]);
-}
-
-// returns the Unicode locale identifier for the country id in the metadata
-export function localeCode(countryId) {
-  return countryId === "uk" ? "en-GB" : "en-US";
-}
-
-// returns the ISO 4217 currency codes for the currency for the country id in
-// the metadata
-export function currencyCode(countryId) {
-  return countryId === "uk" ? "GBP" : "USD";
+/**
+ *
+ * @param {number} number a number
+ * @param {object} metadata the metadata object
+ * @param {object?} options an object adjusting the output format. Corresponds
+ * to the options parameter of Number.prototype.toLocaleString().
+ * @returns the abbreviated currency, e.g., $12.3bn, $301m, $1.2k
+ */
+export function formatCurrencyAbbr(number, metadata, options) {
+  return metadata.currency + formatNumberAbbr(number, metadata, options);
 }

@@ -1,8 +1,8 @@
 import React from "react";
-import { percent } from "../../../api/language";
-import ImpactChart, { impactTitle } from "./ImpactChart";
+import ImpactChart from "./ImpactChart";
 import { ImpactPlot, csv } from "./PovertyImpactByGender";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
+import { title } from "./PovertyImpact";
 
 const description = (
   <p>
@@ -31,21 +31,18 @@ export default function deepPovertyImpactByGender(props) {
     Female: "female",
     All: "all",
   };
-  const povertyRateChange = percent(Math.abs(totalPovertyChange));
-  const percentagePointChange =
-    Math.round(Math.abs(allImpact.all.reform - allImpact.all.baseline) * 1000) /
-    10;
-  const title = impactTitle(
-    policyLabel,
-    totalPovertyChange,
-    `${povertyRateChange} (${percentagePointChange}pp)`,
-    "the poverty rate",
-    "",
-    metadata,
-  );
   const chart = (
     <PovertyChangeProvider>
-      <ImpactChart title={title} description={description}>
+      <ImpactChart
+        title={title(
+          policyLabel,
+          "the deep poverty rate",
+          allImpact.all.baseline,
+          allImpact.all.reform,
+          metadata,
+        )}
+        description={description}
+      >
         <ImpactPlot
           povertyType={"deep poverty"}
           genderImpact={genderImpact}
@@ -53,6 +50,7 @@ export default function deepPovertyImpactByGender(props) {
           povertyLabels={povertyLabels}
           povertyChanges={povertyChanges}
           labelToKey={labelToKey}
+          metadata={metadata}
           mobile={mobile}
           useHoverCard={useHoverCard}
         />

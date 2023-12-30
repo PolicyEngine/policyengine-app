@@ -1,27 +1,33 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency, localeCode } from "../../../api/language";
+import { formatCurrencyAbbr, localeCode } from "../../../api/language";
 import style from "../../../style";
-import { avgChangeDirection, plotLayoutFont } from "./utils";
+import { plotLayoutFont } from "./utils";
 import React from "react";
-import ImpactChart from "./ImpactChart";
+import ImpactChart, { absoluteChangeMessage } from "./ImpactChart";
 import { HoverCardContext } from "layout/HoverCard";
 import { title } from "./BudgetaryImpact";
 
 function ImpactPlot(props) {
-  const {
-    xValues,
-    yValues,
-    textValues,
-    budgetaryImpact,
-    useHoverCard,
-    metadata,
-    mobile,
-  } = props;
+  const { xValues, yValues, budgetaryImpact, useHoverCard, metadata, mobile } =
+    props;
   const setHoverCard = useContext(HoverCardContext);
+  const formatCur = (x) =>
+    formatCurrencyAbbr(x, metadata, {
+      maximumFractionDigits: 1,
+    });
+  function hoverMessage(x, y) {
+    y = y * 1e9;
+    const obj =
+      x === "Total"
+        ? "the budget deficit"
+        : `the ${x} program's budgetary impact`;
+    const change = x === "Total" ? -y : y;
+    return absoluteChangeMessage("This reform", obj, change, 0, formatCur);
+  }
   const xArray = xValues.concat(["Total"]);
-  const yArray = yValues.concat([budgetaryImpact]);
+  const yArray = yValues.concat([budgetaryImpact / 1e9]);
   // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
@@ -31,9 +37,12 @@ function ImpactPlot(props) {
           y: yArray,
           type: "waterfall",
           orientation: "v",
+          // 'relative' for all but the last, which is 'total'
           measure:
-            textValues.length > 0
-              ? Array(textValues.length).fill("relative").concat(["total"])
+            yArray.length > 0
+              ? Array(yArray.length - 1)
+                  .fill("relative")
+                  .concat(["total"])
               : ["total"],
           increasing: { marker: { color: style.colors.BLUE } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
@@ -46,16 +55,18 @@ function ImpactPlot(props) {
                   : style.colors.BLUE,
             },
           },
-          text: textValues,
+          connector: {
+            line: { color: style.colors.GRAY, width: 1, dash: "dot" },
+          },
+          textposition: "inside",
+          text: yArray.map((y) => formatCur(y * 1e9)),
           textangle: 0,
           ...(useHoverCard
             ? {
                 hoverinfo: "none",
               }
             : {
-                customdata: yArray.map((change) =>
-                  aggregateCurrency(change, metadata),
-                ),
+                customdata: xArray.map((x, i) => hoverMessage(x, yArray[i])),
                 hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
               }),
         },
@@ -104,11 +115,11 @@ function ImpactPlot(props) {
       {...(useHoverCard
         ? {
             onHover: (data) => {
-              const program = data.points[0].x;
-              const change = data.points[0].y;
+              const x = data.points[0].x;
+              const y = data.points[0].y;
               setHoverCard({
-                title: `${program}`,
-                body: aggregateCurrency(change, metadata),
+                title: `${x}`,
+                body: hoverMessage(x, y),
               });
             },
             onUnhover: () => {
@@ -123,31 +134,18 @@ function ImpactPlot(props) {
 export default function detailedBudgetaryImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   if (!impact.detailed_budget) {
-    return { chart: null, csv: null };
+    return {};
   }
   const budgetaryImpact = impact.budget.budgetary_impact;
   // impact.budget_detail[program] = { baseline: x, reform: y, different: y - z }
   // We need a bar chart showing the programs with nonzero different
   const xValues = [];
   const yValues = [];
-  const textValues = [];
   Object.entries(impact.detailed_budget).forEach(([program, values]) => {
     if (values.difference !== 0) {
       yValues.push(values.difference / 1e9);
       const programLabel = metadata.variables[program].label;
       xValues.push(programLabel);
-      // [label]'s budgetary impact [rises/falls] by [abs(value)], from [baseline] to [reform].
-      textValues.push(
-        `${programLabel}'s budgetary impact ${avgChangeDirection(
-          values.different,
-        )} by ${aggregateCurrency(
-          values.difference,
-          metadata.countryId,
-        )}, from ${aggregateCurrency(
-          values.baseline,
-          metadata.countryId,
-        )} to ${aggregateCurrency(values.reform, metadata.countryId)}.`,
-      );
     }
   });
   const chart = (
@@ -155,7 +153,6 @@ export default function detailedBudgetaryImpact(props) {
       <ImpactPlot
         xValues={xValues}
         yValues={yValues}
-        textValues={textValues}
         budgetaryImpact={budgetaryImpact}
         metadata={metadata}
         mobile={mobile}

@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency, localeCode } from "../../../api/language";
+import { formatCurrencyAbbr, localeCode } from "../../../api/language";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart from "./ImpactChart";
+import ImpactChart, { absoluteChangeMessage } from "./ImpactChart";
+import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 function ImpactPlot(props) {
   const { budgetaryImpact, values, labels, metadata, mobile, useHoverCard } =
@@ -13,6 +14,23 @@ function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
   const xArray = labels.length > 0 ? labels : ["Net impact"];
   const yArray = labels.length > 0 ? values : [budgetaryImpact / 1e9];
+  const formatCur = (x) =>
+    formatCurrencyAbbr(x, metadata, {
+      maximumFractionDigits: 1,
+    });
+  const hoverMessage = (x, y) => {
+    y = y * 1e9;
+    // If not tax revenues, negate
+    if (!x.toLowerCase().includes("tax")) {
+      y = -y;
+    }
+    const obj = x.toLowerCase().includes("tax")
+      ? x.toLowerCase()
+      : x.toLowerCase().includes("benefit")
+        ? "benefit spending"
+        : "the budget deficit";
+    return absoluteChangeMessage("This reform", obj, y, 0, formatCur);
+  };
   // Waterfall chart
   return (
     <Plot
@@ -24,13 +42,13 @@ function ImpactPlot(props) {
           orientation: "v",
           // 'relative' for all but the last, which is 'total'
           measure:
-            labels.length > 0
-              ? Array(labels.length - 1)
+            yArray.length > 0
+              ? Array(yArray.length - 1)
                   .fill("relative")
                   .concat(["total"])
               : ["total"],
           textposition: "inside",
-          text: values.map((value) => aggregateCurrency(value * 1e9, metadata)),
+          text: values.map((value) => formatCur(value * 1e9)),
           increasing: { marker: { color: style.colors.BLUE } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
           // Total should be dark gray if negative, dark green if positive
@@ -50,35 +68,7 @@ function ImpactPlot(props) {
                 hoverinfo: "none",
               }
             : {
-                customdata: xArray.map((x, i) => {
-                  const label = x;
-                  // look up label/values array
-                  let relevantFigure = yArray[i] * 1e9;
-                  // If tax revenues, negate
-                  if (label.toLowerCase().includes("tax")) {
-                    relevantFigure = -relevantFigure;
-                  }
-                  let body =
-                    relevantFigure < 0
-                      ? `This reform would increase<br>`
-                      : relevantFigure > 0
-                        ? `This reform would reduce<br>`
-                        : `This reform would not impact<br>`;
-                  body += label.toLowerCase().includes("tax")
-                    ? label.toLowerCase()
-                    : label.toLowerCase().includes("benefit")
-                      ? "benefit spending"
-                      : "the budget deficit";
-                  if (relevantFigure === 0) {
-                    body += ".";
-                  } else {
-                    body += ` by ${aggregateCurrency(
-                      Math.abs(relevantFigure),
-                      metadata,
-                    )}.`;
-                  }
-                  return body;
-                }),
+                customdata: xArray.map((x, i) => hoverMessage(x, yArray[i])),
                 hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
               }),
         },
@@ -124,35 +114,11 @@ function ImpactPlot(props) {
       {...(useHoverCard
         ? {
             onHover: (data) => {
-              const label = data.points[0].x;
-              // look up label/values array
-              let relevantFigure = values[labels.indexOf(label)] * 1e9;
-              // If tax revenues, negate
-              if (label.toLowerCase().includes("tax")) {
-                relevantFigure = -relevantFigure;
-              }
-              let body =
-                relevantFigure < 0
-                  ? "This reform would increase "
-                  : relevantFigure > 0
-                    ? "This reform would reduce "
-                    : "This reform would not impact ";
-              body += label.toLowerCase().includes("tax")
-                ? label.toLowerCase()
-                : label.toLowerCase().includes("benefit")
-                  ? "benefit spending"
-                  : "the budget deficit";
-              if (relevantFigure === 0) {
-                body += ".";
-              } else {
-                body += ` by ${aggregateCurrency(
-                  Math.abs(relevantFigure),
-                  metadata,
-                )}.`;
-              }
+              const x = data.points[0].x;
+              const y = yArray[xArray.indexOf(x)];
               setHoverCard({
-                title: label,
-                body: body,
+                title: x,
+                body: hoverMessage(x, y),
               });
             },
             onUnhover: () => {
@@ -164,22 +130,23 @@ function ImpactPlot(props) {
   );
 }
 
-export function title(policyLabel, budgetaryImpact, metadata) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
+export function title(policyLabel, change, metadata) {
+  const term1 = "the budget";
+  const term2 = formatCurrencyAbbr(Math.abs(change), metadata, {
+    maximumFractionDigits: 1,
   });
-  const label =
-    region === "us" || region === "uk"
+  const signTerm = change > 0 ? "raise" : "cost";
+  const countryId = metadata.countryId;
+  const countryPhrase =
+    countryId === "us" || countryId === "uk"
       ? ""
-      : "in " + options.find((option) => option.value === region)?.label;
-  return (
-    `${policyLabel} would ` +
-    (budgetaryImpact > 0 ? "raise " : "cost ") +
-    aggregateCurrency(budgetaryImpact, metadata) +
-    ` this year ${label}`
-  );
+      : `in ${COUNTRY_NAMES(countryId)}`;
+  // TODO: a tolerance should be used to decide the sign.
+  const msg =
+    change === 0
+      ? `${policyLabel} would have no effect on ${term1} this year ${countryPhrase}`
+      : `${policyLabel} would ${signTerm} ${term2} this year ${countryPhrase}`;
+  return msg;
 }
 
 export default function budgetaryImpact(props) {
