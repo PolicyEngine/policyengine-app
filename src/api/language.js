@@ -79,12 +79,15 @@ export function formatPercent(number, metadata, options) {
  * @param {object} metadata the metadata object
  * @param {object?} options an object adjusting the output format. Corresponds
  * to the options parameter of Number.prototype.toLocaleString().
- * @returns the abbreviated currency, e.g., $12.3bn, $301m, $1.2k
+ * @returns the abbreviated currency, e.g., $2.3tn, -$12.3bn, $301m, $1.2k
  */
 export function formatCurrencyAbbr(number, metadata, options) {
   let suffix = "";
   const absNumber = Math.abs(number);
-  if (absNumber >= 1e9) {
+  if (absNumber >= 1e12) {
+    number /= 1e12;
+    suffix = "tn";
+  } else if (absNumber >= 1e9) {
     number /= 1e9;
     suffix = "bn";
   } else if (absNumber >= 1e6) {
