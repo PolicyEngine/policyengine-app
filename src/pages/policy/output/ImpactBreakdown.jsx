@@ -23,11 +23,11 @@ export default function ImpactBreakdown(props) {
   const listItems = [
     {
       data: budgetaryImpact,
-      desc: formatDescBudget(budgetaryImpact, metadata.currency),
+      desc: formatDesc(budgetaryImpact, "budgetaryImpact", {currencyLabel: metadata.currency}),
     },
     {
       data: povertyRateChange,
-      desc: formatDescPovertyRate(povertyRateChange),
+      desc: formatDesc(povertyRateChange, "povertyRateChange", {percentage: true}),
     },
     {
       name: "Population percentage that gains",
@@ -49,71 +49,101 @@ export default function ImpactBreakdown(props) {
   );
 }
 
+/**
+ * Break large numbers into units of million, trillion, etc.
+ * @param {Number} value The value to be processed
+ * @returns {Array<Number, String>} An array, where the first item is the new display value,
+ * and the second is its postfix label
+ */
 function formatPowers(value) {
-  const powers = {
-    12: "qa",
-    9: "tn",
-    6: "bn",
-  };
-
+  const powers = new Map([
+    [15, "qa"],
+    [12, "tn"],
+    [9, "bn"],
+    [6, "mn"]
+  ]);
+  let label = "";
   let displayValue = value;
-  for (const power in powers) {
+
+  for (const [power, unit] of powers) {
     if (value / Math.pow(10, power) >= 1) {
-      displayValue = `${Math.round(value / Math.pow(10, power), 2)}${powers[power]}`;
+      displayValue = value / Math.pow(10, power);
+      label = unit;
       break;
     }
   }
-  return displayValue;
+  return [Number(displayValue), label];
 
 }
 
 /**
- * Creates a display string based on an input budgetary impact value
+ * Creates a display string based on an input value
  * @param {Number|String} value The data value corresponding to the description
- * @param {String} label The currency label taken from the metadata
+ * @param {String} type The type of value to be formatted; corresponds with 
+ * certain default values defined in the function
+ * @param {Object} [options] An object containing a series of optional args
+ * @param {String} [options.currencyLabel] The currency label to be applied to the text
+ * @param {boolean} [options.percentage] Whether or not the input is a percentage value
  * @returns {String}
  */
-function formatDescBudget(value, label) {
+function formatDesc(value, type, options) {
+  let {currencyLabel, percentage} = options;
+  let action = "";
+  let displayValue = "";
+  let postfixLabel = "";
 
-  // Handle error cases
-  if (!value || Number.isNaN(value)) {
-    return `There was an error in calculating your policy reform's impact on the budget`;
-  }
-
-  // Handle zero cases
-  if (value === 0) {
-    return `Your policy reform would have no impact on the budget`;
-  }
-
-  // Apply number formatting
-  let displayValue = Math.abs(value);
-
-  // Break large numbers down
-  displayValue = formatPowers(displayValue);
-
-  // Return string
-  return `Your policy reform would ${value > 0 ? 'raise' : 'cost'} ${label}${displayValue} this year`;
-
-}
-
-function formatDescPovertyRate(value) {
-  // Handle error cases
-  if (!value || Number.isNaN(value)) {
-    return `There was an error in calculating your policy reform's impact on the poverty rate`;
-  }
+  // Declare template nouns for output when value is 0
+  const templateStringsZero = {
+    budgetaryImpact: "budget",
+    povertyRateChange: "poverty rate"
+  };
 
   // Handle zero cases
   if (value === 0) {
-    return `Your policy reform would have no impact on the poverty rate`;
+    return `Your policy reform would have no impact on the ${templateStringsZero[type]}`;
   }
 
-  // Apply number formatting
-  let displayValue = Math.round(Math.abs(value) * 100, 2);
+  // Handle error cases; doing so after 0 because 0 is falsy
+  if (!value || Number.isNaN(value)) {
+    return `There was an error in calculating your policy reform's impact on the ${templateStringsZero[type]}`;
+  }
+
+  // Declare default "action" value and manual overrides
+  const actions = {
+    default: ["raise", "lower"],
+    budgetaryImpact: ["raise", "cost"]
+  };
+
+  // Determine action
+  const key = Object.keys(actions).includes(type) ? type : "default";
+  if (value > 0) {
+    action = actions[key][0];
+  } else {
+    action = actions[key][1];
+  }
+
+  // Remove negative signs
+  displayValue = Math.abs(Number(value));
+
+  // If percentage, multiple by 100
+  if (percentage) {
+    displayValue *= 100;
+  }
 
   // Break large numbers down
-  displayValue = formatPowers(displayValue);
+  [displayValue, postfixLabel] = formatPowers(displayValue);
+
+  // Round to two decimal points
+  displayValue = displayValue.toFixed(2);
+
+  // Declare template strings for output; must be after all processing
+  // to enable proper string construction
+  const templateStrings = {
+    budgetaryImpact: `Your policy reform would ${action} ${currencyLabel}${displayValue}${postfixLabel} this year`,
+    povertyRateChange: `Your policy reform would ${action} the poverty rate by ${displayValue}% this year`,
+  };
 
   // Return string
-  return `Your policy reform would ${value > 0 ? 'raise': 'lower'} the poverty rate by ${displayValue}% this year`;
+  return templateStrings.budgetaryImpact;
 
 }
