@@ -157,12 +157,17 @@ export default function budgetaryImpact(props) {
   const taxImpact = impact.budget.tax_revenue_impact - stateTaxImpact;
   const desktopLabels = [
     "Federal tax revenues",
-    "State tax revenues",
+    "State and local income tax revenues",
     "Benefit spending",
     "Net impact",
   ];
-  const mobileLabels = ["Federal taxes", "State taxes", "Benefits", "Net"];
-  if (!window.location.pathname.includes("/us/")) {
+  const mobileLabels = [
+    "Federal taxes",
+    "State and local income taxes",
+    "Benefits",
+    "Net",
+  ];
+  if (metadata.countryId != "us") {
     desktopLabels[0] = "Tax revenues";
     mobileLabels[0] = "Taxes";
   }
