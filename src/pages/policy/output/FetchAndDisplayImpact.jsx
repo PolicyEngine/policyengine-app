@@ -130,11 +130,13 @@ export function FetchAndDisplayImpact(props) {
 
   if (focus === "policyOutput") {
     return (
-      <ImpactBreakdown 
-        metadata={metadata}
-        impact={impact}
-        policy={policy}
-      />
+      <LowLevelDisplay {...props} >
+        <ImpactBreakdown 
+          metadata={metadata}
+          impact={impact}
+          policy={policy}
+        />
+      </LowLevelDisplay>
     )
   }
 

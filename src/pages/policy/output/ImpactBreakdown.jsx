@@ -38,8 +38,6 @@ export default function ImpactBreakdown(props) {
     }
   ];
 
-  // Define data constants and populate data structure
-
   // Pass data structure to template
   return (
     <>
