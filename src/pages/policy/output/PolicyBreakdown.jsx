@@ -129,7 +129,6 @@ function BreakdownTemplate(props) {
         }}
       >
         <h2
-          key={index + "h2"}
           style={{
             fontSize: 22
           }}
@@ -137,7 +136,6 @@ function BreakdownTemplate(props) {
           {formattedString}
         </h2>
         <div
-          key={index + "div"}
           style={{
             display: "flex",
             justifyContent: "flex-end",
@@ -146,19 +144,20 @@ function BreakdownTemplate(props) {
             fontSize: "22px"
           }}
         >
-          {item.value && item.value > 0 && <UpArrow color={color}/>}
-          {item.value && item.value < 0 && <DownArrow color={color}/>}
-          {/*The h2 below needs to render, even if empty, to maintain the grid*/}
-          <h2
-            style={{
-              fontSize: 22,
-              color: color,
-              textAlign: "right",
-              marginBottom: 0
-            }}
-          >
-            {formattedValue}
-          </h2>
+          {(item.value && item.value > 0) ? <UpArrow color={color}/> : null}
+          {(item.value && item.value < 0) ? <DownArrow color={color}/> : null}
+          {formattedValue && (
+            <h2
+              style={{
+                fontSize: 22,
+                color: color,
+                textAlign: "right",
+                marginBottom: 0
+              }}
+            >
+              {formattedValue}
+            </h2>
+          )}
         </div>
       </div>
     );
@@ -239,7 +238,7 @@ function formatPowers(value) {
  * @param {Object} [options] An object containing a series of optional args
  * @param {String} [options.currencyLabel] The currency label to be applied to the text
  * @param {boolean} [options.percentage] Whether or not the input is a percentage value
- * @returns {String || Array<String, String>}
+ * @returns {Array<String, String||null}
  */
 function formatDesc(value, type, options) {
   let {currencyLabel, percentage} = options;
@@ -265,12 +264,12 @@ function formatDesc(value, type, options) {
 
   // Handle zero cases
   if (value === 0) {
-    return [templateStringsZero[type], ""];
+    return [templateStringsZero[type], null];
   }
 
   // Handle error cases; doing so after 0 because 0 is falsy
   if (!value || Number.isNaN(value)) {
-    return [`There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`, ""];
+    return [`There was an error in calculating your policy reform's impact on the ${templateStringsError[type]}`, null];
   }
 
   // Declare default "action" value and manual overrides
