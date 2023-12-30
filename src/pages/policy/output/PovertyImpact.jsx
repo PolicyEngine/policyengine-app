@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { percent } from "../../../api/language";
+import { formatNumber, formatPercent, localeCode } from "../../../api/language";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
@@ -9,7 +9,8 @@ import {
   PovertyChangeContext,
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
-import ImpactChart, { impactTitle } from "./ImpactChart";
+import ImpactChart, { relativeChangeMessage } from "./ImpactChart";
+import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 export function ImpactPlot(props) {
   const {
@@ -18,10 +19,27 @@ export function ImpactPlot(props) {
     povertyLabels,
     povertyChanges,
     labelToKey,
+    metadata,
     mobile,
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
+  const formatPer = (n) =>
+    formatPercent(n, metadata, { maximumFractionDigits: 1 });
+  const hoverMessage = (x) => {
+    const obj = `the percentage of ${
+      x === "All" ? "people" : x.toLowerCase()
+    } in ${povertyType}`;
+    const baseline = povertyImpact[labelToKey[x]].baseline;
+    const reform = povertyImpact[labelToKey[x]].reform;
+    const change = reform / baseline - 1;
+    return relativeChangeMessage("This reform", obj, change, 0.001, metadata, {
+      baseline: baseline,
+      reform: reform,
+      formatter: formatPer,
+    });
+  };
+
   const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
   useEffect(() => {
     addChanges(povertyChanges);
@@ -40,10 +58,7 @@ export function ImpactPlot(props) {
             ),
           },
           text: povertyChanges.map(
-            (value) =>
-              (value >= 0 ? "+" : "") +
-              (value * 100).toFixed(1).toString() +
-              "%",
+            (value) => (value >= 0 ? "+" : "") + formatPer(value),
           ),
           textangle: 0,
           ...(useHoverCard
@@ -51,28 +66,7 @@ export function ImpactPlot(props) {
                 hoverinfo: "none",
               }
             : {
-                customdata: povertyLabels.map((x, i) => {
-                  const group = x;
-                  const change = povertyChanges[i];
-                  const baseline = povertyImpact[labelToKey[group]].baseline;
-                  const reform = povertyImpact[labelToKey[group]].reform;
-                  return `The percentage of ${
-                    group === "All" ? "people" : group.toLowerCase()
-                  } in ${povertyType}<br>${
-                    change < -0.001
-                      ? `would fall ${percent(-change)} from ${percent(
-                          baseline,
-                        )} to ${percent(reform)}.`
-                      : change > 0.001
-                        ? `would rise ${percent(change)} from ${percent(
-                            baseline,
-                          )} to ${percent(reform)}.`
-                        : change === 0
-                          ? `would remain at ${percent(baseline)}.`
-                          : (change > 0 ? "would rise " : "would fall ") +
-                            `by less than 0.1%.`
-                  }`;
-                }),
+                customdata: povertyLabels.map(hoverMessage),
                 hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
               }),
         },
@@ -109,6 +103,7 @@ export function ImpactPlot(props) {
       config={{
         displayModeBar: false,
         responsive: true,
+        locale: localeCode(metadata.countryId),
       }}
       style={{
         width: "100%",
@@ -116,29 +111,10 @@ export function ImpactPlot(props) {
       {...(useHoverCard
         ? {
             onHover: (data) => {
-              const group = data.points[0].x;
-              const change = data.points[0].y;
-              const baseline = povertyImpact[labelToKey[group]].baseline;
-              const reform = povertyImpact[labelToKey[group]].reform;
-              const message = `The percentage of ${
-                group === "All" ? "people" : group.toLowerCase()
-              } in ${povertyType} ${
-                change < -0.001
-                  ? `would fall ${percent(-change)} from ${percent(
-                      baseline,
-                    )} to ${percent(reform)}.`
-                  : change > 0.001
-                    ? `would rise ${percent(change)} from ${percent(
-                        baseline,
-                      )} to ${percent(reform)}.`
-                    : change === 0
-                      ? `would remain at ${percent(baseline)}.`
-                      : (change > 0 ? "would rise " : "would fall ") +
-                        ` by less than 0.1%.`
-              }`;
+              const x = data.points[0].x;
               setHoverCard({
-                title: group,
-                body: message,
+                title: x,
+                body: hoverMessage(x),
               });
             },
             onUnhover: () => {
@@ -148,6 +124,30 @@ export function ImpactPlot(props) {
         : {})}
     />
   );
+}
+
+export function title(policyLabel, objectTerm, baseline, reform, metadata) {
+  const relativeChange = reform / baseline - 1;
+  const absoluteChange = Math.round(Math.abs(reform - baseline) * 1000) / 10;
+  const relTerm = formatPercent(Math.abs(relativeChange), metadata, {
+    maximumFractionDigits: 1,
+  });
+  const absTerm = formatNumber(absoluteChange, metadata, {
+    maximumFractionDigits: 2,
+  });
+  const term2 = `${relTerm} (${absTerm}pp)`;
+  const signTerm = relativeChange > 0 ? "increase" : "decrease";
+  const countryId = metadata.countryId;
+  const countryPhrase =
+    countryId === "us" || countryId === "uk"
+      ? ""
+      : `in ${COUNTRY_NAMES(countryId)}`;
+  // TODO: a tolerance should be used to decide the sign.
+  const msg =
+    absTerm === 0
+      ? `${policyLabel} would have no effect on ${objectTerm} ${countryPhrase}`
+      : `${policyLabel} would ${signTerm} ${objectTerm} by ${term2} ${countryPhrase}`;
+  return msg;
 }
 
 const description = (
@@ -181,30 +181,25 @@ export default function povertyImpact(props) {
     Seniors: "senior",
     All: "all",
   };
-  const povertyRateChange = percent(Math.abs(totalPovertyChange));
-  const percentagePointChange =
-    Math.round(
-      Math.abs(
-        impact.poverty.poverty.all.reform - impact.poverty.poverty.all.baseline,
-      ) * 1000,
-    ) / 10;
-  const title = impactTitle(
-    policyLabel,
-    totalPovertyChange,
-    `${povertyRateChange} (${percentagePointChange}pp)`,
-    "the poverty rate",
-    "",
-    metadata,
-  );
   const chart = (
     <PovertyChangeProvider>
-      <ImpactChart title={title} description={description}>
+      <ImpactChart
+        title={title(
+          policyLabel,
+          "the poverty rate",
+          povertyImpact.all.baseline,
+          povertyImpact.all.reform,
+          metadata,
+        )}
+        description={description}
+      >
         <ImpactPlot
           povertyType={"poverty"}
           povertyImpact={povertyImpact}
           povertyLabels={povertyLabels}
           povertyChanges={povertyChanges}
           labelToKey={labelToKey}
+          metadata={metadata}
           mobile={mobile}
           useHoverCard={useHoverCard}
         />

@@ -16,11 +16,10 @@ export default function intraWealthDecileImpact(props) {
   const deciles = impact.intra_wealth_decile.deciles;
   const all = impact.intra_wealth_decile.all;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
 
   const chart = (
     <ImpactChart
-      title={title(totalAhead, policyLabel, metadata)}
+      title={title(policyLabel, all, metadata)}
       description={description}
     >
       <ImpactPlot
@@ -29,6 +28,7 @@ export default function intraWealthDecileImpact(props) {
         all={all}
         decileNumbers={decileNumbers}
         policyLabel={policyLabel}
+        metadata={metadata}
         mobile={mobile}
         useHoverCard={useHoverCard}
       />
@@ -36,6 +36,6 @@ export default function intraWealthDecileImpact(props) {
   );
   return {
     chart: chart,
-    csv: (filename) => csv(deciles, all, decileNumbers, filename),
+    csv: () => csv(deciles, all, decileNumbers),
   };
 }

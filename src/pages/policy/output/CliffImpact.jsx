@@ -1,11 +1,17 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency, percent } from "../../../api/language";
+import {
+  formatCurrencyAbbr,
+  formatPercent,
+  localeCode,
+} from "../../../api/language";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart from "./ImpactChart";
+import wrapAnsi from "wrap-ansi";
+import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 function ImpactPlot(props) {
   const {
@@ -17,13 +23,49 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-  const metrics = ["Cliff rate", "Cliff gap"];
+  const xArray = ["Cliff rate", "Cliff gap"];
+  const yArray = [cliffShareChange, cliffGapChange];
+  const formatPer = (x) =>
+    formatPercent(x, metadata, { maximumFractionDigits: 1 });
+  const formatCur = (x) =>
+    formatCurrencyAbbr(x, metadata, {
+      maximumFractionDigits: 1,
+    });
+  const hoverMessage = (x) => {
+    const baseline =
+      x === "Cliff rate"
+        ? impact.baseline.cliff_share
+        : impact.baseline.cliff_gap;
+    const reform =
+      x === "Cliff rate" ? impact.reform.cliff_share : impact.reform.cliff_gap;
+    const change = reform / baseline - 1;
+    const formatter = x === "Cliff rate" ? formatPer : formatCur;
+    const tolerance = 0.0001;
+    const baselineReformTerm = ` from ${formatter(baseline)} to ${formatter(
+      reform,
+    )}`;
+    const objectTerm = x.toLowerCase();
+    const signTerm =
+      change > tolerance
+        ? `increase ${objectTerm} by ${formatPer(change) + baselineReformTerm}`
+        : change > 0
+          ? `increase ${objectTerm} by ${formatPer(tolerance)}`
+          : change < -tolerance
+            ? `decrease ${objectTerm} by ${
+                formatPer(-change) + baselineReformTerm
+              }`
+            : change < 0
+              ? `decrease ${objectTerm} by ${formatPer(tolerance)}`
+              : `have no effect on ${objectTerm}`;
+    const msg = `This reform would ${signTerm}`;
+    return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+  };
   return (
     <Plot
       data={[
         {
-          x: metrics,
-          y: [cliffShareChange, cliffGapChange],
+          x: xArray,
+          y: yArray,
           type: "bar",
           marker: {
             color: [
@@ -32,12 +74,8 @@ function ImpactPlot(props) {
             ],
           },
           text: [
-            `${cliffShareChange >= 0 ? "+" : ""}${(
-              cliffShareChange * 100
-            ).toFixed(1)}%`,
-            `${cliffGapChange >= 0 ? "+" : ""}${(cliffGapChange * 100).toFixed(
-              1,
-            )}%`,
+            (cliffShareChange >= 0 ? "+" : "") + formatPer(cliffShareChange),
+            (cliffGapChange >= 0 ? "+" : "") + formatPer(cliffGapChange),
           ],
           textposition: "auto",
           textangle: 0,
@@ -46,32 +84,7 @@ function ImpactPlot(props) {
                 hoverinfo: "none",
               }
             : {
-                customdata: metrics.map((metric) => {
-                  const baseline =
-                    metric === "Cliff rate"
-                      ? impact.baseline.cliff_share
-                      : impact.baseline.cliff_gap;
-                  const reform =
-                    metric === "Cliff rate"
-                      ? impact.reform.cliff_share
-                      : impact.reform.cliff_gap;
-                  const change = reform / baseline - 1;
-                  const formatter =
-                    metric === "Cliff rate"
-                      ? percent
-                      : (x) => aggregateCurrency(x, metadata);
-                  return `The ${metric.toLowerCase()} ${
-                    change > 0.0001
-                      ? `would rise ${percent(change)}<br>from ${formatter(
-                          baseline,
-                        )} to ${formatter(reform)}`
-                      : change < -0.0001
-                        ? `would fall ${percent(-change)}<br>from ${formatter(
-                            baseline,
-                          )} to ${formatter(reform)}`
-                        : `would remain at ${percent(baseline)}`
-                  }.`;
-                }),
+                customdata: xArray.map((x, i) => hoverMessage(x, yArray[i])),
                 hovertemplate: `<b>%{x}</b><br><br>%{customdata}<extra></extra>`,
               }),
         },
@@ -105,6 +118,7 @@ function ImpactPlot(props) {
       config={{
         displayModeBar: false,
         responsive: true,
+        locale: localeCode(metadata.countryId),
       }}
       style={{
         width: "100%",
@@ -112,34 +126,11 @@ function ImpactPlot(props) {
       {...(useHoverCard
         ? {
             onHover: (data) => {
-              const metric = data.points[0].x;
-              const baseline =
-                metric === "Cliff rate"
-                  ? impact.baseline.cliff_share
-                  : impact.baseline.cliff_gap;
-              const reform =
-                metric === "Cliff rate"
-                  ? impact.reform.cliff_share
-                  : impact.reform.cliff_gap;
-              const change = reform / baseline - 1;
-              const formatter =
-                metric === "Cliff rate"
-                  ? percent
-                  : (x) => aggregateCurrency(x, metadata);
-              const message = `The ${metric.toLowerCase()} ${
-                change > 0.0001
-                  ? `would rise ${percent(change)} from ${formatter(
-                      baseline,
-                    )} to ${formatter(reform)}`
-                  : change < -0.0001
-                    ? `would fall ${percent(-change)} from ${formatter(
-                        baseline,
-                      )} to ${formatter(reform)}`
-                    : `would remain at ${percent(baseline)}`
-              }.`;
+              const x = data.points[0].x;
+              const y = yArray[xArray.indexOf(x)];
               setHoverCard({
-                title: data.points[0].x,
-                body: message,
+                title: x,
+                body: hoverMessage(x, y),
               });
             },
             onUnhover: () => {
@@ -152,25 +143,21 @@ function ImpactPlot(props) {
 }
 
 function title(cliffShareChange, cliffGapChange, metadata, policyLabel) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const regionLabel =
-    region === "us" || region === "uk"
-      ? ""
-      : " in " + options.find((option) => option.value === region)?.label;
-
-  return `${policyLabel} ${
+  const signTerm =
     cliffShareChange === 0 && cliffGapChange === 0
       ? "wouldn't affect cliffs"
       : cliffShareChange >= 0 && cliffGapChange >= 0
         ? "would make cliffs more prevalent"
         : cliffShareChange <= 0 && cliffGapChange <= 0
           ? "would make cliffs less prevalent"
-          : "would have an ambiguous effect on cliffs"
-  } ${regionLabel}`;
+          : "would have an ambiguous effect on cliffs";
+  const countryId = metadata.countryId;
+  const countryPhrase =
+    countryId === "us" || countryId === "uk"
+      ? ""
+      : `in ${COUNTRY_NAMES(countryId)}`;
+  const msg = `${policyLabel} ${signTerm} ${countryPhrase}`;
+  return msg;
 }
 
 function description(metadata) {
@@ -193,8 +180,8 @@ export default function cliffImpact(props) {
   // and one for the relative change in the cliff gap.
   const cliffShareChange =
     Math.round(
-      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 100,
-    ) / 100;
+      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 10000,
+    ) / 10000;
   const cliffGapChange =
     Math.round(
       (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000,

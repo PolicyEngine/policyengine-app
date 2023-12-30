@@ -146,7 +146,9 @@ export function DisplayImpact(props) {
       mobile: mobile,
     });
     pane = chart;
-    downloadCsvFn = () => downloadCsv(csv(), filename);
+    if (csv) {
+      downloadCsvFn = () => downloadCsv(csv(), filename);
+    }
     downloadPngFn = () => downloadPng(filename);
   }
   return (

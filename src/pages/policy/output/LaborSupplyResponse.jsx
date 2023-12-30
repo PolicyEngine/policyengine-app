@@ -1,10 +1,11 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { aggregateCurrency, localeCode } from "../../../api/language";
+import { formatCurrencyAbbr, localeCode } from "../../../api/language";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart from "./ImpactChart";
+import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 function ImpactPlot(props) {
   const { values, labels, metadata, mobile, useHoverCard } = props;
@@ -27,7 +28,11 @@ function ImpactPlot(props) {
                   .concat(["total"])
               : ["total"],
           textposition: "inside",
-          text: values.map((value) => aggregateCurrency(value * 1e9, metadata)),
+          text: values.map((value) =>
+            formatCurrencyAbbr(value * 1e9, metadata, {
+              maximumFractionDigits: 1,
+            }),
+          ),
           increasing: { marker: { color: style.colors.BLUE } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
           // Total should be dark gray if negative, dark green if positive
@@ -91,23 +96,23 @@ function ImpactPlot(props) {
   );
 }
 
-export function title(policyLabel, lsrImpact, metadata) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
+export function title(policyLabel, change, metadata) {
+  const term1 = "employment income";
+  const term2 = formatCurrencyAbbr(Math.abs(change * 1e9), metadata, {
+    maximumFractionDigits: 1,
   });
-  const label =
-    region === "us" || region === "uk"
+  const signTerm = change > 0 ? "increase" : "decrease";
+  const countryId = metadata.countryId;
+  const countryPhrase =
+    countryId === "us" || countryId === "uk"
       ? ""
-      : "in " + options.find((option) => option.value === region)?.label;
-  return (
-    `${policyLabel} would ` +
-    (lsrImpact > 0 ? "raise " : "lower ") +
-    "employment income by " +
-    aggregateCurrency(lsrImpact, metadata) +
-    `bn this year ${label}`
-  );
+      : `in ${COUNTRY_NAMES(countryId)}`;
+  // TODO: a tolerance should be used to decide the sign.
+  const msg =
+    change === 0
+      ? `${policyLabel} would have no effect on ${term1} this year ${countryPhrase}`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} this year ${countryPhrase}`;
+  return msg;
 }
 
 export default function lsrImpact(props) {

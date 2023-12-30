@@ -1,17 +1,30 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
 import { HoverCardContext } from "../../../layout/HoverCard";
-import { cardinal, percent } from "../../../api/language";
+import { cardinal, formatPercent } from "../../../api/language";
 import { plotLayoutFont } from "./utils";
 import React from "react";
-import ImpactChart, { impactTitle } from "./ImpactChart";
+import ImpactChart, { relativeChangeMessage } from "./ImpactChart";
+import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
-function ImpactPlot(props) {
-  const { decileRelative, mobile, useHoverCard } = props;
+export function ImpactPlot(props) {
+  const {
+    decileType,
+    xaxisTitle,
+    decileRelative,
+    metadata,
+    mobile,
+    useHoverCard,
+  } = props;
   const setHoverCard = useContext(HoverCardContext);
+  const formatPer = (n) =>
+    formatPercent(n, metadata, { maximumFractionDigits: 1 });
+  const hoverMessage = (x, y) => {
+    const obj = `the income of households in the ${cardinal(x)} ${decileType}`;
+    return relativeChangeMessage("This reform", obj, y, 0.001, metadata);
+  };
   const xArray = Object.keys(decileRelative);
   const yArray = Object.values(decileRelative);
   // Decile bar chart. Bars are grey if negative, green if positive.
@@ -28,10 +41,7 @@ function ImpactPlot(props) {
             ),
           },
           text: yArray.map(
-            (value) =>
-              (value >= 0 ? "+" : "") +
-              (value * 100).toFixed(1).toString() +
-              "%",
+            (value) => (value >= 0 ? "+" : "") + formatPer(value),
           ),
           textangle: 0,
           ...(useHoverCard
@@ -40,22 +50,8 @@ function ImpactPlot(props) {
               }
             : {
                 customdata: xArray.map((x, i) => {
-                  const decile = cardinal(x);
-                  const relativeChange = yArray[i];
-                  return relativeChange > 0.001
-                    ? `This reform would raise the income<br>of households in the ${decile} decile<br>by an average of ${percent(
-                        relativeChange,
-                      )}.`
-                    : relativeChange < -0.001
-                      ? `This reform would lower the income<br>of households in the ${decile} decile<br>by an average of ${percent(
-                          -relativeChange,
-                        )}.`
-                      : relativeChange === 0
-                        ? `This reform would not impact the income<br>of households in the ${decile} decile.`
-                        : (relativeChange > 0
-                            ? "This reform would raise "
-                            : "This reform would lower ") +
-                          `the income<br>of households in the ${decile} decile<br>by less than 0.1%.`;
+                  const y = yArray[i];
+                  return hoverMessage(x, y);
                 }),
                 hovertemplate: `<b>Decile %{x}</b><br><br>%{customdata}<extra></extra>`,
               }),
@@ -63,7 +59,7 @@ function ImpactPlot(props) {
       ]}
       layout={{
         xaxis: {
-          title: "Income decile",
+          title: xaxisTitle,
           tickvals: Object.keys(decileRelative),
         },
         yaxis: {
@@ -105,26 +101,9 @@ function ImpactPlot(props) {
       {...(useHoverCard
         ? {
             onHover: (data) => {
-              const decile = cardinal(data.points[0].x);
-              const relativeChange = data.points[0].y;
-              const message =
-                relativeChange > 0.001
-                  ? `This reform would raise the income of households in the ${decile} decile by an average of ${percent(
-                      relativeChange,
-                    )}.`
-                  : relativeChange < -0.001
-                    ? `This reform would lower the income of households in the ${decile} decile by an average of ${percent(
-                        -relativeChange,
-                      )}.`
-                    : relativeChange === 0
-                      ? `This reform would not impact the income of households in the ${decile} decile.`
-                      : (relativeChange > 0
-                          ? "This reform would raise "
-                          : "This reform would lower ") +
-                        ` the income of households in the ${decile} decile by less than 0.1%.`;
               setHoverCard({
                 title: `Decile ${data.points[0].x}`,
-                body: message,
+                body: hoverMessage(data.points[0].x, data.points[0].y),
               });
             },
             onUnhover: () => {
@@ -144,23 +123,40 @@ const description = (
   </p>
 );
 
+export function title(policyLabel, change, metadata) {
+  const term1 = "the net income of households";
+  const term2 = formatPercent(Math.abs(change), metadata, {
+    maximumFractionDigits: 1,
+  });
+  const signTerm = change > 0 ? "increase" : "decrease";
+  const countryId = metadata.countryId;
+  const countryPhrase =
+    countryId === "us" || countryId === "uk"
+      ? ""
+      : `in ${COUNTRY_NAMES(countryId)}`;
+  // TODO: a tolerance should be used to decide the sign.
+  const msg =
+    change === 0
+      ? `${policyLabel} would have no effect on ${term1} on average ${countryPhrase}`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average ${countryPhrase}`;
+  return msg;
+}
+
 export default function relativeImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const decileRelative = impact.decile.relative;
-  const averageImpact =
+  const relativeChange =
     -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
-  const title = impactTitle(
-    policyLabel,
-    averageImpact,
-    formatVariableValue({ unit: "/1" }, Math.abs(averageImpact), 1),
-    "the net income of households",
-    "on average",
-    metadata,
-  );
   const chart = (
-    <ImpactChart title={title} description={description}>
+    <ImpactChart
+      title={title(policyLabel, relativeChange, metadata)}
+      description={description}
+    >
       <ImpactPlot
+        decileType={"decile"}
+        xaxisTitle={"Income decile"}
         decileRelative={decileRelative}
+        metadata={metadata}
         mobile={mobile}
         useHoverCard={useHoverCard}
       />

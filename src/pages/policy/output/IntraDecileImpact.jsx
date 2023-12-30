@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { formatVariableValue } from "../../../api/variables";
 import style from "../../../style";
-import { HoverCardContext } from "../../../layout/HoverCard";
-import { cardinal, percent } from "../../../api/language";
+import { cardinal, formatPercent, localeCode } from "../../../api/language";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart from "./ImpactChart";
+import wrapAnsi from "wrap-ansi";
+import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"
@@ -17,11 +17,9 @@ export function ImpactPlot(props) {
     all,
     decileNumbers,
     policyLabel,
+    metadata,
     mobile,
-    useHoverCard = false,
   } = props;
-  const setHoverCard = useContext(HoverCardContext);
-
   const colorMap = {
     "Gain more than 5%": style.colors.BLUE,
     "Gain less than 5%": style.colors.BLUE_98,
@@ -29,6 +27,7 @@ export function ImpactPlot(props) {
     "Lose less than 5%": style.colors.GRAY,
     "Lose more than 5%": style.colors.DARK_GRAY,
   };
+
   const hoverTextMap = {
     "Gain more than 5%": "gain more than 5% of",
     "Gain less than 5%": "gain less than 5% of",
@@ -36,6 +35,7 @@ export function ImpactPlot(props) {
     "Lose less than 5%": "lose less than 5% of",
     "Lose more than 5%": "lose more than 5% of",
   };
+
   const legendTextMap = {
     "Gain more than 5%": "Gain more than 5%",
     "Gain less than 5%": "Gain less than 5%",
@@ -46,29 +46,22 @@ export function ImpactPlot(props) {
 
   // type1: "all" | "deciles"
   // type2: "Gain more than 5%" | "Gain less than 5%" | "No change" | "Lose less than 5%" | "Lose more than 5%"
-
-  function hoverTemplate(type1, type2) {
-    const hdr =
-      type1 === "all"
-        ? `<b>All households</b><br><br>`
-        : `<b>Decile %{y}</b><br><br>`;
-    const body =
-      type1 === "all"
-        ? `Of all households, ${policyLabel} would cause<br>%{customdata} of people to ` +
-          hoverTextMap[type2] +
-          ` of<br>their net income.<extra></extra>`
-        : `Of households in the %{customdata.group} decile,<br>` +
-          `${policyLabel} would cause %{customdata.value} of<br>people to ` +
-          hoverTextMap[type2] +
-          ` their net<br>income.<extra></extra>`;
-    return hdr + body;
-  }
-
   function trace(type1, type2) {
-    const x = type1 === "all" ? [all[type2]] : deciles[type2];
+    const hoverTitle = (y) => (y === "All" ? `All households` : `Decile ${y}`);
+    function hoverMessage(x, y) {
+      const term1 =
+        type1 === "all"
+          ? "Of all households,"
+          : `Of households in the ${cardinal(y)} decile,`;
+      const term2 = formatPercent(x, metadata, { maximumFractionDigits: 1 });
+      const msg = `${term1} ${policyLabel} would cause ${term2} of people to ${hoverTextMap[type2]} their net income.`;
+      return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+    }
+    const xArray = type1 === "all" ? [all[type2]] : deciles[type2];
+    const yArray = type1 === "all" ? ["All"] : decileNumbers;
     return {
-      x: x,
-      y: type1 === "all" ? ["All"] : decileNumbers,
+      x: xArray,
+      y: yArray,
       xaxis: type1 === "all" ? "x" : "x2",
       yaxis: type1 === "all" ? "y" : "y2",
       type: "bar",
@@ -79,25 +72,14 @@ export function ImpactPlot(props) {
         color: colorMap[type2],
       },
       orientation: "h",
-      text: x.map((value) => (value * 100).toFixed(0).toString() + "%"),
+      text: xArray.map((value) => (value * 100).toFixed(0).toString() + "%"),
       textposition: "inside",
       textangle: 0,
-      ...(useHoverCard
-        ? {
-            hoverinfo: "none",
-          }
-        : {
-            customdata:
-              type1 === "all"
-                ? x.map((x) => percent(x))
-                : x.map((e, i) => {
-                    return {
-                      group: cardinal(decileNumbers[i]),
-                      value: percent(e),
-                    };
-                  }),
-            hovertemplate: hoverTemplate(type1, type2),
-          }),
+      customdata: xArray.map((x, i) => {
+        const y = yArray[i];
+        return { title: hoverTitle(y), msg: hoverMessage(x, y) };
+      }),
+      hovertemplate: `<b>%{customdata.title}</b><br><br>%{customdata.msg}<extra></extra>`,
     };
   }
 
@@ -149,15 +131,11 @@ export function ImpactPlot(props) {
           anchor: "x2",
           domain: [0, 0.85],
         },
-        ...(useHoverCard
-          ? {}
-          : {
-              hoverlabel: {
-                align: "left",
-                bgcolor: "#FFF",
-                font: { size: "16" },
-              },
-            }),
+        hoverlabel: {
+          align: "left",
+          bgcolor: "#FFF",
+          font: { size: "16" },
+        },
         uniformtext: {
           mode: "hide",
           minsize: mobile ? 7 : 10,
@@ -189,35 +167,12 @@ export function ImpactPlot(props) {
       config={{
         displayModeBar: false,
         responsive: true,
+        locale: localeCode(metadata.countryId),
       }}
       style={{
         width: "100%",
         marginBottom: !mobile && 50,
       }}
-      {...(useHoverCard
-        ? {
-            onHover: (data) => {
-              const group = data.points[0].y;
-              const title =
-                group === "All" ? "All households" : `Decile ${group}`;
-              const category = data.points[0].data.name;
-              const value = data.points[0].x;
-              const message = `Of ${
-                group === "All"
-                  ? "all households"
-                  : `households in the ${cardinal(group)} decile`
-              }, ${policyLabel} would cause ${percent(value)} of people to
-      ${category.toLowerCase()} of their net income.`;
-              setHoverCard({
-                title: title,
-                body: message,
-              });
-            },
-            onUnhover: () => {
-              setHoverCard(null);
-            },
-          }
-        : {})}
     />
   );
 }
@@ -255,23 +210,30 @@ export function csv(deciles, all, decileNumbers) {
   return data;
 }
 
-export function title(totalAhead, policyLabel, metadata) {
-  const urlParams = new URLSearchParams(window.location.search);
-  const region = urlParams.get("region");
-  const options = metadata.economy_options.region.map((region) => {
-    return { value: region.name, label: region.label };
-  });
-  const label =
-    region === "us" || region === "uk"
-      ? " of the population"
-      : " of " +
-        options.find((option) => option.value === region)?.label +
-        " residents";
-  return `${policyLabel} would benefit ${formatVariableValue(
-    { unit: "/1" },
-    totalAhead,
-    0,
-  )} ${label}`;
+export function title(policyLabel, all, metadata) {
+  const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
+  const totalBehind = all["Lose more than 5%"] + all["Lose less than 5%"];
+  const percent = (n) =>
+    formatPercent(n, metadata, { maximumFractionDigits: 0 });
+  const totalAheadTerm = percent(totalAhead);
+  const totalBehindTerm = percent(totalBehind);
+  const objectTerm = "the net income";
+  const countryId = metadata.countryId;
+  const countryPhrase =
+    countryId === "us" || countryId === "uk"
+      ? ""
+      : ` in ${COUNTRY_NAMES(countryId)}`;
+  let msg;
+  if (totalAhead > 0 && totalBehind > 0) {
+    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population and decrease it for ${totalBehindTerm}`;
+  } else if (totalAhead > 0) {
+    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population`;
+  } else if (totalBehind > 0) {
+    msg = `${policyLabel} would decrease ${objectTerm} for ${totalBehindTerm} of the population`;
+  } else {
+    msg = `${policyLabel} would have no effect on ${objectTerm} for the population`;
+  }
+  return msg + countryPhrase;
 }
 
 const description = (
@@ -284,14 +246,13 @@ const description = (
 );
 
 export default function intraDecileImpact(props) {
-  const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
+  const { impact, policyLabel, metadata, mobile } = props;
   const deciles = impact.intra_decile.deciles;
   const all = impact.intra_decile.all;
   const decileNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const chart = (
     <ImpactChart
-      title={title(totalAhead, policyLabel, metadata)}
+      title={title(policyLabel, all, metadata)}
       description={description}
     >
       <ImpactPlot
@@ -300,13 +261,13 @@ export default function intraDecileImpact(props) {
         all={all}
         decileNumbers={decileNumbers}
         policyLabel={policyLabel}
+        metadata={metadata}
         mobile={mobile}
-        useHoverCard={useHoverCard}
       />
     </ImpactChart>
   );
   return {
     chart: chart,
-    csv: (filename) => csv(deciles, all, decileNumbers, filename),
+    csv: () => csv(deciles, all, decileNumbers),
   };
 }
