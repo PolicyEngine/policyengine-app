@@ -59,6 +59,8 @@ function BreakdownTemplate(props) {
   const { data } = props;
 
   const TITLE = "Your reform impact";
+  const BOTTOM_TEXT = "Here's how we estimated the society-wide impacts of your " +
+  "reform. Click on a chart on the left panel to view more details.";
   const COLORS = {
     pos: style.colors.BLUE,
     neg: style.colors.DARK_GRAY
@@ -179,7 +181,7 @@ function BreakdownTemplate(props) {
       <div
         style={{
           width: "100%",
-          padding: "10px 10px 0px 10px",
+          padding: "10px 10px 0 10px",
           margin: "0 10px",
           borderLeft: `2px solid ${COLORS.pos}`,
           display: "flex",
@@ -191,6 +193,13 @@ function BreakdownTemplate(props) {
       >
       {lineItems}
       </div>
+      <h5
+        style={{
+          paddingTop: "40px"
+        }}
+      >
+        {BOTTOM_TEXT}
+      </h5>
     </div>
   );
 }
