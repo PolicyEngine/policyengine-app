@@ -6,9 +6,10 @@ import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
+import { localeCode } from "api/language";
 
 export default function ParameterOverTime(props) {
-  const { parameter, policy } = props;
+  const { parameter, policy, metadata } = props;
   const mobile = useMobile();
   const windowHeight = useWindowHeight();
   let values = parameter.values;
@@ -113,6 +114,7 @@ export default function ParameterOverTime(props) {
         config={{
           displayModeBar: false,
           responsive: true,
+          locale: localeCode(metadata.countryId),
         }}
       />
     </>
