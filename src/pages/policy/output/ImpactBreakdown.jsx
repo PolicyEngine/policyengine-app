@@ -7,13 +7,6 @@ import style from "../../../style";
 export default function ImpactBreakdown(props) {
   const { metadata, policy, impact } = props;
 
-  // TODO: Remove this log
-  console.log(metadata);
-  console.log(policy);
-  console.log(impact);
-
-  const TITLE = "Your reform impact";
-
   // Define the impact items to be included in the output
   const budgetaryImpact = impact.budget.budgetary_impact;
   const povertyOverview = impact.poverty.poverty.all;
@@ -67,7 +60,8 @@ export default function ImpactBreakdown(props) {
 function BreakdownTemplate(props) {
   const { data } = props;
 
-  const colors = {
+  const TITLE = "Your reform impact";
+  const COLORS = {
     pos: style.colors.BLUE,
     neg: style.colors.DARK_GRAY
   };
@@ -75,24 +69,25 @@ function BreakdownTemplate(props) {
   // When formatting, treat a negative number
   // as positive (e.g., in case of poverty rate change)
   const manualSignFlips = [
-    "povertyRateChange"
+    "povertyRateChange",
+    "losersPercent"
   ];
 
   // Declare arrow buttons
-  const UpArrow = () => (
+  const UpArrow = ({color}) => (
     <CaretUpFilled
       style={{
-        color: colors.pos,
+        color: color || COLORS.pos,
         display: "inline-flex",
         alignItems: "center",
       }}
     />
   );
 
-  const DownArrow = () => (
+  const DownArrow = ({color}) => (
     <CaretDownFilled
       style={{
-        color: colors.neg,
+        color: color || COLORS.neg,
         display: "inline-flex",
         alignItems: "center",
       }}
@@ -105,41 +100,87 @@ function BreakdownTemplate(props) {
     // Return a formatted line containing the string
     // and value, colored based on the value contained
     let color = null;
-    if (
-      item.value > 0 || 
-      manualSignFlips.includes(item.type) && item.value <= 0
-    ) {
-      color = colors.pos;
+
+    if (item.value > 0) {
+      if (manualSignFlips.includes(item.type)) {
+        color = COLORS.neg;
+      } else {
+        color = COLORS.pos;
+      }
     } else {
-      color = colors.neg;
+      if (manualSignFlips.includes(item.type)) {
+        color = COLORS.pos;
+      } else {
+        color = COLORS.neg;
+      }
     }
 
-    const [string, value] = item.formatted;
-
+    const [formattedString, formattedValue] = item.formatted;
+    
     return (
-      <div
-        key={index}
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between"
-        }}
-      >
-        <p>
-          {string}
-        </p>
-        <p>
-          {value}
-        </p>
-      </div>
+      <>
+        <h2
+          key={index + "h2"}
+          style={{
+            fontSize: 22
+          }}
+        >
+          {formattedString}
+        </h2>
+        <div
+          key={index + "div"}
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center",
+            gap: "8px",
+            fontSize: "22px"
+          }}
+        >
+          {item.value && item.value > 0 && <UpArrow color={color}/>}
+          {item.value && item.value < 0 && <DownArrow color={color}/>}
+          {/*The h2 below needs to render, even if empty, to maintain the grid*/}
+          <h2
+            style={{
+              fontSize: 22,
+              color: color,
+              textAlign: "right",
+              marginBottom: 0
+            }}
+          >
+            {formattedValue}
+          </h2>
+        </div>
+      </>
     );
   });
 
   return (
-    <div>
+    <div
+      style={{
+        minHeight: "100%",
+        padding: "0px 20px"
+      }}
+    >
+      <h2
+        style={{
+          marginBottom: "20px"
+        }}
+      >
+        {TITLE}
+      </h2>
+      <div
+        style={{
+          width: "100%",
+          display: "grid",
+          alignContent: "center",
+          gridTemplateColumns: "1fr max-content",
+          rowGap: "20px",
+          gap: "20px"
+        }}
+      >
       {lineItems}
+      </div>
     </div>
   );
 }
