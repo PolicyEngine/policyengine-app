@@ -7,6 +7,10 @@ import style from "../../../style";
 export default function PolicyBreakdown(props) {
   const { metadata, policy, impact } = props;
 
+  const TITLE = "Your reform impact";
+  const BOTTOM_TEXT = "Here's how we estimated the society-wide impacts of your " +
+  "reform. Click on an option on the left panel to view more details.";
+
   // Define the impact items to be included in the output
   const budgetaryImpact = impact.budget.budgetary_impact;
   const povertyOverview = impact.poverty.poverty.all;
@@ -41,7 +45,7 @@ export default function PolicyBreakdown(props) {
   // Pass data structure to template
   return (
     <>
-      <BreakdownTemplate data={listItems} />
+      <BreakdownTemplate data={listItems} title={TITLE} bottomText={BOTTOM_TEXT}/>
     </>
   );
 }
@@ -56,11 +60,12 @@ export default function PolicyBreakdown(props) {
  * @returns {import("react-markdown/lib/react-markdown").ReactElement}
  */
 function BreakdownTemplate(props) {
-  const { data } = props;
+  const { 
+    data,
+    title,
+    bottomText
+  } = props;
 
-  const TITLE = "Your reform impact";
-  const BOTTOM_TEXT = "Here's how we estimated the society-wide impacts of your " +
-  "reform. Click on a chart on the left panel to view more details.";
   const COLORS = {
     pos: style.colors.BLUE,
     neg: style.colors.DARK_GRAY
@@ -175,7 +180,7 @@ function BreakdownTemplate(props) {
           marginBottom: "30px"
         }}
       >
-        {TITLE}
+        {title}
       </h2>
       <div
         style={{
@@ -197,7 +202,7 @@ function BreakdownTemplate(props) {
           paddingTop: "40px"
         }}
       >
-        {BOTTOM_TEXT}
+        {bottomText}
       </h5>
     </div>
   );
