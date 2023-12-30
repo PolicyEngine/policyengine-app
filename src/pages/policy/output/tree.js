@@ -25,7 +25,7 @@ export function getPolicyOutputTree(countryId) {
   // can't be added as an impact chart component like the others above
   children.unshift({
     name: "policyOutput.policyBreakdown",
-    label: "Reform impact breakdown"
+    label: "Policy impact breakdown"
   });
   return [
     {
