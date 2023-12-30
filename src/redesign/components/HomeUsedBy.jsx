@@ -43,7 +43,7 @@ export default function HomeUsedBy() {
             justifyContent: {
               mobile: "center",
               tablet: "center",
-              desktop: "center",
+              desktop: "space-around",
             }[displayCategory],
             marginBottom: 30,
             marginTop: 20,
@@ -61,15 +61,15 @@ export default function HomeUsedBy() {
 function IndividualOrg({ name, logo, link }) {
   const displayCategory = useDisplayCategory();
   const size = {
-    mobile: 80,
+    mobile: 85,
     tablet: 100,
-    desktop: 60,
+    desktop: 100,
   }[displayCategory];
   return (
     <a href={link}>
       <div
         style={{
-          width: size,
+          maxwidth: size,
           display: "flex",
           flexDirection: {
             mobile: "row",
@@ -80,6 +80,7 @@ function IndividualOrg({ name, logo, link }) {
           marginLeft: 20,
           alignItems: "center",
           justifyContent: "center",
+          backgroundColor: "white",
         }}
       >
         <img
@@ -89,7 +90,7 @@ function IndividualOrg({ name, logo, link }) {
           height={size}
           style={{
             objectFit: "contain",
-            marginRight: displayCategory === "mobile" ? 30 : 0,
+            marginRight: displayCategory === "mobile" ? 20 : 0,
             marginBottom: displayCategory !== "mobile" ? 20 : 0,
           }}
         />
