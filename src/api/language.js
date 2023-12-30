@@ -79,9 +79,9 @@ export function formatPercent(number, metadata, options) {
  * @param {object} metadata the metadata object
  * @param {object?} options an object adjusting the output format. Corresponds
  * to the options parameter of Number.prototype.toLocaleString().
- * @returns the abbreviated number, e.g., 12.3bn, 301m, 1.2k
+ * @returns the abbreviated currency, e.g., $12.3bn, $301m, $1.2k
  */
-export function formatNumberAbbr(number, metadata, options) {
+export function formatCurrencyAbbr(number, metadata, options) {
   let suffix = "";
   const absNumber = Math.abs(number);
   if (absNumber >= 1e9) {
@@ -94,17 +94,5 @@ export function formatNumberAbbr(number, metadata, options) {
     number /= 1e3;
     suffix = "k";
   }
-  return formatNumber(number, metadata, options) + suffix;
-}
-
-/**
- *
- * @param {number} number a number
- * @param {object} metadata the metadata object
- * @param {object?} options an object adjusting the output format. Corresponds
- * to the options parameter of Number.prototype.toLocaleString().
- * @returns the abbreviated currency, e.g., $12.3bn, $301m, $1.2k
- */
-export function formatCurrencyAbbr(number, metadata, options) {
-  return metadata.currency + formatNumberAbbr(number, metadata, options);
+  return formatCurrency(number, metadata, options) + suffix;
 }
