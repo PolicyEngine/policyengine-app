@@ -17,6 +17,7 @@ import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
+import { localeCode } from "api/language";
 
 export default function MarginalTaxRates(props) {
   const {
@@ -242,6 +243,7 @@ export default function MarginalTaxRates(props) {
             config={{
               displayModeBar: false,
               responsive: true,
+              locale: localeCode(metadata.countryId),
             }}
             style={{
               width: "100%",
@@ -474,6 +476,7 @@ export default function MarginalTaxRates(props) {
             config={{
               displayModeBar: false,
               responsive: true,
+              locale: localeCode(metadata.countryId),
             }}
             style={{
               width: "100%",

@@ -250,8 +250,11 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
   // TODO: unhandled units: list, variable, program
   if (isNumber) {
     return {
-      tickformat: isPercent ? `,.${precision()}%` : `,.${precision()}f`,
-      ...(isCurrency && { tickprefix: currencyMap[unit] }),
+      tickformat: isCurrency
+        ? `$,.${precision()}f`
+        : isPercent
+          ? `,.${precision()}%`
+          : `,.${precision()}f`,
       ...(isYears && { ticksuffix: "&nbsp;yrs" }),
       ...(isKwh && { ticksuffix: "&nbsp;kWh" }),
       ...(values && {
