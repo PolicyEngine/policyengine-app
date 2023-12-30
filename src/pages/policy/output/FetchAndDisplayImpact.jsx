@@ -128,18 +128,6 @@ export function FetchAndDisplayImpact(props) {
     );
   }
 
-  if (focus === "policyOutput") {
-    return (
-      <LowLevelDisplay {...props} >
-        <ImpactBreakdown 
-          metadata={metadata}
-          impact={impact}
-          policy={policy}
-        />
-      </LowLevelDisplay>
-    )
-  }
-
   return (
     <DisplayImpact
       impact={impact}

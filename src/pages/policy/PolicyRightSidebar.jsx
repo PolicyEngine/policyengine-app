@@ -296,7 +296,7 @@ export default function PolicyRightSidebar(props) {
       });
     } else {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", "policyOutput");
+      newSearch.set("focus", "policyOutput.policyBreakdown");
       setSearchParams(newSearch);
     }
   };

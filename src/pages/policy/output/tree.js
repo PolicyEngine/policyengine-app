@@ -20,6 +20,13 @@ export function getPolicyOutputTree(countryId) {
   const children = Object.keys(map).map((key) => {
     return { name: `policyOutput.${key}`, label: map[key] };
   });
+
+  // Add policy breakdown page, which doesn't have charts or CSVs, and thus
+  // can't be added as an impact chart component like the others above
+  children.unshift({
+    name: "policyOutput.policyBreakdown",
+    label: "Reform impact breakdown"
+  });
   return [
     {
       name: "policyOutput",
