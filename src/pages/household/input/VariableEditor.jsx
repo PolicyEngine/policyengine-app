@@ -210,19 +210,25 @@ function HouseholdVariableEntityInput(props) {
         metadata,
       )
     : null;
-  let defaultValue =
-    reformValue !== null
-      ? reformValue
-      : inputValue !== null
-        ? inputValue
-        : simulatedValue;
+  let defaultValue = null;
+
+  if (reformValue !== null) {
+    defaultValue = reformValue;
+  } else if (inputValue !== null) {
+    defaultValue = inputValue;
+  } else if (simulatedValue !== null) {
+    defaultValue = simulatedValue;
+  } else if (variable.defaultValue !== undefined) {
+    defaultValue = variable.defaultValue;
+  }
+
   if (defaultValue === null) {
     if (variable.valueType === "float" || variable.valueType === "int") {
       defaultValue = 0;
     } else if (variable.valueType === "bool") {
       defaultValue = false;
     } else if (variable.valueType === "Enum") {
-      defaultValue = variable.possibleValues[4];
+      defaultValue = variable.possibleValues[0];
     }
   }
   const mobile = useMobile();
