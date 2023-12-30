@@ -30,12 +30,12 @@ describe("Test refactored CountChildren getCountChildren func", () => {
 
     testHousehold.people["your first child"] = {
       age: {
-        2023: 15,
+        2024: 15,
       },
     };
     testHousehold.people["your second child"] = {
       age: {
-        2023: 4,
+        2024: 4,
       },
     };
 
@@ -47,7 +47,7 @@ describe("Test refactored CountChildren getCountChildren func", () => {
 
     testHousehold.people["your first dependent"] = {
       is_tax_unit_dependent: {
-        2023: true,
+        2024: true,
       },
     };
 
@@ -60,7 +60,7 @@ describe("Test refactored addChild function", () => {
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.uk));
 
     const defaultChild = {
-      age: { 2023: 10 },
+      age: { 2024: 10 },
     };
     const childCount = getCountChildren(testHousehold, "uk");
     const childName = getChildName(childCount, "uk");
@@ -75,8 +75,8 @@ describe("Test refactored addChild function", () => {
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));
 
     const defaultChild = {
-      age: { 2023: 10 },
-      is_tax_unit_dependent: { 2023: true },
+      age: { 2024: 10 },
+      is_tax_unit_dependent: { 2024: true },
     };
     const childCount = getCountChildren(testHousehold, "us");
     const childName = getChildName(childCount, "us");
@@ -88,7 +88,7 @@ describe("Test refactored addChild function", () => {
     testHousehold.households["your household"].members.push(childName);
     testHousehold.marital_units[`${childName}'s marital unit`] = {
       members: [childName],
-      marital_unit_id: { 2023: childCount + 1 },
+      marital_unit_id: { 2024: childCount + 1 },
     };
 
     expect(addChild(defaultHouseholds.us, "us")).toStrictEqual(testHousehold);
@@ -98,7 +98,7 @@ describe("Test refactored addChild function", () => {
     let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.default));
 
     const defaultChild = {
-      age: { 2023: 10 },
+      age: { 2024: 10 },
     };
     const childCount = getCountChildren(testHousehold, "ng");
     const childName = getChildName(childCount, "ng");
@@ -119,27 +119,27 @@ describe("Test that removePerson functions correctly", () => {
         you: {},
         "your partner": {
           age: {
-            2023: 40,
+            2024: 40,
           },
         },
         "your first child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your second child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your third child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your fourth child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
       },
@@ -154,7 +154,7 @@ describe("Test that removePerson functions correctly", () => {
             "your fourth child",
           ],
           is_married: {
-            2023: true,
+            2024: true,
           },
         },
       },
@@ -177,22 +177,22 @@ describe("Test that removePerson functions correctly", () => {
         you: {},
         "your partner": {
           age: {
-            2023: 40,
+            2024: 40,
           },
         },
         "your first child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your second child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your third child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
       },
@@ -206,7 +206,7 @@ describe("Test that removePerson functions correctly", () => {
             "your third child",
           ],
           is_married: {
-            2023: true,
+            2024: true,
           },
         },
       },
@@ -233,39 +233,39 @@ describe("Test that removePerson functions correctly", () => {
         you: {},
         "your partner": {
           age: {
-            2023: 40,
+            2024: 40,
           },
         },
         "your first dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
         "your second dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
         "your third dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
         "your fourth dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
       },
@@ -288,25 +288,25 @@ describe("Test that removePerson functions correctly", () => {
         "your first dependent's marital unit": {
           members: ["your first dependent"],
           marital_unit_id: {
-            2023: 1,
+            2024: 1,
           },
         },
         "your second dependent's marital unit": {
           members: ["your second dependent"],
           marital_unit_id: {
-            2023: 2,
+            2024: 2,
           },
         },
         "your third dependent's marital unit": {
           members: ["your third dependent"],
           marital_unit_id: {
-            2023: 3,
+            2024: 3,
           },
         },
         "your fourth dependent's marital unit": {
           members: ["your fourth dependent"],
           marital_unit_id: {
-            2023: 4,
+            2024: 4,
           },
         },
       },
@@ -353,31 +353,31 @@ describe("Test that removePerson functions correctly", () => {
         you: {},
         "your partner": {
           age: {
-            2023: 40,
+            2024: 40,
           },
         },
         "your first dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
         "your second dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
         "your third dependent": {
           age: {
-            2023: 10,
+            2024: 10,
           },
           is_tax_unit_dependent: {
-            2023: true,
+            2024: true,
           },
         },
       },
@@ -399,19 +399,19 @@ describe("Test that removePerson functions correctly", () => {
         "your first dependent's marital unit": {
           members: ["your first dependent"],
           marital_unit_id: {
-            2023: 1,
+            2024: 1,
           },
         },
         "your second dependent's marital unit": {
           members: ["your second dependent"],
           marital_unit_id: {
-            2023: 2,
+            2024: 2,
           },
         },
         "your third dependent's marital unit": {
           members: ["your third dependent"],
           marital_unit_id: {
-            2023: 3,
+            2024: 3,
           },
         },
       },
@@ -463,27 +463,27 @@ describe("Test that removePerson functions correctly", () => {
         you: {},
         "your partner": {
           age: {
-            2023: 40,
+            2024: 40,
           },
         },
         "your first child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your second child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your third child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your fourth child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
       },
@@ -506,22 +506,22 @@ describe("Test that removePerson functions correctly", () => {
         you: {},
         "your partner": {
           age: {
-            2023: 40,
+            2024: 40,
           },
         },
         "your first child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your second child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
         "your third child": {
           age: {
-            2023: 10,
+            2024: 10,
           },
         },
       },

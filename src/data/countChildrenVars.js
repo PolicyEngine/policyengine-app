@@ -6,22 +6,22 @@ export const childNames = {
 export const defaultChildren = {
   us: {
     age: {
-      2023: 10,
+      2024: 10,
     },
     is_tax_unit_dependent: {
-      2023: true,
+      2024: true,
     },
   },
   default: {
     age: {
-      2023: 10,
+      2024: 10,
     },
   },
 };
 
 export const childCountFilters = {
-  us: (person) => person?.is_tax_unit_dependent?.["2023"],
-  default: (person) => person?.age?.[2023] < 18,
+  us: (person) => person?.is_tax_unit_dependent?.["2024"],
+  default: (person) => person?.age?.[2024] < 18,
 };
 
 export const childAdders = {
@@ -43,7 +43,7 @@ export const childAdders = {
     newSituation.households["your household"].members.push(childName);
     newSituation.marital_units[`${childName}'s marital unit`] = {
       members: [childName],
-      marital_unit_id: { 2023: childCount + 1 },
+      marital_unit_id: { 2024: childCount + 1 },
     };
     return newSituation;
   },

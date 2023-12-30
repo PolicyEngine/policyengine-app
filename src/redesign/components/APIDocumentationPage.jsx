@@ -334,7 +334,7 @@ export default function APIDocumentationPage({ metadata }) {
               spm_unit: {
                 members: ["parent", "child"],
                 snap: {
-                  2023: null,
+                  2024: null,
                 },
               },
             },
@@ -357,7 +357,7 @@ export default function APIDocumentationPage({ metadata }) {
               spm_unit: {
                 members: ["parent", "child"],
                 snap: {
-                  2023: 2833.5,
+                  2024: 2833.5,
                 },
               },
             },

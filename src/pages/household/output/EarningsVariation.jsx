@@ -48,7 +48,7 @@ export default function EarningsVariation(props) {
         ];
       validVariables = validVariables.concat(
         Object.keys(firstEntity).filter((variable) =>
-          Array.isArray(firstEntity[variable][2023]),
+          Array.isArray(firstEntity[variable][2024]),
         ),
       );
     }
@@ -64,10 +64,10 @@ export default function EarningsVariation(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you["employment_income"] = { 2023: null };
+    householdData.people.you["employment_income"] = { 2024: null };
     const currentEarnings = getValueFromHousehold(
       "employment_income",
-      "2023",
+      "2024",
       "you",
       householdInput,
       metadata,
@@ -76,7 +76,7 @@ export default function EarningsVariation(props) {
       [
         {
           name: "employment_income",
-          period: "2023",
+          period: "2024",
           min: 0,
           max: Math.max(
             metadata.countryId == "ng" ? 1_200_000 : 200_000,

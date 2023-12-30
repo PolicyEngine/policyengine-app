@@ -44,14 +44,14 @@ export default function MarginalTaxRates(props) {
 
   const currentEarnings = getValueFromHousehold(
     "employment_income",
-    "2023",
+    "2024",
     "you",
     householdInput,
     metadata,
   );
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
-    "2023",
+    "2024",
     "you",
     householdBaseline,
     metadata,
@@ -59,12 +59,12 @@ export default function MarginalTaxRates(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you.employment_income["2023"] = null;
+    householdData.people.you.employment_income["2024"] = null;
     householdData.axes = [
       [
         {
           name: "employment_income",
-          period: "2023",
+          period: "2024",
           min: 0,
           max: Math.max(
             metadata.countryId === "ng" ? 1_200_000 : 200_000,
@@ -153,14 +153,14 @@ export default function MarginalTaxRates(props) {
   if (baselineMtr && !reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
-      "2023",
+      "2024",
       "you",
       baselineMtr,
       metadata,
     );
     const mtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      "2023",
+      "2024",
       "you",
       baselineMtr,
       metadata,
@@ -255,28 +255,28 @@ export default function MarginalTaxRates(props) {
   } else if (baselineMtr && reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
-      "2023",
+      "2024",
       "you",
       baselineMtr,
       metadata,
     );
     const baselineMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      "2023",
+      "2024",
       "you",
       baselineMtr,
       metadata,
     );
     const reformMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      "2023",
+      "2024",
       "you",
       reformMtr,
       metadata,
     );
     const reformMtrValue = getValueFromHousehold(
       "marginal_tax_rate",
-      "2023",
+      "2024",
       "you",
       householdReform,
       metadata,
