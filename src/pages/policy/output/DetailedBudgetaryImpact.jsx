@@ -39,11 +39,10 @@ function ImpactPlot(props) {
           orientation: "v",
           // 'relative' for all but the last, which is 'total'
           measure:
-            yArray.length > 0
-              ? Array(yArray.length - 1)
-                  .fill("relative")
-                  .concat(["total"])
-              : ["total"],
+            yArray.length > 1 &&
+            Array(yArray.length - 1)
+              .fill("relative")
+              .concat(["total"]),
           increasing: { marker: { color: style.colors.BLUE } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
           // Total should be dark gray if negative, dark green if positive
@@ -56,7 +55,7 @@ function ImpactPlot(props) {
             },
           },
           connector: {
-            line: { color: style.colors.GRAY, width: 1, dash: "dot" },
+            line: { color: style.colors.GRAY, width: 2, dash: "dot" },
           },
           textposition: "inside",
           text: yArray.map((y) => formatCur(y * 1e9)),
