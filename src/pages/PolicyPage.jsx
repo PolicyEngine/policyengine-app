@@ -80,7 +80,6 @@ export default function PolicyPage(props) {
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
   } = props;
-  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();

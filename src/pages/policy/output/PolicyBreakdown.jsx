@@ -5,7 +5,7 @@ import {
 import style from "../../../style";
 
 export default function PolicyBreakdown(props) {
-  const { metadata, policy, impact } = props;
+  const { metadata, impact } = props;
 
   const TITLE = "Your reform impact";
   const BOTTOM_TEXT = "Here's how we estimated the society-wide impacts of your " +
