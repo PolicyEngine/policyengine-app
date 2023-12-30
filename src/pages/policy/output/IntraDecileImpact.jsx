@@ -215,15 +215,25 @@ export function title(policyLabel, all, metadata) {
   const totalBehind = all["Lose more than 5%"] + all["Lose less than 5%"];
   const percent = (n) =>
     formatPercent(n, metadata, { maximumFractionDigits: 0 });
+  const totalAheadTerm = percent(totalAhead);
+  const totalBehindTerm = percent(totalBehind);
+  const objectTerm = "the net income";
   const countryId = metadata.countryId;
   const countryPhrase =
     countryId === "us" || countryId === "uk"
       ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  const msg = `${policyLabel} would increase (resp., decrease) the net income of ${percent(
-    totalAhead,
-  )} (resp., ${percent(totalBehind)}) of households ${countryPhrase}`;
-  return msg;
+      : ` in ${COUNTRY_NAMES(countryId)}`;
+  let msg;
+  if (totalAhead > 0 && totalBehind > 0) {
+    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population and decrease it for ${totalBehindTerm}`;
+  } else if (totalAhead > 0) {
+    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population`;
+  } else if (totalBehind > 0) {
+    msg = `${policyLabel} would decrease ${objectTerm} for ${totalBehindTerm} of the population`;
+  } else {
+    msg = `${policyLabel} would have no effect on ${objectTerm} for the population`;
+  }
+  return msg + countryPhrase;
 }
 
 const description = (
