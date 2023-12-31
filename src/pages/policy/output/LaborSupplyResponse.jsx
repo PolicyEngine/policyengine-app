@@ -4,8 +4,7 @@ import { ChartLogo } from "../../../api/charts";
 import { formatCurrencyAbbr, localeCode } from "../../../api/language";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart from "./ImpactChart";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
+import ImpactChart, { regionName } from "./ImpactChart";
 
 function ImpactPlot(props) {
   const { values, labels, metadata, mobile, useHoverCard } = props;
@@ -97,21 +96,17 @@ function ImpactPlot(props) {
 }
 
 export function title(policyLabel, change, metadata) {
-  const term1 = "employment income";
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
+  const term1 = `employment income${regionPhrase}`;
   const term2 = formatCurrencyAbbr(Math.abs(change * 1e9), metadata, {
     maximumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "increase" : "decrease";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  // TODO: a tolerance should be used to decide the sign.
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1} this year ${countryPhrase}`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} this year ${countryPhrase}`;
+      ? `${policyLabel} would have no effect on ${term1} this year`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} this year`;
   return msg;
 }
 

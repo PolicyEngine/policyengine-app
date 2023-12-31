@@ -9,8 +9,7 @@ import {
   PovertyChangeContext,
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
-import ImpactChart, { relativeChangeMessage } from "./ImpactChart";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
+import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
 
 export function ImpactPlot(props) {
   const {
@@ -137,16 +136,12 @@ export function title(policyLabel, objectTerm, baseline, reform, metadata) {
   });
   const term2 = `${relTerm} (${absTerm}pp)`;
   const signTerm = relativeChange > 0 ? "increase" : "decrease";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  // TODO: a tolerance should be used to decide the sign.
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
   const msg =
     absTerm === 0
-      ? `${policyLabel} would have no effect on ${objectTerm} ${countryPhrase}`
-      : `${policyLabel} would ${signTerm} ${objectTerm} by ${term2} ${countryPhrase}`;
+      ? `${policyLabel} would have no effect on ${objectTerm}${regionPhrase}`
+      : `${policyLabel} would ${signTerm} ${objectTerm}${regionPhrase} by ${term2}`;
   return msg;
 }
 

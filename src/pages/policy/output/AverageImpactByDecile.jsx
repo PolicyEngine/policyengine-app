@@ -6,8 +6,7 @@ import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "./utils";
 import React from "react";
-import ImpactChart, { absoluteChangeMessage } from "./ImpactChart";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
+import ImpactChart, { absoluteChangeMessage, regionName } from "./ImpactChart";
 
 export function ImpactPlot(props) {
   const {
@@ -116,20 +115,17 @@ export function ImpactPlot(props) {
 }
 
 export function title(policyLabel, relativeChange, metadata) {
-  const term1 = "the net income of households";
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
+  const term1 = `the net income of households${regionPhrase}`;
   const term2 = formatCurrency(Math.abs(relativeChange), metadata, {
     maximumFractionDigits: 0,
   });
   const signTerm = relativeChange > 0 ? "increase" : "decrease";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
   const msg =
     relativeChange === 0
-      ? `${policyLabel} would have no effect on ${term1} on average ${countryPhrase}`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average ${countryPhrase}`;
+      ? `${policyLabel} would have no effect on ${term1} on average`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average`;
   return msg;
 }
 

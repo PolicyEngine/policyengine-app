@@ -4,9 +4,8 @@ import { ChartLogo } from "../../../api/charts";
 import style from "../../../style";
 import { cardinal, formatPercent, localeCode } from "../../../api/language";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart from "./ImpactChart";
+import ImpactChart, { regionName } from "./ImpactChart";
 import wrapAnsi from "wrap-ansi";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"
@@ -218,22 +217,19 @@ export function title(policyLabel, all, metadata) {
   const totalAheadTerm = percent(totalAhead);
   const totalBehindTerm = percent(totalBehind);
   const objectTerm = "the net income";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : ` in ${COUNTRY_NAMES(countryId)}`;
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
   let msg;
   if (totalAhead > 0 && totalBehind > 0) {
-    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population and decrease it for ${totalBehindTerm}`;
+    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population${regionPhrase} and decrease it for ${totalBehindTerm}`;
   } else if (totalAhead > 0) {
-    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population`;
+    msg = `${policyLabel} would increase ${objectTerm} for ${totalAheadTerm} of the population${regionPhrase}`;
   } else if (totalBehind > 0) {
-    msg = `${policyLabel} would decrease ${objectTerm} for ${totalBehindTerm} of the population`;
+    msg = `${policyLabel} would decrease ${objectTerm} for ${totalBehindTerm} of the population${regionPhrase}`;
   } else {
-    msg = `${policyLabel} would have no effect on ${objectTerm} for the population`;
+    msg = `${policyLabel} would have no effect on ${objectTerm} for the population${regionPhrase}`;
   }
-  return msg + countryPhrase;
+  return msg;
 }
 
 const description = (
