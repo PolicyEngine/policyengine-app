@@ -7,8 +7,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
-    //"plugin:prettier/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "globals": {
     "process": true
@@ -20,7 +20,6 @@
       "extends": [
         "eslint:recommended",
         "plugin:jest/recommended"
-        //"plugin:prettier/recommended"
       ],
       "rules": { "jest/prefer-expect-assertions": "off" }
     }
