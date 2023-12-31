@@ -96,3 +96,22 @@ export function absoluteChangeMessage(
   const msg = `${subjectTerm} would ${signTerm}`;
   return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
 }
+
+/**
+ *
+ * Note this is not a general-purpose function -- it is meant to be used to
+ * create titles in impact charts.
+ *
+ * @param {object} metadata the metadata object
+ * @returns name of the region if it is found in metadata.economy_options.region
+ * and it is not us or uk
+ */
+export function regionName(metadata) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const region = urlParams.get("region");
+  if (region === "us" || region === "uk") return;
+  const options = metadata.economy_options.region.map((region) => {
+    return { value: region.name, label: region.label };
+  });
+  return options.find((option) => option.value === region)?.label;
+}

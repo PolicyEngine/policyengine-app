@@ -4,8 +4,7 @@ import { ChartLogo } from "../../../api/charts";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { relativeChangeMessage } from "./ImpactChart";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
+import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
 import { formatPercent, localeCode } from "api/language";
 
 function ImpactPlot(props) {
@@ -144,12 +143,9 @@ function title(metricChanges, policyLabel, metadata) {
       : metricChanges[0] < 0 && metricChanges[1] < 0 && metricChanges[2] < 0
         ? "decrease"
         : "have an ambiguous effect on";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  const msg = `${policyLabel} would ${signTerm} inequality ${countryPhrase}`;
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
+  const msg = `${policyLabel} would ${signTerm} inequality${regionPhrase}`;
   return msg;
 }
 

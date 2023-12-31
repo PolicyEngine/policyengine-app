@@ -9,9 +9,8 @@ import {
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart from "./ImpactChart";
+import ImpactChart, { regionName } from "./ImpactChart";
 import wrapAnsi from "wrap-ansi";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
 
 function ImpactPlot(props) {
   const {
@@ -151,12 +150,9 @@ function title(cliffShareChange, cliffGapChange, metadata, policyLabel) {
         : cliffShareChange <= 0 && cliffGapChange <= 0
           ? "would make cliffs less prevalent"
           : "would have an ambiguous effect on cliffs";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  const msg = `${policyLabel} ${signTerm} ${countryPhrase}`;
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
+  const msg = `${policyLabel} ${signTerm}${regionPhrase}`;
   return msg;
 }
 

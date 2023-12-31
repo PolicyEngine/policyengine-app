@@ -5,8 +5,7 @@ import { formatCurrencyAbbr, localeCode } from "../../../api/language";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { absoluteChangeMessage } from "./ImpactChart";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
+import ImpactChart, { absoluteChangeMessage, regionName } from "./ImpactChart";
 
 function ImpactPlot(props) {
   const { budgetaryImpact, values, labels, metadata, mobile, useHoverCard } =
@@ -135,16 +134,12 @@ export function title(policyLabel, change, metadata) {
     maximumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "raise" : "cost";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  // TODO: a tolerance should be used to decide the sign.
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1} this year ${countryPhrase}`
-      : `${policyLabel} would ${signTerm} ${term2} this year ${countryPhrase}`;
+      ? `${policyLabel} would have no effect on ${term1}${regionPhrase} this year`
+      : `${policyLabel} would ${signTerm} ${term2}${regionPhrase} this year`;
   return msg;
 }
 

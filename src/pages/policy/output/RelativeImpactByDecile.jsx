@@ -6,8 +6,7 @@ import { HoverCardContext } from "../../../layout/HoverCard";
 import { cardinal, formatPercent } from "../../../api/language";
 import { plotLayoutFont } from "./utils";
 import React from "react";
-import ImpactChart, { relativeChangeMessage } from "./ImpactChart";
-import { COUNTRY_NAMES } from "pages/statusPageDefaults";
+import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
 
 export function ImpactPlot(props) {
   const {
@@ -124,21 +123,17 @@ const description = (
 );
 
 export function title(policyLabel, change, metadata) {
-  const term1 = "the net income of households";
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
+  const term1 = `the net income of households${regionPhrase}`;
   const term2 = formatPercent(Math.abs(change), metadata, {
     maximumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "increase" : "decrease";
-  const countryId = metadata.countryId;
-  const countryPhrase =
-    countryId === "us" || countryId === "uk"
-      ? ""
-      : `in ${COUNTRY_NAMES(countryId)}`;
-  // TODO: a tolerance should be used to decide the sign.
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1} on average ${countryPhrase}`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average ${countryPhrase}`;
+      ? `${policyLabel} would have no effect on ${term1} on average`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average`;
   return msg;
 }
 
