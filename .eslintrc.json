@@ -17,10 +17,7 @@
     {
       "files": ["test/**"],
       "plugins": ["jest"],
-      "extends": [
-        "eslint:recommended",
-        "plugin:jest/recommended"
-      ],
+      "extends": ["eslint:recommended", "plugin:jest/recommended"],
       "rules": { "jest/prefer-expect-assertions": "off" }
     }
   ],

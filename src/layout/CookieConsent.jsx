@@ -13,7 +13,7 @@ import colors from "redesign/style/colors";
 
 export default function CookieConsent() {
   /* An animated bottom-left popup that asks the user to accept cookies */
-  
+
   const [show, setShow] = React.useState(false);
   const [accepted, setAccepted] = React.useState(false);
   const displayCategory = useDisplayCategory();

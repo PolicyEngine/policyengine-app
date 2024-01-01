@@ -35,12 +35,6 @@ export default function BlogPage() {
   const countryId = useCountryId();
   const postName = url.split("/")[3];
 
-  // Some old links might point to a dated URL format
-  const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
-  if (YYYYMMDDFormat.test(postName)) {
-    return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
-  }
-
   const post = posts.find((post) => post.slug === postName);
   const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
   const imageUrl = post.image
@@ -61,7 +55,13 @@ export default function BlogPage() {
           setContent(text);
         }
       });
-  }, [file]);
+  }, [file, isNotebook]);
+
+  // Some old links might point to a dated URL format
+  const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
+  if (YYYYMMDDFormat.test(postName)) {
+    return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
+  }
 
   let markdown;
 
@@ -532,6 +532,50 @@ function MoreOn({ post }) {
   );
 }
 
+function Td({ children }) {
+  const displayCategory = useDisplayCategory();
+  const mobile = displayCategory === "mobile";
+  const ref = useRef(null);
+  const [columnNumber, setColumnNumber] = useState(null);
+  useEffect(() => {
+    setColumnNumber(ref.current?.cellIndex);
+  }, [ref.current?.cellIndex]);
+  return (
+    <td
+      ref={ref}
+      style={{
+        padding: 5,
+        fontFamily: "Roboto Serif",
+        fontSize: mobile ? 16 : 18,
+        borderRight: columnNumber === 0 ? "1px solid black" : "",
+        textAlign: columnNumber === 0 ? "left" : "center",
+        verticalAlign: "middle",
+      }}
+    >
+      {children}
+    </td>
+  );
+}
+
+function Tr({ children }) {
+  // get row index
+  const ref = useRef(null);
+  const [rowIndex, setRowIndex] = useState(0);
+  useEffect(() => {
+    setRowIndex(ref.current?.rowIndex);
+  }, [ref.current?.rowIndex]);
+  return (
+    <tr
+      ref={ref}
+      style={{
+        backgroundColor: rowIndex % 2 === 0 ? "white" : "#f2f2f2",
+      }}
+    >
+      {children}
+    </tr>
+  );
+}
+
 function BlogContent({ markdown, backgroundColor }) {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
@@ -787,46 +831,8 @@ function BlogContent({ markdown, backgroundColor }) {
             {children}
           </table>
         ),
-        td: ({ children }) => {
-          const ref = useRef(null);
-          const [columnNumber, setColumnNumber] = useState(null);
-          useEffect(() => {
-            setColumnNumber(ref.current?.cellIndex);
-          }, [ref.current?.cellIndex]);
-          return (
-            <td
-              ref={ref}
-              style={{
-                padding: 5,
-                fontFamily: "Roboto Serif",
-                fontSize: mobile ? 16 : 18,
-                borderRight: columnNumber === 0 ? "1px solid black" : "",
-                textAlign: columnNumber === 0 ? "left" : "center",
-                verticalAlign: "middle",
-              }}
-            >
-              {children}
-            </td>
-          );
-        },
-        tr: ({ children }) => {
-          // get row index
-          const ref = useRef(null);
-          const [rowIndex, setRowIndex] = useState(0);
-          useEffect(() => {
-            setRowIndex(ref.current?.rowIndex);
-          }, [ref.current?.rowIndex]);
-          return (
-            <tr
-              ref={ref}
-              style={{
-                backgroundColor: rowIndex % 2 === 0 ? "white" : "#f2f2f2",
-              }}
-            >
-              {children}
-            </tr>
-          );
-        },
+        td: Td,
+        tr: Tr,
 
         th: ({ children }) => (
           <th
