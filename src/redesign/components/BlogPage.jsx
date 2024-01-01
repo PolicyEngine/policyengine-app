@@ -494,21 +494,22 @@ function AuthorSection({ post }) {
 
 function MoreOn({ post }) {
   const countryId = useCountryId();
-  const categoryLinks = post.tags.map((tag) => {
-    if (locationTags.includes(tag)) {
-      return (
-        <div key={tag} style={{ marginBottom: 10 }}>
-          <Link
-            className="highlighted-link"
-            to={`/${countryId}/research?locations=${tag}`}
-            style={{ marginBottom: 0, marginTop: 20 }}
-          >
-            {locationLabels[tag]}
-          </Link>
-        </div>
-      );
-    }
-    if (topicTags.includes(tag)) {
+  const categoryLinks = post.tags
+    .filter((tag) => locationTags.includes(tag) || topicTags.includes(tag))
+    .map((tag) => {
+      if (locationTags.includes(tag)) {
+        return (
+          <div key={tag} style={{ marginBottom: 10 }}>
+            <Link
+              className="highlighted-link"
+              to={`/${countryId}/research?locations=${tag}`}
+              style={{ marginBottom: 0, marginTop: 20 }}
+            >
+              {locationLabels[tag]}
+            </Link>
+          </div>
+        );
+      }
       return (
         <div key={tag} style={{ marginBottom: 10 }}>
           <Link
@@ -520,8 +521,7 @@ function MoreOn({ post }) {
           </Link>
         </div>
       );
-    }
-  });
+    });
   return (
     <>
       <p
@@ -987,13 +987,17 @@ function ReadTime({ markdown }) {
   );
 }
 
-function DesktopShareLink({ icon, url, text }) {
+function DesktopShareLink({ icon, url, action, text }) {
   const displayCategory = useDisplayCategory();
   const desktop = displayCategory === "desktop";
   return (
     <div
       style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-      onClick={() => window.open(url, "_blank")}
+      onClick={() => {
+        if (url) {
+          window.open(url, "_blank");
+        } else action();
+      }}
     >
       {React.createElement(icon, {
         style: {
@@ -1052,7 +1056,7 @@ function ShareLinks({ post }) {
       />
       <DesktopShareLink
         icon={PrinterOutlined}
-        url={`javascript:window.print();`}
+        action={window.print}
         text={desktop && "Print"}
       />
     </div>
