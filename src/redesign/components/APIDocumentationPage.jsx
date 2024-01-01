@@ -90,7 +90,7 @@ function VariableParameterExplorer(props) {
   }
 
   const parameterCards = Object.values(metadata.parameters)
-    .filter((parameter) => parameter.type == "parameter")
+    .filter((parameter) => parameter.type === "parameter")
     .filter((parameter) => {
       if (query === "") {
         return true;

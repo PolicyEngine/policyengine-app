@@ -1,7 +1,5 @@
 // same as plotly.js/src/locale-en.js except currency symbol
 
-"use strict";
-
 module.exports = {
   moduleType: "locale",
   name: "en-GB",

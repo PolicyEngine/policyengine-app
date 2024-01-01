@@ -12,7 +12,7 @@ export function getPolicyOutputTree(countryId) {
       delete map[key];
     });
   }
-  if (countryId != "us") {
+  if (countryId !== "us") {
     ["racialPovertyImpact"].forEach((key) => {
       delete map[key];
     });

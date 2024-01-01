@@ -19,9 +19,9 @@ export default function PolicyReproducibility(props) {
   ]);
 
   const colabLink =
-    metadata.countryId == "uk"
+    metadata.countryId === "uk"
       ? "https://colab.research.google.com/drive/16h6v-EAYk5n4qZ4krXbmFG4_oKAaflo9#scrollTo=TBTIupkjIThF"
-      : metadata.countryId == "us"
+      : metadata.countryId === "us"
         ? "https://colab.research.google.com/drive/1hqA9a2LrNj2leJ9YtXXC3xyaCXQ7mwUW?usp=sharing"
         : null;
 

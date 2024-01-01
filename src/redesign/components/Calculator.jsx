@@ -87,6 +87,7 @@ function Sidebar() {
       }}
     >
       <img
+        alt="Policy Engine logo"
         src={PolicyEngineMainLogo}
         style={{
           width: 200,

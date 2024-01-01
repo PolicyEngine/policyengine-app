@@ -351,7 +351,11 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
         <div style={{ flex: 3 }}>
           <h1>{post.title}</h1>
           <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          <img src={imageUrl} style={{ width: "100%", marginTop: 50 }} />
+          <img
+            alt={post.title}
+            src={imageUrl}
+            style={{ width: "100%", marginTop: 50 }}
+          />
         </div>
         <div style={{ flex: 1 }}></div>
       </div>
@@ -375,7 +379,7 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
             </p>
             <ReadTime markdown={markdown} />
           </div>
-          <img src={imageUrl} style={{ width: "100%" }} />
+          <img alt={post.title} src={imageUrl} style={{ width: "100%" }} />
           <ShareLinks post={post} />
         </div>
       </div>
@@ -401,7 +405,7 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
             </div>
             <ReadTime markdown={markdown} />
           </div>
-          <img src={imageUrl} style={{ width: "100%" }} />
+          <img alt={post.title} src={imageUrl} style={{ width: "100%" }} />
           <ShareLinks post={post} />
         </div>
       </div>
@@ -459,6 +463,7 @@ function AuthorSection({ post }) {
       }}
     >
       <img
+        alt={Authors[author].name}
         src={Authors[author].headshot}
         width={70}
         height={70}

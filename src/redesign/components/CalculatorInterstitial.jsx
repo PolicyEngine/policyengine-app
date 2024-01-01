@@ -72,6 +72,7 @@ function CalculatorOption({ left, title, description, link, image }) {
       }}
     >
       <img
+        alt={title}
         src={image}
         style={{
           width: 300,

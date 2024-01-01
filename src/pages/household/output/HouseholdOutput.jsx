@@ -130,7 +130,7 @@ export default function HouseholdOutput(props) {
   const urlParams = new URLSearchParams(window.location.search);
   const householdId = urlParams.get("household");
   const twitterLink =
-    reformLabel == "Current law"
+    reformLabel === "Current law"
       ? `https://twitter.com/intent/tweet?url=${url}&text=Household%20%23${householdId}%2C%20on%20PolicyEngine`
       : `https://twitter.com/intent/tweet?url=${url}&text=Impacts%20of%20${encodedPolicyLabel}%20on%20Household%20%23${householdId}%2C%20on%20PolicyEngine`;
   const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
