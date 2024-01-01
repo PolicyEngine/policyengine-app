@@ -23,11 +23,12 @@ export default function HomeSubscribe() {
  * @returns {import('react').ReactComponentElement}
  */
 export function SubscribeToPolicyEngine(props) {
+  const defaultCategory = useDisplayCategory();
   const { displaySize } = props;
 
   const [submitMsg, setSubmitMsg] = useState("");
 
-  const displayCategory = displaySize || useDisplayCategory();
+  const displayCategory = displaySize || defaultCategory;
 
   const submitLink =
     "https://policyengine.us5.list-manage.com/subscribe/post-json?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
