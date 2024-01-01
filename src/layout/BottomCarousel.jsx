@@ -28,7 +28,7 @@ export default function BottomCarousel(props) {
       }}
     >
       {!mobile && (
-        <p style={{ paddingLeft: 50, paddingTop: 20 }}>{bottomText}</p>
+        <div style={{ paddingLeft: 50, paddingTop: 20 }}>{bottomText}</div>
       )}
       <div
         style={{
