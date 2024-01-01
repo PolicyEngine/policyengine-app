@@ -8,7 +8,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended"
+    "react-app"
   ],
   "globals": {
     "process": true
