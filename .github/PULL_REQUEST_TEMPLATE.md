@@ -8,7 +8,7 @@ Please describe the changes in detail.
 
 ## Screenshots
 
-Please include screenshots, gifs, etc.
+Upload concise visuals (screenshots, gifs, etc) showing the output and impact of changes. Avoid sharing code screenshots or videos.
 
 ## Tests
 
