@@ -134,8 +134,7 @@ function NotebookCell({ data }) {
   );
 }
 
-function PythonCodeCell({ data }) {
-  data;
+function PythonCodeCell() {
   return null;
 }
 
@@ -185,8 +184,7 @@ function NotebookOutputPlain({ data }) {
   return <p>{JSON.stringify(data)}</p>;
 }
 
-function NotebookOutputHTML({ data }) {
-  data;
+function NotebookOutputHTML() {
   return null;
 }
 
