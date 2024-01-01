@@ -55,7 +55,6 @@ export default function CookieConsent() {
     }, 500);
   };
 
-  searchParams;
   return (
     <>
       {show && !searchParams.get("embed") && (
@@ -119,7 +118,7 @@ export default function CookieConsent() {
   );
 }
 
-function clearCookies() {
+/* function clearCookies() {
   const cookies = document.cookie.split(";");
 
   for (let i = 0; i < cookies.length; i++) {
@@ -130,4 +129,4 @@ function clearCookies() {
   }
 }
 
-clearCookies;
+clearCookies; */

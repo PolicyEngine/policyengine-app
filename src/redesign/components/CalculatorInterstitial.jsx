@@ -1,4 +1,3 @@
-import style from "style";
 import Header from "./Header";
 import LinkButton from "controls/LinkButton";
 import useCountryId from "./useCountryId";
@@ -54,8 +53,6 @@ export default function CalculatorInterstitial() {
     </>
   );
 }
-
-style;
 
 function CalculatorOption({ left, title, description, link, image }) {
   const displayCategory = useDisplayCategory();

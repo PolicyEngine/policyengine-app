@@ -19,7 +19,6 @@ export default function Calculator() {
       .then((response) => response.json())
       .then((data) => setMetadata(data.result));
   }, [countryId]);
-  metadata;
   const [parameterSearch, setParameterSearch] = useState("");
   const fuse = new Fuse(Object.values(metadata?.parameters || {}) || [], {
     keys: ["label", "description", "name"],

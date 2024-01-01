@@ -44,7 +44,6 @@ export default function ResearchPage(props) {
       j++;
     }
   }
-  style;
 
   // Left to right, top to bottom (wrap)
   return (

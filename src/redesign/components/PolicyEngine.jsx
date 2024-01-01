@@ -101,8 +101,6 @@ export default function PolicyEngine({ pathname }) {
   const [hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup] =
     useState(false);
 
-  updateMetadata;
-  setMetadata;
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
     try {
