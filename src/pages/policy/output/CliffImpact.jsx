@@ -9,8 +9,7 @@ import {
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { regionName } from "./ImpactChart";
-import wrapAnsi from "wrap-ansi";
+import ImpactChart, { regionName, wordWrap } from "./ImpactChart";
 
 function ImpactPlot(props) {
   const {
@@ -25,7 +24,10 @@ function ImpactPlot(props) {
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
   const formatPer = (x) =>
-    formatPercent(x, metadata, { maximumFractionDigits: 1 });
+    formatPercent(x, metadata, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
   const formatCur = (x) =>
     formatCurrencyAbbr(x, metadata, {
       maximumFractionDigits: 1,
@@ -48,16 +50,16 @@ function ImpactPlot(props) {
       change > tolerance
         ? `increase ${objectTerm} by ${formatPer(change) + baselineReformTerm}`
         : change > 0
-          ? `increase ${objectTerm} by ${formatPer(tolerance)}`
+          ? `increase ${objectTerm} by less than ${formatPer(tolerance)}`
           : change < -tolerance
             ? `decrease ${objectTerm} by ${
                 formatPer(-change) + baselineReformTerm
               }`
             : change < 0
-              ? `decrease ${objectTerm} by ${formatPer(tolerance)}`
+              ? `decrease ${objectTerm} by less than ${formatPer(tolerance)}`
               : `have no effect on ${objectTerm}`;
     const msg = `This reform would ${signTerm}`;
-    return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+    return wordWrap(msg, 50).replaceAll("\n", "<br>");
   };
   return (
     <Plot
