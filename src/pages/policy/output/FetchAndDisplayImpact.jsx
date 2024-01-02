@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { DisplayError, DisplayImpact, DisplayWait } from "./Display";
+import { DisplayError, DisplayImpact, DisplayWait, LowLevelDisplay } from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
@@ -206,7 +206,11 @@ export function FetchAndDisplayCliffImpact(props) {
     return <DisplayError error={error} />;
   }
 
-  return <ErrorPage message="This service is temporarily unavailable. Please try again later." />;
+  return (
+    <LowLevelDisplay {...props}>
+      <ErrorPage message="This service is temporarily unavailable. Please try again later." />;
+    </LowLevelDisplay>
+  );
 
   /*
   if (!impact) {
