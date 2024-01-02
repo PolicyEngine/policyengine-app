@@ -1,7 +1,8 @@
 import HoverCard from "layout/HoverCard";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import { useRef } from "react";
-import wrapAnsi from "wrap-ansi";
+//import wrapAnsi from "wrap-ansi";
+import wordwrap from "wordwrapjs";
 import { formatPercent } from "api/language";
 
 export default function ImpactChart(props) {
@@ -62,7 +63,8 @@ export function relativeChangeMessage(
             ? `decrease ${objectTerm} by less than ${formatter(tolerance)}`
             : `have no effect on ${objectTerm}`;
   const msg = `${subjectTerm} would ${signTerm}`;
-  return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+  // return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+  return wordwrap.wrap(msg, {width: 50}).replaceAll("\n", "<br>");
 }
 
 /**
@@ -94,7 +96,8 @@ export function absoluteChangeMessage(
             ? `decrease ${objectTerm} by less than ${formatter(tolerance)}`
             : `have no effect on ${objectTerm}`;
   const msg = `${subjectTerm} would ${signTerm}`;
-  return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+  // return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+  return wordwrap.wrap(msg, {width: 50}).replaceAll("\n", "<br>");
 }
 
 /**

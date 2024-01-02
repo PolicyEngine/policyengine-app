@@ -40,6 +40,7 @@
     "remark-gfm": "^3.0.0 < 4.0.0",
     "styled-components": "^6.1.1",
     "use-react-screenshot": "^3.0.0",
+    "wordwrapjs": "^5.1.0",
     "workbox-background-sync": "^7.0.0",
     "workbox-broadcast-update": "^7.0.0",
     "workbox-cacheable-response": "^7.0.0",
