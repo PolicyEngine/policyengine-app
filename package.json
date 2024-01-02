@@ -62,12 +62,6 @@
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
     "lint": "eslint --ext js,jsx . && prettier -c ."
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -81,8 +75,7 @@
     ]
   },
   "lint-staged": {
-    "*": "prettier --ignore-unknown --write",
-    "*.{js,jsx}": "eslint --fix"
+    "*": "prettier -w"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
