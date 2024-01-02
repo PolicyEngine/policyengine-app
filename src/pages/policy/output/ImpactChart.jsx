@@ -62,7 +62,7 @@ export function relativeChangeMessage(
             ? `decrease ${objectTerm} by less than ${formatter(tolerance)}`
             : `have no effect on ${objectTerm}`;
   const msg = `${subjectTerm} would ${signTerm}`;
-  return wordwrap.wrap(msg, {width: 50}).replaceAll("\n", "<br>");
+  return wordwrap.wrap(msg, { width: 50 }).replaceAll("\n", "<br>");
 }
 
 /**
@@ -94,7 +94,7 @@ export function absoluteChangeMessage(
             ? `decrease ${objectTerm} by less than ${formatter(tolerance)}`
             : `have no effect on ${objectTerm}`;
   const msg = `${subjectTerm} would ${signTerm}`;
-  return wordwrap.wrap(msg, {width: 50}).replaceAll("\n", "<br>");
+  return wordwrap.wrap(msg, { width: 50 }).replaceAll("\n", "<br>");
 }
 
 /**
