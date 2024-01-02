@@ -206,6 +206,7 @@ export function FetchAndDisplayCliffImpact(props) {
     return <DisplayError error={error} />;
   }
 
+  // Remove the below block when cliff impacts are reinstated
   return (
     <LowLevelDisplay {...props}>
       <ErrorPage message="This service is temporarily unavailable. Please try again later." />;
