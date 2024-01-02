@@ -29,7 +29,10 @@ export function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
 
   const formatPer = (n) =>
-    formatPercent(n, metadata, { maximumFractionDigits: 1 });
+    formatPercent(n, metadata, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
   const hoverMessage = (x) => {
     const baseline =
       x === "All"

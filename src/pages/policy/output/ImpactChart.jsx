@@ -20,6 +20,16 @@ export default function ImpactChart(props) {
 
 /**
  *
+ * @param {string} text the text to wrap
+ * @param {number} width the width of the column
+ * @returns the wrapped text with the eol character \n inserted for breaks
+ */
+export function wordWrap(text, width = 50) {
+  return wordwrap.wrap(text, { width: width });
+}
+
+/**
+ *
  * @param {string} subjectTerm the subject of the sentence
  * @param {string} objectTerm the object of the sentence
  * @param {number} change the relative change
@@ -43,7 +53,10 @@ export function relativeChangeMessage(
   options,
 ) {
   const formatter = (x) =>
-    formatPercent(x, metadata, { maximumFractionDigits: 1 });
+    formatPercent(x, metadata, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
   const baselineReformTerm = options
     ? ` from ${options.formatter(options.baseline)} to ${options.formatter(
         options.reform,
@@ -62,7 +75,7 @@ export function relativeChangeMessage(
             ? `decrease ${objectTerm} by less than ${formatter(tolerance)}`
             : `have no effect on ${objectTerm}`;
   const msg = `${subjectTerm} would ${signTerm}`;
-  return wordwrap.wrap(msg, { width: 50 }).replaceAll("\n", "<br>");
+  return wordWrap(msg, 50).replaceAll("\n", "<br>");
 }
 
 /**
@@ -94,7 +107,7 @@ export function absoluteChangeMessage(
             ? `decrease ${objectTerm} by less than ${formatter(tolerance)}`
             : `have no effect on ${objectTerm}`;
   const msg = `${subjectTerm} would ${signTerm}`;
-  return wordwrap.wrap(msg, { width: 50 }).replaceAll("\n", "<br>");
+  return wordWrap(msg, 50).replaceAll("\n", "<br>");
 }
 
 /**

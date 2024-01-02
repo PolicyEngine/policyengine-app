@@ -19,7 +19,10 @@ export function ImpactPlot(props) {
   } = props;
   const setHoverCard = useContext(HoverCardContext);
   const formatPer = (n) =>
-    formatPercent(n, metadata, { maximumFractionDigits: 1 });
+    formatPercent(n, metadata, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
   const hoverMessage = (x, y) => {
     const obj = `the income of households in the ${cardinal(x)} ${decileType}`;
     return relativeChangeMessage("This reform", obj, y, 0.001, metadata);
