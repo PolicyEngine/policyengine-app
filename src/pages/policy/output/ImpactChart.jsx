@@ -19,10 +19,10 @@ export default function ImpactChart(props) {
 }
 
 /**
- * 
+ *
  * @param {string} text the text to wrap
  * @param {number} width the width of the column
- * @returns 
+ * @returns the wrapped text with the eol character \n inserted for breaks
  */
 export function wordWrap(text, width = 50) {
   return wordwrap.wrap(text, { width: width });
