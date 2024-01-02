@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { DisplayError, DisplayImpact, DisplayWait, LowLevelDisplay } from "./Display";
+import {
+  DisplayError,
+  DisplayImpact,
+  DisplayWait,
+  LowLevelDisplay,
+} from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
@@ -209,7 +214,7 @@ export function FetchAndDisplayCliffImpact(props) {
   // Remove the below block when cliff impacts are reinstated
   return (
     <LowLevelDisplay {...props}>
-      <ErrorPage message="This service is temporarily unavailable. Please try again later." />;
+      <ErrorPage message="This service is temporarily unavailable. Please try again later." />
     </LowLevelDisplay>
   );
 
