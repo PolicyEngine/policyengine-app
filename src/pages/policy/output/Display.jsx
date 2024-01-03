@@ -13,6 +13,7 @@ import useMobile from "layout/Responsive";
 import ErrorPage from "layout/Error";
 import ResultActions from "layout/ResultActions";
 import { downloadCsv, downloadPng } from "./utils";
+import { useReactToPrint } from "react-to-print";
 
 /**
  *
@@ -124,7 +125,6 @@ export function DisplayImpact(props) {
   const impactType = /policyOutput\.(.+)/.exec(focus)[1];
   const policyLabel = getPolicyLabel(policy);
   const mobile = useMobile();
-  document.title = `${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`;
   const filename = impactType + `${policyLabel}`;
   let pane, downloadCsvFn, downloadPngFn;
   if (impactType === "analysis") {
@@ -153,6 +153,7 @@ export function DisplayImpact(props) {
   }
   return (
     <LowLevelDisplay
+      title={`${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`}
       downloadPng={downloadPngFn}
       downloadCsv={downloadCsvFn}
       metadata={metadata}
@@ -187,6 +188,7 @@ export function DisplayImpact(props) {
 export function LowLevelDisplay(props) {
   const {
     children,
+    title,
     downloadCsv,
     downloadPng,
     metadata,
@@ -194,14 +196,17 @@ export function LowLevelDisplay(props) {
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
   } = props;
+  useEffect(() => {
+    document.title = title;
+  }, []);
   const mobile = useMobile();
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
   const [, takeScreenShot] = useScreenshot();
-  const imageRef = useRef(null);
+  const componentRef = useRef(null);
   useEffect(() => {
     if (preparingForScreenshot) {
       setTimeout(() => {
-        takeScreenShot(imageRef.current).then((img) => {
+        takeScreenShot(componentRef.current).then((img) => {
           setPreparingForScreenshot(false);
           // send a request to /image with the image
           // The filename should be the current path (including query strings), but with /, &, ? etc. replaced with _
@@ -243,10 +248,14 @@ export function LowLevelDisplay(props) {
   const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
   const linkedInLink = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
 
-  function copyLink() {
+  const copyLink = () => {
     navigator.clipboard.writeText(window.location.href);
     message.info("Link copied to clipboard");
-  }
+  };
+
+  const print = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const embed = new URLSearchParams(window.location.search).get("embed");
   const bottomElements =
@@ -277,7 +286,7 @@ export function LowLevelDisplay(props) {
     return (
       <>
         <div
-          ref={imageRef}
+          ref={componentRef}
           style={{
             position: "absolute",
             top: 0,
@@ -307,10 +316,11 @@ export function LowLevelDisplay(props) {
   }
 
   return (
-    <ResultsPanel ref={imageRef}>
+    <ResultsPanel>
       {!preparingForScreenshot && (
         <ResultActions
           downloadPng={downloadPng}
+          print={print}
           downloadCsv={downloadCsv}
           copyLink={copyLink}
           twitterLink={twitterLink}
@@ -323,7 +333,7 @@ export function LowLevelDisplay(props) {
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
-      {children}
+      <div ref={componentRef}>{children}</div>
       {!mobile && !preparingForScreenshot && (
         <BottomCarousel
           selected={focus}

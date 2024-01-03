@@ -18,9 +18,23 @@ import {
   LinkOutlined,
   FileImageOutlined,
   FileTextOutlined,
+  PrinterFilled,
 } from "@ant-design/icons";
 import React from "react";
 
+/**
+ *
+ * @param {object} props
+ * @param {function} props.downloadPng callback for download png button
+ * @param {function} props.downloadCsv callback for download csv button
+ * @param {function} props.copyLink callback for copy link button
+ * @param {string} props.twitterLink link for twitter button
+ * @param {string} props.facebookLink link for facebook button
+ * @param {string} props.linkedInLink link for linkedin button
+ * @param {string} props.print callback for print button
+ *
+ * @returns
+ */
 export default function ResultActions(props) {
   const {
     downloadPng,
@@ -29,6 +43,7 @@ export default function ResultActions(props) {
     twitterLink,
     facebookLink,
     linkedInLink,
+    print,
   } = props;
   const iconStyle = { fontSize: 20 };
   const btnSize = "small";
@@ -46,7 +61,7 @@ export default function ResultActions(props) {
       }}
     >
       {downloadPng && (
-        <Tooltip title="Download the chart as a png file">
+        <Tooltip title="Download the result as a png file">
           <Button
             type="text"
             size={btnSize}
@@ -97,6 +112,16 @@ export default function ResultActions(props) {
           href={linkedInLink}
         />
       </Tooltip>
+      {print && (
+        <Tooltip title="Print the result">
+          <Button
+            type="text"
+            size={btnSize}
+            icon={<PrinterFilled style={iconStyle} />}
+            onClick={print}
+          />
+        </Tooltip>
+      )}
     </div>
   );
 }
