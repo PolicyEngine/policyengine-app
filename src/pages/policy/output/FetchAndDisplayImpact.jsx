@@ -5,7 +5,6 @@ import {
   DisplayWait,
   LowLevelDisplay,
 } from "./Display";
-import ImpactBreakdown from "./ImpactBreakdown";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
