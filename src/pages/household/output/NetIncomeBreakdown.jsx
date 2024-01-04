@@ -80,7 +80,7 @@ function VariableArithmetic(props) {
       metadata,
     );
     const diff = reformValue - value;
-    doesIncomeChange = diff != 0;
+    doesIncomeChange = diff !== 0;
     // When not calculating reforms,
     // every node is either just
     // adding or subtracting from their

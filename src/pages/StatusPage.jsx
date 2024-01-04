@@ -139,6 +139,7 @@ export function StatusPage() {
         >
           <h1>PolicyEngine API status</h1>
           <iframe
+            title="PolicyEngine API status"
             src="https://policyengine.betteruptime.com"
             width="1000"
             height="800"

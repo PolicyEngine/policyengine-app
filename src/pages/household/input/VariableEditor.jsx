@@ -7,7 +7,6 @@ import {
   getNewHouseholdId,
   getValueFromHousehold,
 } from "../../../api/variables";
-import LoadingCentered from "../../../layout/LoadingCentered";
 import { Select, Switch } from "antd";
 import useMobile from "../../../layout/Responsive";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
@@ -28,15 +27,7 @@ export default function VariableEditor(props) {
     autoCompute,
   } = props;
   const [edited, setEdited] = useState(false);
-  if (!householdInput) {
-    return <LoadingCentered />;
-  }
-  let variableName;
-  try {
-    variableName = searchParams.get("focus").split(".").slice(-1)[0];
-  } catch (e) {
-    return null;
-  }
+  const variableName = searchParams.get("focus").split(".").slice(-1)[0];
   const variable = metadata.variables[variableName];
   const required = ["state_name"].includes(variableName);
   const entityPlural = metadata.entities[variable.entity].plural;
@@ -47,13 +38,15 @@ export default function VariableEditor(props) {
 
   // Add the variable to the relevant portions of the household input object
   useEffect(() => {
-    const newHouseholdInput = addVariable(
-      householdInput,
-      variable,
-      entityPlural,
-    );
-    setHouseholdInput(newHouseholdInput);
-  }, [variable]);
+    if (!possibleEntities.length) {
+      const newHouseholdInput = addVariable(
+        householdInput,
+        variable,
+        entityPlural,
+      );
+      setHouseholdInput(newHouseholdInput);
+    }
+  });
 
   const entityInputs = possibleEntities.map((entity) => {
     return (

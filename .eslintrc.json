@@ -5,11 +5,7 @@
     "es2021": true,
     "jest/globals": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended"
-    //"plugin:prettier/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:react/recommended", "react-app"],
   "globals": {
     "process": true
   },
@@ -17,11 +13,7 @@
     {
       "files": ["test/**"],
       "plugins": ["jest"],
-      "extends": [
-        "eslint:recommended",
-        "plugin:jest/recommended"
-        //"plugin:prettier/recommended"
-      ],
+      "extends": ["eslint:recommended", "plugin:jest/recommended"],
       "rules": { "jest/prefer-expect-assertions": "off" }
     }
   ],

@@ -44,7 +44,7 @@ describe("Test addVariable function", () => {
     setupHousehold = addChild(setupHousehold, "uk");
 
     // Add the is_blind variable to all members
-    Object.keys(testHousehold.people).map((person) => {
+    Object.keys(testHousehold.people).forEach((person) => {
       testHousehold.people[person] = {
         ...testHousehold.people[person],
         is_blind: {
@@ -92,7 +92,7 @@ describe("Test addVariable function", () => {
     setupHousehold = addChild(setupHousehold, "us");
 
     // Add the is_blind variable to all members
-    Object.keys(testHousehold.people).map((person) => {
+    Object.keys(testHousehold.people).forEach((person) => {
       testHousehold.people[person] = {
         ...testHousehold.people[person],
         is_blind: {

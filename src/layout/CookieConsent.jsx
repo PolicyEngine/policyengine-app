@@ -13,6 +13,16 @@ import colors from "redesign/style/colors";
 
 export default function CookieConsent() {
   /* An animated bottom-left popup that asks the user to accept cookies */
+
+  const [show, setShow] = React.useState(false);
+  const [accepted, setAccepted] = React.useState(false);
+  const displayCategory = useDisplayCategory();
+  React.useEffect(() => {
+    setTimeout(() => {
+      setShow(true);
+    }, 1000);
+  });
+
   // We'll use a 'consent' cookie to remember the user's choice
   // first, check if it's already set
   const consentCookie = document.cookie.split(";").find((cookie) => {
@@ -23,15 +33,9 @@ export default function CookieConsent() {
   if (consent) {
     return null;
   }
-  const [show, setShow] = React.useState(false);
-  const [accepted, setAccepted] = React.useState(false);
+
   // get searchParams from the URL without using useSearchParams
   const searchParams = new URLSearchParams(window.location.search);
-  React.useEffect(() => {
-    setTimeout(() => {
-      setShow(true);
-    }, 1000);
-  });
 
   const acceptCookies = () => {
     // Give animation time to finish
@@ -51,8 +55,6 @@ export default function CookieConsent() {
     }, 500);
   };
 
-  const displayCategory = useDisplayCategory();
-  searchParams;
   return (
     <>
       {show && !searchParams.get("embed") && (
@@ -116,7 +118,7 @@ export default function CookieConsent() {
   );
 }
 
-function clearCookies() {
+/* function clearCookies() {
   const cookies = document.cookie.split(";");
 
   for (let i = 0; i < cookies.length; i++) {
@@ -127,4 +129,4 @@ function clearCookies() {
   }
 }
 
-clearCookies;
+clearCookies; */

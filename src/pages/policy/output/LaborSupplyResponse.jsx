@@ -7,7 +7,7 @@ import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "./ImpactChart";
 
 function ImpactPlot(props) {
-  const { values, labels, metadata, mobile, useHoverCard } = props;
+  const { values, labels, metadata, mobile } = props;
   const xArray = labels;
   const yArray = values;
   // Waterfall chart
@@ -43,14 +43,7 @@ function ImpactPlot(props) {
           connector: {
             line: { color: style.colors.GRAY, width: 1, dash: "dot" },
           },
-          ...(useHoverCard
-            ? {
-                hoverinfo: "none",
-              }
-            : {
-                customdata: xArray.map(() => {}),
-                hovertemplate: `<b>%{x}</b><extra></extra>`,
-              }),
+          hovertemplate: `<b>%{x}</b><extra></extra>`,
         },
       ]}
       layout={{
@@ -61,15 +54,11 @@ function ImpactPlot(props) {
           title: "Employment income (bn)",
           tickformat: "$,.1f",
         },
-        ...(useHoverCard
-          ? {}
-          : {
-              hoverlabel: {
-                align: "left",
-                bgcolor: "#FFF",
-                font: { size: "16" },
-              },
-            }),
+        hoverlabel: {
+          align: "left",
+          bgcolor: "#FFF",
+          font: { size: "16" },
+        },
         uniformtext: {
           mode: "hide",
           minsize: 12,
@@ -111,7 +100,7 @@ export function title(policyLabel, change, metadata) {
 }
 
 export default function lsrImpact(props) {
-  const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
+  const { impact, policyLabel, metadata, mobile } = props;
   const incomeEffect = impact.labour_supply_response.income_lsr;
   const substitutionEffect = impact.labour_supply_response.substitution_lsr;
 
@@ -128,7 +117,6 @@ export default function lsrImpact(props) {
         labels={labels}
         metadata={metadata}
         mobile={mobile}
-        useHoverCard={useHoverCard}
       />
     </ImpactChart>
   );

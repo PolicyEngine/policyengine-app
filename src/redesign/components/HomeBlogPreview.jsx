@@ -454,7 +454,7 @@ function SideTags({ tags }) {
             fontFamily: "Roboto",
             fontSize: 12,
             textTransform: "uppercase",
-            borderTop: i == 1 ? `1px solid ${style.colors.BLACK}` : "none",
+            borderTop: i === 1 ? `1px solid ${style.colors.BLACK}` : "none",
             borderRight: `1px solid ${style.colors.BLACK}`,
             width: 50,
             display: "flex",

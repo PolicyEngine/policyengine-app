@@ -19,7 +19,6 @@ export default function Calculator() {
       .then((response) => response.json())
       .then((data) => setMetadata(data.result));
   }, [countryId]);
-  metadata;
   const [parameterSearch, setParameterSearch] = useState("");
   const fuse = new Fuse(Object.values(metadata?.parameters || {}) || [], {
     keys: ["label", "description", "name"],
@@ -87,6 +86,7 @@ function Sidebar() {
       }}
     >
       <img
+        alt="Policy Engine logo"
         src={PolicyEngineMainLogo}
         style={{
           width: 200,

@@ -59,6 +59,7 @@ function TwitterEmbed() {
       }}
     >
       <iframe
+        title="Twitter timeline"
         scrolling="no" // This is deprecated, but essential to function correctly
         height="100%"
         style={{
