@@ -1,19 +1,18 @@
 import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import style from "../../../style";
-import useDisplayCategory from "redesign/components/useDisplayCategory";
-import { useSearchParams } from "react-router-dom";
-import { formatCountryName } from "api/language";
 
 export default function PolicyBreakdown(props) {
-  const { metadata, impact } = props;
-  const displayCategory = useDisplayCategory();
-  const [searchParams] = useSearchParams();
+  const { 
+    metadata, 
+    impact,
+    timePeriod,
+    region
+  } = props;
 
-  const year = searchParams.get("timePeriod") || new Date().getFullYear();
-  const countryId = metadata.countryId;
-  const countryName = formatCountryName(countryId, displayCategory !== "desktop" && {length: "short"});
+  const regionObj = metadata.economy_options.region.find((elem) => elem.name === region)
+  const regionName = regionObj ? regionObj.label : "undefined region";
 
-  const title = `Your reform impact in ${countryName} over ${year}`;
+  const title = `Your reform impact in ${regionName} over ${timePeriod}`;
   const bottomText =
     "Here's how we estimated the society-wide impacts of your " +
     "reform. Click on an option on the left panel to view more details.";
