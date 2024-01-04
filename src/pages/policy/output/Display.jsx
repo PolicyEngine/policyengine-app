@@ -128,7 +128,7 @@ export function DisplayImpact(props) {
   const filename = impactType + `${policyLabel}`;
   useEffect(() => {
     document.title = `${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`;
-  }, []);
+  });
   let pane, downloadCsvFn, downloadPngFn;
   if (impactType === "analysis") {
     pane = (
