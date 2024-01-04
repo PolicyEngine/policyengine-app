@@ -18,7 +18,6 @@ import laborSupplyImpact from "./LaborSupplyResponse";
 export const impactLabels = {
   netIncome: "Budgetary impact",
   detailedBudgetaryImpact: "Budgetary impact by program",
-  laborSupplyImpact: "Labor supply impact",
   decileAverageImpact: "Absolute impact by income decile",
   wealthDecileAverageImpact: "Absolute impact by wealth decile",
   decileRelativeImpact: "Relative impact by income decile",
@@ -34,6 +33,7 @@ export const impactLabels = {
   // cliffImpact: "Cliff impact",
   codeReproducibility: "Reproduce in Python",
   analysis: "Analysis",
+  laborSupplyImpact: "Labor supply impact",
 };
 
 const map = {
