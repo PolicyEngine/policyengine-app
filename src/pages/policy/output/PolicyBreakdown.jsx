@@ -204,10 +204,10 @@ function BreakdownTemplate(props) {
  */
 function formatPowers(value) {
   const powers = new Map([
-    [15, "qa"],
-    [12, "tn"],
-    [9, "bn"],
-    [6, "mn"],
+    [15, "quadrillion"],
+    [12, "trillion"],
+    [9, "billion"],
+    [6, "million"],
   ]);
   let label = "";
   let displayValue = value;
@@ -241,9 +241,9 @@ function formatDesc(value, type, options) {
 
   // Declare template nouns for output when value is 0
   const templateStringsZero = {
-    budgetaryImpact: "Your policy reform would have no impact on the budget",
+    budgetaryImpact: "Has no impact on the budget",
     povertyRateChange:
-      "Your policy reform would have no impact on the poverty rate",
+      "Has no impact on the poverty rate",
     winnersPercent:
       "Under your reform, none of the population would receive a higher net income",
     losersPercent:
@@ -272,8 +272,8 @@ function formatDesc(value, type, options) {
 
   // Declare default "action" value and manual overrides
   const actions = {
-    default: ["raise", "lower"],
-    budgetaryImpact: ["savings", "cost"],
+    default: ["Raises", "Lowers"],
+    budgetaryImpact: ["Raises", "Costs"],
   };
 
   // Determine action
@@ -307,8 +307,8 @@ function formatDesc(value, type, options) {
   // Declare template strings for output; must be after all processing
   // to enable proper string construction
   const templateStrings = {
-    budgetaryImpact: `Your reform's projected net budgetary ${action} is`,
-    povertyRateChange: `Your reform would ${action} the poverty rate by`,
+    budgetaryImpact: `${action}`,
+    povertyRateChange: `${action} the poverty rate by`,
     winnersPercent:
       "Your reform would raise the net income for this percent " +
       "of the population:",
