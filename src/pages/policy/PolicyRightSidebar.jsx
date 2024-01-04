@@ -45,8 +45,18 @@ function TimePeriodSelector(props) {
   const options = metadata.economy_options.time_period.map((time_period) => {
     return { value: time_period.name.toString(), label: time_period.label };
   });
+
+  const yearArray = options.reduce((accu, periodObj) => {
+    return [...accu, Number(periodObj.value)];
+  }, []);
+
+  const curYear = new Date().getFullYear();
+  const defaultPeriod = yearArray.includes(curYear)
+    ? curYear
+    : options[0].value;
+
   const [value] = useState(
-    (searchParams.get("timePeriod") || "").toString() || options[0].value,
+    (searchParams.get("timePeriod") || "").toString() || defaultPeriod,
   );
 
   return (
