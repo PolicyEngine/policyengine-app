@@ -41,7 +41,7 @@ function MarkdownP(props) {
 }
 
 export function BlogPostMarkdown(props) {
-  const { markdown } = props;
+  const { markdown, dict } = props;
   const mobile = useMobile();
 
   const renderers = {
@@ -202,6 +202,13 @@ export function BlogPostMarkdown(props) {
             {children}
           </th>
         ),
+        abbr: (props) => {
+          const { title } = props;
+          if (Object.keys(dict).includes(title)) {
+            return dict[title];
+          }
+          return <abbr {...props}></abbr>;
+        },
       }}
     >
       {markdown}
