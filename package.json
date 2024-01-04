@@ -61,7 +61,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
-    "lint": "eslint --ext js,jsx --max-warnings 0 . && prettier -c ."
+    "lint": "eslint --ext js,jsx --max-warnings 0 . && prettier -c .",
+    "prepare-husky": "husky install"
   },
   "browserslist": {
     "production": [
@@ -76,8 +77,8 @@
     ]
   },
   "lint-staged": {
-    "*": "prettier --ignore-unknown --write",
-    "*.{js,jsx}": "eslint --fix"
+    "*.{js,jsx}": "eslint --fix",
+    "*": "prettier -w"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
