@@ -1,4 +1,3 @@
-import { CaretDownFilled, CaretUpFilled } from "@ant-design/icons";
 import style from "../../../style";
 
 export default function PolicyBreakdown(props) {
@@ -91,27 +90,6 @@ function BreakdownTemplate(props) {
   // as positive (e.g., in case of poverty rate change)
   const manualSignFlips = ["povertyRateChange", "losersPercent"];
 
-  // Declare arrow buttons
-  const UpArrow = ({ color }) => (
-    <CaretUpFilled
-      style={{
-        color: color || COLORS.pos,
-        display: "inline-flex",
-        alignItems: "center",
-      }}
-    />
-  );
-
-  const DownArrow = ({ color }) => (
-    <CaretDownFilled
-      style={{
-        color: color || COLORS.neg,
-        display: "inline-flex",
-        alignItems: "center",
-      }}
-    />
-  );
-
   // Iterate over the data...
   const lineItems = data.map((item, index) => {
     // Return a formatted line containing the string
@@ -161,8 +139,6 @@ function BreakdownTemplate(props) {
             fontSize: "22px",
           }}
         >
-          {item.value && item.value > 0 ? <UpArrow color={color} /> : null}
-          {item.value && item.value < 0 ? <DownArrow color={color} /> : null}
           {formattedValue && (
             <h2
               style={{
