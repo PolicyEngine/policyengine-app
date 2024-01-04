@@ -16,6 +16,9 @@ import relativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
 
 export const impactLabels = {
+  // Add policyBreakdown as a label (and menu item),
+  // but not as a chart or CSV in "map" below
+  policyBreakdown: "Policy breakdown",
   netIncome: "Budgetary impact",
   detailedBudgetaryImpact: "Budgetary impact by program",
   decileAverageImpact: "Absolute impact by income decile",
