@@ -161,7 +161,7 @@ export default function budgetaryImpact(props) {
     "Benefits",
     "Net",
   ];
-  if (metadata.countryId != "us") {
+  if (metadata.countryId !== "us") {
     desktopLabels[0] = "Tax revenues";
     mobileLabels[0] = "Taxes";
   }
