@@ -139,7 +139,6 @@ export function DisplayImpact(props) {
         region={region}
         timePeriod={timePeriod}
         policyLabel={policyLabel}
-        mobile={mobile}
       />
     );
   } else {

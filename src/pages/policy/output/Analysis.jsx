@@ -10,8 +10,7 @@ import { asyncApiCall, countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 
 export default function Analysis(props) {
-  const { impact, policyLabel, metadata, policy, region, timePeriod, mobile } =
-    props;
+  const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
   const impactLabels = [
@@ -30,7 +29,8 @@ export default function Analysis(props) {
         impact: impact,
         metadata: metadata,
         policyLabel: policyLabel,
-        mobile: mobile,
+        // mobile plots have smaller heights
+        mobile: true,
       }).chart,
     ]),
   );
