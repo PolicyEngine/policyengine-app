@@ -126,6 +126,9 @@ export function DisplayImpact(props) {
   const policyLabel = getPolicyLabel(policy);
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
+  useEffect(() => {
+    document.title = `${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`;
+  }, []);
   let pane, downloadCsvFn, downloadPngFn;
   if (impactType === "analysis") {
     pane = (
@@ -136,6 +139,7 @@ export function DisplayImpact(props) {
         region={region}
         timePeriod={timePeriod}
         policyLabel={policyLabel}
+        mobile={mobile}
       />
     );
   } else {
@@ -153,7 +157,6 @@ export function DisplayImpact(props) {
   }
   return (
     <LowLevelDisplay
-      title={`${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`}
       downloadPng={downloadPngFn}
       downloadCsv={downloadCsvFn}
       metadata={metadata}
@@ -188,7 +191,6 @@ export function DisplayImpact(props) {
 export function LowLevelDisplay(props) {
   const {
     children,
-    title,
     downloadCsv,
     downloadPng,
     metadata,
@@ -196,9 +198,6 @@ export function LowLevelDisplay(props) {
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
   } = props;
-  useEffect(() => {
-    document.title = title;
-  }, []);
   const mobile = useMobile();
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
   const [, takeScreenShot] = useScreenshot();
