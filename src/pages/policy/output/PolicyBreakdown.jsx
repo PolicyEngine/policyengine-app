@@ -19,14 +19,8 @@ export default function PolicyBreakdown(props) {
   // Define the impact items to be included in the output
   const budgetaryImpact = impact.budget.budgetary_impact;
   const povertyOverview = impact.poverty.poverty.all;
-  // const decileOverview = impact.intra_decile.all;
+  const decileOverview = impact.intra_decile.all;
   const povertyRateChange = povertyOverview.reform - povertyOverview.baseline;
-  /*
-  const winnersPercent =
-    decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
-  const losersPercent =
-    decileOverview["Lose more than 5%"] + decileOverview["Lose less than 5%"];
-    */
 
   const listItems = [
     {
@@ -44,22 +38,10 @@ export default function PolicyBreakdown(props) {
         signFlip: true,
       },
     },
-    /*
     {
-      value: winnersPercent,
-      type: "winnersPercent",
-      formatted: formatDesc(winnersPercent, "winnersPercent", {
-        percentage: true,
-      }),
-    },
-    {
-      value: losersPercent,
-      type: "losersPercent",
-      formatted: formatDesc(losersPercent, "losersPercent", {
-        percentage: true,
-      }),
-    },
-    */
+      value: decileOverview,
+      type: "winnersLosersPercent"
+    }
   ];
 
   // Pass data structure to template
@@ -91,24 +73,41 @@ function BreakdownTemplate(props) {
     neg: style.colors.DARK_GRAY,
   };
 
-  // When formatting, treat a negative number
-  // as positive (e.g., in case of poverty rate change)
-  const manualSignFlips = ["povertyRateChange", "losersPercent"];
-
   // Iterate over the data...
   const lineItems = data.map((item, index) => {
+    // If doing income decile display, use custom function
+    if (item.type === "winnersLosersPercent") {
+      return (
+        <div
+          key={index}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "20px",
+          }}
+        >
+          {formatWinnersLosers(item.value)}
+        </div>
+      );
+    }
+
+    // Otherwise, move through like normal
+    const signFlip = item.formatOptions.signFlip;
+
     // Return a formatted line containing the string
     // and value, colored based on the value contained
     let color = null;
 
     if (item.value > 0) {
-      if (manualSignFlips.includes(item.type)) {
+      if (signFlip) {
         color = COLORS.neg;
       } else {
         color = COLORS.pos;
       }
     } else {
-      if (manualSignFlips.includes(item.type)) {
+      if (signFlip) {
         color = COLORS.pos;
       } else {
         color = COLORS.neg;
@@ -315,11 +314,102 @@ function formatValue(value, type, options) {
   const templateValues = {
     budgetaryImpact: `${prefixLabel}${currencyLabel}${displayValue}${postfixLabel}`,
     povertyRateChange: `${prefixLabel}${displayValue}%`,
-    winnersPercent: `${prefixLabel}${displayValue}%`,
-    losersPercent: `${prefixLabel}${displayValue}%`,
+    winnersLosersPercent: `${prefixLabel}${displayValue}%`,
   };
 
   return templateValues[type];
+}
+
+/**
+ * Formats the rates at which households lose or gain net income,
+ * as the logic behind it is non-standard
+ * @param {Object<Array>} decileOverview The intra_decile_all value from
+ * the relevant "impact" object
+ * @returns {React.JSX} The formatted JSX, as this can contain anywhere
+ * between 0 and 2 values
+ */
+function formatWinnersLosers(decileOverview) {
+  const winnersPercent =
+    decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
+  const losersPercent =
+    decileOverview["Lose more than 5%"] + decileOverview["Lose less than 5%"];
+
+  // If both values are 0...
+  if (!winnersPercent && !losersPercent) {
+    return (
+      <h2
+        style={{
+          fontSize: 22
+        }}
+      >
+        Does not affect anyone&apos;s net income
+      </h2>
+    );
+  }
+
+  // At least 1 isn't 0; process data
+  const COLORS = {
+    pos: style.colors.BLUE,
+    neg: style.colors.DARK_GRAY,
+  };
+
+  const winnersColor = winnersPercent > 0 ? COLORS.pos : COLORS.neg;
+  const losersColor = losersPercent > 0 ? COLORS.neg : COLORS.pos;
+
+  const winnersValue = formatValue(winnersPercent, "winnersLosersPercent", {percentage: true});
+  const losersValue = formatValue(losersPercent, "winnersLosersPercent", {percentage: true});
+
+  // If both aren't 0...
+  if (winnersPercent && losersPercent) {
+    return (
+      <h2
+        style={{
+          fontSize: 22
+        }}
+      >
+        Increases net income for
+        &nbsp;
+        <span
+          style={{
+            color: winnersColor
+          }}
+        >
+          {winnersValue}
+        </span>
+        &nbsp;
+        , and decreases it for
+        &nbsp;
+        <span
+          style={{
+            color: losersColor
+          }}
+        >
+          {losersValue}
+        </span>
+      </h2>
+    )
+  }
+
+  // Otherwise, conditionally return whichever is correct
+  return (
+    <h2
+      style={{
+        fontSize: 22
+      }}
+    >
+      {`${winnersPercent ? "Raises" : "Lowers"} net income for`}
+      &nbsp;
+      <span
+        style={{
+          color: winnersPercent ? winnersColor : losersColor
+        }}
+      >
+        {winnersPercent ? winnersValue : losersValue}
+      </span>
+      &nbsp;of the population
+    </h2>
+  )
+
 }
 
 /**
@@ -341,7 +431,7 @@ function formatPowers(value) {
   for (const [power, unit] of powers) {
     if (value / Math.pow(10, power) >= 1) {
       displayValue = value / Math.pow(10, power);
-      label = unit;
+      label = " " + unit;
       break;
     }
   }
