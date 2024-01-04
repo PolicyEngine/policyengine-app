@@ -1,3 +1,5 @@
+import { countryNames } from "data/countries";
+
 export function capitalize(string) {
   if (!string) {
     return string;
@@ -28,6 +30,34 @@ export function localeCode(countryId) {
  */
 export function currencyCode(countryId) {
   return countryId === "uk" ? "GBP" : "USD";
+}
+
+/**
+ * Given a country_id, return a formatted country name
+ * @param {String} countryId The two-letter country ID
+ * @param {Object} [options] An object of associated options to be passed
+ * @param {("standard"|"short")} [options.length] The desired length of the
+ * country name; short returns abbreviations where relevant
+ */
+export function formatCountryName(countryId, options) {
+  if (!countryId) {
+    console.error("formatCountryName: No country ID passed; this parameter is required");
+    return undefined;
+  }
+
+  if (!Object.keys(countryNames).includes(String(countryId))) {
+    console.error("formatCountryName: Country ID not found");
+    return undefined;
+  }
+
+  if (
+    options?.length === "short" && 
+    Object.keys(countryNames[countryId]).includes("short")
+  ) {
+    return countryNames[countryId].short;
+  }
+
+  return countryNames[countryId].standard;
 }
 
 /**
