@@ -144,9 +144,9 @@ export function DisplayImpact(props) {
     );
   } else if (impactType === "policyBreakdown") {
     pane = (
-      <PolicyBreakdown 
-        metadata={metadata} 
-        impact={impact} 
+      <PolicyBreakdown
+        metadata={metadata}
+        impact={impact}
         timePeriod={timePeriod}
         region={region}
       />

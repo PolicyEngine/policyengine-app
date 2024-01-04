@@ -1,14 +1,11 @@
 import style from "../../../style";
 
 export default function PolicyBreakdown(props) {
-  const { 
-    metadata, 
-    impact,
-    timePeriod,
-    region
-  } = props;
+  const { metadata, impact, timePeriod, region } = props;
 
-  const regionObj = metadata.economy_options.region.find((elem) => elem.name === region)
+  const regionObj = metadata.economy_options.region.find(
+    (elem) => elem.name === region,
+  );
   const regionName = regionObj ? regionObj.label : "undefined region";
 
   const title = `Your reform impact in ${regionName} over ${timePeriod}`;
@@ -27,8 +24,8 @@ export default function PolicyBreakdown(props) {
       value: budgetaryImpact,
       type: "budgetaryImpact",
       formatOptions: {
-        currencyLabel: metadata.currency
-      }
+        currencyLabel: metadata.currency,
+      },
     },
     {
       value: povertyRateChange,
@@ -40,8 +37,8 @@ export default function PolicyBreakdown(props) {
     },
     {
       value: decileOverview,
-      type: "winnersLosersPercent"
-    }
+      type: "winnersLosersPercent",
+    },
   ];
 
   // Pass data structure to template
@@ -115,7 +112,11 @@ function BreakdownTemplate(props) {
     }
 
     const [descStart, descEnd] = formatDesc(item.value, item.type);
-    const formattedValue = formatValue(item.value, item.type, item.formatOptions);
+    const formattedValue = formatValue(
+      item.value,
+      item.type,
+      item.formatOptions,
+    );
 
     return (
       <div
@@ -137,7 +138,7 @@ function BreakdownTemplate(props) {
           &nbsp;
           <span
             style={{
-              color: color
+              color: color,
             }}
           >
             {formattedValue}
@@ -203,8 +204,7 @@ function formatDesc(value, type) {
   // Declare template nouns for output when value is 0
   const templateStringsZero = {
     budgetaryImpact: "Has no impact on the budget",
-    povertyRateChange:
-      "Has no impact on the poverty rate",
+    povertyRateChange: "Has no impact on the poverty rate",
     winnersPercent:
       "Under your reform, none of the population would receive a higher net income",
     losersPercent:
@@ -245,7 +245,6 @@ function formatDesc(value, type) {
     action = actions[key][1];
   }
 
-
   // Declare template strings for output; must be after all processing
   // to enable proper string construction
   const templateStrings = {
@@ -258,7 +257,6 @@ function formatDesc(value, type) {
       "Your reform would lower the net income for this percent " +
       "of the population:",
   };
-
 
   // Return string to put before numerical value and string to put after
   return [templateStrings[type][0], templateStrings[type][1]];
@@ -339,7 +337,7 @@ function formatWinnersLosers(decileOverview) {
     return (
       <h2
         style={{
-          fontSize: 22
+          fontSize: 22,
         }}
       >
         Does not affect anyone&apos;s net income
@@ -356,60 +354,60 @@ function formatWinnersLosers(decileOverview) {
   const winnersColor = winnersPercent > 0 ? COLORS.pos : COLORS.neg;
   const losersColor = losersPercent > 0 ? COLORS.neg : COLORS.pos;
 
-  const winnersValue = formatValue(winnersPercent, "winnersLosersPercent", {percentage: true});
-  const losersValue = formatValue(losersPercent, "winnersLosersPercent", {percentage: true});
+  const winnersValue = formatValue(winnersPercent, "winnersLosersPercent", {
+    percentage: true,
+  });
+  const losersValue = formatValue(losersPercent, "winnersLosersPercent", {
+    percentage: true,
+  });
 
   // If both aren't 0...
   if (winnersPercent && losersPercent) {
     return (
       <h2
         style={{
-          fontSize: 22
+          fontSize: 22,
         }}
       >
-        Increases net income for
-        &nbsp;
+        Increases net income for &nbsp;
         <span
           style={{
-            color: winnersColor
+            color: winnersColor,
           }}
         >
           {winnersValue}
         </span>
-        &nbsp;
-        , and decreases it for
-        &nbsp;
+        &nbsp; , and decreases it for &nbsp;
         <span
           style={{
-            color: losersColor
+            color: losersColor,
           }}
         >
           {losersValue}
         </span>
       </h2>
-    )
+    );
   }
 
   // Otherwise, conditionally return whichever is correct
   return (
     <h2
       style={{
-        fontSize: 22
+        fontSize: 22,
       }}
     >
       {`${winnersPercent ? "Raises" : "Lowers"} net income for`}
       &nbsp;
       <span
         style={{
-          color: winnersPercent ? winnersColor : losersColor
+          color: winnersPercent ? winnersColor : losersColor,
         }}
       >
         {winnersPercent ? winnersValue : losersValue}
       </span>
       &nbsp;of the population
     </h2>
-  )
-
+  );
 }
 
 /**

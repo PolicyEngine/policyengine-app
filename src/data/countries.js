@@ -1,19 +1,19 @@
 export const countryNames = {
   us: {
     standard: "the United States",
-    short: "the US"
+    short: "the US",
   },
   uk: {
     standard: "the United Kingdom",
-    short: "the UK"
+    short: "the UK",
   },
   ca: {
-    standard: "Canada"
+    standard: "Canada",
   },
   ng: {
-    standard: "Nigeria"
+    standard: "Nigeria",
   },
   il: {
-    standard: "Israel"
-  }
-}
+    standard: "Israel",
+  },
+};
