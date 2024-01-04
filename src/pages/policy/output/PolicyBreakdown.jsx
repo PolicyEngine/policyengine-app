@@ -19,28 +19,32 @@ export default function PolicyBreakdown(props) {
   // Define the impact items to be included in the output
   const budgetaryImpact = impact.budget.budgetary_impact;
   const povertyOverview = impact.poverty.poverty.all;
-  const decileOverview = impact.intra_decile.all;
+  // const decileOverview = impact.intra_decile.all;
   const povertyRateChange = povertyOverview.reform - povertyOverview.baseline;
+  /*
   const winnersPercent =
     decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
   const losersPercent =
     decileOverview["Lose more than 5%"] + decileOverview["Lose less than 5%"];
+    */
 
   const listItems = [
     {
       value: budgetaryImpact,
       type: "budgetaryImpact",
-      formatted: formatDesc(budgetaryImpact, "budgetaryImpact", {
-        currencyLabel: metadata.currency,
-      }),
+      formatOptions: {
+        currencyLabel: metadata.currency
+      }
     },
     {
       value: povertyRateChange,
       type: "povertyRateChange",
-      formatted: formatDesc(povertyRateChange, "povertyRateChange", {
+      formatOptions: {
         percentage: true,
-      }),
+        signFlip: true,
+      },
     },
+    /*
     {
       value: winnersPercent,
       type: "winnersPercent",
@@ -55,6 +59,7 @@ export default function PolicyBreakdown(props) {
         percentage: true,
       }),
     },
+    */
   ];
 
   // Pass data structure to template
@@ -110,7 +115,8 @@ function BreakdownTemplate(props) {
       }
     }
 
-    const [formattedString, formattedValue] = item.formatted;
+    const [descStart, descEnd] = formatDesc(item.value, item.type);
+    const formattedValue = formatValue(item.value, item.type, item.formatOptions);
 
     return (
       <div
@@ -128,30 +134,18 @@ function BreakdownTemplate(props) {
             fontSize: 22,
           }}
         >
-          {formattedString}
+          {descStart}
+          &nbsp;
+          <span
+            style={{
+              color: color
+            }}
+          >
+            {formattedValue}
+          </span>
+          &nbsp;
+          {descEnd}
         </h2>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-            gap: "8px",
-            fontSize: "22px",
-          }}
-        >
-          {formattedValue && (
-            <h2
-              style={{
-                fontSize: 22,
-                color: color,
-                textAlign: "right",
-                marginBottom: 0,
-              }}
-            >
-              {formattedValue}
-            </h2>
-          )}
-        </div>
       </div>
     );
   });
@@ -197,47 +191,15 @@ function BreakdownTemplate(props) {
 }
 
 /**
- * Break large numbers into units of million, trillion, etc.
- * @param {Number} value The value to be processed
- * @returns {Array<Number, String>} An array, where the first item is the new display value,
- * and the second is its postfix label
- */
-function formatPowers(value) {
-  const powers = new Map([
-    [15, "quadrillion"],
-    [12, "trillion"],
-    [9, "billion"],
-    [6, "million"],
-  ]);
-  let label = "";
-  let displayValue = value;
-
-  for (const [power, unit] of powers) {
-    if (value / Math.pow(10, power) >= 1) {
-      displayValue = value / Math.pow(10, power);
-      label = unit;
-      break;
-    }
-  }
-  return [Number(displayValue), label];
-}
-
-/**
  * Creates a display string based on an input value
  * @param {Number|String} value The data value corresponding to the description
  * @param {String} type The type of value to be formatted; corresponds with
  * certain default values defined in the function
- * @param {Object} [options] An object containing a series of optional args
- * @param {String} [options.currencyLabel] The currency label to be applied to the text
- * @param {boolean} [options.percentage] Whether or not the input is a percentage value
- * @returns {Array<String, String||null}
+ * @returns {Array<String, String||null>} The text to be displayed before the formatted
+ * value and the text to be displayed after
  */
-function formatDesc(value, type, options) {
-  let { currencyLabel, percentage } = options;
+function formatDesc(value, type) {
   let action = "";
-  let displayValue = "";
-  let prefixLabel = "";
-  let postfixLabel = "";
 
   // Declare template nouns for output when value is 0
   const templateStringsZero = {
@@ -284,6 +246,51 @@ function formatDesc(value, type, options) {
     action = actions[key][1];
   }
 
+
+  // Declare template strings for output; must be after all processing
+  // to enable proper string construction
+  const templateStrings = {
+    budgetaryImpact: [`${action}`, ""],
+    povertyRateChange: [`${action} the poverty rate by`, ""],
+    winnersPercent:
+      "Your reform would raise the net income for this percent " +
+      "of the population:",
+    losersPercent:
+      "Your reform would lower the net income for this percent " +
+      "of the population:",
+  };
+
+
+  // Return string to put before numerical value and string to put after
+  return [templateStrings[type][0], templateStrings[type][1]];
+}
+
+/**
+ * Format a given policy parameter's value
+ * @param {Number} value The value to be formatted
+ * @param {String} type The data item represented by the value
+ * @param {Object} [options] An object containing a series of optional args
+ * @param {String} [options.currencyLabel] The currency label to be displayed
+ * before the value
+ * @param {boolean} [options.percentage] Whether or not the input is a percentage value
+ * @param {boolean} [options.displayZero] If true, values of zero will be displayed
+ * @returns {String||null} The formatted value, as a string, if it's not 0
+ */
+function formatValue(value, type, options) {
+  let { currencyLabel, percentage, displayZero } = options;
+  let displayValue = "";
+  let prefixLabel = "";
+  let postfixLabel = "";
+
+  // Just in case
+  value = Number(value);
+
+  // If the value is 0 and we're not manually flagging to display
+  // the value, return null
+  if (value === 0 && !displayZero) {
+    return null;
+  }
+
   // Remove negative signs
   displayValue = Math.abs(Number(value));
 
@@ -304,19 +311,7 @@ function formatDesc(value, type, options) {
     prefixLabel = "<";
   }
 
-  // Declare template strings for output; must be after all processing
-  // to enable proper string construction
-  const templateStrings = {
-    budgetaryImpact: `${action}`,
-    povertyRateChange: `${action} the poverty rate by`,
-    winnersPercent:
-      "Your reform would raise the net income for this percent " +
-      "of the population:",
-    losersPercent:
-      "Your reform would lower the net income for this percent " +
-      "of the population:",
-  };
-
+  // Declare how we'll template these value-strings
   const templateValues = {
     budgetaryImpact: `${prefixLabel}${currencyLabel}${displayValue}${postfixLabel}`,
     povertyRateChange: `${prefixLabel}${displayValue}%`,
@@ -324,6 +319,31 @@ function formatDesc(value, type, options) {
     losersPercent: `${prefixLabel}${displayValue}%`,
   };
 
-  // Return string and corresponding value
-  return [templateStrings[type], templateValues[type]];
+  return templateValues[type];
+}
+
+/**
+ * Break large numbers into units of million, trillion, etc.
+ * @param {Number} value The value to be processed
+ * @returns {Array<Number, String>} An array, where the first item is the new display value,
+ * and the second is its postfix label
+ */
+function formatPowers(value) {
+  const powers = new Map([
+    [15, "quadrillion"],
+    [12, "trillion"],
+    [9, "billion"],
+    [6, "million"],
+  ]);
+  let label = "";
+  let displayValue = value;
+
+  for (const [power, unit] of powers) {
+    if (value / Math.pow(10, power) >= 1) {
+      displayValue = value / Math.pow(10, power);
+      label = unit;
+      break;
+    }
+  }
+  return [Number(displayValue), label];
 }
