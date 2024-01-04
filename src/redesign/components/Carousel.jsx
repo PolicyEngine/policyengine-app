@@ -30,7 +30,6 @@ export default function Carousel(props) {
       arrow_back
     </span>
   );
-  noArrows;
   leftArrow = isDesktop ? leftArrow : null;
 
   let rightArrow = (

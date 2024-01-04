@@ -20,7 +20,10 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const formatPer = (x) =>
-    formatPercent(x, metadata, { maximumFractionDigits: 1 });
+    formatPercent(x, metadata, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
   const hoverMessage = (x) => {
     let obj, baseline, reform, formatter;
     if (x === "Gini index") {

@@ -52,7 +52,6 @@ function APIParameterCard(props) {
 
 function APIVariableCard(props) {
   const { metadata } = props;
-  metadata;
   // use antd card component
   // rounded edges, display all metadata and distinguish between parameters and variables
 
@@ -81,7 +80,7 @@ export default function ModelDocumentation(props) {
   }
 
   const parameterCards = Object.values(metadata.parameters)
-    .filter((parameter) => parameter.type == "parameter")
+    .filter((parameter) => parameter.type === "parameter")
     .filter((parameter) => {
       if (query === "") {
         return true;

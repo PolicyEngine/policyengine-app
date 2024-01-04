@@ -52,7 +52,7 @@ function ResearchExplorer() {
     } else {
       setSearchParams({ search });
     }
-    scrollTo(0, 0);
+    window.scrollTo(0, 0);
   };
 
   const extractCountryIdFromPathname = () => {
@@ -418,7 +418,6 @@ function Expandable({ title, children }) {
 }
 
 function Checkbox({ label, checked, onCheck }) {
-  label;
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
       <input

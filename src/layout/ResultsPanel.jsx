@@ -1,7 +1,6 @@
 import { forwardRef } from "react";
 import useMobile from "./Responsive";
 
-// export default function ResultsPanel(props) {
 const ResultsPanel = forwardRef((props, ref) => {
   const mobile = useMobile();
   const { style } = props;
@@ -20,7 +19,6 @@ const ResultsPanel = forwardRef((props, ref) => {
       <div ref={ref} style={{ paddingTop: 0, paddingBottom: 50 }}>
         {props.children}
       </div>
-      {/* <div style={{ paddingTop: 0, paddingBottom: 150 }}>{props.children}</div> */}
       <h5
         style={{
           paddingTop: mobile ? 5 : 20,
@@ -31,7 +29,6 @@ const ResultsPanel = forwardRef((props, ref) => {
       </h5>
     </div>
   );
-  // }
 });
 
 // line below is to resolve eslint error regarding missing displayName

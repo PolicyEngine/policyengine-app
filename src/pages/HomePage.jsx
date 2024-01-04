@@ -360,7 +360,6 @@ function CountryPackages(props) {
 function QuoteCarousel(props) {
   const { countryId } = props;
   const mobile = useMobile();
-  countryId;
   const countryQuotes = quoteData[countryId] || quoteData.uk;
   if (countryQuotes.length === 0) {
     return null;

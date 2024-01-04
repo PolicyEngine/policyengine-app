@@ -1,16 +1,16 @@
-import style from "../style";
+/*import style from "../style";
 import { posts } from "../data/Posts";
 import {
   FeaturedBlogPreview,
   MediumBlogPreview,
   SmallBlogPreview,
-} from "./HomeBlogPreview";
+} from "./HomeBlogPreview";*/
 import LinkButton from "controls/LinkButton";
 import useDisplayCategory from "./useDisplayCategory";
 import Hero from "../images/hero.png";
 import useCountryId from "./useCountryId";
 
-function LandingAboutPolicyEngine() {
+/* function LandingAboutPolicyEngine() {
   const displayCategory = useDisplayCategory();
   return (
     <div
@@ -75,10 +75,7 @@ function RelevantBlogPosts() {
       </div>
     </>
   );
-}
-
-RelevantBlogPosts;
-LandingAboutPolicyEngine;
+} */
 
 export default function HomeLanding() {
   const displayCategory = useDisplayCategory();

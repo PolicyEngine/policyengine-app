@@ -9,12 +9,12 @@ import Divider from "./Divider";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
 
 function FolderPageDescription(props) {
-  const { metadata, inPolicySide } = props;
-  if (!metadata) return null;
-  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus");
+  const { metadata, inPolicySide } = props;
+  if (!metadata) return null;
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   let currentNode;
 
   if (focus && focus.startsWith("policyOutput")) {

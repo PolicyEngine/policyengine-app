@@ -35,12 +35,6 @@ export default function BlogPage() {
   const countryId = useCountryId();
   const postName = url.split("/")[3];
 
-  // Some old links might point to a dated URL format
-  const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
-  if (YYYYMMDDFormat.test(postName)) {
-    return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
-  }
-
   const post = posts.find((post) => post.slug === postName);
   const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
   const imageUrl = post.image
@@ -61,7 +55,13 @@ export default function BlogPage() {
           setContent(text);
         }
       });
-  }, [file]);
+  }, [file, isNotebook]);
+
+  // Some old links might point to a dated URL format
+  const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
+  if (YYYYMMDDFormat.test(postName)) {
+    return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
+  }
 
   let markdown;
 
@@ -134,8 +134,7 @@ function NotebookCell({ data }) {
   );
 }
 
-function PythonCodeCell({ data }) {
-  data;
+function PythonCodeCell() {
   return null;
 }
 
@@ -185,8 +184,7 @@ function NotebookOutputPlain({ data }) {
   return <p>{JSON.stringify(data)}</p>;
 }
 
-function NotebookOutputHTML({ data }) {
-  data;
+function NotebookOutputHTML() {
   return null;
 }
 
@@ -351,7 +349,11 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
         <div style={{ flex: 3 }}>
           <h1>{post.title}</h1>
           <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          <img src={imageUrl} style={{ width: "100%", marginTop: 50 }} />
+          <img
+            alt={post.title}
+            src={imageUrl}
+            style={{ width: "100%", marginTop: 50 }}
+          />
         </div>
         <div style={{ flex: 1 }}></div>
       </div>
@@ -375,7 +377,7 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
             </p>
             <ReadTime markdown={markdown} />
           </div>
-          <img src={imageUrl} style={{ width: "100%" }} />
+          <img alt={post.title} src={imageUrl} style={{ width: "100%" }} />
           <ShareLinks post={post} />
         </div>
       </div>
@@ -401,7 +403,7 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
             </div>
             <ReadTime markdown={markdown} />
           </div>
-          <img src={imageUrl} style={{ width: "100%" }} />
+          <img alt={post.title} src={imageUrl} style={{ width: "100%" }} />
           <ShareLinks post={post} />
         </div>
       </div>
@@ -459,6 +461,7 @@ function AuthorSection({ post }) {
       }}
     >
       <img
+        alt={Authors[author].name}
         src={Authors[author].headshot}
         width={70}
         height={70}
@@ -491,21 +494,22 @@ function AuthorSection({ post }) {
 
 function MoreOn({ post }) {
   const countryId = useCountryId();
-  const categoryLinks = post.tags.map((tag) => {
-    if (locationTags.includes(tag)) {
-      return (
-        <div key={tag} style={{ marginBottom: 10 }}>
-          <Link
-            className="highlighted-link"
-            to={`/${countryId}/research?locations=${tag}`}
-            style={{ marginBottom: 0, marginTop: 20 }}
-          >
-            {locationLabels[tag]}
-          </Link>
-        </div>
-      );
-    }
-    if (topicTags.includes(tag)) {
+  const categoryLinks = post.tags
+    .filter((tag) => locationTags.includes(tag) || topicTags.includes(tag))
+    .map((tag) => {
+      if (locationTags.includes(tag)) {
+        return (
+          <div key={tag} style={{ marginBottom: 10 }}>
+            <Link
+              className="highlighted-link"
+              to={`/${countryId}/research?locations=${tag}`}
+              style={{ marginBottom: 0, marginTop: 20 }}
+            >
+              {locationLabels[tag]}
+            </Link>
+          </div>
+        );
+      }
       return (
         <div key={tag} style={{ marginBottom: 10 }}>
           <Link
@@ -517,8 +521,7 @@ function MoreOn({ post }) {
           </Link>
         </div>
       );
-    }
-  });
+    });
   return (
     <>
       <p
@@ -529,6 +532,50 @@ function MoreOn({ post }) {
       </p>
       {categoryLinks}
     </>
+  );
+}
+
+function Td({ children }) {
+  const displayCategory = useDisplayCategory();
+  const mobile = displayCategory === "mobile";
+  const ref = useRef(null);
+  const [columnNumber, setColumnNumber] = useState(null);
+  useEffect(() => {
+    setColumnNumber(ref.current?.cellIndex);
+  }, [ref.current?.cellIndex]);
+  return (
+    <td
+      ref={ref}
+      style={{
+        padding: 5,
+        fontFamily: "Roboto Serif",
+        fontSize: mobile ? 16 : 18,
+        borderRight: columnNumber === 0 ? "1px solid black" : "",
+        textAlign: columnNumber === 0 ? "left" : "center",
+        verticalAlign: "middle",
+      }}
+    >
+      {children}
+    </td>
+  );
+}
+
+function Tr({ children }) {
+  // get row index
+  const ref = useRef(null);
+  const [rowIndex, setRowIndex] = useState(0);
+  useEffect(() => {
+    setRowIndex(ref.current?.rowIndex);
+  }, [ref.current?.rowIndex]);
+  return (
+    <tr
+      ref={ref}
+      style={{
+        backgroundColor: rowIndex % 2 === 0 ? "white" : "#f2f2f2",
+      }}
+    >
+      {children}
+    </tr>
   );
 }
 
@@ -787,46 +834,8 @@ function BlogContent({ markdown, backgroundColor }) {
             {children}
           </table>
         ),
-        td: ({ children }) => {
-          const ref = useRef(null);
-          const [columnNumber, setColumnNumber] = useState(null);
-          useEffect(() => {
-            setColumnNumber(ref.current?.cellIndex);
-          }, [ref.current?.cellIndex]);
-          return (
-            <td
-              ref={ref}
-              style={{
-                padding: 5,
-                fontFamily: "Roboto Serif",
-                fontSize: mobile ? 16 : 18,
-                borderRight: columnNumber === 0 ? "1px solid black" : "",
-                textAlign: columnNumber === 0 ? "left" : "center",
-                verticalAlign: "middle",
-              }}
-            >
-              {children}
-            </td>
-          );
-        },
-        tr: ({ children }) => {
-          // get row index
-          const ref = useRef(null);
-          const [rowIndex, setRowIndex] = useState(0);
-          useEffect(() => {
-            setRowIndex(ref.current?.rowIndex);
-          }, [ref.current?.rowIndex]);
-          return (
-            <tr
-              ref={ref}
-              style={{
-                backgroundColor: rowIndex % 2 === 0 ? "white" : "#f2f2f2",
-              }}
-            >
-              {children}
-            </tr>
-          );
-        },
+        td: Td,
+        tr: Tr,
 
         th: ({ children }) => (
           <th
@@ -978,13 +987,17 @@ function ReadTime({ markdown }) {
   );
 }
 
-function DesktopShareLink({ icon, url, text }) {
+function DesktopShareLink({ icon, url, action, text }) {
   const displayCategory = useDisplayCategory();
   const desktop = displayCategory === "desktop";
   return (
     <div
       style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-      onClick={() => window.open(url, "_blank")}
+      onClick={() => {
+        if (url) {
+          window.open(url, "_blank");
+        } else action();
+      }}
     >
       {React.createElement(icon, {
         style: {
@@ -1043,7 +1056,7 @@ function ShareLinks({ post }) {
       />
       <DesktopShareLink
         icon={PrinterOutlined}
-        url={`javascript:window.print();`}
+        action={window.print}
         text={desktop && "Print"}
       />
     </div>

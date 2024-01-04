@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
 import style from "../style";
-import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function InputField(props) {
   const {
@@ -16,20 +15,12 @@ export default function InputField(props) {
     placeholder,
   } = props;
   const [inputValue, setInputValue] = useState(value ? value : "");
-  const [searchParams] = useSearchParams();
-  const focus = searchParams.get("focus") || "";
   const mobile = useMobile();
   const re = /^[0-9\b]*[.]?[0-9\b]*?$/;
   const onInput = (e) => {
     let value = e.target.value === "" ? placeholder : e.target.value;
     onChange(value);
   };
-  //clears input field and resets placeholder if focus changes for use case of editing policy parameter
-  useEffect(() => {
-    if (!value) {
-      setInputValue("");
-    }
-  }, [focus]);
   return (
     <motion.input
       // On iOS, should show a keyboard with a blue "Go" button

@@ -101,8 +101,6 @@ export default function PolicyEngine({ pathname }) {
   const [hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup] =
     useState(false);
 
-  updateMetadata;
-  setMetadata;
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
     try {
@@ -116,6 +114,7 @@ export default function PolicyEngine({ pathname }) {
         window.location.reload();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId]);
 
   // Get the baseline policy data when the baseline policy ID changes.

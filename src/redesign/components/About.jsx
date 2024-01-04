@@ -62,6 +62,7 @@ function TeamMember({ member }) {
     >
       <div>
         <img
+          alt={member.name}
           src={member.image}
           height={250}
           width={250}
@@ -97,6 +98,7 @@ function Advisor({ member }) {
     >
       <div>
         <img
+          alt={member.name}
           src={member.image}
           height={250}
           width={250}

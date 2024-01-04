@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
-import { DisplayError, DisplayImpact, DisplayWait } from "./Display";
+import {
+  DisplayError,
+  DisplayImpact,
+  DisplayWait,
+  LowLevelDisplay,
+} from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
-import LoadingCentered from "layout/LoadingCentered";
+import ErrorPage from "layout/Error";
+// import LoadingCentered from "layout/LoadingCentered";
 
 /**
  *
@@ -152,13 +158,16 @@ export function FetchAndDisplayCliffImpact(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+
+  // Remove the following eslint ignore when cliff impacts are restored
+  // eslint-disable-next-line no-unused-vars
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const {
     metadata,
-    policy,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
+    // policy,
+    // hasShownPopulationImpactPopup,
+    // setHasShownPopulationImpactPopup,
   } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
@@ -202,6 +211,14 @@ export function FetchAndDisplayCliffImpact(props) {
     return <DisplayError error={error} />;
   }
 
+  // Remove the below block when cliff impacts are reinstated
+  return (
+    <LowLevelDisplay {...props}>
+      <ErrorPage message="This service is temporarily unavailable. Please try again later." />
+    </LowLevelDisplay>
+  );
+
+  /*
   if (!impact) {
     return <LoadingCentered message="Computing the cliff impact..." />;
   }
@@ -215,4 +232,5 @@ export function FetchAndDisplayCliffImpact(props) {
       setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
     />
   );
+  */
 }

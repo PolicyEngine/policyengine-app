@@ -1,7 +1,7 @@
 import averageImpactByDecile from "./AverageImpactByDecile";
 import averageImpactByWealthDecile from "./AverageImpactByWealthDecile";
 import budgetaryImpact from "./BudgetaryImpact";
-import cliffImpact from "./CliffImpact";
+// import cliffImpact from "./CliffImpact";
 import deepPovertyImpact from "./DeepPovertyImpact";
 import deepPovertyImpactByGender from "./DeepPovertyImpactByGender";
 import detailedBudgetaryImpact from "./DetailedBudgetaryImpact";
@@ -18,7 +18,6 @@ import laborSupplyImpact from "./LaborSupplyResponse";
 export const impactLabels = {
   netIncome: "Budgetary impact",
   detailedBudgetaryImpact: "Budgetary impact by program",
-  laborSupplyImpact: "Labor supply impact",
   decileAverageImpact: "Absolute impact by income decile",
   wealthDecileAverageImpact: "Absolute impact by wealth decile",
   decileRelativeImpact: "Relative impact by income decile",
@@ -31,9 +30,10 @@ export const impactLabels = {
   genderDeepPovertyImpact: "Deep poverty impact by sex",
   racialPovertyImpact: "Poverty impact by race and ethnicity",
   inequalityImpact: "Income inequality impact",
-  cliffImpact: "Cliff impact",
+  // cliffImpact: "Cliff impact",
   codeReproducibility: "Reproduce in Python",
   analysis: "Analysis",
+  laborSupplyImpact: "Labor supply impact",
 };
 
 const map = {
@@ -52,7 +52,7 @@ const map = {
   genderDeepPovertyImpact: deepPovertyImpactByGender,
   racialPovertyImpact: povertyImpactByRace,
   inequalityImpact: inequalityImpact,
-  cliffImpact: cliffImpact,
+  // cliffImpact: cliffImpact,
 };
 
 // get representations of the impact as a chart and a csv. The returned object

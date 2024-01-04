@@ -34,7 +34,7 @@ export default function ResearchPage(props) {
           <BlogPostPreviewRegular
             {...postJson[i]}
             countryId={countryId}
-            width={j == 0 ? "30vw" : "30vw"}
+            width={j === 0 ? "30vw" : "30vw"}
             height={400}
             imageHeight={200}
             backgroundColor={style.colors.LIGHT_GRAY}
@@ -44,7 +44,6 @@ export default function ResearchPage(props) {
       j++;
     }
   }
-  style;
 
   // Left to right, top to bottom (wrap)
   return (

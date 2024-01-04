@@ -34,7 +34,7 @@ export function QuoteBox({ noArrows }) {
       setCurrentQuoteIndex((currentQuoteIndex + 1) % countryQuotes.length);
     }, 10000);
     return () => clearInterval(interval);
-  }, [currentQuoteIndex, countryId]);
+  }, [currentQuoteIndex, countryId, countryQuotes.length]);
   const currentQuote = countryQuotes[currentQuoteIndex] || {};
   const currentOrg = countryOrgs[currentQuote.org] || {};
   return (

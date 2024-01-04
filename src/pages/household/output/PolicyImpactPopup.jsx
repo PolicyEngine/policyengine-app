@@ -55,6 +55,8 @@ export default function PolicyImpactPopup(props) {
             display: "none",
           },
         },
+        icon: null,
+        closable: false,
         keyboard: true,
         centered: true,
       });

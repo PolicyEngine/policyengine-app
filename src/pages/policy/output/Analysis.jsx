@@ -7,11 +7,33 @@ import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { BlogPostMarkdown } from "../../BlogPage";
 import { asyncApiCall, countryApiCall } from "../../../api/call";
+import { getImpactReps } from "./ImpactTypes";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
+  const impactLabels = [
+    "decileRelativeImpact",
+    "povertyImpact",
+    "racialPovertyImpact",
+    "inequalityImpact",
+  ];
+  if (metadata.countryId === "uk") {
+    impactLabels.splice(2, 1);
+  }
+  const chartDict = Object.fromEntries(
+    impactLabels.map((label) => [
+      label,
+      getImpactReps(label, {
+        impact: impact,
+        metadata: metadata,
+        policyLabel: policyLabel,
+        // mobile plots have smaller heights
+        mobile: true,
+      }).chart,
+    ]),
+  );
   const relevantParameters = Object.keys(policy.reform.data).map(
     (parameter) => metadata.parameters[parameter],
   );
@@ -33,9 +55,6 @@ export default function Analysis(props) {
     },
     {},
   );
-  const baseResultsUrl = `https://policyengine.org/${metadata.countryId}/policy?version=${selectedVersion}&region=${region}&timePeriod=${timePeriod}&reform=${policy.reform.id}&baseline=${policy.baseline.id}&embed=True`;
-  const buildIFrame = (chartName) =>
-    `<iframe src="${baseResultsUrl}&focus=policyOutput.${chartName}" width="800px" height="418px" style="border: none; overflow: hidden;" onload="scroll(0,0);"></iframe>`;
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
   
   * First explain each provision of the reform, noting that it's hypothetical and won't represents policy reforms for ${timePeriod} and ${
@@ -185,8 +204,9 @@ export default function Analysis(props) {
   }
 
   const displayCharts = (markdown) =>
-    markdown.replace(/{{(.*?)}}/g, (match, chartName) =>
-      buildIFrame(chartName),
+    markdown.replace(
+      /{{(.*?)}}/g,
+      (match, impactType) => `<abbr title="${impactType}"></abbr>`,
     );
 
   const onGenerate = () => {
@@ -245,8 +265,6 @@ export default function Analysis(props) {
     </>
   ) : null;
 
-  console.log(analysis);
-
   return (
     <>
       <h2>Analysis</h2>
@@ -300,11 +318,9 @@ export default function Analysis(props) {
             style={{ maxWidth: 250, margin: "20px auto 25px" }}
           />
         )}
-        {!hasClickedGenerate ? (
-          <BlogPostMarkdown markdown={analysis} />
-        ) : analysis ? (
-          <BlogPostMarkdown markdown={analysis} />
-        ) : null}
+        {hasClickedGenerate && analysis && (
+          <BlogPostMarkdown markdown={analysis} dict={chartDict} />
+        )}
       </div>
       <div
         style={{

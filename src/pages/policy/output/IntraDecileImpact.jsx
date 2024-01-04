@@ -4,8 +4,7 @@ import { ChartLogo } from "../../../api/charts";
 import style from "../../../style";
 import { cardinal, formatPercent, localeCode } from "../../../api/language";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { regionName } from "./ImpactChart";
-import wrapAnsi from "wrap-ansi";
+import ImpactChart, { regionName, wordWrap } from "./ImpactChart";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"
@@ -52,9 +51,12 @@ export function ImpactPlot(props) {
         type1 === "all"
           ? "Of all households,"
           : `Of households in the ${cardinal(y)} decile,`;
-      const term2 = formatPercent(x, metadata, { maximumFractionDigits: 1 });
+      const term2 = formatPercent(x, metadata, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      });
       const msg = `${term1} ${policyLabel} would cause ${term2} of people to ${hoverTextMap[type2]} their net income.`;
-      return wrapAnsi(msg, 50).replaceAll("\n", "<br>");
+      return wordWrap(msg, 50).replaceAll("\n", "<br>");
     }
     const xArray = type1 === "all" ? [all[type2]] : deciles[type2];
     const yArray = type1 === "all" ? ["All"] : decileNumbers;
