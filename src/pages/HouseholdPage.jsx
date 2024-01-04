@@ -7,6 +7,7 @@ import {
   getNewHouseholdId,
 } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
+import { defaultYear } from "data/constants";
 import { useEffect, useState } from "react";
 import { Result } from "antd";
 
@@ -462,7 +463,12 @@ export function updateHousehold(householdInput, metadata) {
  * @returns {Number} The household's default year
  */
 export function getHouseholdYear(householdInput) {
-  // Determine current year present in household
-  const householdYear = Object.keys(householdInput["people"]["you"]["age"])[0];
-  return householdYear;
+  // Determine if [people][you][age][year] is present in household;
+  // if so, return this; if not, return the current year
+
+  const householdYear = Object.keys(householdInput?.["people"]?.["you"]?.["age"])[0];
+  if (householdYear) {
+    return householdYear;
+  }
+  return defaultYear;
 }
