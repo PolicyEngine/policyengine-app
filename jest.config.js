@@ -20,17 +20,3 @@ module.exports = {
     "<rootDir>/src/__tests__/setup/setup.js"
   ]
 }
-/*
-  "jest": {
-    "modulePaths": [
-      "<rootDir>/src"
-    ],
-    "testEnvironment": "jsdom",
-    "transform": {
-      "^.+\\.[jt]sx?$": "babel-jest"
-    },
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(react-markdown|bar)/)"
-    ]
-  },
-*/
