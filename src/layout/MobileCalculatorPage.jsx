@@ -672,7 +672,7 @@ function NavOptionsBar(props) {
     } else if (focus) {
       buttonData.push({
         text: "Calculate economic impact",
-        focus: "policyOutput",
+        focus: "policyOutput.policyBreakdown",
       });
     }
 

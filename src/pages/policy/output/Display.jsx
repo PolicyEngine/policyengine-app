@@ -14,6 +14,7 @@ import ErrorPage from "layout/Error";
 import ResultActions from "layout/ResultActions";
 import { downloadCsv, downloadPng } from "./utils";
 import { useReactToPrint } from "react-to-print";
+import PolicyBreakdown from "./PolicyBreakdown";
 
 /**
  *
@@ -139,6 +140,15 @@ export function DisplayImpact(props) {
         region={region}
         timePeriod={timePeriod}
         policyLabel={policyLabel}
+      />
+    );
+  } else if (impactType === "policyBreakdown") {
+    pane = (
+      <PolicyBreakdown
+        metadata={metadata}
+        impact={impact}
+        timePeriod={timePeriod}
+        region={region}
       />
     );
   } else {
