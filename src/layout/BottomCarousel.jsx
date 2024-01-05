@@ -17,7 +17,7 @@ export default function BottomCarousel(props) {
         position: "absolute",
         bottom: mobile ? "25vh" : 0,
         display: "flex",
-        height: 80,
+        height: 81,
         left: mobile ? 0 : "25%",
         width: mobile ? "100%" : "50%",
         alignItems: "center",
