@@ -92,7 +92,6 @@ export function FetchAndDisplayImpact(props) {
           clearInterval(interval);
         });
     } else {
-      
       const timeOptions = metadata.economy_options.time_period;
 
       const yearArray = timeOptions.reduce((accu, periodObj) => {
@@ -198,7 +197,6 @@ export function FetchAndDisplayCliffImpact(props) {
           setError(err);
         });
     } else {
-      
       const timeOptions = metadata.economy_options.time_period;
 
       const yearArray = timeOptions.reduce((accu, periodObj) => {

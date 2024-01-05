@@ -313,7 +313,6 @@ export default function PolicyRightSidebar(props) {
 
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
-      
       const timeOptions = metadata.economy_options.time_period;
 
       const yearArray = timeOptions.reduce((accu, periodObj) => {
