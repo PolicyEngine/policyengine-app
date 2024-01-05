@@ -147,7 +147,9 @@ function SinglePolicyChange(props) {
       }}
     >
       <div>
-        <span style={isBool ? { color: style.colors.BLUE } : {}}>
+        <span
+          style={isBool ? { color: style.colors.BLUE, cursor: "pointer" } : {}}
+        >
           {prefix}{" "}
         </span>
         {paramLabel}
