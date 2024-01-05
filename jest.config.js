@@ -1,3 +1,10 @@
+const esModules = [
+  "data-uri-to-buffer",
+  "fetch-blob",
+  "formdata-polyfill",
+  "node-fetch"
+].join("|");
+
 module.exports = {
   modulePaths: [
     "<rootDir>/src"
@@ -7,7 +14,10 @@ module.exports = {
     "^.+\\.[jt]sx?$": "babel-jest"
   },
   transformIgnorePatterns: [
-    "/node_modules/(?!(react-markdown|bar)/)"
+    `/node_modules/(?!${esModules})`
+  ],
+  setupFiles: [
+    "<rootDir>/src/__tests__/setup/setup.js"
   ]
 }
 /*
