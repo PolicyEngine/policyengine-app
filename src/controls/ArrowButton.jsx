@@ -1,5 +1,5 @@
 import Button from "./Button";
-
+import styles from "../redesign/style";
 export default function ArrowButton(props) {
   const { direction, onClick, type, style } = props;
 
@@ -15,7 +15,11 @@ export default function ArrowButton(props) {
       size={"60px"}
       onClick={onClick}
       type={type}
-      style={style}
+      style={{
+        ...style,
+        transition: "none",
+        backgroundColor: styles.colors.TEAL_PRESSED,
+      }}
       hoverStart={direction === "left" ? "right" : "left"}
     />
   );
