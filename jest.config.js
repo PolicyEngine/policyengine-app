@@ -18,5 +18,8 @@ module.exports = {
   ],
   setupFiles: [
     "<rootDir>/src/__tests__/setup/setup.js"
+  ],
+  testMatch: [
+    "**/__tests__/**/*.test.(ts|js)"
   ]
 }
