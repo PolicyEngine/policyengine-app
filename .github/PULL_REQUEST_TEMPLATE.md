@@ -8,7 +8,7 @@ Please describe the changes in detail.
 
 ## Screenshots
 
-Upload concise visuals (screenshots, gifs, etc) showing the output and impact of changes. Avoid sharing code screenshots or videos.
+Please include concise visuals (videos, screenshots, etc.) demonstrating the code in action and the impact of changes. Many on the team use a free tool called [Loom](https://www.loom.com/) to capture and share short clips, but feel free to utilize any tool you'd like. Screenshots of the code itself can also be helpful, but are usually not necessary.
 
 ## Tests
 
