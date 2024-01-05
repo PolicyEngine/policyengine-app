@@ -466,7 +466,9 @@ export function getHouseholdYear(householdInput) {
   // Determine if [people][you][age][year] is present in household;
   // if so, return this; if not, return the current year
 
-  const householdYear = Object.keys(householdInput?.["people"]?.["you"]?.["age"])[0];
+  const householdYear = Object.keys(
+    householdInput?.["people"]?.["you"]?.["age"],
+  )[0];
   if (householdYear) {
     return householdYear;
   }
