@@ -1,4 +1,5 @@
 import useMobile from "./Responsive";
+import { defaultYear } from "data/constants";
 
 export default function Footer(props) {
   const { countryId } = props;
@@ -13,7 +14,7 @@ export default function Footer(props) {
     `/${countryId}/privacy`,
   ];
   const labels = [
-    "PolicyEngine © 2023",
+    `PolicyEngine © ${defaultYear}`,
     "About",
     "Contact",
     "Donate",

@@ -1,6 +1,7 @@
 import { countryApiCall } from "./call";
 import { capitalize } from "./language";
 import { defaultHouseholds } from "../data/defaultHouseholds";
+import { defaultYear } from "data/constants";
 
 export function removePerson(situation, name) {
   // Remove a person from the situation
@@ -273,9 +274,8 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
       minYear = Number(minYear.match(/\d+/)[0]);
       maxYear = Number(maxYear.match(/\d+/)[0]);
     } else {
-      const currentYear = new Date().getFullYear();
-      minYear = currentYear;
-      maxYear = currentYear;
+      minYear = defaultYear;
+      maxYear = defaultYear;
     }
     return {
       range: [minYear - 5 + "-01-01", maxYear + 5 + "-12-31"],

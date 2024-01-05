@@ -7,7 +7,10 @@ import {
   getNewHouseholdId,
 } from "../api/variables";
 import { copySearchParams, countryApiCall } from "../api/call";
+import { defaultYear } from "data/constants";
 import { useEffect, useState } from "react";
+import { Result } from "antd";
+
 import VariableEditor from "./household/input/VariableEditor";
 import LoadingCentered from "../layout/LoadingCentered";
 import MaritalStatus from "./household/input/MaritalStatus";
@@ -22,7 +25,6 @@ import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
-import { Result } from "antd";
 
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";
@@ -385,6 +387,7 @@ function HouseholdLeftSidebar(props) {
     </div>
   );
 }
+
 /**
  * Updates households to remove yearly variables and bring them in line with
  * newest API version
@@ -408,13 +411,17 @@ export function updateHousehold(householdInput, metadata) {
   // Copy householdInput into mutable variable
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
 
+  // Determine current year present in household
+  const householdYear = getHouseholdYear(householdInput);
+
   // Map over all plural entity terms...
   for (const entityPlural in householdInput) {
     // Then over all entities...
     for (const entity in householdInput[entityPlural]) {
       // Then over all variables within each entity...
       for (const variable in householdInput[entityPlural][entity]) {
-        const currentVal = householdInput[entityPlural][entity][variable][2024];
+        const currentVal =
+          householdInput[entityPlural][entity][variable][householdYear];
 
         // If the variable is a reserved one, do nothing and continue
         if (reservedInputs.includes(variable)) {
@@ -448,4 +455,22 @@ export function updateHousehold(householdInput, metadata) {
   }
 
   return editedHousehold;
+}
+
+/**
+ * Determine a household object's current year
+ * @param {Object} householdInput An existing household input object
+ * @returns {Number} The household's default year
+ */
+export function getHouseholdYear(householdInput) {
+  // Determine if [people][you][age][year] is present in household;
+  // if so, return this; if not, return the current year
+
+  const householdYear = Object.keys(
+    householdInput?.["people"]?.["you"]?.["age"],
+  )[0];
+  if (householdYear) {
+    return householdYear;
+  }
+  return defaultYear;
 }
