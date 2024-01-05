@@ -8,6 +8,7 @@ import useCountryId from "./useCountryId";
 import { Link } from "react-router-dom";
 import FontIcon from "./FontIcon";
 import Section from "./Section";
+import ArrowButton from "controls/ArrowButton";
 
 export default function HomeQuoteCarousel() {
   const countryId = useCountryId();
@@ -90,6 +91,30 @@ export function QuoteBox({ noArrows }) {
           setCurrent={setCurrentQuoteIndex}
           noArrows={noArrows}
         />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        <ArrowButton
+          direction="left"
+          onClick={() =>
+            setCurrentQuoteIndex(
+              (currentQuoteIndex - 1 + countryQuotes.length) %
+                countryQuotes.length,
+            )
+          }
+        ></ArrowButton>
+        <ArrowButton
+          direction="right"
+          onClick={() =>
+            setCurrentQuoteIndex((currentQuoteIndex + 1) % countryQuotes.length)
+          }
+        ></ArrowButton>
       </div>
     </div>
   );
