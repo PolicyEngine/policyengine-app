@@ -336,7 +336,7 @@ export function LowLevelDisplay(props) {
         <BottomCarousel
           selected={focus}
           options={policyOutputTree[0].children}
-          bottomText={bottomElements}
+          bottomElements={bottomElements}
         />
       )}
     </ResultsPanel>
