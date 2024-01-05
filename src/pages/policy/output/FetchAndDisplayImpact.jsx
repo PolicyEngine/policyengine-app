@@ -92,9 +92,21 @@ export function FetchAndDisplayImpact(props) {
           clearInterval(interval);
         });
     } else {
+      
+      const timeOptions = metadata.economy_options.time_period;
+
+      const yearArray = timeOptions.reduce((accu, periodObj) => {
+        return [...accu, Number(periodObj.name)];
+      }, []);
+
+      const curYear = new Date().getFullYear();
+      const defaultTimePeriod = yearArray.includes(curYear)
+        ? curYear
+        : timeOptions[0].name;
+
       const defaults = {
         region: metadata.economy_options.region[0].name,
-        timePeriod: metadata.economy_options.time_period[0].name,
+        timePeriod: defaultTimePeriod,
         baseline: metadata.current_law_id,
       };
       let newSearch = copySearchParams(searchParams);
@@ -186,9 +198,21 @@ export function FetchAndDisplayCliffImpact(props) {
           setError(err);
         });
     } else {
+      
+      const timeOptions = metadata.economy_options.time_period;
+
+      const yearArray = timeOptions.reduce((accu, periodObj) => {
+        return [...accu, Number(periodObj.name)];
+      }, []);
+
+      const curYear = new Date().getFullYear();
+      const defaultTimePeriod = yearArray.includes(curYear)
+        ? curYear
+        : timeOptions[0].name;
+
       const defaults = {
         region: metadata.economy_options.region[0].name,
-        timePeriod: metadata.economy_options.time_period[0].name,
+        timePeriod: defaultTimePeriod,
         baseline: metadata.current_law_id,
       };
       let newSearch = copySearchParams(searchParams);
