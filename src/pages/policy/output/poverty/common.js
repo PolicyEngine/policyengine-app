@@ -38,12 +38,24 @@ export function title(policyLabel, isDeep, baseline, reform, metadata) {
  * @returns
  */
 export function description(countryId, isDeep) {
-  const fst =
-    countryId === "uk"
-      ? "PolicyEngine reports the impact to absolute poverty before housing costs."
-      : 'PolicyEngine reports the impact to the <a href="https://www.census.gov/topics/income-poverty/supplemental-poverty-measure.html">Supplemental Poverty Measure</a>.';
-  const snd = isDeep
+  const more = isDeep
     ? "Deep poverty rate is the population share with income below half the poverty line."
     : "Poverty rate is the population share with income below the poverty line.";
-  return fst + " " + snd;
+  if (countryId === "uk") {
+    return (
+      <p>
+        PolicyEngine reports the impact to absolute poverty before housing
+        costs. {more}
+      </p>
+    );
+  }
+  return (
+    <p>
+      PolicyEngine reports the impact to the{" "}
+      <a href="https://www.census.gov/topics/income-poverty/supplemental-poverty-measure.html">
+        Supplemental Poverty Measure
+      </a>
+      . {more}
+    </p>
+  );
 }
