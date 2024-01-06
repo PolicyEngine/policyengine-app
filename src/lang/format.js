@@ -1,3 +1,8 @@
+/**
+ *
+ * @param {string} string a string
+ * @returns the capitalized string
+ */
 export function capitalize(string) {
   if (!string) {
     return string;
@@ -5,8 +10,12 @@ export function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function cardinal(number) {
-  // E.g. 1 -> 'first', 2 -> 'second', 3 -> 'third'
+/**
+ *
+ * @param {number} number a number
+ * @returns 1st if number = 1, 2nd if number = 2, ...
+ */
+export function ordinal(number) {
   const suffixes = ["th", "st", "nd", "rd"];
   const rem = number % 100;
   return number + (suffixes[(rem - 20) % 10] || suffixes[rem] || suffixes[0]);
@@ -14,7 +23,7 @@ export function cardinal(number) {
 
 /**
  *
- * @param
+ * @param {string} countryId the country id, usually found in the metadata
  * @returns the Unicode locale identifier for the country
  */
 export function localeCode(countryId) {

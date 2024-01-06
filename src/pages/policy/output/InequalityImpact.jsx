@@ -5,7 +5,7 @@ import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
-import { formatPercent, localeCode } from "api/language";
+import { formatPercent, localeCode } from "lang/format";
 
 function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);

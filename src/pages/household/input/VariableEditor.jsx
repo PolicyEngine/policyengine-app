@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
-import { capitalize, localeCode } from "../../../api/language";
+import { capitalize, localeCode } from "../../../lang/format";
 
 import {
   currencyMap,

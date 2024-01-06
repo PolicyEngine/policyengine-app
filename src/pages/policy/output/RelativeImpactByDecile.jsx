@@ -3,7 +3,7 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import style from "../../../style";
 import { HoverCardContext } from "../../../layout/HoverCard";
-import { cardinal, formatPercent } from "../../../api/language";
+import { ordinal, formatPercent } from "../../../lang/format";
 import { plotLayoutFont } from "./utils";
 import React from "react";
 import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
@@ -24,7 +24,7 @@ export function ImpactPlot(props) {
       maximumFractionDigits: 1,
     });
   const hoverMessage = (x, y) => {
-    const obj = `the income of households in the ${cardinal(x)} ${decileType}`;
+    const obj = `the income of households in the ${ordinal(x)} ${decileType}`;
     return relativeChangeMessage("This reform", obj, y, 0.001, metadata);
   };
   const xArray = Object.keys(decileRelative);

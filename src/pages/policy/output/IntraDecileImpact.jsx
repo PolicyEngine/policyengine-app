@@ -2,7 +2,7 @@ import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import style from "../../../style";
-import { cardinal, formatPercent, localeCode } from "../../../api/language";
+import { ordinal, formatPercent, localeCode } from "../../../lang/format";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, wordWrap } from "./ImpactChart";
 
@@ -50,7 +50,7 @@ export function ImpactPlot(props) {
       const term1 =
         type1 === "all"
           ? "Of all households,"
-          : `Of households in the ${cardinal(y)} decile,`;
+          : `Of households in the ${ordinal(y)} decile,`;
       const term2 = formatPercent(x, metadata, {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1,

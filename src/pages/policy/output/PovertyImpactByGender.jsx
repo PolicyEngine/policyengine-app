@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { formatPercent, localeCode } from "../../../api/language";
+import { formatPercent, localeCode } from "../../../lang/format";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";

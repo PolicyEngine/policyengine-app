@@ -1,5 +1,5 @@
 import { countryApiCall } from "./call";
-import { capitalize } from "./language";
+import { capitalize } from "../lang/format";
 import { defaultHouseholds } from "../data/defaultHouseholds";
 import { defaultYear } from "data/constants";
 

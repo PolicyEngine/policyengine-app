@@ -2,7 +2,7 @@ import HoverCard from "layout/HoverCard";
 import DownloadableScreenshottable from "./DownloadableScreenshottable";
 import { useRef } from "react";
 import wordwrap from "wordwrapjs";
-import { formatPercent } from "api/language";
+import { formatPercent } from "lang/format";
 
 export default function ImpactChart(props) {
   const { title, description, children } = props;

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { cardinal, localeCode, formatCurrency } from "../../../api/language";
+import { ordinal, localeCode, formatCurrency } from "../../../lang/format";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "./utils";
@@ -23,7 +23,7 @@ export function ImpactPlot(props) {
   const hoverMessage = (x, y) =>
     absoluteChangeMessage(
       "This reform",
-      `the income of households in the ${cardinal(x)} ${decileType}`,
+      `the income of households in the ${ordinal(x)} ${decileType}`,
       y,
       0,
       formatCur,

@@ -5,7 +5,7 @@ import {
   formatCurrencyAbbr,
   formatPercent,
   localeCode,
-} from "../../../api/language";
+} from "../../../lang/format";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";

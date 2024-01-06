@@ -1,7 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { formatCurrencyAbbr, localeCode } from "../../../api/language";
+import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "./ImpactChart";

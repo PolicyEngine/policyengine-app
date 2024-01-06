@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import { capitalize, localeCode } from "../../../../api/language";
+import { capitalize, localeCode } from "../../../../lang/format";
 import {
   getPlotlyAxisFormat,
   getValueFromHousehold,
