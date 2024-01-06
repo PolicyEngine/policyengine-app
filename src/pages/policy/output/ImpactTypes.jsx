@@ -15,30 +15,6 @@ import relativeImpactByDecile from "./RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
 
-export const impactLabels = {
-  // Add policyBreakdown as a label (and menu item),
-  // but not as a chart or CSV in "map" below
-  policyBreakdown: "Policy breakdown",
-  netIncome: "Budgetary impact",
-  detailedBudgetaryImpact: "Budgetary impact by program",
-  decileAverageImpact: "Absolute impact by income decile",
-  wealthDecileAverageImpact: "Absolute impact by wealth decile",
-  decileRelativeImpact: "Relative impact by income decile",
-  wealthDecileRelativeImpact: "Relative impact by wealth decile",
-  intraDecileImpact: "Outcomes by income decile",
-  intraWealthDecileImpact: "Outcomes by wealth decile",
-  povertyImpact: "Poverty impact by age",
-  deepPovertyImpact: "Deep poverty impact by age",
-  genderPovertyImpact: "Poverty impact by sex",
-  genderDeepPovertyImpact: "Deep poverty impact by sex",
-  racialPovertyImpact: "Poverty impact by race and ethnicity",
-  inequalityImpact: "Income inequality impact",
-  // cliffImpact: "Cliff impact",
-  codeReproducibility: "Reproduce in Python",
-  analysis: "Analysis",
-  laborSupplyImpact: "Labor supply impact",
-};
-
 const map = {
   netIncome: budgetaryImpact,
   detailedBudgetaryImpact: detailedBudgetaryImpact,

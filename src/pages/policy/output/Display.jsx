@@ -1,11 +1,11 @@
 import style from "../../../style";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import { getPolicyOutputTree } from "./tree";
+import { getPolicyOutputTree, policyOutputs } from "./tree";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BottomCarousel from "../../../layout/BottomCarousel";
 import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
-import { getImpactReps, impactLabels } from "./ImpactTypes";
+import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
@@ -128,7 +128,7 @@ export function DisplayImpact(props) {
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
   useEffect(() => {
-    document.title = `${policyLabel} | ${impactLabels[impactType]} | PolicyEngine`;
+    document.title = `${policyLabel} | ${policyOutputs[impactType]} | PolicyEngine`;
   });
   let pane, downloadCsvFn, downloadPngFn;
   if (impactType === "analysis") {
