@@ -6,7 +6,7 @@ const description = (countryId) => (
   <p>
     Households are sorted into ten equally-populated groups according to their
     baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
-    wealth (including property and corporate holdings).
+    wealth.
   </p>
 );
 
