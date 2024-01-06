@@ -85,7 +85,7 @@ export function ImpactPlot(props) {
       ]}
       layout={{
         yaxis: {
-          title: "Relative change",
+          title: `Relative change in ${povertyType} rate`,
           tickformat: "+,.1%",
           range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },

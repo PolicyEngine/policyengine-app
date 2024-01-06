@@ -66,7 +66,7 @@ export function ImpactPlot(props) {
           tickvals: Object.keys(decileRelative),
         },
         yaxis: {
-          title: "Relative change",
+          title: "Relative change in household income",
           tickformat: "+,.0%",
         },
         ...(useHoverCard

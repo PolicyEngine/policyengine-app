@@ -62,7 +62,7 @@ export function ImpactPlot(props) {
           tickvals: Object.keys(decileAverage),
         },
         yaxis: {
-          title: "Average change",
+          title: "Average change in household income",
           tickformat: "$,.0f",
         },
         ...(useHoverCard
