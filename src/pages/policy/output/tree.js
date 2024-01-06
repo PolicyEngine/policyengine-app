@@ -17,7 +17,7 @@ export const policyOutputs = {
   // cliffImpact: "Cliff impact",
   codeReproducibility: "Reproduce in Python",
   analysis: "Analysis",
-  laborSupplyImpact: "Labor supply impact",
+  laborSupplyImpact: "Labor supply impact (experimental)",
 };
 
 export function getPolicyOutputTree(countryId) {
