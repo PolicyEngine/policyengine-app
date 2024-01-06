@@ -1,5 +1,5 @@
 import React from "react";
-import ImpactChart from "./ImpactChart";
+import ImpactChart from "../ImpactChart";
 import { ImpactPlot, csv } from "./PovertyImpactByGender";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
 import { title } from "./PovertyImpact";

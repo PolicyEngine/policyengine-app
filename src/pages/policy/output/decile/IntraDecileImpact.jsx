@@ -1,10 +1,10 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import style from "../../../style";
-import { ordinal, formatPercent, localeCode } from "../../../lang/format";
+import { ChartLogo } from "../../../../api/charts";
+import style from "../../../../style";
+import { ordinal, formatPercent, localeCode } from "../../../../lang/format";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { regionName, wordWrap } from "./ImpactChart";
+import ImpactChart, { regionName, wordWrap } from "../ImpactChart";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"

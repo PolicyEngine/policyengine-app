@@ -1,6 +1,6 @@
 import React from "react";
-import ImpactChart from "./ImpactChart";
-import { ImpactPlot, title } from "./AverageImpactByDecile";
+import ImpactChart from "../ImpactChart";
+import { ImpactPlot, title } from "./RelativeImpactByDecile";
 
 const description = (countryId) => (
   <p>
@@ -10,11 +10,11 @@ const description = (countryId) => (
   </p>
 );
 
-export default function averageImpactByWealthDecile(props) {
+export default function relativeImpactByWealthDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
-  const wealthDecileAverage = impact.wealth_decile.average;
+  const wealthDecileRelative = impact.wealth_decile.relative;
   const relativeChange =
-    -impact.budget.budgetary_impact / impact.budget.households;
+    -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
   const chart = (
     <ImpactChart
       title={title(policyLabel, relativeChange, metadata)}
@@ -23,7 +23,7 @@ export default function averageImpactByWealthDecile(props) {
       <ImpactPlot
         decileType={"wealth decile"}
         xaxisTitle={"Wealth decile"}
-        decileAverage={wealthDecileAverage}
+        decileRelative={wealthDecileRelative}
         metadata={metadata}
         mobile={mobile}
         useHoverCard={useHoverCard}
@@ -31,9 +31,15 @@ export default function averageImpactByWealthDecile(props) {
     </ImpactChart>
   );
   const csv = () => {
-    const data = Object.entries(impact.wealth_decile.average).map(
-      ([key, value]) => [`Decile ${key}`, value],
-    );
+    const header = ["Wealth Decile", "Relative Change"];
+    const data = [
+      header,
+      ...Object.entries(wealthDecileRelative).map(
+        ([decile, relativeChange]) => {
+          return [decile, relativeChange];
+        },
+      ),
+    ];
     return data;
   };
   return { chart: chart, csv: csv };

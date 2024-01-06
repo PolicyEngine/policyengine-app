@@ -1,5 +1,5 @@
 import React from "react";
-import ImpactChart from "./ImpactChart";
+import ImpactChart from "../ImpactChart";
 import { ImpactPlot, csv, title } from "./IntraDecileImpact";
 
 const description = (countryId) => (

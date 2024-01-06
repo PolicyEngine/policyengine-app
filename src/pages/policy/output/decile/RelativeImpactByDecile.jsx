@@ -1,35 +1,34 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import { ordinal, localeCode, formatCurrency } from "../../../lang/format";
-import { HoverCardContext } from "../../../layout/HoverCard";
-import style from "../../../style";
-import { plotLayoutFont } from "./utils";
+import { ChartLogo } from "../../../../api/charts";
+import style from "../../../../style";
+import { HoverCardContext } from "../../../../layout/HoverCard";
+import { ordinal, formatPercent } from "../../../../lang/format";
+import { plotLayoutFont } from "../utils";
 import React from "react";
-import ImpactChart, { absoluteChangeMessage, regionName } from "./ImpactChart";
+import ImpactChart, { regionName, relativeChangeMessage } from "../ImpactChart";
 
 export function ImpactPlot(props) {
   const {
     decileType,
     xaxisTitle,
-    decileAverage,
+    decileRelative,
     metadata,
     mobile,
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-  const formatCur = (y) =>
-    formatCurrency(y, metadata.countryId, { maximumFractionDigits: 0 });
-  const hoverMessage = (x, y) =>
-    absoluteChangeMessage(
-      "This reform",
-      `the income of households in the ${ordinal(x)} ${decileType}`,
-      y,
-      0,
-      formatCur,
-    );
-  const xArray = Object.keys(decileAverage);
-  const yArray = Object.values(decileAverage);
+  const formatPer = (n) =>
+    formatPercent(n, metadata.countryId, {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    });
+  const hoverMessage = (x, y) => {
+    const obj = `the income of households in the ${ordinal(x)} ${decileType}`;
+    return relativeChangeMessage("This reform", obj, y, 0.001, metadata);
+  };
+  const xArray = Object.keys(decileRelative);
+  const yArray = Object.values(decileRelative);
   // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
@@ -43,14 +42,19 @@ export function ImpactPlot(props) {
               value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
             ),
           },
-          text: yArray.map(formatCur),
+          text: yArray.map(
+            (value) => (value >= 0 ? "+" : "") + formatPer(value),
+          ),
           textangle: 0,
           ...(useHoverCard
             ? {
                 hoverinfo: "none",
               }
             : {
-                customdata: xArray.map((x, i) => hoverMessage(x, yArray[i])),
+                customdata: xArray.map((x, i) => {
+                  const y = yArray[i];
+                  return hoverMessage(x, y);
+                }),
                 hovertemplate: `<b>Decile %{x}</b><br><br>%{customdata}<extra></extra>`,
               }),
         },
@@ -58,11 +62,11 @@ export function ImpactPlot(props) {
       layout={{
         xaxis: {
           title: xaxisTitle,
-          tickvals: Object.keys(decileAverage),
+          tickvals: Object.keys(decileRelative),
         },
         yaxis: {
-          title: "Average change",
-          tickformat: "$,.0f",
+          title: "Relative change",
+          tickformat: "+,.0%",
         },
         ...(useHoverCard
           ? {}
@@ -73,17 +77,17 @@ export function ImpactPlot(props) {
                 font: { size: "16" },
               },
             }),
-        showlegend: false,
         uniformtext: {
           mode: "hide",
-          minsize: mobile ? 4 : 8,
+          minsize: 8,
         },
+        showlegend: false,
         ...ChartLogo(mobile ? 0.97 : 0.97, mobile ? -0.25 : -0.15),
         margin: {
           t: 0,
           b: 80,
-          l: 60,
           r: 20,
+          l: 60,
         },
         height: mobile ? 300 : 500,
         ...plotLayoutFont,
@@ -91,7 +95,6 @@ export function ImpactPlot(props) {
       config={{
         displayModeBar: false,
         responsive: true,
-        locale: localeCode(metadata.countryId),
       }}
       style={{
         width: "100%",
@@ -114,21 +117,6 @@ export function ImpactPlot(props) {
   );
 }
 
-export function title(policyLabel, relativeChange, metadata) {
-  const region = regionName(metadata);
-  const regionPhrase = region ? ` in ${region}` : "";
-  const term1 = `the net income of households${regionPhrase}`;
-  const term2 = formatCurrency(Math.abs(relativeChange), metadata.countryId, {
-    maximumFractionDigits: 0,
-  });
-  const signTerm = relativeChange > 0 ? "increase" : "decrease";
-  const msg =
-    relativeChange === 0
-      ? `${policyLabel} would have no effect on ${term1} on average`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average`;
-  return msg;
-}
-
 const description = (countryId) => (
   <p>
     Households are sorted into ten equally-populated groups according to their
@@ -137,11 +125,26 @@ const description = (countryId) => (
   </p>
 );
 
-export default function averageImpactByDecile(props) {
+export function title(policyLabel, change, metadata) {
+  const region = regionName(metadata);
+  const regionPhrase = region ? ` in ${region}` : "";
+  const term1 = `the net income of households${regionPhrase}`;
+  const term2 = formatPercent(Math.abs(change), metadata.countryId, {
+    maximumFractionDigits: 1,
+  });
+  const signTerm = change > 0 ? "increase" : "decrease";
+  const msg =
+    change === 0
+      ? `${policyLabel} would have no effect on ${term1} on average`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average`;
+  return msg;
+}
+
+export default function relativeImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
-  const decileAverage = impact.decile.average;
+  const decileRelative = impact.decile.relative;
   const relativeChange =
-    -impact.budget.budgetary_impact / impact.budget.households;
+    -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
   const chart = (
     <ImpactChart
       title={title(policyLabel, relativeChange, metadata)}
@@ -150,7 +153,7 @@ export default function averageImpactByDecile(props) {
       <ImpactPlot
         decileType={"decile"}
         xaxisTitle={"Income decile"}
-        decileAverage={decileAverage}
+        decileRelative={decileRelative}
         metadata={metadata}
         mobile={mobile}
         useHoverCard={useHoverCard}
@@ -158,10 +161,13 @@ export default function averageImpactByDecile(props) {
     </ImpactChart>
   );
   const csv = () => {
-    const data = Object.entries(decileAverage).map(([key, value]) => [
-      `Decile ${key}`,
-      value,
-    ]);
+    const header = ["Income Decile", "Relative Change"];
+    const data = [
+      header,
+      ...Object.entries(decileRelative).map(([decile, relativeChange]) => {
+        return [decile, relativeChange];
+      }),
+    ];
     return data;
   };
   return { chart: chart, csv: csv };

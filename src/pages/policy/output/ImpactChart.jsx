@@ -1,20 +1,18 @@
 import HoverCard from "layout/HoverCard";
-import DownloadableScreenshottable from "./DownloadableScreenshottable";
-import { useRef } from "react";
 import wordwrap from "wordwrapjs";
 import { formatPercent } from "lang/format";
+import Screenshottable from "layout/Screenshottable";
 
 export default function ImpactChart(props) {
   const { title, description, children } = props;
-  const screenshotRef = useRef();
   return (
-    <DownloadableScreenshottable ref={screenshotRef}>
+    <Screenshottable>
       <h2 style={{ width: "100%", wordWrap: "break-word", display: "inline" }}>
         {title}
       </h2>
       <HoverCard>{children}</HoverCard>
       {description}
-    </DownloadableScreenshottable>
+    </Screenshottable>
   );
 }
 

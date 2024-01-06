@@ -1,15 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import { formatNumber, formatPercent, localeCode } from "../../../lang/format";
-import { HoverCardContext } from "../../../layout/HoverCard";
-import style from "../../../style";
+import { ChartLogo } from "../../../../api/charts";
+import {
+  formatNumber,
+  formatPercent,
+  localeCode,
+} from "../../../../lang/format";
+import { HoverCardContext } from "../../../../layout/HoverCard";
+import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import {
   PovertyChangeContext,
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
-import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
+import ImpactChart, { regionName, relativeChangeMessage } from "../ImpactChart";
 
 export function ImpactPlot(props) {
   const {

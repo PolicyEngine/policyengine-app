@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
-import style from "../../../style";
-import { plotLayoutFont } from "./utils";
+import { ChartLogo } from "../../../../api/charts";
+import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
+import style from "../../../../style";
+import { plotLayoutFont } from "../utils";
 import React from "react";
-import ImpactChart, { absoluteChangeMessage } from "./ImpactChart";
+import ImpactChart, { absoluteChangeMessage } from "../ImpactChart";
 import { HoverCardContext } from "layout/HoverCard";
 import { title } from "./BudgetaryImpact";
 

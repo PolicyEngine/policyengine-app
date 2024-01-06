@@ -341,7 +341,9 @@ export function LowLevelDisplay(props) {
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
-      <div ref={componentRef}>{children}</div>
+      <div ref={componentRef} id="downloadable-content">
+        {children}
+      </div>
       {!mobile && !preparingForScreenshot && (
         <BottomCarousel
           selected={focus}
