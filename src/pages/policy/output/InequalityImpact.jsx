@@ -148,7 +148,7 @@ function title(metricChanges, policyLabel, metadata) {
         : "have an ambiguous effect on";
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
-  const msg = `${policyLabel} would ${signTerm} inequality${regionPhrase}`;
+  const msg = `${policyLabel} would ${signTerm} income inequality${regionPhrase}`;
   return msg;
 }
 
