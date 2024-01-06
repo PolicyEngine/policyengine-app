@@ -234,12 +234,12 @@ export function title(policyLabel, all, metadata) {
   return msg;
 }
 
-const description = (
+const description = (countryId) => (
   <p>
     The chart above shows percentage of people in each household income decile
     who experience different outcomes. Households are sorted into ten
-    equally-populated groups according to their equivalised household net
-    income.
+    equally-populated groups according to their baseline{" "}
+    {countryId === "uk" ? "equivalised" : "equivalized"} household net income.
   </p>
 );
 
@@ -251,7 +251,7 @@ export default function intraDecileImpact(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, all, metadata)}
-      description={description}
+      description={description(metadata.countryId)}
     >
       <ImpactPlot
         yaxistitle={"Income decile"}

@@ -129,11 +129,12 @@ export function title(policyLabel, relativeChange, metadata) {
   return msg;
 }
 
-const description = (
+const description = (countryId) => (
   <p>
     The chart above shows the relative change in income for each income decile.
     Households are sorted into ten equally-populated groups according to their
-    equivalised household net income.
+    baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
+    income.
   </p>
 );
 
@@ -145,7 +146,7 @@ export default function averageImpactByDecile(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, relativeChange, metadata)}
-      description={description}
+      description={description(metadata.countryId)}
     >
       <ImpactPlot
         decileType={"decile"}

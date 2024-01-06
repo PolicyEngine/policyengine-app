@@ -2,11 +2,12 @@ import React from "react";
 import ImpactChart from "./ImpactChart";
 import { ImpactPlot, title } from "./RelativeImpactByDecile";
 
-const description = (
+const description = (countryId) => (
   <p>
     The chart above shows the relative change in income for each wealth decile.
     Households are sorted into ten equally-populated groups according to their
-    equivalised household net wealth.
+    baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
+    wealth (including property and corporate holdings).
   </p>
 );
 
@@ -18,7 +19,7 @@ export default function relativeImpactByWealthDecile(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, relativeChange, metadata)}
-      description={description}
+      description={description(metadata.countryId)}
     >
       <ImpactPlot
         decileType={"wealth decile"}
