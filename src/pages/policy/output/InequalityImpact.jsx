@@ -154,8 +154,8 @@ function title(metricChanges, policyLabel, metadata) {
 
 const description = (
   <p>
-    The chart above shows how this policy reform affects different measures of
-    income inequality.
+    PolicyEngine reports income inequality based on the distribution of net
+    income after taxes and transfers.
   </p>
 );
 

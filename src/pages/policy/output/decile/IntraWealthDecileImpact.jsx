@@ -1,14 +1,7 @@
 import React from "react";
 import ImpactChart from "../ImpactChart";
 import { ImpactPlot, csv, title } from "./IntraDecileImpact";
-
-const description = (countryId) => (
-  <p>
-    Households are sorted into ten equally-populated groups according to their
-    baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
-    wealth.
-  </p>
-);
+import { description } from "./common";
 
 export default function intraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
@@ -19,7 +12,7 @@ export default function intraWealthDecileImpact(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, all, metadata)}
-      description={description(metadata.countryId)}
+      description={description(metadata.countryId, true)}
     >
       <ImpactPlot
         yaxistitle={"Wealth decile"}

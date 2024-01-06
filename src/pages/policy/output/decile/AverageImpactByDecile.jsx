@@ -6,7 +6,8 @@ import { HoverCardContext } from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
 import React from "react";
-import ImpactChart, { absoluteChangeMessage, regionName } from "../ImpactChart";
+import ImpactChart, { absoluteChangeMessage } from "../ImpactChart";
+import { description, title } from "./common";
 
 export function ImpactPlot(props) {
   const {
@@ -114,38 +115,15 @@ export function ImpactPlot(props) {
   );
 }
 
-export function title(policyLabel, relativeChange, metadata) {
-  const region = regionName(metadata);
-  const regionPhrase = region ? ` in ${region}` : "";
-  const term1 = `the net income of households${regionPhrase}`;
-  const term2 = formatCurrency(Math.abs(relativeChange), metadata.countryId, {
-    maximumFractionDigits: 0,
-  });
-  const signTerm = relativeChange > 0 ? "increase" : "decrease";
-  const msg =
-    relativeChange === 0
-      ? `${policyLabel} would have no effect on ${term1} on average`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} on average`;
-  return msg;
-}
-
-const description = (countryId) => (
-  <p>
-    Households are sorted into ten equally-populated groups according to their
-    baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
-    income.
-  </p>
-);
-
 export default function averageImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const decileAverage = impact.decile.average;
-  const relativeChange =
+  const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
   const chart = (
     <ImpactChart
-      title={title(policyLabel, relativeChange, metadata)}
-      description={description(metadata.countryId)}
+      title={title(policyLabel, averageChange, true, metadata)}
+      description={description(metadata.countryId, false)}
     >
       <ImpactPlot
         decileType={"decile"}

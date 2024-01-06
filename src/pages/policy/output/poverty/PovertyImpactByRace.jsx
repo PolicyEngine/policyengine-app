@@ -10,7 +10,7 @@ import {
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
 import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
-import { title } from "./PovertyImpact";
+import { title, description } from "./common";
 
 function ImpactPlot(props) {
   const {
@@ -174,11 +174,12 @@ export default function povertyImpactByRace(props) {
       <ImpactChart
         title={title(
           policyLabel,
-          "the poverty rate",
+          false,
           allImpact.all.baseline,
           allImpact.all.reform,
           metadata,
         )}
+        description={description(metadata.countryId, false)}
       >
         <ImpactPlot
           raceImpact={raceImpact}

@@ -10,7 +10,7 @@ import {
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
 import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
-import { title } from "./PovertyImpact";
+import { title, description } from "./common";
 
 // this function is called in this file with povertyType={"poverty"} from
 // DeepPovertyImpactByGender with povertyType={"deep poverty"}
@@ -183,11 +183,12 @@ export default function povertyImpactByGender(props) {
       <ImpactChart
         title={title(
           policyLabel,
-          "the poverty rate",
+          false,
           allImpact.all.baseline,
           allImpact.all.reform,
           metadata,
         )}
+        description={description(metadata.countryId, false)}
       >
         <ImpactPlot
           povertyType={"poverty"}

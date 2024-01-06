@@ -1,7 +1,8 @@
 import React from "react";
 import ImpactChart from "../ImpactChart";
-import { ImpactPlot, title } from "./PovertyImpact";
+import { ImpactPlot } from "./PovertyImpact";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
+import { title, description } from "./common";
 
 export default function deepPovertyImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
@@ -32,11 +33,12 @@ export default function deepPovertyImpact(props) {
       <ImpactChart
         title={title(
           policyLabel,
-          "the deep poverty rate",
+          true,
           deepPovertyImpact.all.baseline,
           deepPovertyImpact.all.reform,
           metadata,
         )}
+        description={description(metadata.countryId, true)}
       >
         <ImpactPlot
           povertyType={"deep poverty"}

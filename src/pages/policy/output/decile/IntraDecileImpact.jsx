@@ -5,6 +5,7 @@ import style from "../../../../style";
 import { ordinal, formatPercent, localeCode } from "../../../../lang/format";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, wordWrap } from "../ImpactChart";
+import { description } from "./common";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"
@@ -234,14 +235,6 @@ export function title(policyLabel, all, metadata) {
   return msg;
 }
 
-const description = (countryId) => (
-  <p>
-    Households are sorted into ten equally-populated groups according to their
-    baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
-    income.
-  </p>
-);
-
 export default function intraDecileImpact(props) {
   const { impact, policyLabel, metadata, mobile } = props;
   const deciles = impact.intra_decile.deciles;
@@ -250,7 +243,7 @@ export default function intraDecileImpact(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, all, metadata)}
-      description={description(metadata.countryId)}
+      description={description(metadata.countryId, false)}
     >
       <ImpactPlot
         yaxistitle={"Income decile"}

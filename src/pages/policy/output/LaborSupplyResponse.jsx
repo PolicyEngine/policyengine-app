@@ -84,7 +84,7 @@ function ImpactPlot(props) {
   );
 }
 
-export function title(policyLabel, change, metadata) {
+function title(policyLabel, change, metadata) {
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
   const term1 = `employment income${regionPhrase}`;
