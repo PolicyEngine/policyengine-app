@@ -24,7 +24,7 @@ export function ImpactPlot(props) {
   } = props;
   const setHoverCard = useContext(HoverCardContext);
   const formatPer = (n) =>
-    formatPercent(n, metadata, {
+    formatPercent(n, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });
@@ -131,10 +131,10 @@ export function ImpactPlot(props) {
 export function title(policyLabel, objectTerm, baseline, reform, metadata) {
   const relativeChange = reform / baseline - 1;
   const absoluteChange = Math.round(Math.abs(reform - baseline) * 1000) / 10;
-  const relTerm = formatPercent(Math.abs(relativeChange), metadata, {
+  const relTerm = formatPercent(Math.abs(relativeChange), metadata.countryId, {
     maximumFractionDigits: 1,
   });
-  const absTerm = formatNumber(absoluteChange, metadata, {
+  const absTerm = formatNumber(absoluteChange, metadata.countryId, {
     maximumFractionDigits: 2,
   });
   const term2 = `${relTerm} (${absTerm}pp)`;

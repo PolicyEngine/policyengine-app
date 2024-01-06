@@ -19,7 +19,7 @@ export function ImpactPlot(props) {
   } = props;
   const setHoverCard = useContext(HoverCardContext);
   const formatCur = (y) =>
-    formatCurrency(y, metadata, { maximumFractionDigits: 0 });
+    formatCurrency(y, metadata.countryId, { maximumFractionDigits: 0 });
   const hoverMessage = (x, y) =>
     absoluteChangeMessage(
       "This reform",
@@ -118,7 +118,7 @@ export function title(policyLabel, relativeChange, metadata) {
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
   const term1 = `the net income of households${regionPhrase}`;
-  const term2 = formatCurrency(Math.abs(relativeChange), metadata, {
+  const term2 = formatCurrency(Math.abs(relativeChange), metadata.countryId, {
     maximumFractionDigits: 0,
   });
   const signTerm = relativeChange > 0 ? "increase" : "decrease";

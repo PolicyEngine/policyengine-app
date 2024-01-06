@@ -42,27 +42,27 @@ export function currencyCode(countryId) {
 /**
  *
  * @param {number} number a number
- * @param {object} metadata the metadata object
+ * @param {string} countryId the country id, usually found in the metadata
  * @param {object?} options an object adjusting the output format. Corresponds
  * to the options parameter of Number.prototype.toLocaleString().
  * @returns the formatted number
  */
-export function formatNumber(number, metadata, options) {
-  return number.toLocaleString(localeCode(metadata.countryId), options);
+export function formatNumber(number, countryId, options) {
+  return number.toLocaleString(localeCode(countryId), options);
 }
 
 /**
  *
  * @param {number} number a number
- * @param {object} metadata the metadata object
+ * @param {string} countryId the country id, usually found in the metadata
  * @param {object?} options an object adjusting the output format. Corresponds
  * to the options parameter of Number.prototype.toLocaleString().
  * @returns the formatted currency
  */
-export function formatCurrency(number, metadata, options) {
-  return number.toLocaleString(localeCode(metadata.countryId), {
+export function formatCurrency(number, countryId, options) {
+  return number.toLocaleString(localeCode(countryId), {
     style: "currency",
-    currency: currencyCode(metadata.countryId),
+    currency: currencyCode(countryId),
     ...options,
   });
 }
@@ -70,13 +70,13 @@ export function formatCurrency(number, metadata, options) {
 /**
  *
  * @param {number} number a number
- * @param {object} metadata the metadata object
+ * @param {string} countryId the country id, usually found in the metadata
  * @param {object?} options an object adjusting the output format. Corresponds
  * to the options parameter of Number.prototype.toLocaleString().
  * @returns the formatted number with % sign
  */
-export function formatPercent(number, metadata, options) {
-  return number.toLocaleString(localeCode(metadata.countryId), {
+export function formatPercent(number, countryId, options) {
+  return number.toLocaleString(localeCode(countryId), {
     style: "percent",
     ...options,
   });
@@ -85,12 +85,12 @@ export function formatPercent(number, metadata, options) {
 /**
  *
  * @param {number} number a number
- * @param {object} metadata the metadata object
+ * @param {string} countryId the country id, usually found in the metadata
  * @param {object?} options an object adjusting the output format. Corresponds
  * to the options parameter of Number.prototype.toLocaleString().
  * @returns the abbreviated currency, e.g., $2.3tn, -$12.3bn, $301m, $1.2k
  */
-export function formatCurrencyAbbr(number, metadata, options) {
+export function formatCurrencyAbbr(number, countryId, options) {
   let suffix = "";
   const absNumber = Math.abs(number);
   if (absNumber >= 1e12) {
@@ -106,5 +106,5 @@ export function formatCurrencyAbbr(number, metadata, options) {
     number /= 1e3;
     suffix = "k";
   }
-  return formatCurrency(number, metadata, options) + suffix;
+  return formatCurrency(number, countryId, options) + suffix;
 }

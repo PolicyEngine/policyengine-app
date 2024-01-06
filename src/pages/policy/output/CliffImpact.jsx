@@ -24,7 +24,7 @@ function ImpactPlot(props) {
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
   const formatPer = (x) =>
-    formatPercent(x, metadata, {
+    formatPercent(x, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });

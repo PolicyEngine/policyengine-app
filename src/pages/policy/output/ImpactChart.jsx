@@ -53,7 +53,7 @@ export function relativeChangeMessage(
   options,
 ) {
   const formatter = (x) =>
-    formatPercent(x, metadata, {
+    formatPercent(x, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });

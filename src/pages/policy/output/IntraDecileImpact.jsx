@@ -51,7 +51,7 @@ export function ImpactPlot(props) {
         type1 === "all"
           ? "Of all households,"
           : `Of households in the ${ordinal(y)} decile,`;
-      const term2 = formatPercent(x, metadata, {
+      const term2 = formatPercent(x, metadata.countryId, {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1,
       });
@@ -215,7 +215,7 @@ export function title(policyLabel, all, metadata) {
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const totalBehind = all["Lose more than 5%"] + all["Lose less than 5%"];
   const percent = (n) =>
-    formatPercent(n, metadata, { maximumFractionDigits: 0 });
+    formatPercent(n, metadata.countryId, { maximumFractionDigits: 0 });
   const totalAheadTerm = percent(totalAhead);
   const totalBehindTerm = percent(totalBehind);
   const objectTerm = "the net income";

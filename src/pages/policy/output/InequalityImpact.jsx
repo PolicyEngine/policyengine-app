@@ -20,7 +20,7 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const formatPer = (x) =>
-    formatPercent(x, metadata, {
+    formatPercent(x, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });
