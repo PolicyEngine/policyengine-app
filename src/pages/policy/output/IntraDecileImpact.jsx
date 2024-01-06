@@ -236,10 +236,9 @@ export function title(policyLabel, all, metadata) {
 
 const description = (countryId) => (
   <p>
-    The chart above shows percentage of people in each household income decile
-    who experience different outcomes. Households are sorted into ten
-    equally-populated groups according to their baseline{" "}
-    {countryId === "uk" ? "equivalised" : "equivalized"} household net income.
+    Households are sorted into ten equally-populated groups according to their
+    baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
+    income.
   </p>
 );
 

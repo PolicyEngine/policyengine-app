@@ -131,7 +131,6 @@ export function title(policyLabel, relativeChange, metadata) {
 
 const description = (countryId) => (
   <p>
-    The chart above shows the relative change in income for each income decile.
     Households are sorted into ten equally-populated groups according to their
     baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
     income.

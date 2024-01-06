@@ -158,12 +158,6 @@ export function csv(genderImpact, allImpact, povertyLabels, labelToKey) {
   return data;
 }
 
-const description = (
-  <p>
-    The chart above shows the relative change in the poverty rate for each sex.
-  </p>
-);
-
 export default function povertyImpactByGender(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const genderImpact = impact.poverty_by_gender.poverty;
@@ -194,7 +188,6 @@ export default function povertyImpactByGender(props) {
           allImpact.all.reform,
           metadata,
         )}
-        description={description}
       >
         <ImpactPlot
           povertyType={"poverty"}

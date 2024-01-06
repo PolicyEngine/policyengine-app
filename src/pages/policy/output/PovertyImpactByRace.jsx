@@ -169,12 +169,6 @@ export default function povertyImpactByRace(props) {
     Other: "other",
     All: "all",
   };
-  const description = (
-    <p>
-      The chart above shows the relative change in the poverty rate for each
-      top-level racial and ethnic group.
-    </p>
-  );
   const chart = (
     <PovertyChangeProvider>
       <ImpactChart
@@ -185,7 +179,6 @@ export default function povertyImpactByRace(props) {
           allImpact.all.reform,
           metadata,
         )}
-        description={description}
       >
         <ImpactPlot
           raceImpact={raceImpact}

@@ -27,12 +27,6 @@ export default function deepPovertyImpact(props) {
     Seniors: "senior",
     All: "all",
   };
-  const description = (
-    <p>
-      The chart above shows the relative change in the deep poverty rate for
-      each age group.
-    </p>
-  );
   const chart = (
     <PovertyChangeProvider>
       <ImpactChart
@@ -43,7 +37,6 @@ export default function deepPovertyImpact(props) {
           deepPovertyImpact.all.reform,
           metadata,
         )}
-        description={description}
       >
         <ImpactPlot
           povertyType={"deep poverty"}

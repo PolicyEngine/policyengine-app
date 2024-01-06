@@ -4,13 +4,6 @@ import { ImpactPlot, csv } from "./PovertyImpactByGender";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
 import { title } from "./PovertyImpact";
 
-const description = (
-  <p>
-    The chart above shows the relative change in the deep poverty rate for each
-    sex.
-  </p>
-);
-
 export default function deepPovertyImpactByGender(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const genderImpact = impact.poverty_by_gender.deep_poverty;
@@ -41,7 +34,6 @@ export default function deepPovertyImpactByGender(props) {
           allImpact.all.reform,
           metadata,
         )}
-        description={description}
       >
         <ImpactPlot
           povertyType={"deep poverty"}

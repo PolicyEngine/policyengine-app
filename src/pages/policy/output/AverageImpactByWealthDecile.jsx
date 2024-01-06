@@ -4,7 +4,6 @@ import { ImpactPlot, title } from "./AverageImpactByDecile";
 
 const description = (countryId) => (
   <p>
-    The chart above shows the relative change in income for each wealth decile.
     Households are sorted into ten equally-populated groups according to their
     baseline {countryId === "uk" ? "equivalised" : "equivalized"} household net
     wealth (including property and corporate holdings).

@@ -148,13 +148,6 @@ export function title(policyLabel, objectTerm, baseline, reform, metadata) {
   return msg;
 }
 
-const description = (
-  <p>
-    The chart above shows the relative change in the poverty rate for each age
-    group.
-  </p>
-);
-
 export default function povertyImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const povertyImpact = impact.poverty.poverty;
@@ -189,7 +182,6 @@ export default function povertyImpact(props) {
           povertyImpact.all.reform,
           metadata,
         )}
-        description={description}
       >
         <ImpactPlot
           povertyType={"poverty"}
