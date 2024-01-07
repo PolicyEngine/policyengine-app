@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import MarginalTaxRates from "pages/household/output/MarginalTaxRates";
 import { useSearchParams } from "react-router-dom";
+import "whatwg-fetch";
 
 jest.mock("react-plotly.js", () => jest.fn());
 jest.mock("../api/variables.js", () => ({
