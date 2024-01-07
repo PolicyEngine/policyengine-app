@@ -37,9 +37,9 @@ export function title(policyLabel, change, isCurrency, metadata) {
 export function description(countryId, isWealth) {
   return (
     <p>
-      Households are sorted into ten equally-populated groups according to their
-      baseline {countryId === "uk" ? "equivalised" : "equivalized"} household
-      net {isWealth ? "wealth" : "income"}.
+      PolicyEngine sorts households into ten equally-populated groups according
+      to their baseline {countryId === "uk" ? "equivalised" : "equivalized"}{" "}
+      household net {isWealth ? "wealth" : "income"}.
     </p>
   );
 }

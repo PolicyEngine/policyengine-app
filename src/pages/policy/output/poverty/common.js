@@ -38,9 +38,14 @@ export function title(policyLabel, isDeep, baseline, reform, metadata) {
  * @returns
  */
 export function description(countryId, isDeep) {
-  const more = isDeep
-    ? "Deep poverty rate is the population share with income below half the poverty line."
-    : "Poverty rate is the population share with income below the poverty line.";
+  const term1 = `The${isDeep ? " deep" : ""} poverty rate is `;
+  const term2 = `the population share in ${
+    countryId === "uk" ? "resource units" : "households"
+  } with `;
+  const term3 = `net income (after taxes and transfers) below${
+    isDeep ? " half" : ""
+  } their poverty threshold.`;
+  const more = term1 + term2 + term3;
   if (countryId === "uk") {
     return (
       <p>
