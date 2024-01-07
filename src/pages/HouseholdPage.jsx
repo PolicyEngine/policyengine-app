@@ -25,6 +25,7 @@ import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
+import HouseholdYear from "./household/input/HouseholdYear";
 
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";
@@ -274,6 +275,10 @@ export default function HouseholdPage(props) {
         setHouseholdInput={setHouseholdInput}
         autoCompute={autoCompute}
       />
+    );
+  } else if (focus === "input.household.year") {
+    middle = (
+      <HouseholdYear /> 
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
     if (!autoCompute) {
