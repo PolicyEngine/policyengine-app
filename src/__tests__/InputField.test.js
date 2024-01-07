@@ -26,13 +26,12 @@ describe("Should take inputs", () => {
     setup = (props) => {
       const utils = render(<InputField {...props} />);
       const input = screen.getByPlaceholderText(testProps.placeholder);
-    
+
       return {
         input,
         ...utils,
       };
     };
-
   });
 
   test("Should handle non-percent input & submit on blur", () => {
