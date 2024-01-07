@@ -1,10 +1,11 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import style from "../../../style";
-import { cardinal, formatPercent, localeCode } from "../../../api/language";
+import { ChartLogo } from "../../../../api/charts";
+import style from "../../../../style";
+import { ordinal, formatPercent, localeCode } from "../../../../lang/format";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { regionName, wordWrap } from "./ImpactChart";
+import ImpactChart, { regionName, wordWrap } from "../ImpactChart";
+import { description } from "./common";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"
@@ -50,8 +51,8 @@ export function ImpactPlot(props) {
       const term1 =
         type1 === "all"
           ? "Of all households,"
-          : `Of households in the ${cardinal(y)} decile,`;
-      const term2 = formatPercent(x, metadata, {
+          : `Of households in the ${ordinal(y)} decile,`;
+      const term2 = formatPercent(x, metadata.countryId, {
         minimumFractionDigits: 1,
         maximumFractionDigits: 1,
       });
@@ -215,7 +216,7 @@ export function title(policyLabel, all, metadata) {
   const totalAhead = all["Gain more than 5%"] + all["Gain less than 5%"];
   const totalBehind = all["Lose more than 5%"] + all["Lose less than 5%"];
   const percent = (n) =>
-    formatPercent(n, metadata, { maximumFractionDigits: 0 });
+    formatPercent(n, metadata.countryId, { maximumFractionDigits: 0 });
   const totalAheadTerm = percent(totalAhead);
   const totalBehindTerm = percent(totalBehind);
   const objectTerm = "the net income";
@@ -234,15 +235,6 @@ export function title(policyLabel, all, metadata) {
   return msg;
 }
 
-const description = (
-  <p>
-    The chart above shows percentage of people in each household income decile
-    who experience different outcomes. Households are sorted into ten
-    equally-populated groups according to their equivalised household net
-    income.
-  </p>
-);
-
 export default function intraDecileImpact(props) {
   const { impact, policyLabel, metadata, mobile } = props;
   const deciles = impact.intra_decile.deciles;
@@ -251,7 +243,7 @@ export default function intraDecileImpact(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, all, metadata)}
-      description={description}
+      description={description(metadata.countryId, false)}
     >
       <ImpactPlot
         yaxistitle={"Income decile"}

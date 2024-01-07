@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
-import { capitalize } from "../api/language";
+import { capitalize } from "../lang/format";
 import style from "../style";
 
 function MenuItem(props) {

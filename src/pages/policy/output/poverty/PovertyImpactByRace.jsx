@@ -1,20 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import { formatNumber, formatPercent, localeCode } from "../../../api/language";
-import { HoverCardContext } from "../../../layout/HoverCard";
-import style from "../../../style";
+import { ChartLogo } from "../../../../api/charts";
+import { formatPercent, localeCode } from "../../../../lang/format";
+import { HoverCardContext } from "../../../../layout/HoverCard";
+import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import {
   PovertyChangeContext,
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
-import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
+import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
+import { title, description } from "./common";
 
-export function ImpactPlot(props) {
+function ImpactPlot(props) {
   const {
-    povertyType,
-    povertyImpact,
+    raceImpact,
+    allImpact,
     povertyLabels,
     povertyChanges,
     labelToKey,
@@ -24,24 +25,29 @@ export function ImpactPlot(props) {
   } = props;
   const setHoverCard = useContext(HoverCardContext);
   const formatPer = (n) =>
-    formatPercent(n, metadata, {
+    formatPercent(n, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });
   const hoverMessage = (x) => {
+    const baseline =
+      x === "All"
+        ? allImpact[labelToKey[x]].baseline
+        : raceImpact[labelToKey[x]].baseline;
+    const reform =
+      x === "All"
+        ? allImpact[labelToKey[x]].reform
+        : raceImpact[labelToKey[x]].reform;
+    const change = reform / baseline - 1;
     const obj = `the percentage of ${
       x === "All" ? "people" : x.toLowerCase()
-    } in ${povertyType}`;
-    const baseline = povertyImpact[labelToKey[x]].baseline;
-    const reform = povertyImpact[labelToKey[x]].reform;
-    const change = reform / baseline - 1;
+    } in poverty`;
     return relativeChangeMessage("This reform", obj, change, 0.001, metadata, {
       baseline: baseline,
       reform: reform,
       formatter: formatPer,
     });
   };
-
   const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
   useEffect(() => {
     addChanges(povertyChanges);
@@ -75,7 +81,7 @@ export function ImpactPlot(props) {
       ]}
       layout={{
         yaxis: {
-          title: "Relative change",
+          title: "Relative change in poverty rate",
           tickformat: "+,.1%",
           range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },
@@ -99,7 +105,7 @@ export function ImpactPlot(props) {
           b: 100,
           r: 0,
         },
-        height: mobile ? 300 : 500,
+        height: mobile ? 350 : 450,
         ...plotLayoutFont,
       }}
       config={{
@@ -128,55 +134,39 @@ export function ImpactPlot(props) {
   );
 }
 
-export function title(policyLabel, objectTerm, baseline, reform, metadata) {
-  const relativeChange = reform / baseline - 1;
-  const absoluteChange = Math.round(Math.abs(reform - baseline) * 1000) / 10;
-  const relTerm = formatPercent(Math.abs(relativeChange), metadata, {
-    maximumFractionDigits: 1,
-  });
-  const absTerm = formatNumber(absoluteChange, metadata, {
-    maximumFractionDigits: 2,
-  });
-  const term2 = `${relTerm} (${absTerm}pp)`;
-  const signTerm = relativeChange > 0 ? "increase" : "decrease";
-  const region = regionName(metadata);
-  const regionPhrase = region ? ` in ${region}` : "";
-  const msg =
-    absTerm === 0
-      ? `${policyLabel} would have no effect on ${objectTerm}${regionPhrase}`
-      : `${policyLabel} would ${signTerm} ${objectTerm}${regionPhrase} by ${term2}`;
-  return msg;
-}
-
-const description = (
-  <p>
-    The chart above shows the relative change in the poverty rate for each age
-    group.
-  </p>
-);
-
-export default function povertyImpact(props) {
+export default function povertyImpactByRace(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
-  const povertyImpact = impact.poverty.poverty;
-  const childPovertyChange =
-    povertyImpact.child.reform / povertyImpact.child.baseline - 1;
-  const adultPovertyChange =
-    povertyImpact.adult.reform / povertyImpact.adult.baseline - 1;
-  const seniorPovertyChange =
-    povertyImpact.senior.reform / povertyImpact.senior.baseline - 1;
-  const totalPovertyChange =
-    povertyImpact.all.reform / povertyImpact.all.baseline - 1;
+  const raceImpact = impact.poverty_by_race.poverty;
+  const allImpact = impact.poverty.poverty;
+  // white, black, hispanic, other
+  const whitePovertyChange =
+    raceImpact.white.reform / raceImpact.white.baseline - 1;
+  const blackPovertyChange =
+    raceImpact.black.reform / raceImpact.black.baseline - 1;
+  const hispanicPovertyChange =
+    raceImpact.hispanic.reform / raceImpact.hispanic.baseline - 1;
+  const otherPovertyChange =
+    raceImpact.other.reform / raceImpact.other.baseline - 1;
+  const totalPovertyChange = allImpact.all.reform / allImpact.all.baseline - 1;
   const povertyChanges = [
-    childPovertyChange,
-    adultPovertyChange,
-    seniorPovertyChange,
+    whitePovertyChange,
+    blackPovertyChange,
+    hispanicPovertyChange,
+    otherPovertyChange,
     totalPovertyChange,
   ];
-  const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
+  const povertyLabels = [
+    "White (non-Hispanic)",
+    "Black (non-Hispanic)",
+    "Hispanic",
+    "Other",
+    "All",
+  ];
   const labelToKey = {
-    Children: "child",
-    "Working-age adults": "adult",
-    Seniors: "senior",
+    "White (non-Hispanic)": "white",
+    "Black (non-Hispanic)": "black",
+    Hispanic: "hispanic",
+    Other: "other",
     All: "all",
   };
   const chart = (
@@ -184,16 +174,16 @@ export default function povertyImpact(props) {
       <ImpactChart
         title={title(
           policyLabel,
-          "the poverty rate",
-          povertyImpact.all.baseline,
-          povertyImpact.all.reform,
+          false,
+          allImpact.all.baseline,
+          allImpact.all.reform,
           metadata,
         )}
-        description={description}
+        description={description(metadata.countryId, false)}
       >
         <ImpactPlot
-          povertyType={"poverty"}
-          povertyImpact={povertyImpact}
+          raceImpact={raceImpact}
+          allImpact={allImpact}
           povertyLabels={povertyLabels}
           povertyChanges={povertyChanges}
           labelToKey={labelToKey}
@@ -205,17 +195,26 @@ export default function povertyImpact(props) {
     </PovertyChangeProvider>
   );
   const csv = () => {
-    const header = ["Age Group", "Baseline", "Reform", "Change"];
+    const header = ["Race", "Baseline", "Reform", "Change"];
     const data = [
       header,
       ...povertyLabels.map((label) => {
-        const baseline = povertyImpact[labelToKey[label]].baseline;
-        const reform = povertyImpact[labelToKey[label]].reform;
+        const baseline =
+          label === "All"
+            ? allImpact[labelToKey[label]].baseline
+            : raceImpact[labelToKey[label]].baseline;
+        const reform =
+          label === "All"
+            ? allImpact[labelToKey[label]].reform
+            : raceImpact[labelToKey[label]].reform;
         const change = reform / baseline - 1;
         return [label, baseline, reform, change];
       }),
     ];
     return data;
   };
-  return { chart: chart, csv: csv };
+  return {
+    chart: chart,
+    csv: csv,
+  };
 }

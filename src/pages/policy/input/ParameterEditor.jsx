@@ -12,7 +12,7 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
-import { capitalize } from "../../../api/language";
+import { capitalize } from "../../../lang/format";
 import { formatVariableValue } from "../../../api/variables";
 import { defaultStartDate, defaultEndDate } from "data/constants";
 

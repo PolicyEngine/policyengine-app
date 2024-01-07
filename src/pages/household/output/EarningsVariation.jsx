@@ -5,7 +5,7 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import { useSearchParams } from "react-router-dom";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import SearchOptions from "../../../controls/SearchOptions";
-import { capitalize } from "../../../api/language";
+import { capitalize } from "../../../lang/format";
 import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";
 import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
 import { getValueFromHousehold } from "../../../api/variables";

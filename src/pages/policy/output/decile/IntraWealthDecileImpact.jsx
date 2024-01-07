@@ -1,15 +1,7 @@
 import React from "react";
-import ImpactChart from "./ImpactChart";
+import ImpactChart from "../ImpactChart";
 import { ImpactPlot, csv, title } from "./IntraDecileImpact";
-
-const description = (
-  <p>
-    The chart above shows percentage of people in each household wealth decile
-    who experience different outcomes. Households are sorted into ten
-    equally-populated groups according to their equivalised household net wealth
-    (including property and corporate holdings).
-  </p>
-);
+import { description } from "./common";
 
 export default function intraWealthDecileImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
@@ -20,7 +12,7 @@ export default function intraWealthDecileImpact(props) {
   const chart = (
     <ImpactChart
       title={title(policyLabel, all, metadata)}
-      description={description}
+      description={description(metadata.countryId, true)}
     >
       <ImpactPlot
         yaxistitle={"Wealth decile"}

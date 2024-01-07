@@ -5,7 +5,7 @@ import {
   formatCurrencyAbbr,
   formatPercent,
   localeCode,
-} from "../../../api/language";
+} from "../../../lang/format";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
@@ -24,7 +24,7 @@ function ImpactPlot(props) {
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
   const formatPer = (x) =>
-    formatPercent(x, metadata, {
+    formatPercent(x, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });

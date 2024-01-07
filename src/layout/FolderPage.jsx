@@ -4,7 +4,7 @@ import style from "../style";
 import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
-import { capitalize } from "../api/language";
+import { capitalize } from "../lang/format";
 import Divider from "./Divider";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
 

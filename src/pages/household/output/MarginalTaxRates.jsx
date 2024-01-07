@@ -17,7 +17,7 @@ import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
-import { localeCode } from "api/language";
+import { localeCode } from "lang/format";
 import { defaultYear } from "data/constants";
 
 export default function MarginalTaxRates(props) {
