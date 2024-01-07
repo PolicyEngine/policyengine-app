@@ -25,8 +25,7 @@ export function DisplayEmpty() {
     <ResultsPanel
       style={{ paddingTop: 50 }}
       title="Your policy is empty"
-      description="You haven't added any reforms to your policy yet. /
-      Change policy parameters and see the results here."
+      description="You haven't added any reforms to your policy yet. Change policy parameters and see the results here."
     />
   );
 }
