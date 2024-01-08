@@ -278,7 +278,9 @@ export default function HouseholdPage(props) {
     );
   } else if (focus === "input.household.taxYear") {
     middle = (
-      <TaxYear /> 
+      <TaxYear 
+        metadata={metadata}
+      /> 
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
     if (!autoCompute) {
