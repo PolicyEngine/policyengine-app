@@ -50,6 +50,10 @@ export default function HouseholdPage(props) {
 
   let middle;
   const focus = searchParams.get("focus") || "";
+  
+  useEffect(() => {
+    console.log(householdInput);
+  }, [householdInput]);
 
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
@@ -239,6 +243,7 @@ export default function HouseholdPage(props) {
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
         autoCompute={autoCompute}
+        year={year}
       />
     );
   } else if (
@@ -264,6 +269,7 @@ export default function HouseholdPage(props) {
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
         autoCompute={autoCompute}
+        year={year}
       />
     );
   } else if (focus === "intro") {
@@ -275,6 +281,7 @@ export default function HouseholdPage(props) {
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
         autoCompute={autoCompute}
+        year={year}
       />
     );
   } else if (focus === "input.household.taxYear") {

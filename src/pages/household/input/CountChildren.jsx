@@ -40,14 +40,8 @@ export function getChildName(index, countryId) {
  * @param {String} countryId Two-letter country ID string
  * @returns {Number} Number of children currently included in situation
  */
-export function getCountChildren(situation, countryId) {
-  let filter = null;
-  if (countryId in childCountFilters) {
-    filter = childCountFilters[countryId];
-  } else {
-    filter = childCountFilters.default;
-  }
-
+export function getCountChildren(situation, countryId, year) {
+  const filter = childCountFilters(countryId, year);
   return Object.values(situation.people).filter(filter).length;
 }
 
@@ -57,17 +51,11 @@ export function getCountChildren(situation, countryId) {
  * @param {String} countryId The two-digit country ID
  * @returns {Object} The updated situation
  */
-export function addChild(situation, countryId) {
+export function addChild(situation, countryId, year) {
   let newSituation = JSON.parse(JSON.stringify(situation));
 
-  let defaultChild = null;
-  if (countryId in defaultChildren) {
-    defaultChild = JSON.parse(JSON.stringify(defaultChildren[countryId]));
-  } else {
-    defaultChild = JSON.parse(JSON.stringify(defaultChildren.default));
-  }
-
-  const childCount = getCountChildren(situation, countryId);
+  const defaultChild = JSON.parse(JSON.stringify(defaultChildren(countryId, year)));
+  const childCount = getCountChildren(situation, countryId, year);
   const childName = getChildName(childCount, countryId);
 
   if (countryId in childAdders) {
@@ -76,6 +64,7 @@ export function addChild(situation, countryId) {
       defaultChild,
       childName,
       childCount,
+      year
     );
   } else {
     newSituation = childAdders.default(
@@ -95,12 +84,12 @@ export function addChild(situation, countryId) {
  * @param {String} countryId A two-letter country ID
  * @returns {Object} The updated household input object
  */
-export function updateChildCount(situation, countChildren, countryId) {
-  while (getCountChildren(situation, countryId) < countChildren) {
-    situation = addChild(situation, countryId);
+export function updateChildCount(situation, countChildren, countryId, year) {
+  while (getCountChildren(situation, countryId, year) < countChildren) {
+    situation = addChild(situation, countryId, year);
   }
   while (getCountChildren(situation, countryId) > countChildren) {
-    const childCount = getCountChildren(situation, countryId);
+    const childCount = getCountChildren(situation, countryId, year);
 
     situation = removePerson(
       situation,
@@ -111,7 +100,7 @@ export function updateChildCount(situation, countChildren, countryId) {
 }
 
 export default function CountChildren(props) {
-  const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
+  const { metadata, householdInput, setHouseholdInput, autoCompute, year } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [formValue, setFormValue] = useState(null);
@@ -124,6 +113,7 @@ export default function CountChildren(props) {
       householdInput,
       numberOfChildren,
       metadata.countryId,
+      year
     );
 
     // Update browser search params
