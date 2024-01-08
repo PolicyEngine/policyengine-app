@@ -9,7 +9,7 @@ import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
 import PoliciesModelledPopup from "./PoliciesModelledPopup";
 import HOUSEHOLD_OUTPUT_TREE from "./tree";
-import React from "react";
+import React, { useEffect } from "react";
 import { message } from "antd";
 import ResultActions from "layout/ResultActions";
 
@@ -43,6 +43,19 @@ export default function HouseholdOutput(props) {
     policyLabel = `${reformLabel} (compared against ${baselineLabel})`;
   }
   let pane;
+  useEffect(() => {
+    if (policyLabel) {
+      if (focus === "householdOutput.netIncome") {
+        document.title = `${policyLabel} | Household net income | PolicyEngine`;
+      } else if (focus === "householdOutput.earnings") {
+        document.title = `${policyLabel} | Earnings variation | PolicyEngine`;
+      } else if (focus === "householdOutput.mtr") {
+        document.title = `${policyLabel} | Marginal tax rates | PolicyEngine`;
+      } else if (focus === "householdOutput.pythonReproducibility") {
+        document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
+      }
+    }
+  }, [policyLabel, focus]);
   if (loading) {
     pane = (
       <>
