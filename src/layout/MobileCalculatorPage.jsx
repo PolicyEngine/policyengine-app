@@ -63,7 +63,6 @@ export default function MobileCalculatorPage(props) {
 
   // Scroll to top every time a user opens a new page
   useEffect(() => {
-    console.log("hello");
     window.scrollTo(0, 0);
   });
 
