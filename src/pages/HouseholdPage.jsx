@@ -46,6 +46,7 @@ export default function HouseholdPage(props) {
   const [error, setError] = useState(null);
   const [autoCompute, setAutoCompute] = useState(false);
   const [isRHPOpen, setIsRHPOpen] = useState(false);
+  const [year, setYear] = useState(defaultYear);
 
   let middle;
   const focus = searchParams.get("focus") || "";
@@ -280,6 +281,8 @@ export default function HouseholdPage(props) {
     middle = (
       <TaxYear 
         metadata={metadata}
+        year={year}
+        setYear={setYear}
       /> 
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
