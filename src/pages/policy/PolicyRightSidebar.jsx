@@ -14,6 +14,7 @@ import style from "../../style";
 import PolicySearch from "./PolicySearch";
 import { Alert, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
+import { defaultYear } from "data/constants";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -50,9 +51,8 @@ function TimePeriodSelector(props) {
     return [...accu, Number(periodObj.value)];
   }, []);
 
-  const curYear = new Date().getFullYear();
-  const defaultPeriod = yearArray.includes(curYear)
-    ? curYear
+  const defaultPeriod = yearArray.includes(defaultYear)
+    ? defaultYear
     : options[0].value;
 
   const [value] = useState(
@@ -328,9 +328,8 @@ export default function PolicyRightSidebar(props) {
         return [...accu, Number(periodObj.name)];
       }, []);
 
-      const curYear = new Date().getFullYear();
-      const defaultTimePeriod = yearArray.includes(curYear)
-        ? curYear
+      const defaultTimePeriod = yearArray.includes(defaultYear)
+        ? defaultYear
         : timeOptions[0].name;
 
       const defaults = {
