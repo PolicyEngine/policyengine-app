@@ -150,6 +150,7 @@ export default function EarningsVariation(props) {
         style={{
           width: 400,
         }}
+        notFoundMessage={"No variables"}
       />
     </div>
   );
