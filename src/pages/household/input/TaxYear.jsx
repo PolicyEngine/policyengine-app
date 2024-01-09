@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Select } from "antd";
+
+import { getNewHouseholdId } from "api/variables";
 import CenteredMiddleColumn from "layout/CenteredMiddleColumn";
 import SearchParamNavButton from "controls/SearchParamNavButton";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
@@ -9,10 +12,13 @@ export default function TaxYear(props) {
     metadata,
     year,
     setYear,
+    householdId,
     householdInput,
     setHouseholdInput
   } = props;
   const prevYearRef = useRef(year);
+  // eslint-disable-next-line no-unused-vars
+  const [searchParams, setSearchParams] = useSearchParams();
   const displayCategory = useDisplayCategory();
 
   // Assign the year to prevYearRef; this will persist
@@ -39,8 +45,25 @@ export default function TaxYear(props) {
         return;
       }
 
-      // Set new household input by updating year
-      setHouseholdInput(updateHouseholdYear(householdInput, prevYear, newYear));
+      // Copy current household into new household
+      let newHousehold = JSON.parse(JSON.stringify(householdInput));
+
+      // Update household year
+      newHousehold = updateHouseholdYear(newHousehold, prevYear, newYear);
+      
+      // Set new household input, enqueuing API call
+      setHouseholdInput(newHousehold);
+      
+      // If the household already had an ID, get a new household ID and search params
+      if (householdId) {
+        getNewHouseholdId(metadata.countryId, newHousehold).then(
+          (householdId) => {
+            let newSearch = new URLSearchParams(window.location.search);
+            newSearch.set("household", householdId);
+            setSearchParams(newSearch);
+          },
+        );
+      }
     }
 
     // Set year to new year

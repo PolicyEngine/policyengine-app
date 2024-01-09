@@ -50,7 +50,7 @@ export default function HouseholdPage(props) {
 
   let middle;
   const focus = searchParams.get("focus") || "";
-  
+
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
     if (focus === "") {
@@ -297,6 +297,7 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         year={year}
         setYear={setYear}
+        householdId={householdId}
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
       /> 
