@@ -27,6 +27,7 @@ export default function HouseholdOutput(props) {
     loading,
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
+    year
   } = props;
   const mobile = useMobile();
 
@@ -69,6 +70,7 @@ export default function HouseholdOutput(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         policyLabel={policyLabel}
+        year={year}
       />
     );
   } else if (focus === "householdOutput.earnings") {
@@ -80,6 +82,7 @@ export default function HouseholdOutput(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         policy={policy}
+        year={year}
       />
     );
   } else if (focus === "householdOutput.mtr") {
@@ -92,6 +95,7 @@ export default function HouseholdOutput(props) {
         householdInput={householdInput}
         policyLabel={policyLabel}
         policy={policy}
+        year={year}
       />
     );
   } else if (focus === "householdOutput.pythonReproducibility") {
@@ -103,6 +107,7 @@ export default function HouseholdOutput(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         householdInput={householdInput}
+        year={year}
       />
     );
   }

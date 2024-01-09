@@ -9,7 +9,6 @@ import { capitalize } from "../../../lang/format";
 import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";
 import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
 import { getValueFromHousehold } from "../../../api/variables";
-import { defaultYear } from "data/constants";
 
 export default function EarningsVariation(props) {
   const {
@@ -18,6 +17,7 @@ export default function EarningsVariation(props) {
     householdReform,
     metadata,
     policy,
+    year
   } = props;
   const [baselineNetIncome, setBaselineNetIncome] = useState(null);
   const [searchParams] = useSearchParams();
@@ -49,7 +49,7 @@ export default function EarningsVariation(props) {
         ];
       validVariables = validVariables.concat(
         Object.keys(firstEntity).filter((variable) =>
-          Array.isArray(firstEntity[variable][defaultYear]),
+          Array.isArray(firstEntity[variable][year]),
         ),
       );
     }
@@ -65,10 +65,10 @@ export default function EarningsVariation(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you["employment_income"] = { [defaultYear]: null };
+    householdData.people.you["employment_income"] = { [year]: null };
     const currentEarnings = getValueFromHousehold(
       "employment_income",
-      defaultYear,
+      year,
       "you",
       householdInput,
       metadata,
@@ -77,7 +77,7 @@ export default function EarningsVariation(props) {
       [
         {
           name: "employment_income",
-          period: defaultYear,
+          period: year,
           min: 0,
           max: Math.max(
             metadata.countryId === "ng" ? 1_200_000 : 200_000,
@@ -165,6 +165,7 @@ export default function EarningsVariation(props) {
         metadata={metadata}
         variable={variable}
         variableLabel={variableLabel}
+        year={year}
       />
     );
   } else if (baselineNetIncome) {
@@ -178,6 +179,7 @@ export default function EarningsVariation(props) {
         variable={variable}
         variableLabel={variableLabel}
         policy={policy}
+        year={year}
       />
     );
   }
