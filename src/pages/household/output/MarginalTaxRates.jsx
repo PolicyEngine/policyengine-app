@@ -18,7 +18,6 @@ import { plotLayoutFont } from "pages/policy/output/utils";
 import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 import { localeCode } from "lang/format";
-import { defaultYear } from "data/constants";
 
 export default function MarginalTaxRates(props) {
   const {
@@ -28,6 +27,7 @@ export default function MarginalTaxRates(props) {
     metadata,
     policyLabel,
     policy,
+    year
   } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();
@@ -45,14 +45,14 @@ export default function MarginalTaxRates(props) {
 
   const currentEarnings = getValueFromHousehold(
     "employment_income",
-    defaultYear,
+    year,
     "you",
     householdInput,
     metadata,
   );
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
-    defaultYear,
+    year,
     "you",
     householdBaseline,
     metadata,
@@ -60,12 +60,12 @@ export default function MarginalTaxRates(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you.employment_income[defaultYear] = null;
+    householdData.people.you.employment_income[year] = null;
     householdData.axes = [
       [
         {
           name: "employment_income",
-          period: defaultYear,
+          period: year,
           min: 0,
           max: Math.max(
             metadata.countryId === "ng" ? 1_200_000 : 200_000,
@@ -154,14 +154,14 @@ export default function MarginalTaxRates(props) {
   if (baselineMtr && !reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
-      defaultYear,
+      year,
       "you",
       baselineMtr,
       metadata,
     );
     const mtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      defaultYear,
+      year,
       "you",
       baselineMtr,
       metadata,
@@ -256,28 +256,28 @@ export default function MarginalTaxRates(props) {
   } else if (baselineMtr && reformMtr) {
     const earningsArray = getValueFromHousehold(
       "employment_income",
-      defaultYear,
+      year,
       "you",
       baselineMtr,
       metadata,
     );
     const baselineMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      defaultYear,
+      year,
       "you",
       baselineMtr,
       metadata,
     );
     const reformMtrArray = getValueFromHousehold(
       "marginal_tax_rate",
-      defaultYear,
+      year,
       "you",
       reformMtr,
       metadata,
     );
     const reformMtrValue = getValueFromHousehold(
       "marginal_tax_rate",
-      defaultYear,
+      year,
       "you",
       householdReform,
       metadata,
