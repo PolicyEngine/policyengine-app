@@ -146,7 +146,7 @@ export default function CountChildren(props) {
       <RadioButton
         keys={[0, 1, 2, 3, 4, 5]}
         labels={["None", "1", "2", "3", "4", "5"]}
-        defaultValue={getCountChildren(householdInput, metadata.countryId)}
+        defaultValue={getCountChildren(householdInput, metadata.countryId, year)}
         value={formValue}
         onChange={(numberOfChildren) => {
           handleChildInputChange(numberOfChildren);
