@@ -86,7 +86,7 @@ export default function PoliciesModelledPopup(props) {
     householdInput,
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
-    year
+    year,
   } = props;
   useEffect(() => {
     const openModal = () => {
@@ -129,7 +129,7 @@ export default function PoliciesModelledPopup(props) {
     householdInput,
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
-    year
+    year,
   ]);
   return null;
 }

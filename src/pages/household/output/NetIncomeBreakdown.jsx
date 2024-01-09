@@ -54,7 +54,7 @@ function VariableArithmetic(props) {
     defaultExpanded,
     childrenOnly,
     forceShowChildValuesIfZero,
-    year
+    year,
   } = props;
   let nodeSign = isAdd;
   const value = getValueFromHousehold(

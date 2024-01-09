@@ -23,7 +23,7 @@ export default function BaselineOnlyChart(props) {
     metadata,
     variable,
     variableLabel,
-    year
+    year,
   } = props;
 
   const earningsArray = getValueFromHousehold(

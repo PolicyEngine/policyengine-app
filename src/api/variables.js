@@ -143,7 +143,7 @@ export function buildVariableTree(variables, variableModules, basicInputs) {
           {
             name: "input.household.taxYear",
             label: "Tax year",
-            index: -3
+            index: -3,
           },
           {
             name: "input.household.maritalStatus",

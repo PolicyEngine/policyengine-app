@@ -36,7 +36,6 @@ export function childCountFilters(countryId, year) {
     return filters[countryId];
   }
   return filters.default;
-
 }
 
 export const childAdders = {

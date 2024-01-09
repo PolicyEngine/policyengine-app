@@ -17,7 +17,7 @@ export default function EarningsVariation(props) {
     householdReform,
     metadata,
     policy,
-    year
+    year,
   } = props;
   const [baselineNetIncome, setBaselineNetIncome] = useState(null);
   const [searchParams] = useSearchParams();

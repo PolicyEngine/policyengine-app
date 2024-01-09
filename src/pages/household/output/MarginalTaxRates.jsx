@@ -27,7 +27,7 @@ export default function MarginalTaxRates(props) {
     metadata,
     policyLabel,
     policy,
-    year
+    year,
   } = props;
   const [baselineMtr, setBaselineMtr] = useState(null);
   const [searchParams] = useSearchParams();

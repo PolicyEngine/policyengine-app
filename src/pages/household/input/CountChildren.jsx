@@ -56,7 +56,9 @@ export function getCountChildren(situation, countryId, year) {
 export function addChild(situation, countryId, year) {
   let newSituation = JSON.parse(JSON.stringify(situation));
 
-  const defaultChild = JSON.parse(JSON.stringify(defaultChildren(countryId, year)));
+  const defaultChild = JSON.parse(
+    JSON.stringify(defaultChildren(countryId, year)),
+  );
   const childCount = getCountChildren(situation, countryId, year);
   const childName = getChildName(childCount, countryId);
 
@@ -66,7 +68,7 @@ export function addChild(situation, countryId, year) {
       defaultChild,
       childName,
       childCount,
-      year
+      year,
     );
   } else {
     newSituation = childAdders.default(
@@ -102,7 +104,8 @@ export function updateChildCount(situation, countChildren, countryId, year) {
 }
 
 export default function CountChildren(props) {
-  const { metadata, householdInput, setHouseholdInput, autoCompute, year } = props;
+  const { metadata, householdInput, setHouseholdInput, autoCompute, year } =
+    props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [formValue, setFormValue] = useState(null);
@@ -115,7 +118,7 @@ export default function CountChildren(props) {
       householdInput,
       numberOfChildren,
       metadata.countryId,
-      year
+      year,
     );
 
     // Update browser search params
@@ -148,7 +151,11 @@ export default function CountChildren(props) {
       <RadioButton
         keys={[0, 1, 2, 3, 4, 5]}
         labels={["None", "1", "2", "3", "4", "5"]}
-        defaultValue={getCountChildren(householdInput, metadata.countryId, year)}
+        defaultValue={getCountChildren(
+          householdInput,
+          metadata.countryId,
+          year,
+        )}
         value={formValue}
         onChange={(numberOfChildren) => {
           handleChildInputChange(numberOfChildren);

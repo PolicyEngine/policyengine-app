@@ -53,7 +53,7 @@ export default function HouseholdRightSidebar(props) {
     autoCompute,
     loading,
     policy,
-    year
+    year,
   } = props;
   const [showReformSearch, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();

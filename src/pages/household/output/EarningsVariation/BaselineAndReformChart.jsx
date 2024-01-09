@@ -26,7 +26,7 @@ export default function BaselineAndReformChart(props) {
     variable,
     variableLabel,
     policy,
-    year
+    year,
   } = props;
 
   const earningsArray = getValueFromHousehold(

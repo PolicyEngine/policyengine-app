@@ -91,7 +91,8 @@ export function setCAMaritalStatus(situation, status, year) {
 }
 
 export default function MaritalStatus(props) {
-  const { metadata, householdInput, setHouseholdInput, autoCompute, year } = props;
+  const { metadata, householdInput, setHouseholdInput, autoCompute, year } =
+    props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getMaritalStatus = {
     uk: getUKMaritalStatus,
@@ -109,7 +110,11 @@ export default function MaritalStatus(props) {
   }[metadata.countryId];
   const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {
-    let newHousehold = setMaritalStatusInHousehold(householdInput, status, year);
+    let newHousehold = setMaritalStatusInHousehold(
+      householdInput,
+      status,
+      year,
+    );
     setHouseholdInput(newHousehold);
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", "input.household.children");
@@ -140,12 +145,12 @@ export default function MaritalStatus(props) {
       }}
     />
   );
-  
+
   let verb = "is";
   if (year < defaultYear) {
     verb = "was";
   } else if (year > defaultYear) {
-    verb = "will be"
+    verb = "will be";
   }
 
   return (

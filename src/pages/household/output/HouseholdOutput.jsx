@@ -27,7 +27,7 @@ export default function HouseholdOutput(props) {
     loading,
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
-    year
+    year,
   } = props;
   const mobile = useMobile();
 

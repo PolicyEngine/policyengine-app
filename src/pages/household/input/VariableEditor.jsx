@@ -26,7 +26,7 @@ export default function VariableEditor(props) {
     setHouseholdInput,
     nextVariable,
     autoCompute,
-    year
+    year,
   } = props;
   const [edited, setEdited] = useState(false);
   const variableName = searchParams.get("focus").split(".").slice(-1)[0];
@@ -51,7 +51,7 @@ export default function VariableEditor(props) {
         householdInput,
         variable,
         entityPlural,
-        year
+        year,
       );
       setHouseholdInput(newHouseholdInput);
     }
@@ -102,8 +102,7 @@ export default function VariableEditor(props) {
         }}
       >
         <h1 style={{ marginBottom: 20, textAlign: "center" }}>
-          What {verb} your{" "}
-          {variable.label.toLowerCase()}?
+          What {verb} your {variable.label.toLowerCase()}?
         </h1>
         <h4 style={{ textAlign: "center", paddingBottom: 10 }}>
           {variable.documentation}
@@ -136,7 +135,7 @@ function HouseholdVariableEntity(props) {
     nextVariable,
     autoCompute,
     setEdited,
-    year
+    year,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name],

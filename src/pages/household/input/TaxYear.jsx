@@ -14,7 +14,7 @@ export default function TaxYear(props) {
     setYear,
     householdId,
     householdInput,
-    setHouseholdInput
+    setHouseholdInput,
   } = props;
   const prevYearRef = useRef(year);
   // eslint-disable-next-line no-unused-vars
@@ -25,9 +25,9 @@ export default function TaxYear(props) {
   // between renders, allowing access to prev year
   useEffect(() => {
     prevYearRef.current = year;
-  }, [year])
+  }, [year]);
 
-  // Replace "name" with "value" in order to conform to antd 
+  // Replace "name" with "value" in order to conform to antd
   const options = metadata.economy_options.time_period.map((time_period) => {
     return { value: time_period.name.toString(), label: time_period.label };
   });
@@ -50,10 +50,10 @@ export default function TaxYear(props) {
 
       // Update household year
       newHousehold = updateHouseholdYear(newHousehold, prevYear, newYear);
-      
+
       // Set new household input, enqueuing API call
       setHouseholdInput(newHousehold);
-      
+
       // If the household already had an ID, get a new household ID and search params
       if (householdId) {
         getNewHouseholdId(metadata.countryId, newHousehold).then(
@@ -68,13 +68,10 @@ export default function TaxYear(props) {
 
     // Set year to new year
     setYear(newYear);
-
   }
 
   return (
-    <CenteredMiddleColumn
-      title="Which tax year would you like to calculate?"
-    >
+    <CenteredMiddleColumn title="Which tax year would you like to calculate?">
       <Select
         showSearch
         optionFilterProp="label"
@@ -93,14 +90,11 @@ export default function TaxYear(props) {
 }
 
 function updateHouseholdYear(householdInput, prevYear, newYear) {
-
   // Copy householdInput into mutable variable
   let editedHousehold = JSON.parse(JSON.stringify(householdInput));
 
   // Variable skip list
-  const skipList = [
-    "members"
-  ];
+  const skipList = ["members"];
 
   // Map over all plural entity terms...
   for (const entityPlural in editedHousehold) {
@@ -121,11 +115,9 @@ function updateHouseholdYear(householdInput, prevYear, newYear) {
 
         // Add it at the new one
         editedHousehold[entityPlural][entity][variable][newYear] = currentVal;
-
       }
     }
   }
 
   return editedHousehold;
-
 }

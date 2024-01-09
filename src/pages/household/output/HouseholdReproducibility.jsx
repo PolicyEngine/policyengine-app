@@ -27,8 +27,7 @@ export default function HouseholdReproducibility(props) {
       )) {
         if (variable !== "members") {
           if (
-            householdInputCopy[entityPlural][entity][variable][year] ===
-            null
+            householdInputCopy[entityPlural][entity][variable][year] === null
           ) {
             delete householdInputCopy[entityPlural][entity][variable];
           }
