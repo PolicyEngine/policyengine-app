@@ -1,5 +1,4 @@
 import Button from "./Button";
-
 export default function ArrowButton(props) {
   const { direction, onClick, type, style } = props;
 
@@ -15,7 +14,12 @@ export default function ArrowButton(props) {
       size={"60px"}
       onClick={onClick}
       type={type}
-      style={style}
+      style={{
+        ...style,
+        outline: "none",
+        boxShadow: "none",
+        userSelect: "none",
+      }}
       hoverStart={direction === "left" ? "right" : "left"}
     />
   );
