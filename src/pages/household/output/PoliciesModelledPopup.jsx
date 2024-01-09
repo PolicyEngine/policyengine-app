@@ -3,6 +3,7 @@ import { Modal } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getValueFromHousehold } from "../../../api/variables";
+import { defaultYear } from "data/constants";
 import Button from "../../../controls/Button";
 
 function PoliciesModelledChecklist(props) {
@@ -18,7 +19,7 @@ function PoliciesModelledChecklist(props) {
       // Check if the household input matches the filter
       const actualValue = getValueFromHousehold(
         variable,
-        2024,
+        defaultYear,
         "your household",
         householdInput,
         metadata,

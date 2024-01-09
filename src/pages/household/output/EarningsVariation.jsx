@@ -5,10 +5,11 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import { useSearchParams } from "react-router-dom";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import SearchOptions from "../../../controls/SearchOptions";
-import { capitalize } from "../../../api/language";
+import { capitalize } from "../../../lang/format";
 import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";
 import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
 import { getValueFromHousehold } from "../../../api/variables";
+import { defaultYear } from "data/constants";
 
 export default function EarningsVariation(props) {
   const {
@@ -48,7 +49,7 @@ export default function EarningsVariation(props) {
         ];
       validVariables = validVariables.concat(
         Object.keys(firstEntity).filter((variable) =>
-          Array.isArray(firstEntity[variable][2024]),
+          Array.isArray(firstEntity[variable][defaultYear]),
         ),
       );
     }
@@ -64,10 +65,10 @@ export default function EarningsVariation(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
-    householdData.people.you["employment_income"] = { 2024: null };
+    householdData.people.you["employment_income"] = { [defaultYear]: null };
     const currentEarnings = getValueFromHousehold(
       "employment_income",
-      "2024",
+      defaultYear,
       "you",
       householdInput,
       metadata,
@@ -76,7 +77,7 @@ export default function EarningsVariation(props) {
       [
         {
           name: "employment_income",
-          period: "2024",
+          period: defaultYear,
           min: 0,
           max: Math.max(
             metadata.countryId === "ng" ? 1_200_000 : 200_000,

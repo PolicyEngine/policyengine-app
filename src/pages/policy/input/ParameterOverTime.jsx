@@ -6,7 +6,7 @@ import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { localeCode } from "api/language";
+import { localeCode } from "lang/format";
 
 export default function ParameterOverTime(props) {
   const { parameter, policy, metadata } = props;
