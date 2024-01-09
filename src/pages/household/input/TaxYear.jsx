@@ -3,7 +3,6 @@ import { Select } from "antd";
 import CenteredMiddleColumn from "layout/CenteredMiddleColumn";
 import SearchParamNavButton from "controls/SearchParamNavButton";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
-import { updateHousehold } from "pages/HouseholdPage";
 
 export default function TaxYear(props) {
   const {

@@ -3,7 +3,6 @@ import { Modal } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getValueFromHousehold } from "../../../api/variables";
-import { defaultYear } from "data/constants";
 import Button from "../../../controls/Button";
 
 function PoliciesModelledChecklist(props) {

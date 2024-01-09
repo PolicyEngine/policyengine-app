@@ -13,7 +13,6 @@ import {
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
-import { defaultStartDate } from "data/constants";
 
 const UpArrow = () => (
   <CaretUpFilled
@@ -178,7 +177,6 @@ function VariableArithmetic(props) {
   if (typeof adds === "string") {
     // adds is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[adds];
-    console.log(parameter);
     adds = getParameterAtInstant(parameter, `${year}-01-01`);
   }
   let subtracts = variable.subtracts || [];
@@ -186,7 +184,6 @@ function VariableArithmetic(props) {
   if (typeof subtracts === "string") {
     // subtracts is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[subtracts];
-    console.log(parameter);
     subtracts = getParameterAtInstant(parameter, `${year}-01-01`);
   }
   const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
