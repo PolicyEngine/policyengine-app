@@ -319,6 +319,7 @@ export default function HouseholdPage(props) {
           loading={loading}
           hasShownHouseholdPopup={hasShownHouseholdPopup}
           setHasShownHouseholdPopup={setHasShownHouseholdPopup}
+          year={year}
         />
       </>
     );
@@ -372,6 +373,7 @@ export default function HouseholdPage(props) {
             autoCompute={autoCompute}
             loading={loading}
             policy={policy}
+            year={year}
           />
         }
         noMiddleScroll={
