@@ -5,10 +5,9 @@ import Button from "../../../controls/Button";
 import { Switch } from "antd";
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
-import { defaultYear } from "data/constants";
 
 export default function HouseholdReproducibility(props) {
-  const { policy, metadata, householdInput } = props;
+  const { policy, metadata, householdInput, year } = props;
   const [earningVariation, setEarningVariation] = useState(false);
 
   let lines = ["from " + metadata.package + " import Simulation"];
@@ -28,7 +27,7 @@ export default function HouseholdReproducibility(props) {
       )) {
         if (variable !== "members") {
           if (
-            householdInputCopy[entityPlural][entity][variable][defaultYear] ===
+            householdInputCopy[entityPlural][entity][variable][year] ===
             null
           ) {
             delete householdInputCopy[entityPlural][entity][variable];
@@ -69,7 +68,7 @@ export default function HouseholdReproducibility(props) {
     ")",
     "",
     "simulation.trace = True",
-    `simulation.calculate("household_net_income", ${defaultYear})`,
+    `simulation.calculate("household_net_income", ${year})`,
     "simulation.tracer.print_computation_log()",
   ]);
 
