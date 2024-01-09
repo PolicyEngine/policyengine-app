@@ -200,7 +200,10 @@ function PolicyDisplay(props) {
   const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } =
     props;
   policy.reform.data = Object.fromEntries(
-    Object.entries(policy.reform.data).filter(([key, value]) => !(Object.keys(value).length === 0 && value.constructor === Object))
+    Object.entries(policy.reform.data).filter(
+      ([key, value]) =>
+        !(Object.keys(value).length === 0 && value.constructor === Object),
+    ),
   );
   const reformLength = Object.keys(policy.reform.data).length;
   const [searchParams, setSearchParams] = useSearchParams();
