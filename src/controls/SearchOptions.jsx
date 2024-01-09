@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Empty } from 'antd';
 
 export default function SearchOptions(props) {
-  const { options, defaultValue, onSelect, onSearch, placeholder, style } =
+  const { options, defaultValue, onSelect, onSearch, placeholder, style, notFoundMessage } =
     props;
   const [value, setValue] = useState(defaultValue);
   // eslint-disable-next-line
@@ -40,14 +40,15 @@ export default function SearchOptions(props) {
       }
       value={value}
       notFoundContent={
+        notFoundMessage && (
         <Empty 
           image={Empty.PRESENTED_IMAGE_SIMPLE} 
           style={{marginTop:8,marginBottom:8}}
           imageStyle={{height:35}}
           description={
-            <span>No variables</span>
+            <span>{notFoundMessage}</span>
           }
-        />
+        />)
       }
     />
   );
