@@ -1,7 +1,15 @@
+import { defaultYear } from "./constants";
+
+const DEFAULT_AGE = 40;
+
 export const defaultHouseholds = {
   uk: {
     people: {
-      you: {},
+      you: {
+        age: {
+          [defaultYear]: DEFAULT_AGE
+        }
+      },
     },
     benunits: {
       "your immediate family": {
@@ -16,7 +24,11 @@ export const defaultHouseholds = {
   },
   us: {
     people: {
-      you: {},
+      you: {
+        age: {
+          [defaultYear]: DEFAULT_AGE
+        }
+      },
     },
     families: {
       "your family": {
@@ -46,7 +58,11 @@ export const defaultHouseholds = {
   },
   default: {
     people: {
-      you: {},
+      you: {
+        age: {
+          [defaultYear]: DEFAULT_AGE
+        }
+      },
     },
     households: {
       "your household": {
