@@ -7,8 +7,8 @@ export const defaultHouseholds = {
     people: {
       you: {
         age: {
-          [defaultYear]: DEFAULT_AGE
-        }
+          [defaultYear]: DEFAULT_AGE,
+        },
       },
     },
     benunits: {
@@ -26,8 +26,8 @@ export const defaultHouseholds = {
     people: {
       you: {
         age: {
-          [defaultYear]: DEFAULT_AGE
-        }
+          [defaultYear]: DEFAULT_AGE,
+        },
       },
     },
     families: {
@@ -60,8 +60,8 @@ export const defaultHouseholds = {
     people: {
       you: {
         age: {
-          [defaultYear]: DEFAULT_AGE
-        }
+          [defaultYear]: DEFAULT_AGE,
+        },
       },
     },
     households: {
