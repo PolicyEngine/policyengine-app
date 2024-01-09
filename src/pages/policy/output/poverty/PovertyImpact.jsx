@@ -1,24 +1,21 @@
 import React, { useContext, useEffect } from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
-import { formatPercent, localeCode } from "../../../api/language";
-import { HoverCardContext } from "../../../layout/HoverCard";
-import style from "../../../style";
+import { ChartLogo } from "../../../../api/charts";
+import { formatPercent, localeCode } from "../../../../lang/format";
+import { HoverCardContext } from "../../../../layout/HoverCard";
+import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import {
   PovertyChangeContext,
   PovertyChangeProvider,
 } from "./PovertyChangeContext";
-import ImpactChart, { relativeChangeMessage } from "./ImpactChart";
-import { title } from "./PovertyImpact";
+import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
+import { title, description } from "./common";
 
-// this function is called in this file with povertyType={"poverty"} from
-// DeepPovertyImpactByGender with povertyType={"deep poverty"}
 export function ImpactPlot(props) {
   const {
     povertyType,
-    genderImpact,
-    allImpact,
+    povertyImpact,
     povertyLabels,
     povertyChanges,
     labelToKey,
@@ -27,24 +24,17 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-
   const formatPer = (n) =>
-    formatPercent(n, metadata, {
+    formatPercent(n, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });
   const hoverMessage = (x) => {
-    const baseline =
-      x === "All"
-        ? allImpact[labelToKey[x]].baseline
-        : genderImpact[labelToKey[x]].baseline;
-    const reform =
-      x === "All"
-        ? allImpact[labelToKey[x]].reform
-        : genderImpact[labelToKey[x]].reform;
     const obj = `the percentage of ${
-      x === "All" ? "people" : { male: "men", female: "women" }[x.toLowerCase()]
+      x === "All" ? "people" : x.toLowerCase()
     } in ${povertyType}`;
+    const baseline = povertyImpact[labelToKey[x]].baseline;
+    const reform = povertyImpact[labelToKey[x]].reform;
     const change = reform / baseline - 1;
     return relativeChangeMessage("This reform", obj, change, 0.001, metadata, {
       baseline: baseline,
@@ -52,6 +42,7 @@ export function ImpactPlot(props) {
       formatter: formatPer,
     });
   };
+
   const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
   useEffect(() => {
     addChanges(povertyChanges);
@@ -85,7 +76,7 @@ export function ImpactPlot(props) {
       ]}
       layout={{
         yaxis: {
-          title: "Relative change",
+          title: `Relative change in ${povertyType} rate`,
           tickformat: "+,.1%",
           range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },
@@ -109,7 +100,7 @@ export function ImpactPlot(props) {
           b: 100,
           r: 0,
         },
-        height: mobile ? 350 : 450,
+        height: mobile ? 300 : 500,
         ...plotLayoutFont,
       }}
       config={{
@@ -138,50 +129,28 @@ export function ImpactPlot(props) {
   );
 }
 
-export function csv(genderImpact, allImpact, povertyLabels, labelToKey) {
-  const header = ["Sex", "Baseline", "Reform", "Change"];
-  const data = [
-    header,
-    ...povertyLabels.map((label) => {
-      const baseline =
-        label === "All"
-          ? allImpact[labelToKey[label]].baseline
-          : genderImpact[labelToKey[label]].baseline;
-      const reform =
-        label === "All"
-          ? allImpact[labelToKey[label]].reform
-          : genderImpact[labelToKey[label]].reform;
-      const change = reform / baseline - 1;
-      return [label, baseline, reform, change];
-    }),
-  ];
-  return data;
-}
-
-const description = (
-  <p>
-    The chart above shows the relative change in the poverty rate for each sex.
-  </p>
-);
-
-export default function povertyImpactByGender(props) {
+export default function povertyImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
-  const genderImpact = impact.poverty_by_gender.poverty;
-  const allImpact = impact.poverty.poverty;
-  const malePovertyChange =
-    genderImpact.male.reform / genderImpact.male.baseline - 1;
-  const femalePovertyChange =
-    genderImpact.female.reform / genderImpact.female.baseline - 1;
-  const totalPovertyChange = allImpact.all.reform / allImpact.all.baseline - 1;
+  const povertyImpact = impact.poverty.poverty;
+  const childPovertyChange =
+    povertyImpact.child.reform / povertyImpact.child.baseline - 1;
+  const adultPovertyChange =
+    povertyImpact.adult.reform / povertyImpact.adult.baseline - 1;
+  const seniorPovertyChange =
+    povertyImpact.senior.reform / povertyImpact.senior.baseline - 1;
+  const totalPovertyChange =
+    povertyImpact.all.reform / povertyImpact.all.baseline - 1;
   const povertyChanges = [
-    malePovertyChange,
-    femalePovertyChange,
+    childPovertyChange,
+    adultPovertyChange,
+    seniorPovertyChange,
     totalPovertyChange,
   ];
-  const povertyLabels = ["Male", "Female", "All"];
+  const povertyLabels = ["Children", "Working-age adults", "Seniors", "All"];
   const labelToKey = {
-    Male: "male",
-    Female: "female",
+    Children: "child",
+    "Working-age adults": "adult",
+    Seniors: "senior",
     All: "all",
   };
   const chart = (
@@ -189,17 +158,16 @@ export default function povertyImpactByGender(props) {
       <ImpactChart
         title={title(
           policyLabel,
-          "the poverty rate",
-          allImpact.all.baseline,
-          allImpact.all.reform,
+          false,
+          povertyImpact.all.baseline,
+          povertyImpact.all.reform,
           metadata,
         )}
-        description={description}
+        description={description(metadata.countryId, false)}
       >
         <ImpactPlot
           povertyType={"poverty"}
-          genderImpact={genderImpact}
-          allImpact={allImpact}
+          povertyImpact={povertyImpact}
           povertyLabels={povertyLabels}
           povertyChanges={povertyChanges}
           labelToKey={labelToKey}
@@ -210,8 +178,18 @@ export default function povertyImpactByGender(props) {
       </ImpactChart>
     </PovertyChangeProvider>
   );
-  return {
-    chart: chart,
-    csv: () => csv(genderImpact, allImpact, povertyLabels, labelToKey),
+  const csv = () => {
+    const header = ["Age Group", "Baseline", "Reform", "Change"];
+    const data = [
+      header,
+      ...povertyLabels.map((label) => {
+        const baseline = povertyImpact[labelToKey[label]].baseline;
+        const reform = povertyImpact[labelToKey[label]].reform;
+        const change = reform / baseline - 1;
+        return [label, baseline, reform, change];
+      }),
+    ];
+    return data;
   };
+  return { chart: chart, csv: csv };
 }

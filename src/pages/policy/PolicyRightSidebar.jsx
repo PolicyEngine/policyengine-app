@@ -306,16 +306,27 @@ export default function PolicyRightSidebar(props) {
       });
     } else {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", "policyOutput");
+      newSearch.set("focus", "policyOutput.policyBreakdown");
       setSearchParams(newSearch);
     }
   };
 
   useEffect(() => {
     if (!region || !timePeriod || !reformPolicyId || !baselinePolicyId) {
+      const timeOptions = metadata.economy_options.time_period;
+
+      const yearArray = timeOptions.reduce((accu, periodObj) => {
+        return [...accu, Number(periodObj.name)];
+      }, []);
+
+      const curYear = new Date().getFullYear();
+      const defaultTimePeriod = yearArray.includes(curYear)
+        ? curYear
+        : timeOptions[0].name;
+
       const defaults = {
         region: metadata.economy_options.region[0].name,
-        timePeriod: metadata.economy_options.time_period[0].name,
+        timePeriod: defaultTimePeriod,
         baseline: metadata.current_law_id,
       };
       let newSearch = copySearchParams(searchParams);

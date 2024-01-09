@@ -1,40 +1,19 @@
-import averageImpactByDecile from "./AverageImpactByDecile";
-import averageImpactByWealthDecile from "./AverageImpactByWealthDecile";
-import budgetaryImpact from "./BudgetaryImpact";
+import averageImpactByDecile from "./decile/AverageImpactByDecile";
+import averageImpactByWealthDecile from "./decile/AverageImpactByWealthDecile";
+import budgetaryImpact from "./budget/BudgetaryImpact";
 // import cliffImpact from "./CliffImpact";
-import deepPovertyImpact from "./DeepPovertyImpact";
-import deepPovertyImpactByGender from "./DeepPovertyImpactByGender";
-import detailedBudgetaryImpact from "./DetailedBudgetaryImpact";
+import deepPovertyImpact from "./poverty/DeepPovertyImpact";
+import deepPovertyImpactByGender from "./poverty/DeepPovertyImpactByGender";
+import detailedBudgetaryImpact from "./budget/DetailedBudgetaryImpact";
 import inequalityImpact from "./InequalityImpact";
-import intraDecileImpact from "./IntraDecileImpact";
-import intraWealthDecileImpact from "./IntraWealthDecileImpact";
-import povertyImpact from "./PovertyImpact";
-import povertyImpactByGender from "./PovertyImpactByGender";
-import povertyImpactByRace from "./PovertyImpactByRace";
-import relativeImpactByDecile from "./RelativeImpactByDecile";
-import relativeImpactByWealthDecile from "./RelativeImpactByWealthDecile";
+import intraDecileImpact from "./decile/IntraDecileImpact";
+import intraWealthDecileImpact from "./decile/IntraWealthDecileImpact";
+import povertyImpact from "./poverty/PovertyImpact";
+import povertyImpactByGender from "./poverty/PovertyImpactByGender";
+import povertyImpactByRace from "./poverty/PovertyImpactByRace";
+import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
+import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
-
-export const impactLabels = {
-  netIncome: "Budgetary impact",
-  detailedBudgetaryImpact: "Budgetary impact by program",
-  decileAverageImpact: "Absolute impact by income decile",
-  wealthDecileAverageImpact: "Absolute impact by wealth decile",
-  decileRelativeImpact: "Relative impact by income decile",
-  wealthDecileRelativeImpact: "Relative impact by wealth decile",
-  intraDecileImpact: "Outcomes by income decile",
-  intraWealthDecileImpact: "Outcomes by wealth decile",
-  povertyImpact: "Poverty impact by age",
-  deepPovertyImpact: "Deep poverty impact by age",
-  genderPovertyImpact: "Poverty impact by sex",
-  genderDeepPovertyImpact: "Deep poverty impact by sex",
-  racialPovertyImpact: "Poverty impact by race and ethnicity",
-  inequalityImpact: "Income inequality impact",
-  // cliffImpact: "Cliff impact",
-  codeReproducibility: "Reproduce in Python",
-  analysis: "Analysis",
-  laborSupplyImpact: "Labor supply impact",
-};
 
 const map = {
   netIncome: budgetaryImpact,

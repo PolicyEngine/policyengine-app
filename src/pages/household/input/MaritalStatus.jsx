@@ -6,6 +6,7 @@ import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
+import { defaultYear } from "data/constants";
 
 function getUKMaritalStatus(situation) {
   const partnerName = "your partner";
@@ -19,16 +20,16 @@ function getUKMaritalStatus(situation) {
 export function setUKMaritalStatus(situation, status) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2024: 40 },
+    age: { [defaultYear]: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
     situation.benunits["your immediate family"].is_married = {
-      2024: true,
+      [defaultYear]: true,
     };
-    situation.benunits["your immediate family"].is_married["2024"] = true;
+    situation.benunits["your immediate family"].is_married[defaultYear] = true;
     situation.households["your household"].members.push(partnerName);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
@@ -48,7 +49,7 @@ function getUSMaritalStatus(situation) {
 export function setUSMaritalStatus(situation, status) {
   const currentStatus = getUSMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2024: 40 },
+    age: { [defaultYear]: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -76,7 +77,7 @@ function getCAMaritalStatus(situation) {
 export function setCAMaritalStatus(situation, status) {
   const currentStatus = getCAMaritalStatus(situation);
   const defaultPartner = {
-    age: { 2024: 40 },
+    age: { [defaultYear]: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {

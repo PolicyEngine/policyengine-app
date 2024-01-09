@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 
-import { capitalize, localeCode } from "../../../api/language";
+import { capitalize, localeCode } from "../../../lang/format";
 
 import {
   currencyMap,
@@ -13,6 +13,7 @@ import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";
 import StableInputNumber from "controls/StableInputNumber";
+import { defaultYear } from "data/constants";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -33,12 +34,18 @@ export default function VariableEditor(props) {
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
-    (entity) => householdInput[entityPlural][entity][variable.name],
+    (entity) => householdInput[entityPlural][entity][variableName],
   );
 
-  // Add the variable to the relevant portions of the household input object
+  // The variable must be present in all entities. The following effect is
+  // executed whenever the variable is missing from some entities in the
+  // household. addVariable is called to ensure that the variable is added to
+  // all entities.
   useEffect(() => {
-    if (!possibleEntities.length) {
+    if (
+      possibleEntities.length !==
+      Object.keys(householdInput[entityPlural]).length
+    ) {
       const newHouseholdInput = addVariable(
         householdInput,
         variable,
@@ -320,8 +327,8 @@ function HouseholdVariableEntityInput(props) {
 }
 
 /**
- * Adds the VariableEditor's focus variable to a household input object
- * and returns the resulting object
+ * Adds the VariableEditor's focus variable to entities in the household input
+ * object in which it is absent and returns the resulting object
  * @param {Object} householdInput The household input object passed as a param
  * to VariableEditor
  * @param {Object} variable The relevant variable metadata
@@ -350,13 +357,13 @@ export function addVariable(householdInput, variable, entityPlural) {
             // Then add it to the relevant part of the situation, along with
             // its default value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              2024: variable.defaultValue,
+              [defaultYear]: variable.defaultValue,
             };
           } else {
             // Otherwise, add it to the relevant part of the situation, along with
             // a null value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              2024: null,
+              [defaultYear]: null,
             };
           }
         }

@@ -3,7 +3,7 @@ import style from "../style";
 import useMobile from "./Responsive";
 
 export default function BottomCarousel(props) {
-  const { selected, options, bottomText } = props;
+  const { selected, options, bottomElements } = props;
   const mobile = useMobile();
   const currentIndex = options.map((option) => option.name).indexOf(selected);
   const previous = options[currentIndex - 1] || {};
@@ -17,7 +17,7 @@ export default function BottomCarousel(props) {
         position: "absolute",
         bottom: mobile ? "25vh" : 0,
         display: "flex",
-        height: 80,
+        height: 81,
         left: mobile ? 0 : "25%",
         width: mobile ? "100%" : "50%",
         alignItems: "center",
@@ -28,7 +28,7 @@ export default function BottomCarousel(props) {
       }}
     >
       {!mobile && (
-        <p style={{ paddingLeft: 50, paddingTop: 20 }}>{bottomText}</p>
+        <div style={{ paddingLeft: 50, paddingTop: 20 }}>{bottomElements}</div>
       )}
       <div
         style={{

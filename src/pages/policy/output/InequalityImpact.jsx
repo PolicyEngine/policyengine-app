@@ -5,7 +5,7 @@ import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
-import { formatPercent, localeCode } from "api/language";
+import { formatPercent, localeCode } from "lang/format";
 
 function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
@@ -20,7 +20,7 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const formatPer = (x) =>
-    formatPercent(x, metadata, {
+    formatPercent(x, metadata.countryId, {
       minimumFractionDigits: 1,
       maximumFractionDigits: 1,
     });
@@ -148,14 +148,14 @@ function title(metricChanges, policyLabel, metadata) {
         : "have an ambiguous effect on";
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
-  const msg = `${policyLabel} would ${signTerm} inequality${regionPhrase}`;
+  const msg = `${policyLabel} would ${signTerm} income inequality${regionPhrase}`;
   return msg;
 }
 
 const description = (
   <p>
-    The chart above shows how this policy reform affects different measures of
-    income inequality.
+    PolicyEngine reports income inequality based on the distribution of net
+    income after taxes and transfers.
   </p>
 );
 

@@ -6,26 +6,30 @@ export default function CodeBlock({ lines, language }) {
     <Highlight theme={themes.vsDark} code={code} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={style}>
-          {tokens.map((line, i) => (
-            <tr key={i} {...getLineProps({ line, key: i })}>
-              <td
-                style={{
-                  textAlign: "right",
-                  paddingRight: "1em",
-                  paddingLeft: "1.5em",
-                  userSelect: "none",
-                  opacity: "0.5",
-                }}
-              >
-                {i + 1}
-              </td>
-              <td>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token })} />
-                ))}
-              </td>
-            </tr>
-          ))}
+          <table>
+            <tbody>
+              {tokens.map((line, i) => (
+                <tr key={i} {...getLineProps({ line, key: i })}>
+                  <td
+                    style={{
+                      textAlign: "right",
+                      paddingRight: "1em",
+                      paddingLeft: "1.5em",
+                      userSelect: "none",
+                      opacity: "0.5",
+                    }}
+                  >
+                    {i + 1}
+                  </td>
+                  <td>
+                    {line.map((token, key) => (
+                      <span key={key} {...getTokenProps({ token })} />
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </pre>
       )}
     </Highlight>

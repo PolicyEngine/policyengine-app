@@ -12,8 +12,9 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
-import { capitalize } from "../../../api/language";
+import { capitalize } from "../../../lang/format";
 import { formatVariableValue } from "../../../api/variables";
+import { defaultStartDate, defaultEndDate } from "data/constants";
 
 const { RangePicker } = DatePicker;
 
@@ -22,9 +23,8 @@ export default function ParameterEditor(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const parameter = metadata.parameters[parameterName];
-  const currentYear = new Date().getFullYear();
-  const [startDate, setStartDate] = useState(currentYear + "-01-01");
-  const [endDate, setEndDate] = useState(currentYear + 5 + "-12-31");
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
   const startValue = getParameterAtInstant(
     getReformedParameter(parameter, policy.reform.data),
     startDate,

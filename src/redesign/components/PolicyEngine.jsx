@@ -20,8 +20,8 @@ import Header from "./Header";
 import Testimonials from "./Testimonials";
 import CalculatorInterstitial from "./CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
-import loc_en_gb from "../../plotly_locales/locale-en-gb.js";
-import loc_en_us from "../../plotly_locales/locale-en-us.js";
+import loc_en_gb from "../../lang/plotly_locales/locale-en-gb.js";
+import loc_en_us from "../../lang/plotly_locales/locale-en-us.js";
 import APIDocumentationPage from "./APIDocumentationPage";
 import CookieConsent from "layout/CookieConsent";
 

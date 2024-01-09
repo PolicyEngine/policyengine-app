@@ -1,7 +1,8 @@
 import React from "react";
-import ImpactChart from "./ImpactChart";
-import { ImpactPlot, title } from "./PovertyImpact";
+import ImpactChart from "../ImpactChart";
+import { ImpactPlot } from "./PovertyImpact";
 import { PovertyChangeProvider } from "./PovertyChangeContext";
+import { title, description } from "./common";
 
 export default function deepPovertyImpact(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
@@ -27,23 +28,17 @@ export default function deepPovertyImpact(props) {
     Seniors: "senior",
     All: "all",
   };
-  const description = (
-    <p>
-      The chart above shows the relative change in the deep poverty rate for
-      each age group.
-    </p>
-  );
   const chart = (
     <PovertyChangeProvider>
       <ImpactChart
         title={title(
           policyLabel,
-          "the deep poverty rate",
+          true,
           deepPovertyImpact.all.baseline,
           deepPovertyImpact.all.reform,
           metadata,
         )}
-        description={description}
+        description={description(metadata.countryId, true)}
       >
         <ImpactPlot
           povertyType={"deep poverty"}
