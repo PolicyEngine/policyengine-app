@@ -51,10 +51,6 @@ export default function HouseholdPage(props) {
   let middle;
   const focus = searchParams.get("focus") || "";
   
-  useEffect(() => {
-    console.log(householdInput);
-  }, [householdInput]);
-
   // If we've landed on the page without a focus, point at the intro page.
   useEffect(() => {
     if (focus === "") {
@@ -218,6 +214,17 @@ export default function HouseholdPage(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId, policy.reform, metadata]);
+
+  // If page is being accessed with a household ID, set year to be
+  // year currently present within household; only do this at first render
+  useEffect(() => {
+    if (householdId && householdInput) {
+      const householdYear = getHouseholdYear(householdInput);
+      if (householdYear) {
+        setYear(householdYear);
+      }
+    }
+  }, [householdId, householdInput]);
 
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
