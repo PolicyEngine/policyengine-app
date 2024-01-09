@@ -17,8 +17,9 @@ export default function ArrowButton(props) {
       type={type}
       style={{
         ...style,
-        transition: "none",
-        backgroundColor: styles.colors.TEAL_PRESSED,
+        outline: "none",
+        boxShadow: "none",
+        userSelect: "none",
       }}
       hoverStart={direction === "left" ? "right" : "left"}
     />
