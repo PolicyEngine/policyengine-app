@@ -88,7 +88,7 @@ export function updateChildCount(situation, countChildren, countryId, year) {
   while (getCountChildren(situation, countryId, year) < countChildren) {
     situation = addChild(situation, countryId, year);
   }
-  while (getCountChildren(situation, countryId) > countChildren) {
+  while (getCountChildren(situation, countryId, year) > countChildren) {
     const childCount = getCountChildren(situation, countryId, year);
 
     situation = removePerson(
