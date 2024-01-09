@@ -17,7 +17,17 @@ export default function PolicyBreakdown(props) {
   const budgetaryImpact = impact.budget.budgetary_impact;
   const povertyOverview = impact.poverty.poverty.all;
   const decileOverview = impact.intra_decile.all;
-  const povertyRateChange = povertyOverview.reform - povertyOverview.baseline;
+  let povertyRateChange = null;
+  if (povertyOverview.baseline === 0) {
+    console.error(
+      "PolicyBreakdown: baseline poverty rate reported as 0; API error likely",
+    );
+    povertyRateChange = Infinity;
+  } else {
+    povertyRateChange =
+      (povertyOverview.reform - povertyOverview.baseline) /
+      povertyOverview.baseline;
+  }
 
   const listItems = [
     {
