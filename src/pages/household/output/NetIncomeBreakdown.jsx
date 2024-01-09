@@ -55,6 +55,7 @@ function VariableArithmetic(props) {
     defaultExpanded,
     childrenOnly,
     forceShowChildValuesIfZero,
+    year
   } = props;
   let nodeSign = isAdd;
   const value = getValueFromHousehold(
@@ -177,14 +178,16 @@ function VariableArithmetic(props) {
   if (typeof adds === "string") {
     // adds is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[adds];
-    adds = getParameterAtInstant(parameter, defaultStartDate);
+    console.log(parameter);
+    adds = getParameterAtInstant(parameter, `${year}-01-01`);
   }
   let subtracts = variable.subtracts || [];
   // Check if 'subtracts' is a string
   if (typeof subtracts === "string") {
     // subtracts is a parameter name (e.g. income.tax.groups). Find its value
     const parameter = metadata.parameters[subtracts];
-    subtracts = getParameterAtInstant(parameter, defaultStartDate);
+    console.log(parameter);
+    subtracts = getParameterAtInstant(parameter, `${year}-01-01`);
   }
   const childAddNodes = adds.filter(shouldShowVariable).map((variable) => (
     <VariableArithmetic
