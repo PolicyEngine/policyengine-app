@@ -290,6 +290,8 @@ export default function HouseholdPage(props) {
         metadata={metadata}
         year={year}
         setYear={setYear}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
       /> 
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
