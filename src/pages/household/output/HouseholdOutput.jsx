@@ -52,6 +52,7 @@ export default function HouseholdOutput(props) {
             householdInput={householdInput}
             hasShownHouseholdPopup={hasShownHouseholdPopup}
             setHasShownHouseholdPopup={setHasShownHouseholdPopup}
+            year={year}
           />
         )}
         <LoadingCentered message="Computing your household's taxes and benefits" />
