@@ -6,6 +6,8 @@ import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
+import { formatVerbTime } from "lang/format";
+import { defaultYear } from "data/constants";
 
 function getUKMaritalStatus(situation) {
   const partnerName = "your partner";
@@ -138,8 +140,16 @@ export default function MaritalStatus(props) {
       }}
     />
   );
+  
+  let verb = "is";
+  if (year < defaultYear) {
+    verb = "was";
+  } else if (year > defaultYear) {
+    verb = "will be"
+  }
+
   return (
-    <CenteredMiddleColumn title="What is your marital status?">
+    <CenteredMiddleColumn title={`What ${verb} your marital status?`}>
       <>
         {radioButtonComponent}
         <SearchParamNavButton

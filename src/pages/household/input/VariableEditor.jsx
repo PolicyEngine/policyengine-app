@@ -13,6 +13,7 @@ import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";
 import StableInputNumber from "controls/StableInputNumber";
+import { defaultYear } from "data/constants";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -76,6 +77,18 @@ export default function VariableEditor(props) {
       />
     );
   });
+
+  // Format the verb used to describe the variable
+  let number = variable.label.endsWith("s") ? "plural" : "singular";
+  let verb = number === "plural" ? "are" : "is";
+  if (year > defaultYear) {
+    verb = "will be";
+  } else if (year < defaultYear && number === "plural") {
+    verb = "were";
+  } else if (year < defaultYear) {
+    verb = "was";
+  }
+
   return (
     <>
       <div
@@ -89,7 +102,7 @@ export default function VariableEditor(props) {
         }}
       >
         <h1 style={{ marginBottom: 20, textAlign: "center" }}>
-          What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
+          What {verb} your{" "}
           {variable.label.toLowerCase()}?
         </h1>
         <h4 style={{ textAlign: "center", paddingBottom: 10 }}>

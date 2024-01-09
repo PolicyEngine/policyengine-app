@@ -12,6 +12,8 @@ import {
   childAdders,
   defaultChildren,
 } from "../../../data/countChildrenVars.js";
+import { formatVerbTime } from "lang/format";
+import { defaultYear } from "data/constants";
 
 /**
  * Returns `your ${number} child`, unless a country situation calls for a custom term
@@ -160,11 +162,18 @@ export default function CountChildren(props) {
     </>
   );
 
+  let verb = "do";
+  if (year < defaultYear) {
+    verb = "did";
+  } else if (year > defaultYear) {
+    verb = "will";
+  }
+
   return (
     <CenteredMiddleColumn
       title={`How many ${
         metadata.countryId !== "us" ? "children" : "dependents"
-      } do you have?`}
+      } ${verb} you have?`}
     >
       {radioButtonComponent}
     </CenteredMiddleColumn>
