@@ -1,5 +1,4 @@
 import Button from "./Button";
-import styles from "../redesign/style";
 export default function ArrowButton(props) {
   const { direction, onClick, type, style } = props;
 
