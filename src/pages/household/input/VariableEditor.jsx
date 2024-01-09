@@ -42,7 +42,10 @@ export default function VariableEditor(props) {
   // household. addVariable is called to ensure that the variable is added to
   // all entities.
   useEffect(() => {
-    if (possibleEntities.length !== householdInput[entityPlural].length) {
+    if (
+      possibleEntities.length !==
+      Object.keys(householdInput[entityPlural]).length
+    ) {
       const newHouseholdInput = addVariable(
         householdInput,
         variable,
