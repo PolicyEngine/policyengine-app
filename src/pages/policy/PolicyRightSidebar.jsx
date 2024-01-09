@@ -160,6 +160,7 @@ function SinglePolicyChange(props) {
             <span
               style={{
                 color: style.colors.BLUE,
+                cursor: "pointer",
               }}
             >
               {newValueStr}
