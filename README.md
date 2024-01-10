@@ -19,6 +19,8 @@ All of our code changes are made against a GitHub issue. If you're new to the pr
 
 We also maintain a priority issue board, available [here](https://github.com/orgs/PolicyEngine/projects/12) or under the **Projects** tab > **App Repo Management** > **Issue Tracker**.
 
+Currently, we don't assign contributors. If you see an open issue that no one's opened a PR against, it's all yours! Feel free to make some edits, then open a PR, as described below.
+
 ## Setting Up
 
 1. Fork the repo
