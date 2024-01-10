@@ -19,9 +19,17 @@ import { defaultYear } from "data/constants";
 function RegionSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const options = metadata.economy_options.region.map((region) => {
+  let options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
+
+  // This is a temporary solution that will need to be superseded by
+  // an improved back end design; removing this value allows 
+  // DatasetSelector to handle choosing between enhanced CPS data and 
+  // standard US data
+  options = options.filter((option) => option.value !== "enhanced_us");
+  console.log(options);
+
   const [value] = useState(searchParams.get("region") || options[0].value);
 
   return (
