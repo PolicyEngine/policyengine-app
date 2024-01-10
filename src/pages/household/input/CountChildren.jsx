@@ -12,7 +12,6 @@ import {
   childAdders,
   defaultChildren,
 } from "../../../data/countChildrenVars.js";
-import { formatVerbTime } from "lang/format";
 import { defaultYear } from "data/constants";
 
 /**

@@ -6,7 +6,6 @@ import { copySearchParams } from "../../../api/call";
 import { useState } from "react";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
-import { formatVerbTime } from "lang/format";
 import { defaultYear } from "data/constants";
 
 function getUKMaritalStatus(situation) {
