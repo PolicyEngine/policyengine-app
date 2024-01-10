@@ -85,7 +85,8 @@ function TimePeriodSelector(props) {
  */
 function DatasetSelector(props) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [presentRegion] = useState(searchParams.get("region"));
+
+  const presentRegion = searchParams.get("region");
 
   // Define handler function
   function handleSubmit(value) {
@@ -108,16 +109,32 @@ function DatasetSelector(props) {
     }
   ]
 
-  return (
-    <SearchOptions
-      style={{
-        width: "100%",
-      }}
-      options={options}
-      defaultValue={presentRegion === "enhanced_us" ? "enhanced CPS (experimental)" : "standard"}
-      onSelect={handleSubmit}
-    />
-  );
+  // Map the options into an object, with value as key and label as value,
+  // to ease other display operations
+  const optionsMap = options.reduce((accu, option) => {
+    return {
+      ...accu,
+      [option.value]: option.label
+    }
+  }, {});
+
+  if (!presentRegion || Object.keys(optionsMap).includes(presentRegion)) {
+    return (
+      <>
+        <h6 style={{margin: 0}}>data</h6>
+        <SearchOptions
+          style={{
+            width: "100%",
+          }}
+          options={options}
+          defaultValue={Object.keys(optionsMap).includes(presentRegion) ? optionsMap[presentRegion] : "standard" }
+          onSelect={handleSubmit}
+        />
+      </>
+    );
+  } else {
+    return null;
+  }
 }
 
 function PolicyNamer(props) {
@@ -481,7 +498,6 @@ export default function PolicyRightSidebar(props) {
       >
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
-        <h6 style={{ margin: "0px 0px 0px 10px" }}>data</h6>
         <DatasetSelector />
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
