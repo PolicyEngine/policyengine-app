@@ -28,7 +28,6 @@ function RegionSelector(props) {
   // DatasetSelector to handle choosing between enhanced CPS data and 
   // standard US data
   options = options.filter((option) => option.value !== "enhanced_us");
-  console.log(options);
 
   const [value] = useState(searchParams.get("region") || options[0].value);
 
