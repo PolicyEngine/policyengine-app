@@ -45,7 +45,7 @@ Now you're ready to start developing!
 
 ## Testing
 
-You've finished your contribution, but now what? 
+You've finished your contribution, but now what?
 
 To test your changes against our series of automated tests, run
 
@@ -56,9 +56,11 @@ make test
 We also recommend, but do not yet require, that you add tests for any new features or bug-fixes you add, so we can gradually build up the code coverage. We use [Jest](https://jestjs.io/docs/tutorial-react) and the [React Testing Library](https://github.com/testing-library/react-testing-library). You can run your tests locally with `make test` and they will be run again in the PR pre-flight.
 
 We also use [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) to lint our codebase. Before opening a pull request, please be sure to run
+
 ```
 make format
 ```
+
 This will automatically lint your code for you. Linting is also checked in the PR pre-flight.
 
 ## Opening a Pull Request
@@ -66,9 +68,11 @@ This will automatically lint your code for you. Linting is also checked in the P
 Now you've finished your contribution! Please open a pull request (PR) from your fork against the `master` branch. At times, it may take some time for the team to review your PR, especially for larger contributions, so please be patient--we will be sure to get to it.
 
 In the first line of your PR, please make sure to include the following:
+
 ```
 Fixes {issue_number}
 ```
+
 This makes it much easier for us to maintain and prune our issue board.
 
 Please try to be detailed in your PRs about the changes you made and why you made them. You may find yourself looking back at them for reference in the future, or needing insight about someone else's changes. We've included a template, but please feel free to add as much as you can. Save yourself a conversation and write it all in the PR!
