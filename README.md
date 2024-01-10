@@ -65,6 +65,12 @@ This will automatically lint your code for you. Linting is also checked in the P
 
 Now you've finished your contribution! Please open a pull request (PR) from your fork against the `master` branch. At times, it may take some time for the team to review your PR, especially for larger contributions, so please be patient--we will be sure to get to it.
 
+In the first line of your PR, please make sure to include the following:
+```
+Fixes {issue_number}
+```
+This makes it much easier for us to maintain and prune our issue board.
+
 Please try to be detailed in your PRs about the changes you made and why you made them. You may find yourself looking back at them for reference in the future, or needing insight about someone else's changes. We've included a template, but please feel free to add as much as you can. Save yourself a conversation and write it all in the PR!
 
 Here are some [best practices](https://deepsource.io/blog/git-best-practices/) for using Git.
