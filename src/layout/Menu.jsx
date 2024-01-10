@@ -20,14 +20,14 @@ function MenuItem(props) {
       <motion.h5
         style={{ fontSize: 18 }}
         initial={{ x: 0 }}
-        whileHover={{ color: "black", fontWeight: "bold" }}
+        whileHover={{ color: "#000", fontWeight: 700 }}
       >
         {selected === name && (
           <span
             style={{
               marginRight: 10,
-              color: "black",
-              fontWeight: "bold",
+              color: "#000",
+              fontWeight: 700,
               textShadow: "0 0 .2px #000",
             }}
           >
@@ -130,15 +130,15 @@ function MenuItemGroup(props) {
       <motion.h5
         onClick={toggleExpanded}
         initial={{ x: 0 }}
-        whileHover={{ color: "black", fontWeight: "bold" }}
+        whileHover={{ color: "#000", fontWeight: 700 }}
         style={{ fontSize: 18 }}
       >
         {selected === name && (
           <span
             style={{
               marginRight: 10,
-              color: "black",
-              fontWeight: "bold",
+              color: "#000",
+              fontWeight: 700,
               textShadow: "0 0 .2px #000",
             }}
           >
