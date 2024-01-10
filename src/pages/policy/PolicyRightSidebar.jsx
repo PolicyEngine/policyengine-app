@@ -75,6 +75,45 @@ function TimePeriodSelector(props) {
   );
 }
 
+/**
+ * A (hopefully temporary) component meant to abstract away the fact
+ * that the US enhanced CPS data is defined as a region within the US
+ * country package; this displays the enhanced CPS as a dataset on the 
+ * right-hand policy panel
+ * @param {Object} props 
+ * @returns {import("react").ReactElement}
+ */
+function DatasetSelector(props) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Define options, including labels and values, for antd component
+  // Temporarily, these mimic the region metadata, but should be 
+  // altered if/when the API can better handle enhanced CPS
+  const options = [
+    {
+      label: "standard",
+      value: "us"
+    },
+    {
+      label: "enhanced CPS (experimental)",
+      value: "enhanced_us"
+    }
+  ]
+
+  // Define handler function
+
+  return (
+    <SearchOptions
+      style={{
+        width: "100%",
+      }}
+      options={options}
+      defaultValue={"standard"}
+      onSelect={() => {return;}}
+    />
+  );
+}
+
 function PolicyNamer(props) {
   const { policy, metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -436,6 +475,8 @@ export default function PolicyRightSidebar(props) {
       >
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
+        <h6 style={{ margin: "0px 0px 0px 10px" }}>data</h6>
+        <DatasetSelector />
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
         <h6 style={{ margin: 0 }}>against</h6>
