@@ -1,7 +1,8 @@
 # Welcome :wave: !
 
 This is the official web app of the PolicyEngine project. <br/><br/>
-![PolicyEngineWebApp](https://user-images.githubusercontent.com/117248915/221730075-b368a1df-d0d4-455c-8768-329e1eb9318e.png)
+![PolicyEngineWebApp](https://github.com/PolicyEngine/policyengine-app/assets/14987227/70a1a74f-4585-42ec-8642-e4f4f6c2088b)
+
 
 # Getting started
 
