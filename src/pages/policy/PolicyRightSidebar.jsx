@@ -92,11 +92,9 @@ function TimePeriodSelector(props) {
  */
 function DatasetSelector(props) {
   const {
-    metadata
+    presentRegion
   } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const presentRegion = searchParams.get("region") || metadata.economy_options.region[0].name;
 
   // Define handler function
   function handleSubmit(value) {
@@ -130,7 +128,7 @@ function DatasetSelector(props) {
 
   // This displays by default because the US is the default option;
   // it will need to be changed if that also changes
-  if (Object.keys(optionsMap).includes(presentRegion)) {
+  if (!presentRegion || Object.keys(optionsMap).includes(presentRegion)) {
     return (
       <>
         <h6 style={{margin: 0}}>data</h6>
@@ -510,7 +508,10 @@ export default function PolicyRightSidebar(props) {
       >
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
-        <DatasetSelector metadata={metadata} />
+        <DatasetSelector 
+          metadata={metadata} 
+          presentRegion={region}
+        />
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
         <h6 style={{ margin: 0 }}>against</h6>
