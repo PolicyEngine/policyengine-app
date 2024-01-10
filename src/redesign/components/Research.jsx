@@ -23,7 +23,7 @@ import { authorKeys, authorKeyToLabel } from "redesign/data/Authors";
 
 export default function Research() {
   useEffect(() => {
-    document.title = "Research";
+    document.title = "Research | PolicyEngine";
   }, []);
   return (
     <div>

@@ -13,7 +13,7 @@ export default function Donate() {
   const desktop = displayCategory === "top";
   const link = "https://opencollective.com/policyengine";
   useEffect(() => {
-    document.title = "Donate";
+    document.title = "Donate | PolicyEngine";
   }, []);
   return (
     <div>

@@ -13,7 +13,7 @@ export default function About() {
   const pathParts = location.pathname.split("/");
   const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
   useEffect(() => {
-    document.title = "About";
+    document.title = "About | PolicyEngine";
   }, []);
   return (
     <div>
