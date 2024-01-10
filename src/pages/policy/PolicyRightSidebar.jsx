@@ -85,6 +85,14 @@ function TimePeriodSelector(props) {
  */
 function DatasetSelector(props) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [presentRegion] = useState(searchParams.get("region"));
+
+  // Define handler function
+  function handleSubmit(value) {
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("region", value);
+    setSearchParams(newSearch);
+  }
 
   // Define options, including labels and values, for antd component
   // Temporarily, these mimic the region metadata, but should be 
@@ -100,16 +108,14 @@ function DatasetSelector(props) {
     }
   ]
 
-  // Define handler function
-
   return (
     <SearchOptions
       style={{
         width: "100%",
       }}
       options={options}
-      defaultValue={"standard"}
-      onSelect={() => {return;}}
+      defaultValue={presentRegion === "enhanced_us" ? "enhanced CPS (experimental)" : "standard"}
+      onSelect={handleSubmit}
     />
   );
 }
