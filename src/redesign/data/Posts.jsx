@@ -725,6 +725,16 @@ let posts = [
     image: "uk-calibration-dec-2023-update.png",
     authors: ["nikhil-woodruff"],
   },
+  {
+    title: "Wyden-Smith Child Tax Credit Expansion",
+    description:
+      "PolicyEngine estimates the impact of the Democratic senators’ reported plan to expand the Child Tax Credit’s refundable component.",
+    date: "2024-01-11 12:00:00",
+    filename: "wyden-smith-ctc.md",
+    tags: ["us", "impact", "featured", "child-tax-credit"],
+    image: "wyden.jpeg",
+    authors: ["max-ghenis"],
+  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
