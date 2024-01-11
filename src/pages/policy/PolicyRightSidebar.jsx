@@ -98,7 +98,6 @@ function DatasetSelector(props) {
   // Define handler function
   function handleChange(e) {
     let newSearch = copySearchParams(searchParams);
-    console.log(e.target.value);
     newSearch.set("region", e.target.value);
     setSearchParams(newSearch);
   }
