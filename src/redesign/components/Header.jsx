@@ -246,7 +246,14 @@ function PageLinks() {
     >
       {["Research", "About", "Donate"].map((link) => {
         return (
-          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+          <Link
+            to={
+              link == "About"
+                ? `/${link.toLowerCase()}`
+                : `/${countryId}/${link.toLowerCase()}`
+            }
+            key={link}
+          >
             <div
               style={{
                 color: "white",
@@ -318,7 +325,14 @@ function LeftNavigationMenu(props) {
     >
       {["Research", "About", "Donate"].map((link, i) => {
         return (
-          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+          <Link
+            to={
+              link == "About"
+                ? `/${link.toLowerCase()}`
+                : `/${countryId}/${link.toLowerCase()}`
+            }
+            key={link}
+          >
             <HoverBox
               hoverStart="left"
               size="100vw"

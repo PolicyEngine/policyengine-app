@@ -7,8 +7,11 @@ function useCountryId() {
   useEffect(() => {
     const extractCountryIdFromPathname = () => {
       const pathSegments = window.location.pathname.split("/").filter(Boolean);
-      if (pathSegments.length > 0) {
+      if (pathSegments.length > 0 && pathSegments[0] !== "about") {
         setCountryId(pathSegments[0]);
+        localStorage["countryId"] = pathSegments[0];
+      } else {
+        setCountryId(localStorage["countryId"]);
       }
     };
 

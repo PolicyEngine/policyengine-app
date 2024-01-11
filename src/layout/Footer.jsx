@@ -7,7 +7,7 @@ export default function Footer(props) {
   let footer;
   const links = [
     "https://policyengine.org",
-    `/${countryId}/about`,
+    `/about`,
     "mailto:hello@policyengine.org",
     `/${countryId}/donate`,
     "/api-status",

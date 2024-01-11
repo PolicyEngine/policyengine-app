@@ -77,7 +77,7 @@ function DesktopHeader(props) {
 
   const links = [
     `/${countryId}/blog`,
-    `/${countryId}/about`,
+    `/about`,
     "mailto:hello@policyengine.org",
     `/${countryId}/donate`,
   ];
