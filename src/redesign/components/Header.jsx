@@ -25,6 +25,7 @@ export default function Header() {
           alignItems: "center",
           position: "fixed",
           zIndex: 1000,
+          gap: displayCategory !== "mobile" ? 45 : 0,
           borderBottom: `1px solid ${style.colors.BLACK}`,
         }}
       >
@@ -241,7 +242,7 @@ function PageLinks() {
         alignItems: "center",
         justifyContent: "space-between",
         width: "min(600px, 35vw)",
-        paddingLeft: 30,
+        gap: 45,
       }}
     >
       {["Research", "About", "Donate"].map((link) => {
