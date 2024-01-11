@@ -15,6 +15,7 @@ import PolicySearch from "./PolicySearch";
 import { Alert, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
+import TabbedRadio from "layout/TabbedRadio";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -124,32 +125,11 @@ function DatasetSelector(props) {
     };
   }, {});
 
-  // This displays by default because the US is the default option;
-  // it will need to be changed if that also changes
-  if (!presentRegion || Object.keys(optionsMap).includes(presentRegion)) {
-    return (
-      <>
-        <h6 style={{ margin: 0 }}>with</h6>
-        <SearchOptions
-          /* Key is necessary to ensure re-render and reload of possible values on changes to region
-          outside of component */
-          key={presentRegion}
-          style={{
-            width: "100%",
-          }}
-          options={options}
-          defaultValue={
-            Object.keys(optionsMap).includes(presentRegion)
-              ? optionsMap[presentRegion]
-              : "standard"
-          }
-          onSelect={handleSubmit}
-        />
-      </>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <TabbedRadio
+      options={options}
+    />
+  )
 }
 
 function PolicyNamer(props) {
@@ -551,6 +531,7 @@ export default function PolicyRightSidebar(props) {
             }}
           />
         </div>
+        <h6 style={{ margin: 0 }}>with</h6>
         <DatasetSelector presentRegion={region} />
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
