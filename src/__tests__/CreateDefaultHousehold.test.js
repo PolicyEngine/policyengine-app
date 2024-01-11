@@ -1,3 +1,6 @@
+// External package imports
+import fetch from "node-fetch";
+
 // Internal imports
 import { createDefaultHousehold } from "api/variables.js";
 import { defaultHouseholds } from "data/defaultHouseholds.js";

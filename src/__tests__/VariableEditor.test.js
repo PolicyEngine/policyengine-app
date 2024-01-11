@@ -2,6 +2,7 @@ import { addVariable } from "pages/household/input/VariableEditor.jsx";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
 import { addChild } from "pages/household/input/CountChildren.jsx";
 import { defaultYear } from "data/constants";
+import fetch from "node-fetch";
 
 // Metadata fetching function
 async function fetchMetadata(countryId) {
