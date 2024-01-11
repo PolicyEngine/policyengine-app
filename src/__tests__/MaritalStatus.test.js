@@ -4,7 +4,6 @@ import {
   setCAMaritalStatus,
 } from "pages/household/input/MaritalStatus";
 import { defaultHouseholds } from "data/defaultHouseholds";
-import fetch from "node-fetch";
 import { defaultYear } from "data/constants";
 
 describe("Setting UK marital status within MaritalStatus.jsx", () => {
