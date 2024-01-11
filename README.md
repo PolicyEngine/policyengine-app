@@ -3,7 +3,6 @@
 This is the official web app of the PolicyEngine project. <br/><br/>
 ![PolicyEngineWebApp](https://github.com/PolicyEngine/policyengine-app/assets/14987227/70a1a74f-4585-42ec-8642-e4f4f6c2088b)
 
-
 # Getting started
 
 ## Prerequisites

@@ -11,7 +11,6 @@ import style from "../../../../style";
 import { getCliffs } from "./cliffs";
 import HoverCard, { HoverCardContext } from "../../../../layout/HoverCard";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { defaultYear } from "data/constants";
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import useMobile from "layout/Responsive";
@@ -24,18 +23,19 @@ export default function BaselineOnlyChart(props) {
     metadata,
     variable,
     variableLabel,
+    year,
   } = props;
 
   const earningsArray = getValueFromHousehold(
     "employment_income",
-    defaultYear,
+    year,
     "you",
     householdBaselineVariation,
     metadata,
   );
   const baselineArray = getValueFromHousehold(
     variable,
-    defaultYear,
+    year,
     null,
     householdBaselineVariation,
     metadata,
@@ -43,14 +43,14 @@ export default function BaselineOnlyChart(props) {
   );
   const currentEarnings = getValueFromHousehold(
     "employment_income",
-    defaultYear,
+    year,
     "you",
     householdBaseline,
     metadata,
   );
   const currentBaseline = getValueFromHousehold(
     variable,
-    defaultYear,
+    year,
     null,
     householdBaseline,
     metadata,

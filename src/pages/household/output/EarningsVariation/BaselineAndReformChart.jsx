@@ -13,7 +13,6 @@ import { getCliffs } from "./cliffs";
 import HoverCard, { HoverCardContext } from "../../../../layout/HoverCard";
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { defaultYear } from "data/constants";
 import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 
@@ -27,46 +26,47 @@ export default function BaselineAndReformChart(props) {
     variable,
     variableLabel,
     policy,
+    year,
   } = props;
 
   const earningsArray = getValueFromHousehold(
     "employment_income",
-    defaultYear,
+    year,
     "you",
     householdBaselineVariation,
     metadata,
   );
   const baselineArray = getValueFromHousehold(
     variable,
-    defaultYear,
+    year,
     null,
     householdBaselineVariation,
     metadata,
   );
   const reformArray = getValueFromHousehold(
     variable,
-    defaultYear,
+    year,
     null,
     householdReformVariation,
     metadata,
   );
   const currentEarnings = getValueFromHousehold(
     "employment_income",
-    defaultYear,
+    year,
     "you",
     householdBaseline,
     metadata,
   );
   const currentValue = getValueFromHousehold(
     variable,
-    defaultYear,
+    year,
     null,
     householdReform,
     metadata,
   );
   const baselineValue = getValueFromHousehold(
     variable,
-    defaultYear,
+    year,
     null,
     householdBaseline,
     metadata,

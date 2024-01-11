@@ -25,6 +25,7 @@ import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
 import VariableSearch from "./household/VariableSearch";
 import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
+import TaxYear from "./household/input/TaxYear";
 
 export default function HouseholdPage(props) {
   document.title = "Household | PolicyEngine";
@@ -45,6 +46,7 @@ export default function HouseholdPage(props) {
   const [error, setError] = useState(null);
   const [autoCompute, setAutoCompute] = useState(false);
   const [isRHPOpen, setIsRHPOpen] = useState(false);
+  const [year, setYear] = useState(defaultYear);
 
   let middle;
   const focus = searchParams.get("focus") || "";
@@ -213,6 +215,17 @@ export default function HouseholdPage(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, householdId, policy.reform, metadata]);
 
+  // If page is being accessed with a household ID, set year to be
+  // year currently present within household; only do this at first render
+  useEffect(() => {
+    if (householdId && householdInput) {
+      const householdYear = getHouseholdYear(householdInput);
+      if (householdYear) {
+        setYear(householdYear);
+      }
+    }
+  }, [householdId, householdInput]);
+
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
   } else if (
@@ -237,6 +250,7 @@ export default function HouseholdPage(props) {
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
         autoCompute={autoCompute}
+        year={year}
       />
     );
   } else if (
@@ -262,6 +276,7 @@ export default function HouseholdPage(props) {
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
         autoCompute={autoCompute}
+        year={year}
       />
     );
   } else if (focus === "intro") {
@@ -273,6 +288,18 @@ export default function HouseholdPage(props) {
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
         autoCompute={autoCompute}
+        year={year}
+      />
+    );
+  } else if (focus === "input.household.taxYear") {
+    middle = (
+      <TaxYear
+        metadata={metadata}
+        year={year}
+        setYear={setYear}
+        householdId={householdId}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
       />
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
@@ -300,6 +327,7 @@ export default function HouseholdPage(props) {
           loading={loading}
           hasShownHouseholdPopup={hasShownHouseholdPopup}
           setHasShownHouseholdPopup={setHasShownHouseholdPopup}
+          year={year}
         />
       </>
     );
@@ -353,6 +381,7 @@ export default function HouseholdPage(props) {
             autoCompute={autoCompute}
             loading={loading}
             policy={policy}
+            year={year}
           />
         }
         noMiddleScroll={

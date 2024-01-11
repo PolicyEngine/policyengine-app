@@ -1,30 +1,42 @@
-import { defaultYear } from "./constants";
-
 export const childNames = {
   us: "dependent",
   default: "child",
 };
 
-export const defaultChildren = {
-  us: {
-    age: {
-      [defaultYear]: 10,
+export function defaultChildren(countryId, year) {
+  const childObjects = {
+    us: {
+      age: {
+        [year]: 10,
+      },
+      is_tax_unit_dependent: {
+        [year]: true,
+      },
     },
-    is_tax_unit_dependent: {
-      [defaultYear]: true,
+    default: {
+      age: {
+        [year]: 10,
+      },
     },
-  },
-  default: {
-    age: {
-      [defaultYear]: 10,
-    },
-  },
-};
+  };
 
-export const childCountFilters = {
-  us: (person) => person?.is_tax_unit_dependent?.[defaultYear],
-  default: (person) => person?.age?.[defaultYear] < 18,
-};
+  if (countryId in childObjects) {
+    return childObjects[countryId];
+  }
+  return childObjects.default;
+}
+
+export function childCountFilters(countryId, year) {
+  const filters = {
+    us: (person) => person?.is_tax_unit_dependent?.[year],
+    default: (person) => person?.age?.[year] < 18,
+  };
+
+  if (Object.keys(filters).includes(countryId)) {
+    return filters[countryId];
+  }
+  return filters.default;
+}
 
 export const childAdders = {
   // prettier-ignore
@@ -36,7 +48,7 @@ export const childAdders = {
     return newSituation;
   },
   // prettier-ignore
-  us: function(situation, defaultChild, childName, childCount) { 
+  us: function(situation, defaultChild, childName, childCount, year) { 
     const newSituation = JSON.parse(JSON.stringify(situation));
     newSituation.people[childName] = defaultChild;
     newSituation.tax_units["your tax unit"].members.push(childName);
@@ -45,7 +57,7 @@ export const childAdders = {
     newSituation.households["your household"].members.push(childName);
     newSituation.marital_units[`${childName}'s marital unit`] = {
       members: [childName],
-      marital_unit_id: { [defaultYear]: childCount + 1 },
+      marital_unit_id: { [year]: childCount + 1 },
     };
     return newSituation;
   },

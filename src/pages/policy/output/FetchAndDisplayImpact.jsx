@@ -8,6 +8,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
+import { defaultYear } from "data/constants";
 // import LoadingCentered from "layout/LoadingCentered";
 
 /**
@@ -98,9 +99,8 @@ export function FetchAndDisplayImpact(props) {
         return [...accu, Number(periodObj.name)];
       }, []);
 
-      const curYear = new Date().getFullYear();
-      const defaultTimePeriod = yearArray.includes(curYear)
-        ? curYear
+      const defaultTimePeriod = yearArray.includes(defaultYear)
+        ? defaultYear
         : timeOptions[0].name;
 
       const defaults = {
@@ -203,9 +203,8 @@ export function FetchAndDisplayCliffImpact(props) {
         return [...accu, Number(periodObj.name)];
       }, []);
 
-      const curYear = new Date().getFullYear();
-      const defaultTimePeriod = yearArray.includes(curYear)
-        ? curYear
+      const defaultTimePeriod = yearArray.includes(defaultYear)
+        ? defaultYear
         : timeOptions[0].name;
 
       const defaults = {
