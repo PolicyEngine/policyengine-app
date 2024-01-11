@@ -4,43 +4,33 @@ import {
   setCAMaritalStatus,
 } from "pages/household/input/MaritalStatus";
 import { defaultHouseholds } from "data/defaultHouseholds";
-
-// Metadata fetching function
-async function fetchMetadata(countryId) {
-  const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
-  const metadataRaw = await res.json();
-  const metadata = metadataRaw.result;
-  return metadata;
-}
+import { defaultYear } from "data/constants";
 
 describe("Setting UK marital status within MaritalStatus.jsx", () => {
   test("functions with empty UK dataset, without adding empty tax variables", async () => {
-    // Fetch UK metadata
-    const metadata = await fetchMetadata("uk");
-
     // Take the default UK household struct, then following code from MaritalStatus.jsx,
     // edit the struct
     let testStruct = JSON.parse(JSON.stringify(defaultHouseholds.uk));
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2024: 40,
+        [defaultYear]: 40,
       },
     };
     const partnerName = "your partner";
     testStruct.people[partnerName] = JSON.parse(JSON.stringify(defaultPartner));
     testStruct.benunits["your immediate family"].members.push(partnerName);
     testStruct.benunits["your immediate family"].is_married = {
-      2024: true,
+      [defaultYear]: true,
     };
-    testStruct.benunits["your immediate family"].is_married["2024"] = true;
+    testStruct.benunits["your immediate family"].is_married[defaultYear] = true;
     testStruct.households["your household"].members.push(partnerName);
 
     // Compare the populated default struct against invocation of setUKMaritalStatus
     const output = setUKMaritalStatus(
       defaultHouseholds.uk,
       newStatus,
-      metadata.variables,
+      defaultYear,
     );
 
     expect(output).toStrictEqual(testStruct);
@@ -49,9 +39,6 @@ describe("Setting UK marital status within MaritalStatus.jsx", () => {
 
 describe("Setting US marital status within MaritalStatus.jsx", () => {
   test("functions with empty US dataset, without adding empty tax variables", async () => {
-    // Fetch US metadata
-    const metadata = await fetchMetadata("us");
-
     // Take the default US household struct, then following code from MaritalStatus.jsx,
     // edit the struct
 
@@ -59,7 +46,7 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2024: 40,
+        [defaultYear]: 40,
       },
     };
     const partnerName = "your partner";
@@ -74,7 +61,7 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
     const output = setUSMaritalStatus(
       defaultHouseholds.us,
       newStatus,
-      metadata.variables,
+      defaultYear,
     );
 
     expect(output).toStrictEqual(testStruct);
@@ -83,9 +70,6 @@ describe("Setting US marital status within MaritalStatus.jsx", () => {
 
 describe("Setting Canada marital status within MaritalStatus.jsx", () => {
   test("functions with empty Canada dataset, without adding empty tax variables", async () => {
-    // Fetch Canada metadata
-    const metadata = await fetchMetadata("ca");
-
     // Take the default Canada household struct, then following code from MaritalStatus.jsx,
     // edit the struct
 
@@ -93,7 +77,7 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     const newStatus = "married";
     const defaultPartner = {
       age: {
-        2024: 40,
+        [defaultYear]: 40,
       },
     };
     const partnerName = "your partner";
@@ -104,7 +88,7 @@ describe("Setting Canada marital status within MaritalStatus.jsx", () => {
     const output = setCAMaritalStatus(
       defaultHouseholds.default,
       newStatus,
-      metadata.variables,
+      defaultYear,
     );
 
     expect(output).toStrictEqual(testStruct);
