@@ -96,11 +96,18 @@ function DatasetSelector(props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Define handler function
-  function handleSubmit(value) {
+  function handleChange(e) {
     let newSearch = copySearchParams(searchParams);
-    newSearch.set("region", value);
+    console.log(e.target.value);
+    newSearch.set("region", e.target.value);
     setSearchParams(newSearch);
   }
+
+  const showComponent = [
+    "us",
+    "enhanced_us",
+    null
+  ];
 
   // Define options, including labels and values, for antd component
   // Temporarily, these mimic the region metadata, but should be
@@ -113,7 +120,7 @@ function DatasetSelector(props) {
     {
       label: "enhanced CPS (experimental)",
       value: "enhanced_us",
-      disabled: presentRegion !== "us" && true
+      disabled: !showComponent.includes(presentRegion) && true
     },
   ];
 
@@ -121,6 +128,7 @@ function DatasetSelector(props) {
     <TabbedRadio
       options={options}
       defaultValue="us"
+      changeHandler={handleChange}
     />
   )
 }

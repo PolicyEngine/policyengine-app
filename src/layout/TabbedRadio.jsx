@@ -6,7 +6,8 @@ export default function TabbedRadio(props) {
     containerStyle,
     normalButtonStyle,
     activeButtonStyle,
-    defaultValue
+    defaultValue,
+    changeHandler
   } = props;
 
   const radioButtons = options.map((option, index) => {
@@ -27,6 +28,7 @@ export default function TabbedRadio(props) {
       style={{
         ...containerStyle
       }}
+      onChange={changeHandler}
     >
       {radioButtons}
     </Radio.Group>
