@@ -1,7 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 import style from "../style";
-
 import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
