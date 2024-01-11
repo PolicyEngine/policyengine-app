@@ -11,7 +11,7 @@ export default function SearchOptions(props) {
     placeholder,
     style,
     notFoundMessage,
-    key
+    key,
   } = props;
   const [value, setValue] = useState(defaultValue);
   // eslint-disable-next-line

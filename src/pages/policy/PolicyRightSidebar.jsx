@@ -24,8 +24,8 @@ function RegionSelector(props) {
   });
 
   // This is a temporary solution that will need to be superseded by
-  // an improved back end design; removing this value allows 
-  // DatasetSelector to handle choosing between enhanced CPS data and 
+  // an improved back end design; removing this value allows
+  // DatasetSelector to handle choosing between enhanced CPS data and
   // standard US data
   options = options.filter((option) => option.value !== "enhanced_us");
 
@@ -85,15 +85,13 @@ function TimePeriodSelector(props) {
 /**
  * A (hopefully temporary) component meant to abstract away the fact
  * that the US enhanced CPS data is defined as a region within the US
- * country package; this displays the enhanced CPS as a dataset on the 
+ * country package; this displays the enhanced CPS as a dataset on the
  * right-hand policy panel
- * @param {Object} props 
+ * @param {Object} props
  * @returns {import("react").ReactElement}
  */
 function DatasetSelector(props) {
-  const {
-    presentRegion
-  } = props;
+  const { presentRegion } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Define handler function
@@ -104,26 +102,26 @@ function DatasetSelector(props) {
   }
 
   // Define options, including labels and values, for antd component
-  // Temporarily, these mimic the region metadata, but should be 
+  // Temporarily, these mimic the region metadata, but should be
   // altered if/when the API can better handle enhanced CPS
   const options = [
     {
       label: "standard",
-      value: "us"
+      value: "us",
     },
     {
       label: "enhanced CPS (experimental)",
-      value: "enhanced_us"
-    }
-  ]
+      value: "enhanced_us",
+    },
+  ];
 
   // Map the options into an object, with value as key and label as value,
   // to ease other display operations
   const optionsMap = options.reduce((accu, option) => {
     return {
       ...accu,
-      [option.value]: option.label
-    }
+      [option.value]: option.label,
+    };
   }, {});
 
   // This displays by default because the US is the default option;
@@ -131,7 +129,7 @@ function DatasetSelector(props) {
   if (!presentRegion || Object.keys(optionsMap).includes(presentRegion)) {
     return (
       <>
-        <h6 style={{margin: 0}}>data</h6>
+        <h6 style={{ margin: 0 }}>data</h6>
         <SearchOptions
           /* Key is necessary to ensure re-render and reload of possible values on changes to region
           outside of component */
@@ -140,7 +138,11 @@ function DatasetSelector(props) {
             width: "100%",
           }}
           options={options}
-          defaultValue={Object.keys(optionsMap).includes(presentRegion) ? optionsMap[presentRegion] : "standard" }
+          defaultValue={
+            Object.keys(optionsMap).includes(presentRegion)
+              ? optionsMap[presentRegion]
+              : "standard"
+          }
           onSelect={handleSubmit}
         />
       </>
@@ -511,9 +513,7 @@ export default function PolicyRightSidebar(props) {
       >
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
-        <DatasetSelector 
-          presentRegion={region}
-        />
+        <DatasetSelector presentRegion={region} />
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
         <h6 style={{ margin: 0 }}>against</h6>
