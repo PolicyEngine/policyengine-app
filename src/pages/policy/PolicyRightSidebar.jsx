@@ -113,21 +113,14 @@ function DatasetSelector(props) {
     {
       label: "enhanced CPS (experimental)",
       value: "enhanced_us",
+      disabled: presentRegion !== "us" && true
     },
   ];
-
-  // Map the options into an object, with value as key and label as value,
-  // to ease other display operations
-  const optionsMap = options.reduce((accu, option) => {
-    return {
-      ...accu,
-      [option.value]: option.label,
-    };
-  }, {});
 
   return (
     <TabbedRadio
       options={options}
+      defaultValue="us"
     />
   )
 }

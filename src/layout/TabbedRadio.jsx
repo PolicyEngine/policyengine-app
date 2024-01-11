@@ -3,7 +3,10 @@ import { Radio } from "antd";
 export default function TabbedRadio(props) {
   const {
     options,
-    style
+    containerStyle,
+    normalButtonStyle,
+    activeButtonStyle,
+    defaultValue
   } = props;
 
   const radioButtons = options.map((option, index) => {
@@ -11,6 +14,7 @@ export default function TabbedRadio(props) {
       <Radio.Button
         key={index}
         value={option.value}
+        disabled={option.disabled}
       >{option.label}</Radio.Button>
     )
   });
@@ -19,8 +23,9 @@ export default function TabbedRadio(props) {
     <Radio.Group
       optionType="button"
       buttonStyle="solid"
+      defaultValue={defaultValue}
       style={{
-        ...style
+        ...containerStyle
       }}
     >
       {radioButtons}
