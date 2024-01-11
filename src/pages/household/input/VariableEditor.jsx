@@ -26,6 +26,7 @@ export default function VariableEditor(props) {
     setHouseholdInput,
     nextVariable,
     autoCompute,
+    year,
   } = props;
   const [edited, setEdited] = useState(false);
   const variableName = searchParams.get("focus").split(".").slice(-1)[0];
@@ -50,6 +51,7 @@ export default function VariableEditor(props) {
         householdInput,
         variable,
         entityPlural,
+        year,
       );
       setHouseholdInput(newHouseholdInput);
     }
@@ -71,9 +73,22 @@ export default function VariableEditor(props) {
         nextVariable={nextVariable}
         autoCompute={autoCompute}
         setEdited={setEdited}
+        year={year}
       />
     );
   });
+
+  // Format the verb used to describe the variable
+  let number = variable.label.endsWith("s") ? "plural" : "singular";
+  let verb = number === "plural" ? "are" : "is";
+  if (year > defaultYear) {
+    verb = "will be";
+  } else if (year < defaultYear && number === "plural") {
+    verb = "were";
+  } else if (year < defaultYear) {
+    verb = "was";
+  }
+
   return (
     <>
       <div
@@ -87,8 +102,7 @@ export default function VariableEditor(props) {
         }}
       >
         <h1 style={{ marginBottom: 20, textAlign: "center" }}>
-          What {variable.label.endsWith("s") ? "are" : "is"} your{" "}
-          {variable.label.toLowerCase()}?
+          What {verb} your {variable.label.toLowerCase()}?
         </h1>
         <h4 style={{ textAlign: "center", paddingBottom: 10 }}>
           {variable.documentation}
@@ -121,6 +135,7 @@ function HouseholdVariableEntity(props) {
     nextVariable,
     autoCompute,
     setEdited,
+    year,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name],
@@ -144,6 +159,7 @@ function HouseholdVariableEntity(props) {
             nextVariable={nextVariable}
             autoCompute={autoCompute}
             setEdited={setEdited}
+            year={year}
           />
         );
       })}
@@ -336,7 +352,7 @@ function HouseholdVariableEntityInput(props) {
  * applies to
  * @returns {Object} A new householdInput object that contains the variable
  */
-export function addVariable(householdInput, variable, entityPlural) {
+export function addVariable(householdInput, variable, entityPlural, year) {
   let newHouseholdInput = JSON.parse(JSON.stringify(householdInput));
 
   let possibleEntities = null;
@@ -357,13 +373,13 @@ export function addVariable(householdInput, variable, entityPlural) {
             // Then add it to the relevant part of the situation, along with
             // its default value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              [defaultYear]: variable.defaultValue,
+              [year]: variable.defaultValue,
             };
           } else {
             // Otherwise, add it to the relevant part of the situation, along with
             // a null value
             newHouseholdInput[entityPlural][entity][variable.name] = {
-              [defaultYear]: null,
+              [year]: null,
             };
           }
         }

@@ -3,11 +3,10 @@ import { Modal } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
 import { getValueFromHousehold } from "../../../api/variables";
-import { defaultYear } from "data/constants";
 import Button from "../../../controls/Button";
 
 function PoliciesModelledChecklist(props) {
-  const { metadata, householdInput } = props;
+  const { metadata, householdInput, year } = props;
   if (!metadata.modelled_policies || !metadata.modelled_policies.filtered) {
     return null;
   }
@@ -19,7 +18,7 @@ function PoliciesModelledChecklist(props) {
       // Check if the household input matches the filter
       const actualValue = getValueFromHousehold(
         variable,
-        defaultYear,
+        year,
         "your household",
         householdInput,
         metadata,
@@ -87,6 +86,7 @@ export default function PoliciesModelledPopup(props) {
     householdInput,
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
+    year,
   } = props;
   useEffect(() => {
     const openModal = () => {
@@ -97,6 +97,7 @@ export default function PoliciesModelledPopup(props) {
             <PoliciesModelledChecklist
               metadata={metadata}
               householdInput={householdInput}
+              year={year}
             />
           </>
         ),
@@ -128,6 +129,7 @@ export default function PoliciesModelledPopup(props) {
     householdInput,
     hasShownHouseholdPopup,
     setHasShownHouseholdPopup,
+    year,
   ]);
   return null;
 }

@@ -17,19 +17,19 @@ function getUKMaritalStatus(situation) {
   }
 }
 
-export function setUKMaritalStatus(situation, status) {
+export function setUKMaritalStatus(situation, status, year) {
   const currentStatus = getUKMaritalStatus(situation);
   const defaultPartner = {
-    age: { [defaultYear]: 40 },
+    age: { [year]: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
     situation.people[partnerName] = defaultPartner;
     situation.benunits["your immediate family"].members.push(partnerName);
     situation.benunits["your immediate family"].is_married = {
-      [defaultYear]: true,
+      [year]: true,
     };
-    situation.benunits["your immediate family"].is_married[defaultYear] = true;
+    situation.benunits["your immediate family"].is_married[year] = true;
     situation.households["your household"].members.push(partnerName);
   } else if (status === "single" && currentStatus === "married") {
     situation = removePerson(situation, partnerName);
@@ -46,10 +46,10 @@ function getUSMaritalStatus(situation) {
   }
 }
 
-export function setUSMaritalStatus(situation, status) {
+export function setUSMaritalStatus(situation, status, year) {
   const currentStatus = getUSMaritalStatus(situation);
   const defaultPartner = {
-    age: { [defaultYear]: 40 },
+    age: { [year]: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -74,10 +74,10 @@ function getCAMaritalStatus(situation) {
   }
 }
 
-export function setCAMaritalStatus(situation, status) {
+export function setCAMaritalStatus(situation, status, year) {
   const currentStatus = getCAMaritalStatus(situation);
   const defaultPartner = {
-    age: { [defaultYear]: 40 },
+    age: { [year]: 40 },
   };
   const partnerName = "your partner";
   if (status === "married" && currentStatus === "single") {
@@ -90,7 +90,8 @@ export function setCAMaritalStatus(situation, status) {
 }
 
 export default function MaritalStatus(props) {
-  const { metadata, householdInput, setHouseholdInput, autoCompute } = props;
+  const { metadata, householdInput, setHouseholdInput, autoCompute, year } =
+    props;
   const [searchParams, setSearchParams] = useSearchParams();
   const getMaritalStatus = {
     uk: getUKMaritalStatus,
@@ -108,7 +109,11 @@ export default function MaritalStatus(props) {
   }[metadata.countryId];
   const [value, setValue] = useState(null);
   const setMaritalStatus = (status) => {
-    let newHousehold = setMaritalStatusInHousehold(householdInput, status);
+    let newHousehold = setMaritalStatusInHousehold(
+      householdInput,
+      status,
+      year,
+    );
     setHouseholdInput(newHousehold);
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", "input.household.children");
@@ -139,8 +144,16 @@ export default function MaritalStatus(props) {
       }}
     />
   );
+
+  let verb = "is";
+  if (year < defaultYear) {
+    verb = "was";
+  } else if (year > defaultYear) {
+    verb = "will be";
+  }
+
   return (
-    <CenteredMiddleColumn title="What is your marital status?">
+    <CenteredMiddleColumn title={`What ${verb} your marital status?`}>
       <>
         {radioButtonComponent}
         <SearchParamNavButton

@@ -8,7 +8,6 @@ import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import Divider from "../../layout/Divider";
 import LoadingCentered from "../../layout/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
-import { defaultYear } from "data/constants";
 
 function Figure(props) {
   const { left, right } = props;
@@ -54,6 +53,7 @@ export default function HouseholdRightSidebar(props) {
     autoCompute,
     loading,
     policy,
+    year,
   } = props;
   const [showReformSearch, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();
@@ -74,7 +74,7 @@ export default function HouseholdRightSidebar(props) {
   );
   const mtr = getValueFromHousehold(
     "marginal_tax_rate",
-    defaultYear,
+    year,
     "you",
     householdBaseline,
     metadata,
