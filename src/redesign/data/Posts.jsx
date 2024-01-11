@@ -728,7 +728,7 @@ let posts = [
   {
     title: "Wyden-Smith Child Tax Credit Expansion",
     description:
-      "PolicyEngine estimates the impact of the Democratic senators’ reported plan to expand the Child Tax Credit’s refundable component.",
+      "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit’s refundable component.",
     date: "2024-01-11 12:00:00",
     filename: "wyden-smith-ctc.md",
     tags: ["us", "impact", "featured", "child-tax-credit"],

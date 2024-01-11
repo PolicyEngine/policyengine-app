@@ -1,6 +1,6 @@
-Politico’s Benjamin Guggenheim [reported today](https://twitter.com/ben_guggenheim/status/1745403401695908256) that senators Ron Wyden (D-OR) and Tina Smith (D-MN) are proposing a multifaceted reform to the Child Tax Credit (CTC). This report analyzes two of the three provisions of that reform: raising the maximum refundable CTC amount, and phasing in the refundable CTC with respect to the number of children. We illustrate how this affects a sample household and estimate its impact on society.
+Politico’s Benjamin Guggenheim [reported today](https://twitter.com/ben_guggenheim/status/1745403401695908256) that Senate Finance Committee Chair Ron Wyden (D-OR) and House Ways and Means Committee Chair Jason Smith (R-MO) are proposing a multifaceted reform to the Child Tax Credit (CTC). This report analyzes two of the three provisions of that reform: raising the maximum refundable CTC amount, and phasing in the refundable CTC with respect to the number of children. We illustrate how this affects a sample household and estimate its impact on society.
 
-From 2023–25 — in our static model assuming full take-up — we project these provisions would:
+From 2023 to 2025 — in our static model assuming full take-up — we project these provisions would:
 
 - Cost $16.4 billion, owing mostly to the more rapid phase-in rate
 
@@ -79,7 +79,7 @@ Results are similar in 2024 and 2025, with child poverty falling by 3.8% or 3.9%
 
 ## Conclusion
 
-Senators Wyden and Smith have proposed a three-part expansion to the Child Tax Credit, of which PolicyEngine can currently model two. Firstly, it raises the maximum refundable ACTC amount incrementally from 2023 to 2025; secondly, it modifies the phase-in rate of the refundable CTC to be a function of the number of qualifying children; and thirdly, it includes a provision to allow the CTC calculation to be based on prior years’ income, a feature not currently supported.
+Wyden and Smith have proposed a three-part expansion to the Child Tax Credit, of which PolicyEngine can currently model two. Firstly, it raises the maximum refundable ACTC amount incrementally from 2023 to 2025; secondly, it modifies the phase-in rate of the refundable CTC to be a function of the number of qualifying children; and thirdly, it includes a provision to allow the CTC calculation to be based on prior years’ income, a feature not currently supported.
 
 The estimated impacts of the first two provisions on households include adjustments in the Child Tax Credit received at various income levels; for instance, a single parent of two would benefit if their earnings range from $2,500 to $29,000. These changes also influence marginal tax rates due to the modified phase-in rate of the ACTC.
 
