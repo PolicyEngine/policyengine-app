@@ -37,7 +37,9 @@ export default function HouseholdOutput(props) {
     baselineLabel = "Current law";
   }
   let policyLabel;
-  if (reformLabel !== "Current law" && baselineLabel === "Current law") {
+  if (reformLabel === "Current law" && baselineLabel === "Current law") {
+    policyLabel = "Current law";
+  } else if (reformLabel !== "Current law" && baselineLabel === "Current law") {
     policyLabel = reformLabel;
   } else {
     policyLabel = `${reformLabel} (compared against ${baselineLabel})`;
