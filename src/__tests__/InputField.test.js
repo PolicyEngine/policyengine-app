@@ -35,7 +35,6 @@ describe("Should take inputs", () => {
   });
 
   test("Should handle non-percent input & submit on blur", () => {
-    console.log(testProps.onChange.mock);
     useSearchParams.mockImplementation(() => {
       const get = () => "gov.irs.ald.loss.capital.max.HEAD_OF_HOUSEHOLD";
       return [{ get }];
@@ -44,15 +43,12 @@ describe("Should take inputs", () => {
     fireEvent.change(input, { target: { value: testInput } });
     expect(input.value).toBe(testInput);
     expect(testProps.onChange).not.toHaveBeenCalled();
-    console.log(testProps.onChange.mock);
 
     fireEvent.blur(input);
     expect(testProps.onChange).toHaveBeenCalledWith(testInput);
-    console.log(testProps.onChange.mock);
   });
 
   test("Should append '%' for percent pattern & submit on blur", () => {
-    console.log(testProps.onChange.mock);
     useSearchParams.mockImplementation(() => {
       const get = () => "gov.irs.ald.loss.capital.max.HEAD_OF_HOUSEHOLD";
       return [{ get }];
@@ -61,10 +57,8 @@ describe("Should take inputs", () => {
     fireEvent.change(input, { target: { value: testInput } });
     expect(input.value).toBe(testInput + "%");
     expect(testProps.onChange).not.toHaveBeenCalled();
-    console.log(testProps.onChange.mock);
 
     fireEvent.blur(input);
     expect(testProps.onChange).toHaveBeenCalledWith(testInput + "%");
-    console.log(testProps.onChange.mock);
   });
 });
