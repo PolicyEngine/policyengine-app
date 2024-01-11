@@ -133,6 +133,9 @@ function DatasetSelector(props) {
       <>
         <h6 style={{margin: 0}}>data</h6>
         <SearchOptions
+          /* Key is necessary to ensure re-render and reload of possible values on changes to region
+          outside of component */
+          key={presentRegion}
           style={{
             width: "100%",
           }}
@@ -509,7 +512,6 @@ export default function PolicyRightSidebar(props) {
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
         <DatasetSelector 
-          metadata={metadata} 
           presentRegion={region}
         />
         <h6 style={{ margin: 0 }}>over</h6>
