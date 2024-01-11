@@ -631,8 +631,6 @@ function BlogContent({ markdown, backgroundColor }) {
               marginBottom: 25,
               paddingTop: 25,
               paddingBottom: 25,
-              borderTop: "2px solid gray",
-              borderBottom: "2px solid gray",
             }}
           >
             <p
