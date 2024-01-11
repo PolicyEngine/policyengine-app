@@ -3,10 +3,7 @@
 This is the official front-end app of PolicyEngine, a non-profit with the mission of computing the impact of public policy for the world. <br/><br/>
 ![PolicyEngineWebApp](https://github.com/PolicyEngine/policyengine-app/assets/14987227/70a1a74f-4585-42ec-8642-e4f4f6c2088b)
 
-
-
 # Prerequisites
-
 
 We recommend that you use the latest Node version 19. To easily manage your node versions, get the Node Version Manager [nvm](https://github.com/nvm-sh/nvm) and then do
 
