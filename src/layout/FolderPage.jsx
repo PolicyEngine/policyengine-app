@@ -117,7 +117,6 @@ export default function FolderPage(props) {
                 backgroundColor: style.colors.DARK_GRAY,
                 color: "#fff",
               }}
-              transition={{ duration: 0.25 }}
               onClick={() => {
                 let newSearch = copySearchParams(searchParams);
                 newSearch.set("focus", child.name);
