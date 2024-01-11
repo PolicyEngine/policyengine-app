@@ -71,7 +71,7 @@ export default function TaxYear(props) {
   }
 
   return (
-    <CenteredMiddleColumn title="Which tax year would you like to calculate?">
+    <CenteredMiddleColumn title="Which year would you like to calculate?">
       <Select
         showSearch
         optionFilterProp="label"
