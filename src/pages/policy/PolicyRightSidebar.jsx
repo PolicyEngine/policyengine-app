@@ -129,7 +129,7 @@ function DatasetSelector(props) {
   if (!presentRegion || Object.keys(optionsMap).includes(presentRegion)) {
     return (
       <>
-        <h6 style={{ margin: 0 }}>data</h6>
+        <h6 style={{ margin: 0 }}>with</h6>
         <SearchOptions
           /* Key is necessary to ensure re-render and reload of possible values on changes to region
           outside of component */
@@ -513,7 +513,6 @@ export default function PolicyRightSidebar(props) {
       >
         <h6 style={{ margin: 0 }}>in</h6>
         <RegionSelector metadata={metadata} />
-        <DatasetSelector presentRegion={region} />
         <h6 style={{ margin: 0 }}>over</h6>
         <TimePeriodSelector metadata={metadata} />
         <h6 style={{ margin: 0 }}>against</h6>
@@ -552,6 +551,7 @@ export default function PolicyRightSidebar(props) {
             }}
           />
         </div>
+        <DatasetSelector presentRegion={region} />
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton
