@@ -250,7 +250,6 @@ function PageLinks() {
             <div
               style={{
                 color: "white",
-                margin: 15,
                 fontSize: 20,
                 fontFamily: "Roboto",
                 fontWeight: 500,
