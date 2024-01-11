@@ -113,11 +113,11 @@ function DatasetSelector(props) {
   // altered if/when the API can better handle enhanced CPS
   const options = [
     {
-      label: "standard",
+      label: "Base CPS",
       value: "us",
     },
     {
-      label: "enhanced CPS (experimental)",
+      label: "Enhanced CPS (experimental)",
       value: "enhanced_us",
       disabled: !showComponent.includes(presentRegion) && true
     },
