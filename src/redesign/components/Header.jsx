@@ -248,7 +248,7 @@ function PageLinks() {
         return (
           <Link
             to={
-              link == "About"
+              link === "About"
                 ? `/${link.toLowerCase()}`
                 : `/${countryId}/${link.toLowerCase()}`
             }
@@ -327,7 +327,7 @@ function LeftNavigationMenu(props) {
         return (
           <Link
             to={
-              link == "About"
+              link === "About"
                 ? `/${link.toLowerCase()}`
                 : `/${countryId}/${link.toLowerCase()}`
             }
