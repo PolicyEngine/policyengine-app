@@ -31,6 +31,7 @@
     "react-detect-print": "^0.1.2",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
+    "react-helmet": "^6.1.0",
     "react-hook-reading-time": "^1.0.0",
     "react-markdown": "^8.0.7",
     "react-plotly.js": "^2.6.0",

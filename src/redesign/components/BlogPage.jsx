@@ -28,6 +28,7 @@ import {
 } from "@ant-design/icons";
 import { Authors } from "../data/Authors";
 import Plot from "react-plotly.js";
+import { Helmet } from "react-helmet";
 
 export default function BlogPage() {
   // /uk/research/blog-slug-here
@@ -76,6 +77,12 @@ export default function BlogPage() {
 
   return (
     <>
+      <Helmet>
+        <meta property="og:title" content={post.title} />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content={post.description} />
+      </Helmet>
       <Header />
       <Section backgroundColor={style.colors.BLUE_98}>
         <PostHeadingSection
