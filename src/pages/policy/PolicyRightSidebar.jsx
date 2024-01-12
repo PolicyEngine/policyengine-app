@@ -153,6 +153,7 @@ function DatasetSelector(props) {
         size="small"
         onChange={handleChange}
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
+        checked={presentRegion === "enhanced_us" ? true : false}
       />
       <h6
         style={{
