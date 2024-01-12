@@ -1,15 +1,13 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { capitalize } from "../lang/format";
 import style from "../style";
+import { motion } from "framer-motion";
 
 function MenuItem(props) {
   const { name, label, selected, onSelect } = props;
 
-  // If selected, display a Unicode right arrow to the left of the label
-
   return (
-    <motion.div
+    <div
       style={{
         cursor: "pointer",
         paddingTop: 5,
@@ -17,11 +15,7 @@ function MenuItem(props) {
       }}
       onClick={() => onSelect(name)}
     >
-      <motion.h5
-        style={{ fontSize: 18 }}
-        initial={{ x: 0 }}
-        whileHover={{ color: "#000", fontWeight: 700 }}
-      >
+      <h5 style={{ fontSize: 18 }}>
         {selected === name && (
           <span
             style={{
@@ -35,17 +29,13 @@ function MenuItem(props) {
           </span>
         )}
         {selected === name ? "" : label || name.split(".").pop()}
-      </motion.h5>
-    </motion.div>
+      </h5>
+    </div>
   );
 }
 
 function MenuItemGroup(props) {
   const { name, label, selected, children, onSelect } = props;
-  // By default, expand the group if the selected item is in the group.
-  // The user can then collapse the group if they want, but it should
-  // re-open if the selected item becomes a child of the group, and
-  // close if the selected item moves out of the group.
 
   const [expanded, setExpanded] = useState(selected.includes(name));
   const [selectedWhenExpandedLastToggled, setSelectedWhenExpandedLastToggled] =
@@ -66,7 +56,6 @@ function MenuItemGroup(props) {
   let expandedChildren = [];
 
   if (showExpanded) {
-    // Sort children by their index property
     for (let child of children) {
       if (child.name.includes("pycache")) {
         continue;
@@ -98,28 +87,18 @@ function MenuItemGroup(props) {
   }
 
   const expandedComponentSpace = (
-    <motion.div
+    <div
       style={{
         paddingLeft: 15,
         overflow: "hidden",
       }}
-      animate={
-        showExpanded
-          ? { height: "auto", opacity: 1 }
-          : { height: 0, opacity: 0 }
-      }
-      transition={{
-        duration: 0.25,
-      }}
     >
-      <AnimatePresence delay={showExpanded ? 0 : 0.5}>
-        {expandedChildren}
-      </AnimatePresence>
-    </motion.div>
+      {expandedChildren}
+    </div>
   );
 
   return (
-    <motion.div
+    <div
       style={{
         color: style.colors.BLACK,
         paddingTop: 5,
@@ -129,9 +108,9 @@ function MenuItemGroup(props) {
     >
       <motion.h5
         onClick={toggleExpanded}
-        initial={{ x: 0 }}
-        whileHover={{ color: "#000", fontWeight: 700 }}
         style={{ fontSize: 18 }}
+        whileHover={{ color: "#000", fontWeight: 700 }}
+        transition={{ type: "spring", stiffness: 500 }}
       >
         {selected === name && (
           <span
@@ -148,16 +127,12 @@ function MenuItemGroup(props) {
         {selected === name ? "" : label || name.split(".").pop()}
       </motion.h5>
       {expandedComponentSpace}
-    </motion.div>
+    </div>
   );
 }
 
 export default function Menu(props) {
   const { tree, selected, onSelect } = props;
-
-  // tree is a nested object with the following structure:
-  // [{  name: name, label: label, children: {...} }]
-  // Child keys must include the keys of their parent.
 
   let menuItems = [];
   for (const item of tree) {
