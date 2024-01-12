@@ -1,4 +1,4 @@
-import { SwapOutlined, QuestionCircleFilled, QuestionCircleOutlined } from "@ant-design/icons";
+import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -88,12 +88,15 @@ function TimePeriodSelector(props) {
  * country package; this displays the enhanced CPS as a dataset on the
  * right-hand policy panel
  * @param {Object} props
+ * @param {String} presentRegion The region, taken from the searchParams
+ * @param {Number|String} timePeriod The year the simulation should run over
  * @returns {import("react").ReactElement}
  */
 function DatasetSelector(props) {
   const { presentRegion, timePeriod } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // Determine whether slider should be enabled or disabled
   function shouldEnableSlider(presentRegion, timePeriod) {
     // Define the regions the slider should be enabled
     const showRegions = [
@@ -104,11 +107,11 @@ function DatasetSelector(props) {
 
     // Define the times the slider should NOT be enabled
     const dontShowTimes = [
-      2021
+      "2021"
     ];
 
     // Return whether or not slider should be enabled
-    if (showRegions.includes(presentRegion) && !dontShowTimes.includes(timePeriod)) {
+    if (showRegions.includes(presentRegion) && !dontShowTimes.includes(String(timePeriod))) {
       return true;
     }
 
@@ -116,7 +119,13 @@ function DatasetSelector(props) {
 
   }
 
-  // Define handler function
+  /**
+   * Switch change handler
+   * @param {Boolean} isChecked Whether or not the switch is "checked";
+   * note that the event is not passed to the handler by default
+   * @returns {undefined|null} Returns null as a safety check in cases where
+   * switch shouldn't be active in the first place
+   */
   function handleChange(isChecked) {
     // Define our desired states; item 0 corresponds to
     // "true" and 1 to "false", since bools can't be used as keys
