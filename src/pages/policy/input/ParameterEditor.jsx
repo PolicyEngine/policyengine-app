@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
 import { Alert, DatePicker, Switch } from "antd";
@@ -29,6 +30,24 @@ export default function ParameterEditor(props) {
     getReformedParameter(parameter, policy.reform.data),
     startDate,
   );
+
+  useEffect(() => {
+    if (
+      policy?.reform?.data &&
+      policy.reform.data[parameterName] &&
+      Array.isArray(Object.keys(policy.reform.data[parameterName])) &&
+      Object.keys(policy.reform.data[parameterName].length > 0)
+    ) {
+      const [parameterStartDate, parameterEndDate] = Object.keys(
+        policy.reform.data[parameterName],
+      )[0].split(".");
+      setStartDate(parameterStartDate);
+      setEndDate(parameterEndDate);
+    } else {
+      setStartDate(defaultStartDate);
+      setEndDate(defaultEndDate);
+    }
+  }, [parameterName, policy]);
 
   // change reform data using value and current startDate and endDate
   function newReforms(reforms, value) {
@@ -103,7 +122,7 @@ export default function ParameterEditor(props) {
       }}
     >
       <RangePicker
-        defaultValue={[moment(startDate), moment(endDate)]}
+        value={[moment(startDate), moment(endDate)]}
         onChange={(_, dateStrings) => {
           setStartDate(dateStrings[0]);
           setEndDate(dateStrings[1]);
