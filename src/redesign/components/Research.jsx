@@ -16,12 +16,15 @@ import {
 import { MediumBlogPreview } from "./HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "./FontIcon";
 import { authorKeys, authorKeyToLabel } from "redesign/data/Authors";
 
 export default function Research() {
+  useEffect(() => {
+    document.title = "Research | PolicyEngine";
+  }, []);
   return (
     <div>
       <Header />

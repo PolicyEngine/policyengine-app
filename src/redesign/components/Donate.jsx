@@ -5,13 +5,16 @@ import style from "../style";
 import PageHeader from "./PageHeader";
 import useDisplayCategory from "./useDisplayCategory";
 import LinkButton from "controls/LinkButton";
+import { useEffect } from "react";
 
 export default function Donate() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const desktop = displayCategory === "top";
   const link = "https://opencollective.com/policyengine";
-
+  useEffect(() => {
+    document.title = "Donate | PolicyEngine";
+  }, []);
   return (
     <div>
       <Header />
