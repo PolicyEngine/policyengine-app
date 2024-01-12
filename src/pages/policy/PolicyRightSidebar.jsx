@@ -1,4 +1,4 @@
-import { SwapOutlined } from "@ant-design/icons";
+import { SwapOutlined, QuestionCircleFilled, QuestionCircleOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -12,7 +12,7 @@ import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal, Switch } from "antd";
+import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 
@@ -158,11 +158,22 @@ function DatasetSelector(props) {
       <h6
         style={{
           margin: 0,
-          fontSize: "0.9em"
+          fontSize: "0.95em",
+          color: !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
+          cursor: !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed"
         }}
       >
         Utilize Enhanced CPS (experimental)
       </h6>
+      <Tooltip placement="topRight" title="Currently available for US-wide simulations only.">
+        <QuestionCircleOutlined
+          style={{
+            color: "rgba(0, 0, 0, 0.85)",
+            opacity: 0.85,
+            cursor: "pointer"
+          }}
+        />
+      </Tooltip>
     </div>
   )
 }
