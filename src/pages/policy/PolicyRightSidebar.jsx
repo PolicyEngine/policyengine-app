@@ -484,19 +484,19 @@ export default function PolicyRightSidebar(props) {
       />
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "max-content auto",
+          display: "flex",
+          flexDirection: "column",
           margin: "0 20px",
-          justifyItems: "right",
-          alignItems: "center",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
           gap: "10px",
         }}
       >
-        <h6 style={{ margin: 0 }}>in</h6>
+        <h6 style={{ margin: "10px 0 0 0" }}>Geography</h6>
         <RegionSelector metadata={metadata} />
-        <h6 style={{ margin: 0 }}>over</h6>
+        <h6 style={{ margin: "10px 0 0 0" }}>Year</h6>
         <TimePeriodSelector metadata={metadata} />
-        <h6 style={{ margin: 0 }}>against</h6>
+        <h6 style={{ margin: "10px 0 0 0" }}>Baseline Policy</h6>
         <div
           style={{
             display: "flex",
@@ -532,7 +532,6 @@ export default function PolicyRightSidebar(props) {
             }}
           />
         </div>
-        <h6 style={{ margin: 0 }}>with</h6>
         <DatasetSelector 
           presentRegion={region} 
           timePeriod={timePeriod}
