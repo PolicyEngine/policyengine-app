@@ -242,7 +242,7 @@ function PageLinks() {
         alignItems: "center",
         justifyContent: "space-between",
         width: "min(600px, 35vw)",
-        gap: 45,
+        gap: 30,
       }}
     >
       {["Research", "About", "Donate"].map((link) => {
