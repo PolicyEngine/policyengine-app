@@ -12,10 +12,9 @@ import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal } from "antd";
+import { Alert, Modal, Switch } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
-import TabbedRadio from "layout/TabbedRadio";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -125,11 +124,27 @@ function DatasetSelector(props) {
   ];
 
   return (
-    <TabbedRadio
-      options={options}
-      defaultValue="us"
-      changeHandler={handleChange}
-    />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px"
+      }}
+    >
+      <Switch 
+        size="small"
+      />
+      <h6
+        style={{
+          margin: 0,
+          fontSize: "0.9em"
+        }}
+      >
+        Enable Enhanced CPS (experimental)
+      </h6>
+    </div>
   )
 }
 
