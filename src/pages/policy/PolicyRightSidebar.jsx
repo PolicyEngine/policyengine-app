@@ -160,7 +160,7 @@ function DatasetSelector(props) {
           fontSize: "0.9em"
         }}
       >
-        Enable Enhanced CPS (experimental)
+        Utilize Enhanced CPS (experimental)
       </h6>
     </div>
   )
@@ -565,10 +565,12 @@ export default function PolicyRightSidebar(props) {
             }}
           />
         </div>
-        <DatasetSelector 
-          presentRegion={region} 
-          timePeriod={timePeriod}
-        />
+        {metadata.countryId === "us" &&
+          <DatasetSelector 
+            presentRegion={region} 
+            timePeriod={timePeriod}
+          />
+        }
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton
