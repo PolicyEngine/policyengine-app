@@ -119,7 +119,8 @@ function DatasetSelector(props) {
     {
       label: "Enhanced CPS (experimental)",
       value: "enhanced_us",
-      disabled: !showComponent.includes(presentRegion) && true
+      disabled: !showComponent.includes(presentRegion) && true,
+      disabledMsg: "We currently only offer the Enhanced CPS for nationwide analysis 2022 onward."
     },
   ];
 

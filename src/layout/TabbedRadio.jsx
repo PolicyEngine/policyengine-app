@@ -1,4 +1,4 @@
-import { Radio } from "antd";
+import { Radio, Tooltip } from "antd";
 
 export default function TabbedRadio(props) {
   const {
@@ -7,10 +7,24 @@ export default function TabbedRadio(props) {
     normalButtonStyle,
     activeButtonStyle,
     defaultValue,
-    changeHandler
+    changeHandler,
   } = props;
 
   const radioButtons = options.map((option, index) => {
+    if (option.disabled && option.disabledMsg) {
+      return (
+        <Tooltip 
+          title={option.disabledMsg}
+          key={index}
+        >
+          <Radio.Button
+            value={option.value}
+            disabled={option.disabled}
+          >{option.label}</Radio.Button>
+        </Tooltip>
+      );
+    }
+
     return (
       <Radio.Button
         key={index}
