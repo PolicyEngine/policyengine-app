@@ -94,34 +94,50 @@ function DatasetSelector(props) {
   const { presentRegion, timePeriod } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Define handler function
-  function handleChange(e) {
-    let newSearch = copySearchParams(searchParams);
-    newSearch.set("region", e.target.value);
-    setSearchParams(newSearch);
+  function shouldEnableSlider(presentRegion, timePeriod) {
+    // Define the regions the slider should be enabled
+    const showRegions = [
+      "enhanced_us",
+      "us",
+      null
+    ];
+
+    // Define the times the slider should NOT be enabled
+    const dontShowTimes = [
+      2021
+    ];
+
+    // Return whether or not slider should be enabled
+    if (showRegions.includes(presentRegion) && !dontShowTimes.includes(timePeriod)) {
+      return true;
+    }
+
+    return false;
+
   }
 
-  const showComponent = [
-    "us",
-    "enhanced_us",
-    null
-  ];
+  // Define handler function
+  function handleChange(isChecked) {
+    // Define our desired states; item 0 corresponds to
+    // "true" and 1 to "false", since bools can't be used as keys
+    const outputStates = [
+      "enhanced_us",
+      "us"
+    ];
 
-  // Define options, including labels and values, for antd component
-  // Temporarily, these mimic the region metadata, but should be
-  // altered if/when the API can better handle enhanced CPS
-  const options = [
-    {
-      label: "Base CPS",
-      value: "us",
-    },
-    {
-      label: "Enhanced CPS (experimental)",
-      value: "enhanced_us",
-      disabled: (!showComponent.includes(presentRegion) || timePeriod === "2021") && true,
-      disabledMsg: "We currently only offer the Enhanced CPS for nationwide analysis 2022 onward."
-    },
-  ];
+    // First, safety check - if the button isn't even
+    // supposed to be shown, do nothing
+    if (!shouldEnableSlider(presentRegion, timePeriod)) {
+      return;
+    }
+
+    // Duplicate the existing search params
+    let newSearch = copySearchParams(searchParams);
+
+    // Set params accordingly
+    newSearch.set("region", isChecked ? outputStates[0] : outputStates[1]);
+    setSearchParams(newSearch);
+  }
 
   return (
     <div
@@ -135,6 +151,8 @@ function DatasetSelector(props) {
     >
       <Switch 
         size="small"
+        onChange={handleChange}
+        disabled={!shouldEnableSlider(presentRegion, timePeriod)}
       />
       <h6
         style={{
