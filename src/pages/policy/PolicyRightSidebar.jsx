@@ -92,7 +92,7 @@ function TimePeriodSelector(props) {
  * @returns {import("react").ReactElement}
  */
 function DatasetSelector(props) {
-  const { presentRegion } = props;
+  const { presentRegion, timePeriod } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
   // Define handler function
@@ -119,7 +119,7 @@ function DatasetSelector(props) {
     {
       label: "Enhanced CPS (experimental)",
       value: "enhanced_us",
-      disabled: !showComponent.includes(presentRegion) && true,
+      disabled: (!showComponent.includes(presentRegion) || timePeriod === "2021") && true,
       disabledMsg: "We currently only offer the Enhanced CPS for nationwide analysis 2022 onward."
     },
   ];
@@ -533,7 +533,10 @@ export default function PolicyRightSidebar(props) {
           />
         </div>
         <h6 style={{ margin: 0 }}>with</h6>
-        <DatasetSelector presentRegion={region} />
+        <DatasetSelector 
+          presentRegion={region} 
+          timePeriod={timePeriod}
+        />
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton
