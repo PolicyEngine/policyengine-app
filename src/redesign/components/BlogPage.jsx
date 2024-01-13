@@ -277,6 +277,7 @@ function PostBodySection({ post, markdown, notebook }) {
     bodyContent = <BlogContent markdown={markdown} />;
   }
   if (displayCategory === "desktop") {
+    console.log(bodyContent);
     return (
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1, marginRight: 50 }}>
@@ -616,7 +617,7 @@ function BlogContent({ markdown, backgroundColor }) {
       components={{
         ...renderers,
         p: ({ children }) => (
-          <p
+          <div
             style={{
               fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
@@ -624,7 +625,7 @@ function BlogContent({ markdown, backgroundColor }) {
             }}
           >
             {children}
-          </p>
+          </div>
         ),
         // Ensure images fit inside the container
         img: ({ src, alt }) => (
