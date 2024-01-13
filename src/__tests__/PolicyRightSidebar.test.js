@@ -140,9 +140,119 @@ describe("Enhanced CPS selector", () => {
     expect(screen.findByText("Utilize Enhanced CPS")).not.toBeInTheDocument();
 
   });
-  test("Should be enabled when region is 'us'");
-  test("Should be enabled when region is 'enhanced_us'");
-  test("Should be enabled when region is 'null'");
-  test("Should not be enabled when region is a state");
+  test("Should be enabled when region is 'us'", async () => {
+    const testSearchParams = {
+      focus: "gov",
+      region: "us"
+    };
+
+    // Fetched metadata
+    const metadataUS = await fetchMetadata("us");
+
+    useSearchParams.mockImplementation(() => {
+      return (
+        [
+          new URLSearchParams(testSearchParams),
+          jest.fn()
+        ]
+      );
+    });
+
+    // Declare props
+    const props = {
+      metadata: metadataUS,
+      policy: standardPolicyUS
+    };
+
+    render(<PolicyRightSidebar {...props}/>);
+
+    expect(screen.findByRole("switch").classList).not.toContain("ant-switch-disabled");
+
+  });
+  test("Should be enabled when region is 'enhanced_us'", async () => {
+    const testSearchParams = {
+      focus: "gov",
+      region: "enhanced_us"
+    };
+
+    // Fetched metadata
+    const metadataUS = await fetchMetadata("us");
+
+    useSearchParams.mockImplementation(() => {
+      return (
+        [
+          new URLSearchParams(testSearchParams),
+          jest.fn()
+        ]
+      );
+    });
+
+    // Declare props
+    const props = {
+      metadata: metadataUS,
+      policy: standardPolicyUS
+    };
+
+    render(<PolicyRightSidebar {...props}/>);
+
+    expect(screen.findByRole("switch").classList).not.toContain("ant-switch-disabled");
+  });
+  test("Should be enabled when region is 'null'", async () => {
+    const testSearchParams = {
+      focus: "gov",
+      region: "enhanced_us"
+    };
+
+    // Fetched metadata
+    const metadataUS = await fetchMetadata("us");
+
+    useSearchParams.mockImplementation(() => {
+      return (
+        [
+          new URLSearchParams(testSearchParams),
+          jest.fn()
+        ]
+      );
+    });
+
+    // Declare props
+    const props = {
+      metadata: metadataUS,
+      policy: standardPolicyUS
+    };
+
+    render(<PolicyRightSidebar {...props}/>);
+
+    expect(screen.findByRole("switch").classList).not.toContain("ant-switch-disabled");
+  });
+  test("Should not be enabled when region is a state", async () => {
+
+    const testSearchParams = {
+      focus: "gov",
+      region: "ar"
+    };
+
+    // Fetched metadata
+    const metadataUS = await fetchMetadata("us");
+
+    useSearchParams.mockImplementation(() => {
+      return (
+        [
+          new URLSearchParams(testSearchParams),
+          jest.fn()
+        ]
+      );
+    });
+
+    // Declare props
+    const props = {
+      metadata: metadataUS,
+      policy: standardPolicyUS
+    };
+
+    render(<PolicyRightSidebar {...props}/>);
+
+    expect(screen.findByRole("switch").classList).toContain("ant-switch-disabled");
+  });
   test("Should change region when selected");
 });
