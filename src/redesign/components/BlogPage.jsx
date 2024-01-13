@@ -277,7 +277,6 @@ function PostBodySection({ post, markdown, notebook }) {
     bodyContent = <BlogContent markdown={markdown} />;
   }
   if (displayCategory === "desktop") {
-    console.log(bodyContent);
     return (
       <div style={{ display: "flex" }}>
         <div style={{ flex: 1, marginRight: 50 }}>
