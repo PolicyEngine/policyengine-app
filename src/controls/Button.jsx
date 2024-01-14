@@ -86,6 +86,7 @@ export default function Button(props) {
       }}
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
+      aria-label={text}
     >
       {text}
     </HoverBox>
