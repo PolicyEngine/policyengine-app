@@ -616,7 +616,7 @@ function BlogContent({ markdown, backgroundColor }) {
       components={{
         ...renderers,
         p: ({ children }) => (
-          <p
+          <div
             style={{
               fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
@@ -624,7 +624,7 @@ function BlogContent({ markdown, backgroundColor }) {
             }}
           >
             {children}
-          </p>
+          </div>
         ),
         // Ensure images fit inside the container
         img: ({ src, alt }) => (
@@ -1101,9 +1101,11 @@ function LeftContents(props) {
     const headerText = headerTexts[i];
     const headerSlug = headerSlugs[i];
     contents.push(
-      <div style={{ display: "flex", alignItems: "center", marginBottom: 5 }}>
+      <div
+        style={{ display: "flex", alignItems: "center", marginBottom: 5 }}
+        key={headerSlug}
+      >
         <p
-          key={headerSlug}
           style={{
             fontSize: 16 - 2 * (headerLevel - 2),
             cursor: "pointer",
