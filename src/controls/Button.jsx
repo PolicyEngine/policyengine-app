@@ -79,6 +79,9 @@ export default function Button(props) {
         height: height,
         justifyContent: "center",
         textAlign: "center",
+        outline: "none",
+        boxShadow: "none",
+        userSelect: "none",
         ...style,
       }}
       size={size ? size : width ? `${width}px` : "300px"}
