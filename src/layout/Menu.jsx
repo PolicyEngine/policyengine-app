@@ -15,7 +15,11 @@ function MenuItem(props) {
       }}
       onClick={() => onSelect(name)}
     >
-      <h5 style={{ fontSize: 18 }}>
+      <motion.h5
+        style={{ fontSize: 18 }}
+        whileHover={{ color: "#000", fontWeight: 700 }}
+        transition={{ duration: 0.001 }}
+      >
         {selected === name && (
           <span
             style={{
@@ -29,7 +33,7 @@ function MenuItem(props) {
           </span>
         )}
         {selected === name ? "" : label || name.split(".").pop()}
-      </h5>
+      </motion.h5>
     </div>
   );
 }
@@ -110,7 +114,7 @@ function MenuItemGroup(props) {
         onClick={toggleExpanded}
         style={{ fontSize: 18 }}
         whileHover={{ color: "#000", fontWeight: 700 }}
-        transition={{ type: "spring", stiffness: 500 }}
+        transition={{ duration: 0.001 }}
       >
         {selected === name && (
           <span
