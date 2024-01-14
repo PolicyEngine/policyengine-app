@@ -13,6 +13,7 @@ import {
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
+import { Helmet } from "react-helmet";
 
 const UpArrow = () => (
   <CaretUpFilled
@@ -352,6 +353,9 @@ export default function NetIncomeBreakdown(props) {
 
   return (
     <>
+      <Helmet>
+        <title>{policyLabel} | Household net income | PolicyEngine</title>
+      </Helmet>
       <ResultsPanel
         title={title}
         description="Here's how we calculated your household's net income. Click on a section to see the breakdown. Hover to see more details."

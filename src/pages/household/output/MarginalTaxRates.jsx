@@ -18,6 +18,7 @@ import { plotLayoutFont } from "pages/policy/output/utils";
 import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 import { localeCode } from "lang/format";
+import { Helmet } from "react-helmet";
 
 export default function MarginalTaxRates(props) {
   const {
@@ -489,18 +490,23 @@ export default function MarginalTaxRates(props) {
   }
 
   return (
-    <ResultsPanel
-      title={title}
-      description="This chart shows how your marginal tax rate changes under different earnings. It is based on your household's current situation."
-    >
-      {loading ? (
-        <div style={{ height: 300 }}>
-          <LoadingCentered />
-        </div>
-      ) : (
-        <div style={{ minHeight: 400 }}>{plot}</div>
-      )}
-    </ResultsPanel>
+    <>
+      <Helmet>
+        <title>{policyLabel} | Marginal tax rates | PolicyEngine</title>
+      </Helmet>
+      <ResultsPanel
+        title={title}
+        description="This chart shows how your marginal tax rate changes under different earnings. It is based on your household's current situation."
+      >
+        {loading ? (
+          <div style={{ height: 300 }}>
+            <LoadingCentered />
+          </div>
+        ) : (
+          <div style={{ minHeight: 400 }}>{plot}</div>
+        )}
+      </ResultsPanel>
+    </>
   );
 }
 

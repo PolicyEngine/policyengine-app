@@ -12,7 +12,6 @@ import HOUSEHOLD_OUTPUT_TREE from "./tree";
 import React from "react";
 import { message } from "antd";
 import ResultActions from "layout/ResultActions";
-import { Helmet } from "react-helmet";
 
 export default function HouseholdOutput(props) {
   const [searchParams] = useSearchParams();
@@ -46,18 +45,6 @@ export default function HouseholdOutput(props) {
     policyLabel = `${reformLabel} (compared against ${baselineLabel})`;
   }
   let pane;
-  let title;
-  if (policyLabel) {
-    if (focus === "householdOutput.netIncome") {
-      title = `${policyLabel} | Household net income | PolicyEngine`;
-    } else if (focus === "householdOutput.earnings") {
-      title = `${policyLabel} | Earnings variation | PolicyEngine`;
-    } else if (focus === "householdOutput.mtr") {
-      title = `${policyLabel} | Marginal tax rates | PolicyEngine`;
-    } else if (focus === "householdOutput.pythonReproducibility") {
-      title = `${policyLabel} | Reproduce these results | PolicyEngine`;
-    }
-  }
   if (loading) {
     pane = (
       <>
@@ -78,7 +65,6 @@ export default function HouseholdOutput(props) {
       <ResultsPanel message="Tell us more about your household to see your results here." />
     );
   } else if (focus === "householdOutput.netIncome") {
-    document.title = `${policyLabel} | Household net income | PolicyEngine`;
     pane = (
       <NetIncomeBreakdown
         metadata={metadata}
@@ -90,7 +76,6 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.earnings") {
-    document.title = `${policyLabel} | Earnings variation | PolicyEngine`;
     pane = (
       <EarningsVariation
         metadata={metadata}
@@ -98,11 +83,11 @@ export default function HouseholdOutput(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         policy={policy}
+        policyLabel={policyLabel}
         year={year}
       />
     );
   } else if (focus === "householdOutput.mtr") {
-    document.title = `${policyLabel} | Marginal tax rates | PolicyEngine`;
     pane = (
       <MarginalTaxRates
         metadata={metadata}
@@ -115,11 +100,11 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.pythonReproducibility") {
-    document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = (
       <HouseholdReproducibility
         metadata={metadata}
         policy={policy}
+        policyLabel={policyLabel}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         householdInput={householdInput}
@@ -159,9 +144,6 @@ export default function HouseholdOutput(props) {
 
   return (
     <ResultsPanel>
-      <Helmet>
-        <title>{title}</title> {/* Set the document title */}
-      </Helmet>
       <ResultActions
         copyLink={copyLink}
         twitterLink={twitterLink}

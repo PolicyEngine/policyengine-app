@@ -5,9 +5,10 @@ import Button from "../../../controls/Button";
 import { Switch } from "antd";
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
+import { Helmet } from "react-helmet";
 
 export default function HouseholdReproducibility(props) {
-  const { policy, metadata, householdInput, year } = props;
+  const { policy, policyLabel, metadata, householdInput, year } = props;
   const [earningVariation, setEarningVariation] = useState(false);
 
   let lines = ["from " + metadata.package + " import Simulation"];
@@ -74,41 +75,46 @@ export default function HouseholdReproducibility(props) {
   // This component shows the Python code necessary to run a microsimulation to reproduce
   // results on PolicyEngine.
   return (
-    <ResultsPanel
-      title="Reproduce these results"
-      description="Run the code below into a Python notebook to reproduce the microsimulation results."
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          columnGap: "10px",
-          alignItems: "center",
-          paddingBottom: 20,
-        }}
+    <>
+      <Helmet>
+        <title>{policyLabel} | Reproduce these results | PolicyEngine</title>
+      </Helmet>
+      <ResultsPanel
+        title="Reproduce these results"
+        description="Run the code below into a Python notebook to reproduce the microsimulation results."
       >
-        <p style={{ margin: 0 }}>Include earning variation</p>
-        <Switch
-          checked={earningVariation}
-          onChange={() => setEarningVariation(!earningVariation)}
-        />
-      </div>
-      <CodeBlock lines={lines} language={"python"} />
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          paddingTop: 30,
-        }}
-      >
-        <Button
-          text="Copy"
-          style={{ width: 100, margin: "20px auto 10px" }}
-          onClick={() => {
-            navigator.clipboard.writeText(lines.join("\n"));
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            columnGap: "10px",
+            alignItems: "center",
+            paddingBottom: 20,
           }}
-        />
-      </div>
-    </ResultsPanel>
+        >
+          <p style={{ margin: 0 }}>Include earning variation</p>
+          <Switch
+            checked={earningVariation}
+            onChange={() => setEarningVariation(!earningVariation)}
+          />
+        </div>
+        <CodeBlock lines={lines} language={"python"} />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            paddingTop: 30,
+          }}
+        >
+          <Button
+            text="Copy"
+            style={{ width: 100, margin: "20px auto 10px" }}
+            onClick={() => {
+              navigator.clipboard.writeText(lines.join("\n"));
+            }}
+          />
+        </div>
+      </ResultsPanel>
+    </>
   );
 }
