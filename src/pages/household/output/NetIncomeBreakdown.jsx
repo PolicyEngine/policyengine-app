@@ -354,7 +354,7 @@ export default function NetIncomeBreakdown(props) {
   return (
     <>
       <Helmet>
-        <title>{policyLabel} | Household net income | PolicyEngine</title>
+        <title>{`${policyLabel} | Household net income | PolicyEngine`}</title>
       </Helmet>
       <ResultsPanel
         title={title}

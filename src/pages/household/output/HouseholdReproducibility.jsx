@@ -77,7 +77,7 @@ export default function HouseholdReproducibility(props) {
   return (
     <>
       <Helmet>
-        <title>{policyLabel} | Reproduce these results | PolicyEngine</title>
+        <title>{`${policyLabel} | Reproduce these results | PolicyEngine`}</title>
       </Helmet>
       <ResultsPanel
         title="Reproduce these results"

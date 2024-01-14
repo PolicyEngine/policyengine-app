@@ -189,7 +189,7 @@ export default function EarningsVariation(props) {
   return (
     <>
       <Helmet>
-        <title>{policyLabel} | Earnings variation | PolicyEngine</title>
+        <title>{`${policyLabel} | Earnings variation | PolicyEngine`}</title>
       </Helmet>
       <ResultsPanel
         title={`How your ${variableLabel} changes with your earnings`}

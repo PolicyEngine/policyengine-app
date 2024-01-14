@@ -492,7 +492,7 @@ export default function MarginalTaxRates(props) {
   return (
     <>
       <Helmet>
-        <title>{policyLabel} | Marginal tax rates | PolicyEngine</title>
+        <title>{`${policyLabel} | Marginal tax rates | PolicyEngine`}</title>
       </Helmet>
       <ResultsPanel
         title={title}
