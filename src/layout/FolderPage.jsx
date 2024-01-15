@@ -115,9 +115,8 @@ export default function FolderPage(props) {
               whileHover={{
                 scale: 1.05,
                 backgroundColor: style.colors.DARK_GRAY,
-                color: "white",
+                color: "#fff",
               }}
-              transition={{ duration: 0.25 }}
               onClick={() => {
                 let newSearch = copySearchParams(searchParams);
                 newSearch.set("focus", child.name);
