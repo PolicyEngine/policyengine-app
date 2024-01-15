@@ -99,24 +99,20 @@ function DatasetSelector(props) {
   // Determine whether slider should be enabled or disabled
   function shouldEnableSlider(presentRegion, timePeriod) {
     // Define the regions the slider should be enabled
-    const showRegions = [
-      "enhanced_us",
-      "us",
-      null
-    ];
+    const showRegions = ["enhanced_us", "us", null];
 
     // Define the times the slider should NOT be enabled
-    const dontShowTimes = [
-      "2021"
-    ];
+    const dontShowTimes = ["2021"];
 
     // Return whether or not slider should be enabled
-    if (showRegions.includes(presentRegion) && !dontShowTimes.includes(String(timePeriod))) {
+    if (
+      showRegions.includes(presentRegion) &&
+      !dontShowTimes.includes(String(timePeriod))
+    ) {
       return true;
     }
 
     return false;
-
   }
 
   /**
@@ -129,10 +125,7 @@ function DatasetSelector(props) {
   function handleChange(isChecked) {
     // Define our desired states; item 0 corresponds to
     // "true" and 1 to "false", since bools can't be used as keys
-    const outputStates = [
-      "enhanced_us",
-      "us"
-    ];
+    const outputStates = ["enhanced_us", "us"];
 
     // First, safety check - if the button isn't even
     // supposed to be shown, do nothing
@@ -155,10 +148,10 @@ function DatasetSelector(props) {
         flexDirection: "row",
         justifyContent: "flex-start",
         alignItems: "center",
-        gap: "10px"
+        gap: "10px",
       }}
     >
-      <Switch 
+      <Switch
         data-testid="enhanced_cps_switch"
         size="small"
         onChange={handleChange}
@@ -169,23 +162,28 @@ function DatasetSelector(props) {
         style={{
           margin: 0,
           fontSize: "0.95em",
-          color: !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
-          cursor: !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed"
+          color:
+            !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
+          cursor:
+            !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed",
         }}
       >
         Utilize Enhanced CPS (experimental)
       </h6>
-      <Tooltip placement="topRight" title="Currently available for US-wide simulations only.">
+      <Tooltip
+        placement="topRight"
+        title="Currently available for US-wide simulations only."
+      >
         <QuestionCircleOutlined
           style={{
             color: "rgba(0, 0, 0, 0.85)",
             opacity: 0.85,
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         />
       </Tooltip>
     </div>
-  )
+  );
 }
 
 function PolicyNamer(props) {
@@ -587,12 +585,9 @@ export default function PolicyRightSidebar(props) {
             }}
           />
         </div>
-        {metadata.countryId === "us" &&
-          <DatasetSelector 
-            presentRegion={region} 
-            timePeriod={timePeriod}
-          />
-        }
+        {metadata.countryId === "us" && (
+          <DatasetSelector presentRegion={region} timePeriod={timePeriod} />
+        )}
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton
