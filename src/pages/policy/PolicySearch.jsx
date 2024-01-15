@@ -1,10 +1,12 @@
-import { AutoComplete } from "antd";
+import { AutoComplete, message } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, onSelect } = props;
+  const [isRenaming, setIsRenaming] = useState(false);
+  const [newName, setNewName] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultId = searchParams.get(target);
   let defaultLabel = policy[target].label || `Policy #${defaultId}`;
@@ -20,6 +22,19 @@ export default function PolicySearch(props) {
   useEffect(() => {
     setValue(defaultLabel);
   }, [defaultLabel]);
+
+  const onRenameSubmit = () => {
+    countryApiCall(metadata.countryId, `/policies?query=${newName}`)
+      .then((data) => data.json())
+      .then((data) => {
+        if (data.result.length > 0) {
+          message.error("Policy name already exists");
+        } else {
+          // Handle the case where the policy name does not exist
+          // This could involve making another API call to rename the policy
+        }
+      });
+  };
 
   // The search should query the API, but limited to one request every 1000ms.
 
@@ -49,20 +64,29 @@ export default function PolicySearch(props) {
   };
 
   return (
-    <AutoComplete
-      options={policies || [{ value: defaultId, label: defaultLabel }]}
-      onSelect={(value) => {
-        let newSearch = copySearchParams(searchParams);
-        newSearch.set(target, value);
-        setSearchParams(newSearch);
-        if (onSelect) {
-          onSelect(value);
-        }
-      }}
-      onSearch={onSearch}
-      style={{ width: width || 200 }}
-      placeholder={defaultLabel}
-      value={value === defaultLabel ? null : value}
-    />
+    <>
+      <button onClick={() => setIsRenaming(true)}>Rename</button>
+      {isRenaming && (
+        <>
+          <input value={newName} onChange={(e) => setNewName(e.target.value)} />
+          <button onClick={onRenameSubmit}>Submit</button>
+        </>
+      )}
+      <AutoComplete
+        options={policies || [{ value: defaultId, label: defaultLabel }]}
+        onSelect={(value) => {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set(target, value);
+          setSearchParams(newSearch);
+          if (onSelect) {
+            onSelect(value);
+          }
+        }}
+        onSearch={onSearch}
+        style={{ width: width || 200 }}
+        placeholder={defaultLabel}
+        value={value === defaultLabel ? null : value}
+      />
+    </>
   );
 }
