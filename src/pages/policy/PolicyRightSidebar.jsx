@@ -159,6 +159,7 @@ function DatasetSelector(props) {
       }}
     >
       <Switch 
+        data-testid="enhanced_cps_switch"
         size="small"
         onChange={handleChange}
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}

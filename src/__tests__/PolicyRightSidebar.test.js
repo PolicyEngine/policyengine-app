@@ -1,9 +1,10 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { useSearchParams } from "react-router-dom";
 import fetch from "node-fetch";
 import { defaultYear } from "data/constants";
 import PolicyRightSidebar from "pages/policy/PolicyRightSidebar";
+import "@testing-library/jest-dom";
 
 jest.mock("react-router-dom", () => {
 
@@ -16,47 +17,21 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-// Metadata fetching function; incredibly, this must run inside test 
-// because of async/await
-async function fetchMetadata(countryId) {
-  const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
-  const metadataRaw = await res.json();
-  const metadata = metadataRaw.result;
-  return metadata;
-}
-
-const standardPolicyUS = {
-  "baseline": {
-    "data": {},
-    "label": "Current law",
-    "id": 2
-  },
-  "reform": {
-    "data": {},
-    "label": "Current law",
-    "id": 2
-  }
-}
-
-const standardPolicyUK = {
-  "baseline": {
-    "data": {},
-    "label": "Current law",
-    "id": 1
-  },
-  "reform": {
-    "data": {},
-    "label": "Current law",
-    "id": 1
-  }
-}
-
-beforeAll( async () => {
-  const metadataUS = await fetchMetadata("us");
-  const metadataUK = await fetchMetadata("uk");
-});
-
 describe("Test render output", () => {
+  let metadataUS = null;
+
+  beforeEach( async () => {
+    // Metadata fetching function 
+    async function fetchMetadata(countryId) {
+      const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
+      const metadataRaw = await res.json();
+      const metadata = metadataRaw.result;
+      return metadata;
+    }
+
+    metadataUS = await fetchMetadata("us");
+  });
+
   test("Should render sidebar for non-existent policy for US", async () => {
     const testSearchParams = {
       focus: "gov"
@@ -87,13 +62,52 @@ describe("Test render output", () => {
 });
 
 describe("Enhanced CPS selector", () => {
+  let metadataUS = null;
+  let metadataUK = null;
+
+  const standardPolicyUS = {
+    "baseline": {
+      "data": {},
+      "label": "Current law",
+      "id": 2
+    },
+    "reform": {
+      "data": {},
+      "label": "Current law",
+      "id": 2
+    }
+  };
+
+  const standardPolicyUK = {
+    "baseline": {
+      "data": {},
+      "label": "Current law",
+      "id": 1
+    },
+    "reform": {
+      "data": {},
+      "label": "Current law",
+      "id": 1
+    }
+  };
+
+  beforeEach( async () => {
+    // Metadata fetching function 
+    async function fetchMetadata(countryId) {
+      const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
+      const metadataRaw = await res.json();
+      const metadata = metadataRaw.result;
+      return metadata;
+    }
+
+    metadataUS = await fetchMetadata("us");
+    metadataUK = await fetchMetadata("uk");
+  });
+
   test("Should be present for the US site", async () => {
     const testSearchParams = {
       focus: "gov"
     };
-
-    // Fetched metadata
-    const metadataUS = await fetchMetadata("us");
 
     useSearchParams.mockImplementation(() => {
       return (
@@ -106,13 +120,18 @@ describe("Enhanced CPS selector", () => {
 
     // Declare props
     const props = {
-      metadata: metadataUS,
+      metadata: {
+        ...metadataUS,
+        countryId: "us"
+      },
       policy: standardPolicyUS
     };
 
-    render(<PolicyRightSidebar {...props}/>);
+    const { getByTestId } = render(<PolicyRightSidebar {...props}/>);
 
-    expect(screen.findByText("Utilize Enhanced CPS")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId("enhanced_cps_switch")).toBeInTheDocument()
+    });
 
   });
   test("Should not render for the UK site", async () => {
@@ -131,13 +150,18 @@ describe("Enhanced CPS selector", () => {
 
     // Declare props
     const props = {
-      metadata: metadataUK,
+      metadata: {
+        ...metadataUK,
+        countryId: "uk"
+      },
       policy: standardPolicyUK
     };
 
-    render(<PolicyRightSidebar {...props}/>);
+    const { queryByTestId } = render(<PolicyRightSidebar {...props}/>);
 
-    expect(screen.findByText("Utilize Enhanced CPS")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument()
+    });
 
   });
   test("Should be enabled when region is 'us'", async () => {
@@ -146,9 +170,6 @@ describe("Enhanced CPS selector", () => {
       region: "us"
     };
 
-    // Fetched metadata
-    const metadataUS = await fetchMetadata("us");
-
     useSearchParams.mockImplementation(() => {
       return (
         [
@@ -160,13 +181,16 @@ describe("Enhanced CPS selector", () => {
 
     // Declare props
     const props = {
-      metadata: metadataUS,
+      metadata: {
+        ...metadataUS,
+        countryId: "us"
+      },
       policy: standardPolicyUS
     };
 
-    render(<PolicyRightSidebar {...props}/>);
+    const { getByTestId } = render(<PolicyRightSidebar {...props}/>);
 
-    expect(screen.findByRole("switch").classList).not.toContain("ant-switch-disabled");
+    expect(getByTestId("enhanced_cps_switch").classList).not.toContain("ant-switch-disabled");
 
   });
   test("Should be enabled when region is 'enhanced_us'", async () => {
@@ -175,9 +199,6 @@ describe("Enhanced CPS selector", () => {
       region: "enhanced_us"
     };
 
-    // Fetched metadata
-    const metadataUS = await fetchMetadata("us");
-
     useSearchParams.mockImplementation(() => {
       return (
         [
@@ -189,22 +210,21 @@ describe("Enhanced CPS selector", () => {
 
     // Declare props
     const props = {
-      metadata: metadataUS,
+      metadata: {
+        ...metadataUS,
+        countryId: "us"
+      },
       policy: standardPolicyUS
     };
 
-    render(<PolicyRightSidebar {...props}/>);
+    const { getByTestId } = render(<PolicyRightSidebar {...props}/>);
 
-    expect(screen.findByRole("switch").classList).not.toContain("ant-switch-disabled");
+    expect(getByTestId("enhanced_cps_switch").classList).not.toContain("ant-switch-disabled");
   });
   test("Should be enabled when region is 'null'", async () => {
     const testSearchParams = {
-      focus: "gov",
-      region: "enhanced_us"
+      focus: "gov"
     };
-
-    // Fetched metadata
-    const metadataUS = await fetchMetadata("us");
 
     useSearchParams.mockImplementation(() => {
       return (
@@ -217,13 +237,16 @@ describe("Enhanced CPS selector", () => {
 
     // Declare props
     const props = {
-      metadata: metadataUS,
+      metadata: {
+        ...metadataUS,
+        countryId: "us"
+      },
       policy: standardPolicyUS
     };
 
-    render(<PolicyRightSidebar {...props}/>);
+    const { getByTestId } = render(<PolicyRightSidebar {...props}/>);
 
-    expect(screen.findByRole("switch").classList).not.toContain("ant-switch-disabled");
+    expect(getByTestId("enhanced_cps_switch").classList).not.toContain("ant-switch-disabled");
   });
   test("Should not be enabled when region is a state", async () => {
 
@@ -232,9 +255,6 @@ describe("Enhanced CPS selector", () => {
       region: "ar"
     };
 
-    // Fetched metadata
-    const metadataUS = await fetchMetadata("us");
-
     useSearchParams.mockImplementation(() => {
       return (
         [
@@ -246,13 +266,16 @@ describe("Enhanced CPS selector", () => {
 
     // Declare props
     const props = {
-      metadata: metadataUS,
+      metadata: {
+        ...metadataUS,
+        countryId: "us"
+      },
       policy: standardPolicyUS
     };
 
-    render(<PolicyRightSidebar {...props}/>);
+    const { getByTestId } = render(<PolicyRightSidebar {...props}/>);
 
-    expect(screen.findByRole("switch").classList).toContain("ant-switch-disabled");
+    expect(getByTestId("enhanced_cps_switch").classList).toContain("ant-switch-disabled");
   });
-  test("Should change region when selected");
+  // test("Should change region when selected");
 });
