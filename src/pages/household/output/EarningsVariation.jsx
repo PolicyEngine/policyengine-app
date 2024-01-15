@@ -9,6 +9,7 @@ import { capitalize } from "../../../lang/format";
 import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";
 import BaselineAndReformChart from "./EarningsVariation/BaselineAndReformChart";
 import { getValueFromHousehold } from "../../../api/variables";
+import { Helmet } from "react-helmet";
 
 export default function EarningsVariation(props) {
   const {
@@ -17,6 +18,7 @@ export default function EarningsVariation(props) {
     householdReform,
     metadata,
     policy,
+    policyLabel,
     year,
   } = props;
   const [baselineNetIncome, setBaselineNetIncome] = useState(null);
@@ -185,20 +187,25 @@ export default function EarningsVariation(props) {
   }
 
   return (
-    <ResultsPanel
-      title={`How your ${variableLabel} changes with your earnings`}
-      description={`This chart shows how your ${variableLabel} changes under different earnings. It is based on your household's current situation.`}
-    >
-      {loading ? (
-        <div style={{ height: 300 }}>
-          <LoadingCentered />
-        </div>
-      ) : (
-        <>
-          {yAxisSelector}
-          {mainChart}
-        </>
-      )}
-    </ResultsPanel>
+    <>
+      <Helmet>
+        <title>{`${policyLabel} | Earnings variation | PolicyEngine`}</title>
+      </Helmet>
+      <ResultsPanel
+        title={`How your ${variableLabel} changes with your earnings`}
+        description={`This chart shows how your ${variableLabel} changes under different earnings. It is based on your household's current situation.`}
+      >
+        {loading ? (
+          <div style={{ height: 300 }}>
+            <LoadingCentered />
+          </div>
+        ) : (
+          <>
+            {yAxisSelector}
+            {mainChart}
+          </>
+        )}
+      </ResultsPanel>
+    </>
   );
 }

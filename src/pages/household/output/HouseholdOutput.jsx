@@ -37,7 +37,9 @@ export default function HouseholdOutput(props) {
     baselineLabel = "Current law";
   }
   let policyLabel;
-  if (reformLabel !== "Current law" && baselineLabel === "Current law") {
+  if (reformLabel === "Current law" && baselineLabel === "Current law") {
+    policyLabel = "Current law";
+  } else if (reformLabel !== "Current law" && baselineLabel === "Current law") {
     policyLabel = reformLabel;
   } else {
     policyLabel = `${reformLabel} (compared against ${baselineLabel})`;
@@ -63,7 +65,6 @@ export default function HouseholdOutput(props) {
       <ResultsPanel message="Tell us more about your household to see your results here." />
     );
   } else if (focus === "householdOutput.netIncome") {
-    document.title = `${policyLabel} | Household net income | PolicyEngine`;
     pane = (
       <NetIncomeBreakdown
         metadata={metadata}
@@ -75,7 +76,6 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.earnings") {
-    document.title = `${policyLabel} | Earnings variation | PolicyEngine`;
     pane = (
       <EarningsVariation
         metadata={metadata}
@@ -83,11 +83,11 @@ export default function HouseholdOutput(props) {
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         policy={policy}
+        policyLabel={policyLabel}
         year={year}
       />
     );
   } else if (focus === "householdOutput.mtr") {
-    document.title = `${policyLabel} | Marginal tax rates | PolicyEngine`;
     pane = (
       <MarginalTaxRates
         metadata={metadata}
@@ -100,11 +100,11 @@ export default function HouseholdOutput(props) {
       />
     );
   } else if (focus === "householdOutput.pythonReproducibility") {
-    document.title = `${policyLabel} | Reproduce these results | PolicyEngine`;
     pane = (
       <HouseholdReproducibility
         metadata={metadata}
         policy={policy}
+        policyLabel={policyLabel}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
         householdInput={householdInput}
