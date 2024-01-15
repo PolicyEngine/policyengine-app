@@ -33,7 +33,11 @@ export function getPolicyOutputTree(countryId) {
     });
   }
   if (countryId !== "us") {
-    ["racialPovertyImpact"].forEach((key) => {
+    [
+      "racialPovertyImpact",
+      // Delete the below key when labor supply impacts are reinstated to all countries
+      "laborSupplyImpact",
+    ].forEach((key) => {
       delete map[key];
     });
   }
