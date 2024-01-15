@@ -1,12 +1,14 @@
-import { AutoComplete, message } from "antd";
+import { Alert, AutoComplete, message } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
+import { getNewPolicyId } from "api/parameters";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, onSelect } = props;
   const [isRenaming, setIsRenaming] = useState(false);
   const [newName, setNewName] = useState("");
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultId = searchParams.get(target);
   let defaultLabel = policy[target].label || `Policy #${defaultId}`;
@@ -24,14 +26,36 @@ export default function PolicySearch(props) {
   }, [defaultLabel]);
 
   const onRenameSubmit = () => {
-    countryApiCall(metadata.countryId, `/policies?query=${newName}`)
-      .then((data) => data.json())
+    console.log("new name", newName);
+    const encodedName = encodeURIComponent(newName);
+    countryApiCall(metadata.countryId, `/policies?query=${encodedName}`)
+      .then((data) => {
+        console.log("countryAPIcall", data);
+        return data.json();
+      })
       .then((data) => {
         if (data.result.length > 0) {
           message.error("Policy name already exists");
         } else {
           // Handle the case where the policy name does not exist
           // This could involve making another API call to rename the policy
+          console.log("renaming policy", data);
+          getNewPolicyId(metadata.countryId, policy.reform.data, newName).then(
+            (data) => {
+              if (data.status) {
+                setError(data.message);
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("renamed", true);
+                setSearchParams(newSearch);
+              } else {
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("renamed", true);
+                setSearchParams(newSearch);
+                setError(null);
+                console.log("renamed policy", data);
+              }
+            },
+          );
         }
       });
   };
@@ -87,6 +111,13 @@ export default function PolicySearch(props) {
         placeholder={defaultLabel}
         value={value === defaultLabel ? null : value}
       />
+      {error && (
+        <Alert
+          message={error}
+          type="error"
+          style={{ marginLeft: 20, marginRight: 20 }}
+        />
+      )}
     </>
   );
 }

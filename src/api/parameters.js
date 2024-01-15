@@ -146,12 +146,14 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
   if (newPolicyLabel) {
     submission.label = newPolicyLabel;
   }
+  console.log("submission", submission);
   return countryApiCall(countryId, "/policy", submission, "POST")
     .then((response) => response.json())
     .then((data) => {
       if (data.status === "error") {
         return data;
       }
+      console.log("from server", data);
       return data.result.policy_id;
     });
 }
