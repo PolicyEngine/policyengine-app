@@ -277,5 +277,39 @@ describe("Enhanced CPS selector", () => {
 
     expect(getByTestId("enhanced_cps_switch").classList).toContain("ant-switch-disabled");
   });
-  // test("Should change region when selected");
+  test("Should change region when selected", () => {
+    const testSearchParams = {
+      focus: "gov",
+      region: "us"
+    };
+
+    const expectedSearchParams = {
+      focus: "gov",
+      region: "enhanced_us"
+    };
+
+    const mockSetSearchParams = jest.fn();
+
+    useSearchParams.mockImplementation(() => {
+      return (
+        [
+          new URLSearchParams(testSearchParams),
+          mockSetSearchParams
+        ]
+      );
+    });
+
+    // Declare props
+    const props = {
+      metadata: {
+        ...metadataUS,
+        countryId: "us"
+      },
+      policy: standardPolicyUS
+    };
+
+    const { getByTestId } = render(<PolicyRightSidebar {...props}/>);
+    fireEvent.click(getByTestId("enhanced_cps_switch"));
+    expect(mockSetSearchParams).toHaveBeenCalledWith(new URLSearchParams(expectedSearchParams));
+  });
 });
