@@ -41,6 +41,7 @@ import CFI from "../images/logos/orgs/cfi.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
 import PeoplesPolicyProject from "../images/logos/orgs/peoples-policy-project.png";
 import PRCarousel from "./home/GitHubActivity";
+import { Helmet } from "react-helmet";
 
 function HouseholdPolicyOptions(props) {
   const { countryId } = props;
@@ -186,12 +187,14 @@ export function WidePanel(props) {
 }
 
 export default function HomePage(props) {
-  document.title = "PolicyEngine";
   const { countryId } = props;
   const mobile = useMobile();
   // Items are centered horizontally, and placed in order vertically.
   return (
     <>
+      <Helmet>
+        <title>PolicyEngine</title>
+      </Helmet>
       <div
         style={{
           width: mobile ? "100%" : "50%",

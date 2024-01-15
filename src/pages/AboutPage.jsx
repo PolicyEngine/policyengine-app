@@ -4,10 +4,10 @@ import useMobile from "../layout/Responsive";
 
 import MaxGhenis from "../images/authors/max-ghenis.png";
 import NikhilWoodruff from "../images/authors/nikhil-woodruff.jpg";
+import { Helmet } from "react-helmet";
 
 export default function AboutPage() {
   const mobile = useMobile();
-  document.title = "About | PolicyEngine";
   const nikhilBio = (
     <Col xs={12} md={8} style={{ display: "flex", alignItems: "center" }}>
       <p>
@@ -119,9 +119,14 @@ export default function AboutPage() {
     return <Container style={{ padding: 20 }}>{contents}</Container>;
   } else {
     return (
-      <Container style={{ maxWidth: 800, paddingTop: 40 }} className="serif">
-        {contents}
-      </Container>
+      <>
+        <Helmet>
+          <title>About | PolicyEngine</title>
+        </Helmet>
+        <Container style={{ maxWidth: 800, paddingTop: 40 }} className="serif">
+          {contents}
+        </Container>
+      </>
     );
   }
 }

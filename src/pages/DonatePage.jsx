@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
+import { Helmet } from "react-helmet";
 
 export default function DonatePage() {
-  document.title = "Donate | PolicyEngine";
   const contents = (
     <>
       <h1>Donate</h1>
@@ -33,17 +33,22 @@ export default function DonatePage() {
     return <Container style={{ padding: 20 }}>{contents}</Container>;
   } else {
     return (
-      <Container
-        className="serif"
-        style={{
-          maxWidth: 800,
-          paddingTop: 40,
-          height: `calc(100vh - 140px)`,
-          overflowY: "scroll",
-        }}
-      >
-        {contents}
-      </Container>
+      <>
+        <Helmet>
+          <title>Donate | PolicyEngine</title>
+        </Helmet>
+        <Container
+          className="serif"
+          style={{
+            maxWidth: 800,
+            paddingTop: 40,
+            height: `calc(100vh - 140px)`,
+            overflowY: "scroll",
+          }}
+        >
+          {contents}
+        </Container>
+      </>
     );
   }
 }

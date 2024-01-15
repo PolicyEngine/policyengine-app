@@ -1,14 +1,14 @@
-import { useEffect } from "react";
 import Header from "./Header";
+import { Helmet } from "react-helmet";
 
 export default function CitizensEconomicCouncil() {
   // Update the title to be "CEC reform simulator | PolicyEngine")
-  useEffect(() => {
-    document.title = "CEC reform simulator | PolicyEngine";
-  }, []);
 
   return (
     <>
+      <Helmet>
+        <title>CEC reform simulator | PolicyEngine</title>
+      </Helmet>
       <Header />
       <div
         style={{

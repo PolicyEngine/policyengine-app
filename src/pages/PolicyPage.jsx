@@ -14,6 +14,7 @@ import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import { getPolicyOutputTree } from "./policy/output/tree";
+import { Helmet } from "react-helmet";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -72,7 +73,6 @@ function PolicyLeftSidebar(props) {
 }
 
 export default function PolicyPage(props) {
-  document.title = "Policy | PolicyEngine";
   const {
     metadata,
     policy,
@@ -144,26 +144,36 @@ export default function PolicyPage(props) {
 
   if (mobile) {
     return (
-      <MobileCalculatorPage
-        mainContent={middle}
-        metadata={metadata}
-        policy={policy}
-        type="policy"
-      />
+      <>
+        <Helmet>
+          <title>Policy | PolicyEngine</title>
+        </Helmet>
+        <MobileCalculatorPage
+          mainContent={middle}
+          metadata={metadata}
+          policy={policy}
+          type="policy"
+        />
+      </>
     );
   }
 
   return (
-    <ThreeColumnPage
-      left={<PolicyLeftSidebar metadata={metadata} />}
-      middle={middle}
-      right={
-        <PolicyRightSidebar
-          metadata={metadata}
-          policy={policy}
-          setPolicy={setPolicy}
-        />
-      }
-    />
+    <>
+      <Helmet>
+        <title>Policy | PolicyEngine</title>
+      </Helmet>
+      <ThreeColumnPage
+        left={<PolicyLeftSidebar metadata={metadata} />}
+        middle={middle}
+        right={
+          <PolicyRightSidebar
+            metadata={metadata}
+            policy={policy}
+            setPolicy={setPolicy}
+          />
+        }
+      />
+    </>
   );
 }

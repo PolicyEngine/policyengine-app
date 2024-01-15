@@ -3,15 +3,13 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Section from "./Section";
 import useCountryId from "./useCountryId";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Input, Card, Divider, Tag, Drawer } from "antd";
+import { Helmet } from "react-helmet";
 
 function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
-  useEffect(() => {
-    document.title = "API Documentation";
-  }, []);
 
   // type can be: parameter, variable
   // parameters look like this: "gov.dcms.bbc.tv_licence.discount.aged.discount":{"description":"Percentage discount for qualifying aged households.","economy":true,"household":true,"label":"Aged TV Licence discount","parameter":"gov.dcms.bbc.tv_licence.discount.aged.discount","period":null,"type":"parameter","unit":"/1","values":{"2003-01-01":1}}
@@ -20,22 +18,27 @@ function APIResultCard(props) {
   // rounded edges, display all metadata and distinguish between parameters and variables
 
   return (
-    <Card
-      bordered={true}
-      style={{
-        width: 400,
-        backgroundColor: style.colors.WHITE,
-        margin: 15,
-        overflow: "hidden",
-      }}
-      onClick={() => setSelectedCard({ ...metadata, type: type })}
-    >
-      {type === "parameter" ? (
-        <APIParameterCard metadata={metadata} />
-      ) : (
-        <APIVariableCard metadata={metadata} />
-      )}
-    </Card>
+    <>
+      <Helmet>
+        <title>API Documentation | PolicyEngine</title>
+      </Helmet>
+      <Card
+        bordered={true}
+        style={{
+          width: 400,
+          backgroundColor: style.colors.WHITE,
+          margin: 15,
+          overflow: "hidden",
+        }}
+        onClick={() => setSelectedCard({ ...metadata, type: type })}
+      >
+        {type === "parameter" ? (
+          <APIParameterCard metadata={metadata} />
+        ) : (
+          <APIVariableCard metadata={metadata} />
+        )}
+      </Card>
+    </>
   );
 }
 
