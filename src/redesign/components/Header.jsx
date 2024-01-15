@@ -198,7 +198,11 @@ function DesktopCalculatorButton() {
           letterSpacing: 2.4,
           cursor: "pointer",
           textTransform: "uppercase",
+          outline: "none",
+          boxShadow: "none",
+          userSelect: "none",
         }}
+        aria-label="Compute policy impacts"
         size="400px"
       >
         Compute policy impacts
