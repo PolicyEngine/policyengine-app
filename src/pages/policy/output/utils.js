@@ -14,6 +14,7 @@ async function downloadPng(filename) {
   if (downloadableContent) {
     const paddedDiv = document.createElement("div");
     paddedDiv.style.padding = "20px";
+    paddedDiv.style.width = "900px";
     paddedDiv.style.backgroundColor = "white";
     paddedDiv.style.display = "inline-block";
     paddedDiv.style.boxSizing = "content-box"; // Add this line
