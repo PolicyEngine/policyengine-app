@@ -158,17 +158,24 @@ export function DisplayImpact(props) {
       <ErrorPage message="This service is temporarily unavailable. Please try again later." />
     );
   } else {
-    const { chart, csv } = getImpactReps(impactType, {
+    const value = getImpactReps(impactType, {
       impact: impact,
       metadata: metadata,
       policyLabel: policyLabel,
       mobile: mobile,
     });
-    pane = chart;
-    if (csv) {
-      downloadCsvFn = () => downloadCsv(csv(), filename);
+    if (value) {
+      const { chart, csv } = value;
+      pane = chart;
+      if (csv) {
+        downloadCsvFn = () => downloadCsv(csv(), filename);
+      }
+      downloadPngFn = () => downloadPng(filename);
+    } else {
+      pane = (
+        <ErrorPage message="This service is temporarily unavailable. Please try again later." />
+      );
     }
-    downloadPngFn = () => downloadPng(filename);
   }
   return (
     <LowLevelDisplay
