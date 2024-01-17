@@ -1,4 +1,4 @@
-import { SwapOutlined } from "@ant-design/icons";
+import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -12,16 +12,24 @@ import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal } from "antd";
+import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
+import useDisplayCategory from "redesign/components/useDisplayCategory";
 
 function RegionSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const options = metadata.economy_options.region.map((region) => {
+  let options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
+
+  // This is a temporary solution that will need to be superseded by
+  // an improved back end design; removing this value allows
+  // DatasetSelector to handle choosing between enhanced CPS data and
+  // standard US data
+  options = options.filter((option) => option.value !== "enhanced_us");
+
   const [value] = useState(searchParams.get("region") || options[0].value);
 
   return (
@@ -72,6 +80,112 @@ function TimePeriodSelector(props) {
         setSearchParams(newSearch);
       }}
     />
+  );
+}
+
+/**
+ * A (hopefully temporary) component meant to abstract away the fact
+ * that the US enhanced CPS data is defined as a region within the US
+ * country package; this displays the enhanced CPS as a dataset on the
+ * right-hand policy panel
+ * @param {Object} props
+ * @param {String} presentRegion The region, taken from the searchParams
+ * @param {Number|String} timePeriod The year the simulation should run over
+ * @returns {import("react").ReactElement}
+ */
+function DatasetSelector(props) {
+  const { presentRegion, timePeriod } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const displayCategory = useDisplayCategory();
+
+  // Determine whether slider should be enabled or disabled
+  function shouldEnableSlider(presentRegion, timePeriod) {
+    // Define the regions the slider should be enabled
+    const showRegions = ["enhanced_us", "us", null];
+
+    // Define the times the slider should NOT be enabled
+    const dontShowTimes = ["2021"];
+
+    // Return whether or not slider should be enabled
+    if (
+      showRegions.includes(presentRegion) &&
+      !dontShowTimes.includes(String(timePeriod))
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Switch change handler
+   * @param {Boolean} isChecked Whether or not the switch is "checked";
+   * note that the event is not passed to the handler by default
+   * @returns {undefined|null} Returns null as a safety check in cases where
+   * switch shouldn't be active in the first place
+   */
+  function handleChange(isChecked) {
+    // Define our desired states; item 0 corresponds to
+    // "true" and 1 to "false", since bools can't be used as keys
+    const outputStates = ["enhanced_us", "us"];
+
+    // First, safety check - if the button isn't even
+    // supposed to be shown, do nothing
+    if (!shouldEnableSlider(presentRegion, timePeriod)) {
+      return;
+    }
+
+    // Duplicate the existing search params
+    let newSearch = copySearchParams(searchParams);
+
+    // Set params accordingly
+    newSearch.set("region", isChecked ? outputStates[0] : outputStates[1]);
+    setSearchParams(newSearch);
+  }
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <Switch
+        data-testid="enhanced_cps_switch"
+        size={displayCategory !== "mobile" && "small"}
+        onChange={handleChange}
+        disabled={!shouldEnableSlider(presentRegion, timePeriod)}
+        checked={presentRegion === "enhanced_us" ? true : false}
+      />
+      <h6
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+          color:
+            !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
+          cursor:
+            !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed",
+        }}
+      >
+        Use Enhanced CPS (experimental)
+      </h6>
+      <Tooltip
+        placement="topRight"
+        title="Currently available for US-wide simulations only."
+        trigger={displayCategory === "mobile" ? "click" : "hover"}
+      >
+        <QuestionCircleOutlined
+          style={{
+            color: "rgba(0, 0, 0, 0.85)",
+            opacity: 0.85,
+            cursor: "pointer",
+          }}
+        />
+      </Tooltip>
+    </div>
   );
 }
 
@@ -426,19 +540,19 @@ export default function PolicyRightSidebar(props) {
       />
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "max-content auto",
+          display: "flex",
+          flexDirection: "column",
           margin: "0 20px",
-          justifyItems: "right",
-          alignItems: "center",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
           gap: "10px",
         }}
       >
-        <h6 style={{ margin: 0 }}>in</h6>
+        <h6 style={{ margin: "10px 0 0 0" }}>Geography</h6>
         <RegionSelector metadata={metadata} />
-        <h6 style={{ margin: 0 }}>over</h6>
+        <h6 style={{ margin: "10px 0 0 0" }}>Year</h6>
         <TimePeriodSelector metadata={metadata} />
-        <h6 style={{ margin: 0 }}>against</h6>
+        <h6 style={{ margin: "10px 0 0 0" }}>Baseline Policy</h6>
         <div
           style={{
             display: "flex",
@@ -474,6 +588,9 @@ export default function PolicyRightSidebar(props) {
             }}
           />
         </div>
+        {metadata.countryId === "us" && (
+          <DatasetSelector presentRegion={region} timePeriod={timePeriod} />
+        )}
       </div>
       {!hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton

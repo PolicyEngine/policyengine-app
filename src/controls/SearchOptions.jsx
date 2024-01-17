@@ -11,6 +11,7 @@ export default function SearchOptions(props) {
     placeholder,
     style,
     notFoundMessage,
+    key,
   } = props;
   const [value, setValue] = useState(defaultValue);
   // eslint-disable-next-line
@@ -19,6 +20,7 @@ export default function SearchOptions(props) {
 
   return (
     <Select
+      key={key}
       showSearch
       options={filteredOptions}
       optionFilterProp="children"
