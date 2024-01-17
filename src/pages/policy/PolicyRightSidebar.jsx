@@ -15,6 +15,7 @@ import PolicySearch from "./PolicySearch";
 import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
+import useDisplayCategory from "redesign/components/useDisplayCategory";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -95,6 +96,7 @@ function TimePeriodSelector(props) {
 function DatasetSelector(props) {
   const { presentRegion, timePeriod } = props;
   const [searchParams, setSearchParams] = useSearchParams();
+  const displayCategory = useDisplayCategory();
 
   // Determine whether slider should be enabled or disabled
   function shouldEnableSlider(presentRegion, timePeriod) {
@@ -153,7 +155,7 @@ function DatasetSelector(props) {
     >
       <Switch
         data-testid="enhanced_cps_switch"
-        size="small"
+        size={displayCategory !== "mobile" && "small"}
         onChange={handleChange}
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
         checked={presentRegion === "enhanced_us" ? true : false}
@@ -161,7 +163,7 @@ function DatasetSelector(props) {
       <h6
         style={{
           margin: 0,
-          fontSize: "0.95em",
+          fontSize: displayCategory !== "mobile" && "0.95em",
           color:
             !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
           cursor:
@@ -173,6 +175,7 @@ function DatasetSelector(props) {
       <Tooltip
         placement="topRight"
         title="Currently available for US-wide simulations only."
+        trigger={displayCategory === "mobile" ? "click" : "hover"}
       >
         <QuestionCircleOutlined
           style={{
