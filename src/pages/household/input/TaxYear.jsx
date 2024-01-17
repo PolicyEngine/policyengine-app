@@ -73,6 +73,7 @@ export default function TaxYear(props) {
   return (
     <CenteredMiddleColumn title="Which year would you like to calculate?">
       <Select
+        data-testid="taxyear_dropdown"
         showSearch
         optionFilterProp="label"
         style={{ width: displayCategory === "mobile" ? 150 : 200 }}
@@ -81,6 +82,7 @@ export default function TaxYear(props) {
         onSelect={handleSubmit}
       />
       <SearchParamNavButton
+        data-testid="taxyear_navbutton"
         text="Enter"
         focus="input.household.maritalStatus"
         style={{ margin: "20px auto 10px" }}
