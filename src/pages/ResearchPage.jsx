@@ -1,9 +1,9 @@
+import { Helmet } from "react-helmet";
 import { BlogPostPreviewRegular } from "../layout/BlogPostHolder";
 import postJson from "../posts/posts.json";
 import style from "../style";
 
 export default function ResearchPage(props) {
-  document.title = "Research | PolicyEngine";
   const { countryId } = props;
   // postJson is a JSON file containing all the blog posts.
 
@@ -48,6 +48,9 @@ export default function ResearchPage(props) {
   // Left to right, top to bottom (wrap)
   return (
     <>
+      <Helmet>
+        <title>Research | PolicyEngine</title>
+      </Helmet>
       <div style={{ padding: 50 }}>
         <h1>Research</h1>
       </div>

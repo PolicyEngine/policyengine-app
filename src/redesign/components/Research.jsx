@@ -16,33 +16,36 @@ import {
 import { MediumBlogPreview } from "./HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "./FontIcon";
 import { authorKeys, authorKeyToLabel } from "redesign/data/Authors";
+import { Helmet } from "react-helmet";
 
 export default function Research() {
-  useEffect(() => {
-    document.title = "Research | PolicyEngine";
-  }, []);
   return (
-    <div>
-      <Header />
-      <PageHeader
-        title="Research and analysis"
-        backgroundColor={style.colors.BLUE_98}
-      >
-        <p style={{ margin: 0 }}>
-          Read PolicyEngine&apos;s research on recent and proposed policy
-          reforms, as well as technical and general updates from the
-          organisation.
-        </p>
-      </PageHeader>
-      <Section>
-        <ResearchExplorer />
-      </Section>
-      <Footer />
-    </div>
+    <>
+      <Helmet>
+        <title>Research | PolicyEngine</title>
+      </Helmet>
+      <div>
+        <Header />
+        <PageHeader
+          title="Research and analysis"
+          backgroundColor={style.colors.BLUE_98}
+        >
+          <p style={{ margin: 0 }}>
+            Read PolicyEngine&apos;s research on recent and proposed policy
+            reforms, as well as technical and general updates from the
+            organisation.
+          </p>
+        </PageHeader>
+        <Section>
+          <ResearchExplorer />
+        </Section>
+        <Footer />
+      </div>
+    </>
   );
 }
 

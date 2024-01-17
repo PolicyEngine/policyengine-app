@@ -26,9 +26,9 @@ import VariableSearch from "./household/VariableSearch";
 import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
 import TaxYear from "./household/input/TaxYear";
+import { Helmet } from "react-helmet";
 
 export default function HouseholdPage(props) {
-  document.title = "Household | PolicyEngine";
   const {
     metadata,
     householdId,
@@ -352,19 +352,27 @@ export default function HouseholdPage(props) {
   }
   if (mobile) {
     return (
-      <MobileCalculatorPage
-        type="household"
-        mainContent={middle}
-        metadata={metadata}
-        householdInput={householdInput}
-        householdBaseline={householdBaseline}
-        householdReform={householdReform}
-        autoCompute={autoCompute}
-      />
+      <>
+        <Helmet>
+          <title>Household | PolicyEngine</title>
+        </Helmet>
+        <MobileCalculatorPage
+          type="household"
+          mainContent={middle}
+          metadata={metadata}
+          householdInput={householdInput}
+          householdBaseline={householdBaseline}
+          householdReform={householdReform}
+          autoCompute={autoCompute}
+        />
+      </>
     );
   }
   return (
     <>
+      <Helmet>
+        <title>Household | PolicyEngine</title>
+      </Helmet>
       <RecreateHouseholdPopup
         countryId={countryId}
         isRHPOpen={isRHPOpen}

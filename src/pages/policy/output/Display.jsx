@@ -15,6 +15,7 @@ import ResultActions from "layout/ResultActions";
 import { downloadCsv, downloadPng } from "./utils";
 import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
+import { Helmet } from "react-helmet";
 
 /**
  *
@@ -126,9 +127,6 @@ export function DisplayImpact(props) {
   const policyLabel = getPolicyLabel(policy);
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
-  useEffect(() => {
-    document.title = `${policyLabel} | ${policyOutputs[impactType]} | PolicyEngine`;
-  });
   let pane, downloadCsvFn, downloadPngFn;
   if (impactType === "analysis") {
     pane = (
@@ -171,16 +169,23 @@ export function DisplayImpact(props) {
     downloadPngFn = () => downloadPng(filename);
   }
   return (
-    <LowLevelDisplay
-      downloadPng={downloadPngFn}
-      downloadCsv={downloadCsvFn}
-      metadata={metadata}
-      policy={policy}
-      hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-      setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
-    >
-      {pane}
-    </LowLevelDisplay>
+    <>
+      <Helmet>
+        <title>
+          {`${policyLabel} | ${policyOutputs[impactType]} | PolicyEngine`}
+        </title>
+      </Helmet>
+      <LowLevelDisplay
+        downloadPng={downloadPngFn}
+        downloadCsv={downloadCsvFn}
+        metadata={metadata}
+        policy={policy}
+        hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
+        setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+      >
+        {pane}
+      </LowLevelDisplay>
+    </>
   );
 }
 

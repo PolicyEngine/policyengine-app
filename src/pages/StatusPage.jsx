@@ -12,11 +12,14 @@ import {
   STATUS_TEXT_COLORS,
   COUNTRY_NAMES,
 } from "./statusPageDefaults";
+import { Helmet } from "react-helmet";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
-  document.title = "Status | PolicyEngine";
   return (
     <>
+      <Helmet>
+        <title>Status | PolicyEngine</title>
+      </Helmet>
       {Object.keys(apiStatus).map((apiRoute, idx) => (
         <div
           key={`${idx + 1}-${apiCategory}`}
