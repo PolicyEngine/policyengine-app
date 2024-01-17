@@ -15,9 +15,9 @@ export const policyOutputs = {
   racialPovertyImpact: "Poverty impact by race and ethnicity",
   inequalityImpact: "Income inequality impact",
   // cliffImpact: "Cliff impact",
-  codeReproducibility: "Reproduce in Python",
-  analysis: "Analysis",
   laborSupplyImpact: "Labor supply impact (experimental)",
+  analysis: "AI summary (experimental)",
+  codeReproducibility: "Reproduce in Python",
 };
 
 export function getPolicyOutputTree(countryId) {
