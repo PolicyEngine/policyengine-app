@@ -384,7 +384,7 @@ function formatWinnersLosers(decileOverview) {
           fontSize: 22,
         }}
       >
-        Increases net income for &nbsp;
+        Increases net income for&nbsp;
         <span
           style={{
             color: winnersColor,
