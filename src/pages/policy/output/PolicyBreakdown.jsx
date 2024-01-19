@@ -392,7 +392,7 @@ function formatWinnersLosers(decileOverview) {
         >
           {winnersValue}
         </span>
-        &nbsp; , and decreases it for &nbsp;
+        &nbsp;of people, and decreases it for&nbsp;
         <span
           style={{
             color: losersColor,
@@ -400,6 +400,7 @@ function formatWinnersLosers(decileOverview) {
         >
           {losersValue}
         </span>
+        &nbsp;of people
       </h2>
     );
   }
@@ -420,7 +421,7 @@ function formatWinnersLosers(decileOverview) {
       >
         {winnersPercent ? winnersValue : losersValue}
       </span>
-      &nbsp;of the population
+      &nbsp;of people
     </h2>
   );
 }
