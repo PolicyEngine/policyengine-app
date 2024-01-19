@@ -30,7 +30,14 @@ function RegionSelector(props) {
   // standard US data
   options = options.filter((option) => option.value !== "enhanced_us");
 
-  const [value] = useState(searchParams.get("region") || options[0].value);
+  // These lines are also a temporary solution; if user accesses the component
+  // with the enhanced_us region via URL, the component should instead display
+  // the US
+  let inputRegion = searchParams.get("region");
+  if (inputRegion === "enhanced_us") {
+    inputRegion = "us";
+  }
+  const [value] = useState(inputRegion || options[0].value);
 
   return (
     <SearchOptions
