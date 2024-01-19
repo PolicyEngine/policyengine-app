@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
 import style from "../style";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function InputField(props) {
   const {
@@ -17,6 +17,11 @@ export default function InputField(props) {
   const [inputValue, setInputValue] = useState(value ? value : "");
   const mobile = useMobile();
   const re = /^[0-9\b]*[.]?[0-9\b]*?$/;
+
+  useEffect(() => {
+    setInputValue("");
+  }, [placeholder]);
+
   const onInput = (e) => {
     let value = e.target.value === "" ? placeholder : e.target.value;
     onChange(value);
