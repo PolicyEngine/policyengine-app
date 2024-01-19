@@ -309,17 +309,12 @@ function formatValue(value, type, options) {
   // Break large numbers down
   [displayValue, postfixLabel] = formatPowers(displayValue);
 
-  // Round to one decimal point if percentage,
-  // otherwise to two decimal points
-  if (percentage) {
-    displayValue = displayValue.toFixed(1);
-  } else {
-    displayValue = displayValue.toFixed(2);
-  }
+  // Round to one decimal point
+  displayValue = displayValue.toFixed(1);
 
-  // If display value is now less than 0.01, display as "<0.01"
-  if (displayValue < 0.01) {
-    displayValue = 0.01;
+  // If display value is now less than 0.1, display as "<0.1"
+  if (displayValue < 0.1) {
+    displayValue = 0.1;
     prefixLabel = "<";
   }
 
