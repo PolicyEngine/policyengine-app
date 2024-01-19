@@ -12,7 +12,7 @@ import Analysis from "./Analysis";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/Error";
 import ResultActions from "layout/ResultActions";
-import { downloadCsv, downloadPng } from "./utils";
+import { downloadCsv } from "./utils";
 import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
