@@ -127,7 +127,7 @@ export function DisplayImpact(props) {
   const policyLabel = getPolicyLabel(policy);
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
-  let pane, downloadCsvFn, downloadPngFn;
+  let pane, downloadCsvFn;
   if (impactType === "analysis") {
     pane = (
       <Analysis
@@ -166,7 +166,6 @@ export function DisplayImpact(props) {
     if (csv) {
       downloadCsvFn = () => downloadCsv(csv(), filename);
     }
-    downloadPngFn = () => downloadPng(filename);
   }
   return (
     <>
@@ -176,7 +175,6 @@ export function DisplayImpact(props) {
         </title>
       </Helmet>
       <LowLevelDisplay
-        downloadPng={downloadPngFn}
         downloadCsv={downloadCsvFn}
         metadata={metadata}
         policy={policy}
