@@ -309,12 +309,12 @@ function formatValue(value, type, options) {
   // Break large numbers down
   [displayValue, postfixLabel] = formatPowers(displayValue);
 
-  // Round to two decimal points
-  displayValue = displayValue.toFixed(2);
+  // Round to one decimal point
+  displayValue = displayValue.toFixed(1);
 
-  // If display value is now less than 0.01, display as "<0.01"
-  if (displayValue < 0.01) {
-    displayValue = 0.01;
+  // If display value is now less than 0.1, display as "<0.1"
+  if (displayValue < 0.1) {
+    displayValue = 0.1;
     prefixLabel = "<";
   }
 
@@ -379,7 +379,7 @@ function formatWinnersLosers(decileOverview) {
           fontSize: 22,
         }}
       >
-        Increases net income for &nbsp;
+        Increases net income for&nbsp;
         <span
           style={{
             color: winnersColor,
@@ -387,7 +387,7 @@ function formatWinnersLosers(decileOverview) {
         >
           {winnersValue}
         </span>
-        &nbsp; , and decreases it for &nbsp;
+        &nbsp;of people, and decreases it for&nbsp;
         <span
           style={{
             color: losersColor,
@@ -395,6 +395,7 @@ function formatWinnersLosers(decileOverview) {
         >
           {losersValue}
         </span>
+        &nbsp;of people
       </h2>
     );
   }
@@ -415,7 +416,7 @@ function formatWinnersLosers(decileOverview) {
       >
         {winnersPercent ? winnersValue : losersValue}
       </span>
-      &nbsp;of the population
+      &nbsp;of people
     </h2>
   );
 }
