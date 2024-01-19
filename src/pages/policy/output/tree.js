@@ -1,5 +1,5 @@
 export const policyOutputs = {
-  policyBreakdown: "Policy breakdown",
+  policyBreakdown: "Overview",
   netIncome: "Budgetary impact",
   detailedBudgetaryImpact: "Budgetary impact by program",
   decileAverageImpact: "Absolute impact by income decile",
