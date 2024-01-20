@@ -141,6 +141,25 @@ export function getReformedParameter(parameter, reforms) {
   return newParameter;
 }
 
+/**
+ *
+ * @param {object} parameter the parameter object
+ * @returns copy of parameter.values with sorted keys
+ *
+ */
+export function getSortedParameterValues(parameter) {
+  const values = parameter.values;
+  if (!values) {
+    return null;
+  }
+  return Object.keys(values)
+    .sort()
+    .reduce((obj, key) => {
+      obj[key] = values[key];
+      return obj;
+    }, {});
+}
+
 export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
   let submission = { data: newPolicyData };
   if (newPolicyLabel) {
