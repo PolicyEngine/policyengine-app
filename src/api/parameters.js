@@ -1,3 +1,4 @@
+import moment from "moment";
 import { countryApiCall } from "./call";
 
 export function buildParameterTree(parameters) {
@@ -92,6 +93,10 @@ export function getParameterAtInstant(parameter, instant) {
   return null;
 }
 
+function nextDay(date) {
+  return new moment(date, "YYYY-MM-DD").add(1, "d").format("YYYY-MM-DD");
+}
+
 export function getReformedParameter(parameter, reforms) {
   // The reform is specified in the format:
   // { parameter.module.name: { "2022-01-01.2022-12-19": value }, ... }
@@ -124,8 +129,12 @@ export function getReformedParameter(parameter, reforms) {
         }
         // add the new values
         parameterValues[startDate] = value;
-        parameterValues[endDate] = c;
         sortedKeys.splice(i1, i2 - i1 + 1, startDate, endDate);
+        const dayAfterEndDate = nextDay(endDate);
+        if (!Object.keys(parameterValues).includes(dayAfterEndDate)) {
+          parameterValues[dayAfterEndDate] = c;
+          sortedKeys.splice(i1 + 1, 0, dayAfterEndDate);
+        }
       } else if (i1 !== -1) {
         parameterValues[startDate] = value;
         sortedKeys.splice(i1, 0, startDate);
@@ -133,12 +142,32 @@ export function getReformedParameter(parameter, reforms) {
         // sortedKeys[0]] should be.
       } else if (i2 !== -1) {
         parameterValues[startDate] = value;
-        parameterValues[endDate] = parameterValues[sortedKeys[i2]];
-        sortedKeys.splice(i2, 0, startDate, endDate);
+        const dayAfterEndDate = nextDay(endDate);
+        parameterValues[dayAfterEndDate] = parameterValues[sortedKeys[i2]];
+        sortedKeys.splice(i2, 0, startDate, dayAfterEndDate);
       }
     }
   }
   return newParameter;
+}
+
+/**
+ *
+ * @param {object} parameter the parameter object
+ * @returns copy of parameter.values with sorted keys
+ *
+ */
+export function getSortedParameterValues(parameter) {
+  const values = parameter.values;
+  if (!values) {
+    return null;
+  }
+  return Object.keys(values)
+    .sort()
+    .reduce((obj, key) => {
+      obj[key] = values[key];
+      return obj;
+    }, {});
 }
 
 export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {

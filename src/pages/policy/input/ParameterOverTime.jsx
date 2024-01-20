@@ -1,6 +1,9 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { getReformedParameter } from "../../../api/parameters";
+import {
+  getSortedParameterValues,
+  getReformedParameter,
+} from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
@@ -12,19 +15,6 @@ export default function ParameterOverTime(props) {
   const { parameter, policy, metadata } = props;
   const mobile = useMobile();
   const windowHeight = useWindowHeight();
-  let values = parameter.values;
-  if (!values) {
-    return null;
-  }
-
-  // Ensure the line doesn't go back on itself.
-
-  values = Object.keys(values)
-    .sort()
-    .reduce((obj, key) => {
-      obj[key] = values[key];
-      return obj;
-    }, {});
 
   // Extend the last value to 2099 so that the line appears to extend to +inf in
   // the chart
@@ -33,6 +23,7 @@ export default function ParameterOverTime(props) {
     y.push(y[y.length - 1]);
   };
 
+  const values = getSortedParameterValues(parameter);
   let x = Object.keys(values);
   let y = Object.values(values);
   extendForDisplay(x, y);
@@ -40,10 +31,11 @@ export default function ParameterOverTime(props) {
   let reformedY;
 
   if (policy.reform.data[parameter.parameter]) {
-    let reformedValues = getReformedParameter(
+    const reformedParameter = getReformedParameter(
       parameter,
       policy.reform.data,
-    ).values;
+    );
+    const reformedValues = getSortedParameterValues(reformedParameter);
     reformedX = Object.keys(reformedValues);
     reformedY = Object.values(reformedValues);
     extendForDisplay(reformedX, reformedY);
