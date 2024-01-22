@@ -275,7 +275,6 @@ function HouseholdVariableEntityInput(props) {
             }
           : {})}
         defaultValue={defaultValue}
-        autoFocus
         onPressEnter={(_, value) => submitValue(value)}
         onBlur={(_, value) => submitValue(value)}
       />
