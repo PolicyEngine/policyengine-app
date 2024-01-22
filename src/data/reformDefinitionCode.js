@@ -1,4 +1,4 @@
-export function getReformDefinitionCode(metadata, policy) {
+export function getReformDefinitionCode(policy) {
   let lines = ["def modify_parameters(parameters):"];
 
   if (Object.keys(policy.reform.data).length === 0) {

@@ -8,12 +8,13 @@ export default function PolicyReproducibility(props) {
   const { policy, metadata } = props;
   const [searchParams] = useSearchParams();
   const timePeriod = searchParams.get("timePeriod");
+  const region = searchParams.get("region");
 
   let codeLines = [
     ...getHeaderLines(metadata),
-    ...getBaselineDefinitionCode(metadata, policy),
-    ...getReformDefinitionCode(metadata, policy),
-    ...getImplementationCode(metadata, timePeriod),
+    ...getBaselineDefinitionCode(region, policy),
+    ...getReformDefinitionCode(policy),
+    ...getImplementationCode(region, timePeriod),
   ];
 
   const colabLink =
@@ -70,8 +71,8 @@ function getHeaderLines(metadata) {
   ];
 }
 
-function getBaselineDefinitionCode(metadata, policy) {
-  if (metadata.countryId !== "us" && metadata.countryId !== "enhanced_us") {
+function getBaselineDefinitionCode(region, policy) {
+  if (region !== "us" && region !== "enhanced_us") {
     return [];
   }
 
@@ -94,7 +95,7 @@ function getBaselineDefinitionCode(metadata, policy) {
 
   return [
     `"""`,
-    "In US simulations, use reported state income tax liabilities",
+    "In US nationwide simulations, use reported state income tax liabilities",
     `"""`,
     "def modify_baseline(parameters):",
     `    parameters.simulation.reported_state_income_tax.update(start=instant("${earliestStart}"), stop=instant("${latestEnd}"), value=True)`,
@@ -108,9 +109,9 @@ function getBaselineDefinitionCode(metadata, policy) {
   ];
 }
 
-function getImplementationCode(metadata, timePeriod) {
+function getImplementationCode(region, timePeriod) {
   const isCountryUS =
-    metadata.countryId === "us" || metadata.countryId === "enhanced_us";
+    region === "us" || region === "enhanced_us";
 
   return [
     `baseline = Microsimulation(${
