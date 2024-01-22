@@ -10,8 +10,7 @@ export default function PolicyBreakdown(props) {
 
   const title = `Your reform impact in ${regionName} over ${timePeriod}`;
   const bottomText =
-    "Here's how we estimated the society-wide impacts of your " +
-    "reform. Click on an option on the left panel to view more details.";
+    "Click on an option on the left panel to view more details.";
 
   // Define the impact items to be included in the output
   const budgetaryImpact = impact.budget.budgetary_impact;
