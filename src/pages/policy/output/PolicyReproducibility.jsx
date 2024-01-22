@@ -1,6 +1,7 @@
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
 import { defaultYear } from "data/constants";
+import colors from "../../../redesign/style/colors";
 
 export default function PolicyReproducibility(props) {
   const { policy, metadata } = props;
@@ -26,7 +27,12 @@ export default function PolicyReproducibility(props) {
         : null;
 
   const notebookLink = colabLink ? (
-    <a href={colabLink} target="_blank" rel="noreferrer">
+    <a
+      href={colabLink}
+      target="_blank"
+      rel="noreferrer"
+      style={{ color: colors.TEAL_ACCENT, textDecoration: "underline" }}
+    >
       Python notebook
     </a>
   ) : (
