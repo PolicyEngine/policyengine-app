@@ -127,9 +127,25 @@ export class IntervalMap {
 
   /**
    *
+   * @returns the values in the map
+   */
+  values() {
+    return this.array.map((element) => element[1]);
+  }
+
+  /**
+   *
    * @returns an array representation of the map
    */
   toArray() {
-    return this.array;
+    return this.array.map((element) => element);
+  }
+
+  /**
+   *
+   * @returns a copy
+   */
+  copy() {
+    return new IntervalMap(this.toArray(), this.keyCmp, this.valueEq);
   }
 }
