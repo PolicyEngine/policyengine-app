@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Highlight, themes } from "prism-react-renderer";
+import colors from "../redesign/style/colors";
 
 export default function CodeBlock({ lines, language }) {
   const [copyText, setCopyText] = useState("Copy");
@@ -21,7 +22,7 @@ export default function CodeBlock({ lines, language }) {
           padding: "5px 10px",
           borderRadius: "5px",
           border: "none",
-          backgroundColor: "#4CAF50",
+          backgroundColor: colors.TEAL_ACCENT,
           color: "white",
           cursor: "pointer",
           fontSize: "0.9em",

@@ -1,6 +1,5 @@
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
-import Button from "../../../controls/Button";
 import { defaultYear } from "data/constants";
 
 export default function PolicyReproducibility(props) {
@@ -51,15 +50,7 @@ export default function PolicyReproducibility(props) {
           paddingTop: 30,
           marginBottom: 30,
         }}
-      >
-        <Button
-          text="Copy"
-          style={{ width: 100 }}
-          onClick={() => {
-            navigator.clipboard.writeText(initialLines.join("\n"));
-          }}
-        />
-      </div>
+      ></div>
     </>
   );
 }
