@@ -110,6 +110,9 @@ export default function ParameterEditor(props) {
           setStartDate(dateStrings[0]);
           setEndDate(dateStrings[1]);
         }}
+        disabledDate={(date) =>
+          date.isBefore("2021-01-01") || date.isAfter("2026-12-31")
+        }
         separator="→"
         style={{ padding: 20, marginBottom: 10 }}
       />
