@@ -1,5 +1,6 @@
-import moment from "moment";
+import { IntervalMap } from "algorithms/IntervalMap";
 import { countryApiCall } from "./call";
+import { cmpDates } from "lang/stringDates";
 
 export function buildParameterTree(parameters) {
   let tree = {};
@@ -69,107 +70,6 @@ export function buildParameterTree(parameters) {
   return tree.children.find((child) => child.name === "gov");
 }
 
-export function getParameterAtInstant(parameter, instant) {
-  const parameterValues = parameter.values;
-  const parameterValuesInOrder = Object.keys(parameterValues).sort();
-  if (parameterValuesInOrder.length === 0) {
-    return null;
-  }
-  if (instant < parameterValuesInOrder[0]) {
-    return parameterValues[parameterValuesInOrder[0]];
-  }
-  if (instant >= parameterValuesInOrder[parameterValuesInOrder.length - 1]) {
-    return parameterValues[
-      parameterValuesInOrder[parameterValuesInOrder.length - 1]
-    ];
-  }
-  for (let i = 0; i < parameterValuesInOrder.length - 1; i++) {
-    const timePeriod = parameterValuesInOrder[i];
-    const nextTimePeriod = parameterValuesInOrder[i + 1];
-    if (instant >= timePeriod && instant < nextTimePeriod) {
-      return parameterValues[timePeriod];
-    }
-  }
-  return null;
-}
-
-function nextDay(date) {
-  return new moment(date, "YYYY-MM-DD").add(1, "d").format("YYYY-MM-DD");
-}
-
-export function getReformedParameter(parameter, reforms) {
-  // The reform is specified in the format:
-  // { parameter.module.name: { "2022-01-01.2022-12-19": value }, ... }
-  // The above example sets the value of parameter.module.name to value in 2022.
-  // Parameters have a 'values' attribute, which is in the format:
-  // { "2022-01-01": value, ... }
-
-  let newParameter = JSON.parse(JSON.stringify(parameter));
-  let parameterValues = newParameter.values;
-  if (!parameterValues) {
-    return null;
-  }
-  const sortedKeys = Object.keys(parameterValues).sort();
-  const reform = reforms[parameter.parameter];
-  if (reform) {
-    for (const [timePeriod, value] of Object.entries(reform)) {
-      const [startDate, endDate] = timePeriod.split(".");
-      const i1 = sortedKeys.findIndex(
-        (k) => k >= startDate && parameterValues[k] !== value,
-      );
-      const i2 = sortedKeys.findLastIndex(
-        (k) => endDate >= k && parameterValues[k] !== value,
-      );
-      if (i1 !== -1 && i2 !== -1) {
-        // cache the last value
-        let c = parameterValues[sortedKeys[i2]];
-        // delete all values in the time period
-        for (let i = i1; i <= i2; i++) {
-          delete parameterValues[sortedKeys[i]];
-        }
-        // add the new values
-        parameterValues[startDate] = value;
-        sortedKeys.splice(i1, i2 - i1 + 1, startDate, endDate);
-        const dayAfterEndDate = nextDay(endDate);
-        if (!Object.keys(parameterValues).includes(dayAfterEndDate)) {
-          parameterValues[dayAfterEndDate] = c;
-          sortedKeys.splice(i1 + 1, 0, dayAfterEndDate);
-        }
-      } else if (i1 !== -1) {
-        parameterValues[startDate] = value;
-        sortedKeys.splice(i1, 0, startDate);
-        // TODO: it is unclear what the value in the range [endDate,
-        // sortedKeys[0]] should be.
-      } else if (i2 !== -1) {
-        parameterValues[startDate] = value;
-        const dayAfterEndDate = nextDay(endDate);
-        parameterValues[dayAfterEndDate] = parameterValues[sortedKeys[i2]];
-        sortedKeys.splice(i2, 0, startDate, dayAfterEndDate);
-      }
-    }
-  }
-  return newParameter;
-}
-
-/**
- *
- * @param {object} parameter the parameter object
- * @returns copy of parameter.values with sorted keys
- *
- */
-export function getSortedParameterValues(parameter) {
-  const values = parameter.values;
-  if (!values) {
-    return null;
-  }
-  return Object.keys(values)
-    .sort()
-    .reduce((obj, key) => {
-      obj[key] = values[key];
-      return obj;
-    }, {});
-}
-
 export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
   let submission = { data: newPolicyData };
   if (newPolicyLabel) {
@@ -183,4 +83,9 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
       }
       return data.result.policy_id;
     });
+}
+
+export function getParameterAtInstant(parameter, instant) {
+  const map = new IntervalMap(Object.entries(parameter.values), cmpDates);
+  return map.get(instant);
 }

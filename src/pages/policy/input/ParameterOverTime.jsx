@@ -1,9 +1,5 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import {
-  getSortedParameterValues,
-  getReformedParameter,
-} from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
@@ -12,7 +8,7 @@ import { plotLayoutFont } from "pages/policy/output/utils";
 import { localeCode } from "lang/format";
 
 export default function ParameterOverTime(props) {
-  const { parameter, policy, metadata } = props;
+  const { baseMap, reformMap, parameter, metadata } = props;
   const mobile = useMobile();
   const windowHeight = useWindowHeight();
 
@@ -23,23 +19,13 @@ export default function ParameterOverTime(props) {
     y.push(y[y.length - 1]);
   };
 
-  const values = getSortedParameterValues(parameter);
-  let x = Object.keys(values);
-  let y = Object.values(values);
+  const x = baseMap.keys();
+  const y = baseMap.values();
   extendForDisplay(x, y);
-  let reformedX;
-  let reformedY;
 
-  if (policy.reform.data[parameter.parameter]) {
-    const reformedParameter = getReformedParameter(
-      parameter,
-      policy.reform.data,
-    );
-    const reformedValues = getSortedParameterValues(reformedParameter);
-    reformedX = Object.keys(reformedValues);
-    reformedY = Object.values(reformedValues);
-    extendForDisplay(reformedX, reformedY);
-  }
+  const reformedX = reformMap ? reformMap.keys() : [];
+  const reformedY = reformMap ? reformMap.values() : [];
+  if (reformMap) extendForDisplay(reformedX, reformedY);
 
   let xaxisValues = reformedX ? x.concat(reformedX) : x;
   xaxisValues = xaxisValues.filter(
@@ -66,7 +52,7 @@ export default function ParameterOverTime(props) {
             },
             name: "Current law",
           },
-          policy.reform.data[parameter.parameter] && {
+          reformMap && {
             x: reformedX,
             y: reformedY.map((y) => +y),
             type: "line",
@@ -78,9 +64,7 @@ export default function ParameterOverTime(props) {
             },
             name: "Reform",
           },
-        ]
-          .reverse()
-          .filter((x) => x)}
+        ].filter((x) => x)}
         layout={{
           xaxis: { ...xaxisFormat },
           yaxis: { ...yaxisFormat },

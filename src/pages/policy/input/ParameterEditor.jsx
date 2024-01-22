@@ -1,14 +1,8 @@
-import { useEffect } from "react";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
 import { Alert, DatePicker, Switch } from "antd";
-import moment from "moment";
 import InputField from "../../../controls/InputField";
-import {
-  getNewPolicyId,
-  getParameterAtInstant,
-  getReformedParameter,
-} from "../../../api/parameters";
+import { getNewPolicyId } from "../../../api/parameters";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
@@ -16,74 +10,63 @@ import useMobile from "../../../layout/Responsive";
 import { capitalize } from "../../../lang/format";
 import { formatVariableValue } from "../../../api/variables";
 import { defaultStartDate, defaultEndDate } from "data/constants";
+import { IntervalMap } from "algorithms/IntervalMap";
+import { cmpDates, nextDay, prevDay } from "lang/stringDates";
+import moment from "moment";
 
 const { RangePicker } = DatePicker;
 
 export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const parameter = metadata.parameters[parameterName];
+  const reformData = policy?.reform?.data?.[parameterName];
+  const parameterValues = Object.entries(parameter.values);
+
+  const [searchParams, setSearchParams] = useSearchParams();
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-  const startValue = getParameterAtInstant(
-    getReformedParameter(parameter, policy.reform.data),
-    startDate,
-  );
-
-  useEffect(() => {
-    if (
-      policy?.reform?.data &&
-      policy.reform.data[parameterName] &&
-      Array.isArray(Object.keys(policy.reform.data[parameterName])) &&
-      Object.keys(policy.reform.data[parameterName].length > 0)
-    ) {
-      const [parameterStartDate, parameterEndDate] = Object.keys(
-        policy.reform.data[parameterName],
-      )[0].split(".");
-      setStartDate(parameterStartDate);
-      setEndDate(parameterEndDate);
-    } else {
-      setStartDate(defaultStartDate);
-      setEndDate(defaultEndDate);
+  const baseMap = new IntervalMap(parameterValues, cmpDates);
+  const reformMap = baseMap.copy();
+  if (reformData) {
+    for (const [timePeriod, value] of Object.entries(reformData)) {
+      const [startDate, endDate] = timePeriod.split(".");
+      reformMap.set(startDate, nextDay(endDate), value);
     }
-  }, [parameterName, policy]);
+  }
 
-  // change reform data using value and current startDate and endDate
-  function newReforms(reforms, value) {
-    let newReforms = { ...policy.reform.data };
-    newReforms[parameterName] = {
-      ...newReforms[parameterName],
-      [`${startDate}.${endDate}`]: value,
-    };
-    const values = getReformedParameter(parameter, newReforms).values;
-    let diff = {},
-      ret = {};
-    for (const key of Object.keys(values)) {
-      diff[key] = values[key] - getParameterAtInstant(parameter, key);
-    }
-    const keys = Object.keys(diff).sort();
+  const startValue = reformMap.get(startDate);
+
+  // This function returns the difference between reformMap and baseMap. If
+  // there is no difference, then it returns an empty object.
+  const diff = () => {
+    const keys = reformMap.keys();
+    let data = {};
     for (let i = 0; i < keys.length - 1; i++) {
       const k1 = keys[i],
         k2 = keys[i + 1];
-      if (diff[k1] !== 0) {
-        ret[`${k1}.${k2}`] = values[k1];
+      if (reformMap.get(k1) !== baseMap.get(k1)) {
+        data[`${k1}.${prevDay(k2)}`] = reformMap.get(k1);
       }
     }
-    newReforms = { ...policy.reform.data };
-    newReforms[parameterName] = ret;
-    return newReforms;
-  }
+    return data;
+  };
 
   function onChange(value) {
-    getNewPolicyId(
-      metadata.countryId,
-      newReforms(policy.reform.data, value),
-    ).then((newPolicyId) => {
+    reformMap.set(startDate, endDate, value);
+    const diffData = diff();
+    if (Object.keys(diffData).length === 0) {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("reform", newPolicyId);
+      newSearch.delete("reform");
       setSearchParams(newSearch);
-    });
+    } else {
+      const newReforms = { ...policy.reform.data };
+      newReforms[parameterName] = diffData;
+      getNewPolicyId(metadata.countryId, newReforms).then((newPolicyId) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("reform", newPolicyId);
+        setSearchParams(newSearch);
+      });
+    }
   }
 
   let control;
@@ -158,6 +141,10 @@ export default function ParameterEditor(props) {
         />
       )}
       <ParameterOverTime
+        baseMap={baseMap}
+        {...(Object.keys(diff()).length > 0 && {
+          reformMap: reformMap,
+        })}
         parameter={parameter}
         policy={policy}
         metadata={metadata}
