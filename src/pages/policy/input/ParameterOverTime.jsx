@@ -5,10 +5,19 @@ import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { localeCode } from "lang/format";
+import { localeCode } from "lang/format"; /**
+ *
+ * @param {object} policy the policy object
+ * @returns the reform policy label
+ */
+function getReformPolicyLabel(policy) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const reformPolicyId = urlParams.get("reform");
+  return reformPolicyId ? `Policy #${reformPolicyId}` : "reform";
+}
 
 export default function ParameterOverTime(props) {
-  const { baseMap, reformMap, parameter, metadata } = props;
+  const { baseMap, reformMap, parameter, policy, metadata } = props;
   const mobile = useMobile();
   const windowHeight = useWindowHeight();
 
@@ -62,7 +71,7 @@ export default function ParameterOverTime(props) {
             marker: {
               color: style.colors.BLUE,
             },
-            name: "Reform",
+            name: getReformPolicyLabel(policy),
           },
         ].filter((x) => x)}
         layout={{
