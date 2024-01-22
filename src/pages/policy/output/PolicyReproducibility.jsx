@@ -1,23 +1,20 @@
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
 import { defaultYear } from "data/constants";
+import { useSearchParams } from "react-router-dom";
 import colors from "../../../redesign/style/colors";
 
 export default function PolicyReproducibility(props) {
   const { policy, metadata } = props;
+  const [searchParams] = useSearchParams();
+  const timePeriod = searchParams.get("timePeriod");
 
-  let initialLines = ["from " + metadata.package + " import Microsimulation"];
-
-  initialLines = initialLines.concat(getReformDefinitionCode(metadata, policy));
-
-  initialLines = initialLines.concat([
-    "baseline = Microsimulation()",
-    "reformed = Microsimulation(reform=reform)",
-    'HOUSEHOLD_VARIABLES = ["person_id", "household_id", "age", "household_net_income", "household_income_decile", "in_poverty", "household_tax", "household_benefits"]',
-    `baseline_person_df = baseline.calculate_dataframe(HOUSEHOLD_VARIABLES, ${defaultYear})`,
-    `reformed_person_df = reformed.calculate_dataframe(HOUSEHOLD_VARIABLES, ${defaultYear})`,
-    "difference_person_df = reformed_person_df - baseline_person_df",
-  ]);
+  let codeLines = [
+    ...getHeaderLines(metadata),
+    ...getBaselineDefinitionCode(metadata, policy),
+    ...getReformDefinitionCode(metadata, policy),
+    ...getImplementationCode(metadata, timePeriod),
+  ];
 
   const colabLink =
     metadata.countryId === "uk"
@@ -48,7 +45,7 @@ export default function PolicyReproducibility(props) {
         Run the code below in a {notebookLink} to reproduce the microsimulation
         results.
       </p>
-      <CodeBlock lines={initialLines} language={"python"} />
+      <CodeBlock lines={codeLines} language={"python"} />
       <div
         style={{
           display: "flex",
@@ -56,7 +53,76 @@ export default function PolicyReproducibility(props) {
           paddingTop: 30,
           marginBottom: 30,
         }}
-      ></div>
+      >
+      </div>
     </>
   );
+}
+
+function getHeaderLines(metadata) {
+  return [
+    "from " + metadata.package + " import Microsimulation",
+    "from policyengine_core.reforms import Reform",
+    "from policyengine_core.periods import instant",
+    "import pandas as pd",
+    "",
+    "",
+  ];
+}
+
+function getBaselineDefinitionCode(metadata, policy) {
+  if (metadata.countryId !== "us" && metadata.countryId !== "enhanced_us") {
+    return [];
+  }
+
+  // Calculate the earliest start date and latest end date for
+  // the policies included in the simulation
+  let earliestStart = null;
+  let latestEnd = null;
+
+  for (const parameter of Object.keys(policy.reform.data)) {
+    for (const instant of Object.keys(policy.reform.data[parameter])) {
+      const [start, end] = instant.split(".");
+      if (!earliestStart || Date.parse(start) < Date.parse(earliestStart)) {
+        earliestStart = start;
+      }
+      if (!latestEnd || Date.parse(end) > Date.parse(latestEnd)) {
+        latestEnd = end;
+      }
+    }
+  }
+
+  return [
+    `"""`,
+    "In US simulations, use reported state income tax liabilities",
+    `"""`,
+    "def modify_baseline(parameters):",
+    `    parameters.simulation.reported_state_income_tax.update(start=instant("${earliestStart}"), stop=instant("${latestEnd}"), value=True)`,
+    "    return parameters",
+    "",
+    "class baseline_reform(Reform):",
+    "    def apply(self):",
+    "        self.modify_parameters(modify_baseline)",
+    "",
+    "",
+  ];
+}
+
+function getImplementationCode(metadata, timePeriod) {
+  const isCountryUS =
+    metadata.countryId === "us" || metadata.countryId === "enhanced_us";
+
+  return [
+    `baseline = Microsimulation(${
+      isCountryUS ? "reform=baseline_reform" : ""
+    })`,
+    "reformed = Microsimulation(reform=reform)",
+    `baseline_person = baseline.calc("household_net_income", period=${
+      timePeriod || defaultYear
+    }, map_to="person")`,
+    `reformed_person = reformed.calc("household_net_income", period=${
+      timePeriod || defaultYear
+    }, map_to="person")`,
+    "difference_person = reformed_person - baseline_person",
+  ];
 }
