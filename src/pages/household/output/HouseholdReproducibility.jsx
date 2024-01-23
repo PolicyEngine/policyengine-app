@@ -80,7 +80,7 @@ export default function HouseholdReproducibility(props) {
       </Helmet>
       <ResultsPanel
         title="Reproduce these results"
-        description="Run the code below to a Python notebook to reproduce the results."
+        description="Run the code below in a Python notebook to reproduce the results."
       >
         <div
           style={{
