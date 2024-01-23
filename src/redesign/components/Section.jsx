@@ -9,7 +9,7 @@ export default function Section({
   children,
   centeredTitle,
   titleStyle,
-  id
+  id,
 }) {
   const displayCategory = useDisplayCategory();
   const sideMargin = {
@@ -62,7 +62,9 @@ export default function Section({
               alignItems: centeredTitle ? "center" : "baseline",
             }}
           >
-            <h2 id={id} style={{ color: "inherit", ...titleStyle }}>{title}</h2>
+            <h2 id={id} style={{ color: "inherit", ...titleStyle }}>
+              {title}
+            </h2>
           </div>
         )}
         {children}

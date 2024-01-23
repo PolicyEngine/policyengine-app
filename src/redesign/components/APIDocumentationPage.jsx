@@ -215,13 +215,17 @@ export default function APIDocumentationPage({ metadata }) {
         backgroundColor={style.colors.BLUE_98}
       >
         <p>
-          PolicyEngine&apos;s REST API 
-          (<a href="https://household.api.policyengine.org">https://household.api.policyengine.org</a>) 
-          simulates tax-benefit policy outcomes and reform impacts for households. Access 
-          to the API requires an authentication token, which will expire monthly for security reasons.
-          This token must be passed within the authorization heading of each request you make to the API. 
-          For more information or to request your own token, feel free to reach out to
-          PolicyEngine at <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
+          PolicyEngine&apos;s REST API (
+          <a href="https://household.api.policyengine.org">
+            https://household.api.policyengine.org
+          </a>
+          ) simulates tax-benefit policy outcomes and reform impacts for
+          households. Access to the API requires an authentication token, which
+          will expire monthly for security reasons. This token must be passed
+          within the authorization heading of each request you make to the API.
+          For more information or to request your own token, feel free to reach
+          out to PolicyEngine at{" "}
+          <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
         </p>
         <br />
         <h4>On this page</h4>
@@ -242,22 +246,24 @@ export default function APIDocumentationPage({ metadata }) {
         id="calculate"
         method="POST"
         title="Calculate household-level policy outcomes"
-        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best ${metadata.countryId === "us" ? "practice" : "practise"} to use the group/name/variable/optional time period/value structure.`}
+        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best ${
+          metadata.countryId === "us" ? "practice" : "practise"
+        } to use the group/name/variable/optional time period/value structure.`}
         exampleInputJson={{
           household: {
             people: {
               parent: {
                 age: {
-                  [defaultYear]: 30
+                  [defaultYear]: 30,
                 },
                 employment_income: {
-                  [defaultYear]: 20_000
-                }
+                  [defaultYear]: 20_000,
+                },
               },
               child: {
                 age: {
-                  [defaultYear]: 5
-                }
+                  [defaultYear]: 5,
+                },
               },
             },
             spm_units: {
@@ -277,16 +283,16 @@ export default function APIDocumentationPage({ metadata }) {
             people: {
               parent: {
                 age: {
-                  [defaultYear]: 30
+                  [defaultYear]: 30,
                 },
                 employment_income: {
-                  [defaultYear]: 20_000
-                }
+                  [defaultYear]: 20_000,
+                },
               },
               child: {
                 age: {
-                  [defaultYear]: 5
-                }
+                  [defaultYear]: 5,
+                },
               },
             },
             spm_units: {
@@ -300,7 +306,11 @@ export default function APIDocumentationPage({ metadata }) {
           },
         }}
       />
-      <VariableParameterExplorer id="variables" countryId={countryId} metadata={metadata} />
+      <VariableParameterExplorer
+        id="variables"
+        countryId={countryId}
+        metadata={metadata}
+      />
       <Section title="API playground" id="playground">
         <p>Try out the API in this interactive demo.</p>
         <iframe
@@ -341,7 +351,7 @@ function APIEndpoint({
   children,
   exampleInputJson,
   exampleOutputJson,
-  id
+  id,
 }) {
   const hasInput = Boolean(exampleInputJson);
 
