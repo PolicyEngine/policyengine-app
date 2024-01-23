@@ -52,7 +52,7 @@ export default function ParameterEditor(props) {
   };
 
   function onChange(value) {
-    reformMap.set(startDate, endDate, value);
+    reformMap.set(startDate, nextDay(endDate), value);
     const diffData = diff();
     if (Object.keys(diffData).length === 0) {
       let newSearch = copySearchParams(searchParams);
