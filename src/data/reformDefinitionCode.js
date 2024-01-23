@@ -15,15 +15,9 @@ export function getReformDefinitionCode(policy) {
         value = "True";
       }
       lines.push(
-        "    parameters." +
-          parameterName +
-          '.update(start=instant("' +
-          start +
-          '"), stop=instant("' +
-          end +
-          '"), value=' +
-          value +
-          ")",
+        `    parameters.${parameterName}.update(`,
+        `        start=instant("${start}"), stop=instant("${end}"),`,
+        `        value=${value})`,
       );
     }
   }

@@ -4,6 +4,8 @@ import { defaultYear } from "data/constants";
 import { useSearchParams } from "react-router-dom";
 import colors from "../../../redesign/style/colors";
 
+const US_REGIONS = ["us", "enhanced_us"];
+
 export default function PolicyReproducibility(props) {
   const { policy, metadata } = props;
   const [searchParams] = useSearchParams();
@@ -72,7 +74,7 @@ function getHeaderLines(metadata) {
 }
 
 function getBaselineDefinitionCode(region, policy) {
-  if (region !== "us" && region !== "enhanced_us") {
+  if (!US_REGIONS.includes(region)) {
     return [];
   }
 
@@ -95,10 +97,13 @@ function getBaselineDefinitionCode(region, policy) {
 
   return [
     `"""`,
-    "In US nationwide simulations, use reported state income tax liabilities",
+    "In US nationwide simulations,",
+    "use reported state income tax liabilities",
     `"""`,
     "def modify_baseline(parameters):",
-    `    parameters.simulation.reported_state_income_tax.update(start=instant("${earliestStart}"), stop=instant("${latestEnd}"), value=True)`,
+    "    parameters.simulation.reported_state_income_tax.update(",
+    `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
+    "        value=True)",
     "    return parameters",
     "",
     "class baseline_reform(Reform):",
@@ -110,20 +115,17 @@ function getBaselineDefinitionCode(region, policy) {
 }
 
 function getImplementationCode(region, timePeriod) {
-  const isCountryUS =
-    region === "us" || region === "enhanced_us";
+  const isCountryUS = US_REGIONS.includes(region);
 
   return [
     `baseline = Microsimulation(${
       isCountryUS ? "reform=baseline_reform" : ""
     })`,
     "reformed = Microsimulation(reform=reform)",
-    `baseline_person = baseline.calc("household_net_income", period=${
-      timePeriod || defaultYear
-    }, map_to="person")`,
-    `reformed_person = reformed.calc("household_net_income", period=${
-      timePeriod || defaultYear
-    }, map_to="person")`,
+    `baseline_person = baseline.calc("household_net_income",`,
+    `    period=${timePeriod || defaultYear}, map_to="person")`,
+    `reformed_person = reformed.calc("household_net_income",`,
+    `    period=${timePeriod || defaultYear}, map_to="person")`,
     "difference_person = reformed_person - baseline_person",
   ];
 }
