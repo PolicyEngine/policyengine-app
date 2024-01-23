@@ -234,8 +234,6 @@ function HouseholdVariableEntityInput(props) {
     defaultValue = inputValue;
   } else if (simulatedValue !== null) {
     defaultValue = simulatedValue;
-  } else if (variable.defaultValue !== undefined) {
-    defaultValue = variable.defaultValue;
   }
 
   if (defaultValue === null) {
@@ -367,20 +365,9 @@ export function addVariable(householdInput, variable, entityPlural, year) {
       possibleEntities.forEach((entity) => {
         // If the variable isn't already stored in the situation...
         if (!(variable.name in householdInput[entityPlural][entity])) {
-          // If the basic input is an "input variable" (input by user)...
-          if (variable.isInputVariable) {
-            // Then add it to the relevant part of the situation, along with
-            // its default value
-            newHouseholdInput[entityPlural][entity][variable.name] = {
-              [year]: variable.defaultValue,
-            };
-          } else {
-            // Otherwise, add it to the relevant part of the situation, along with
-            // a null value
-            newHouseholdInput[entityPlural][entity][variable.name] = {
-              [year]: null,
-            };
-          }
+          newHouseholdInput[entityPlural][entity][variable.name] = {
+            [year]: variable.defaultValue,
+          };
         }
       });
     }
