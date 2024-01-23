@@ -84,7 +84,7 @@ function APIVariableCard(props) {
 }
 
 function VariableParameterExplorer(props) {
-  const { metadata } = props;
+  const { metadata, id } = props;
   const [query, setQuery] = useState("");
   const [selectedCardData, setSelectedCardData] = useState(null);
 
@@ -156,7 +156,7 @@ function VariableParameterExplorer(props) {
             marginLeft: 8,
           }}
         >
-          <h3>Variables and parameters</h3>
+          <h3 id={id}>Variables and parameters</h3>
         </div>
         <Input
           value={query}
@@ -232,10 +232,14 @@ export default function APIDocumentationPage({ metadata }) {
           <li>
             <a href="#variables">Variable and parameter metadata search</a>
           </li>
+          <li>
+            <a href="#playground">API playground</a>
+          </li>
         </ul>
       </Section>
       <APIEndpoint
         pattern={`/${countryId}/calculate`}
+        id="calculate"
         method="POST"
         title="Calculate household-level policy outcomes"
         description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best ${metadata.countryId === "us" ? "practice" : "practise"} to use the group/name/variable/optional time period/value structure.`}
@@ -296,8 +300,8 @@ export default function APIDocumentationPage({ metadata }) {
           },
         }}
       />
-      <VariableParameterExplorer countryId={countryId} metadata={metadata} />
-      <Section title="API playground">
+      <VariableParameterExplorer id="variables" countryId={countryId} metadata={metadata} />
+      <Section title="API playground" id="playground">
         <p>Try out the API in this interactive demo.</p>
         <iframe
           src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/~/+/?embed=true&embed_options=light_theme&mode=${countryId}`}
@@ -337,12 +341,13 @@ function APIEndpoint({
   children,
   exampleInputJson,
   exampleOutputJson,
+  id
 }) {
   const hasInput = Boolean(exampleInputJson);
 
   return (
     <Section>
-      <h3>{title}</h3>
+      <h3 id={id}>{title}</h3>
       <h5>
         <code>
           {method} {pattern}
