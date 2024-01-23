@@ -45,8 +45,8 @@ export default function PolicyReproducibility(props) {
     <>
       <h2>Reproduce these results</h2>
       <p>
-        Run the code below into a {notebookLink} to reproduce the
-        microsimulation results.
+        Run the code below in a {notebookLink} to reproduce the microsimulation
+        results.
       </p>
       <CodeBlock lines={initialLines} language={"python"} />
       <div
