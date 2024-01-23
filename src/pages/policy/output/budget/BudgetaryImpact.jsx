@@ -6,6 +6,7 @@ import { HoverCardContext } from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { absoluteChangeMessage, regionName } from "../ImpactChart";
+import { defaultYear } from "data/constants";
 
 function ImpactPlot(props) {
   const { budgetaryImpact, values, labels, metadata, mobile, useHoverCard } =
@@ -138,8 +139,8 @@ export function title(policyLabel, change, metadata) {
   const regionPhrase = region ? ` in ${region}` : "";
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1}${regionPhrase} this year`
-      : `${policyLabel} would ${signTerm} ${term2}${regionPhrase} this year`;
+      ? `${policyLabel} would have no effect on ${term1}${regionPhrase} in ${defaultYear}`
+      : `${policyLabel} would ${signTerm} ${term2}${regionPhrase} in ${defaultYear}`;
   return msg;
 }
 

@@ -5,6 +5,7 @@ import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "./ImpactChart";
+import { defaultYear } from "data/constants";
 
 function ImpactPlot(props) {
   const { values, labels, metadata, mobile } = props;
@@ -94,8 +95,8 @@ function title(policyLabel, change, metadata) {
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1} this year`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} this year`;
+      ? `${policyLabel} would have no effect on ${term1} in ${defaultYear}`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2} in ${defaultYear}`;
   return msg;
 }
 
