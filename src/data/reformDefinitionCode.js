@@ -25,6 +25,7 @@ export function getReformDefinitionCode(policy) {
 
   lines = lines.concat([
     "",
+    "",
     "class reform(Reform):",
     "    def apply(self):",
     "        self.modify_parameters(modify_parameters)",

@@ -106,6 +106,7 @@ function getBaselineDefinitionCode(region, policy) {
     "        value=True)",
     "    return parameters",
     "",
+    "",
     "class baseline_reform(Reform):",
     "    def apply(self):",
     "        self.modify_parameters(modify_baseline)",
