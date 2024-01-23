@@ -44,8 +44,8 @@ p {
 
 a {
   /* no underline */
-  text-decoration: none;
-  color: inherit;
+  text-decoration: underline;
+  color: #2c6496;
   outline: none;
 }
 
