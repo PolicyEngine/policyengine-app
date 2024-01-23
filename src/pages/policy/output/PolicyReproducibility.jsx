@@ -1,6 +1,7 @@
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
 import { defaultYear } from "data/constants";
+import colors from "../../../redesign/style/colors";
 
 export default function PolicyReproducibility(props) {
   const { policy, metadata } = props;
@@ -26,7 +27,12 @@ export default function PolicyReproducibility(props) {
         : null;
 
   const notebookLink = colabLink ? (
-    <a href={colabLink} target="_blank" rel="noreferrer">
+    <a
+      href={colabLink}
+      target="_blank"
+      rel="noreferrer"
+      style={{ color: colors.BLUE_PRIMARY, textDecoration: "underline" }}
+    >
       Python notebook
     </a>
   ) : (
@@ -39,8 +45,8 @@ export default function PolicyReproducibility(props) {
     <>
       <h2>Reproduce these results</h2>
       <p>
-        Run the code below into a {notebookLink} to reproduce the
-        microsimulation results.
+        Run the code below in a {notebookLink} to reproduce the microsimulation
+        results.
       </p>
       <CodeBlock lines={initialLines} language={"python"} />
       <div
