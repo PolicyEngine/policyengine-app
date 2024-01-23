@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { optimiseHousehold } from "../../../api/variables";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import Button from "../../../controls/Button";
 import { Switch } from "antd";
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
