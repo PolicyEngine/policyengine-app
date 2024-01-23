@@ -218,9 +218,10 @@ export default function APIDocumentationPage({ metadata }) {
           PolicyEngine&apos;s REST API 
           (<a href="https://household.api.policyengine.org">https://household.api.policyengine.org</a>) 
           simulates tax-benefit policy outcomes and reform impacts for households. Access 
-          to the API requires an authentication token, which can be requested from PolicyEngine. 
-          This token will expire periodically. For more information, please feel free to 
-          contact PolicyEngine at <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
+          to the API requires an authentication token, which will expire monthly for security reasons.
+          This token must be passed within the authorization heading of each request you make to the API. 
+          For more information or to request your own token, feel free to reach out to
+          PolicyEngine at <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
         </p>
         <br />
         <h4>On this page</h4>
