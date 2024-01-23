@@ -31,7 +31,7 @@ export default function PolicyReproducibility(props) {
       href={colabLink}
       target="_blank"
       rel="noreferrer"
-      style={{ color: colors.TEAL_ACCENT, textDecoration: "underline" }}
+      style={{ color: colors.BLUE_PRIMARY, textDecoration: "underline" }}
     >
       Python notebook
     </a>
