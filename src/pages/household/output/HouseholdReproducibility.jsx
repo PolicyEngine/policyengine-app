@@ -81,7 +81,7 @@ export default function HouseholdReproducibility(props) {
       </Helmet>
       <ResultsPanel
         title="Reproduce these results"
-        description="Run the code below into a Python notebook to reproduce the microsimulation results."
+        description="Run the code below to a Python notebook to reproduce the results."
       >
         <div
           style={{
@@ -105,15 +105,7 @@ export default function HouseholdReproducibility(props) {
             justifyContent: "center",
             paddingTop: 30,
           }}
-        >
-          <Button
-            text="Copy"
-            style={{ width: 100, margin: "20px auto 10px" }}
-            onClick={() => {
-              navigator.clipboard.writeText(lines.join("\n"));
-            }}
-          />
-        </div>
+        ></div>
       </ResultsPanel>
     </>
   );
