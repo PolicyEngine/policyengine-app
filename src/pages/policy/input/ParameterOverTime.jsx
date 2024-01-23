@@ -11,6 +11,7 @@ import { localeCode } from "lang/format"; /**
  * @returns the reform policy label
  */
 function getReformPolicyLabel(policy) {
+  if (policy.reform.label) return policy.reform.label;
   const urlParams = new URLSearchParams(window.location.search);
   const reformPolicyId = urlParams.get("reform");
   return reformPolicyId ? `Policy #${reformPolicyId}` : "reform";
