@@ -54,7 +54,6 @@ export default function ParameterOverTime(props) {
             type: "line",
             line: {
               shape: "hv",
-              dash: "dot",
             },
             marker: {
               color: style.colors.GRAY,
@@ -67,6 +66,7 @@ export default function ParameterOverTime(props) {
             type: "line",
             line: {
               shape: "hv",
+              dash: "dot",
             },
             marker: {
               color: style.colors.BLUE,
