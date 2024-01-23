@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Input, Card, Divider, Tag, Drawer } from "antd";
 import { Helmet } from "react-helmet";
+import { defaultYear } from "data/constants";
 
 function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
@@ -168,8 +169,6 @@ function VariableParameterExplorer(props) {
             caretColor: style.colors.BLACK,
             marginLeft: 0,
           }}
-          // Auto-focus
-          autoFocus={true}
         />
         <Divider />
 
@@ -216,14 +215,16 @@ export default function APIDocumentationPage({ metadata }) {
         backgroundColor={style.colors.BLUE_98}
       >
         <p>
-          PolicyEngine&apos;s REST API (https://api.policyengine.org) simulates
-          tax-benefit policy outcomes for households and populations.
+          PolicyEngine&apos;s REST API 
+          (<a href="https://household.api.policyengine.org">https://household.api.policyengine.org</a>) 
+          simulates tax-benefit policy outcomes and reform impacts for households. Access 
+          to the API requires an authentication token, which can be requested from PolicyEngine. 
+          This token will expire periodically. For more information, please feel free to 
+          contact PolicyEngine at <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
         </p>
+        <br />
         <h4>On this page</h4>
         <ul>
-          <li>
-            <a href="#metadata">Get country-level metadata</a>
-          </li>
           <li>
             <a href="#calculate">Calculate household-level policy outcomes</a>
           </li>
@@ -233,110 +234,32 @@ export default function APIDocumentationPage({ metadata }) {
         </ul>
       </Section>
       <APIEndpoint
-        pattern={`/${countryId}/metadata`}
-        method="GET"
-        title="Get country-level metadata"
-        description="Returns country-level metadata."
-        exampleOutputJson={{
-          status: "ok",
-          message: null,
-          result: {
-            basicInputs: [
-              "variables in the default household questionnaire",
-              "age",
-            ],
-            current_law_id: "current-law policy ID",
-            economy_options: {
-              region: [
-                {
-                  name: "identifier of a geography, e.g. 'ut'",
-                  label: "sentence-safe label of a geography, e.g. 'Utah'",
-                },
-              ],
-              time_period: [
-                {
-                  name: "identifier of a time period, e.g. '2022'",
-                  label: "sentence-safe label, e.g. '2022'",
-                },
-              ],
-            },
-            entities: {
-              "entity name": {
-                doc: "entity description",
-                is_person: "whether the entity is a person or group",
-                key: "entity name",
-                label: "entity label",
-                plural: "entity plural",
-                roles: {
-                  "role name": {
-                    doc: "role description",
-                    label: "role label",
-                    plural: "role plural",
-                  },
-                },
-              },
-            },
-            parameters: {
-              "parameter name": {
-                description: "parameter description",
-                economy:
-                  "whether the parameter can be simulated for populations",
-                household:
-                  "whether the parameter can be simulated for households",
-                label: "parameter label",
-                parameter: "parameter address",
-                period: "period",
-                type: "parameter type",
-                unit: "parameter unit",
-                values: {
-                  "YYYY-MM-DD start date": "value",
-                },
-              },
-            },
-            variables: {
-              "variable name": {
-                adds: "summing variables if applicable",
-                category: "variable category",
-                defaultValue: "default value",
-                definitionPeriod: "definition period",
-                documentation: "variable description",
-                entity: "applicable entity key",
-                hidden_input: "whether the variable is hidden in the UI",
-                indexInModule: "index in parent folder",
-                isInputVariable: "whether the variable is an input variable",
-                label: "variable label",
-                moduleName: "folder name",
-                name: "variable name",
-                subtracts: "subtracting variables if applicable",
-                unit: "variable unit",
-                valueType: "variable type",
-              },
-            },
-            version: "version number",
-          },
-        }}
-      ></APIEndpoint>
-      <APIEndpoint
         pattern={`/${countryId}/calculate`}
         method="POST"
         title="Calculate household-level policy outcomes"
-        description="Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best practise to use the group/name/variable/optional time period/value structure."
+        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best ${metadata.countryId === "us" ? "practice" : "practise"} to use the group/name/variable/optional time period/value structure.`}
         exampleInputJson={{
           household: {
             people: {
               parent: {
-                age: 30,
-                employment_income: 20_000,
+                age: {
+                  [defaultYear]: 30
+                },
+                employment_income: {
+                  [defaultYear]: 20_000
+                }
               },
               child: {
-                age: 5,
+                age: {
+                  [defaultYear]: 5
+                }
               },
             },
             spm_units: {
               spm_unit: {
                 members: ["parent", "child"],
                 snap: {
-                  2024: null,
+                  [defaultYear]: null,
                 },
               },
             },
@@ -348,18 +271,24 @@ export default function APIDocumentationPage({ metadata }) {
           result: {
             people: {
               parent: {
-                age: 30,
-                employment_income: 20_000,
+                age: {
+                  [defaultYear]: 30
+                },
+                employment_income: {
+                  [defaultYear]: 20_000
+                }
               },
               child: {
-                age: 5,
+                age: {
+                  [defaultYear]: 5
+                }
               },
             },
             spm_units: {
               spm_unit: {
                 members: ["parent", "child"],
                 snap: {
-                  2024: 2833.5,
+                  [defaultYear]: 2833.5,
                 },
               },
             },
