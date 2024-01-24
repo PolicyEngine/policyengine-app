@@ -32,6 +32,11 @@ p {
   font-weight: 300;
 }
 
+p a {
+  text-decoration: underline;
+  color: #2c6496;
+}
+
 /* icons */
 
 .material-symbols-outlined {
@@ -44,8 +49,8 @@ p {
 
 a {
   /* no underline */
-  text-decoration: underline;
-  color: #2c6496;
+  text-decoration: none;
+  color: inherit;
   outline: none;
 }
 
