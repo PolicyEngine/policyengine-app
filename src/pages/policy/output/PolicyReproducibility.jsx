@@ -68,9 +68,7 @@ function getHeaderLines(metadata) {
   // the overlap between household and policy, as long as HouseholdReproducibility
   // also is
 
-  return [
-    "from " + metadata.package + " import Microsimulation",
-  ];
+  return ["from " + metadata.package + " import Microsimulation"];
 }
 
 function getBaselineDefinitionCode(region, policy) {
