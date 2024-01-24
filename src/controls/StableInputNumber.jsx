@@ -42,8 +42,8 @@ export default function StableInputNumber(props) {
     <InputNumber
       defaultValue={defaultValue}
       onChange={setValue}
-      onPressEnter={(e) => onPressEnter(e, value)}
-      onBlur={(e) => onBlur(e, value)}
+      onPressEnter={(e) => onPressEnter?.(e, value)}
+      onBlur={(e) => onBlur?.(e, value)}
       {...others}
     />
   );

@@ -1,18 +1,18 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
 import { Alert, DatePicker, Switch } from "antd";
-import InputField from "../../../controls/InputField";
 import { getNewPolicyId } from "../../../api/parameters";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
-import { capitalize } from "../../../lang/format";
-import { formatVariableValue } from "../../../api/variables";
+import { capitalize, localeCode } from "../../../lang/format";
+import { currencyMap } from "../../../api/variables";
 import { defaultStartDate, defaultEndDate } from "data/constants";
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "moment";
+import StableInputNumber from "controls/StableInputNumber";
 
 const { RangePicker } = DatePicker;
 
@@ -52,6 +52,7 @@ export default function ParameterEditor(props) {
   };
 
   function onChange(value) {
+    console.log(parameter.parameter);
     reformMap.set(startDate, nextDay(endDate), value);
     const diffData = diff();
     if (Object.keys(diffData).length === 0) {
@@ -75,6 +76,7 @@ export default function ParameterEditor(props) {
     control = (
       <div style={{ padding: 10 }}>
         <Switch
+          key={"input for" + parameter.parameter}
           defaultChecked={startValue}
           onChange={(value) => onChange(!!value)}
         />
@@ -83,13 +85,30 @@ export default function ParameterEditor(props) {
   } else {
     const isPercent = parameter.unit === "/1";
     const scale = isPercent ? 100 : 1;
+    const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
     control = (
-      <InputField
-        placeholder={
-          isPercent ? formatVariableValue(parameter, startValue) : startValue
-        }
-        {...(isPercent ? { pattern: "%" } : {})}
-        onChange={(value) => onChange(parseFloat(value) / scale)}
+      <StableInputNumber
+        key={"input for" + parameter.parameter}
+        {...(isCurrency
+          ? {
+              addonBefore: currencyMap[parameter.unit],
+            }
+          : {})}
+        {...(isPercent
+          ? {
+              addonAfter: "%",
+            }
+          : {})}
+        formatter={(value, { userTyping }) => {
+          const n = +value;
+          const isInteger = Number.isInteger(n);
+          return n.toLocaleString(localeCode(metadata.countryId), {
+            minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+            maximumFractionDigits: userTyping ? 16 : 2,
+          });
+        }}
+        defaultValue={Number(startValue) * scale}
+        onPressEnter={(_, value) => onChange(parseFloat(value) / scale)}
       />
     );
   }
@@ -102,6 +121,7 @@ export default function ParameterEditor(props) {
         justifyContent: "center",
         alignItems: "center",
         paddingTop: 20,
+        gap: 10,
       }}
     >
       <RangePicker
@@ -114,7 +134,6 @@ export default function ParameterEditor(props) {
           date.isBefore("2021-01-01") || date.isAfter("2026-12-31")
         }
         separator="→"
-        style={{ padding: 20, marginBottom: 10 }}
       />
       {control}
     </div>
