@@ -22,7 +22,7 @@ export default function PolicyOutput(props) {
   if (impactType === "codeReproducibility") {
     return (
       <LowLevelDisplay {...props}>
-        <PolicyReproducibility metadata={metadata} policy={policy} />
+        <PolicyReproducibility metadata={metadata} policy={policy} />;
       </LowLevelDisplay>
     );
   } else if (impactType === "cliffImpact") {
