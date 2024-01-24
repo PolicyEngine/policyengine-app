@@ -258,7 +258,7 @@ function formatDesc(value, type) {
   // to enable proper string construction
   const templateStrings = {
     budgetaryImpact: [`${action}`, ""],
-    povertyRateChange: [`${action} the poverty rate by`, ""],
+    povertyRateChange: [`${action} poverty by`, ""],
     winnersPercent:
       "Your reform would raise the net income for this percent " +
       "of the population:",
