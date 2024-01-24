@@ -22,15 +22,9 @@ export function getReformDefinitionCode(metadata, policy) {
         value = "True";
       }
       lines.push(
-        "    parameters." +
-          parameterName +
-          '.update(start=instant("' +
-          start +
-          '"), stop=instant("' +
-          end +
-          '"), value=' +
-          value +
-          ")",
+        `    parameters.${parameterName}.update(`,
+        `        start=instant("${start}"), stop=instant("${end}"),`,
+        `        value=${value})`,
       );
     }
   }
