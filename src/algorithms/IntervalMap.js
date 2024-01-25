@@ -1,3 +1,5 @@
+import { bisect } from "./Bisection";
+
 /**
  *
  * @callback keyCmpCallback
@@ -60,8 +62,11 @@ export class IntervalMap {
 
     // nonempty interval and array here
 
-    let idx1 = array.findIndex((element) => keyCmp(element[0], x1) >= 0);
-    if (idx1 === -1) {
+    let idx1 = bisect(array, x1, 0, array.length, false, (element, x) =>
+      keyCmp(element[0], x),
+    );
+
+    if (idx1 === array.length) {
       // all elements have keys < x1 < x2
       const v = array[array.length - 1][1];
       if (!valueEq(y, v)) {
@@ -70,7 +75,11 @@ export class IntervalMap {
       return;
     }
 
-    let idx2 = array.findLastIndex((element) => keyCmp(element[0], x2) <= 0);
+    let idx2 =
+      bisect(array, x2, 0, array.length, true, (element, x) =>
+        keyCmp(element[0], x),
+      ) - 1;
+
     if (idx2 === -1) {
       // all elements have keys > x2 > x1
       if (!valueEq(y, undefined)) {
