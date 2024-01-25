@@ -616,7 +616,7 @@ function BlogContent({ markdown, backgroundColor }) {
       components={{
         ...renderers,
         p: ({ children }) => (
-          <div
+          <p
             style={{
               fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
@@ -624,7 +624,7 @@ function BlogContent({ markdown, backgroundColor }) {
             }}
           >
             {children}
-          </div>
+          </p>
         ),
         // Ensure images fit inside the container
         img: ({ src, alt }) => (
