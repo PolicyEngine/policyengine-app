@@ -124,7 +124,7 @@ export default function ParameterEditor(props) {
       }}
     >
       <RangePicker
-        value={[moment(startDate), moment(endDate)]}
+        defaultValue={[moment(startDate), moment(endDate)]}
         onChange={(_, dateStrings) => {
           setStartDate(dateStrings[0]);
           setEndDate(dateStrings[1]);
