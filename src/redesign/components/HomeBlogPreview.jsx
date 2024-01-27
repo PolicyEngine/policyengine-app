@@ -17,9 +17,7 @@ export default function HomeBlogPreview() {
         (post.tags.includes(countryId) || post.tags.includes("global")),
     ) || [];
   const allPosts = posts.filter(
-    (post) =>
-      (post.tags.includes(countryId) || post.tags.includes("global")) &&
-      !featuredPosts.includes(post),
+    (post) => post.tags.includes(countryId) || post.tags.includes("global"),
   );
   const displayCategory = useDisplayCategory();
   return (
