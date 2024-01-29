@@ -142,6 +142,7 @@ export function DisplayImpact(props) {
   } else if (impactType === "policyBreakdown") {
     pane = (
       <PolicyBreakdown
+        policyLabel={policyLabel}
         metadata={metadata}
         impact={impact}
         timePeriod={timePeriod}

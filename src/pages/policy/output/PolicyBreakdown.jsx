@@ -1,14 +1,14 @@
 import style from "../../../style";
 
 export default function PolicyBreakdown(props) {
-  const { metadata, impact, timePeriod, region } = props;
+  const { policyLabel, metadata, impact, timePeriod, region } = props;
 
   const regionObj = metadata.economy_options.region.find(
     (elem) => elem.name === region,
   );
   const regionName = regionObj ? regionObj.label : "undefined region";
 
-  const title = `Your reform impact in ${regionName} over ${timePeriod}`;
+  const title = `${policyLabel} in ${regionName}, ${timePeriod}`;
   const bottomText =
     "Click on an option on the left panel to view more details.";
 
