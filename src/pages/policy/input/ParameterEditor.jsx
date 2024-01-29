@@ -63,8 +63,11 @@ export default function ParameterEditor(props) {
       newReforms[parameterName] = diffData;
       getNewPolicyId(metadata.countryId, newReforms).then((result) => {
         if (result.status !== "ok") {
-          console.error("ParameterEditor: In attempting to fetch new " +
-          "policy, the following error occurred: " + result.message);
+          console.error(
+            "ParameterEditor: In attempting to fetch new " +
+              "policy, the following error occurred: " +
+              result.message,
+          );
         } else {
           let newSearch = copySearchParams(searchParams);
           newSearch.set("reform", result.policy_id);

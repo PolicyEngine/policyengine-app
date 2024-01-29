@@ -73,12 +73,12 @@ export function buildParameterTree(parameters) {
 /**
  * Creates new policy record within API and returns the record's ID,
  * or an error message
- * @param {String} countryId 
+ * @param {String} countryId
  * @param {Object} newPolicyData The new policy's data object
  * @param {String} newPolicyLabel The new policy's label
- * @returns {Object} An object with three keys: "status", which is 
- * the "status" value returned by the request; "message", the message 
- * returned by the API; and "policy_id", the ID of the record created 
+ * @returns {Object} An object with three keys: "status", which is
+ * the "status" value returned by the request; "message", the message
+ * returned by the API; and "policy_id", the ID of the record created
  * by the API
  */
 export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
@@ -95,7 +95,7 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
       } else {
         result.policy_id = undefined;
       }
-      result.message = data.message
+      result.message = data.message;
       result.status = data.status;
       return result;
     });
