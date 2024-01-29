@@ -1,18 +1,24 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import {
-  getSortedParameterValues,
-  getReformedParameter,
-} from "../../../api/parameters";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { localeCode } from "lang/format";
+import { localeCode } from "lang/format"; /**
+ *
+ * @param {object} policy the policy object
+ * @returns the reform policy label
+ */
+function getReformPolicyLabel(policy) {
+  if (policy.reform.label) return policy.reform.label;
+  const urlParams = new URLSearchParams(window.location.search);
+  const reformPolicyId = urlParams.get("reform");
+  return reformPolicyId ? `Policy #${reformPolicyId}` : "reform";
+}
 
 export default function ParameterOverTime(props) {
-  const { parameter, policy, metadata } = props;
+  const { baseMap, reformMap, parameter, policy, metadata } = props;
   const mobile = useMobile();
   const windowHeight = useWindowHeight();
 
@@ -23,23 +29,13 @@ export default function ParameterOverTime(props) {
     y.push(y[y.length - 1]);
   };
 
-  const values = getSortedParameterValues(parameter);
-  let x = Object.keys(values);
-  let y = Object.values(values);
+  const x = baseMap.keys();
+  const y = baseMap.values();
   extendForDisplay(x, y);
-  let reformedX;
-  let reformedY;
 
-  if (policy.reform.data[parameter.parameter]) {
-    const reformedParameter = getReformedParameter(
-      parameter,
-      policy.reform.data,
-    );
-    const reformedValues = getSortedParameterValues(reformedParameter);
-    reformedX = Object.keys(reformedValues);
-    reformedY = Object.values(reformedValues);
-    extendForDisplay(reformedX, reformedY);
-  }
+  const reformedX = reformMap ? reformMap.keys() : [];
+  const reformedY = reformMap ? reformMap.values() : [];
+  if (reformMap) extendForDisplay(reformedX, reformedY);
 
   let xaxisValues = reformedX ? x.concat(reformedX) : x;
   xaxisValues = xaxisValues.filter(
@@ -59,28 +55,26 @@ export default function ParameterOverTime(props) {
             type: "line",
             line: {
               shape: "hv",
-              dash: "dot",
             },
             marker: {
               color: style.colors.GRAY,
             },
             name: "Current law",
           },
-          policy.reform.data[parameter.parameter] && {
+          reformMap && {
             x: reformedX,
             y: reformedY.map((y) => +y),
             type: "line",
             line: {
               shape: "hv",
+              dash: "dot",
             },
             marker: {
               color: style.colors.BLUE,
             },
-            name: "Reform",
+            name: getReformPolicyLabel(policy),
           },
-        ]
-          .reverse()
-          .filter((x) => x)}
+        ].filter((x) => x)}
         layout={{
           xaxis: { ...xaxisFormat },
           yaxis: { ...yaxisFormat },
