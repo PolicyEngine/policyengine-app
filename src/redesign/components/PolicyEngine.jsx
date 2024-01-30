@@ -24,6 +24,7 @@ import loc_en_gb from "../../lang/plotly_locales/locale-en-gb.js";
 import loc_en_us from "../../lang/plotly_locales/locale-en-us.js";
 import APIDocumentationPage from "./APIDocumentationPage";
 import CookieConsent from "layout/CookieConsent";
+import TrafwaCalculator from "./TrafwaCalculator";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -243,6 +244,10 @@ export default function PolicyEngine({ pathname }) {
           element={<APIDocumentationPage metadata={metadata} />}
         />
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
+        <Route
+          path="/us/trafwa-ctc-calculator"
+          element={<TrafwaCalculator />}
+        />
 
         {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
         <Route
