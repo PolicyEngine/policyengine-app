@@ -92,7 +92,7 @@ export default function Donate() {
                 <u>
                   <a
                     href="mailto:hello@policyengine.org"
-                    style={{ color: "inherit" }}
+                    className="link-inverted"
                   >
                     hello@policyengine.org
                   </a>

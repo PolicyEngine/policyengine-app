@@ -37,6 +37,11 @@ p a {
   color: #2c6496;
 }
 
+.link-inverted {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
 /* icons */
 
 .material-symbols-outlined {

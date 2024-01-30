@@ -37,7 +37,7 @@ function ContactUs() {
     >
       <h2 style={{ color: "white" }}>Contact</h2>
       <p>
-        <a href="mailto:hello@policyengine.org">
+        <a href="mailto:hello@policyengine.org" className="link-inverted">
           <u>Email us</u>
         </a>{" "}
         at hello@policyengine.org
