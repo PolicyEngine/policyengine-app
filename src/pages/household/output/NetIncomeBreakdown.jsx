@@ -194,6 +194,7 @@ function VariableArithmetic(props) {
       householdReform={householdReform}
       metadata={metadata}
       key={variable}
+      year={year}
       // Every node increases (positive),
       // decreases (negative), or does nothing
       // to income (neutral).
@@ -209,6 +210,7 @@ function VariableArithmetic(props) {
     .filter(shouldShowVariable)
     .map((variable) => (
       <VariableArithmetic
+        year={year}
         variableName={variable}
         householdBaseline={householdBaseline}
         householdReform={householdReform}
@@ -313,7 +315,8 @@ function VariableArithmetic(props) {
 }
 
 export default function NetIncomeBreakdown(props) {
-  const { metadata, householdBaseline, householdReform, policyLabel } = props;
+  const { metadata, householdBaseline, householdReform, policyLabel, year } =
+    props;
   const hasReform = !!householdReform;
   const getValue = (variable) =>
     getValueFromHousehold(variable, null, null, householdBaseline, metadata);
@@ -362,6 +365,7 @@ export default function NetIncomeBreakdown(props) {
       >
         <div style={{ height: 10 }} />
         <VariableArithmetic
+          year={year}
           variableName="household_net_income"
           householdBaseline={householdBaseline}
           householdReform={householdReform}
