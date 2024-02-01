@@ -14,7 +14,7 @@ function ImpactPlot(props) {
   const xArray = labels.length > 0 ? labels : ["Net impact"];
   const yArray = labels.length > 0 ? values : [budgetaryImpact / 1e9];
   const formatCur = (x) =>
-    formatCurrencyAbbr(x, metadata, {
+    formatCurrencyAbbr(x, metadata.countryId, {
       maximumFractionDigits: 1,
     });
   const hoverMessage = (x, y) => {
@@ -130,7 +130,7 @@ function ImpactPlot(props) {
 
 export function title(policyLabel, change, metadata) {
   const term1 = "the budget";
-  const term2 = formatCurrencyAbbr(Math.abs(change), metadata, {
+  const term2 = formatCurrencyAbbr(Math.abs(change), metadata.countryId, {
     maximumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "raise" : "cost";
