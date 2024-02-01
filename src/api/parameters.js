@@ -70,6 +70,17 @@ export function buildParameterTree(parameters) {
   return tree.children.find((child) => child.name === "gov");
 }
 
+/**
+ * Creates new policy record within API and returns the record's ID,
+ * or an error message
+ * @param {String} countryId
+ * @param {Object} newPolicyData The new policy's data object
+ * @param {String} newPolicyLabel The new policy's label
+ * @returns {Object} An object with three keys: "status", which is
+ * the "status" value returned by the request; "message", the message
+ * returned by the API; and "policy_id", the ID of the record created
+ * by the API
+ */
 export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
   let submission = { data: newPolicyData };
   if (newPolicyLabel) {
@@ -78,10 +89,15 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
   return countryApiCall(countryId, "/policy", submission, "POST")
     .then((response) => response.json())
     .then((data) => {
-      if (data.status === "error") {
-        return data;
+      let result = {};
+      if (data.status === "ok") {
+        result.policy_id = data.result.policy_id;
+      } else {
+        result.policy_id = undefined;
       }
-      return data.result.policy_id;
+      result.message = data.message;
+      result.status = data.status;
+      return result;
     });
 }
 

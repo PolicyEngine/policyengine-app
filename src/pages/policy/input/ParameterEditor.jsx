@@ -61,10 +61,18 @@ export default function ParameterEditor(props) {
     } else {
       const newReforms = { ...policy.reform.data };
       newReforms[parameterName] = diffData;
-      getNewPolicyId(metadata.countryId, newReforms).then((newPolicyId) => {
-        let newSearch = copySearchParams(searchParams);
-        newSearch.set("reform", newPolicyId);
-        setSearchParams(newSearch);
+      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+        if (result.status !== "ok") {
+          console.error(
+            "ParameterEditor: In attempting to fetch new " +
+              "policy, the following error occurred: " +
+              result.message,
+          );
+        } else {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("reform", result.policy_id);
+          setSearchParams(newSearch);
+        }
       });
     }
   }
