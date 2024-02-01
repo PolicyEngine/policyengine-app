@@ -90,7 +90,10 @@ export default function Donate() {
                 We accept credit card, bank transfer, or check. After
                 contributing, please email{" "}
                 <u>
-                  <a href="mailto:hello@policyengine.org">
+                  <a
+                    href="mailto:hello@policyengine.org"
+                    className="link-inverted"
+                  >
                     hello@policyengine.org
                   </a>
                 </u>{" "}

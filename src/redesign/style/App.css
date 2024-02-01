@@ -32,6 +32,16 @@ p {
   font-weight: 300;
 }
 
+p a {
+  text-decoration: underline;
+  color: #2c6496;
+}
+
+.link-inverted {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
 /* icons */
 
 .material-symbols-outlined {
