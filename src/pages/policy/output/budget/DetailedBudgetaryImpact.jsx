@@ -14,7 +14,7 @@ function ImpactPlot(props) {
     props;
   const setHoverCard = useContext(HoverCardContext);
   const formatCur = (x) =>
-    formatCurrencyAbbr(x, metadata, {
+    formatCurrencyAbbr(x, metadata.countryId, {
       maximumFractionDigits: 1,
     });
   function hoverMessage(x, y) {

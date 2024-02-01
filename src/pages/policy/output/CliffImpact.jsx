@@ -29,7 +29,7 @@ function ImpactPlot(props) {
       maximumFractionDigits: 1,
     });
   const formatCur = (x) =>
-    formatCurrencyAbbr(x, metadata, {
+    formatCurrencyAbbr(x, metadata.countryId, {
       maximumFractionDigits: 1,
     });
   const hoverMessage = (x) => {
