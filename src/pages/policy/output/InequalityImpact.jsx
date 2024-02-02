@@ -19,10 +19,11 @@ function ImpactPlot(props) {
     mobile,
     useHoverCard,
   } = props;
-  const yPrecision = Math.max(1, precision(metricChanges, 100));
+  const yvaluePrecision = Math.max(1, precision(metricChanges, 100));
+  const ytickPrecision = precision(metricChanges.concat(0), 10);
   const formatPer = (x) =>
     formatPercent(x, metadata.countryId, {
-      minimumFractionDigits: yPrecision,
+      minimumFractionDigits: yvaluePrecision,
     });
   const hoverMessage = (x) => {
     let obj, baseline, reform, formatter;
@@ -83,7 +84,7 @@ function ImpactPlot(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickformat: `,.${yPrecision}%`,
+          tickformat: `,.${ytickPrecision}%`,
         },
         ...(useHoverCard
           ? {}
