@@ -25,12 +25,12 @@ export function ImpactPlot(props) {
   };
   const xArray = Object.keys(decileRelative);
   const yArray = Object.values(decileRelative);
-  const yPrecision = Math.max(1, precision(yArray, 100));
+  const yvaluePrecision = Math.max(1, precision(yArray, 100));
+  const ytickPrecision = precision(yArray.concat(0), 10);
   const formatPer = (n) =>
     formatPercent(n, metadata.countryId, {
-      minimumFractionDigits: yPrecision,
+      minimumFractionDigits: yvaluePrecision,
     });
-  // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
       data={[
@@ -67,7 +67,7 @@ export function ImpactPlot(props) {
         },
         yaxis: {
           title: "Relative change in household income",
-          tickformat: `+,.${yPrecision}%`,
+          tickformat: `+,.${ytickPrecision}%`,
         },
         ...(useHoverCard
           ? {}
