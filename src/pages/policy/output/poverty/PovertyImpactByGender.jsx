@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import { formatPercent, localeCode } from "../../../../lang/format";
+import { formatPercent, localeCode, precision } from "../../../../lang/format";
 import { HoverCardContext } from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
@@ -23,11 +23,10 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-
+  const yPrecision = Math.max(1, precision(povertyChanges, 100));
   const formatPer = (n) =>
     formatPercent(n, metadata.countryId, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
+      minimumFractionDigits: yPrecision,
     });
   const hoverMessage = (x) => {
     const baseline =
@@ -77,7 +76,7 @@ export function ImpactPlot(props) {
       layout={{
         yaxis: {
           title: `Relative change in ${povertyType} rate`,
-          tickformat: "+,.1%",
+          tickformat: `+,.${yPrecision}%`,
         },
         ...(useHoverCard
           ? {}
