@@ -14,8 +14,8 @@ export default function PolicyReproducibility(props) {
 
   let codeLines = [
     ...getHeaderLines(metadata),
+    ...getReformDefinitionCode(metadata, policy),
     ...getBaselineDefinitionCode(region, policy),
-    ...getReformDefinitionCode(policy),
     ...getImplementationCode(region, timePeriod),
   ];
 
@@ -62,14 +62,13 @@ export default function PolicyReproducibility(props) {
 }
 
 function getHeaderLines(metadata) {
-  return [
-    "from " + metadata.package + " import Microsimulation",
-    "from policyengine_core.reforms import Reform",
-    "from policyengine_core.periods import instant",
-    "import pandas as pd",
-    "",
-    "",
-  ];
+  // Note that all other header lines are currently provided by getReformDefinitionCode;
+  // this could be refactored in the future to create clearer distinctions between
+  // code segments and/or create a shared "Reproducibility" component, considering
+  // the overlap between household and policy, as long as HouseholdReproducibility
+  // also is
+
+  return ["from " + metadata.package + " import Microsimulation"];
 }
 
 function getBaselineDefinitionCode(region, policy) {

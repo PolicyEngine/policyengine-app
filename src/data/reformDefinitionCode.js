@@ -1,5 +1,12 @@
-export function getReformDefinitionCode(policy) {
-  let lines = ["def modify_parameters(parameters):"];
+export function getReformDefinitionCode(metadata, policy) {
+  let lines = [
+    "from policyengine_core.reforms import Reform",
+    "from policyengine_core.periods import instant",
+    "import pandas as pd",
+    "",
+    "",
+    "def modify_parameters(parameters):",
+  ];
 
   if (Object.keys(policy.reform.data).length === 0) {
     lines.pop();
