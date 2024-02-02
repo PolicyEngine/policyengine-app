@@ -108,3 +108,26 @@ export function formatCurrencyAbbr(number, countryId, options) {
   }
   return formatCurrency(number, countryId, options) + suffix;
 }
+
+/**
+ *
+ * @param {Array} values an array of numbers
+ * @param {number} multiplier a multiplier applied to all numbers
+ * @returns a good display precision for the array
+ */
+export function precision(values, multiplier) {
+  let minValue = Number.POSITIVE_INFINITY;
+  let maxValue = Number.NEGATIVE_INFINITY;
+  values.forEach((v) => {
+    if (v < minValue) {
+      minValue = v;
+    }
+    if (v > maxValue) {
+      maxValue = v;
+    }
+  });
+  const intervalLength = values ? (maxValue - minValue) * multiplier : 0;
+  return intervalLength > 10 || intervalLength <= 0
+    ? 0
+    : 1 - Math.round(Math.log10(intervalLength));
+}
