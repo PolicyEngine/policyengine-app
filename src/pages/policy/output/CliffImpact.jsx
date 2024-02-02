@@ -24,10 +24,11 @@ function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
-  const yPrecision = Math.max(1, precision(yArray, 100));
+  const yvaluePrecision = Math.max(1, precision(yArray, 100));
+  const ytickPrecision = precision(yArray.concat(0), 10);
   const formatPer = (x) =>
     formatPercent(x, metadata.countryId, {
-      minimumFractionDigits: yPrecision,
+      minimumFractionDigits: yvaluePrecision,
     });
   const formatCur = (x) =>
     formatCurrencyAbbr(x, metadata.countryId, {
@@ -94,7 +95,7 @@ function ImpactPlot(props) {
       layout={{
         yaxis: {
           title: "Relative change",
-          tickformat: `+,.${yPrecision}%`,
+          tickformat: `+,.${ytickPrecision}%`,
         },
         ...(useHoverCard
           ? {}
