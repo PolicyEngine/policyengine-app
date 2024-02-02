@@ -54,12 +54,15 @@ export default function ParameterEditor(props) {
   function onChange(value) {
     reformMap.set(startDate, nextDay(endDate), value);
     const diffData = diff();
-    if (Object.keys(diffData).length === 0) {
+    const newReforms = { ...policy.reform.data };
+    if (
+      Object.keys(diffData).length === 0 &&
+      Object.keys(newReforms).length === 1
+    ) {
       let newSearch = copySearchParams(searchParams);
       newSearch.delete("reform");
       setSearchParams(newSearch);
     } else {
-      const newReforms = { ...policy.reform.data };
       newReforms[parameterName] = diffData;
       getNewPolicyId(metadata.countryId, newReforms).then((result) => {
         if (result.status !== "ok") {
