@@ -1,7 +1,6 @@
 import React from "react";
 import ImpactChart from "../ImpactChart";
 import { ImpactPlot } from "./PovertyImpact";
-import { PovertyChangeProvider } from "./PovertyChangeContext";
 import { title, description } from "./common";
 
 export default function deepPovertyImpact(props) {
@@ -29,29 +28,27 @@ export default function deepPovertyImpact(props) {
     All: "all",
   };
   const chart = (
-    <PovertyChangeProvider>
-      <ImpactChart
-        title={title(
-          policyLabel,
-          true,
-          deepPovertyImpact.all.baseline,
-          deepPovertyImpact.all.reform,
-          metadata,
-        )}
-        description={description(metadata.countryId, true)}
-      >
-        <ImpactPlot
-          povertyType={"deep poverty"}
-          povertyImpact={deepPovertyImpact}
-          povertyLabels={povertyLabels}
-          povertyChanges={povertyChanges}
-          labelToKey={labelToKey}
-          metadata={metadata}
-          mobile={mobile}
-          useHoverCard={useHoverCard}
-        />
-      </ImpactChart>
-    </PovertyChangeProvider>
+    <ImpactChart
+      title={title(
+        policyLabel,
+        true,
+        deepPovertyImpact.all.baseline,
+        deepPovertyImpact.all.reform,
+        metadata,
+      )}
+      description={description(metadata.countryId, true)}
+    >
+      <ImpactPlot
+        povertyType={"deep poverty"}
+        povertyImpact={deepPovertyImpact}
+        povertyLabels={povertyLabels}
+        povertyChanges={povertyChanges}
+        labelToKey={labelToKey}
+        metadata={metadata}
+        mobile={mobile}
+        useHoverCard={useHoverCard}
+      />
+    </ImpactChart>
   );
   const csv = () => {
     const header = ["Age Group", "Baseline", "Reform", "Change"];

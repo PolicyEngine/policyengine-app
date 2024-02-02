@@ -1,14 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { formatPercent, localeCode } from "../../../../lang/format";
 import { HoverCardContext } from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import {
-  PovertyChangeContext,
-  PovertyChangeProvider,
-} from "./PovertyChangeContext";
 import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
 import { title, description } from "./common";
 
@@ -43,11 +39,6 @@ export function ImpactPlot(props) {
     });
   };
 
-  const { minChange, maxChange, addChanges } = useContext(PovertyChangeContext);
-  useEffect(() => {
-    addChanges(povertyChanges);
-  }, [povertyChanges, addChanges]);
-  // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
       data={[
@@ -78,7 +69,6 @@ export function ImpactPlot(props) {
         yaxis: {
           title: `Relative change in ${povertyType} rate`,
           tickformat: "+,.1%",
-          range: [Math.min(minChange, 0), Math.max(maxChange, 0)],
         },
         ...(useHoverCard
           ? {}
@@ -154,29 +144,27 @@ export default function povertyImpact(props) {
     All: "all",
   };
   const chart = (
-    <PovertyChangeProvider>
-      <ImpactChart
-        title={title(
-          policyLabel,
-          false,
-          povertyImpact.all.baseline,
-          povertyImpact.all.reform,
-          metadata,
-        )}
-        description={description(metadata.countryId, false)}
-      >
-        <ImpactPlot
-          povertyType={"poverty"}
-          povertyImpact={povertyImpact}
-          povertyLabels={povertyLabels}
-          povertyChanges={povertyChanges}
-          labelToKey={labelToKey}
-          metadata={metadata}
-          mobile={mobile}
-          useHoverCard={useHoverCard}
-        />
-      </ImpactChart>
-    </PovertyChangeProvider>
+    <ImpactChart
+      title={title(
+        policyLabel,
+        false,
+        povertyImpact.all.baseline,
+        povertyImpact.all.reform,
+        metadata,
+      )}
+      description={description(metadata.countryId, false)}
+    >
+      <ImpactPlot
+        povertyType={"poverty"}
+        povertyImpact={povertyImpact}
+        povertyLabels={povertyLabels}
+        povertyChanges={povertyChanges}
+        labelToKey={labelToKey}
+        metadata={metadata}
+        mobile={mobile}
+        useHoverCard={useHoverCard}
+      />
+    </ImpactChart>
   );
   const csv = () => {
     const header = ["Age Group", "Baseline", "Reform", "Change"];
