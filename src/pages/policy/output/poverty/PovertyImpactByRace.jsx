@@ -20,10 +20,11 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-  const yPrecision = Math.max(1, precision(povertyChanges, 100));
+  const yvaluePrecision = Math.max(1, precision(povertyChanges, 100));
+  const ytickPrecision = precision(povertyChanges.concat(0), 10);
   const formatPer = (n) =>
     formatPercent(n, metadata.countryId, {
-      minimumFractionDigits: yPrecision,
+      minimumFractionDigits: yvaluePrecision,
     });
   const hoverMessage = (x) => {
     const baseline =
@@ -73,7 +74,7 @@ function ImpactPlot(props) {
       layout={{
         yaxis: {
           title: "Relative change in poverty rate",
-          tickformat: `+,.${yPrecision}%`,
+          tickformat: `+,.${ytickPrecision}%`,
         },
         ...(useHoverCard
           ? {}
