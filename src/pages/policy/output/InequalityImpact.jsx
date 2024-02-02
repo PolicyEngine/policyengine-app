@@ -5,7 +5,7 @@ import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, relativeChangeMessage } from "./ImpactChart";
-import { formatPercent, localeCode } from "lang/format";
+import { formatPercent, localeCode, precision } from "lang/format";
 
 function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
@@ -19,10 +19,11 @@ function ImpactPlot(props) {
     mobile,
     useHoverCard,
   } = props;
+  const yvaluePrecision = Math.max(1, precision(metricChanges, 100));
+  const ytickPrecision = precision(metricChanges.concat(0), 10);
   const formatPer = (x) =>
     formatPercent(x, metadata.countryId, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
+      minimumFractionDigits: yvaluePrecision,
     });
   const hoverMessage = (x) => {
     let obj, baseline, reform, formatter;
@@ -64,10 +65,7 @@ function ImpactPlot(props) {
             ),
           },
           text: metricChanges.map(
-            (value) =>
-              (value >= 0 ? "+" : "") +
-              (value * 100).toFixed(1).toString() +
-              "%",
+            (value) => (value >= 0 ? "+" : "") + formatPer(value),
           ),
           textangle: 0,
           ...(useHoverCard
@@ -86,7 +84,7 @@ function ImpactPlot(props) {
         },
         yaxis: {
           title: "Relative change",
-          tickformat: ",.1%",
+          tickformat: `,.${ytickPrecision}%`,
         },
         ...(useHoverCard
           ? {}

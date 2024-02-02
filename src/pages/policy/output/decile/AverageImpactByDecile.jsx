@@ -1,7 +1,12 @@
 import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import { ordinal, localeCode, formatCurrency } from "../../../../lang/format";
+import {
+  ordinal,
+  localeCode,
+  formatCurrency,
+  precision,
+} from "../../../../lang/format";
 import { HoverCardContext } from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
@@ -19,8 +24,18 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
+  const xArray = Object.keys(decileAverage);
+  const yArray = Object.values(decileAverage);
+  let yvaluePrecision = precision(yArray, 1);
+  if (yvaluePrecision > 0) {
+    yvaluePrecision = Math.max(2, yvaluePrecision);
+  }
+  const ytickPrecision = precision(yArray.concat(0), 1);
   const formatCur = (y) =>
-    formatCurrency(y, metadata.countryId, { maximumFractionDigits: 0 });
+    formatCurrency(y, metadata.countryId, {
+      minimumFractionDigits: yvaluePrecision,
+      maximumFractionDigits: yvaluePrecision,
+    });
   const hoverMessage = (x, y) =>
     absoluteChangeMessage(
       "This reform",
@@ -29,9 +44,6 @@ export function ImpactPlot(props) {
       0,
       formatCur,
     );
-  const xArray = Object.keys(decileAverage);
-  const yArray = Object.values(decileAverage);
-  // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
       data={[
@@ -63,7 +75,7 @@ export function ImpactPlot(props) {
         },
         yaxis: {
           title: "Average change in household income",
-          tickformat: "$,.0f",
+          tickformat: `$,.${ytickPrecision}f`,
         },
         ...(useHoverCard
           ? {}
