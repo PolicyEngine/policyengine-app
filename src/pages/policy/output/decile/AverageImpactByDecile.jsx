@@ -30,6 +30,7 @@ export function ImpactPlot(props) {
   const formatCur = (y) =>
     formatCurrency(y, metadata.countryId, {
       minimumFractionDigits: yPrecision,
+      maximumFractionDigits: yPrecision,
     });
   const hoverMessage = (x, y) =>
     absoluteChangeMessage(
