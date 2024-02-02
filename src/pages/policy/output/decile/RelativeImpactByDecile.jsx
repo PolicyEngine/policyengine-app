@@ -3,7 +3,7 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import style from "../../../../style";
 import { HoverCardContext } from "../../../../layout/HoverCard";
-import { ordinal, formatPercent } from "../../../../lang/format";
+import { ordinal, formatPercent, precision } from "../../../../lang/format";
 import { plotLayoutFont } from "../utils";
 import React from "react";
 import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
@@ -19,17 +19,17 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-  const formatPer = (n) =>
-    formatPercent(n, metadata.countryId, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
-    });
   const hoverMessage = (x, y) => {
     const obj = `the income of households in the ${ordinal(x)} ${decileType}`;
     return relativeChangeMessage("This reform", obj, y, 0.001, metadata);
   };
   const xArray = Object.keys(decileRelative);
   const yArray = Object.values(decileRelative);
+  const yPrecision = Math.max(1, precision(yArray, 100));
+  const formatPer = (n) =>
+    formatPercent(n, metadata.countryId, {
+      minimumFractionDigits: yPrecision,
+    });
   // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
@@ -67,7 +67,7 @@ export function ImpactPlot(props) {
         },
         yaxis: {
           title: "Relative change in household income",
-          tickformat: "+,.0%",
+          tickformat: `+,.${yPrecision}%`,
         },
         ...(useHoverCard
           ? {}
