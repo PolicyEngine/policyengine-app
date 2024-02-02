@@ -26,11 +26,15 @@ export function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
   const xArray = Object.keys(decileAverage);
   const yArray = Object.values(decileAverage);
-  const yPrecision = precision(yArray, 1) > 0 ? 2 : 0;
+  let yvaluePrecision = precision(yArray, 1);
+  if (yvaluePrecision > 0) {
+    yvaluePrecision = Math.max(2, yvaluePrecision);
+  }
+  const ytickPrecision = precision(yArray.concat(0), 1);
   const formatCur = (y) =>
     formatCurrency(y, metadata.countryId, {
-      minimumFractionDigits: yPrecision,
-      maximumFractionDigits: yPrecision,
+      minimumFractionDigits: yvaluePrecision,
+      maximumFractionDigits: yvaluePrecision,
     });
   const hoverMessage = (x, y) =>
     absoluteChangeMessage(
@@ -40,7 +44,6 @@ export function ImpactPlot(props) {
       0,
       formatCur,
     );
-  // Decile bar chart. Bars are grey if negative, green if positive.
   return (
     <Plot
       data={[
@@ -72,7 +75,7 @@ export function ImpactPlot(props) {
         },
         yaxis: {
           title: "Average change in household income",
-          tickformat: `$,.${yPrecision}f`,
+          tickformat: `$,.${ytickPrecision}f`,
         },
         ...(useHoverCard
           ? {}
