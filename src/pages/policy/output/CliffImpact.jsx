@@ -5,6 +5,7 @@ import {
   formatCurrencyAbbr,
   formatPercent,
   localeCode,
+  precision,
 } from "../../../lang/format";
 import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
@@ -23,10 +24,10 @@ function ImpactPlot(props) {
   const setHoverCard = useContext(HoverCardContext);
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
+  const yPrecision = Math.max(1, precision(yArray, 100));
   const formatPer = (x) =>
     formatPercent(x, metadata.countryId, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
+      minimumFractionDigits: yPrecision,
     });
   const formatCur = (x) =>
     formatCurrencyAbbr(x, metadata.countryId, {
@@ -93,7 +94,7 @@ function ImpactPlot(props) {
       layout={{
         yaxis: {
           title: "Relative change",
-          tickformat: "+,.0%",
+          tickformat: `+,.${yPrecision}%`,
         },
         ...(useHoverCard
           ? {}
