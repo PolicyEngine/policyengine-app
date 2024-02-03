@@ -85,6 +85,7 @@ function ImpactPlot(props) {
         yaxis: {
           title: "Relative change",
           tickformat: `,.${ytickPrecision}%`,
+          fixedrange: true,
         },
         ...(useHoverCard
           ? {}

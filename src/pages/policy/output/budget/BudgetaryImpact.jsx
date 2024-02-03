@@ -78,6 +78,7 @@ function ImpactPlot(props) {
         yaxis: {
           title: "Budgetary impact (bn)",
           tickformat: "$,.1f",
+          fixedrange: true,
         },
         ...(useHoverCard
           ? {}

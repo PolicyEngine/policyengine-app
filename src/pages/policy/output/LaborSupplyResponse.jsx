@@ -53,6 +53,7 @@ function ImpactPlot(props) {
         yaxis: {
           title: "Employment income (bn)",
           tickformat: "$,.1f",
+          fixedrange: true,
         },
         hoverlabel: {
           align: "left",

@@ -75,6 +75,7 @@ function ImpactPlot(props) {
         yaxis: {
           title: "Relative change in poverty rate",
           tickformat: `+,.${ytickPrecision}%`,
+          fixedrange: true,
         },
         ...(useHoverCard
           ? {}

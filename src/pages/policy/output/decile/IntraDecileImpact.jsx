@@ -121,11 +121,13 @@ export function ImpactPlot(props) {
           matches: "x2",
           showgrid: false,
           showticklabels: false,
+          fixedrange: true,
         },
         xaxis2: {
           title: "Population share",
           tickformat: ".0%",
           anchor: "y2",
+          fixedrange: true,
         },
         yaxis2: {
           title: yaxistitle,
