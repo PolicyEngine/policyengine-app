@@ -76,6 +76,7 @@ export function ImpactPlot(props) {
         yaxis: {
           title: "Average change in household income",
           tickformat: `$,.${ytickPrecision}f`,
+          fixedrange: true,
         },
         ...(useHoverCard
           ? {}

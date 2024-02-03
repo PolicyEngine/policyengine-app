@@ -70,6 +70,7 @@ export function ImpactPlot(props) {
         yaxis: {
           title: `Relative change in ${povertyType} rate`,
           tickformat: `+,.${ytickPrecision}%`,
+          fixedrange: true,
         },
         ...(useHoverCard
           ? {}
