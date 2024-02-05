@@ -27,6 +27,17 @@ export const founders = {
     bio: `is a Policy Modeling Manager at PolicyEngine. He has graduated with a Bachelor’s degree in Economics from Marist College where he researched the economic implications of forced migration. Pavel is currently enrolled in the International Economics Master’s program at the Hochschule für Wirtschaft und Recht in Berlin.`,
     image: require("../images/authors/pavel-makarchuk.jpeg"),
   },
+  anthony_volk: {
+    name: "Anthony Volk",
+    bio: `is a full-stack engineer at PolicyEngine. He has a passion 
+    for using full-stack technologies and web development best 
+    practices to build digital tools that empower society. Previously, 
+    he conducted research into international infrastructure and digital 
+    development with the Institute for State Effectiveness. He holds a 
+    bachelor’s degree in government and East Asian studies from Harvard 
+    University.`,
+    image: require("../images/authors/anthony-volk.jpg"),
+  }
 };
 
 export const advisors = {

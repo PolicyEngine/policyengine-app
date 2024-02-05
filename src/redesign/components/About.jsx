@@ -39,6 +39,7 @@ export default function About() {
           <TeamMember member={founders.max_ghenis} />
           <TeamMember member={founders.nikhil_woodruff} />
           <TeamMember member={founders.pavel_makarchuk} />
+          <TeamMember member={founders.anthony_volk} />
         </Section>
         <div style={{ display: "none" }}>
           <Section backgroundColor={style.colors.BLUE_PRIMARY}>
