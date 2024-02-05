@@ -101,3 +101,15 @@ a.highlighted-link:hover {
 .ant-btn-link:hover {
   color: inherit;
 }
+
+.new-btn {
+  background: #39c6c0;
+  border-color: #39c6c0;
+  color: #ffffff;
+}
+
+.new-btn:hover {
+  background: #40e0d0;
+  border-color: #40e0d0;
+  color: #ffffff;
+}

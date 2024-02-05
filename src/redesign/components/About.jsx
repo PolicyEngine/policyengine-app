@@ -7,6 +7,7 @@ import { founders, advisors } from "../data/Staff";
 import useDisplayCategory from "./useDisplayCategory";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import NewButton from "./NewButton";
 
 export default function About() {
   const location = useLocation();
@@ -18,6 +19,7 @@ export default function About() {
         <title>About | PolicyEngine</title>
       </Helmet>
       <div>
+        <NewButton />
         <Header />
         <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98}>
           <p style={{ margin: 0 }}>
