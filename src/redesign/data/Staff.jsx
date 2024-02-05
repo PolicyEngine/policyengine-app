@@ -37,7 +37,7 @@ export const founders = {
     bachelor’s degree in government and East Asian studies from Harvard 
     University.`,
     image: require("../images/authors/anthony-volk.jpg"),
-  }
+  },
 };
 
 export const advisors = {
