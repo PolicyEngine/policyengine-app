@@ -17,7 +17,9 @@ export default function HomeBlogPreview() {
         (post.tags.includes(countryId) || post.tags.includes("global")),
     ) || [];
   const allPosts = posts.filter(
-    (post) => post.tags.includes(countryId) || post.tags.includes("global"),
+    (post) =>
+      (post.tags.includes(countryId) || post.tags.includes("global")) &&
+      !featuredPosts.includes(post),
   );
   const displayCategory = useDisplayCategory();
   return (
@@ -81,7 +83,7 @@ function ReadMore() {
 
 function DesktopBlogPreview({ featuredPosts, allPosts }) {
   const rightColumnPosts = allPosts?.slice(0, 4);
-  const firstRowPosts = allPosts?.slice(6, 9);
+  const firstRowPosts = allPosts?.slice(4, 7);
 
   return (
     <SectionBottom backgroundColor={style.colors.LIGHT_GRAY}>
@@ -137,6 +139,10 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
 }
 
 function TabletBlogPreview({ featuredPosts, allPosts }) {
+  const smallPosts = allPosts.slice(0, 4);
+  const leftHandPost = allPosts.slice(4, 5);
+  const bottomPosts = allPosts.slice(5, 7);
+
   return (
     <SectionBottom>
       <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
@@ -151,7 +157,7 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
         }}
       >
         <div style={{ flex: 1 }}>
-          <MediumBlogPreview blog={allPosts[4]} />
+          <MediumBlogPreview blog={leftHandPost[0]} />
         </div>
         <div style={{ width: 40 }} />
         <div
@@ -162,13 +168,14 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
             justifyContent: "space-between",
           }}
         >
-          <SmallBlogPreview blog={allPosts[0]} />
-          <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[1]} />
-          <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[2]} />
-          <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[3]} />
+          {smallPosts?.map((post, index) => (
+            <>
+              <SmallBlogPreview key={post.slug} blog={post} />
+              {index !== smallPosts.length - 1 && (
+                <div style={{ height: 40 }} />
+              )}
+            </>
+          ))}
         </div>
       </div>
       <div
@@ -179,9 +186,12 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
           marginTop: 40,
         }}
       >
-        <MediumBlogPreview blog={allPosts[7]} />
-        <div style={{ width: 40 }} />
-        <MediumBlogPreview blog={allPosts[8]} />
+        {bottomPosts?.map((post, index) => (
+          <>
+            <MediumBlogPreview key={post.slug} blog={post} />
+            {index !== bottomPosts.length - 1 && <div style={{ width: 40 }} />}
+          </>
+        ))}
       </div>
       <ReadMore />
     </SectionBottom>
@@ -189,6 +199,7 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
 }
 
 function MobileBlogPreview({ featuredPosts, allPosts }) {
+  const smallPosts = allPosts.slice(0, 4);
   return (
     <div>
       <div
@@ -200,7 +211,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
         }}
       >
         <div style={{ minWidth: 20 }} />
-        {featuredPosts.map((blog, i) => (
+        {featuredPosts.map((post, i) => (
           <div
             key={i}
             style={{
@@ -210,7 +221,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
               height: "100%",
             }}
           >
-            <MediumBlogPreview blog={blog} />
+            <MediumBlogPreview blog={post} />
           </div>
         ))}
         <div style={{ minWidth: 20 }} />
@@ -224,13 +235,14 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
             justifyContent: "space-between",
           }}
         >
-          <SmallBlogPreview blog={allPosts[5]} />
-          <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[6]} />
-          <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[7]} />
-          <div style={{ height: 40 }} />
-          <SmallBlogPreview blog={allPosts[8]} />
+          {smallPosts?.map((post, index) => (
+            <>
+              <SmallBlogPreview key={post.slug} blog={post} />
+              {index !== smallPosts.length - 1 && (
+                <div style={{ height: 40 }} />
+              )}
+            </>
+          ))}
         </div>
         <ReadMore />
       </SectionBottom>
@@ -335,7 +347,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
       >
         <img
           src={imageUrl}
-          alt={currentBlog.coverAltText || `{blog.title} cover image`}
+          alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
           width="100%"
           height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
           style={{
@@ -393,7 +405,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
       <div>
         <img
           src={imageUrl}
-          alt={blog.coverAltText || `{blog.title} cover image`}
+          alt={blog.coverAltText || `${blog.title} cover image`}
           height={300}
           width="100%"
           style={{
