@@ -45,6 +45,8 @@ const NewButton = (props) => {
         fontFamily: "Roboto",
         fontWeight: 500,
         letterSpacing: 2.4,
+        textAlign: "center",
+        justifyContent: "center",
         color: "#ffffff",
         ...style,
       }}
