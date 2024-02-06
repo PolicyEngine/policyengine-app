@@ -140,8 +140,8 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
 
 function TabletBlogPreview({ featuredPosts, allPosts }) {
   const smallPosts = allPosts.slice(0, 4);
-  const leftHandPost = allPosts.slice(4,5);
-  const bottomPosts = allPosts.slice(5,7);
+  const leftHandPost = allPosts.slice(4, 5);
+  const bottomPosts = allPosts.slice(5, 7);
 
   return (
     <SectionBottom>
@@ -171,11 +171,9 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
           {smallPosts?.map((post, index) => (
             <>
               <SmallBlogPreview key={post.slug} blog={post} />
-              {
-                index !== smallPosts.length - 1 && (
-                  <div style={{ height: 40 }} />
-                )
-              }
+              {index !== smallPosts.length - 1 && (
+                <div style={{ height: 40 }} />
+              )}
             </>
           ))}
         </div>
@@ -191,11 +189,7 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
         {bottomPosts?.map((post, index) => (
           <>
             <MediumBlogPreview key={post.slug} blog={post} />
-            {
-              index !== bottomPosts.length - 1 && (
-                <div style={{ width: 40 }} />
-              )
-            }
+            {index !== bottomPosts.length - 1 && <div style={{ width: 40 }} />}
           </>
         ))}
       </div>
@@ -244,11 +238,9 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
           {smallPosts?.map((post, index) => (
             <>
               <SmallBlogPreview key={post.slug} blog={post} />
-              {
-                index !== smallPosts.length - 1 && (
-                  <div style={{ height: 40 }} />
-                )
-              }
+              {index !== smallPosts.length - 1 && (
+                <div style={{ height: 40 }} />
+              )}
             </>
           ))}
         </div>
