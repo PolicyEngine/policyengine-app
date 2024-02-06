@@ -19,7 +19,6 @@ export default function About() {
         <title>About | PolicyEngine</title>
       </Helmet>
       <div>
-        <NewButton />
         <Header />
         <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98}>
           <p style={{ margin: 0 }}>
@@ -36,6 +35,7 @@ export default function About() {
             </Link>
           </p>
         </PageHeader>
+        <NewButton />
         <Section>
           <h2>Team</h2>
           <TeamMember member={founders.max_ghenis} />

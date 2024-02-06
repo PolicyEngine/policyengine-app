@@ -22,24 +22,48 @@ const buttonStyles = {
 };
 
 const NewButton = (props) => {
+  let { text, onClick, width, type, size, height, style } = props;
+
+  // Assign fallback values for styling
+  if (!type || !(type in Object.keys(buttonStyles))) {
+    type = "default";
+  }
+
   return (
     <Button
-      className="new-btn"
       style={{
         display: "flex",
         borderRadius: "0",
         backgroundColor: colors.TEAL_ACCENT,
+        textTransform: "uppercase",
+        width: width || "min(300px, 70vw)",
+        height: height || "auto",
+        padding: 15,
+        paddingLeft: 30,
+        paddingRight: 30,
+        fontSize: 15,
+        fontFamily: "Roboto",
+        fontWeight: 500,
+        letterSpacing: 2.4,
+        color: "#ffffff",
+        ...style,
       }}
       onMouseOver={(e) =>
-        (e.currentTarget.style.backgroundColor = colors.TEAL_PRESSED) &&
-        (e.currentTarget.style.borderColor = colors.TEAL_PRESSED)
+        (e.currentTarget.style.backgroundColor =
+          buttonStyles[type].hoverBackgroundColor) &&
+        (e.currentTarget.style.borderColor =
+          buttonStyles[type].hoverBackgroundColor)
       }
       onMouseOut={(e) =>
-        (e.currentTarget.style.backgroundColor = colors.TEAL_ACCENT) &&
-        (e.currentTarget.style.borderColor = colors.TEAL_ACCENT)
+        (e.currentTarget.style.backgroundColor =
+          buttonStyles[type].standardBackgroundColor) &&
+        (e.currentTarget.style.borderColor =
+          buttonStyles[type].standardBackgroundColor)
       }
+      size={size ? size : width ? `${width}px` : "300px"}
+      onClick={onClick}
     >
-      🎉New Button
+      {text ? text : `🎉New Button`}
     </Button>
   );
 };
