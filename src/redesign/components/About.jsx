@@ -7,7 +7,6 @@ import { founders, advisors } from "../data/Staff";
 import useDisplayCategory from "./useDisplayCategory";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import NewButton from "./NewButton";
 
 export default function About() {
   const location = useLocation();
@@ -35,7 +34,6 @@ export default function About() {
             </Link>
           </p>
         </PageHeader>
-        <NewButton />
         <Section>
           <h2>Team</h2>
           <TeamMember member={founders.max_ghenis} />
