@@ -21,11 +21,6 @@ const buttonStyles = {
   },
 };
 
-
-
-
-
-
 /**
  * Standardized button that takes a series of props; for links, use LinkButton instead
  * @param {Object} [props]
