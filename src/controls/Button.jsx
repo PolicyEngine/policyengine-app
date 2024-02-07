@@ -1,24 +1,30 @@
-import styles from "../redesign/style";
-import { HoverBox } from "../redesign/components/HoverBox";
+import React from "react";
+import { Button as AntButton } from "antd";
+import colors from "../style/colors";
 
 const buttonStyles = {
   primary: {
-    hoverBackgroundColor: styles.colors.TEAL_PRESSED,
-    standardBackgroundColor: styles.colors.TEAL_ACCENT,
+    hoverBackgroundColor: colors.TEAL_PRESSED,
+    standardBackgroundColor: colors.TEAL_ACCENT,
   },
   secondary: {
-    hoverBackgroundColor: styles.colors.BLUE_PRESSED,
-    standardBackgroundColor: styles.colors.BLUE_LIGHT,
+    hoverBackgroundColor: colors.BLUE_PRESSED,
+    standardBackgroundColor: colors.BLUE_LIGHT,
   },
   disabled: {
-    hoverBackgroundColor: styles.colors.BLUE_PRESSED,
-    standardBackgroundColor: styles.colors.BLUE_LIGHT,
+    hoverBackgroundColor: colors.BLUE_PRESSED,
+    standardBackgroundColor: colors.BLUE_LIGHT,
   },
   default: {
-    hoverBackgroundColor: styles.colors.TEAL_PRESSED,
-    standardBackgroundColor: styles.colors.TEAL_ACCENT,
+    hoverBackgroundColor: colors.TEAL_PRESSED,
+    standardBackgroundColor: colors.TEAL_ACCENT,
   },
 };
+
+
+
+
+
 
 /**
  * Standardized button that takes a series of props; for links, use LinkButton instead
@@ -35,19 +41,8 @@ const buttonStyles = {
  * @param {Object} [props.style] Desired JSX-formatted styling object; overrides all other style attributes
  * @returns {import("react").ReactComponentElement}
  */
-export default function Button(props) {
-  let {
-    text,
-    onClick,
-    width,
-    type,
-    size,
-    height,
-    hoverStart,
-    backgroundColor,
-    activeBackgroundColor,
-    style,
-  } = props;
+const Button = (props) => {
+  let { text, onClick, width, type, size, height, style } = props;
 
   // Assign fallback values for styling
   if (!type || !(type in Object.keys(buttonStyles))) {
@@ -55,17 +50,14 @@ export default function Button(props) {
   }
 
   return (
-    <HoverBox
-      hoverBackgroundColor={
-        activeBackgroundColor || buttonStyles[type].hoverBackgroundColor
-      }
-      hoverStart={hoverStart || "left"}
+    <AntButton
       style={{
-        alignItems: "center",
         display: "flex",
-        backgroundColor:
-          backgroundColor || buttonStyles[type].standardBackgroundColor,
-        color: "white",
+        borderRadius: "0",
+        backgroundColor: colors.TEAL_ACCENT,
+        textTransform: "uppercase",
+        width: width || "min(300px, 70vw)",
+        height: height || "auto",
         padding: 15,
         paddingLeft: 30,
         paddingRight: 30,
@@ -73,22 +65,29 @@ export default function Button(props) {
         fontFamily: "Roboto",
         fontWeight: 500,
         letterSpacing: 2.4,
-        cursor: "pointer",
-        textTransform: "uppercase",
-        width: width || "min(300px, 70vw)",
-        height: height,
-        justifyContent: "center",
         textAlign: "center",
-        outline: "none",
-        boxShadow: "none",
-        userSelect: "none",
+        justifyContent: "center",
+        color: "#ffffff",
         ...style,
       }}
+      onMouseOver={(e) =>
+        (e.currentTarget.style.backgroundColor =
+          buttonStyles[type].hoverBackgroundColor) &&
+        (e.currentTarget.style.borderColor =
+          buttonStyles[type].hoverBackgroundColor)
+      }
+      onMouseOut={(e) =>
+        (e.currentTarget.style.backgroundColor =
+          buttonStyles[type].standardBackgroundColor) &&
+        (e.currentTarget.style.borderColor =
+          buttonStyles[type].standardBackgroundColor)
+      }
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
-      aria-label={text}
     >
-      {text}
-    </HoverBox>
+      {text ? text : `🎉New Button`}
+    </AntButton>
   );
-}
+};
+
+export default Button;
