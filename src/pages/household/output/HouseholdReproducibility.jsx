@@ -10,7 +10,7 @@ export default function HouseholdReproducibility(props) {
   const { policy, policyLabel, metadata, householdInput, year } = props;
   const [earningVariation, setEarningVariation] = useState(false);
 
-  let lines = ["from " + metadata.package + " import Simulation"];
+  let lines = [];
 
   if (policy.reform.data) {
     lines = lines.concat(getReformDefinitionCode(metadata, policy));
