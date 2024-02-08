@@ -21,7 +21,7 @@ export const founders = {
     investigations. Nikhil has a bachelor's degree in Computer Science from the
     University of Durham.`,
     image: require("../../images/authors/nikhil-woodruff.jpg"),
-  }
+  },
 };
 
 export const staff = {
