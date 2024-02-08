@@ -1,4 +1,4 @@
-// A JSON data structure that describes all PolicyEngine staff members,
+// A JSON data structure that describes PolicyEngine founders,
 // for use on the About Us page
 
 export const founders = {
@@ -15,16 +15,23 @@ export const founders = {
   nikhil_woodruff: {
     name: "Nikhil Woodruff",
     bio: `is the co-founder and CTO of PolicyEngine. He is
-        also the UK Research Director at the UBI Center, a think tank
-        researching universal basic income policies, and was previously a data
-        scientist at Caspian, where he worked in improving anti-money laundering
-        investigations. Nikhil has a bachelor's degree in Computer Science from the
-        University of Durham.`,
+    also the UK Research Director at the UBI Center, a think tank
+    researching universal basic income policies, and was previously a data
+    scientist at Caspian, where he worked in improving anti-money laundering
+    investigations. Nikhil has a bachelor's degree in Computer Science from the
+    University of Durham.`,
     image: require("../../images/authors/nikhil-woodruff.jpg"),
-  },
+  }
+};
+
+export const staff = {
   pavel_makarchuk: {
     name: "Pavel Makarchuk",
-    bio: `is a Policy Modeling Manager at PolicyEngine. He has graduated with a Bachelor’s degree in Economics from Marist College where he researched the economic implications of forced migration. Pavel is currently enrolled in the International Economics Master’s program at the Hochschule für Wirtschaft und Recht in Berlin.`,
+    bio: `is a Policy Modeling Manager at PolicyEngine. He has 
+    graduated with a Bachelor’s degree in Economics from Marist College 
+    where he researched the economic implications of forced migration. 
+    Pavel is currently enrolled in the International Economics Master’s 
+    program at the Hochschule für Wirtschaft und Recht in Berlin.`,
     image: require("../images/authors/pavel-makarchuk.jpeg"),
   },
   anthony_volk: {
@@ -33,8 +40,8 @@ export const founders = {
     for using full-stack technologies and web development best 
     practices to build digital tools that empower society. Previously, 
     he conducted research into international infrastructure and digital 
-    development with the Institute for State Effectiveness. He holds a 
-    bachelor’s degree in government and East Asian studies from Harvard 
+    development with the Institute for State Effectiveness. He holds an
+    A.B. in Government and East Asian Studies from Harvard 
     University.`,
     image: require("../images/authors/anthony-volk.jpg"),
   },
@@ -43,22 +50,37 @@ export const founders = {
 export const advisors = {
   george_sadowsky: {
     name: "George Sadowsky",
-    bio: `has previously served on boards of The Internet Society and ICANN. George has held senior leadership positions at the Urban Institute, the Brookings Institution, the United Nations, and other international organizations building microsimulation and computing systems for policymaking. George holds an A.B. in Mathematics from Harvard University, and an M.A. and Ph.D. in Economics from Yale University.`,
+    bio: `has previously served on boards of The Internet Society and ICANN. 
+    George has held senior leadership positions at the Urban Institute, the 
+    Brookings Institution, the United Nations, and other international 
+    organizations building microsimulation and computing systems for 
+    policymaking. George holds an A.B. in Mathematics from Harvard University, 
+    and an M.A. and Ph.D. in Economics from Yale University.`,
     image: require("../images/headshots/george_sadowsky.jpeg"),
   },
   damiola_ogundipe: {
     name: "Damola Ogundipe",
-    bio: `is the co-founder and CEO of Plural Policy, a software company that helps government relations and public policy teams influence and shape public policy. He previously worked as a Senior Consultant at Oxford Strategic Consulting. Damola holds a B.S. in Finance from the University of Minnesota.`,
+    bio: `is the co-founder and CEO of Plural Policy, a software company that 
+    helps government relations and public policy teams influence and shape 
+    public policy. He previously worked as a Senior Consultant at Oxford 
+    Strategic Consulting. Damola holds a B.S. in Finance from the University 
+    of Minnesota.`,
     image: require("../images/headshots/damiola_ogundipe.jpeg"),
   },
   jesse_horwitz: {
     name: "Jesse Horwitz",
-    bio: `is the co-founder of Agora and Hubble Contacts. He previously worked as a policy advisor to Andrew Yang's mayoral campaign and as an investment analyst. Jesse holds a bachelor's degree in Economics-Mathematics from Columbia University and attended Harvard Law School.`,
+    bio: `is the co-founder of Agora and Hubble Contacts. He previously worked 
+    as a policy advisor to Andrew Yang's mayoral campaign and as an investment 
+    analyst. Jesse holds a bachelor's degree in Economics-Mathematics from 
+    Columbia University and attended Harvard Law School.`,
     image: require("../images/headshots/jesse_horwitz.jpeg"),
   },
   matt_jensen: {
     name: "Matt Jensen",
-    bio: `is the founding director of the Open Source Policy Center at the American Enterprise Institute. He is also a co-founder of the Open Research Group, the Policy Simulation Library, and Compute Tooling. Jensen is a graduate of Pomona College with a degree in math.`,
+    bio: `is the founding director of the Open Source Policy Center at the 
+    American Enterprise Institute. He is also a co-founder of the Open Research 
+    Group, the Policy Simulation Library, and Compute Tooling. Jensen is a 
+    graduate of Pomona College with a degree in math.`,
     image: require("../images/headshots/matt_jensen.png"),
   },
 };
