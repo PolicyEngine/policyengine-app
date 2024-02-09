@@ -33,6 +33,35 @@ describe("IntervalMap construction", () => {
       [2, "b"],
     ]);
   });
+
+  test("ten entries, one duplicate", () => {
+    const m = new IntervalMap(
+      [
+        [1, "a"],
+        [2, "b"],
+        [3, "c"],
+        [4, "d"],
+        [5, "e"],
+        [6, "f"],
+        [7, "f"],
+        [8, "h"],
+        [9, "i"],
+        [10, "f"],
+      ],
+      (x, y) => x - y,
+    );
+    expect(m.toArray()).toStrictEqual([
+      [1, "a"],
+      [2, "b"],
+      [3, "c"],
+      [4, "d"],
+      [5, "e"],
+      [6, "f"],
+      [8, "h"],
+      [9, "i"],
+      [10, "f"],
+    ]);
+  });
 });
 
 describe("IntervalMap operations", () => {
