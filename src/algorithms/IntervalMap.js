@@ -26,15 +26,14 @@ export class IntervalMap {
     this.array = [];
     array.sort((a, b) => keyCmp(a[0], b[0]));
     let prevValue;
-    for (const [key, value] in array) {
+    for (const [key, value] of array) {
       if (!valueEq(value, prevValue)) {
-        array.push([key, value]);
+        this.array.push([key, value]);
         prevValue = value;
       }
     }
     // the loop ensures that two consecutive elements do not have duplicates,
     // and the first element does not have an undefined value.
-    this.array = array;
     this.keyCmp = keyCmp;
     this.valueEq = valueEq;
   }
@@ -111,11 +110,26 @@ export class IntervalMap {
    * @param {*} x a point in the domain
    */
   get(x) {
-    // first element with key <= x
-    const element = this.array.findLast(
-      (element) => this.keyCmp(element[0], x) <= 0,
+    const array = this.array;
+    const n = array.length;
+
+    if (n === 0) return;
+
+    const idx = bisect(array, x, 0, n, false, (element, x) =>
+      this.keyCmp(element[0], x),
     );
-    return element?.[1];
+
+    if (idx === n) {
+      return array[idx - 1][1];
+    }
+
+    if (array[idx][0] === x) {
+      return array[idx][1];
+    }
+
+    if (idx > 0) {
+      return array[idx - 1][1];
+    }
   }
 
   /**
