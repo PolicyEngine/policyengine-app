@@ -62,6 +62,22 @@ describe("IntervalMap construction", () => {
       [10, "f"],
     ]);
   });
+
+  test("unsorted to sorted", () => {
+    const m = new IntervalMap(
+      [
+        [2, "b"],
+        [1, "a"],
+        [3, "c"],
+      ],
+      (x, y) => x - y,
+    );
+    expect(m.toArray()).toStrictEqual([
+      [1, "a"],
+      [2, "b"],
+      [3, "c"],
+    ]);
+  });
 });
 
 describe("IntervalMap operations", () => {
