@@ -14,5 +14,6 @@ module.exports = {
         runtime: "automatic",
       },
     ],
+    "@babel/preset-typescript",
   ],
 };

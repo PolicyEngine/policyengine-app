@@ -8,12 +8,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@babel/preset-env": "^7.23.7",
     "@babel/preset-react": "^7.23.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "antd": ">4, <5",
     "axios": "^1.6.3",
-    "babel-jest": "^29.7.0",
     "bootstrap": "^5.2.2",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.16.16",
@@ -85,10 +83,15 @@
     "*": "prettier -w"
   },
   "devDependencies": {
+    "@babel/core": "^7.23.9",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-typescript": "^7.23.3",
     "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
     "eslint": "^8.56.0",
     "eslint-plugin-jest": "^27.6.1",
     "eslint-plugin-react": "^7.32.2",
@@ -99,6 +102,7 @@
     "lint-staged": "^15.2.0",
     "node-fetch": "^3.3.2",
     "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
     "whatwg-fetch": "^3.6.20"
   }
 }
