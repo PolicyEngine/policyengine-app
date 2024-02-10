@@ -178,7 +178,7 @@ var IntervalMap = /** @class */ (function () {
   /**
    *
    * @param other the other interval map. We assume that both maps have the same
-   * final value.
+   * final value, the same keyCmp, and the same valueEq.
    * @returns a list of [key1, key2, value] triples such that the intervals
    * defined by the keys are disjoint and if other.set() is called for all such
    * triples the current map will be created.

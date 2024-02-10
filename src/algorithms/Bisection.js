@@ -6,10 +6,10 @@ exports.bisect = void 0;
  *
  * @param a a sorted array
  * @param x a value
+ * @param cmpToX compares an array value to x, e.g., (v) => v.key - x
  * @param lo the insertion point is found in [lo, hi); 0 by default
  * @param hi the insertion point is found in [lo, hi); a.length by default
  * @param findRightMost return rightmost insertion point if true; false by default
- * @param cmpToX compares an array value to x, e.g., (v) => v.key - x
  *
  */
 function bisect(a, x, cmpToX, lo, hi, findRightMost) {
