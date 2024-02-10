@@ -21,11 +21,10 @@ export default function ParameterEditor(props) {
   const parameter = metadata.parameters[parameterName];
   const reformData = policy?.reform?.data?.[parameterName];
   const parameterValues = Object.entries(parameter.values);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-  const baseMap = new IntervalMap(parameterValues, cmpDates);
+  const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   const reformMap = baseMap.copy();
   if (reformData) {
     for (const [timePeriod, value] of Object.entries(reformData)) {
@@ -33,37 +32,24 @@ export default function ParameterEditor(props) {
       reformMap.set(startDate, nextDay(endDate), value);
     }
   }
-
   const startValue = reformMap.get(startDate);
-
-  // This function returns the difference between reformMap and baseMap. If
-  // there is no difference, then it returns an empty object.
-  const diff = () => {
-    const keys = reformMap.keys();
-    let data = {};
-    for (let i = 0; i < keys.length - 1; i++) {
-      const k1 = keys[i],
-        k2 = keys[i + 1];
-      if (reformMap.get(k1) !== baseMap.get(k1)) {
-        data[`${k1}.${prevDay(k2)}`] = reformMap.get(k1);
-      }
-    }
-    return data;
-  };
 
   function onChange(value) {
     reformMap.set(startDate, nextDay(endDate), value);
-    const diffData = diff();
+    let data = {};
+    reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
+      data[`${k1}.${prevDay(k2)}`] = v;
+    });
     const newReforms = { ...policy.reform.data };
     if (
-      Object.keys(diffData).length === 0 &&
+      Object.keys(data).length === 0 &&
       Object.keys(newReforms).length === 1
     ) {
       let newSearch = copySearchParams(searchParams);
       newSearch.delete("reform");
       setSearchParams(newSearch);
     } else {
-      newReforms[parameterName] = diffData;
+      newReforms[parameterName] = data;
       getNewPolicyId(metadata.countryId, newReforms).then((result) => {
         if (result.status !== "ok") {
           console.error(
@@ -172,9 +158,10 @@ export default function ParameterEditor(props) {
       )}
       <ParameterOverTime
         baseMap={baseMap}
-        {...(Object.keys(diff()).length > 0 && {
-          reformMap: reformMap,
-        })}
+        {...(reformData &&
+          Object.keys(reformData).length > 0 && {
+            reformMap: reformMap,
+          })}
         parameter={parameter}
         policy={policy}
         metadata={metadata}

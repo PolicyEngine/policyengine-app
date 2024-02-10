@@ -102,6 +102,10 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
 }
 
 export function getParameterAtInstant(parameter, instant) {
-  const map = new IntervalMap(Object.entries(parameter.values), cmpDates);
+  const map = new IntervalMap(
+    Object.entries(parameter.values),
+    cmpDates,
+    (x, y) => x === y,
+  );
   return map.get(instant);
 }
