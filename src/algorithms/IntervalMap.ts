@@ -1,5 +1,9 @@
 import { bisect } from "./Bisection";
 
+function copyArray<T1, T2>(array: ReadonlyArray<[T1, T2]>): Array<[T1, T2]> {
+  return array.map((element) => [element[0], element[1]]);
+}
+
 export class IntervalMap<KeyType, ValueType> {
   array: Array<[KeyType, ValueType | undefined]>;
   readonly keyCmp: (a: KeyType, b: KeyType) => number;
@@ -16,14 +20,15 @@ export class IntervalMap<KeyType, ValueType> {
    * @returns an interval map with useful operations
    */
   constructor(
-    array: Array<[KeyType, ValueType | undefined]>,
+    array: ReadonlyArray<[KeyType, ValueType | undefined]>,
     keyCmp: (a: KeyType, b: KeyType) => number,
     valueEq: (a: ValueType | undefined, b: ValueType | undefined) => boolean,
   ) {
     this.array = [];
-    array.sort((a, b) => keyCmp(a[0], b[0]));
+    const copy = copyArray(array);
+    copy.sort((a, b) => keyCmp(a[0], b[0]));
     let prevValue: ValueType | undefined;
-    for (const [key, value] of array) {
+    for (const [key, value] of copy) {
       if (!valueEq(value, prevValue)) {
         this.array.push([key, value]);
         prevValue = value;
@@ -37,90 +42,18 @@ export class IntervalMap<KeyType, ValueType> {
 
   /**
    *
-   * Map the interval [key1, key2) to value
-   * @param key1 the left endpoint of the interval
-   * @param key2 the right endpoint of the interval
-   * @param value the value that the interval [x1, x2) maps to
+   * @returns the number of intervals
    */
-  set(key1: KeyType, key2: KeyType, value: ValueType): undefined {
-    const array = this.array;
-    const n = array.length;
-    const keyCmp = this.keyCmp;
-    const valueEq = this.valueEq;
-
-    // empty interval
-    if (keyCmp(key1, key2) >= 0) return;
-
-    // empty array
-    if (n === 0) {
-      array.push([key1, value], [key2, undefined]);
-      return;
-    }
-
-    // nonempty interval and array here
-
-    let idx1 = bisect(
-      array,
-      key1,
-      (a: [KeyType, ValueType | undefined]) => keyCmp(a[0], key1),
-      0,
-      array.length,
-      false,
-    );
-
-    if (idx1 === n) {
-      // all elements have keys < x1 < x2
-      const v = array[n - 1][1];
-      if (!valueEq(value, v)) {
-        array.push([key1, value], [key2, v]);
-      }
-      return;
-    }
-
-    let idx2 =
-      bisect(
-        array,
-        key2,
-        (a: [KeyType, ValueType | undefined]) => keyCmp(a[0], key2),
-        0,
-        array.length,
-        true,
-      ) - 1;
-
-    if (idx2 === -1) {
-      // all elements have keys > x2 > x1
-      if (!valueEq(value, undefined)) {
-        array.splice(0, 0, [key1, value], [key2, undefined]);
-      }
-      return;
-    }
-
-    // idx1 is the index of the first element with key >= x1
-    // idx2 is the index of the last element with key <= x2
-
-    const insert1 = !(idx1 > 0 && valueEq(array[idx1 - 1][1], value));
-    const insert2 = !valueEq(array[idx2][1], value);
-
-    if (insert1 && insert2) {
-      array.splice(
-        idx1,
-        idx2 - idx1 + 1,
-        [key1, value],
-        [key2, array[idx2][1]],
-      );
-    } else if (insert1) {
-      array.splice(idx1, idx2 - idx1 + 1, [key1, value]);
-    } else if (insert2) {
-      array.splice(idx1, idx2 - idx1 + 1, [key2, array[idx2][1]]);
-    } else {
-      array.splice(idx1, idx2 - idx1 + 1);
-    }
+  size(): number {
+    return this.array.length;
   }
 
   /**
    *
-   * Get value at key
-   * @param key a point in the domain
+   * @param key a key
+   * @returns the value for the key. The value may be undefined if the key is
+   * less than all elements in this.array or if some values are explicitly
+   * undefined in the map.
    */
   get(key: KeyType): ValueType | undefined {
     const array = this.array;
@@ -153,15 +86,96 @@ export class IntervalMap<KeyType, ValueType> {
 
   /**
    *
-   * @returns number of intervals
+   * Map the interval [key1, key2) to value
+   * @param key1 the left endpoint of the interval
+   * @param key2 the right endpoint of the interval
+   * @param value the value for the interval [key1, key2)
    */
-  size(): number {
-    return this.array.length;
+  set(
+    key1: KeyType,
+    key2: KeyType,
+    value: ValueType,
+  ): IntervalMap<KeyType, ValueType> {
+    const array = this.array;
+    const n = array.length;
+    const keyCmp = this.keyCmp;
+    const valueEq = this.valueEq;
+
+    // empty interval
+    if (keyCmp(key1, key2) >= 0) return this;
+
+    // empty array
+    if (n === 0) {
+      array.push([key1, value], [key2, undefined]);
+      return this;
+    }
+
+    // nonempty interval and array here
+
+    let idx1 = bisect(
+      array,
+      key1,
+      (a: [KeyType, ValueType | undefined]) => keyCmp(a[0], key1),
+      0,
+      array.length,
+      false,
+    );
+
+    if (idx1 === n) {
+      // all elements have keys < key1 < key2
+      const v = array[n - 1][1];
+      if (!valueEq(value, v)) {
+        array.push([key1, value], [key2, v]);
+      }
+      return this;
+    }
+
+    let idx2 =
+      bisect(
+        array,
+        key2,
+        (a: [KeyType, ValueType | undefined]) => keyCmp(a[0], key2),
+        0,
+        array.length,
+        true,
+      ) - 1;
+
+    if (idx2 === -1) {
+      // all elements have keys > key2 > key1
+      if (!valueEq(value, undefined)) {
+        array.splice(0, 0, [key1, value], [key2, undefined]);
+      }
+      return this;
+    }
+
+    // idx1 is the index of the first element with key >= key1
+    // idx2 is the index of the last element with key <= key2
+
+    const insert1 = !(idx1 > 0 && valueEq(array[idx1 - 1][1], value));
+    const insert2 = !valueEq(array[idx2][1], value);
+
+    if (insert1 && insert2) {
+      array.splice(
+        idx1,
+        idx2 - idx1 + 1,
+        [key1, value],
+        [key2, array[idx2][1]],
+      );
+    } else if (insert1) {
+      array.splice(idx1, idx2 - idx1 + 1, [key1, value]);
+    } else if (insert2) {
+      array.splice(idx1, idx2 - idx1 + 1, [key2, array[idx2][1]]);
+    } else {
+      array.splice(idx1, idx2 - idx1 + 1);
+    }
+
+    return this;
   }
 
   /**
    *
-   * @returns the keys in the map
+   * @returns the keys in the map as an array. The array should not have
+   * duplicates.
    */
   keys(): Array<KeyType> {
     return this.array.map((element) => element[0]);
@@ -169,7 +183,8 @@ export class IntervalMap<KeyType, ValueType> {
 
   /**
    *
-   * @returns the values in the map
+   * @returns the values in the map as an array. The array should not have
+   * consecutive duplicates.
    */
   values(): Array<ValueType | undefined> {
     return this.array.map((element) => element[1]);
@@ -180,7 +195,7 @@ export class IntervalMap<KeyType, ValueType> {
    * @returns an array representation of the map
    */
   toArray(): Array<[KeyType, ValueType | undefined]> {
-    return this.array.map((element) => [element[0], element[1]]);
+    return copyArray(this.array);
   }
 
   /**
@@ -188,25 +203,26 @@ export class IntervalMap<KeyType, ValueType> {
    * @returns a copy of the map
    */
   copy(): IntervalMap<KeyType, ValueType> {
-    return new IntervalMap(this.toArray(), this.keyCmp, this.valueEq);
+    return new IntervalMap(this.array, this.keyCmp, this.valueEq);
   }
 
   /**
    *
-   * @param other the other interval map. We assume that both maps have the same
-   * final value, the same keyCmp, and the same valueEq.
-   * @returns a list of [key1, key2, value] triples such that the intervals
-   * defined by the keys are disjoint and if other.set() is called for all such
-   * triples the current map will be created.
+   * @param baseMap the base interval map. We assume that this is a copy of other
+   * modified by a few set ops.
+   *
+   * @returns a list of [key1, key2, value] triples such that
+   * 1. the interval defined by the keys are disjoint, and
+   * 2. baseMap.set(triple1).set(triple2)... = this
    *
    */
   minus(
-    other: IntervalMap<KeyType, ValueType>,
+    baseMap: IntervalMap<KeyType, ValueType>,
   ): Array<[KeyType, KeyType, ValueType | undefined]> {
-    const keys = this.keys().concat(other.keys());
+    const keys = this.keys().concat(baseMap.keys());
     keys.sort(this.keyCmp);
     const equalValues = keys.map((key) =>
-      this.valueEq(this.get(key), other.get(key)),
+      this.valueEq(this.get(key), baseMap.get(key)),
     );
     let idx = 0;
     const diff: Array<[KeyType, KeyType, ValueType | undefined]> = [];
