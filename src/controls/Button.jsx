@@ -36,7 +36,7 @@ const buttonStyles = {
  * @param {Object} [props.style] Desired JSX-formatted styling object; overrides all other style attributes
  * @returns {import("react").ReactComponentElement}
  */
-const Button = (props) => {
+export default function Button(props) {
   let { text, onClick, width, type, size, height, style } = props;
 
   // Assign fallback values for styling
@@ -48,8 +48,9 @@ const Button = (props) => {
     <AntButton
       style={{
         display: "flex",
+        border: "none",
         borderRadius: "0",
-        backgroundColor: colors.TEAL_ACCENT,
+        backgroundColor: buttonStyles[type].standardBackgroundColor,
         textTransform: "uppercase",
         width: width || "min(300px, 70vw)",
         height: height || "auto",
@@ -61,6 +62,7 @@ const Button = (props) => {
         fontWeight: 500,
         letterSpacing: 2.4,
         textAlign: "center",
+        whiteSpace: "normal",
         justifyContent: "center",
         color: "#ffffff",
         ...style,
@@ -80,9 +82,8 @@ const Button = (props) => {
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
     >
-      {text ? text : `🎉New Button`}
+      {text}
     </AntButton>
   );
-};
+}
 
-export default Button;
