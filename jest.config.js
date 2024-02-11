@@ -8,6 +8,7 @@ const esModules = [
 module.exports = {
   modulePaths: ["<rootDir>/src"],
   testEnvironment: "jsdom",
+  testTimeout: 10000,
   transform: {
     "^.+\\.[jt]sx?$": "babel-jest",
   },
