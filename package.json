@@ -83,10 +83,8 @@
     "*": "prettier -w"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.9",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.23.9",
-    "@babel/preset-typescript": "^7.23.3",
     "@testing-library/jest-dom": "^6.1.6",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",

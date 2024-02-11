@@ -1,14 +1,14 @@
 import { IntervalMap } from "algorithms/IntervalMap";
 
 const keyCmp = (x: number, y: number) => x - y;
-const valueEq = (x: string, y: string) => x === y;
+const valueEq = (x: string | undefined, y: string | undefined) => x === y;
 
 function f(i: number): string {
   return String.fromCharCode(97 + i);
 }
 
 function array(n: number): Array<[number, string]> {
-  const a = [];
+  const a: Array<[number, string]> = [];
   for (let i = 0; i < n; i++) {
     a.push([i, f(i)]);
   }
@@ -17,7 +17,7 @@ function array(n: number): Array<[number, string]> {
 
 function randArray(n: number, m: number): Array<[number, string]> {
   const rand = () => Math.floor(Math.random() * m);
-  const a = [];
+  const a: Array<[number, string]> = [];
   for (let i = 0; i < n; i++) {
     a.push([i, f(rand())]);
   }
@@ -44,9 +44,9 @@ function hasConsecutiveDuplicates<T>(a: Array<T>): boolean {
   return false;
 }
 
-function isSorted(a: Array<[number, string]>): boolean {
+function isSorted(a: Array<number>): boolean {
   for (let i = 0; i + 1 < a.length; i++) {
-    if (a[i][0] > a[i + 1][0]) return false;
+    if (a[i] > a[i + 1]) return false;
   }
   return true;
 }
@@ -72,7 +72,7 @@ describe("construct", () => {
 
   test.concurrent.each([5, 25, 125])(
     "nonempty maps with repeated keys in initializer",
-    (size, numValues) => {
+    (size) => {
       const a = array(size);
       a.concat(a);
       const m = new IntervalMap(a, keyCmp, valueEq);
@@ -100,7 +100,7 @@ describe("construct", () => {
       const a = array(size);
       a.reverse();
       const m = new IntervalMap(a, keyCmp, valueEq);
-      expect(isSorted(m.toArray())).toBe(true);
+      expect(isSorted(m.keys())).toBe(true);
       expect(m.size()).toBe(size);
     },
   );

@@ -82,6 +82,8 @@ export class IntervalMap<KeyType, ValueType> {
     if (idx > 0) {
       return array[idx - 1][1];
     }
+
+    return;
   }
 
   /**
@@ -94,7 +96,7 @@ export class IntervalMap<KeyType, ValueType> {
   set(
     key1: KeyType,
     key2: KeyType,
-    value: ValueType,
+    value: ValueType | undefined,
   ): IntervalMap<KeyType, ValueType> {
     const array = this.array;
     const n = array.length;

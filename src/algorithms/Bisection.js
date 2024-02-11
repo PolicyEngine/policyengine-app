@@ -1,17 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.bisect = void 0;
-/**
- *
- * Locate the leftmost insertion point for x in arr to maintain sorted order.
- *
- * @param a a sorted array
- * @param x a value
- * @param cmpToX compares an array value to x, e.g., (v) => v.key - x
- * @param lo the insertion point is found in [lo, hi); 0 by default
- * @param hi the insertion point is found in [lo, hi); a.length by default
- * @param findRightMost return rightmost insertion point if true; false by default
- *
- */
 function bisect(a, x, cmpToX, lo, hi, findRightMost) {
   if (lo === void 0) {
     lo = 0;

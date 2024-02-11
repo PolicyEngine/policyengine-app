@@ -11,7 +11,7 @@
  *
  */
 export function bisect<T>(
-  a: Array<T>,
+  a: ReadonlyArray<T>,
   x: any,
   cmpToX: (a: T) => number,
   lo: number = 0,
