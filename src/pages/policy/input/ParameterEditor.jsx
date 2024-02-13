@@ -1,6 +1,6 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
-import { Alert, DatePicker, Switch } from "antd";
+import { Alert, Button, DatePicker, Popover, Switch, Tabs } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -13,6 +13,8 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
+import { CaretDownFilled } from "@ant-design/icons";
+import useDisplayCategory from "redesign/components/useDisplayCategory";
 
 const { RangePicker } = DatePicker;
 
@@ -32,6 +34,8 @@ export default function ParameterEditor(props) {
       reformMap.set(startDate, nextDay(endDate), value);
     }
   }
+
+  const displayCategory = useDisplayCategory();
   const startValue = reformMap.get(startDate);
 
   function onChange(value) {
@@ -85,6 +89,9 @@ export default function ParameterEditor(props) {
     const maximumFractionDigits = 2;
     control = (
       <StableInputNumber
+        style={{
+          width: "50%"
+        }}
         key={"input for" + parameter.parameter}
         {...(isCurrency
           ? {
@@ -111,6 +118,52 @@ export default function ParameterEditor(props) {
       />
     );
   }
+
+  const yearSelector = (
+    <RangePicker
+      picker="year"
+      defaultValue={[moment(startDate), moment(endDate)]}
+      onChange={(_, dateStrings) => {
+        setStartDate(dateStrings[0]);
+        setEndDate(dateStrings[1]);
+      }}
+      disabledDate={(date) => date.isBefore("2021-01-01")}
+      separator="→"
+    />
+  );
+
+  const dateSelector = (
+    <RangePicker
+      defaultValue={[moment(startDate), moment(endDate)]}
+      onChange={(_, dateStrings) => {
+        setStartDate(dateStrings[0]);
+        setEndDate(dateStrings[1]);
+      }}
+      disabledDate={(date) => date.isBefore("2021-01-01")}
+      separator="→"
+    />
+  )
+
+  const popoverContent = (
+    <Tabs
+      items={[
+        {
+          label: "Yearly",
+          key: "yearly",
+          children: yearSelector
+        },
+        {
+          label: "Advanced",
+          key: "advanced",
+          children: dateSelector
+        }
+      ]}
+      defaultActiveKey="yearly"
+      type="card"
+      size="small"
+    />
+  )
+
   const mobile = useMobile();
   const editControl = (
     <div
@@ -121,20 +174,28 @@ export default function ParameterEditor(props) {
         paddingTop: 10,
         paddingLeft: 0,
         gap: 10,
+        width: "100%"
         fontFamily: "Roboto Serif",
       }}
     >
-      <RangePicker
-        defaultValue={[moment(startDate), moment(endDate)]}
-        onChange={(_, dateStrings) => {
-          setStartDate(dateStrings[0]);
-          setEndDate(dateStrings[1]);
-        }}
-        disabledDate={(date) => date.isBefore("2021-01-01")}
-        separator="→"
-        style={{ fontFamily: "Roboto Serif" }}
-      />
       {control}
+      <Popover
+        trigger="click"
+        content={popoverContent}
+        placement={displayCategory === "mobile" ? "bottom" : "bottomRight"}
+      >
+        <Button
+          type="text"
+        >
+          from 2024 onward
+          <CaretDownFilled
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+          />
+        </Button>
+      </Popover>
     </div>
   );
 
