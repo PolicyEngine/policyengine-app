@@ -123,9 +123,9 @@ export default function ParameterEditor(props) {
     <RangePicker
       picker="year"
       defaultValue={[moment(startDate), moment(endDate)]}
-      onChange={(_, dateStrings) => {
-        setStartDate(dateStrings[0]);
-        setEndDate(dateStrings[1]);
+      onChange={(_, yearStrings) => {
+        setStartDate(yearStrings[0].concat("-01-01"));
+        setEndDate(yearStrings[1].concat("-12-31"));
       }}
       disabledDate={(date) => date.isBefore("2021-01-01")}
       separator="→"
