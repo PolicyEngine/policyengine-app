@@ -164,6 +164,13 @@ export default function ParameterEditor(props) {
     />
   )
 
+  let dateSelectButtonLabel = "";
+  if (checkBoundaryDate(startDate, "start") && checkBoundaryDate(endDate, "end")) {
+    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}`;
+  } else {
+    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}`
+  }
+
   const mobile = useMobile();
   const editControl = (
     <div
@@ -187,7 +194,7 @@ export default function ParameterEditor(props) {
         <Button
           type="text"
         >
-          from 2024 onward
+          {dateSelectButtonLabel}
           <CaretDownFilled
             style={{
               display: "inline-flex",
@@ -259,4 +266,54 @@ export default function ParameterEditor(props) {
       </div>
     </CenteredMiddleColumn>
   );
+}
+
+/**
+ * Checks whether or not an input date is a boundary date - 
+ * the first or last day of a fixed period (e.g., Jan. 1 or 
+ * Dec. 31)
+ * @param {String} date 
+ * @param {("start"|"end")} variant The date type - either a
+ * period's start or its end date
+ * @returns {Boolean} Whether or not the date is a boundary date
+ */
+function checkBoundaryDate(date, variant) {
+
+  // Define boundary dates and types
+  // Note that month is 0-indexed in moment
+  const boundaries = [
+    {
+      type: "start",
+      month: 0,
+      date: 1
+    },
+    {
+      type: "end",
+      month: 11,
+      date: 31
+    }
+  ];
+
+  // Take the date and define it in terms of moment package
+  const momentDate = moment(date);
+
+  // Duplicate its year for testing purposes
+  const testYear = momentDate.year();
+
+  // For each boundary defined above
+  for (const boundary of boundaries) {
+    // Set up a test date using the test year and the boundary's defined
+    // month and date
+    const testDate = moment().year(testYear).month(boundary.month).date(boundary.date);
+    // If the date is a boundary date, return true
+    if (
+      boundary.type === variant &&
+      testDate.isSame(momentDate, "date")
+    ) {
+      return true;
+    }
+  }
+  // If we've found no boundary dates, return false
+  return false;
+
 }
