@@ -100,7 +100,7 @@ export default function ParameterEditor(props) {
           const isInteger = Number.isInteger(n);
           return n.toLocaleString(localeCode(metadata.countryId), {
             minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-            maximumFractionDigits: userTyping ? 16 : 2,
+            maximumFractionDigits: userTyping || !isCurrency ? 16 : 2,
           });
         }}
         defaultValue={Number(startValue) * scale}
