@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Section from "./Section";
 import style from "../style";
 import PageHeader from "./PageHeader";
-import { founders, advisors } from "../data/Staff";
+import { founders, staff, advisors } from "../data/staff.js";
 import useDisplayCategory from "./useDisplayCategory";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -12,6 +12,13 @@ export default function About() {
   const location = useLocation();
   const pathParts = location.pathname.split("/");
   const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
+
+  Object.keys(founders).map((founder) => {
+    console.log(founder);
+    console.log(founders[founder]);
+    return founder;
+  });
+
   return (
     <>
       <Helmet>
@@ -35,18 +42,24 @@ export default function About() {
           </p>
         </PageHeader>
         <Section>
-          <h2>Team</h2>
-          <TeamMember member={founders.max_ghenis} />
-          <TeamMember member={founders.nikhil_woodruff} />
-          <TeamMember member={founders.pavel_makarchuk} />
+          <h2>Founders</h2>
+          {Object.keys(founders).map((founder, index) => {
+            return <Bio key={index} member={founders[founder]} />;
+          })}
+        </Section>
+        <Section backgroundColor={style.colors.BLUE_PRIMARY}>
+          <h2 style={{ color: style.colors.WHITE }}>Team</h2>
+          {Object.keys(staff).map((member, index) => {
+            return <InvertedBio key={index} member={staff[member]} />;
+          })}
         </Section>
         <div style={{ display: "none" }}>
           <Section backgroundColor={style.colors.BLUE_PRIMARY}>
             <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
-            <Advisor member={advisors.george_sadowsky} />
-            <Advisor member={advisors.damiola_ogundipe} />
-            <Advisor member={advisors.jesse_horwitz} />
-            <Advisor member={advisors.matt_jensen} />
+            <InvertedBio member={advisors.george_sadowsky} />
+            <InvertedBio member={advisors.damiola_ogundipe} />
+            <InvertedBio member={advisors.jesse_horwitz} />
+            <InvertedBio member={advisors.matt_jensen} />
           </Section>
         </div>
         <Footer />
@@ -55,7 +68,7 @@ export default function About() {
   );
 }
 
-function TeamMember({ member }) {
+function Bio({ member }) {
   const displayCategory = useDisplayCategory();
   return (
     <div
@@ -91,7 +104,7 @@ function TeamMember({ member }) {
   );
 }
 
-function Advisor({ member }) {
+function InvertedBio({ member }) {
   const displayCategory = useDisplayCategory();
   return (
     <div
