@@ -215,15 +215,16 @@ function PolicyNamer(props) {
           onChange={(name) => {
             getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
               (data) => {
+                let newSearch = copySearchParams(searchParams);
+                newSearch.set("renamed", true);
+                if (data.status === "ok") {
+                  newSearch.set("reform", data.policy_id)
+                }
+                setSearchParams(newSearch);
+
                 if (data.status !== "ok") {
                   setError(data.message);
-                  let newSearch = copySearchParams(searchParams);
-                  newSearch.set("renamed", true);
-                  setSearchParams(newSearch);
                 } else {
-                  let newSearch = copySearchParams(searchParams);
-                  newSearch.set("renamed", true);
-                  setSearchParams(newSearch);
                   setError(null);
                 }
               },
