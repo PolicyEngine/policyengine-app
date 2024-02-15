@@ -1,6 +1,4 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.bisect = void 0;
-function bisect(a, x, cmpToX, lo, hi, findRightMost) {
+export function bisect(a, x, cmpToX, lo, hi, findRightMost) {
   if (lo === void 0) {
     lo = 0;
   }
@@ -25,4 +23,3 @@ function bisect(a, x, cmpToX, lo, hi, findRightMost) {
   }
   return bisect(a, x, cmpToX, lo, mid, findRightMost);
 }
-exports.bisect = bisect;

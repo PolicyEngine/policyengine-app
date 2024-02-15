@@ -1,6 +1,4 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.IntervalMap = void 0;
-var Bisection_1 = require("./Bisection");
+import { bisect } from "./Bisection";
 function copyArray(array) {
   return array.map(function (element) {
     return [element[0], element[1]];
@@ -34,7 +32,7 @@ var IntervalMap = (function () {
     var n = array.length;
     var keyCmp = this.keyCmp;
     if (n === 0) return;
-    var idx = (0, Bisection_1.bisect)(
+    var idx = bisect(
       array,
       key,
       function (a) {
@@ -65,7 +63,7 @@ var IntervalMap = (function () {
       array.push([key1, value], [key2, undefined]);
       return this;
     }
-    var idx1 = (0, Bisection_1.bisect)(
+    var idx1 = bisect(
       array,
       key1,
       function (a) {
@@ -83,7 +81,7 @@ var IntervalMap = (function () {
       return this;
     }
     var idx2 =
-      (0, Bisection_1.bisect)(
+      bisect(
         array,
         key2,
         function (a) {
@@ -166,4 +164,4 @@ var IntervalMap = (function () {
   };
   return IntervalMap;
 })();
-exports.IntervalMap = IntervalMap;
+export { IntervalMap };

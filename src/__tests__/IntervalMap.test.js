@@ -1,5 +1,4 @@
-Object.defineProperty(exports, "__esModule", { value: true });
-var IntervalMap_1 = require("algorithms/IntervalMap");
+import { IntervalMap } from "algorithms/IntervalMap";
 var keyCmp = function (x, y) {
   return x - y;
 };
@@ -51,7 +50,7 @@ function isSorted(a) {
 }
 describe("construct", function () {
   test("an empty map", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     expect(m.size()).toBe(0);
     expect(m.keys()).toStrictEqual([]);
     expect(m.values()).toStrictEqual([]);
@@ -61,7 +60,7 @@ describe("construct", function () {
     "nonempty maps without repeated keys or values in initializer",
     function (size) {
       var a = array(size);
-      var m = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+      var m = new IntervalMap(a, keyCmp, valueEq);
       expect(m.size()).toBe(size);
       expect(m.toArray()).toStrictEqual(a);
     },
@@ -71,7 +70,7 @@ describe("construct", function () {
     function (size) {
       var a = array(size);
       a.concat(a);
-      var m = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+      var m = new IntervalMap(a, keyCmp, valueEq);
       expect(hasDuplicates(m.keys())).toBe(false);
       expect(m.size()).toBe(size);
     },
@@ -86,7 +85,7 @@ describe("construct", function () {
     "nonempty maps with repeated values in initializer",
     function (size, numValues) {
       var a = randArray(size, numValues);
-      var m = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+      var m = new IntervalMap(a, keyCmp, valueEq);
       expect(hasConsecutiveDuplicates(m.values())).toBe(false);
       expect(m.size()).toBeLessThanOrEqual(size);
     },
@@ -96,7 +95,7 @@ describe("construct", function () {
     function (size) {
       var a = array(size);
       a.reverse();
-      var m = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+      var m = new IntervalMap(a, keyCmp, valueEq);
       expect(isSorted(m.keys())).toBe(true);
       expect(m.size()).toBe(size);
     },
@@ -106,30 +105,30 @@ describe("get values from", function () {
   var n = 10;
   var a = array(n);
   test("empty map", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     expect(m.get(0)).toBeUndefined();
   });
   test.each(keys(n))("nonempty map", function (key) {
-    var m = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+    var m = new IntervalMap(a, keyCmp, valueEq);
     expect(m.get(key)).toBe(f(key));
     expect(m.get(key + 0.5)).toBe(f(key));
   });
 });
 describe("set", function () {
   test("empty intervals", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     expect(m.set(0, 0, "a").toArray()).toStrictEqual([]);
     expect(m.set(0, -1, "a").toArray()).toStrictEqual([]);
   });
   test("one interval", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     expect(m.set(-1, 1, "a").toArray()).toStrictEqual([
       [-1, "a"],
       [1, undefined],
     ]);
   });
   test("disjoint intervals", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-2, -1, "a").set(1, 2, "b");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -139,7 +138,7 @@ describe("set", function () {
     ]);
   });
   test("disjoint intervals in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(1, 2, "b").set(-2, -1, "a");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -149,7 +148,7 @@ describe("set", function () {
     ]);
   });
   test("disjoint intervals in reverse order with an undefined value", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(1, 2, "b").set(-2, -1, undefined);
     expect(m.toArray()).toStrictEqual([
       [1, "b"],
@@ -157,7 +156,7 @@ describe("set", function () {
     ]);
   });
   test("adjacent intervals", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 0, "a").set(0, 1, "b");
     expect(m.toArray()).toStrictEqual([
       [-1, "a"],
@@ -166,7 +165,7 @@ describe("set", function () {
     ]);
   });
   test("adjacent intervals in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(0, 1, "b").set(-1, 0, "a");
     expect(m.toArray()).toStrictEqual([
       [-1, "a"],
@@ -175,7 +174,7 @@ describe("set", function () {
     ]);
   });
   test("adjacent intervals with same value", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 0, "a").set(0, 1, "a");
     expect(m.toArray()).toStrictEqual([
       [-1, "a"],
@@ -183,7 +182,7 @@ describe("set", function () {
     ]);
   });
   test("adjacent intervals with same value in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(0, 1, "a").set(-1, 0, "a");
     expect(m.toArray()).toStrictEqual([
       [-1, "a"],
@@ -191,7 +190,7 @@ describe("set", function () {
     ]);
   });
   test("intersecting intervals", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-2, 1, "a").set(-1, 2, "b");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -200,7 +199,7 @@ describe("set", function () {
     ]);
   });
   test("intersecting intervals in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 2, "b").set(-2, 1, "a");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -209,7 +208,7 @@ describe("set", function () {
     ]);
   });
   test("intersecting intervals with same value", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-2, 1, "a").set(-1, 2, "a");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -217,7 +216,7 @@ describe("set", function () {
     ]);
   });
   test("intersecting intervals with same value in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 2, "a").set(-2, 1, "a");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -225,7 +224,7 @@ describe("set", function () {
     ]);
   });
   test("nested intervals", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-2, 2, "a").set(-1, 1, "b");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -235,7 +234,7 @@ describe("set", function () {
     ]);
   });
   test("nested intervals in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 1, "b").set(-2, 2, "a");
     expect(m.toArray()).toStrictEqual([
       [-2, "a"],
@@ -243,7 +242,7 @@ describe("set", function () {
     ]);
   });
   test("nested intervals with same value", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-3, 3, "a").set(-2, 2, "a").set(-1, 1, "a");
     expect(m.toArray()).toStrictEqual([
       [-3, "a"],
@@ -251,7 +250,7 @@ describe("set", function () {
     ]);
   });
   test("nested intervals with same value in reverse order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 1, "a").set(-2, 2, "a").set(-3, 3, "a");
     expect(m.toArray()).toStrictEqual([
       [-3, "a"],
@@ -259,7 +258,7 @@ describe("set", function () {
     ]);
   });
   test("nested intervals with same value in third order", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     m.set(-1, 1, "a").set(-3, 3, "a").set(-2, 2, "a");
     expect(m.toArray()).toStrictEqual([
       [-3, "a"],
@@ -268,14 +267,14 @@ describe("set", function () {
   });
   test("overwrite many intervals", function () {
     var a = array(10).concat([[10, "a"]]);
-    var m = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+    var m = new IntervalMap(a, keyCmp, valueEq);
     m.set(0.5, 10.5, "a");
     expect(m.toArray()).toStrictEqual([[0, "a"]]);
   });
 });
 describe("copy", function () {
   test("an empty map and check independence", function () {
-    var m = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m = new IntervalMap([], keyCmp, valueEq);
     var copy = m.copy();
     m.set(0, 1, "a");
     copy.set(0, 1, "b");
@@ -287,12 +286,12 @@ describe("copy", function () {
 });
 describe("compute difference for", function () {
   test("one set op", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(0, 1, "a");
     expect(m2.minus(m1)).toStrictEqual([[0, 1, "a"]]);
   });
   test("two disjoint set ops", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-2, -1, "a").set(1, 2, "b");
     expect(m2.minus(m1)).toStrictEqual([
       [-2, -1, "a"],
@@ -300,7 +299,7 @@ describe("compute difference for", function () {
     ]);
   });
   test("two adjacent set ops", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-1, 0, "a").set(0, 1, "b");
     expect(m2.minus(m1)).toStrictEqual([
       [-1, 0, "a"],
@@ -308,12 +307,12 @@ describe("compute difference for", function () {
     ]);
   });
   test("two adjacent set ops with the same value", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-1, 0, "a").set(0, 1, "a");
     expect(m2.minus(m1)).toStrictEqual([[-1, 1, "a"]]);
   });
   test("two intersecting set ops", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-2, 1, "a").set(-1, 2, "b");
     expect(m2.minus(m1)).toStrictEqual([
       [-2, -1, "a"],
@@ -321,7 +320,7 @@ describe("compute difference for", function () {
     ]);
   });
   test("two intersecting set ops in reverse order", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-1, 2, "b").set(-2, 1, "a");
     expect(m2.minus(m1)).toStrictEqual([
       [-2, 1, "a"],
@@ -329,17 +328,17 @@ describe("compute difference for", function () {
     ]);
   });
   test("two intersecting set ops with same value", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-2, 1, "a").set(-1, 2, "a");
     expect(m2.minus(m1)).toStrictEqual([[-2, 2, "a"]]);
   });
   test("two intersecting set ops with same value in reverse order", function () {
-    var m1 = new IntervalMap_1.IntervalMap([], keyCmp, valueEq);
+    var m1 = new IntervalMap([], keyCmp, valueEq);
     var m2 = m1.copy().set(-1, 2, "a").set(-2, 1, "a");
     expect(m2.minus(m1)).toStrictEqual([[-2, 2, "a"]]);
   });
   test("set ops with no effect", function () {
-    var m1 = new IntervalMap_1.IntervalMap(
+    var m1 = new IntervalMap(
       [
         [1, "a"],
         [2, "b"],
@@ -351,7 +350,7 @@ describe("compute difference for", function () {
     expect(m2.minus(m1)).toStrictEqual([]);
   });
   test("one inexact set op", function () {
-    var m1 = new IntervalMap_1.IntervalMap(
+    var m1 = new IntervalMap(
       [
         [1, "a"],
         [2, "b"],
@@ -363,7 +362,7 @@ describe("compute difference for", function () {
     expect(m2.minus(m1)).toStrictEqual([[0, 1, "a"]]);
   });
   test("another inexact set op", function () {
-    var m1 = new IntervalMap_1.IntervalMap(
+    var m1 = new IntervalMap(
       [
         [1, "a"],
         [2, "b"],
@@ -376,12 +375,12 @@ describe("compute difference for", function () {
   });
   test("one set on a base map with many steps", function () {
     var a = array(10);
-    var m1 = new IntervalMap_1.IntervalMap(a, keyCmp, valueEq);
+    var m1 = new IntervalMap(a, keyCmp, valueEq);
     var m2 = m1.copy().set(0.5, 9, "a");
     expect(m2.minus(m1)).toStrictEqual([[1, 9, "a"]]);
   });
   test("multiple sets overwritten by a final set", function () {
-    var m1 = new IntervalMap_1.IntervalMap([[1, "a"]], keyCmp, valueEq);
+    var m1 = new IntervalMap([[1, "a"]], keyCmp, valueEq);
     var m2 = m1
       .copy()
       .set(2, 3, "b")
