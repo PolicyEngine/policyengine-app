@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "baseUrl": "src",
     "removeComments": true,
     "noFallthroughCasesInSwitch": true,
@@ -19,10 +20,5 @@
     "noImplicitUseStrict": true,
     "ignoreDeprecations": "5.0"
   },
-  "files": [
-    "src/algorithms/Bisection.ts",
-    "src/algorithms/IntervalMap.ts",
-    "src/__tests__/Bisection.test.ts",
-    "src/__tests__/IntervalMap.test.ts"
-  ]
+  "include": ["src/**/*.ts"]
 }
