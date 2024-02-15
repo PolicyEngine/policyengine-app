@@ -80,7 +80,7 @@ export default function ParameterOverTime(props) {
           yaxis: { ...yaxisFormat },
           legend: {
             // Position above the plot
-            y: 1.1,
+            y: 1.2,
             orientation: "h",
           },
           ...ChartLogo,
