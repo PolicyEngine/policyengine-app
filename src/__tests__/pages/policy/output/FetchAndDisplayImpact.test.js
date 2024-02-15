@@ -59,4 +59,59 @@ describe("areObjectsSame function", () => {
 
     expect(areObjectsSame(firstObj, secondObj)).toEqual(true);
   });
+  test("Exact same nested objects should return true", () => {
+    const nestedTestObj = {
+      firstKey: "maxwell",
+      secondKey: "dworkin",
+      nestedKey: {
+        firstSubKey: "maxwell",
+        secondSubKey: "cruft"
+      }
+    };
+
+    const firstObj = JSON.parse(JSON.stringify(nestedTestObj));
+    const secondObj = JSON.parse(JSON.stringify(nestedTestObj));
+
+    expect(areObjectsSame(firstObj, secondObj)).toEqual(true);
+  });
+  test("One nested object and one not should return false", () => {
+    const nestedTestObj = {
+      firstKey: "maxwell",
+      secondKey: "dworkin",
+      nestedKey: {
+        firstSubKey: "maxwell",
+        secondSubKey: "cruft"
+      }
+    };
+
+    const firstObj = JSON.parse(JSON.stringify(testObj));
+    const secondObj = JSON.parse(JSON.stringify(nestedTestObj));
+
+    expect(areObjectsSame(firstObj, secondObj)).toEqual(false);
+  });
+  test("Different nested objects should return false", () => {
+    const nestedTestObj = {
+      firstKey: "maxwell",
+      secondKey: "dworkin",
+      nestedKey: {
+        firstSubKey: "maxwell",
+        secondSubKey: "cruft"
+      }
+    };
+
+    const otherTestObj = {
+      firstKey: "maxwell",
+      secondKey: "garbageValue",
+      nestedKey: {
+        firstSubKey: "maxwell",
+        secondSubKey: "illegalValue"
+      }
+
+    }
+
+    const firstObj = JSON.parse(JSON.stringify(otherTestObj));
+    const secondObj = JSON.parse(JSON.stringify(nestedTestObj));
+
+    expect(areObjectsSame(firstObj, secondObj)).toEqual(false);
+  });
 });

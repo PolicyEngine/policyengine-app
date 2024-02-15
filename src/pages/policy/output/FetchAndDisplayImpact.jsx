@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   DisplayError,
   DisplayImpact,
@@ -47,6 +47,18 @@ export function FetchAndDisplayImpact(props) {
 
 
   useEffect(() => {
+    console.log(JSON.stringify(policy));
+    console.log("Policy:");
+    console.log(policy);
+    console.log("pR.c: ");
+    console.log(policyRef.current);
+    console.log(areObjectsSame(policy, policyRef.current));
+    if (
+      areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
+      areObjectsSame(policy?.baseline?.data, policyRef.current?.baseline?.data)
+    ) {
+      return;
+    }
 
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const selectedVersion = searchParams.get("version") || metadata.version;
@@ -125,6 +137,7 @@ export function FetchAndDisplayImpact(props) {
       );
       setSearchParams(newSearch);
     }
+    policyRef.current = policy;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
@@ -261,9 +274,7 @@ export function FetchAndDisplayCliffImpact(props) {
 }
 
 /**
- * Function to compare two policies - note that this 
- * assumes that policies never contain nested objects, as
- * this function does not recurse
+ * Function to recursively compare two objects
  * @param {null | Object} firstObject 
  * @param {null | Object} secondObject 
  * @returns {Boolean} Whether or not the two objects are
@@ -294,6 +305,11 @@ export function areObjectsSame(firstObject, secondObject) {
     // Access the two objects at said key
     const firstVal = firstObject[key];
     const secondVal = secondObject[key] || null;
+
+    // If both values are objects, recurse and return
+    if (typeof firstVal === "object" && typeof secondVal === "object") {
+      return areObjectsSame(firstVal, secondVal);
+    }
 
     // If the values aren't the same, return false
     if (firstVal !== secondVal) {
