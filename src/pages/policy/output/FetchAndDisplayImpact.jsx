@@ -47,12 +47,6 @@ export function FetchAndDisplayImpact(props) {
 
 
   useEffect(() => {
-    console.log(JSON.stringify(policy));
-    console.log("Policy:");
-    console.log(policy);
-    console.log("pR.c: ");
-    console.log(policyRef.current);
-    console.log(areObjectsSame(policy, policyRef.current));
     if (
       areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
       areObjectsSame(policy?.baseline?.data, policyRef.current?.baseline?.data)
