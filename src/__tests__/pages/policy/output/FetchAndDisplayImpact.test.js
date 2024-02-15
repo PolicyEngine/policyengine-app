@@ -6,8 +6,8 @@ describe("areObjectsSame function", () => {
   const testObj = {
     firstKey: "maxwell",
     secondKey: "dworkin",
-    thirdKey: "cruft"
-  }
+    thirdKey: "cruft",
+  };
 
   test("First object is null should return false", () => {
     const firstObj = null;
@@ -24,7 +24,7 @@ describe("areObjectsSame function", () => {
   test("Different key lengths should return false", () => {
     const firstObj = JSON.parse(JSON.stringify(testObj));
     const secondObj = {
-      firstKey: "garbageValue"
+      firstKey: "garbageValue",
     };
 
     expect(areObjectsSame(firstObj, secondObj)).toEqual(false);
@@ -34,7 +34,7 @@ describe("areObjectsSame function", () => {
     const secondObj = {
       firstKey: "garbageValue",
       secondKey: "northwestern",
-      invalidKey: "invalidValue"
+      invalidKey: "invalidValue",
     };
 
     expect(areObjectsSame(firstObj, secondObj)).toEqual(false);
@@ -44,7 +44,7 @@ describe("areObjectsSame function", () => {
     const secondObj = {
       firstKey: "garbageValue",
       secondKey: "northwestern",
-      thirdKey: "invalidValue"
+      thirdKey: "invalidValue",
     };
 
     expect(areObjectsSame(firstObj, secondObj)).toEqual(false);
@@ -54,7 +54,7 @@ describe("areObjectsSame function", () => {
     const secondObj = {
       firstKey: "maxwell",
       secondKey: "dworkin",
-      thirdKey: "cruft"
+      thirdKey: "cruft",
     };
 
     expect(areObjectsSame(firstObj, secondObj)).toEqual(true);
@@ -65,8 +65,8 @@ describe("areObjectsSame function", () => {
       secondKey: "dworkin",
       nestedKey: {
         firstSubKey: "maxwell",
-        secondSubKey: "cruft"
-      }
+        secondSubKey: "cruft",
+      },
     };
 
     const firstObj = JSON.parse(JSON.stringify(nestedTestObj));
@@ -80,8 +80,8 @@ describe("areObjectsSame function", () => {
       secondKey: "dworkin",
       nestedKey: {
         firstSubKey: "maxwell",
-        secondSubKey: "cruft"
-      }
+        secondSubKey: "cruft",
+      },
     };
 
     const firstObj = JSON.parse(JSON.stringify(testObj));
@@ -95,8 +95,8 @@ describe("areObjectsSame function", () => {
       secondKey: "dworkin",
       nestedKey: {
         firstSubKey: "maxwell",
-        secondSubKey: "cruft"
-      }
+        secondSubKey: "cruft",
+      },
     };
 
     const otherTestObj = {
@@ -104,10 +104,9 @@ describe("areObjectsSame function", () => {
       secondKey: "garbageValue",
       nestedKey: {
         firstSubKey: "maxwell",
-        secondSubKey: "illegalValue"
-      }
-
-    }
+        secondSubKey: "illegalValue",
+      },
+    };
 
     const firstObj = JSON.parse(JSON.stringify(otherTestObj));
     const secondObj = JSON.parse(JSON.stringify(nestedTestObj));

@@ -218,7 +218,7 @@ function PolicyNamer(props) {
                 let newSearch = copySearchParams(searchParams);
                 newSearch.set("renamed", true);
                 if (data.status === "ok") {
-                  newSearch.set("reform", data.policy_id)
+                  newSearch.set("reform", data.policy_id);
                 }
                 setSearchParams(newSearch);
 

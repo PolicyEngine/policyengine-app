@@ -45,7 +45,6 @@ export function FetchAndDisplayImpact(props) {
   } = props;
   const policyRef = useRef(null);
 
-
   useEffect(() => {
     if (
       areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
@@ -269,13 +268,13 @@ export function FetchAndDisplayCliffImpact(props) {
 
 /**
  * Function to recursively compare two objects
- * @param {null | Object} firstObject 
- * @param {null | Object} secondObject 
+ * @param {null | Object} firstObject
+ * @param {null | Object} secondObject
  * @returns {Boolean} Whether or not the two objects are
  * the same
  */
 export function areObjectsSame(firstObject, secondObject) {
-  // Ensure that both objects fed to the function are, 
+  // Ensure that both objects fed to the function are,
   // in fact, objects; return false if one isn't
   if (firstObject === null || typeof firstObject !== "object") {
     return false;
@@ -313,5 +312,4 @@ export function areObjectsSame(firstObject, secondObject) {
 
   // If we made it this far, return true
   return true;
-
 }
