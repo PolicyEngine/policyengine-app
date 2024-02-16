@@ -3,6 +3,7 @@ import { getReformDefinitionCode } from "data/reformDefinitionCode";
 import { defaultYear } from "data/constants";
 import { useSearchParams } from "react-router-dom";
 import colors from "../../../redesign/style/colors";
+import { getReproducibilityCodeBlock } from "../../../data/reformDefinitionCode";
 
 const US_REGIONS = ["us", "enhanced_us"];
 
@@ -12,12 +13,16 @@ export default function PolicyReproducibility(props) {
   const timePeriod = searchParams.get("timePeriod");
   const region = searchParams.get("region");
 
+  /*
   let codeLines = [
     ...getHeaderLines(metadata),
     ...getReformDefinitionCode(metadata, policy),
     ...getBaselineDefinitionCode(region, policy),
     ...getImplementationCode(region, timePeriod),
   ];
+  */
+
+  let codeLines = getReproducibilityCodeBlock(metadata, policy, region, "policy");
 
   const colabLink =
     metadata.countryId === "uk"

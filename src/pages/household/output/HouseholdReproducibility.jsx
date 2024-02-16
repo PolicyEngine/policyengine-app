@@ -4,12 +4,17 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import { Switch } from "antd";
 import CodeBlock from "layout/CodeBlock";
 import { getReformDefinitionCode } from "data/reformDefinitionCode";
+import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { getReproducibilityCodeBlock } from "../../../data/reformDefinitionCode";
 
 export default function HouseholdReproducibility(props) {
   const { policy, policyLabel, metadata, householdInput, year } = props;
   const [earningVariation, setEarningVariation] = useState(false);
+  const [searchParams] = useSearchParams();
+  const region = searchParams.get("region");
 
+  /*
   let lines = ["from " + metadata.package + " import Simulation"];
 
   if (policy.reform.data) {
@@ -70,6 +75,9 @@ export default function HouseholdReproducibility(props) {
     `simulation.calculate("household_net_income", ${year})`,
     "simulation.tracer.print_computation_log()",
   ]);
+  */
+
+  let lines = getReproducibilityCodeBlock(metadata, policy, region, "household");
 
   // This component shows the Python code necessary to run a microsimulation to reproduce
   // results on PolicyEngine.
