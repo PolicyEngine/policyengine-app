@@ -114,15 +114,7 @@ export default function HouseholdOutput(props) {
   }
 
   if (!mobile) {
-    pane = (
-      <div
-        style={{
-          overflow: "visible",
-        }}
-      >
-        {pane}
-      </div>
-    );
+    pane = <div>{pane}</div>;
   }
 
   function copyLink() {
