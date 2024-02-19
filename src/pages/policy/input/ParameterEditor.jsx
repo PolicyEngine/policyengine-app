@@ -82,6 +82,7 @@ export default function ParameterEditor(props) {
     const isPercent = parameter.unit === "/1";
     const scale = isPercent ? 100 : 1;
     const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
+    const maximumFractionDigits = isCurrency ? 2 : 16;
     control = (
       <StableInputNumber
         key={"input for" + parameter.parameter}
@@ -100,11 +101,13 @@ export default function ParameterEditor(props) {
           const isInteger = Number.isInteger(n);
           return n.toLocaleString(localeCode(metadata.countryId), {
             minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-            maximumFractionDigits: userTyping ? 16 : 2,
+            maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
           });
         }}
         defaultValue={Number(startValue) * scale}
-        onPressEnter={(_, value) => onChange(parseFloat(value) / scale)}
+        onPressEnter={(_, value) =>
+          onChange(+value.toFixed(maximumFractionDigits) / scale)
+        }
       />
     );
   }

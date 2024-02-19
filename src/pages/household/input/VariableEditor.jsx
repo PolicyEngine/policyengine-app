@@ -250,6 +250,9 @@ function HouseholdVariableEntityInput(props) {
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     const isCurrency = Object.keys(currencyMap).includes(variable.unit);
+    const maximumFractionDigits = isCurrency ? 2 : 16;
+    const onPressEnter = (_, value) =>
+      submitValue(+value.toFixed(maximumFractionDigits));
     control = (
       <StableInputNumber
         style={{
@@ -267,14 +270,16 @@ function HouseholdVariableEntityInput(props) {
                 const isInteger = Number.isInteger(n);
                 return n.toLocaleString(localeCode(metadata.countryId), {
                   minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-                  maximumFractionDigits: userTyping ? 16 : 2,
+                  maximumFractionDigits: userTyping
+                    ? 16
+                    : maximumFractionDigits,
                 });
               },
             }
           : {})}
         defaultValue={defaultValue}
-        onPressEnter={(_, value) => submitValue(value)}
-        onBlur={(_, value) => submitValue(value)}
+        onPressEnter={onPressEnter}
+        onBlur={onPressEnter}
       />
     );
   } else if (variable.valueType === "bool") {

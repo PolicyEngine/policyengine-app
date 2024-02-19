@@ -5,7 +5,10 @@ import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { localeCode } from "lang/format"; /**
+import { localeCode } from "lang/format";
+import { defaultEndDate, defaultStartDate } from "../../../data/constants";
+
+/**
  *
  * @param {object} policy the policy object
  * @returns the reform policy label
@@ -41,6 +44,8 @@ export default function ParameterOverTime(props) {
   xaxisValues = xaxisValues.filter(
     (e) => e !== "0000-01-01" && e !== "2099-12-31",
   );
+  xaxisValues.push(defaultStartDate);
+  xaxisValues.push(defaultEndDate);
   const yaxisValues = reformedY ? y.concat(reformedY) : y;
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
@@ -80,7 +85,7 @@ export default function ParameterOverTime(props) {
           yaxis: { ...yaxisFormat },
           legend: {
             // Position above the plot
-            y: 1.1,
+            y: 1.2,
             orientation: "h",
           },
           ...ChartLogo,
