@@ -11,7 +11,7 @@ export function getReproducibilityCodeBlock(type, metadata, policy, region, year
   return [
     ...getHeaderCode(type, metadata, policy),
     ...getBaselineCode(type, policy, region),
-    ...getReformCode(policy, region),
+    ...getReformCode(type, policy, region),
     ...getSituationCode(type, metadata, policy, year, householdInput, earningVariation),
     ...getImplementationCode(type, region, year)
   ];
@@ -44,17 +44,11 @@ function getHeaderCode(type, metadata, policy) {
 export function getBaselineCode(type, policy, region) {
 
   // Disregard baseline code for household code
-  // that doesn't contain a reform
+  // or non-US locales
   if (
-    type === "household" &&
-    Object.keys(policy.reform.data).length <= 0
+    type === "household" ||
+    !US_REGIONS.includes(region)
   ) {
-    return [];
-  }
-
-  // Disregard baseline code for non-US
-  // locales
-  if (!US_REGIONS.includes(region)) {
     return [];
   }
 
@@ -83,9 +77,9 @@ export function getBaselineCode(type, policy, region) {
 
 }
 
-export function getReformCode(policy, region) {
+export function getReformCode(type, policy, region) {
 
-  // Return no reform code for households or policies
+  // Return no reform code for households or for policies
   // without reform parameters
   if (Object.keys(policy.reform.data).length <= 0) {
     return [];
@@ -97,7 +91,8 @@ export function getReformCode(policy, region) {
     "def modify_parameters(parameters):",
   ];
 
-  if (US_REGIONS.includes(region)) {
+  // For US reforms, when calculated society-wide, add reported state income tax
+  if (type === "policy" && US_REGIONS.includes(region)) {
     // Calculate the earliest start date and latest end date for
     // the policies included in the simulation
     const {earliestStart, latestEnd} = getStartEndDates(policy);
@@ -132,8 +127,6 @@ export function getReformCode(policy, region) {
     "class reform(Reform):",
     "    def apply(self):",
     "        self.modify_parameters(modify_parameters)",
-    "",
-    "",
   ]);
   return lines;
 
