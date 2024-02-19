@@ -9,7 +9,13 @@ export default function PolicyReproducibility(props) {
   const timePeriod = searchParams.get("timePeriod");
   const region = searchParams.get("region");
 
-  let codeLines = getReproducibilityCodeBlock("policy", metadata, policy, region, timePeriod);
+  let codeLines = getReproducibilityCodeBlock(
+    "policy",
+    metadata,
+    policy,
+    region,
+    timePeriod,
+  );
 
   const colabLink =
     metadata.countryId === "uk"

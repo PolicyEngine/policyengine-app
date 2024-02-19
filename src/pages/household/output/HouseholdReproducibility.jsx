@@ -12,7 +12,15 @@ export default function HouseholdReproducibility(props) {
   const [searchParams] = useSearchParams();
   const region = searchParams.get("region");
 
-  let lines = getReproducibilityCodeBlock("household", metadata, policy, region, year, householdInput, earningVariation);
+  let lines = getReproducibilityCodeBlock(
+    "household",
+    metadata,
+    policy,
+    region,
+    year,
+    householdInput,
+    earningVariation,
+  );
 
   // This component shows the Python code necessary to run a microsimulation to reproduce
   // results on PolicyEngine.
