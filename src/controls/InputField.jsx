@@ -18,6 +18,7 @@ export default function InputField(props) {
     buttonText,
     buttonStyle,
     disableOnEmpty,
+    error
   } = props;
 
   const [inputValue, setInputValue] = useState(initialValue ? initialValue : "");
@@ -38,6 +39,7 @@ export default function InputField(props) {
           onChange?.(e);
         }
       }
+      status={error && "error"}
       onPressEnter={(e) => onPressEnter?.(e, inputValue)}
     />
   );

@@ -203,6 +203,11 @@ function PolicyNamer(props) {
   const [error, setError] = useState(null);
 
   function handleSubmit(name) {
+    if (!validateSubmit(name)) {
+      setError("Error: Policy name invalid");
+      return;
+    }
+
     getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
       (data) => {
         let newSearch = copySearchParams(searchParams);
@@ -221,6 +226,13 @@ function PolicyNamer(props) {
     );
   }
 
+  function validateSubmit(input) {
+    if (!input) {
+      return false;
+    }
+    return true;
+  }
+
   return (
     <>
       <div style={{ display: "flex", alignItems: "center"}}>
@@ -235,6 +247,7 @@ function PolicyNamer(props) {
           componentStyle={{
             margin: "10px 20px"
           }}
+          error={error}
           boxStyle={{
             padding: "0px 10px",
           }}
