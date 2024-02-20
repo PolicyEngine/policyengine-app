@@ -48,6 +48,7 @@ export default function Button(props) {
     <AntButton
       style={{
         display: "flex",
+        alignItems: "center",
         border: "none",
         borderRadius: "0",
         backgroundColor: buttonStyles[type].standardBackgroundColor,
