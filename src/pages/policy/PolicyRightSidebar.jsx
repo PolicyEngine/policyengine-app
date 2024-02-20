@@ -7,7 +7,7 @@ import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
-import InputField from "../../controls/InputField";
+import InputText from "../../controls/InputText";
 import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
@@ -201,35 +201,56 @@ function PolicyNamer(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
+
+  function handleSubmit(name) {
+    if (!validateSubmit(name)) {
+      setError("Error: Policy name invalid");
+      return;
+    }
+
+    getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
+      (data) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("renamed", true);
+        if (data.status === "ok") {
+          newSearch.set("reform", data.policy_id);
+        }
+        setSearchParams(newSearch);
+
+        if (data.status !== "ok") {
+          setError(data.message);
+        } else {
+          setError(null);
+        }
+      },
+    );
+  }
+
+  function validateSubmit(input) {
+    if (!input) {
+      return false;
+    }
+    return true;
+  }
+
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-        <InputField
-          placeholder={label}
-          type="text"
-          inputmode="text"
-          padding={10}
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <InputText
+          disableOnEmpty
           width="100%"
-          value={label}
           key={label}
-          onChange={(name) => {
-            getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
-              (data) => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("renamed", true);
-                if (data.status === "ok") {
-                  newSearch.set("reform", data.policy_id);
-                }
-                setSearchParams(newSearch);
-
-                if (data.status !== "ok") {
-                  setError(data.message);
-                } else {
-                  setError(null);
-                }
-              },
-            );
+          buttonText="Rename"
+          buttonStyle="default"
+          componentStyle={{
+            margin: "10px 20px",
           }}
+          error={error}
+          boxStyle={{
+            padding: "0px 10px",
+          }}
+          onPressEnter={(e, name) => handleSubmit(name)}
+          onClick={(e, name) => handleSubmit(name)}
         />
       </div>
       {error && (
@@ -509,6 +530,9 @@ export default function PolicyRightSidebar(props) {
 
   return (
     <div style={{ paddingTop: 10 }}>
+      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
+        {policy.reform.label || `Policy #${searchParams.get("reform")}`}
+      </h6>
       {
         <PolicyNamer
           policy={policy}
@@ -517,7 +541,13 @@ export default function PolicyRightSidebar(props) {
         />
       }
       {showReformSearch ? (
-        <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "10px 20px",
+          }}
+        >
           <PolicySearch
             metadata={metadata}
             policy={policy}

@@ -1,7 +1,7 @@
 import styles from "../redesign/style";
 import { HoverBox } from "../redesign/components/HoverBox";
 
-const buttonStyles = {
+export const buttonStyles = {
   primary: {
     hoverBackgroundColor: styles.colors.TEAL_PRESSED,
     standardBackgroundColor: styles.colors.TEAL_ACCENT,
