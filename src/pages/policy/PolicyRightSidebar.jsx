@@ -543,7 +543,7 @@ export default function PolicyRightSidebar(props) {
         />
       }
       {showReformSearch ? (
-        <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", padding: "10px 20px" }}>
           <PolicySearch
             metadata={metadata}
             policy={policy}
