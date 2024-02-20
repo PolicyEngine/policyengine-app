@@ -49,7 +49,10 @@ export function FetchAndDisplayImpact(props) {
   useEffect(() => {
     if (
       areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
-      areObjectsSame(policy?.baseline?.data, policyRef.current?.baseline?.data) &&
+      areObjectsSame(
+        policy?.baseline?.data,
+        policyRef.current?.baseline?.data,
+      ) &&
       renamed
     ) {
       return;
