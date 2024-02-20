@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 export default function InputField(props) {
   let {
     onChange,
+    onPressEnter,
+    onClick,
     width,
     type,
     initialValue,
@@ -30,7 +32,12 @@ export default function InputField(props) {
     <Input
       style={boxStyle}
       placeholder={placeholder}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChange={(e) => {
+          setInputValue(e.target.value);
+          onChange?.(e);
+        }
+      }
+      onPressEnter={(e) => onPressEnter?.(e, inputValue)}
     />
   );
 
@@ -50,6 +57,7 @@ export default function InputField(props) {
             backgroundColor: !isDisabled && buttonStyles[buttonStyle].standardBackgroundColor,
             border: !isDisabled && "none",
           }}
+          onClick={(e) => onClick?.(e, inputValue)}
         >
           {buttonText}
         </Button>

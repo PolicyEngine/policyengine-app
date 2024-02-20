@@ -201,6 +201,26 @@ function PolicyNamer(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
+
+  function handleSubmit(name) {
+    getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
+      (data) => {
+        let newSearch = copySearchParams(searchParams);
+        newSearch.set("renamed", true);
+        if (data.status === "ok") {
+          newSearch.set("reform", data.policy_id);
+        }
+        setSearchParams(newSearch);
+
+        if (data.status !== "ok") {
+          setError(data.message);
+        } else {
+          setError(null);
+        }
+      },
+    );
+  }
+
   return (
     <>
       <div style={{ display: "flex", alignItems: "center"}}>
@@ -217,24 +237,8 @@ function PolicyNamer(props) {
           boxStyle={{
             padding: "0px 10px",
           }}
-          onChange={(name) => {
-            getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
-              (data) => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("renamed", true);
-                if (data.status === "ok") {
-                  newSearch.set("reform", data.policy_id);
-                }
-                setSearchParams(newSearch);
-
-                if (data.status !== "ok") {
-                  setError(data.message);
-                } else {
-                  setError(null);
-                }
-              },
-            );
-          }}
+          onPressEnter={(e, name) => handleSubmit(name)}
+          onClick={(e, name) => handleSubmit(name)}
         />
       </div>
       {error && (
