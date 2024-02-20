@@ -46,6 +46,6 @@ describe("Should take inputs", () => {
     expect(testProps.onPressEnter).not.toHaveBeenCalled();
 
     fireEvent.keyDown(input, { key: "Enter" });
-    expect(testProps.onPressEnter).toHaveBeenCalled();
+    expect(testProps.onPressEnter).toHaveBeenCalledTimes(1);
   });
 });
