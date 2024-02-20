@@ -10,7 +10,7 @@ export default function InputField(props) {
     onChange,
     width,
     type,
-    value,
+    initialValue,
     placeholder,
     componentStyle,
     boxStyle,
@@ -18,6 +18,8 @@ export default function InputField(props) {
     buttonStyle,
     isDisabled=false
   } = props;
+
+  const [inputValue, setInputValue] = useState(initialValue ? initialValue : "");
 
   // Assign fallback values for styling if button included
   if (!buttonStyle || !(Object.keys(buttonStyles).includes(buttonStyle))) {
@@ -27,6 +29,8 @@ export default function InputField(props) {
   const inputElement = (
     <Input
       style={boxStyle}
+      placeholder={placeholder}
+      onChange={(e) => setInputValue(e.target.value)}
     />
   );
 

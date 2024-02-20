@@ -205,11 +205,9 @@ function PolicyNamer(props) {
     <>
       <div style={{ display: "flex", alignItems: "center"}}>
         <InputField
-          placeholder={label}
           type="text"
           inputmode="text"
           width="100%"
-          value={label}
           key={label}
           buttonText="Rename"
           buttonStyle="default"
@@ -516,6 +514,9 @@ export default function PolicyRightSidebar(props) {
 
   return (
     <div style={{ paddingTop: 10 }}>
+      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
+        {policy.reform.label || `Policy #${searchParams.get("reform")}`}
+      </h6>
       {
         <PolicyNamer
           policy={policy}
