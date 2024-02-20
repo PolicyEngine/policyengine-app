@@ -227,6 +227,7 @@ function PolicyNamer(props) {
         <InputField
           type="text"
           inputmode="text"
+          disableOnEmpty
           width="100%"
           key={label}
           buttonText="Rename"

@@ -18,7 +18,7 @@ export default function InputField(props) {
     boxStyle,
     buttonText,
     buttonStyle,
-    isDisabled=false
+    disableOnEmpty,
   } = props;
 
   const [inputValue, setInputValue] = useState(initialValue ? initialValue : "");
@@ -52,10 +52,12 @@ export default function InputField(props) {
         {inputElement}
         <Button 
           type="primary"
-          disabled={isDisabled}
+          disabled={disableOnEmpty && !inputValue}
           style={{
-            backgroundColor: !isDisabled && buttonStyles[buttonStyle].standardBackgroundColor,
-            border: !isDisabled && "none",
+            backgroundColor: !(disableOnEmpty && !inputValue) && buttonStyles[buttonStyle].standardBackgroundColor,
+            // This line is added instead of "none" because the disabled style also has a 1px border, causing
+            // visual ticks if transitioning between the two
+            border: !(disableOnEmpty && !inputValue) && `1px solid ${buttonStyles[buttonStyle].standardBackgroundColor}`,
           }}
           onClick={(e) => onClick?.(e, inputValue)}
         >
