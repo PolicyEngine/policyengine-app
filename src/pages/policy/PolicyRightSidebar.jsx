@@ -235,7 +235,7 @@ function PolicyNamer(props) {
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center"}}>
+      <div style={{ display: "flex", alignItems: "center" }}>
         <InputText
           disableOnEmpty
           width="100%"
@@ -243,7 +243,7 @@ function PolicyNamer(props) {
           buttonText="Rename"
           buttonStyle="default"
           componentStyle={{
-            margin: "10px 20px"
+            margin: "10px 20px",
           }}
           error={error}
           boxStyle={{
@@ -541,7 +541,13 @@ export default function PolicyRightSidebar(props) {
         />
       }
       {showReformSearch ? (
-        <div style={{ display: "flex", alignItems: "center", padding: "10px 20px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "10px 20px",
+          }}
+        >
           <PolicySearch
             metadata={metadata}
             policy={policy}
