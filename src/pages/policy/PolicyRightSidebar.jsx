@@ -203,15 +203,22 @@ function PolicyNamer(props) {
   const [error, setError] = useState(null);
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
+      <div style={{ display: "flex", alignItems: "center"}}>
         <InputField
           placeholder={label}
           type="text"
           inputmode="text"
-          padding={10}
           width="100%"
           value={label}
           key={label}
+          buttonText="Rename"
+          buttonStyle="default"
+          componentStyle={{
+            margin: "10px 20px"
+          }}
+          boxStyle={{
+            padding: "0px 10px",
+          }}
           onChange={(name) => {
             getNewPolicyId(metadata.countryId, policy.reform.data, name).then(
               (data) => {

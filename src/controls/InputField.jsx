@@ -1,8 +1,67 @@
+import { Button, Input, Space } from "antd";
+import style from "../redesign/style";
+import { buttonStyles } from "./Button";
 import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
-import style from "../style";
 import { useState, useEffect } from "react";
 
+export default function InputField(props) {
+  let {
+    onChange,
+    width,
+    type,
+    value,
+    placeholder,
+    componentStyle,
+    boxStyle,
+    buttonText,
+    buttonStyle,
+    isDisabled=false
+  } = props;
+
+  // Assign fallback values for styling if button included
+  if (!buttonStyle || !(Object.keys(buttonStyles).includes(buttonStyle))) {
+    buttonStyle = "default";
+  }
+
+  const inputElement = (
+    <Input
+      style={boxStyle}
+    />
+  );
+
+  if (buttonText) {
+    return (
+      <Space.Compact
+        style={{
+          ...componentStyle,
+          width: width || "100%"
+        }}
+      >
+        {inputElement}
+        <Button 
+          type="primary"
+          disabled={isDisabled}
+          style={{
+            backgroundColor: !isDisabled && buttonStyles[buttonStyle].standardBackgroundColor,
+            border: !isDisabled && "none",
+          }}
+        >
+          {buttonText}
+        </Button>
+      </Space.Compact>
+    )
+  }
+
+  return (
+    <>
+      {inputElement}
+    </>
+  );
+
+}
+
+/*
 export default function InputField(props) {
   const {
     onChange,
@@ -83,3 +142,4 @@ export default function InputField(props) {
     />
   );
 }
+*/
