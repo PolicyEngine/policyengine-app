@@ -1,5 +1,4 @@
 import { Button, Input, Space } from "antd";
-import style from "../redesign/style";
 import { buttonStyles } from "./Button";
 import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
@@ -28,6 +27,8 @@ export default function InputField(props) {
     buttonStyle = "default";
   }
 
+  const isDisabled = disableOnEmpty && !inputValue;
+
   const inputElement = (
     <Input
       style={boxStyle}
@@ -52,14 +53,30 @@ export default function InputField(props) {
         {inputElement}
         <Button 
           type="primary"
-          disabled={disableOnEmpty && !inputValue}
+          disabled={isDisabled}
           style={{
-            backgroundColor: !(disableOnEmpty && !inputValue) && buttonStyles[buttonStyle].standardBackgroundColor,
+            backgroundColor: !isDisabled && buttonStyles[buttonStyle].standardBackgroundColor,
             // This line is added instead of "none" because the disabled style also has a 1px border, causing
             // visual ticks if transitioning between the two
-            border: !(disableOnEmpty && !inputValue) && `1px solid ${buttonStyles[buttonStyle].standardBackgroundColor}`,
+            border: !isDisabled && `1px solid ${buttonStyles[buttonStyle].standardBackgroundColor}`,
           }}
           onClick={(e) => onClick?.(e, inputValue)}
+          onMouseOver={(e) => {
+            if (!isDisabled) {
+              (e.currentTarget.style.backgroundColor =
+                buttonStyles[buttonStyle].hoverBackgroundColor) &&
+              (e.currentTarget.style.borderColor =
+                buttonStyles[buttonStyle].hoverBackgroundColor)
+            }
+          }}
+          onMouseOut={(e) => {
+            if (!isDisabled) {
+              (e.currentTarget.style.backgroundColor =
+                buttonStyles[buttonStyle].standardBackgroundColor) &&
+              (e.currentTarget.style.borderColor =
+                buttonStyles[buttonStyle].standardBackgroundColor)
+            }
+          }}
         >
           {buttonText}
         </Button>
