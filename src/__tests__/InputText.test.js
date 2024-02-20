@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import InputField from "../controls/InputField";
+import InputText from "../controls/InputText";
 import { useSearchParams } from "react-router-dom";
 
 jest.mock("react-router-dom", () => {
@@ -24,7 +24,7 @@ describe("Should take inputs", () => {
     };
 
     setup = (props) => {
-      const utils = render(<InputField {...props} />);
+      const utils = render(<InputText {...props} />);
       const input = screen.getByPlaceholderText(testProps.placeholder);
 
       return {

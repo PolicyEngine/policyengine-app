@@ -4,13 +4,12 @@ import { motion } from "framer-motion";
 import useMobile from "../layout/Responsive";
 import { useState, useEffect } from "react";
 
-export default function InputField(props) {
+export default function InputText(props) {
   let {
     onChange,
     onPressEnter,
     onClick,
     width,
-    type,
     initialValue,
     placeholder,
     componentStyle,

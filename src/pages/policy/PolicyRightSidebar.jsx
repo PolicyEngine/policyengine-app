@@ -7,7 +7,7 @@ import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
-import InputField from "../../controls/InputField";
+import InputText from "../../controls/InputText";
 import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
@@ -236,9 +236,7 @@ function PolicyNamer(props) {
   return (
     <>
       <div style={{ display: "flex", alignItems: "center"}}>
-        <InputField
-          type="text"
-          inputmode="text"
+        <InputText
           disableOnEmpty
           width="100%"
           key={label}
