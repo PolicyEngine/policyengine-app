@@ -7,6 +7,7 @@ on:
 
 env:
   REACT_APP_OPENAI_API_KEY: ${{ secrets.REACT_APP_OPENAI_API_KEY }}
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 jobs:
   test:
@@ -25,8 +26,6 @@ jobs:
         run: npm test -- --coverage
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
