@@ -28,6 +28,7 @@ export default function LinkButton(props) {
     backgroundColor,
     activeBackgroundColor,
     link,
+    style,
   } = props;
 
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ export default function LinkButton(props) {
       backgroundColor={backgroundColor}
       activeBackgroundColor={activeBackgroundColor}
       onClick={!isExternalLink && (() => navigate(link))}
+      style={style}
     />
   );
 

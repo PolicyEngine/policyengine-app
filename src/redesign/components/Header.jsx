@@ -8,6 +8,7 @@ import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import LinkButton from "../../controls/LinkButton";
 
 export default function Header() {
   const displayCategory = useDisplayCategory();
@@ -175,39 +176,12 @@ function Hamburger() {
 function DesktopCalculatorButton() {
   const countryId = useCountryId();
   return (
-    <>
-      <HoverBox
-        hoverBackgroundColor={style.colors.TEAL_PRESSED}
-        hoverStart="left"
-        link={`/${countryId}/calculator`}
-        style={{
-          margin: 20,
-          marginRight: 15,
-          marginLeft: "auto",
-          alignItems: "center",
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: style.colors.TEAL_ACCENT,
-          color: "white",
-          padding: 15,
-          paddingLeft: 30,
-          paddingRight: 30,
-          fontSize: 20,
-          fontFamily: "Roboto",
-          fontWeight: 500,
-          letterSpacing: 2.4,
-          cursor: "pointer",
-          textTransform: "uppercase",
-          outline: "none",
-          boxShadow: "none",
-          userSelect: "none",
-        }}
-        aria-label="Compute policy impacts"
-        size="400px"
-      >
-        Compute policy impacts
-      </HoverBox>
-    </>
+    <LinkButton
+      hoverBackgroundColor={style.colors.TEAL_PRESSED}
+      link={`/${countryId}/calculator`}
+      text="Compute Policy Impact"
+      style={{ fontSize: 20, marginLeft: "auto", marginRight: 20, width: 400 }}
+    />
   );
 }
 
