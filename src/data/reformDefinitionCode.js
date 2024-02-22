@@ -43,7 +43,6 @@ function getHeaderCode(type, metadata, policy) {
 
   // If there is a reform, add the following Python imports
   if (Object.keys(policy.reform.data).length > 0) {
-
     lines.push(
       "from policyengine_core.reforms import Reform",
       "from policyengine_core.periods import instant",
@@ -53,15 +52,11 @@ function getHeaderCode(type, metadata, policy) {
     // import reduce from functools to allow attribute accessing
     for (const policyName of Object.keys(policy.reform.data)) {
       if (doesParamNameContainNumber(policyName)) {
-        lines.push(
-          "from functools import reduce",
-        );
+        lines.push("from functools import reduce");
         break;
       }
     }
   }
-
-
 
   return lines;
 }
@@ -120,7 +115,12 @@ export function getReformCode(type, policy, region) {
   }
 
   for (const [parameterName, parameter] of Object.entries(policy.reform.data)) {
-    console.log(doesParamNameContainNumber(parameterName));
+    let paramAccessor = `parameters.${parameterName}`;
+
+    if (doesParamNameContainNumber(parameterName)) {
+      paramAccessor = `reduce(getattr, "${parameterName}".split("."), parameters)`;
+    }
+
     for (let [instant, value] of Object.entries(parameter)) {
       const [start, end] = instant.split(".");
       if (value === false) {
@@ -129,7 +129,7 @@ export function getReformCode(type, policy, region) {
         value = "True";
       }
       lines.push(
-        `    parameters.${parameterName}.update(`,
+        `    ${paramAccessor}.update(`,
         `        start=instant("${start}"), stop=instant("${end}"),`,
         `        value=${value})`,
       );
@@ -262,16 +262,15 @@ export function getStartEndDates(policy) {
 
 /**
  * Determines whether a parameter name (a ParameterNode
- * object from a country package, accessed via country metadata) 
+ * object from a country package, accessed via country metadata)
  * contains a number in the name, making it impossible to access
  * through standard Python dot notation syntax
- * @param {String} paramName 
+ * @param {String} paramName
  * @returns {Boolean} "true" if parameter name contains a number
  * (as defined as a String, successfully casted to a Number),
  * otherwise false
  */
 export function doesParamNameContainNumber(paramName) {
-
   const JOIN_TOKEN = ".";
 
   // Take the param name and break it by its joining token
@@ -285,5 +284,4 @@ export function doesParamNameContainNumber(paramName) {
   }
 
   return false;
-
 }
