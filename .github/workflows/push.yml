@@ -26,6 +26,8 @@ jobs:
         run: npm test -- --coverage
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
+        with:
+          CODECOV_TOKEN: ${{ env.CODECOV_TOKEN }}
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
         with:
