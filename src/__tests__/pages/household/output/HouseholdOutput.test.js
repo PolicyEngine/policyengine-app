@@ -14,7 +14,7 @@ const householdInput = {};
 const householdBaseline = {};
 const householdReform = true;
 
-jest.mock("../api/variables.js", () => ({
+jest.mock("../../../../api/variables.js", () => ({
   formatVariableValue: jest.fn(),
   getValueFromHousehold: jest.fn(),
 }));
