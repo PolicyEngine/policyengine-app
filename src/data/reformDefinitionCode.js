@@ -31,7 +31,7 @@ export function getReproducibilityCodeBlock(
   ];
 }
 
-function getHeaderCode(type, metadata, policy) {
+export function getHeaderCode(type, metadata, policy) {
   let lines = [];
 
   // Add lines depending upon type of block
