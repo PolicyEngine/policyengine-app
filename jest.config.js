@@ -63,4 +63,8 @@ module.exports = {
       "<rootDir>/src/__tests__/setup/fileMock.js",
     "\\.(css|less)$": "<rootDir>/src/__tests__/setup/fileMock.js",
   },
+  collectCoverage: true,
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx}"
+  ]
 };
