@@ -9,7 +9,7 @@ export const baselinePolicyUK = {
     label: "Current law",
     id: 1,
   },
-}
+};
 
 export const baselinePolicyUS = {
   baseline: {
@@ -34,8 +34,8 @@ export const reformPolicyUK = {
     data: {
       "sample.reform.item": {
         "2020.01.01": true,
-        "2022.01.01": true
-      }
+        "2022.01.01": true,
+      },
     },
     label: "Sample reform",
     id: 0,
@@ -52,8 +52,8 @@ export const reformPolicyUS = {
     data: {
       "sample.reform.item": {
         "2020.01.01": false,
-        "2022.01.01": false
-      }
+        "2022.01.01": false,
+      },
     },
     label: "Sample reform",
     id: 0,
@@ -61,147 +61,118 @@ export const reformPolicyUS = {
 };
 
 export const householdUS = {
-  "people": {
-    "you": {
-      "age": {
-        "2024": 40
+  people: {
+    you: {
+      age: {
+        2024: 40,
       },
-      "employment_income": {
-        "2024": 15555
-      }
+      employment_income: {
+        2024: 15555,
+      },
     },
     "your partner": {
-      "age": {
-        "2024": 40
+      age: {
+        2024: 40,
       },
-      "employment_income": {
-        "2024": 0
-      }
+      employment_income: {
+        2024: 0,
+      },
     },
     "your first dependent": {
-      "age": {
-        "2024": 10
+      age: {
+        2024: 10,
       },
-      "is_tax_unit_dependent": {
-        "2024": true
+      is_tax_unit_dependent: {
+        2024: true,
       },
-      "employment_income": {
-        "2024": 0
-      }
-    }
+      employment_income: {
+        2024: 0,
+      },
+    },
   },
-  "families": {
+  families: {
     "your family": {
-      "members": [
-        "you",
-        "your partner",
-        "your first dependent"
-      ]
-    }
+      members: ["you", "your partner", "your first dependent"],
+    },
   },
-  "marital_units": {
+  marital_units: {
     "your marital unit": {
-      "members": [
-        "you",
-        "your partner"
-      ]
+      members: ["you", "your partner"],
     },
     "your first dependent's marital unit": {
-      "members": [
-        "your first dependent"
-      ],
-      "marital_unit_id": {
-        "2024": 1
-      }
-    }
+      members: ["your first dependent"],
+      marital_unit_id: {
+        2024: 1,
+      },
+    },
   },
-  "tax_units": {
+  tax_units: {
     "your tax unit": {
-      "members": [
-        "you",
-        "your partner",
-        "your first dependent"
-      ]
-    }
+      members: ["you", "your partner", "your first dependent"],
+    },
   },
-  "spm_units": {
+  spm_units: {
     "your household": {
-      "members": [
-        "you",
-        "your partner",
-        "your first dependent"
-      ]
-    }
+      members: ["you", "your partner", "your first dependent"],
+    },
   },
-  "households": {
+  households: {
     "your household": {
-      "members": [
-        "you",
-        "your partner",
-        "your first dependent"
-      ],
-      "state_name": {
-        "2024": "AZ"
-      }
-    }
-  }
+      members: ["you", "your partner", "your first dependent"],
+      state_name: {
+        2024: "AZ",
+      },
+    },
+  },
 };
 
 export const householdUK = {
-  "people": {
-    "you": {
-      "age": {
-        "2024": 40
+  people: {
+    you: {
+      age: {
+        2024: 40,
       },
-      "employment_income": {
-        "2024": 15555
-      }
+      employment_income: {
+        2024: 15555,
+      },
     },
     "your partner": {
-      "age": {
-        "2024": 40
+      age: {
+        2024: 40,
       },
-      "employment_income": {
-        "2024": 0
-      }
+      employment_income: {
+        2024: 0,
+      },
     },
     "your first child": {
-      "age": {
-        "2024": 10
+      age: {
+        2024: 10,
       },
-      "employment_income": {
-        "2024": 0
-      }
-    }
+      employment_income: {
+        2024: 0,
+      },
+    },
   },
-  "benunits": {
+  benunits: {
     "your immediate family": {
-      "members": [
-        "you",
-        "your partner",
-        "your first child"
-      ],
-      "is_married": {
-        "2024": true
-      }
-    }
+      members: ["you", "your partner", "your first child"],
+      is_married: {
+        2024: true,
+      },
+    },
   },
-  "households": {
+  households: {
     "your household": {
-      "members": [
-        "you",
-        "your partner",
-        "your first child"
-      ],
-      "BRMA": {
-        "2024": "PLYMOUTH"
+      members: ["you", "your partner", "your first child"],
+      BRMA: {
+        2024: "PLYMOUTH",
       },
-      "local_authority": {
-        "2024": "PLYMOUTH"
+      local_authority: {
+        2024: "PLYMOUTH",
       },
-      "region": {
-        "2024": "SOUTH_WEST"
-      }
-    }
-  }
+      region: {
+        2024: "SOUTH_WEST",
+      },
+    },
+  },
 };

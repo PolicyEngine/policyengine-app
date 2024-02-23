@@ -5,27 +5,22 @@ import {
   getBaselineCode,
   getReformCode,
   getSituationCode,
-  getImplementationCode
+  getImplementationCode,
 } from "data/reformDefinitionCode";
 import {
   baselinePolicyUS,
   baselinePolicyUK,
   reformPolicyUS,
   reformPolicyUK,
-  householdUS
+  householdUS,
 } from "../__setup__/sampleData";
 
 let metadataUS = null;
-let metadataUK = null;
 
 beforeAll(async () => {
   const res = await fetch("https://api.policyengine.org/us/metadata");
   const metadataRaw = await res.json();
   metadataUS = metadataRaw.result;
-
-  const resUK = await fetch("https://api.policyengine.org/uk/metadata");
-  const metadataRawUK = await resUK.json();
-  metadataUK = metadataRawUK.result;
 });
 
 const numberedPolicyUS = {
@@ -38,8 +33,8 @@ const numberedPolicyUS = {
     data: {
       "sample.reform.item.2": {
         "2020.01.01": 15,
-        "2022.01.01": 20
-      }
+        "2022.01.01": 20,
+      },
     },
     label: "Sample reform",
     id: 0,
@@ -47,25 +42,21 @@ const numberedPolicyUS = {
 };
 
 describe("Test getReproducibilityCodeBlock", () => {
-
   test("Properly outputs array of values from functions it calls", () => {
-
     const output = getReproducibilityCodeBlock(
       "household",
       metadataUS,
       reformPolicyUS,
       "us",
       2024,
-      householdUS
+      householdUS,
     );
 
     expect(output).toBeInstanceOf(Array);
   });
-
 });
 
 describe("Test getHeaderCode", () => {
-
   test("Properly format household without reform", () => {
     const output = getHeaderCode("household", metadataUS, baselinePolicyUS);
     expect(output).toBeInstanceOf(Array);
@@ -89,11 +80,9 @@ describe("Test getHeaderCode", () => {
     expect(output).toBeInstanceOf(Array);
     expect(output.length).toBe(4);
   });
-
 });
 
 describe("Test getBaselineCode", () => {
-
   test("Output nothing for household type", () => {
     const output = getBaselineCode("household", baselinePolicyUS, "us");
     expect(output).toBeInstanceOf(Array);
@@ -123,69 +112,77 @@ describe("Test getReformCode", () => {
     expect(output).toBeInstanceOf(Array);
 
     const paramAccessor = Object.keys(reformPolicyUK.reform.data)[0];
-    expect(output).toContain(
-      `    parameters.${paramAccessor}.update(`,
-    );
-    expect(output).toContain(
-      `        value=True)`
-    );
+    expect(output).toContain(`    parameters.${paramAccessor}.update(`);
+    expect(output).toContain(`        value=True)`);
   });
   test("Ensure addition of use_reported_state_income_tax for US policy", () => {
     const output = getReformCode("policy", reformPolicyUS, "us");
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
       "    parameters.simulation.reported_state_income_tax.update(",
-    )
+    );
     const paramName = Object.keys(reformPolicyUS.reform.data)[0];
     const paramAccessor = `parameters.${paramName}`;
-    expect(output).toContain(
-      `    ${paramAccessor}.update(`,
-    );
-    expect(output).toContain(
-      `        value=False)`
-    );
+    expect(output).toContain(`    ${paramAccessor}.update(`);
+    expect(output).toContain(`        value=False)`);
   });
   test("Ensure use of 'reduce' for policies with numbers", () => {
     const output = getReformCode("policy", numberedPolicyUS, "us");
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
       "    parameters.simulation.reported_state_income_tax.update(",
-    )
+    );
     const paramName = Object.keys(numberedPolicyUS.reform.data)[0];
     const paramAccessor = `reduce(getattr, "${paramName}".split("."), parameters)`;
-    expect(output).toContain(
-      `    ${paramAccessor}.update(`,
-    );
+    expect(output).toContain(`    ${paramAccessor}.update(`);
   });
 });
 describe("Test getSituationCode", () => {
-
   test("Policy type returns empty array", () => {
-    const output = getSituationCode("policy", metadataUS, baselinePolicyUS, 2024);
+    const output = getSituationCode(
+      "policy",
+      metadataUS,
+      baselinePolicyUS,
+      2024,
+    );
     expect(output).toBeInstanceOf(Array);
     expect(output.length).toBe(0);
   });
   test("Null variables deleted", () => {
     let testHousehold = JSON.parse(JSON.stringify(householdUS));
-    const testVarName = Object.keys(metadataUS.variables).filter((variable) => metadataUS.variables[variable].isInputVariable)[150];
+    const testVarName = Object.keys(metadataUS.variables).filter(
+      (variable) => metadataUS.variables[variable].isInputVariable,
+    )[150];
     const testVar = metadataUS.variables[testVarName];
 
     testHousehold.people.you = {
       ...testHousehold.people.you,
       [testVar.name]: {
-        "2024": null
-      }
+        2024: null,
+      },
     };
 
-    const output = getSituationCode("household", metadataUS, baselinePolicyUS, 2024, testHousehold);
+    const output = getSituationCode(
+      "household",
+      metadataUS,
+      baselinePolicyUS,
+      2024,
+      testHousehold,
+    );
     expect(output).toBeInstanceOf(Array);
     expect(output).not.toContain(testVar.name);
   });
   test("Inclusion of earning variation adds axes", () => {
-
     let testHousehold = JSON.parse(JSON.stringify(householdUS));
 
-    const output = getSituationCode("household", metadataUS, baselinePolicyUS, 2024, testHousehold, true);
+    const output = getSituationCode(
+      "household",
+      metadataUS,
+      baselinePolicyUS,
+      2024,
+      testHousehold,
+      true,
+    );
 
     let includedString = "axes";
     let passing = false;
@@ -199,13 +196,17 @@ describe("Test getSituationCode", () => {
 
     expect(output).toBeInstanceOf(Array);
     expect(passing).toBe(true);
-
-
   });
   test("Code is sanitized for Python", () => {
     let testHousehold = JSON.parse(JSON.stringify(householdUS));
 
-    const output = getSituationCode("household", metadataUS, baselinePolicyUS, 2024, testHousehold);
+    const output = getSituationCode(
+      "household",
+      metadataUS,
+      baselinePolicyUS,
+      2024,
+      testHousehold,
+    );
 
     let excludedStrings = ["true", "false", "null"];
     let passing = true;
@@ -225,7 +226,13 @@ describe("Test getSituationCode", () => {
   test("Reform code added if reform exists", () => {
     let testHousehold = JSON.parse(JSON.stringify(householdUS));
 
-    const output = getSituationCode("household", metadataUS, reformPolicyUS, 2024, testHousehold);
+    const output = getSituationCode(
+      "household",
+      metadataUS,
+      reformPolicyUS,
+      2024,
+      testHousehold,
+    );
 
     let includedString = "reform";
     let passing = false;
@@ -240,7 +247,6 @@ describe("Test getSituationCode", () => {
     expect(output).toBeInstanceOf(Array);
     expect(passing).toBe(true);
   });
-
 });
 describe("Test getImplementationCode", () => {
   test("If not a policy type, return empty array", () => {
@@ -252,15 +258,14 @@ describe("Test getImplementationCode", () => {
     const output = getImplementationCode("policy", "uk", 2024);
     expect(output).toBeInstanceOf(Array);
     expect(output).not.toContain(
-      "baseline = Microsimulation(reform=baseline_reform)"
+      "baseline = Microsimulation(reform=baseline_reform)",
     );
   });
   test("If US, return lines with state tax overrides", () => {
     const output = getImplementationCode("policy", "us", 2024);
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      "baseline = Microsimulation(reform=baseline_reform)"
+      "baseline = Microsimulation(reform=baseline_reform)",
     );
   });
-
 });
