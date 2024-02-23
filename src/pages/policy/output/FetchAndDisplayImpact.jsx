@@ -33,6 +33,7 @@ export function FetchAndDisplayImpact(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+  const renamed = searchParams.get("renamed");
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
@@ -48,7 +49,11 @@ export function FetchAndDisplayImpact(props) {
   useEffect(() => {
     if (
       areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
-      areObjectsSame(policy?.baseline?.data, policyRef.current?.baseline?.data)
+      areObjectsSame(
+        policy?.baseline?.data,
+        policyRef.current?.baseline?.data,
+      ) &&
+      renamed
     ) {
       return;
     }
