@@ -46,9 +46,23 @@ const numberedPolicyUS = {
   },
 };
 
-/*
-describe("Test getReproducibilityCodeBlock");
-*/
+describe("Test getReproducibilityCodeBlock", () => {
+
+  test("Properly outputs array of values from functions it calls", () => {
+
+    const output = getReproducibilityCodeBlock(
+      "household",
+      metadataUS,
+      reformPolicyUS,
+      "us",
+      2024,
+      householdUS
+    );
+
+    expect(output).toBeInstanceOf(Array);
+  });
+
+});
 
 describe("Test getHeaderCode", () => {
 
