@@ -246,8 +246,7 @@ export default function APIDocumentationPage({ metadata }) {
         id="calculate"
         method="POST"
         title="Calculate household-level policy outcomes"
-        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables- these will be filled in with computed values. It's best ${countryId} === "us" ? "practice" : "practise"
-        } to use the group/name/variable/optional time period/value structure.`}
+        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended.`}
         exampleInputJson={{
           household: {
             people: {
