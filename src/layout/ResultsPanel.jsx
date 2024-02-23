@@ -11,7 +11,6 @@ const ResultsPanel = forwardRef((props, ref) => {
         paddingLeft: mobile ? 5 : 20,
         paddingRight: mobile ? 5 : 20,
         height: "100%",
-        overflow: "auto",
         ...style,
       }}
     >
