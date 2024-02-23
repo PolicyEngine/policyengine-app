@@ -114,16 +114,7 @@ export default function HouseholdOutput(props) {
   }
 
   if (!mobile) {
-    pane = (
-      <div
-        style={{
-          height: `calc(100vh - 200px)`,
-          overflow: "scroll",
-        }}
-      >
-        {pane}
-      </div>
-    );
+    pane = <div>{pane}</div>;
   }
 
   function copyLink() {
