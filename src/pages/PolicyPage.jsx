@@ -20,6 +20,7 @@ export function ParameterSearch(props) {
   const { metadata, callback } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = Object.values(metadata.parameters)
+    .filter((parameter) => !parameter.parameter.includes("abolitions"))
     .filter((parameter) => parameter.type === "parameter")
     .map((parameter) => ({
       value: parameter.parameter,
