@@ -5,9 +5,12 @@ import Section from "./Section";
 import useCountryId from "./useCountryId";
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { Input, Card, Divider, Tag, Drawer } from "antd";
+import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
+import { DownOutlined, UpOutlined } from "@ant-design/icons";
+import colors from "../../style/colors";
+import { buttonStyles } from "../../controls/Button";
 
 const exampleInputs = {
   us: {
@@ -375,13 +378,75 @@ export default function APIDocumentationPage({ metadata }) {
 }
 
 function JSONBlock({ json }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <Card
       style={{
-        maxHeight: "18em",
-        overflowX: "scroll"
+        maxHeight: !isExpanded && "18em",
+        overflowX: "scroll",
+        position: "relative"
       }}
     >
+      <Tooltip
+        title={`${isExpanded ? "Close" : "Expand"} the code block`}
+      >
+        <Button 
+          type="primary"
+          style={{
+            position: "absolute",
+            top: "1em",
+            right: "1em",
+            backgroundColor: buttonStyles.primary.standardBackgroundColor,
+            border: 0
+          }}
+          onMouseOver={(e) =>
+            (e.currentTarget.style.backgroundColor = 
+              buttonStyles.primary.hoverBackgroundColor)
+          }
+          onMouseOut={(e) =>
+            (e.currentTarget.style.backgroundColor =
+              buttonStyles.primary.standardBackgroundColor)
+          }
+          onClick={() => setIsExpanded(prev => !prev)}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.5rem"
+            }}
+          >
+          {isExpanded ? 
+            (
+              <>
+                <UpOutlined />
+                <p
+                  style={{
+                    margin: 0
+                  }}
+                >
+                  Shrink
+                </p>
+              </>
+            ) : (
+              <>
+                <DownOutlined />
+                <p
+                  style={{
+                    margin: 0
+                  }}
+                >
+                  Expand
+                </p>
+              </>
+            )
+          }
+          </div>
+        </Button>
+      </Tooltip>
       <pre>{JSON.stringify(json, null, 2)}</pre>
     </Card>
   );
