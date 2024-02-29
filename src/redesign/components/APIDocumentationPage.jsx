@@ -3,7 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Section from "./Section";
 import useCountryId from "./useCountryId";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Input, Card, Divider, Tag, Drawer } from "antd";
 import { Helmet } from "react-helmet";
@@ -38,30 +38,35 @@ const exampleInputs = {
     },
   },
   uk: {
-    people: {
-      parent: {
-        age: {
-          [defaultYear]: 40
+    household: {
+      people: {
+        parent: {
+          age: {
+            [defaultYear]: 40
+          },
+          employment_income: {
+            [defaultYear]: 1000
+          }
         },
-        employment_income: {
-          [defaultYear]: 1000
+        child: {
+          age: {
+            [defaultYear]: 10
+          },
+          employment_income: {
+            [defaultYear]: 0
+          }
         }
       },
-      child: {
-        age: {
-          [defaultYear]: 10
-        },
-        employment_income: {
-          [defaultYear]: 0
-        }
-      }
     },
     benunits: {
       exampleFamily: {
         members: [
           "parent",
           "child"
-        ]
+        ],
+        universal_credit_entitlement: {
+          [defaultYear]: null
+        },
       }
     },
     households: {
@@ -78,6 +83,9 @@ const exampleInputs = {
         },
         region: {
           [defaultYear]: "SOUTH_EAST"
+        },
+        household_benefits: {
+          [defaultYear]: null
         }
       }
     }
@@ -344,6 +352,7 @@ export default function APIDocumentationPage({ metadata }) {
         exampleInputJson={
           Object.keys(exampleInputs).includes(countryId) ? exampleInputs[countryId] : exampleInputs.default
         }
+        countryId={countryId}
       />
       <VariableParameterExplorer
         id="variables"
@@ -389,10 +398,44 @@ function APIEndpoint({
   description,
   children,
   exampleInputJson,
-  exampleOutputJson,
   id,
+  countryId
 }) {
+  const [outputJson, setOutputJson] = useState("");
+
   const hasInput = Boolean(exampleInputJson);
+
+  useEffect(() => {
+
+    const HOUSEHOLD_API_URL = "https://household.api.policyengine.org"
+
+    // This has to be written as a standalone function because
+    // useEffect can't handle anonymous async/await
+    async function fetchOutput() {
+      if (!countryId || !exampleInputJson) {
+        setOutputJson("Loading output");
+        return;
+      }
+
+      try {
+        const res = await fetch(HOUSEHOLD_API_URL + `/${countryId}/calculate_demo`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(exampleInputJson)
+        });
+        const resJson = await res.json();
+        setOutputJson(resJson);
+      }
+      catch (err) {
+        console.error(err);
+        setOutputJson("Error while fetching output; please try again later");
+      }
+    }
+
+    fetchOutput();
+  }, [countryId, exampleInputJson]);
 
   return (
     <Section>
@@ -422,7 +465,7 @@ function APIEndpoint({
           }}
         >
           {<h4>Output format</h4>}
-          <JSONBlock json={exampleOutputJson} />
+          <JSONBlock json={outputJson} />
         </div>
       </div>
       {children}
