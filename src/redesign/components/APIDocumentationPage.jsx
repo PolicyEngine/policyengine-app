@@ -390,6 +390,7 @@ function JSONBlock({ json }) {
         overflowX: "scroll",
         position: "relative"
       }}
+      loading={!json}
     >
       <Tooltip
         title={`${isExpanded ? "Close" : "Expand"} the code block`}
@@ -478,7 +479,7 @@ function APIEndpoint({
     // useEffect can't handle anonymous async/await
     async function fetchOutput() {
       if (!countryId || !exampleInputJson) {
-        setOutputJson("Loading output");
+        setOutputJson(null);
         return;
       }
 
