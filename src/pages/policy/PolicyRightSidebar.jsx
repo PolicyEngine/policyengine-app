@@ -7,7 +7,6 @@ import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
-import InputText from "../../controls/InputText";
 import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
