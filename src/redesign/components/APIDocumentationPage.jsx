@@ -9,8 +9,8 @@ import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
-import colors from "../../style/colors";
 import { buttonStyles } from "../../controls/Button";
+import useDisplayCategory from "./useDisplayCategory";
 
 const exampleInputs = {
   us: {
@@ -309,6 +309,8 @@ function CardDrawer(props) {
 
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
+  const displayCategory = useDisplayCategory();
+
   return (
     <>
       <Helmet>
@@ -356,6 +358,7 @@ export default function APIDocumentationPage({ metadata }) {
           Object.keys(exampleInputs).includes(countryId) ? exampleInputs[countryId] : exampleInputs.default
         }
         countryId={countryId}
+        displayCategory={displayCategory}
       />
       <VariableParameterExplorer
         id="variables"
@@ -460,7 +463,8 @@ function APIEndpoint({
   children,
   exampleInputJson,
   id,
-  countryId
+  countryId,
+  displayCategory
 }) {
   const [outputJson, setOutputJson] = useState("");
 
@@ -511,6 +515,9 @@ function APIEndpoint({
       <div
         style={{
           display: "flex",
+          flexDirection: displayCategory === "mobile" && "column",
+          gap: displayCategory === "mobile" ? "2rem" : "50px",
+          marginTop: displayCategory === "mobile" && "2rem"
         }}
       >
         {hasInput && (
@@ -522,7 +529,6 @@ function APIEndpoint({
         <div
           style={{
             flex: 1,
-            marginLeft: hasInput ? "50px" : "0",
           }}
         >
           {<h4>Output format</h4>}
