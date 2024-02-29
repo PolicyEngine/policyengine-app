@@ -376,18 +376,9 @@ export default function APIDocumentationPage({ metadata }) {
 
 function JSONBlock({ json }) {
   return (
-    <div
-      style={{
-        backgroundColor: style.colors.DARK_GRAY,
-        width: "100%",
-        borderRadius: 25,
-        fontFamily: "Courier New",
-        padding: 30,
-        color: "white",
-      }}
-    >
+    <Card>
       <pre>{JSON.stringify(json, null, 2)}</pre>
-    </div>
+    </Card>
   );
 }
 
