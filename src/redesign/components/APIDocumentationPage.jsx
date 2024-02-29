@@ -376,7 +376,12 @@ export default function APIDocumentationPage({ metadata }) {
 
 function JSONBlock({ json }) {
   return (
-    <Card>
+    <Card
+      style={{
+        maxHeight: "18em",
+        overflowX: "scroll"
+      }}
+    >
       <pre>{JSON.stringify(json, null, 2)}</pre>
     </Card>
   );
