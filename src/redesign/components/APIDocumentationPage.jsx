@@ -9,33 +9,99 @@ import { Input, Card, Divider, Tag, Drawer } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 
-const exampleInputJson = {
-  household: {
-    people: {
-      parent: {
-        age: {
-          [defaultYear]: 30,
+const exampleInputs = {
+  us: {
+    household: {
+      people: {
+        parent: {
+          age: {
+            [defaultYear]: 30,
+          },
+          employment_income: {
+            [defaultYear]: 20_000,
+          },
         },
-        employment_income: {
-          [defaultYear]: 20_000,
+        child: {
+          age: {
+            [defaultYear]: 5,
+          },
         },
       },
-      child: {
-        age: {
-          [defaultYear]: 5,
-        },
-      },
-    },
-    spm_units: {
-      spm_unit: {
-        members: ["parent", "child"],
-        snap: {
-          [defaultYear]: null,
+      spm_units: {
+        spm_unit: {
+          members: ["parent", "child"],
+          snap: {
+            [defaultYear]: null,
+          },
         },
       },
     },
   },
-};
+  uk: {
+    people: {
+      parent: {
+        age: {
+          [defaultYear]: 40
+        },
+        employment_income: {
+          [defaultYear]: 1000
+        }
+      },
+      child: {
+        age: {
+          [defaultYear]: 10
+        },
+        employment_income: {
+          [defaultYear]: 0
+        }
+      }
+    },
+    benunits: {
+      exampleFamily: {
+        members: [
+          "parent",
+          "child"
+        ]
+      }
+    },
+    households: {
+      exampleFamily: {
+        members: [
+          "parent",
+          "child"
+        ],
+        BRMA: {
+          [defaultYear]: "MAIDSTONE"
+        },
+        local_authority: {
+          [defaultYear]: "MAIDSTONE"
+        },
+        region: {
+          [defaultYear]: "SOUTH_EAST"
+        }
+      }
+    }
+  },
+  default: {
+    people: {
+      parent: {
+        age: {
+          [defaultYear]: 40
+        },
+        employment_income: {
+          [defaultYear]: 1000
+        }
+      }
+    },
+    households: {
+      sampleHousehold: {
+        members: [
+          "parent"
+        ]
+      }
+    }
+  }
+}
 
 function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
@@ -275,7 +341,9 @@ export default function APIDocumentationPage({ metadata }) {
         method="POST"
         title="Calculate household-level policy outcomes"
         description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended.`}
-        exampleInputJson={exampleInputJson}
+        exampleInputJson={
+          Object.keys(exampleInputs).includes(countryId) ? exampleInputs[countryId] : exampleInputs.default
+        }
       />
       <VariableParameterExplorer
         id="variables"
