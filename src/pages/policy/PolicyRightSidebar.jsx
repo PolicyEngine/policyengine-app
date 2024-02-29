@@ -568,6 +568,14 @@ export default function PolicyRightSidebar(props) {
           </a>
         </div>
       )}
+      {showReformSearch && (
+        <div style={{ textAlign: "center", width: "100%" }}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <a href="#" onClick={() => setShowReformSearch(false)}>
+            Close
+          </a>
+        </div>
+      )}
       <PolicyDisplay
         policy={policy}
         metadata={metadata}
