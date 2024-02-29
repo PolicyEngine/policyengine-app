@@ -20,9 +20,6 @@ function APIResultCard(props) {
 
   return (
     <>
-      <Helmet>
-        <title>API Documentation | PolicyEngine</title>
-      </Helmet>
       <Card
         bordered={true}
         style={{
@@ -209,6 +206,9 @@ export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
   return (
     <>
+      <Helmet>
+        <title>API Documentation | PolicyEngine</title>
+      </Helmet>
       <Header />
       <Section
         title="PolicyEngine API Documentation"
