@@ -564,7 +564,7 @@ export default function PolicyRightSidebar(props) {
             style={{ textAlign: "center", width: "100%" }}
             onClick={() => setShowReformSearch(true)}
           >
-            find an existing policy
+            use an existing policy
           </a>
         </div>
       )}
