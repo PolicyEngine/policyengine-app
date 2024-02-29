@@ -402,7 +402,8 @@ function JSONBlock({ json }) {
             top: "1em",
             right: "1em",
             backgroundColor: buttonStyles.primary.standardBackgroundColor,
-            border: 0
+            border: 0,
+            fontWeight: 500
           }}
           onMouseOver={(e) =>
             (e.currentTarget.style.backgroundColor = 
@@ -423,31 +424,14 @@ function JSONBlock({ json }) {
               gap: "0.5rem"
             }}
           >
-          {isExpanded ? 
-            (
-              <>
-                <UpOutlined />
-                <p
-                  style={{
-                    margin: 0
-                  }}
-                >
-                  Shrink
-                </p>
-              </>
-            ) : (
-              <>
-                <DownOutlined />
-                <p
-                  style={{
-                    margin: 0
-                  }}
-                >
-                  Expand
-                </p>
-              </>
-            )
-          }
+            {isExpanded ? <UpOutlined /> : <DownOutlined />}
+            <p
+              style={{
+                margin: 0,
+              }}
+            >
+              {isExpanded ? "Shrink" : "Expand"}
+            </p>
           </div>
         </Button>
       </Tooltip>
