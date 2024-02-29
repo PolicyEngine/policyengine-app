@@ -217,6 +217,7 @@ function PolicyNamer(props) {
         newSearch.set("renamed", true);
         if (data.status === "ok") {
           newSearch.set("reform", data.policy_id);
+          policy.reform.label = name;
         }
         setSearchParams(newSearch);
 
@@ -244,7 +245,10 @@ function PolicyNamer(props) {
           <Input
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
-            onPressEnter={() => handleSubmit(newName)}
+            onPressEnter={() => {
+              handleSubmit(newName);
+              setIsRenaming(false);
+            }}
             onBlur={() => setIsRenaming(false)}
           />
         ) : (
