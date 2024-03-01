@@ -10,7 +10,7 @@
     "@ant-design/icons": "^5.3.1",
     "@babel/preset-react": "^7.23.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
-    "antd": ">4, <5",
+    "antd": ">4, <6",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
