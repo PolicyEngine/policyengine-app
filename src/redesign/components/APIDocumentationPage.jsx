@@ -8,7 +8,7 @@ import { Container } from "react-bootstrap";
 import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
-import { DownOutlined, UpOutlined } from "@ant-design/icons";
+import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
 import { buttonStyles } from "../../controls/Button";
 import useDisplayCategory from "./useDisplayCategory";
 import SyntaxHighliter from "react-syntax-highlighter";
@@ -96,15 +96,17 @@ const exampleInputs = {
     }
   },
   default: {
-    people: {
-      parent: {
-        age: {
-          [defaultYear]: 40
-        },
-        employment_income: {
-          [defaultYear]: 1000
+    household: {
+      people: {
+        parent: {
+          age: {
+            [defaultYear]: 40
+          },
+          employment_income: {
+            [defaultYear]: 1000
+          }
         }
-      }
+      },
     },
     households: {
       sampleHousehold: {
@@ -382,71 +384,146 @@ export default function APIDocumentationPage({ metadata }) {
   );
 }
 
-function JSONBlock({ json }) {
+function JSONBlock({ json, title }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  function handleMouseOver(event) {
+    (event.currentTarget.style.backgroundColor = 
+      buttonStyles.primary.hoverBackgroundColor);
+  }
+
+  function handleMouseOut(event) {
+    (event.currentTarget.style.backgroundColor =
+      buttonStyles.primary.standardBackgroundColor) 
+  }
+
+  function handleCopy(code) {
+    navigator.clipboard.writeText(code);
+    setIsCopied(true);
+  }
+
+  useEffect(() => {
+    if (isCopied) {
+      const timeoutId = setTimeout(() => setIsCopied(false), 1000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isCopied]);
 
   return (
-    <Card
+    <div
       style={{
-        maxHeight: !isExpanded && "18em",
-        overflowX: "scroll",
-        position: "relative"
-      }}
-      loading={!json}
-      bodyStyle={{
-        padding: 0
+        flex: 1,
       }}
     >
-      <Tooltip
-        title={`${isExpanded ? "Close" : "Expand"} the code block`}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}
       >
-        <Button 
-          type="primary"
+        <h4>{title}</h4>
+        <div
           style={{
-            position: "absolute",
-            top: "1em",
-            right: "1em",
-            backgroundColor: buttonStyles.primary.standardBackgroundColor,
-            border: 0,
-            fontWeight: 500
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.5rem"
           }}
-          onMouseOver={(e) =>
-            (e.currentTarget.style.backgroundColor = 
-              buttonStyles.primary.hoverBackgroundColor)
-          }
-          onMouseOut={(e) =>
-            (e.currentTarget.style.backgroundColor =
-              buttonStyles.primary.standardBackgroundColor)
-          }
-          onClick={() => setIsExpanded(prev => !prev)}
         >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "0.5rem"
-            }}
+          <Tooltip
+            title={`${isExpanded ? "Close" : "Expand"} the code block`}
           >
-            {isExpanded ? <UpOutlined /> : <DownOutlined />}
-            <p
+            <Button 
+              type="primary"
               style={{
-                margin: 0,
+                backgroundColor: buttonStyles.primary.standardBackgroundColor,
+                border: 0,
+                fontWeight: 500
               }}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+              onClick={() => setIsExpanded(prev => !prev)}
             >
-              {isExpanded ? "Shrink" : "Expand"}
-            </p>
-          </div>
-        </Button>
-      </Tooltip>
-      <SyntaxHighliter language="json" style={monoBlue} customStyle={{
-        padding: "24px",
-        margin: 0
-      }}>
-        {JSON.stringify(json, null, 2)}
-      </SyntaxHighliter>
-    </Card>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem"
+                }}
+              >
+                {isExpanded ? <UpOutlined /> : <DownOutlined />}
+                <p
+                  style={{
+                    margin: 0,
+                  }}
+                >
+                  {isExpanded ? "Shrink" : "Expand"}
+                </p>
+              </div>
+            </Button>
+          </Tooltip>
+          <Tooltip
+            title="Copy the code block"
+          >
+            <Button 
+              type="primary"
+              style={{
+                backgroundColor: buttonStyles.primary.standardBackgroundColor,
+                border: 0,
+                fontWeight: 500,
+                width: "6rem"
+              }}
+              onMouseOver={handleMouseOver}
+              onMouseOut={handleMouseOut}
+              onClick={handleCopy}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem"
+                }}
+              >
+                <CopyOutlined />
+                <p
+                  style={{
+                    margin: 0,
+                  }}
+                >
+                  {isCopied ? "Copied!" : "Copy"}
+                </p>
+              </div>
+            </Button>
+          </Tooltip>
+        </div>
+      </div>
+      <Card
+        style={{
+          maxHeight: !isExpanded && "18em",
+          overflowX: "scroll",
+          position: "relative"
+        }}
+        loading={!json}
+        bodyStyle={{
+          padding: 0
+        }}
+      >
+        <SyntaxHighliter language="json" style={monoBlue} customStyle={{
+          padding: "24px",
+          margin: 0
+        }}>
+          {JSON.stringify(json, null, 2)}
+        </SyntaxHighliter>
+      </Card>
+    </div>
   );
 }
 
@@ -516,19 +593,12 @@ function APIEndpoint({
         }}
       >
         {hasInput && (
-          <div style={{ flex: 1 }}>
-            <h4>Example input</h4>
-            <JSONBlock json={exampleInputJson} />
-          </div>
+          <JSONBlock json={exampleInputJson} title="Example input" />
         )}
-        <div
-          style={{
-            flex: 1,
-          }}
-        >
-          {<h4>Output format</h4>}
-          <JSONBlock json={outputJson} />
-        </div>
+        <JSONBlock
+          json={outputJson}
+          title="Output format"
+        />
       </div>
       {children}
     </Section>
