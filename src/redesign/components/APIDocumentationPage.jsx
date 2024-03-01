@@ -118,7 +118,7 @@ export const exampleInputs = {
   }
 }
 
-function APIResultCard(props) {
+export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
 
   // type can be: parameter, variable
