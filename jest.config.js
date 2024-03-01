@@ -28,6 +28,7 @@ const esModules = [
   "node-fetch",
   "property-information",
   "react-markdown",
+  "react-syntax-highlighter",
   "rehype-raw",
   "remark-gfm",
   "remark-parse",

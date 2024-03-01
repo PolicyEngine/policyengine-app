@@ -14,7 +14,7 @@ import useDisplayCategory from "./useDisplayCategory";
 import SyntaxHighliter from "react-syntax-highlighter";
 import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-const exampleInputs = {
+export const exampleInputs = {
   us: {
     household: {
       people: {
