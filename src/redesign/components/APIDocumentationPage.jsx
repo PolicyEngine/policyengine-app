@@ -11,6 +11,8 @@ import { defaultYear } from "data/constants";
 import { DownOutlined, UpOutlined } from "@ant-design/icons";
 import { buttonStyles } from "../../controls/Button";
 import useDisplayCategory from "./useDisplayCategory";
+import SyntaxHighliter from "react-syntax-highlighter";
+import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const exampleInputs = {
   us: {
@@ -391,6 +393,9 @@ function JSONBlock({ json }) {
         position: "relative"
       }}
       loading={!json}
+      bodyStyle={{
+        padding: 0
+      }}
     >
       <Tooltip
         title={`${isExpanded ? "Close" : "Expand"} the code block`}
@@ -435,7 +440,12 @@ function JSONBlock({ json }) {
           </div>
         </Button>
       </Tooltip>
-      <pre>{JSON.stringify(json, null, 2)}</pre>
+      <SyntaxHighliter language="json" style={monoBlue} customStyle={{
+        padding: "24px",
+        margin: 0
+      }}>
+        {JSON.stringify(json, null, 2)}
+      </SyntaxHighliter>
     </Card>
   );
 }
