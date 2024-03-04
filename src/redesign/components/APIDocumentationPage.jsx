@@ -51,6 +51,9 @@ export const exampleInputs = {
           },
           employment_income: {
             [defaultYear]: 1000
+          },
+          income_tax: {
+            [defaultYear]: null
           }
         },
         child: {
@@ -62,35 +65,35 @@ export const exampleInputs = {
           }
         }
       },
-    },
-    benunits: {
-      exampleFamily: {
-        members: [
-          "parent",
-          "child"
-        ],
-        universal_credit_entitlement: {
-          [defaultYear]: null
-        },
-      }
-    },
-    households: {
-      exampleFamily: {
-        members: [
-          "parent",
-          "child"
-        ],
-        BRMA: {
-          [defaultYear]: "MAIDSTONE"
-        },
-        local_authority: {
-          [defaultYear]: "MAIDSTONE"
-        },
-        region: {
-          [defaultYear]: "SOUTH_EAST"
-        },
-        household_benefits: {
-          [defaultYear]: null
+      benunits: {
+        exampleFamily: {
+          members: [
+            "parent",
+            "child"
+          ],
+          universal_credit_entitlement: {
+            [defaultYear]: null
+          },
+        }
+      },
+      households: {
+        exampleFamily: {
+          members: [
+            "parent",
+            "child"
+          ],
+          BRMA: {
+            [defaultYear]: "MAIDSTONE"
+          },
+          local_authority: {
+            [defaultYear]: "MAIDSTONE"
+          },
+          region: {
+            [defaultYear]: "SOUTH_EAST"
+          },
+          household_benefits: {
+            [defaultYear]: null
+          }
         }
       }
     }
@@ -107,12 +110,12 @@ export const exampleInputs = {
           }
         }
       },
-    },
-    households: {
-      sampleHousehold: {
-        members: [
-          "parent"
-        ]
+      households: {
+        sampleHousehold: {
+          members: [
+            "parent"
+          ]
+        }
       }
     }
   }
