@@ -44,7 +44,7 @@ describe("Enhanced CPS selector", () => {
     },
   };
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     // Metadata fetching function
     async function fetchMetadata(countryId) {
       const res = await fetch(
