@@ -737,13 +737,14 @@ let posts = [
   },
   {
     title: "Spring Budget 2024 proposals",
-    description: "PolicyEngine estimates reported likely tax-benefit reforms ahead of the UK Spring Budget.",
+    description:
+      "PolicyEngine estimates reported likely tax-benefit reforms ahead of the UK Spring Budget.",
     date: "2024-03-04 09:00:00",
     filename: "spring-budget-2024.ipynb",
     tags: ["uk", "policy", "featured"],
     image: "jeremy_hunt.jpg",
     authors: ["nikhil-woodruff"],
-  }
+  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
