@@ -75,8 +75,8 @@ const Authors = {
     name: "Anthony Volk",
     email: "anthony@policyengine.org",
     bio: "is a full-stack engineer at PolicyEngine.",
-    title: "Full-Stack Engineer",
-    image: require("../images/authors/anthony-volk.jpg"),
+    title: "Full-Stack Engineer at PolicyEngine",
+    headshot: require("../images/authors/anthony-volk.jpg"),
   },
 };
 
