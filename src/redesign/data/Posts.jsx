@@ -745,6 +745,15 @@ let posts = [
     image: "jeremy_hunt.jpg",
     authors: ["anthony-volk", "nikhil-woodruff"],
   },
+  {
+    title: "TRAWFA", 
+    description: "PolicyEngine estimates the impact of the proposed TRAWFA.",
+    date: "2024-03-06 09:00:00",
+    filename: "trawfa.ipynb",
+    tags: ["us", "policy", "featured"],
+    image: "jeremy_hunt.jpg",
+    authors: ["max-ghenis", "nikhil-woodruff"]
+  }
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
