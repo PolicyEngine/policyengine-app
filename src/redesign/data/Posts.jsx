@@ -752,7 +752,7 @@ let posts = [
     date: "2024-03-06 09:00:00",
     filename: "uk-2024-spring-budget.ipynb",
     tags: ["uk", "policy", "featured"],
-    image: "jeremy_hunt.jpg",
+    image: "uk_budget_box_hunt.jpg",
     authors: ["nikhil-woodruff", "anthony-volk"],
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
