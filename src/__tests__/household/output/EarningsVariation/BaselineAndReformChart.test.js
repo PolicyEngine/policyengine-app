@@ -3,7 +3,7 @@ import BaselineAndReformChart from "pages/household/output/EarningsVariation/Bas
 import { getValueFromHousehold } from "api/variables.js";
 
 jest.mock("react-plotly.js", () => jest.fn());
-jest.mock("../api/variables.js", () => ({
+jest.mock("../../../../api/variables.js", () => ({
   getValueFromHousehold: jest.fn(),
   getPlotlyAxisFormat: jest.fn(),
 }));

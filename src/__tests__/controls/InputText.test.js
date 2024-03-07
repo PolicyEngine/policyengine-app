@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import InputText from "../controls/InputText";
+import InputText from "../../controls/InputText";
 import { useSearchParams } from "react-router-dom";
 
 jest.mock("react-router-dom", () => {
