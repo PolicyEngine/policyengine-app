@@ -43,7 +43,7 @@ const standardPolicyUK = {
   },
 };
 
-beforeAll(async() => {
+beforeAll(async () => {
   async function fetchMetadata(countryId) {
     const res = await fetch(
       `https://api.policyengine.org/${countryId}/metadata`,
