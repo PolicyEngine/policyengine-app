@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import "whatwg-fetch";
 
 jest.mock("react-plotly.js", () => jest.fn());
-jest.mock("../api/variables.js", () => ({
+jest.mock("../../../api/variables.js", () => ({
   getValueFromHousehold: jest.fn(),
   getPlotlyAxisFormat: jest.fn(),
 }));
