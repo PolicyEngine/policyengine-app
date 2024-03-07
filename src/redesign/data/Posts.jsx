@@ -747,8 +747,7 @@ let posts = [
   },
   {
     title: "Spring Budget 2024",
-    description:
-      "PolicyEngine estimates the impact of the UK Spring Budget.",
+    description: "PolicyEngine estimates the impact of the UK Spring Budget.",
     date: "2024-03-06 09:00:00",
     filename: "uk-2024-spring-budget.ipynb",
     tags: ["uk", "policy", "featured"],
