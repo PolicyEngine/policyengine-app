@@ -31,7 +31,7 @@ export function getReproducibilityCodeBlock(
   ];
 }
 
-function getHeaderCode(type, metadata, policy) {
+export function getHeaderCode(type, metadata, policy) {
   let lines = [];
 
   // Add lines depending upon type of block
@@ -243,4 +243,30 @@ export function getStartEndDates(policy) {
     earliestStart: earliestStart,
     latestEnd: latestEnd,
   };
+}
+
+/**
+ * Determines whether a parameter name (a ParameterNode
+ * object from a country package, accessed via country metadata)
+ * contains a number in the name, making it impossible to access
+ * through standard Python dot notation syntax
+ * @param {String} paramName
+ * @returns {Boolean} "true" if parameter name contains a number
+ * (as defined as a String, successfully casted to a Number),
+ * otherwise false
+ */
+export function doesParamNameContainNumber(paramName) {
+  const JOIN_TOKEN = ".";
+
+  // Take the param name and break it by its joining token
+  const paramNameArray = paramName.split(JOIN_TOKEN);
+
+  // Iterate over the resulting array
+  for (const name of paramNameArray) {
+    if (Number(name)) {
+      return true;
+    }
+  }
+
+  return false;
 }
