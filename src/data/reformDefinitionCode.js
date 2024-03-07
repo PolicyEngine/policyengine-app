@@ -105,13 +105,17 @@ export function getReformCode(type, policy, region) {
     );
   }
 
-  for (const [parameterName, parameter] of Object.entries(policy.reform.data)) {
+  for (let [parameterName, parameter] of Object.entries(policy.reform.data)) {
     for (let [instant, value] of Object.entries(parameter)) {
       const [start, end] = instant.split(".");
       if (value === false) {
         value = "False";
       } else if (value === true) {
         value = "True";
+      }
+      // If param name contains number, transform into valid Python
+      if (doesParamNameContainNumber(parameterName)) {
+        parameterName = transformNumberedParamName(parameterName);
       }
       lines.push(
         `    parameters.${parameterName}.update(`,
@@ -243,6 +247,32 @@ export function getStartEndDates(policy) {
     earliestStart: earliestStart,
     latestEnd: latestEnd,
   };
+}
+
+/**
+ * Transforms a parameter name with a number in the name
+ * into valid Python syntax
+ * @param {String} paramName
+ * @returns {String} the transformed name
+ */
+export function transformNumberedParamName(paramName) {
+
+  // Break the paramName into an array of dot-separated 
+  // components
+  const NAME_ACCESSOR = ".";
+  const nameParts = paramName.split(NAME_ACCESSOR);
+
+  // Isolate number within the array and reformat
+  const sanitizedParts = nameParts.map((word) => {
+    if (Number(word)) {
+      word = `children["${word}"]`;
+    }
+    return word;
+  });
+
+  // Re-join the array into a string and return
+  return sanitizedParts.join(".");
+
 }
 
 /**
