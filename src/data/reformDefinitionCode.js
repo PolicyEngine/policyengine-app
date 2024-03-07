@@ -256,8 +256,7 @@ export function getStartEndDates(policy) {
  * @returns {String} the transformed name
  */
 export function transformNumberedParamName(paramName) {
-
-  // Break the paramName into an array of dot-separated 
+  // Break the paramName into an array of dot-separated
   // components
   const NAME_ACCESSOR = ".";
   const nameParts = paramName.split(NAME_ACCESSOR);
@@ -272,7 +271,6 @@ export function transformNumberedParamName(paramName) {
 
   // Re-join the array into a string and return
   return sanitizedParts.join(".");
-
 }
 
 /**

@@ -74,7 +74,6 @@ describe("Test getHeaderCode", () => {
     expect(output).toBeInstanceOf(Array);
     expect(output.length).toBe(3);
   });
-
 });
 
 describe("Test getBaselineCode", () => {
