@@ -1,16 +1,16 @@
-import style from "../style";
-import Footer from "./Footer";
-import Header from "./Header";
-import Section from "./Section";
-import useCountryId from "./useCountryId";
+import style from "../redesign/style";
+import Footer from "../redesign/components/Footer";
+import Header from "../redesign/components/Header";
+import Section from "../redesign/components/Section";
+import useCountryId from "../redesign/components/useCountryId";
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
-import { buttonStyles } from "../../controls/Button";
-import useDisplayCategory from "./useDisplayCategory";
+import { buttonStyles } from "../controls/Button";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
 import SyntaxHighliter from "react-syntax-highlighter";
 import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
@@ -52,9 +52,6 @@ export const exampleInputs = {
           employment_income: {
             [defaultYear]: 1000
           },
-          income_tax: {
-            [defaultYear]: null
-          }
         },
         child: {
           age: {
@@ -82,18 +79,6 @@ export const exampleInputs = {
             "parent",
             "child"
           ],
-          BRMA: {
-            [defaultYear]: "MAIDSTONE"
-          },
-          local_authority: {
-            [defaultYear]: "MAIDSTONE"
-          },
-          region: {
-            [defaultYear]: "SOUTH_EAST"
-          },
-          household_benefits: {
-            [defaultYear]: null
-          }
         }
       }
     }
@@ -120,6 +105,11 @@ export const exampleInputs = {
     }
   }
 }
+
+const examplePolicies = {
+  us: "SNAP benefit",
+  uk: "Universal Credit entitlement"
+};
 
 export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
@@ -360,7 +350,7 @@ export default function APIDocumentationPage({ metadata }) {
         id="calculate"
         method="POST"
         title="Calculate household-level policy outcomes"
-        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended.`}
+        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended.${Object.keys(examplePolicies).includes(countryId) ? `The below code block estimates a sample family's ${examplePolicies[countryId]}.`:""}`}
         exampleInputJson={
           Object.keys(exampleInputs).includes(countryId) ? exampleInputs[countryId] : exampleInputs.default
         }
