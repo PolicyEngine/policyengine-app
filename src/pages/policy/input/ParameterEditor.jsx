@@ -90,7 +90,7 @@ export default function ParameterEditor(props) {
     control = (
       <StableInputNumber
         style={{
-          width: "50%"
+          width: "50%",
         }}
         key={"input for" + parameter.parameter}
         {...(isCurrency
@@ -142,7 +142,7 @@ export default function ParameterEditor(props) {
       disabledDate={(date) => date.isBefore("2021-01-01")}
       separator="→"
     />
-  )
+  );
 
   const popoverContent = (
     <Tabs
@@ -150,25 +150,28 @@ export default function ParameterEditor(props) {
         {
           label: "Yearly",
           key: "yearly",
-          children: yearSelector
+          children: yearSelector,
         },
         {
           label: "Advanced",
           key: "advanced",
-          children: dateSelector
-        }
+          children: dateSelector,
+        },
       ]}
       defaultActiveKey="yearly"
       type="card"
       size="small"
     />
-  )
+  );
 
   let dateSelectButtonLabel = "";
-  if (checkBoundaryDate(startDate, "start") && checkBoundaryDate(endDate, "end")) {
+  if (
+    checkBoundaryDate(startDate, "start") &&
+    checkBoundaryDate(endDate, "end")
+  ) {
     dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}`;
   } else {
-    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}`
+    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}`;
   }
 
   const mobile = useMobile();
@@ -181,7 +184,7 @@ export default function ParameterEditor(props) {
         paddingTop: 10,
         paddingLeft: 0,
         gap: 10,
-        width: "100%"
+        width: "100%",
         fontFamily: "Roboto Serif",
       }}
     >
@@ -191,9 +194,7 @@ export default function ParameterEditor(props) {
         content={popoverContent}
         placement={displayCategory === "mobile" ? "bottom" : "bottomRight"}
       >
-        <Button
-          type="text"
-        >
+        <Button type="text">
           {dateSelectButtonLabel}
           <CaretDownFilled
             style={{
@@ -269,29 +270,28 @@ export default function ParameterEditor(props) {
 }
 
 /**
- * Checks whether or not an input date is a boundary date - 
- * the first or last day of a fixed period (e.g., Jan. 1 or 
+ * Checks whether or not an input date is a boundary date -
+ * the first or last day of a fixed period (e.g., Jan. 1 or
  * Dec. 31)
- * @param {String} date 
+ * @param {String} date
  * @param {("start"|"end")} variant The date type - either a
  * period's start or its end date
  * @returns {Boolean} Whether or not the date is a boundary date
  */
 function checkBoundaryDate(date, variant) {
-
   // Define boundary dates and types
   // Note that month is 0-indexed in moment
   const boundaries = [
     {
       type: "start",
       month: 0,
-      date: 1
+      date: 1,
     },
     {
       type: "end",
       month: 11,
-      date: 31
-    }
+      date: 31,
+    },
   ];
 
   // Take the date and define it in terms of moment package
@@ -304,16 +304,15 @@ function checkBoundaryDate(date, variant) {
   for (const boundary of boundaries) {
     // Set up a test date using the test year and the boundary's defined
     // month and date
-    const testDate = moment().year(testYear).month(boundary.month).date(boundary.date);
+    const testDate = moment()
+      .year(testYear)
+      .month(boundary.month)
+      .date(boundary.date);
     // If the date is a boundary date, return true
-    if (
-      boundary.type === variant &&
-      testDate.isSame(momentDate, "date")
-    ) {
+    if (boundary.type === variant && testDate.isSame(momentDate, "date")) {
       return true;
     }
   }
   // If we've found no boundary dates, return false
   return false;
-
 }
