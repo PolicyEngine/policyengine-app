@@ -507,19 +507,11 @@ function JSONBlock({ json, title }) {
         }}
         title={cardTitleComponent}
       >
-        <SyntaxHighliter
-          language="json"
-          style={monoBlue}
-          customStyle={{
-            padding: "24px",
-            margin: 0,
-            maxHeight: !isExpanded && "18em",
-            overflowX: "scroll",
-            position: "relative",
-          }}
-        >
-          {JSON.stringify(json, null, 2)}
-        </SyntaxHighliter>
+        <CodeMirror
+          value={JSON.stringify(json, null, 2)}
+          maxHeight={!isExpanded && "18em"}
+          editable={false}
+        />
       </Card>
     </div>
   );
