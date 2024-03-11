@@ -414,11 +414,11 @@ function JSONBlock({ json, title }) {
         >
           <Tooltip title={`${isExpanded ? "Close" : "Expand"} the code block`}>
             <Button
-              type="primary"
+              type="default"
               style={{
-                backgroundColor: buttonStyles.primary.standardBackgroundColor,
                 border: 0,
                 fontWeight: 500,
+                boxShadow: "none"
               }}
               onClick={() => setIsExpanded((prev) => !prev)}
             >
@@ -444,11 +444,11 @@ function JSONBlock({ json, title }) {
           </Tooltip>
           <Tooltip title="Copy the code block">
             <Button
-              type="primary"
+              type="default"
               style={{
-                backgroundColor: buttonStyles.primary.standardBackgroundColor,
                 border: 0,
                 fontWeight: 500,
+                boxShadow: "none",
                 width: "6rem",
               }}
               onClick={handleCopy}
