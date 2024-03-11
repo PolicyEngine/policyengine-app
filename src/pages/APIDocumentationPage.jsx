@@ -14,6 +14,7 @@ import useDisplayCategory from "../redesign/components/useDisplayCategory";
 import SyntaxHighliter from "react-syntax-highlighter";
 import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import CodeMirror from "@uiw/react-codemirror";
+import { langs } from "@uiw/codemirror-extensions-langs";
 
 export const exampleInputs = {
   us: {
@@ -511,6 +512,7 @@ function JSONBlock({ json, title }) {
           value={JSON.stringify(json, null, 2)}
           maxHeight={!isExpanded && "18em"}
           editable={false}
+          extensions={[langs.json()]}
         />
       </Card>
     </div>
