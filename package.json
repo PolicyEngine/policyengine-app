@@ -11,6 +11,7 @@
     "@babel/preset-react": "^7.23.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@uiw/codemirror-extensions-langs": "^4.21.24",
+    "@uiw/codemirror-theme-github": "^4.21.24",
     "@uiw/react-codemirror": "^4.21.24",
     "@uiw/react-textarea-code-editor": "^3.0.2",
     "antd": ">4, <5",

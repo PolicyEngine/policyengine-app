@@ -9,12 +9,10 @@ import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
-import { buttonStyles } from "../controls/Button";
 import useDisplayCategory from "../redesign/components/useDisplayCategory";
-import SyntaxHighliter from "react-syntax-highlighter";
-import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import CodeMirror from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
+import { githubLight } from "@uiw/codemirror-theme-github";
 
 export const exampleInputs = {
   us: {
@@ -510,9 +508,10 @@ function JSONBlock({ json, title }) {
       >
         <CodeMirror
           value={JSON.stringify(json, null, 2)}
-          maxHeight={!isExpanded && "18em"}
+          maxHeight={!isExpanded && "260px"}
           editable={false}
           extensions={[langs.json()]}
+          theme={githubLight}
         />
       </Card>
     </div>
