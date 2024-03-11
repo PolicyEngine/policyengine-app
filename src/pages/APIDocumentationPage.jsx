@@ -397,6 +397,9 @@ function JSONBlock({ json, title }) {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
+          // Padding is necessary so that button click effect
+          // is visible
+          padding: "0 6px 0 0"
         }}
       >
         <p 
