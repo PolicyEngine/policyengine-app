@@ -389,96 +389,95 @@ function JSONBlock({ json, title }) {
   }, [isCopied]);
 
   const cardTitleComponent = (
-
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        // Padding is necessary so that button click effect
+        // is visible
+        padding: "0 6px 0 0",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+        }}
+      >
+        json
+      </p>
       <div
         style={{
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
           alignItems: "center",
-          // Padding is necessary so that button click effect
-          // is visible
-          padding: "0 6px 0 0"
+          justifyContent: "center",
+          gap: "0.5rem",
         }}
       >
-        <p 
-          style={{
-            margin: 0,
-          }}
-        >
-          json
-        </p>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "0.5rem",
-          }}
-        >
-          <Tooltip title={`${isExpanded ? "Close" : "Expand"} the code block`}>
-            <Button
-              type="default"
+        <Tooltip title={`${isExpanded ? "Close" : "Expand"} the code block`}>
+          <Button
+            type="default"
+            style={{
+              border: 0,
+              fontWeight: 500,
+              boxShadow: "none",
+            }}
+            onClick={() => setIsExpanded((prev) => !prev)}
+          >
+            <div
               style={{
-                border: 0,
-                fontWeight: 500,
-                boxShadow: "none",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
               }}
-              onClick={() => setIsExpanded((prev) => !prev)}
             >
-              <div
+              {isExpanded ? <UpOutlined /> : <DownOutlined />}
+              <p
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
+                  margin: 0,
                 }}
               >
-                {isExpanded ? <UpOutlined /> : <DownOutlined />}
-                <p
-                  style={{
-                    margin: 0,
-                  }}
-                >
-                  {isExpanded ? "Shrink" : "Expand"}
-                </p>
-              </div>
-            </Button>
-          </Tooltip>
-          <Tooltip title="Copy the code block">
-            <Button
-              type="default"
+                {isExpanded ? "Shrink" : "Expand"}
+              </p>
+            </div>
+          </Button>
+        </Tooltip>
+        <Tooltip title="Copy the code block">
+          <Button
+            type="default"
+            style={{
+              border: 0,
+              fontWeight: 500,
+              boxShadow: "none",
+              width: "6rem",
+            }}
+            onClick={handleCopy}
+          >
+            <div
               style={{
-                border: 0,
-                fontWeight: 500,
-                boxShadow: "none",
-                width: "6rem",
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
               }}
-              onClick={handleCopy}
             >
-              <div
+              <CopyOutlined />
+              <p
                 style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "0.5rem",
+                  margin: 0,
                 }}
               >
-                <CopyOutlined />
-                <p
-                  style={{
-                    margin: 0,
-                  }}
-                >
-                  {isCopied ? "Copied!" : "Copy"}
-                </p>
-              </div>
-            </Button>
-          </Tooltip>
-        </div>
+                {isCopied ? "Copied!" : "Copy"}
+              </p>
+            </div>
+          </Button>
+        </Tooltip>
       </div>
+    </div>
   );
 
   return (
@@ -498,8 +497,7 @@ function JSONBlock({ json, title }) {
         <h4>{title}</h4>
       </div>
       <Card
-        style={{
-        }}
+        style={{}}
         loading={!json}
         bodyStyle={{
           padding: 0,
