@@ -389,12 +389,8 @@ function JSONBlock({ json, title }) {
     }
   }, [isCopied]);
 
-  return (
-    <div
-      style={{
-        flex: 1,
-      }}
-    >
+  const cardTitleComponent = (
+
       <div
         style={{
           display: "flex",
@@ -403,7 +399,13 @@ function JSONBlock({ json, title }) {
           alignItems: "center",
         }}
       >
-        <h4>{title}</h4>
+        <p 
+          style={{
+            margin: 0,
+          }}
+        >
+          json
+        </p>
         <div
           style={{
             display: "flex",
@@ -418,7 +420,7 @@ function JSONBlock({ json, title }) {
               style={{
                 border: 0,
                 fontWeight: 500,
-                boxShadow: "none"
+                boxShadow: "none",
               }}
               onClick={() => setIsExpanded((prev) => !prev)}
             >
@@ -475,6 +477,24 @@ function JSONBlock({ json, title }) {
           </Tooltip>
         </div>
       </div>
+  );
+
+  return (
+    <div
+      style={{
+        flex: 1,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h4>{title}</h4>
+      </div>
       <Card
         style={{
           maxHeight: !isExpanded && "18em",
@@ -485,6 +505,7 @@ function JSONBlock({ json, title }) {
         bodyStyle={{
           padding: 0,
         }}
+        title={cardTitleComponent}
       >
         <SyntaxHighliter
           language="json"
