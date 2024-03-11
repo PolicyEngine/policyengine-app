@@ -497,9 +497,6 @@ function JSONBlock({ json, title }) {
       </div>
       <Card
         style={{
-          maxHeight: !isExpanded && "18em",
-          overflowX: "scroll",
-          position: "relative",
         }}
         loading={!json}
         bodyStyle={{
@@ -513,6 +510,9 @@ function JSONBlock({ json, title }) {
           customStyle={{
             padding: "24px",
             margin: 0,
+            maxHeight: !isExpanded && "18em",
+            overflowX: "scroll",
+            position: "relative",
           }}
         >
           {JSON.stringify(json, null, 2)}
