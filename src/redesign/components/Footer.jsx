@@ -11,7 +11,7 @@ import {
   TwitterOutlined,
   YoutubeFilled,
 } from "@ant-design/icons";
-import React from "react";
+import { createElement, useEffect } from "react";
 
 export default function Footer() {
   const displayCategory = useDisplayCategory();
@@ -47,29 +47,40 @@ function ContactUs() {
 }
 
 function TwitterEmbed() {
-  const displayCategory = useDisplayCategory();
-  const athabascaTwitterLink =
-    "https://www.athabasca.dev/hydra/content/twitteriframes/QOJXetYBdppnFEcjtYUDRuWJmXAMPotTWDeqkkbMQeCkJKwB.html?v=AtCahfJd";
+  const dC = useDisplayCategory();
+
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://platform.twitter.com/widgets.js";
+    script.charset = "utf-8";
+    document.getElementById("twitter-container").appendChild(script);
+  }, []);
+
+  const widths = {
+    mobile: "100%",
+    tablet: "50%",
+    desktop: "33%",
+    default: "33%",
+  };
 
   return (
     <div
+      id="twitter-container"
       style={{
-        marginLeft: 20,
-        marginRight: 20,
+        paddingLeft: 20,
+        paddingRight: 20,
+        width: Object.keys(widths).includes(dC) ? widths[dC] : widths.default,
       }}
     >
-      <iframe
-        title="Twitter timeline"
-        scrolling="no" // This is deprecated, but essential to function correctly
-        height="100%"
-        style={{
-          width: "100%",
-          height: displayCategory === "mobile" ? "500px" : "100%",
-          border: "none",
-          borderRadius: "12px",
-        }}
-        src={athabascaTwitterLink}
-      />
+      <a
+        className="twitter-timeline"
+        data-theme="light"
+        href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
+        data-width="100%"
+      >
+        Loading tweets by ThePolicyEngine...
+      </a>
     </div>
   );
 }
@@ -172,7 +183,7 @@ export function SocialLink({ icon, url, backgroundColor, color }) {
           marginLeft: displayCategory === "mobile" ? 20 : 0,
         }}
       >
-        {React.createElement(icon, {
+        {createElement(icon, {
           style: {
             color: color || style.colors.BLUE_PRESSED,
             fontSize,
