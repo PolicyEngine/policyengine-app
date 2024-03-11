@@ -13,6 +13,7 @@ import { buttonStyles } from "../controls/Button";
 import useDisplayCategory from "../redesign/components/useDisplayCategory";
 import SyntaxHighliter from "react-syntax-highlighter";
 import { monoBlue } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import CodeMirror from "@uiw/react-codemirror";
 
 export const exampleInputs = {
   us: {
