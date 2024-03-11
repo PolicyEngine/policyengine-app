@@ -375,8 +375,8 @@ function JSONBlock({ json, title }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
-  function handleCopy(code) {
-    navigator.clipboard.writeText(code);
+  function handleCopy() {
+    navigator.clipboard.writeText(JSON.stringify(json, null, 2));
     setIsCopied(true);
   }
 
