@@ -7,15 +7,15 @@ import { getNewPolicyId } from "../../api/parameters";
 import { formatVariableValue } from "../../api/variables";
 import { getParameterAtInstant } from "../../api/parameters";
 import Button from "../../controls/Button";
+import InputText from "../../controls/InputText";
 import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal, Switch, Tooltip, Input } from "antd";
+import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
-import { EditOutlined } from "@ant-design/icons";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -201,8 +201,6 @@ function PolicyNamer(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
-  const [isRenaming, setIsRenaming] = useState(false);
-  const [newName, setNewName] = useState(label);
 
   function handleSubmit(name) {
     if (!validateSubmit(name)) {
@@ -216,7 +214,6 @@ function PolicyNamer(props) {
         newSearch.set("renamed", true);
         if (data.status === "ok") {
           newSearch.set("reform", data.policy_id);
-          policy.reform.label = name;
         }
         setSearchParams(newSearch);
 
@@ -224,7 +221,6 @@ function PolicyNamer(props) {
           setError(data.message);
         } else {
           setError(null);
-          setIsRenaming(false);
         }
       },
     );
@@ -239,40 +235,23 @@ function PolicyNamer(props) {
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-        {isRenaming ? (
-          <Input
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            onPressEnter={() => {
-              handleSubmit(newName);
-              setIsRenaming(false);
-            }}
-            onBlur={() => setIsRenaming(false)}
-          />
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              alignItems: "start",
-              width: "100%",
-              height: "100%",
-              gap: "10px",
-            }}
-          >
-            <h6 style={{ fontWeight: "500", fontSize: "18px" }}>{label}</h6>
-            <Tooltip title="Rename policy">
-              <EditOutlined
-                onClick={() => setIsRenaming(true)}
-                style={{
-                  cursor: "pointer",
-                  fontSize: "20px",
-                  color: style.colors.BLACK,
-                }}
-              />
-            </Tooltip>
-          </div>
-        )}
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <InputText
+          disableOnEmpty
+          width="100%"
+          key={label}
+          buttonText="Rename"
+          buttonStyle="default"
+          componentStyle={{
+            margin: "10px 20px",
+          }}
+          error={error}
+          boxStyle={{
+            padding: "0px 10px",
+          }}
+          onPressEnter={(e, name) => handleSubmit(name)}
+          onClick={(e, name) => handleSubmit(name)}
+        />
       </div>
       {error && (
         <Alert
@@ -551,6 +530,9 @@ export default function PolicyRightSidebar(props) {
 
   return (
     <div style={{ paddingTop: 10 }}>
+      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
+        {policy.reform.label || `Policy #${searchParams.get("reform")}`}
+      </h6>
       {
         <PolicyNamer
           policy={policy}
