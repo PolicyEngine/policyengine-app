@@ -27,7 +27,10 @@ export default function PolicySearch(props) {
     setValue(searchText);
     const now = new Date().getTime();
     if (now - lastRequestTime > 1000 || searchText !== lastSearch) {
-      countryApiCall(metadata.countryId, `/policies?query=${searchText}`)
+      countryApiCall(
+        metadata.countryId,
+        `/policies?query=${searchText}&unique_only=true`,
+      )
         .then((data) => data.json())
         .then((data) => {
           setPolicies(
