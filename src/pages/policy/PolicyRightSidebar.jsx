@@ -399,6 +399,22 @@ function PolicyDisplay(props) {
   );
 }
 
+const EditIcon = ({ isEditing, onClick }) => (
+  <Tooltip title={isEditing ? "Close editor" : "Open editor"}>
+    <div
+      onClick={onClick}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "24px",
+        height: "24px",
+      }}
+    >
+      {isEditing ? <CloseOutlined /> : <EditOutlined />}
+    </div>
+  </Tooltip>
+);
 export default function PolicyRightSidebar(props) {
   const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -543,10 +559,10 @@ export default function PolicyRightSidebar(props) {
         <h6 style={{ fontWeight: 400 }}>
           {policy.reform.label || `Policy #${searchParams.get("reform")}`}
         </h6>
-
-        <div onClick={() => setIsPolicyNamerVisible(!isPolicyNamerVisible)}>
-          {isPolicyNamerVisible ? <CloseOutlined /> : <EditOutlined />}
-        </div>
+        <EditIcon
+          isEditing={isPolicyNamerVisible}
+          onClick={() => setIsPolicyNamerVisible(!isPolicyNamerVisible)}
+        />
       </div>
 
       {isPolicyNamerVisible && (
