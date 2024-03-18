@@ -34,6 +34,7 @@ const esModules = [
   "remark-parse",
   "remark-rehype",
   "space-separated-tokens",
+  "thememirror",
   "trim-lines",
   "trough",
   "unified",
