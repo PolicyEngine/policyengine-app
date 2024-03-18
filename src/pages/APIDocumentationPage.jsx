@@ -12,7 +12,7 @@ import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
 import useDisplayCategory from "../redesign/components/useDisplayCategory";
 import CodeMirror from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
-import { githubLight } from "@uiw/codemirror-theme-github";
+import { espresso } from "thememirror";
 
 export const exampleInputs = {
   us: {
@@ -509,7 +509,7 @@ function JSONBlock({ json, title }) {
           maxHeight={!isExpanded && "260px"}
           editable={false}
           extensions={[langs.json()]}
-          theme={githubLight}
+          theme={espresso}
         />
       </Card>
     </div>
