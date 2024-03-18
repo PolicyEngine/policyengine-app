@@ -104,23 +104,6 @@ export default function BaselineAndReformChart(props) {
       </div>
     );
 
-    const getPlotComponent = (viewMode, sharedProps) => {
-      switch (viewMode) {
-        case "baselineAndReform":
-          return <BaselineAndReformTogetherPlot {...sharedProps} />;
-        case "absoluteChange":
-          return (
-            <BaselineReformDeltaPlot {...sharedProps} showPercentage={false} />
-          );
-        case "relativeChange":
-          return (
-            <BaselineReformDeltaPlot {...sharedProps} showPercentage={true} />
-          );
-        default:
-          return <div>Unknown view mode</div>;
-      }
-    };
-
     let sharedProps = {
       earningsArray,
       baselineArray,
@@ -134,12 +117,20 @@ export default function BaselineAndReformChart(props) {
       policy,
     };
 
-    let plot = getPlotComponent(viewMode, sharedProps);
-
     return (
       <>
         {toggle}
-        <HoverCard>{plot}</HoverCard>
+        <HoverCard>
+          {viewMode === "baselineAndReform" && (
+            <BaselineAndReformTogetherPlot {...sharedProps} />
+          )}
+          {viewMode === "absoluteChange" && (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={false} />
+          )}
+          {viewMode === "relativeChange" && (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={true} />
+          )}
+        </HoverCard>
       </>
     );
   }
