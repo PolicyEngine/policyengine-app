@@ -89,7 +89,7 @@ export default function BaselineOnlyChart(props) {
                 x: earningsArray,
                 y: baselineArray,
                 type: "line",
-                name: capitalize(variableLabel),
+                showlegend: false,
                 line: {
                   color: style.colors.BLUE,
                 },
@@ -110,7 +110,7 @@ export default function BaselineOnlyChart(props) {
                 y: [currentBaseline],
                 type: "line",
                 mode: "markers",
-                name: `Your current ${variableLabel}`,
+                showlegend: false,
                 line: {
                   color: style.colors.BLUE,
                 },

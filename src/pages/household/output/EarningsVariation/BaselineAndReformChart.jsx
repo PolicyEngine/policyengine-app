@@ -195,9 +195,10 @@ function BaselineAndReformTogetherPlot(props) {
       x: earningsArray,
       y: baselineArray,
       type: "line",
-      name: `Baseline ${variableLabel}`,
+      name: "Baseline",
+      legendgroup: "Baseline",
       line: {
-        color: style.colors.MEDIUM_DARK_GRAY,
+        color: style.colors.GRAY,
       },
       ...(useHoverCard
         ? {
@@ -215,9 +216,11 @@ function BaselineAndReformTogetherPlot(props) {
       x: earningsArray,
       y: reformArray,
       type: "line",
-      name: `Reform ${variableLabel}`,
+      name: "Reform",
+      legendgroup: "Reform",
       line: {
         color: style.colors.BLUE,
+        dash: "dot",
       },
       ...(useHoverCard
         ? {
@@ -233,33 +236,14 @@ function BaselineAndReformTogetherPlot(props) {
     },
     {
       x: [currentEarnings],
-      y: [currentValue],
-      type: "scatter",
-      mode: "markers",
-      name: `Your reform ${variableLabel}`,
-      line: {
-        color: style.colors.BLUE,
-      },
-      ...(useHoverCard
-        ? {
-            hoverinfo: "none",
-          }
-        : {
-            hovertemplate:
-              `<b>Your reform ${variableLabel}</b><br><br>` +
-              `If you earn %{x}, your reform<br>` +
-              `${variableLabel} will be %{y}.` +
-              `<extra></extra>`,
-          }),
-    },
-    {
-      x: [currentEarnings],
       y: [baselineValue],
       type: "scatter",
       mode: "markers",
-      name: `Your baseline ${variableLabel}`,
-      line: {
-        color: style.colors.MEDIUM_DARK_GRAY,
+      legendgroup: "Baseline",
+      showlegend: false,
+      marker: {
+        color: style.colors.GRAY,
+        size: 7,
       },
       ...(useHoverCard
         ? {
@@ -269,6 +253,29 @@ function BaselineAndReformTogetherPlot(props) {
             hovertemplate:
               `<b>Your baseline ${variableLabel}</b><br><br>` +
               `If you earn %{x}, your baseline<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
+    },
+    {
+      x: [currentEarnings],
+      y: [currentValue],
+      type: "scatter",
+      mode: "markers",
+      legendgroup: "Reform",
+      showlegend: false,
+      marker: {
+        color: style.colors.BLUE,
+        size: 6,
+      },
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Your reform ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your reform<br>` +
               `${variableLabel} will be %{y}.` +
               `<extra></extra>`,
           }),
@@ -412,6 +419,7 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
+      showlegend: false,
       hoverinfo: "text",
       text: earningsArray.map((earnings, index) => {
         const deltaValue = showPercentage
@@ -444,6 +452,7 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
+      showlegend: false,
       ...(useHoverCard
         ? {
             hoverinfo: "none",
@@ -495,11 +504,6 @@ function BaselineReformDeltaPlot(props) {
                   font: { size: "16" },
                 },
               }),
-          legend: {
-            // Position above the plot
-            y: 1.2,
-            orientation: "h",
-          },
           margin: {
             t: 0,
           },
