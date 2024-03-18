@@ -269,7 +269,7 @@ export default function Analysis(props) {
     <>
       <h2>Analysis</h2>
       <p>
-        <a href="https://policyengine.org/uk/blog/2023-03-17-automate-policy-analysis-with-policy-engines-new-chatgpt-integration">
+        <a href="/us/research/gpt-analysis">
           Read more about PolicyEngine&apos;s automatic GPT4-powered policy
           analysis.
         </a>{" "}
