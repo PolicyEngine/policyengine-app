@@ -134,14 +134,12 @@ export default function BaselineOnlyChart(props) {
                   metadata.variables.employment_income.unit,
                   earningsArray.concat(currentEarnings),
                 ),
-                uirevision: metadata.variables.employment_income.unit,
               },
               yaxis: {
                 title: {
                   text: capitalize(variableLabel),
                 },
                 ...yaxisFormat,
-                uirevision: metadata.variables[variable].unit,
               },
               ...(useHoverCard
                 ? {}
