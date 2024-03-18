@@ -12,10 +12,11 @@ import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
+import { Alert, Modal, Switch, Tooltip } from "antd";
+import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -410,6 +411,7 @@ export default function PolicyRightSidebar(props) {
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
   const [showReformSearch, setShowReformSearch] = useState(false);
+  const [isPolicyNamerVisible, setIsPolicyNamerVisible] = useState(false);
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -530,16 +532,33 @@ export default function PolicyRightSidebar(props) {
 
   return (
     <div style={{ paddingTop: 10 }}>
-      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
-        {policy.reform.label || `Policy #${searchParams.get("reform")}`}
-      </h6>
-      {
-        <PolicyNamer
-          policy={policy}
-          metadata={metadata}
-          setPolicy={setPolicy}
-        />
-      }
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          margin: "10px 20px 0px 20px",
+        }}
+      >
+        <h6 style={{ fontWeight: 400 }}>
+          {policy.reform.label || `Policy #${searchParams.get("reform")}`}
+        </h6>
+
+        <div onClick={() => setIsPolicyNamerVisible(!isPolicyNamerVisible)}>
+          {isPolicyNamerVisible ? <CloseOutlined /> : <EditOutlined />}
+        </div>
+      </div>
+
+      {isPolicyNamerVisible && (
+        <div style={{ margin: "10px 20px" }}>
+          <PolicyNamer
+            policy={policy}
+            metadata={metadata}
+            setPolicy={setPolicy}
+          />
+        </div>
+      )}
+
       {showReformSearch ? (
         <div
           style={{
