@@ -485,7 +485,7 @@ function BaselineReformDeltaPlot(props) {
               : `Absolute change in ${variableLabel}`,
             tickformat: showPercentage ? ".0%" : ".2s",
             ...getPlotlyAxisFormat(
-              showPercentage ? "%" : metadata.variables[variable].unit,
+              showPercentage ? "/1" : metadata.variables[variable].unit,
               showPercentage
                 ? percentageDeltaArray
                 : deltaArray.concat(currentDelta),
