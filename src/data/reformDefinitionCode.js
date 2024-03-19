@@ -90,20 +90,8 @@ export function getReformCode(type, policy, region) {
     return [];
   }
 
-  let lines = ["", "", "def modify_parameters(parameters):"];
+  let lines = ["", "", "def reform_parameters(parameters):"];
 
-  // For US reforms, when calculated society-wide, add reported state income tax
-  if (type === "policy" && US_REGIONS.includes(region)) {
-    // Calculate the earliest start date and latest end date for
-    // the policies included in the simulation
-    const { earliestStart, latestEnd } = getStartEndDates(policy);
-
-    lines.push(
-      "    parameters.simulation.reported_state_income_tax.update(",
-      `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
-      "        value=True)",
-    );
-  }
 
   for (let [parameterName, parameter] of Object.entries(policy.reform.data)) {
     for (let [instant, value] of Object.entries(parameter)) {
@@ -131,8 +119,20 @@ export function getReformCode(type, policy, region) {
     "",
     "class reform(Reform):",
     "    def apply(self):",
-    "        self.modify_parameters(modify_parameters)",
+    "        self.modify_parameters(reform_parameters)",
   ]);
+
+  // For US reforms, when calculated society-wide, add reported state income tax
+  if (type === "policy" && US_REGIONS.includes(region)) {
+    // Calculate the earliest start date and latest end date for
+    // the policies included in the simulation
+    const { earliestStart, latestEnd } = getStartEndDates(policy);
+
+    lines.push(
+    "        self.modify_parameters(use_reported_state_income_tax)",
+    );
+  }
+
   return lines;
 }
 
