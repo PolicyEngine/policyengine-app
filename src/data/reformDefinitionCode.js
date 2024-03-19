@@ -123,10 +123,6 @@ export function getReformCode(type, policy, region) {
 
   // For US reforms, when calculated society-wide, add reported state income tax
   if (type === "policy" && US_REGIONS.includes(region)) {
-    // Calculate the earliest start date and latest end date for
-    // the policies included in the simulation
-    const { earliestStart, latestEnd } = getStartEndDates(policy);
-
     lines.push("        self.modify_parameters(use_reported_state_income_tax)");
   }
 
@@ -212,6 +208,8 @@ export function getImplementationCode(type, region, timePeriod) {
   const isCountryUS = US_REGIONS.includes(region);
 
   return [
+    "",
+    "",
     `baseline = Microsimulation(${
       isCountryUS ? "reform=baseline_reform" : ""
     })`,
