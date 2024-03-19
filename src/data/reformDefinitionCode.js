@@ -70,7 +70,7 @@ export function getBaselineCode(type, policy, region) {
     "In US nationwide simulations,",
     "use reported state income tax liabilities",
     `"""`,
-    "def modify_baseline(parameters):",
+    "def use_reported_state_income_tax(parameters):",
     "    parameters.simulation.reported_state_income_tax.update(",
     `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
     "        value=True)",
@@ -79,7 +79,7 @@ export function getBaselineCode(type, policy, region) {
     "",
     "class baseline_reform(Reform):",
     "    def apply(self):",
-    "        self.modify_parameters(modify_baseline)",
+    "        self.modify_parameters(use_reported_state_income_tax)",
   ];
 }
 
