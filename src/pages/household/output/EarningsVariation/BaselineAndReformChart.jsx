@@ -104,23 +104,6 @@ export default function BaselineAndReformChart(props) {
       </div>
     );
 
-    const getPlotComponent = (viewMode, sharedProps) => {
-      switch (viewMode) {
-        case "baselineAndReform":
-          return <BaselineAndReformTogetherPlot {...sharedProps} />;
-        case "absoluteChange":
-          return (
-            <BaselineReformDeltaPlot {...sharedProps} showPercentage={false} />
-          );
-        case "relativeChange":
-          return (
-            <BaselineReformDeltaPlot {...sharedProps} showPercentage={true} />
-          );
-        default:
-          return <div>Unknown view mode</div>;
-      }
-    };
-
     let sharedProps = {
       earningsArray,
       baselineArray,
@@ -134,12 +117,20 @@ export default function BaselineAndReformChart(props) {
       policy,
     };
 
-    let plot = getPlotComponent(viewMode, sharedProps);
-
     return (
       <>
         {toggle}
-        <HoverCard>{plot}</HoverCard>
+        <HoverCard>
+          {viewMode === "baselineAndReform" && (
+            <BaselineAndReformTogetherPlot {...sharedProps} />
+          )}
+          {viewMode === "absoluteChange" && (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={false} />
+          )}
+          {viewMode === "relativeChange" && (
+            <BaselineReformDeltaPlot {...sharedProps} showPercentage={true} />
+          )}
+        </HoverCard>
       </>
     );
   }
@@ -195,9 +186,10 @@ function BaselineAndReformTogetherPlot(props) {
       x: earningsArray,
       y: baselineArray,
       type: "line",
-      name: `Baseline ${variableLabel}`,
+      name: "Baseline",
+      legendgroup: "Baseline",
       line: {
-        color: style.colors.MEDIUM_DARK_GRAY,
+        color: style.colors.GRAY,
       },
       ...(useHoverCard
         ? {
@@ -215,9 +207,11 @@ function BaselineAndReformTogetherPlot(props) {
       x: earningsArray,
       y: reformArray,
       type: "line",
-      name: `Reform ${variableLabel}`,
+      name: "Reform",
+      legendgroup: "Reform",
       line: {
         color: style.colors.BLUE,
+        dash: "dot",
       },
       ...(useHoverCard
         ? {
@@ -233,33 +227,14 @@ function BaselineAndReformTogetherPlot(props) {
     },
     {
       x: [currentEarnings],
-      y: [currentValue],
-      type: "scatter",
-      mode: "markers",
-      name: `Your reform ${variableLabel}`,
-      line: {
-        color: style.colors.BLUE,
-      },
-      ...(useHoverCard
-        ? {
-            hoverinfo: "none",
-          }
-        : {
-            hovertemplate:
-              `<b>Your reform ${variableLabel}</b><br><br>` +
-              `If you earn %{x}, your reform<br>` +
-              `${variableLabel} will be %{y}.` +
-              `<extra></extra>`,
-          }),
-    },
-    {
-      x: [currentEarnings],
       y: [baselineValue],
       type: "scatter",
       mode: "markers",
-      name: `Your baseline ${variableLabel}`,
-      line: {
-        color: style.colors.MEDIUM_DARK_GRAY,
+      legendgroup: "Baseline",
+      showlegend: false,
+      marker: {
+        color: style.colors.GRAY,
+        size: 7,
       },
       ...(useHoverCard
         ? {
@@ -269,6 +244,29 @@ function BaselineAndReformTogetherPlot(props) {
             hovertemplate:
               `<b>Your baseline ${variableLabel}</b><br><br>` +
               `If you earn %{x}, your baseline<br>` +
+              `${variableLabel} will be %{y}.` +
+              `<extra></extra>`,
+          }),
+    },
+    {
+      x: [currentEarnings],
+      y: [currentValue],
+      type: "scatter",
+      mode: "markers",
+      legendgroup: "Reform",
+      showlegend: false,
+      marker: {
+        color: style.colors.BLUE,
+        size: 6,
+      },
+      ...(useHoverCard
+        ? {
+            hoverinfo: "none",
+          }
+        : {
+            hovertemplate:
+              `<b>Your reform ${variableLabel}</b><br><br>` +
+              `If you earn %{x}, your reform<br>` +
               `${variableLabel} will be %{y}.` +
               `<extra></extra>`,
           }),
@@ -286,12 +284,10 @@ function BaselineAndReformTogetherPlot(props) {
               metadata.variables.employment_income.unit,
               earningsArray.concat(currentEarnings),
             ),
-            uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
             title: capitalize(variableLabel),
             ...yaxisFormat,
-            uirevision: metadata.variables.household_net_income.unit,
           },
           ...(useHoverCard
             ? {}
@@ -412,6 +408,7 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
+      showlegend: false,
       hoverinfo: "text",
       text: earningsArray.map((earnings, index) => {
         const deltaValue = showPercentage
@@ -444,6 +441,7 @@ function BaselineReformDeltaPlot(props) {
       line: {
         color: style.colors.BLUE,
       },
+      showlegend: false,
       ...(useHoverCard
         ? {
             hoverinfo: "none",
@@ -471,7 +469,6 @@ function BaselineReformDeltaPlot(props) {
               metadata.variables.employment_income.unit,
               earningsArray.concat(currentEarnings),
             ),
-            uirevision: metadata.variables.employment_income.unit,
           },
           yaxis: {
             title: showPercentage
@@ -479,12 +476,11 @@ function BaselineReformDeltaPlot(props) {
               : `Absolute change in ${variableLabel}`,
             tickformat: showPercentage ? ".0%" : ".2s",
             ...getPlotlyAxisFormat(
-              showPercentage ? "%" : metadata.variables[variable].unit,
+              showPercentage ? "/1" : metadata.variables[variable].unit,
               showPercentage
                 ? percentageDeltaArray
                 : deltaArray.concat(currentDelta),
             ),
-            uirevision: metadata.variables[variable].unit,
           },
           ...(useHoverCard
             ? {}
@@ -495,11 +491,6 @@ function BaselineReformDeltaPlot(props) {
                   font: { size: "16" },
                 },
               }),
-          legend: {
-            // Position above the plot
-            y: 1.2,
-            orientation: "h",
-          },
           margin: {
             t: 0,
           },
