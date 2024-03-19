@@ -113,7 +113,7 @@ describe("Test getReformCode", () => {
     const output = getReformCode("policy", reformPolicyUS, "us");
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      "    parameters.simulation.reported_state_income_tax.update(",
+      "        self.modify_parameters(use_reported_state_income_tax)",
     );
     const paramName = Object.keys(reformPolicyUS.reform.data)[0];
     const paramAccessor = `parameters.${paramName}`;
@@ -123,9 +123,6 @@ describe("Test getReformCode", () => {
   test("Ensure proper formatting for policies with numbers", () => {
     const output = getReformCode("policy", numberedPolicyUS, "us");
     expect(output).toBeInstanceOf(Array);
-    expect(output).toContain(
-      "    parameters.simulation.reported_state_income_tax.update(",
-    );
     const paramName = Object.keys(numberedPolicyUS.reform.data)[0];
     let nameParts = paramName.split(".");
     let numPart = nameParts[nameParts.length - 1];

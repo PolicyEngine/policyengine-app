@@ -92,7 +92,6 @@ export function getReformCode(type, policy, region) {
 
   let lines = ["", "", "def reform_parameters(parameters):"];
 
-
   for (let [parameterName, parameter] of Object.entries(policy.reform.data)) {
     for (let [instant, value] of Object.entries(parameter)) {
       const [start, end] = instant.split(".");
@@ -128,9 +127,7 @@ export function getReformCode(type, policy, region) {
     // the policies included in the simulation
     const { earliestStart, latestEnd } = getStartEndDates(policy);
 
-    lines.push(
-    "        self.modify_parameters(use_reported_state_income_tax)",
-    );
+    lines.push("        self.modify_parameters(use_reported_state_income_tax)");
   }
 
   return lines;

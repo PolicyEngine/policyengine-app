@@ -63,7 +63,8 @@ module.exports = {
       "<rootDir>/src/__tests__/__setup__/fileMock.js",
     "\\.(css|less)$": "<rootDir>/src/__tests__/__setup__/fileMock.js",
   },
-  modulePathIgnorePatterns: ["<rootDir>/src/__tests__/__setup__"],
+  coveragePathIgnorePatterns: ["<rootDir>/src/__tests__/__setup__/"],
+  testPathIgnorePatterns: ["<rootDir>/src/__tests__/__setup__/"],
   collectCoverage: true,
   collectCoverageFrom: ["src/**/*.{js,jsx}"],
 };
