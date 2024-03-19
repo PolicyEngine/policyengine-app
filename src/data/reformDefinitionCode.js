@@ -70,7 +70,7 @@ export function getBaselineCode(type, policy, region) {
     "In US nationwide simulations,",
     "use reported state income tax liabilities",
     `"""`,
-    "def modify_baseline(parameters):",
+    "def use_reported_state_income_tax(parameters):",
     "    parameters.simulation.reported_state_income_tax.update(",
     `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
     "        value=True)",
@@ -79,7 +79,7 @@ export function getBaselineCode(type, policy, region) {
     "",
     "class baseline_reform(Reform):",
     "    def apply(self):",
-    "        self.modify_parameters(modify_baseline)",
+    "        self.modify_parameters(use_reported_state_income_tax)",
   ];
 }
 
@@ -90,20 +90,7 @@ export function getReformCode(type, policy, region) {
     return [];
   }
 
-  let lines = ["", "", "def modify_parameters(parameters):"];
-
-  // For US reforms, when calculated society-wide, add reported state income tax
-  if (type === "policy" && US_REGIONS.includes(region)) {
-    // Calculate the earliest start date and latest end date for
-    // the policies included in the simulation
-    const { earliestStart, latestEnd } = getStartEndDates(policy);
-
-    lines.push(
-      "    parameters.simulation.reported_state_income_tax.update(",
-      `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
-      "        value=True)",
-    );
-  }
+  let lines = ["", "", "def reform_parameters(parameters):"];
 
   for (let [parameterName, parameter] of Object.entries(policy.reform.data)) {
     for (let [instant, value] of Object.entries(parameter)) {
@@ -131,8 +118,14 @@ export function getReformCode(type, policy, region) {
     "",
     "class reform(Reform):",
     "    def apply(self):",
-    "        self.modify_parameters(modify_parameters)",
+    "        self.modify_parameters(reform_parameters)",
   ]);
+
+  // For US reforms, when calculated society-wide, add reported state income tax
+  if (type === "policy" && US_REGIONS.includes(region)) {
+    lines.push("        self.modify_parameters(use_reported_state_income_tax)");
+  }
+
   return lines;
 }
 
@@ -215,6 +208,8 @@ export function getImplementationCode(type, region, timePeriod) {
   const isCountryUS = US_REGIONS.includes(region);
 
   return [
+    "",
+    "",
     `baseline = Microsimulation(${
       isCountryUS ? "reform=baseline_reform" : ""
     })`,
