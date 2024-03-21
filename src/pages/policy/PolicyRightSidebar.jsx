@@ -238,16 +238,14 @@ function PolicyNamer(props) {
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
         <InputText
+          placeholder={label}
           disableOnEmpty
           width="100%"
           key={label}
           buttonText="Rename"
           buttonStyle="default"
-          componentStyle={{
-            margin: "10px 20px",
-          }}
           error={error}
           boxStyle={{
             padding: "0px 10px",
@@ -555,33 +553,37 @@ export default function PolicyRightSidebar(props) {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-start",
-          margin: "10px 20px 0px 20px",
+          justifyContent: "space-between",
+          margin: "0px 20px",
           gap: "10px",
+          // Below line added to ensure h6 and PolicyNamer are same height
+          height: "32px"
         }}
       >
-        <h6
-          style={{
-            fontWeight: 400,
-            marginBottom: 0,
-          }}
-        >
-          {policy.reform.label || `Policy #${searchParams.get("reform")}`}
-        </h6>
+        {
+          isPolicyNamerVisible ? (
+            <PolicyNamer
+              policy={policy}
+              metadata={metadata}
+              setPolicy={setPolicy}
+              setVisible={setIsPolicyNamerVisible}
+            />
+          ) : (
+            <h6
+              style={{
+                fontWeight: 400,
+                marginBottom: 0,
+              }}
+            >
+              {policy.reform.label || `Policy #${searchParams.get("reform")}`}
+            </h6>
+          )
+        }
         <EditNameIcon
           isEditing={isPolicyNamerVisible}
           onClick={() => setIsPolicyNamerVisible(!isPolicyNamerVisible)}
         />
       </div>
-
-      {isPolicyNamerVisible && (
-        <PolicyNamer
-          policy={policy}
-          metadata={metadata}
-          setPolicy={setPolicy}
-          setVisible={setIsPolicyNamerVisible}
-        />
-      )}
 
       {showReformSearch ? (
         <div
