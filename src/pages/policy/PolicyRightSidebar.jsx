@@ -400,15 +400,15 @@ function PolicyDisplay(props) {
 }
 
 const EditIcon = ({ isEditing, onClick }) => (
-  <Tooltip title={isEditing ? "Close editor" : "Open editor"}>
+  <Tooltip title={isEditing ? "Cancel" : "Rename policy"}>
     <div
       onClick={onClick}
       style={{
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "24px",
-        height: "24px",
+        color: style.colors.DARK_GRAY,
+        cursor: "pointer",
       }}
     >
       {isEditing ? <CloseOutlined /> : <EditOutlined />}
@@ -552,11 +552,17 @@ export default function PolicyRightSidebar(props) {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "flex-start",
           margin: "10px 20px 0px 20px",
+          gap: "10px",
         }}
       >
-        <h6 style={{ fontWeight: 400 }}>
+        <h6
+          style={{
+            fontWeight: 400,
+            marginBottom: 0,
+          }}
+        >
           {policy.reform.label || `Policy #${searchParams.get("reform")}`}
         </h6>
         <EditIcon
@@ -566,13 +572,11 @@ export default function PolicyRightSidebar(props) {
       </div>
 
       {isPolicyNamerVisible && (
-        <div style={{ margin: "10px 20px" }}>
-          <PolicyNamer
-            policy={policy}
-            metadata={metadata}
-            setPolicy={setPolicy}
-          />
-        </div>
+        <PolicyNamer
+          policy={policy}
+          metadata={metadata}
+          setPolicy={setPolicy}
+        />
       )}
 
       {showReformSearch ? (
