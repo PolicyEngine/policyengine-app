@@ -198,7 +198,7 @@ function DatasetSelector(props) {
 }
 
 function PolicyNamer(props) {
-  const { policy, metadata } = props;
+  const { policy, metadata, setVisible } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
@@ -223,8 +223,10 @@ function PolicyNamer(props) {
         } else {
           setError(null);
         }
-      },
+      }
     );
+
+    setVisible(false)
   }
 
   function validateSubmit(input) {
@@ -399,7 +401,7 @@ function PolicyDisplay(props) {
   );
 }
 
-const EditIcon = ({ isEditing, onClick }) => (
+const EditNameIcon = ({ isEditing, onClick }) => (
   <Tooltip title={isEditing ? "Cancel" : "Rename policy"}>
     <div
       onClick={onClick}
@@ -410,6 +412,7 @@ const EditIcon = ({ isEditing, onClick }) => (
         color: style.colors.DARK_GRAY,
         cursor: "pointer",
       }}
+      aria-label={isEditing ? "Cancel" : "Rename policy"}
     >
       {isEditing ? <CloseOutlined /> : <EditOutlined />}
     </div>
@@ -565,7 +568,7 @@ export default function PolicyRightSidebar(props) {
         >
           {policy.reform.label || `Policy #${searchParams.get("reform")}`}
         </h6>
-        <EditIcon
+        <EditNameIcon
           isEditing={isPolicyNamerVisible}
           onClick={() => setIsPolicyNamerVisible(!isPolicyNamerVisible)}
         />
@@ -576,6 +579,7 @@ export default function PolicyRightSidebar(props) {
           policy={policy}
           metadata={metadata}
           setPolicy={setPolicy}
+          setVisible={setIsPolicyNamerVisible}
         />
       )}
 
