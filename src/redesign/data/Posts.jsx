@@ -741,19 +741,30 @@ let posts = [
       "PolicyEngine estimates reported likely tax-benefit reforms ahead of the UK Spring Budget.",
     date: "2024-03-04 09:00:00",
     filename: "spring-budget-2024.ipynb",
-    tags: ["uk", "policy", "featured"],
+    tags: ["uk", "policy"],
     image: "jeremy_hunt.jpg",
     authors: ["anthony-volk", "nikhil-woodruff"],
   },
   {
-    title: "TRAWFA", 
+    title: "Spring Budget 2024",
+    description: "PolicyEngine estimates the impact of the UK Spring Budget.",
+    date: "2024-03-06 09:00:00",
+    filename: "uk-2024-spring-budget.ipynb",
+    tags: ["uk", "policy", "featured"],
+    image: "uk_budget_box_hunt.jpg",
+    authors: ["nikhil-woodruff", "anthony-volk"],
+  },
+
+  {
+    title:
+      "Child Tax Credit Provisions of the Tax Relief for American Families and Workers Act",
     description: "PolicyEngine estimates the impact of the proposed TRAWFA.",
     date: "2024-03-06 09:00:00",
     filename: "trawfa.ipynb",
     tags: ["us", "policy", "featured"],
     image: "jeremy_hunt.jpg",
-    authors: ["max-ghenis", "nikhil-woodruff"]
-  }
+    authors: ["max-ghenis", "nikhil-woodruff"],
+  },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {

@@ -64,7 +64,7 @@
     "eject": "react-scripts eject",
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
     "lint": "eslint --ext js,jsx --max-warnings 0 . && prettier -c .",
-    "prepare-husky": "husky install"
+    "prepare-husky": "husky"
   },
   "browserslist": {
     "production": [
@@ -94,7 +94,7 @@
     "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.3",
+    "husky": "^9.0.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.4.3",
     "lint-staged": "^15.2.2",

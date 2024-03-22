@@ -31,7 +31,7 @@ export function getReproducibilityCodeBlock(
   ];
 }
 
-function getHeaderCode(type, metadata, policy) {
+export function getHeaderCode(type, metadata, policy) {
   let lines = [];
 
   // Add lines depending upon type of block
@@ -70,7 +70,7 @@ export function getBaselineCode(type, policy, region) {
     "In US nationwide simulations,",
     "use reported state income tax liabilities",
     `"""`,
-    "def modify_baseline(parameters):",
+    "def use_reported_state_income_tax(parameters):",
     "    parameters.simulation.reported_state_income_tax.update(",
     `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
     "        value=True)",
@@ -79,7 +79,7 @@ export function getBaselineCode(type, policy, region) {
     "",
     "class baseline_reform(Reform):",
     "    def apply(self):",
-    "        self.modify_parameters(modify_baseline)",
+    "        self.modify_parameters(use_reported_state_income_tax)",
   ];
 }
 
@@ -90,28 +90,19 @@ export function getReformCode(type, policy, region) {
     return [];
   }
 
-  let lines = ["", "", "def modify_parameters(parameters):"];
+  let lines = ["", "", "def reform_parameters(parameters):"];
 
-  // For US reforms, when calculated society-wide, add reported state income tax
-  if (type === "policy" && US_REGIONS.includes(region)) {
-    // Calculate the earliest start date and latest end date for
-    // the policies included in the simulation
-    const { earliestStart, latestEnd } = getStartEndDates(policy);
-
-    lines.push(
-      "    parameters.simulation.reported_state_income_tax.update(",
-      `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
-      "        value=True)",
-    );
-  }
-
-  for (const [parameterName, parameter] of Object.entries(policy.reform.data)) {
+  for (let [parameterName, parameter] of Object.entries(policy.reform.data)) {
     for (let [instant, value] of Object.entries(parameter)) {
       const [start, end] = instant.split(".");
       if (value === false) {
         value = "False";
       } else if (value === true) {
         value = "True";
+      }
+      // If param name contains number, transform into valid Python
+      if (doesParamNameContainNumber(parameterName)) {
+        parameterName = transformNumberedParamName(parameterName);
       }
       lines.push(
         `    parameters.${parameterName}.update(`,
@@ -127,8 +118,14 @@ export function getReformCode(type, policy, region) {
     "",
     "class reform(Reform):",
     "    def apply(self):",
-    "        self.modify_parameters(modify_parameters)",
+    "        self.modify_parameters(reform_parameters)",
   ]);
+
+  // For US reforms, when calculated society-wide, add reported state income tax
+  if (type === "policy" && US_REGIONS.includes(region)) {
+    lines.push("        self.modify_parameters(use_reported_state_income_tax)");
+  }
+
   return lines;
 }
 
@@ -211,6 +208,8 @@ export function getImplementationCode(type, region, timePeriod) {
   const isCountryUS = US_REGIONS.includes(region);
 
   return [
+    "",
+    "",
     `baseline = Microsimulation(${
       isCountryUS ? "reform=baseline_reform" : ""
     })`,
@@ -243,4 +242,54 @@ export function getStartEndDates(policy) {
     earliestStart: earliestStart,
     latestEnd: latestEnd,
   };
+}
+
+/**
+ * Transforms a parameter name with a number in the name
+ * into valid Python syntax
+ * @param {String} paramName
+ * @returns {String} the transformed name
+ */
+export function transformNumberedParamName(paramName) {
+  // Break the paramName into an array of dot-separated
+  // components
+  const NAME_ACCESSOR = ".";
+  const nameParts = paramName.split(NAME_ACCESSOR);
+
+  // Isolate number within the array and reformat
+  const sanitizedParts = nameParts.map((word) => {
+    if (Number(word)) {
+      word = `children["${word}"]`;
+    }
+    return word;
+  });
+
+  // Re-join the array into a string and return
+  return sanitizedParts.join(".");
+}
+
+/**
+ * Determines whether a parameter name (a ParameterNode
+ * object from a country package, accessed via country metadata)
+ * contains a number in the name, making it impossible to access
+ * through standard Python dot notation syntax
+ * @param {String} paramName
+ * @returns {Boolean} "true" if parameter name contains a number
+ * (as defined as a String, successfully casted to a Number),
+ * otherwise false
+ */
+export function doesParamNameContainNumber(paramName) {
+  const JOIN_TOKEN = ".";
+
+  // Take the param name and break it by its joining token
+  const paramNameArray = paramName.split(JOIN_TOKEN);
+
+  // Iterate over the resulting array
+  for (const name of paramNameArray) {
+    if (Number(name)) {
+      return true;
+    }
+  }
+
+  return false;
 }
