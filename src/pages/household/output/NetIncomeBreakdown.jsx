@@ -327,6 +327,8 @@ export default function NetIncomeBreakdown(props) {
 
   let title;
 
+  console.debug(householdBaseline);
+
   let isAdd = true;
   if (hasReform) {
     const difference =
