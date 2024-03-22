@@ -62,5 +62,11 @@
     "github": "Kim1277",
     "linkedin": "https://www.linkedin.com/in/lin-tao-384203207",
     "bio": "Lin is a data analyst at PolicyEngine."
+  },
+  "anthony-volk": {
+    "name": "Anthony Volk",
+    "email": "anthony@policyengine.org",
+    "bio": "is a full-stack engineer at PolicyEngine.",
+    "headshot": "anthony-volk.jpg"
   }
 }

@@ -610,5 +610,50 @@
     "tags": ["uk", "impact", "featured"],
     "image": "citizens-economic-council.png",
     "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Autumn Statement 2023 tax-benefit reforms",
+    "description": "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
+    "date": "2023-11-22 17:25",
+    "filename": "autumn-statement-2023.md",
+    "tags": ["uk", "policy", "featured"],
+    "image": "jeremy-hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Autumn 2023 model calibration update",
+    "description": "Evaluating PolicyEngine's model performance with the latest official statistics.",
+    "date": "2023-12-04 09:00:00",
+    "filename": "uk-calibration-2023-q4.ipynb",
+    "tags": ["uk", "technical"],
+    "image": "uk-calibration-dec-2023-update.png",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Wyden-Smith Child Tax Credit Expansion",
+    "description": "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit’s refundable component.",
+    "date": "2024-01-11 12:00:00",
+    "filename": "wyden-smith-ctc.md",
+    "tags": ["us", "impact", "featured", "child-tax-credit"],
+    "image": "wyden.jpeg",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "Spring Budget 2024 proposals",
+    "description": "PolicyEngine estimates reported likely tax-benefit reforms ahead of the UK Spring Budget.",
+    "date": "2024-03-04 09:00:00",
+    "filename": "spring-budget-2024.ipynb",
+    "tags": ["uk", "policy"],
+    "image": "jeremy_hunt.jpg",
+    "authors": ["anthony-volk", "nikhil-woodruff"]
+  },
+  {
+    "title": "Spring Budget 2024",
+    "description": "PolicyEngine estimates the impact of the UK Spring Budget.",
+    "date": "2024-03-06 09:00:00",
+    "filename": "uk-2024-spring-budget.ipynb",
+    "tags": ["uk", "policy", "featured"],
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff", "anthony-volk"]
   }
 ]
