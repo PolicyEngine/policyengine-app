@@ -12,10 +12,11 @@ import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
+import { Alert, Modal, Switch, Tooltip } from "antd";
+import { EditOutlined, CloseOutlined } from "@ant-design/icons";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -197,7 +198,7 @@ function DatasetSelector(props) {
 }
 
 function PolicyNamer(props) {
-  const { policy, metadata } = props;
+  const { policy, metadata, setVisible } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
@@ -222,8 +223,10 @@ function PolicyNamer(props) {
         } else {
           setError(null);
         }
-      },
+      }
     );
+
+    setVisible(false)
   }
 
   function validateSubmit(input) {
@@ -235,16 +238,14 @@ function PolicyNamer(props) {
 
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
         <InputText
+          placeholder={label}
           disableOnEmpty
           width="100%"
           key={label}
           buttonText="Rename"
           buttonStyle="default"
-          componentStyle={{
-            margin: "10px 20px",
-          }}
           error={error}
           boxStyle={{
             padding: "0px 10px",
@@ -398,6 +399,23 @@ function PolicyDisplay(props) {
   );
 }
 
+const EditNameIcon = ({ isEditing, onClick }) => (
+  <Tooltip title={isEditing ? "Cancel" : "Rename policy"}>
+    <div
+      onClick={onClick}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: style.colors.DARK_GRAY,
+        cursor: "pointer",
+      }}
+      aria-label={isEditing ? "Cancel" : "Rename policy"}
+    >
+      {isEditing ? <CloseOutlined /> : <EditOutlined />}
+    </div>
+  </Tooltip>
+);
 export default function PolicyRightSidebar(props) {
   const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -410,6 +428,7 @@ export default function PolicyRightSidebar(props) {
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
   const [showReformSearch, setShowReformSearch] = useState(false);
+  const [isPolicyNamerVisible, setIsPolicyNamerVisible] = useState(false);
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -530,16 +549,42 @@ export default function PolicyRightSidebar(props) {
 
   return (
     <div style={{ paddingTop: 10 }}>
-      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
-        {policy.reform.label || `Policy #${searchParams.get("reform")}`}
-      </h6>
-      {
-        <PolicyNamer
-          policy={policy}
-          metadata={metadata}
-          setPolicy={setPolicy}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          margin: "0px 20px",
+          gap: "10px",
+          // Below line added to ensure h6 and PolicyNamer are same height
+          height: "32px"
+        }}
+      >
+        {
+          isPolicyNamerVisible ? (
+            <PolicyNamer
+              policy={policy}
+              metadata={metadata}
+              setPolicy={setPolicy}
+              setVisible={setIsPolicyNamerVisible}
+            />
+          ) : (
+            <h6
+              style={{
+                fontWeight: 400,
+                marginBottom: 0,
+              }}
+            >
+              {policy.reform.label || `Policy #${searchParams.get("reform")}`}
+            </h6>
+          )
+        }
+        <EditNameIcon
+          isEditing={isPolicyNamerVisible}
+          onClick={() => setIsPolicyNamerVisible(!isPolicyNamerVisible)}
         />
-      }
+      </div>
+
       {showReformSearch ? (
         <div
           style={{
