@@ -177,7 +177,7 @@ function DatasetSelector(props) {
             !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed",
         }}
       >
-        Use Enhanced CPS (experimental)
+        Use Enhanced CPS (beta)
       </h6>
       <Tooltip
         placement="topRight"
