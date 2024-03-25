@@ -754,6 +754,15 @@ let posts = [
     image: "uk_budget_box_hunt.jpg",
     authors: ["nikhil-woodruff", "anthony-volk"],
   },
+  {
+    title: "Beta-launch: PolicyEngine's enhanced microdata for policy analysis",
+    description: "By integrating and calibrating multiple datasets, PolicyEngine makes world-class tax-benefit microsimulation modeling available to anyone.",
+    date: "2024-03-25 09:00:00",
+    tags: ["us", "technical", "featured"],
+    authors: ["max-ghenis"],
+    filename: "enhanced_cps_beta.md",
+    image: "enhanced_cps_beta.png",
+  }
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
