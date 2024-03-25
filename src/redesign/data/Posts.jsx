@@ -726,7 +726,7 @@ let posts = [
     authors: ["nikhil-woodruff"],
   },
   {
-    title: "Wyden-Smith Child Tax Credit Expansion",
+    title: "Preliminary analysis of the Wyden-Smith Child Tax Credit expansion",
     description:
       "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit’s refundable component.",
     date: "2024-01-11 12:00:00",
@@ -753,6 +753,27 @@ let posts = [
     tags: ["uk", "policy", "featured"],
     image: "uk_budget_box_hunt.jpg",
     authors: ["nikhil-woodruff", "anthony-volk"],
+  },
+  {
+    title: "Beta-launch: PolicyEngine's enhanced microdata for policy analysis",
+    description:
+      "By integrating and calibrating multiple datasets, PolicyEngine makes world-class tax-benefit microsimulation modeling available to anyone.",
+    date: "2024-03-25 09:00:00",
+    tags: ["us", "technical", "featured"],
+    authors: ["max-ghenis", "nikhil-woodruff"],
+    filename: "enhanced-cps-beta.md",
+    image: "enhanced-cps-beta.png",
+  },
+  {
+    title:
+      "Child Tax Credit Provisions of the Tax Relief for American Workers and Families Act",
+    description:
+      "How the Wyden-Smith bipartisan tax package would affect families through 2025.",
+    date: "2024-03-25 09:00:00",
+    tags: ["us", "policy", "featured"],
+    authors: ["max-ghenis"],
+    filename: "trafwa-ctc.md",
+    image: "trafwa-ctc.webp",
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
