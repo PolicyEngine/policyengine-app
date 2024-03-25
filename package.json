@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.1",
+    "@auth0/auth0-react": "^2.2.4",
     "@babel/preset-react": "^7.23.3",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@uiw/codemirror-extensions-langs": "^4.21.24",
