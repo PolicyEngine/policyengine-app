@@ -750,10 +750,19 @@ let posts = [
     description: "PolicyEngine estimates the impact of the UK Spring Budget.",
     date: "2024-03-06 09:00:00",
     filename: "uk-2024-spring-budget.ipynb",
-    tags: ["uk", "policy", "featured"],
+    tags: ["uk", "policy"],
     image: "uk_budget_box_hunt.jpg",
     authors: ["nikhil-woodruff", "anthony-volk"],
   },
+  {
+    title: "OBR forecast update: Spring 2024",
+    description: "How PolicyEngine compares to the latest OBR forecast outlook.",
+    date: "2024-03-18 09:00:00",
+    tags: ["uk", "policy", "featured"],
+    image: "uk_budget_box_hunt.jpg",
+    authors: ["nikhil-woodruff"],
+    filename: "obr-forecast-update-spring-24.ipynb",
+  }
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
 for (let post of posts) {
