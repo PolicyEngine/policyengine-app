@@ -87,7 +87,7 @@ export default function HomeLanding() {
               link={`/${countryId}/policy`}
               width="100%"
             />
-            <button onClick={async () => await loginWithRedirect({appState: {returnTo: "/us"}})}>Log In</button>
+            <button onClick={async () => await loginWithRedirect({appState: {returnTo: `/${countryId}`}})}>Log In</button>
             <button onClick={async () => await logout({ logoutParams: { returnTo: window.location.origin }})}>Log Out</button>
             <div>
               {
