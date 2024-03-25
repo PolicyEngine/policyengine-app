@@ -10,7 +10,7 @@ From 2023 to 2025 — in our static model assuming full take-up — we project t
 
 - Lower the Gini index of income inequality by 0.1% in 2023, rising to 0.3% in 2025
 
-This report describes these results in more detail, both for individual households and society at large. We’ll show the [custom mini-app](https://policyengine.org/us/trafwa-ctc-calculator) we built to capture the multi-year effects of the bill on your own family. This is also the first analysis we’ve published using our Enhanced Current Population Survey, we’ve built to give everyone access to the most accurate tax-benefit microsimulation modeling available — learn more about our launch of this cutting-edge dataset here. We close with a comparison to the Joint Committee on Taxation’s results.
+This report describes these results in more detail, both for individual households and society at large. We’ll show the [custom mini-app](https://policyengine.org/us/trafwa-ctc-calculator) we built to capture the multi-year effects of the bill on your own family. This is also the first analysis we’ve published using our Enhanced Current Population Survey, we’ve built to give everyone access to the most accurate tax-benefit microsimulation modeling available — learn more about our launch of this cutting-edge dataset [here](enhanced-cps-beta). We close with a comparison to the Joint Committee on Taxation’s results.
 
 [**Click here**](../trafwa-ctc-calculator) to see how the Tax Relief for American Families and Workers Act would affect your own household’s Child Tax Credit.
 
