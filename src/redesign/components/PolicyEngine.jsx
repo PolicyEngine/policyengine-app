@@ -2,7 +2,7 @@ import Home from "./Home";
 import Research from "./Research";
 import About from "./About";
 import Jobs from "./Jobs";
-import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
+import { useNavigate, Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Contact from "./Contact";
 import Donate from "./Donate";
 import { useLocation } from "react-router-dom";
@@ -23,6 +23,7 @@ import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "layout/CookieConsent";
 import TrafwaCalculator from "./TrafwaCalculator";
+import AuthCallback from "../../layout/AuthCallback";
 import PrivacyPage from "../../pages/PrivacyPage";
 import TACPage from "../../pages/TermsAndConditions";
 
@@ -214,6 +215,7 @@ export default function PolicyEngine({ pathname }) {
         {/* Redirect from / to /[countryId] */}
         <Route path="/" element={<Navigate to={`/${countryId}`} />} />
 
+        <Route path="/callback" element={<AuthCallback />} />
         <Route path="/:countryId" element={<Home />} />
         <Route path="/:countryId/about" element={<About />} />
         <Route path="/:countryId/jobs" element={<Jobs />} />
