@@ -773,7 +773,7 @@ let posts = [
     tags: ["us", "policy", "featured"],
     authors: ["max-ghenis"],
     filename: "trafwa-ctc.md",
-    image: "trafwa-ctc.webp",
+    image: "trafwa-ctc.png",
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
