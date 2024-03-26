@@ -2,16 +2,12 @@ import LinkButton from "controls/LinkButton";
 import useDisplayCategory from "./useDisplayCategory";
 import Hero from "../images/hero.png";
 import useCountryId from "./useCountryId";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useEffect } from "react";
 
 export default function HomeLanding() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const tablet = displayCategory === "tablet";
   const countryId = useCountryId();
-
-  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
 
   return (
     <div
@@ -87,30 +83,6 @@ export default function HomeLanding() {
               link={`/${countryId}/policy`}
               width="100%"
             />
-            <button onClick={async () => await loginWithRedirect({appState: {returnTo: `/${countryId}`}})}>Log In</button>
-            <button onClick={async () => await logout({ logoutParams: { returnTo: window.location.origin }})}>Log Out</button>
-            <div>
-              {
-                isLoading && (
-                  <h2>Loading</h2>
-                )
-              }
-              {
-                isAuthenticated && (
-                  <h2>Authenticated</h2>
-                )
-              }
-              {
-                user && (
-                  <h2>{user.name}</h2>
-                )
-              }
-              {
-                !isLoading && !isAuthenticated && !user && (
-                  <p>Weird problem</p>
-                )
-              }
-            </div>
           </div>
         </div>
       </div>
