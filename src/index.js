@@ -14,7 +14,6 @@ var Plotly = require("plotly.js/dist/plotly.js");
 Plotly.register(loc_en_gb);
 Plotly.register(loc_en_us);
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>

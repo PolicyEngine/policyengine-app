@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../../controls/LinkButton";
+import Button from "../../controls/Button";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Header() {
   const displayCategory = useDisplayCategory();
@@ -76,6 +78,7 @@ function DesktopHeaderBar() {
       <MainHeaderLogo />
       <PageLinks />
       <DesktopCalculatorButton />
+      <DesktopLoginButton />
     </>
   );
 }
@@ -181,6 +184,25 @@ function DesktopCalculatorButton() {
       link={`/${countryId}/calculator`}
       text="Compute Policy Impact"
       style={{ fontSize: 20, marginLeft: "auto", marginRight: 20, width: 400 }}
+    />
+  );
+}
+
+function DesktopLoginButton() {
+  const countryId = useCountryId();
+
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+
+  return (
+    <Button
+      text={isAuthenticated ? "Log Out" : "Log In"}
+      type="secondary"
+      onClick={
+        isAuthenticated
+          ? () => logout({ logoutParams: { returnTo: window.location.origin } })
+          : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
+      }
+      width="150px"
     />
   );
 }

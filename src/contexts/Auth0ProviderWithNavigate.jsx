@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
-export default function Auth0ProviderWithNavigate({children}) {
+export default function Auth0ProviderWithNavigate({ children }) {
   const navigate = useNavigate();
 
   const redirectUri = "http://localhost:3000/callback";
