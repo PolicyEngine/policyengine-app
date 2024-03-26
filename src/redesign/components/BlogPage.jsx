@@ -338,7 +338,7 @@ function PostBodySection({ post, markdown, notebook }) {
     );
   }
 }
-// how to add margin in bodycontent when iti is tablet or not destop
+
 function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
   const displayCategory = useDisplayCategory();
   if (!notebook && !markdown) {
