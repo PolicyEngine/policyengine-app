@@ -17,6 +17,7 @@
     "@uiw/react-textarea-code-editor": "^3.0.2",
     "antd": ">4, <5",
     "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.16.16",
