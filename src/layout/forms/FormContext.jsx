@@ -95,6 +95,11 @@ export default function FormContext(props) {
         method={method || "post"}
         style={{
           width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          gap: "16px",
           ...formStyle,
         }}
       >

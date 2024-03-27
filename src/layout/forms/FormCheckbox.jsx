@@ -3,13 +3,11 @@ import style from "redesign/style";
 import { motion } from "framer-motion";
 
 /**
- * React component providing a standardized form component; does not currently handle
- * radio or select menus, but could be expanded to do so in future
+ * React component providing a standardized form checkbox component
  * @param {Object} props
  * @param {String} props.name The JS 'name' to be applied to the input
  * @param {String} [props.label=""] The label to be applied to the form field
- * @param {String} props.type The input type of the field
- * @param {String} [props.placeholder] The item's placeholder text
+ * @param {Array} props.items An array of items to be included; must include "name" and "label" keys
  * @param {Function} [props.changeHandler] An optional change handler to be run on form
  * component change events, available outside of FormContext component
  * @param {Object} [props.labelStyle] Optional styling for the label
@@ -19,12 +17,11 @@ import { motion } from "framer-motion";
  * component is focused
  * @returns {import("react").ReactComponentElement}
  */
-export default function FormItem(props) {
+export default function FormCheckbox(props) {
   const {
     name,
     label="",
-    type,
-    placeholder,
+    items,
     changeHandler,
     labelStyle,
     containerStyle,
@@ -39,8 +36,21 @@ export default function FormItem(props) {
     if (changeHandler && changeHandler instanceof Function) {
       changeHandler(e, input);
     }
-    setInput(e.target.value);
+    console.log(e);
+    setInput((prev) => ({
+      ...prev,
+    }));
   }
+
+  const iteratedItems = items.map((item) => {
+    return (
+      <CheckItem
+        key={item.name}
+        name={item.name}
+        itemLabel={item.label}
+      />
+    )
+  });
 
   return (
     <div
@@ -49,7 +59,7 @@ export default function FormItem(props) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
         gap: "8px",
         ...containerStyle,
       }}
@@ -69,29 +79,43 @@ export default function FormItem(props) {
       >
         {label}
       </label>
-      <motion.input
+      {iteratedItems}
+    </div>
+  );
+}
+
+function CheckItem(props) {
+  const {
+    name,
+    itemLabel,
+    checked,
+    onCheck
+  } = props;
+
+  return (
+    <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+      <input
+        type="checkbox"
         name={name}
-        type={type || "text"}
-        placeholder={placeholder}
-        onChange={handleChange}
+        title={itemLabel}
         style={{
-          border: "none",
-          borderBottom: `1px solid ${style.colors.WHITE}`,
-          backgroundColor: style.colors.LIGHT_GRAY,
-          color: style.colors.DARK_GRAY,
-          width: "100%",
-          height: 50,
-          fontSize: 15,
-          fontWeight: 300,
-          padding: 10,
-          boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
-          ...inputStyle,
+          borderRadius: 0,
+          height: 20,
+          width: 20,
+          padding: 5,
+          appearance: "none",
+          backgroundColor: checked
+            ? style.colors.TEAL_PRESSED
+            : style.colors.TEAL_LIGHT,
+          cursor: "pointer",
         }}
-        // While focusing, make the bottom border blue from left to right
-        whileFocus={{
-          boxShadow: focusStyle || `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
+        onClick={() => {
+          onCheck(!checked);
         }}
       />
+      <p style={{ marginLeft: 15, margin: 0, fontFamily: "Roboto Serif" }}>
+        {itemLabel}
+      </p>
     </div>
   );
 }

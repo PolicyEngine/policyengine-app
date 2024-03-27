@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Modal } from "antd";
 import FormContext from "../layout/forms/FormContext";
 import FormInput from "../layout/forms/FormInput";
+import FormCheckbox from "../layout/forms/FormCheckbox";
 import colors from "../style/colors";
 import bcrypt from "bcryptjs";
 
@@ -107,16 +108,24 @@ export default function SignupModal() {
         submitButtonText="Submit"
         submitMsg={submitMsg}
         onSubmit={handleSubmit}
+        formStyle={{
+          gap: 0
+        }}
       >
         <FormInput
           name="email"
-          label=""
           type="email"
           placeholder="Email address"
           aria-label="Email address"
-          containerStyle={{
-            paddingTop: "16px",
-          }}
+        />
+        <FormCheckbox
+          name="newsletterSignup"
+          items={[
+            {
+              name: "signup_box",
+              label: "Sign me up for the PolicyEngine newsletter"
+            }
+          ]}
         />
       </FormContext>
     </Modal>
