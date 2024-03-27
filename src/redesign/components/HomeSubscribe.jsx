@@ -113,6 +113,7 @@ export function SubscribeToPolicyEngine(props) {
         submitMsg={submitMsg}
       >
         <FormItem
+          name={inputFields.label}
           label={inputFields.label}
           type={inputFields.type}
           placeholder={inputFields.placeholder}

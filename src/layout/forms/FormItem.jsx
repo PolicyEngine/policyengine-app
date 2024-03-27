@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
  * React component providing a standardized form component; does not currently handle
  * radio or select menus, but could be expanded to do so in future
  * @param {Object} props
+ * @param {String} props.name The JS 'name' to be applied to the input
  * @param {String} props.label The label to be applied to the form field
  * @param {String} props.type The input type of the field
  * @param {String} [props.placeholder] The item's placeholder text
@@ -20,6 +21,7 @@ import { motion } from "framer-motion";
  */
 export default function FormItem(props) {
   const {
+    name,
     label,
     type,
     placeholder,
@@ -69,7 +71,7 @@ export default function FormItem(props) {
         {label}
       </label>
       <motion.input
-        name={label}
+        name={name}
         type={type || "text"}
         placeholder={placeholder}
         onChange={handleChange}
