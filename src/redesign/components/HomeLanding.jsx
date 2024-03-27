@@ -2,6 +2,7 @@ import LinkButton from "controls/LinkButton";
 import useDisplayCategory from "./useDisplayCategory";
 import Hero from "../images/hero.png";
 import useCountryId from "./useCountryId";
+import SignupModal from "../../modals/SignupModal";
 
 export default function HomeLanding() {
   const displayCategory = useDisplayCategory();
@@ -10,6 +11,8 @@ export default function HomeLanding() {
   const countryId = useCountryId();
 
   return (
+    <>
+    <SignupModal />
     <div
       style={{
         height: mobile ? 600 : 500,
@@ -87,5 +90,6 @@ export default function HomeLanding() {
         </div>
       </div>
     </div>
+    </>
   );
 }
