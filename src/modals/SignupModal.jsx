@@ -30,6 +30,8 @@ export default function SignupModal() {
   async function handleSubmit(event, formInput) {
     // Prevent immediate submission
     event.preventDefault();
+    // Empty any existing submit message
+    setSubmitMsg("");
 
     // Validate that email is valid
     // Regex taken from https://stackabuse.com/validate-email-addresses-with-regular-expressions-in-javascript/
@@ -37,6 +39,7 @@ export default function SignupModal() {
     const isEmailValid = emailRegex.test(formInput.email);
     if (!isEmailValid) {
       setSubmitMsg("Error: Invalid email provided; please try again");
+      return;
     }
 
     // If user hasn't consented to storing cookies, indicate
@@ -78,6 +81,7 @@ export default function SignupModal() {
       // If an error occurs, setSubmitMsg with error
 
     // Set submit message
+    setSubmitMsg("Email successfully submitted");
 
     // Destroy modal
 
