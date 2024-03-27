@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Modal } from "antd";
 import FormContext from "../layout/forms/FormContext";
-import FormItem from "../layout/forms/FormItem";
+import FormInput from "../layout/forms/FormInput";
 import colors from "../style/colors";
 import bcrypt from "bcryptjs";
 
@@ -84,13 +84,14 @@ export default function SignupModal() {
     setSubmitMsg("Email successfully submitted");
 
     // Destroy modal
-
+    setIsModalOpen(false);
   }
 
   return (
     <Modal 
       open={isModalOpen}
       footer={null}
+      closable={false}
     >
       <h6
         style={{
@@ -107,7 +108,7 @@ export default function SignupModal() {
         submitMsg={submitMsg}
         onSubmit={handleSubmit}
       >
-        <FormItem
+        <FormInput
           name="email"
           label=""
           type="email"
