@@ -80,7 +80,7 @@ export default function FormItem(props) {
           color: style.colors.DARK_GRAY,
           width: "100%",
           height: 50,
-          fontSize: 20,
+          fontSize: 15,
           fontWeight: 300,
           padding: 10,
           boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
