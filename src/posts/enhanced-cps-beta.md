@@ -4,7 +4,13 @@ Microsimulation's first ingredient is a robust rules engine. Here, PolicyEngine 
 
 Today, we're beta-launching a significant upgrade to the second ingredient. Since [December 2022](enhancing-the-current-population-survey-for-policy-analysis), we've been building an enhanced open dataset for more accurate microsimulation. While other prominent analysts also enhance microdata, we're taking a different approach that leverages the best of modern data science to support our broad scope of taxes and benefits, at the federal, state and local levels. By starting with the (openly available) Current Population Survey and integrating non-identifiable information from tax records, we are also introducing the first open alternative to restricted tax microdata for microsimulation.
 
-This blog post lays out our approach, results from our validation dashboard, and our plans to further advance the field. To see the data in action, see our [new report on the Tax Relief for American Families and Workers Act](trafwa-ctc), also out today as the first analysis using our new data. We've also included information on how to use this free, open-source dataset in your own work, either via the PolicyEngine web app or locally.
+The launch accompanies three topical reports leveraging the new data:
+
+1. [Child Tax Credit provisions of the Tax Relief for American Families and Workers Act](trafwa-ctc) (PolicyEngine)
+1. [Individual income tax provisions of President Biden's 2025 Budget](biden-budget-2025) (PolicyEngine)
+1. [Building a stronger foundation for American families: Options for Child Tax Credit reform](https://www.niskanencenter.org/building-a-stronger-foundation-for-american-families-options-for-child-tax-credit-reform/) (Niskanen Center)
+
+This blog post lays out our approach, results from our validation dashboard, and our plans to further advance the field. We've also included information on how to use this free, open-source dataset in your own work, either via the PolicyEngine web app or locally.
 
 ## Motivation
 
@@ -20,9 +26,9 @@ We construct our enhanced data, which we call the Enhanced Current Population Su
 
 1. [**Current Population Survey March Supplement (CPS).**](https://www.census.gov/data/datasets/time-series/demo/cps/cps-asec.html) The CPS is a monthly nationwide survey that estimates unemployment rates and other key monthly indicators. Each March, the Census Bureau expands the sample and set of questions, to collect more information on the prior year among respondents. The March Supplement, also called the Annual Social and Economic Supplement (ASEC), powers reports such as official poverty estimates. Census releases the microdata and its results each September, so the latest currently available represents calendar year 2022. The data is hierarchical, with entities for people, families, tax filing units, households, and "SPM units", referring to the Supplemental Poverty Measure and representing groups of cohabitating individuals who share resources. The 2022 ASEC includes 146,133 people across 88,978 households.
 2. [**Internal Revenue Service Public Use File (PUF).**](https://www.irs.gov/statistics/soi-tax-stats-individual-public-use-microdata-files) The IRS makes a flat dataset with information on a sample of tax returns available to researchers who pay a fee and agree not to distribute the data. The most recent PUF represents tax year 2015, with [179 characteristics for 207,696 records](https://drive.google.com/file/d/17_SeKv9cmWJW-blALlSgl53yg3UUYzHE/view?usp=sharing), statistically altered to avoid disclosure. From 2016 forward, the IRS will instead release a [synthetic PUF, in partnership with the Urban Institute](https://www.urban.org/research/publication/synthetic-supplemental-public-use-file-low-income-information-return-data-methodology-utility-and-privacy-implications).
-3. **Administrative totals.** For instance, the total US population, income tax revenue, dividends, SNAP benefits, and so on. We collect these from historical sources and Congressional Budget Office (CBO) forecasts.
+3. **Administrative totals.** For instance, the total US population, income tax revenue, dividends, SNAP benefits, and so on. We collect 92 of these from historical sources and Congressional Budget Office (CBO) forecasts.
 
-Our procedure maps to the above sequence. As shown in Figure 1, we first "age" the CPS and PUF to the current year (e.g., by growing PUF wages by the average growth of wages since 2015), then incorporate information from the PUF onto the CPS (while also preserving the original CPS), and finally reweighting the data.This contrasts to the standard approach among tax analysts: similarly age the CPS and PUF, but use the PUF as a base file, append nonfilers from the CPS, then reweight.
+Our procedure maps to the above sequence. As shown in Figure 1 ([high resolution](https://docs.google.com/drawings/d/1DMExtIYWJMzn2Dii_S9eWXyuGsEtr_7JDl_vfU9F4IY/preview)), we first "age" the CPS and PUF to the current year (e.g., by growing PUF wages by the average growth of wages since 2015), then incorporate information from the PUF onto the CPS (while also preserving the original CPS), and finally reweighting the data. This contrasts to the standard approach among tax analysts: similarly age the CPS and PUF, but use the PUF as a base file, append nonfilers from the CPS, then reweight.
 
 ![Figure 1: PolicyEngine's data flow to create PUF-enhanced CPS file](/images/posts/enhanced_cps_beta/data_hierarchy.png)
 
@@ -43,7 +49,7 @@ Specifically, here are our steps:
 
 ##### Reweight with gradient descent:
 
-1.  Calculate the deviation between the dataset's aggregates and administrative totals for each target (population, income component, benefit participation, etc.).
+1.  Calculate the deviation between the dataset's aggregates and administrative totals for each of 90 targets (population, income component, benefit participation, etc.).
 1.  Construct a "loss function" that condenses these individual deviations into a single metric.
 1.  Apply gradient descent to iteratively adjust the household weights to minimize the loss function.
 

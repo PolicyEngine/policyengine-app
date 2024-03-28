@@ -591,7 +591,7 @@
     "filename": "new-mexico-income-tax-launch.md",
     "tags": ["us", "us-nm"],
     "image": "new-mexico-income-tax-launch.png",
-    "authors": ["max-ghenis"]
+    "authors": ["max-ghenis", "pavel-makarchuk"]
   },
   {
     "title": "Repealing the Universal Credit two-child limit",
@@ -636,7 +636,7 @@
     "filename": "wyden-smith-ctc.md",
     "tags": ["us", "impact", "featured", "child-tax-credit"],
     "image": "wyden.jpeg",
-    "authors": ["max-ghenis"]
+    "authors": ["max-ghenis", "pavel-makarchuk"]
   },
   {
     "title": "Spring Budget 2024 proposals",
@@ -673,5 +673,15 @@
     "authors": ["max-ghenis"],
     "filename": "trafwa-ctc.md",
     "image": "trafwa-ctc.png"
+  },
+  {
+    "title": "Individual income tax provisions of President Biden's 2025 Budget",
+    "description":
+      "PolicyEngine projects the impact of expanding tax credits and raising taxes on high-income filers.",
+    "date": "2024-03-27 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "biden-budget-2025.md",
+    "image": "biden-budget-2025.jpeg"
   }
 ]
