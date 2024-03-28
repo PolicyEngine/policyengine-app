@@ -6,14 +6,23 @@ import FormInput from "../layout/forms/FormInput";
 import FormCheckbox from "../layout/forms/FormCheckbox";
 import colors from "../style/colors";
 import bcrypt from "bcryptjs";
+import { submitToMailchimp } from "../data/mailchimpSubscription";
 
 export default function SignupModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [submitMsg, setSubmitMsg] = useState("");
 
+  /**
+   * Find cookie; if no cookie found, return false
+   * @param {String} name Name of cookie
+   * @returns {String|false}
+   */
   function getCookie(name) {
     const cookies = document.cookie.split("; ");
     const fullCookie = cookies.find((cookie) => cookie.trim().startsWith(`${name}=`));
+    if (!fullCookie) {
+      return false;
+    }
     return fullCookie.split("=")[1];
   }
 
@@ -45,7 +54,8 @@ export default function SignupModal() {
 
     // If user hasn't consented to storing cookies, indicate
     // that they must
-    if (!getCookie("consent")) {
+    const consentCookie = getCookie("consent");
+    if (!consentCookie) {
       setSubmitMsg("This operation requires cookies to be enabled");
       return;
     }
@@ -70,19 +80,34 @@ export default function SignupModal() {
     // or should we POST it somewhere? Unclear at moment
 
     // Check if user wants to sign up for newsletter
-      // Don't do anything if box isn't checked
+    // Set a value that will be appended to submit message in case of success
+    let subscribeMsg = null;
 
-      // If there's a cookie indicating they have, don't do anything
+    console.log(formInput);
 
-      // Otherwise, execute newsletter signup
+    // Execute if user has consented to cookies and checked box to sign up
+    if (consentCookie && formInput.signupBox === true) {
+      const response = await submitToMailchimp(formInput.email);
 
       // Store long-term cookie indicating that user has signed up
       // for newsletter
+      subscribeMsg = response.message
 
-      // If an error occurs, setSubmitMsg with error
+      // Display outcome
+      // If an error occurs, setSubmitMsg with error and return
+      if (!response.isSuccessful) {
+        setSubmitMsg(subscribeMsg);
+        return;
+      }
+    }
 
     // Set submit message
-    setSubmitMsg("Email successfully submitted");
+    const submitText = "Email successfully submitted";
+    if (subscribeMsg) {
+      submitText.concat(`; ${subscribeMsg}`);
+    }
+
+    setSubmitMsg(submitText);
 
     // Destroy modal
     setIsModalOpen(false);
@@ -122,7 +147,7 @@ export default function SignupModal() {
           name="newsletterSignup"
           items={[
             {
-              name: "signup_box",
+              name: "signupBox",
               label: "Sign me up for the PolicyEngine newsletter"
             }
           ]}
