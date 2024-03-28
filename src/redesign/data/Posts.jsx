@@ -759,7 +759,7 @@ let posts = [
     description:
       "By integrating and calibrating multiple datasets, PolicyEngine makes world-class tax-benefit microsimulation modeling available to anyone.",
     date: "2024-03-25 09:00:00",
-    tags: ["us", "technical", "featured"],
+    tags: ["us", "technical"],
     authors: ["max-ghenis", "nikhil-woodruff"],
     filename: "enhanced-cps-beta.md",
     image: "enhanced-cps-beta.png",
@@ -770,7 +770,7 @@ let posts = [
     description:
       "How the Wyden-Smith bipartisan tax package would affect families through 2025.",
     date: "2024-03-25 09:00:00",
-    tags: ["us", "policy", "featured"],
+    tags: ["us", "policy"],
     authors: ["max-ghenis"],
     filename: "trafwa-ctc.md",
     image: "trafwa-ctc.png",
