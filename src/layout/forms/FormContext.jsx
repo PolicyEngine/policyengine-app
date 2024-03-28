@@ -49,6 +49,14 @@ export default function FormContext(props) {
     }));
   }
 
+  // Handle checkbox events differently
+  function handleCheck(e) {
+    setFormInput((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.checked
+    }));
+  }
+
   // Pass change handler to children
   const handledChildren = Children.map(children, (child) => {
     return {
@@ -56,7 +64,7 @@ export default function FormContext(props) {
       name: child.props.label,
       props: {
         ...child.props,
-        changeHandler: (e) => handleChange(e),
+        changeHandler: child.type.name === "FormCheckbox" ? (e) => handleCheck(e) : (e) => handleChange(e),
       },
     };
   });

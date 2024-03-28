@@ -29,25 +29,13 @@ export default function FormCheckbox(props) {
     focusStyle,
   } = props;
 
-  const [input, setInput] = useState(null);
-
-  // Field change handler
-  function handleChange(e) {
-    if (changeHandler && changeHandler instanceof Function) {
-      changeHandler(e, input);
-    }
-    console.log(e);
-    setInput((prev) => ({
-      ...prev,
-    }));
-  }
-
   const iteratedItems = items.map((item) => {
     return (
       <CheckItem
         key={item.name}
         name={item.name}
         itemLabel={item.label}
+        checkHandler={changeHandler}
       />
     )
   });
@@ -88,9 +76,19 @@ function CheckItem(props) {
   const {
     name,
     itemLabel,
-    checked,
-    onCheck
+    isCheckedByDefault=false,
+    checkHandler
   } = props;
+
+  const [input, setInput] = useState(isCheckedByDefault);
+
+  // Field change handler
+  function handleCheck(e) {
+    if (checkHandler && checkHandler instanceof Function) {
+      checkHandler(e, input);
+    }
+    setInput(e.target.checked);
+  }
 
   return (
     <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
@@ -104,14 +102,12 @@ function CheckItem(props) {
           width: 20,
           padding: 5,
           appearance: "none",
-          backgroundColor: checked
+          backgroundColor: input
             ? style.colors.TEAL_PRESSED
             : style.colors.TEAL_LIGHT,
           cursor: "pointer",
         }}
-        onClick={() => {
-          onCheck(!checked);
-        }}
+        onClick={handleCheck}
       />
       <p style={{ marginLeft: 15, margin: 0, fontFamily: "Roboto Serif" }}>
         {itemLabel}
