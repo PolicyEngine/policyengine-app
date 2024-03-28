@@ -90,7 +90,7 @@ export default function ParameterEditor(props) {
     control = (
       <StableInputNumber
         style={{
-          width: "50%",
+          width: displayCategory === "mobile" ? "50%" : "100%",
         }}
         key={"input for" + parameter.parameter}
         {...(isCurrency
@@ -179,24 +179,34 @@ export default function ParameterEditor(props) {
   }
 
   const mobile = useMobile();
+  let gridTemplate = null;
+  if (displayCategory === "mobile" || displayCategory === "tablet") {
+    gridTemplate = "repeat(2, 1fr) / 1fr";
+  } else {
+    gridTemplate = "1fr / repeat(2, 1fr)";
+  }
+
   const editControl = (
     <div
       style={{
-        display: "flex",
-        flexDirection: mobile ? "column" : "row",
+        display: "grid",
+        justifyItems: "center",
+        gridTemplate: gridTemplate,
         alignItems: "center",
-        paddingTop: 10,
-        paddingLeft: 0,
+        padding: displayCategory !== "mobile" && "20px 80px 0 80px",
+        paddingTop: 20,
         gap: 10,
         width: "100%",
         fontFamily: "Roboto Serif",
       }}
     >
-      {control}
       <Popover
         trigger="click"
         content={popoverContent}
         placement={displayCategory === "mobile" ? "bottom" : "bottomRight"}
+        style={{
+          justifySelf: "end"
+        }}
       >
         <Button type="text">
           {dateSelectButtonLabel}
@@ -208,6 +218,7 @@ export default function ParameterEditor(props) {
           />
         </Button>
       </Popover>
+      {control}
     </div>
   );
 
