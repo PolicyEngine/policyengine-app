@@ -2,7 +2,7 @@ import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
 import { Alert, Button, DatePicker, Popover, Switch, Tabs } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
@@ -123,11 +123,12 @@ export default function ParameterEditor(props) {
   const possibleYears = metadata.economy_options.time_period.map((period) => period.name).sort();
   const minPossibleDate = String(possibleYears[0]).concat("-01-01");
   const maxPossibleDate = String(possibleYears[possibleYears.length - 1] + 10).concat("-12-31");
+  const defaultEnd = endDate === String(defaultForeverYear).concat("-12-31") ? null : moment(endDate);
 
   const yearSelector = (
     <RangePicker
       picker="year"
-      defaultValue={[moment(startDate), moment(endDate)]}
+      defaultValue={[moment(startDate), defaultEnd]}
       onChange={(_, yearStrings) => {
         setStartDate(yearStrings[0].concat("-01-01"));
         setEndDate(yearStrings[1].concat("-12-31"));
@@ -139,7 +140,7 @@ export default function ParameterEditor(props) {
 
   const dateSelector = (
     <RangePicker
-      defaultValue={[moment(startDate), moment(endDate)]}
+      defaultValue={[moment(startDate), defaultEnd]}
       onChange={(_, dateStrings) => {
         setStartDate(dateStrings[0]);
         setEndDate(dateStrings[1]);
