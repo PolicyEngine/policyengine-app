@@ -204,11 +204,13 @@ export default function ParameterEditor(props) {
         trigger="click"
         content={popoverContent}
         placement={displayCategory === "mobile" ? "bottom" : "bottomRight"}
-        style={{
-          justifySelf: "end"
-        }}
       >
-        <Button type="text">
+        <Button 
+          type="text"
+          style={{
+            width: "100%"
+          }}
+        >
           {dateSelectButtonLabel}
           <CaretDownFilled
             style={{
