@@ -119,6 +119,11 @@ export default function ParameterEditor(props) {
     );
   }
 
+  // Array of selectable years, sorted in ascending order
+  const possibleYears = metadata.economy_options.time_period.map((period) => period.name).sort();
+  const minPossibleDate = String(possibleYears[0]).concat("-01-01");
+  const maxPossibleDate = String(possibleYears[possibleYears.length - 1] + 10).concat("-12-31");
+
   const yearSelector = (
     <RangePicker
       picker="year"
@@ -127,7 +132,7 @@ export default function ParameterEditor(props) {
         setStartDate(yearStrings[0].concat("-01-01"));
         setEndDate(yearStrings[1].concat("-12-31"));
       }}
-      disabledDate={(date) => date.isBefore("2021-01-01")}
+      disabledDate={(date) => date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)}
       separator="→"
     />
   );
@@ -139,7 +144,7 @@ export default function ParameterEditor(props) {
         setStartDate(dateStrings[0]);
         setEndDate(dateStrings[1]);
       }}
-      disabledDate={(date) => date.isBefore("2021-01-01")}
+      disabledDate={(date) => date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)}
       separator="→"
     />
   );
