@@ -32,7 +32,7 @@ export const staff = {
     where he researched the economic implications of forced migration. 
     Pavel is currently enrolled in the International Economics Master’s 
     program at the Hochschule für Wirtschaft und Recht in Berlin.`,
-    image: require("../images/authors/pavel-makarchuk.jpeg"),
+    image: require("../images/authors/pavel-makarchuk.png"),
   },
   anthony_volk: {
     name: "Anthony Volk",

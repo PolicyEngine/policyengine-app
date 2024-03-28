@@ -654,7 +654,7 @@ let posts = [
     filename: "malliotakis-steel-working-families-tax-cut-act.md",
     tags: ["us", "featured", "policy"],
     image: "malliotakis-steel-working-families-tax-credit-act.png",
-    authors: ["max-ghenis", "nikhil-woodruff"],
+    authors: ["max-ghenis", "nikhil-woodruff", "pavel-makarchuk"],
   },
   {
     title: "Unveiling poverty impacts by race and ethnicity",
@@ -683,7 +683,7 @@ let posts = [
     filename: "new-mexico-income-tax-launch.md",
     tags: ["us", "us-nm", "featured", "policy"],
     image: "new-mexico-income-tax-launch.png",
-    authors: ["max-ghenis"],
+    authors: ["max-ghenis", "pavel-makarchuk"],
   },
   {
     title: "Repealing the Universal Credit two-child limit",
@@ -774,6 +774,16 @@ let posts = [
     authors: ["max-ghenis"],
     filename: "trafwa-ctc.md",
     image: "trafwa-ctc.png",
+  },
+  {
+    title: "Individual income tax provisions of President Biden's 2025 Budget",
+    description:
+      "PolicyEngine projects the impact of expanding tax credits and raising taxes on high-income filers.",
+    date: "2024-03-27 09:00:00",
+    tags: ["us", "policy", "featured"],
+    authors: ["max-ghenis", "pavel-makarchuk"],
+    filename: "biden-budget-2025.md",
+    image: "biden-budget-2025.jpeg",
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 
