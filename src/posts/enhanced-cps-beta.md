@@ -4,7 +4,7 @@ Microsimulation's first ingredient is a robust rules engine. Here, PolicyEngine 
 
 Today, we're beta-launching a significant upgrade to the second ingredient. Since [December 2022](enhancing-the-current-population-survey-for-policy-analysis), we've been building an enhanced open dataset for more accurate microsimulation. While other prominent analysts also enhance microdata, we're taking a different approach that leverages the best of modern data science to support our broad scope of taxes and benefits, at the federal, state and local levels. By starting with the (openly available) Current Population Survey and integrating non-identifiable information from tax records, we are also introducing the first open alternative to restricted tax microdata for microsimulation.
 
-The launch accompanies three topical reports leveraging the new data:
+Our launch accompanies three topical reports leveraging the new data:
 
 1. [Child Tax Credit provisions of the Tax Relief for American Families and Workers Act](trafwa-ctc) (PolicyEngine)
 1. [Individual income tax provisions of President Biden's 2025 Budget](biden-budget-2025) (PolicyEngine)
