@@ -8,7 +8,7 @@ import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
 import { capitalize, localeCode } from "../../../lang/format";
 import { currencyMap } from "../../../api/variables";
-import { defaultStartDate, defaultEndDate } from "data/constants";
+import { defaultStartDate, defaultEndDate, defaultForeverYear } from "data/constants";
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
@@ -165,13 +165,17 @@ export default function ParameterEditor(props) {
   );
 
   let dateSelectButtonLabel = "";
-  if (
+  const isFullYearSet = (
     checkBoundaryDate(startDate, "start") &&
     checkBoundaryDate(endDate, "end")
-  ) {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}`;
-  } else {
+  );
+
+  if (!isFullYearSet) {
     dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}`;
+  } else if (moment(endDate).year() === Number(defaultForeverYear)) {
+    dateSelectButtonLabel = `from ${moment(startDate).year()} onward`;
+  } else {
+    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}`;
   }
 
   const mobile = useMobile();
