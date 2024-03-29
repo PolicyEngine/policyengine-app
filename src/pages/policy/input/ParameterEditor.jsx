@@ -46,7 +46,7 @@ export default function ParameterEditor(props) {
       // as the default start and end dates and value; this should
       // be written against a stronger structure in the future, as 
       // JS Objects have no guaranteed order
-      const [reformDates, reformValue] = Object.entries(reformData)[0];
+      const reformDates = Object.keys(reformData)[0];
       const [reformStartDate, reformEndDate] = reformDates.split(".");
 
       setStartDate(reformStartDate);
