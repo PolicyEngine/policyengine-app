@@ -13,9 +13,7 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-import { CaretDownFilled, SettingOutlined } from "@ant-design/icons";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
-import style from "../../../style";
 
 const { RangePicker } = DatePicker;
 
