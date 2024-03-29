@@ -40,7 +40,7 @@ export default function ParameterEditor(props) {
 
   useEffect(() => {
 
-    if (reformData) {
+    if (reformData && Object.keys(reformData).length > 0) {
       // Assign the dates of the first item from the reform data
       // as the default start and end dates and value; this should
       // be written against a stronger structure in the future, as 
