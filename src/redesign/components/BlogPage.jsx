@@ -13,7 +13,7 @@ import {
 } from "../data/Posts";
 import moment from "moment";
 import { TwitterTweetEmbed } from "react-twitter-embed";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Markdown from "react-markdown";
 import useDisplayCategory from "./useDisplayCategory";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -614,7 +614,7 @@ function BlogContent({ markdown, backgroundColor }) {
   }
 
   return (
-    <ReactMarkdown
+    <Markdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
       components={{
@@ -878,7 +878,7 @@ function BlogContent({ markdown, backgroundColor }) {
       }}
     >
       {markdown}
-    </ReactMarkdown>
+    </Markdown>
   );
 }
 
