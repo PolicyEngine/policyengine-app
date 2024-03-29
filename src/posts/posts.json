@@ -591,7 +591,7 @@
     "filename": "new-mexico-income-tax-launch.md",
     "tags": ["us", "us-nm"],
     "image": "new-mexico-income-tax-launch.png",
-    "authors": ["max-ghenis"]
+    "authors": ["max-ghenis", "pavel-makarchuk"]
   },
   {
     "title": "Repealing the Universal Credit two-child limit",
@@ -610,5 +610,77 @@
     "tags": ["uk", "impact", "featured"],
     "image": "citizens-economic-council.png",
     "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Autumn Statement 2023 tax-benefit reforms",
+    "description": "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
+    "date": "2023-11-22 17:25",
+    "filename": "autumn-statement-2023.md",
+    "tags": ["uk", "policy", "featured"],
+    "image": "jeremy-hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Autumn 2023 model calibration update",
+    "description": "Evaluating PolicyEngine's model performance with the latest official statistics.",
+    "date": "2023-12-04 09:00:00",
+    "filename": "uk-calibration-2023-q4.ipynb",
+    "tags": ["uk", "technical"],
+    "image": "uk-calibration-dec-2023-update.png",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Preliminary analysis of the Wyden-Smith Child Tax Credit expansion",
+    "description": "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit’s refundable component.",
+    "date": "2024-01-11 12:00:00",
+    "filename": "wyden-smith-ctc.md",
+    "tags": ["us", "impact", "featured", "child-tax-credit"],
+    "image": "wyden.jpeg",
+    "authors": ["max-ghenis", "pavel-makarchuk"]
+  },
+  {
+    "title": "Spring Budget 2024 proposals",
+    "description": "PolicyEngine estimates reported likely tax-benefit reforms ahead of the UK Spring Budget.",
+    "date": "2024-03-04 09:00:00",
+    "filename": "spring-budget-2024.ipynb",
+    "tags": ["uk", "policy"],
+    "image": "jeremy_hunt.jpg",
+    "authors": ["anthony-volk", "nikhil-woodruff"]
+  },
+  {
+    "title": "Spring Budget 2024",
+    "description": "PolicyEngine estimates the impact of the UK Spring Budget.",
+    "date": "2024-03-06 09:00:00",
+    "filename": "uk-2024-spring-budget.ipynb",
+    "tags": ["uk", "policy", "featured"],
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff", "anthony-volk"]
+  },
+  {
+    "title": "Beta-launch: PolicyEngine's enhanced microdata for policy analysis",
+    "description": "By integrating and calibrating multiple datasets, PolicyEngine makes world-class tax-benefit microsimulation modeling available to anyone.",
+    "date": "2024-03-25 09:00:00",
+    "tags": ["us", "technical"],
+    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "filename": "enhanced-cps-beta.md",
+    "image": "enhanced-cps-beta.png"
+  },
+  {
+    "title": "Child Tax Credit provisions of the Tax Relief for American Workers and Families Act",
+    "description": "How the Wyden-Smith bipartisan tax package would affect families through 2025.",
+    "date": "2024-03-25 09:00:00",
+    "tags": ["us", "policy"],
+    "authors": ["max-ghenis"],
+    "filename": "trafwa-ctc.md",
+    "image": "trafwa-ctc.png"
+  },
+  {
+    "title": "Individual income tax provisions of President Biden's 2025 Budget",
+    "description": "PolicyEngine projects the impact of expanding tax credits and raising taxes on high-income filers.",
+    "date": "2024-03-27 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "biden-budget-2025.md",
+    "image": "biden-budget-2025.jpeg"
   }
 ]

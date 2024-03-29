@@ -25,7 +25,7 @@ const Authors = {
     github: "https://github.com/kfoster19",
     linkedin: "https://www.linkedin.com/in/kevin-h-foster/",
     headshot: require("../../images/authors/kevin-foster.jpeg"),
-    bio: "is a researcher at PolicyEngine.",
+    bio: "was a researcher at PolicyEngine.",
     title: "Researcher at PolicyEngine",
   },
   "nicholas-rodelo": {
@@ -35,7 +35,7 @@ const Authors = {
     linkedin: "https://www.linkedin.com/in/nicholas-rodelo-aaaa18159/",
     twitter: "https://twitter.com/NicholasRodelo",
     headshot: require("../../images/authors/nicholas-rodelo.jpg"),
-    bio: "is a researcher at PolicyEngine.",
+    bio: "was a researcher at PolicyEngine.",
     title: "Researcher at PolicyEngine",
   },
   "chat-gpt": {
@@ -50,7 +50,7 @@ const Authors = {
     twitter: "https://twitter.com/Arthur_Wright_",
     github: "awrigh46",
     headshot: require("../../images/authors/arthur-wright.jpg"),
-    bio: "is a researcher at PolicyEngine.",
+    bio: "was a researcher at PolicyEngine.",
     title: "Researcher at PolicyEngine",
   },
   "donglai-xu": {
@@ -59,7 +59,7 @@ const Authors = {
     github: "xudonglai0426",
     linkedin: "https://www.linkedin.com/in/donglaixu11101",
     headshot: require("../../images/authors/donglai-xu.jpeg"),
-    bio: "is a data analyst at PolicyEngine.",
+    bio: "was a data analyst at PolicyEngine.",
     title: "Data Analyst at PolicyEngine",
   },
   "lin-tao": {
@@ -68,7 +68,7 @@ const Authors = {
     github: "Kim1277",
     linkedin: "https://www.linkedin.com/in/lin-tao-384203207",
     headshot: require("../../images/authors/lin-tao.jpeg"),
-    bio: "is a data analyst at PolicyEngine.",
+    bio: "was a data analyst at PolicyEngine.",
     title: "Data Analyst at PolicyEngine",
   },
   "anthony-volk": {
@@ -77,6 +77,16 @@ const Authors = {
     bio: "is a full-stack engineer at PolicyEngine.",
     title: "Full-Stack Engineer at PolicyEngine",
     headshot: require("../images/authors/anthony-volk.jpg"),
+  },
+  "pavel-makarchuk": {
+    name: "Pavel Makarchuk",
+    email: "pavel@policyengine.org",
+    bio: "is the policy modeling manager at PolicyEngine.",
+    linkedin: "https://www.linkedin.com/in/pavel-makarchuk-170989203/",
+    github: "https://github.com/PavelMakarchuk",
+    twitter: "https://twitter.com/PavelMakarchuk3",
+    headshot: require("../../images/authors/pavel-makarchuk.png"),
+    title: "Policy Modeling Manager at PolicyEngine",
   },
 };
 

@@ -654,7 +654,7 @@ let posts = [
     filename: "malliotakis-steel-working-families-tax-cut-act.md",
     tags: ["us", "featured", "policy"],
     image: "malliotakis-steel-working-families-tax-credit-act.png",
-    authors: ["max-ghenis", "nikhil-woodruff"],
+    authors: ["max-ghenis", "nikhil-woodruff", "pavel-makarchuk"],
   },
   {
     title: "Unveiling poverty impacts by race and ethnicity",
@@ -683,7 +683,7 @@ let posts = [
     filename: "new-mexico-income-tax-launch.md",
     tags: ["us", "us-nm", "featured", "policy"],
     image: "new-mexico-income-tax-launch.png",
-    authors: ["max-ghenis"],
+    authors: ["max-ghenis", "pavel-makarchuk"],
   },
   {
     title: "Repealing the Universal Credit two-child limit",
@@ -726,7 +726,7 @@ let posts = [
     authors: ["nikhil-woodruff"],
   },
   {
-    title: "Wyden-Smith Child Tax Credit Expansion",
+    title: "Preliminary analysis of the Wyden-Smith Child Tax Credit expansion",
     description:
       "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit’s refundable component.",
     date: "2024-01-11 12:00:00",
@@ -753,6 +753,37 @@ let posts = [
     tags: ["uk", "policy", "featured"],
     image: "uk_budget_box_hunt.jpg",
     authors: ["nikhil-woodruff", "anthony-volk"],
+  },
+  {
+    title: "Beta-launch: PolicyEngine's enhanced microdata for policy analysis",
+    description:
+      "By integrating and calibrating multiple datasets, PolicyEngine makes world-class tax-benefit microsimulation modeling available to anyone.",
+    date: "2024-03-25 09:00:00",
+    tags: ["us", "technical"],
+    authors: ["max-ghenis", "nikhil-woodruff"],
+    filename: "enhanced-cps-beta.md",
+    image: "enhanced-cps-beta.png",
+  },
+  {
+    title:
+      "Child Tax Credit Provisions of the Tax Relief for American Workers and Families Act",
+    description:
+      "How the Wyden-Smith bipartisan tax package would affect families through 2025.",
+    date: "2024-03-25 09:00:00",
+    tags: ["us", "policy"],
+    authors: ["max-ghenis"],
+    filename: "trafwa-ctc.md",
+    image: "trafwa-ctc.png",
+  },
+  {
+    title: "Individual income tax provisions of President Biden's 2025 Budget",
+    description:
+      "PolicyEngine projects the impact of expanding tax credits and raising taxes on high-income filers.",
+    date: "2024-03-27 09:00:00",
+    tags: ["us", "policy", "featured"],
+    authors: ["max-ghenis", "pavel-makarchuk"],
+    filename: "biden-budget-2025.md",
+    image: "biden-budget-2025.jpeg",
   },
 ].sort((a, b) => (a.date < b.date ? 1 : -1));
 

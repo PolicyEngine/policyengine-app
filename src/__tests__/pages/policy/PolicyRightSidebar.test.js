@@ -14,51 +14,50 @@ jest.mock("react-router-dom", () => {
   };
 });
 
+let metadataUS = null;
+let metadataUK = null;
+
+const standardPolicyUS = {
+  baseline: {
+    data: {},
+    label: "Current law",
+    id: 2,
+  },
+  reform: {
+    data: {},
+    label: "Current law",
+    id: 2,
+  },
+};
+
+const standardPolicyUK = {
+  baseline: {
+    data: {},
+    label: "Current law",
+    id: 1,
+  },
+  reform: {
+    data: {},
+    label: "Current law",
+    id: 1,
+  },
+};
+
+beforeAll(async () => {
+  async function fetchMetadata(countryId) {
+    const res = await fetch(
+      `https://api.policyengine.org/${countryId}/metadata`,
+    );
+    const metadataRaw = await res.json();
+    const metadata = metadataRaw.result;
+    return metadata;
+  }
+
+  metadataUS = await fetchMetadata("us");
+  metadataUK = await fetchMetadata("uk");
+});
+
 describe("Enhanced CPS selector", () => {
-  let metadataUS = null;
-  let metadataUK = null;
-
-  const standardPolicyUS = {
-    baseline: {
-      data: {},
-      label: "Current law",
-      id: 2,
-    },
-    reform: {
-      data: {},
-      label: "Current law",
-      id: 2,
-    },
-  };
-
-  const standardPolicyUK = {
-    baseline: {
-      data: {},
-      label: "Current law",
-      id: 1,
-    },
-    reform: {
-      data: {},
-      label: "Current law",
-      id: 1,
-    },
-  };
-
-  beforeAll(async () => {
-    // Metadata fetching function
-    async function fetchMetadata(countryId) {
-      const res = await fetch(
-        `https://api.policyengine.org/${countryId}/metadata`,
-      );
-      const metadataRaw = await res.json();
-      const metadata = metadataRaw.result;
-      return metadata;
-    }
-
-    metadataUS = await fetchMetadata("us");
-    metadataUK = await fetchMetadata("uk");
-  });
-
   test("Should be present for the US site", async () => {
     const testSearchParams = {
       focus: "gov",
