@@ -281,14 +281,18 @@ export function LowLevelDisplay(props) {
 
   if (metadata.countryId === "us") {
     bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
-    bottomLink = "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
+    bottomLink =
+      "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
 
     if (region === "enhanced_us") {
-      bottomText = bottomText.concat("These calculations utilize enhanced CPS data, an experimental feature. ");
+      bottomText = bottomText.concat(
+        "These calculations utilize enhanced CPS data, an experimental feature. ",
+      );
     }
   } else if (metadata.countryId === "uk") {
     bottomText = `PolicyEngine UK v{selectedVersion} estimates reform impacts using microsimulation. `;
-    bottomLink = "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
+    bottomLink =
+      "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
   }
 
   const embed = new URLSearchParams(window.location.search).get("embed");
@@ -297,14 +301,11 @@ export function LowLevelDisplay(props) {
       <p
         style={{
           marginBottom: 0,
-          fontSize: region === "enhanced_us" && "12px"
+          fontSize: region === "enhanced_us" && "12px",
         }}
       >
         {bottomText}
-        <a
-          href={bottomLink}
-          target="_blank"
-        >
+        <a href={bottomLink} target="_blank" rel="noreferrer">
           Learn more
         </a>
       </p>
