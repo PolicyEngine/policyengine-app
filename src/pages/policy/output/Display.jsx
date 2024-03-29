@@ -259,6 +259,7 @@ export function LowLevelDisplay(props) {
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
   const selectedVersion = urlParams.get("version") || metadata.version;
+  const region = urlParams.get("region");
   const policyOutputTree = getPolicyOutputTree(metadata.countryId);
   const url = encodeURIComponent(window.location.href);
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
@@ -275,24 +276,35 @@ export function LowLevelDisplay(props) {
     content: () => componentRef.current,
   });
 
+  let bottomText = "";
+  let bottomLink = "";
+
+  if (metadata.countryId === "us") {
+    bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
+    bottomLink = "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
+
+    if (region === "enhanced_us") {
+      bottomText = bottomText.concat("These calculations utilize enhanced CPS data, an experimental feature. ");
+    }
+  } else if (metadata.countryId === "uk") {
+    bottomText = `PolicyEngine UK v{selectedVersion} estimates reform impacts using microsimulation. `;
+    bottomLink = "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
+  }
+
   const embed = new URLSearchParams(window.location.search).get("embed");
   const bottomElements =
-    mobile & !embed ? null : metadata.countryId === "us" ? (
-      <p>
-        PolicyEngine US v{selectedVersion} estimates reform impacts using
-        microsimulation.{" "}
+    mobile & !embed ? null : (
+      <p
+        style={{
+          marginBottom: 0,
+          fontSize: region === "enhanced_us" && "12px"
+        }}
+      >
+        {bottomText}
         <a
-          href="/us/research/enhancing-the-current-population-survey-for-policy-analysis"
+          href={bottomLink}
           target="_blank"
         >
-          Learn more
-        </a>
-      </p>
-    ) : (
-      <p>
-        PolicyEngine UK v{selectedVersion} estimates reform impacts using
-        microsimulation.{" "}
-        <a href="/uk/research/how-machine-learning-tools-make-policyengine-more-accurate">
           Learn more
         </a>
       </p>
