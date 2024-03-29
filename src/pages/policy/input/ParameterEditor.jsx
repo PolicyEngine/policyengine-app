@@ -21,11 +21,8 @@ const { RangePicker } = DatePicker;
 export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
   const parameter = metadata.parameters[parameterName];
-  const reformData = policy?.reform?.data?.[parameterName];
   const parameterValues = Object.entries(parameter.values);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [startDate, setStartDate] = useState(defaultStartDate);
-  const [endDate, setEndDate] = useState(defaultEndDate);
+  const reformData = policy?.reform?.data?.[parameterName];
   const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   const reformMap = baseMap.copy();
   if (reformData) {
@@ -35,8 +32,28 @@ export default function ParameterEditor(props) {
     }
   }
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
+
   const displayCategory = useDisplayCategory();
   const startValue = reformMap.get(startDate);
+
+  useEffect(() => {
+
+    if (reformData) {
+      // Assign the dates of the first item from the reform data
+      // as the default start and end dates and value; this should
+      // be written against a stronger structure in the future, as 
+      // JS Objects have no guaranteed order
+      const [reformDates, reformValue] = Object.entries(reformData)[0];
+      const [reformStartDate, reformEndDate] = reformDates.split(".");
+
+      setStartDate(reformStartDate);
+      setEndDate(reformEndDate);
+
+    }
+  }, [reformData]);
 
   function onChange(value) {
     reformMap.set(startDate, nextDay(endDate), value);
