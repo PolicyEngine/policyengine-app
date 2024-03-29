@@ -7,3 +7,8 @@ export const defaultForeverYear = "2100"
 export const defaultYear = new Date().getFullYear();
 export const defaultStartDate = defaultYear.toString().concat("-01-01");
 export const defaultEndDate = defaultForeverYear.toString().concat("-12-31");
+
+// Charts in ParameterOverTime are meant to extend to 10 years beyond
+// the current year, as specified in app GitHub issue #1261; getPlotlyAxisFormat
+// already adds five, so this function only adds an additional 5
+export const defaultPOTEndDate = (defaultYear + 5).toString().concat("-12-31");
