@@ -6,9 +6,19 @@ export default function PolicyBreakdown(props) {
   const regionObj = metadata.economy_options.region.find(
     (elem) => elem.name === region,
   );
-  const regionName = regionObj ? regionObj.label : "undefined region";
+  let regionLabel;
+  // This is a workaround for enhanced_us that should be changed
+  // if and when it is treated as something other than a "region"
+  // by the back end
+  if (regionObj?.name === "enhanced_us") {
+    regionLabel = "the US";
+  } else if (regionObj) {
+    regionLabel = regionObj.label;
+  } else {
+    regionLabel = "undefined region";
+  }
 
-  const title = `${policyLabel} in ${regionName}, ${timePeriod}`;
+  const title = `${policyLabel} in ${regionLabel}, ${timePeriod}`;
   const bottomText =
     "Click on an option on the left panel to view more details.";
 
