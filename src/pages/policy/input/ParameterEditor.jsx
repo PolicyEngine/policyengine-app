@@ -13,8 +13,9 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-import { CaretDownFilled } from "@ant-design/icons";
+import { CaretDownFilled, SettingOutlined } from "@ant-design/icons";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
+import style from "../../../style";
 
 const { RangePicker } = DatePicker;
 
@@ -194,11 +195,11 @@ export default function ParameterEditor(props) {
   );
 
   if (!isFullYearSet) {
-    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}`;
+    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}:`;
   } else if (moment(endDate).year() === Number(defaultForeverYear)) {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} onward`;
+    dateSelectButtonLabel = `from ${moment(startDate).year()} onward:`;
   } else {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}`;
+    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}:`;
   }
 
   const mobile = useMobile();
@@ -226,7 +227,7 @@ export default function ParameterEditor(props) {
       <Popover
         trigger="click"
         content={popoverContent}
-        placement={displayCategory === "mobile" ? "bottom" : "bottomRight"}
+        placement="bottom"
       >
         <Button 
           type="text"
@@ -235,12 +236,15 @@ export default function ParameterEditor(props) {
           }}
         >
           {dateSelectButtonLabel}
-          <CaretDownFilled
+          {/*
+          <SettingOutlined
             style={{
+              color: style.colors.DARK_GRAY,
               display: "inline-flex",
               alignItems: "center",
             }}
           />
+          */}
         </Button>
       </Popover>
       {control}
