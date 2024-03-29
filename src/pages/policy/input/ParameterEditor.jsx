@@ -1,6 +1,6 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
-import { Alert, Button, DatePicker, Popover, Switch, Tabs } from "antd";
+import { Alert, Button, DatePicker, Popover, Switch, Tabs, Tooltip } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -229,23 +229,16 @@ export default function ParameterEditor(props) {
         content={popoverContent}
         placement="bottom"
       >
-        <Button 
-          type="text"
-          style={{
-            width: "100%"
-          }}
-        >
-          {dateSelectButtonLabel}
-          {/*
-          <SettingOutlined
+        <Tooltip title="Click to edit parameter timespan">
+          <Button 
+            type="text"
             style={{
-              color: style.colors.DARK_GRAY,
-              display: "inline-flex",
-              alignItems: "center",
+              width: "100%"
             }}
-          />
-          */}
-        </Button>
+          >
+            {dateSelectButtonLabel}
+          </Button>
+        </Tooltip>
       </Popover>
       {control}
     </div>
