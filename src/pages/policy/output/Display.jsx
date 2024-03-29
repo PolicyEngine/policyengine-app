@@ -290,7 +290,7 @@ export function LowLevelDisplay(props) {
       );
     }
   } else if (metadata.countryId === "uk") {
-    bottomText = `PolicyEngine UK v{selectedVersion} estimates reform impacts using microsimulation. `;
+    bottomText = `PolicyEngine UK v${selectedVersion} estimates reform impacts using microsimulation. `;
     bottomLink =
       "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
   }
