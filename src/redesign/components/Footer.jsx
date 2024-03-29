@@ -47,8 +47,6 @@ function ContactUs() {
 }
 
 function TwitterEmbed() {
-  const dC = useDisplayCategory();
-
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
@@ -57,27 +55,18 @@ function TwitterEmbed() {
     document.getElementById("twitter-container").appendChild(script);
   }, []);
 
-  const widths = {
-    mobile: "100%",
-    tablet: "50%",
-    desktop: "33%",
-    default: "33%",
-  };
-
   return (
     <div
       id="twitter-container"
       style={{
         paddingLeft: 20,
         paddingRight: 20,
-        width: Object.keys(widths).includes(dC) ? widths[dC] : widths.default,
       }}
     >
       <a
         className="twitter-timeline"
         data-theme="light"
         href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
-        data-width="100%"
       >
         Loading tweets by ThePolicyEngine...
       </a>
@@ -205,7 +194,16 @@ function MobileFooter() {
       />
       <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
-      <TwitterEmbed />
+      <div
+        style={{
+          width: "100%",
+          maxHeight: "500px",
+          overflowY: "auto",
+          scrollbarWidth: "none",
+        }}
+      >
+        <TwitterEmbed />
+      </div>
       <ContactUs />
     </>
   );
@@ -230,7 +228,16 @@ function TabletFooter() {
           <SubscribeToPolicyEngine displaySize="mobile" />
           <ContactUs />
         </div>
-        <TwitterEmbed />
+        <div
+          style={{
+            width: "100%",
+            maxHeight: "500px",
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}
+        >
+          <TwitterEmbed />
+        </div>
       </div>
       <SocialLinks />
     </div>
@@ -261,7 +268,16 @@ function DesktopFooter() {
           <ContactUs />
           <SocialLinks />
         </div>
-        <TwitterEmbed />
+        <div
+          style={{
+            width: "100%",
+            maxHeight: "500px",
+            overflowY: "auto",
+            scrollbarWidth: "none",
+          }}
+        >
+          <TwitterEmbed />
+        </div>
         <div style={{ marginTop: 20 }}>
           <SubscribeToPolicyEngine displaySize="mobile" />
         </div>
