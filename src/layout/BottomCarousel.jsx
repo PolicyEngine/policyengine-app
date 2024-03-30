@@ -17,25 +17,34 @@ export default function BottomCarousel(props) {
         position: "absolute",
         bottom: mobile ? "25vh" : 0,
         display: "flex",
-        height: 81,
+        height: "min-content",
         left: mobile ? 0 : "25%",
         width: mobile ? "100%" : "50%",
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
-        padding: 5,
         justifyContent: mobile ? "center" : "right",
         borderTop: "1px solid black",
+        padding: "10px 20px",
+        gap: "10px",
       }}
     >
       {!mobile && (
-        <div style={{ paddingLeft: 50, paddingTop: 20 }}>{bottomElements}</div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "flex-start",
+          }}
+        >
+          {bottomElements}
+        </div>
       )}
       <div
         style={{
           flex: 1,
           display: "flex",
           justifyContent: mobile ? "center" : "right",
-          padding: "10px 20px",
+          alignItems: "flex-start",
           gap: 20,
         }}
       >

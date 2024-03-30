@@ -118,9 +118,11 @@ export function absoluteChangeMessage(
  * and it is not us or uk
  */
 export function regionName(metadata) {
+  const ignoreList = ["us", "uk", "enhanced_us"];
+
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
-  if (region === "us" || region === "uk") return;
+  if (ignoreList.includes(region)) return;
   const options = metadata.economy_options.region.map((region) => {
     return { value: region.name, label: region.label };
   });
