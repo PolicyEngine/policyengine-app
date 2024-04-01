@@ -22,8 +22,12 @@ export default function ParameterEditor(props) {
   const reformData = policy?.reform?.data?.[parameterName];
   const parameterValues = Object.entries(parameter.values);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [startDate, setStartDate] = useState(searchParams.get("startDate") || defaultStartDate);
-  const [endDate, setEndDate] = useState(searchParams.get("endDate") || defaultEndDate);
+  const [startDate, setStartDate] = useState(
+    searchParams.get("startDate") || defaultStartDate,
+  );
+  const [endDate, setEndDate] = useState(
+    searchParams.get("endDate") || defaultEndDate,
+  );
   const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   const reformMap = baseMap.copy();
   if (reformData) {
@@ -40,7 +44,7 @@ export default function ParameterEditor(props) {
 
     setStartDate(newStartDate);
     setEndDate(newEndDate);
-  }, [searchParams])
+  }, [searchParams]);
 
   function onChange(value) {
     reformMap.set(startDate, nextDay(endDate), value);
