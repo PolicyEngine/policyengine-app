@@ -67,8 +67,8 @@ function TwitterEmbed() {
         className="twitter-timeline"
         data-theme="light"
         href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
-        data-height="500"
-        data-width="600"
+        data-height="450"
+        data-width="300"
       >
         Loading tweets by ThePolicyEngine...
       </a>
