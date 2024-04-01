@@ -67,6 +67,8 @@ function TwitterEmbed() {
         className="twitter-timeline"
         data-theme="light"
         href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
+        data-height="500"
+        data-width="600"
       >
         Loading tweets by ThePolicyEngine...
       </a>
@@ -194,16 +196,9 @@ function MobileFooter() {
       />
       <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
-      <div
-        style={{
-          width: "100%",
-          maxHeight: "500px",
-          overflowY: "auto",
-          scrollbarWidth: "none",
-        }}
-      >
-        <TwitterEmbed />
-      </div>
+
+      <TwitterEmbed />
+
       <ContactUs />
     </>
   );
@@ -268,16 +263,9 @@ function DesktopFooter() {
           <ContactUs />
           <SocialLinks />
         </div>
-        <div
-          style={{
-            width: "100%",
-            maxHeight: "500px",
-            overflowY: "auto",
-            scrollbarWidth: "none",
-          }}
-        >
-          <TwitterEmbed />
-        </div>
+
+        <TwitterEmbed />
+
         <div style={{ marginTop: 20 }}>
           <SubscribeToPolicyEngine displaySize="mobile" />
         </div>
