@@ -2,7 +2,7 @@ import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
 import { Alert, DatePicker, Switch } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
@@ -22,8 +22,8 @@ export default function ParameterEditor(props) {
   const reformData = policy?.reform?.data?.[parameterName];
   const parameterValues = Object.entries(parameter.values);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [startDate, setStartDate] = useState(defaultStartDate);
-  const [endDate, setEndDate] = useState(defaultEndDate);
+  const [startDate, setStartDate] = useState(searchParams.get("startDate") || defaultStartDate);
+  const [endDate, setEndDate] = useState(searchParams.get("endDate") || defaultEndDate);
   const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   const reformMap = baseMap.copy();
   if (reformData) {
@@ -33,6 +33,14 @@ export default function ParameterEditor(props) {
     }
   }
   const startValue = reformMap.get(startDate);
+
+  useEffect(() => {
+    const newStartDate = searchParams.get("startDate") || defaultStartDate;
+    const newEndDate = searchParams.get("endDate") || defaultEndDate;
+
+    setStartDate(newStartDate);
+    setEndDate(newEndDate);
+  }, [searchParams])
 
   function onChange(value) {
     reformMap.set(startDate, nextDay(endDate), value);
@@ -60,6 +68,8 @@ export default function ParameterEditor(props) {
         } else {
           let newSearch = copySearchParams(searchParams);
           newSearch.set("reform", result.policy_id);
+          newSearch.set("startDate", startDate);
+          newSearch.set("endDate", endDate);
           setSearchParams(newSearch);
         }
       });
@@ -124,7 +134,7 @@ export default function ParameterEditor(props) {
       }}
     >
       <RangePicker
-        defaultValue={[moment(startDate), moment(endDate)]}
+        value={[moment(startDate), moment(endDate)]}
         onChange={(_, dateStrings) => {
           setStartDate(dateStrings[0]);
           setEndDate(dateStrings[1]);

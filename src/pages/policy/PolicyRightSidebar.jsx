@@ -265,8 +265,9 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } =
+  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel, parameterName, reformId, region, timePeriodYear } =
     props;
+  const [searchParams, setSearchParams] = useSearchParams();
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
@@ -305,6 +306,17 @@ function SinglePolicyChange(props) {
                 color: style.colors.BLUE,
                 cursor: "pointer",
               }}
+
+              onClick={() => {
+                const newSearchParams = copySearchParams(searchParams);
+                newSearchParams.set("focus", parameterName);
+                newSearchParams.set("reform", reformId);
+                newSearchParams.set("region", region);
+                newSearchParams.set("timePeriod", timePeriodYear);
+                newSearchParams.set("startDate", startDateStr);
+                newSearchParams.set("endDate", endDateStr);
+                setSearchParams(newSearchParams)
+              }}
             >
               {newValueStr}
             </span>
@@ -319,7 +331,8 @@ function SinglePolicyChange(props) {
 }
 
 function PolicyItem(props) {
-  const { metadata, parameterName, reformData } = props;
+  const { metadata, parameterName, reformData, reformId, region, timePeriodYear } = props;
+
   const parameter = metadata.parameters[parameterName];
   let changes = [];
   for (const [timePeriod, value] of Object.entries(reformData[parameterName])) {
@@ -332,6 +345,10 @@ function PolicyItem(props) {
         endDateStr={endDateStr}
         parameterMetadata={parameter}
         value={value}
+        parameterName={parameterName}
+        reformId={reformId}
+        region={region}
+        timePeriodYear={timePeriodYear}
       />,
     );
   }
@@ -352,7 +369,7 @@ function PolicyDisplay(props) {
     ),
   );
   const reformLength = Object.keys(policy.reform.data).length;
-  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <div
       style={{
@@ -373,12 +390,6 @@ function PolicyDisplay(props) {
           <Carousel.Item
             key={parameterName}
             onClick={() => {
-              const newSearchParams = copySearchParams(searchParams);
-              newSearchParams.set("focus", parameterName);
-              newSearchParams.set("reform", policy.reform.id);
-              newSearchParams.set("region", region);
-              newSearchParams.set("timePeriod", timePeriod);
-              setSearchParams(newSearchParams);
               hideButtons && closeDrawer();
             }}
           >
@@ -387,6 +398,9 @@ function PolicyDisplay(props) {
               metadata={metadata}
               parameterName={parameterName}
               reformData={policy.reform.data}
+              reformId={policy.reform.id}
+              region={region}
+              timePeriodYear={timePeriod}
             />
           </Carousel.Item>
         ))}
