@@ -34,7 +34,7 @@ export default function ParameterEditor(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-  const [visibleDateSelector, setVisibleDateSelector] = useState(null);
+  const [visibleDateSelector, setVisibleDateSelector] = useState("yearly");
 
   const displayCategory = useDisplayCategory();
   const startValue = reformMap.get(startDate);
@@ -54,10 +54,6 @@ export default function ParameterEditor(props) {
 
     }
   }, [reformData]);
-
-  useEffect(() => {
-    setVisibleDateSelector(yearSelector);
-  }, []);
 
   function handleSegmentedChange(value) {
     setVisibleDateSelector(value);
@@ -184,8 +180,14 @@ export default function ParameterEditor(props) {
       <Segmented
         block
         options={[
-          "Yearly",
-          "Advanced"
+          {
+            label: "Yearly",
+            value: "yearly"
+          },
+          {
+            label: "Advanced",
+            value: "date"
+          }
         ]}
         width="100%"
         onChange={handleSegmentedChange}
@@ -193,7 +195,7 @@ export default function ParameterEditor(props) {
           marginBottom: "10px",
         }}
       />
-      {visibleDateSelector === "Yearly" ? (
+      {visibleDateSelector === "yearly" ? (
         yearSelector
       ) : (
         dateSelector
