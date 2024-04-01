@@ -1,6 +1,6 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
-import { Alert, Button, DatePicker, Popover, Switch, Tabs, Tooltip } from "antd";
+import { Alert, Button, DatePicker, Popover, Segmented, Switch, Tabs, Tooltip } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -34,6 +34,7 @@ export default function ParameterEditor(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
+  const [visibleDateSelector, setVisibleDateSelector] = useState(null);
 
   const displayCategory = useDisplayCategory();
   const startValue = reformMap.get(startDate);
@@ -53,6 +54,14 @@ export default function ParameterEditor(props) {
 
     }
   }, [reformData]);
+
+  useEffect(() => {
+    setVisibleDateSelector(yearSelector);
+  }, []);
+
+  function handleSegmentedChange(value) {
+    setVisibleDateSelector(value);
+  }
 
   function onChange(value) {
     reformMap.set(startDate, nextDay(endDate), value);
@@ -167,23 +176,30 @@ export default function ParameterEditor(props) {
   );
 
   const popoverContent = (
-    <Tabs
-      items={[
-        {
-          label: "Yearly",
-          key: "yearly",
-          children: yearSelector,
-        },
-        {
-          label: "Advanced",
-          key: "advanced",
-          children: dateSelector,
-        },
-      ]}
-      defaultActiveKey="yearly"
-      type="card"
-      size="small"
-    />
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
+      <Segmented
+        block
+        options={[
+          "Yearly",
+          "Advanced"
+        ]}
+        width="100%"
+        onChange={handleSegmentedChange}
+        style={{
+          marginBottom: "10px",
+        }}
+      />
+      {visibleDateSelector === "Yearly" ? (
+        yearSelector
+      ) : (
+        dateSelector
+      )
+      }
+    </div>
   );
 
   let dateSelectButtonLabel = "";
