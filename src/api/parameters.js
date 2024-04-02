@@ -29,7 +29,9 @@ export function buildParameterTree(parameters) {
     for (const key of pathComponents.slice(0, -1)) {
       cumulativePath += key;
       const fixedCumulativePath = cumulativePath;
-      let label = key;
+      let label =
+        (cumulativePath in parameters && parameters[cumulativePath].label) ||
+        key;
       // Transform e.g. "0]" -> 1
       if (key.endsWith("]")) {
         label = `Bracket ${parseInt(key.slice(0, -1)) + 1}`;
