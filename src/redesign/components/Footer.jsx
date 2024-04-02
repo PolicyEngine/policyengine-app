@@ -12,6 +12,7 @@ import {
   YoutubeFilled,
 } from "@ant-design/icons";
 import { createElement } from "react";
+import useCountryId from "./useCountryId";
 
 export default function Footer() {
   const displayCategory = useDisplayCategory();
@@ -28,20 +29,51 @@ export default function Footer() {
   );
 }
 
-function ContactUs() {
+function LinkSection() {
+  const countryId = useCountryId();
+
+  const title = countryId === "uk" ? "Our organisation" : "Our organization";
+
+  const linkData = [
+    {
+      link: "mailto:hello@policyengine.org",
+      label: "Email Us"
+    },
+    {
+      link: `/${countryId}/about`,
+      label: "About Us"
+    },
+    {
+      link: `/${countryId}/donate`,
+      label: "Donate"
+    },
+    {
+      link: `${countryId}/privacy`,
+      label: "Privacy Policy"
+    }
+  ];
+
+  const links = linkData.map((link, index) => {
+    return (
+      <p 
+        key={index}
+        style={{
+          marginBottom: "0.5rem"
+        }}
+      >
+        <a href={link.link} className="link-inverted" style={{textDecorationLine: "none"}}>
+          {link.label}
+        </a>
+      </p>
+    );
+  });
+
   return (
     <div
-      style={{
-        marginTop: 30,
-      }}
     >
-      <h2 style={{ color: "white" }}>Contact</h2>
-      <p>
-        <a href="mailto:hello@policyengine.org" className="link-inverted">
-          <u>Email us</u>
-        </a>{" "}
-        at hello@policyengine.org
-      </p>
+      <h2 style={{ color: "white" }}>{title}</h2>
+      {links}
+
     </div>
   );
 }
@@ -79,12 +111,18 @@ function SocialLinks() {
   const displayCategory = useDisplayCategory();
   if (displayCategory === "mobile") {
     return (
-      <>
+      <div 
+        style={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <h2 style={{ color: "white", margin: "0" }}>Follow us on social media</h2>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: 50,
+            marginTop: "20px"
           }}
         >
           {firstThree}
@@ -98,14 +136,21 @@ function SocialLinks() {
         >
           {lastThree}
         </div>
-      </>
+      </div>
     );
   }
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        marginTop: "20px"
+      }}
+    >
+      <h2 style={{ color: "white", marginBottom: "0" }}>Follow us on social media</h2>
       <div
         style={{
-          marginTop: displayCategory === "desktop" ? "auto" : 50,
           marginBottom: displayCategory === "desktop" ? 0 : 30,
           display: "flex",
           justifyContent: "space-between",
@@ -114,7 +159,7 @@ function SocialLinks() {
         {firstThree}
         {lastThree}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -157,17 +202,22 @@ export function SocialLink({ icon, url, backgroundColor, color }) {
 
 function MobileFooter() {
   return (
-    <>
+    <div 
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "40px"
+      }}
+    >
       <img
         src={PolicyEngineMainLogo}
         alt="PolicyEngine logo"
         width="100%"
-        style={{ marginBottom: 50 }}
       />
+      <LinkSection />
       <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
-      <ContactUs />
-    </>
+    </div>
   );
 }
 
@@ -186,10 +236,8 @@ function TabletFooter() {
           justifyContent: "space-between",
         }}
       >
-        <div>
-          <SubscribeToPolicyEngine displaySize="mobile" />
-          <ContactUs />
-        </div>
+        <LinkSection />
+        <SubscribeToPolicyEngine displaySize="mobile" />
       </div>
       <SocialLinks />
     </div>
@@ -217,11 +265,11 @@ function DesktopFooter() {
             flexDirection: "column",
           }}
         >
-          <ContactUs />
+          <LinkSection />
           <SocialLinks />
         </div>
 
-        <div style={{ marginTop: 20 }}>
+        <div>
           <SubscribeToPolicyEngine displaySize="mobile" />
         </div>
       </div>
