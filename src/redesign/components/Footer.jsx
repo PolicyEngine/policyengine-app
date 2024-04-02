@@ -52,7 +52,7 @@ function LinkSection() {
       isInternal: true
     },
     {
-      link: `${countryId}/privacy`,
+      link: `/${countryId}/privacy`,
       label: "Privacy Policy",
       isInternal: true
     }
