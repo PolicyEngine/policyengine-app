@@ -39,52 +39,58 @@ function LinkSection() {
     {
       link: "mailto:hello@policyengine.org",
       label: "Email Us",
-      isInternal: false
+      isInternal: false,
     },
     {
       link: `/${countryId}/about`,
       label: "About Us",
-      isInternal: true
+      isInternal: true,
     },
     {
       link: `/${countryId}/donate`,
       label: "Donate",
-      isInternal: true
+      isInternal: true,
     },
     {
       link: `/${countryId}/privacy`,
       label: "Privacy Policy",
-      isInternal: true
-    }
+      isInternal: true,
+    },
   ];
 
   const links = linkData.map((link, index) => {
     return (
-      <p 
+      <p
         key={index}
         style={{
-          marginBottom: "0.5rem"
+          marginBottom: "0.5rem",
         }}
       >
-        {
-          link.isInternal ? (
-            <Link to={link.link} className="link-inverted" style={{textDecorationLine: "none"}}>{link.label}</Link>
-          ) : (
-            <a href={link.link} className="link-inverted" style={{textDecorationLine: "none"}}>
-              {link.label}
-            </a>
-          )
-        }
+        {link.isInternal ? (
+          <Link
+            to={link.link}
+            className="link-inverted"
+            style={{ textDecorationLine: "none" }}
+          >
+            {link.label}
+          </Link>
+        ) : (
+          <a
+            href={link.link}
+            className="link-inverted"
+            style={{ textDecorationLine: "none" }}
+          >
+            {link.label}
+          </a>
+        )}
       </p>
     );
   });
 
   return (
-    <div
-    >
+    <div>
       <h2 style={{ color: "white" }}>{title}</h2>
       {links}
-
     </div>
   );
 }
@@ -122,18 +128,20 @@ function SocialLinks() {
   const displayCategory = useDisplayCategory();
   if (displayCategory === "mobile") {
     return (
-      <div 
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
         }}
       >
-        <h2 style={{ color: "white", margin: "0" }}>Follow us on social media</h2>
+        <h2 style={{ color: "white", margin: "0" }}>
+          Follow us on social media
+        </h2>
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            marginTop: "20px"
+            marginTop: "20px",
           }}
         >
           {firstThree}
@@ -156,10 +164,12 @@ function SocialLinks() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
-        marginTop: "20px"
+        marginTop: "20px",
       }}
     >
-      <h2 style={{ color: "white", marginBottom: "0" }}>Follow us on social media</h2>
+      <h2 style={{ color: "white", marginBottom: "0" }}>
+        Follow us on social media
+      </h2>
       <div
         style={{
           marginBottom: displayCategory === "desktop" ? 0 : 30,
@@ -213,18 +223,14 @@ export function SocialLink({ icon, url, backgroundColor, color }) {
 
 function MobileFooter() {
   return (
-    <div 
+    <div
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "40px"
+        gap: "40px",
       }}
     >
-      <img
-        src={PolicyEngineMainLogo}
-        alt="PolicyEngine logo"
-        width="100%"
-      />
+      <img src={PolicyEngineMainLogo} alt="PolicyEngine logo" width="100%" />
       <LinkSection />
       <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
