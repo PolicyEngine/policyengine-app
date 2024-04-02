@@ -1,5 +1,5 @@
 import style from "../redesign/style";
-import Footer from "../redesign/components/Footer";
+import Footer from "../layout/Footer";
 import Header from "../redesign/components/Header";
 import Section from "../redesign/components/Section";
 import useCountryId from "../redesign/components/useCountryId";
