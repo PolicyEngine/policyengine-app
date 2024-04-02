@@ -13,6 +13,7 @@ import {
 } from "@ant-design/icons";
 import { createElement } from "react";
 import useCountryId from "./useCountryId";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const displayCategory = useDisplayCategory();
@@ -37,19 +38,23 @@ function LinkSection() {
   const linkData = [
     {
       link: "mailto:hello@policyengine.org",
-      label: "Email Us"
+      label: "Email Us",
+      isInternal: false
     },
     {
       link: `/${countryId}/about`,
-      label: "About Us"
+      label: "About Us",
+      isInternal: true
     },
     {
       link: `/${countryId}/donate`,
-      label: "Donate"
+      label: "Donate",
+      isInternal: true
     },
     {
       link: `${countryId}/privacy`,
-      label: "Privacy Policy"
+      label: "Privacy Policy",
+      isInternal: true
     }
   ];
 
@@ -61,9 +66,15 @@ function LinkSection() {
           marginBottom: "0.5rem"
         }}
       >
-        <a href={link.link} className="link-inverted" style={{textDecorationLine: "none"}}>
-          {link.label}
-        </a>
+        {
+          link.isInternal ? (
+            <Link to={link.link} className="link-inverted" style={{textDecorationLine: "none"}}>{link.label}</Link>
+          ) : (
+            <a href={link.link} className="link-inverted" style={{textDecorationLine: "none"}}>
+              {link.label}
+            </a>
+          )
+        }
       </p>
     );
   });
