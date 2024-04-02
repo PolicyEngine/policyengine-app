@@ -11,7 +11,7 @@ import {
   TwitterOutlined,
   YoutubeFilled,
 } from "@ant-design/icons";
-import { createElement, useEffect } from "react";
+import { createElement } from "react";
 
 export default function Footer() {
   const displayCategory = useDisplayCategory();
@@ -42,36 +42,6 @@ function ContactUs() {
         </a>{" "}
         at hello@policyengine.org
       </p>
-    </div>
-  );
-}
-
-function TwitterEmbed() {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://platform.twitter.com/widgets.js";
-    script.charset = "utf-8";
-    document.getElementById("twitter-container").appendChild(script);
-  }, []);
-
-  return (
-    <div
-      id="twitter-container"
-      style={{
-        paddingLeft: 20,
-        paddingRight: 20,
-      }}
-    >
-      <a
-        className="twitter-timeline"
-        data-theme="light"
-        href="https://twitter.com/ThePolicyEngine?ref_src=twsrc%5Etfw"
-        data-height="450"
-        data-width="300"
-      >
-        Loading tweets by ThePolicyEngine...
-      </a>
     </div>
   );
 }
@@ -196,9 +166,6 @@ function MobileFooter() {
       />
       <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
-
-      <TwitterEmbed />
-
       <ContactUs />
     </>
   );
@@ -222,16 +189,6 @@ function TabletFooter() {
         <div>
           <SubscribeToPolicyEngine displaySize="mobile" />
           <ContactUs />
-        </div>
-        <div
-          style={{
-            width: "100%",
-            maxHeight: "500px",
-            overflowY: "auto",
-            scrollbarWidth: "none",
-          }}
-        >
-          <TwitterEmbed />
         </div>
       </div>
       <SocialLinks />
@@ -263,8 +220,6 @@ function DesktopFooter() {
           <ContactUs />
           <SocialLinks />
         </div>
-
-        <TwitterEmbed />
 
         <div style={{ marginTop: 20 }}>
           <SubscribeToPolicyEngine displaySize="mobile" />
