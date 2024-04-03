@@ -135,12 +135,13 @@ export function title(policyLabel, change, metadata) {
     maximumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "raise" : "cost";
+
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1}${regionPhrase} this year`
-      : `${policyLabel} would ${signTerm} ${term2}${regionPhrase} this year`;
+      ? `${policyLabel} would have no effect on ${term1}${regionPhrase}`
+      : `${policyLabel} would ${signTerm} ${term2}${regionPhrase}`;
   return msg;
 }
 
