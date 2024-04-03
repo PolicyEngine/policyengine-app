@@ -594,7 +594,7 @@ function Tr({ children }) {
   );
 }
 
-function BlogContent({ markdown, backgroundColor }) {
+export function BlogContent({ markdown, backgroundColor, dict }) {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const renderers = {
@@ -879,6 +879,13 @@ function BlogContent({ markdown, backgroundColor }) {
           }
         },
         pre: ({ children }) => children,
+        abbr: (props) => {
+          const { title } = props;
+          if (Object.keys(dict).includes(title)) {
+            return dict[title];
+          }
+          return <abbr {...props}></abbr>;
+        },
       }}
     >
       {markdown}
