@@ -3,7 +3,7 @@
     "title": "PolicyEngine's 2022 year in review",
     "description": "A year of launches, analysis, and building for the future.",
     "date": "2022-12-30",
-    "tags": ["global"],
+    "tags": ["global", "impact"],
     "filename": "policyengine-2022-year-in-review.md",
     "image": "policyengine-2022-year-in-review.png",
     "authors": ["max-ghenis"]
@@ -12,7 +12,7 @@
     "title": "How machine learning tools make PolicyEngine more accurate",
     "description": "Today, we’re launching new survey weights that cut deviations from administrative statistics by 97%.",
     "date": "2022-03-07",
-    "tags": ["uk"],
+    "tags": ["uk", "technical"],
     "filename": "how-machine-learning-tools-make-policyengine-more-accurate.md",
     "image": "how-machine-learning-tools-make-policyengine-more-accurate.png",
     "authors": ["nikhil-woodruff"]
@@ -21,7 +21,7 @@
     "title": "Enhancing the Current Population Survey for policy analysis",
     "description": "We’ve used modern data science techniques to make PolicyEngine the UK’s most accurate microsimulation model. In 2023, we’ll do the same in the US.",
     "date": "2022-12-28",
-    "tags": ["us"],
+    "tags": ["us", "technical"],
     "filename": "enhancing-the-current-population-survey-for-policy-analysis.md",
     "image": "enhancing-the-current-population-survey-for-policy-analysis.png",
     "authors": ["max-ghenis"]
@@ -30,7 +30,7 @@
     "title": "How charitable contributions affect Americans’ taxes",
     "description": "PolicyEngine estimates the tax impact of your donations for free.",
     "date": "2022-11-29",
-    "tags": ["us"],
+    "tags": ["us", "policy"],
     "filename": "charitable-contributions.md",
     "image": "charitable-contributions.png",
     "authors": ["max-ghenis"]
@@ -39,7 +39,7 @@
     "title": "Maryland's standard deduction",
     "description": "PolicyEngine computes the program’s impact on Maryland and individual households.",
     "date": "2022-11-22",
-    "tags": ["us"],
+    "tags": ["us", "policy"],
     "filename": "maryland-standard-deduction.md",
     "image": "maryland-standard-deduction.png",
     "authors": ["kevin-foster"]
@@ -48,7 +48,7 @@
     "title": "From OpenFisca to PolicyEngine",
     "description": "OpenFisca has catapulted our progress, and now we’ve forked it into our own microsimulation framework.",
     "date": "2022-11-10",
-    "tags": ["global"],
+    "tags": ["global", "technical"],
     "filename": "from-openfisca-to-policyengine.md",
     "image": "from-openfisca-to-policyengine.png",
     "authors": ["nikhil-woodruff"]
@@ -57,7 +57,7 @@
     "title": "Oregon’s Nonrefundable Exemption Credit",
     "description": "PolicyEngine computes the program’s impact on Oregon and individual households.",
     "date": "2022-11-04",
-    "tags": ["us"],
+    "tags": ["us", "policy"],
     "filename": "oregons-nonrefundable-exemption-credit.md",
     "image": "oregons-nonrefundable-exemption-credit.jpeg",
     "authors": ["kevin-foster"]
@@ -66,7 +66,7 @@
     "title": "Stamp duties in PolicyEngine UK",
     "date": "2022-09-22",
     "authors": ["nikhil-woodruff"],
-    "tags": ["uk"],
+    "tags": ["uk", "technical"],
     "description": "The Times reported yesterday that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports\u2026",
     "filename": "stamp-duties-in-policyengine-uk.md",
     "image": "stamp-duties-in-policyengine-uk.jpg"
@@ -75,7 +75,7 @@
     "title": "Prime Minister Liz Truss\u2019s energy bill price cap",
     "date": "2022-09-16",
     "authors": ["max-ghenis"],
-    "tags": ["uk"],
+    "tags": ["uk", "policy"],
     "description": "See the impact in PolicyEngine.",
     "filename": "prime-minister-liz-trusss-energy-bill-price-cap.md",
     "image": "prime-minister-liz-trusss-energy-bill-price-cap.jpg"
@@ -84,7 +84,7 @@
     "title": "Raising the marriage allowance from 10% to 100%",
     "date": "2022-08-29",
     "authors": ["nikhil-woodruff"],
-    "tags": ["uk"],
+    "tags": ["uk", "policy"],
     "description": "See the reform in PolicyEngine.",
     "filename": "raising-the-marriage-allowance-from-10-to-100.md",
     "image": "raising-the-marriage-allowance-from-10-to-100.jpg"

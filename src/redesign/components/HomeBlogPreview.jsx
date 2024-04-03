@@ -1,6 +1,6 @@
 import style from "../style";
 import { SectionBottom, SectionTop } from "./Section";
-import { posts } from "../data/Posts";
+import { posts } from "../data/postTransformers";
 import useDisplayCategory from "./useDisplayCategory";
 import Carousel from "./Carousel";
 import moment from "moment";
