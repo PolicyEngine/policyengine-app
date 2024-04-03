@@ -12,7 +12,7 @@ import {
   locationTags,
   locationLabels,
   topicLabels,
-} from "../data/postTransformers";
+} from "../../posts/postTransformers";
 import { MediumBlogPreview } from "./HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";

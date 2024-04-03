@@ -10,7 +10,7 @@ import {
   posts,
   topicLabels,
   topicTags,
-} from "../data/postTransformers";
+} from "../../posts/postTransformers";
 import moment from "moment";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Markdown from "react-markdown";
