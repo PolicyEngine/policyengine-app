@@ -59,11 +59,6 @@ export default function ParameterEditor(props) {
     }
   }, [reformData]);
 
-  useEffect(() => {
-    console.log(startDate);
-    console.log(endDate + "\n");
-  }, [startDate, endDate])
-
   let gridTemplate = null;
   if (displayCategory === "mobile" || displayCategory === "tablet") {
     gridTemplate = "repeat(2, 1fr) / 1fr";
@@ -151,11 +146,13 @@ function PeriodSetter(props) {
     setVisibleDateSelector(value);
   }
 
+  const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
+
   // Array of selectable years, sorted in ascending order
   const possibleYears = metadata.economy_options.time_period.map((period) => period.name).sort();
   const minPossibleDate = String(possibleYears[0]).concat("-01-01");
   const maxPossibleDate = String(possibleYears[possibleYears.length - 1] + 10).concat("-12-31");
-  const defaultEnd = endDate === String(defaultForeverYear).concat("-12-31") ? null : moment(endDate);
+  const isEndForever = endDate === FOREVER_DATE;
 
   let dateSelectButtonLabel = "";
   const isFullYearSet = (
@@ -165,7 +162,7 @@ function PeriodSetter(props) {
 
   if (!isFullYearSet) {
     dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}:`;
-  } else if (moment(endDate).year() === Number(defaultForeverYear)) {
+  } else if (isEndForever) {
     dateSelectButtonLabel = `from ${moment(startDate).year()} onward:`;
   } else {
     dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}:`;
@@ -174,8 +171,8 @@ function PeriodSetter(props) {
   const yearSelector = (
     <RangePicker
       picker="year"
-      defaultValue={[moment(startDate), defaultEnd]}
-      value={[moment(startDate), endDate === "2100-12-31" ? null : moment(endDate)]}
+      defaultValue={[moment(startDate), null]}
+      value={[moment(startDate), isEndForever ? null : moment(endDate)]}
       onChange={(_, yearStrings) => {
         setStartDate(yearStrings[0].concat("-01-01"));
         setEndDate(yearStrings[1].concat("-12-31"));
@@ -187,8 +184,8 @@ function PeriodSetter(props) {
 
   const dateSelector = (
     <RangePicker
-      defaultValue={[moment(startDate), defaultEnd]}
-      value={[moment(startDate), endDate === "2100-12-31" ? null : moment(endDate)]}
+      defaultValue={[moment(startDate), null]}
+      value={[moment(startDate), isEndForever ? null : moment(endDate)]}
       onChange={(_, dateStrings) => {
         setStartDate(dateStrings[0]);
         setEndDate(dateStrings[1]);
