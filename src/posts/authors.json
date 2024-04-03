@@ -6,7 +6,8 @@
     "github": "https://github.com/nikhilwoodruff",
     "linkedin": "https://www.linkedin.com/in/nikhil-woodruff/",
     "headshot": "nikhil-woodruff.jpg",
-    "bio": "Nikhil is PolicyEngine's co-founder and CTO."
+    "bio": "Nikhil is PolicyEngine's co-founder and CTO.",
+    "title": "PolicyEngine's Co-founder and CTO"
   },
   "max-ghenis": {
     "name": "Max Ghenis",
@@ -15,7 +16,8 @@
     "github": "https://github.com/MaxGhenis",
     "linkedin": "https://www.linkedin.com/in/maxghenis/",
     "headshot": "max-ghenis.png",
-    "bio": "Max is PolicyEngine's co-founder and CEO."
+    "bio": "Max is PolicyEngine's co-founder and CEO.",
+    "title": "PolicyEngine's Co-founder and CEO"
   },
   "kevin-foster": {
     "name": "Kevin Foster",
@@ -23,7 +25,8 @@
     "email": "newforza@gmail.com",
     "github": "https://github.com/kfoster19",
     "linkedin": "https://www.linkedin.com/in/kevin-h-foster/",
-    "bio": "Kevin is a researcher at PolicyEngine."
+    "bio": "Kevin was a researcher at PolicyEngine.",
+    "title": "Researcher at PolicyEngine"
   },
   "nicholas-rodelo": {
     "name": "Nicholas Rodelo",
@@ -32,12 +35,14 @@
     "github": "https://github.com/nmrodelo",
     "linkedin": "https://www.linkedin.com/in/nicholas-rodelo-aaaa18159/",
     "twitter": "https://twitter.com/NicholasRodelo",
-    "bio": "Nicholas was a researcher at PolicyEngine."
+    "bio": "Nicholas was a researcher at PolicyEngine.",
+    "title": "Researcher at PolicyEngine"
   },
   "chat-gpt": {
     "name": "ChatGPT",
     "headshot": "chat-gpt.png",
-    "bio": "ChatGPT is a contributing writer at PolicyEngine"
+    "bio": "ChatGPT is a contributing writer at PolicyEngine",
+    "title": "Contributing writer at PolicyEngine"
   },
   "arthur-wright": {
     "name": "Arthur Wright",
@@ -45,7 +50,8 @@
     "email": "awrigh46@gmu.edu",
     "github": "awrigh46",
     "bio": "Arthur was a researcher at PolicyEngine.",
-    "twitter": "https://twitter.com/Arthur_Wright_"
+    "twitter": "https://twitter.com/Arthur_Wright_",
+    "title": "Researcher at PolicyEngine"
   },
   "donglai-xu": {
     "name": "Donglai Xu",
@@ -53,7 +59,8 @@
     "email": "donglaixu99@gmail.com",
     "github": "xudonglai0426",
     "linkedin": "https://www.linkedin.com/in/donglaixu11101",
-    "bio": "Donglai was a data analyst at PolicyEngine."
+    "bio": "Donglai was a data analyst at PolicyEngine.",
+    "title": "Data Analyst at PolicyEngine"
   },
   "lin-tao": {
     "name": "Lin Tao",
@@ -61,13 +68,15 @@
     "email": "tao.lin1@northeastern.edu",
     "github": "Kim1277",
     "linkedin": "https://www.linkedin.com/in/lin-tao-384203207",
-    "bio": "Lin was a data analyst at PolicyEngine."
+    "bio": "Lin was a data analyst at PolicyEngine.",
+    "title": "Data Analyst at PolicyEngine"
   },
   "anthony-volk": {
     "name": "Anthony Volk",
     "email": "anthony@policyengine.org",
     "bio": "is a full-stack engineer at PolicyEngine.",
-    "headshot": "anthony-volk.jpg"
+    "headshot": "anthony-volk.jpg",
+    "title": "Full-Stack Engineer at PolicyEngine"
   },
   "pavel-makarchuk": {
     "name": "Pavel Makarchuk",
@@ -76,6 +85,7 @@
     "linkedin": "https://www.linkedin.com/in/pavel-makarchuk-170989203/",
     "github": "https://github.com/PavelMakarchuk",
     "twitter": "https://twitter.com/PavelMakarchuk3",
-    "headshot": "pavel-makarchuk.png"
+    "headshot": "pavel-makarchuk.png",
+    "title": "Policy Modeling Manager at PolicyEngine"
   }
 }

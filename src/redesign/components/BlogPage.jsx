@@ -26,7 +26,7 @@ import {
   PrinterOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
-import { Authors } from "../data/Authors";
+import authors from "../../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
 
@@ -460,43 +460,47 @@ function Authorship({ post }) {
 
 function AuthorSection({ post }) {
   const countryId = useCountryId();
-  const authorDescriptions = post.authors.map((author) => (
-    <div
-      key={author}
-      style={{
-        display: "flex",
-        justifyContent: "start",
-        gap: 15,
-        padding: "1rem .5rem",
-        borderTop: "1px solid black",
-      }}
-    >
-      <img
-        alt={Authors[author].name}
-        src={Authors[author].headshot}
-        width={70}
-        height={70}
+  const authorDescriptions = post.authors.map((author) => {
+    const authorImage = require(`../../images/authors/${authors[author].headshot}`);
+
+    return (
+      <div
+        key={author}
         style={{
-          objectFit: "cover",
+          display: "flex",
+          justifyContent: "start",
+          gap: 15,
+          padding: "1rem .5rem",
+          borderTop: "1px solid black",
         }}
-      />
-      <p style={{ paddingTop: 5 }}>
-        <span
-          className="spaced-sans-serif"
-          style={{ color: style.colors.BLUE_PRIMARY }}
-        >
-          <Link
-            to={`/${countryId}/research?authors=${author}`}
-            className="highlighted-link"
+      >
+        <img
+          alt={authors[author].name}
+          src={authorImage}
+          width={70}
+          height={70}
+          style={{
+            objectFit: "cover",
+          }}
+        />
+        <p style={{ paddingTop: 5 }}>
+          <span
+            className="spaced-sans-serif"
+            style={{ color: style.colors.BLUE_PRIMARY }}
           >
-            {author.replaceAll("-", " ")}
-          </Link>
-        </span>
-        <br></br>
-        <span style={{ fontSize: 12 }}>{Authors[author].title}</span>
-      </p>
-    </div>
-  ));
+            <Link
+              to={`/${countryId}/research?authors=${author}`}
+              className="highlighted-link"
+            >
+              {author.replaceAll("-", " ")}
+            </Link>
+          </span>
+          <br></br>
+          <span style={{ fontSize: 12 }}>{authors[author].title}</span>
+        </p>
+      </div>
+    );
+  });
 
   return (
     <ul style={{ marginTop: 50, marginLeft: "-2rem" }}>{authorDescriptions}</ul>

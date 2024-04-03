@@ -43,7 +43,7 @@ export const staff = {
     development with the Institute for State Effectiveness. He holds an
     A.B. in Government and East Asian Studies from Harvard 
     University.`,
-    image: require("../images/authors/anthony-volk.jpg"),
+    image: require("../../images/authors/anthony-volk.jpg"),
   },
 };
 
