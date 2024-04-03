@@ -1,13 +1,25 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
-import { Alert, Button, DatePicker, Popover, Segmented, Switch, Tooltip } from "antd";
+import {
+  Alert,
+  Button,
+  DatePicker,
+  Popover,
+  Segmented,
+  Switch,
+  Tooltip,
+} from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
 import { currencyMap } from "../../../api/variables";
-import { defaultStartDate, defaultEndDate, defaultForeverYear } from "data/constants";
+import {
+  defaultStartDate,
+  defaultEndDate,
+  defaultForeverYear,
+} from "data/constants";
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
@@ -19,7 +31,7 @@ const { RangePicker } = DatePicker;
 /**
  * Component used to edit the values for a parameter; this is itself
  * composed of two sub-components: PeriodSetter and ValueSetter
- * @param {Object} props 
+ * @param {Object} props
  * @param {Object} props.metadata
  * @param {Object} props.policy
  * @param {String} props.parameterName
@@ -45,11 +57,10 @@ export default function ParameterEditor(props) {
   const displayCategory = useDisplayCategory();
 
   useEffect(() => {
-
     if (reformData && Object.keys(reformData).length > 0) {
       // Assign the dates of the first item from the reform data
       // as the default start and end dates and value; this should
-      // be written against a stronger structure in the future, as 
+      // be written against a stronger structure in the future, as
       // JS Objects have no guaranteed order
       const reformDates = Object.keys(reformData)[0];
       const [reformStartDate, reformEndDate] = reformDates.split(".");
@@ -94,14 +105,14 @@ export default function ParameterEditor(props) {
           width: "100%",
         }}
       >
-        <PeriodSetter 
+        <PeriodSetter
           metadata={metadata}
           startDate={startDate}
           endDate={endDate}
           setStartDate={setStartDate}
           setEndDate={setEndDate}
         />
-        <ValueSetter 
+        <ValueSetter
           startDate={startDate}
           endDate={endDate}
           parameterName={parameterName}
@@ -132,13 +143,7 @@ export default function ParameterEditor(props) {
 }
 
 function PeriodSetter(props) {
-  const {
-    metadata,
-    startDate,
-    endDate,
-    setStartDate,
-    setEndDate
-  } = props;
+  const { metadata, startDate, endDate, setStartDate, setEndDate } = props;
 
   const [visibleDateSelector, setVisibleDateSelector] = useState("yearly");
 
@@ -149,16 +154,18 @@ function PeriodSetter(props) {
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
 
   // Array of selectable years, sorted in ascending order
-  const possibleYears = metadata.economy_options.time_period.map((period) => period.name).sort();
+  const possibleYears = metadata.economy_options.time_period
+    .map((period) => period.name)
+    .sort();
   const minPossibleDate = String(possibleYears[0]).concat("-01-01");
-  const maxPossibleDate = String(possibleYears[possibleYears.length - 1] + 10).concat("-12-31");
+  const maxPossibleDate = String(
+    possibleYears[possibleYears.length - 1] + 10,
+  ).concat("-12-31");
   const isEndForever = endDate === FOREVER_DATE;
 
   let dateSelectButtonLabel = "";
-  const isFullYearSet = (
-    checkBoundaryDate(startDate, "start") &&
-    checkBoundaryDate(endDate, "end")
-  );
+  const isFullYearSet =
+    checkBoundaryDate(startDate, "start") && checkBoundaryDate(endDate, "end");
 
   if (!isFullYearSet) {
     dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}:`;
@@ -177,7 +184,9 @@ function PeriodSetter(props) {
         setStartDate(yearStrings[0].concat("-01-01"));
         setEndDate(yearStrings[1].concat("-12-31"));
       }}
-      disabledDate={(date) => date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)}
+      disabledDate={(date) =>
+        date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)
+      }
       separator="→"
     />
   );
@@ -190,7 +199,9 @@ function PeriodSetter(props) {
         setStartDate(dateStrings[0]);
         setEndDate(dateStrings[1]);
       }}
-      disabledDate={(date) => date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)}
+      disabledDate={(date) =>
+        date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)
+      }
       separator="→"
     />
   );
@@ -206,12 +217,12 @@ function PeriodSetter(props) {
         options={[
           {
             label: "Yearly",
-            value: "yearly"
+            value: "yearly",
           },
           {
             label: "Advanced",
-            value: "date"
-          }
+            value: "date",
+          },
         ]}
         width="100%"
         onChange={handleSegmentedChange}
@@ -219,26 +230,17 @@ function PeriodSetter(props) {
           marginBottom: "10px",
         }}
       />
-      {visibleDateSelector === "yearly" ? (
-        yearSelector
-      ) : (
-        dateSelector
-      )
-      }
+      {visibleDateSelector === "yearly" ? yearSelector : dateSelector}
     </div>
   );
 
   return (
-    <Popover
-      trigger="click"
-      content={popoverContent}
-      placement="bottom"
-    >
+    <Popover trigger="click" content={popoverContent} placement="bottom">
       <Tooltip title="Click to edit parameter timespan">
-        <Button 
+        <Button
           type="text"
           style={{
-            width: "100%"
+            width: "100%",
           }}
         >
           {dateSelectButtonLabel}
@@ -256,7 +258,7 @@ function ValueSetter(props) {
     metadata,
     reformMap,
     baseMap,
-    policy
+    policy,
   } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
