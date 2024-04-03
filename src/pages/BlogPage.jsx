@@ -461,7 +461,9 @@ function Authorship({ post }) {
 function AuthorSection({ post }) {
   const countryId = useCountryId();
   const authorDescriptions = post.authors.map((author) => {
-    const authorImage = require(`../images/authors/${authors[author].headshot}`);
+    const authorImage = require(
+      `../images/authors/${authors[author].headshot}`,
+    );
 
     return (
       <div
