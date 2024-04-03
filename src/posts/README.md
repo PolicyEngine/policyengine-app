@@ -4,7 +4,7 @@
 2. Ensure `npm install -g mediumexporter` is installed.
 3. Run `mediumexporter {url_of_post} > src/posts/articles/{slug}.md`.[^2]
 4. Download the cover image from the post and save it to `src/images/posts/articles/{slug}.{ext}`.
-5. Add a new entry to `src/posts/code/posts.json` with the below details (mostly self-explanatory):
+5. Add a new entry to `src/posts/posts.json` with the below details (mostly self-explanatory):
 
 ```json
 {
@@ -18,7 +18,7 @@
 }
 ```
 
-6. If needed, add a new author entry to `src/posts/code/authors.json`.
+6. If needed, add a new author entry to `src/posts/authors.json`.
 7. Remove the title (with the single #), the description and cover image from the post (the start of the markdown file should be the first sentence of the post).
 8. Replace superscript footnotes with Markdown footnotes.
 

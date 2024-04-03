@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 import { BlogPostPreviewRegular } from "../layout/BlogPostHolder";
-import postJson from "../posts/code/posts.json";
+import postJson from "../posts/posts.json";
 import style from "../style";
 
 export default function ResearchPage(props) {

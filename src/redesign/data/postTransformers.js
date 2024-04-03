@@ -1,4 +1,4 @@
-import posts from "../../posts/code/posts.json";
+import posts from "../../posts/posts.json";
 
 const postsSorted = posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 
