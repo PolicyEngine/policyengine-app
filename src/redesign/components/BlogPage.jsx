@@ -42,7 +42,7 @@ export default function BlogPage() {
     ? require("../images/posts/" + post.image)
     : require("../images/placeholder.png");
 
-  const file = require(`../../posts/${post.filename}`);
+  const file = require(`../../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
   const isNotebook = post.filename.endsWith(".ipynb");

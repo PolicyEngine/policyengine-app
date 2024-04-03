@@ -1,4 +1,4 @@
-import postJson from "../posts/posts.json";
+import postJson from "../posts/code/posts.json";
 import style from "../style";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";

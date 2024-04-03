@@ -3,8 +3,8 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 
-# Load src/posts/posts.json
-with open("src/posts/posts.json") as f:
+# Load src/posts/code/posts.json
+with open("src/posts/code/posts.json") as f:
     posts: list = json.load(f)
     post_by_slug = {post["filename"].split(".md")[0]: post for post in posts}
 
