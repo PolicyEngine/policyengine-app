@@ -51,7 +51,6 @@ export default function ParameterEditor(props) {
 
       setStartDate(reformStartDate);
       setEndDate(reformEndDate);
-
     }
   }, [reformData]);
 
@@ -140,6 +139,11 @@ export default function ParameterEditor(props) {
     );
   }
 
+  useEffect(() => {
+    console.log(startDate);
+    console.log(endDate + "\n");
+  }, [startDate, endDate])
+
   // Array of selectable years, sorted in ascending order
   const possibleYears = metadata.economy_options.time_period.map((period) => period.name).sort();
   const minPossibleDate = String(possibleYears[0]).concat("-01-01");
@@ -150,6 +154,7 @@ export default function ParameterEditor(props) {
     <RangePicker
       picker="year"
       defaultValue={[moment(startDate), defaultEnd]}
+      value={[moment(startDate), endDate === "2100-12-31" ? null : moment(endDate)]}
       onChange={(_, yearStrings) => {
         setStartDate(yearStrings[0].concat("-01-01"));
         setEndDate(yearStrings[1].concat("-12-31"));
@@ -162,6 +167,7 @@ export default function ParameterEditor(props) {
   const dateSelector = (
     <RangePicker
       defaultValue={[moment(startDate), defaultEnd]}
+      value={[moment(startDate), endDate === "2100-12-31" ? null : moment(endDate)]}
       onChange={(_, dateStrings) => {
         setStartDate(dateStrings[0]);
         setEndDate(dateStrings[1]);
@@ -218,7 +224,6 @@ export default function ParameterEditor(props) {
     dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}:`;
   }
 
-  const mobile = useMobile();
   let gridTemplate = null;
   if (displayCategory === "mobile" || displayCategory === "tablet") {
     gridTemplate = "repeat(2, 1fr) / 1fr";
