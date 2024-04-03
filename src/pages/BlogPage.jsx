@@ -1,20 +1,20 @@
 import { Link, Navigate } from "react-router-dom";
-import useCountryId from "./useCountryId";
-import Header from "./Header";
-import Footer from "../../layout/Footer";
-import Section from "./Section";
-import style from "../style";
+import useCountryId from "../redesign/components/useCountryId";
+import Header from "../redesign/components/Header";
+import Footer from "../redesign/components/Footer";
+import Section from "../redesign/components/Section";
+import style from "../redesign/style";
 import {
   locationLabels,
   locationTags,
   posts,
   topicLabels,
   topicTags,
-} from "../../posts/postTransformers";
+} from "../posts/postTransformers";
 import moment from "moment";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Markdown from "react-markdown";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import React, { useEffect, useState, useRef } from "react";
@@ -26,7 +26,7 @@ import {
   PrinterOutlined,
   TwitterOutlined,
 } from "@ant-design/icons";
-import authors from "../../posts/authors.json";
+import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
 
@@ -42,7 +42,7 @@ export default function BlogPage() {
     ? require("../images/posts/" + post.image)
     : require("../images/placeholder.png");
 
-  const file = require(`../../posts/articles/${post.filename}`);
+  const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
   const isNotebook = post.filename.endsWith(".ipynb");
@@ -461,7 +461,7 @@ function Authorship({ post }) {
 function AuthorSection({ post }) {
   const countryId = useCountryId();
   const authorDescriptions = post.authors.map((author) => {
-    const authorImage = require(`../../images/authors/${authors[author].headshot}`);
+    const authorImage = require(`../images/authors/${authors[author].headshot}`);
 
     return (
       <div

@@ -5,7 +5,7 @@ import Button from "../../../controls/Button";
 import CodeBlock from "layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
-import { BlogContent } from "../../../redesign/components/BlogPage";
+import { BlogContent } from "../../BlogPage";
 import { asyncApiCall, countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 
