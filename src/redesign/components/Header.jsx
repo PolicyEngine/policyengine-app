@@ -15,6 +15,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 const BAR_TOP_PADDING = 10; // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
 const BAR_SIDE_PADDING = 16;
+const LINKS = [
+    "Research",
+    "About",
+    "Donate"
+];
 
 export default function Header() {
 
@@ -279,12 +284,6 @@ function PageLinks() {
 
   const countryId = useCountryId();
 
-  const pageLinks = [
-    "Research",
-    "About",
-    "Donate"
-  ];
-
   return (
     <div
       style={{
@@ -294,7 +293,7 @@ function PageLinks() {
         gap: 16,
       }}
     >
-      {pageLinks.map((link) => {
+      {LINKS.map((link) => {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <div
@@ -364,7 +363,7 @@ function LeftNavigationMenu(props) {
         duration: 0.4,
       }}
     >
-      {["Research", "About", "Donate"].map((link, i) => {
+      {LINKS.map((link, i) => {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <HoverBox
