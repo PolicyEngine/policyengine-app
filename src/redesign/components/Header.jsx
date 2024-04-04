@@ -26,7 +26,6 @@ export default function Header() {
           position: "fixed",
           zIndex: 1000,
           justifyContent: "space-between",
-          // gap: displayCategory !== "mobile" ? 45 : 0,
           borderBottom: `1px solid ${style.colors.BLACK}`,
           padding: "0 16px"
         }}
@@ -61,9 +60,28 @@ function MobileHeaderBar() {
 function TabletHeaderBar() {
   return (
     <>
-      <MainHeaderLogo />
-      <DesktopCalculatorButton />
-      <Hamburger />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          gap: "30px"
+        }}
+      >
+        <MainHeaderLogo />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: "16px"
+        }}
+      >
+        <DesktopCalculatorButton />
+        <Hamburger />
+      </div>
     </>
   );
 }
@@ -156,14 +174,12 @@ function MobileCalculatorButton() {
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
-  const displayCategory = useDisplayCategory();
   return (
     <>
       <div
         style={{
-          height: displayCategory === "mobile" ? 30 : 50,
-          width: displayCategory === "mobile" ? 30 : 50,
-          margin: 20,
+          height: 44,
+          width: 44,
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
