@@ -5,10 +5,14 @@ import Screenshottable from "layout/Screenshottable";
 
 export default function ImpactChart(props) {
   const { title, description, children } = props;
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const timePeriod = urlParams.get("timePeriod");
+
   return (
     <Screenshottable>
       <h2 style={{ width: "100%", wordWrap: "break-word", display: "inline" }}>
-        {title}
+        {title + ` in ${timePeriod}`}
       </h2>
       <HoverCard>{children}</HoverCard>
       {description}
@@ -119,7 +123,6 @@ export function absoluteChangeMessage(
  */
 export function regionName(metadata) {
   const ignoreList = ["us", "uk", "enhanced_us"];
-
   const urlParams = new URLSearchParams(window.location.search);
   const region = urlParams.get("region");
   if (ignoreList.includes(region)) return;
