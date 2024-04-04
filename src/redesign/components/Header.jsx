@@ -25,7 +25,8 @@ export default function Header() {
           alignItems: "center",
           position: "fixed",
           zIndex: 1000,
-          gap: displayCategory !== "mobile" ? 45 : 0,
+          justifyContent: "space-between",
+          // gap: displayCategory !== "mobile" ? 45 : 0,
           borderBottom: `1px solid ${style.colors.BLACK}`,
         }}
       >
@@ -69,10 +70,27 @@ function TabletHeaderBar() {
 function DesktopHeaderBar() {
   return (
     <>
-      <MainHeaderLogo />
-      <PageLinks />
-      <DesktopCalculatorButton />
-      <DesktopLoginButton />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start"
+        }}
+      >
+        <MainHeaderLogo />
+        <PageLinks />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end"
+        }}
+      >
+        <DesktopCalculatorButton />
+        <DesktopLoginButton />
+      </div>
     </>
   );
 }
