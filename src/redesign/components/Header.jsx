@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import LinkButton from "../../controls/LinkButton";
 import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
+import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
+
 
 const BAR_TOP_PADDING = 10; // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
@@ -80,6 +82,7 @@ function MobileHeaderBar() {
         }}
       >
         <MobileCalculatorButton />
+        <MobileLoginButton />
         <Hamburger />
       </div>
     </>
@@ -109,6 +112,7 @@ function TabletHeaderBar() {
         }}
       >
         <DesktopCalculatorButton />
+        <DesktopLoginButton />
         <Hamburger />
       </div>
     </>
@@ -188,6 +192,52 @@ function MobileCalculatorButton() {
           }}
         />
       </Link>
+    </div>
+  );
+}
+
+function MobileLoginButton() {
+
+  const countryId = useCountryId();
+  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
+
+  const sharedStyle = {
+    color: style.colors.WHITE,
+    fontSize: 18
+  };
+
+  return (
+    <div
+      style={{
+        backgroundColor: style.colors.BLUE,
+        height: desiredHeight,
+        width: desiredHeight,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        cursor: "pointer",
+        border: `1px solid ${style.colors.WHITE}`
+      }}
+      onClick={
+        isAuthenticated
+          ? () => logout({ logoutParams: { returnTo: window.location.origin } })
+          : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
+      }
+      onMouseOver={(e) =>
+        e.currentTarget.style.backgroundColor = style.colors.DARK_BLUE_HOVER
+      }
+      onMouseOut={(e) =>
+        e.currentTarget.style.backgroundColor = style.colors.BLUE_PRIMARY
+      }
+    >
+      {
+        isAuthenticated ? (
+          <LogoutOutlined style={sharedStyle}/>
+        ) : (
+          <LoginOutlined style={sharedStyle}/>
+        )
+      }
     </div>
   );
 }
