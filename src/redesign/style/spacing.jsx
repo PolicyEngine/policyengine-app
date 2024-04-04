@@ -1,7 +1,6 @@
 import colors from "./colors.jsx";
 
 export const HEADER_HEIGHT = 64;
-// export const MOBILE_HEADER_HEIGHT = 50;
 
 // vw units based off Figma design width and input constant values
 export const desktopPadding = {

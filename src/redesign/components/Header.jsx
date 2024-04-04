@@ -12,7 +12,12 @@ import LinkButton from "../../controls/LinkButton";
 import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 
+const BAR_TOP_PADDING = 10; // Desired top padding, px
+const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
+const BAR_SIDE_PADDING = 16;
+
 export default function Header() {
+
   const displayCategory = useDisplayCategory();
   return (
     <>
@@ -27,7 +32,7 @@ export default function Header() {
           zIndex: 1000,
           justifyContent: "space-between",
           borderBottom: `1px solid ${style.colors.BLACK}`,
-          padding: "0 16px"
+          padding: `0 ${BAR_SIDE_PADDING}px`
         }}
       >
         {
@@ -174,12 +179,15 @@ function MobileCalculatorButton() {
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
+
   return (
     <>
       <div
         style={{
-          height: 44,
-          width: 44,
+          height: desiredHeight,
+          width: desiredHeight,
           alignItems: "center",
           display: "flex",
           justifyContent: "center",
