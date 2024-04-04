@@ -11,6 +11,8 @@ const TEAL_ACCENT = "#39C6C0";
 const TEAL_LIGHT = "#F7FDFC";
 const TEAL_PRESSED = "#227773";
 const BLUE_98 = "#D8E6F3";
+const DARKEST_BLUE = "#0C1A27";
+const DARK_BLUE_HOVER = "#1d3e5e"
 
 const colors = {
   WHITE,
@@ -26,6 +28,8 @@ const colors = {
   TEAL_PRESSED,
   TEAL_LIGHT,
   BLUE_98,
+  DARKEST_BLUE,
+  DARK_BLUE_HOVER
 };
 
 export default colors;
