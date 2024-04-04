@@ -223,24 +223,15 @@ function MainHeaderLogo() {
   const countryId = useCountryId();
   return (
     <Link to={`/${countryId}`}>
-      <div
+      <img
+        src={PolicyEngineMainLogo}
+        alt="PolicyEngine logo"
         style={{
-          display: "flex",
-          alignItems: "center",
-          width: "min(300px, 25vw)",
-          margin: 20,
+          objectFit: "contain",
+          height: style.spacing.HEADER_HEIGHT,
+          padding: "12px"
         }}
-      >
-        <img
-          src={PolicyEngineMainLogo}
-          alt="PolicyEngine logo"
-          style={{
-            // make whatever height fits the container
-            width: "min(300px, 25vw)",
-            objectFit: "contain",
-          }}
-        />
-      </div>
+      />
     </Link>
   );
 }
