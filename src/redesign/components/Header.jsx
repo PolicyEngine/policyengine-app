@@ -20,10 +20,7 @@ export default function Header() {
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
           width: "100%",
-          height:
-            displayCategory === "mobile"
-              ? style.spacing.MOBILE_HEADER_HEIGHT
-              : style.spacing.HEADER_HEIGHT,
+          height: style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
           position: "fixed",
@@ -42,10 +39,7 @@ export default function Header() {
       </div>
       <div
         style={{
-          height:
-            displayCategory === "mobile"
-              ? style.spacing.MOBILE_HEADER_HEIGHT
-              : style.spacing.HEADER_HEIGHT,
+          height: style.spacing.HEADER_HEIGHT,
         }}
       />
     </>

@@ -1,7 +1,7 @@
 import colors from "./colors.jsx";
 
-export const HEADER_HEIGHT = 90;
-export const MOBILE_HEADER_HEIGHT = 50;
+export const HEADER_HEIGHT = 64;
+// export const MOBILE_HEADER_HEIGHT = 50;
 
 // vw units based off Figma design width and input constant values
 export const desktopPadding = {
@@ -30,7 +30,6 @@ export const standardBorder = "1px solid ".concat(colors.DARKEST_BLUE);
 
 const spacing = {
   HEADER_HEIGHT,
-  MOBILE_HEADER_HEIGHT,
   desktopPadding,
   tabletPadding,
   mobilePadding,
