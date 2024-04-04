@@ -55,9 +55,28 @@ export default function Header() {
 function MobileHeaderBar() {
   return (
     <>
-      <MobileHeaderLogo />
-      <MobileCalculatorButton />
-      <Hamburger />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          gap: "30px"
+        }}
+      >
+        <MobileHeaderLogo />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: "16px"
+        }}
+      >
+        <MobileCalculatorButton />
+        <Hamburger />
+      </div>
     </>
   );
 }
@@ -125,22 +144,14 @@ function MobileHeaderLogo() {
   const countryId = useCountryId();
   return (
     <Link to={`/${countryId}`}>
-      <div
+      <img
+        src={PolicyEngineSmallLogo}
+        alt="PolicyEngine logo"
         style={{
-          display: "flex",
-          alignItems: "center",
-          maxWidth: "20vw",
+          height: style.spacing.HEADER_HEIGHT,
+          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`
         }}
-      >
-        <img
-          src={PolicyEngineSmallLogo}
-          alt="PolicyEngine logo"
-          style={{
-            height: 30,
-            margin: 20,
-          }}
-        />
-      </div>
+      />
     </Link>
   );
 }
@@ -148,14 +159,13 @@ function MobileHeaderLogo() {
 function MobileCalculatorButton() {
   const countryId = useCountryId();
 
+  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
   return (
     <div
       style={{
         backgroundColor: "#39C6C0",
-        height: 30,
-        width: 30,
-        marginLeft: "auto",
-        marginRight: 3,
+        height: desiredHeight,
+        width: desiredHeight,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -258,7 +268,7 @@ function MainHeaderLogo() {
         style={{
           objectFit: "contain",
           height: style.spacing.HEADER_HEIGHT,
-          padding: "12px 0"
+          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`
         }}
       />
     </Link>
