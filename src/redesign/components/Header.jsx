@@ -28,6 +28,7 @@ export default function Header() {
           justifyContent: "space-between",
           // gap: displayCategory !== "mobile" ? 45 : 0,
           borderBottom: `1px solid ${style.colors.BLACK}`,
+          padding: "0 16px"
         }}
       >
         {
@@ -86,7 +87,8 @@ function DesktopHeaderBar() {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-end"
+          justifyContent: "flex-end",
+          gap: "16px"
         }}
       >
         <DesktopCalculatorButton />
@@ -193,10 +195,9 @@ function DesktopCalculatorButton() {
   const countryId = useCountryId();
   return (
     <LinkButton
-      hoverBackgroundColor={style.colors.TEAL_PRESSED}
       link={`/${countryId}/calculator`}
       text="Compute Policy Impact"
-      style={{ fontSize: 20, marginLeft: "auto", marginRight: 20, width: 400 }}
+      style={{ padding: "10px" }}
     />
   );
 }
@@ -216,6 +217,9 @@ function DesktopLoginButton() {
           : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
       }
       width="150px"
+      style={{
+        padding: "10px"
+      }}
     />
   );
 }
@@ -230,7 +234,7 @@ function MainHeaderLogo() {
         style={{
           objectFit: "contain",
           height: style.spacing.HEADER_HEIGHT,
-          padding: "12px"
+          padding: "12px 0"
         }}
       />
     </Link>
