@@ -75,7 +75,8 @@ function DesktopHeaderBar() {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "flex-start"
+          justifyContent: "flex-start",
+          gap: "30px"
         }}
       >
         <MainHeaderLogo />
@@ -237,29 +238,35 @@ function MainHeaderLogo() {
 }
 
 function PageLinks() {
+
   const countryId = useCountryId();
+
+  const pageLinks = [
+    "Research",
+    "About",
+    "Donate"
+  ];
+
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
-        width: "min(600px, 35vw)",
-        gap: 30,
+        justifyContent: "flex-start",
+        gap: 16,
       }}
     >
-      {["Research", "About", "Donate"].map((link) => {
+      {pageLinks.map((link) => {
         return (
           <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
             <div
               style={{
                 color: "white",
-                fontSize: 20,
+                fontSize: 16,
                 fontFamily: "Roboto",
                 fontWeight: 500,
                 letterSpacing: 2.4,
                 textTransform: "uppercase",
-                width: 150,
               }}
             >
               <HoverBox
@@ -271,7 +278,7 @@ function PageLinks() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    height: 90,
+                    height: style.spacing.HEADER_HEIGHT,
                     padding: 15,
                     cursor: "pointer",
                   }}
