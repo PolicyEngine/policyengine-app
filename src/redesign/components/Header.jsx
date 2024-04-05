@@ -12,6 +12,7 @@ import LinkButton from "../../controls/LinkButton";
 import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
+import { login, loginOptions, logoutOptions } from "../../auth/authUtils";
 
 
 const BAR_TOP_PADDING = 10; // Desired top padding, px
@@ -221,8 +222,9 @@ function MobileLoginButton() {
       }}
       onClick={
         isAuthenticated
-          ? () => logout({ logoutParams: { returnTo: window.location.origin } })
-          : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
+          ? () => logout(logoutOptions)
+          // : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
+          : () => loginWithRedirect(loginOptions(countryId))
       }
       onMouseOver={(e) =>
         e.currentTarget.style.backgroundColor = style.colors.DARK_BLUE_HOVER

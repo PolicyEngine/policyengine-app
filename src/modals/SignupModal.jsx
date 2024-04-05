@@ -12,30 +12,6 @@ export default function SignupModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [submitMsg, setSubmitMsg] = useState("");
 
-  /**
-   * Find cookie; if no cookie found, return false
-   * @param {String} name Name of cookie
-   * @returns {String|false}
-   */
-  function getCookie(name) {
-    const cookies = document.cookie.split("; ");
-    const fullCookie = cookies.find((cookie) => cookie.trim().startsWith(`${name}=`));
-    if (!fullCookie) {
-      return false;
-    }
-    return fullCookie.split("=")[1];
-  }
-
-  /**
-   * Cookie setter function
-   * @param {String} name 
-   * @param {String} value 
-   * @param {Number|String} [maxAge=31536000] The maximum cookie age, in ms
-   * @param {String} [path="/"] The cookie path
-   */
-  function setCookie(name, value, maxAge=31536000, path) {
-    document.cookie = `${name}=${value};max-age=${String(maxAge)};path=${path}`;
-  }
 
   async function handleSubmit(event, formInput) {
     // Prevent immediate submission
@@ -54,18 +30,22 @@ export default function SignupModal() {
 
     // If user hasn't consented to storing cookies, indicate
     // that they must
+    /*
     const consentCookie = getCookie("consent");
     if (!consentCookie) {
       setSubmitMsg("This operation requires cookies to be enabled");
       return;
     }
+    */
 
     // Store cookie with hash of email
     // For the time being, this will just log to console,
     // since it's unclear how this should be implemented
+    /*
     const salt = await bcrypt.genSalt(10);
     const emailHash = await bcrypt.hash(formInput.email, salt);
     console.debug(emailHash);
+    */
 
     /*
     setCookie(
@@ -86,6 +66,7 @@ export default function SignupModal() {
     console.log(formInput);
 
     // Execute if user has consented to cookies and checked box to sign up
+    /*
     if (consentCookie && formInput.signupBox === true) {
       const response = await submitToMailchimp(formInput.email);
 
@@ -100,6 +81,7 @@ export default function SignupModal() {
         return;
       }
     }
+    */
 
     // Set submit message
     const submitText = "Email successfully submitted";
@@ -126,9 +108,9 @@ export default function SignupModal() {
           fontWeight: "bold",
           fontSize: 20
         }}
-      >PolicyEngine depends on you</h6>
-      <p>PolicyEngine&apos;s free, open-source software relies on your feedback to make further improvements.</p>
-      <p>To see your results, please provide your email address below.</p>
+      >Save your results</h6>
+      <p>Create a free PolicyEngine account to save your policy simulations.</p>
+      {/*
       <FormContext
         submitButtonText="Submit"
         submitMsg={submitMsg}
@@ -137,12 +119,6 @@ export default function SignupModal() {
           gap: 0
         }}
       >
-        <FormInput
-          name="email"
-          type="email"
-          placeholder="Email address"
-          aria-label="Email address"
-        />
         <FormCheckbox
           name="newsletterSignup"
           items={[
@@ -153,6 +129,7 @@ export default function SignupModal() {
           ]}
         />
       </FormContext>
+        */}
     </Modal>
   );
 }
