@@ -17,9 +17,9 @@ export const buttonStyles = {
     standardBackgroundColor: colors.BLUE_LIGHT,
   },
   textLight: {
-    hoverBackgroundColor: colors.GRAY,
+    hoverBackgroundColor: colors.LIGHT_GRAY,
     standardBackgroundColor: "inherit",
-    textColor: "inherit",
+    textColor: colors.BLUE,
     borderColor: colors.BLUE
   },
   default: {
