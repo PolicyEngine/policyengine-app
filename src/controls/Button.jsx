@@ -16,6 +16,12 @@ export const buttonStyles = {
     hoverBackgroundColor: colors.BLUE_PRESSED,
     standardBackgroundColor: colors.BLUE_LIGHT,
   },
+  textLight: {
+    hoverBackgroundColor: colors.GRAY,
+    standardBackgroundColor: "inherit",
+    textColor: "inherit",
+    borderColor: colors.BLUE
+  },
   default: {
     hoverBackgroundColor: colors.TEAL_PRESSED,
     standardBackgroundColor: colors.TEAL_ACCENT,
@@ -68,7 +74,7 @@ export default function Button(props) {
         textAlign: "center",
         whiteSpace: "normal",
         justifyContent: "center",
-        color: "#ffffff",
+        color: buttonStyles[type].textColor || "#ffffff",
         ...style,
       }}
       onMouseOver={(e) =>

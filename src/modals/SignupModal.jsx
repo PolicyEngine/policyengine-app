@@ -7,11 +7,17 @@ import FormCheckbox from "../layout/forms/FormCheckbox";
 import colors from "../style/colors";
 import bcrypt from "bcryptjs";
 import { submitToMailchimp } from "../data/mailchimpSubscription";
+import Button from "../controls/Button";
+import { useAuth0 } from "@auth0/auth0-react";
+import { loginOptions } from "../auth/authUtils";
+import useCountryId from "../redesign/components/useCountryId";
 
 export default function SignupModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [submitMsg, setSubmitMsg] = useState("");
 
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const countryId = useCountryId();
 
   async function handleSubmit(event, formInput) {
     // Prevent immediate submission
@@ -130,6 +136,31 @@ export default function SignupModal() {
         />
       </FormContext>
         */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplate: "1fr / repeat(2, 1fr)",
+          gap: "16px"
+        }}
+      >
+        <Button 
+          text="Sign up"
+          onClick={
+            !isAuthenticated && (
+              () => loginWithRedirect(loginOptions(countryId))
+            )
+          }
+          width="100%"
+        />
+        <Button
+          text="Not at this time"
+          type="textLight"
+          width="100%"
+          onClick={
+            () => setIsModalOpen(false)
+          }
+        />
+      </div>
     </Modal>
   );
 }
