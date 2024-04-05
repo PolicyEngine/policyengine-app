@@ -101,6 +101,10 @@ export default function SignupModal() {
     setIsModalOpen(false);
   }
 
+  if (isAuthenticated) {
+    return null;
+  }
+
   return (
     <Modal 
       open={isModalOpen}
@@ -116,31 +120,11 @@ export default function SignupModal() {
         }}
       >Save your results</h6>
       <p>Create a free PolicyEngine account to save your policy simulations.</p>
-      {/*
-      <FormContext
-        submitButtonText="Submit"
-        submitMsg={submitMsg}
-        onSubmit={handleSubmit}
-        formStyle={{
-          gap: 0
-        }}
-      >
-        <FormCheckbox
-          name="newsletterSignup"
-          items={[
-            {
-              name: "signupBox",
-              label: "Sign me up for the PolicyEngine newsletter"
-            }
-          ]}
-        />
-      </FormContext>
-        */}
       <div
         style={{
           display: "grid",
-          gridTemplate: "1fr / repeat(2, 1fr)",
-          gap: "16px"
+          gridTemplateColumns: "[leftHalf] 1fr [rightHalf] 1fr",
+          columnGap: "16px"
         }}
       >
         <Button 
@@ -151,16 +135,31 @@ export default function SignupModal() {
             )
           }
           width="100%"
+          style={{
+            gridArea: "leftHalf"
+          }}
         />
         <Button
           text="Not at this time"
           type="textLight"
           width="100%"
+          style={{
+            gridArea: "rightHalf"
+          }}
           onClick={
             () => setIsModalOpen(false)
           }
         />
       </div>
+      <FormCheckbox
+        name="newsletterSignup"
+        items={[
+          {
+            name: "signupBox",
+            label: "Sign me up for the PolicyEngine newsletter"
+          }
+        ]}
+      />
     </Modal>
   );
 }
