@@ -1,9 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { Modal } from "antd";
-import FormContext from "../layout/forms/FormContext";
-import FormInput from "../layout/forms/FormInput";
-import FormCheckbox from "../layout/forms/FormCheckbox";
 import colors from "../style/colors";
 import bcrypt from "bcryptjs";
 import { submitToMailchimp } from "../data/mailchimpSubscription";
@@ -25,21 +22,11 @@ export default function SignupModal() {
     setIsNewsletterChecked(prev => !prev);
   }
 
-  async function handleSubmit(event, formInput) {
-    // Prevent immediate submission
-    event.preventDefault();
+  async function handleSubmit() {
     // Empty any existing submit message
     setSubmitMsg("");
 
-    // Validate that email is valid
-    // Regex taken from https://stackabuse.com/validate-email-addresses-with-regular-expressions-in-javascript/
-    const emailRegex = new RegExp("[a-z0-9]+@[a-z]+\.[a-z]{2,3}", "g");
-    const isEmailValid = emailRegex.test(formInput.email);
-    if (!isEmailValid) {
-      setSubmitMsg("Error: Invalid email provided; please try again");
-      return;
-    }
-
+    loginWithRedirect(loginOptions(countryId, {add_to_mailchimp: isNewsletterChecked}));
     // If user hasn't consented to storing cookies, indicate
     // that they must
     /*
@@ -75,7 +62,7 @@ export default function SignupModal() {
     // Set a value that will be appended to submit message in case of success
     let subscribeMsg = null;
 
-    console.log(formInput);
+    // console.log(formInput);
 
     // Execute if user has consented to cookies and checked box to sign up
     /*
@@ -145,11 +132,7 @@ export default function SignupModal() {
         >
           <Button 
             text="Sign up"
-            onClick={
-              !isAuthenticated && (
-                () => loginWithRedirect(loginOptions(countryId))
-              )
-            }
+            onClick={handleSubmit}
             width="100%"
           />
           <Button
@@ -183,6 +166,16 @@ export default function SignupModal() {
             Sign me up for the PolicyEngine newsletter
           </p>
         </div>
+        <p
+          style={{
+            margin: 0,
+            lineHeight: "1em",
+            wordWrap: "normal",
+            width: "100%",
+          }}
+        >
+          {submitMsg || <br />}
+        </p>
       </div>
     </Modal>
   );

@@ -1,6 +1,13 @@
-export function loginOptions(countryId) {
+export function loginOptions(countryId, customParams) {
   return (
-    { appState: { returnTo: `/${countryId}` } }
+    { 
+      appState: { 
+        returnTo: `/${countryId}`
+      },
+      authorizationParams: {
+        ...customParams
+      }
+    }
   );
 }
 
