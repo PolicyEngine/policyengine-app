@@ -250,7 +250,7 @@ function HouseholdVariableEntityInput(props) {
   let control;
   if (variable.valueType === "float" || variable.valueType === "int") {
     const isCurrency = Object.keys(currencyMap).includes(variable.unit);
-    const maximumFractionDigits = isCurrency ? 2 : 16;
+    const maximumFractionDigits = 2;
     const onPressEnter = (_, value) =>
       submitValue(+value.toFixed(maximumFractionDigits));
     control = (
