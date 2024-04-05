@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "antd";
 import FormContext from "../layout/forms/FormContext";
 import FormInput from "../layout/forms/FormInput";
@@ -11,13 +11,19 @@ import Button from "../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginOptions } from "../auth/authUtils";
 import useCountryId from "../redesign/components/useCountryId";
+import style from "../redesign/style";
 
 export default function SignupModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [submitMsg, setSubmitMsg] = useState("");
+  const [isNewsletterChecked, setIsNewsletterChecked] = useState(true);
 
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const countryId = useCountryId();
+
+  function handleNewsletterCheck() {
+    setIsNewsletterChecked(prev => !prev);
+  }
 
   async function handleSubmit(event, formInput) {
     // Prevent immediate submission
@@ -122,44 +128,62 @@ export default function SignupModal() {
       <p>Create a free PolicyEngine account to save your policy simulations.</p>
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "[leftHalf] 1fr [rightHalf] 1fr",
-          columnGap: "16px"
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          gap: "12px",
+          paddingTop: "12px"
         }}
       >
-        <Button 
-          text="Sign up"
-          onClick={
-            !isAuthenticated && (
-              () => loginWithRedirect(loginOptions(countryId))
-            )
-          }
-          width="100%"
+        <div
           style={{
-            gridArea: "leftHalf"
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            columnGap: "16px"
           }}
-        />
-        <Button
-          text="Not at this time"
-          type="textLight"
-          width="100%"
-          style={{
-            gridArea: "rightHalf"
-          }}
-          onClick={
-            () => setIsModalOpen(false)
-          }
-        />
+        >
+          <Button 
+            text="Sign up"
+            onClick={
+              !isAuthenticated && (
+                () => loginWithRedirect(loginOptions(countryId))
+              )
+            }
+            width="100%"
+          />
+          <Button
+            text="Not at this time"
+            type="textLight"
+            width="100%"
+            onClick={
+              () => setIsModalOpen(false)
+            }
+          />
+        </div>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
+          <input
+            type="checkbox"
+            name="signupBox"
+            title="Sign me up for the PolicyEngine newsletter"
+            style={{
+              borderRadius: 0,
+              height: 20,
+              width: 20,
+              padding: 5,
+              appearance: "none",
+              backgroundColor: isNewsletterChecked
+                ? style.colors.TEAL_PRESSED
+                : style.colors.TEAL_LIGHT,
+              cursor: "pointer",
+            }}
+            onClick={handleNewsletterCheck}
+          />
+          <p style={{ marginLeft: 15, margin: 0, fontFamily: "Roboto Serif" }}>
+            Sign me up for the PolicyEngine newsletter
+          </p>
+        </div>
       </div>
-      <FormCheckbox
-        name="newsletterSignup"
-        items={[
-          {
-            name: "signupBox",
-            label: "Sign me up for the PolicyEngine newsletter"
-          }
-        ]}
-      />
     </Modal>
   );
 }
