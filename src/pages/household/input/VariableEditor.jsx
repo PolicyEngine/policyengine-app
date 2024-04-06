@@ -296,7 +296,6 @@ function HouseholdVariableEntityInput(props) {
         checkedChildren="Yes"
         unCheckedChildren="No"
         onChange={submitValue}
-        style={{ background: defaultValue ? "#2c6496" : "", borderRadius: 0 }}
         ref={ref}
       />
     );

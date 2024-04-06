@@ -55,7 +55,6 @@ export default function HouseholdReproducibility(props) {
               }
               setEarningVariation(!earningVariation);
             }}
-            style={{ borderRadius: 0 }}
           />
         </div>
         <CodeBlock lines={lines} language={"python"} />

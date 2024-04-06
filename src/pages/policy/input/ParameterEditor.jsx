@@ -83,7 +83,6 @@ export default function ParameterEditor(props) {
           key={"input for" + parameter.parameter}
           defaultChecked={startValue}
           onChange={(value) => onChange(!!value)}
-          style={{ borderRadius: 0 }}
         />
       </div>
     );

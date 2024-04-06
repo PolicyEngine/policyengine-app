@@ -173,7 +173,6 @@ function DatasetSelector(props) {
         onChange={handleChange}
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
         checked={presentRegion === "enhanced_us" ? true : false}
-        style={{ borderRadius: 0 }}
         ref={ref}
         // style={ref? { background: "#2c6496" } : "#FFFFF"}
       />
