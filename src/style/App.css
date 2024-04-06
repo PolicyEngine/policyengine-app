@@ -35,6 +35,7 @@ a {
   display: flex;
   align-items: center;
 }
+
 .ant-select-selection-placeholder {
   height: 50px;
   display: flex;

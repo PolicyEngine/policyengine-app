@@ -1,5 +1,5 @@
 import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -104,6 +104,7 @@ function DatasetSelector(props) {
   const { presentRegion, timePeriod } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const displayCategory = useDisplayCategory();
+  const ref = useRef()
 
   // Determine whether slider should be enabled or disabled
   function shouldEnableSlider(presentRegion, timePeriod) {
@@ -132,6 +133,12 @@ function DatasetSelector(props) {
    * switch shouldn't be active in the first place
    */
   function handleChange(isChecked) {
+    if (isChecked) {
+      ref.current.style.background = "#2C6496"
+    } else {
+      ref.current.style.background = "#00000040"
+    }
+
     // Define our desired states; item 0 corresponds to
     // "true" and 1 to "false", since bools can't be used as keys
     const outputStates = ["enhanced_us", "us"];
@@ -166,6 +173,9 @@ function DatasetSelector(props) {
         onChange={handleChange}
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
         checked={presentRegion === "enhanced_us" ? true : false}
+        style={{ borderRadius: 0 }}
+        ref={ref}
+      // style={ref? { background: "#2c6496" } : "#FFFFF"}
       />
       <h6
         style={{

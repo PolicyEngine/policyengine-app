@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import { Switch } from "antd";
 import CodeBlock from "layout/CodeBlock";
@@ -11,6 +11,7 @@ export default function HouseholdReproducibility(props) {
   const [earningVariation, setEarningVariation] = useState(false);
   const [searchParams] = useSearchParams();
   const region = searchParams.get("region");
+  const ref = useRef()
 
   let lines = getReproducibilityCodeBlock(
     "household",
@@ -44,8 +45,17 @@ export default function HouseholdReproducibility(props) {
         >
           <p style={{ margin: 0 }}>Include earning variation</p>
           <Switch
+            ref={ref}
             checked={earningVariation}
-            onChange={() => setEarningVariation(!earningVariation)}
+            onChange={(isChecked) => {
+              if (isChecked) {
+                ref.current.style.background = "#2C6496"
+              } else {
+                ref.current.style.background = "#00000040"
+              }
+              setEarningVariation(!earningVariation)
+            }}
+            style={{ borderRadius: 0 }}
           />
         </div>
         <CodeBlock lines={lines} language={"python"} />

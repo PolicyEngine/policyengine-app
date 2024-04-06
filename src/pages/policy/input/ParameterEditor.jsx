@@ -2,7 +2,7 @@ import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
 import { Alert, DatePicker, Switch } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import useMobile from "../../../layout/Responsive";
@@ -26,6 +26,7 @@ export default function ParameterEditor(props) {
   const [endDate, setEndDate] = useState(defaultEndDate);
   const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   const reformMap = baseMap.copy();
+  const ref = useRef()
   if (reformData) {
     for (const [timePeriod, value] of Object.entries(reformData)) {
       const [startDate, endDate] = timePeriod.split(".");
@@ -35,6 +36,12 @@ export default function ParameterEditor(props) {
   const startValue = reformMap.get(startDate);
 
   function onChange(value) {
+    if (value) {
+      ref.current.style.background = "#2C6496"
+    } else {
+      ref.current.style.background = "#00000040"
+    }
+
     reformMap.set(startDate, nextDay(endDate), value);
     let data = {};
     reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
@@ -54,8 +61,8 @@ export default function ParameterEditor(props) {
         if (result.status !== "ok") {
           console.error(
             "ParameterEditor: In attempting to fetch new " +
-              "policy, the following error occurred: " +
-              result.message,
+            "policy, the following error occurred: " +
+            result.message,
           );
         } else {
           let newSearch = copySearchParams(searchParams);
@@ -72,9 +79,11 @@ export default function ParameterEditor(props) {
     control = (
       <div style={{ padding: 10 }}>
         <Switch
+          ref={ref}
           key={"input for" + parameter.parameter}
           defaultChecked={startValue}
           onChange={(value) => onChange(!!value)}
+          style={{ borderRadius: 0 }}
         />
       </div>
     );
@@ -88,13 +97,13 @@ export default function ParameterEditor(props) {
         key={"input for" + parameter.parameter}
         {...(isCurrency
           ? {
-              addonBefore: currencyMap[parameter.unit],
-            }
+            addonBefore: currencyMap[parameter.unit],
+          }
           : {})}
         {...(isPercent
           ? {
-              addonAfter: "%",
-            }
+            addonAfter: "%",
+          }
           : {})}
         formatter={(value, { userTyping }) => {
           const n = +value;
@@ -163,8 +172,8 @@ export default function ParameterEditor(props) {
         baseMap={baseMap}
         {...(reformData &&
           Object.keys(reformData).length > 0 && {
-            reformMap: reformMap,
-          })}
+          reformMap: reformMap,
+        })}
         parameter={parameter}
         policy={policy}
         metadata={metadata}
