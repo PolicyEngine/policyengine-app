@@ -1,5 +1,5 @@
 import { Switch } from "antd";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import style from "../style";
 
 export default function BiPanel(props) {
@@ -40,11 +40,11 @@ export default function BiPanel(props) {
         <h5 style={{ marginRight: "auto" }}>{leftTitle}</h5>
         <Switch
           checked={!leftSelected}
-          onChange={(isChecked) => {
-            if (isChecked) {
+          // onChange={(isChecked) => {
+          //   if (isChecked) {
 
-            }
-          }}
+          //   }
+          // }}
           style={{ padding: 0, margin: 0, width: "20%", background: "#2c6496" }}
         />
         <h5 style={{ marginLeft: "auto" }}>{rightTitle}</h5>

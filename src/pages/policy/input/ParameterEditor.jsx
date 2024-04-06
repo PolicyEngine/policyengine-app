@@ -26,7 +26,7 @@ export default function ParameterEditor(props) {
   const [endDate, setEndDate] = useState(defaultEndDate);
   const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   const reformMap = baseMap.copy();
-  const ref = useRef()
+  const ref = useRef();
   if (reformData) {
     for (const [timePeriod, value] of Object.entries(reformData)) {
       const [startDate, endDate] = timePeriod.split(".");
@@ -37,9 +37,9 @@ export default function ParameterEditor(props) {
 
   function onChange(value) {
     if (value) {
-      ref.current.style.background = "#2C6496"
+      ref.current.style.background = "#2C6496";
     } else {
-      ref.current.style.background = "#00000040"
+      ref.current.style.background = "#00000040";
     }
 
     reformMap.set(startDate, nextDay(endDate), value);
@@ -61,8 +61,8 @@ export default function ParameterEditor(props) {
         if (result.status !== "ok") {
           console.error(
             "ParameterEditor: In attempting to fetch new " +
-            "policy, the following error occurred: " +
-            result.message,
+              "policy, the following error occurred: " +
+              result.message,
           );
         } else {
           let newSearch = copySearchParams(searchParams);
@@ -97,13 +97,13 @@ export default function ParameterEditor(props) {
         key={"input for" + parameter.parameter}
         {...(isCurrency
           ? {
-            addonBefore: currencyMap[parameter.unit],
-          }
+              addonBefore: currencyMap[parameter.unit],
+            }
           : {})}
         {...(isPercent
           ? {
-            addonAfter: "%",
-          }
+              addonAfter: "%",
+            }
           : {})}
         formatter={(value, { userTyping }) => {
           const n = +value;
@@ -172,8 +172,8 @@ export default function ParameterEditor(props) {
         baseMap={baseMap}
         {...(reformData &&
           Object.keys(reformData).length > 0 && {
-          reformMap: reformMap,
-        })}
+            reformMap: reformMap,
+          })}
         parameter={parameter}
         policy={policy}
         metadata={metadata}

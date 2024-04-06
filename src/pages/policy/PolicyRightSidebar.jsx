@@ -104,7 +104,7 @@ function DatasetSelector(props) {
   const { presentRegion, timePeriod } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const displayCategory = useDisplayCategory();
-  const ref = useRef()
+  const ref = useRef();
 
   // Determine whether slider should be enabled or disabled
   function shouldEnableSlider(presentRegion, timePeriod) {
@@ -134,9 +134,9 @@ function DatasetSelector(props) {
    */
   function handleChange(isChecked) {
     if (isChecked) {
-      ref.current.style.background = "#2C6496"
+      ref.current.style.background = "#2C6496";
     } else {
-      ref.current.style.background = "#00000040"
+      ref.current.style.background = "#00000040";
     }
 
     // Define our desired states; item 0 corresponds to
@@ -175,7 +175,7 @@ function DatasetSelector(props) {
         checked={presentRegion === "enhanced_us" ? true : false}
         style={{ borderRadius: 0 }}
         ref={ref}
-      // style={ref? { background: "#2c6496" } : "#FFFFF"}
+        // style={ref? { background: "#2c6496" } : "#FFFFF"}
       />
       <h6
         style={{

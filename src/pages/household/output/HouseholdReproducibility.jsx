@@ -11,7 +11,7 @@ export default function HouseholdReproducibility(props) {
   const [earningVariation, setEarningVariation] = useState(false);
   const [searchParams] = useSearchParams();
   const region = searchParams.get("region");
-  const ref = useRef()
+  const ref = useRef();
 
   let lines = getReproducibilityCodeBlock(
     "household",
@@ -49,11 +49,11 @@ export default function HouseholdReproducibility(props) {
             checked={earningVariation}
             onChange={(isChecked) => {
               if (isChecked) {
-                ref.current.style.background = "#2C6496"
+                ref.current.style.background = "#2C6496";
               } else {
-                ref.current.style.background = "#00000040"
+                ref.current.style.background = "#00000040";
               }
-              setEarningVariation(!earningVariation)
+              setEarningVariation(!earningVariation);
             }}
             style={{ borderRadius: 0 }}
           />

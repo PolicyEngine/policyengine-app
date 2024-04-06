@@ -183,12 +183,12 @@ function HouseholdVariableEntityInput(props) {
     autoCompute,
     setEdited,
   } = props;
-  const ref = useRef()
+  const ref = useRef();
   const submitValue = (value) => {
-    if (value != false) {
-      ref.current.style.background = "#2C6496"
+    if (value !== false) {
+      ref.current.style.background = "#2C6496";
     } else {
-      ref.current.style.background = "#00000040"
+      ref.current.style.background = "#00000040";
     }
 
     value = Number.isNaN(+value) ? value : +value;
@@ -226,12 +226,12 @@ function HouseholdVariableEntityInput(props) {
   );
   const reformValue = householdReform
     ? getValueFromHousehold(
-      variable.name,
-      timePeriod,
-      entityName,
-      householdReform,
-      metadata,
-    )
+        variable.name,
+        timePeriod,
+        entityName,
+        householdReform,
+        metadata,
+      )
     : null;
   let defaultValue = null;
 
@@ -267,22 +267,22 @@ function HouseholdVariableEntityInput(props) {
         }}
         {...(isCurrency
           ? {
-            addonBefore: currencyMap[variable.unit],
-          }
+              addonBefore: currencyMap[variable.unit],
+            }
           : {})}
         {...(variable.valueType === "float"
           ? {
-            formatter: (value, { userTyping }) => {
-              const n = +value;
-              const isInteger = Number.isInteger(n);
-              return n.toLocaleString(localeCode(metadata.countryId), {
-                minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-                maximumFractionDigits: userTyping
-                  ? 16
-                  : maximumFractionDigits,
-              });
-            },
-          }
+              formatter: (value, { userTyping }) => {
+                const n = +value;
+                const isInteger = Number.isInteger(n);
+                return n.toLocaleString(localeCode(metadata.countryId), {
+                  minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+                  maximumFractionDigits: userTyping
+                    ? 16
+                    : maximumFractionDigits,
+                });
+              },
+            }
           : {})}
         defaultValue={defaultValue}
         onPressEnter={onPressEnter}
@@ -296,7 +296,7 @@ function HouseholdVariableEntityInput(props) {
         checkedChildren="Yes"
         unCheckedChildren="No"
         onChange={submitValue}
-        style={{ background: defaultValue ? '#2c6496' : '', borderRadius: 0 }}
+        style={{ background: defaultValue ? "#2c6496" : "", borderRadius: 0 }}
         ref={ref}
       />
     );
