@@ -444,6 +444,7 @@ function Checkbox({ label, checked, onCheck }) {
         }}
         onClick={() => {
           onCheck(!checked);
+          window.scrollTo(0, 0);
         }}
       />
       <p style={{ marginLeft: 15, margin: 0, fontFamily: "Roboto Serif" }}>

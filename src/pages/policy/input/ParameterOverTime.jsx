@@ -50,12 +50,12 @@ export default function ParameterOverTime(props) {
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
 
-  const calculateFormattedPercentage = (value) => {
-    const formattedPercentage = (value * 100).toFixed(2);
-    return `${formattedPercentage}%`;
-  };
+  // const calculateFormattedPercentage = (value) => {
+  //   const formattedPercentage = (value * 100).toFixed(2);
+  //   return `${formattedPercentage}%`;
+  // };
 
-  const customdata = y.map(calculateFormattedPercentage);
+  // const customdata = y.map(calculateFormattedPercentage);
   return (
     <>
       <Plot
@@ -72,7 +72,7 @@ export default function ParameterOverTime(props) {
             },
             name: "Current law",
             customdata: customdata,
-            hovertemplate: "(%{x}, %{customdata}<extra></extra>)",
+            // hovertemplate: "(%{x}, %{customdata}<extra></extra>)",
           },
           reformMap && {
             x: reformedX,
@@ -86,6 +86,7 @@ export default function ParameterOverTime(props) {
               color: style.colors.BLUE,
             },
             name: getReformPolicyLabel(policy),
+            // hovertemplate: "(%{x}, %{customdata}<extra></extra>)",
           },
         ].filter((x) => x)}
         layout={{
