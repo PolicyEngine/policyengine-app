@@ -49,6 +49,7 @@ export default function ParameterOverTime(props) {
   const yaxisValues = reformedY ? y.concat(reformedY) : y;
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
+  
   return (
     <>
       <Plot
