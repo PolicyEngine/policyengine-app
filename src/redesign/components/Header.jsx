@@ -414,6 +414,8 @@ function LeftNavigationMenu(props) {
   // The menu that slides in from the left when the hamburger is clicked
   const { isOpen } = props;
   const countryId = useCountryId();
+  const { isAuthenticated } = useAuth0();
+
   return (
     <motion.div
       style={{
@@ -437,8 +439,12 @@ function LeftNavigationMenu(props) {
       }}
     >
       {LINKS.map((link, i) => {
+        if (!isAuthenticated && link.isAuthOnly === true) {
+          return null;
+        }
+
         return (
-          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+          <Link to={`/${countryId}/${link.link}`} key={link.title}>
             <HoverBox
               hoverStart="left"
               size="100vw"
@@ -464,7 +470,7 @@ function LeftNavigationMenu(props) {
                   border: "1px solid white",
                   zIndex: 100,
                 }}
-                key={link}
+                key={link.title}
                 initial={{
                   opacity: 0,
                   x: -50,
@@ -493,7 +499,7 @@ function LeftNavigationMenu(props) {
                   },
                 }}
               >
-                {link}
+                {link.title}
               </motion.div>
             </HoverBox>
           </Link>
