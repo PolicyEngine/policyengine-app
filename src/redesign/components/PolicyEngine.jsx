@@ -24,6 +24,7 @@ import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "modals/CookieConsent";
 import TrafwaCalculator from "./TrafwaCalculator";
 import AuthCallback from "../../layout/AuthCallback";
+import UserProfilePage from "../../pages/UserProfilePage";
 import PrivacyPage from "../../pages/PrivacyPage";
 import TACPage from "../../pages/TermsAndConditions";
 
@@ -238,6 +239,10 @@ export default function PolicyEngine({ pathname }) {
         <Route
           path="/:countryId/policy/*"
           element={metadata ? policyPage : error ? errorPage : loadingPage}
+        />
+        <Route 
+          path="/:countryId/user_profile"
+          element={<UserProfilePage />}
         />
 
         <Route
