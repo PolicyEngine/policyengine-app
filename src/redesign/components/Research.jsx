@@ -444,6 +444,7 @@ function Checkbox({ label, checked, onCheck }) {
         }}
         onClick={() => {
           onCheck(!checked);
+          // Redirect to the top of the component when any checkbox selected or unselectec
           window.scrollTo(0, 0);
         }}
       />
