@@ -19,9 +19,26 @@ const BAR_TOP_PADDING = 10; // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
 const BAR_SIDE_PADDING = 16;
 const LINKS = [
-    "Research",
-    "About",
-    "Donate"
+  {
+    title: "Research",
+    link: "research",
+    isAuthOnly: false
+  },
+  {
+    title: "About",
+    link: "about",
+    isAuthOnly: false
+  },
+  {
+    title: "Donate",
+    link: "donate",
+    isAuthOnly: false
+  },
+  {
+    title: "My Profile",
+    link: "user_profile",
+    isAuthOnly: true
+  }
 ];
 
 export default function Header() {
@@ -335,6 +352,7 @@ function MainHeaderLogo() {
 function PageLinks() {
 
   const countryId = useCountryId();
+  const { isAuthenticated } = useAuth0();
 
   return (
     <div
@@ -346,8 +364,11 @@ function PageLinks() {
       }}
     >
       {LINKS.map((link) => {
+        if (!isAuthenticated && link.isAuthOnly === true) {
+          return null;
+        }
         return (
-          <Link to={`/${countryId}/${link.toLowerCase()}`} key={link}>
+          <Link to={`/${countryId}/${link.link}`} key={link.title}>
             <div
               style={{
                 color: "white",
@@ -378,7 +399,7 @@ function PageLinks() {
                     duration: 0.2,
                   }}
                 >
-                  {link}
+                  {link.title}
                 </motion.div>
               </HoverBox>
             </div>
