@@ -61,8 +61,14 @@ export default function UserProfilePage() {
             backgroundColor: bgColor
           }}
         >
-          <Link to={`https://wwww.policyengine.org/${row.country_id}/policy/?reform=${row.number}` }>
-            {row.id}
+          <Link to={`https://wwww.policyengine.org/${row.country_id}/policy/?reform=${row.id}`}>
+            <span
+              style={{
+                color: style.colors.BLUE_PRIMARY
+              }}
+            >
+              #{row.id}
+            </span>
           </Link>
         </td>
       </tr>
