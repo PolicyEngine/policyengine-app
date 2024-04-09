@@ -1,15 +1,109 @@
-import style from "../style";
-import Footer from "./Footer";
-import Header from "./Header";
-import Section from "./Section";
-import useCountryId from "./useCountryId";
-import { useState } from "react";
+import style from "../redesign/style";
+import Footer from "../redesign/components/Footer";
+import Header from "../redesign/components/Header";
+import Section from "../redesign/components/Section";
+import useCountryId from "../redesign/components/useCountryId";
+import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
-import { Input, Card, Divider, Tag, Drawer } from "antd";
+import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
+import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import CodeMirror from "@uiw/react-codemirror";
+import { langs } from "@uiw/codemirror-extensions-langs";
+import { espresso } from "thememirror";
 
-function APIResultCard(props) {
+export const exampleInputs = {
+  us: {
+    household: {
+      people: {
+        parent: {
+          age: {
+            [defaultYear]: 30,
+          },
+          employment_income: {
+            [defaultYear]: 20_000,
+          },
+        },
+        child: {
+          age: {
+            [defaultYear]: 5,
+          },
+        },
+      },
+      spm_units: {
+        spm_unit: {
+          members: ["parent", "child"],
+          snap: {
+            [defaultYear]: null,
+          },
+        },
+      },
+    },
+  },
+  uk: {
+    household: {
+      people: {
+        parent: {
+          age: {
+            [defaultYear]: 40,
+          },
+          employment_income: {
+            [defaultYear]: 1000,
+          },
+        },
+        child: {
+          age: {
+            [defaultYear]: 10,
+          },
+          employment_income: {
+            [defaultYear]: 0,
+          },
+        },
+      },
+      benunits: {
+        exampleFamily: {
+          members: ["parent", "child"],
+          universal_credit_entitlement: {
+            [defaultYear]: null,
+          },
+        },
+      },
+      households: {
+        exampleFamily: {
+          members: ["parent", "child"],
+        },
+      },
+    },
+  },
+  default: {
+    household: {
+      people: {
+        parent: {
+          age: {
+            [defaultYear]: 40,
+          },
+          employment_income: {
+            [defaultYear]: 1000,
+          },
+        },
+      },
+      households: {
+        sampleHousehold: {
+          members: ["parent"],
+        },
+      },
+    },
+  },
+};
+
+const examplePolicies = {
+  us: "SNAP benefit",
+  uk: "Universal Credit entitlement",
+};
+
+export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
 
   // type can be: parameter, variable
@@ -54,7 +148,7 @@ function APIParameterCard(props) {
       <h3>{metadata.label}</h3>
       <p>{metadata.description}</p>
       <p>Period: {metadata.period || "None"}</p>
-      <p>Unit: {metadata.unit}</p>
+      <p>Unit: {metadata.unit || "N/A"}</p>
       <p>Python name: {metadata.parameter}</p>
     </>
   );
@@ -73,7 +167,7 @@ function APIVariableCard(props) {
       <h3>{metadata.label}</h3>
       <p>{metadata.description}</p>
       <p>Entity: {metadata.entity}</p>
-      <p>Period: {metadata.period || "none"}</p>
+      <p>Period: {metadata.definitionPeriod || "none"}</p>
       <p>Python name: {metadata.name}</p>
       <p>Unit: {metadata.unit}</p>
     </>
@@ -204,6 +298,8 @@ function CardDrawer(props) {
 
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
+  const displayCategory = useDisplayCategory();
+
   return (
     <>
       <Helmet>
@@ -246,63 +342,14 @@ export default function APIDocumentationPage({ metadata }) {
         id="calculate"
         method="POST"
         title="Calculate household-level policy outcomes"
-        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended.`}
-        exampleInputJson={{
-          household: {
-            people: {
-              parent: {
-                age: {
-                  [defaultYear]: 30,
-                },
-                employment_income: {
-                  [defaultYear]: 20_000,
-                },
-              },
-              child: {
-                age: {
-                  [defaultYear]: 5,
-                },
-              },
-            },
-            spm_units: {
-              spm_unit: {
-                members: ["parent", "child"],
-                snap: {
-                  [defaultYear]: null,
-                },
-              },
-            },
-          },
-        }}
-        exampleOutputJson={{
-          status: "ok",
-          message: null,
-          result: {
-            people: {
-              parent: {
-                age: {
-                  [defaultYear]: 30,
-                },
-                employment_income: {
-                  [defaultYear]: 20_000,
-                },
-              },
-              child: {
-                age: {
-                  [defaultYear]: 5,
-                },
-              },
-            },
-            spm_units: {
-              spm_unit: {
-                members: ["parent", "child"],
-                snap: {
-                  [defaultYear]: 2833.5,
-                },
-              },
-            },
-          },
-        }}
+        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended. ${Object.keys(examplePolicies).includes(countryId) ? `The below code block estimates a sample family's ${examplePolicies[countryId]}.` : ""}`}
+        exampleInputJson={
+          Object.keys(exampleInputs).includes(countryId)
+            ? exampleInputs[countryId]
+            : exampleInputs.default
+        }
+        countryId={countryId}
+        displayCategory={displayCategory}
       />
       <VariableParameterExplorer
         id="variables"
@@ -324,19 +371,147 @@ export default function APIDocumentationPage({ metadata }) {
   );
 }
 
-function JSONBlock({ json }) {
+function JSONBlock({ json, title }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
+  function handleCopy() {
+    navigator.clipboard.writeText(JSON.stringify(json, null, 2));
+    setIsCopied(true);
+  }
+
+  useEffect(() => {
+    if (isCopied) {
+      const timeoutId = setTimeout(() => setIsCopied(false), 1000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isCopied]);
+
+  const cardTitleComponent = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        // Padding is necessary so that button click effect
+        // is visible
+        padding: "0 6px 0 0",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+        }}
+      >
+        json
+      </p>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "0.5rem",
+        }}
+      >
+        <Tooltip title={`${isExpanded ? "Close" : "Expand"} the code block`}>
+          <Button
+            type="default"
+            style={{
+              border: 0,
+              fontWeight: 500,
+              boxShadow: "none",
+            }}
+            onClick={() => setIsExpanded((prev) => !prev)}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+              }}
+            >
+              {isExpanded ? <UpOutlined /> : <DownOutlined />}
+              <p
+                style={{
+                  margin: 0,
+                }}
+              >
+                {isExpanded ? "Shrink" : "Expand"}
+              </p>
+            </div>
+          </Button>
+        </Tooltip>
+        <Tooltip title="Copy the code block">
+          <Button
+            type="default"
+            style={{
+              border: 0,
+              fontWeight: 500,
+              boxShadow: "none",
+              width: "6rem",
+            }}
+            onClick={handleCopy}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "0.5rem",
+              }}
+            >
+              <CopyOutlined />
+              <p
+                style={{
+                  margin: 0,
+                }}
+              >
+                {isCopied ? "Copied!" : "Copy"}
+              </p>
+            </div>
+          </Button>
+        </Tooltip>
+      </div>
+    </div>
+  );
+
   return (
     <div
       style={{
-        backgroundColor: style.colors.DARK_GRAY,
-        width: "100%",
-        borderRadius: 25,
-        fontFamily: "Courier New",
-        padding: 30,
-        color: "white",
+        flex: 1,
       }}
     >
-      <pre>{JSON.stringify(json, null, 2)}</pre>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h4>{title}</h4>
+      </div>
+      <Card
+        style={{}}
+        loading={!json}
+        bodyStyle={{
+          padding: 0,
+        }}
+        title={cardTitleComponent}
+      >
+        <CodeMirror
+          value={JSON.stringify(json, null, 2)}
+          maxHeight={!isExpanded && "260px"}
+          editable={false}
+          extensions={[langs.json()]}
+          theme={espresso}
+        />
+      </Card>
     </div>
   );
 }
@@ -348,10 +523,46 @@ function APIEndpoint({
   description,
   children,
   exampleInputJson,
-  exampleOutputJson,
   id,
+  countryId,
+  displayCategory,
 }) {
+  const [outputJson, setOutputJson] = useState("");
+
   const hasInput = Boolean(exampleInputJson);
+
+  useEffect(() => {
+    const HOUSEHOLD_API_URL = "https://household.api.policyengine.org";
+
+    // This has to be written as a standalone function because
+    // useEffect can't handle anonymous async/await
+    async function fetchOutput() {
+      if (!countryId || !exampleInputJson) {
+        setOutputJson(null);
+        return;
+      }
+
+      try {
+        const res = await fetch(
+          HOUSEHOLD_API_URL + `/${countryId}/calculate_demo`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(exampleInputJson),
+          },
+        );
+        const resJson = await res.json();
+        setOutputJson(resJson);
+      } catch (err) {
+        console.error(err);
+        setOutputJson("Error while fetching output; please try again later");
+      }
+    }
+
+    fetchOutput();
+  }, [countryId, exampleInputJson]);
 
   return (
     <Section>
@@ -364,25 +575,18 @@ function APIEndpoint({
       <p>{description}</p>
 
       <div
+        data-testid="APIEndpoint_json_blocks"
         style={{
           display: "flex",
+          flexDirection: displayCategory === "mobile" && "column",
+          gap: displayCategory === "mobile" ? "2rem" : "50px",
+          marginTop: displayCategory === "mobile" && "2rem",
         }}
       >
         {hasInput && (
-          <div style={{ flex: 1 }}>
-            <h4>Example input</h4>
-            <JSONBlock json={exampleInputJson} />
-          </div>
+          <JSONBlock json={exampleInputJson} title="Example input" />
         )}
-        <div
-          style={{
-            flex: 1,
-            marginLeft: hasInput ? "50px" : "0",
-          }}
-        >
-          {<h4>Output format</h4>}
-          <JSONBlock json={exampleOutputJson} />
-        </div>
+        <JSONBlock json={outputJson} title="Output format" />
       </div>
       {children}
     </Section>

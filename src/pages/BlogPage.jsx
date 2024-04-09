@@ -1,4 +1,4 @@
-import ReactMarkdown from "react-markdown";
+import Markdown from "react-markdown";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import useMobile from "../layout/Responsive";
 import rehypeRaw from "rehype-raw";
@@ -44,7 +44,7 @@ export function BlogPostMarkdown(props) {
   };
 
   return (
-    <ReactMarkdown
+    <Markdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
       components={{
@@ -195,6 +195,6 @@ export function BlogPostMarkdown(props) {
       }}
     >
       {markdown}
-    </ReactMarkdown>
+    </Markdown>
   );
 }

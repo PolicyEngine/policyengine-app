@@ -17,7 +17,7 @@ export default function PolicyImpactPopup(props) {
           <p>
             PolicyEngine estimates reform impacts using microsimulation.{" "}
             <a
-              href="/us/blog/2022-12-28-enhancing-the-current-population-survey-for-policy-analysis"
+              href="/us/research/enhancing-the-current-population-survey-for-policy-analysis"
               target="_blank"
             >
               Learn more
@@ -26,7 +26,7 @@ export default function PolicyImpactPopup(props) {
         ) : (
           <p>
             PolicyEngine estimates reform impacts using microsimulation.{" "}
-            <a href="/uk/blog/2022-03-07-how-machine-learning-tools-make-policyengine-more-accurate">
+            <a href="/uk/research/how-machine-learning-tools-make-policyengine-more-accurate">
               Learn more
             </a>
           </p>

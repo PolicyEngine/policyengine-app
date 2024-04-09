@@ -13,7 +13,7 @@ import {
 } from "../data/Posts";
 import moment from "moment";
 import { TwitterTweetEmbed } from "react-twitter-embed";
-import { ReactMarkdown } from "react-markdown/lib/react-markdown";
+import Markdown from "react-markdown";
 import useDisplayCategory from "./useDisplayCategory";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -302,12 +302,16 @@ function PostBodySection({ post, markdown, notebook }) {
         <div style={{ flex: 1, marginRight: 50 }}>
           <div style={{ position: "sticky", top: 150 }}>
             <p className="spaced-sans-serif">Contents</p>
-            <LeftContents markdown={markdown} notebook={notebook} />
+            <div style={{ flex: 3, marginRight: 50, marginLeft: 50 }}>
+              <LeftContents markdown={markdown} notebook={notebook} />
+            </div>
             <div style={{ marginTop: 20 }} />
-            <MoreOn post={post} />
+            <div style={{ marginRight: 50, marginLeft: 50 }}>
+              <MoreOn post={post} />
+            </div>
           </div>
         </div>
-        <div style={{ flex: 3 }}>
+        <div style={{ flex: 3, marginRight: 50, marginLeft: 50 }}>
           {bodyContent}
           <AuthorSection post={post} />
         </div>
@@ -317,15 +321,15 @@ function PostBodySection({ post, markdown, notebook }) {
     return (
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ flex: 1 }}>
-          <div style={{ marginBottom: 30 }}>
+          <div style={{ marginBottom: 30, marginRight: 50, marginLeft: 50 }}>
             <p className="spaced-sans-serif">Contents</p>
             <LeftContents markdown={markdown} notebook={notebook} />
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, marginRight: 50, marginLeft: 50 }}>
             {bodyContent}
             <AuthorSection post={post} />
           </div>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, marginRight: 50, marginLeft: 50 }}>
             <div style={{ marginTop: 20 }} />
             <MoreOn post={post} />
           </div>
@@ -610,7 +614,7 @@ function BlogContent({ markdown, backgroundColor }) {
   }
 
   return (
-    <ReactMarkdown
+    <Markdown
       rehypePlugins={[rehypeRaw]}
       remarkPlugins={[remarkGfm]}
       components={{
@@ -874,7 +878,7 @@ function BlogContent({ markdown, backgroundColor }) {
       }}
     >
       {markdown}
-    </ReactMarkdown>
+    </Markdown>
   );
 }
 
