@@ -565,7 +565,7 @@ function APIEndpoint({
   }, [countryId, exampleInputJson]);
 
   let pythonInputCode = `import requests\n\nurl = "https://household.api.policyengine.org/${countryId}/calculate"\n\nheaders = {\n    "Authorization": "Bearer YOUR_TOKEN_HERE",\n    "Content-Type": "application/json",\n}\n\nresponse = requests.post(url, headers=headers, json=${JSON.stringify(exampleInputJson, null, 2)})\n\nprint(response.json())`;
-  pythonInputCode = pythonInputCode.replaceAll("null", "None")
+  pythonInputCode = pythonInputCode.replaceAll("null", "None");
 
   return (
     <Section>
@@ -587,9 +587,13 @@ function APIEndpoint({
         }}
       >
         {hasInput && (
-        <CodeBlock language="python" data={pythonInputCode} title="Input" />
+          <CodeBlock language="python" data={pythonInputCode} title="Input" />
         )}
-        <CodeBlock language="json" data={JSON.stringify(outputJson, null, 2)} title="Output" />
+        <CodeBlock
+          language="json"
+          data={JSON.stringify(outputJson, null, 2)}
+          title="Output"
+        />
       </div>
       {children}
     </Section>
