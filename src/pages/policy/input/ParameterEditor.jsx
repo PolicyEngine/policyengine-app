@@ -82,7 +82,7 @@ export default function ParameterEditor(props) {
     const isPercent = parameter.unit === "/1";
     const scale = isPercent ? 100 : 1;
     const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
-    const maximumFractionDigits = isCurrency ? 2 : 16;
+    const maximumFractionDigits = 2;
     control = (
       <StableInputNumber
         key={"input for" + parameter.parameter}
