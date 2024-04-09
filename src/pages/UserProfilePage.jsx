@@ -38,6 +38,7 @@ export default function UserProfilePage() {
 
   const savedSimulations = EXAMPLE_DATA.map((row, index) => {
     const bgColor = index % 2 === 0 ? style.colors.LIGHT_GRAY : style.colors.WHITE;
+    const geography = countryNames?.[row.country_id].singleWord || countryNames?.[row.country_id].standard || "unknown"
 
     return (
       <tr
@@ -54,14 +55,14 @@ export default function UserProfilePage() {
             padding: `${vertPad} ${horizPad}`,
             backgroundColor: bgColor
           }}
-        >{row.country_id}</td>
+        >{geography}</td>
         <td
           style={{
             padding: `${vertPad} ${horizPad}`,
             backgroundColor: bgColor
           }}
         >
-          <Link to={`https://wwww.policyengine.org/${row.country_id}/policy/?reform=${row.id}`}>
+          <Link to={`https://www.policyengine.org/${row.country_id}/policy/?reform=${row.id}`}>
             <span
               style={{
                 color: style.colors.BLUE_PRIMARY
