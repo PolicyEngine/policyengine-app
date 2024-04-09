@@ -23,6 +23,7 @@ import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "layout/CookieConsent";
 import TrafwaCalculator from "./TrafwaCalculator";
+import PrivacyPage from "../../pages/PrivacyPage";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -224,6 +225,7 @@ export default function PolicyEngine({ pathname }) {
         <Route path="/:countryId/contact" element={<Contact />} />
         <Route path="/:countryId/donate" element={<Donate />} />
         <Route path="/:countryId/research/*" element={<BlogPage />} />
+        <Route path="/:countryId/privacy" element={<PrivacyPage />} />
 
         <Route
           path="/:countryId/household/*"
