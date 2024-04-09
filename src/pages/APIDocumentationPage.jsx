@@ -371,12 +371,12 @@ export default function APIDocumentationPage({ metadata }) {
   );
 }
 
-function JSONBlock({ json, title }) {
+function CodeBlock({ data, title, language }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
   function handleCopy() {
-    navigator.clipboard.writeText(JSON.stringify(json, null, 2));
+    navigator.clipboard.writeText(data);
     setIsCopied(true);
   }
 
@@ -405,7 +405,7 @@ function JSONBlock({ json, title }) {
           margin: 0,
         }}
       >
-        json
+        {language}
       </p>
       <div
         style={{
@@ -498,17 +498,17 @@ function JSONBlock({ json, title }) {
       </div>
       <Card
         style={{}}
-        loading={!json}
+        loading={!data}
         bodyStyle={{
           padding: 0,
         }}
         title={cardTitleComponent}
       >
         <CodeMirror
-          value={JSON.stringify(json, null, 2)}
+          value={data}
           maxHeight={!isExpanded && "260px"}
           editable={false}
-          extensions={[langs.json()]}
+          extensions={[language === "json" ? langs.json() : langs.python()]}
           theme={espresso}
         />
       </Card>
@@ -564,6 +564,9 @@ function APIEndpoint({
     fetchOutput();
   }, [countryId, exampleInputJson]);
 
+  let pythonInputCode = `import requests\n\nurl = "https://household.api.policyengine.org/${countryId}/calculate"\n\nheaders = {\n    "Authorization": "Bearer YOUR_TOKEN_HERE",\n    "Content-Type": "application/json",\n}\n\nresponse = requests.post(url, headers=headers, json=${JSON.stringify(exampleInputJson, null, 2)})\n\nprint(response.json())`;
+  pythonInputCode = pythonInputCode.replaceAll("null", "None")
+
   return (
     <Section>
       <h3 id={id}>{title}</h3>
@@ -580,13 +583,13 @@ function APIEndpoint({
           display: "flex",
           flexDirection: displayCategory === "mobile" && "column",
           gap: displayCategory === "mobile" ? "2rem" : "50px",
-          marginTop: displayCategory === "mobile" && "2rem",
+          marginTop: displayCategory === "mobile" ? "2rem" : 40,
         }}
       >
         {hasInput && (
-          <JSONBlock json={exampleInputJson} title="Example input" />
+        <CodeBlock language="python" data={pythonInputCode} title="Input" />
         )}
-        <JSONBlock json={outputJson} title="Output format" />
+        <CodeBlock language="json" data={JSON.stringify(outputJson, null, 2)} title="Output" />
       </div>
       {children}
     </Section>
