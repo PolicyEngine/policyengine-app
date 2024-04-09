@@ -131,7 +131,7 @@ export default function SignupModal() {
           }}
         >
           <Button 
-            text="Sign up"
+            text="Sign in"
             onClick={handleSubmit}
             width="100%"
           />

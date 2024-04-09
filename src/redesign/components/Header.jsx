@@ -240,7 +240,6 @@ function MobileLoginButton() {
       onClick={
         isAuthenticated
           ? () => logout(logoutOptions)
-          // : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
           : () => loginWithRedirect(loginOptions(countryId))
       }
       onMouseOver={(e) =>
@@ -317,7 +316,7 @@ function DesktopLoginButton() {
 
   return (
     <Button
-      text={isAuthenticated ? "Log Out" : "Log In"}
+      text={isAuthenticated ? "Sign Out" : "Sign In"}
       type="secondary"
       onClick={
         isAuthenticated
