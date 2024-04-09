@@ -56,6 +56,11 @@ function LinkSection() {
       label: "Privacy Policy",
       isInternal: true,
     },
+    {
+      link: `/${countryId}/terms`,
+      label: "Terms and Conditions",
+      isInternal: true,
+    },
   ];
 
   const links = linkData.map((link, index) => {
