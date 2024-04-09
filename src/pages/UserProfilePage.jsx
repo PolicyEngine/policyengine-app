@@ -106,7 +106,7 @@ export default function UserProfilePage() {
             style={{
               padding: `${vertPad} ${horizPad}`
             }}
-          >View Again</th>
+          >View again</th>
         </tr>
       </thead>
       <tbody>
@@ -122,18 +122,17 @@ export default function UserProfilePage() {
       </Helmet>
       <div>
         <Header />
-        {/*<PageHeader
-          title="My profile"
+        <PageHeader
+          title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
           <p style={{ margin: 0 }}>
             Use this page to revisit policy simulations you
             saved previously.
           </p>
-        {/*</PageHeader>*/}
-        {/*<div style={{ paddingTop: 20, paddingBottom: 20 }}>*/}
+        </PageHeader>
         <Section
-          title="Saved Policy Simulations"
+          title="Saved policy simulations"
           backgroundColor={style.colors.BLUE_98}
         >
           {fullTable}

@@ -35,7 +35,7 @@ const LINKS = [
     isAuthOnly: false
   },
   {
-    title: "My Profile",
+    title: "Profile",
     link: "user_profile",
     isAuthOnly: true
   }
