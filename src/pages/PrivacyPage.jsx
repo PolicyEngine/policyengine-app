@@ -56,10 +56,14 @@ export default function PrivacyPage() {
         </p>
         <h3>Changes to this privacy policy</h3>
         <p>
-          We may update this privacy policy at any time in order to
-          reflect, for example, changes to our practices or for other operational
-          legal or regulatory reasons. We will update this page with a changelog, and
-          the full history of changes is be available on our <a href="https://github.com/policyengine/policyengine-app">GitHub repository</a>.
+          We may update this privacy policy at any time in order to reflect, for
+          example, changes to our practices or for other operational legal or
+          regulatory reasons. We will update this page with a changelog, and the
+          full history of changes is be available on our{" "}
+          <a href="https://github.com/policyengine/policyengine-app">
+            GitHub repository
+          </a>
+          .
         </p>
       </Container>
       <Footer />
