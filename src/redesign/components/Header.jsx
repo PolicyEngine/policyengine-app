@@ -23,23 +23,15 @@ const LINKS = [
   {
     title: "Research",
     link: "research",
-    isAuthOnly: false
   },
   {
     title: "About",
     link: "about",
-    isAuthOnly: false
   },
   {
     title: "Donate",
     link: "donate",
-    isAuthOnly: false
   },
-  {
-    title: "Profile",
-    link: "user_profile",
-    isAuthOnly: true
-  }
 ];
 
 export default function Header() {
@@ -415,9 +407,6 @@ function PageLinks() {
       }}
     >
       {LINKS.map((link) => {
-        if (!isAuthenticated && link.isAuthOnly === true) {
-          return null;
-        }
         return (
           <Link to={`/${countryId}/${link.link}`} key={link.title}>
             <div
@@ -490,7 +479,7 @@ function LeftNavigationMenu(props) {
       }}
     >
       {LINKS.map((link, i) => {
-        if (!isAuthenticated && link.isAuthOnly === true) {
+        if (!isAuthenticated) {
           return null;
         }
 
