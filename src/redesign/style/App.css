@@ -103,15 +103,13 @@ a.highlighted-link:hover {
   color: inherit;
 }
 
-.ant-input {
-  border-radius: 0;
-}
-
-.ant-select-single .ant-select-selector {
-  border-radius: 0;
-}
-
-.ant-btn {
+.ant-btn,
+.ant-picker-outlined,
+.ant-input,
+.ant-select-single .ant-select-selector,
+.ant-input-number-group .ant-input-number,
+.ant-input-number-group-wrapper-outlined
+  .ant-input-number-group-addon:last-child {
   border-radius: 0;
 }
 
