@@ -11,8 +11,8 @@ export default function PolicyImpactPopup(props) {
     setHasShownPopulationImpactPopup,
   } = props;
   const content = (
-    <div>
-      <div>
+    <div style={{ marginLeft: '10%' }}>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
         {metadata.countryId === "us" ? (
           <p>
             PolicyEngine estimates reform impacts using microsimulation.{" "}
@@ -32,7 +32,7 @@ export default function PolicyImpactPopup(props) {
           </p>
         )}
       </div>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+      <div style={{ display: "flex", justifyContent: "center", marginTop: 20, width: '100%' }}>
         <Button
           type="primary"
           onClick={() => Modal.destroyAll()}
@@ -49,6 +49,7 @@ export default function PolicyImpactPopup(props) {
         content: content,
         style: {
           borderRadius: 25,
+          margin: '20%'
         },
         okButtonProps: {
           style: {
