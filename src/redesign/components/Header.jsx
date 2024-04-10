@@ -13,6 +13,7 @@ import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { UserOutlined, LoadingOutlined } from "@ant-design/icons";
 import { login, loginOptions, logoutOptions } from "../../auth/authUtils";
+import { Dropdown } from "antd";
 
 
 const BAR_TOP_PADDING = 10; // Desired top padding, px
@@ -100,7 +101,7 @@ function MobileHeaderBar() {
         }}
       >
         <MobileCalculatorButton />
-        <LoginButton />
+        <LoginMenu />
         <Hamburger />
       </div>
     </>
@@ -130,7 +131,7 @@ function TabletHeaderBar() {
         }}
       >
         <DesktopCalculatorButton />
-        <LoginButton />
+        <LoginMenu />
         <Hamburger />
       </div>
     </>
@@ -161,7 +162,7 @@ function DesktopHeaderBar() {
         }}
       >
         <DesktopCalculatorButton />
-        <LoginButton />
+        <LoginMenu />
       </div>
     </>
   );
@@ -267,6 +268,24 @@ function LoginButton() {
       }
     </div>
   );
+}
+
+function LoginMenu() {
+
+  const { isAuthenticated } = useAuth0();
+
+  if (!isAuthenticated) {
+    return (
+      <LoginButton />
+    )
+  }
+
+  return (
+    <Dropdown menu={{items: [{label: "test", key: "test"}]}}>
+      <LoginButton />
+    </Dropdown>
+  )
+
 }
 
 function Hamburger() {
