@@ -7,11 +7,11 @@ import CalculatorIcon from "../images/icons/calculator.png";
 import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LinkButton from "../../controls/LinkButton";
 import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserOutlined, LoadingOutlined } from "@ant-design/icons";
+import { UserOutlined, LoadingOutlined, CoffeeOutlined, UserDeleteOutlined } from "@ant-design/icons";
 import { login, loginOptions, logoutOptions } from "../../auth/authUtils";
 import { Dropdown } from "antd";
 
@@ -227,6 +227,7 @@ function LoginButton() {
   };
 
   return (
+
     <div
       style={{
         backgroundColor: style.colors.BLUE,
@@ -273,19 +274,64 @@ function LoginButton() {
 function LoginMenu() {
 
   const { isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
+  const countryId = useCountryId();
+
+  function handleClick({key}) {
+    if (key === "sign-out") {
+      console.log("sign-out");
+    } else if (key === "profile") {
+      navigate(`/${countryId}/user_profile`);
+    }
+        
+  }
+
+  const dropdownItems = [
+    {
+      label: "Profile",
+      key: "profile",
+      icon: <CoffeeOutlined style={{fontSize: 16}}/>,
+      style: {
+        fontSize: 16,
+        margin: 10
+      }
+    },
+    {
+      label: "Sign out",
+      key: "sign-out",
+      icon: <UserDeleteOutlined style={{fontSize: 16}} />,
+      style: {
+        fontSize: 16,
+        margin: 10
+      }
+    }
+  ];
 
   if (!isAuthenticated) {
     return (
       <LoginButton />
-    )
+    );
   }
 
   return (
-    <Dropdown menu={{items: [{label: "test", key: "test"}]}}>
-      <LoginButton />
+    <Dropdown 
+      menu={{
+        items: dropdownItems,
+        onClick: handleClick, 
+        style: {
+          borderRadius: 0,
+          fontFamily: style.fonts.BODY_FONT,
+          minWidth: "200px"
+        }
+      }}
+      placement="bottomRight"
+    >
+      {/*This div necessary to properly render dropdown items*/}
+      <div>
+        <LoginButton />
+      </div>
     </Dropdown>
-  )
-
+  );
 }
 
 function Hamburger() {
