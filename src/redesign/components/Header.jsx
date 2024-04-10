@@ -232,9 +232,7 @@ function LoginButton() {
         border: `1px solid ${style.colors.WHITE}`
       }}
       onClick={
-        isAuthenticated
-          ? () => logout(logoutOptions)
-          : () => loginWithRedirect(loginOptions(countryId))
+        !isAuthenticated ? (() => loginWithRedirect(loginOptions(countryId))) : null
       }
       onMouseOver={(e) =>
         e.currentTarget.style.backgroundColor = style.colors.DARK_BLUE_HOVER
@@ -265,17 +263,19 @@ function LoginButton() {
 
 function LoginMenu() {
 
-  const { logout, isAuthenticated } = useAuth0();
+  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const countryId = useCountryId();
+  const displayCategory = useDisplayCategory();
 
+  // Unfortunately, it's not possible with Ant Design
+  // to set these on the individual menu items
   function handleClick({key}) {
     if (key === "sign-out") {
       logout(logoutOptions)
     } else if (key === "profile") {
       navigate(`/${countryId}/user_profile`);
     }
-        
   }
 
   const dropdownItems = [
@@ -316,6 +316,7 @@ function LoginMenu() {
           minWidth: "200px"
         }
       }}
+      trigger={displayCategory === "mobile" && ["click"]}
       placement="bottomRight"
     >
       {/*This div necessary to properly render dropdown items*/}
