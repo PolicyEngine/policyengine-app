@@ -42,7 +42,7 @@ export default function Header() {
       <div
         style={{
           backgroundColor: style.colors.BLUE_PRIMARY,
-          width: "100%",
+          width: "100vw",
           height: style.spacing.HEADER_HEIGHT,
           display: "flex",
           alignItems: "center",
@@ -479,10 +479,6 @@ function LeftNavigationMenu(props) {
       }}
     >
       {LINKS.map((link, i) => {
-        if (!isAuthenticated) {
-          return null;
-        }
-
         return (
           <Link to={`/${countryId}/${link.link}`} key={link.title}>
             <HoverBox
