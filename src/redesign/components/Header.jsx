@@ -265,13 +265,13 @@ function LoginButton() {
 
 function LoginMenu() {
 
-  const { isAuthenticated } = useAuth0();
+  const { logout, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const countryId = useCountryId();
 
   function handleClick({key}) {
     if (key === "sign-out") {
-      console.log("sign-out");
+      logout(logoutOptions)
     } else if (key === "profile") {
       navigate(`/${countryId}/user_profile`);
     }
