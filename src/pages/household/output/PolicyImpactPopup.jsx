@@ -55,7 +55,7 @@ export default function PolicyImpactPopup(props) {
           "PolicyEngine simulates your reform over thousands of households",
         content: content,
         style: {
-          borderRadius: 25,
+          borderRadius: 0,
           margin: "20%",
         },
         okButtonProps: {

@@ -116,3 +116,7 @@ a.highlighted-link:hover {
 .ant-modal-confirm-title {
   margin-left: 10%;
 }
+
+.ant-modal-content {
+  border-radius: 0 !important;
+}
