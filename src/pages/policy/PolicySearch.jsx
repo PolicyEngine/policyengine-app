@@ -63,7 +63,7 @@ export default function PolicySearch(props) {
         }
       }}
       onSearch={onSearch}
-      style={{ width: width || 200 }}
+      style={{ width: width || 200, borderRadius: 0 }}
       placeholder={defaultLabel}
       value={value === defaultLabel ? null : value}
     />

@@ -102,3 +102,15 @@ a.highlighted-link:hover {
 .ant-btn-link:hover {
   color: inherit;
 }
+
+.ant-input {
+  border-radius: 0;
+}
+
+.ant-select-single .ant-select-selector {
+  border-radius: 0;
+}
+
+.ant-btn {
+  border-radius: 0;
+}

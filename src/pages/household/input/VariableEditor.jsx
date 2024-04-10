@@ -226,12 +226,12 @@ function HouseholdVariableEntityInput(props) {
   );
   const reformValue = householdReform
     ? getValueFromHousehold(
-      variable.name,
-      timePeriod,
-      entityName,
-      householdReform,
-      metadata,
-    )
+        variable.name,
+        timePeriod,
+        entityName,
+        householdReform,
+        metadata,
+      )
     : null;
   let defaultValue = null;
 
@@ -267,22 +267,22 @@ function HouseholdVariableEntityInput(props) {
         }}
         {...(isCurrency
           ? {
-            addonBefore: currencyMap[variable.unit],
-          }
+              addonBefore: currencyMap[variable.unit],
+            }
           : {})}
         {...(variable.valueType === "float"
           ? {
-            formatter: (value, { userTyping }) => {
-              const n = +value;
-              const isInteger = Number.isInteger(n);
-              return n.toLocaleString(localeCode(metadata.countryId), {
-                minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-                maximumFractionDigits: userTyping
-                  ? 16
-                  : maximumFractionDigits,
-              });
-            },
-          }
+              formatter: (value, { userTyping }) => {
+                const n = +value;
+                const isInteger = Number.isInteger(n);
+                return n.toLocaleString(localeCode(metadata.countryId), {
+                  minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+                  maximumFractionDigits: userTyping
+                    ? 16
+                    : maximumFractionDigits,
+                });
+              },
+            }
           : {})}
         defaultValue={defaultValue}
         onPressEnter={onPressEnter}
@@ -297,7 +297,7 @@ function HouseholdVariableEntityInput(props) {
         unCheckedChildren="No"
         onChange={submitValue}
         ref={ref}
-      // style={ref ? { background: "#2c6496" } : "#FFFFF"}
+        // style={ref ? { background: "#2c6496" } : "#FFFFF"}
       />
     );
   } else if (variable.valueType === "Enum") {

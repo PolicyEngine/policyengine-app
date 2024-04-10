@@ -135,10 +135,10 @@ function DatasetSelector(props) {
    */
   function handleChange(isChecked) {
     if (isChecked) {
-      setSwitchChecked(true)
+      // setSwitchChecked(true)
       ref.current.style.background = "#2C6496";
     } else {
-      setSwitchChecked(false)
+      // setSwitchChecked(false)
       ref.current.style.background = "#00000040";
     }
 
@@ -178,7 +178,7 @@ function DatasetSelector(props) {
         checked={presentRegion === "enhanced_us" ? true : false}
         // defaultChecked={switchChecked}
         ref={ref}
-        style={switchChecked ? { background: "#2c6496" } : null}
+        // style={switchChecked ? { background: "#2c6496" } : null}
       />
       <h6
         style={{
