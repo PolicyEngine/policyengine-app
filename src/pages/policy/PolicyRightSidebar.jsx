@@ -105,6 +105,7 @@ function DatasetSelector(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const displayCategory = useDisplayCategory();
   const ref = useRef();
+  // const [switchChecked, setSwitchChecked] = useState(false)
 
   // Determine whether slider should be enabled or disabled
   function shouldEnableSlider(presentRegion, timePeriod) {
@@ -134,8 +135,10 @@ function DatasetSelector(props) {
    */
   function handleChange(isChecked) {
     if (isChecked) {
+      setSwitchChecked(true)
       ref.current.style.background = "#2C6496";
     } else {
+      setSwitchChecked(false)
       ref.current.style.background = "#00000040";
     }
 
@@ -173,8 +176,9 @@ function DatasetSelector(props) {
         onChange={handleChange}
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
         checked={presentRegion === "enhanced_us" ? true : false}
+        // defaultChecked={switchChecked}
         ref={ref}
-        // style={ref? { background: "#2c6496" } : "#FFFFF"}
+        style={switchChecked ? { background: "#2c6496" } : null}
       />
       <h6
         style={{
