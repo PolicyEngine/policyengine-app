@@ -6,12 +6,12 @@ import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.sv
 import CalculatorIcon from "../images/icons/calculator.png";
 import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LinkButton from "../../controls/LinkButton";
 import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
+import { UserOutlined, LoadingOutlined } from "@ant-design/icons";
 import { login, loginOptions, logoutOptions } from "../../auth/authUtils";
 
 
@@ -100,7 +100,7 @@ function MobileHeaderBar() {
         }}
       >
         <MobileCalculatorButton />
-        <MobileLoginButton />
+        <LoginButton />
         <Hamburger />
       </div>
     </>
@@ -130,7 +130,7 @@ function TabletHeaderBar() {
         }}
       >
         <DesktopCalculatorButton />
-        <DesktopLoginButton />
+        <LoginButton />
         <Hamburger />
       </div>
     </>
@@ -161,7 +161,7 @@ function DesktopHeaderBar() {
         }}
       >
         <DesktopCalculatorButton />
-        <DesktopLoginButton />
+        <LoginButton />
       </div>
     </>
   );
@@ -214,10 +214,10 @@ function MobileCalculatorButton() {
   );
 }
 
-function MobileLoginButton() {
+function LoginButton() {
 
   const countryId = useCountryId();
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const { loginWithRedirect, logout, isAuthenticated, user, isLoading } = useAuth0();
   const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
 
   const sharedStyle = {
@@ -250,10 +250,19 @@ function MobileLoginButton() {
       }
     >
       {
-        isAuthenticated ? (
-          <LogoutOutlined style={sharedStyle}/>
+        isAuthenticated && user && user.picture ? (
+          <img
+            src={user.picture ?? ""}
+            alt="Profile"
+            style={{
+              width: "100%",
+              objectFit: "cover"
+            }}
+          />
+        ) : isLoading || isAuthenticated ? (
+          <LoadingOutlined style={sharedStyle} />
         ) : (
-          <LoginOutlined style={sharedStyle}/>
+          <UserOutlined style={sharedStyle}/>
         )
       }
     </div>
@@ -305,28 +314,6 @@ function DesktopCalculatorButton() {
       link={`/${countryId}/calculator`}
       text="Compute Policy Impact"
       style={{ padding: "10px" }}
-    />
-  );
-}
-
-function DesktopLoginButton() {
-  const countryId = useCountryId();
-
-  const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
-
-  return (
-    <Button
-      text={isAuthenticated ? "Sign Out" : "Sign In"}
-      type="secondary"
-      onClick={
-        isAuthenticated
-          ? () => logout({ logoutParams: { returnTo: window.location.origin } })
-          : () => loginWithRedirect({ appState: { returnTo: `/${countryId}` } })
-      }
-      width="150px"
-      style={{
-        padding: "10px"
-      }}
     />
   );
 }
