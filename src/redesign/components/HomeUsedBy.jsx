@@ -2,7 +2,7 @@ import style from "../style";
 import Section from "./Section";
 import { orgData } from "redesign/data/Organisations";
 import useCountryId from "../../hooks/useCountryId";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 export default function HomeUsedBy() {
   const countryId = useCountryId();

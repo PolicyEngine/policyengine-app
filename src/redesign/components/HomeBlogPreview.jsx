@@ -1,7 +1,7 @@
 import style from "../style";
 import { SectionBottom, SectionTop } from "./Section";
 import { posts } from "../../posts/postTransformers";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import Carousel from "./Carousel";
 import moment from "moment";
 import { useState } from "react";

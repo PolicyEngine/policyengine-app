@@ -1,4 +1,4 @@
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import useCountryId from "../../hooks/useCountryId";
 import style from "../style";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";

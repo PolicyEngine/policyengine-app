@@ -9,7 +9,7 @@ import { Input, Card, Divider, Tag, Drawer, Button, Tooltip } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 import CodeMirror from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import { espresso } from "thememirror";

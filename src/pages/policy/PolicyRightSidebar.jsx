@@ -15,7 +15,7 @@ import PolicySearch from "./PolicySearch";
 import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
-import useDisplayCategory from "redesign/components/useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 function RegionSelector(props) {
   const { metadata } = props;

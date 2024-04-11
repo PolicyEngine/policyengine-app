@@ -14,7 +14,7 @@ import {
 import moment from "moment";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Markdown from "react-markdown";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import React, { useEffect, useState, useRef } from "react";

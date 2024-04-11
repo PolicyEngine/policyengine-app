@@ -1,5 +1,5 @@
 import style from "../style";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import EmphasisedLink from "./EmphasisedLink";
 
 export default function ShowcaseItem({

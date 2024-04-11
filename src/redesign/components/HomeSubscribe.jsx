@@ -5,7 +5,7 @@ import style from "../style";
 import Section from "./Section";
 import FormContext from "layout/forms/FormContext";
 import FormInput from "layout/forms/FormInput";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { submitToMailchimp } from "../../data/mailchimpSubscription";
 
 export default function HomeSubscribe() {
