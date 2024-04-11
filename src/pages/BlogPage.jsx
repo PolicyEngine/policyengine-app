@@ -1,7 +1,7 @@
 import { Link, Navigate } from "react-router-dom";
 import useCountryId from "../redesign/components/useCountryId";
 import Header from "../redesign/components/Header";
-import Footer from "../redesign/components/Footer";
+import Footer from "../layout/Footer";
 import Section from "../redesign/components/Section";
 import style from "../redesign/style";
 import {
