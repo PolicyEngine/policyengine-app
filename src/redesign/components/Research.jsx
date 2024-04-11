@@ -228,6 +228,14 @@ function BlogPostSearchTools({
   filteredAuthors,
   setFilteredAuthors,
 }) {
+
+  const [openList, setOpenList] = useState(null);
+
+  // Handler to open a list and close others
+  const handleOpenList = (listName) => {
+    setOpenList(openList => openList === listName ? null : listName);
+  };
+
   const textBox = (
     <TextBox
       placeholder="Search by keyword, author, etc."
@@ -265,6 +273,8 @@ function BlogPostSearchTools({
         keyToLabel={topicLabels}
         checkedValues={filteredTopics}
         setCheckedValues={setFilteredTopics}
+        isOpen={openList === "topic"}
+        onToggle={() => handleOpenList("topic")}
       />
       <ExpandableCheckBoxList
         title="Location"
@@ -272,6 +282,8 @@ function BlogPostSearchTools({
         keyToLabel={locationLabels}
         checkedValues={filteredLocations}
         setCheckedValues={setFilteredLocations}
+        isOpen={openList === "location"}
+        onToggle={() => handleOpenList("location")}
       />
       <ExpandableCheckBoxList
         title="Author"
@@ -279,6 +291,8 @@ function BlogPostSearchTools({
         keyToLabel={authorKeyToLabel}
         checkedValues={filteredAuthors}
         setCheckedValues={setFilteredAuthors}
+        isOpen={openList === "author"}
+        onToggle={() => handleOpenList("author")}
       />
     </>
   );
@@ -294,7 +308,7 @@ function BlogPostSearchTools({
         }}
       >
         {textBox}
-        <div style={{ marginBottom: 20 }} />
+        <div style={{ marginBottom: 20}} />
         {searchButton}
         {filterTools}
       </div>
@@ -336,51 +350,55 @@ function ExpandableCheckBoxList({
   keyToLabel,
   checkedValues,
   setCheckedValues,
+  isOpen,
+  onToggle,
 }) {
   return (
-    <Expandable title={title}>
-      {keys.map((key) => (
+    <Expandable title={title} isOpen={isOpen}  onToggle={onToggle}>
+      <div style={{ maxHeight: '210px', overflowY: 'auto' }}>
+        {keys.map((key) => (
+          <Checkbox
+            key={key}
+            label={keyToLabel[key] || key}
+            checked={checkedValues.includes(key)}
+            onCheck={
+              checkedValues.includes(key)
+                ? () => setCheckedValues(checkedValues.filter((k) => k !== key))
+                : () => setCheckedValues(checkedValues.concat([key]))
+            }
+          />
+        ))}
+        <div
+          style={{
+            borderBottom: "1px solid lightgray",
+            width: "100%",
+            marginTop: 5,
+            marginBottom: 5,
+          }}
+        />
         <Checkbox
-          key={key}
-          label={keyToLabel[key] || key}
-          checked={checkedValues.includes(key)}
+          label="Select all"
+          checked={checkedValues.length === keys.length}
           onCheck={
-            checkedValues.includes(key)
-              ? () => setCheckedValues(checkedValues.filter((k) => k !== key))
-              : () => setCheckedValues(checkedValues.concat([key]))
+            checkedValues.length === keys.length
+              ? () => setCheckedValues([])
+              : () => setCheckedValues(keys)
           }
         />
-      ))}
-      <div
-        style={{
-          borderBottom: "1px solid lightgray",
-          width: "100%",
-          marginTop: 5,
-          marginBottom: 5,
-        }}
-      />
-      <Checkbox
-        label="Select all"
-        checked={checkedValues.length === keys.length}
-        onCheck={
-          checkedValues.length === keys.length
-            ? () => setCheckedValues([])
-            : () => setCheckedValues(keys)
-        }
-      />
+      </div>
     </Expandable>
   );
 }
 
-function Expandable({ title, children }) {
-  const [expanded, setExpanded] = useState(false);
+function Expandable({ title, children ,isOpen, onToggle}) {
+  // const [expanded, setExpanded] = useState(false);
   const contentRef = useRef();
   const titleRef = useRef();
   const titleComponent = (
     <div
       style={{ display: "flex", alignItems: "center" }}
       ref={titleRef}
-      onClick={() => setExpanded(!expanded)}
+      onClick={onToggle}
     >
       <p style={{ margin: 0 }}>{title}</p>
       <FontIcon
@@ -388,7 +406,7 @@ function Expandable({ title, children }) {
         size={20}
         style={{
           marginLeft: "auto",
-          transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+          transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
           transition: "transform 0.3s ease-in-out",
         }}
       />
@@ -405,7 +423,7 @@ function Expandable({ title, children }) {
         maxHeight: 30,
       }}
       animate={{
-        maxHeight: expanded
+        maxHeight: isOpen
           ? contentRef.current?.getBoundingClientRect().height +
             titleRef.current?.getBoundingClientRect().height
           : titleRef.current?.getBoundingClientRect().height,
