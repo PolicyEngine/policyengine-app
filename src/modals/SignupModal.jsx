@@ -15,7 +15,7 @@ export default function SignupModal() {
   const [submitMsg, setSubmitMsg] = useState("");
   const [isNewsletterChecked, setIsNewsletterChecked] = useState(true);
 
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
   const countryId = useCountryId();
 
   function handleNewsletterCheck() {
@@ -94,7 +94,7 @@ export default function SignupModal() {
     setIsModalOpen(false);
   }
 
-  if (isAuthenticated) {
+  if (isLoading || isAuthenticated) {
     return null;
   }
 
