@@ -1,5 +1,5 @@
 import { Link, Navigate } from "react-router-dom";
-import useCountryId from "../redesign/components/useCountryId";
+import useCountryId from "../hooks/useCountryId";
 import Header from "../redesign/components/Header";
 import Footer from "../layout/Footer";
 import Section from "../redesign/components/Section";

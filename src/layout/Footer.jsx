@@ -12,7 +12,7 @@ import {
   YoutubeFilled,
 } from "@ant-design/icons";
 import { createElement } from "react";
-import useCountryId from "../redesign/components/useCountryId";
+import useCountryId from "../hooks/useCountryId";
 import { Link } from "react-router-dom";
 
 export default function Footer() {

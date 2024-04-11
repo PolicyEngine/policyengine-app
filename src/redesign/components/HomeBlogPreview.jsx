@@ -5,7 +5,7 @@ import useDisplayCategory from "./useDisplayCategory";
 import Carousel from "./Carousel";
 import moment from "moment";
 import { useState } from "react";
-import useCountryId from "./useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 import EmphasisedLink from "./EmphasisedLink";
 
 export default function HomeBlogPreview() {

@@ -7,7 +7,7 @@ import { submitToMailchimp } from "../data/mailchimpSubscription";
 import Button from "../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginOptions } from "../auth/authUtils";
-import useCountryId from "../redesign/components/useCountryId";
+import useCountryId from "../hooks/useCountryId";
 import style from "../redesign/style";
 
 export default function SignupModal() {

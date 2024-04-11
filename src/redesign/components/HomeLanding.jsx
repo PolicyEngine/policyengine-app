@@ -1,7 +1,7 @@
 import LinkButton from "controls/LinkButton";
 import useDisplayCategory from "./useDisplayCategory";
 import Hero from "../images/hero.png";
-import useCountryId from "./useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 import SignupModal from "../../modals/SignupModal";
 
 export default function HomeLanding() {

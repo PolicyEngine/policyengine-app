@@ -1,6 +1,6 @@
 import Header from "./Header";
 import LinkButton from "controls/LinkButton";
-import useCountryId from "./useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";
 import PolicyScreenshot from "../images/home/policy_screenshot.png";
 import useDisplayCategory from "./useDisplayCategory";

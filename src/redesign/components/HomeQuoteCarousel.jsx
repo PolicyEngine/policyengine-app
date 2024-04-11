@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { quoteData } from "../data/Quotes.jsx";
 import { orgData } from "../data/Organisations.jsx";
 import Carousel from "./Carousel";
-import useCountryId from "./useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 import { Link } from "react-router-dom";
 import FontIcon from "./FontIcon";
 import Section from "./Section";
