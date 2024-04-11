@@ -1,4 +1,4 @@
-import Footer from "../redesign/components/Footer";
+import Footer from "../layout/Footer";
 import Header from "../redesign/components/Header";
 import Helmet from "react-helmet";
 import Section from "../redesign/components/Section";
@@ -6,6 +6,9 @@ import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
 import { Link } from "react-router-dom";
 import { countryNames } from "../data/countries";
+import { useAuth0 } from "@auth0/auth0-react";
+import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
 
 export default function UserProfilePage() {
 
@@ -126,10 +129,13 @@ export default function UserProfilePage() {
           title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
+          {/*
           <p style={{ margin: 0 }}>
             Use this page to revisit policy simulations you
             saved previously.
           </p>
+  */}
+          <UserProfileSection />
         </PageHeader>
         <Section
           title="Saved policy simulations"
@@ -142,4 +148,72 @@ export default function UserProfilePage() {
     </>
   )
 
+}
+
+function UserProfileSection() {
+  const { isAuthenticated, user } = useAuth0();
+
+  useEffect(() => {
+    console.log(user);
+  }, [user])
+
+  const sharedStyling = {
+    height: "100px",
+    objectFit: "cover"
+  };
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        width: "100%",
+        height: "100%",
+        paddingLeft: "10px"
+      }}
+    >
+      {
+        isAuthenticated && user && user.picture ? (
+          <img
+            src={user.picture}
+            alt="Profile"
+            style={{
+              height: "100px",
+              objectFit: "cover"
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100px",
+              aspectRatio: 1,
+              border: `0.5px solid ${style.colors.DARK_GRAY}`,
+              color: style.colors.DARK_GRAY
+            }}
+          >
+            {
+              isAuthenticated ? (
+                <LoadingOutlined 
+                  style={{
+                    fontSize: "32px"
+                  }}
+                />
+              ) : (
+                <FileImageOutlined 
+                  style={{
+                    fontSize: "32px"
+                  }}
+                />
+              )
+            }
+          </div>
+        )
+      }
+    </div>
+  );
 }
