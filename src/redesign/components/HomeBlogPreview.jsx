@@ -390,7 +390,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const countryId = useCountryId();
   const imageUrl = blog.image
-    ? require("../images/posts/" + blog.image)
+    ? require("../../images/posts/" + blog.image)
     : require("../../images/placeholder.png");
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
