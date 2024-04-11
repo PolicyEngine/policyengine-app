@@ -1,7 +1,7 @@
 // Taken from https://designcode.io/react-hooks-handbook-uselocalstorage-hook
 import { useEffect, useState } from "react";
 
-export function useLocalStorage(key, defaultValue) {
+export default function useLocalStorage(key, defaultValue) {
   const [value, setValue] = useState(() => {
     let currentValue = null;
 
