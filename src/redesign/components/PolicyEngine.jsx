@@ -6,7 +6,7 @@ import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Contact from "./Contact";
 import Donate from "./Donate";
 import { useLocation } from "react-router-dom";
-import BlogPage from "./BlogPage";
+import BlogPage from "../../pages/BlogPage";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {

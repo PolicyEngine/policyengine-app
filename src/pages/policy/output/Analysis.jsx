@@ -5,7 +5,7 @@ import Button from "../../../controls/Button";
 import CodeBlock from "layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
-import { BlogPostMarkdown } from "../../BlogPage";
+import { BlogContent } from "../../BlogPage";
 import { asyncApiCall, countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 
@@ -319,7 +319,7 @@ export default function Analysis(props) {
           />
         )}
         {hasClickedGenerate && analysis && (
-          <BlogPostMarkdown markdown={analysis} dict={chartDict} />
+          <BlogContent markdown={analysis} dict={chartDict} />
         )}
       </div>
       <div
