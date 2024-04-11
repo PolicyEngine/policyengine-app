@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { countryNames } from "../data/countries";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
-import { useEffect } from "react";
+import { useDisplayCategory } from "../layout/Responsive";
 
 export default function UserProfilePage() {
 
@@ -129,12 +129,6 @@ export default function UserProfilePage() {
           title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
-          {/*
-          <p style={{ margin: 0 }}>
-            Use this page to revisit policy simulations you
-            saved previously.
-          </p>
-  */}
           <UserProfileSection />
         </PageHeader>
         <Section
@@ -152,15 +146,7 @@ export default function UserProfilePage() {
 
 function UserProfileSection() {
   const { isAuthenticated, user } = useAuth0();
-
-  useEffect(() => {
-    console.log(user);
-  }, [user])
-
-  const sharedStyling = {
-    height: "100px",
-    objectFit: "cover"
-  };
+  const displayCategory = useDisplayCategory();
 
   return (
     <div
@@ -171,7 +157,8 @@ function UserProfileSection() {
         alignItems: "flex-start",
         width: "100%",
         height: "100%",
-        paddingLeft: "10px"
+        paddingLeft: displayCategory !== "mobile" && "10px",
+        gap: "20px"
       }}
     >
       {
@@ -214,6 +201,18 @@ function UserProfileSection() {
           </div>
         )
       }
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "max-content 1fr",
+          gridColumnGap: "20px"
+        }}
+      >
+        <p style={{fontWeight: "bold", margin: 0}}>Name</p>
+        <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
+        <p style={{fontWeight: "bold", margin: 0}}>Email</p>
+        <p style={{margin: 0}}>{user ? user.email: "Error: No user logged in"}</p>
+      </div>
     </div>
   );
 }
