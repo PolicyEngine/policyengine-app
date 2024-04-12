@@ -9,6 +9,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { loginOptions } from "../auth/authUtils";
 import useCountryId from "../hooks/useCountryId";
 import style from "../redesign/style";
+import { useSearchParams } from "react-router-dom";
+import { getCookie, setCookie } from "../data/cookies";
 
 export default function SignupModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -18,13 +20,9 @@ export default function SignupModal() {
   const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
   const countryId = useCountryId();
 
-  function handleNewsletterCheck() {
-    setIsNewsletterChecked(prev => !prev);
-  }
-
   async function handleSubmit() {
-
-    loginWithRedirect(loginOptions(countryId, {add_to_mailchimp: isNewsletterChecked}));
+    const path = `${window.location.pathname}${window.location.search}`;
+    loginWithRedirect(loginOptions(countryId, {redirectPath: path}));
 
     // Destroy modal
     setIsModalOpen(false);
