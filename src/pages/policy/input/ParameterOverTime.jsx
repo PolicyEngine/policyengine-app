@@ -2,11 +2,11 @@ import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
 import { getPlotlyAxisFormat } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
-import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { localeCode } from "lang/format";
 import { defaultEndDate, defaultStartDate } from "../../../data/constants";
+import { useWindowHeight } from "../../../hooks/useWindow";
 
 /**
  *
