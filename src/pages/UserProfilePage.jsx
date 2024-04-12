@@ -11,8 +11,15 @@ import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
 import { Card } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
+import { apiCall } from "../api/call";
+import { useEffect, useState } from "react";
+import useCountryId from "../hooks/useCountryId";
 
 export default function UserProfilePage() {
+  const [userPolicies, setUserPolicies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const countryId = useCountryId();
+  const { user } = useAuth0();
   const windowWidth = useWindowWidth();
   const dispCat = useDisplayCategory();
 
@@ -21,7 +28,28 @@ export default function UserProfilePage() {
   const maxCardWidth = 300; // Max card width (relative to screen, so not exact), in pixels
 
   const gridColumns = dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
-  // Fetch data here; below is examlpe data for the time being
+  useEffect(() => {
+    async function fetchPolicies() {
+      setIsLoading(true);
+      try {
+        const data = await apiCall(
+          `/${countryId}/user_policy/${user.sub}`
+        );
+        const dataJson = await data.json();
+        setUserPolicies(dataJson.result);
+      } catch (err) {
+        console.error("Error within UserProfilePage: ");
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    if (countryId && user?.sub) {
+      fetchPolicies();
+    }
+  }, [countryId, user?.sub]);
+
   const EXAMPLE_DATA = [
     {
       id: 11111,
@@ -65,8 +93,7 @@ export default function UserProfilePage() {
     },
   ];
 
-  const userPolicyCards = EXAMPLE_DATA.map((userPolicy, index) => {
-
+  const userPolicyCards = userPolicies.map((userPolicy, index) => {
     const geography = countryNames?.[userPolicy.country_id].singleWord || countryNames?.[userPolicy.country_id].standard || "unknown"
 
     return (
@@ -83,6 +110,7 @@ export default function UserProfilePage() {
           justifyContent: "flex-start",
           height: "100%"
         }}
+        loading={isLoading}
       >
         <h6
           style={{
@@ -92,9 +120,9 @@ export default function UserProfilePage() {
           }}
         >{userPolicy.reform_label}</h6>
         {/*The below div is necessary because Ant Design Card components
-        {/*add :before and :after pseudos with height=0, meaning a flex with
+        add :before and :after pseudos with height=0, meaning a flex with
         space-between will add space before them, ruining the layout*/}
-        {!dispCat === "mobile" && (
+        {dispCat !== "mobile" && (
           <div 
             style={{
               height: "100%",
