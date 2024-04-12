@@ -26,8 +26,6 @@ export default function UserProfilePage() {
   const windowWidth = useWindowWidth();
   const dispCat = useDisplayCategory();
 
-  const vertPad = "10px";
-  const horizPad = "10px";
   const maxCardWidth = 300; // Max card width (relative to screen, so not exact), in pixels
 
   const gridColumns = dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
@@ -79,6 +77,9 @@ export default function UserProfilePage() {
     if (countryId && user?.sub) {
       emitPreAuthPolicies().then(() => {fetchPolicies()});
     }
+  // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
+  // are themselves a hook, with setSavedPolicies being a setter
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, user?.sub]);
 
   const loadingCards = Array(4).fill(<Card loading={true} />);

@@ -1,21 +1,13 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "antd";
-import colors from "../style/colors";
-import bcrypt from "bcryptjs";
-import { submitToMailchimp } from "../data/mailchimpSubscription";
 import Button from "../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginOptions } from "../auth/authUtils";
 import useCountryId from "../hooks/useCountryId";
-import style from "../redesign/style";
-import { useSearchParams } from "react-router-dom";
-import { getCookie, setCookie } from "../data/cookies";
 
 export default function SignupModal() {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [submitMsg, setSubmitMsg] = useState("");
-  const [isNewsletterChecked, setIsNewsletterChecked] = useState(true);
 
   const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
   const countryId = useCountryId();

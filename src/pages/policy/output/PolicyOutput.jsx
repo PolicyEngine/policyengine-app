@@ -9,7 +9,6 @@ import { getCookie } from "../../../data/cookies";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import { useAuth0 } from "@auth0/auth0-react";
 import useCountryId from "../../../hooks/useCountryId";
-import { apiCall } from "../../../api/call";
 import { postUserPolicy, cullOldPolicies } from "../../../api/userPolicies";
 import SignupModal from "../../../modals/SignupModal";
 
