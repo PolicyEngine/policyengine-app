@@ -66,7 +66,6 @@ export default function UserProfilePage() {
   ];
 
   const userPolicyCards = EXAMPLE_DATA.map((userPolicy, index) => {
-    const { Meta } = Card;
 
     const geography = countryNames?.[userPolicy.country_id].singleWord || countryNames?.[userPolicy.country_id].standard || "unknown"
 
@@ -95,17 +94,21 @@ export default function UserProfilePage() {
         {/*The below div is necessary because Ant Design Card components
         {/*add :before and :after pseudos with height=0, meaning a flex with
         space-between will add space before them, ruining the layout*/}
-        <div 
-          style={{
-            height: "100%",
-            flexGrow: 2
-          }}
-        />
+        {!dispCat === "mobile" && (
+          <div 
+            style={{
+              height: "100%",
+              flexGrow: 2
+            }}
+          />
+        )}
         <div
           style={{
             display: "flex",
             width: "100%",
-            flexDirection: "column",
+            flexDirection: dispCat === "mobile" ? "row" : "column",
+            columnGap: dispCat === "mobile" && "20px",
+            flexWrap: "wrap"
           }}
         >
           <p
@@ -148,7 +151,7 @@ export default function UserProfilePage() {
             style={{
               fontFamily: style.fonts.BODY_FONT,
               margin: 0,
-              gridColumn: "1 / -1"
+              flex: dispCat === "mobile" && "0 0 100%"
             }}
           >
             <Link to={`https://www.policyengine.org/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`}>
