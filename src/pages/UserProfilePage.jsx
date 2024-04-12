@@ -9,114 +9,162 @@ import { countryNames } from "../data/countries";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
+import { Card } from "antd";
+import { useWindowWidth } from "../hooks/useWindow";
 
 export default function UserProfilePage() {
+  const windowWidth = useWindowWidth();
+  const dispCat = useDisplayCategory();
 
   const vertPad = "10px";
   const horizPad = "10px";
+  const maxCardWidth = 300; // Max card width (relative to screen, so not exact), in pixels
 
+  const gridColumns = dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
   // Fetch data here; below is examlpe data for the time being
   const EXAMPLE_DATA = [
     {
-      id: 44151,
-      label: "Test Policy",
+      id: 11111,
+      reform_label: "Test Policy",
+      reform_id: 44151,
+      baseline_label: "Current law",
+      baseline_id: 2,
       country_id: "us"
     },
     {
-      id: 14,
-      label: "Making the CTC fully refundable",
+      id: 22222,
+      reform_id: 14,
+      reform_label: "Making the CTC fully refundable",
+      baseline_label: "Current law",
+      baseline_id: 2,
       country_id: "us",
     },
     {
-      id: 3349,
-      label: "Repealing Oregon's exemption credit",
+      id: 33333,
+      reform_id: 3349,
+      reform_label: "Repealing Oregon's exemption credit",
+      baseline_label: "Current law",
+      baseline_id: 2,
       country_id: "us",
     },
     {
-      id: 3752,
-      label: "Raising the basic rate to 25%",
+      id: 44444,
+      reform_id: 3752,
+      reform_label: "Raising the basic rate to 25%",
+      baseline_label: "Current law",
+      baseline_id: 1,
       country_id: "uk",
+    },
+    {
+      id: 55555,
+      reform_id: 14,
+      reform_label: "Making the CTC Fully Refundable",
+      baseline_label: "Doubling the CTC",
+      baseline_id: 3695,
+      country_id: "us",
     },
   ];
 
-  const savedSimulations = EXAMPLE_DATA.map((row, index) => {
-    const bgColor = index % 2 === 0 ? style.colors.LIGHT_GRAY : style.colors.WHITE;
-    const geography = countryNames?.[row.country_id].singleWord || countryNames?.[row.country_id].standard || "unknown"
+  const userPolicyCards = EXAMPLE_DATA.map((userPolicy, index) => {
+    const { Meta } = Card;
+
+    const geography = countryNames?.[userPolicy.country_id].singleWord || countryNames?.[userPolicy.country_id].standard || "unknown"
 
     return (
-      <tr
-        key={`${index}-${row.id}`}
+      <Card 
+        key={`${index}-${userPolicy.id}`}
+        style={{
+          width: "100%",
+          minWidth: 0,
+        }}
+        bodyStyle={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          height: "100%"
+        }}
       >
-        <td
+        <h6
           style={{
-            padding: `${vertPad} ${horizPad}`,
-            backgroundColor: bgColor,
+            fontSize: "1.2rem",
+            fontFamily: style.fonts.HEADER_FONT,
+            marginBottom: "16px"
           }}
-        >{row.label}</td>
-        <td
+        >{userPolicy.reform_label}</h6>
+        {/*The below div is necessary because Ant Design Card components
+        {/*add :before and :after pseudos with height=0, meaning a flex with
+        space-between will add space before them, ruining the layout*/}
+        <div 
           style={{
-            padding: `${vertPad} ${horizPad}`,
-            backgroundColor: bgColor
+            height: "100%",
+            flexGrow: 2
           }}
-        >{geography}</td>
-        <td
+        />
+        <div
           style={{
-            padding: `${vertPad} ${horizPad}`,
-            backgroundColor: bgColor
+            display: "flex",
+            width: "100%",
+            flexDirection: "column",
           }}
         >
-          <Link to={`https://www.policyengine.org/${row.country_id}/policy/?reform=${row.id}`}>
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
             <span
               style={{
-                color: style.colors.BLUE_PRIMARY
+                fontWeight: 400
               }}
             >
-              #{row.id}
+              Geography:&nbsp;
             </span>
-          </Link>
-        </td>
-      </tr>
+            {geography}
+          </p>
+          {
+            userPolicy.baseline_label !== "Current law" && (
+              <>
+                <p
+                  style={{
+                    fontFamily: style.fonts.BODY_FONT,
+                    margin: 0,
+                  }}
+                >
+                  <span
+                    style={{
+                      fontWeight: 400
+                    }}
+                  >
+                    Baseline:&nbsp;
+                  </span>
+                  {userPolicy.baseline_label}
+                </p>
+              </>
+            )
+          }
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+              gridColumn: "1 / -1"
+            }}
+          >
+            <Link to={`https://www.policyengine.org/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`}>
+              <span
+                style={{
+                  color: style.colors.BLUE_PRIMARY
+                }}
+              >
+                Visit again
+              </span>
+            </Link>
+          </p>
+        </div>
+      </Card>
     );
   });
-
-  const fullTable = (
-    <table
-      style={{
-        width: "100%",
-        fontSize: 16,
-        fontFamily: style.fonts.BODY_FONT,
-      }}
-    >
-      <thead>
-        <tr
-          style={{
-            fontFamily: style.fonts.HEADER_FONT,
-            backgroundColor: style.colors.BLUE_PRIMARY,
-            color: style.colors.WHITE
-          }}
-        >
-          <th
-            style={{
-              padding: `${vertPad} ${horizPad}`
-            }}
-          >Reform</th>
-          <th
-            style={{
-              padding: `${vertPad} ${horizPad}`
-            }}
-          >Geography</th>
-          <th
-            style={{
-              padding: `${vertPad} ${horizPad}`
-            }}
-          >View again</th>
-        </tr>
-      </thead>
-      <tbody>
-        {savedSimulations}
-      </tbody>
-    </table>
-  );
 
   return (
     <>
@@ -135,7 +183,16 @@ export default function UserProfilePage() {
           title="Saved policy simulations"
           backgroundColor={style.colors.BLUE_98}
         >
-          {fullTable}
+          <div
+            style={{
+              display: "grid",
+              width: "100%",
+              gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
+              gap: "12px"
+            }}
+          >
+            {userPolicyCards}
+          </div>
         </Section>
         <Footer />
       </div>
