@@ -12,14 +12,14 @@ import {
   locationTags,
   locationLabels,
   topicLabels,
-} from "../data/Posts";
+} from "../../posts/postTransformers";
+import authors from "../../posts/authors.json";
 import { MediumBlogPreview } from "./HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "./FontIcon";
-import { authorKeys, authorKeyToLabel } from "redesign/data/Authors";
 import { Helmet } from "react-helmet";
 
 export default function Research() {
@@ -81,6 +81,8 @@ function ResearchExplorer() {
   const [filteredLocations, setFilteredLocations] = useState(
     searchParams.get("locations")?.split(",") || initialLocations,
   );
+
+  const authorKeys = Object.keys(authors);
 
   const [filteredAuthors, setFilteredAuthors] = useState(
     searchParams.get("authors")?.split(",") || authorKeys,
@@ -228,6 +230,11 @@ function BlogPostSearchTools({
   filteredAuthors,
   setFilteredAuthors,
 }) {
+  const authorKeys = Object.keys(authors);
+  const authorKeyToLabel = Object.fromEntries(
+    authorKeys.map((key) => [key, authors[key].name]),
+  );
+
   const textBox = (
     <TextBox
       placeholder="Search by keyword, author, etc."
