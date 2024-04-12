@@ -14,10 +14,13 @@ import { useWindowWidth } from "../hooks/useWindow";
 import { apiCall } from "../api/call";
 import { useEffect, useState } from "react";
 import useCountryId from "../hooks/useCountryId";
+import useLocalStorage from "../hooks/useLocalStorage";
+import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 
 export default function UserProfilePage() {
   const [userPolicies, setUserPolicies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const countryId = useCountryId();
   const { user } = useAuth0();
   const windowWidth = useWindowWidth();
@@ -45,8 +48,36 @@ export default function UserProfilePage() {
       }
     }
 
+    async function emitPreAuthPolicies() {
+
+      // Check if user has any policies from before account creation
+      // or policies that have failed to emit correctly before
+      // If so, batch emit these via sequential POSTs to back end
+      const filteredPolicies = cullOldPolicies(savedPolicies);
+      let failedAttempts = [];
+      for (let policy of filteredPolicies) {
+        // Add user id to policies, since we now have one
+        policy = {
+          ...policy,
+          user_id: user.sub
+        };
+
+        try {
+          await postUserPolicy(countryId, policy);
+        } catch (err) {
+          // If for some reason, policy addition fails,
+          // add it to a failed attempts array - this will
+          // overwrite the existing policies, which will be
+          // cleared out
+          failedAttempts = failedAttempts.concat(policy);
+        }
+      }
+      // Finally, overwrite savedPolicies with fails (could be empty)
+      setSavedPolicies(failedAttempts);
+    }
+
     if (countryId && user?.sub) {
-      fetchPolicies();
+      emitPreAuthPolicies().then(() => {fetchPolicies()});
     }
   }, [countryId, user?.sub]);
 
@@ -93,6 +124,8 @@ export default function UserProfilePage() {
     },
   ];
 
+  const loadingCards = Array(4).fill(<Card loading={true} />);
+
   const userPolicyCards = userPolicies.map((userPolicy, index) => {
     const geography = countryNames?.[userPolicy.country_id].singleWord || countryNames?.[userPolicy.country_id].standard || "unknown"
 
@@ -110,7 +143,6 @@ export default function UserProfilePage() {
           justifyContent: "flex-start",
           height: "100%"
         }}
-        loading={isLoading}
       >
         <h6
           style={{
@@ -222,7 +254,7 @@ export default function UserProfilePage() {
               gap: "12px"
             }}
           >
-            {userPolicyCards}
+            {isLoading ? loadingCards : userPolicyCards}
           </div>
         </Section>
         <Footer />

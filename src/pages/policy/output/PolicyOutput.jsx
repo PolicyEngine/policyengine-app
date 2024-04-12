@@ -9,6 +9,8 @@ import { getCookie } from "../../../data/cookies";
 import useLocalStorage from "../../../hooks/useLocalStorage";
 import { useAuth0 } from "@auth0/auth0-react";
 import useCountryId from "../../../hooks/useCountryId";
+import { apiCall } from "../../../api/call";
+import { postUserPolicy, cullOldPolicies } from "../../../api/userPolicies";
 
 export default function PolicyOutput(props) {
   const { metadata, policy } = props;
@@ -23,29 +25,51 @@ export default function PolicyOutput(props) {
 
   useEffect(() => {
 
-    function attribPolicyToUser() {
-      if (!isAuthenticated) {
-        // Create a policy object to save
-        const policyToSave = {
-          country_id: countryId,
-          reform_label: policy.reform.label,
-          reform_id: policy.reform.id,
-          baseline_label: policy.baseline.label,
-          baseline_id: policy.baseline.id,
+    function addPolicyToLocalStorage(policyToAdd) {
+      const filteredPolicies = cullOldPolicies(savedPolicies);
+      // Make sure policy doesn't match another one
+      const matches = filteredPolicies.filter((item) => item.reform_id === policyToAdd.reform_id && item.baseline_id === policyToAdd.baseline_id);
+      if (matches.length > 0) {
+        return;
+      }
+    
+      // If it doesn't, save
+      setSavedPolicies([
+        ...filteredPolicies,
+        policyToAdd
+      ]); 
+    }
+
+    async function attribPolicyToUser() {
+      // Create a policy object to save
+      let policyToSave = {
+        country_id: countryId,
+        reform_label: policy.reform.label,
+        reform_id: policy.reform.id,
+        baseline_label: policy.baseline.label,
+        baseline_id: policy.baseline.id,
+        timestamp: Date.now()
+      };
+
+      if (!isAuthenticated && getCookie("consent")) {
+        addPolicyToLocalStorage(policyToSave);
+      } else if (isAuthenticated) {
+        // Also emit the current policy
+        policyToSave = {
+          ...policyToSave,
+          user_id: user.sub
         };
 
-        // Make sure it doesn't match another one
-        const matches = savedPolicies.filter((item) => item.reform_id === policyToSave.reform_id && item.baseline_id === policyToSave.baseline_id);
-        if (matches.length > 0) {
-          return;
+        let failedAttempts = [];
+        try {
+          await postUserPolicy(countryId, policyToSave);
+        } catch (err) {
+          failedAttempts = failedAttempts.concat(policyToSave);
         }
 
-        // If it doesn't, save
-        setSavedPolicies([
-          ...savedPolicies,
-          policyToSave
-        ]);
-      } 
+        // Finally, overwrite savedPolicies with fails (could be empty)
+        setSavedPolicies(failedAttempts);
+      }
     }
 
     if (countryId) {
