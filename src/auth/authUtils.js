@@ -12,7 +12,7 @@ export function loginOptions(countryId, options) {
   return (
     { 
       appState: { 
-        returnTo: options.redirectPath || `/${countryId}`
+        returnTo: options?.redirectPath || `/${countryId}`
       },
       authorizationParams: {
         ...options?.customParams
