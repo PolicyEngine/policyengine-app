@@ -23,7 +23,7 @@ export default function TACPage() {
         <h1>Terms of Service</h1>
         <h4>Introduction</h4>
         <p>
-          These Terms of Service (&quot;Terms&quot;) govern your access to and
+          1. These Terms of Service (&quot;Terms&quot;) govern your access to and
           use of the PolicyEngine website and simulation tools (the
           &quot;Service&quot;) provided by PolicyEngine. By accessing or using
           the Service, you agree to be bound by these Terms.
