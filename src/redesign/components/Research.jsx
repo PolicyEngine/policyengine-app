@@ -468,33 +468,3 @@ function AntCheckbox({ label, checked, onCheck }) {
     </div>
   );
 }
-
-// function Checkbox({ label, checked, onCheck }) {
-//   return (
-//     <div style={{ display: "flex", alignItems: "center" }}>
-//       <input
-//         type="checkbox"
-//         title={label}
-//         style={{
-//           borderRadius: 0,
-//           border: `2px solid ${style.colors.DARK_GRAY}`,
-//           height: 20,
-//           width: 20,
-//           padding: 5,
-//           margin: 5,
-//           appearance: "none",
-//           backgroundColor: checked
-//             ? style.colors.TEAL_PRESSED
-//             : style.colors.TEAL_LIGHT,
-//           cursor: "pointer",
-//         }}
-//         onClick={() => {
-//           onCheck(!checked);
-//         }}
-//       />
-//       <p style={{ marginLeft: 15, margin: 0, fontFamily: "Roboto Serif" }}>
-//         {label}
-//       </p>
-//     </div>
-//   );
-// }

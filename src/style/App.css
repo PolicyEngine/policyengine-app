@@ -108,8 +108,3 @@ p {
 .ant-checkbox-input {
   border-radius: 0 !important;
 }
-
-.ant-checkbox-checked .ant-checkbox-inner {
-  background-color: red;
-  /* border-color: var(--border-color); */
-}
