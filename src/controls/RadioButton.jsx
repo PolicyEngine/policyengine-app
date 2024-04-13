@@ -1,4 +1,4 @@
-import { Radio } from 'antd';
+import { Radio } from "antd";
 import style from "../style";
 
 export default function RadioButton(props) {
@@ -9,10 +9,11 @@ export default function RadioButton(props) {
     label: labels[index],
     value: key,
     style: {
-      fontSize: '16px', 
-       borderRadius: '0px',
-      backgroundColor: index === 0 ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY, 
-      color: index === 0 ? style.colors.WHITE : style.colors.DARK_GRAY, 
+      fontSize: "16px",
+      borderRadius: "0px",
+      backgroundColor:
+        index === 0 ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY,
+      color: index === 0 ? style.colors.WHITE : style.colors.DARK_GRAY,
     },
   }));
 
@@ -23,7 +24,7 @@ export default function RadioButton(props) {
       value={value || keys[0]}
       optionType="button"
       buttonStyle="solid"
-      size='large'
+      size="large"
     />
   );
 }

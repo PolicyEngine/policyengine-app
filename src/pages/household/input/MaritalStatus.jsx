@@ -138,12 +138,10 @@ export default function MaritalStatus(props) {
       labels={["Single", "Married"]}
       defaultValue={getMaritalStatus(householdInput)}
       value={value}
-      
       onChange={(status) => {
         setMaritalStatus(status);
         setValue(status);
       }}
-      
     />
   );
 
