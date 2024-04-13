@@ -10,7 +10,7 @@ export default function RadioButton(props) {
     value: key,
     style: {
       fontSize: '16px', 
-       
+       borderRadius: '0px',
       backgroundColor: index === 0 ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY, 
       color: index === 0 ? style.colors.WHITE : style.colors.DARK_GRAY, 
     },
