@@ -383,7 +383,24 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
           <h1>{post.title}</h1>
           <h5 style={{ marginTop: 50 }}>{post.description}</h5>
           {imageUrl === "" ? (
-            <FileImageOutlined />
+            <div
+              style={{
+                height: "300px",
+                width: "100%",
+                display: "flex",
+                border: "1px solid grey",
+                position: "relative",
+              }}
+            >
+              <FileImageOutlined
+                style={{
+                  fontSize: "32px",
+                  position: "absolute",
+                  top: "250px",
+                  right: "20px",
+                }}
+              />
+            </div>
           ) : (
             <img
               alt={post.title}
