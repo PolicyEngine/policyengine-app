@@ -57,7 +57,6 @@ export default function BlogPage() {
   ) : (
     <FileImageOutlined />
   );
-  console.log(imageUrl);
   const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
