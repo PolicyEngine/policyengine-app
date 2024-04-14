@@ -35,11 +35,11 @@ import { Helmet } from "react-helmet";
 const handleImageLoad = (path) => {
   // Try to load the image
   try {
-    return require("../images/posts/" + path);
+    return require("../images/ posts/" + path);
   } catch (error) {
     // If the require fails, return the fallback image
     console.error(`Failed to load image at ${path}:`, error);
-    return <FileImageOutlined />;
+    return "";
   }
 };
 
@@ -52,11 +52,7 @@ export default function BlogPage() {
   const post = posts.find((post) => post.slug === postName);
   const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
 
-  const imageUrl = post.image ? (
-    handleImageLoad(post.image)
-  ) : (
-    <FileImageOutlined />
-  );
+  const imageUrl = post.image ? handleImageLoad(post.image) : "";
   const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
@@ -386,11 +382,15 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
         <div style={{ flex: 3 }}>
           <h1>{post.title}</h1>
           <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          <img
-            alt={post.title}
-            src={imageUrl}
-            style={{ width: "100%", marginTop: 50 }}
-          />
+          {imageUrl === "" ? (
+            <FileImageOutlined />
+          ) : (
+            <img
+              alt={post.title}
+              src={imageUrl}
+              style={{ width: "100%", marginTop: 50 }}
+            />
+          )}
         </div>
         <div style={{ flex: 1 }}></div>
       </div>
