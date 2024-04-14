@@ -25,7 +25,7 @@ import {
   MailOutlined,
   PrinterOutlined,
   TwitterOutlined,
-  FileImageOutlined
+  FileImageOutlined,
 } from "@ant-design/icons";
 import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
@@ -39,7 +39,7 @@ const handleImageLoad = (path) => {
   } catch (error) {
     // If the require fails, return the fallback image
     console.error(`Failed to load image at ${path}:`, error);
-    return <FileImageOutlined />
+    return <FileImageOutlined />;
   }
 };
 
@@ -52,8 +52,12 @@ export default function BlogPage() {
   const post = posts.find((post) => post.slug === postName);
   const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
 
-  const imageUrl = post.image ? handleImageLoad(post.image) : <FileImageOutlined />
-  console.log(imageUrl)
+  const imageUrl = post.image ? (
+    handleImageLoad(post.image)
+  ) : (
+    <FileImageOutlined />
+  );
+  console.log(imageUrl);
   const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
