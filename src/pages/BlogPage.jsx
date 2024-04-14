@@ -25,10 +25,23 @@ import {
   MailOutlined,
   PrinterOutlined,
   TwitterOutlined,
+  FileImageOutlined
 } from "@ant-design/icons";
 import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
+
+// Function to handle image loading
+const handleImageLoad = (path) => {
+  // Try to load the image
+  try {
+    return require("../images/posts/" + path);
+  } catch (error) {
+    // If the require fails, return the fallback image
+    console.error(`Failed to load image at ${path}:`, error);
+    return <FileImageOutlined />
+  }
+};
 
 export default function BlogPage() {
   // /uk/research/blog-slug-here
@@ -38,10 +51,9 @@ export default function BlogPage() {
 
   const post = posts.find((post) => post.slug === postName);
   const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
-  const imageUrl = post.image
-    ? require("../images/posts/" + post.image)
-    : require("../images/placeholder.png");
 
+  const imageUrl = post.image ? handleImageLoad(post.image) : <FileImageOutlined />
+  console.log(imageUrl)
   const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
