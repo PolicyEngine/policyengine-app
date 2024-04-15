@@ -177,6 +177,21 @@ export default function UserProfilePage(props) {
                 fontWeight: 400
               }}
             >
+              Reforms:&nbsp;
+            </span>
+            {userPolicy.number_of_provisions || "Unknown"} 
+          </p>
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 400
+              }}
+            >
               Created on:&nbsp;
             </span>
             {userPolicy.created_at || "Unknown"} 

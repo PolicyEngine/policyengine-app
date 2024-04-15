@@ -53,6 +53,7 @@ export default function PolicyOutput(props) {
         geography: geography,
         year: timePeriod,
         api_version: metadata.version,
+        number_of_provisions: countProvisions(policy),
         created_at: Date.now(), // This will not get updated if record already exists
         updated_at: Date.now() // This will, as all other data will be ignored except this
       };
@@ -106,4 +107,23 @@ export default function PolicyOutput(props) {
       <FetchAndDisplayImpact {...props} />
     </>
   );
+}
+
+/**
+ * Counts number of unique provisions in the reform portion of a policy
+ * @param {Object} policy 
+ * @returns {Number}
+ */
+function countProvisions(policy) {
+  const reformData = policy.reform.data;
+  let count = 0;
+
+  // For each provision, count the number of time-based changes, then
+  // add that to count
+  for (const provision in reformData) {
+    count += Object.keys(reformData[provision]).length;
+  }
+
+  return count;
+
 }
