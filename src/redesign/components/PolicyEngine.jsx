@@ -27,6 +27,7 @@ import AuthCallback from "../../layout/AuthCallback";
 import UserProfilePage from "../../pages/UserProfilePage";
 import PrivacyPage from "../../pages/PrivacyPage";
 import TACPage from "../../pages/TermsAndConditions";
+import { AuthenticationGuard } from "../../auth/AuthenticationGuard";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
