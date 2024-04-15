@@ -22,6 +22,12 @@ export default function PolicyOutput(props) {
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
   const reformPolicyId = urlParams.get("reform");
+  const geography = urlParams.get("region");
+  const timePeriod = urlParams.get("timePeriod");
+
+  console.log(metadata);
+  console.log(policy);
+  console.log(urlParams);
 
   useEffect(() => {
 
@@ -48,6 +54,8 @@ export default function PolicyOutput(props) {
         reform_id: policy.reform.id,
         baseline_label: policy.baseline.label,
         baseline_id: policy.baseline.id,
+        geography: geography,
+        year: timePeriod,
         timestamp: Date.now()
       };
 

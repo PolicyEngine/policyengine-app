@@ -5,7 +5,6 @@ import Section from "../redesign/components/Section";
 import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
 import { Link } from "react-router-dom";
-import { countryNames } from "../data/countries";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
@@ -17,7 +16,9 @@ import useCountryId from "../hooks/useCountryId";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 
-export default function UserProfilePage() {
+export default function UserProfilePage(props) {
+  const {metadata} = props;
+
   const [userPolicies, setUserPolicies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
@@ -32,17 +33,20 @@ export default function UserProfilePage() {
   useEffect(() => {
     async function fetchPolicies() {
       setIsLoading(true);
-      try {
-        const data = await apiCall(
-          `/${countryId}/user_policy/${user.sub}`
-        );
-        const dataJson = await data.json();
-        setUserPolicies(dataJson.result);
-      } catch (err) {
-        console.error("Error within UserProfilePage: ");
-        console.error(err);
-      } finally {
-        setIsLoading(false);
+      // Only evaluate (and thus set loading to false) if metadata has been fetched
+      if (metadata) {
+        try {
+          const data = await apiCall(
+            `/${countryId}/user_policy/${user.sub}`
+          );
+          const dataJson = await data.json();
+          setUserPolicies(dataJson.result);
+        } catch (err) {
+          console.error("Error within UserProfilePage: ");
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+        }
       }
     }
 
@@ -85,7 +89,8 @@ export default function UserProfilePage() {
   const loadingCards = Array(4).fill(<Card loading={true} />);
 
   const userPolicyCards = userPolicies.map((userPolicy, index) => {
-    const geography = countryNames?.[userPolicy.country_id].singleWord || countryNames?.[userPolicy.country_id].standard || "unknown"
+    if (!metadata) return null;
+    const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography).label || "Unknown";
 
     return (
       <Card 
@@ -129,6 +134,21 @@ export default function UserProfilePage() {
             flexWrap: "wrap"
           }}
         >
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 400
+              }}
+            >
+              Year:&nbsp;
+            </span>
+            {userPolicy.year || "Unknown"} 
+          </p>
           <p
             style={{
               fontFamily: style.fonts.BODY_FONT,
