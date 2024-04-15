@@ -35,6 +35,7 @@ a {
   display: flex;
   align-items: center;
 }
+
 .ant-select-selection-placeholder {
   height: 50px;
   display: flex;
@@ -102,4 +103,8 @@ p {
   position: absolute;
   bottom: 30px;
   left: 100px;
+}
+
+.ant-checkbox-input {
+  border-radius: 0 !important;
 }

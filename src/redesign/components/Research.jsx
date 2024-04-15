@@ -21,6 +21,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "./FontIcon";
 import { Helmet } from "react-helmet";
+import { Checkbox } from "antd";
 
 export default function Research() {
   return (
@@ -347,7 +348,7 @@ function ExpandableCheckBoxList({
   return (
     <Expandable title={title}>
       {keys.map((key) => (
-        <Checkbox
+        <AntCheckbox
           key={key}
           label={keyToLabel[key] || key}
           checked={checkedValues.includes(key)}
@@ -366,7 +367,7 @@ function ExpandableCheckBoxList({
           marginBottom: 5,
         }}
       />
-      <Checkbox
+      <AntCheckbox
         label="Select all"
         checked={checkedValues.length === keys.length}
         onCheck={
@@ -430,32 +431,40 @@ function Expandable({ title, children }) {
   );
 }
 
-function Checkbox({ label, checked, onCheck }) {
+function AntCheckbox({ label, checked, onCheck }) {
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      <input
-        type="checkbox"
-        title={label}
-        style={{
-          borderRadius: 0,
-          border: `2px solid ${style.colors.DARK_GRAY}`,
-          height: 20,
-          width: 20,
-          padding: 5,
-          margin: 5,
-          appearance: "none",
-          backgroundColor: checked
-            ? style.colors.TEAL_PRESSED
-            : style.colors.TEAL_LIGHT,
-          cursor: "pointer",
-        }}
-        onClick={() => {
+      <style>
+        {`
+          /* Change the color of the checked checkbox */
+          .ant-checkbox-inner {
+            border-radius: 0 !important;
+            height: 20px !important;
+            width: 20px !important;
+          }
+
+          .ant-checkbox-checked .ant-checkbox-inner {
+            background-color: #2C6496; /* Your custom color */
+            border-radius: 0
+          }
+
+        `}
+      </style>
+      <Checkbox
+        onChange={() => {
           onCheck(!checked);
         }}
-      />
-      <p style={{ marginLeft: 15, margin: 0, fontFamily: "Roboto Serif" }}>
+        style={{
+          margin: 5,
+          appearance: "none",
+          height: 20,
+          fontWeight: 300,
+          fontFamily: "Roboto Serif",
+          cursor: "pointer",
+        }}
+      >
         {label}
-      </p>
+      </Checkbox>
     </div>
   );
 }

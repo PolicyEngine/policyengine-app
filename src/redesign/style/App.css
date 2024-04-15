@@ -85,6 +85,7 @@ a.highlighted-link {
     padding-left 0.2s ease-in-out,
     padding-right 0.2s ease-in-out;
 }
+
 a.highlighted-link:hover {
   box-shadow: inset 800px 0 0 0 #2c6496;
   color: white;
@@ -100,4 +101,8 @@ a.highlighted-link:hover {
 
 .ant-btn-link:hover {
   color: inherit;
+}
+
+.ant-checkbox-input {
+  border-radius: 0 !important;
 }
