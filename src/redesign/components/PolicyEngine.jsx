@@ -241,7 +241,7 @@ export default function PolicyEngine({ pathname }) {
           element={metadata ? policyPage : error ? errorPage : loadingPage}
         />
         <Route 
-          path="/:countryId/user_profile"
+          path="/:countryId/profile"
           element={<UserProfilePage />}
         />
 

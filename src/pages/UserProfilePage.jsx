@@ -172,7 +172,7 @@ export default function UserProfilePage() {
               flex: dispCat === "mobile" && "0 0 100%"
             }}
           >
-            <Link to={`https://www.policyengine.org/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`}>
+            <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`}>
               <span
                 style={{
                   color: style.colors.BLUE_PRIMARY

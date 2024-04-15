@@ -274,7 +274,7 @@ function LoginMenu() {
     if (key === "sign-out") {
       logout(logoutOptions)
     } else if (key === "profile") {
-      navigate(`/${countryId}/user_profile`);
+      navigate(`/${countryId}/profile`);
     }
   }
 
