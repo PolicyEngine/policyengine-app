@@ -87,7 +87,7 @@ export default function UserProfilePage(props) {
   }, [countryId, user?.sub]);
 
   const loadingCards = Array(4).fill(<Card loading={true} />);
-  const CURRENT_API_VERSION = metadata.version;
+  const CURRENT_API_VERSION = metadata?.version;
 
   const userPolicyCards = userPolicies.map((userPolicy, index) => {
     if (!metadata) return null;
