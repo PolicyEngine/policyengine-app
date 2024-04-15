@@ -164,6 +164,36 @@ export default function UserProfilePage(props) {
             </span>
             {geography}
           </p>
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 400
+              }}
+            >
+              Created on:&nbsp;
+            </span>
+            {userPolicy.created_at || "Unknown"} 
+          </p>
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 400
+              }}
+            >
+              Updated on:&nbsp;
+            </span>
+            {userPolicy.updated_at || "Unknown"} 
+          </p>
           {
             userPolicy.baseline_label !== "Current law" && (
               <>
