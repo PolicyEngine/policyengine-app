@@ -974,7 +974,7 @@ function PlotlyChartCode({ data, backgroundColor }) {
   const displayCategory = useDisplayCategory();
   return (
     <>
-      {title && <p
+      {title && <h5
               style={{
                 fontFamily: "Roboto Serif",
                 color: style.colors.GRAY,
@@ -982,7 +982,7 @@ function PlotlyChartCode({ data, backgroundColor }) {
               }}
             >
               {title}
-            </p>}
+            </h5>}
       <Plot
         data={plotlyData.data}
         layout={Object.assign(plotlyData.layout, {
