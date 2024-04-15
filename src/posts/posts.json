@@ -682,5 +682,14 @@
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "biden-budget-2025.md",
     "image": "biden-budget-2025.jpeg"
+  },
+  {
+    "title": "PolicyEngine launches state income tax modeling nationwide",
+    "description": "Free, open-source platform now covers all 50 states and D.C., just in time for tax season.",
+    "date": "2024-04-15 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["pavel-makarchuk"],
+    "filename": "state-tax-model.md",
+    "image": "state-tax-model.jpeg"
   }
 ]
