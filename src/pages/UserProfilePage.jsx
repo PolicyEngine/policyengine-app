@@ -108,7 +108,7 @@ export default function UserProfilePage() {
             fontFamily: style.fonts.HEADER_FONT,
             marginBottom: "16px"
           }}
-        >{userPolicy.reform_label}</h6>
+        >{userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}</h6>
         {/*The below div is necessary because Ant Design Card components
         add :before and :after pseudos with height=0, meaning a flex with
         space-between will add space before them, ruining the layout*/}
