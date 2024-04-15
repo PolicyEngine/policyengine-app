@@ -25,10 +25,6 @@ export default function PolicyOutput(props) {
   const geography = urlParams.get("region");
   const timePeriod = urlParams.get("timePeriod");
 
-  console.log(metadata);
-  console.log(policy);
-  console.log(urlParams);
-
   useEffect(() => {
 
     function addPolicyToLocalStorage(policyToAdd) {
