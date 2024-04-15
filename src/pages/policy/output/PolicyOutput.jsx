@@ -52,6 +52,7 @@ export default function PolicyOutput(props) {
         baseline_id: policy.baseline.id,
         geography: geography,
         year: timePeriod,
+        api_version: metadata.version,
         created_at: Date.now(), // This will not get updated if record already exists
         updated_at: Date.now() // This will, as all other data will be ignored except this
       };

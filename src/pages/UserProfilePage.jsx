@@ -87,6 +87,7 @@ export default function UserProfilePage(props) {
   }, [countryId, user?.sub]);
 
   const loadingCards = Array(4).fill(<Card loading={true} />);
+  const CURRENT_API_VERSION = metadata.version;
 
   const userPolicyCards = userPolicies.map((userPolicy, index) => {
     if (!metadata) return null;
@@ -104,7 +105,8 @@ export default function UserProfilePage(props) {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "flex-start",
-          height: "100%"
+          height: "100%",
+          backgroundColor: userPolicy.api_version < CURRENT_API_VERSION && style.colors.LIGHT_GRAY
         }}
       >
         <h6
@@ -193,6 +195,26 @@ export default function UserProfilePage(props) {
               Updated on:&nbsp;
             </span>
             {userPolicy.updated_at || "Unknown"} 
+          </p>
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 400
+              }}
+            >
+              API version:&nbsp;
+            </span>
+            {userPolicy.api_version || "Unknown"}
+            {
+              userPolicy.api_version < CURRENT_API_VERSION && (
+                <span style={{fontStyle: "italic", color: style.colors.DARK_GRAY}}>&nbsp;(out of date)</span>
+              )
+            }
           </p>
           {
             userPolicy.baseline_label !== "Current law" && (
