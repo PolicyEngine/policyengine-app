@@ -16,7 +16,7 @@ export function loginOptions(countryId, options) {
       },
       authorizationParams: {
         ...options?.customParams,
-        countryId: countryId
+        country_id: countryId
       }
     }
   );
