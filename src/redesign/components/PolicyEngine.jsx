@@ -242,8 +242,8 @@ export default function PolicyEngine({ pathname }) {
           element={metadata ? policyPage : error ? errorPage : loadingPage}
         />
         <Route 
-          path="/:countryId/user_profile"
-          element={<AuthenticationGuard component={UserProfilePage} metadata={metadata} />}
+          path="/:countryId/profile"
+          element={<UserProfilePage metadata={metadata} />}
         />
 
         <Route
