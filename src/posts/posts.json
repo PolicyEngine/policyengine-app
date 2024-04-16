@@ -682,5 +682,14 @@
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "biden-budget-2025.md",
     "image": "biden-budget-2025.jpeg"
-  }
+  },
+  {
+    "title": "PolicyEngine's Spring 2024 update",
+    "description": "How PolicyEngine compares to the latest external forecasts.",
+    "date": "2024-04-16 09:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "image": "uk_march_update.png",
+    "authors": ["nikhil-woodruff"],
+    "filename": "obr-forecast-update-spring-24.ipynb",
+  },
 ]

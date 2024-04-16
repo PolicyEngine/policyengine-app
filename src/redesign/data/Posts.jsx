@@ -757,7 +757,7 @@ let posts = [
   {
     title: "PolicyEngine's Spring 2024 update",
     description: "How PolicyEngine compares to the latest external forecasts.",
-    date: "2024-04-12 09:00:00",
+    date: "2024-04-16 09:00:00",
     tags: ["uk", "policy", "featured"],
     image: "uk_march_update.png",
     authors: ["nikhil-woodruff"],
