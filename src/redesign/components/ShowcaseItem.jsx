@@ -54,6 +54,7 @@ export default function ShowcaseItem({
             display: "flex",
             border: "1px solid grey",
             position: "relative",
+            objectFit: "contain",
           }}
         >
           <FileImageOutlined

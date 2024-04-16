@@ -3,6 +3,8 @@ import Section from "./Section";
 import { orgData } from "redesign/data/Organisations";
 import useCountryId from "./useCountryId";
 import useDisplayCategory from "./useDisplayCategory";
+import { FileImageOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 export default function HomeUsedBy() {
   const countryId = useCountryId();
@@ -60,6 +62,12 @@ export default function HomeUsedBy() {
 
 function IndividualOrg({ name, logo, link }) {
   const displayCategory = useDisplayCategory();
+  const [isBrokenLogo, setIsBrokenLogo] = useState(false);
+
+  const displayFallbackIcon = () => {
+    setIsBrokenLogo(true);
+  };
+
   const size = {
     mobile: 85,
     tablet: 100,
@@ -83,17 +91,22 @@ function IndividualOrg({ name, logo, link }) {
           backgroundColor: "white",
         }}
       >
-        <img
-          src={logo}
-          alt={`${name} logo`}
-          width={size}
-          height={size}
-          style={{
-            objectFit: "contain",
-            marginRight: displayCategory === "mobile" ? 20 : 0,
-            marginBottom: displayCategory !== "mobile" ? 20 : 0,
-          }}
-        />
+        {isBrokenLogo ? (
+          <FileImageOutlined />
+        ) : (
+          <img
+            src={logo}
+            alt={`${name} logo`}
+            width={size}
+            height={size}
+            style={{
+              objectFit: "contain",
+              marginRight: displayCategory === "mobile" ? 20 : 0,
+              marginBottom: displayCategory !== "mobile" ? 20 : 0,
+            }}
+            onError={displayFallbackIcon}
+          />
+        )}
       </div>
     </a>
   );

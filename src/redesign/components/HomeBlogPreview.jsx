@@ -7,6 +7,7 @@ import moment from "moment";
 import { useState } from "react";
 import useCountryId from "./useCountryId";
 import EmphasisedLink from "./EmphasisedLink";
+import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
@@ -323,14 +324,29 @@ function BlogTags({ tags }) {
   );
 }
 
+const handleImageLoad = (path) => {
+  // Try to load the image
+  try {
+    return require("../images/posts/" + path);
+  } catch (error) {
+    // If the require fails, return the fallback image
+    console.error(`Failed to load image at ${path}:`, error);
+    return "";
+  }
+};
+
 export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   // Only defined for desktop and tablet displays
   const displayCategory = useDisplayCategory();
   const [currentBlogIndex, setCurrentBlogIndex] = useState(0);
   const currentBlog = blogs[currentBlogIndex] || {};
-  const imageUrl = currentBlog.image
-    ? require("../images/posts/" + currentBlog.image)
-    : require("../../images/placeholder.png");
+
+  const imageUrl = currentBlog.image ? handleImageLoad(currentBlog.image) : "";
+
+  // const imageUrl = currentBlog.image
+  //   ? require("../images/posts/" + currentBlog.image)
+  //   : require("../../images/placeholder.png");
+
   const countryId = useCountryId();
   const link = `/${countryId}/research/${currentBlog.slug}`;
   return (
@@ -345,16 +361,20 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           position: "relative",
         }}
       >
-        <img
-          src={imageUrl}
-          alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
-          width="100%"
-          height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
-          style={{
-            objectFit: "cover",
-            borderBottom: `1px solid ${style.colors.BLACK}`,
-          }}
-        />
+        {imageUrl === "" ? (
+          <FileImageOutlined />
+        ) : (
+          <img
+            src={imageUrl}
+            alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
+            width="100%"
+            height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
+            style={{
+              objectFit: "cover",
+              borderBottom: `1px solid ${style.colors.BLACK}`,
+            }}
+          />
+        )}
         <BlogBox
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
