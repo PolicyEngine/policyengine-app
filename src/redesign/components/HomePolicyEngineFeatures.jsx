@@ -6,7 +6,29 @@ import decileChartScreenshot from "../images/home/decile_chart_screenshot.png";
 import ShowcaseItem from "./ShowcaseItem";
 import useCountryId from "./useCountryId";
 
+function ImageComponent(imagePath) {
+  let imageSrc;
+  try {
+    // Attempt to import the image dynamically
+    imageSrc = require(`../images/home/${imagePath}`).default;
+  } catch (error) {
+    // If there's an error (e.g., image path is broken), use the fallback image
+    console.error("Error loading image:", error);
+    return true;
+  }
+
+  return false;
+}
+
 export default function HomePolicyEngineFeatures() {
+  let param = false;
+  let decile = false;
+  let coding = false;
+
+  param = ImageComponent("parameter_scree nshot.png");
+  decile = ImageComponent("decile_chart_screenshot.png");
+  coding = ImageComponent("coding_screenshot.png");
+
   const countryId = useCountryId();
   return (
     <Section
@@ -22,6 +44,7 @@ export default function HomePolicyEngineFeatures() {
         image={parameterScreenshot}
         altText="Screenshot of PolicyEngine's parameter editor"
         color="white"
+        imageIsMissing={param}
       />
       <ShowcaseItem
         title="See how reforms affect households"
@@ -31,6 +54,7 @@ export default function HomePolicyEngineFeatures() {
         image={decileChartScreenshot}
         altText="Screenshot of PolicyEngine's decile chart feature"
         color="white"
+        imageIsMissing={decile}
       />
       <ShowcaseItem
         title="Advanced analysis with our Python packages"
@@ -40,6 +64,7 @@ export default function HomePolicyEngineFeatures() {
         image={codingScreenshot}
         altText="Screenshot of a Python terminal using PolicyEngine's Python package"
         color="white"
+        imageIsMissing={coding}
       />
     </Section>
   );
