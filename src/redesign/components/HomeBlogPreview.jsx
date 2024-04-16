@@ -409,11 +409,22 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
 export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const countryId = useCountryId();
-  const imageUrl = blog.image
-    ? require("../../images/posts/" + blog.image)
-    : require("../../images/placeholder.png");
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
+
+  const handleImageLoad = (path) => {
+    // Try to load the image
+    try {
+      return require("../images/p osts/" + path);
+    } catch (error) {
+      // If the require fails, return the fallback image
+      console.error(`Failed to load image at ${path}:`, error);
+      return "";
+    }
+  };
+
+  const imageUrl = blog.image ? handleImageLoad(blog.image) : "";
+
   return (
     <div
       style={{
@@ -423,17 +434,25 @@ export function MediumBlogPreview({ blog, minHeight }) {
       }}
     >
       <div>
-        <img
-          src={imageUrl}
-          alt={blog.coverAltText || `${blog.title} cover image`}
-          height={300}
-          width="100%"
-          style={{
-            objectFit: "cover",
-            border: `1px solid ${style.colors.BLACK}`,
-            borderBottom: "none",
-          }}
-        />
+        {imageUrl !== "" ? (
+          <img
+            src={imageUrl}
+            alt={blog.coverAltText || `${blog.title} cover image`}
+            height={300}
+            width="100%"
+            style={{
+              objectFit: "cover",
+              border: `1px solid ${style.colors.BLACK}`,
+              borderBottom: "none",
+            }}
+          />
+        ) : (
+          <div style={{ height: "300px", width: "100%" }}>
+            <FileImageOutlined
+              style={{ objectFit: "cover", fontSize: "202px" }}
+            />
+          </div>
+        )}
       </div>
       <BlogBox
         style={{
