@@ -11,6 +11,7 @@ function ImageComponent(imagePath) {
   try {
     // Attempt to import the image dynamically
     imageSrc = require(`../images/home/${imagePath}`).default;
+    console.log(imageSrc)
   } catch (error) {
     // If there's an error (e.g., image path is broken), use the fallback image
     console.error("Error loading image:", error);
