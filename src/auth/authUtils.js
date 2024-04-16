@@ -15,7 +15,8 @@ export function loginOptions(countryId, options) {
         returnTo: options?.redirectPath || `/${countryId}`
       },
       authorizationParams: {
-        ...options?.customParams
+        ...options?.customParams,
+        countryId: countryId
       }
     }
   );
