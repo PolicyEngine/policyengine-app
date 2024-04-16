@@ -691,7 +691,8 @@
     "image": "uk_march_update.png",
     "authors": ["nikhil-woodruff"],
     "filename": "obr-forecast-update-spring-24.ipynb"
-  },{
+  },
+  {
     "title": "PolicyEngine launches state income tax modeling nationwide",
     "description": "Free, open-source platform now covers all 50 states and D.C., just in time for tax season.",
     "date": "2024-04-15 09:00:00",

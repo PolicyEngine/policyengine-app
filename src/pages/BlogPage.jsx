@@ -205,19 +205,22 @@ function NotebookOutputPlotly({ data }) {
 
   return (
     <>
-      {title && <h5
-              style={{
-                fontFamily: "Roboto Serif",
-                color: style.colors.GRAY,
-                textEmphasis: "italic",
-              }}
-            >
-              {title}
-            </h5>}
+      {title && (
+        <h5
+          style={{
+            fontFamily: "Roboto Serif",
+            color: style.colors.GRAY,
+            textEmphasis: "italic",
+          }}
+        >
+          {title}
+        </h5>
+      )}
       <Plot
         data={data.data}
         layout={Object.assign(data.layout, {
-          width: displayCategory === "mobile" ? 600 : (data.layout?.width || "100%"),
+          width:
+            displayCategory === "mobile" ? 600 : data.layout?.width || "100%",
           height: data.layout?.height || 600,
           title: {
             text: "",
@@ -987,15 +990,17 @@ function PlotlyChartCode({ data, backgroundColor }) {
   const displayCategory = useDisplayCategory();
   return (
     <>
-      {title && <h5
-              style={{
-                fontFamily: "Roboto Serif",
-                color: style.colors.GRAY,
-                textEmphasis: "italic",
-              }}
-            >
-              {title}
-            </h5>}
+      {title && (
+        <h5
+          style={{
+            fontFamily: "Roboto Serif",
+            color: style.colors.GRAY,
+            textEmphasis: "italic",
+          }}
+        >
+          {title}
+        </h5>
+      )}
       <Plot
         data={plotlyData.data}
         layout={Object.assign(plotlyData.layout, {
