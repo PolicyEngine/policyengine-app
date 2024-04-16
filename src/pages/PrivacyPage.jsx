@@ -1,6 +1,8 @@
 import { Container } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
 import { Helmet } from "react-helmet";
+import Header from "../redesign/components/Header";
+import Footer from "../layout/Footer";
 
 export default function PrivacyPage() {
   const mobile = useMobile();
@@ -9,11 +11,13 @@ export default function PrivacyPage() {
       <Helmet>
         <title>Privacy | PolicyEngine</title>
       </Helmet>
+      <Header />
       <Container
         style={{
           paddingTop: 100,
           paddingLeft: !mobile && 100,
           paddingRight: !mobile && 100,
+          paddingBottom: 100,
         }}
       >
         <h1>Privacy</h1>
@@ -50,7 +54,19 @@ export default function PrivacyPage() {
           , contributors agree that their GitHub username can be used for this
           purpose.
         </p>
+        <h3>Changes to this privacy policy</h3>
+        <p>
+          We may update this privacy policy at any time in order to reflect, for
+          example, changes to our practices or for other operational legal or
+          regulatory reasons. We will update this page with a changelog, and the
+          full history of changes is be available on our{" "}
+          <a href="https://github.com/policyengine/policyengine-app">
+            GitHub repository
+          </a>
+          .
+        </p>
       </Container>
+      <Footer />
     </>
   );
 }

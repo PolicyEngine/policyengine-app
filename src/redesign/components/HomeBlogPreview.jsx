@@ -1,6 +1,6 @@
 import style from "../style";
 import { SectionBottom, SectionTop } from "./Section";
-import { posts } from "../data/Posts";
+import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "./useDisplayCategory";
 import Carousel from "./Carousel";
 import moment from "moment";
@@ -330,7 +330,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   const currentBlog = blogs[currentBlogIndex] || {};
   const imageUrl = currentBlog.image
     ? require("../images/posts/" + currentBlog.image)
-    : require("../images/placeholder.png");
+    : require("../../images/placeholder.png");
   const countryId = useCountryId();
   const link = `/${countryId}/research/${currentBlog.slug}`;
   return (
@@ -390,8 +390,8 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const countryId = useCountryId();
   const imageUrl = blog.image
-    ? require("../images/posts/" + blog.image)
-    : require("../images/placeholder.png");
+    ? require("../../images/posts/" + blog.image)
+    : require("../../images/placeholder.png");
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
   return (

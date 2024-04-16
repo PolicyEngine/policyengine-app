@@ -6,7 +6,7 @@ import HomeSubscribe from "./HomeSubscribe";
 import HomePolicyEngineFeatures from "./HomePolicyEngineFeatures";
 import HomeUsedBy from "./HomeUsedBy";
 import HomeTransparency from "./HomeTransparency";
-import Footer from "./Footer";
+import Footer from "../../layout/Footer";
 import HomeQuoteCarousel from "./HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
 

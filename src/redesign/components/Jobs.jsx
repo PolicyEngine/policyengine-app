@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import Footer from "./Footer";
+import Footer from "../../layout/Footer";
 import Section from "./Section";
 import style from "../style";
 import PageHeader from "./PageHeader";
