@@ -343,10 +343,6 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
 
   const imageUrl = currentBlog.image ? handleImageLoad(currentBlog.image) : "";
 
-  // const imageUrl = currentBlog.image
-  //   ? require("../images/posts/" + currentBlog.image)
-  //   : require("../../images/placeholder.png");
-
   const countryId = useCountryId();
   const link = `/${countryId}/research/${currentBlog.slug}`;
   return (
@@ -362,8 +358,17 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
         }}
       >
         {imageUrl === "" ? (
-          <FileImageOutlined />
+          <div style={{ height: "300px", width: "100%" }}>
+            <FileImageOutlined
+              style={{
+                objectFit: "cover",
+                fontSize: "202px",
+                marginTop: "20px",
+              }}
+            />
+          </div>
         ) : (
+          // <FileImageOutlined />
           <img
             src={imageUrl}
             alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
@@ -411,17 +416,6 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const countryId = useCountryId();
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
-
-  const handleImageLoad = (path) => {
-    // Try to load the image
-    try {
-      return require("../images/p osts/" + path);
-    } catch (error) {
-      // If the require fails, return the fallback image
-      console.error(`Failed to load image at ${path}:`, error);
-      return "";
-    }
-  };
 
   const imageUrl = blog.image ? handleImageLoad(blog.image) : "";
 

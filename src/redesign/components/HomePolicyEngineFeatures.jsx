@@ -25,7 +25,7 @@ export default function HomePolicyEngineFeatures() {
   let decile = false;
   let coding = false;
 
-  param = ImageComponent("parameter_scree nshot.png");
+  param = ImageComponent("parameter_screenshot.png");
   decile = ImageComponent("decile_chart_screenshot.png");
   coding = ImageComponent("coding_screenshot.png");
 
