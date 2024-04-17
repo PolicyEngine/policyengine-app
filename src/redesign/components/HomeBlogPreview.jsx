@@ -362,8 +362,10 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
             <FileImageOutlined
               style={{
                 objectFit: "cover",
-                fontSize: "202px",
-                marginTop: "20px",
+                fontSize: "32px",
+                position: "absolute",
+                top: "250px",
+                right: "20px",
               }}
             />
           </div>
@@ -441,9 +443,16 @@ export function MediumBlogPreview({ blog, minHeight }) {
             }}
           />
         ) : (
-          <div style={{ height: "300px", width: "100%" }}>
+          <div
+            style={{ height: "300px", width: "100%", border: "1px solid grey" }}
+          >
             <FileImageOutlined
-              style={{ objectFit: "cover", fontSize: "202px" }}
+              style={{
+                fontSize: "32px",
+                position: "absolute",
+                top: "250px",
+                right: "20px",
+              }}
             />
           </div>
         )}

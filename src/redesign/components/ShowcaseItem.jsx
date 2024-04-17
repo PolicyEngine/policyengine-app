@@ -54,13 +54,14 @@ export default function ShowcaseItem({
             display: "flex",
             position: "relative",
             objectFit: "contain",
+            border: "1px solid grey",
           }}
         >
           <FileImageOutlined
             style={{
-              fontSize: "202px",
+              fontSize: "32px",
               position: "absolute",
-              top: "0px",
+              top: "250px",
               right: "20px",
             }}
           />
