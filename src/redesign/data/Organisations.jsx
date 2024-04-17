@@ -9,7 +9,7 @@ import ASI from "../../images/logos/orgs/asi.webp";
 import CEC from "../../images/logos/orgs/cec.svg";
 import CGO from "../../images/logos/orgs/cgo.jpg";
 /*import EPMT from "../../images/logos/orgs/epmt.jpg";*/
-import NISKANENCenter from "../../images/logos/orgs/niskanen_center_logo.png";
+import NISKANENCenter from "../../images/logos/orgs/niskanen-center.png";
 import F4GI from "../../images/logos/orgs/f4gi.jpg";
 import GCV from "../../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../../images/logos/orgs/mca.jpg";
