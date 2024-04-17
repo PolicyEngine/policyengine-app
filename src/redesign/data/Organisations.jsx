@@ -95,7 +95,7 @@ export const orgData = {
     niskanen_center: {
       name: "Niskanen Center",
       logo: NISKANENCenter,
-      link: "https://www.niskanencenter.org/",
+      link: "https://www.niskanencenter.org/building-a-stronger-foundation-for-american-families-options-for-child-tax-credit-reform/",
     },
 
     cgo: {
