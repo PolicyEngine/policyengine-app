@@ -13,7 +13,7 @@ import { postUserPolicy, cullOldPolicies } from "../../../api/userPolicies";
 import SignupModal from "../../../modals/SignupModal";
 
 export default function PolicyOutput(props) {
-  const { metadata, policy } = props;
+  const { metadata, policy, userProfile } = props;
 
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const countryId = useCountryId();
@@ -54,8 +54,8 @@ export default function PolicyOutput(props) {
         year: timePeriod,
         api_version: metadata.version,
         number_of_provisions: countProvisions(policy),
-        created_at: Date.now(), // This will not get updated if record already exists
-        updated_at: Date.now() // This will, as all other data will be ignored except this
+        added_date: Date.now(), // This will not get updated if record already exists
+        updated_date: Date.now() // This will, as all other data will be ignored except this
       };
 
       if (!isAuthenticated && getCookie("consent")) {
@@ -64,7 +64,7 @@ export default function PolicyOutput(props) {
         // Also emit the current policy
         policyToSave = {
           ...policyToSave,
-          user_id: user.sub
+          user_id: userProfile.user_id
         };
 
         let failedAttempts = [];

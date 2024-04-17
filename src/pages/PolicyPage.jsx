@@ -77,6 +77,7 @@ export default function PolicyPage(props) {
   const {
     metadata,
     policy,
+    userProfile,
     setPolicy,
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
@@ -136,6 +137,7 @@ export default function PolicyPage(props) {
         <PolicyOutput
           metadata={metadata}
           policy={policy}
+          userProfile={userProfile}
           hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
           setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
         />

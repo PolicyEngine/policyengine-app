@@ -247,6 +247,7 @@ export default function PolicyEngine({ pathname }) {
         metadata={metadata}
         householdId={householdId}
         policy={policy}
+        userProfile={userProfile}
         hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
         setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
