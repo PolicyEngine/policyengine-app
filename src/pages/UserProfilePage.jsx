@@ -4,7 +4,7 @@ import Helmet from "react-helmet";
 import Section from "../redesign/components/Section";
 import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
@@ -17,7 +17,10 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 
 export default function UserProfilePage(props) {
-  const {metadata} = props;
+  const {metadata, userProfile } = props;
+  let params = useParams();
+  const routingUserId = params.user_id;
+  const isOwnProfile = Number(userProfile?.user_id) === Number(routingUserId);
 
   const [userPolicies, setUserPolicies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,11 +39,18 @@ export default function UserProfilePage(props) {
       // Only evaluate (and thus set loading to false) if metadata has been fetched
       if (metadata) {
         try {
+
           const data = await apiCall(
-            `/${countryId}/user_policy/${user.sub}`
+            `/${countryId}/user_policy/${routingUserId}`
           );
           const dataJson = await data.json();
-          setUserPolicies(dataJson.result);
+          if (data.status < 200 || data.status >= 300) {
+            console.error("Error while fetching policies");
+            console.error(dataJson);
+            setUserPolicies([]);
+          } else {
+            setUserPolicies(dataJson.result);
+          }
         } catch (err) {
           console.error("Error within UserProfilePage: ");
           console.error(err);
@@ -51,6 +61,8 @@ export default function UserProfilePage(props) {
     }
 
     async function emitPreAuthPolicies() {
+      // Only run if the user has accessed their personal
+      // profile page
 
       // Check if user has any policies from before account creation
       // or policies that have failed to emit correctly before
@@ -61,7 +73,7 @@ export default function UserProfilePage(props) {
         // Add user id to policies, since we now have one
         policy = {
           ...policy,
-          user_id: user.sub
+          user_id: userProfile.user_id
         };
 
         try {
@@ -78,13 +90,18 @@ export default function UserProfilePage(props) {
       setSavedPolicies(failedAttempts);
     }
 
-    if (countryId && user?.sub) {
-      emitPreAuthPolicies().then(() => {fetchPolicies()});
+    if (countryId && userProfile?.user_id) {
+      // Would use async/await, but not possible in useEffect body
+      if (isOwnProfile) {
+        emitPreAuthPolicies();
+      }
+
+      fetchPolicies();
     }
   // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
   // are themselves a hook, with setSavedPolicies being a setter
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, user?.sub]);
+  }, [countryId, userProfile, isOwnProfile, routingUserId, metadata]);
 
   const loadingCards = Array(4).fill(<Card loading={true} />);
   const CURRENT_API_VERSION = metadata?.version;
