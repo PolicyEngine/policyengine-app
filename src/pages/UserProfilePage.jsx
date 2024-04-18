@@ -176,7 +176,7 @@ export default function UserProfilePage(props) {
   const loadingCards = Array(4).fill(<Card loading={true} />);
 
   const noCardPlaceholder = (
-    <p>{dispState === "noProfile" ? "User not found" : `${dispState === "ownProfile" ? "You have" : "This user has"} no saved policies.`}</p>
+    <p>{dispState === "noProfile" ? "User not found" : `${dispState === "ownProfile" ? "You have" : "This user has"} no saved policy simulations.`}</p>
   )
 
   const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
