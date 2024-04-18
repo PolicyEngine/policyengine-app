@@ -96,12 +96,20 @@ export default function PolicyOutput(props) {
   }
   if (impactType === "codeReproducibility") {
     return (
-      <LowLevelDisplay {...props}>
-        <PolicyReproducibility metadata={metadata} policy={policy} />
-      </LowLevelDisplay>
+      <>
+        <SignupModal />
+        <LowLevelDisplay {...props}>
+          <PolicyReproducibility metadata={metadata} policy={policy} />
+        </LowLevelDisplay>
+      </>
     );
   } else if (impactType === "cliffImpact") {
-    return <FetchAndDisplayCliffImpact {...props} />;
+    return (
+      <>
+        <SignupModal />
+        <FetchAndDisplayCliffImpact {...props} />;
+      </>
+    );
   }
   return (
     <>
