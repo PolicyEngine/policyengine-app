@@ -54,8 +54,8 @@ export default function PolicyOutput(props) {
         year: timePeriod,
         api_version: metadata.version,
         number_of_provisions: countProvisions(policy),
-        added_date: Date.now(), // This will not get updated if record already exists
-        updated_date: Date.now() // This will, as all other data will be ignored except this
+        added_date: Date.now(), 
+        updated_date: Date.now() 
       };
 
       if (!isAuthenticated && getCookie("consent")) {
