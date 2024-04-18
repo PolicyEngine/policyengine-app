@@ -1,6 +1,8 @@
 // A JSON data structure that describes PolicyEngine founders,
 // for use on the About Us page
 
+import style from "../style";
+
 // import { image } from "html2canvas/dist/types/css/types/image";
 
 export const founders = {
