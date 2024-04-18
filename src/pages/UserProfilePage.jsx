@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import useCountryId from "../hooks/useCountryId";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
+import { countryNames } from "../data/countries";
 
 export default function UserProfilePage(props) {
   // This component uses two user profiles: authedUserProfile, representing
@@ -203,7 +204,14 @@ function UserProfileSection(props) {
     accessedUserId
   } = props;
   const { isAuthenticated, isLoading, user } = useAuth0();
+  const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
+
+  const dateFormatter = new Intl.DateTimeFormat(
+    `en-${countryId}`, {
+      dateStyle: "long",
+    }
+  );
 
   return (
     <div
@@ -287,6 +295,10 @@ function UserProfileSection(props) {
         <p style={{margin: 0}}>{accessedUserId}</p>
         <p style={{fontWeight: "bold", margin: 0}}>Username</p>
         <p style={{margin: 0}}>{accessedUserProfile && accessedUserProfile.username ? accessedUserProfile.username : accessedUserProfile ? "None set yet" : "Error: No user logged in"}</p>
+        <p style={{fontWeight: "bold", margin: 0}}>User since</p>
+        <p style={{margin: 0}}>{accessedUserProfile && dateFormatter.format(accessedUserProfile.user_since)}</p>
+        <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
+        <p style={{margin: 0}}>{accessedUserProfile && accessedUserProfile.primary_country}</p>
       </div>
     </div>
   );
