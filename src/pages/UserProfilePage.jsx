@@ -44,7 +44,24 @@ export default function UserProfilePage(props) {
   useEffect(() => {
 
     async function fetchProfile() {
-      
+      if (metadata) {
+        try {
+          const data = await apiCall(
+            `/${countryId}/user_profile/${accessedUserId}`
+          );
+          const dataJson = await data.json();
+          if (data.status < 200 || data.status >= 300) {
+            console.error("Error while fetching accessed user profile");
+            console.error(dataJson);
+            setAccessedUserProfile({});
+          } else {
+            setAccessedUserProfile(dataJson.result);
+          }
+        } catch (err) {
+          console.error("Error within UserProfilePage: ");
+          console.error(err);
+        } 
+      }
     }
 
     if (!countryId) {
@@ -53,6 +70,7 @@ export default function UserProfilePage(props) {
 
     if (!isOwnProfile) {
       // Execute fetch
+      fetchProfile();
     } else {
       setAccessedUserProfile(authedUserProfile);
     }
