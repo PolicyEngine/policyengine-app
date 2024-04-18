@@ -395,10 +395,12 @@ function PolicySimulationCard(props) {
   const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography)[0].label || "Unknown";
 
     return (
+      <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
       <Card 
         style={{
           width: "100%",
           minWidth: 0,
+          height: "100%"
         }}
         bodyStyle={{
           display: "flex",
@@ -408,6 +410,7 @@ function PolicySimulationCard(props) {
           height: "100%",
           backgroundColor: userPolicy.api_version < CURRENT_API_VERSION && style.colors.LIGHT_GRAY
         }}
+        hoverable={true}
       >
         <h6
           style={{
@@ -552,24 +555,8 @@ function PolicySimulationCard(props) {
               </>
             )
           }
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-              flex: dispCat === "mobile" && "0 0 100%"
-            }}
-          >
-            <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`}>
-              <span
-                style={{
-                  color: style.colors.BLUE_PRIMARY
-                }}
-              >
-                Visit again
-              </span>
-            </Link>
-          </p>
         </div>
       </Card>
+      </Link>
     );
 }
