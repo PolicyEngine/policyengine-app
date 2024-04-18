@@ -157,10 +157,12 @@ export default function UserProfilePage(props) {
     if (countryId && authedUserProfile?.user_id) {
       // Would use async/await, but not possible in useEffect body
       if (isOwnProfile) {
-        emitPreAuthPolicies();
+        emitPreAuthPolicies().then(() => fetchAccessedPolicies());
+      }
+      else {
+        fetchAccessedPolicies();
       }
 
-      fetchAccessedPolicies();
     }
   // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
   // are themselves a hook, with setSavedPolicies being a setter

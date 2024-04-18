@@ -54,7 +54,7 @@ export function cullOldPolicies(policies) {
   const currentDate = Date.now();
   const VALID_PERIOD_IN_MS = 1000 * 60 * 60 * 24 * 14 // 14 days in MS
   const filteredPolicies = policies.filter((policy) => {
-    return (Math.abs(currentDate - policy.created_at) < VALID_PERIOD_IN_MS);
+    return (Math.abs(currentDate - policy.added_date) < VALID_PERIOD_IN_MS);
   }); 
   return filteredPolicies;
 }
