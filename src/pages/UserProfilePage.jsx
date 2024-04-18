@@ -167,6 +167,12 @@ export default function UserProfilePage(props) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, authedUserProfile, isOwnProfile, accessedUserId, metadata]);
 
+  const dateFormatter = new Intl.DateTimeFormat(
+    `en-${countryId}`, {
+      dateStyle: "long",
+    }
+  );
+
   const loadingCards = Array(4).fill(<Card loading={true} />);
 
   const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
@@ -177,6 +183,7 @@ export default function UserProfilePage(props) {
         metadata={metadata}
         userPolicy={userPolicy}
         key={`${index}-${userPolicy.id}`}
+        dateFormatter={dateFormatter}
       />
     )
 
@@ -209,7 +216,7 @@ export default function UserProfilePage(props) {
           title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
-          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading}/>
+          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading} dateFormatter={dateFormatter}/>
         </PageHeader>
         <Section
           title={sectionTitle}
@@ -239,7 +246,8 @@ function UserProfileSection(props) {
     isOwnProfile,
     accessedUserId,
     dispState,
-    isHeaderLoading
+    isHeaderLoading,
+    dateFormatter
   } = props;
   const { isAuthenticated, isLoading, user } = useAuth0();
   const countryId = useCountryId();
@@ -256,12 +264,6 @@ function UserProfileSection(props) {
   } else {
     dispUsername = "None created";
   }
-
-  const dateFormatter = new Intl.DateTimeFormat(
-    `en-${countryId}`, {
-      dateStyle: "long",
-    }
-  );
 
   let dispUserSince = "";
   if (dispState === "noProfile") {
@@ -379,11 +381,12 @@ function PolicySimulationCard(props) {
   const {
     metadata,
     userPolicy,
+    dateFormatter
   } = props;
 
   const dispCat = useDisplayCategory();
   const CURRENT_API_VERSION = metadata?.version;
-  const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography).label || "Unknown";
+  const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography)[0].label || "Unknown";
 
     return (
       <Card 
@@ -485,7 +488,7 @@ function PolicySimulationCard(props) {
             >
               Created on:&nbsp;
             </span>
-            {userPolicy.created_at || "Unknown"} 
+            {dateFormatter.format(userPolicy.added_date) || "Unknown"} 
           </p>
           <p
             style={{
@@ -500,7 +503,7 @@ function PolicySimulationCard(props) {
             >
               Updated on:&nbsp;
             </span>
-            {userPolicy.updated_at || "Unknown"} 
+            {dateFormatter.format(userPolicy.updated_date) || "Unknown"} 
           </p>
           <p
             style={{
