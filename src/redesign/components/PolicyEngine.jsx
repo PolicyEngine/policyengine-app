@@ -297,7 +297,7 @@ export default function PolicyEngine({ pathname }) {
         <Route path="/:countryId/profile" element={<Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />} />
         <Route 
           path="/:countryId/profile/:user_id"
-          element={<UserProfilePage metadata={metadata} userProfile={userProfile}/>}
+          element={<UserProfilePage metadata={metadata} authedUserProfile={userProfile}/>}
         />
 
         <Route

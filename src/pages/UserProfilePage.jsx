@@ -6,7 +6,7 @@ import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
 import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoadingOutlined, FileImageOutlined } from "@ant-design/icons";
+import { LoadingOutlined, FileImageOutlined, UserOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
 import { Card } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
@@ -17,12 +17,20 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 
 export default function UserProfilePage(props) {
-  const {metadata, userProfile } = props;
-  let params = useParams();
-  const routingUserId = params.user_id;
-  const isOwnProfile = Number(userProfile?.user_id) === Number(routingUserId);
+  // This component uses two user profiles: authedUserProfile, representing
+  // the authenticated user navigating the site, and accessedUserProfile,
+  // the profile the site user is visiting. At times, these are equal,
+  // causing isOwnProfile to be true, otherwise false; authedUserProfile
+  // is shared via props, as the entire app has access to this info,
+  // while accessedUserProfile requires a fetch
 
-  const [userPolicies, setUserPolicies] = useState([]);
+  const {metadata, authedUserProfile } = props;
+  let params = useParams();
+  const accessedUserId = params.user_id;
+  const isOwnProfile = Number(authedUserProfile?.user_id) === Number(accessedUserId);
+
+  const [accessedUserPolicies, setAccessedUserPolicies] = useState([]);
+  const [accessedUserProfile, setAccessedUserProfile] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const countryId = useCountryId();
@@ -31,25 +39,42 @@ export default function UserProfilePage(props) {
   const dispCat = useDisplayCategory();
 
   const maxCardWidth = 300; // Max card width (relative to screen, so not exact), in pixels
-
   const gridColumns = dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
+
   useEffect(() => {
-    async function fetchPolicies() {
+
+    async function fetchProfile() {
+      
+    }
+
+    if (!countryId) {
+      return;
+    }
+
+    if (!isOwnProfile) {
+      // Execute fetch
+    } else {
+      setAccessedUserProfile(authedUserProfile);
+    }
+  }, [countryId, isOwnProfile, authedUserProfile]);
+
+  useEffect(() => {
+    async function fetchAccessedPolicies() {
       setIsLoading(true);
       // Only evaluate (and thus set loading to false) if metadata has been fetched
       if (metadata) {
         try {
 
           const data = await apiCall(
-            `/${countryId}/user_policy/${routingUserId}`
+            `/${countryId}/user_policy/${accessedUserId}`
           );
           const dataJson = await data.json();
           if (data.status < 200 || data.status >= 300) {
             console.error("Error while fetching policies");
             console.error(dataJson);
-            setUserPolicies([]);
+            setAccessedUserPolicies([]);
           } else {
-            setUserPolicies(dataJson.result);
+            setAccessedUserPolicies(dataJson.result);
           }
         } catch (err) {
           console.error("Error within UserProfilePage: ");
@@ -73,7 +98,7 @@ export default function UserProfilePage(props) {
         // Add user id to policies, since we now have one
         policy = {
           ...policy,
-          user_id: userProfile.user_id
+          user_id: authedUserProfile.user_id
         };
 
         try {
@@ -90,29 +115,177 @@ export default function UserProfilePage(props) {
       setSavedPolicies(failedAttempts);
     }
 
-    if (countryId && userProfile?.user_id) {
+    if (countryId && authedUserProfile?.user_id) {
       // Would use async/await, but not possible in useEffect body
       if (isOwnProfile) {
         emitPreAuthPolicies();
       }
 
-      fetchPolicies();
+      fetchAccessedPolicies();
     }
   // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
   // are themselves a hook, with setSavedPolicies being a setter
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, userProfile, isOwnProfile, routingUserId, metadata]);
+  }, [countryId, authedUserProfile, isOwnProfile, accessedUserId, metadata]);
 
   const loadingCards = Array(4).fill(<Card loading={true} />);
-  const CURRENT_API_VERSION = metadata?.version;
 
-  const userPolicyCards = userPolicies.map((userPolicy, index) => {
+  const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
     if (!metadata) return null;
-    const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography).label || "Unknown";
+
+    return (
+      <PolicySimulationCard 
+        metadata={metadata}
+        userPolicy={userPolicy}
+        key={`${index}-${userPolicy.id}`}
+      />
+    )
+
+  });
+
+  return (
+    <>
+      <Helmet>
+        <title>My Profile | PolicyEngine</title>
+      </Helmet>
+      <div>
+        <Header />
+        <PageHeader
+          title="Profile"
+          backgroundColor={style.colors.BLUE_98}
+        >
+          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId}/>
+        </PageHeader>
+        <Section
+          title="Saved policy simulations"
+          backgroundColor={style.colors.BLUE_98}
+        >
+          <div
+            style={{
+              display: "grid",
+              width: "100%",
+              gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
+              gap: "12px"
+            }}
+          >
+            {isLoading ? loadingCards : accessedUserPolicyCards}
+          </div>
+        </Section>
+        <Footer />
+      </div>
+    </>
+  )
+
+}
+
+function UserProfileSection(props) {
+  const { 
+    accessedUserProfile,
+    isOwnProfile,
+    accessedUserId
+  } = props;
+  const { isAuthenticated, isLoading, user } = useAuth0();
+  const displayCategory = useDisplayCategory();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        width: "100%",
+        height: "100%",
+        paddingLeft: displayCategory !== "mobile" && "10px",
+        gap: "20px"
+      }}
+    >
+      {
+        isOwnProfile && isAuthenticated && user && user.picture ? (
+          <img
+            src={user.picture}
+            alt="Profile"
+            style={{
+              height: "100px",
+              objectFit: "cover"
+            }}
+          />
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100px",
+              aspectRatio: 1,
+              border: `0.5px solid ${style.colors.DARK_GRAY}`,
+              color: style.colors.DARK_GRAY
+            }}
+          >
+            {
+              !isOwnProfile && !isLoading ? (
+                <UserOutlined
+                  style={{
+                    fontSize: "32px"
+                  }}
+                />
+              ) :
+              isAuthenticated || isLoading ? (
+                <LoadingOutlined 
+                  style={{
+                    fontSize: "32px"
+                  }}
+                />
+              ) :
+               (
+                <FileImageOutlined 
+                  style={{
+                    fontSize: "32px"
+                  }}
+                />
+              )
+            }
+          </div>
+        )
+      }
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "max-content 1fr",
+          gridColumnGap: "20px"
+        }}
+      >
+        {
+          isOwnProfile && (
+            <>
+              <p style={{fontWeight: "bold", margin: 0}}>Name</p>
+              <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
+              <p style={{fontWeight: "bold", margin: 0}}>Email</p>
+              <p style={{margin: 0}}>{user ? user.email: "Error: No user logged in"}</p>
+            </>
+          )
+        }
+        <p style={{fontWeight: "bold", margin: 0}}>User ID</p>
+        <p style={{margin: 0}}>{accessedUserId}</p>
+        <p style={{fontWeight: "bold", margin: 0}}>Username</p>
+        <p style={{margin: 0}}>{accessedUserProfile && accessedUserProfile.username ? accessedUserProfile.username : accessedUserProfile ? "None set yet" : "Error: No user logged in"}</p>
+      </div>
+    </div>
+  );
+}
+
+function PolicySimulationCard(props) {
+  const {
+    metadata,
+    userPolicy,
+  } = props;
+
+  const dispCat = useDisplayCategory();
+  const CURRENT_API_VERSION = metadata?.version;
+  const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography).label || "Unknown";
 
     return (
       <Card 
-        key={`${index}-${userPolicy.id}`}
         style={{
           width: "100%",
           minWidth: 0,
@@ -289,112 +462,4 @@ export default function UserProfilePage(props) {
         </div>
       </Card>
     );
-  });
-
-  return (
-    <>
-      <Helmet>
-        <title>My Profile | PolicyEngine</title>
-      </Helmet>
-      <div>
-        <Header />
-        <PageHeader
-          title="Profile"
-          backgroundColor={style.colors.BLUE_98}
-        >
-          <UserProfileSection />
-        </PageHeader>
-        <Section
-          title="Saved policy simulations"
-          backgroundColor={style.colors.BLUE_98}
-        >
-          <div
-            style={{
-              display: "grid",
-              width: "100%",
-              gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
-              gap: "12px"
-            }}
-          >
-            {isLoading ? loadingCards : userPolicyCards}
-          </div>
-        </Section>
-        <Footer />
-      </div>
-    </>
-  )
-
-}
-
-function UserProfileSection() {
-  const { isAuthenticated, isLoading, user } = useAuth0();
-  const displayCategory = useDisplayCategory();
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-        width: "100%",
-        height: "100%",
-        paddingLeft: displayCategory !== "mobile" && "10px",
-        gap: "20px"
-      }}
-    >
-      {
-        isAuthenticated && user && user.picture ? (
-          <img
-            src={user.picture}
-            alt="Profile"
-            style={{
-              height: "100px",
-              objectFit: "cover"
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100px",
-              aspectRatio: 1,
-              border: `0.5px solid ${style.colors.DARK_GRAY}`,
-              color: style.colors.DARK_GRAY
-            }}
-          >
-            {
-              isAuthenticated || isLoading ? (
-                <LoadingOutlined 
-                  style={{
-                    fontSize: "32px"
-                  }}
-                />
-              ) : (
-                <FileImageOutlined 
-                  style={{
-                    fontSize: "32px"
-                  }}
-                />
-              )
-            }
-          </div>
-        )
-      }
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "max-content 1fr",
-          gridColumnGap: "20px"
-        }}
-      >
-        <p style={{fontWeight: "bold", margin: 0}}>Name</p>
-        <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
-        <p style={{fontWeight: "bold", margin: 0}}>Email</p>
-        <p style={{margin: 0}}>{user ? user.email: "Error: No user logged in"}</p>
-      </div>
-    </div>
-  );
 }
