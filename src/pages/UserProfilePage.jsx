@@ -175,6 +175,10 @@ export default function UserProfilePage(props) {
 
   const loadingCards = Array(4).fill(<Card loading={true} />);
 
+  const noCardPlaceholder = (
+    <p>{dispState === "noProfile" ? "User not found" : `${dispState === "ownProfile" ? "You have" : "This user has"} no saved policies.`}</p>
+  )
+
   const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
     if (!metadata) return null;
 
@@ -230,7 +234,7 @@ export default function UserProfilePage(props) {
               gap: "12px"
             }}
           >
-            {arePoliciesLoading ? loadingCards : accessedUserPolicyCards}
+            {arePoliciesLoading ? loadingCards : accessedUserPolicies.length === 0 ? noCardPlaceholder : accessedUserPolicyCards}
           </div>
         </Section>
         <Footer />
