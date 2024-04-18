@@ -182,22 +182,21 @@ export default function UserProfilePage(props) {
 
   });
 
-  let sectionTitle = "";
-  if (accessedUserProfile && isOwnProfile) {
+  let sectionTitle = "Saved policy simulations";
+  if (dispState === "ownProfile") {
     sectionTitle = "My saved policy simulations";
-  } else if (accessedUserProfile && accessedUserProfile.username) {
+  } else if (dispState === "otherProfile" && accessedUserProfile.username) {
     sectionTitle = `${accessedUserProfile.username}'s saved policy simulations`;
-  } else if (accessedUserProfile) {
+  } else if (dispState === "otherProfile") {
     sectionTitle = `User #${accessedUserProfile.user_id}'s saved policy simulations`;
-  } else {
-    sectionTitle = "Saved policy simulations";
   }
 
-  const title = accessedUserProfile && accessedUserProfile.username
-    ? `${accessedUserProfile.username}'s Profile | PolicyEngine`
-    : accessedUserProfile
-      ? `User #${accessedUserProfile.user_id}'s Profile | PolicyEngine`
-      : "Profile | PolicyEngine";
+  let title = "Profile | PolicyEngine";
+  if ((dispState === "ownProfile" || dispState === "otherProfile") && accessedUserProfile.username) {
+    title = `${accessedUserProfile.username}'s Profile | PolicyEngine`;
+  } else if (dispState === "ownProfile" || dispState === "otherProfile") {
+    title = `User #${accessedUserProfile.user_id}'s Profile | PolicyEngine`;
+  }
 
   return (
     <>
