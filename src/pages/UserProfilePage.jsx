@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined, FileImageOutlined, UserOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
-import { Card } from "antd";
+import { Card, Skeleton } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
 import { apiCall } from "../api/call";
 import { useEffect, useState } from "react";
@@ -18,24 +18,34 @@ import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 import { countryNames } from "../data/countries";
 
 export default function UserProfilePage(props) {
-  // This component uses two user profiles: authedUserProfile, representing
-  // the authenticated user navigating the site, and accessedUserProfile,
-  // the profile the site user is visiting. At times, these are equal,
-  // causing isOwnProfile to be true, otherwise false; authedUserProfile
-  // is shared via props, as the entire app has access to this info,
-  // while accessedUserProfile requires a fetch
+  // This component has three possible display states, saved as the stateful
+  // variable dispState:
+  // * empty - no data has yet been loaded
+  // * noProfile - fetched user was not found
+  // * otherProfile - fetched user is not logged in user
+  // * ownProfile - fetched user is logged in user
+
+  // Loading is treated separately, through two stateful variables, as
+  // two different parts of the component fetch data separately
+
+  // To disambiguate, this component uses two user profiles: 
+  // authedUserProfile, representing the authenticated user navigating 
+  // the site, and accessedUserProfile, the profile the site user is 
+  // visiting. authedUserProfile is shared via props, as the entire 
+  // app has access to this info, while accessedUserProfile requires a fetch
 
   const {metadata, authedUserProfile } = props;
   let params = useParams();
   const accessedUserId = params.user_id;
   const isOwnProfile = Number(authedUserProfile?.user_id) === Number(accessedUserId);
 
+  const [dispState, setDispState] = useState("empty");
+  const [isHeaderLoading, setIsHeaderLoading] = useState(true);
+  const [arePoliciesLoading, setArePoliciesLoading] = useState(true);
   const [accessedUserPolicies, setAccessedUserPolicies] = useState([]);
   const [accessedUserProfile, setAccessedUserProfile] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const countryId = useCountryId();
-  const { user } = useAuth0();
   const windowWidth = useWindowWidth();
   const dispCat = useDisplayCategory();
 
@@ -45,23 +55,31 @@ export default function UserProfilePage(props) {
   useEffect(() => {
 
     async function fetchProfile() {
+      setIsHeaderLoading(true);
       if (metadata) {
         try {
           const data = await apiCall(
-            `/${countryId}/user_profile/${accessedUserId}`
+            `/${countryId}/user_profile?user_id=${accessedUserId}`
           );
           const dataJson = await data.json();
+          if (data.status === 404 && dataJson.status === "ok") {
+            setAccessedUserProfile({});
+            setDispState("noProfile");
+          }
           if (data.status < 200 || data.status >= 300) {
             console.error("Error while fetching accessed user profile");
             console.error(dataJson);
             setAccessedUserProfile({});
           } else {
             setAccessedUserProfile(dataJson.result);
+            setDispState("otherProfile");
           }
         } catch (err) {
           console.error("Error within UserProfilePage: ");
           console.error(err);
-        } 
+        } finally {
+          setIsHeaderLoading(false);
+        }
       }
     }
 
@@ -73,13 +91,15 @@ export default function UserProfilePage(props) {
       // Execute fetch
       fetchProfile();
     } else {
+      setDispState("ownProfile");
       setAccessedUserProfile(authedUserProfile);
+      setIsHeaderLoading(false);
     }
-  }, [countryId, isOwnProfile, authedUserProfile]);
+  }, [countryId, isOwnProfile, authedUserProfile, accessedUserId, metadata]);
 
   useEffect(() => {
     async function fetchAccessedPolicies() {
-      setIsLoading(true);
+      setArePoliciesLoading(true);
       // Only evaluate (and thus set loading to false) if metadata has been fetched
       if (metadata) {
         try {
@@ -99,7 +119,7 @@ export default function UserProfilePage(props) {
           console.error("Error within UserProfilePage: ");
           console.error(err);
         } finally {
-          setIsLoading(false);
+          setArePoliciesLoading(false);
         }
       }
     }
@@ -173,7 +193,7 @@ export default function UserProfilePage(props) {
           title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
-          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId}/>
+          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading}/>
         </PageHeader>
         <Section
           title="Saved policy simulations"
@@ -187,7 +207,7 @@ export default function UserProfilePage(props) {
               gap: "12px"
             }}
           >
-            {isLoading ? loadingCards : accessedUserPolicyCards}
+            {arePoliciesLoading ? loadingCards : accessedUserPolicyCards}
           </div>
         </Section>
         <Footer />
@@ -201,11 +221,25 @@ function UserProfileSection(props) {
   const { 
     accessedUserProfile,
     isOwnProfile,
-    accessedUserId
+    accessedUserId,
+    dispState,
+    isHeaderLoading
   } = props;
   const { isAuthenticated, isLoading, user } = useAuth0();
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
+
+
+  let dispUsername = "";
+  if (dispState === "noProfile") {
+    dispUsername = "No user found";
+  } else if (dispState === "empty") {
+    dispUsername = "Loading"
+  } else if (accessedUserProfile.username) {
+    dispUsername = accessedUserProfile.username
+  } else {
+    dispUsername = "None created";
+  }
 
   const dateFormatter = new Intl.DateTimeFormat(
     `en-${countryId}`, {
@@ -213,6 +247,26 @@ function UserProfileSection(props) {
     }
   );
 
+  let dispUserSince = "";
+  if (dispState === "noProfile") {
+    dispUserSince = "No user found";
+  } else if (dispState === "empty") {
+    dispUserSince = "Loading"
+  } else {
+    dispUserSince = dateFormatter.format(accessedUserProfile.user_since);
+  }
+
+  let dispCountry = "";
+  if (dispState === "noProfile") {
+    dispCountry = "No user found";
+  } else if (dispState === "empty") {
+    dispCountry = "Loading"
+  } else if (countryNames[accessedUserProfile.primary_country].singleWord) {
+    dispCountry = countryNames[accessedUserProfile.primary_country].singleWord;
+  } else {
+    dispCountry = countryNames[accessedUserProfile.primary_country].standard;
+  }
+        
   return (
     <div
       style={{
@@ -227,7 +281,7 @@ function UserProfileSection(props) {
       }}
     >
       {
-        isOwnProfile && isAuthenticated && user && user.picture ? (
+        dispState === "ownProfile" && isAuthenticated && user && user.picture ? (
           <img
             src={user.picture}
             alt="Profile"
@@ -249,15 +303,14 @@ function UserProfileSection(props) {
             }}
           >
             {
-              !isOwnProfile && !isLoading ? (
-                <UserOutlined
+              isHeaderLoading ? (
+                <LoadingOutlined 
                   style={{
                     fontSize: "32px"
                   }}
                 />
-              ) :
-              isAuthenticated || isLoading ? (
-                <LoadingOutlined 
+              ) : dispState === "otherProfile" ? (
+                <UserOutlined
                   style={{
                     fontSize: "32px"
                   }}
@@ -274,32 +327,34 @@ function UserProfileSection(props) {
           </div>
         )
       }
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "max-content 1fr",
-          gridColumnGap: "20px"
-        }}
-      >
-        {
-          isOwnProfile && (
-            <>
-              <p style={{fontWeight: "bold", margin: 0}}>Name</p>
-              <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
-              <p style={{fontWeight: "bold", margin: 0}}>Email</p>
-              <p style={{margin: 0}}>{user ? user.email: "Error: No user logged in"}</p>
-            </>
-          )
-        }
-        <p style={{fontWeight: "bold", margin: 0}}>User ID</p>
-        <p style={{margin: 0}}>{accessedUserId}</p>
-        <p style={{fontWeight: "bold", margin: 0}}>Username</p>
-        <p style={{margin: 0}}>{accessedUserProfile && accessedUserProfile.username ? accessedUserProfile.username : accessedUserProfile ? "None set yet" : "Error: No user logged in"}</p>
-        <p style={{fontWeight: "bold", margin: 0}}>User since</p>
-        <p style={{margin: 0}}>{accessedUserProfile && dateFormatter.format(accessedUserProfile.user_since)}</p>
-        <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
-        <p style={{margin: 0}}>{accessedUserProfile && accessedUserProfile.primary_country}</p>
-      </div>
+      <Skeleton loading={isHeaderLoading} title={false} paragraph={{rows: 3}}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "max-content 1fr",
+            gridColumnGap: "20px"
+          }}
+        >
+          {
+            dispState === "ownProfile" && (
+              <>
+                <p style={{fontWeight: "bold", margin: 0}}>Name</p>
+                <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
+                <p style={{fontWeight: "bold", margin: 0}}>Email</p>
+                <p style={{margin: 0}}>{user ? user.email: "Error: No user logged in"}</p>
+              </>
+            )
+          }
+            <p style={{fontWeight: "bold", margin: 0}}>User ID</p>
+            <p style={{margin: 0}}>{accessedUserId}</p>
+            <p style={{fontWeight: "bold", margin: 0}}>Username</p>
+            <p style={{margin: 0}}>{dispUsername}</p>
+            <p style={{fontWeight: "bold", margin: 0}}>User since</p>
+            <p style={{margin: 0}}>{dispUserSince}</p>
+            <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
+            <p style={{margin: 0}}>{dispCountry}</p>
+        </div>
+      </Skeleton>
     </div>
   );
 }
