@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DisplayEmpty, LowLevelDisplay } from "./Display";
 import PolicyReproducibility from "./PolicyReproducibility";
 import {
@@ -16,6 +16,7 @@ export default function PolicyOutput(props) {
   const { metadata, policy, userProfile } = props;
 
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
+  const [userPolicyId, setUserPolicyId] = useState(null);
   const countryId = useCountryId();
   const { isAuthenticated, user } = useAuth0();
 
@@ -68,8 +69,9 @@ export default function PolicyOutput(props) {
         };
 
         let failedAttempts = [];
+        let userPolicyId = null;
         try {
-          await postUserPolicy(countryId, policyToSave);
+          userPolicyId = await postUserPolicy(countryId, policyToSave);
         } catch (err) {
           failedAttempts = failedAttempts.concat(policyToSave);
         }

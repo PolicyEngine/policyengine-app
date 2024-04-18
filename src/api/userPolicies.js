@@ -10,43 +10,51 @@ export async function postUserPolicy(countryId, policyToAdd) {
       policyToAdd,
       "POST"
     );
-    const resJSON = await res.json();
+    const resJson = await res.json();
     // If the record already exists...
-    if (res.status === 200 && resJSON.status === "ok") {
+    if (res.status === 200 && resJson.status === "ok") {
       // Update the API version and updated_date fields
-      await updateUserPolicy(countryId, policyToAdd, resJSON.result.id);
-    }
-    if (resJSON.status !== "ok") {
+      const updatedPolicy = {
+        id: resJson.result.id,
+        api_version: policyToAdd.api_version,
+        updated_date: policyToAdd.updated_date
+      };
+      await updateUserPolicy(countryId, updatedPolicy);
+      return resJson.result.id;
+    } else if (resJson.status !== "ok") {
       console.error("Error while POSTing user policy:");
-      console.error(resJSON.message);
-    } 
+      console.error(resJson.message);
+      return null;
+    } else {
+      return resJson.result.id;
+    }
   } catch (err) {
     console.error("Network-related error while POSTing user policy:");
     console.error(err);
+    return null;
   }
 }
 
-export async function updateUserPolicy(countryId, policyToAdd, userPolicyId) {
-  const updatedPolicy = {
-    id: userPolicyId,
-    api_version: policyToAdd.api_version,
-    updated_date: policyToAdd.updated_date
-  };
+export async function updateUserPolicy(countryId, policyToAdd) {
 
   try {
     const res = await apiCall(
       `/${countryId}${USER_POLICY_ENDPOINT}`,
-      updatedPolicy,
+      policyToAdd,
       "PUT"
     );
     const resJson = await res.json();
     if (resJson.status !== "ok") {
       console.error("Error while POSTing user policy:");
       console.error(resJson.message);
+      return null;
+    } else {
+      return resJson.result.id;
     }
   } catch (err) {
     console.error("Network-related error while updating user policy:");
     console.error(err);
+    return null;
   }
 }
 

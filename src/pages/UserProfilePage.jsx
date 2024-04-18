@@ -495,6 +495,21 @@ function PolicySimulationCard(props) {
                 fontWeight: 400
               }}
             >
+              Budgetary impact:&nbsp;
+            </span>
+            {`${userPolicy.budgetary_impact < 0 ? "Costs" : "Raises"} ${userPolicy.budgetary_impact}` || "Unknown"}
+          </p>
+          <p
+            style={{
+              fontFamily: style.fonts.BODY_FONT,
+              margin: 0,
+            }}
+          >
+            <span
+              style={{
+                fontWeight: 400
+              }}
+            >
               Created on:&nbsp;
             </span>
             {dateFormatter.format(userPolicy.added_date) || "Unknown"} 

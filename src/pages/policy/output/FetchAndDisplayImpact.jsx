@@ -10,6 +10,8 @@ import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
 import { defaultYear } from "data/constants";
 import { areObjectsSame } from "../../../data/areObjectsSame";
+import { updateUserPolicy } from "../../../api/userPolicies";
+import useCountryId from "../../../hooks/useCountryId";
 // import LoadingCentered from "layout/LoadingCentered";
 
 /**
@@ -44,8 +46,10 @@ export function FetchAndDisplayImpact(props) {
     policy,
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
+    userPolicyId
   } = props;
   const policyRef = useRef(null);
+  const countryId = useCountryId();
 
   useEffect(() => {
     if (
@@ -139,6 +143,24 @@ export function FetchAndDisplayImpact(props) {
     policyRef.current = policy;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
+
+  useEffect(() => {
+    if (!impact || !userPolicyId || !countryId) return;
+
+    const updatedUserPolicy = {
+      id: userPolicyId,
+      budgetary_impact: impact.budget.budgetary_impact
+    }
+
+    updateUserPolicy(countryId, updatedUserPolicy)
+      .then((res) => res.json())
+      .then((resJson) => {
+        if (resJson.status !== "ok") {
+          console.error("Error while updating user policy:");
+          console.error(resJson);
+        }
+      });
+  }, [impact, countryId, userPolicyId]);
 
   if (error) {
     return <DisplayError error={error} />;
