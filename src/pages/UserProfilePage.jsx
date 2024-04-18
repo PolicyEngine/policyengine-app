@@ -182,10 +182,27 @@ export default function UserProfilePage(props) {
 
   });
 
+  let sectionTitle = "";
+  if (accessedUserProfile && isOwnProfile) {
+    sectionTitle = "My saved policy simulations";
+  } else if (accessedUserProfile && accessedUserProfile.username) {
+    sectionTitle = `${accessedUserProfile.username}'s saved policy simulations`;
+  } else if (accessedUserProfile) {
+    sectionTitle = `User #${accessedUserProfile.user_id}'s saved policy simulations`;
+  } else {
+    sectionTitle = "Saved policy simulations";
+  }
+
+  const title = accessedUserProfile && accessedUserProfile.username
+    ? `${accessedUserProfile.username}'s Profile | PolicyEngine`
+    : accessedUserProfile
+      ? `User #${accessedUserProfile.user_id}'s Profile | PolicyEngine`
+      : "Profile | PolicyEngine";
+
   return (
     <>
       <Helmet>
-        <title>My Profile | PolicyEngine</title>
+        <title>{title}</title>
       </Helmet>
       <div>
         <Header />
@@ -196,7 +213,7 @@ export default function UserProfilePage(props) {
           <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading}/>
         </PageHeader>
         <Section
-          title="Saved policy simulations"
+          title={sectionTitle}
           backgroundColor={style.colors.BLUE_98}
         >
           <div
