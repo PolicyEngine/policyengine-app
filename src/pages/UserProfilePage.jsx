@@ -16,6 +16,7 @@ import useCountryId from "../hooks/useCountryId";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 import { countryNames } from "../data/countries";
+import moment from "moment";
 
 export default function UserProfilePage(props) {
   // This component has three possible display states, saved as the stateful
@@ -180,6 +181,8 @@ export default function UserProfilePage(props) {
   const noCardPlaceholder = (
     <p style={{gridColumn: "1 / -1"}}>{dispState === "noProfile" ? "User not found" : `${dispState === "ownProfile" ? "You have" : "This user has"} no saved policy simulations.`}</p>
   )
+
+  console.log(accessedUserPolicies)
 
   const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
     if (!metadata) return null;
@@ -394,6 +397,24 @@ function PolicySimulationCard(props) {
   const CURRENT_API_VERSION = metadata?.version;
   const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography)[0].label || "Unknown";
 
+  const apiVersion = userPolicy.api_version;
+  const dateAdded = userPolicy.added_date;
+  const dateLastUpdated = userPolicy.updated_date;
+
+  let updatedStatusMessage = null;
+  if (apiVersion == CURRENT_API_VERSION) {
+    if (dateAdded === dateLastUpdated) {
+      updatedStatusMessage = `First simulated ${moment(dateAdded).fromNow()} (reflects latest model updates)`;
+    } else {
+      updatedStatusMessage = `Last updated ${moment(dateLastUpdated).fromNow()} (reflects latest model updates)`;
+    }
+  } else {
+    if (dateAdded === dateLastUpdated) {
+      updatedStatusMessage = `First simulated ${moment(dateAdded).fromNow()} (reflects outdated model version ${apiVersion}, click to update).`;
+    } else {
+      updatedStatusMessage = `Last updated ${moment(dateLastUpdated).fromNow()} (reflects outdated model version ${apiVersion}, click to update).`;
+    }
+  }
     return (
       <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
       <Card 
@@ -419,158 +440,15 @@ function PolicySimulationCard(props) {
             marginBottom: "16px"
           }}
         >{userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}</h6>
-        {/*The below div is necessary because Ant Design Card components
-        add :before and :after pseudos with height=0, meaning a flex with
-        space-between will add space before them, ruining the layout*/}
-        {dispCat !== "mobile" && (
-          <div 
-            style={{
-              height: "100%",
-              flexGrow: 2
-            }}
-          />
-        )}
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            flexDirection: dispCat === "mobile" ? "row" : "column",
-            columnGap: dispCat === "mobile" && "20px",
-            flexWrap: "wrap"
-          }}
-        >
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              Year:&nbsp;
-            </span>
-            {userPolicy.year || "Unknown"} 
-          </p>
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              Geography:&nbsp;
-            </span>
-            {geography}
-          </p>
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              Reforms:&nbsp;
-            </span>
-            {userPolicy.number_of_provisions || "Unknown"} 
-          </p>
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              Budgetary impact:&nbsp;
-            </span>
-            {`${userPolicy.budgetary_impact < 0 ? "Costs" : "Raises"} ${userPolicy.budgetary_impact}` || "Unknown"}
-          </p>
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              Created on:&nbsp;
-            </span>
-            {dateFormatter.format(userPolicy.added_date) || "Unknown"} 
-          </p>
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              Updated on:&nbsp;
-            </span>
-            {dateFormatter.format(userPolicy.updated_date) || "Unknown"} 
-          </p>
-          <p
-            style={{
-              fontFamily: style.fonts.BODY_FONT,
-              margin: 0,
-            }}
-          >
-            <span
-              style={{
-                fontWeight: 400
-              }}
-            >
-              API version:&nbsp;
-            </span>
-            {userPolicy.api_version || "Unknown"}
-            {
-              userPolicy.api_version < CURRENT_API_VERSION && (
-                <span style={{fontStyle: "italic", color: style.colors.DARK_GRAY}}>&nbsp;(out of date)</span>
-              )
-            }
-          </p>
-          {
-            userPolicy.baseline_label !== "Current law" && (
-              <>
-                <p
-                  style={{
-                    fontFamily: style.fonts.BODY_FONT,
-                    margin: 0,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontWeight: 400
-                    }}
-                  >
-                    Baseline:&nbsp;
-                  </span>
-                  {userPolicy.baseline_label}
-                </p>
-              </>
-            )
-          }
-        </div>
+        <p>
+          Simulated in <i>{userPolicy.year}</i> over <i>{geography}</i> against <i>{userPolicy.baseline_label}</i>.
+        </p>
+        <p>
+          {userPolicy.number_of_provisions} provision{userPolicy.number_of_provisions == 1 ? "" : "s"}, {userPolicy.budgetary_impact < 0 ? "costing" : "raising"} {userPolicy.budgetary_impact || "£0bn"}.
+        </p>
+        <p>
+          {updatedStatusMessage}
+        </p>
       </Card>
       </Link>
     );
