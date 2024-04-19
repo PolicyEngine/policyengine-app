@@ -445,7 +445,7 @@ function PolicySimulationCard(props) {
           Simulated in <i>{userPolicy.year}</i> over <i>{geography}</i> against <i>{userPolicy.baseline_label}</i>.
         </p>
         <p>
-          {userPolicy.number_of_provisions} provision{userPolicy.number_of_provisions == 1 ? "" : "s"}{userPolicy.budgetary_impact ? `, ${userPolicy.budgetary_impact < 0 ? "costing" : "raising"} ${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact))}` : "; budgetary impact not yet simulated"}.
+          {userPolicy.number_of_provisions} provision{userPolicy.number_of_provisions == 1 ? "" : "s"}{userPolicy.budgetary_impact ? `, ${userPolicy.budgetary_impact < 0 ? "costing" : "raising"} ${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}` : "; budgetary impact not yet simulated"}.
         </p>
         <p>
           {updatedStatusMessage}
