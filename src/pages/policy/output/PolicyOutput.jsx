@@ -13,7 +13,7 @@ import { postUserPolicy, cullOldPolicies } from "../../../api/userPolicies";
 import SignupModal from "../../../modals/SignupModal";
 
 export default function PolicyOutput(props) {
-  const { metadata, policy, userProfile } = props;
+  const { metadata, policy, userProfile, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
 
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const [userPolicyId, setUserPolicyId] = useState(null);
@@ -69,9 +69,10 @@ export default function PolicyOutput(props) {
         };
 
         let failedAttempts = [];
-        let userPolicyId = null;
+        let policyId = null;
         try {
-          userPolicyId = await postUserPolicy(countryId, policyToSave);
+          policyId = await postUserPolicy(countryId, policyToSave);
+          setUserPolicyId(policyId);
         } catch (err) {
           failedAttempts = failedAttempts.concat(policyToSave);
         }
@@ -114,7 +115,7 @@ export default function PolicyOutput(props) {
   return (
     <>
       <SignupModal />
-      <FetchAndDisplayImpact {...props} />
+      <FetchAndDisplayImpact metadata={metadata} policy={policy} hasShownPopulationImpactPopup={hasShownPopulationImpactPopup} setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup} userPolicyId={userPolicyId} />
     </>
   );
 }

@@ -153,11 +153,9 @@ export function FetchAndDisplayImpact(props) {
     }
 
     updateUserPolicy(countryId, updatedUserPolicy)
-      .then((res) => res.json())
-      .then((resJson) => {
-        if (resJson.status !== "ok") {
+      .then((updatedPolicyId) => {
+        if (!updatedPolicyId) {
           console.error("Error while updating user policy:");
-          console.error(resJson);
         }
       });
   }, [impact, countryId, userPolicyId]);
