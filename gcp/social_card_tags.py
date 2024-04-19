@@ -73,7 +73,7 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
                 ".png",
                 ".jpeg",
                 ".jpg",
-                ".webp"
+                ".webp",
             ]:  # Twitter doesn't show the title so we include alternative versions.
                 for image_file in image_files:
                     if image_file.name.endswith(extension):
