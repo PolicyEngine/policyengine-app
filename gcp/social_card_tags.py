@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 # Load src/posts/posts.json
 with open("src/posts/posts.json") as f:
     posts: list = json.load(f)
-    post_by_slug = {post["filename"].split(".md")[0]: post for post in posts}
+    post_by_slug = {post["filename"].split(".")[0]: post for post in posts}
 
 
 def get_title(path: str, query_params: dict):
@@ -73,6 +73,7 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
                 ".png",
                 ".jpeg",
                 ".jpg",
+                ".webp"
             ]:  # Twitter doesn't show the title so we include alternative versions.
                 for image_file in image_files:
                     if image_file.name.endswith(extension):
