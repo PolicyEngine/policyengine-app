@@ -422,21 +422,6 @@ function PolicySimulationCard(props) {
     apiVersionMessage = <span>(reflects outdated model version <span style={{fontWeight: "bold"}}>{`${apiVersion}`}</span>, click to update).</span>
   }
 
-  /*
-  if (apiVersion == CURRENT_API_VERSION) {
-    if (dateAdded === dateLastUpdated) {
-      updatedStatusMessage = `First simulated ${moment(dateAdded).fromNow()} (reflects latest model updates)`;
-    } else {
-      updatedStatusMessage = `Last updated ${moment(dateLastUpdated).fromNow()} (reflects latest model updates)`;
-    }
-  } else {
-    if (dateAdded === dateLastUpdated) {
-      updatedStatusMessage = `First simulated ${moment(dateAdded).fromNow()} (reflects outdated model version ${apiVersion}, click to update).`;
-    } else {
-      updatedStatusMessage = `Last updated ${moment(dateLastUpdated).fromNow()} (reflects outdated model version ${apiVersion}, click to update).`;
-    }
-  }
-  */
     return (
       <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
       <Card 
