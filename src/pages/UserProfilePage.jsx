@@ -376,7 +376,13 @@ function UserProfileSection(props) {
             <p style={{fontWeight: "bold", margin: 0}}>User ID</p>
             <p style={{margin: 0}}>{accessedUserId}</p>
             <p style={{fontWeight: "bold", margin: 0}}>Username</p>
-            <p style={{margin: 0}}>{dispUsername}</p>
+            <p style={{margin: 0}}>
+              <span style={{
+                fontStyle: !accessedUserProfile.username && "italic"
+              }}>
+                {dispUsername}
+              </span>
+            </p>
             <p style={{fontWeight: "bold", margin: 0}}>User since</p>
             <p style={{margin: 0}}>{dispUserSince}</p>
             <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
