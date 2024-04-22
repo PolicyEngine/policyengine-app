@@ -408,7 +408,21 @@ function PolicySimulationCard(props) {
   const dateAdded = userPolicy.added_date;
   const dateLastUpdated = userPolicy.updated_date;
 
-  let updatedStatusMessage = null;
+  let dateMessage = null;
+  let apiVersionMessage = null;
+  if (dateAdded === dateLastUpdated) {
+    dateMessage = <span>First simulated {`${moment(dateAdded).fromNow()}`}</span>;
+  } else {
+    dateMessage = <span>Last updated {`${moment(dateLastUpdated).fromNow()}`}</span>;
+  }
+
+  if (apiVersion === CURRENT_API_VERSION) {
+    apiVersionMessage = <span>(reflects latest model updates)</span>;
+  } else {
+    apiVersionMessage = <span>(reflects outdated model version <span style={{fontWeight: "bold"}}>{`${apiVersion}`}</span>, click to update).</span>
+  }
+
+  /*
   if (apiVersion == CURRENT_API_VERSION) {
     if (dateAdded === dateLastUpdated) {
       updatedStatusMessage = `First simulated ${moment(dateAdded).fromNow()} (reflects latest model updates)`;
@@ -422,6 +436,7 @@ function PolicySimulationCard(props) {
       updatedStatusMessage = `Last updated ${moment(dateLastUpdated).fromNow()} (reflects outdated model version ${apiVersion}, click to update).`;
     }
   }
+  */
     return (
       <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
       <Card 
@@ -448,13 +463,13 @@ function PolicySimulationCard(props) {
           }}
         >{userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}</h6>
         <p>
-          Simulated in <i>{userPolicy.year}</i> over <i>{geography}</i> against <i>{userPolicy.baseline_label}</i>.
+          Simulated in <span style={{fontWeight: "bold"}}>{userPolicy.year}</span> over <span style={{fontWeight: "bold"}}>{geography}</span> against <span style={{fontWeight: "bold"}}>{userPolicy.baseline_label}</span>.
         </p>
         <p>
-          {userPolicy.number_of_provisions} provision{userPolicy.number_of_provisions == 1 ? "" : "s"}{userPolicy.budgetary_impact ? `, ${userPolicy.budgetary_impact < 0 ? "costing" : "raising"} ${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}` : "; budgetary impact not yet simulated"}.
+          <span style={{fontWeight: "bold"}}>{userPolicy.number_of_provisions}</span> provision{userPolicy.number_of_provisions == 1 ? "" : "s"}, {userPolicy.budgetary_impact < 0 ? "costing " : userPolicy.budgetary_impact > 0 ? "raising " : " "}<span style={{fontWeight: "bold"}}>{userPolicy.budgetary_impact ? `${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}` : "budgetary impact not yet simulated"}</span>.
         </p>
         <p>
-          {updatedStatusMessage}
+          {dateMessage} {apiVersionMessage}
         </p>
       </Card>
       </Link>
