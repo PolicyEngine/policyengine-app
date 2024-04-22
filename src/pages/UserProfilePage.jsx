@@ -459,7 +459,8 @@ function PolicySimulationCard(props) {
           style={{
             fontSize: "1.2rem",
             fontFamily: style.fonts.HEADER_FONT,
-            marginBottom: "16px"
+            marginBottom: "16px",
+            fontWeight: "bold"
           }}
         >{userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}</h6>
         <p>
