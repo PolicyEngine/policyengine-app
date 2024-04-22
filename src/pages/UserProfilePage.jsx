@@ -6,9 +6,9 @@ import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
 import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoadingOutlined, FileImageOutlined, UserOutlined } from "@ant-design/icons";
+import { LoadingOutlined, FileImageOutlined, UserOutlined, EditOutlined, CloseOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
-import { Card, Skeleton } from "antd";
+import { Button, Card, Input, Skeleton } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
 import { apiCall } from "../api/call";
 import { useEffect, useState } from "react";
@@ -226,7 +226,7 @@ export default function UserProfilePage(props) {
           title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
-          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading} dateFormatter={dateFormatter}/>
+          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading} dateFormatter={dateFormatter} setAccessedUserProfile={setAccessedUserProfile}/>
         </PageHeader>
         <Section
           title={sectionTitle}
@@ -257,23 +257,12 @@ function UserProfileSection(props) {
     accessedUserId,
     dispState,
     isHeaderLoading,
-    dateFormatter
+    dateFormatter,
+    setAccessedUserProfile
   } = props;
   const { isAuthenticated, isLoading, user } = useAuth0();
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
-
-
-  let dispUsername = "";
-  if (dispState === "noProfile") {
-    dispUsername = "No user found";
-  } else if (dispState === "empty") {
-    dispUsername = "Loading"
-  } else if (accessedUserProfile.username) {
-    dispUsername = accessedUserProfile.username
-  } else {
-    dispUsername = "None created";
-  }
 
   let dispUserSince = "";
   if (dispState === "noProfile") {
@@ -376,13 +365,7 @@ function UserProfileSection(props) {
             <p style={{fontWeight: "bold", margin: 0}}>User ID</p>
             <p style={{margin: 0}}>{accessedUserId}</p>
             <p style={{fontWeight: "bold", margin: 0}}>Username</p>
-            <p style={{margin: 0}}>
-              <span style={{
-                fontStyle: !accessedUserProfile.username && "italic"
-              }}>
-                {dispUsername}
-              </span>
-            </p>
+            <UsernameDisplayAndEditor dispState={dispState} accessedUserProfile={accessedUserProfile} countryId={countryId} setAccessedUserProfile={setAccessedUserProfile}/>
             <p style={{fontWeight: "bold", margin: 0}}>User since</p>
             <p style={{margin: 0}}>{dispUserSince}</p>
             <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
@@ -460,4 +443,129 @@ function PolicySimulationCard(props) {
       </Card>
       </Link>
     );
+}
+
+function UsernameDisplayAndEditor(props) {
+  const {
+    dispState,
+    accessedUserProfile,
+    countryId,
+    setAccessedUserProfile
+  } = props;
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState("");
+
+  function handleClick() {
+    setIsEditing(prev => !prev);
+  }
+
+  async function handleSubmit() {
+    const USER_PROFILE_PATH = `/${countryId}/user_profile`;
+    const body = {
+      user_id: accessedUserProfile.user_id,
+      username: value
+    }
+
+    try {
+      const res = await apiCall(USER_PROFILE_PATH, body, "PUT");
+      const resJson = await res.json();
+      if (resJson.status === "ok") {
+        const data = await apiCall(
+          `/${countryId}/user_profile?user_id=${accessedUserProfile.user_id}`
+        );
+        const dataJson = await data.json();
+        if (data.status === 404 && dataJson.status === "ok") {
+          setAccessedUserProfile({});
+        }
+        if (data.status < 200 || data.status >= 300) {
+          console.error("Error while fetching accessed user profile");
+          console.error(dataJson);
+          setAccessedUserProfile({});
+        } else {
+          setAccessedUserProfile(dataJson.result);
+        }
+        setIsEditing(false);
+      } else {
+        console.error("Error while attempting to update username");
+      }
+
+    } catch (err) {
+      console.error(`Error while attempting to update username: ${err}`);
+    }
+  }
+
+  function handleUpdate(e) {
+    setValue(e.target.value);
+  }
+
+  let dispUsername = "";
+  if (dispState === "noProfile") {
+    dispUsername = "No user found";
+  } else if (dispState === "empty") {
+    dispUsername = "Loading"
+  } else if (accessedUserProfile.username) {
+    dispUsername = accessedUserProfile.username
+  } else {
+    dispUsername = "None created";
+  }
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        gap: "10px"
+      }}
+    >
+      {isEditing ? (
+        <>
+          <Input
+            defaultValue={accessedUserProfile.username}
+            size="small"
+            onPressEnter={handleSubmit}
+            onChange={handleUpdate}
+            style={{
+              height: "1.4rem",
+              borderRadius: 0
+            }}
+          />
+          <Button 
+            type="primary" 
+            size="small"
+            onClick={handleSubmit}
+            style={{
+              backgroundColor: style.colors.BLUE_PRIMARY,
+              color: style.colors.WHITE,
+              height: "1.4rem",
+              borderColor: `1px solid ${style.colors.BLUE_PRIMARY}`,
+              borderRadius: 0,
+              fontWeight: "300"
+            }}
+          >Submit</Button>
+        </>
+      ) : (
+        <p style={{margin: 0}}>
+          {dispUsername}
+        </p>
+      )
+      }
+      { dispState === "ownProfile" && (
+        isEditing ? (
+
+          <CloseOutlined onClick={handleClick} style={{color: style.colors.DARK_GRAY}}/>
+        ) : (
+          <EditOutlined
+            onClick={handleClick}
+            style={{
+              color: style.colors.DARK_GRAY
+            }}
+          />
+        )
+      )
+      }
+    </div>
+  )
+
 }
