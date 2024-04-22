@@ -245,7 +245,7 @@ export function getPlotlyAxisFormat(unit, values, precisionOverride) {
     const r = range();
     const s = unit === "/1" ? 100 : 1;
     const d = (r[1] - r[0]) * s;
-    return d > 10 ? 0 : d === 0 ? 1 : 1 - Math.floor(Math.log10(d));
+    return d > 10 ? 0 : d === 0 ? 1 : 1 - Math.round(Math.log10(d));
   };
 
   const isCurrency = Object.keys(currencyMap).includes(unit);
