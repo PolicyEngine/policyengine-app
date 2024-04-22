@@ -25,10 +25,23 @@ import {
   MailOutlined,
   PrinterOutlined,
   TwitterOutlined,
+  FileImageOutlined,
 } from "@ant-design/icons";
 import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
+
+// Function to handle image loading
+const handleImageLoad = (path) => {
+  // Try to load the image
+  try {
+    return require("../images/posts/" + path);
+  } catch (error) {
+    // If the require fails, return the fallback image
+    console.error(`Failed to load image at ${path}:`, error);
+    return "";
+  }
+};
 
 export default function BlogPage() {
   // /uk/research/blog-slug-here
@@ -38,10 +51,8 @@ export default function BlogPage() {
 
   const post = posts.find((post) => post.slug === postName);
   const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
-  const imageUrl = post.image
-    ? require("../images/posts/" + post.image)
-    : require("../images/placeholder.png");
 
+  const imageUrl = post.image ? handleImageLoad(post.image) : "";
   const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
@@ -371,11 +382,32 @@ function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
         <div style={{ flex: 3 }}>
           <h1>{post.title}</h1>
           <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          <img
-            alt={post.title}
-            src={imageUrl}
-            style={{ width: "100%", marginTop: 50 }}
-          />
+          {imageUrl === "" ? (
+            <div
+              style={{
+                height: "300px",
+                width: "100%",
+                display: "flex",
+                border: "1px solid grey",
+                position: "relative",
+              }}
+            >
+              <FileImageOutlined
+                style={{
+                  fontSize: "32px",
+                  position: "absolute",
+                  top: "250px",
+                  right: "20px",
+                }}
+              />
+            </div>
+          ) : (
+            <img
+              alt={post.title}
+              src={imageUrl}
+              style={{ width: "100%", marginTop: 50 }}
+            />
+          )}
         </div>
         <div style={{ flex: 1 }}></div>
       </div>
