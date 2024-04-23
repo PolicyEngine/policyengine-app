@@ -29,10 +29,14 @@ const STATES = {
 export default function UserProfilePage(props) {
   // This component has three possible display states, saved as the stateful
   // variable dispState:
-  // * empty - no data has yet been loaded
-  // * noProfile - fetched user was not found
-  // * otherProfile - fetched user is not logged in user
-  // * ownProfile - fetched user is logged in user
+  // * empty - display profile as if no data has yet been loaded
+  // * noProfile - display profile as if fetched user was not found
+  // * otherProfile - display profile as if fetched user is not logged in user
+  // * ownProfile - display profile as if fetched user is logged in user
+
+  // Most of the time, isOwnProfile below aligns with ownProfile dispState,
+  // except when user wants to view their public-facing profile, in which case
+  // dispState is set to otherProfile, but isOwnProfile remains true
 
   // Loading is treated separately, through two stateful variables, as
   // two different parts of the component fetch data separately
@@ -233,7 +237,7 @@ export default function UserProfilePage(props) {
           title="Profile"
           backgroundColor={style.colors.BLUE_98}
         >
-          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading} dateFormatter={dateFormatter} setAccessedUserProfile={setAccessedUserProfile}/>
+          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading} dateFormatter={dateFormatter} setAccessedUserProfile={setAccessedUserProfile} setDispState={setDispState} />
         </PageHeader>
         <Section
           title={sectionTitle}
@@ -265,7 +269,8 @@ function UserProfileSection(props) {
     dispState,
     isHeaderLoading,
     dateFormatter,
-    setAccessedUserProfile
+    setAccessedUserProfile,
+    setDispState
   } = props;
   const { isAuthenticated, isLoading, user } = useAuth0();
   const countryId = useCountryId();
@@ -377,6 +382,11 @@ function UserProfileSection(props) {
             <p style={{margin: 0}}>{dispUserSince}</p>
             <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
             <p style={{margin: 0}}>{dispCountry}</p>
+            {
+              isOwnProfile && (
+                <PublicPrivateSwitch dispState={dispState} setDispState={setDispState} />
+              )
+            }
         </div>
       </Skeleton>
     </div>
@@ -574,5 +584,52 @@ function UsernameDisplayAndEditor(props) {
       }
     </div>
   )
+
+}
+
+function PublicPrivateSwitch(props) {
+  const {
+    dispState,
+    setDispState
+  } = props;
+
+  function handleClick() {
+    setDispState((prev) => {
+      if (prev === STATES.OWN_PROFILE) {
+        return STATES.OTHER_PROFILE;
+      } else if (prev === STATES.OTHER_PROFILE) {
+        return STATES.OWN_PROFILE;
+      } else {
+        console.error("Error within PublicPrivateSwitch's click handler function");
+        return prev;
+      }
+    })
+  }
+
+  return (
+    <button
+      onClick={handleClick}
+      style={{
+        backgroundColor: "transparent",
+        border: 0,
+        padding: 0,
+        display: "inline",
+        appearance: "none",
+        color: style.colors.BLUE_PRIMARY
+      }}
+    >
+      <p
+        style={{
+          marginBottom: 0,
+          textDecorationLine: "underline",
+          textDecorationColor: style.colors.BLUE_PRIMARY
+        }}
+      >
+        {dispState === STATES.OWN_PROFILE ? "View public profile" : dispState === STATES.OTHER_PROFILE ? "View private profile" : ""}
+      </p>
+    </button>
+
+
+  );
 
 }
