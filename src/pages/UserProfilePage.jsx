@@ -19,6 +19,13 @@ import { countryNames } from "../data/countries";
 import moment from "moment";
 import { formatCurrencyAbbr } from "../lang/format";
 
+const STATES = {
+  EMPTY: "empty",
+  NO_PROFILE: "noProfile",
+  OTHER_PROFILE: "otherProfile",
+  OWN_PROFILE: "ownProfile"
+};
+
 export default function UserProfilePage(props) {
   // This component has three possible display states, saved as the stateful
   // variable dispState:
@@ -41,7 +48,7 @@ export default function UserProfilePage(props) {
   const accessedUserId = params.user_id;
   const isOwnProfile = Number(authedUserProfile?.user_id) === Number(accessedUserId);
 
-  const [dispState, setDispState] = useState("empty");
+  const [dispState, setDispState] = useState(STATES.EMPTY);
   const [isHeaderLoading, setIsHeaderLoading] = useState(true);
   const [arePoliciesLoading, setArePoliciesLoading] = useState(true);
   const [accessedUserPolicies, setAccessedUserPolicies] = useState([]);
@@ -66,7 +73,7 @@ export default function UserProfilePage(props) {
           const dataJson = await data.json();
           if (data.status === 404 && dataJson.status === "ok") {
             setAccessedUserProfile({});
-            setDispState("noProfile");
+            setDispState(STATES.NO_PROFILE);
           }
           if (data.status < 200 || data.status >= 300) {
             console.error("Error while fetching accessed user profile");
@@ -74,7 +81,7 @@ export default function UserProfilePage(props) {
             setAccessedUserProfile({});
           } else {
             setAccessedUserProfile(dataJson.result);
-            setDispState("otherProfile");
+            setDispState(STATES.OTHER_PROFILE);
           }
         } catch (err) {
           console.error("Error within UserProfilePage: ");
@@ -93,7 +100,7 @@ export default function UserProfilePage(props) {
       // Execute fetch
       fetchProfile();
     } else {
-      setDispState("ownProfile");
+      setDispState(STATES.OWN_PROFILE);
       setAccessedUserProfile(authedUserProfile);
       setIsHeaderLoading(false);
     }
@@ -180,7 +187,7 @@ export default function UserProfilePage(props) {
   const loadingCards = Array(4).fill(<Card loading={true} />);
 
   const noCardPlaceholder = (
-    <p style={{gridColumn: "1 / -1"}}>{dispState === "noProfile" ? "User not found" : `${dispState === "ownProfile" ? "You have" : "This user has"} no saved policy simulations.`}</p>
+    <p style={{gridColumn: "1 / -1"}}>{dispState === STATES.NO_PROFILE ? "User not found" : `${dispState === STATES.OWN_PROFILE ? "You have" : "This user has"} no saved policy simulations.`}</p>
   )
 
   console.log(accessedUserPolicies)
@@ -200,18 +207,18 @@ export default function UserProfilePage(props) {
   });
 
   let sectionTitle = "Saved policy simulations";
-  if (dispState === "ownProfile") {
+  if (dispState === STATES.OWN_PROFILE) {
     sectionTitle = "My saved policy simulations";
-  } else if (dispState === "otherProfile" && accessedUserProfile.username) {
+  } else if (dispState === STATES.OTHER_PROFILE && accessedUserProfile.username) {
     sectionTitle = `${accessedUserProfile.username}'s saved policy simulations`;
-  } else if (dispState === "otherProfile") {
+  } else if (dispState === STATES.OTHER_PROFILE) {
     sectionTitle = `User #${accessedUserProfile.user_id}'s saved policy simulations`;
   }
 
   let title = "Profile | PolicyEngine";
-  if ((dispState === "ownProfile" || dispState === "otherProfile") && accessedUserProfile.username) {
+  if ((dispState === STATES.OWN_PROFILE || dispState === STATES.OTHER_PROFILE) && accessedUserProfile.username) {
     title = `${accessedUserProfile.username}'s Profile | PolicyEngine`;
-  } else if (dispState === "ownProfile" || dispState === "otherProfile") {
+  } else if (dispState === STATES.OWN_PROFILE || dispState === STATES.OTHER_PROFILE) {
     title = `User #${accessedUserProfile.user_id}'s Profile | PolicyEngine`;
   }
 
@@ -265,18 +272,18 @@ function UserProfileSection(props) {
   const displayCategory = useDisplayCategory();
 
   let dispUserSince = "";
-  if (dispState === "noProfile") {
+  if (dispState === STATES.NO_PROFILE) {
     dispUserSince = "No user found";
-  } else if (dispState === "empty") {
+  } else if (dispState === STATES.EMPTY) {
     dispUserSince = "Loading"
   } else {
     dispUserSince = dateFormatter.format(accessedUserProfile.user_since);
   }
 
   let dispCountry = "";
-  if (dispState === "noProfile") {
+  if (dispState === STATES.NO_PROFILE) {
     dispCountry = "No user found";
-  } else if (dispState === "empty") {
+  } else if (dispState === STATES.EMPTY) {
     dispCountry = "Loading"
   } else if (countryNames[accessedUserProfile.primary_country].singleWord) {
     dispCountry = countryNames[accessedUserProfile.primary_country].singleWord;
@@ -298,7 +305,7 @@ function UserProfileSection(props) {
       }}
     >
       {
-        dispState === "ownProfile" && isAuthenticated && user && user.picture ? (
+        dispState === STATES.OWN_PROFILE && isAuthenticated && user && user.picture ? (
           <img
             src={user.picture}
             alt="Profile"
@@ -326,7 +333,7 @@ function UserProfileSection(props) {
                     fontSize: "32px"
                   }}
                 />
-              ) : dispState === "otherProfile" ? (
+              ) : dispState === STATES.OTHER_PROFILE ? (
                 <UserOutlined
                   style={{
                     fontSize: "32px"
@@ -353,7 +360,7 @@ function UserProfileSection(props) {
           }}
         >
           {
-            dispState === "ownProfile" && (
+            dispState === STATES.OWN_PROFILE && (
               <>
                 <p style={{fontWeight: "bold", margin: 0}}>Name</p>
                 <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
@@ -500,9 +507,9 @@ function UsernameDisplayAndEditor(props) {
   }
 
   let dispUsername = "";
-  if (dispState === "noProfile") {
+  if (dispState === STATES.NO_PROFILE) {
     dispUsername = "No user found";
-  } else if (dispState === "empty") {
+  } else if (dispState === STATES.EMPTY) {
     dispUsername = "Loading"
   } else if (accessedUserProfile.username) {
     dispUsername = accessedUserProfile.username
@@ -551,7 +558,7 @@ function UsernameDisplayAndEditor(props) {
         </p>
       )
       }
-      { dispState === "ownProfile" && (
+      { dispState === STATES.OWN_PROFILE && (
         isEditing ? (
 
           <CloseOutlined onClick={handleClick} style={{color: style.colors.DARK_GRAY}}/>
