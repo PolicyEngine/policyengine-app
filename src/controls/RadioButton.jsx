@@ -1,30 +1,51 @@
-import { Radio } from "antd";
 import style from "../style";
 
 export default function RadioButton(props) {
-  const { keys, labels, onChange, value } = props;
+  const { keys, labels, onChange, value, defaultValue } = props;
 
-  // Create options array for Radio.Group
-  const options = keys.map((key, index) => ({
-    label: labels[index],
-    value: key,
-    style: {
-      fontSize: "16px",
-      borderRadius: "0px",
-      backgroundColor:
-        index === 0 ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY,
-      color: index === 0 ? style.colors.WHITE : style.colors.DARK_GRAY,
-    },
-  }));
+  // Items are displayed in gray boxes horizontally
 
   return (
-    <Radio.Group
-      options={options}
-      onChange={onChange}
-      value={value || keys[0]}
-      optionType="button"
-      buttonStyle="solid"
-      size="large"
-    />
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {keys.map((key, index) => {
+        const label = labels[index];
+        const checked = value === key;
+        const defaultChecked = defaultValue === key;
+        return (
+          <div
+            key={key}
+            style={{
+              backgroundColor: checked
+                ? style.colors.BLUE
+                : style.colors.MEDIUM_DARK_GRAY,
+              color: checked ? style.colors.WHITE : style.colors.BLACK,
+              marginBottom: 10,
+              cursor: "pointer",
+              padding: 10,
+              paddingLeft: 20,
+              paddingRight: 20,
+              borderWidth: 1,
+              borderStyle: "solid",
+              marginRight: 5,
+              borderRadius: 25,
+              borderColor: defaultChecked
+                ? style.colors.BLUE
+                : style.colors.MEDIUM_DARK_GRAY,
+            }}
+            onClick={() => onChange(key)}
+          >
+            {label}
+          </div>
+        );
+      })}
+    </div>
   );
 }
