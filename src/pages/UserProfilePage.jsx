@@ -615,14 +615,16 @@ function PublicPrivateSwitch(props) {
         padding: 0,
         display: "inline",
         appearance: "none",
-        color: style.colors.BLUE_PRIMARY
+        color: style.colors.BLUE_PRIMARY,
+        gridColumn: "1 / -1",
+        width: "max-content"
       }}
     >
       <p
         style={{
           marginBottom: 0,
           textDecorationLine: "underline",
-          textDecorationColor: style.colors.BLUE_PRIMARY
+          textDecorationColor: style.colors.BLUE_PRIMARY,
         }}
       >
         {dispState === STATES.OWN_PROFILE ? "View public profile" : dispState === STATES.OTHER_PROFILE ? "View private profile" : ""}
