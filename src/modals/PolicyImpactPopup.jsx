@@ -31,15 +31,16 @@ export default function PolicyImpactPopup(props) {
           fontWeight: "bold",
           fontSize: 20
         }}
-      >PolicyEngine estimates reform impacts using microsimulation.{" "}</h6>
+      >PolicyEngine simulates your reform over thousands of households{" "}</h6>
           <p style={{
             marginBottom: "16px"
           }}>
+PolicyEngine estimates reform impacts using microsimulation.{" "}
             <a
               href={metadata.countryId === "us" ? US_LINK : UK_LINK}
               target="_blank"
             >
-              Learn more about PolicyEngine&apos;s methods
+              Learn more
             </a>
           </p>
       <div style={{ display: "flex", justifyContent: "center" }}>
