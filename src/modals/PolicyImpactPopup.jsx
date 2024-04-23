@@ -39,6 +39,7 @@ PolicyEngine estimates reform impacts using microsimulation.{" "}
             <a
               href={metadata.countryId === "us" ? US_LINK : UK_LINK}
               target="_blank"
+              rel="noreferrer"
             >
               Learn more
             </a>

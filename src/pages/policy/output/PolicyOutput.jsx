@@ -18,7 +18,7 @@ export default function PolicyOutput(props) {
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const [userPolicyId, setUserPolicyId] = useState(null);
   const countryId = useCountryId();
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated } = useAuth0();
 
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
@@ -85,7 +85,10 @@ export default function PolicyOutput(props) {
     if (countryId) {
       attribPolicyToUser();
     }
-  }, [countryId]);
+  // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
+  // are themselves a hook, with setSavedPolicies being a setter
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countryId, geography, isAuthenticated, metadata, policy, timePeriod, userProfile]);
 
   let impactType = null;
   if (focus !== "policyOutput") {
