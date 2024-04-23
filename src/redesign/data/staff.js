@@ -45,6 +45,16 @@ export const staff = {
     University.`,
     image: require("../../images/authors/anthony-volk.jpg"),
   },
+  martin_holmer: {
+    name: "Martin Holmer",
+    bio: `is an economist at PolicyEngine (consultant). 
+    He focuses on our state income tax models and validation architecture, 
+    and has contributed other models such as the premium tax credit. 
+    Previously, he was the lead developer for the Policy Simulation Library's Tax-Calculator federal income tax microsimulation model, 
+    and he has built microsimulation models around the world for organizations including the World Bank and the US Social Security Administration. 
+    Martin has a Ph.D. in economics from MIT.`,
+    image: require("../images/authors/martin_holmer.png"),
+  },
 };
 
 export const advisors = {
