@@ -20,11 +20,6 @@ function getReformPolicyLabel(policy) {
   return reformPolicyId ? `Policy #${reformPolicyId}` : "reform";
 }
 
-const calculateFormattedPercentage = (value) => {
-  const formattedPercentage = (value * 100).toFixed(2);
-  return `${formattedPercentage}%`;
-};
-
 export default function ParameterOverTime(props) {
   const { baseMap, reformMap, parameter, policy, metadata } = props;
   const mobile = useMobile();
@@ -54,8 +49,6 @@ export default function ParameterOverTime(props) {
   const yaxisValues = reformedY ? y.concat(reformedY) : y;
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
-  const customdata = y.map(calculateFormattedPercentage);
-  const reformedCustomdata = reformedY.map(calculateFormattedPercentage);
 
   return (
     <>
@@ -72,8 +65,6 @@ export default function ParameterOverTime(props) {
               color: style.colors.GRAY,
             },
             name: "Current law",
-            customdata: customdata,
-            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
           reformMap && {
             x: reformedX,
@@ -87,16 +78,11 @@ export default function ParameterOverTime(props) {
               color: style.colors.BLUE,
             },
             name: getReformPolicyLabel(policy),
-            customdata: reformedCustomdata,
-            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
         ].filter((x) => x)}
         layout={{
           xaxis: { ...xaxisFormat },
-          yaxis: {
-            ...yaxisFormat,
-            tickformat: ",.0%",
-          },
+          yaxis: { ...yaxisFormat },
           legend: {
             // Position above the plot
             y: 1.2,
