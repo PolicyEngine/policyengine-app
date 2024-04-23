@@ -194,9 +194,10 @@ export default function UserProfilePage(props) {
     <p style={{gridColumn: "1 / -1"}}>{dispState === STATES.NO_PROFILE ? "User not found" : `${dispState === STATES.OWN_PROFILE ? "You have" : "This user has"} no saved policy simulations.`}</p>
   )
 
-  console.log(accessedUserPolicies)
-
   const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
+    // This returns a React key error, but I see no way of fixing this (short of
+    // returning empty JSX, which seems illogical), and React doesn't need the keys
+    // to maintain the list anyway, since the list is empty
     if (!metadata) return null;
 
     return (
@@ -204,6 +205,7 @@ export default function UserProfilePage(props) {
         metadata={metadata}
         userPolicy={userPolicy}
         key={`${index}-${userPolicy.id}`}
+        keyValue={`${index}-${userPolicy.id}`}
         dateFormatter={dateFormatter}
       />
     )
@@ -399,7 +401,8 @@ function PolicySimulationCard(props) {
   const {
     metadata,
     userPolicy,
-    dateFormatter
+    dateFormatter,
+    keyValue
   } = props;
 
   const dispCat = useDisplayCategory();
@@ -425,8 +428,8 @@ function PolicySimulationCard(props) {
   }
 
     return (
-      <Link to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
-      <Card 
+      <Link key={keyValue} to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
+      <Card
         style={{
           width: "100%",
           minWidth: 0,
@@ -441,6 +444,7 @@ function PolicySimulationCard(props) {
           backgroundColor: userPolicy.api_version < CURRENT_API_VERSION && style.colors.LIGHT_GRAY
         }}
         hoverable={true}
+        key={keyValue}
       >
         <h6
           style={{
