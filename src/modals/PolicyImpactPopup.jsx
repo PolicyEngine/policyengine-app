@@ -1,7 +1,7 @@
 import { Modal } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
-import Button from "../../../controls/Button";
+import Button from "../controls/Button";
 
 export default function PolicyImpactPopup(props) {
   const [needToOpenModal, setNeedToOpenModal] = useState(true);

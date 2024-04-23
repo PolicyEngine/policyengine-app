@@ -7,7 +7,7 @@ import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
-import PoliciesModelledPopup from "./PoliciesModelledPopup";
+import PoliciesModelledPopup from "../../../modals/PoliciesModelledPopup";
 import HOUSEHOLD_OUTPUT_TREE from "./tree";
 import React from "react";
 import { message } from "antd";

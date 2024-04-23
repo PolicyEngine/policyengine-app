@@ -3,7 +3,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { getPolicyOutputTree, policyOutputs } from "./tree";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BottomCarousel from "../../../layout/BottomCarousel";
-import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
+import PolicyImpactPopup from "../../../modals/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
 import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
