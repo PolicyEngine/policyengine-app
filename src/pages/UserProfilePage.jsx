@@ -316,7 +316,8 @@ function UserProfileSection(props) {
             alt="Profile"
             style={{
               height: "100px",
-              objectFit: "cover"
+              objectFit: "cover",
+              alignSelf: "center"
             }}
           />
         ) : (
@@ -328,7 +329,8 @@ function UserProfileSection(props) {
               height: "100px",
               aspectRatio: 1,
               border: `0.5px solid ${style.colors.DARK_GRAY}`,
-              color: style.colors.DARK_GRAY
+              color: style.colors.DARK_GRAY,
+              alignSelf: "center"
             }}
           >
             {
