@@ -8,7 +8,7 @@ import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoadingOutlined, FileImageOutlined, UserOutlined, EditOutlined, CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
-import { Button, Card, Input, Skeleton, Tooltip } from "antd";
+import { Card, Input, Skeleton, Tooltip } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
 import { apiCall } from "../api/call";
 import { useEffect, useState } from "react";
@@ -274,7 +274,7 @@ function UserProfileSection(props) {
     setAccessedUserProfile,
     setDispState
   } = props;
-  const { isAuthenticated, isLoading, user } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
 
@@ -401,11 +401,9 @@ function PolicySimulationCard(props) {
   const {
     metadata,
     userPolicy,
-    dateFormatter,
     keyValue
   } = props;
 
-  const dispCat = useDisplayCategory();
   const CURRENT_API_VERSION = metadata?.version;
   const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography)[0].label || "Unknown";
 
@@ -458,7 +456,7 @@ function PolicySimulationCard(props) {
           Simulated in <span style={{fontWeight: "bold"}}>{userPolicy.year}</span> over <span style={{fontWeight: "bold"}}>{geography}</span> against <span style={{fontWeight: "bold"}}>{userPolicy.baseline_label}</span>.
         </p>
         <p>
-          <span style={{fontWeight: "bold"}}>{userPolicy.number_of_provisions}</span> provision{userPolicy.number_of_provisions == 1 ? "" : "s"}, {userPolicy.budgetary_impact < 0 ? "costing " : userPolicy.budgetary_impact > 0 ? "raising " : " "}<span style={{fontWeight: "bold"}}>{userPolicy.budgetary_impact ? `${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}` : "budgetary impact not yet simulated"}</span>.
+          <span style={{fontWeight: "bold"}}>{userPolicy.number_of_provisions}</span> provision{userPolicy.number_of_provisions === 1 ? "" : "s"}, {userPolicy.budgetary_impact < 0 ? "costing " : userPolicy.budgetary_impact > 0 ? "raising " : " "}<span style={{fontWeight: "bold"}}>{userPolicy.budgetary_impact ? `${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}` : "budgetary impact not yet simulated"}</span>.
         </p>
         <p>
           {dateMessage} {apiVersionMessage}
