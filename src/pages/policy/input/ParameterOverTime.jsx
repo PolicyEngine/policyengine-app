@@ -7,6 +7,7 @@ import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { localeCode } from "lang/format";
 import { defaultEndDate, defaultStartDate } from "../../../data/constants";
+import { currencyMap } from "../../../api/variables";
 
 /**
  *
@@ -50,6 +51,34 @@ export default function ParameterOverTime(props) {
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
 
+  const formatValue = (value, unit, metadata) => {
+    const locale = localeCode(metadata.countryId);
+
+    if (unit === "/1") {
+      const formattedPercentage = (value * 100).toFixed(2);
+      return `${formattedPercentage}%`;
+    } else if (unit === "bool" || unit === "abolition") {
+      return value ? "True" : "False";
+    } else if (unit === "currency") {
+      const currencySymbol = parameter.unit
+      return value.toLocaleString(locale, {
+        style: "currency",
+        currency: metadata.currency,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }) + ` (${currencySymbol})`;
+    } else {
+      return `${value.toLocaleString(locale, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })} ${unit}`;
+    }
+  };
+
+
+  const customData = y.map((value) => formatValue(value, parameter.unit, metadata));
+  const reformedCustomData = reformedY.map((value) => formatValue(value, parameter.unit, metadata));
+
   return (
     <>
       <Plot
@@ -65,6 +94,8 @@ export default function ParameterOverTime(props) {
               color: style.colors.GRAY,
             },
             name: "Current law",
+            customdata: customData,
+            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
           reformMap && {
             x: reformedX,
@@ -78,6 +109,8 @@ export default function ParameterOverTime(props) {
               color: style.colors.BLUE,
             },
             name: getReformPolicyLabel(policy),
+            customdata: reformedCustomData,
+            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
         ].filter((x) => x)}
         layout={{
