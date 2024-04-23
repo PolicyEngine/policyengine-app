@@ -100,8 +100,6 @@ export default function PolicyEngine({ pathname }) {
   };
 
   const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
-  const [hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup] =
-    useState(false);
   const [userProfile, setUserProfile] = useState({});
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
@@ -248,8 +246,6 @@ export default function PolicyEngine({ pathname }) {
         householdId={householdId}
         policy={policy}
         userProfile={userProfile}
-        hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-        setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
       />
     </Suspense>
   );

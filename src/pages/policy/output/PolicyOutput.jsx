@@ -13,7 +13,7 @@ import { postUserPolicy, cullOldPolicies } from "../../../api/userPolicies";
 import SignupModal from "../../../modals/SignupModal";
 
 export default function PolicyOutput(props) {
-  const { metadata, policy, userProfile, hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup } = props;
+  const { metadata, policy, userProfile } = props;
 
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const [userPolicyId, setUserPolicyId] = useState(null);
@@ -118,7 +118,7 @@ export default function PolicyOutput(props) {
   return (
     <>
       <SignupModal />
-      <FetchAndDisplayImpact metadata={metadata} policy={policy} hasShownPopulationImpactPopup={hasShownPopulationImpactPopup} setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup} userPolicyId={userPolicyId} />
+      <FetchAndDisplayImpact metadata={metadata} policy={policy} userPolicyId={userPolicyId} />
     </>
   );
 }

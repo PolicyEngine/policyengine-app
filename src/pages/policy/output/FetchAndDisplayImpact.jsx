@@ -25,8 +25,6 @@ import useCountryId from "../../../hooks/useCountryId";
  * @param {object} props
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
- * @param {boolean} props.hasShownPopulationImpactPopup indicator
- * @param {function} props.setHasShownPopulationImpactPopup setter for indicator
  * @returns a component for fetching the impact data and communicating relevant
  * information to the user
  */
@@ -44,8 +42,6 @@ export function FetchAndDisplayImpact(props) {
   const {
     metadata,
     policy,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
     userPolicyId
   } = props;
   const policyRef = useRef(null);
@@ -178,8 +174,6 @@ export function FetchAndDisplayImpact(props) {
       impact={impact}
       policy={policy}
       metadata={metadata}
-      hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-      setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
     />
   );
 }
@@ -194,8 +188,6 @@ export function FetchAndDisplayImpact(props) {
  * @param {object} props
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
- * @param {boolean} props.hasShownPopulationImpactPopup indicator
- * @param {function} props.setHasShownPopulationImpactPopup setter for indicator
  * @returns a component for fetching the cliff impact data and communicating
  * relevant information to the user
  */
@@ -213,8 +205,6 @@ export function FetchAndDisplayCliffImpact(props) {
   const {
     metadata,
     // policy,
-    // hasShownPopulationImpactPopup,
-    // setHasShownPopulationImpactPopup,
   } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
@@ -285,8 +275,6 @@ export function FetchAndDisplayCliffImpact(props) {
       impact={impact}
       policy={policy}
       metadata={metadata}
-      hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-      setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
     />
   );
   */

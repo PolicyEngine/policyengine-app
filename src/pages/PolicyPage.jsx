@@ -79,8 +79,6 @@ export default function PolicyPage(props) {
     policy,
     userProfile,
     setPolicy,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
   } = props;
   const mobile = useMobile();
 
@@ -138,8 +136,6 @@ export default function PolicyPage(props) {
           metadata={metadata}
           policy={policy}
           userProfile={userProfile}
-          hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-          setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
         />
       </>
     );
