@@ -6,9 +6,9 @@ import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
 import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoadingOutlined, FileImageOutlined, UserOutlined, EditOutlined, CloseOutlined } from "@ant-design/icons";
+import { LoadingOutlined, FileImageOutlined, UserOutlined, EditOutlined, CloseOutlined, CheckOutlined } from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
-import { Button, Card, Input, Skeleton } from "antd";
+import { Button, Card, Input, Skeleton, Tooltip } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
 import { apiCall } from "../api/call";
 import { useEffect, useState } from "react";
@@ -544,23 +544,16 @@ function UsernameDisplayAndEditor(props) {
             onPressEnter={handleSubmit}
             onChange={handleUpdate}
             style={{
-              height: "1.4rem",
+              height: "1.3rem",
               borderRadius: 0
             }}
           />
-          <Button 
-            type="primary" 
-            size="small"
-            onClick={handleSubmit}
-            style={{
-              backgroundColor: style.colors.BLUE_PRIMARY,
-              color: style.colors.WHITE,
-              height: "1.4rem",
-              borderColor: `1px solid ${style.colors.BLUE_PRIMARY}`,
-              borderRadius: 0,
-              fontWeight: "300"
-            }}
-          >Submit</Button>
+          <Tooltip title="Submit changes">
+            <CheckOutlined
+              onClick={handleSubmit}
+              style={{color: style.colors.DARK_GRAY}}
+            />
+          </Tooltip>
         </>
       ) : (
         <p style={{margin: 0}}>
@@ -571,7 +564,9 @@ function UsernameDisplayAndEditor(props) {
       { dispState === STATES.OWN_PROFILE && (
         isEditing ? (
 
-          <CloseOutlined onClick={handleClick} style={{color: style.colors.DARK_GRAY}}/>
+          <Tooltip title="Cancel">
+            <CloseOutlined onClick={handleClick} style={{color: style.colors.DARK_GRAY}}/>
+          </Tooltip>
         ) : (
           <EditOutlined
             onClick={handleClick}
