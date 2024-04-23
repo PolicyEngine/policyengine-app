@@ -1,5 +1,4 @@
 import { Modal } from "antd";
-import { useEffect } from "react";
 import { useState } from "react";
 import Button from "../controls/Button";
 
@@ -10,68 +9,46 @@ export default function PolicyImpactPopup(props) {
     hasShownPopulationImpactPopup,
     setHasShownPopulationImpactPopup,
   } = props;
-  const content = (
-    <div>
-      <div>
-        {metadata.countryId === "us" ? (
-          <p>
-            PolicyEngine estimates reform impacts using microsimulation.{" "}
+
+  function handleSubmit() {
+
+    // Destroy modal
+    setNeedToOpenModal(false);
+  }
+
+  const US_LINK = "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
+  const UK_LINK = "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
+
+  return (
+    <Modal 
+      open={needToOpenModal}
+      footer={null}
+      closable={false}
+    >
+      <h6
+        style={{
+          marginBottom: "12px",
+          fontWeight: "bold",
+          fontSize: 20
+        }}
+      >PolicyEngine estimates reform impacts using microsimulation.{" "}</h6>
+          <p style={{
+            marginBottom: "16px"
+          }}>
             <a
-              href="/us/research/enhancing-the-current-population-survey-for-policy-analysis"
+              href={metadata.countryId === "us" ? US_LINK : UK_LINK}
               target="_blank"
             >
-              Learn more
+              Learn more about PolicyEngine&apos;s methods
             </a>
           </p>
-        ) : (
-          <p>
-            PolicyEngine estimates reform impacts using microsimulation.{" "}
-            <a href="/uk/research/how-machine-learning-tools-make-policyengine-more-accurate">
-              Learn more
-            </a>
-          </p>
-        )}
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <Button
           type="primary"
-          onClick={() => Modal.destroyAll()}
+          onClick={handleSubmit}
           text="See the results"
         />
       </div>
-    </div>
+    </Modal>
   );
-  useEffect(() => {
-    const openModal = () => {
-      Modal.info({
-        title:
-          "PolicyEngine simulates your reform over thousands of households",
-        content: content,
-        style: {
-          borderRadius: 25,
-        },
-        okButtonProps: {
-          style: {
-            display: "none",
-          },
-        },
-        icon: null,
-        closable: false,
-        keyboard: true,
-        centered: true,
-      });
-    };
-    if (needToOpenModal && !hasShownPopulationImpactPopup) {
-      openModal();
-      setNeedToOpenModal(false);
-      setHasShownPopulationImpactPopup(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    needToOpenModal,
-    metadata,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
-  ]);
-  return null;
 }
