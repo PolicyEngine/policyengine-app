@@ -11,7 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import LinkButton from "../../controls/LinkButton";
 import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserOutlined, LoadingOutlined, CoffeeOutlined, UserDeleteOutlined } from "@ant-design/icons";
+import { UserOutlined, LoadingOutlined, CoffeeOutlined, UserDeleteOutlined, ReadOutlined } from "@ant-design/icons";
 import { login, loginOptions, logoutOptions } from "../../auth/authUtils";
 import { Dropdown } from "antd";
 
@@ -282,7 +282,7 @@ function LoginMenu() {
     {
       label: "Profile",
       key: "profile",
-      icon: <CoffeeOutlined style={{fontSize: 16}}/>,
+      icon: <ReadOutlined style={{fontSize: 16}}/>,
       style: {
         fontSize: 16,
         margin: 10
