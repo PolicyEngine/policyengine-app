@@ -327,7 +327,7 @@ function BlogTags({ tags }) {
 const handleImageLoad = (path) => {
   // Try to load the image
   try {
-    return require("../images/posts/" + path);
+    return require("../../images/posts/" + path);
   } catch (error) {
     // If the require fails, return the fallback image
     console.error(`Failed to load image at ${path}:`, error);

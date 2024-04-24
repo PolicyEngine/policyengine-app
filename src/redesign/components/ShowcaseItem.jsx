@@ -73,7 +73,6 @@ export default function ShowcaseItem({
           height="100%"
           style={{
             objectFit: "contain",
-            // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.9)",
           }}
           alt={altText}
         />

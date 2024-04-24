@@ -7,11 +7,10 @@ import ShowcaseItem from "./ShowcaseItem";
 import useCountryId from "./useCountryId";
 
 function ImageComponent(imagePath) {
-  let imageSrc;
+  // let imageSrc;
   try {
     // Attempt to import the image dynamically
-    imageSrc = require(`../images/home/${imagePath}`).default;
-    console.log(imageSrc);
+    require(`../images/home/${imagePath}`);
   } catch (error) {
     // If there's an error (e.g., image path is broken), use the fallback image
     console.error("Error loading image:", error);
