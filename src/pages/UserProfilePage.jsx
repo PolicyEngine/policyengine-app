@@ -167,9 +167,9 @@ export default function UserProfilePage(props) {
       setSavedPolicies(failedAttempts);
     }
 
-    if (countryId && authedUserProfile?.user_id) {
+    if (countryId) {
       // Would use async/await, but not possible in useEffect body
-      if (isOwnProfile) {
+      if (isOwnProfile && authedUserProfile?.user_id) {
         emitPreAuthPolicies().then(() => fetchAccessedPolicies());
       }
       else {
