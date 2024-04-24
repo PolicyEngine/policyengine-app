@@ -426,7 +426,7 @@ function PolicySimulationCard(props) {
   }
 
     return (
-      <Link key={keyValue} to={`/${userPolicy.country_id}/policy/?reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}`} style={{height: "100%"}}>
+      <Link key={keyValue} to={`/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}&timePeriod=${userPolicy.year}&region=${userPolicy.geography}`} style={{height: "100%"}}>
       <Card
         style={{
           width: "100%",
