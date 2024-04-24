@@ -1,6 +1,9 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { getPlotlyAxisFormat, formatVariableValue } from "../../../api/variables";
+import {
+  getPlotlyAxisFormat,
+  formatVariableValue,
+} from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
@@ -50,11 +53,9 @@ export default function ParameterOverTime(props) {
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
 
-  const customData = y.map((value) =>
-    formatVariableValue(parameter, value, 2)
-  );
+  const customData = y.map((value) => formatVariableValue(parameter, value, 2));
   const reformedCustomData = reformedY.map((value) =>
-    formatVariableValue(parameter, value, 2)
+    formatVariableValue(parameter, value, 2),
   );
 
   return (
