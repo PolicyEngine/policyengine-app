@@ -1,6 +1,9 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { getPlotlyAxisFormat } from "../../../api/variables";
+import {
+  getPlotlyAxisFormat,
+  formatVariableValue,
+} from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
 import useWindowHeight from "layout/WindowHeight";
 import style from "../../../style";
@@ -50,6 +53,11 @@ export default function ParameterOverTime(props) {
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
 
+  const customData = y.map((value) => formatVariableValue(parameter, value, 2));
+  const reformedCustomData = reformedY.map((value) =>
+    formatVariableValue(parameter, value, 2),
+  );
+
   return (
     <>
       <Plot
@@ -65,6 +73,8 @@ export default function ParameterOverTime(props) {
               color: style.colors.GRAY,
             },
             name: "Current law",
+            customdata: customData,
+            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
           reformMap && {
             x: reformedX,
@@ -78,6 +88,8 @@ export default function ParameterOverTime(props) {
               color: style.colors.BLUE,
             },
             name: getReformPolicyLabel(policy),
+            customdata: reformedCustomData,
+            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
         ].filter((x) => x)}
         layout={{
