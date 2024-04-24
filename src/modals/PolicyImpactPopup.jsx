@@ -6,8 +6,7 @@ export default function PolicyImpactPopup(props) {
   const [needToOpenModal, setNeedToOpenModal] = useState(true);
   const {
     metadata,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
+    showPolicyImpactPopup
   } = props;
 
   function handleSubmit() {
@@ -18,6 +17,10 @@ export default function PolicyImpactPopup(props) {
 
   const US_LINK = "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
   const UK_LINK = "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
+
+  if (!showPolicyImpactPopup) {
+    return null;
+  }
 
   return (
     <Modal 

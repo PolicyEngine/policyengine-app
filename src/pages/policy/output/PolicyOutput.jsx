@@ -17,6 +17,7 @@ export default function PolicyOutput(props) {
 
   const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
   const [userPolicyId, setUserPolicyId] = useState(null);
+  const [showPolicyImpactPopup, setShowPolicyImpactPopup] = useState(false);
   const countryId = useCountryId();
   const { isAuthenticated } = useAuth0();
 
@@ -101,8 +102,8 @@ export default function PolicyOutput(props) {
   if (impactType === "codeReproducibility") {
     return (
       <>
-        <SignupModal />
-        <LowLevelDisplay {...props}>
+        <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
+        <LowLevelDisplay {...props} showPolicyImpactPopup={showPolicyImpactPopup}>
           <PolicyReproducibility metadata={metadata} policy={policy} />
         </LowLevelDisplay>
       </>
@@ -110,15 +111,15 @@ export default function PolicyOutput(props) {
   } else if (impactType === "cliffImpact") {
     return (
       <>
-        <SignupModal />
-        <FetchAndDisplayCliffImpact {...props} />;
+        <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
+        <FetchAndDisplayCliffImpact {...props} showPolicyImpactPopup={showPolicyImpactPopup}/>;
       </>
     );
   }
   return (
     <>
-      <SignupModal />
-      <FetchAndDisplayImpact metadata={metadata} policy={policy} userPolicyId={userPolicyId} />
+      <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
+      <FetchAndDisplayImpact metadata={metadata} policy={policy} userPolicyId={userPolicyId} showPolicyImpactPopup={showPolicyImpactPopup}/>
     </>
   );
 }

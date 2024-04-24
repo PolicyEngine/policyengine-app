@@ -114,6 +114,7 @@ export function DisplayImpact(props) {
     impact,
     policy,
     metadata,
+    showPolicyImpactPopup
   } = props;
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
@@ -175,6 +176,7 @@ export function DisplayImpact(props) {
         downloadCsv={downloadCsvFn}
         metadata={metadata}
         policy={policy}
+        showPolicyImpactPopup={showPolicyImpactPopup}
       >
         {pane}
       </LowLevelDisplay>
@@ -206,6 +208,7 @@ export function LowLevelDisplay(props) {
     downloadPng,
     metadata,
     policy,
+    showPolicyImpactPopup
   } = props;
   const mobile = useMobile();
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
@@ -351,6 +354,7 @@ export function LowLevelDisplay(props) {
       )}
       <PolicyImpactPopup
         metadata={metadata}
+        showPolicyImpactPopup={showPolicyImpactPopup}
       />
       <div ref={componentRef} id="downloadable-content">
         {children}

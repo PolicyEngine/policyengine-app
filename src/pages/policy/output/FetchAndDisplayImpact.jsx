@@ -42,7 +42,8 @@ export function FetchAndDisplayImpact(props) {
   const {
     metadata,
     policy,
-    userPolicyId
+    userPolicyId,
+    showPolicyImpactPopup
   } = props;
   const policyRef = useRef(null);
   const countryId = useCountryId();
@@ -174,6 +175,7 @@ export function FetchAndDisplayImpact(props) {
       impact={impact}
       policy={policy}
       metadata={metadata}
+      showPolicyImpactPopup={showPolicyImpactPopup}
     />
   );
 }

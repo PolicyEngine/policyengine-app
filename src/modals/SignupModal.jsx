@@ -6,7 +6,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { loginOptions } from "../auth/authUtils";
 import useCountryId from "../hooks/useCountryId";
 
-export default function SignupModal() {
+export default function SignupModal(props) {
+  const {
+    setShowPolicyImpactPopup
+  } = props;
+
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const { isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
@@ -18,9 +22,16 @@ export default function SignupModal() {
 
     // Destroy modal
     setIsModalOpen(false);
+    setShowPolicyImpactPopup(true);
+  }
+
+  function handleCloseModal() {
+    setIsModalOpen(false);
+    setShowPolicyImpactPopup(true);
   }
 
   if (isLoading || isAuthenticated) {
+    setShowPolicyImpactPopup(true);
     return null;
   }
 
@@ -64,9 +75,7 @@ export default function SignupModal() {
             text="Not at this time"
             type="textLight"
             width="100%"
-            onClick={
-              () => setIsModalOpen(false)
-            }
+            onClick={handleCloseModal}
           />
         </div>
       </div>
