@@ -4,6 +4,14 @@ const USER_POLICY_ENDPOINT = "/user_policy";
 
 export async function postUserPolicy(countryId, policyToAdd) {
 
+  // Prevent creation of records where baseline and reform are the same;
+  // this is due to the fact that we link to the policy breakdown page,
+  // which first tries to load current law, then updates via an effect
+  // hook higher up in the application
+  if (Number(policyToAdd.baseline_id) === Number(policyToAdd.reform_id)) {
+    return null;
+  }
+
   try {
     const res = await apiCall(
       `/${countryId}${USER_POLICY_ENDPOINT}`,
