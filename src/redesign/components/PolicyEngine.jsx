@@ -20,7 +20,7 @@ import ErrorPage from "../../layout/Error";
 import Header from "./Header";
 import Testimonials from "./Testimonials";
 import CalculatorInterstitial from "../../pages/CalculatorInterstitial";
-import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
+import CitizensEconomicCouncil from "../../pages/applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "../../modals/CookieConsent";
 import TrafwaCalculator from "./TrafwaCalculator";
