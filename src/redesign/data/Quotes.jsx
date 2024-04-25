@@ -7,8 +7,8 @@ import BrianHiatt from "../../images/headshots/brian-hiatt.png";
 import DarrylFinkton from "../../images/headshots/darryl-finkton.jpeg";
 import NateGolden from "../../images/headshots/nate-golden.jpg";
 import NikaSoonShiong from "../../images/headshots/nika-soon-shiong.png";
-import MaxMosley from "../images/headshots/max-mosley.png";
-import MaxwellMarlow from "../images/headshots/maxwell-marlow.jpeg";
+import MaxMosley from "../../images/headshots/max-mosley.png";
+import MaxwellMarlow from "../../images/headshots/maxwell-marlow.jpeg";
 
 export const quoteData = {
   uk: [

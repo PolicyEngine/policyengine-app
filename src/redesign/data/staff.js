@@ -66,7 +66,7 @@ export const advisors = {
     organizations building microsimulation and computing systems for 
     policymaking. George holds an A.B. in Mathematics from Harvard University, 
     and an M.A. and Ph.D. in Economics from Yale University.`,
-    image: require("../images/headshots/george_sadowsky.jpeg"),
+    image: require("../../images/headshots/george_sadowsky.jpeg"),
   },
   damiola_ogundipe: {
     name: "Damola Ogundipe",
@@ -75,7 +75,7 @@ export const advisors = {
     public policy. He previously worked as a Senior Consultant at Oxford 
     Strategic Consulting. Damola holds a B.S. in Finance from the University 
     of Minnesota.`,
-    image: require("../images/headshots/damiola_ogundipe.jpeg"),
+    image: require("../../images/headshots/damiola_ogundipe.jpeg"),
   },
   jesse_horwitz: {
     name: "Jesse Horwitz",
@@ -83,7 +83,7 @@ export const advisors = {
     as a policy advisor to Andrew Yang's mayoral campaign and as an investment 
     analyst. Jesse holds a bachelor's degree in Economics-Mathematics from 
     Columbia University and attended Harvard Law School.`,
-    image: require("../images/headshots/jesse_horwitz.jpeg"),
+    image: require("../../images/headshots/jesse_horwitz.jpeg"),
   },
   matt_jensen: {
     name: "Matt Jensen",
@@ -91,6 +91,6 @@ export const advisors = {
     American Enterprise Institute. He is also a co-founder of the Open Research 
     Group, the Policy Simulation Library, and Compute Tooling. Jensen is a 
     graduate of Pomona College with a degree in math.`,
-    image: require("../images/headshots/matt_jensen.png"),
+    image: require("../../images/headshots/matt_jensen.png"),
   },
 };
