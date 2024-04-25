@@ -1,6 +1,6 @@
 import Home from "./Home";
 import Research from "./Research";
-import About from "./About";
+import About from "../../pages/About";
 import Jobs from "./Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Contact from "./Contact";
