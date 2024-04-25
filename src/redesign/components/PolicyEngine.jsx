@@ -19,7 +19,7 @@ import LoadingCentered from "../../layout/LoadingCentered";
 import ErrorPage from "../../layout/Error";
 import Header from "./Header";
 import Testimonials from "./Testimonials";
-import CalculatorInterstitial from "./CalculatorInterstitial";
+import CalculatorInterstitial from "../../pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "../../modals/CookieConsent";

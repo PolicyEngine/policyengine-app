@@ -1,9 +1,9 @@
-import Header from "./Header";
+import Header from "../redesign/components/Header";
 import LinkButton from "controls/LinkButton";
-import useCountryId from "../../hooks/useCountryId";
+import useCountryId from "../redesign/components/useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";
 import PolicyScreenshot from "../images/home/policy_screenshot.png";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
 
 export default function CalculatorInterstitial() {
   const countryId = useCountryId();
