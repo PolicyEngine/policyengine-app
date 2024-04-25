@@ -62,7 +62,7 @@ export default function UserProfilePage(props) {
   const windowWidth = useWindowWidth();
   const dispCat = useDisplayCategory();
 
-  const maxCardWidth = 300; // Max card width (relative to screen, so not exact), in pixels
+  const maxCardWidth = 375; // Max card width (relative to screen, so not exact), in pixels
   const gridColumns = dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
 
   useEffect(() => {
