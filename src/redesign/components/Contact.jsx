@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "../../layout/Footer";
 import Section from "./Section";
 import PageHeader from "./PageHeader";
-import style from "../style";
+import style from "../../style";
 
 export default function Contact() {
   return (

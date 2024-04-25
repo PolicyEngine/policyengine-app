@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import Section from "./Section";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import LinkButton from "controls/LinkButton";

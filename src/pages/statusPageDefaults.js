@@ -17,7 +17,7 @@ export const COUNTRY_NAMES = {
 };
 
 export const STATUS_COLORS = {
-  OK: colors.BLUE_98,
+  OK: colors.BLUE_95,
   ERROR: colors.DARK_RED,
   Pending: colors.LIGHT_GRAY,
 };

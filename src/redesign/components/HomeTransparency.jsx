@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import Section from "./Section";
 import apiScreenshot from "../images/home/api_screenshot.png";
 import githubScreenshot from "../images/home/github_screenshot.png";
