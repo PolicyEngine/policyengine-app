@@ -1,108 +1,106 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&family=Roboto:wght@300;500&display=swap");
 
+h5,
+h6 {
+  font-family: "Roboto";
+  font-weight: 300;
+}
+
 h1,
 h2,
 h3,
-h4,
-h5,
-h6,
-p,
-div {
-  font-family: "Roboto", sans-serif;
+h4 {
+  font-family: "Roboto Serif", serif;
+  font-weight: 300;
 }
 
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: none;
+body {
+  font-family: "Roboto";
+  color: "inherit !important";
 }
 
-a {
-  color: black;
+:root {
+  --bs-body-font-weight: 300;
 }
 
-.ant-switch.ant-switch-checked {
-  background-color: #2c6496;
-}
-
-.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-  height: 50px;
-}
-
-.ant-select-selection-search {
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-.ant-select-selection-placeholder {
-  height: 50px;
-  display: flex;
-  align-items: center;
-}
-
-.ant-select-single.ant-select-show-arrow .ant-select-selection-item,
-.ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
-  display: flex;
-  align-items: center;
-}
-
-a {
-  color: #2c6496;
-  font-weight: bold;
-}
-
-.serif p {
-  font-family: "Roboto Serif", serif !important;
-}
-
-div.ant-modal-content {
-  border-radius: 25px;
-}
-
-.quote-dots {
-  background-color: "black";
-}
-
-::-webkit-scrollbar {
-  width: 0px;
-}
-
-blockquote {
-  color: #666;
-  margin: 0;
-  padding-left: 3em;
-  border-left: 0.5em #eee solid;
-}
-
-.ant-radio-inner:after {
-  background: #2c6496 !important;
-}
-
-.ant-radio-checked .ant-radio-inner,
-.ant-radio:hover .ant-radio-inner,
-.ant-radio-wrapper:hover,
-.ant-radio-input:focus .ant-radio-inner {
-  border-color: #2c6496 !important;
+.ant-select-selection-item {
+  font-weight: 300;
 }
 
 p {
-  font-size: 12pt;
+  font-family: "Roboto Serif", serif;
+  font-weight: 300;
 }
 
-.chart-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-  width: 100%;
+p a {
+  text-decoration: underline;
+  color: #2c6496;
 }
 
-.download-button {
-  position: absolute;
-  bottom: 30px;
-  left: 100px;
+.link-inverted {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* icons */
+
+.material-symbols-outlined {
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 300,
+    "GRAD" 0,
+    "opsz" 48;
+}
+
+a {
+  /* no underline */
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.spaced-sans-serif {
+  text-transform: uppercase;
+  font-family: "Roboto";
+  font-weight: 500;
+  letter-spacing: 2.4px;
+}
+
+a:hover {
+  color: inherit;
+}
+
+input:focus {
+  outline: none;
+}
+
+a.highlighted-link {
+  box-shadow: inset 0 0 0 0 #227773;
+  color: #2c6496;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition:
+    color 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out,
+    padding-left 0.2s ease-in-out,
+    padding-right 0.2s ease-in-out;
+}
+
+a.highlighted-link:hover {
+  box-shadow: inset 800px 0 0 0 #2c6496;
+  color: white;
+}
+
+:target {
+  scroll-margin-top: 300px;
+}
+
+.ant-btn-link {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.ant-btn-link:hover {
+  color: inherit;
 }
 
 .ant-checkbox-input {
