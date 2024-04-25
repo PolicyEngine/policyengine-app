@@ -74,11 +74,6 @@ export const orgData = {
       logo: CEC,
       link: "https://citizensecon.org.uk/get-involved",
     },
-    epmt: {
-      name: "End Poverty Make Trillions",
-      logo: EPMT,
-      link: "https://endpovertymaketrillions.com/"
-    }
   },
   us: {
     f4gi: {
@@ -101,7 +96,11 @@ export const orgData = {
       logo: NISKANENCenter,
       link: "https://www.niskanencenter.org/building-a-stronger-foundation-for-american-families-options-for-child-tax-credit-reform/",
     },
-
+    epmt: {
+      name: "End Poverty Make Trillions",
+      logo: EPMT,
+      link: "https://endpovertymaketrillions.com/"
+    },
     cgo: {
       name: "Center for Growth and Opportunity",
       logo: CGO,

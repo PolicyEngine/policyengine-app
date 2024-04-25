@@ -3,7 +3,7 @@ import useDisplayCategory from "../../hooks/useDisplayCategory.jsx";
 import { useState, useEffect } from "react";
 import { quoteData } from "../../data/quotes.js";
 import { orgData } from "../../data/organisations.js";
-import Carousel from "./Carousel";
+import Carousel from "../../layout/Carousel.jsx";
 import useCountryId from "../../hooks/useCountryId";
 import { Link } from "react-router-dom";
 import FontIcon from "./FontIcon";
