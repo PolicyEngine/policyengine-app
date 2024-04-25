@@ -1,8 +1,8 @@
 import style from "../../style";
 import Section from "./Section";
-import codingScreenshot from "../images/home/coding_screenshot.png";
-import parameterScreenshot from "../images/home/parameter_screenshot.png";
-import decileChartScreenshot from "../images/home/decile_chart_screenshot.png";
+import codingScreenshot from "../../images/home/coding_screenshot.png";
+import parameterScreenshot from "../../images/home/parameter_screenshot.png";
+import decileChartScreenshot from "../../images/home/decile_chart_screenshot.png";
 import ShowcaseItem from "./ShowcaseItem";
 import useCountryId from "../../hooks/useCountryId";
 
@@ -10,7 +10,7 @@ function ImageComponent(imagePath) {
   // let imageSrc;
   try {
     // Attempt to import the image dynamically
-    require(`../images/home/${imagePath}`);
+    require(`../../images/home/${imagePath}`);
   } catch (error) {
     // If there's an error (e.g., image path is broken), use the fallback image
     console.error("Error loading image:", error);
