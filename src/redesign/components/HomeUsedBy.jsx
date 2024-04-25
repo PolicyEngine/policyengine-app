@@ -1,6 +1,6 @@
 import style from "../../style";
 import Section from "./Section";
-import { orgData } from "redesign/data/Organisations";
+import { orgData } from "redesign/data/organisations";
 import useCountryId from "../../hooks/useCountryId";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 

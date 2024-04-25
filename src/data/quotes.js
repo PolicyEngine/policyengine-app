@@ -1,14 +1,14 @@
-import RobertColvile from "../../images/headshots/robert-colvile.jpeg";
-import SimonDuffy from "../../images/headshots/simon-duffy.jpeg";
-import MartinFarley from "../../images/headshots/martin-farley.jpeg";
-import TorrinWilkins from "../../images/headshots/torrin-wilkins.jpg";
-import ChrisHolmes from "../../images/headshots/chris-holmes.webp";
-import BrianHiatt from "../../images/headshots/brian-hiatt.png";
-import DarrylFinkton from "../../images/headshots/darryl-finkton.jpeg";
-import NateGolden from "../../images/headshots/nate-golden.jpg";
-import NikaSoonShiong from "../../images/headshots/nika-soon-shiong.png";
-import MaxMosley from "../../images/headshots/max-mosley.png";
-import MaxwellMarlow from "../../images/headshots/maxwell-marlow.jpeg";
+import RobertColvile from "../images/headshots/robert-colvile.jpeg";
+import SimonDuffy from "../images/headshots/simon-duffy.jpeg";
+import MartinFarley from "../images/headshots/martin-farley.jpeg";
+import TorrinWilkins from "../images/headshots/torrin-wilkins.jpg";
+import ChrisHolmes from "../images/headshots/chris-holmes.webp";
+import BrianHiatt from "../images/headshots/brian-hiatt.png";
+import DarrylFinkton from "../images/headshots/darryl-finkton.jpeg";
+import NateGolden from "../images/headshots/nate-golden.jpg";
+import NikaSoonShiong from "../images/headshots/nika-soon-shiong.png";
+import MaxMosley from "../images/headshots/max-mosley.png";
+import MaxwellMarlow from "../images/headshots/maxwell-marlow.jpeg";
 
 export const quoteData = {
   uk: [
