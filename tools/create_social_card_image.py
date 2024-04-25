@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 from argparse import ArgumentParser
 
-LOGO = "./src/redesign/images/logos/policyengine/profile/blue_bg.png"
+LOGO = "./src/images/logos/policyengine/profile/blue_bg.png"
 ROBOTO_SERIF_FONT = "./tools/RobotoSerif.ttf"
 SIZE_MULTIPLIER = 2
 
