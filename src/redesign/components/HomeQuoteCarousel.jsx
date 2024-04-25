@@ -2,7 +2,7 @@ import style from "../style";
 import useDisplayCategory from "../../hooks/useDisplayCategory.jsx";
 import { useState, useEffect } from "react";
 import { quoteData } from "../data/Quotes.jsx";
-import { orgData } from "../data/Organisations.jsx";
+import { orgData } from "../../data/Organisations.jsx";
 import Carousel from "./Carousel";
 import useCountryId from "../../hooks/useCountryId";
 import { Link } from "react-router-dom";
