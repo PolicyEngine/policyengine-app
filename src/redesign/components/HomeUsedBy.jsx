@@ -60,6 +60,7 @@ export default function HomeUsedBy() {
 
 function IndividualOrg({ name, logo, link }) {
   const displayCategory = useDisplayCategory();
+
   const size = {
     mobile: 85,
     tablet: 100,
