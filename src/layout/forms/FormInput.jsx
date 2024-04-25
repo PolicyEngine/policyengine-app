@@ -22,7 +22,7 @@ import { motion } from "framer-motion";
 export default function FormItem(props) {
   const {
     name,
-    label="",
+    label = "",
     type,
     placeholder,
     changeHandler,

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import jsonp from "jsonp";
 
 import style from "../style";
 import Section from "./Section";

@@ -39,12 +39,7 @@ export function FetchAndDisplayImpact(props) {
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-  const {
-    metadata,
-    policy,
-    userPolicyId,
-    showPolicyImpactPopup
-  } = props;
+  const { metadata, policy, userPolicyId, showPolicyImpactPopup } = props;
   const policyRef = useRef(null);
   const countryId = useCountryId();
 
@@ -146,15 +141,14 @@ export function FetchAndDisplayImpact(props) {
 
     const updatedUserPolicy = {
       id: userPolicyId,
-      budgetary_impact: impact.budget.budgetary_impact
-    }
+      budgetary_impact: impact.budget.budgetary_impact,
+    };
 
-    updateUserPolicy(countryId, updatedUserPolicy)
-      .then((updatedPolicyId) => {
-        if (!updatedPolicyId) {
-          console.error("Error while updating user policy:");
-        }
-      });
+    updateUserPolicy(countryId, updatedUserPolicy).then((updatedPolicyId) => {
+      if (!updatedPolicyId) {
+        console.error("Error while updating user policy:");
+      }
+    });
   }, [impact, countryId, userPolicyId]);
 
   if (error) {

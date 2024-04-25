@@ -110,12 +110,7 @@ function getPolicyLabel(policy) {
  * performing actions such as downloading data and sharing results
  */
 export function DisplayImpact(props) {
-  const {
-    impact,
-    policy,
-    metadata,
-    showPolicyImpactPopup
-  } = props;
+  const { impact, policy, metadata, showPolicyImpactPopup } = props;
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
   const region = urlParams.get("region");
@@ -208,7 +203,7 @@ export function LowLevelDisplay(props) {
     downloadPng,
     metadata,
     policy,
-    showPolicyImpactPopup
+    showPolicyImpactPopup,
   } = props;
   const mobile = useMobile();
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);

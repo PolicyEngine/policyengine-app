@@ -5,9 +5,7 @@ import AuthCallback from "../layout/AuthCallback";
 
 export const AuthenticationGuard = ({ component, ...props }) => {
   const Component = withAuthenticationRequired(component, {
-    onRedirecting: () => (
-      <AuthCallback />
-    ),
+    onRedirecting: () => <AuthCallback />,
   });
 
   return <Component {...props} />;

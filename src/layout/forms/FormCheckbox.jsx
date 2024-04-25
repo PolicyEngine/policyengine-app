@@ -1,32 +1,25 @@
 import { useState } from "react";
 import style from "redesign/style";
-import { motion } from "framer-motion";
 
 /**
  * React component providing a standardized form checkbox component
  * @param {Object} props
- * @param {String} props.name The JS 'name' to be applied to the input
  * @param {String} [props.label=""] The label to be applied to the form field
  * @param {Array} props.items An array of items to be included; must include "name" and "label" keys
  * @param {Function} [props.changeHandler] An optional change handler to be run on form
  * component change events, available outside of FormContext component
  * @param {Object} [props.labelStyle] Optional styling for the label
  * @param {Object} [props.containerStyle] Optional styling for the component's div container
- * @param {Object} [props.inputStyle] Optional styling for the input element
- * @param {String} [props.focusStyle] Optional styling for the box shadow displayed when
  * component is focused
  * @returns {import("react").ReactComponentElement}
  */
 export default function FormCheckbox(props) {
   const {
-    name,
-    label="",
+    label = "",
     items,
     changeHandler,
     labelStyle,
     containerStyle,
-    inputStyle,
-    focusStyle,
   } = props;
 
   const iteratedItems = items.map((item) => {
@@ -37,7 +30,7 @@ export default function FormCheckbox(props) {
         itemLabel={item.label}
         checkHandler={changeHandler}
       />
-    )
+    );
   });
 
   return (
@@ -73,12 +66,7 @@ export default function FormCheckbox(props) {
 }
 
 function CheckItem(props) {
-  const {
-    name,
-    itemLabel,
-    isCheckedByDefault=false,
-    checkHandler
-  } = props;
+  const { name, itemLabel, isCheckedByDefault = false, checkHandler } = props;
 
   const [input, setInput] = useState(isCheckedByDefault);
 

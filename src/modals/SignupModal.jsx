@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Modal } from "antd";
 import Button from "../controls/Button";
@@ -7,9 +6,7 @@ import { loginOptions } from "../auth/authUtils";
 import useCountryId from "../hooks/useCountryId";
 
 export default function SignupModal(props) {
-  const {
-    setShowPolicyImpactPopup
-  } = props;
+  const { setShowPolicyImpactPopup } = props;
 
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -18,7 +15,7 @@ export default function SignupModal(props) {
 
   async function handleSubmit() {
     const path = `${window.location.pathname}${window.location.search}`;
-    loginWithRedirect(loginOptions(countryId, {redirectPath: path}));
+    loginWithRedirect(loginOptions(countryId, { redirectPath: path }));
 
     // Destroy modal
     setIsModalOpen(false);
@@ -36,18 +33,16 @@ export default function SignupModal(props) {
   }
 
   return (
-    <Modal 
-      open={isModalOpen}
-      footer={null}
-      closable={false}
-    >
+    <Modal open={isModalOpen} footer={null} closable={false}>
       <h6
         style={{
           paddingBottom: "16px",
           fontWeight: "bold",
-          fontSize: 20
+          fontSize: 20,
         }}
-      >Save your results</h6>
+      >
+        Save your results
+      </h6>
       <p>Create a free PolicyEngine account to save your policy simulations.</p>
       <div
         style={{
@@ -56,21 +51,17 @@ export default function SignupModal(props) {
           justifyContent: "flex-start",
           alignItems: "flex-start",
           gap: "12px",
-          paddingTop: "12px"
+          paddingTop: "12px",
         }}
       >
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
-            columnGap: "16px"
+            columnGap: "16px",
           }}
         >
-          <Button 
-            text="Sign in"
-            onClick={handleSubmit}
-            width="100%"
-          />
+          <Button text="Sign in" onClick={handleSubmit} width="100%" />
           <Button
             text="Not at this time"
             type="textLight"

@@ -6,7 +6,14 @@ import PageHeader from "../redesign/components/PageHeader";
 import style from "../redesign/style";
 import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import { LoadingOutlined, FileImageOutlined, UserOutlined, EditOutlined, CloseOutlined, CheckOutlined } from "@ant-design/icons";
+import {
+  LoadingOutlined,
+  FileImageOutlined,
+  UserOutlined,
+  EditOutlined,
+  CloseOutlined,
+  CheckOutlined,
+} from "@ant-design/icons";
 import { useDisplayCategory } from "../layout/Responsive";
 import { Card, Input, Skeleton, Tooltip } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
@@ -23,7 +30,7 @@ const STATES = {
   EMPTY: "empty",
   NO_PROFILE: "noProfile",
   OTHER_PROFILE: "otherProfile",
-  OWN_PROFILE: "ownProfile"
+  OWN_PROFILE: "ownProfile",
 };
 
 export default function UserProfilePage(props) {
@@ -41,38 +48,42 @@ export default function UserProfilePage(props) {
   // Loading is treated separately, through two stateful variables, as
   // two different parts of the component fetch data separately
 
-  // To disambiguate, this component uses two user profiles: 
-  // authedUserProfile, representing the authenticated user navigating 
-  // the site, and accessedUserProfile, the profile the site user is 
-  // visiting. authedUserProfile is shared via props, as the entire 
+  // To disambiguate, this component uses two user profiles:
+  // authedUserProfile, representing the authenticated user navigating
+  // the site, and accessedUserProfile, the profile the site user is
+  // visiting. authedUserProfile is shared via props, as the entire
   // app has access to this info, while accessedUserProfile requires a fetch
 
-  const {metadata, authedUserProfile } = props;
+  const { metadata, authedUserProfile } = props;
   let params = useParams();
   const accessedUserId = params.user_id;
-  const isOwnProfile = Number(authedUserProfile?.user_id) === Number(accessedUserId);
+  const isOwnProfile =
+    Number(authedUserProfile?.user_id) === Number(accessedUserId);
 
   const [dispState, setDispState] = useState(STATES.EMPTY);
   const [isHeaderLoading, setIsHeaderLoading] = useState(true);
   const [arePoliciesLoading, setArePoliciesLoading] = useState(true);
   const [accessedUserPolicies, setAccessedUserPolicies] = useState([]);
   const [accessedUserProfile, setAccessedUserProfile] = useState({});
-  const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
+  const [savedPolicies, setSavedPolicies] = useLocalStorage(
+    "saved-policies",
+    [],
+  );
   const countryId = useCountryId();
   const windowWidth = useWindowWidth();
   const dispCat = useDisplayCategory();
 
   const maxCardWidth = 375; // Max card width (relative to screen, so not exact), in pixels
-  const gridColumns = dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
+  const gridColumns =
+    dispCat === "mobile" ? 1 : Math.floor(windowWidth / maxCardWidth);
 
   useEffect(() => {
-
     async function fetchProfile() {
       setIsHeaderLoading(true);
       if (metadata) {
         try {
           const data = await apiCall(
-            `/${countryId}/user_profile?user_id=${accessedUserId}`
+            `/${countryId}/user_profile?user_id=${accessedUserId}`,
           );
           const dataJson = await data.json();
           if (data.status === 404 && dataJson.status === "ok") {
@@ -116,9 +127,8 @@ export default function UserProfilePage(props) {
       // Only evaluate (and thus set loading to false) if metadata has been fetched
       if (metadata) {
         try {
-
           const data = await apiCall(
-            `/${countryId}/user_policy/${accessedUserId}`
+            `/${countryId}/user_policy/${accessedUserId}`,
           );
           const dataJson = await data.json();
           if (data.status < 200 || data.status >= 300) {
@@ -150,7 +160,7 @@ export default function UserProfilePage(props) {
         // Add user id to policies, since we now have one
         policy = {
           ...policy,
-          user_id: authedUserProfile.user_id
+          user_id: authedUserProfile.user_id,
         };
 
         try {
@@ -171,60 +181,70 @@ export default function UserProfilePage(props) {
       // Would use async/await, but not possible in useEffect body
       if (isOwnProfile && authedUserProfile?.user_id) {
         emitPreAuthPolicies().then(() => fetchAccessedPolicies());
-      }
-      else {
+      } else {
         fetchAccessedPolicies();
       }
-
     }
-  // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
-  // are themselves a hook, with setSavedPolicies being a setter
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
+    // are themselves a hook, with setSavedPolicies being a setter
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, authedUserProfile, isOwnProfile, accessedUserId, metadata]);
 
-  const dateFormatter = new Intl.DateTimeFormat(
-    `en-${countryId}`, {
-      dateStyle: "long",
-    }
-  );
+  const dateFormatter = new Intl.DateTimeFormat(`en-${countryId}`, {
+    dateStyle: "long",
+  });
 
   const loadingCards = Array(4).fill(<Card loading={true} />);
 
   const noCardPlaceholder = (
-    <p style={{gridColumn: "1 / -1"}}>{dispState === STATES.NO_PROFILE ? "User not found" : `${dispState === STATES.OWN_PROFILE ? "You have" : "This user has"} no saved policy simulations.`}</p>
-  )
+    <p style={{ gridColumn: "1 / -1" }}>
+      {dispState === STATES.NO_PROFILE
+        ? "User not found"
+        : `${dispState === STATES.OWN_PROFILE ? "You have" : "This user has"} no saved policy simulations.`}
+    </p>
+  );
 
-  const accessedUserPolicyCards = accessedUserPolicies.map((userPolicy, index) => {
-    // This returns a React key error, but I see no way of fixing this (short of
-    // returning empty JSX, which seems illogical), and React doesn't need the keys
-    // to maintain the list anyway, since the list is empty
-    if (!metadata) return null;
+  const accessedUserPolicyCards = accessedUserPolicies.map(
+    (userPolicy, index) => {
+      // This returns a React key error, but I see no way of fixing this (short of
+      // returning empty JSX, which seems illogical), and React doesn't need the keys
+      // to maintain the list anyway, since the list is empty
+      if (!metadata) return null;
 
-    return (
-      <PolicySimulationCard 
-        metadata={metadata}
-        userPolicy={userPolicy}
-        key={`${index}-${userPolicy.id}`}
-        keyValue={`${index}-${userPolicy.id}`}
-        dateFormatter={dateFormatter}
-      />
-    )
-
-  });
+      return (
+        <PolicySimulationCard
+          metadata={metadata}
+          userPolicy={userPolicy}
+          key={`${index}-${userPolicy.id}`}
+          keyValue={`${index}-${userPolicy.id}`}
+          dateFormatter={dateFormatter}
+        />
+      );
+    },
+  );
 
   let sectionTitle = "Saved policy simulations";
   if (dispState === STATES.OWN_PROFILE) {
     sectionTitle = "My saved policy simulations";
-  } else if (dispState === STATES.OTHER_PROFILE && accessedUserProfile.username) {
+  } else if (
+    dispState === STATES.OTHER_PROFILE &&
+    accessedUserProfile.username
+  ) {
     sectionTitle = `${accessedUserProfile.username}'s saved policy simulations`;
   } else if (dispState === STATES.OTHER_PROFILE) {
     sectionTitle = `User #${accessedUserProfile.user_id}'s saved policy simulations`;
   }
 
   let title = "Profile | PolicyEngine";
-  if ((dispState === STATES.OWN_PROFILE || dispState === STATES.OTHER_PROFILE) && accessedUserProfile.username) {
+  if (
+    (dispState === STATES.OWN_PROFILE || dispState === STATES.OTHER_PROFILE) &&
+    accessedUserProfile.username
+  ) {
     title = `${accessedUserProfile.username}'s Profile | PolicyEngine`;
-  } else if (dispState === STATES.OWN_PROFILE || dispState === STATES.OTHER_PROFILE) {
+  } else if (
+    dispState === STATES.OWN_PROFILE ||
+    dispState === STATES.OTHER_PROFILE
+  ) {
     title = `User #${accessedUserProfile.user_id}'s Profile | PolicyEngine`;
   }
 
@@ -235,36 +255,42 @@ export default function UserProfilePage(props) {
       </Helmet>
       <div>
         <Header />
-        <PageHeader
-          title="Profile"
-          backgroundColor={style.colors.BLUE_98}
-        >
-          <UserProfileSection accessedUserProfile={accessedUserProfile} isOwnProfile={isOwnProfile} accessedUserId={accessedUserId} dispState={dispState} isHeaderLoading={isHeaderLoading} dateFormatter={dateFormatter} setAccessedUserProfile={setAccessedUserProfile} setDispState={setDispState} />
+        <PageHeader title="Profile" backgroundColor={style.colors.BLUE_98}>
+          <UserProfileSection
+            accessedUserProfile={accessedUserProfile}
+            isOwnProfile={isOwnProfile}
+            accessedUserId={accessedUserId}
+            dispState={dispState}
+            isHeaderLoading={isHeaderLoading}
+            dateFormatter={dateFormatter}
+            setAccessedUserProfile={setAccessedUserProfile}
+            setDispState={setDispState}
+          />
         </PageHeader>
-        <Section
-          title={sectionTitle}
-          backgroundColor={style.colors.BLUE_98}
-        >
+        <Section title={sectionTitle} backgroundColor={style.colors.BLUE_98}>
           <div
             style={{
               display: "grid",
               width: "100%",
               gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
-              gap: "12px"
+              gap: "12px",
             }}
           >
-            {arePoliciesLoading ? loadingCards : accessedUserPolicies.length === 0 ? noCardPlaceholder : accessedUserPolicyCards}
+            {arePoliciesLoading
+              ? loadingCards
+              : accessedUserPolicies.length === 0
+                ? noCardPlaceholder
+                : accessedUserPolicyCards}
           </div>
         </Section>
         <Footer />
       </div>
     </>
-  )
-
+  );
 }
 
 function UserProfileSection(props) {
-  const { 
+  const {
     accessedUserProfile,
     isOwnProfile,
     accessedUserId,
@@ -272,7 +298,7 @@ function UserProfileSection(props) {
     isHeaderLoading,
     dateFormatter,
     setAccessedUserProfile,
-    setDispState
+    setDispState,
   } = props;
   const { isAuthenticated, user } = useAuth0();
   const countryId = useCountryId();
@@ -282,7 +308,7 @@ function UserProfileSection(props) {
   if (dispState === STATES.NO_PROFILE) {
     dispUserSince = "No user found";
   } else if (dispState === STATES.EMPTY) {
-    dispUserSince = "Loading"
+    dispUserSince = "Loading";
   } else {
     dispUserSince = dateFormatter.format(accessedUserProfile.user_since);
   }
@@ -291,13 +317,13 @@ function UserProfileSection(props) {
   if (dispState === STATES.NO_PROFILE) {
     dispCountry = "No user found";
   } else if (dispState === STATES.EMPTY) {
-    dispCountry = "Loading"
+    dispCountry = "Loading";
   } else if (countryNames[accessedUserProfile.primary_country].singleWord) {
     dispCountry = countryNames[accessedUserProfile.primary_country].singleWord;
   } else {
     dispCountry = countryNames[accessedUserProfile.primary_country].standard;
   }
-        
+
   return (
     <div
       style={{
@@ -308,89 +334,95 @@ function UserProfileSection(props) {
         width: "100%",
         height: "100%",
         paddingLeft: displayCategory !== "mobile" && "10px",
-        gap: "20px"
+        gap: "20px",
       }}
     >
-      {
-        dispState === STATES.OWN_PROFILE && isAuthenticated && user && user.picture ? (
-          <img
-            src={user.picture}
-            alt="Profile"
-            style={{
-              height: "100px",
-              objectFit: "cover",
-              alignSelf: "center"
-            }}
-          />
-        ) : (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "100px",
-              aspectRatio: 1,
-              border: `0.5px solid ${style.colors.DARK_GRAY}`,
-              color: style.colors.DARK_GRAY,
-              alignSelf: "center"
-            }}
-          >
-            {
-              isHeaderLoading ? (
-                <LoadingOutlined 
-                  style={{
-                    fontSize: "32px"
-                  }}
-                />
-              ) : dispState === STATES.OTHER_PROFILE ? (
-                <UserOutlined
-                  style={{
-                    fontSize: "32px"
-                  }}
-                />
-              ) :
-               (
-                <FileImageOutlined 
-                  style={{
-                    fontSize: "32px"
-                  }}
-                />
-              )
-            }
-          </div>
-        )
-      }
-      <Skeleton loading={isHeaderLoading} title={false} paragraph={{rows: 3}}>
+      {dispState === STATES.OWN_PROFILE &&
+      isAuthenticated &&
+      user &&
+      user.picture ? (
+        <img
+          src={user.picture}
+          alt="Profile"
+          style={{
+            height: "100px",
+            objectFit: "cover",
+            alignSelf: "center",
+          }}
+        />
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100px",
+            aspectRatio: 1,
+            border: `0.5px solid ${style.colors.DARK_GRAY}`,
+            color: style.colors.DARK_GRAY,
+            alignSelf: "center",
+          }}
+        >
+          {isHeaderLoading ? (
+            <LoadingOutlined
+              style={{
+                fontSize: "32px",
+              }}
+            />
+          ) : dispState === STATES.OTHER_PROFILE ? (
+            <UserOutlined
+              style={{
+                fontSize: "32px",
+              }}
+            />
+          ) : (
+            <FileImageOutlined
+              style={{
+                fontSize: "32px",
+              }}
+            />
+          )}
+        </div>
+      )}
+      <Skeleton loading={isHeaderLoading} title={false} paragraph={{ rows: 3 }}>
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "max-content 1fr",
-            gridColumnGap: "20px"
+            gridColumnGap: "20px",
           }}
         >
-          {
-            dispState === STATES.OWN_PROFILE && (
-              <>
-                <p style={{fontWeight: "bold", margin: 0}}>Name</p>
-                <p style={{margin: 0}}>{user ? user.name : "Error: No user logged in"}</p>
-                <p style={{fontWeight: "bold", margin: 0}}>Email</p>
-                <p style={{margin: 0}}>{user ? user.email: "Error: No user logged in"}</p>
-              </>
-            )
-          }
-            <p style={{fontWeight: "bold", margin: 0}}>User ID</p>
-            <p style={{margin: 0}}>{accessedUserId}</p>
-            <p style={{fontWeight: "bold", margin: 0}}>Username</p>
-            <UsernameDisplayAndEditor dispState={dispState} accessedUserProfile={accessedUserProfile} countryId={countryId} setAccessedUserProfile={setAccessedUserProfile}/>
-            <p style={{fontWeight: "bold", margin: 0}}>User since</p>
-            <p style={{margin: 0}}>{dispUserSince}</p>
-            <p style={{fontWeight: "bold", margin: 0}}>Primary country</p>
-            <p style={{margin: 0}}>{dispCountry}</p>
-            {
-              isOwnProfile && (
-                <PublicPrivateSwitch dispState={dispState} setDispState={setDispState} />
-              )
-            }
+          {dispState === STATES.OWN_PROFILE && (
+            <>
+              <p style={{ fontWeight: "bold", margin: 0 }}>Name</p>
+              <p style={{ margin: 0 }}>
+                {user ? user.name : "Error: No user logged in"}
+              </p>
+              <p style={{ fontWeight: "bold", margin: 0 }}>Email</p>
+              <p style={{ margin: 0 }}>
+                {user ? user.email : "Error: No user logged in"}
+              </p>
+            </>
+          )}
+          <p style={{ fontWeight: "bold", margin: 0 }}>User ID</p>
+          <p style={{ margin: 0 }}>{accessedUserId}</p>
+          <p style={{ fontWeight: "bold", margin: 0 }}>Username</p>
+          <UsernameDisplayAndEditor
+            dispState={dispState}
+            accessedUserProfile={accessedUserProfile}
+            countryId={countryId}
+            setAccessedUserProfile={setAccessedUserProfile}
+          />
+          <p style={{ fontWeight: "bold", margin: 0 }}>User since</p>
+          <p style={{ margin: 0 }}>{dispUserSince}</p>
+          <p style={{ fontWeight: "bold", margin: 0 }}>Primary country</p>
+          <p style={{ margin: 0 }}>{dispCountry}</p>
+          {isOwnProfile && (
+            <PublicPrivateSwitch
+              dispState={dispState}
+              setDispState={setDispState}
+            />
+          )}
         </div>
       </Skeleton>
     </div>
@@ -398,14 +430,13 @@ function UserProfileSection(props) {
 }
 
 function PolicySimulationCard(props) {
-  const {
-    metadata,
-    userPolicy,
-    keyValue
-  } = props;
+  const { metadata, userPolicy, keyValue } = props;
 
   const CURRENT_API_VERSION = metadata?.version;
-  const geography = metadata.economy_options.region.filter((region) => region.name === userPolicy.geography)[0].label || "Unknown";
+  const geography =
+    metadata.economy_options.region.filter(
+      (region) => region.name === userPolicy.geography,
+    )[0].label || "Unknown";
 
   const apiVersion = userPolicy.api_version;
   const dateAdded = userPolicy.added_date;
@@ -414,24 +445,38 @@ function PolicySimulationCard(props) {
   let dateMessage = null;
   let apiVersionMessage = null;
   if (dateAdded === dateLastUpdated) {
-    dateMessage = <span>First simulated {`${moment(dateAdded).fromNow()}`}</span>;
+    dateMessage = (
+      <span>First simulated {`${moment(dateAdded).fromNow()}`}</span>
+    );
   } else {
-    dateMessage = <span>Last updated {`${moment(dateLastUpdated).fromNow()}`}</span>;
+    dateMessage = (
+      <span>Last updated {`${moment(dateLastUpdated).fromNow()}`}</span>
+    );
   }
 
   if (apiVersion === CURRENT_API_VERSION) {
     apiVersionMessage = <span>(reflects latest model updates)</span>;
   } else {
-    apiVersionMessage = <span>(reflects outdated model version <span style={{fontWeight: "bold"}}>{`${apiVersion}`}</span>, click to update).</span>
+    apiVersionMessage = (
+      <span>
+        (reflects outdated model version{" "}
+        <span style={{ fontWeight: "bold" }}>{`${apiVersion}`}</span>, click to
+        update).
+      </span>
+    );
   }
 
-    return (
-      <Link key={keyValue} to={`/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}&timePeriod=${userPolicy.year}&region=${userPolicy.geography}`} style={{height: "100%"}}>
+  return (
+    <Link
+      key={keyValue}
+      to={`/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}&timePeriod=${userPolicy.year}&region=${userPolicy.geography}`}
+      style={{ height: "100%" }}
+    >
       <Card
         style={{
           width: "100%",
           minWidth: 0,
-          height: "100%"
+          height: "100%",
         }}
         bodyStyle={{
           display: "flex",
@@ -439,7 +484,9 @@ function PolicySimulationCard(props) {
           alignItems: "flex-start",
           justifyContent: "flex-start",
           height: "100%",
-          backgroundColor: userPolicy.api_version < CURRENT_API_VERSION && style.colors.LIGHT_GRAY
+          backgroundColor:
+            userPolicy.api_version < CURRENT_API_VERSION &&
+            style.colors.LIGHT_GRAY,
         }}
         hoverable={true}
         key={keyValue}
@@ -449,51 +496,69 @@ function PolicySimulationCard(props) {
             fontSize: "1.2rem",
             fontFamily: style.fonts.HEADER_FONT,
             marginBottom: "16px",
-            fontWeight: "bold"
+            fontWeight: "bold",
           }}
-        >{userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}</h6>
+        >
+          {userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}
+        </h6>
         <p>
-          Simulated in <span style={{fontWeight: "bold"}}>{userPolicy.year}</span> over <span style={{fontWeight: "bold"}}>{geography}</span> against <span style={{fontWeight: "bold"}}>{userPolicy.baseline_label}</span>.
+          Simulated in{" "}
+          <span style={{ fontWeight: "bold" }}>{userPolicy.year}</span> over{" "}
+          <span style={{ fontWeight: "bold" }}>{geography}</span> against{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {userPolicy.baseline_label}
+          </span>
+          .
         </p>
         <p>
-          <span style={{fontWeight: "bold"}}>{userPolicy.number_of_provisions}</span> provision{userPolicy.number_of_provisions === 1 ? "" : "s"}, {userPolicy.budgetary_impact < 0 ? "costing " : userPolicy.budgetary_impact > 0 ? "raising " : " "}<span style={{fontWeight: "bold"}}>{userPolicy.budgetary_impact ? `${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}` : "budgetary impact not yet simulated"}</span>.
+          <span style={{ fontWeight: "bold" }}>
+            {userPolicy.number_of_provisions}
+          </span>{" "}
+          provision{userPolicy.number_of_provisions === 1 ? "" : "s"},{" "}
+          {userPolicy.budgetary_impact < 0
+            ? "costing "
+            : userPolicy.budgetary_impact > 0
+              ? "raising "
+              : " "}
+          <span style={{ fontWeight: "bold" }}>
+            {userPolicy.budgetary_impact
+              ? `${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}`
+              : "budgetary impact not yet simulated"}
+          </span>
+          .
         </p>
         <p>
           {dateMessage} {apiVersionMessage}
         </p>
       </Card>
-      </Link>
-    );
+    </Link>
+  );
 }
 
 function UsernameDisplayAndEditor(props) {
-  const {
-    dispState,
-    accessedUserProfile,
-    countryId,
-    setAccessedUserProfile
-  } = props;
+  const { dispState, accessedUserProfile, countryId, setAccessedUserProfile } =
+    props;
 
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState("");
 
   function handleClick() {
-    setIsEditing(prev => !prev);
+    setIsEditing((prev) => !prev);
   }
 
   async function handleSubmit() {
     const USER_PROFILE_PATH = `/${countryId}/user_profile`;
     const body = {
       user_id: accessedUserProfile.user_id,
-      username: value
-    }
+      username: value,
+    };
 
     try {
       const res = await apiCall(USER_PROFILE_PATH, body, "PUT");
       const resJson = await res.json();
       if (resJson.status === "ok") {
         const data = await apiCall(
-          `/${countryId}/user_profile?user_id=${accessedUserProfile.user_id}`
+          `/${countryId}/user_profile?user_id=${accessedUserProfile.user_id}`,
         );
         const dataJson = await data.json();
         if (data.status === 404 && dataJson.status === "ok") {
@@ -510,7 +575,6 @@ function UsernameDisplayAndEditor(props) {
       } else {
         console.error("Error while attempting to update username");
       }
-
     } catch (err) {
       console.error(`Error while attempting to update username: ${err}`);
     }
@@ -524,9 +588,9 @@ function UsernameDisplayAndEditor(props) {
   if (dispState === STATES.NO_PROFILE) {
     dispUsername = "No user found";
   } else if (dispState === STATES.EMPTY) {
-    dispUsername = "Loading"
+    dispUsername = "Loading";
   } else if (accessedUserProfile.username) {
-    dispUsername = accessedUserProfile.username
+    dispUsername = accessedUserProfile.username;
   } else {
     dispUsername = "None created";
   }
@@ -537,7 +601,7 @@ function UsernameDisplayAndEditor(props) {
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-        gap: "10px"
+        gap: "10px",
       }}
     >
       {isEditing ? (
@@ -549,48 +613,41 @@ function UsernameDisplayAndEditor(props) {
             onChange={handleUpdate}
             style={{
               height: "1.3rem",
-              borderRadius: 0
+              borderRadius: 0,
             }}
           />
           <Tooltip title="Submit changes">
             <CheckOutlined
               onClick={handleSubmit}
-              style={{color: style.colors.DARK_GRAY}}
+              style={{ color: style.colors.DARK_GRAY }}
             />
           </Tooltip>
         </>
       ) : (
-        <p style={{margin: 0}}>
-          {dispUsername}
-        </p>
-      )
-      }
-      { dispState === STATES.OWN_PROFILE && (
-        isEditing ? (
-
+        <p style={{ margin: 0 }}>{dispUsername}</p>
+      )}
+      {dispState === STATES.OWN_PROFILE &&
+        (isEditing ? (
           <Tooltip title="Cancel">
-            <CloseOutlined onClick={handleClick} style={{color: style.colors.DARK_GRAY}}/>
+            <CloseOutlined
+              onClick={handleClick}
+              style={{ color: style.colors.DARK_GRAY }}
+            />
           </Tooltip>
         ) : (
           <EditOutlined
             onClick={handleClick}
             style={{
-              color: style.colors.DARK_GRAY
+              color: style.colors.DARK_GRAY,
             }}
           />
-        )
-      )
-      }
+        ))}
     </div>
-  )
-
+  );
 }
 
 function PublicPrivateSwitch(props) {
-  const {
-    dispState,
-    setDispState
-  } = props;
+  const { dispState, setDispState } = props;
 
   function handleClick() {
     setDispState((prev) => {
@@ -599,10 +656,12 @@ function PublicPrivateSwitch(props) {
       } else if (prev === STATES.OTHER_PROFILE) {
         return STATES.OWN_PROFILE;
       } else {
-        console.error("Error within PublicPrivateSwitch's click handler function");
+        console.error(
+          "Error within PublicPrivateSwitch's click handler function",
+        );
         return prev;
       }
-    })
+    });
   }
 
   return (
@@ -616,7 +675,7 @@ function PublicPrivateSwitch(props) {
         appearance: "none",
         color: style.colors.BLUE_PRIMARY,
         gridColumn: "1 / -1",
-        width: "max-content"
+        width: "max-content",
       }}
     >
       <p
@@ -626,11 +685,12 @@ function PublicPrivateSwitch(props) {
           textDecorationColor: style.colors.BLUE_PRIMARY,
         }}
       >
-        {dispState === STATES.OWN_PROFILE ? "View public profile" : dispState === STATES.OTHER_PROFILE ? "View private profile" : ""}
+        {dispState === STATES.OWN_PROFILE
+          ? "View public profile"
+          : dispState === STATES.OTHER_PROFILE
+            ? "View private profile"
+            : ""}
       </p>
     </button>
-
-
   );
-
 }

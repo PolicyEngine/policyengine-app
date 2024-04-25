@@ -10,7 +10,7 @@ export const buttonStyles = {
   secondary: {
     hoverBackgroundColor: colors.DARK_BLUE_HOVER,
     standardBackgroundColor: colors.BLUE,
-    borderColor: colors.WHITE
+    borderColor: colors.WHITE,
   },
   disabled: {
     hoverBackgroundColor: colors.BLUE_PRESSED,
@@ -20,7 +20,7 @@ export const buttonStyles = {
     hoverBackgroundColor: colors.LIGHT_GRAY,
     standardBackgroundColor: "inherit",
     textColor: colors.BLUE,
-    borderColor: colors.BLUE
+    borderColor: colors.BLUE,
   },
   default: {
     hoverBackgroundColor: colors.TEAL_PRESSED,
@@ -47,11 +47,13 @@ export default function Button(props) {
   let { text, onClick, width, type, size, height, style } = props;
 
   // Assign fallback values for styling
-  if (!type || !(Object.keys(buttonStyles).includes(type))) {
+  if (!type || !Object.keys(buttonStyles).includes(type)) {
     type = "default";
   }
   // Calculate the border to use
-  const borderColor = buttonStyles[type].borderColor ? buttonStyles[type].borderColor : null;
+  const borderColor = buttonStyles[type].borderColor
+    ? buttonStyles[type].borderColor
+    : null;
 
   return (
     <AntButton
@@ -80,14 +82,16 @@ export default function Button(props) {
       onMouseOver={(e) =>
         (e.currentTarget.style.backgroundColor =
           buttonStyles[type].hoverBackgroundColor) &&
-        (e.currentTarget.style.borderColor = borderColor ? borderColor : 
-          buttonStyles[type].hoverBackgroundColor)
+        (e.currentTarget.style.borderColor = borderColor
+          ? borderColor
+          : buttonStyles[type].hoverBackgroundColor)
       }
       onMouseOut={(e) =>
         (e.currentTarget.style.backgroundColor =
           buttonStyles[type].standardBackgroundColor) &&
-        (e.currentTarget.style.borderColor = borderColor ? borderColor :
-          buttonStyles[type].standardBackgroundColor)
+        (e.currentTarget.style.borderColor = borderColor
+          ? borderColor
+          : buttonStyles[type].standardBackgroundColor)
       }
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}

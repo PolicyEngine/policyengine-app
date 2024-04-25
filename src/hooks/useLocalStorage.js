@@ -7,7 +7,7 @@ export default function useLocalStorage(key, defaultValue) {
 
     try {
       currentValue = JSON.parse(
-        localStorage.getItem(key) || String(defaultValue)
+        localStorage.getItem(key) || String(defaultValue),
       );
     } catch (error) {
       currentValue = defaultValue;
@@ -21,5 +21,4 @@ export default function useLocalStorage(key, defaultValue) {
   }, [value, key]);
 
   return [value, setValue];
-
 }

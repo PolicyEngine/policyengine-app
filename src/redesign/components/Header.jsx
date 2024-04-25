@@ -6,15 +6,18 @@ import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.sv
 import CalculatorIcon from "../images/icons/calculator.png";
 import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LinkButton from "../../controls/LinkButton";
-import Button from "../../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
-import { UserOutlined, LoadingOutlined, CoffeeOutlined, UserDeleteOutlined, ReadOutlined } from "@ant-design/icons";
-import { login, loginOptions, logoutOptions } from "../../auth/authUtils";
+import {
+  UserOutlined,
+  LoadingOutlined,
+  UserDeleteOutlined,
+  ReadOutlined,
+} from "@ant-design/icons";
+import { loginOptions, logoutOptions } from "../../auth/authUtils";
 import { Dropdown } from "antd";
-
 
 const BAR_TOP_PADDING = 10; // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
@@ -35,7 +38,6 @@ const LINKS = [
 ];
 
 export default function Header() {
-
   const displayCategory = useDisplayCategory();
   return (
     <>
@@ -50,7 +52,7 @@ export default function Header() {
           zIndex: 1000,
           justifyContent: "space-between",
           borderBottom: `1px solid ${style.colors.BLACK}`,
-          padding: `0 ${BAR_SIDE_PADDING}px`
+          padding: `0 ${BAR_SIDE_PADDING}px`,
         }}
       >
         {
@@ -79,7 +81,7 @@ function MobileHeaderBar() {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "flex-start",
-          gap: "30px"
+          gap: "30px",
         }}
       >
         <MobileHeaderLogo />
@@ -89,7 +91,7 @@ function MobileHeaderBar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          gap: "16px"
+          gap: "16px",
         }}
       >
         <MobileCalculatorButton />
@@ -109,7 +111,7 @@ function TabletHeaderBar() {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "flex-start",
-          gap: "30px"
+          gap: "30px",
         }}
       >
         <MainHeaderLogo />
@@ -119,7 +121,7 @@ function TabletHeaderBar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          gap: "16px"
+          gap: "16px",
         }}
       >
         <DesktopCalculatorButton />
@@ -139,7 +141,7 @@ function DesktopHeaderBar() {
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "flex-start",
-          gap: "30px"
+          gap: "30px",
         }}
       >
         <MainHeaderLogo />
@@ -150,7 +152,7 @@ function DesktopHeaderBar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "flex-end",
-          gap: "16px"
+          gap: "16px",
         }}
       >
         <DesktopCalculatorButton />
@@ -169,7 +171,7 @@ function MobileHeaderLogo() {
         alt="PolicyEngine logo"
         style={{
           height: style.spacing.HEADER_HEIGHT,
-          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`
+          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`,
         }}
       />
     </Link>
@@ -179,7 +181,8 @@ function MobileHeaderLogo() {
 function MobileCalculatorButton() {
   const countryId = useCountryId();
 
-  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
+  const desiredHeight =
+    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
   return (
     <div
       style={{
@@ -208,18 +211,17 @@ function MobileCalculatorButton() {
 }
 
 function LoginButton() {
-
   const countryId = useCountryId();
-  const { loginWithRedirect, logout, isAuthenticated, user, isLoading } = useAuth0();
-  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
+  const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
+  const desiredHeight =
+    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
 
   const sharedStyle = {
     color: style.colors.WHITE,
-    fontSize: 18
+    fontSize: 18,
   };
 
   return (
-
     <div
       style={{
         backgroundColor: style.colors.BLUE,
@@ -229,50 +231,49 @@ function LoginButton() {
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
-        border: `1px solid ${style.colors.WHITE}`
+        border: `1px solid ${style.colors.WHITE}`,
       }}
       onClick={
-        !isAuthenticated ? (() => loginWithRedirect(loginOptions(countryId))) : null
+        !isAuthenticated
+          ? () => loginWithRedirect(loginOptions(countryId))
+          : null
       }
       onMouseOver={(e) =>
-        e.currentTarget.style.backgroundColor = style.colors.DARK_BLUE_HOVER
+        (e.currentTarget.style.backgroundColor = style.colors.DARK_BLUE_HOVER)
       }
       onMouseOut={(e) =>
-        e.currentTarget.style.backgroundColor = style.colors.BLUE_PRIMARY
+        (e.currentTarget.style.backgroundColor = style.colors.BLUE_PRIMARY)
       }
     >
-      {
-        isAuthenticated && user && user.picture ? (
-          <img
-            src={user.picture ?? ""}
-            alt="Profile"
-            style={{
-              width: "100%",
-              objectFit: "cover"
-            }}
-          />
-        ) : isLoading || isAuthenticated ? (
-          <LoadingOutlined style={sharedStyle} />
-        ) : (
-          <UserOutlined style={sharedStyle}/>
-        )
-      }
+      {isAuthenticated && user && user.picture ? (
+        <img
+          src={user.picture ?? ""}
+          alt="Profile"
+          style={{
+            width: "100%",
+            objectFit: "cover",
+          }}
+        />
+      ) : isLoading || isAuthenticated ? (
+        <LoadingOutlined style={sharedStyle} />
+      ) : (
+        <UserOutlined style={sharedStyle} />
+      )}
     </div>
   );
 }
 
 function LoginMenu() {
-
-  const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+  const { logout, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
 
   // Unfortunately, it's not possible with Ant Design
   // to set these on the individual menu items
-  function handleClick({key}) {
+  function handleClick({ key }) {
     if (key === "sign-out") {
-      logout(logoutOptions)
+      logout(logoutOptions);
     } else if (key === "profile") {
       navigate(`/${countryId}/profile`);
     }
@@ -282,39 +283,37 @@ function LoginMenu() {
     {
       label: "Profile",
       key: "profile",
-      icon: <ReadOutlined style={{fontSize: 16}}/>,
+      icon: <ReadOutlined style={{ fontSize: 16 }} />,
       style: {
         fontSize: 16,
-        margin: 10
-      }
+        margin: 10,
+      },
     },
     {
       label: "Sign out",
       key: "sign-out",
-      icon: <UserDeleteOutlined style={{fontSize: 16}} />,
+      icon: <UserDeleteOutlined style={{ fontSize: 16 }} />,
       style: {
         fontSize: 16,
-        margin: 10
-      }
-    }
+        margin: 10,
+      },
+    },
   ];
 
   if (!isAuthenticated) {
-    return (
-      <LoginButton />
-    );
+    return <LoginButton />;
   }
 
   return (
-    <Dropdown 
+    <Dropdown
       menu={{
         items: dropdownItems,
-        onClick: handleClick, 
+        onClick: handleClick,
         style: {
           borderRadius: 0,
           fontFamily: style.fonts.BODY_FONT,
-          minWidth: "200px"
-        }
+          minWidth: "200px",
+        },
       }}
       trigger={displayCategory === "mobile" ? ["click", "hover"] : ["hover"]}
       placement="bottomRight"
@@ -330,7 +329,8 @@ function LoginMenu() {
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING
+  const desiredHeight =
+    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
 
   return (
     <>
@@ -386,7 +386,7 @@ function MainHeaderLogo() {
         style={{
           objectFit: "contain",
           height: style.spacing.HEADER_HEIGHT,
-          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`
+          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`,
         }}
       />
     </Link>
@@ -394,9 +394,7 @@ function MainHeaderLogo() {
 }
 
 function PageLinks() {
-
   const countryId = useCountryId();
-  const { isAuthenticated } = useAuth0();
 
   return (
     <div
@@ -455,7 +453,6 @@ function LeftNavigationMenu(props) {
   // The menu that slides in from the left when the hamburger is clicked
   const { isOpen } = props;
   const countryId = useCountryId();
-  const { isAuthenticated } = useAuth0();
 
   return (
     <motion.div

@@ -31,7 +31,7 @@ const colors = {
   WHITE,
   TEAL_98,
   BLACK,
-  DARK_BLUE_HOVER
+  DARK_BLUE_HOVER,
 };
 
 export default colors;

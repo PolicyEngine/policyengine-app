@@ -53,7 +53,7 @@ export default function FormContext(props) {
   function handleCheck(e) {
     setFormInput((prev) => ({
       ...prev,
-      [e.target.name]: e.target.checked
+      [e.target.name]: e.target.checked,
     }));
   }
 
@@ -64,7 +64,10 @@ export default function FormContext(props) {
       name: child.props.label,
       props: {
         ...child.props,
-        changeHandler: child.type.name === "FormCheckbox" ? (e) => handleCheck(e) : (e) => handleChange(e),
+        changeHandler:
+          child.type.name === "FormCheckbox"
+            ? (e) => handleCheck(e)
+            : (e) => handleChange(e),
       },
     };
   });

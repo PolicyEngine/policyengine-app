@@ -15,7 +15,10 @@ import SignupModal from "../../../modals/SignupModal";
 export default function PolicyOutput(props) {
   const { metadata, policy, userProfile } = props;
 
-  const [savedPolicies, setSavedPolicies] = useLocalStorage("saved-policies", []);
+  const [savedPolicies, setSavedPolicies] = useLocalStorage(
+    "saved-policies",
+    [],
+  );
   const [userPolicyId, setUserPolicyId] = useState(null);
   const [showPolicyImpactPopup, setShowPolicyImpactPopup] = useState(false);
   const countryId = useCountryId();
@@ -28,20 +31,20 @@ export default function PolicyOutput(props) {
   const timePeriod = urlParams.get("timePeriod");
 
   useEffect(() => {
-
     function addPolicyToLocalStorage(policyToAdd) {
       const filteredPolicies = cullOldPolicies(savedPolicies);
       // Make sure policy doesn't match another one
-      const matches = filteredPolicies.filter((item) => item.reform_id === policyToAdd.reform_id && item.baseline_id === policyToAdd.baseline_id);
+      const matches = filteredPolicies.filter(
+        (item) =>
+          item.reform_id === policyToAdd.reform_id &&
+          item.baseline_id === policyToAdd.baseline_id,
+      );
       if (matches.length > 0) {
         return;
       }
-    
+
       // If it doesn't, save
-      setSavedPolicies([
-        ...filteredPolicies,
-        policyToAdd
-      ]); 
+      setSavedPolicies([...filteredPolicies, policyToAdd]);
     }
 
     async function attribPolicyToUser() {
@@ -56,8 +59,8 @@ export default function PolicyOutput(props) {
         year: timePeriod,
         api_version: metadata.version,
         number_of_provisions: countProvisions(policy),
-        added_date: Date.now(), 
-        updated_date: Date.now() 
+        added_date: Date.now(),
+        updated_date: Date.now(),
       };
 
       if (!isAuthenticated && getCookie("consent")) {
@@ -66,7 +69,7 @@ export default function PolicyOutput(props) {
         // Also emit the current policy
         policyToSave = {
           ...policyToSave,
-          user_id: userProfile.user_id
+          user_id: userProfile.user_id,
         };
 
         let failedAttempts = [];
@@ -86,10 +89,18 @@ export default function PolicyOutput(props) {
     if (countryId) {
       attribPolicyToUser();
     }
-  // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
-  // are themselves a hook, with setSavedPolicies being a setter
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, geography, isAuthenticated, metadata, policy, timePeriod, userProfile]);
+    // ESLint wants to monitor savedPolicies and setSavedPolicies, but these
+    // are themselves a hook, with setSavedPolicies being a setter
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    countryId,
+    geography,
+    isAuthenticated,
+    metadata,
+    policy,
+    timePeriod,
+    userProfile,
+  ]);
 
   let impactType = null;
   if (focus !== "policyOutput") {
@@ -103,7 +114,10 @@ export default function PolicyOutput(props) {
     return (
       <>
         <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
-        <LowLevelDisplay {...props} showPolicyImpactPopup={showPolicyImpactPopup}>
+        <LowLevelDisplay
+          {...props}
+          showPolicyImpactPopup={showPolicyImpactPopup}
+        >
           <PolicyReproducibility metadata={metadata} policy={policy} />
         </LowLevelDisplay>
       </>
@@ -112,21 +126,30 @@ export default function PolicyOutput(props) {
     return (
       <>
         <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
-        <FetchAndDisplayCliffImpact {...props} showPolicyImpactPopup={showPolicyImpactPopup}/>;
+        <FetchAndDisplayCliffImpact
+          {...props}
+          showPolicyImpactPopup={showPolicyImpactPopup}
+        />
+        ;
       </>
     );
   }
   return (
     <>
       <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
-      <FetchAndDisplayImpact metadata={metadata} policy={policy} userPolicyId={userPolicyId} showPolicyImpactPopup={showPolicyImpactPopup}/>
+      <FetchAndDisplayImpact
+        metadata={metadata}
+        policy={policy}
+        userPolicyId={userPolicyId}
+        showPolicyImpactPopup={showPolicyImpactPopup}
+      />
     </>
   );
 }
 
 /**
  * Counts number of unique provisions in the reform portion of a policy
- * @param {Object} policy 
+ * @param {Object} policy
  * @returns {Number}
  */
 function countProvisions(policy) {
@@ -140,5 +163,4 @@ function countProvisions(policy) {
   }
 
   return count;
-
 }

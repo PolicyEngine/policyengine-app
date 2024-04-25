@@ -3,7 +3,6 @@ import { apiCall } from "./call";
 const USER_POLICY_ENDPOINT = "/user_policy";
 
 export async function postUserPolicy(countryId, policyToAdd) {
-
   // Prevent creation of records where baseline and reform are the same;
   // this is due to the fact that we link to the policy breakdown page,
   // which first tries to load current law, then updates via an effect
@@ -16,7 +15,7 @@ export async function postUserPolicy(countryId, policyToAdd) {
     const res = await apiCall(
       `/${countryId}${USER_POLICY_ENDPOINT}`,
       policyToAdd,
-      "POST"
+      "POST",
     );
     const resJson = await res.json();
     // If the record already exists...
@@ -25,7 +24,7 @@ export async function postUserPolicy(countryId, policyToAdd) {
       const updatedPolicy = {
         id: resJson.result.id,
         api_version: policyToAdd.api_version,
-        updated_date: policyToAdd.updated_date
+        updated_date: policyToAdd.updated_date,
       };
       await updateUserPolicy(countryId, updatedPolicy);
       return resJson.result.id;
@@ -44,12 +43,11 @@ export async function postUserPolicy(countryId, policyToAdd) {
 }
 
 export async function updateUserPolicy(countryId, policyToAdd) {
-
   try {
     const res = await apiCall(
       `/${countryId}${USER_POLICY_ENDPOINT}`,
       policyToAdd,
-      "PUT"
+      "PUT",
     );
     const resJson = await res.json();
     if (resJson.status !== "ok") {
@@ -68,9 +66,9 @@ export async function updateUserPolicy(countryId, policyToAdd) {
 
 export function cullOldPolicies(policies) {
   const currentDate = Date.now();
-  const VALID_PERIOD_IN_MS = 1000 * 60 * 60 * 24 * 14 // 14 days in MS
+  const VALID_PERIOD_IN_MS = 1000 * 60 * 60 * 24 * 14; // 14 days in MS
   const filteredPolicies = policies.filter((policy) => {
-    return (Math.abs(currentDate - policy.added_date) < VALID_PERIOD_IN_MS);
-  }); 
+    return Math.abs(currentDate - policy.added_date) < VALID_PERIOD_IN_MS;
+  });
   return filteredPolicies;
 }

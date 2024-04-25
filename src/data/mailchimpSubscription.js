@@ -12,42 +12,35 @@ import jsonp from "jsonp";
  * two values: a Boolean representing whether or not submission was successful,
  * and a success or failure message, housed in an Object within a Promise
  * @param {String} email The email address to submit
- * @returns {MailchimpReturn} 
+ * @returns {MailchimpReturn}
  */
 export function submitToMailchimp(email) {
-
   // PolicyEngine's Mailchimp form submission address
   const submitLink =
     "https://policyengine.us5.list-manage.com/subscribe/post-json?u=e5ad35332666289a0f48013c5&amp;id=71ed1f89d8&amp;f_id=00f173e6f0";
 
-
   // "error" is if there is a connection issue, while "data" is Mailchimp's
   // res object, including signup errors
-  let promise = new Promise(
-    function(resolve, reject) {
-      jsonp(
-        `${submitLink}&EMAIL=${email}`,
-        { param: "c" },
-        (error, data) => {
-          if (error) {
-            reject({
-              isSuccessful: false,
-              message: "There was an issue processing your subscription; please try again later."
-            });
-          }
-          if (data) {
-            // "data" also contains "result" param
-            // of either "success" or "error"
-            const { msg } = data;
-            resolve({
-              isSuccessful: data.result === "error" ? false : true,
-              message: msg
-            });
-          }
-        },
-      );
-    }
-  )
+  let promise = new Promise(function (resolve, reject) {
+    jsonp(`${submitLink}&EMAIL=${email}`, { param: "c" }, (error, data) => {
+      if (error) {
+        reject({
+          isSuccessful: false,
+          message:
+            "There was an issue processing your subscription; please try again later.",
+        });
+      }
+      if (data) {
+        // "data" also contains "result" param
+        // of either "success" or "error"
+        const { msg } = data;
+        resolve({
+          isSuccessful: data.result === "error" ? false : true,
+          message: msg,
+        });
+      }
+    });
+  });
   return promise;
 
   /*

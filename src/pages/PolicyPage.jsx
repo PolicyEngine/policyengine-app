@@ -74,12 +74,7 @@ function PolicyLeftSidebar(props) {
 }
 
 export default function PolicyPage(props) {
-  const {
-    metadata,
-    policy,
-    userProfile,
-    setPolicy,
-  } = props;
+  const { metadata, policy, userProfile, setPolicy } = props;
   const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
