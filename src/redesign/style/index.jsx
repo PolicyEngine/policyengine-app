@@ -1,5 +1,5 @@
 import colors from "./colors";
-import spacing from "./spacing";
+import spacing from "../../style/spacing";
 import fonts from "./fonts";
 
 const style = {
