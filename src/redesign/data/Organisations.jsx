@@ -1,4 +1,4 @@
-import Centre from "../images/logos/orgs/centre.png";
+import Centre from "../../images/logos/orgs/centre.png";
 import CPS from "../../images/logos/orgs/cps.png";
 import GPEW from "../../images/logos/orgs/gpew.png";
 import LiberalParty from "../../images/logos/orgs/liberal-party.jpeg";
@@ -8,16 +8,15 @@ import UKEU from "../../images/logos/orgs/ukeu.svg";
 import ASI from "../../images/logos/orgs/asi.webp";
 import CEC from "../../images/logos/orgs/cec.svg";
 import CGO from "../../images/logos/orgs/cgo.jpg";
-/*import EPMT from "../../images/logos/orgs/epmt.jpg";*/
+import EPMT from "../../images/logos/orgs/epmt.jpg";
 import NISKANENCenter from "../../images/logos/orgs/niskanen-center.png";
 import F4GI from "../../images/logos/orgs/f4gi.jpg";
 import GCV from "../../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../../images/logos/orgs/mca.jpg";
 import UBICenter from "../../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../../images/logos/orgs/mothers-outreach-network.png";
-import NIESR from "../images/logos/orgs/niesr.jpeg";
+import NIESR from "../../images/logos/orgs/niesr.jpeg";
 
-// eslint-disable-next-line
 export const orgData = {
   uk: {
     ukeu: {
@@ -75,6 +74,11 @@ export const orgData = {
       logo: CEC,
       link: "https://citizensecon.org.uk/get-involved",
     },
+    epmt: {
+      name: "End Poverty Make Trillions",
+      logo: EPMT,
+      link: "https://endpovertymaketrillions.com/"
+    }
   },
   us: {
     f4gi: {
