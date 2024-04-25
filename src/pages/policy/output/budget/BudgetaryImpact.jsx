@@ -59,7 +59,7 @@ function ImpactPlot(props) {
             },
           },
           connector: {
-            line: { color: style.colors.GRAY, width: 2, dash: "dot" },
+            line: { color: style.colors.MEDIUM_LIGHT_GRAY, width: 2, dash: "dot" },
           },
           ...(useHoverCard
             ? {

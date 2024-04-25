@@ -189,7 +189,7 @@ function BaselineAndReformTogetherPlot(props) {
       name: "Baseline",
       legendgroup: "Baseline",
       line: {
-        color: style.colors.GRAY,
+        color: style.colors.MEDIUM_LIGHT_GRAY,
       },
       ...(useHoverCard
         ? {
@@ -233,7 +233,7 @@ function BaselineAndReformTogetherPlot(props) {
       legendgroup: "Baseline",
       showlegend: false,
       marker: {
-        color: style.colors.GRAY,
+        color: style.colors.MEDIUM_LIGHT_GRAY,
         size: 7,
       },
       ...(useHoverCard

@@ -1,6 +1,6 @@
 import CodeBlock from "layout/CodeBlock";
 import { useSearchParams } from "react-router-dom";
-import colors from "../../../redesign/style/colors";
+import colors from "../../../style/colors";
 import { getReproducibilityCodeBlock } from "../../../data/reformDefinitionCode";
 
 export default function PolicyReproducibility(props) {

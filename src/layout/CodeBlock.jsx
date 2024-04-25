@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Highlight, themes } from "prism-react-renderer";
-import colors from "../redesign/style/colors";
+import colors from "../style/colors";
 
 export default function CodeBlock({ lines, language }) {
   const [copyText, setCopyText] = useState("Copy");

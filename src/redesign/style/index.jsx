@@ -1,4 +1,4 @@
-import colors from "./colors";
+import colors from "../../style/colors";
 import spacing from "../../style/spacing";
 import fonts from "../../style/fonts";
 

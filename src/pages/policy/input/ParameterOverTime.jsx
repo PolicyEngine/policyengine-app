@@ -70,7 +70,7 @@ export default function ParameterOverTime(props) {
               shape: "hv",
             },
             marker: {
-              color: style.colors.GRAY,
+              color: style.colors.MEDIUM_LIGHT_GRAY,
             },
             name: "Current law",
             customdata: customData,
