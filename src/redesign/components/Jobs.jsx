@@ -4,7 +4,7 @@ import Footer from "../../layout/Footer";
 import Section from "./Section";
 import style from "../../style";
 import PageHeader from "./PageHeader";
-import { HoverBox } from "./HoverBox";
+import { HoverBox } from "../../layout/HoverBox";
 
 function InternshipOpportunities() {
   return (
