@@ -206,18 +206,27 @@ export function getImplementationCode(type, region, timePeriod) {
   }
 
   const isCountryUS = US_REGIONS.includes(region);
+  //"reform=baseline_reform, dataset=\"enhanced_cps_" + timePeriod+"\""
 
   return [
     "",
     "",
     `baseline = Microsimulation(${
-      isCountryUS ? "reform=baseline_reform" : ""
+      isCountryUS
+        ? region === "enhanced_us"
+          ? `reform=baseline_reform, dataset="enhanced_cps_${timePeriod}"`
+          : `reform=baseline_reform`
+        : ""
     })`,
-    "reformed = Microsimulation(reform=reform)",
-    `baseline_person = baseline.calc("household_net_income",`,
-    `    period=${timePeriod || defaultYear}, map_to="person")`,
-    `reformed_person = reformed.calc("household_net_income",`,
-    `    period=${timePeriod || defaultYear}, map_to="person")`,
+    `reformed = Microsimulation(${
+      region === "enhanced_us"
+        ? `reform=reform, dataset="enhanced_cps_${timePeriod}"`
+        : `reform=reform`
+    })`,
+    `baseline_person = baseline.calc("household_net_income",
+      period=${timePeriod || defaultYear}, map_to="person")`,
+    `reformed_person = reformed.calc("household_net_income",
+      period=${timePeriod || defaultYear}, map_to="person")`,
     "difference_person = reformed_person - baseline_person",
   ];
 }
