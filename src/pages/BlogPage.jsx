@@ -27,7 +27,10 @@ import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
 import { MarkdownFormatter } from "../redesign/style/MarkdownFormatter";
-import { HighlightedBlock, PlotlyChartCode } from "../redesign/style/MarkdownFormatter";
+import {
+  HighlightedBlock,
+  PlotlyChartCode,
+} from "../redesign/style/MarkdownFormatter";
 
 // Function to handle image loading
 const handleImageLoad = (path) => {
