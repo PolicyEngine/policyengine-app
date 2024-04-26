@@ -19,7 +19,7 @@ import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import FontIcon from "./FontIcon";
+import FontIcon from "../../layout/FontIcon";
 import { Helmet } from "react-helmet";
 import { Checkbox } from "antd";
 

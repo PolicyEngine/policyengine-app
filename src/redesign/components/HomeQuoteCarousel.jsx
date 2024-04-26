@@ -6,7 +6,7 @@ import { orgData } from "../../data/organisations.js";
 import Carousel from "../../layout/Carousel.jsx";
 import useCountryId from "../../hooks/useCountryId";
 import { Link } from "react-router-dom";
-import FontIcon from "./FontIcon";
+import FontIcon from "../../layout/FontIcon.jsx";
 import Section from "./Section";
 import ArrowButton from "controls/ArrowButton";
 
