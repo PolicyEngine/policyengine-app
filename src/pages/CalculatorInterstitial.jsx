@@ -1,4 +1,4 @@
-import Header from "../redesign/components/Header";
+import Header from "../layout/Header";
 import LinkButton from "controls/LinkButton";
 import useCountryId from "../redesign/components/useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";

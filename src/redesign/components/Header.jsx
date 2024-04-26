@@ -542,3 +542,4 @@ function LeftNavigationMenu(props) {
     </motion.div>
   );
 }
+

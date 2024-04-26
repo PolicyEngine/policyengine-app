@@ -1,4 +1,4 @@
-import Header from "../redesign/components/Header";
+import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Section from "../redesign/components/Section";
 import style from "../style";

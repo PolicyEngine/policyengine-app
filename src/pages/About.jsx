@@ -1,4 +1,4 @@
-import Header from "../redesign/components/Header.jsx";
+import Header from "../layout/Header.jsx";
 import Footer from "../layout/Footer.jsx";
 import Section from "../redesign/components/Section.jsx";
 import style from "../style/index.jsx";

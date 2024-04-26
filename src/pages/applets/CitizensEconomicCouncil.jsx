@@ -1,4 +1,4 @@
-import Header from "../../redesign/components/Header";
+import Header from "../../layout/Header";
 import { Helmet } from "react-helmet";
 
 export default function CitizensEconomicCouncil() {

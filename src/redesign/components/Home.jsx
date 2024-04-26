@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../../layout/Header";
 import HomeLanding from "./HomeLanding";
 import HomeCallToAction from "./HomeCallToAction";
 import HomeBlogPreview from "./HomeBlogPreview";

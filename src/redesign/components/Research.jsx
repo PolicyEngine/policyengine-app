@@ -1,4 +1,4 @@
-import Header from "./Header";
+import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import Section from "./Section";
 import PageHeader from "./PageHeader";
