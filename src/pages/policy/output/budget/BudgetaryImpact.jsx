@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
-import { HoverCardContext } from "../../../../layout/HoverCard";
+import { HoverCardContext } from "../../../../components/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { absoluteChangeMessage, regionName } from "../ImpactChart";

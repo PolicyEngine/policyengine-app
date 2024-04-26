@@ -1,4 +1,4 @@
-import Header from "../layout/Header";
+import Header from "../components/Header";
 import LinkButton from "controls/LinkButton";
 import useCountryId from "../hooks/useCountryId";
 import HouseholdScreenshot from "../images/home/household_screenshot.png";

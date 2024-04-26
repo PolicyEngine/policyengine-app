@@ -6,7 +6,7 @@ import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
 import React from "react";
 import ImpactChart, { absoluteChangeMessage } from "../ImpactChart";
-import { HoverCardContext } from "layout/HoverCard";
+import { HoverCardContext } from "../../../../components/HoverCard";
 import { title } from "./BudgetaryImpact";
 
 function ImpactPlot(props) {

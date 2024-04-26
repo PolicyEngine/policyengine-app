@@ -1,5 +1,5 @@
 import style from "../style";
-import Section from "./Section";
+import Section from "../layout/Section";
 import useDisplayCategory from "../hooks/useDisplayCategory";
 
 export default function PageHeader({

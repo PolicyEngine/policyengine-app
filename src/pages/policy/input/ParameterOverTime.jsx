@@ -5,6 +5,7 @@ import {
   formatVariableValue,
 } from "../../../api/variables";
 import useMobile from "../../../layout/Responsive";
+import useWindowHeight from "hooks/useWindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { localeCode } from "lang/format";

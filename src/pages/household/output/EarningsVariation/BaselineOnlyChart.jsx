@@ -6,15 +6,15 @@ import {
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../../api/variables";
-import FadeIn from "../../../../layout/FadeIn";
+import FadeIn from "../../../../components/FadeIn";
 import style from "../../../../style";
 import { getCliffs } from "./cliffs";
-import HoverCard, { HoverCardContext } from "../../../../layout/HoverCard";
+import HoverCard, { HoverCardContext } from "../../../../components/HoverCard";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
 import useMobile from "layout/Responsive";
-import Screenshottable from "layout/Screenshottable";
+import Screenshottable from "components/Screenshottable";
 
 export default function BaselineOnlyChart(props) {
   const {

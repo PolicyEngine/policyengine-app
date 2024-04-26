@@ -1,5 +1,5 @@
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Section from "../layout/Section";
 import style from "../style";
 import { fullQuotes } from "../data/quotes";

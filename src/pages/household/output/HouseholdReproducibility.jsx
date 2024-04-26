@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ResultsPanel from "../../../layout/ResultsPanel";
+import ResultsPanel from "../../../components/ResultsPanel";
 import { Switch } from "antd";
 import CodeBlock from "layout/CodeBlock";
 import { useSearchParams } from "react-router-dom";

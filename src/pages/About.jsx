@@ -1,10 +1,10 @@
-import Header from "../layout/Header.jsx";
-import Footer from "../layout/Footer.jsx";
+import Header from "../components/Header.jsx";
+import Footer from "../components/Footer.jsx";
 import Section from "../layout/Section.jsx";
 import style from "../style/index.jsx";
-import PageHeader from "../layout/PageHeader.jsx";
+import PageHeader from "../components/PageHeader.jsx";
 import { founders, staff, advisors } from "../data/staff.js";
-import useDisplayCategory from "../hooks/useDisplayCategory.jsx";
+import useDisplayCategory from "../hooks/useDisplayCategory.js";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 

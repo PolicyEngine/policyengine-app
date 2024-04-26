@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import BottomCarousel from "../../../layout/BottomCarousel";
-import LoadingCentered from "../../../layout/LoadingCentered";
+import BottomCarousel from "../../../components/BottomCarousel";
+import LoadingCentered from "../../../components/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
-import ResultsPanel from "../../../layout/ResultsPanel";
+import ResultsPanel from "../../../components/ResultsPanel";
 import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
@@ -11,7 +11,7 @@ import PoliciesModelledPopup from "../../../modals/PoliciesModelledPopup";
 import HOUSEHOLD_OUTPUT_TREE from "./tree";
 import React from "react";
 import { message } from "antd";
-import ResultActions from "layout/ResultActions";
+import ResultActions from "components/ResultActions";
 
 export default function HouseholdOutput(props) {
   const [searchParams] = useSearchParams();

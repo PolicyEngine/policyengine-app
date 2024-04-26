@@ -3,8 +3,8 @@ import jsonp from "jsonp";
 
 import style from "../../style";
 import Section from "../../layout/Section";
-import FormContext from "layout/forms/FormContext";
-import FormItem from "layout/forms/FormItem";
+import FormContext from "forms/FormContext";
+import FormItem from "forms/FormItem";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 export default function HomeSubscribe() {

@@ -7,7 +7,7 @@ import {
 } from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
-import ErrorPage from "layout/Error";
+import ErrorPage from "../../../components/Error";
 import { defaultYear } from "data/constants";
 import { areObjectsSame } from "../../../data/areObjectsSame";
 import { updateUserPolicy } from "../../../api/userPolicies";

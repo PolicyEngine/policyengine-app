@@ -1,11 +1,11 @@
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 import style from "../style";
-import ResultsPanel from "./ResultsPanel";
+import ResultsPanel from "../components/ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
 import { capitalize } from "../lang/format";
-import Divider from "./Divider";
+import Divider from "../components/Divider";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
 
 function FolderPageDescription(props) {

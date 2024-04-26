@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import style from "../../../../style";
-import { HoverCardContext } from "../../../../layout/HoverCard";
+import { HoverCardContext } from "../../../../components/HoverCard";
 import { ordinal, formatPercent, precision } from "../../../../lang/format";
 import { plotLayoutFont } from "../utils";
 import React from "react";

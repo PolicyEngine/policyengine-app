@@ -1,4 +1,4 @@
-import Header from "../layout/Header";
+import Header from "../components/Header";
 import { Helmet } from "react-helmet";
 
 export default function TrafwaCalculator() {

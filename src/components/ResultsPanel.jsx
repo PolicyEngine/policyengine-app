@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-import useMobile from "./Responsive";
+import useMobile from "../layout/Responsive";
 
 const ResultsPanel = forwardRef((props, ref) => {
   const mobile = useMobile();

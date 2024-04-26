@@ -1,10 +1,10 @@
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Section from "../layout/Section";
-import PageHeader from "../layout/PageHeader";
+import PageHeader from "../components/PageHeader";
 import style from "../style";
 import useDisplayCategory from "../hooks/useDisplayCategory";
-import TextBox from "../layout/TextBox";
+import TextBox from "../components/TextBox";
 import Button from "controls/Button";
 import {
   posts,
@@ -19,7 +19,7 @@ import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import FontIcon from "../layout/FontIcon";
+import FontIcon from "../components/FontIcon";
 import { Helmet } from "react-helmet";
 import { Checkbox } from "antd";
 

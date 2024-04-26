@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { apiCall } from "../../../api/call";
-import ErrorPage from "../../../layout/Error";
-import ResultsPanel from "../../../layout/ResultsPanel";
+import ErrorPage from "../../../components/Error";
+import ResultsPanel from "../../../components/ResultsPanel";
 import { useSearchParams } from "react-router-dom";
-import LoadingCentered from "../../../layout/LoadingCentered";
+import LoadingCentered from "../../../components/LoadingCentered";
 import SearchOptions from "../../../controls/SearchOptions";
 import { capitalize } from "../../../lang/format";
 import BaselineOnlyChart from "./EarningsVariation/BaselineOnlyChart";

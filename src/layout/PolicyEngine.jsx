@@ -13,9 +13,9 @@ import {
   countryApiCall,
   updateMetadata,
 } from "../api/call";
-import LoadingCentered from "./LoadingCentered";
-import ErrorPage from "./Error";
-import Header from "./Header";
+import LoadingCentered from "../components/LoadingCentered";
+import ErrorPage from "../components/Error";
+import Header from "../components/Header";
 import Testimonials from "../pages/Testimonials";
 import CalculatorInterstitial from "../pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "../applets/CitizensEconomicCouncil";

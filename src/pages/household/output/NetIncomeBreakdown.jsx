@@ -10,7 +10,7 @@ import {
   formatVariableValue,
   getValueFromHousehold,
 } from "../../../api/variables";
-import ResultsPanel from "../../../layout/ResultsPanel";
+import ResultsPanel from "../../../components/ResultsPanel";
 import style from "../../../style";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import { Helmet } from "react-helmet";

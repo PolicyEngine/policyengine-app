@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
-import Spinner from "../../../layout/Spinner";
+import Spinner from "../../../components/Spinner";
 import Button from "../../../controls/Button";
 import CodeBlock from "layout/CodeBlock";
 import colors from "../../../style/colors";

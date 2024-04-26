@@ -5,8 +5,8 @@ import {
   getValueFromHousehold,
 } from "../../api/variables";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
-import Divider from "../../layout/Divider";
-import LoadingCentered from "../../layout/LoadingCentered";
+import Divider from "../../components/Divider";
+import LoadingCentered from "../../components/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
 
 function Figure(props) {

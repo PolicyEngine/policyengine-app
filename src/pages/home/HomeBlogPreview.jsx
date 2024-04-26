@@ -2,11 +2,11 @@ import style from "../../style";
 import { SectionBottom, SectionTop } from "../../layout/Section";
 import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import Carousel from "../../layout/Carousel";
+import Carousel from "../../components/Carousel";
 import moment from "moment";
 import { useState } from "react";
 import useCountryId from "../../hooks/useCountryId";
-import EmphasisedLink from "../../layout/EmphasisedLink";
+import EmphasisedLink from "../../components/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {

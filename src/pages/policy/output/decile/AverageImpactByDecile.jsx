@@ -7,7 +7,7 @@ import {
   formatCurrency,
   precision,
 } from "../../../../lang/format";
-import { HoverCardContext } from "../../../../layout/HoverCard";
+import { HoverCardContext } from "../../../../components/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
 import React from "react";

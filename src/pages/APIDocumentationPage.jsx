@@ -1,6 +1,6 @@
 import style from "../style";
-import Footer from "../layout/Footer";
-import Header from "../layout/Header";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import Section from "../layout/Section";
 import useCountryId from "../hooks/useCountryId";
 import { useState, useEffect } from "react";

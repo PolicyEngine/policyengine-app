@@ -6,17 +6,17 @@ import {
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../api/variables";
-import ErrorPage from "../../../layout/Error";
-import ResultsPanel from "../../../layout/ResultsPanel";
+import ErrorPage from "../../../components/Error";
+import ResultsPanel from "../../../components/ResultsPanel";
 import style from "../../../style";
-import FadeIn from "../../../layout/FadeIn";
+import FadeIn from "../../../components/FadeIn";
 import { useSearchParams } from "react-router-dom";
 import { Radio } from "antd";
-import LoadingCentered from "../../../layout/LoadingCentered";
+import LoadingCentered from "../../../components/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import useMobile from "layout/Responsive";
-import Screenshottable from "layout/Screenshottable";
+import Screenshottable from "components/Screenshottable";
 import { localeCode } from "lang/format";
 import { Helmet } from "react-helmet";
 

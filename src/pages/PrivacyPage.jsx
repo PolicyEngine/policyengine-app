@@ -1,8 +1,8 @@
 import { Container } from "react-bootstrap";
 import useMobile from "../layout/Responsive";
 import { Helmet } from "react-helmet";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function PrivacyPage() {
   const mobile = useMobile();

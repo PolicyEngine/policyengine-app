@@ -3,7 +3,7 @@ import Section from "../../layout/Section";
 import apiScreenshot from "../../images/home/api_screenshot.png";
 import githubScreenshot from "../../images/home/github_screenshot.png";
 import testingScreenshot from "../../images/home/testing_screenshot.png";
-import ShowcaseItem from "../../layout/ShowcaseItem";
+import ShowcaseItem from "../../components/ShowcaseItem";
 import useCountryId from "../../hooks/useCountryId";
 
 export default function HomeTransparency() {

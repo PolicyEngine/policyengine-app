@@ -1,4 +1,4 @@
-import FontIcon from "../layout/FontIcon";
+import FontIcon from "../components/FontIcon";
 
 export default function EmphasisedLink({ text, url, size, isStretched }) {
   const fontSize = size || 15;

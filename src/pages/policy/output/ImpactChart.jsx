@@ -1,7 +1,7 @@
-import HoverCard from "layout/HoverCard";
+import HoverCard from "../../../components/HoverCard";
 import wordwrap from "wordwrapjs";
 import { formatPercent } from "lang/format";
-import Screenshottable from "layout/Screenshottable";
+import Screenshottable from "../../../components/Screenshottable";
 
 export default function ImpactChart(props) {
   const { title, description, children } = props;
