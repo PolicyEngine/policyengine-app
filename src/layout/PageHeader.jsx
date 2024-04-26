@@ -1,6 +1,6 @@
-import style from "../../style";
+import style from "../style";
 import Section from "./Section";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
 
 export default function PageHeader({
   title,

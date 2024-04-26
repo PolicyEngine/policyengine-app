@@ -1,7 +1,7 @@
 import style from "../style";
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
-import Section from "../redesign/components/Section";
+import Section from "../layout/Section";
 import useCountryId from "../hooks/useCountryId";
 import { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";

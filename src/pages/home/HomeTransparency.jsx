@@ -1,5 +1,5 @@
 import style from "../../style";
-import Section from "../../redesign/components/Section";
+import Section from "../../layout/Section";
 import apiScreenshot from "../../images/home/api_screenshot.png";
 import githubScreenshot from "../../images/home/github_screenshot.png";
 import testingScreenshot from "../../images/home/testing_screenshot.png";

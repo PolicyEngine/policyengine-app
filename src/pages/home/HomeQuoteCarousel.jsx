@@ -7,7 +7,7 @@ import Carousel from "../../layout/Carousel.jsx";
 import useCountryId from "../../redesign/components/useCountryId.jsx";
 import { Link } from "react-router-dom";
 import FontIcon from "../../layout/FontIcon.jsx";
-import Section from "../../redesign/components/Section.jsx";
+import Section from "../../layout/Section.jsx";
 import ArrowButton from "controls/ArrowButton";
 
 export default function HomeQuoteCarousel() {

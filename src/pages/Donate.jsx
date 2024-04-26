@@ -1,8 +1,8 @@
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
-import Section from "../redesign/components/Section";
+import Section from "../layout/Section";
 import style from "../style";
-import PageHeader from "../redesign/components/PageHeader";
+import PageHeader from "../layout/PageHeader";
 import useDisplayCategory from "../redesign/components/useDisplayCategory";
 import LinkButton from "controls/LinkButton";
 import { Helmet } from "react-helmet";

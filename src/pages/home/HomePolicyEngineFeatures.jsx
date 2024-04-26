@@ -1,5 +1,5 @@
 import style from "../../style";
-import Section from "../../redesign/components/Section";
+import Section from "../../layout/Section";
 import codingScreenshot from "../../images/home/coding_screenshot.png";
 import parameterScreenshot from "../../images/home/parameter_screenshot.png";
 import decileChartScreenshot from "../../images/home/decile_chart_screenshot.png";

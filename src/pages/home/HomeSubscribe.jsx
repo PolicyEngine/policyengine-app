@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import jsonp from "jsonp";
 
 import style from "../../style";
-import Section from "../../redesign/components/Section";
+import Section from "../../layout/Section";
 import FormContext from "layout/forms/FormContext";
 import FormItem from "layout/forms/FormItem";
 import useDisplayCategory from "../../redesign/components/useDisplayCategory";

@@ -1,5 +1,5 @@
 import style from "../../style";
-import { SectionBottom, SectionTop } from "../../redesign/components/Section";
+import { SectionBottom, SectionTop } from "../../layout/Section";
 import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "../../redesign/components/useDisplayCategory";
 import Carousel from "../../layout/Carousel";
