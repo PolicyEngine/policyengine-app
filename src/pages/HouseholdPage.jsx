@@ -17,7 +17,7 @@ import MaritalStatus from "./household/input/MaritalStatus";
 import CountChildren from "./household/input/CountChildren";
 import HouseholdRightSidebar from "./household/HouseholdRightSidebar";
 import HouseholdOutput from "./household/output/HouseholdOutput";
-import useMobile from "../layout/Responsive";
+import useMobile from "../hooks/useMobile";
 import FolderPage from "../layout/FolderPage";
 import StackedMenu from "../components/StackedMenu.jsx";
 import HouseholdIntro from "./household/HouseholdIntro";

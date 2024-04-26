@@ -5,7 +5,7 @@ import { getNewPolicyId } from "../../../api/parameters";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
-import useMobile from "../../../layout/Responsive";
+import useMobile from "../../../hooks/useMobile";
 import { capitalize, localeCode } from "../../../lang/format";
 import { currencyMap } from "../../../api/variables";
 import { defaultStartDate, defaultEndDate } from "data/constants";

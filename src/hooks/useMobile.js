@@ -10,20 +10,19 @@ const determineDisplayCategory = (width) => {
   return "desktop";
 };
 
-const useDisplayCategory = () => {
+export default function useMobile() {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
-    determineDisplayCategory(window.innerWidth),
+    determineDisplayCategory(window.innerWidth) === "mobile",
   );
 
   useEffect(() => {
-    const handler = () => {
-      setcurrentDisplayCategory(determineDisplayCategory(window.innerWidth));
-    };
+    const handler = () =>
+      setcurrentDisplayCategory(
+        determineDisplayCategory(window.innerWidth) === "mobile",
+      );
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, []);
 
   return useMemo(() => currentDisplayCategory, [currentDisplayCategory]);
-};
-
-export default useDisplayCategory;
+}

@@ -15,7 +15,7 @@ import { Radio } from "antd";
 import LoadingCentered from "../../../components/LoadingCentered";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import useMobile from "layout/Responsive";
+import useMobile from "hooks/useMobile";
 import Screenshottable from "components/Screenshottable";
 import { localeCode } from "lang/format";
 import { Helmet } from "react-helmet";

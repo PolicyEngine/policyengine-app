@@ -9,7 +9,7 @@ import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
-import useMobile from "layout/Responsive";
+import useMobile from "hooks/useMobile";
 import ErrorPage from "components/Error";
 import ResultActions from "../../../components/ResultActions";
 import { downloadCsv } from "./utils";

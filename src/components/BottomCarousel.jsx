@@ -1,6 +1,6 @@
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
-import useMobile from "../layout/Responsive";
+import useMobile from "../hooks/useMobile";
 
 export default function BottomCarousel(props) {
   const { selected, options, bottomElements } = props;

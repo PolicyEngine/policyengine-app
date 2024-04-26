@@ -3,6 +3,13 @@ import colors from "./colors.jsx";
 export const HEADER_HEIGHT = 90;
 export const MOBILE_HEADER_HEIGHT = 50;
 
+// Breakpoint sizing
+export const displaySize = {
+  mobile: 0,
+  tablet: 768,
+  desktop: 1325,
+};
+
 // vw units based off Figma design width and input constant values
 export const desktopPadding = {
   top: "120px",

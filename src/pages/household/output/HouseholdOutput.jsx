@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import BottomCarousel from "../../../components/BottomCarousel";
 import LoadingCentered from "../../../components/LoadingCentered";
-import useMobile from "../../../layout/Responsive";
+import useMobile from "../../../hooks/useMobile";
 import ResultsPanel from "../../../components/ResultsPanel";
 import EarningsVariation from "./EarningsVariation";
 import HouseholdReproducibility from "./HouseholdReproducibility";

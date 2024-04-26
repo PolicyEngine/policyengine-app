@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import useMobile from "../layout/Responsive";
+import useMobile from "../hooks/useMobile";
 import { Helmet } from "react-helmet";
 import Header from "../components/Header";
 import Footer from "../components/Footer";

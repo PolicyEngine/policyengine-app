@@ -4,7 +4,7 @@ import {
   getPlotlyAxisFormat,
   formatVariableValue,
 } from "../../../api/variables";
-import useMobile from "../../../layout/Responsive";
+import useMobile from "../../../hooks/useMobile";
 import useWindowHeight from "hooks/useWindowHeight";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";

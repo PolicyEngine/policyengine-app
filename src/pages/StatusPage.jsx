@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import useMobile from "../layout/Responsive";
+import useMobile from "../hooks/useMobile";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { countryApiCall, apiCall } from "../api/call";

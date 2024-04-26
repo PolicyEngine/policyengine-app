@@ -7,7 +7,7 @@ import SearchOptions from "../controls/SearchOptions";
 import FolderPage from "../layout/FolderPage";
 import LoadingCentered from "../components/LoadingCentered";
 import MobileCalculatorPage from "layout/MobileCalculatorPage";
-import useMobile from "../layout/Responsive";
+import useMobile from "../hooks/useMobile";
 import StackedMenu from "../components/StackedMenu";
 import ThreeColumnPage from "../layout/ThreeColumnPage";
 import ParameterEditor from "./policy/input/ParameterEditor";

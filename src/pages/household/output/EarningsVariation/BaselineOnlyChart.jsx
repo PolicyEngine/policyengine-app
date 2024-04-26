@@ -13,7 +13,7 @@ import HoverCard, { HoverCardContext } from "../../../../components/HoverCard";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
 import { convertToCurrencyString } from "./convertToCurrencyString";
-import useMobile from "layout/Responsive";
+import useMobile from "hooks/useMobile";
 import Screenshottable from "components/Screenshottable";
 
 export default function BaselineOnlyChart(props) {

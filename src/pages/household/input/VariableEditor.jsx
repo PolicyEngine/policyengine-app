@@ -8,7 +8,7 @@ import {
   getValueFromHousehold,
 } from "../../../api/variables";
 import { Select, Switch } from "antd";
-import useMobile from "../../../layout/Responsive";
+import useMobile from "../../../hooks/useMobile";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
 import { useState, useEffect } from "react";

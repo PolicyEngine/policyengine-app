@@ -3,7 +3,7 @@ import { copySearchParams } from "../api/call";
 import style from "../style";
 import ResultsPanel from "../components/ResultsPanel";
 import { motion } from "framer-motion";
-import useMobile from "./Responsive";
+import useMobile from "../hooks/useMobile";
 import { capitalize } from "../lang/format";
 import Divider from "../components/Divider";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
