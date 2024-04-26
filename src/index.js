@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "antd/dist/antd.min.css";
 import "./style/App.css";
-import PolicyEngine from "./redesign/components/PolicyEngine.jsx";
+import PolicyEngine from "./layout/PolicyEngine.jsx";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration.js";
 import { BrowserRouter as Router } from "react-router-dom";
 import loc_en_gb from "./lang/plotly_locales/locale-en-gb.js";
