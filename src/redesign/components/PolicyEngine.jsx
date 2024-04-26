@@ -1,4 +1,4 @@
-import Home from "./Home";
+import Home from "../../pages/home/Home";
 import Research from "./Research";
 import About from "../../pages/About";
 import Jobs from "./Jobs";

@@ -1,10 +1,10 @@
 import style from "../../style";
-import Section from "./Section";
+import Section from "../../redesign/components/Section";
 import apiScreenshot from "../../images/home/api_screenshot.png";
 import githubScreenshot from "../../images/home/github_screenshot.png";
 import testingScreenshot from "../../images/home/testing_screenshot.png";
-import ShowcaseItem from "./ShowcaseItem";
-import useCountryId from "../../hooks/useCountryId";
+import ShowcaseItem from "../../redesign/components/ShowcaseItem";
+import useCountryId from "../../redesign/components/useCountryId";
 
 export default function HomeTransparency() {
   const countryId = useCountryId();

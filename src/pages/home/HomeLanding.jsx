@@ -1,7 +1,7 @@
 import LinkButton from "controls/LinkButton";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import Hero from "../images/hero.png";
-import useCountryId from "../../hooks/useCountryId";
+import useDisplayCategory from "../../redesign/components/useDisplayCategory";
+import Hero from "../../images/hero.png";
+import useCountryId from "../../redesign/components/useCountryId";
 
 export default function HomeLanding() {
   const displayCategory = useDisplayCategory();

@@ -1,8 +1,8 @@
 import style from "../../style";
-import Section from "./Section";
-import { orgData } from "redesign/data/organisations";
-import useCountryId from "../../hooks/useCountryId";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
+import Section from "../../redesign/components/Section";
+import { orgData } from "../../data/organisations";
+import useCountryId from "../../redesign/components/useCountryId";
+import useDisplayCategory from "../../redesign/components/useDisplayCategory";
 
 export default function HomeUsedBy() {
   const countryId = useCountryId();
