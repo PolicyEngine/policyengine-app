@@ -1,7 +1,7 @@
 import Home from "../../pages/home/Home";
-import Research from "./Research";
+import Research from "../../pages/Research";
 import About from "../../pages/About";
-import Jobs from "./Jobs";
+import Jobs from "../../pages/Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Donate from "../../pages/Donate";
 import { useLocation } from "react-router-dom";
@@ -17,7 +17,7 @@ import {
 import LoadingCentered from "../../layout/LoadingCentered";
 import ErrorPage from "../../layout/Error";
 import Header from "../../layout/Header";
-import Testimonials from "./Testimonials";
+import Testimonials from "../../pages/Testimonials";
 import CalculatorInterstitial from "../../pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "../../pages/applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";

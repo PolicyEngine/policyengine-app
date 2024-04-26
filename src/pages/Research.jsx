@@ -1,10 +1,10 @@
-import Header from "../../layout/Header";
-import Footer from "../../layout/Footer";
-import Section from "./Section";
-import PageHeader from "./PageHeader";
+import Header from "../layout/Header";
+import Footer from "../layout/Footer";
+import Section from "../redesign/components/Section";
+import PageHeader from "../redesign/components/PageHeader";
 import style from "../style";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import TextBox from "./TextBox";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import TextBox from "../redesign/components/TextBox";
 import Button from "controls/Button";
 import {
   posts,
@@ -12,14 +12,14 @@ import {
   locationTags,
   locationLabels,
   topicLabels,
-} from "../../posts/postTransformers";
-import authors from "../../posts/authors.json";
-import { MediumBlogPreview } from "../../pages/home/HomeBlogPreview";
+} from "../posts/postTransformers";
+import authors from "../posts/authors.json";
+import { MediumBlogPreview } from "./home/HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import FontIcon from "../../layout/FontIcon";
+import FontIcon from "../layout/FontIcon";
 import { Helmet } from "react-helmet";
 import { Checkbox } from "antd";
 

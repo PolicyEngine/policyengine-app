@@ -1,10 +1,10 @@
-import Header from "../../layout/Header";
-import Footer from "../../layout/Footer";
-import Section from "./Section";
-import style from "../../style";
-import { fullQuotes } from "../../data/quotes";
-import { allOrgs } from "../../data/organisations";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
+import Header from "../layout/Header";
+import Footer from "../layout/Footer";
+import Section from "../redesign/components/Section";
+import style from "../style";
+import { fullQuotes } from "../data/quotes";
+import { allOrgs } from "../data/organisations";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
 
 export default function Testimonials() {
   return (
