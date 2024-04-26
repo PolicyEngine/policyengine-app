@@ -8,26 +8,20 @@ export default function CenteredMiddleColumn(props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
         marginTop: marginTop || "20%",
-        justifyContent: "center",
       }}
     >
-      <h1 style={{ marginBottom: marginBottom || 20, textAlign: "center" }}>
-        {title}
-      </h1>
-      {description && (
-        <h4
-          style={{
-            paddingLeft: mobile ? 20 : 100,
-            paddingRight: mobile ? 20 : 100,
-            textAlign: "center",
-          }}
-        >
-          {description}
-        </h4>
-      )}
-      {children}
+      <div style={{
+        paddingLeft: 30,
+        paddingRight: 30,
+      }}
+      >
+        <h5 style={{fontFamily: "Roboto Serif"}}>{title}</h5>
+        
+        {description && <><p style={{marginBottom: 10, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Description</p><h6 style={{fontFamily: "Roboto Serif"}}>{description}</h6></>}
+        {children}
+      </div>
+      
     </div>
   );
 }

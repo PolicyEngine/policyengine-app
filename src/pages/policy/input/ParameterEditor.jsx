@@ -117,10 +117,11 @@ export default function ParameterEditor(props) {
       style={{
         display: "flex",
         flexDirection: mobile ? "column" : "row",
-        justifyContent: "center",
         alignItems: "center",
-        paddingTop: 20,
+        paddingTop: 10,
+        paddingLeft: 0,
         gap: 10,
+        fontFamily: "Roboto Serif"
       }}
     >
       <RangePicker
@@ -131,14 +132,11 @@ export default function ParameterEditor(props) {
         }}
         disabledDate={(date) => date.isBefore("2021-01-01")}
         separator="→"
+        style={{fontFamily: "Roboto Serif"}}
       />
       {control}
     </div>
   );
-
-  const timePeriodSentence = parameter.period
-    ? ` This parameter is ${parameter.period}ly.`
-    : "";
 
   let description = parameter.description;
   if (!description) {
@@ -150,8 +148,11 @@ export default function ParameterEditor(props) {
       marginTop="5%"
       marginBottom={0}
       title={capitalize(parameter.label)}
-      description={description + timePeriodSentence}
+      description={description}
     >
+      <div style={{}}>
+      <p style={{marginBottom: 2, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Current value</p>
+      </div>
       {editControl}
       {!parameter.economy && (
         <Alert
@@ -159,6 +160,9 @@ export default function ParameterEditor(props) {
           type="warning"
         />
       )}
+      <div style={{paddingRight: 30, marginTop: 20}}>
+        <p style={{marginBottom: 2, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Historical values</p>
+      </div>
       <ParameterOverTime
         baseMap={baseMap}
         {...(reformData &&

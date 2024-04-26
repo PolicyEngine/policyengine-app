@@ -16,17 +16,20 @@ function MenuItem(props) {
       onClick={() => onSelect(name)}
     >
       <motion.h5
-        style={{ fontSize: 18 }}
-        whileHover={{ color: "#000", fontWeight: 700 }}
+        style={{ fontSize: 16, fontFamily: "Roboto Serif" }}
+        whileHover={{ textDecoration: "underline" }}
         transition={{ duration: 0.001 }}
       >
         {selected === name && (
           <span
             style={{
               marginRight: 10,
+              fontFamily: "Roboto Serif",
               color: "#000",
-              fontWeight: 700,
+              fontWeight: 400,
               textShadow: "0 0 .2px #000",
+              paddingBottom: 2,
+              textDecoration: "underline",
             }}
           >
             {label}
@@ -46,7 +49,7 @@ function MenuItemGroup(props) {
     useState(selected);
 
   const toggleExpanded = () => {
-    onSelect(name);
+    //onSelect(name);
     setExpanded(!expanded);
   };
 
@@ -112,8 +115,8 @@ function MenuItemGroup(props) {
     >
       <motion.h5
         onClick={toggleExpanded}
-        style={{ fontSize: 18 }}
-        whileHover={{ color: "#000", fontWeight: 700 }}
+        style={{ fontSize: 16, fontFamily: "Roboto Serif" }}
+        whileHover={{ textDecoration: "underline" }}
         transition={{ duration: 0.001 }}
       >
         {selected === name && (
@@ -121,8 +124,9 @@ function MenuItemGroup(props) {
             style={{
               marginRight: 10,
               color: "#000",
-              fontWeight: 700,
+              fontFamily: "Roboto Serif",
               textShadow: "0 0 .2px #000",
+              textDecoration: "underline",
             }}
           >
             {label}
@@ -145,7 +149,7 @@ export default function Menu(props) {
         <MenuItemGroup
           key={item.name}
           name={item.name}
-          label={item.label}
+          label={capitalize(item.label)}
           selected={selected || ""}
           onSelect={onSelect}
         >

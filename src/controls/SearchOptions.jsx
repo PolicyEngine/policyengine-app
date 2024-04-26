@@ -22,8 +22,10 @@ export default function SearchOptions(props) {
     <Select
       key={key}
       showSearch
+      variant="borderless"      
       options={filteredOptions}
       optionFilterProp="children"
+      selectorBg={"red"}
       onSelect={(value) => {
         if (options.find((option) => option.value === value)) {
           setValue(value);

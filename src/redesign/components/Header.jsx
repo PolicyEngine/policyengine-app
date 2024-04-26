@@ -71,11 +71,12 @@ function TabletHeaderBar() {
 }
 
 function DesktopHeaderBar() {
+  const isInCalculatorAlready = window.location.pathname.includes("/policy");
   return (
     <>
       <MainHeaderLogo />
       <PageLinks />
-      <DesktopCalculatorButton />
+      {!isInCalculatorAlready && <DesktopCalculatorButton />}
     </>
   );
 }

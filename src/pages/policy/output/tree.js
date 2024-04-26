@@ -18,6 +18,7 @@ export const policyOutputs = {
   laborSupplyImpact: "Labor supply impact (experimental)",
   analysis: "AI summary (experimental)",
   codeReproducibility: "Reproduce in Python",
+  districtLevelImpact: "District-level impact",
 };
 
 export function getPolicyOutputTree(countryId) {

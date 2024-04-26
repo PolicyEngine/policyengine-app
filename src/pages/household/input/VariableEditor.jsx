@@ -95,25 +95,26 @@ export default function VariableEditor(props) {
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           marginTop: mobile ? "20%" : "15%",
           paddingLeft: mobile ? 5 : 50,
           paddingRight: mobile ? 5 : 50,
         }}
       >
-        <h1 style={{ marginBottom: 20, textAlign: "center" }}>
+        <h5 style={{ fontFamily: "Roboto Serif", marginBottom: 20 }}>
           What {verb} your {variable.label.toLowerCase()}?
-        </h1>
-        <h4 style={{ textAlign: "center", paddingBottom: 10 }}>
-          {variable.documentation}
-        </h4>
+        </h5>
+        {variable.documentation && (
+        <><div><p style={{marginBottom: 10, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Description</p></div>
+        <h6 style={{fontFamily: "Roboto Serif"}}>{variable.documentation}</h6></>
+        )}
+        <div style={{marginBottom: 20}} />
         {entityInputs}
         {nextVariable && (
           <SearchParamNavButton
             text="Enter"
             focus={nextVariable}
             type={required && !edited ? "disabled" : "primary"}
-            style={{ margin: "20px auto 10px" }}
+            style={{ marginTop: 20 }}
           />
         )}
       </div>
@@ -310,7 +311,6 @@ function HouseholdVariableEntityInput(props) {
           display: "flex",
           flexDirection: mobile ? "col" : "row",
           alignItems: "center",
-          justifyContent: "space-evenly",
           width: "100%",
           marginBottom: 10,
           gap: mobile ? 10 : 20,
@@ -318,11 +318,9 @@ function HouseholdVariableEntityInput(props) {
       >
         <h5
           style={{
-            textAlign: "right",
             margin: 0,
-            flex: 1,
-            flexBasis: "10%",
             fontSize: mobile && ".9rem",
+            fontFamily: "Roboto Serif"
           }}
         >
           {capitalize(entityName)}:{" "}
@@ -330,11 +328,9 @@ function HouseholdVariableEntityInput(props) {
         {control}
         <h5
           style={{
-            textAlign: "left",
             margin: 0,
-            flex: 1,
-            flexBasis: "10%",
             fontSize: mobile && ".9rem",
+            fontFamily: "Roboto Serif",
           }}
         >
           in {timePeriod}

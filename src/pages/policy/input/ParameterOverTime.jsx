@@ -62,24 +62,11 @@ export default function ParameterOverTime(props) {
     <>
       <Plot
         data={[
-          {
-            x: x,
-            y: y.map((y) => +y),
-            type: "line",
-            line: {
-              shape: "hv",
-            },
-            marker: {
-              color: style.colors.GRAY,
-            },
-            name: "Current law",
-            customdata: customData,
-            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
-          },
           reformMap && {
             x: reformedX,
             y: reformedY.map((y) => +y),
             type: "line",
+            mode: "lines+markers",
             line: {
               shape: "hv",
               dash: "dot",
@@ -91,10 +78,25 @@ export default function ParameterOverTime(props) {
             customdata: reformedCustomData,
             hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
           },
+          {
+            x: x,
+            y: y.map((y) => +y),
+            type: "line",
+            mode: "lines+markers",
+            line: {
+              shape: "hv",
+            },
+            marker: {
+              color: !reformMap ? style.colors.DARK_GRAY : style.colors.GRAY,
+            },
+            name: "Current law",
+            customdata: customData,
+            hovertemplate: "%{x|%b, %Y}: %{customdata}<extra></extra>",
+          },
         ].filter((x) => x)}
         layout={{
-          xaxis: { ...xaxisFormat },
-          yaxis: { ...yaxisFormat },
+          xaxis: { ...xaxisFormat, showGrid: false },
+          yaxis: { ...yaxisFormat, showGrid: false },
           legend: {
             // Position above the plot
             y: 1.2,
@@ -108,6 +110,11 @@ export default function ParameterOverTime(props) {
             b: mobile && 30,
           },
           ...plotLayoutFont,
+          title: {
+            text: `${parameter.label} over time`,
+            xanchor: "left",
+            x: 0.04,
+          },
         }}
         // Note that plotly does not dynamically resize inside flexbox
         style={{

@@ -16,6 +16,7 @@ import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "redesign/components/useDisplayCategory";
+import moment from "moment";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -285,8 +286,7 @@ function SinglePolicyChange(props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        padding: "0 10%",
+        paddingLeft: 10,
       }}
     >
       <div>
@@ -295,7 +295,9 @@ function SinglePolicyChange(props) {
         >
           {prefix}{" "}
         </span>
+        <span style={{fontFamily: "Roboto Serif", color: "black"}}>
         {paramLabel}
+        </span>
         {!isBool && (
           <>
             {" "}
@@ -304,6 +306,7 @@ function SinglePolicyChange(props) {
               style={{
                 color: style.colors.BLUE,
                 cursor: "pointer",
+                textDecoration: "underline",
               }}
             >
               {newValueStr}
@@ -311,8 +314,8 @@ function SinglePolicyChange(props) {
           </>
         )}
       </div>
-      <div style={{ fontStyle: "italic" }}>
-        {startDateStr} to {endDateStr}
+      <div style={{ paddingTop: 10 }}>
+        from {moment(startDateStr).format("Do MMMM, YYYY")} until {moment(endDateStr).format("Do MMMM, YYYY")}
       </div>
     </div>
   );
@@ -337,7 +340,7 @@ function PolicyItem(props) {
   }
   return (
     <div>
-      <div style={{ paddingLeft: 10 }}>{changes}</div>
+      <div style={{ paddingLeft: Object.keys(reformData).length > 1 ? 40 : 10, paddingRight: 40, }}>{changes}</div>
     </div>
   );
 }
@@ -363,7 +366,6 @@ function PolicyDisplay(props) {
     >
       <Carousel
         variant="dark"
-        className="text-center"
         indicators={false}
         interval={null}
         controls={reformLength > 1 ? true : false}
@@ -529,8 +531,11 @@ export default function PolicyRightSidebar(props) {
   }
 
   return (
-    <div style={{ paddingTop: 10 }}>
-      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
+    <div style={{ paddingTop: 10, fontFamily: "Roboto Serif" }}>
+      <div style={{paddingLeft: 20}}>
+        <p style={{ margin: "10px 0 0 0", color: "grey", borderBottom: "2px solid grey", display: "inline-block" }}>Policy name</p>
+      </div>
+      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400, fontFamily: "Roboto Serif" }}>
         {policy.reform.label || `Policy #${searchParams.get("reform")}`}
       </h6>
       {
@@ -559,15 +564,18 @@ export default function PolicyRightSidebar(props) {
       ) : (
         <div style={{ display: "flex", justifyContent: "center" }}>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a
+          {/*<a
             href="#"
             style={{ textAlign: "center", width: "100%" }}
             onClick={() => setShowReformSearch(true)}
           >
-            find an existing policy
-          </a>
+            <Button text="Find an existing policy" style={{ margin: "10px 20px" }} width={330} />
+      </a>*/}
         </div>
       )}
+      <div style={{paddingLeft: 20}}>
+        <p style={{ margin: "10px 0 0 0", color: "grey", borderBottom: "2px solid grey", display: "inline-block" }}>Provisions</p>
+      </div>
       <PolicyDisplay
         policy={policy}
         metadata={metadata}
@@ -586,11 +594,17 @@ export default function PolicyRightSidebar(props) {
           gap: "10px",
         }}
       >
-        <h6 style={{ margin: "10px 0 0 0" }}>Geography</h6>
+        <div>
+          <p style={{ margin: "10px 0 0 0", color: "grey", borderBottom: "2px solid grey", display: "inline-block" }}>Geography</p>
+        </div>
         <RegionSelector metadata={metadata} />
-        <h6 style={{ margin: "10px 0 0 0" }}>Year</h6>
+        <div>
+          <p style={{ margin: "10px 0 0 0", color: "grey", borderBottom: "2px solid grey", display: "inline-block" }}>Year</p>
+        </div>
         <TimePeriodSelector metadata={metadata} />
-        <h6 style={{ margin: "10px 0 0 0" }}>Baseline Policy</h6>
+        <div>
+          <p style={{ margin: "10px 0 0 0", color: "grey", borderBottom: "2px solid grey", display: "inline-block" }}>Baseline policy</p>
+        </div>
         <div
           style={{
             display: "flex",
@@ -648,6 +662,7 @@ export default function PolicyRightSidebar(props) {
       )}
       {!hideButtons && !hasHousehold && (
         <SearchParamNavButton
+          type="secondary"
           text="Enter my household"
           focus="intro"
           style={{ margin: "20px auto 10px" }}
@@ -656,6 +671,7 @@ export default function PolicyRightSidebar(props) {
       )}
       {!hideButtons && hasHousehold && (
         <SearchParamNavButton
+          type="secondary"
           text="Calculate my household impact"
           focus="householdOutput.netIncome"
           target={`/${metadata.countryId}/household`}

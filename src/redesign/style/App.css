@@ -3,7 +3,7 @@
 h5,
 h6 {
   font-family: "Roboto";
-  font-weight: 300;
+  font-weight: 400;
 }
 
 h1,
@@ -11,7 +11,7 @@ h2,
 h3,
 h4 {
   font-family: "Roboto Serif", serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 body {
@@ -20,16 +20,16 @@ body {
 }
 
 :root {
-  --bs-body-font-weight: 300;
+  --bs-body-font-weight: 400;
 }
 
 .ant-select-selection-item {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 p {
-  font-family: "Roboto Serif", serif;
-  font-weight: 300;
+  font-family: "Roboto";
+  font-weight: 400;
 }
 
 p a {
@@ -105,4 +105,14 @@ a.highlighted-link:hover {
 
 .ant-checkbox-input {
   border-radius: 0 !important;
+}
+
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: transparent;
+  font-family: "Roboto Serif";
+}
+
+.ant-input {
+  background-color: transparent;
+  font-family: "Roboto Serif";
 }

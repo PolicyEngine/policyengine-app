@@ -6,18 +6,26 @@ export const buttonStyles = {
   primary: {
     hoverBackgroundColor: colors.TEAL_PRESSED,
     standardBackgroundColor: colors.TEAL_ACCENT,
+    borderColor: colors.TEAL_ACCENT,
+    color: colors.WHITE,
   },
   secondary: {
-    hoverBackgroundColor: colors.BLUE_PRESSED,
-    standardBackgroundColor: colors.BLUE_LIGHT,
+    hoverBackgroundColor: colors.TEAL_PRESSED,
+    standardBackgroundColor: colors.WHITE,
+    borderColor: colors.TEAL_ACCENT,
+    color: colors.BLACK,
   },
   disabled: {
     hoverBackgroundColor: colors.BLUE_PRESSED,
     standardBackgroundColor: colors.BLUE_LIGHT,
+    borderColor: colors.BLUE_PRESSED,
+    color: colors.WHITE,
   },
   default: {
     hoverBackgroundColor: colors.TEAL_PRESSED,
     standardBackgroundColor: colors.TEAL_ACCENT,
+    borderColor: colors.TEAL_PRESSED,
+    color: colors.WHITE,
   },
 };
 
@@ -38,9 +46,8 @@ export const buttonStyles = {
  */
 export default function Button(props) {
   let { text, onClick, width, type, size, height, style } = props;
-
   // Assign fallback values for styling
-  if (!type || !(type in Object.keys(buttonStyles))) {
+  if (!type || !(Object.keys(buttonStyles).includes(type))) {
     type = "default";
   }
 
@@ -49,8 +56,9 @@ export default function Button(props) {
       style={{
         display: "flex",
         alignItems: "center",
-        border: "none",
         borderRadius: "0",
+        borderColor: buttonStyles[type].borderColor,
+        borderWidth: 5,
         backgroundColor: buttonStyles[type].standardBackgroundColor,
         textTransform: "uppercase",
         width: width || "min(300px, 70vw)",
@@ -65,7 +73,8 @@ export default function Button(props) {
         textAlign: "center",
         whiteSpace: "normal",
         justifyContent: "center",
-        color: "#ffffff",
+        color: buttonStyles[type].color,
+        transition: "none",
         ...style,
       }}
       onMouseOver={(e) =>
@@ -78,7 +87,7 @@ export default function Button(props) {
         (e.currentTarget.style.backgroundColor =
           buttonStyles[type].standardBackgroundColor) &&
         (e.currentTarget.style.borderColor =
-          buttonStyles[type].standardBackgroundColor)
+          buttonStyles[type].borderColor)
       }
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}

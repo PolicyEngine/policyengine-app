@@ -142,18 +142,6 @@ export default function HouseholdOutput(props) {
         linkedInLink={linkedInLink}
       />
       {pane}
-      {!mobile && (
-        <BottomCarousel
-          selected={focus}
-          options={HOUSEHOLD_OUTPUT_TREE[0].children}
-          bottomElements={
-            <p>
-              PolicyEngine results may not constitute exact tax liabilities or
-              benefit entitlements.
-            </p>
-          }
-        />
-      )}
     </ResultsPanel>
   );
 }
