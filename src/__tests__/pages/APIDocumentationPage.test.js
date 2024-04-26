@@ -5,7 +5,7 @@ import APIDocumentationPage, {
 import fetch from "node-fetch";
 import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import * as countryIdFuncs from "../../redesign/components/useCountryId";
+import * as countryIdFuncs from "hooks/useCountryId";
 import { BrowserRouter } from "react-router-dom";
 import "whatwg-fetch";
 
