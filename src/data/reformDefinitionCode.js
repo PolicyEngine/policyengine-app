@@ -206,7 +206,6 @@ export function getImplementationCode(type, region, timePeriod) {
   }
 
   const isCountryUS = US_REGIONS.includes(region);
-  
 
   return [
     "",
