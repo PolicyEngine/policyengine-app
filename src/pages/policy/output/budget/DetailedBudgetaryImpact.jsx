@@ -55,7 +55,11 @@ function ImpactPlot(props) {
             },
           },
           connector: {
-            line: { color: style.colors.MEDIUM_LIGHT_GRAY, width: 2, dash: "dot" },
+            line: {
+              color: style.colors.MEDIUM_LIGHT_GRAY,
+              width: 2,
+              dash: "dot",
+            },
           },
           textposition: "inside",
           text: yArray.map((y) => formatCur(y * 1e9)),

@@ -99,7 +99,7 @@ export const orgData = {
     epmt: {
       name: "End Poverty Make Trillions",
       logo: EPMT,
-      link: "https://endpovertymaketrillions.com/"
+      link: "https://endpovertymaketrillions.com/",
     },
     cgo: {
       name: "Center for Growth and Opportunity",

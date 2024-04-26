@@ -8,11 +8,7 @@ import { useLocation } from "react-router-dom";
 import BlogPage from "../pages/BlogPage";
 
 import { useEffect, useState, lazy, Suspense } from "react";
-import {
-  copySearchParams,
-  countryApiCall,
-  updateMetadata,
-} from "../api/call";
+import { copySearchParams, countryApiCall, updateMetadata } from "../api/call";
 import LoadingCentered from "../components/LoadingCentered";
 import ErrorPage from "../components/Error";
 import Header from "../components/Header";
