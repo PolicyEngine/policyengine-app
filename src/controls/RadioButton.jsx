@@ -1,4 +1,3 @@
-
 "use client";
 import { Radio } from "antd";
 
@@ -6,16 +5,14 @@ import style from "../style";
 import { useState } from "react";
 
 export default function RadioButton(props) {
-
   const { keys, labels, onChange, defaultValue } = props;
 
   const [value, setValue] = useState(defaultValue || keys[0]);
-  function handleChange(e) {  
+  function handleChange(e) {
     if (onChange instanceof Function) {
       onChange(e.target.value);
     }
     setValue(e.target.value);
-   
   }
   // Create options array for Radio.Group
   const options = keys.map((key, index) => (
@@ -24,7 +21,6 @@ export default function RadioButton(props) {
       value={key}
       style={{
         fontSize: "16px",
-        border: "none",
         borderRadius: "0px",
         backgroundColor:
           key === value ? style.colors.BLUE : style.colors.MEDIUM_DARK_GRAY,
@@ -38,9 +34,8 @@ export default function RadioButton(props) {
     </Radio.Button>
   ));
   return (
-    <Radio.Group size="large" onChange={handleChange} >
+    <Radio.Group size="large" onChange={handleChange}>
       {options}
     </Radio.Group>
-
   );
 }
