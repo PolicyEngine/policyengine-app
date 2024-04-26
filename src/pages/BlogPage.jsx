@@ -12,11 +12,7 @@ import {
   topicTags,
 } from "../posts/postTransformers";
 import moment from "moment";
-import { TwitterTweetEmbed } from "react-twitter-embed";
-import Markdown from "react-markdown";
 import useDisplayCategory from "../redesign/components/useDisplayCategory";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
 import React, { useEffect, useState, useRef } from "react";
 import { useReadingTime } from "react-hook-reading-time";
 import {
@@ -31,6 +27,7 @@ import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
 import { MarkdownFormatter } from "../redesign/style/MarkdownFormatter";
+import { HighlightedBlock, PlotlyChartCode } from "../redesign/style/MarkdownFormatter";
 
 // Function to handle image loading
 const handleImageLoad = (path) => {
@@ -596,49 +593,49 @@ function MoreOn({ post }) {
   );
 }
 
-function Td({ children }) {
-  const displayCategory = useDisplayCategory();
-  const mobile = displayCategory === "mobile";
-  const ref = useRef(null);
-  const [columnNumber, setColumnNumber] = useState(null);
-  useEffect(() => {
-    setColumnNumber(ref.current?.cellIndex);
-  }, [ref.current?.cellIndex]);
-  return (
-    <td
-      ref={ref}
-      style={{
-        padding: 5,
-        fontFamily: "Roboto Serif",
-        fontSize: mobile ? 16 : 18,
-        borderRight: columnNumber === 0 ? "1px solid black" : "",
-        textAlign: columnNumber === 0 ? "left" : "center",
-        verticalAlign: "middle",
-      }}
-    >
-      {children}
-    </td>
-  );
-}
+// function Td({ children }) {
+//   const displayCategory = useDisplayCategory();
+//   const mobile = displayCategory === "mobile";
+//   const ref = useRef(null);
+//   const [columnNumber, setColumnNumber] = useState(null);
+//   useEffect(() => {
+//     setColumnNumber(ref.current?.cellIndex);
+//   }, [ref.current?.cellIndex]);
+//   return (
+//     <td
+//       ref={ref}
+//       style={{
+//         padding: 5,
+//         fontFamily: "Roboto Serif",
+//         fontSize: mobile ? 16 : 18,
+//         borderRight: columnNumber === 0 ? "1px solid black" : "",
+//         textAlign: columnNumber === 0 ? "left" : "center",
+//         verticalAlign: "middle",
+//       }}
+//     >
+//       {children}
+//     </td>
+//   );
+// }
 
-function Tr({ children }) {
-  // get row index
-  const ref = useRef(null);
-  const [rowIndex, setRowIndex] = useState(0);
-  useEffect(() => {
-    setRowIndex(ref.current?.rowIndex);
-  }, [ref.current?.rowIndex]);
-  return (
-    <tr
-      ref={ref}
-      style={{
-        backgroundColor: rowIndex % 2 === 0 ? "white" : "#f2f2f2",
-      }}
-    >
-      {children}
-    </tr>
-  );
-}
+// function Tr({ children }) {
+//   // get row index
+//   const ref = useRef(null);
+//   const [rowIndex, setRowIndex] = useState(0);
+//   useEffect(() => {
+//     setRowIndex(ref.current?.rowIndex);
+//   }, [ref.current?.rowIndex]);
+//   return (
+//     <tr
+//       ref={ref}
+//       style={{
+//         backgroundColor: rowIndex % 2 === 0 ? "white" : "#f2f2f2",
+//       }}
+//     >
+//       {children}
+//     </tr>
+//   );
+// }
 
 // export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
 //   const displayCategory = useDisplayCategory();
@@ -939,120 +936,120 @@ function Tr({ children }) {
 //   );
 // }
 
-function HighlightedBlock({ data, leftContent, rightContent }) {
-  if (!leftContent && !rightContent) {
-    const content = data[0];
-    [leftContent, rightContent] = content.split("&&&");
-    leftContent = <MarkdownFormatter markdown={leftContent} />;
-    rightContent = (
-      <MarkdownFormatter
-        backgroundColor={style.colors.LIGHT_GRAY}
-        markdown={rightContent}
-      />
-    );
-  }
-  const ref = useRef(null);
-  const [height, setHeight] = useState(0);
-  useEffect(() => {
-    setHeight(ref.current?.clientHeight);
-  }, [ref.current?.clientHeight]);
-  return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          position: "absolute",
-          left: 0,
-          width: "100%",
-          backgroundColor: style.colors.LIGHT_GRAY,
-          zIndex: 999,
-          alignItems: "start",
-          justifyContent: "center",
-          paddingLeft: "10vw",
-          paddingRight: "10vw",
-          boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
-          paddingBottom: 0,
-          paddingTop: 50,
-        }}
-        ref={ref}
-      >
-        <div
-          style={{
-            width: "50vw",
-            display: "flex",
-            flexDirection: "column",
-            backgroundColor: style.colors.LIGHT_GRAY,
-            position: "sticky",
-            top: 150,
-            paddingBottom: 20,
-          }}
-        >
-          {leftContent}
-        </div>
-        <div
-          style={{
-            width: "30vw",
-            backgroundColor: style.colors.LIGHT_GRAY,
-          }}
-        >
-          {rightContent}
-        </div>
-      </div>
-      <div
-        style={{
-          // Set the height of the container to the height of the content
-          height: height,
-          marginBottom: 50,
-          marginTop: 50,
-        }}
-      ></div>
-    </>
-  );
-}
+// function HighlightedBlock({ data, leftContent, rightContent }) {
+//   if (!leftContent && !rightContent) {
+//     const content = data[0];
+//     [leftContent, rightContent] = content.split("&&&");
+//     leftContent = <MarkdownFormatter markdown={leftContent} />;
+//     rightContent = (
+//       <MarkdownFormatter
+//         backgroundColor={style.colors.LIGHT_GRAY}
+//         markdown={rightContent}
+//       />
+//     );
+//   }
+//   const ref = useRef(null);
+//   const [height, setHeight] = useState(0);
+//   useEffect(() => {
+//     setHeight(ref.current?.clientHeight);
+//   }, [ref.current?.clientHeight]);
+//   return (
+//     <>
+//       <div
+//         style={{
+//           display: "flex",
+//           position: "absolute",
+//           left: 0,
+//           width: "100%",
+//           backgroundColor: style.colors.LIGHT_GRAY,
+//           zIndex: 999,
+//           alignItems: "start",
+//           justifyContent: "center",
+//           paddingLeft: "10vw",
+//           paddingRight: "10vw",
+//           boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.75)",
+//           paddingBottom: 0,
+//           paddingTop: 50,
+//         }}
+//         ref={ref}
+//       >
+//         <div
+//           style={{
+//             width: "50vw",
+//             display: "flex",
+//             flexDirection: "column",
+//             backgroundColor: style.colors.LIGHT_GRAY,
+//             position: "sticky",
+//             top: 150,
+//             paddingBottom: 20,
+//           }}
+//         >
+//           {leftContent}
+//         </div>
+//         <div
+//           style={{
+//             width: "30vw",
+//             backgroundColor: style.colors.LIGHT_GRAY,
+//           }}
+//         >
+//           {rightContent}
+//         </div>
+//       </div>
+//       <div
+//         style={{
+//           // Set the height of the container to the height of the content
+//           height: height,
+//           marginBottom: 50,
+//           marginTop: 50,
+//         }}
+//       ></div>
+//     </>
+//   );
+// }
 
-function PlotlyChartCode({ data, backgroundColor }) {
-  console.log(data);
-  let plotlyData = null;
-  try {
-    plotlyData = JSON.parse(data);
-  } catch {
-    console.log(data[0]);
-    plotlyData = JSON.parse(data[0]);
-  }
-  const title = plotlyData.layout?.title?.text;
-  const displayCategory = useDisplayCategory();
-  return (
-    <>
-      {title && (
-        <h5
-          style={{
-            fontFamily: "Roboto Serif",
-            color: style.colors.GRAY,
-            textEmphasis: "italic",
-          }}
-        >
-          {title}
-        </h5>
-      )}
-      <Plot
-        data={plotlyData.data}
-        layout={Object.assign(plotlyData.layout, {
-          width: displayCategory === "mobile" ? 400 : "100%",
-          height: 600,
-          title: {
-            text: "",
-          },
-          plot_bgcolor: backgroundColor || "transparent",
-          paper_bgcolor: backgroundColor || "transparent",
-        })}
-        config={{
-          displayModeBar: false,
-          responsive: true,
-        }}
-      />
-    </>
-  );
-}
+// function PlotlyChartCode({ data, backgroundColor }) {
+//   console.log(data);
+//   let plotlyData = null;
+//   try {
+//     plotlyData = JSON.parse(data);
+//   } catch {
+//     console.log(data[0]);
+//     plotlyData = JSON.parse(data[0]);
+//   }
+//   const title = plotlyData.layout?.title?.text;
+//   const displayCategory = useDisplayCategory();
+//   return (
+//     <>
+//       {title && (
+//         <h5
+//           style={{
+//             fontFamily: "Roboto Serif",
+//             color: style.colors.GRAY,
+//             textEmphasis: "italic",
+//           }}
+//         >
+//           {title}
+//         </h5>
+//       )}
+//       <Plot
+//         data={plotlyData.data}
+//         layout={Object.assign(plotlyData.layout, {
+//           width: displayCategory === "mobile" ? 400 : "100%",
+//           height: 600,
+//           title: {
+//             text: "",
+//           },
+//           plot_bgcolor: backgroundColor || "transparent",
+//           paper_bgcolor: backgroundColor || "transparent",
+//         })}
+//         config={{
+//           displayModeBar: false,
+//           responsive: true,
+//         }}
+//       />
+//     </>
+//   );
+// }
 
 function ReadTime({ markdown }) {
   const { text } = useReadingTime(markdown);
