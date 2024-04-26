@@ -5,7 +5,7 @@ import style from "../../style";
 import Section from "../../layout/Section";
 import FormContext from "layout/forms/FormContext";
 import FormItem from "layout/forms/FormItem";
-import useDisplayCategory from "../../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 export default function HomeSubscribe() {
   return (

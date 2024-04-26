@@ -1,11 +1,11 @@
 import style from "../../style";
 import { SectionBottom, SectionTop } from "../../layout/Section";
 import { posts } from "../../posts/postTransformers";
-import useDisplayCategory from "../../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import Carousel from "../../layout/Carousel";
 import moment from "moment";
 import { useState } from "react";
-import useCountryId from "../../redesign/components/useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 import EmphasisedLink from "../../layout/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 

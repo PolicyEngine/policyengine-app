@@ -4,7 +4,7 @@ import Section from "../layout/Section";
 import style from "../style";
 import { fullQuotes } from "../data/quotes";
 import { allOrgs } from "../data/organisations";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 
 export default function Testimonials() {
   return (

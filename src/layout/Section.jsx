@@ -1,4 +1,4 @@
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 import style from "../style";
 
 export default function Section({

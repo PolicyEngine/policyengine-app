@@ -3,7 +3,7 @@ import Footer from "../layout/Footer";
 import Section from "../layout/Section";
 import PageHeader from "../layout/PageHeader";
 import style from "../style";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 import TextBox from "../layout/TextBox";
 import Button from "controls/Button";
 import {

@@ -22,7 +22,7 @@ import CalculatorInterstitial from "../../pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "../../applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "../../modals/CookieConsent";
-import TrafwaCalculator from "./TrafwaCalculator";
+import TrafwaCalculator from "../../applets/TrafwaCalculator";
 import AuthCallback from "../../layout/AuthCallback";
 import UserProfilePage from "../../pages/UserProfilePage";
 import PrivacyPage from "../../pages/PrivacyPage";

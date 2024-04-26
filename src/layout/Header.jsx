@@ -1,5 +1,5 @@
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
-import useCountryId from "../redesign/components/useCountryId";
+import useDisplayCategory from "../hooks/useDisplayCategory";
+import useCountryId from "../hooks/useCountryId";
 import style from "../style";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
