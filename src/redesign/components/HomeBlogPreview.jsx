@@ -6,7 +6,7 @@ import Carousel from "../../layout/Carousel";
 import moment from "moment";
 import { useState } from "react";
 import useCountryId from "../../hooks/useCountryId";
-import EmphasisedLink from "./EmphasisedLink";
+import EmphasisedLink from "../../layout/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {
