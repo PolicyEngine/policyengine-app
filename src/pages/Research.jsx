@@ -4,7 +4,7 @@ import Section from "../layout/Section";
 import PageHeader from "../layout/PageHeader";
 import style from "../style";
 import useDisplayCategory from "../redesign/components/useDisplayCategory";
-import TextBox from "../redesign/components/TextBox";
+import TextBox from "../layout/TextBox";
 import Button from "controls/Button";
 import {
   posts,

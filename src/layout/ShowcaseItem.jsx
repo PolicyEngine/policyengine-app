@@ -1,6 +1,6 @@
 import style from "../style";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import EmphasisedLink from "../../layout/EmphasisedLink";
+import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import EmphasisedLink from "./EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 
 export default function ShowcaseItem({

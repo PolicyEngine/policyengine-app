@@ -1,4 +1,4 @@
-import style from "../../style";
+import style from "../style";
 import { motion } from "framer-motion";
 
 export default function TextBox({
