@@ -3,7 +3,7 @@ import Research from "./Research";
 import About from "../../pages/About";
 import Jobs from "./Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
-import Donate from "./Donate";
+import Donate from "../../pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "../../pages/BlogPage";
 
