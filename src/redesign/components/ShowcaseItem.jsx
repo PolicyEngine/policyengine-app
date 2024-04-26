@@ -1,6 +1,7 @@
 import style from "../style";
 import useDisplayCategory from "./useDisplayCategory";
 import EmphasisedLink from "./EmphasisedLink";
+import { FileImageOutlined } from "@ant-design/icons";
 
 export default function ShowcaseItem({
   title,
@@ -11,6 +12,7 @@ export default function ShowcaseItem({
   altText,
   borderColor,
   color,
+  imageIsMissing,
 }) {
   const displayCategory = useDisplayCategory();
 
@@ -44,16 +46,37 @@ export default function ShowcaseItem({
         <p>{description}</p>
         <EmphasisedLink url={link} text={linkTitle} />
       </div>
-      <img
-        src={image}
-        width={displayCategory === "desktop" ? 400 : "100%"}
-        height="100%"
-        style={{
-          objectFit: "contain",
-          // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.9)",
-        }}
-        alt={altText}
-      />
+      {imageIsMissing ? (
+        <div
+          style={{
+            height: "300px",
+            width: "100%",
+            display: "flex",
+            position: "relative",
+            objectFit: "contain",
+            border: "1px solid grey",
+          }}
+        >
+          <FileImageOutlined
+            style={{
+              fontSize: "32px",
+              position: "absolute",
+              top: "250px",
+              right: "20px",
+            }}
+          />
+        </div>
+      ) : (
+        <img
+          src={image}
+          width={displayCategory === "desktop" ? 400 : "100%"}
+          height="100%"
+          style={{
+            objectFit: "contain",
+          }}
+          alt={altText}
+        />
+      )}
     </div>
   );
 }

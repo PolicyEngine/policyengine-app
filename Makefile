@@ -1,5 +1,6 @@
 install:
 	npm ci
+	pip install -U black
 build:
 	npm run build
 debug-no-lint:

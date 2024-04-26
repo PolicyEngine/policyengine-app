@@ -26,6 +26,7 @@ const topicLabels = {
 };
 
 const locationLabels = {
+  ca: "Canada",
   us: "United States",
   uk: "United Kingdom",
   global: "Global",

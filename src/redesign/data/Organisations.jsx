@@ -8,7 +8,8 @@ import UKEU from "../../images/logos/orgs/ukeu.svg";
 import ASI from "../../images/logos/orgs/asi.webp";
 import CEC from "../../images/logos/orgs/cec.svg";
 import CGO from "../../images/logos/orgs/cgo.jpg";
-import EPMT from "../../images/logos/orgs/epmt.jpg";
+/*import EPMT from "../../images/logos/orgs/epmt.jpg";*/
+import NISKANENCenter from "../../images/logos/orgs/niskanen-center.png";
 import F4GI from "../../images/logos/orgs/f4gi.jpg";
 import GCV from "../../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../../images/logos/orgs/mca.jpg";
@@ -81,21 +82,22 @@ export const orgData = {
       logo: F4GI,
       link: "https://f4gi.org",
     },
-    epmt: {
-      name: "End Poverty, Make Trillions",
-      logo: EPMT,
-      link: "https://endpovertymaketrillions.medium.com/economic-modeling-of-how-to-end-poverty-in-the-united-states-while-saving-taxpayers-trillions-of-1679b751d0c0",
+    mca: {
+      name: "Maryland Child Alliance",
+      logo: MCA,
+      link: "https://www.marylandchildalliance.org/revenue-raisers",
     },
     gcv: {
       name: "Gary Community Ventures",
       logo: GCV,
       link: "https://garycommunity.org",
     },
-    mca: {
-      name: "Maryland Child Alliance",
-      logo: MCA,
-      link: "https://www.marylandchildalliance.org/revenue-raisers",
+    niskanen_center: {
+      name: "Niskanen Center",
+      logo: NISKANENCenter,
+      link: "https://www.niskanencenter.org/building-a-stronger-foundation-for-american-families-options-for-child-tax-credit-reform/",
     },
+
     cgo: {
       name: "Center for Growth and Opportunity",
       logo: CGO,

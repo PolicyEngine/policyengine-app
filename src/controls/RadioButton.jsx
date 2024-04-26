@@ -1,9 +1,12 @@
+
 "use client";
 import { Radio } from "antd";
+
 import style from "../style";
 import { useState } from "react";
 
 export default function RadioButton(props) {
+
   const { keys, labels, onChange, defaultValue } = props;
 
   const [value, setValue] = useState(defaultValue || keys[0]);
@@ -38,5 +41,6 @@ export default function RadioButton(props) {
     <Radio.Group size="large" onChange={handleChange} >
       {options}
     </Radio.Group>
+
   );
 }

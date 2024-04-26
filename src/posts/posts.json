@@ -644,7 +644,7 @@
     "date": "2024-03-04 09:00:00",
     "filename": "spring-budget-2024.ipynb",
     "tags": ["uk", "policy"],
-    "image": "jeremy_hunt.jpg",
+    "image": "jeremy-hunt-with-budget-box.jpg",
     "authors": ["anthony-volk", "nikhil-woodruff"]
   },
   {
@@ -682,5 +682,23 @@
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "biden-budget-2025.md",
     "image": "biden-budget-2025.jpeg"
+  },
+  {
+    "title": "PolicyEngine launches state income tax modeling nationwide",
+    "description": "Free, open-source platform now covers all 50 states and D.C., just in time for tax season.",
+    "date": "2024-04-15 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["pavel-makarchuk"],
+    "filename": "state-tax-model-beta.md",
+    "image": "state-tax-model-beta.png"
+  },
+  {
+    "title": "PolicyEngine's Spring 2024 update",
+    "description": "How PolicyEngine compares to the latest external forecasts.",
+    "date": "2024-04-16 09:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "image": "uk_march_update.png",
+    "authors": ["nikhil-woodruff"],
+    "filename": "obr-forecast-update-spring-24.ipynb"
   }
 ]

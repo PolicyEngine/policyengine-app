@@ -7,6 +7,7 @@ import moment from "moment";
 import { useState } from "react";
 import useCountryId from "./useCountryId";
 import EmphasisedLink from "./EmphasisedLink";
+import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
@@ -323,14 +324,25 @@ function BlogTags({ tags }) {
   );
 }
 
+const handleImageLoad = (path) => {
+  // Try to load the image
+  try {
+    return require("../../images/posts/" + path);
+  } catch (error) {
+    // If the require fails, return the fallback image
+    console.error(`Failed to load image at ${path}:`, error);
+    return "";
+  }
+};
+
 export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   // Only defined for desktop and tablet displays
   const displayCategory = useDisplayCategory();
   const [currentBlogIndex, setCurrentBlogIndex] = useState(0);
   const currentBlog = blogs[currentBlogIndex] || {};
-  const imageUrl = currentBlog.image
-    ? require("../images/posts/" + currentBlog.image)
-    : require("../../images/placeholder.png");
+
+  const imageUrl = currentBlog.image ? handleImageLoad(currentBlog.image) : "";
+
   const countryId = useCountryId();
   const link = `/${countryId}/research/${currentBlog.slug}`;
   return (
@@ -345,16 +357,31 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           position: "relative",
         }}
       >
-        <img
-          src={imageUrl}
-          alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
-          width="100%"
-          height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
-          style={{
-            objectFit: "cover",
-            borderBottom: `1px solid ${style.colors.BLACK}`,
-          }}
-        />
+        {imageUrl === "" ? (
+          <div style={{ height: "300px", width: "100%" }}>
+            <FileImageOutlined
+              style={{
+                objectFit: "cover",
+                fontSize: "32px",
+                position: "absolute",
+                top: "250px",
+                right: "20px",
+              }}
+            />
+          </div>
+        ) : (
+          // <FileImageOutlined />
+          <img
+            src={imageUrl}
+            alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
+            width="100%"
+            height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
+            style={{
+              objectFit: "cover",
+              borderBottom: `1px solid ${style.colors.BLACK}`,
+            }}
+          />
+        )}
         <BlogBox
           noBorder
           topLeft={<BlogTags tags={currentBlog.tags || []} />}
@@ -389,11 +416,11 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
 export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const countryId = useCountryId();
-  const imageUrl = blog.image
-    ? require("../../images/posts/" + blog.image)
-    : require("../../images/placeholder.png");
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
+
+  const imageUrl = blog.image ? handleImageLoad(blog.image) : "";
+
   return (
     <div
       style={{
@@ -403,17 +430,32 @@ export function MediumBlogPreview({ blog, minHeight }) {
       }}
     >
       <div>
-        <img
-          src={imageUrl}
-          alt={blog.coverAltText || `${blog.title} cover image`}
-          height={300}
-          width="100%"
-          style={{
-            objectFit: "cover",
-            border: `1px solid ${style.colors.BLACK}`,
-            borderBottom: "none",
-          }}
-        />
+        {imageUrl !== "" ? (
+          <img
+            src={imageUrl}
+            alt={blog.coverAltText || `${blog.title} cover image`}
+            height={300}
+            width="100%"
+            style={{
+              objectFit: "cover",
+              border: `1px solid ${style.colors.BLACK}`,
+              borderBottom: "none",
+            }}
+          />
+        ) : (
+          <div
+            style={{ height: "300px", width: "100%", border: "1px solid grey" }}
+          >
+            <FileImageOutlined
+              style={{
+                fontSize: "32px",
+                position: "absolute",
+                top: "250px",
+                right: "20px",
+              }}
+            />
+          </div>
+        )}
       </div>
       <BlogBox
         style={{
