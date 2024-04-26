@@ -3,7 +3,6 @@ import Research from "./Research";
 import About from "../../pages/About";
 import Jobs from "./Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
-import Contact from "./Contact";
 import Donate from "./Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "../../pages/BlogPage";
@@ -277,7 +276,6 @@ export default function PolicyEngine({ pathname }) {
           element={<CalculatorInterstitial />}
         />
         <Route path="/:countryId/research" element={<Research />} />
-        <Route path="/:countryId/contact" element={<Contact />} />
         <Route path="/:countryId/donate" element={<Donate />} />
         <Route path="/:countryId/research/*" element={<BlogPage />} />
         <Route path="/:countryId/privacy" element={<PrivacyPage />} />
