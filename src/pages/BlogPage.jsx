@@ -1,5 +1,5 @@
 import { Link, Navigate } from "react-router-dom";
-import useCountryId from "../redesign/components/useCountryId";
+import useCountryId from "../hooks/useCountryId";
 import Header from "../redesign/components/Header";
 import Footer from "../layout/Footer";
 import Section from "../redesign/components/Section";
@@ -14,7 +14,7 @@ import {
 import moment from "moment";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import Markdown from "react-markdown";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import React, { useEffect, useState, useRef } from "react";

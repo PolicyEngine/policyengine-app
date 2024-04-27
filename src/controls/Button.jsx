@@ -21,6 +21,12 @@ export const buttonStyles = {
     borderColor: colors.BLUE_PRESSED,
     color: colors.WHITE,
   },
+  textLight: {
+    hoverBackgroundColor: colors.LIGHT_GRAY,
+    standardBackgroundColor: "inherit",
+    textColor: colors.BLUE,
+    borderColor: colors.BLUE,
+  },
   default: {
     hoverBackgroundColor: colors.TEAL_PRESSED,
     standardBackgroundColor: colors.TEAL_ACCENT,
@@ -50,12 +56,17 @@ export default function Button(props) {
   if (!type || !(Object.keys(buttonStyles).includes(type))) {
     type = "default";
   }
+  // Calculate the border to use
+  const borderColor = buttonStyles[type].borderColor
+    ? buttonStyles[type].borderColor
+    : null;
 
   return (
     <AntButton
       style={{
         display: "flex",
         alignItems: "center",
+        border: `1px solid ${borderColor || buttonStyles[type].standardBackgroundColor}`,
         borderRadius: "0",
         borderColor: buttonStyles[type].borderColor,
         borderWidth: 5,
@@ -80,8 +91,9 @@ export default function Button(props) {
       onMouseOver={(e) =>
         (e.currentTarget.style.backgroundColor =
           buttonStyles[type].hoverBackgroundColor) &&
-        (e.currentTarget.style.borderColor =
-          buttonStyles[type].hoverBackgroundColor)
+        (e.currentTarget.style.borderColor = borderColor
+          ? borderColor
+          : buttonStyles[type].hoverBackgroundColor)
       }
       onMouseOut={(e) =>
         (e.currentTarget.style.backgroundColor =

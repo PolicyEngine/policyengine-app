@@ -78,13 +78,7 @@ function PolicyLeftSidebar(props) {
 }
 
 export default function PolicyPage(props) {
-  const {
-    metadata,
-    policy,
-    setPolicy,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
-  } = props;
+  const { metadata, policy, userProfile, setPolicy } = props;
   const mobile = useMobile();
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -140,8 +134,7 @@ export default function PolicyPage(props) {
         <PolicyOutput
           metadata={metadata}
           policy={policy}
-          hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-          setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+          userProfile={userProfile}
         />
       </>
     );

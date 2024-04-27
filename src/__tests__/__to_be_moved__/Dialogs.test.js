@@ -3,7 +3,7 @@ import { render, waitFor } from "@testing-library/react";
 import { screen } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 
-import CookieConsent from "layout/CookieConsent";
+import CookieConsent from "modals/CookieConsent";
 import HouseholdOutput from "pages/household/output/HouseholdOutput";
 
 jest.mock("react-plotly.js", () => jest.fn());

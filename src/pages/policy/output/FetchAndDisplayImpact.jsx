@@ -9,6 +9,9 @@ import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/Error";
 import { defaultYear } from "data/constants";
+import { areObjectsSame } from "../../../data/areObjectsSame";
+import { updateUserPolicy } from "../../../api/userPolicies";
+import useCountryId from "../../../hooks/useCountryId";
 // import LoadingCentered from "layout/LoadingCentered";
 
 /**
@@ -22,8 +25,6 @@ import { defaultYear } from "data/constants";
  * @param {object} props
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
- * @param {boolean} props.hasShownPopulationImpactPopup indicator
- * @param {function} props.setHasShownPopulationImpactPopup setter for indicator
  * @returns a component for fetching the impact data and communicating relevant
  * information to the user
  */
@@ -38,13 +39,9 @@ export function FetchAndDisplayImpact(props) {
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-  const {
-    metadata,
-    policy,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
-  } = props;
+  const { metadata, policy, userPolicyId, showPolicyImpactPopup } = props;
   const policyRef = useRef(null);
+  const countryId = useCountryId();
 
   useEffect(() => {
     if (
@@ -139,6 +136,21 @@ export function FetchAndDisplayImpact(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
+  useEffect(() => {
+    if (!impact || !userPolicyId || !countryId) return;
+
+    const updatedUserPolicy = {
+      id: userPolicyId,
+      budgetary_impact: impact.budget.budgetary_impact,
+    };
+
+    updateUserPolicy(countryId, updatedUserPolicy).then((updatedPolicyId) => {
+      if (!updatedPolicyId) {
+        console.error("Error while updating user policy:");
+      }
+    });
+  }, [impact, countryId, userPolicyId]);
+
   if (error) {
     return <DisplayError error={error} />;
   }
@@ -157,8 +169,7 @@ export function FetchAndDisplayImpact(props) {
       impact={impact}
       policy={policy}
       metadata={metadata}
-      hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-      setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+      showPolicyImpactPopup={showPolicyImpactPopup}
     />
   );
 }
@@ -173,8 +184,6 @@ export function FetchAndDisplayImpact(props) {
  * @param {object} props
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
- * @param {boolean} props.hasShownPopulationImpactPopup indicator
- * @param {function} props.setHasShownPopulationImpactPopup setter for indicator
  * @returns a component for fetching the cliff impact data and communicating
  * relevant information to the user
  */
@@ -192,8 +201,6 @@ export function FetchAndDisplayCliffImpact(props) {
   const {
     metadata,
     // policy,
-    // hasShownPopulationImpactPopup,
-    // setHasShownPopulationImpactPopup,
   } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
@@ -264,57 +271,7 @@ export function FetchAndDisplayCliffImpact(props) {
       impact={impact}
       policy={policy}
       metadata={metadata}
-      hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-      setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
     />
   );
   */
-}
-
-/**
- * Function to recursively compare two objects
- * @param {null | Object} firstObject
- * @param {null | Object} secondObject
- * @returns {Boolean} Whether or not the two objects are
- * the same
- */
-export function areObjectsSame(firstObject, secondObject) {
-  // Ensure that both objects fed to the function are,
-  // in fact, objects; return false if one isn't
-  if (firstObject === null || typeof firstObject !== "object") {
-    return false;
-  }
-
-  if (secondObject === null || typeof secondObject !== "object") {
-    return false;
-  }
-
-  // Take the keys of both
-  const firstObjKeys = Object.keys(firstObject);
-  const secondObjKeys = Object.keys(secondObject);
-
-  // Return false if the key arrays aren't the same length
-  if (firstObjKeys.length !== secondObjKeys.length) {
-    return false;
-  }
-
-  // For each key in firstObjKeys...
-  for (const key of firstObjKeys) {
-    // Access the two objects at said key
-    const firstVal = firstObject[key];
-    const secondVal = secondObject[key] || null;
-
-    // If both values are objects, recurse and return
-    if (typeof firstVal === "object" && typeof secondVal === "object") {
-      return areObjectsSame(firstVal, secondVal);
-    }
-
-    // If the values aren't the same, return false
-    if (firstVal !== secondVal) {
-      return false;
-    }
-  }
-
-  // If we made it this far, return true
-  return true;
 }

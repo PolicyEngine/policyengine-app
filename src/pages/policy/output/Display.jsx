@@ -3,7 +3,7 @@ import LoadingCentered from "../../../layout/LoadingCentered";
 import { getPolicyOutputTree, policyOutputs } from "./tree";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import BottomCarousel from "../../../layout/BottomCarousel";
-import PolicyImpactPopup from "../../household/output/PolicyImpactPopup";
+import PolicyImpactPopup from "../../../modals/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
 import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
@@ -106,19 +106,11 @@ function getPolicyLabel(policy) {
  * @param {object} props.impact the impact object
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
- * @param {boolean} props.hasShownPopulationImpactPopup indicator
- * @param {function} props.setHasShownPopulationImpactPopup setter for indicator
  * @returns a component for displaying the impact using charts and buttons for
  * performing actions such as downloading data and sharing results
  */
 export function DisplayImpact(props) {
-  const {
-    impact,
-    policy,
-    metadata,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
-  } = props;
+  const { impact, policy, metadata, showPolicyImpactPopup } = props;
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
   const region = urlParams.get("region");
@@ -179,8 +171,7 @@ export function DisplayImpact(props) {
         downloadCsv={downloadCsvFn}
         metadata={metadata}
         policy={policy}
-        hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-        setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+        showPolicyImpactPopup={showPolicyImpactPopup}
       >
         {pane}
       </LowLevelDisplay>
@@ -202,8 +193,6 @@ export function DisplayImpact(props) {
  * @param {function} props.downloadPng callback for download png button
  * @param {object} props.policy the policy object
  * @param {object} props.metadata the metadata object
- * @param {boolean} props.hasShownPopulationImpactPopup indicator
- * @param {function} props.setHasShownPopulationImpactPopup setter for indicator
  * @returns a component that adds decorations around a child component that is
  * the main object, e.g., a chart
  */
@@ -214,8 +203,7 @@ export function LowLevelDisplay(props) {
     downloadPng,
     metadata,
     policy,
-    hasShownPopulationImpactPopup,
-    setHasShownPopulationImpactPopup,
+    showPolicyImpactPopup,
   } = props;
   const mobile = useMobile();
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
@@ -361,8 +349,7 @@ export function LowLevelDisplay(props) {
       )}
       <PolicyImpactPopup
         metadata={metadata}
-        hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-        setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+        showPolicyImpactPopup={showPolicyImpactPopup}
       />
       <div ref={componentRef} id="downloadable-content">
         {children}

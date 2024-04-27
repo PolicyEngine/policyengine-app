@@ -3,7 +3,7 @@ import Footer from "../../layout/Footer";
 import Section from "./Section";
 import style from "../style";
 import PageHeader from "./PageHeader";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import LinkButton from "controls/LinkButton";
 import { Helmet } from "react-helmet";
 

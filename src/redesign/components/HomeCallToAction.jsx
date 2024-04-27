@@ -1,8 +1,8 @@
 import style from "../style";
 import Section from "./Section";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import LinkButton from "controls/LinkButton";
-import useCountryId from "./useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 
 export default function HomeCallToAction() {
   return (

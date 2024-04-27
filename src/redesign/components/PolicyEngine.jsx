@@ -10,6 +10,7 @@ import BlogPage from "../../pages/BlogPage";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
+  apiCall,
   copySearchParams,
   countryApiCall,
   updateMetadata,
@@ -21,10 +22,13 @@ import Testimonials from "./Testimonials";
 import CalculatorInterstitial from "./CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
-import CookieConsent from "layout/CookieConsent";
+import CookieConsent from "../../modals/CookieConsent";
 import TrafwaCalculator from "./TrafwaCalculator";
+import AuthCallback from "../../layout/AuthCallback";
+import UserProfilePage from "../../pages/UserProfilePage";
 import PrivacyPage from "../../pages/PrivacyPage";
 import TACPage from "../../pages/TermsAndConditions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -96,8 +100,7 @@ export default function PolicyEngine({ pathname }) {
   };
 
   const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
-  const [hasShownPopulationImpactPopup, setHasShownPopulationImpactPopup] =
-    useState(false);
+  const [userProfile, setUserProfile] = useState({});
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
@@ -169,6 +172,57 @@ export default function PolicyEngine({ pathname }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId, searchParams.get("renamed")]);
 
+  // When metadata exists and a user is logged in, fetch user profile
+  const { isAuthenticated, user } = useAuth0();
+  useEffect(() => {
+    async function fetchUserProfile() {
+      const USER_PROFILE_PATH = `/${countryId}/user_profile`;
+      // Determine if user already exists in user profile db
+      try {
+        const resGet = await apiCall(
+          USER_PROFILE_PATH + `?auth0_id=${user.sub}`,
+        );
+        const resGetJson = await resGet.json();
+
+        if (resGet.status === 200) {
+          return resGetJson.result;
+        } else if (resGet.status === 404 && resGetJson.status === "ok") {
+          // If not, create user first, then fetch user
+          const body = {
+            auth0_id: user.sub,
+            primary_country: countryId,
+            user_since: Date.now(),
+          };
+          const resPost = await apiCall(USER_PROFILE_PATH, body, "POST");
+          const resPostJson = await resPost.json();
+          if (resPost.status !== 201) {
+            console.error(
+              `Error while trying to create new user with auth0_id ${user.sub}`,
+            );
+            console.error(resPostJson);
+            return;
+          }
+          return resPostJson.result;
+        } else {
+          console.error(
+            `Error while attempting to fetch user profile for user ${user.sub}`,
+          );
+          console.error(resGetJson);
+          return;
+        }
+      } catch (err) {
+        console.error(
+          `Connection error while attempting to fetch user profile for user ${user.sub}: ${err}`,
+        );
+        return;
+      }
+    }
+
+    if (countryId && isAuthenticated && user?.sub) {
+      fetchUserProfile().then((userProfile) => setUserProfile(userProfile));
+    }
+  }, [countryId, user?.sub, isAuthenticated]);
+
   const loadingPage = <LoadingCentered />;
 
   const householdPage = (
@@ -193,8 +247,7 @@ export default function PolicyEngine({ pathname }) {
         metadata={metadata}
         householdId={householdId}
         policy={policy}
-        hasShownPopulationImpactPopup={hasShownPopulationImpactPopup}
-        setHasShownPopulationImpactPopup={setHasShownPopulationImpactPopup}
+        userProfile={userProfile}
       />
     </Suspense>
   );
@@ -214,6 +267,7 @@ export default function PolicyEngine({ pathname }) {
         {/* Redirect from / to /[countryId] */}
         <Route path="/" element={<Navigate to={`/${countryId}`} />} />
 
+        <Route path="/callback" element={<AuthCallback />} />
         <Route path="/:countryId" element={<Home />} />
         <Route path="/:countryId/about" element={<About />} />
         <Route path="/:countryId/jobs" element={<Jobs />} />
@@ -236,6 +290,22 @@ export default function PolicyEngine({ pathname }) {
         <Route
           path="/:countryId/policy/*"
           element={metadata ? policyPage : error ? errorPage : loadingPage}
+        />
+
+        <Route
+          path="/:countryId/profile"
+          element={
+            <Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />
+          }
+        />
+        <Route
+          path="/:countryId/profile/:user_id"
+          element={
+            <UserProfilePage
+              metadata={metadata}
+              authedUserProfile={userProfile}
+            />
+          }
         />
 
         <Route

@@ -1,11 +1,15 @@
 export const countryNames = {
   us: {
-    standard: "the United States",
-    short: "the US",
+    standard: "The United States",
+    phrasal: "the United States",
+    short: "The US",
+    singleWord: "US",
   },
   uk: {
-    standard: "the United Kingdom",
-    short: "the UK",
+    standard: "The United Kingdom",
+    phrasal: "the United Kingdom",
+    short: "The UK",
+    singleWord: "UK",
   },
   ca: {
     standard: "Canada",

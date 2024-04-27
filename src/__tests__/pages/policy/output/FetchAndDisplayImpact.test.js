@@ -1,4 +1,4 @@
-import { areObjectsSame } from "../../../../pages/policy/output/FetchAndDisplayImpact";
+import { areObjectsSame } from "../../../../data/areObjectsSame";
 
 jest.mock("react-plotly.js", () => jest.fn());
 

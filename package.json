@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.6",
+    "@auth0/auth0-react": "^2.2.4",
     "@babel/preset-react": "^7.24.1",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@uiw/codemirror-extensions-langs": "^4.21.25",
@@ -16,6 +17,7 @@
     "@uiw/react-textarea-code-editor": "^3.0.2",
     "antd": ">4, <5",
     "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
     "file-saver": "^2.0.5",
     "framer-motion": "^10.16.16",
