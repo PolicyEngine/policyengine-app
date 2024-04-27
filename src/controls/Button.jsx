@@ -8,12 +8,19 @@ export const buttonStyles = {
     standardBackgroundColor: colors.TEAL_ACCENT,
   },
   secondary: {
-    hoverBackgroundColor: colors.BLUE_PRESSED,
-    standardBackgroundColor: colors.BLUE_LIGHT,
+    hoverBackgroundColor: colors.DARK_BLUE_HOVER,
+    standardBackgroundColor: colors.BLUE,
+    borderColor: colors.WHITE,
   },
   disabled: {
     hoverBackgroundColor: colors.BLUE_PRESSED,
     standardBackgroundColor: colors.BLUE_LIGHT,
+  },
+  textLight: {
+    hoverBackgroundColor: colors.LIGHT_GRAY,
+    standardBackgroundColor: "inherit",
+    textColor: colors.BLUE,
+    borderColor: colors.BLUE,
   },
   default: {
     hoverBackgroundColor: colors.TEAL_PRESSED,
@@ -40,16 +47,20 @@ export default function Button(props) {
   let { text, onClick, width, type, size, height, style } = props;
 
   // Assign fallback values for styling
-  if (!type || !(type in Object.keys(buttonStyles))) {
+  if (!type || !Object.keys(buttonStyles).includes(type)) {
     type = "default";
   }
+  // Calculate the border to use
+  const borderColor = buttonStyles[type].borderColor
+    ? buttonStyles[type].borderColor
+    : null;
 
   return (
     <AntButton
       style={{
         display: "flex",
         alignItems: "center",
-        border: "none",
+        border: `1px solid ${borderColor || buttonStyles[type].standardBackgroundColor}`,
         borderRadius: "0",
         backgroundColor: buttonStyles[type].standardBackgroundColor,
         textTransform: "uppercase",
@@ -65,20 +76,22 @@ export default function Button(props) {
         textAlign: "center",
         whiteSpace: "normal",
         justifyContent: "center",
-        color: "#ffffff",
+        color: buttonStyles[type].textColor || "#ffffff",
         ...style,
       }}
       onMouseOver={(e) =>
         (e.currentTarget.style.backgroundColor =
           buttonStyles[type].hoverBackgroundColor) &&
-        (e.currentTarget.style.borderColor =
-          buttonStyles[type].hoverBackgroundColor)
+        (e.currentTarget.style.borderColor = borderColor
+          ? borderColor
+          : buttonStyles[type].hoverBackgroundColor)
       }
       onMouseOut={(e) =>
         (e.currentTarget.style.backgroundColor =
           buttonStyles[type].standardBackgroundColor) &&
-        (e.currentTarget.style.borderColor =
-          buttonStyles[type].standardBackgroundColor)
+        (e.currentTarget.style.borderColor = borderColor
+          ? borderColor
+          : buttonStyles[type].standardBackgroundColor)
       }
       size={size ? size : width ? `${width}px` : "300px"}
       onClick={onClick}
