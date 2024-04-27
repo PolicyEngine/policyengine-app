@@ -15,6 +15,7 @@ import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
 import districtLevelImpact from "./DistrictImpact";
+import LabourSupplyDecileImpact from "./LabourSupplyDecileImpact";
 
 const map = {
   netIncome: budgetaryImpact,
@@ -34,6 +35,7 @@ const map = {
   inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
   districtLevelImpact: districtLevelImpact,
+  labourSupplyDecileImpact: LabourSupplyDecileImpact,
 };
 
 // get representations of the impact as a chart and a csv. The returned object

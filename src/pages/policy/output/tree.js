@@ -19,6 +19,7 @@ export const policyOutputs = {
   analysis: "AI summary (experimental)",
   codeReproducibility: "Reproduce in Python",
   districtLevelImpact: "District-level impact",
+  labourSupplyDecileImpact: "Labor supply decile impact (experimental)"
 };
 
 export function getPolicyOutputTree(countryId) {

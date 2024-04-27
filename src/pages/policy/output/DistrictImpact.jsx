@@ -1,28 +1,38 @@
 import style from "../../../style";
 import ImpactChart from "./ImpactChart";
 import Plot from "react-plotly.js";
+import plotlyMapData from "./map.json";
+import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function DistrictImpact(props) {
   const { policyLabel, metadata, impact, timePeriod, region } = props;
 
   const chart = <ImpactChart title={`${policyLabel}'s district-level impact`}>
-    // Plotly heatmap of U.S. counties with random data
+    {plotlyMapData &&
     <Plot
-      data={[
-        {
-          type: "choroplethmapbox",
-          geojson: "https://raw.githubusercontent.com/python-visualization/folium/master/examples/data/us-counties.json",
-          locations: ["CA", "TX", "AZ"],
-          z: [1, 2, 3],
-        },
-      ]}
+      data={
+        plotlyMapData["data"]
+      }
       layout={{
+        ...plotlyMapData["layout"],
         xaxis: { title: "Longitude" },
         yaxis: { title: "Latitude" },
-        title: `${policyLabel}'s district-level impact`,
+        margin: {
+          t: 0,
+          b: 100,
+          r: 0,
+        },
+        height: 500,
+        ...plotLayoutFont,
+        showlegend: false,
+        // don't show color scale
+        coloraxis: { showscale: false },
       }}
       config={{ displayModeBar: false }}
-    />
+    />}
+    <p style={{fontFamily: "Roboto Serif"}}>
+      PolicyEngine uses data science and administrative statistics to estimate district-level impacts of policicies. Learn more about our methodology <a href="/methodology">here</a>.
+    </p>
   </ImpactChart>
 
   return { chart: chart, csv: () => {} };
