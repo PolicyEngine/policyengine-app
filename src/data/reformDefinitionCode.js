@@ -213,13 +213,13 @@ export function getImplementationCode(type, region, timePeriod) {
     `baseline = Microsimulation(${
       isCountryUS
         ? region === "enhanced_us"
-          ? `reform=baseline_reform, dataset="enhanced_cps_${timePeriod}"`
+          ? `reform=baseline_reform, dataset="enhanced_cps_2022"`
           : `reform=baseline_reform`
         : ""
     })`,
     `reformed = Microsimulation(${
       region === "enhanced_us"
-        ? `reform=reform, dataset="enhanced_cps_${timePeriod}"`
+        ? `reform=reform, dataset="enhanced_cps_2022"`
         : `reform=reform`
     })`,
     `baseline_person = baseline.calc("household_net_income",
