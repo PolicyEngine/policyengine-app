@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import Button from "../controls/Button";
 import useDisplayCategory from "../hooks/useDisplayCategory";
-import colors from "redesign/style/colors";
+import colors from "style/colors";
 
 /*
  * This component is split out of the main

@@ -4,7 +4,7 @@ import jsonp from "jsonp";
 import style from "../../style";
 import Section from "../../layout/Section";
 import FormContext from "forms/FormContext";
-import FormItem from "forms/FormItem";
+import FormInput from "forms/FormInput";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 export default function HomeSubscribe() {
@@ -112,7 +112,7 @@ export function SubscribeToPolicyEngine(props) {
         }}
         submitMsg={submitMsg}
       >
-        <FormItem
+        <FormInput
           label={inputFields.label}
           type={inputFields.type}
           placeholder={inputFields.placeholder}

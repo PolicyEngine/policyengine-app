@@ -12,12 +12,8 @@ import {
   topicTags,
 } from "../posts/postTransformers";
 import moment from "moment";
-import { TwitterTweetEmbed } from "react-twitter-embed";
-import Markdown from "react-markdown";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
-import React, { useEffect, useState, useRef } from "react";
+import useDisplayCategory from "hooks/useDisplayCategory";
+import React, { useEffect, useState } from "react";
 import { useReadingTime } from "react-hook-reading-time";
 import {
   FacebookOutlined,
@@ -30,11 +26,7 @@ import {
 import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
-import { MarkdownFormatter } from "../redesign/style/MarkdownFormatter";
-import {
-  HighlightedBlock,
-  PlotlyChartCode,
-} from "../redesign/style/MarkdownFormatter";
+import { MarkdownFormatter, HighlightedBlock, PlotlyChartCode } from "components/MarkdownFormatter";
 
 // Function to handle image loading
 const handleImageLoad = (path) => {

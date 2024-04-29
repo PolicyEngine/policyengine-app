@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ResultsPanel from "../../../components/ResultsPanel";
 import { Switch } from "antd";
-import CodeBlock from "layout/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { getReproducibilityCodeBlock } from "../../../data/reformDefinitionCode";

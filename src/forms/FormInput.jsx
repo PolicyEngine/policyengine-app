@@ -18,7 +18,7 @@ import { motion } from "framer-motion";
  * component is focused
  * @returns {import("react").ReactComponentElement}
  */
-export default function FormItem(props) {
+export default function FormInput(props) {
   const {
     label,
     type,

@@ -1,4 +1,4 @@
-import CodeBlock from "layout/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 import { useSearchParams } from "react-router-dom";
 import colors from "../../../style/colors";
 import { getReproducibilityCodeBlock } from "../../../data/reformDefinitionCode";

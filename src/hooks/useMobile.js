@@ -10,6 +10,10 @@ const determineDisplayCategory = (width) => {
   return "desktop";
 };
 
+/**
+ * Deprecated mobile sizing effect hook; for newer implementation, use useDisplayCategory
+ * @returns 
+ */
 export default function useMobile() {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
     determineDisplayCategory(window.innerWidth) === "mobile",

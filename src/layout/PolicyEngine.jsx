@@ -16,7 +16,7 @@ import Testimonials from "../pages/Testimonials";
 import CalculatorInterstitial from "../pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "../applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "../pages/APIDocumentationPage";
-import CookieConsent from "layout/CookieConsent";
+import CookieConsent from "modals/CookieConsent";
 import TrafwaCalculator from "../applets/TrafwaCalculator";
 import PrivacyPage from "../pages/PrivacyPage";
 import TACPage from "../pages/TermsAndConditions";

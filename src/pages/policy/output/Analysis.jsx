@@ -2,10 +2,10 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "../../../components/Spinner";
 import Button from "../../../controls/Button";
-import CodeBlock from "layout/CodeBlock";
+import CodeBlock from "components/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
-import { MarkdownFormatter } from "../../../redesign/style/MarkdownFormatter";
+import { MarkdownFormatter } from "components/MarkdownFormatter";
 import { asyncApiCall, countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 
