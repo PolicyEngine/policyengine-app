@@ -12,12 +12,8 @@ import {
   topicTags,
 } from "../posts/postTransformers";
 import moment from "moment";
-import { TwitterTweetEmbed } from "react-twitter-embed";
-import Markdown from "react-markdown";
 import useDisplayCategory from "../hooks/useDisplayCategory";
-import rehypeRaw from "rehype-raw";
-import remarkGfm from "remark-gfm";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useReadingTime } from "react-hook-reading-time";
 import {
   FacebookOutlined,
@@ -599,7 +595,6 @@ function MoreOn({ post }) {
     </>
   );
 }
-
 
 function ReadTime({ markdown }) {
   const { text } = useReadingTime(markdown);
