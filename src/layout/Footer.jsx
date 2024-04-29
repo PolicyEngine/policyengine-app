@@ -1,7 +1,7 @@
 import style from "../redesign/style";
 import Section from "../redesign/components/Section";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
-import useDisplayCategory from "../redesign/components/useDisplayCategory";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 import { SubscribeToPolicyEngine } from "../redesign/components/HomeSubscribe";
 import {
   FacebookFilled,
@@ -12,7 +12,7 @@ import {
   YoutubeFilled,
 } from "@ant-design/icons";
 import { createElement } from "react";
-import useCountryId from "../redesign/components/useCountryId";
+import useCountryId from "../hooks/useCountryId";
 import { Link } from "react-router-dom";
 
 export default function Footer() {

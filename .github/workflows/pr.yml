@@ -1,5 +1,9 @@
 name: Pull request
 
+env:
+  REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+  REACT_APP_AUTH0_CLIENT_ID: ${{ secrets.REACT_APP_AUTH0_CLIENT_ID }}
+
 on:
   pull_request:
     branches: [master]

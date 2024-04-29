@@ -3,7 +3,7 @@ import Footer from "../../layout/Footer";
 import Section from "./Section";
 import PageHeader from "./PageHeader";
 import style from "../style";
-import useDisplayCategory from "./useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import TextBox from "./TextBox";
 import Button from "controls/Button";
 import {

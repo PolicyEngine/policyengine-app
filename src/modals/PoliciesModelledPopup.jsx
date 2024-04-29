@@ -2,8 +2,8 @@ import { CheckCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
-import { getValueFromHousehold } from "../../../api/variables";
-import Button from "../../../controls/Button";
+import { getValueFromHousehold } from "../api/variables";
+import Button from "../controls/Button";
 
 function PoliciesModelledChecklist(props) {
   const { metadata, householdInput, year } = props;

@@ -5,7 +5,7 @@ import { Select } from "antd";
 import { getNewHouseholdId } from "api/variables";
 import CenteredMiddleColumn from "layout/CenteredMiddleColumn";
 import SearchParamNavButton from "controls/SearchParamNavButton";
-import useDisplayCategory from "redesign/components/useDisplayCategory";
+import useDisplayCategory from "../../../hooks/useDisplayCategory";
 
 export default function TaxYear(props) {
   const {

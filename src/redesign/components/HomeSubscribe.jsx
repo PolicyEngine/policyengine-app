@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import jsonp from "jsonp";
 
 import style from "../style";
 import Section from "./Section";
 import FormContext from "layout/forms/FormContext";
-import FormItem from "layout/forms/FormItem";
-import useDisplayCategory from "./useDisplayCategory";
+import FormInput from "layout/forms/FormInput";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
+import { submitToMailchimp } from "../../data/mailchimpSubscription";
 
 export default function HomeSubscribe() {
   return (
@@ -39,30 +39,14 @@ export function SubscribeToPolicyEngine(props) {
     placeholder: "Enter your email address",
   };
 
-  function submitHandler(event, formInput) {
+  async function submitHandler(event, formInput) {
     event.preventDefault();
 
+    console.log(submitToMailchimp);
     // "error" is if there is a connection issue, while "data" is Mailchimp's
     // res object, including signup errors
-    jsonp(
-      `${submitLink}&EMAIL=${formInput.email}`,
-      { param: "c" },
-      (error, data) => {
-        if (error) {
-          setSubmitMsg(
-            "There was an issue processing your subscription; please try again later.",
-          );
-        }
-        if (data) {
-          // "data" also contains "result" param
-          // of either "success" or "error"
-          const { msg } = data;
-          if (typeof msg === "string") {
-            setSubmitMsg(msg);
-          }
-        }
-      },
-    );
+    const mailchimpResponse = await submitToMailchimp(formInput.email);
+    setSubmitMsg(mailchimpResponse.message);
   }
 
   const mobileWrapperStyling = {
@@ -112,7 +96,8 @@ export function SubscribeToPolicyEngine(props) {
         }}
         submitMsg={submitMsg}
       >
-        <FormItem
+        <FormInput
+          name={inputFields.label}
           label={inputFields.label}
           type={inputFields.type}
           placeholder={inputFields.placeholder}

@@ -12,7 +12,7 @@ import {
 } from "../../../api/variables";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
-import useDisplayCategory from "redesign/components/useDisplayCategory";
+import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import { Helmet } from "react-helmet";
 
 const UpArrow = () => (
