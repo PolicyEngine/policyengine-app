@@ -3,11 +3,29 @@ import ImpactChart from "./ImpactChart";
 import Plot from "react-plotly.js";
 import plotlyMapData from "./map.json";
 import { plotLayoutFont } from "pages/policy/output/utils";
+import { Dropdown } from "antd";
+import SearchOptions from "../../../controls/SearchOptions";
 
 export default function DistrictImpact(props) {
   const { policyLabel, metadata, impact, timePeriod, region } = props;
 
   const chart = <ImpactChart title={`${policyLabel}'s district-level impact`}>
+    <p style={{fontFamily: "Roboto Serif"}}>See how this reform impacts <SearchOptions
+      options={[{
+        value: "child_poverty",
+        label: "child poverty",
+      }, {
+        value: "all_poverty",
+        label: "all poverty",
+      }, {
+        value: "inequality",
+        label: "the Gini index",
+      }, {
+        value: "average income",
+        label: "average income",
+      }]}
+      defaultValue="child_poverty"
+      /> by U.S. congressional district.</p>
     {plotlyMapData &&
     <Plot
       data={

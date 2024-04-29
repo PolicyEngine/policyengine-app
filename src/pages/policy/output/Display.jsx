@@ -69,7 +69,7 @@ export function DisplayWait(props) {
         }
         strokeColor={style.colors.BLUE}
       />
-      <p>
+      <p style={{color: "grey"}}>
         This usually takes around {Math.round(averageImpactTime / 5) * 5}{" "}
         seconds, but may take longer.
       </p>

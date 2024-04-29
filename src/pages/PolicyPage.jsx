@@ -16,6 +16,7 @@ import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
+import style from "../style";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -27,7 +28,10 @@ export function ParameterSearch(props) {
       value: parameter.parameter,
       label: parameter.label,
     }))
+    // If more than one with the same label, include only the first.
+    .filter((option, index, self) => self.findIndex((t) => t.label === option.label) === index)
     .filter((option) => !!option.label && !!option.value)
+    .filter(option => option.label.split(" ").length > 1)
     .reverse();
   return (
     <SearchOptions
@@ -61,7 +65,7 @@ function PolicyLeftSidebar(props) {
   const isOnOutput = window.location.search.includes("focus=policyOutput") || window.location.search.includes("focus=householdOutput");
   // The menu, then the search bar anchored to the bottom
   return (
-    <div>
+    <div style={{backgroundColor: style.colors.LIGHT_GRAY}}>
       {!isOnOutput && (
       <div style={{ padding: 10 }}>
         <ParameterSearch metadata={metadata} />

@@ -1,11 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&family=Roboto:wght@300;500&display=swap");
 
-h5,
-h6 {
-  font-family: "Roboto";
-  font-weight: 400;
-}
-
 h1,
 h2,
 h3,
@@ -15,8 +9,9 @@ h4 {
 }
 
 body {
-  font-family: "Roboto";
+  font-family: "Roboto Serif", serif;
   color: "inherit !important";
+  border-radius: 0,
 }
 
 :root {
@@ -28,7 +23,7 @@ body {
 }
 
 p {
-  font-family: "Roboto";
+  font-family: "Roboto Serif";
   font-weight: 400;
 }
 
@@ -108,11 +103,11 @@ a.highlighted-link:hover {
 }
 
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
-  background-color: transparent;
+  background-color: white;
   font-family: "Roboto Serif";
 }
 
 .ant-input {
-  background-color: transparent;
+  background-color: white;
   font-family: "Roboto Serif";
 }

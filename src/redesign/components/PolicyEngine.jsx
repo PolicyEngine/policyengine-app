@@ -29,6 +29,8 @@ import UserProfilePage from "../../pages/UserProfilePage";
 import PrivacyPage from "../../pages/PrivacyPage";
 import TACPage from "../../pages/TermsAndConditions";
 import { useAuth0 } from "@auth0/auth0-react";
+import { ConfigProvider } from "antd";
+import style from "../../style";
 
 const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
@@ -260,7 +262,12 @@ export default function PolicyEngine({ pathname }) {
   // If the path is not recognized, redirect to /[countryId]
 
   return (
-    <>
+    <ConfigProvider theme={{
+      token: {
+        borderRadius: 0,
+        colorPrimary: style.colors.BLUE,
+      }
+    }}>
       <ScrollToTop />
       <CookieConsent />
       <Routes>
@@ -327,6 +334,6 @@ export default function PolicyEngine({ pathname }) {
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
       </Routes>
-    </>
+    </ConfigProvider>
   );
 }

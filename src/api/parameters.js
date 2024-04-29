@@ -6,7 +6,7 @@ export function buildParameterTree(parameters) {
   let tree = {};
 
   for (const parameter of Object.values(parameters).filter(
-    (parameter) => parameter.economy || parameter.household,
+    (parameter) => (parameter.economy || parameter.household)
   )) {
     if (parameter.parameter.includes("abolitions")) {
       continue;

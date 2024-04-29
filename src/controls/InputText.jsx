@@ -24,7 +24,7 @@ export default function InputText(props) {
 
   // Assign fallback values for styling if button included
   if (!buttonStyle || !Object.keys(buttonStyles).includes(buttonStyle)) {
-    buttonStyle = "default";
+    buttonStyle = "primary";
   }
 
   const isDisabled = disableOnEmpty && !inputValue;
@@ -52,32 +52,32 @@ export default function InputText(props) {
       >
         {inputElement}
         <Button
-          type="primary"
+          type={"primary"}
           disabled={isDisabled}
           style={{
             backgroundColor:
-              !isDisabled && buttonStyles[buttonStyle].standardBackgroundColor,
+              !isDisabled && buttonStyles[buttonStyle].standard.backgroundColor,
             // This line is added instead of "none" because the disabled style also has a 1px border, causing
             // visual ticks if transitioning between the two
             border:
               !isDisabled &&
-              `1px solid ${buttonStyles[buttonStyle].standardBackgroundColor}`,
+              `1px solid ${buttonStyles[buttonStyle].standard.borderColor}`,
           }}
           onClick={(e) => onClick?.(e, inputValue)}
           onMouseOver={(e) => {
             if (!isDisabled) {
               (e.currentTarget.style.backgroundColor =
-                buttonStyles[buttonStyle].hoverBackgroundColor) &&
+                buttonStyles[buttonStyle].hover.backgroundColor) &&
                 (e.currentTarget.style.borderColor =
-                  buttonStyles[buttonStyle].hoverBackgroundColor);
+                  buttonStyles[buttonStyle].hover.backgroundColor);
             }
           }}
           onMouseOut={(e) => {
             if (!isDisabled) {
               (e.currentTarget.style.backgroundColor =
-                buttonStyles[buttonStyle].standardBackgroundColor) &&
+                buttonStyles[buttonStyle].standard.backgroundColor) &&
                 (e.currentTarget.style.borderColor =
-                  buttonStyles[buttonStyle].standardBackgroundColor);
+                  buttonStyles[buttonStyle].standard.borderColor);
             }
           }}
         >

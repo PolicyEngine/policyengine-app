@@ -12,7 +12,7 @@ export default function ThreeColumnPage(props) {
     >
       <div
         style={{
-          width: "20%",
+          width: "25%",
           backgroundColor: style.colors.LIGHT_GRAY,
           overflowY: "scroll",
           // shadow
@@ -35,7 +35,7 @@ export default function ThreeColumnPage(props) {
       </div>
       <div
         style={{
-          width: "60%",
+          width: "50%",
           backgroundColor: style.colors.WHITE,
           padding: 20,
           paddingTop: 0,

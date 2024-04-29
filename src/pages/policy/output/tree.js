@@ -14,12 +14,13 @@ export const policyOutputs = {
   genderDeepPovertyImpact: "Deep poverty impact by sex",
   racialPovertyImpact: "Poverty impact by race and ethnicity",
   inequalityImpact: "Income inequality impact",
+  stateLevelImpact: "State-level impact",
+  districtLevelImpact: "District-level impact",
   // cliffImpact: "Cliff impact",
   laborSupplyImpact: "Labor supply impact (experimental)",
   analysis: "AI summary (experimental)",
+  labourSupplyDecileImpact: "Labor supply decile impact (experimental)",
   codeReproducibility: "Reproduce in Python",
-  districtLevelImpact: "District-level impact",
-  labourSupplyDecileImpact: "Labor supply decile impact (experimental)"
 };
 
 export function getPolicyOutputTree(countryId) {

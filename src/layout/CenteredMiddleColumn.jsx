@@ -18,7 +18,7 @@ export default function CenteredMiddleColumn(props) {
       >
         <h5 style={{fontFamily: "Roboto Serif"}}>{title}</h5>
         
-        {description && <><p style={{marginBottom: 10, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Description</p><h6 style={{fontFamily: "Roboto Serif"}}>{description}</h6></>}
+        {description && <><p style={{marginBottom: 10, color: "grey", display: "inline-block"}}>Description</p><h6 style={{fontFamily: "Roboto Serif"}}>{description}</h6></>}
         {children}
       </div>
       

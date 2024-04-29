@@ -16,8 +16,7 @@ function MenuItem(props) {
       onClick={() => onSelect(name)}
     >
       <motion.h5
-        style={{ fontSize: 16, fontFamily: "Roboto Serif" }}
-        whileHover={{ textDecoration: "underline" }}
+        style={{ fontSize: 16, fontFamily: "Roboto Serif", textDecoration: selected === name ? "none" : "underline" }}
         transition={{ duration: 0.001 }}
       >
         {selected === name && (
@@ -29,7 +28,6 @@ function MenuItem(props) {
               fontWeight: 400,
               textShadow: "0 0 .2px #000",
               paddingBottom: 2,
-              textDecoration: "underline",
             }}
           >
             {label}
@@ -115,8 +113,7 @@ function MenuItemGroup(props) {
     >
       <motion.h5
         onClick={toggleExpanded}
-        style={{ fontSize: 16, fontFamily: "Roboto Serif" }}
-        whileHover={{ textDecoration: "underline" }}
+        style={{ fontSize: 16, fontFamily: "Roboto Serif", textDecoration: selected === name ? "none" : "underline" }}
         transition={{ duration: 0.001 }}
       >
         {selected === name && (
@@ -126,7 +123,6 @@ function MenuItemGroup(props) {
               color: "#000",
               fontFamily: "Roboto Serif",
               textShadow: "0 0 .2px #000",
-              textDecoration: "underline",
             }}
           >
             {label}

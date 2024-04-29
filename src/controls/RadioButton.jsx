@@ -32,10 +32,9 @@ export default function RadioButton(props) {
               padding: 10,
               paddingLeft: 20,
               paddingRight: 20,
-              borderWidth: 1,
+              borderWidth: 3,
               borderStyle: "solid",
               marginRight: 5,
-              borderRadius: 25,
               borderColor: defaultChecked
                 ? style.colors.BLUE
                 : style.colors.MEDIUM_DARK_GRAY,

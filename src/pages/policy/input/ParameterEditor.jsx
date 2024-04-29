@@ -151,7 +151,7 @@ export default function ParameterEditor(props) {
       description={description}
     >
       <div style={{}}>
-      <p style={{marginBottom: 2, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Current value</p>
+      <p style={{marginBottom: 2, color: "grey", display: "inline-block"}}>Current value</p>
       </div>
       {editControl}
       {!parameter.economy && (
@@ -161,7 +161,7 @@ export default function ParameterEditor(props) {
         />
       )}
       <div style={{paddingRight: 30, marginTop: 20}}>
-        <p style={{marginBottom: 2, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Historical values</p>
+        <p style={{marginBottom: 2, color: "grey", display: "inline-block"}}>Historical values</p>
       </div>
       <ParameterOverTime
         baseMap={baseMap}

@@ -104,7 +104,7 @@ export default function VariableEditor(props) {
           What {verb} your {variable.label.toLowerCase()}?
         </h5>
         {variable.documentation && (
-        <><div><p style={{marginBottom: 10, color: "grey", borderBottom: "2px solid grey", display: "inline-block"}}>Description</p></div>
+        <><div><p style={{marginBottom: 10, color: "grey", display: "inline-block"}}>Description</p></div>
         <h6 style={{fontFamily: "Roboto Serif"}}>{variable.documentation}</h6></>
         )}
         <div style={{marginBottom: 20}} />

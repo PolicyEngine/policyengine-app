@@ -41,35 +41,23 @@ function FolderPageDescription(props) {
     currentNode = null;
   }
   return (
-    <>
-      <h3>{inPolicySide ? "Policy parameters" : "Household variables"}</h3>
-      <h5>
+    <div style={{display: "flex", alignItems: "center", height: "60vh"}}>
+      <div>
+      <h3>{inPolicySide ? "Create a policy reform" : "Household variables"}</h3>
+      <p style={{fontFamily: "Roboto Serif"}}>
         {inPolicySide ? (
           <>
             Build a tax-benefit reform by selecting parameters from the menu
-            items below. Then when you&apos;re ready, click{" "}
+            to the left (organised by government department). Then when you&apos;re ready, click{" "}
             <i>Calculate economic impact</i> on the right to see how your reform
-            would affect the economy.
+            would affect the economy, or <i>Enter my household</i> to see how it would affect a specific household.
           </>
         ) : (
           "Select a household variable from the menu items below to enter your own information."
         )}
-      </h5>
-      <Divider />
-      {breadcrumbs.map((breadcrumb, i) => (
-        <h5
-          onClick={() => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", breadcrumb.name);
-            setSearchParams(newSearch);
-          }}
-          key={breadcrumb.name}
-          style={{ paddingLeft: i * 15, cursor: "pointer" }}
-        >
-          {i > 0 && <>&#x2514;</>} {capitalize(breadcrumb.label)}
-        </h5>
-      ))}
-    </>
+      </p>
+      </div>
+    </div>
   );
 }
 
@@ -87,53 +75,6 @@ export default function FolderPage(props) {
           inPolicySide={inPolicySide}
         />
       )}
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          flexWrap: "wrap",
-          justifyContent: mobile ? "center" : "left",
-        }}
-      >
-        {children
-          .filter((child) => !child.name.includes("pycache"))
-          .map((child) => (
-            <motion.div
-              key={child.name}
-              style={{
-                width: mobile ? 125 : 150,
-                height: 100,
-                backgroundColor: style.colors.LIGHT_GRAY,
-                margin: 10,
-                padding: 10,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                flexGrow: mobile && 1.5,
-              }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: style.colors.DARK_GRAY,
-                color: "#fff",
-              }}
-              onClick={() => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("focus", child.name);
-                setSearchParams(newSearch);
-              }}
-            >
-              <h6
-                style={{
-                  textAlign: "center",
-                  color: "inherit",
-                }}
-              >
-                {capitalize(child.label)}
-              </h6>
-            </motion.div>
-          ))}
-      </div>
     </ResultsPanel>
   );
 }
