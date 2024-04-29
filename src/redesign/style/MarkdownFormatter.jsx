@@ -4,7 +4,7 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useState, useRef, useEffect } from "react";
 import style from "../../redesign/style";
-import useDisplayCategory from "../components/useDisplayCategory";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
 import Plot from "react-plotly.js";
 
 function Td({ children }) {
