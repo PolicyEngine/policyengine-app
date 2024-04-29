@@ -12,7 +12,7 @@ const determineDisplayCategory = (width) => {
 
 /**
  * Deprecated mobile sizing effect hook; for newer implementation, use useDisplayCategory
- * @returns 
+ * @returns
  */
 export default function useMobile() {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
