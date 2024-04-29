@@ -31,6 +31,7 @@ const colors = {
   DARK_GRAY,
   DARK_RED,
   DARKEST_BLUE,
+  DARK_BLUE_HOVER,
   GRAY,
   GREEN,
   LIGHT_GRAY,
@@ -41,8 +42,6 @@ const colors = {
   TEAL_LIGHT,
   TEAL_PRESSED,
   WHITE,
-  DARKEST_BLUE,
-  DARK_BLUE_HOVER,
 };
 
 export default colors;
