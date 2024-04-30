@@ -281,6 +281,7 @@ export function LowLevelDisplay(props) {
   }
 
   const embed = new URLSearchParams(window.location.search).get("embed");
+  //eslint-disable-next-line
   const bottomElements =
     mobile & !embed ? null : (
       <p

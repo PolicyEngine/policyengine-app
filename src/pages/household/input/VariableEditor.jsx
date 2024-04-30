@@ -181,6 +181,7 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     setHouseholdInput,
     autoCompute,
+    // eslint-disable-next-line no-unused-vars
     setEdited,
     singleEntity,
   } = props;

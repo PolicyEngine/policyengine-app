@@ -5,12 +5,11 @@ import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
 import { capitalize } from "../lang/format";
-import Divider from "./Divider";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
 
 function FolderPageDescription(props) {
   // Try to find the current focus in the tree.
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const focus = searchParams.get("focus");
   const { metadata, inPolicySide } = props;
   const mobile = useMobile();

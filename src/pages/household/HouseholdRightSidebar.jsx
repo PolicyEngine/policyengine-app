@@ -5,11 +5,8 @@ import {
   getValueFromHousehold,
 } from "../../api/variables";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
-import Divider from "../../layout/Divider";
 import LoadingCentered from "../../layout/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
-import Button from "../../controls/Button";
-import { Collapse } from "antd";
 import Collapsable from "../../redesign/components/Collapsable";
 
 function Figure(props) {
@@ -55,7 +52,8 @@ export default function HouseholdRightSidebar(props) {
     policy,
     year,
   } = props;
-  const [showReformSearch, setShowReformSearch] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";

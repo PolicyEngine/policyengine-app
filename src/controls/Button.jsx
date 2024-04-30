@@ -62,10 +62,6 @@ export default function Button(props) {
   if (!type || !Object.keys(buttonStyles).includes(type)) {
     type = "primary";
   }
-  // Calculate the border to use
-  const borderColor = buttonStyles[type].standard.borderColor
-    ? buttonStyles[type].standard.borderColor
-    : null;
 
   return (
     <AntButton

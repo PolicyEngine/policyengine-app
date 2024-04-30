@@ -423,7 +423,8 @@ export default function PolicyRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
-  const [showReformSearch, setShowReformSearch] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setShowReformSearch] = useState(false);
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -726,7 +727,7 @@ export default function PolicyRightSidebar(props) {
         {!hideButtons && focus && !focus.startsWith("policyOutput") && (
           <SearchParamNavButton
             type={
-              Object.keys(policy.reform.data).length == 0
+              Object.keys(policy.reform.data).length === 0
                 ? "disabled"
                 : "primary"
             }

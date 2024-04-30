@@ -1,5 +1,3 @@
-import style from "../style";
-
 export default function Divider() {
   return (
     <div

@@ -1,4 +1,3 @@
-import Divider from "./Divider";
 import Menu from "./Menu";
 
 export default function StackedMenu(props) {

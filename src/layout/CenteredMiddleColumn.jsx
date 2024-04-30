@@ -1,7 +1,7 @@
 import useMobile from "../layout/Responsive";
 
 export default function CenteredMiddleColumn(props) {
-  const { title, description, marginTop, marginBottom, children } = props;
+  const { title, description, children } = props;
   const mobile = useMobile();
   return (
     <div

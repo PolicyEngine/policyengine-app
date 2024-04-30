@@ -2,7 +2,7 @@ import { HEADER_HEIGHT } from "../redesign/style/spacing";
 import style from "../style";
 
 export default function ThreeColumnPage(props) {
-  const { left, middle, right, heightOffset } = props;
+  const { left, middle, right } = props;
   return (
     <div
       style={{

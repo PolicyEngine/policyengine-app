@@ -167,6 +167,7 @@ export default function PolicyPage(props) {
 
   const hasHousehold = searchParams.get("household") !== null;
   const hideButtons = false;
+  // eslint-disable-next-line no-unused-vars
   const bottomBar = (
     <div
       style={{
