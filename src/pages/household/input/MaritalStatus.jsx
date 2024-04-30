@@ -153,8 +153,10 @@ export default function MaritalStatus(props) {
   }
 
   return (
-    <CenteredMiddleColumn title={`What ${verb} your marital status?`}
-    marginTop="15%">
+    <CenteredMiddleColumn
+      title={`What ${verb} your marital status?`}
+      marginTop="15%"
+    >
       <>
         {radioButtonComponent}
         <SearchParamNavButton

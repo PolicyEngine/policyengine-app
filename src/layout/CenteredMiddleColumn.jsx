@@ -8,7 +8,7 @@ export default function CenteredMiddleColumn(props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        marginTop: mobile ? "20%" : (marginTop ? marginTop : "10%"),
+        marginTop: mobile ? "20%" : marginTop ? marginTop : "10%",
       }}
     >
       <div

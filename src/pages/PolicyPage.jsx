@@ -111,13 +111,13 @@ export default function PolicyPage(props) {
   let middle = null;
 
   if (!policy.reform.data) {
-    console.log("still loading policy")
+    console.log("still loading policy");
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"
   ) {
-    console.log("loaded policy")
+    console.log("loaded policy");
     middle = (
       <ParameterEditor
         parameterName={focus}
@@ -128,14 +128,14 @@ export default function PolicyPage(props) {
     );
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
-    console.log("loaded policy")
+    console.log("loaded policy");
     middle = (
       <FolderPage label={node.label} metadata={metadata} inPolicySide>
         {node.children}
       </FolderPage>
     );
   } else if (focus.includes("policyOutput")) {
-    console.log("loaded policy")
+    console.log("loaded policy");
     middle = (
       <>
         <PolicyOutput
