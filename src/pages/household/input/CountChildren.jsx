@@ -180,6 +180,7 @@ export default function CountChildren(props) {
       title={`How many ${
         metadata.countryId !== "us" ? "children" : "dependents"
       } ${verb} you have?`}
+      marginTop="15%"
     >
       {radioButtonComponent}
     </CenteredMiddleColumn>

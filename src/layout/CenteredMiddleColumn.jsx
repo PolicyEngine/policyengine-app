@@ -1,14 +1,14 @@
 import useMobile from "../layout/Responsive";
 
 export default function CenteredMiddleColumn(props) {
-  const { title, description, children } = props;
+  const { title, description, children, marginTop } = props;
   const mobile = useMobile();
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        marginTop: mobile ? "20%" : "10%",
+        marginTop: mobile ? "20%" : (marginTop ? marginTop : "10%"),
       }}
     >
       <div

@@ -28,13 +28,7 @@ export function ParameterSearch(props) {
       value: parameter.parameter,
       label: parameter.label,
     }))
-    // If more than one with the same label, include only the first.
-    .filter(
-      (option, index, self) =>
-        self.findIndex((t) => t.label === option.label) === index,
-    )
     .filter((option) => !!option.label && !!option.value)
-    .filter((option) => option.label.split(" ").length > 1)
     .reverse();
   return (
     <SearchOptions
@@ -117,11 +111,13 @@ export default function PolicyPage(props) {
   let middle = null;
 
   if (!policy.reform.data) {
+    console.log("still loading policy")
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"
   ) {
+    console.log("loaded policy")
     middle = (
       <ParameterEditor
         parameterName={focus}
@@ -132,12 +128,14 @@ export default function PolicyPage(props) {
     );
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
+    console.log("loaded policy")
     middle = (
       <FolderPage label={node.label} metadata={metadata} inPolicySide>
         {node.children}
       </FolderPage>
     );
   } else if (focus.includes("policyOutput")) {
+    console.log("loaded policy")
     middle = (
       <>
         <PolicyOutput

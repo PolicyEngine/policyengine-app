@@ -14,7 +14,6 @@ import povertyImpactByRace from "./poverty/PovertyImpactByRace";
 import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
-import districtLevelImpact from "./DistrictImpact";
 import LabourSupplyDecileImpact from "./LabourSupplyDecileImpact";
 
 const map = {
@@ -34,7 +33,6 @@ const map = {
   racialPovertyImpact: povertyImpactByRace,
   inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
-  districtLevelImpact: districtLevelImpact,
   labourSupplyDecileImpact: LabourSupplyDecileImpact,
 };
 

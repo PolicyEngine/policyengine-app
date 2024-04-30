@@ -4,7 +4,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 export default function Auth0ProviderWithNavigate({ children }) {
   const navigate = useNavigate();
 
-  const redirectUri = "https://policyengine.org/callback";
+  const redirectUri = "http://localhost:3000/callback";
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
 
