@@ -160,9 +160,9 @@ export default function MaritalStatus(props) {
       <>
         {radioButtonComponent}
         <SearchParamNavButton
-          text="Enter"
+          text="Submit"
           focus="input.household.children"
-          style={{ margin: "20px auto 10px" }}
+          style={{ marginTop: 20 }}
         />
       </>
     </CenteredMiddleColumn>

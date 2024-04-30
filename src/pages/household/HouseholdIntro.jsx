@@ -6,11 +6,13 @@ export default function HouseholdIntro() {
     <CenteredMiddleColumn
       title="Enter your household details"
       description="Tell us about your household to calculate your net income after taxes and benefits."
+      descriptionLabel={false}
+      marginTop="15%"
     >
       <SearchParamNavButton
         text="Enter my household"
         focus="input.household.taxYear"
-        style={{ margin: "20px auto 10px" }}
+        style={{ marginTop: 20 }}
       />
     </CenteredMiddleColumn>
   );

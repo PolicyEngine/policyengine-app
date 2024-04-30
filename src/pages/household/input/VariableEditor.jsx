@@ -110,10 +110,10 @@ export default function VariableEditor(props) {
         {entityInputs}
         {nextVariable && (
           <SearchParamNavButton
-            text="Enter"
+            text="Submit"
             focus={nextVariable}
             type={"primary"}
-            style={{ margin: "20px auto 10px" }}
+            style={{ marginTop: 20, width: 125 }}
           />
         )}
       </div>

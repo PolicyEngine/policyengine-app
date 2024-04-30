@@ -12,7 +12,6 @@ export default function RadioButton(props) {
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "center",
       }}
     >
       {keys.map((key, index) => {
