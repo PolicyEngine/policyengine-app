@@ -95,8 +95,8 @@ export default function ParameterOverTime(props) {
           },
         ].filter((x) => x)}
         layout={{
-          xaxis: { ...xaxisFormat, showGrid: false },
-          yaxis: { ...yaxisFormat, showGrid: false },
+          xaxis: { ...xaxisFormat },
+          yaxis: { ...yaxisFormat },
           legend: {
             // Position above the plot
             y: 1.2,
@@ -104,17 +104,18 @@ export default function ParameterOverTime(props) {
           },
           ...ChartLogo,
           margin: {
-            t: mobile && 10,
-            r: mobile && 10,
-            l: mobile && 30,
+            t: mobile && 80,
+            r: mobile && 50,
+            l: mobile && 50,
             b: mobile && 30,
           },
           ...plotLayoutFont,
           title: {
             text: `${parameter.label} over time`,
             xanchor: "left",
-            x: 0.04,
+            x: mobile ? 0.05 : 0.04,
           },
+          dragmode: mobile ? false : "zoom",
         }}
         // Note that plotly does not dynamically resize inside flexbox
         style={{

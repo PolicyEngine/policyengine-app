@@ -92,10 +92,11 @@ export function updateMetadata(countryId, setMetadata) {
       data.parameters = Object.fromEntries(
         Object.entries(data.parameters).filter(
           // eslint-disable-next-line no-unused-vars
-          ([key, value]) => !value.parameter.includes("taxsim") &&
-          // first value in parameter.values is not a list.
-          (!value.values ||
-          !(Object.values(value.values)[0] instanceof Array)),
+          ([key, value]) =>
+            !value.parameter.includes("taxsim") &&
+            // first value in parameter.values is not a list.
+            (!value.values ||
+              !(Object.values(value.values)[0] instanceof Array)),
         ),
       );
       const parameterTree = buildParameterTree(data.parameters);

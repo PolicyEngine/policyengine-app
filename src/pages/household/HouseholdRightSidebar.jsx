@@ -34,7 +34,7 @@ function Figure(props) {
       </div>
       <div
         style={{
-          paddingLeft: 10,
+          paddingLeft: 5,
           paddingRight: 5,
           fontSize: 18,
         }}
@@ -122,7 +122,7 @@ export default function HouseholdRightSidebar(props) {
           marginTop: 15,
           fontFamily: "Roboto",
           color: "grey",
-          fontSize: 14
+          fontSize: 14,
         }}
       >
         Your inputs
@@ -150,20 +150,24 @@ export default function HouseholdRightSidebar(props) {
       >
         Our calculation{hasReform ? " under your reform" : " under current law"}
       </p>
-      <div style={{marginLeft: -15}}>
-      <Collapsable
-        style={{paddingLeft: 0}}
-        label="Compare against a reform"
-        child={
-          <PolicySearch
-            metadata={metadata}
-            policy={policy}
-            target="reform"
-            width="100%"
-            onSelect={() => setShowReformSearch(false)}
-          />
-        }
-      />
+      <div style={{ marginLeft: -15 }}>
+        <Collapsable
+          style={{ paddingLeft: 0 }}
+          label={
+            hasReform
+              ? "Compare against a different reform"
+              : "Compare against a reform"
+          }
+          child={
+            <PolicySearch
+              metadata={metadata}
+              policy={policy}
+              target="reform"
+              width="100%"
+              onSelect={() => setShowReformSearch(false)}
+            />
+          }
+        />
       </div>
       {loading ? (
         <LoadingCentered minHeight="25vh" height="25vh" />
@@ -181,52 +185,59 @@ export default function HouseholdRightSidebar(props) {
         justifyContent: "center",
       }}
     >
-      <h5>
-        Tell us more about your household to see your results
-      </h5>
+      <p>Tell us more about your household to see your results</p>
     </div>
   );
 
   return (
-    <div style={{marginLeft: 20, marginRight: 20, display: "flex", justifyContent: "space-between", flexDirection: "column", height: "100%"}}>
+    <div
+      style={{
+        marginLeft: 20,
+        marginRight: 20,
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
       <div>
         {autoCompute && householdBaseline ? situationOverview : notEnoughInfo}
       </div>
-      <div style={{marginBottom: 20}}>
-      {focus && focus.startsWith("householdOutput") && (
-        <SearchParamNavButton
-          type="primary"
-          text="Add more household details"
-          focus="input"
-          style={{width: "100%", marginTop: 20}}
-        />
-      )}
-      {focus && !focus.startsWith("householdOutput") && (
-        <SearchParamNavButton
-          type="primary"
-          text="See my household details"
-          focus="householdOutput.netIncome"
-          style={{width: "100%", marginTop: 20}}
-        />
-      )}
-      {!hasReform && (
-        <SearchParamNavButton
-          text="Create a reform"
-          focus="gov"
-          type="secondary"
-          target={`/${metadata.countryId}/policy`}
-          style={{width: "100%", marginTop: 20}}
-        />
-      )}
-      {hasReform && (
-        <SearchParamNavButton
-          text="Edit my reform"
-          focus="gov"
-          type="secondary"
-          target={`/${metadata.countryId}/policy`}
-          style={{width: "100%", marginTop: 20}}
-        />
-      )}
+      <div style={{ marginBottom: 20 }}>
+        {focus && focus.startsWith("householdOutput") && (
+          <SearchParamNavButton
+            type="primary"
+            text="Add more household details"
+            focus="input"
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {focus && !focus.startsWith("householdOutput") && (
+          <SearchParamNavButton
+            type="primary"
+            text="See my household details"
+            focus="householdOutput.netIncome"
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {!hasReform && (
+          <SearchParamNavButton
+            text="Create a reform"
+            focus="gov"
+            type="secondary"
+            target={`/${metadata.countryId}/policy`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {hasReform && (
+          <SearchParamNavButton
+            text="Edit my reform"
+            focus="gov"
+            type="secondary"
+            target={`/${metadata.countryId}/policy`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
       </div>
     </div>
   );

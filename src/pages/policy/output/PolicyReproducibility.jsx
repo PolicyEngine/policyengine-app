@@ -41,12 +41,16 @@ export default function PolicyReproducibility(props) {
   // results on PolicyEngine.
   return (
     <>
-      <h2>Reproduce these results</h2>
+      <h3>Reproduce these results</h3>
       <p>
         Run the code below in a {notebookLink} to reproduce the microsimulation
         results.
       </p>
-      <CodeBlock lines={codeLines} language={"python"} />
+      <CodeBlock
+        data={codeLines.join("\n")}
+        language={"python"}
+        maxHeight="100%"
+      />
       <div
         style={{
           display: "flex",

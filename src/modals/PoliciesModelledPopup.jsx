@@ -40,7 +40,7 @@ function PoliciesModelledChecklist(props) {
         style={{ display: "flex", padding: 5, alignItems: "center" }}
       >
         <CheckCircleFilled style={{ color: "green", fontSize: 20 }} />
-        <div style={{ marginLeft: 10 }}>{name}</div>
+        <div style={{ marginLeft: 10, fontFamily: "Roboto Serif" }}>{name}</div>
       </div>
     );
   });
@@ -50,21 +50,21 @@ function PoliciesModelledChecklist(props) {
         key={name}
         style={{ display: "flex", padding: 5, alignItems: "center" }}
       >
-        <div style={{ marginLeft: 10 }}>{name}</div>
+        <div style={{ marginLeft: 10, fontFamily: "Roboto Serif" }}>{name}</div>
       </div>
     );
   });
   return (
-    <div style={{ textAlign: "center" }}>
+    <div>
       {modelledSteps}
       {notModelledNames.length > 0 && (
         <>
-          <h6 style={{ marginTop: 10 }}>Coming soon</h6>
+          <h5 style={{ marginTop: 10 }}>Coming soon</h5>
           <div>{notModelledSteps}</div>
         </>
       )}
 
-      <p>
+      <p style={{ marginTop: 10 }}>
         PolicyEngine results may not constitute exact tax liabilities or benefit
         entitlements.
       </p>
@@ -91,7 +91,7 @@ export default function PoliciesModelledPopup(props) {
   useEffect(() => {
     const openModal = () => {
       Modal.info({
-        title: "PolicyEngine estimates your taxes and benefits",
+        title: <h5>PolicyEngine estimates your taxes and benefits</h5>,
         content: (
           <>
             <PoliciesModelledChecklist
@@ -102,7 +102,7 @@ export default function PoliciesModelledPopup(props) {
           </>
         ),
         style: {
-          borderRadius: 25,
+          borderRadius: 0,
         },
         okButtonProps: {
           style: {

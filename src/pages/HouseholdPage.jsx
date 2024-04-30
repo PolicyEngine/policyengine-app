@@ -379,9 +379,9 @@ export default function HouseholdPage(props) {
         setIsRHPOpen={setIsRHPOpen}
       />
       <ThreeColumnPage
-        left={<HouseholdLeftSidebar metadata={metadata} />}
-        middle={middle}
-        right={
+        middle={<HouseholdLeftSidebar metadata={metadata} />}
+        right={middle}
+        left={
           <HouseholdRightSidebar
             metadata={metadata}
             householdBaseline={householdBaseline}
@@ -409,12 +409,17 @@ function HouseholdLeftSidebar(props) {
     newSearch.set("focus", name);
     setSearchParams(newSearch);
   };
+  const isOnOutput =
+    window.location.search.includes("focus=policyOutput") ||
+    window.location.search.includes("focus=householdOutput");
 
   return (
     <div>
-      <div style={{ padding: 10 }}>
-        <VariableSearch metadata={metadata} />
-      </div>
+      {!isOnOutput && (
+        <div style={{ padding: 10 }}>
+          <VariableSearch metadata={metadata} />
+        </div>
+      )}
       <StackedMenu
         firstTree={metadata.variableTree.children}
         selected={selected}

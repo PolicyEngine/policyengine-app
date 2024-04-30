@@ -29,9 +29,12 @@ export function ParameterSearch(props) {
       label: parameter.label,
     }))
     // If more than one with the same label, include only the first.
-    .filter((option, index, self) => self.findIndex((t) => t.label === option.label) === index)
+    .filter(
+      (option, index, self) =>
+        self.findIndex((t) => t.label === option.label) === index,
+    )
     .filter((option) => !!option.label && !!option.value)
-    .filter(option => option.label.split(" ").length > 1)
+    .filter((option) => option.label.split(" ").length > 1)
     .reverse();
   return (
     <SearchOptions
@@ -62,14 +65,16 @@ function PolicyLeftSidebar(props) {
     newSearch.set("focus", name);
     setSearchParams(newSearch);
   };
-  const isOnOutput = window.location.search.includes("focus=policyOutput") || window.location.search.includes("focus=householdOutput");
+  const isOnOutput =
+    window.location.search.includes("focus=policyOutput") ||
+    window.location.search.includes("focus=householdOutput");
   // The menu, then the search bar anchored to the bottom
   return (
-    <div style={{backgroundColor: style.colors.LIGHT_GRAY}}>
+    <div style={{ backgroundColor: style.colors.LIGHT_GRAY }}>
       {!isOnOutput && (
-      <div style={{ padding: 10 }}>
-        <ParameterSearch metadata={metadata} />
-      </div>
+        <div style={{ padding: 10 }}>
+          <ParameterSearch metadata={metadata} />
+        </div>
       )}
       <StackedMenu
         firstTree={metadata.parameterTree.children}
@@ -162,39 +167,44 @@ export default function PolicyPage(props) {
 
   const hasHousehold = searchParams.get("household") !== null;
   const hideButtons = false;
-  const bottomBar = <div style={{
-    position: "fixed",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "white",
-    padding: 10,
-    width: "100%",
-    height: 100,
-    zIndex: 1001,
-    // shadow
-    boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }}>
-    <div style={{display: "flex", alignItems: "center"}}>
-    <h5 style={{fontFamily: "Roboto Serif", marginBottom: 0}}>Your reform has 2 provisions.</h5>
-    <SearchParamNavButton
+  const bottomBar = (
+    <div
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "white",
+        padding: 10,
+        width: "100%",
+        height: 100,
+        zIndex: 1001,
+        // shadow
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h5 style={{ fontFamily: "Roboto Serif", marginBottom: 0 }}>
+          Your reform has 2 provisions.
+        </h5>
+        <SearchParamNavButton
           type="primary"
           text="Estimate economic effects"
           focus="policyOutput.policyBreakdown"
           style={{ padding: 10, margin: 10, paddingLeft: 0, paddingRight: 0 }}
         />
-    <h5 style={{fontFamily: "Roboto Serif", marginBottom: 0}}> or </h5>
-    <SearchParamNavButton
+        <h5 style={{ fontFamily: "Roboto Serif", marginBottom: 0 }}> or </h5>
+        <SearchParamNavButton
           type="secondary"
           text="Enter your household"
           focus="gov"
           style={{ padding: 10, margin: 10, paddingLeft: 0, paddingRight: 0 }}
         />
-    </div>
-    {false && !hideButtons && focus && focus.startsWith("policyOutput") && (
+      </div>
+      {false && !hideButtons && focus && focus.startsWith("policyOutput") && (
         <SearchParamNavButton
           type="primary"
           text="Edit my policy"
@@ -228,7 +238,8 @@ export default function PolicyPage(props) {
           style={{ margin: "20px auto 10px" }}
         />
       )}
-  </div>
+    </div>
+  );
 
   return (
     <>
@@ -236,9 +247,9 @@ export default function PolicyPage(props) {
         <title>Policy | PolicyEngine</title>
       </Helmet>
       <ThreeColumnPage
-        left={<PolicyLeftSidebar metadata={metadata} />}
-        middle={middle}
-        right={
+        middle={<PolicyLeftSidebar metadata={metadata} />}
+        right={middle}
+        left={
           <PolicyRightSidebar
             metadata={metadata}
             policy={policy}

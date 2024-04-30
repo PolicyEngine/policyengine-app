@@ -20,7 +20,7 @@ export default function ThreeColumnPage(props) {
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
         }}
       >
-        {right}
+        {left}
       </div>
       <div
         style={{
@@ -31,7 +31,7 @@ export default function ThreeColumnPage(props) {
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
         }}
       >
-        {left}
+        {middle}
       </div>
       <div
         style={{
@@ -46,7 +46,7 @@ export default function ThreeColumnPage(props) {
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
         }}
       >
-        {middle}
+        {right}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ h6,
 p,
 div {
   font-family: "Roboto Serif";
+  font-weight: 400 !important;
 }
 
 input:focus,

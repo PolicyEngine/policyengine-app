@@ -25,7 +25,7 @@ export default function RadioButton(props) {
             style={{
               backgroundColor: checked
                 ? style.colors.BLUE
-                : style.colors.MEDIUM_DARK_GRAY,
+                : style.colors.LIGHT_GRAY,
               color: checked ? style.colors.WHITE : style.colors.BLACK,
               marginBottom: 10,
               cursor: "pointer",

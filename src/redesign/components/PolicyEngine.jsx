@@ -225,7 +225,12 @@ export default function PolicyEngine({ pathname }) {
     }
   }, [countryId, user?.sub, isAuthenticated]);
 
-  const loadingPage = <LoadingCentered />;
+  const loadingPage = (
+    <>
+      <Header />
+      <LoadingCentered />
+    </>
+  );
 
   const householdPage = (
     <Suspense fallback={loadingPage}>
@@ -262,12 +267,15 @@ export default function PolicyEngine({ pathname }) {
   // If the path is not recognized, redirect to /[countryId]
 
   return (
-    <ConfigProvider theme={{
-      token: {
-        borderRadius: 0,
-        colorPrimary: style.colors.BLUE,
-      }
-    }}>
+    <ConfigProvider
+      theme={{
+        token: {
+          borderRadius: 0,
+          colorPrimary: style.colors.BLUE,
+          fontFamily: "Roboto Serif",
+        },
+      }}
+    >
       <ScrollToTop />
       <CookieConsent />
       <Routes>

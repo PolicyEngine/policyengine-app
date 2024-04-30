@@ -1,5 +1,5 @@
-export const BODY_FONT = "Roboto";
-export const HEADER_FONT = '"Roboto Serif", serif';
+export const BODY_FONT = "Roboto Serif";
+export const HEADER_FONT = "Roboto";
 
 const fonts = {
   HEADER_FONT,

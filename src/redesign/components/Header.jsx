@@ -133,14 +133,27 @@ function TabletHeaderBar() {
 }
 
 function DesktopHeaderBar() {
-  const isInCalculatorAlready = window.location.pathname.includes("/policy") || window.location.pathname.includes("/household")
+  const isInCalculatorAlready =
+    window.location.pathname.includes("/policy") ||
+    window.location.pathname.includes("/household");
   return (
     <>
-    <div style={{display: "flex"}}>
-      <MainHeaderLogo />
-      <div style={{width: 50}} />
-      <PageLinks /></div>
-      {!isInCalculatorAlready && <DesktopCalculatorButton />}
+      <div style={{ display: "flex" }}>
+        <MainHeaderLogo />
+        <div style={{ width: 50 }} />
+        <PageLinks />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: 16,
+        }}
+      >
+        {!isInCalculatorAlready && <DesktopCalculatorButton />}
+        <LoginMenu />
+      </div>
     </>
   );
 }

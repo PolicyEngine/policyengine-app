@@ -56,7 +56,7 @@ export default function RecreateHouseholdPopup(props) {
           keyboard={false}
         >
           <div style={styles.container}>
-            <h6 style={styles.title}>{title}</h6>
+            <h3 style={styles.title}>{title}</h3>
             <p>{content}</p>
             <Button
               text={buttonText}

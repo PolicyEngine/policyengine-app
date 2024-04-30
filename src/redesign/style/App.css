@@ -11,7 +11,7 @@ h4 {
 body {
   font-family: "Roboto Serif", serif;
   color: "inherit !important";
-  border-radius: 0,
+  border-radius: 0;
 }
 
 :root {
@@ -110,4 +110,28 @@ a.highlighted-link:hover {
 .ant-input {
   background-color: white;
   font-family: "Roboto Serif";
+}
+
+.ant-switch-handle::before {
+  border-radius: 0 !important;
+}
+
+button.ant-switch {
+  border-radius: 0 !important;
+}
+
+b {
+  font-weight: 600;
+}
+
+.ͼ4g {
+  font-weight: 400;
+}
+
+h1 {
+  margin-bottom: 25px;
+}
+
+h3 {
+  margin-bottom: 15px;
 }

@@ -121,7 +121,7 @@ export default function ParameterEditor(props) {
         paddingTop: 10,
         paddingLeft: 0,
         gap: 10,
-        fontFamily: "Roboto Serif"
+        fontFamily: "Roboto Serif",
       }}
     >
       <RangePicker
@@ -132,7 +132,7 @@ export default function ParameterEditor(props) {
         }}
         disabledDate={(date) => date.isBefore("2021-01-01")}
         separator="→"
-        style={{fontFamily: "Roboto Serif"}}
+        style={{ fontFamily: "Roboto Serif" }}
       />
       {control}
     </div>
@@ -150,29 +150,52 @@ export default function ParameterEditor(props) {
       title={capitalize(parameter.label)}
       description={description}
     >
-      <div style={{}}>
-      <p style={{marginBottom: 2, color: "grey", display: "inline-block"}}>Current value</p>
+      <div>
+        <p
+          style={{
+            marginBottom: 2,
+            fontFamily: "Roboto",
+            marginTop: 10,
+            color: "grey",
+            display: "inline-block",
+          }}
+        >
+          Current value
+        </p>
       </div>
       {editControl}
       {!parameter.economy && (
-        <Alert
-          message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
-          type="warning"
-        />
+        <div style={{ paddingTop: 20 }}>
+          <Alert
+            message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
+            type="warning"
+          />
+        </div>
       )}
-      <div style={{paddingRight: 30, marginTop: 20}}>
-        <p style={{marginBottom: 2, color: "grey", display: "inline-block"}}>Historical values</p>
+      <div style={{ paddingRight: 30, marginTop: 30 }}>
+        <p
+          style={{
+            marginBottom: 0,
+            color: "grey",
+            display: "inline-block",
+            fontFamily: "Roboto",
+          }}
+        >
+          Historical values
+        </p>
       </div>
-      <ParameterOverTime
-        baseMap={baseMap}
-        {...(reformData &&
-          Object.keys(reformData).length > 0 && {
-            reformMap: reformMap,
-          })}
-        parameter={parameter}
-        policy={policy}
-        metadata={metadata}
-      />
+      <div style={{ marginLeft: -25 }}>
+        <ParameterOverTime
+          baseMap={baseMap}
+          {...(reformData &&
+            Object.keys(reformData).length > 0 && {
+              reformMap: reformMap,
+            })}
+          parameter={parameter}
+          policy={policy}
+          metadata={metadata}
+        />
+      </div>
     </CenteredMiddleColumn>
   );
 }
