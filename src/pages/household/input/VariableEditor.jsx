@@ -322,6 +322,7 @@ function HouseholdVariableEntityInput(props) {
               margin: 0,
               fontSize: mobile && ".9rem",
               fontFamily: "Roboto Serif",
+              minWidth: 150,
             }}
           >
             {capitalize(entityName)}:{" "}
