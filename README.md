@@ -43,6 +43,16 @@ make debug
 
 Now you're ready to start developing!
 
+## Contributing
+
+PolicyEngine follows the industry standard open-source contributions Git workflow:
+
+- Keep your fork's "master" branch in sync with the original repo by pulling the original repo's code at times; typically (if the original repo is called "upstream" by Git) this means running `git pull upstream master`, then `git push origin master` to sync the code to your local repo
+- Create branches on your fork off of your master or main branch. Periodically, if you're working on something for a while, you might also run `git rebase master` within your feature branch to sync your code with any new changes.
+- When you're done with the feature or bug fix, open the PR from your branch to the live `master` branch.
+
+If you prefer using a more visual editor, you can add the VS Code [GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) extension and use the [Start Working on This Issue](https://code.visualstudio.com/blogs/2020/05/06/github-issues-integration#_working-on-issues) feature, which will automate that process. This ensures that we don't run into merge conflicts down the road.
+
 ## Testing
 
 You've finished your contribution, but now what?
@@ -71,6 +81,12 @@ In the first line of your PR, please make sure to include the following:
 
 ```
 Fixes {issue_number}
+```
+
+For example:
+
+```
+Fixes #0
 ```
 
 This makes it much easier for us to maintain and prune our issue board.
