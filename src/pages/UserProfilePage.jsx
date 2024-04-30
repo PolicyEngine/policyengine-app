@@ -274,6 +274,7 @@ export default function UserProfilePage(props) {
               width: "100%",
               gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
               gap: "12px",
+              marginTop: 20,
             }}
           >
             {arePoliciesLoading
@@ -394,28 +395,28 @@ function UserProfileSection(props) {
         >
           {dispState === STATES.OWN_PROFILE && (
             <>
-              <p style={{ fontWeight: "bold", margin: 0 }}>Name</p>
+              <p style={{ fontWeight: 500, margin: 0 }}>Name</p>
               <p style={{ margin: 0 }}>
                 {user ? user.name : "Error: No user logged in"}
               </p>
-              <p style={{ fontWeight: "bold", margin: 0 }}>Email</p>
+              <p style={{ fontWeight: 500, margin: 0 }}>Email</p>
               <p style={{ margin: 0 }}>
                 {user ? user.email : "Error: No user logged in"}
               </p>
             </>
           )}
-          <p style={{ fontWeight: "bold", margin: 0 }}>User ID</p>
+          <p style={{ fontWeight: 500, margin: 0 }}>User ID</p>
           <p style={{ margin: 0 }}>{accessedUserId}</p>
-          <p style={{ fontWeight: "bold", margin: 0 }}>Username</p>
+          <p style={{ fontWeight: 500, margin: 0 }}>Username</p>
           <UsernameDisplayAndEditor
             dispState={dispState}
             accessedUserProfile={accessedUserProfile}
             countryId={countryId}
             setAccessedUserProfile={setAccessedUserProfile}
           />
-          <p style={{ fontWeight: "bold", margin: 0 }}>User since</p>
+          <p style={{ fontWeight: 500, margin: 0 }}>User since</p>
           <p style={{ margin: 0 }}>{dispUserSince}</p>
-          <p style={{ fontWeight: "bold", margin: 0 }}>Primary country</p>
+          <p style={{ fontWeight: 500, margin: 0 }}>Primary country</p>
           <p style={{ margin: 0 }}>{dispCountry}</p>
           {isOwnProfile && (
             <PublicPrivateSwitch
@@ -460,7 +461,7 @@ function PolicySimulationCard(props) {
     apiVersionMessage = (
       <span>
         (reflects outdated model version{" "}
-        <span style={{ fontWeight: "bold" }}>{`${apiVersion}`}</span>, click to
+        <span style={{ fontWeight: 500 }}>{`${apiVersion}`}</span>, click to
         update).
       </span>
     );
@@ -494,24 +495,21 @@ function PolicySimulationCard(props) {
         <h6
           style={{
             fontSize: "1.2rem",
-            fontFamily: style.fonts.HEADER_FONT,
+            fontFamily: "Roboto Serif",
             marginBottom: "16px",
-            fontWeight: "bold",
+            fontWeight: 500,
           }}
         >
           {userPolicy.reform_label || `Policy #${userPolicy.reform_id}`}
         </h6>
         <p>
           Simulated in{" "}
-          <span style={{ fontWeight: "bold" }}>{userPolicy.year}</span> over{" "}
-          <span style={{ fontWeight: "bold" }}>{geography}</span> against{" "}
-          <span style={{ fontWeight: "bold" }}>
-            {userPolicy.baseline_label}
-          </span>
-          .
+          <span style={{ fontWeight: 500 }}>{userPolicy.year}</span> over{" "}
+          <span style={{ fontWeight: 500 }}>{geography}</span> against{" "}
+          <span style={{ fontWeight: 500 }}>{userPolicy.baseline_label}</span>.
         </p>
         <p>
-          <span style={{ fontWeight: "bold" }}>
+          <span style={{ fontWeight: 500 }}>
             {userPolicy.number_of_provisions}
           </span>{" "}
           provision{userPolicy.number_of_provisions === 1 ? "" : "s"},{" "}
@@ -520,7 +518,7 @@ function PolicySimulationCard(props) {
             : userPolicy.budgetary_impact > 0
               ? "raising "
               : " "}
-          <span style={{ fontWeight: "bold" }}>
+          <span style={{ fontWeight: 500 }}>
             {userPolicy.budgetary_impact
               ? `${formatCurrencyAbbr(Math.abs(userPolicy.budgetary_impact), userPolicy.country_id)}`
               : "budgetary impact not yet simulated"}
@@ -676,6 +674,7 @@ function PublicPrivateSwitch(props) {
         color: style.colors.BLUE_PRIMARY,
         gridColumn: "1 / -1",
         width: "max-content",
+        marginTop: 5,
       }}
     >
       <p

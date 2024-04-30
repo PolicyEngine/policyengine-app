@@ -11,7 +11,7 @@ import { currencyMap } from "../../../api/variables";
 import { defaultStartDate, defaultEndDate } from "data/constants";
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
-import moment from "moment";
+import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
 
 const { RangePicker } = DatePicker;
@@ -117,10 +117,11 @@ export default function ParameterEditor(props) {
       style={{
         display: "flex",
         flexDirection: mobile ? "column" : "row",
-        justifyContent: "center",
         alignItems: "center",
-        paddingTop: 20,
+        paddingTop: 10,
+        paddingLeft: 0,
         gap: 10,
+        fontFamily: "Roboto Serif",
       }}
     >
       <RangePicker
@@ -131,14 +132,11 @@ export default function ParameterEditor(props) {
         }}
         disabledDate={(date) => date.isBefore("2021-01-01")}
         separator="→"
+        style={{ fontFamily: "Roboto Serif" }}
       />
       {control}
     </div>
   );
-
-  const timePeriodSentence = parameter.period
-    ? ` This parameter is ${parameter.period}ly.`
-    : "";
 
   let description = parameter.description;
   if (!description) {
@@ -150,25 +148,54 @@ export default function ParameterEditor(props) {
       marginTop="5%"
       marginBottom={0}
       title={capitalize(parameter.label)}
-      description={description + timePeriodSentence}
+      description={description}
     >
+      <div>
+        <p
+          style={{
+            marginBottom: 2,
+            fontFamily: "Roboto",
+            marginTop: 10,
+            color: "grey",
+            display: "inline-block",
+          }}
+        >
+          Current value
+        </p>
+      </div>
       {editControl}
       {!parameter.economy && (
-        <Alert
-          message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
-          type="warning"
-        />
+        <div style={{ paddingTop: 20 }}>
+          <Alert
+            message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
+            type="warning"
+          />
+        </div>
       )}
-      <ParameterOverTime
-        baseMap={baseMap}
-        {...(reformData &&
-          Object.keys(reformData).length > 0 && {
-            reformMap: reformMap,
-          })}
-        parameter={parameter}
-        policy={policy}
-        metadata={metadata}
-      />
+      <div style={{ paddingRight: 30, marginTop: 30 }}>
+        <p
+          style={{
+            marginBottom: 0,
+            color: "grey",
+            display: "inline-block",
+            fontFamily: "Roboto",
+          }}
+        >
+          Historical values
+        </p>
+      </div>
+      <div style={{ marginLeft: -25 }}>
+        <ParameterOverTime
+          baseMap={baseMap}
+          {...(reformData &&
+            Object.keys(reformData).length > 0 && {
+              reformMap: reformMap,
+            })}
+          parameter={parameter}
+          policy={policy}
+          metadata={metadata}
+        />
+      </div>
     </CenteredMiddleColumn>
   );
 }

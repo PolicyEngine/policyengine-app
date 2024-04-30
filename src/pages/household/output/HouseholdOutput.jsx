@@ -1,5 +1,4 @@
 import { useSearchParams } from "react-router-dom";
-import BottomCarousel from "../../../layout/BottomCarousel";
 import LoadingCentered from "../../../layout/LoadingCentered";
 import useMobile from "../../../layout/Responsive";
 import ResultsPanel from "../../../layout/ResultsPanel";
@@ -8,7 +7,6 @@ import HouseholdReproducibility from "./HouseholdReproducibility";
 import MarginalTaxRates from "./MarginalTaxRates";
 import NetIncomeBreakdown from "./NetIncomeBreakdown";
 import PoliciesModelledPopup from "../../../modals/PoliciesModelledPopup";
-import HOUSEHOLD_OUTPUT_TREE from "./tree";
 import React from "react";
 import { message } from "antd";
 import ResultActions from "layout/ResultActions";
@@ -142,18 +140,6 @@ export default function HouseholdOutput(props) {
         linkedInLink={linkedInLink}
       />
       {pane}
-      {!mobile && (
-        <BottomCarousel
-          selected={focus}
-          options={HOUSEHOLD_OUTPUT_TREE[0].children}
-          bottomElements={
-            <p>
-              PolicyEngine results may not constitute exact tax liabilities or
-              benefit entitlements.
-            </p>
-          }
-        />
-      )}
     </ResultsPanel>
   );
 }

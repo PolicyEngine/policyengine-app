@@ -198,13 +198,13 @@ function BreakdownTemplate(props) {
       >
         {lineItems}
       </div>
-      <h5
+      <p
         style={{
           paddingTop: "40px",
         }}
       >
         {bottomText}
-      </h5>
+      </p>
     </div>
   );
 }

@@ -7,34 +7,42 @@ function MenuItem(props) {
   const { name, label, selected, onSelect } = props;
 
   return (
-    <div
+    <motion.div
       style={{
         cursor: "pointer",
         paddingTop: 5,
         paddingBottom: 5,
+        paddingLeft: 10,
+        display: "flex",
+        alignItems: "center",
+        borderRadius: 8,
+      }}
+      initial={{ backgroundColor: "transparent" }}
+      animate={{
+        backgroundColor: selected === name ? "white" : "transparent",
       }}
       onClick={() => onSelect(name)}
+      whileHover={{ backgroundColor: "white" }}
+      transition={{ duration: 0.001 }}
     >
-      <motion.h5
-        style={{ fontSize: 18 }}
-        whileHover={{ color: "#000", fontWeight: 700 }}
-        transition={{ duration: 0.001 }}
-      >
+      <p style={{ fontSize: 16, fontFamily: "Roboto Serif", margin: 5 }}>
         {selected === name && (
           <span
             style={{
               marginRight: 10,
+              fontFamily: "Roboto Serif",
               color: "#000",
-              fontWeight: 700,
               textShadow: "0 0 .2px #000",
+              paddingBottom: 2,
+              fontWeight: 500,
             }}
           >
             {label}
           </span>
         )}
         {selected === name ? "" : label || name.split(".").pop()}
-      </motion.h5>
-    </div>
+      </p>
+    </motion.div>
   );
 }
 
@@ -46,7 +54,7 @@ function MenuItemGroup(props) {
     useState(selected);
 
   const toggleExpanded = () => {
-    onSelect(name);
+    //onSelect(name);
     setExpanded(!expanded);
   };
 
@@ -102,34 +110,38 @@ function MenuItemGroup(props) {
   );
 
   return (
-    <div
-      style={{
-        color: style.colors.BLACK,
-        paddingTop: 5,
-        paddingBottom: 5,
-        cursor: "pointer",
-      }}
-    >
-      <motion.h5
+    <div>
+      <motion.div
         onClick={toggleExpanded}
-        style={{ fontSize: 18 }}
-        whileHover={{ color: "#000", fontWeight: 700 }}
-        transition={{ duration: 0.001 }}
+        style={{
+          color: style.colors.BLACK,
+          paddingTop: 5,
+          paddingBottom: 5,
+          cursor: "pointer",
+          paddingLeft: 10,
+          borderRadius: 8,
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "row",
+        }}
+        whileHover={{ backgroundColor: "white" }}
       >
-        {selected === name && (
-          <span
-            style={{
-              marginRight: 10,
-              color: "#000",
-              fontWeight: 700,
-              textShadow: "0 0 .2px #000",
-            }}
-          >
-            {label}
-          </span>
-        )}
-        {selected === name ? "" : label || name.split(".").pop()}
-      </motion.h5>
+        <p style={{ fontSize: 16, fontFamily: "Roboto Serif", margin: 5 }}>
+          {selected === name && (
+            <span
+              style={{
+                marginRight: 10,
+                color: "#000",
+                fontFamily: "Roboto Serif",
+                textShadow: "0 0 .2px #000",
+              }}
+            >
+              {label}
+            </span>
+          )}
+          {selected === name ? "" : label || name.split(".").pop()}
+        </p>
+      </motion.div>
       {expandedComponentSpace}
     </div>
   );
@@ -145,7 +157,7 @@ export default function Menu(props) {
         <MenuItemGroup
           key={item.name}
           name={item.name}
-          label={item.label}
+          label={capitalize(item.label)}
           selected={selected || ""}
           onSelect={onSelect}
         >

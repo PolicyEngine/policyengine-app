@@ -4,27 +4,40 @@ import colors from "../style/colors";
 
 export const buttonStyles = {
   primary: {
-    hoverBackgroundColor: colors.TEAL_PRESSED,
-    standardBackgroundColor: colors.TEAL_ACCENT,
+    standard: {
+      backgroundColor: colors.TEAL_ACCENT,
+      borderColor: colors.TEAL_ACCENT,
+      color: colors.WHITE,
+    },
+    hover: {
+      backgroundColor: colors.TEAL_PRESSED,
+      borderColor: colors.TEAL_PRESSED,
+      color: colors.WHITE,
+    },
   },
   secondary: {
-    hoverBackgroundColor: colors.DARK_BLUE_HOVER,
-    standardBackgroundColor: colors.BLUE,
-    borderColor: colors.WHITE,
+    standard: {
+      backgroundColor: "transparent",
+      borderColor: colors.TEAL_ACCENT,
+      color: colors.TEAL_ACCENT,
+    },
+    hover: {
+      backgroundColor: colors.TEAL_PRESSED,
+      borderColor: colors.TEAL_PRESSED,
+      color: colors.WHITE,
+    },
   },
   disabled: {
-    hoverBackgroundColor: colors.BLUE_PRESSED,
-    standardBackgroundColor: colors.BLUE_LIGHT,
-  },
-  textLight: {
-    hoverBackgroundColor: colors.LIGHT_GRAY,
-    standardBackgroundColor: "inherit",
-    textColor: colors.BLUE,
-    borderColor: colors.BLUE,
-  },
-  default: {
-    hoverBackgroundColor: colors.TEAL_PRESSED,
-    standardBackgroundColor: colors.TEAL_ACCENT,
+    standard: {
+      backgroundColor: "transparent",
+      borderColor: colors.GRAY,
+      color: colors.GRAY,
+    },
+    hover: {
+      backgroundColor: "transparent",
+      borderColor: colors.GRAY,
+      color: colors.GRAY,
+    },
   },
 };
 
@@ -45,55 +58,61 @@ export const buttonStyles = {
  */
 export default function Button(props) {
   let { text, onClick, width, type, size, height, style } = props;
-
   // Assign fallback values for styling
   if (!type || !Object.keys(buttonStyles).includes(type)) {
-    type = "default";
+    type = "primary";
   }
-  // Calculate the border to use
-  const borderColor = buttonStyles[type].borderColor
-    ? buttonStyles[type].borderColor
-    : null;
 
   return (
     <AntButton
       style={{
         display: "flex",
         alignItems: "center",
-        border: `1px solid ${borderColor || buttonStyles[type].standardBackgroundColor}`,
-        borderRadius: "0",
-        backgroundColor: buttonStyles[type].standardBackgroundColor,
+        borderColor: buttonStyles[type].standard.borderColor,
+        borderWidth: 3,
+        backgroundColor: buttonStyles[type].standard.backgroundColor,
         textTransform: "uppercase",
-        width: width || "min(300px, 70vw)",
+        width: width,
         height: height || "auto",
+        borderRadius: 0,
         padding: 15,
         paddingLeft: 30,
         paddingRight: 30,
-        fontSize: 15,
+        fontSize: 14,
         fontFamily: "Roboto",
         fontWeight: 500,
         letterSpacing: 2.4,
         textAlign: "center",
         whiteSpace: "normal",
         justifyContent: "center",
-        color: buttonStyles[type].textColor || "#ffffff",
+        color: buttonStyles[type].standard.color,
+        transition: "none",
         ...style,
       }}
+      disabled={type === "disabled"}
       onMouseOver={(e) =>
         (e.currentTarget.style.backgroundColor =
-          buttonStyles[type].hoverBackgroundColor) &&
-        (e.currentTarget.style.borderColor = borderColor
-          ? borderColor
-          : buttonStyles[type].hoverBackgroundColor)
+          buttonStyles[type].hover.backgroundColor) &&
+        (e.currentTarget.style.borderColor =
+          buttonStyles[type].hover.borderColor) &&
+        (e.currentTarget.style.color = buttonStyles[type].hover.color)
       }
       onMouseOut={(e) =>
         (e.currentTarget.style.backgroundColor =
-          buttonStyles[type].standardBackgroundColor) &&
-        (e.currentTarget.style.borderColor = borderColor
-          ? borderColor
-          : buttonStyles[type].standardBackgroundColor)
+          buttonStyles[type].standard.backgroundColor) &&
+        (e.currentTarget.style.borderColor =
+          buttonStyles[type].standard.borderColor) &&
+        (e.currentTarget.style.color = buttonStyles[type].standard.color)
       }
-      size={size ? size : width ? `${width}px` : "300px"}
+      size={
+        size
+          ? size
+          : width
+            ? width.endswith && width.endswith("%")
+              ? width
+              : `${width}px`
+            : "300px"
+      }
       onClick={onClick}
     >
       {text}

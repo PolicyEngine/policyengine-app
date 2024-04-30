@@ -25,17 +25,16 @@ export default function RadioButton(props) {
             style={{
               backgroundColor: checked
                 ? style.colors.BLUE
-                : style.colors.MEDIUM_DARK_GRAY,
+                : style.colors.LIGHT_GRAY,
               color: checked ? style.colors.WHITE : style.colors.BLACK,
               marginBottom: 10,
               cursor: "pointer",
               padding: 10,
               paddingLeft: 20,
               paddingRight: 20,
-              borderWidth: 1,
+              borderWidth: 3,
               borderStyle: "solid",
               marginRight: 5,
-              borderRadius: 25,
               borderColor: defaultChecked
                 ? style.colors.BLUE
                 : style.colors.MEDIUM_DARK_GRAY,

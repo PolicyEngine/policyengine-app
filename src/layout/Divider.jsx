@@ -1,12 +1,10 @@
-import style from "../style";
-
 export default function Divider() {
   return (
     <div
       style={{
         marginTop: 10,
         marginBottom: 10,
-        borderBottom: `1px solid ${style.colors.DARK_GRAY}`,
+        borderBottom: `1px solid grey`,
       }}
     />
   );

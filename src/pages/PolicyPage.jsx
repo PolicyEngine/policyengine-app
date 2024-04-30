@@ -15,6 +15,8 @@ import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
+import SearchParamNavButton from "../controls/SearchParamNavButton";
+import style from "../style";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -32,7 +34,7 @@ export function ParameterSearch(props) {
     <SearchOptions
       options={options}
       defaultValue={null}
-      style={{ margin: 0, width: "100%" }}
+      style={{ margin: 0, width: "100%", backgroundColor: "transparent" }}
       placeholder="Search for a parameter"
       onSelect={(value) => {
         let newSearch = copySearchParams(searchParams);
@@ -57,12 +59,17 @@ function PolicyLeftSidebar(props) {
     newSearch.set("focus", name);
     setSearchParams(newSearch);
   };
+  const isOnOutput =
+    window.location.search.includes("focus=policyOutput") ||
+    window.location.search.includes("focus=householdOutput");
   // The menu, then the search bar anchored to the bottom
   return (
-    <div>
-      <div style={{ padding: 10 }}>
-        <ParameterSearch metadata={metadata} />
-      </div>
+    <div style={{ backgroundColor: style.colors.LIGHT_GRAY }}>
+      {!isOnOutput && (
+        <div style={{ padding: 10 }}>
+          <ParameterSearch metadata={metadata} />
+        </div>
+      )}
       <StackedMenu
         firstTree={metadata.parameterTree.children}
         selected={selected}
@@ -104,11 +111,13 @@ export default function PolicyPage(props) {
   let middle = null;
 
   if (!policy.reform.data) {
+    console.log("still loading policy");
     middle = <LoadingCentered />;
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"
   ) {
+    console.log("loaded policy");
     middle = (
       <ParameterEditor
         parameterName={focus}
@@ -119,12 +128,14 @@ export default function PolicyPage(props) {
     );
   } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
+    console.log("loaded policy");
     middle = (
       <FolderPage label={node.label} metadata={metadata} inPolicySide>
         {node.children}
       </FolderPage>
     );
   } else if (focus.includes("policyOutput")) {
+    console.log("loaded policy");
     middle = (
       <>
         <PolicyOutput
@@ -152,15 +163,92 @@ export default function PolicyPage(props) {
     );
   }
 
+  const hasHousehold = searchParams.get("household") !== null;
+  const hideButtons = false;
+  // eslint-disable-next-line no-unused-vars
+  const bottomBar = (
+    <div
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "white",
+        padding: 10,
+        width: "100%",
+        height: 100,
+        zIndex: 1001,
+        // shadow
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <h5 style={{ fontFamily: "Roboto Serif", marginBottom: 0 }}>
+          Your reform has 2 provisions.
+        </h5>
+        <SearchParamNavButton
+          type="primary"
+          text="Estimate economic effects"
+          focus="policyOutput.policyBreakdown"
+          style={{ padding: 10, margin: 10, paddingLeft: 0, paddingRight: 0 }}
+        />
+        <h5 style={{ fontFamily: "Roboto Serif", marginBottom: 0 }}> or </h5>
+        <SearchParamNavButton
+          type="secondary"
+          text="Enter your household"
+          focus="gov"
+          style={{ padding: 10, margin: 10, paddingLeft: 0, paddingRight: 0 }}
+        />
+      </div>
+      {false && !hideButtons && focus && focus.startsWith("policyOutput") && (
+        <SearchParamNavButton
+          type="primary"
+          text="Edit my policy"
+          focus="gov"
+          style={{ margin: "20px auto 10px" }}
+        />
+      )}
+      {false && !hideButtons && focus && !focus.startsWith("policyOutput") && (
+        <SearchParamNavButton
+          type="primary"
+          text="Calculate economic impact"
+          //onClick={confirmEconomicImpact}
+          style={{ margin: "20px auto 10px" }}
+        />
+      )}
+      {false && !hideButtons && !hasHousehold && (
+        <SearchParamNavButton
+          type="secondary"
+          text="Enter my household"
+          focus="intro"
+          style={{ margin: "20px auto 10px" }}
+          target={`/${metadata.countryId}/household`}
+        />
+      )}
+      {false && !hideButtons && hasHousehold && (
+        <SearchParamNavButton
+          type="secondary"
+          text="Calculate my household impact"
+          focus="householdOutput.netIncome"
+          target={`/${metadata.countryId}/household`}
+          style={{ margin: "20px auto 10px" }}
+        />
+      )}
+    </div>
+  );
+
   return (
     <>
       <Helmet>
         <title>Policy | PolicyEngine</title>
       </Helmet>
       <ThreeColumnPage
-        left={<PolicyLeftSidebar metadata={metadata} />}
-        middle={middle}
-        right={
+        middle={<PolicyLeftSidebar metadata={metadata} />}
+        right={middle}
+        left={
           <PolicyRightSidebar
             metadata={metadata}
             policy={policy}

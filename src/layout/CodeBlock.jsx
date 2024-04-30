@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import colors from "../redesign/style/colors";
+import { CodeBlock } from "../pages/APIDocumentationPage";
 
-export default function CodeBlock({ lines, language }) {
+export default CodeBlock;
+export function CodeBlockOld({ lines, language }) {
   const [copyText, setCopyText] = useState("Copy");
   const code = lines.join("\r\n");
 

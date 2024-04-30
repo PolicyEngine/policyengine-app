@@ -14,10 +14,24 @@ export default function ThreeColumnPage(props) {
         style={{
           width: "25%",
           backgroundColor: style.colors.LIGHT_GRAY,
-          overflowY: "hidden",
+          overflowY: "scroll",
+          // shadow
+          zIndex: 3,
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
         }}
       >
         {left}
+      </div>
+      <div
+        style={{
+          width: "25%",
+          backgroundColor: style.colors.LIGHT_GRAY,
+          overflowY: "scroll",
+          zIndex: 2,
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
+        }}
+      >
+        {middle}
       </div>
       <div
         style={{
@@ -27,15 +41,9 @@ export default function ThreeColumnPage(props) {
           paddingTop: 0,
           overflow: "auto",
           height: "100%",
-        }}
-      >
-        {middle}
-      </div>
-      <div
-        style={{
-          width: "25%",
-          backgroundColor: style.colors.LIGHT_GRAY,
-          overflowY: "scroll",
+          // shadow
+          zIndex: 1,
+          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
         }}
       >
         {right}

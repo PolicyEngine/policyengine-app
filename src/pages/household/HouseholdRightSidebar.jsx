@@ -5,9 +5,9 @@ import {
   getValueFromHousehold,
 } from "../../api/variables";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
-import Divider from "../../layout/Divider";
 import LoadingCentered from "../../layout/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
+import Collapsable from "../../redesign/components/Collapsable";
 
 function Figure(props) {
   const { left, right } = props;
@@ -16,16 +16,14 @@ function Figure(props) {
       style={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
         height: "10%",
+        marginTop: 20,
       }}
     >
       <div
         style={{
-          flex: 1,
-          textAlign: "right",
           paddingRight: 5,
-          paddingLeft: 15,
+          paddingLeft: 0,
           fontSize: 24,
         }}
       >
@@ -33,9 +31,8 @@ function Figure(props) {
       </div>
       <div
         style={{
-          flex: 1,
           paddingLeft: 5,
-          paddingRight: 15,
+          paddingRight: 5,
           fontSize: 18,
         }}
       >
@@ -55,7 +52,8 @@ export default function HouseholdRightSidebar(props) {
     policy,
     year,
   } = props;
-  const [showReformSearch, setShowReformSearch] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
@@ -115,17 +113,18 @@ export default function HouseholdRightSidebar(props) {
   );
 
   const situationOverview = (
-    <>
-      <h5
+    <div>
+      <p
         style={{
-          textAlign: "center",
-          fontSize: 11,
           marginBottom: 0,
           marginTop: 15,
+          fontFamily: "Roboto",
+          color: "grey",
+          fontSize: 14,
         }}
       >
-        YOUR INPUTS
-      </h5>
+        Your inputs
+      </p>
       <Figure
         left={countPeople}
         right={countPeople === 1 ? "person" : "people"}
@@ -138,109 +137,106 @@ export default function HouseholdRightSidebar(props) {
         )}
         right={"market income"}
       />
-      <Divider />
-      <h5
+      <p
         style={{
-          textAlign: "center",
-          fontSize: 11,
           marginBottom: 0,
           marginTop: 15,
+          fontFamily: "Roboto",
+          color: "grey",
+          fontSize: 14,
         }}
       >
-        OUR CALCULATION
-      </h5>
-      {hasReform && (
-        <h5
-          style={{
-            textAlign: "center",
-            fontSize: 11,
-            marginBottom: 0,
-            marginTop: 5,
-          }}
-        >
-          UNDER CURRENT LAW
-        </h5>
-      )}
-      {showReformSearch ? (
-        <div style={{ display: "flex", alignItems: "center", padding: 10 }}>
-          <PolicySearch
-            metadata={metadata}
-            policy={policy}
-            target="reform"
-            width="100%"
-            onSelect={() => setShowReformSearch(false)}
-          />
-        </div>
-      ) : (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a
-            href="#"
-            style={{ textAlign: "center", width: "100%" }}
-            onClick={() => setShowReformSearch(true)}
-          >
-            compare against a reform
-          </a>
-        </div>
-      )}
+        Our calculation{hasReform ? " under your reform" : " under current law"}
+      </p>
+      <div style={{ marginLeft: -15 }}>
+        <Collapsable
+          style={{ paddingLeft: 0 }}
+          label={
+            hasReform
+              ? "Compare against a different reform"
+              : "Compare against a reform"
+          }
+          child={
+            <PolicySearch
+              metadata={metadata}
+              policy={policy}
+              target="reform"
+              width="100%"
+              onSelect={() => setShowReformSearch(false)}
+            />
+          }
+        />
+      </div>
       {loading ? (
         <LoadingCentered minHeight="25vh" height="25vh" />
       ) : (
         calculationResults
       )}
-    </>
+    </div>
   );
   const notEnoughInfo = (
     <div
       style={{
         minHeight: "50vh",
-        padding: 40,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <h5 style={{ textAlign: "center" }}>
-        Tell us more about your household to see your results
-      </h5>
+      <p>Tell us more about your household to see your results</p>
     </div>
   );
 
   return (
-    <>
-      {autoCompute && householdBaseline ? situationOverview : notEnoughInfo}
-      {focus && focus.startsWith("householdOutput") && (
-        <SearchParamNavButton
-          type="primary"
-          text="Add more household details"
-          focus="input"
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
-      {focus && !focus.startsWith("householdOutput") && (
-        <SearchParamNavButton
-          type="primary"
-          text="See my household details"
-          focus="householdOutput"
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
-      {!hasReform && (
-        <SearchParamNavButton
-          text="Create a reform"
-          focus="gov"
-          target={`/${metadata.countryId}/policy`}
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
-      {hasReform && (
-        <SearchParamNavButton
-          text="Edit my reform"
-          focus="gov"
-          target={`/${metadata.countryId}/policy`}
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
-    </>
+    <div
+      style={{
+        marginLeft: 20,
+        marginRight: 20,
+        display: "flex",
+        justifyContent: "space-between",
+        flexDirection: "column",
+        height: "100%",
+      }}
+    >
+      <div>
+        {autoCompute && householdBaseline ? situationOverview : notEnoughInfo}
+      </div>
+      <div style={{ marginBottom: 20 }}>
+        {focus && focus.startsWith("householdOutput") && (
+          <SearchParamNavButton
+            type="primary"
+            text="Add more household details"
+            focus="input"
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {focus && !focus.startsWith("householdOutput") && (
+          <SearchParamNavButton
+            type="primary"
+            text="See my household details"
+            focus="householdOutput.netIncome"
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {!hasReform && (
+          <SearchParamNavButton
+            text="Create a reform"
+            focus="gov"
+            type="secondary"
+            target={`/${metadata.countryId}/policy`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {hasReform && (
+          <SearchParamNavButton
+            text="Edit my reform"
+            focus="gov"
+            type="secondary"
+            target={`/${metadata.countryId}/policy`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+      </div>
+    </div>
   );
 }

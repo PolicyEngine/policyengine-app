@@ -71,7 +71,10 @@ export default function TaxYear(props) {
   }
 
   return (
-    <CenteredMiddleColumn title="Which year would you like to calculate?">
+    <CenteredMiddleColumn
+      title="Which year would you like to calculate?"
+      marginTop="15%"
+    >
       <Select
         data-testid="taxyear_dropdown"
         showSearch

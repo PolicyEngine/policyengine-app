@@ -16,6 +16,8 @@ import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
+import moment from "moment";
+import Collapsable from "../../redesign/components/Collapsable";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -167,7 +169,7 @@ function DatasetSelector(props) {
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
         checked={presentRegion === "enhanced_us" ? true : false}
       />
-      <h6
+      <p
         style={{
           margin: 0,
           fontSize: displayCategory !== "mobile" && "0.95em",
@@ -178,7 +180,7 @@ function DatasetSelector(props) {
         }}
       >
         Use Enhanced CPS (beta)
-      </h6>
+      </p>
       <Tooltip
         placement="topRight"
         title="Currently available for US-wide simulations only."
@@ -237,14 +239,15 @@ function PolicyNamer(props) {
     <>
       <div style={{ display: "flex", alignItems: "center" }}>
         <InputText
-          disableOnEmpty
+          disabled={label === "Current law"}
           width="100%"
           key={label}
           buttonText="Rename"
-          buttonStyle="default"
+          buttonStyle="default" // match disabled button
           componentStyle={{
             margin: "10px 20px",
           }}
+          placeholder={label}
           error={error}
           boxStyle={{
             padding: "0px 10px",
@@ -285,8 +288,7 @@ function SinglePolicyChange(props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        padding: "0 10%",
+        paddingLeft: 10,
       }}
     >
       <div>
@@ -295,7 +297,9 @@ function SinglePolicyChange(props) {
         >
           {prefix}{" "}
         </span>
-        {paramLabel}
+        <span style={{ fontFamily: "Roboto Serif", color: "black" }}>
+          {paramLabel}
+        </span>
         {!isBool && (
           <>
             {" "}
@@ -304,6 +308,7 @@ function SinglePolicyChange(props) {
               style={{
                 color: style.colors.BLUE,
                 cursor: "pointer",
+                textDecoration: "underline",
               }}
             >
               {newValueStr}
@@ -311,8 +316,9 @@ function SinglePolicyChange(props) {
           </>
         )}
       </div>
-      <div style={{ fontStyle: "italic" }}>
-        {startDateStr} to {endDateStr}
+      <div style={{ paddingTop: 10 }}>
+        from {moment(startDateStr).format("Do MMMM, YYYY")} until{" "}
+        {moment(endDateStr).format("Do MMMM, YYYY")}
       </div>
     </div>
   );
@@ -337,7 +343,14 @@ function PolicyItem(props) {
   }
   return (
     <div>
-      <div style={{ paddingLeft: 10 }}>{changes}</div>
+      <div
+        style={{
+          paddingLeft: Object.keys(reformData).length > 1 ? 40 : 10,
+          paddingRight: 40,
+        }}
+      >
+        {changes}
+      </div>
     </div>
   );
 }
@@ -363,7 +376,6 @@ function PolicyDisplay(props) {
     >
       <Carousel
         variant="dark"
-        className="text-center"
         indicators={false}
         interval={null}
         controls={reformLength > 1 ? true : false}
@@ -392,14 +404,17 @@ function PolicyDisplay(props) {
         ))}
       </Carousel>
       {Object.keys(policy.reform.data).length === 0 && (
-        <p style={{ textAlign: "center" }}>Your reform is empty</p>
+        <p style={{ fontFamily: "Roboto Serif", paddingLeft: 20 }}>
+          Your reform is empty.
+        </p>
       )}
     </div>
   );
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
+  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
+    props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const region = searchParams.get("region");
@@ -409,7 +424,8 @@ export default function PolicyRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
-  const [showReformSearch, setShowReformSearch] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [_, setShowReformSearch] = useState(false);
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -529,139 +545,218 @@ export default function PolicyRightSidebar(props) {
   }
 
   return (
-    <div style={{ paddingTop: 10 }}>
-      <h6 style={{ margin: "10px 20px 0px 20px", fontWeight: 400 }}>
-        {policy.reform.label || `Policy #${searchParams.get("reform")}`}
-      </h6>
-      {
-        <PolicyNamer
+    <div
+      style={{
+        paddingTop: 10,
+        fontFamily: "Roboto Serif",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100%",
+      }}
+    >
+      <div>
+        <div style={{ paddingLeft: 20 }}>
+          <p
+            style={{
+              fontSize: 14,
+              margin: "10px 0 0 0",
+              fontFamily: "Roboto",
+              color: "grey",
+              display: "inline-block",
+            }}
+          >
+            Policy name
+          </p>
+        </div>
+        {
+          <PolicyNamer
+            policy={policy}
+            metadata={metadata}
+            setPolicy={setPolicy}
+          />
+        }
+        <div style={{ paddingLeft: 5 }}>
+          <Collapsable
+            label="Find an existing policy"
+            child={
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <PolicySearch
+                  metadata={metadata}
+                  policy={policy}
+                  target="reform"
+                  width="100%"
+                  onSelect={() => setShowReformSearch(false)}
+                />
+              </div>
+            }
+          />
+        </div>
+        <div style={{ paddingLeft: 20 }}>
+          <p
+            style={{
+              fontSize: 14,
+              margin: "10px 0 0 0",
+              fontFamily: "Roboto",
+              color: "grey",
+              display: "inline-block",
+            }}
+          >
+            Provisions
+          </p>
+        </div>
+        <PolicyDisplay
           policy={policy}
           metadata={metadata}
-          setPolicy={setPolicy}
+          region={region}
+          timePeriod={timePeriod}
+          closeDrawer={closeDrawer}
+          hideButtons={hideButtons}
         />
-      }
-      {showReformSearch ? (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            padding: "10px 20px",
-          }}
-        >
-          <PolicySearch
-            metadata={metadata}
-            policy={policy}
-            target="reform"
-            width="100%"
-            onSelect={() => setShowReformSearch(false)}
+        <div style={{ paddingLeft: 5 }}>
+          <Collapsable
+            label="More options"
+            defaultOpen={defaultOpen}
+            child={
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  gap: "10px",
+                }}
+              >
+                <div>
+                  <p
+                    style={{
+                      margin: "10px 0 0 0",
+                      color: "grey",
+                      display: "inline-block",
+                      fontFamily: "Roboto",
+                    }}
+                  >
+                    Geography
+                  </p>
+                </div>
+                <RegionSelector metadata={metadata} />
+                <div>
+                  <p
+                    style={{
+                      margin: "10px 0 0 0",
+                      color: "grey",
+                      display: "inline-block",
+                      fontFamily: "Roboto",
+                    }}
+                  >
+                    Year
+                  </p>
+                </div>
+                <TimePeriodSelector metadata={metadata} />
+                <div>
+                  <p
+                    style={{
+                      margin: "10px 0 0 0",
+                      color: "grey",
+                      display: "inline-block",
+                      fontFamily: "Roboto",
+                    }}
+                  >
+                    Baseline policy
+                  </p>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    width: "100%",
+                    gap: "10px",
+                  }}
+                >
+                  <PolicySearch
+                    metadata={metadata}
+                    policy={policy}
+                    target="baseline"
+                    width="100%"
+                  />
+                  <SwapOutlined
+                    style={{
+                      fontSize: 15,
+                      cursor: "pointer",
+                      marginRight: "10px",
+                    }}
+                    onClick={() => {
+                      const newSearch = copySearchParams(searchParams);
+                      newSearch.set(
+                        "reform",
+                        baselinePolicyId || metadata.current_law_id,
+                      );
+                      if (!reformPolicyId) {
+                        newSearch.delete("baseline");
+                      } else {
+                        newSearch.set("baseline", reformPolicyId);
+                      }
+                      setSearchParams(newSearch);
+                    }}
+                  />
+                </div>
+                {metadata.countryId === "us" && (
+                  <DatasetSelector
+                    presentRegion={region}
+                    timePeriod={timePeriod}
+                  />
+                )}
+              </div>
+            }
           />
         </div>
-      ) : (
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a
-            href="#"
-            style={{ textAlign: "center", width: "100%" }}
-            onClick={() => setShowReformSearch(true)}
-          >
-            find an existing policy
-          </a>
-        </div>
-      )}
-      <PolicyDisplay
-        policy={policy}
-        metadata={metadata}
-        region={region}
-        timePeriod={timePeriod}
-        closeDrawer={closeDrawer}
-        hideButtons={hideButtons}
-      />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          margin: "0 20px",
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          gap: "10px",
-        }}
-      >
-        <h6 style={{ margin: "10px 0 0 0" }}>Geography</h6>
-        <RegionSelector metadata={metadata} />
-        <h6 style={{ margin: "10px 0 0 0" }}>Year</h6>
-        <TimePeriodSelector metadata={metadata} />
-        <h6 style={{ margin: "10px 0 0 0" }}>Baseline Policy</h6>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            width: "100%",
-            gap: "10px",
-          }}
-        >
-          <PolicySearch
-            metadata={metadata}
-            policy={policy}
-            target="baseline"
-            width="100%"
+      </div>
+
+      <div style={{ margin: 20, marginTop: 0 }}>
+        {!hideButtons && focus && focus.startsWith("policyOutput") && (
+          <SearchParamNavButton
+            type="primary"
+            text="Edit my policy"
+            focus="gov"
+            style={{ width: "100%", marginTop: 20 }}
           />
-          <SwapOutlined
-            style={{
-              fontSize: 15,
-              cursor: "pointer",
-              marginRight: "10px",
-            }}
-            onClick={() => {
-              const newSearch = copySearchParams(searchParams);
-              newSearch.set(
-                "reform",
-                baselinePolicyId || metadata.current_law_id,
-              );
-              if (!reformPolicyId) {
-                newSearch.delete("baseline");
-              } else {
-                newSearch.set("baseline", reformPolicyId);
-              }
-              setSearchParams(newSearch);
-            }}
+        )}
+        {!hideButtons && focus && !focus.startsWith("policyOutput") && (
+          <SearchParamNavButton
+            type={
+              Object.keys(policy.reform.data).length === 0
+                ? "disabled"
+                : "primary"
+            }
+            text="Calculate economic impact"
+            onClick={confirmEconomicImpact}
+            style={{ width: "100%", marginTop: 20 }}
           />
-        </div>
-        {metadata.countryId === "us" && (
-          <DatasetSelector presentRegion={region} timePeriod={timePeriod} />
+        )}
+        {!hideButtons && !hasHousehold && (
+          <SearchParamNavButton
+            type="secondary"
+            text="Enter my household"
+            focus="intro"
+            target={`/${metadata.countryId}/household`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
+        {!hideButtons && hasHousehold && (
+          <SearchParamNavButton
+            type="secondary"
+            text="Calculate my household impact"
+            focus="householdOutput.netIncome"
+            target={`/${metadata.countryId}/household`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
         )}
       </div>
-      {!hideButtons && focus && focus.startsWith("policyOutput") && (
-        <SearchParamNavButton
-          type="primary"
-          text="Edit my policy"
-          focus="gov"
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
-      {!hideButtons && focus && !focus.startsWith("policyOutput") && (
-        <SearchParamNavButton
-          type="primary"
-          text="Calculate economic impact"
-          onClick={confirmEconomicImpact}
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
-      {!hideButtons && !hasHousehold && (
-        <SearchParamNavButton
-          text="Enter my household"
-          focus="intro"
-          style={{ margin: "20px auto 10px" }}
-          target={`/${metadata.countryId}/household`}
-        />
-      )}
-      {!hideButtons && hasHousehold && (
-        <SearchParamNavButton
-          text="Calculate my household impact"
-          focus="householdOutput.netIncome"
-          target={`/${metadata.countryId}/household`}
-          style={{ margin: "20px auto 10px" }}
-        />
-      )}
     </div>
   );
 }

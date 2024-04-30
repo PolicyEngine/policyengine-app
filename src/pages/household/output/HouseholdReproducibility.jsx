@@ -36,7 +36,6 @@ export default function HouseholdReproducibility(props) {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
             columnGap: "10px",
             alignItems: "center",
             paddingBottom: 20,
@@ -48,7 +47,11 @@ export default function HouseholdReproducibility(props) {
             onChange={() => setEarningVariation(!earningVariation)}
           />
         </div>
-        <CodeBlock lines={lines} language={"python"} />
+        <CodeBlock
+          data={lines.join("\n")}
+          language={"python"}
+          maxHeight="100%"
+        />
         <div
           style={{
             display: "flex",

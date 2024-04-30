@@ -64,7 +64,7 @@ export default function SignupModal(props) {
           <Button text="Sign in" onClick={handleSubmit} width="100%" />
           <Button
             text="Not at this time"
-            type="textLight"
+            type="secondary"
             width="100%"
             onClick={handleCloseModal}
           />

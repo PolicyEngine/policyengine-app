@@ -1,5 +1,6 @@
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
+import moment from "dayjs";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
 
@@ -14,6 +15,7 @@ const POLICYENGINE_API = "https://api.policyengine.org";
  * @returns {JSON} The API call's response JSON object
  */
 export function apiCall(path, body, method, secondAttempt = false) {
+  const startTime = moment();
   return fetch(POLICYENGINE_API + path, {
     method: method || (body ? "POST" : "GET"),
     headers: {
@@ -22,6 +24,13 @@ export function apiCall(path, body, method, secondAttempt = false) {
     body: body ? JSON.stringify(body) : null,
   }).then((response) => {
     // If the response is a 500, try again once.
+    console.log(
+      "API call to",
+      path,
+      "completed in",
+      moment().diff(startTime, "seconds"),
+      "seconds",
+    );
     if (response.status === 500 && !secondAttempt) {
       return apiCall(path, body, method, true);
     }
@@ -79,6 +88,7 @@ export function copySearchParams(searchParams) {
 }
 
 export function updateMetadata(countryId, setMetadata) {
+  const startTime = moment();
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
     .then((dataHolder) => {
@@ -92,7 +102,10 @@ export function updateMetadata(countryId, setMetadata) {
       data.parameters = Object.fromEntries(
         Object.entries(data.parameters).filter(
           // eslint-disable-next-line no-unused-vars
-          ([key, value]) => !value.parameter.includes("taxsim"),
+          ([key, value]) => !value.parameter.includes("taxsim"), // &&
+          // first value in parameter.values is not a list.
+          //(!value.values ||
+          //  !(Object.values(value.values)[0] instanceof Array)),
         ),
       );
       const parameterTree = buildParameterTree(data.parameters);
@@ -110,6 +123,11 @@ export function updateMetadata(countryId, setMetadata) {
         }[countryId],
         currency: countryId === "uk" ? "£" : "$",
       };
+      console.log(
+        "Metadata loaded in",
+        moment().diff(startTime, "seconds"),
+        "seconds",
+      );
       setMetadata(metadata);
       return metadata;
     });

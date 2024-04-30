@@ -55,6 +55,8 @@ export default function VariableEditor(props) {
     }
   });
 
+  const singleEntity = possibleEntities.length === 1;
+
   const entityInputs = possibleEntities.map((entity) => {
     return (
       <HouseholdVariableEntity
@@ -71,6 +73,7 @@ export default function VariableEditor(props) {
         nextVariable={nextVariable}
         autoCompute={autoCompute}
         year={year}
+        singleEntity={singleEntity}
       />
     );
   });
@@ -92,18 +95,18 @@ export default function VariableEditor(props) {
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
           marginTop: mobile ? "20%" : "15%",
           paddingLeft: mobile ? 5 : 50,
           paddingRight: mobile ? 5 : 50,
         }}
       >
-        <h1 style={{ marginBottom: 20, textAlign: "center" }}>
-          What {verb} your {variable.label.toLowerCase()}?
-        </h1>
-        <h4 style={{ textAlign: "center", paddingBottom: 10 }}>
-          {variable.documentation}
-        </h4>
+        <h3 style={{ fontFamily: "Roboto Serif", marginBottom: 20 }}>
+          What {verb} your {variable.label.toLowerCase()} in {year}?
+        </h3>
+        {variable.documentation && (
+          <p style={{ fontFamily: "Roboto Serif" }}>{variable.documentation}</p>
+        )}
+        <div style={{ marginBottom: 20 }} />
         {entityInputs}
         {nextVariable && (
           <SearchParamNavButton
@@ -132,6 +135,7 @@ function HouseholdVariableEntity(props) {
     nextVariable,
     autoCompute,
     year,
+    singleEntity,
   } = props;
   const possibleTimePeriods = Object.keys(
     householdInput[entityPlural][entityName][variable.name],
@@ -155,6 +159,7 @@ function HouseholdVariableEntity(props) {
             nextVariable={nextVariable}
             autoCompute={autoCompute}
             year={year}
+            singleEntity={singleEntity}
           />
         );
       })}
@@ -176,6 +181,9 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     setHouseholdInput,
     autoCompute,
+    // eslint-disable-next-line no-unused-vars
+    setEdited,
+    singleEntity,
   } = props;
   const submitValue = (value) => {
     value = Number.isNaN(+value) ? value : +value;
@@ -303,35 +311,24 @@ function HouseholdVariableEntityInput(props) {
           display: "flex",
           flexDirection: mobile ? "col" : "row",
           alignItems: "center",
-          justifyContent: "space-evenly",
           width: "100%",
           marginBottom: 10,
           gap: mobile ? 10 : 20,
         }}
       >
-        <h5
-          style={{
-            textAlign: "right",
-            margin: 0,
-            flex: 1,
-            flexBasis: "10%",
-            fontSize: mobile && ".9rem",
-          }}
-        >
-          {capitalize(entityName)}:{" "}
-        </h5>
+        {!singleEntity && (
+          <p
+            style={{
+              margin: 0,
+              fontSize: mobile && ".9rem",
+              fontFamily: "Roboto Serif",
+              minWidth: 150,
+            }}
+          >
+            {capitalize(entityName)}:{" "}
+          </p>
+        )}
         {control}
-        <h5
-          style={{
-            textAlign: "left",
-            margin: 0,
-            flex: 1,
-            flexBasis: "10%",
-            fontSize: mobile && ".9rem",
-          }}
-        >
-          in {timePeriod}
-        </h5>
       </div>
     </>
   );

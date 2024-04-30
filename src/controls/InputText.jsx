@@ -1,6 +1,7 @@
-import { Button, Input, Space } from "antd";
+import { Input, Space } from "antd";
 import { buttonStyles } from "./Button";
 import { useState } from "react";
+import Button from "./Button";
 
 export default function InputText(props) {
   let {
@@ -15,6 +16,7 @@ export default function InputText(props) {
     buttonText,
     buttonStyle,
     disableOnEmpty,
+    disabled,
     error,
   } = props;
 
@@ -22,17 +24,22 @@ export default function InputText(props) {
     initialValue ? initialValue : "",
   );
 
+  const isDisabled = disabled || (disableOnEmpty && !inputValue);
+
   // Assign fallback values for styling if button included
   if (!buttonStyle || !Object.keys(buttonStyles).includes(buttonStyle)) {
-    buttonStyle = "default";
+    if (isDisabled) {
+      buttonStyle = "disabled";
+    } else {
+      buttonStyle = "primary";
+    }
   }
-
-  const isDisabled = disableOnEmpty && !inputValue;
 
   const inputElement = (
     <Input
       style={boxStyle}
       placeholder={placeholder}
+      disabled={isDisabled}
       onChange={(e) => {
         setInputValue(e.target.value);
         onChange?.(e);
@@ -52,37 +59,13 @@ export default function InputText(props) {
       >
         {inputElement}
         <Button
-          type="primary"
+          type={buttonStyle}
           disabled={isDisabled}
-          style={{
-            backgroundColor:
-              !isDisabled && buttonStyles[buttonStyle].standardBackgroundColor,
-            // This line is added instead of "none" because the disabled style also has a 1px border, causing
-            // visual ticks if transitioning between the two
-            border:
-              !isDisabled &&
-              `1px solid ${buttonStyles[buttonStyle].standardBackgroundColor}`,
-          }}
           onClick={(e) => onClick?.(e, inputValue)}
-          onMouseOver={(e) => {
-            if (!isDisabled) {
-              (e.currentTarget.style.backgroundColor =
-                buttonStyles[buttonStyle].hoverBackgroundColor) &&
-                (e.currentTarget.style.borderColor =
-                  buttonStyles[buttonStyle].hoverBackgroundColor);
-            }
-          }}
-          onMouseOut={(e) => {
-            if (!isDisabled) {
-              (e.currentTarget.style.backgroundColor =
-                buttonStyles[buttonStyle].standardBackgroundColor) &&
-                (e.currentTarget.style.borderColor =
-                  buttonStyles[buttonStyle].standardBackgroundColor);
-            }
-          }}
-        >
-          {buttonText}
-        </Button>
+          text={buttonText}
+          height={15}
+          width={100}
+        ></Button>
       </Space.Compact>
     );
   }

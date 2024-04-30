@@ -11,9 +11,9 @@ export default function ImpactChart(props) {
 
   return (
     <Screenshottable>
-      <h2 style={{ width: "100%", wordWrap: "break-word", display: "inline" }}>
+      <h3 style={{ marginBottom: 40, width: "100%", wordWrap: "break-word" }}>
         {title + ` in ${timePeriod}`}
-      </h2>
+      </h3>
       <HoverCard>{children}</HoverCard>
       {description}
     </Screenshottable>

@@ -74,6 +74,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -98,6 +99,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "uk",
       },
       policy: standardPolicyUK,
+      defaultOpen: true,
     };
 
     const { queryByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -123,6 +125,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -148,6 +151,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -172,6 +176,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -197,6 +202,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -229,6 +235,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);

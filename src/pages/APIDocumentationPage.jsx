@@ -371,7 +371,7 @@ export default function APIDocumentationPage({ metadata }) {
   );
 }
 
-function CodeBlock({ data, title, language }) {
+export function CodeBlock({ data, title, language, maxHeight }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -506,7 +506,7 @@ function CodeBlock({ data, title, language }) {
       >
         <CodeMirror
           value={data}
-          maxHeight={!isExpanded && "260px"}
+          maxHeight={maxHeight ? maxHeight : !isExpanded && "260px"}
           editable={false}
           extensions={[language === "json" ? langs.json() : langs.python()]}
           theme={espresso}

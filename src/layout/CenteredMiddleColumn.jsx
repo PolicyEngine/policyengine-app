@@ -1,33 +1,43 @@
 import useMobile from "../layout/Responsive";
 
 export default function CenteredMiddleColumn(props) {
-  const { title, description, marginTop, marginBottom, children } = props;
+  const { title, description, children, marginTop } = props;
   const mobile = useMobile();
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        marginTop: marginTop || "20%",
-        justifyContent: "center",
+        marginTop: mobile ? "20%" : marginTop ? marginTop : "10%",
       }}
     >
-      <h1 style={{ marginBottom: marginBottom || 20, textAlign: "center" }}>
-        {title}
-      </h1>
-      {description && (
-        <h4
-          style={{
-            paddingLeft: mobile ? 20 : 100,
-            paddingRight: mobile ? 20 : 100,
-            textAlign: "center",
-          }}
-        >
-          {description}
-        </h4>
-      )}
-      {children}
+      <div
+        style={{
+          paddingLeft: 50,
+          paddingRight: 50,
+        }}
+      >
+        <h3 style={{ fontFamily: "Roboto Serif", fontWeight: 400 }}>{title}</h3>
+
+        {description && (
+          <>
+            <p
+              style={{
+                marginTop: 10,
+                marginBottom: 10,
+                color: "grey",
+                fontFamily: "Roboto",
+                display: "inline-block",
+              }}
+            >
+              Description
+            </p>
+            <p style={{ fontFamily: "Roboto Serif" }}>{description}</p>
+          </>
+        )}
+        <div style={{ marginTop: 20 }} />
+        {children}
+      </div>
     </div>
   );
 }

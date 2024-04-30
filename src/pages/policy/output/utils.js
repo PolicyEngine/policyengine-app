@@ -6,7 +6,9 @@ const avgChangeDirection = (change) =>
   change >= 0 ? "would increase" : "would decrease";
 
 const plotLayoutFont = {
-  font: { family: "Roboto, sans-serif" },
+  font: { family: "Roboto Serif" },
+  // background color transparent
+  plot_bgcolor: "rgba(0,0,0,0)",
 };
 
 async function downloadPng(filename) {

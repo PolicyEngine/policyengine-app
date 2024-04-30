@@ -22,15 +22,15 @@ export default function PolicyImpactPopup(props) {
 
   return (
     <Modal open={needToOpenModal} footer={null} closable={false}>
-      <h6
+      <h2
         style={{
           marginBottom: "12px",
-          fontWeight: "bold",
+          fontWeight: 500,
           fontSize: 20,
         }}
       >
         PolicyEngine simulates your reform over thousands of households{" "}
-      </h6>
+      </h2>
       <p
         style={{
           marginBottom: "16px",

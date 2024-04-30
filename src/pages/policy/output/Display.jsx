@@ -1,8 +1,7 @@
 import style from "../../../style";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import { getPolicyOutputTree, policyOutputs } from "./tree";
+import { policyOutputs } from "./tree";
 import ResultsPanel from "../../../layout/ResultsPanel";
-import BottomCarousel from "../../../layout/BottomCarousel";
 import PolicyImpactPopup from "../../../modals/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
 import { getImpactReps } from "./ImpactTypes";
@@ -69,7 +68,7 @@ export function DisplayWait(props) {
         }
         strokeColor={style.colors.BLUE}
       />
-      <p>
+      <p style={{ color: "grey" }}>
         This usually takes around {Math.round(averageImpactTime / 5) * 5}{" "}
         seconds, but may take longer.
       </p>
@@ -245,10 +244,8 @@ export function LowLevelDisplay(props) {
   }, [preparingForScreenshot, takeScreenShot]);
 
   const urlParams = new URLSearchParams(window.location.search);
-  const focus = urlParams.get("focus");
   const selectedVersion = urlParams.get("version") || metadata.version;
   const region = urlParams.get("region");
-  const policyOutputTree = getPolicyOutputTree(metadata.countryId);
   const url = encodeURIComponent(window.location.href);
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
   const twitterLink = `https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`;
@@ -284,6 +281,7 @@ export function LowLevelDisplay(props) {
   }
 
   const embed = new URLSearchParams(window.location.search).get("embed");
+  //eslint-disable-next-line
   const bottomElements =
     mobile & !embed ? null : (
       <p
@@ -354,13 +352,6 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
-      {!mobile && !preparingForScreenshot && (
-        <BottomCarousel
-          selected={focus}
-          options={policyOutputTree[0].children}
-          bottomElements={bottomElements}
-        />
-      )}
     </ResultsPanel>
   );
 }

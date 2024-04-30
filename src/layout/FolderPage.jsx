@@ -5,14 +5,14 @@ import ResultsPanel from "./ResultsPanel";
 import { motion } from "framer-motion";
 import useMobile from "./Responsive";
 import { capitalize } from "../lang/format";
-import Divider from "./Divider";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
 
 function FolderPageDescription(props) {
   // Try to find the current focus in the tree.
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const focus = searchParams.get("focus");
   const { metadata, inPolicySide } = props;
+  const mobile = useMobile();
   if (!metadata) return null;
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   let currentNode;
@@ -41,35 +41,34 @@ function FolderPageDescription(props) {
     currentNode = null;
   }
   return (
-    <>
-      <h3>{inPolicySide ? "Policy parameters" : "Household variables"}</h3>
-      <h5>
-        {inPolicySide ? (
-          <>
-            Build a tax-benefit reform by selecting parameters from the menu
-            items below. Then when you&apos;re ready, click{" "}
-            <i>Calculate economic impact</i> on the right to see how your reform
-            would affect the economy.
-          </>
-        ) : (
-          "Select a household variable from the menu items below to enter your own information."
-        )}
-      </h5>
-      <Divider />
-      {breadcrumbs.map((breadcrumb, i) => (
-        <h5
-          onClick={() => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", breadcrumb.name);
-            setSearchParams(newSearch);
-          }}
-          key={breadcrumb.name}
-          style={{ paddingLeft: i * 15, cursor: "pointer" }}
-        >
-          {i > 0 && <>&#x2514;</>} {capitalize(breadcrumb.label)}
-        </h5>
-      ))}
-    </>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        height: mobile ? "30vh" : "60vh",
+      }}
+    >
+      <div>
+        <h3>
+          {inPolicySide ? "Create a policy reform" : "Household variables"}
+        </h3>
+        <p style={{ fontFamily: "Roboto Serif" }}>
+          {inPolicySide ? (
+            <>
+              Build a tax-benefit reform by selecting parameters from the menu
+              (organised by government department). <br />
+              <br />
+              Then when you&apos;re ready, click{" "}
+              <i>Calculate economic impact</i> to see how your reform would
+              affect the economy, or <i>Enter my household</i> to see how it
+              would affect a specific household.
+            </>
+          ) : (
+            "Select a household variable from the menu items below to enter your own information."
+          )}
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -81,59 +80,66 @@ export default function FolderPage(props) {
 
   return (
     <ResultsPanel>
-      {!mobile && inPolicySide && (
+      {inPolicySide && (
         <FolderPageDescription
           metadata={metadata}
           inPolicySide={inPolicySide}
         />
       )}
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          flexWrap: "wrap",
-          justifyContent: mobile ? "center" : "left",
-        }}
-      >
-        {children
-          .filter((child) => !child.name.includes("pycache"))
-          .map((child) => (
-            <motion.div
-              key={child.name}
-              style={{
-                width: mobile ? 125 : 150,
-                height: 100,
-                backgroundColor: style.colors.LIGHT_GRAY,
-                margin: 10,
-                padding: 10,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
-                flexGrow: mobile && 1.5,
-              }}
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: style.colors.DARK_GRAY,
-                color: "#fff",
-              }}
-              onClick={() => {
-                let newSearch = copySearchParams(searchParams);
-                newSearch.set("focus", child.name);
-                setSearchParams(newSearch);
-              }}
-            >
-              <h6
+
+      {mobile && (
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            flexWrap: "wrap",
+            justifyContent: mobile ? "center" : "left",
+          }}
+        >
+          {children
+            .filter((child) => !child.name.includes("pycache"))
+            .map((child) => (
+              <motion.div
+                key={child.name}
                 style={{
-                  textAlign: "center",
-                  color: "inherit",
+                  width: mobile ? 125 : 150,
+                  height: 100,
+                  backgroundColor: style.colors.LIGHT_GRAY,
+                  margin: 10,
+                  padding: 10,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  flexGrow: mobile && 1.5,
+                  border: "1px solid grey",
+                }}
+                whileHover={{
+                  backgroundColor: style.colors.DARK_GRAY,
+                  color: "#fff",
+                }}
+                transition={{
+                  duration: 0.001,
+                }}
+                onClick={() => {
+                  let newSearch = copySearchParams(searchParams);
+                  newSearch.set("focus", child.name);
+                  setSearchParams(newSearch);
                 }}
               >
-                {capitalize(child.label)}
-              </h6>
-            </motion.div>
-          ))}
-      </div>
+                <p
+                  style={{
+                    textAlign: "center",
+                    color: "inherit",
+                    margin: 0,
+                  }}
+                >
+                  {capitalize(child.label)}
+                </p>
+              </motion.div>
+            ))}
+        </div>
+      )}
     </ResultsPanel>
   );
 }
