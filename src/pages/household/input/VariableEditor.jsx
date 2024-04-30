@@ -11,7 +11,7 @@ import { Select, Switch } from "antd";
 import useMobile from "../../../layout/Responsive";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import gtag from "../../../api/analytics";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import StableInputNumber from "controls/StableInputNumber";
 import { defaultYear } from "data/constants";
 
@@ -28,10 +28,8 @@ export default function VariableEditor(props) {
     autoCompute,
     year,
   } = props;
-  const [edited, setEdited] = useState(false);
   const variableName = searchParams.get("focus").split(".").slice(-1)[0];
   const variable = metadata.variables[variableName];
-  const required = ["state_name"].includes(variableName);
   const entityPlural = metadata.entities[variable.entity].plural;
   const isSimulated = !variable.isInputVariable;
   const possibleEntities = Object.keys(householdInput[entityPlural]).filter(
@@ -72,7 +70,6 @@ export default function VariableEditor(props) {
         setHouseholdInput={setHouseholdInput}
         nextVariable={nextVariable}
         autoCompute={autoCompute}
-        setEdited={setEdited}
         year={year}
       />
     );
@@ -112,7 +109,7 @@ export default function VariableEditor(props) {
           <SearchParamNavButton
             text="Enter"
             focus={nextVariable}
-            type={required && !edited ? "disabled" : "primary"}
+            type={"primary"}
             style={{ margin: "20px auto 10px" }}
           />
         )}
@@ -134,7 +131,6 @@ function HouseholdVariableEntity(props) {
     setHouseholdInput,
     nextVariable,
     autoCompute,
-    setEdited,
     year,
   } = props;
   const possibleTimePeriods = Object.keys(
@@ -158,7 +154,6 @@ function HouseholdVariableEntity(props) {
             setHouseholdInput={setHouseholdInput}
             nextVariable={nextVariable}
             autoCompute={autoCompute}
-            setEdited={setEdited}
             year={year}
           />
         );
@@ -181,7 +176,6 @@ function HouseholdVariableEntityInput(props) {
     timePeriod,
     setHouseholdInput,
     autoCompute,
-    setEdited,
   } = props;
   const submitValue = (value) => {
     value = Number.isNaN(+value) ? value : +value;
@@ -201,7 +195,6 @@ function HouseholdVariableEntityInput(props) {
         },
       );
     }
-    setEdited(true);
   };
   const simulatedValue = getValueFromHousehold(
     variable.name,
