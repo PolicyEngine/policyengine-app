@@ -169,7 +169,7 @@ function DatasetSelector(props) {
         disabled={!shouldEnableSlider(presentRegion, timePeriod)}
         checked={presentRegion === "enhanced_us" ? true : false}
       />
-      <h6
+      <p
         style={{
           margin: 0,
           fontSize: displayCategory !== "mobile" && "0.95em",
@@ -180,7 +180,7 @@ function DatasetSelector(props) {
         }}
       >
         Use Enhanced CPS (beta)
-      </h6>
+      </p>
       <Tooltip
         placement="topRight"
         title="Currently available for US-wide simulations only."
