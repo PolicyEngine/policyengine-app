@@ -90,10 +90,13 @@ export default function UserProfilePage(props) {
             setAccessedUserProfile({});
             setDispState(STATES.NO_PROFILE);
           }
-          if (data.status < 200 || data.status >= 300) {
+          else if (data.status < 200 || data.status >= 300) {
             console.error("Error while fetching accessed user profile");
             console.error(dataJson);
             setAccessedUserProfile({});
+          } else if (isOwnProfile) {
+            setAccessedUserProfile(dataJson.result);
+            setDispState(STATES.OWN_PROFILE);
           } else {
             setAccessedUserProfile(dataJson.result);
             setDispState(STATES.OTHER_PROFILE);
@@ -111,15 +114,9 @@ export default function UserProfilePage(props) {
       return;
     }
 
-    if (!isOwnProfile) {
-      // Execute fetch
-      fetchProfile();
-    } else {
-      setDispState(STATES.OWN_PROFILE);
-      setAccessedUserProfile(authedUserProfile);
-      setIsHeaderLoading(false);
-    }
-  }, [countryId, isOwnProfile, authedUserProfile, accessedUserId, metadata]);
+    fetchProfile();
+
+  }, [countryId, isOwnProfile, accessedUserId, metadata]);
 
   useEffect(() => {
     async function fetchAccessedPolicies() {
@@ -150,6 +147,9 @@ export default function UserProfilePage(props) {
     async function emitPreAuthPolicies() {
       // Only run if the user has accessed their personal
       // profile page
+      if (!metadata) {
+        return;
+      }
 
       // Check if user has any policies from before account creation
       // or policies that have failed to emit correctly before
