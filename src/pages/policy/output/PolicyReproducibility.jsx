@@ -50,6 +50,7 @@ export default function PolicyReproducibility(props) {
         data={codeLines.join("\n")}
         language={"python"}
         maxHeight="100%"
+        showExpand={false}
       />
       <div
         style={{

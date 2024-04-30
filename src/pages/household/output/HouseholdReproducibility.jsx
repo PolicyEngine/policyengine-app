@@ -51,6 +51,7 @@ export default function HouseholdReproducibility(props) {
           data={lines.join("\n")}
           language={"python"}
           maxHeight="100%"
+          showExpand={false}
         />
         <div
           style={{

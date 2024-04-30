@@ -371,7 +371,13 @@ export default function APIDocumentationPage({ metadata }) {
   );
 }
 
-export function CodeBlock({ data, title, language, maxHeight }) {
+export function CodeBlock({
+  data,
+  title,
+  language,
+  maxHeight,
+  showExpand = true,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -415,36 +421,38 @@ export function CodeBlock({ data, title, language, maxHeight }) {
           gap: "0.5rem",
         }}
       >
-        <Tooltip title={`${isExpanded ? "Close" : "Expand"} the code block`}>
-          <Button
-            type="default"
-            style={{
-              border: 0,
-              fontWeight: 500,
-              boxShadow: "none",
-            }}
-            onClick={() => setIsExpanded((prev) => !prev)}
-          >
-            <div
+        {showExpand && (
+          <Tooltip title={`${isExpanded ? "Close" : "Expand"} the code block`}>
+            <Button
+              type="default"
               style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.5rem",
+                border: 0,
+                fontWeight: 500,
+                boxShadow: "none",
               }}
+              onClick={() => setIsExpanded((prev) => !prev)}
             >
-              {isExpanded ? <UpOutlined /> : <DownOutlined />}
-              <p
+              <div
                 style={{
-                  margin: 0,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "0.5rem",
                 }}
               >
-                {isExpanded ? "Shrink" : "Expand"}
-              </p>
-            </div>
-          </Button>
-        </Tooltip>
+                {isExpanded ? <UpOutlined /> : <DownOutlined />}
+                <p
+                  style={{
+                    margin: 0,
+                  }}
+                >
+                  {isExpanded ? "Shrink" : "Expand"}
+                </p>
+              </div>
+            </Button>
+          </Tooltip>
+        )}
         <Tooltip title="Copy the code block">
           <Button
             type="default"

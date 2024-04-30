@@ -86,9 +86,9 @@ export default function TaxYear(props) {
       />
       <SearchParamNavButton
         data-testid="taxyear_navbutton"
-        text="Enter"
+        text="Submit"
         focus="input.household.maritalStatus"
-        style={{ margin: "20px auto 10px" }}
+        style={{ marginTop: 20 }}
       />
     </CenteredMiddleColumn>
   );

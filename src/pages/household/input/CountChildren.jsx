@@ -161,9 +161,9 @@ export default function CountChildren(props) {
         }}
       />
       <SearchParamNavButton
-        text="Enter"
+        text="Submit"
         focus={`input.household.${metadata.basicInputs[0]}`}
-        style={{ margin: "20px auto 10px" }}
+        style={{ marginTop: 20 }}
       />
     </>
   );
