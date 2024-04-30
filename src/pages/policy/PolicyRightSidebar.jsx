@@ -413,7 +413,8 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons, closeDrawer } = props;
+  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
+    props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const region = searchParams.get("region");
@@ -620,6 +621,7 @@ export default function PolicyRightSidebar(props) {
         <div style={{ paddingLeft: 5 }}>
           <Collapsable
             label="More options"
+            defaultOpen={defaultOpen}
             child={
               <div
                 style={{

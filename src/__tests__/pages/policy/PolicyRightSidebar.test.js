@@ -58,7 +58,7 @@ beforeAll(async () => {
 });
 
 describe("Enhanced CPS selector", () => {
-  test.skip("Should be present for the US site", async () => {
+  test("Should be present for the US site", async () => {
     const testSearchParams = {
       focus: "gov",
     };
@@ -74,6 +74,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -82,7 +83,7 @@ describe("Enhanced CPS selector", () => {
       expect(getByTestId("enhanced_cps_switch")).toBeInTheDocument();
     });
   });
-  test.skip("Should not render for the UK site", async () => {
+  test("Should not render for the UK site", async () => {
     const testSearchParams = {
       focus: "gov",
     };
@@ -98,6 +99,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "uk",
       },
       policy: standardPolicyUK,
+      defaultOpen: true,
     };
 
     const { queryByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -106,7 +108,7 @@ describe("Enhanced CPS selector", () => {
       expect(queryByTestId("enhanced_cps_switch")).not.toBeInTheDocument();
     });
   });
-  test.skip("Should be enabled when region is 'us'", async () => {
+  test("Should be enabled when region is 'us'", async () => {
     const testSearchParams = {
       focus: "gov",
       region: "us",
@@ -123,6 +125,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -131,7 +134,7 @@ describe("Enhanced CPS selector", () => {
       "ant-switch-disabled",
     );
   });
-  test.skip("Should be enabled when region is 'enhanced_us'", async () => {
+  test("Should be enabled when region is 'enhanced_us'", async () => {
     const testSearchParams = {
       focus: "gov",
       region: "enhanced_us",
@@ -148,6 +151,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -156,7 +160,7 @@ describe("Enhanced CPS selector", () => {
       "ant-switch-disabled",
     );
   });
-  test.skip("Should be enabled when region is 'null'", async () => {
+  test("Should be enabled when region is 'null'", async () => {
     const testSearchParams = {
       focus: "gov",
     };
@@ -172,6 +176,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -180,7 +185,7 @@ describe("Enhanced CPS selector", () => {
       "ant-switch-disabled",
     );
   });
-  test.skip("Should not be enabled when region is a state", async () => {
+  test("Should not be enabled when region is a state", async () => {
     const testSearchParams = {
       focus: "gov",
       region: "ar",
@@ -197,6 +202,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
@@ -205,7 +211,7 @@ describe("Enhanced CPS selector", () => {
       "ant-switch-disabled",
     );
   });
-  test.skip("Should change region when selected", () => {
+  test("Should change region when selected", () => {
     const testSearchParams = {
       focus: "gov",
       region: "us",
@@ -229,6 +235,7 @@ describe("Enhanced CPS selector", () => {
         countryId: "us",
       },
       policy: standardPolicyUS,
+      defaultOpen: true,
     };
 
     const { getByTestId } = render(<PolicyRightSidebar {...props} />);
