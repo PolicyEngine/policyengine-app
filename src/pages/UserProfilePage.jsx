@@ -89,8 +89,7 @@ export default function UserProfilePage(props) {
           if (data.status === 404 && dataJson.status === "ok") {
             setAccessedUserProfile({});
             setDispState(STATES.NO_PROFILE);
-          }
-          else if (data.status < 200 || data.status >= 300) {
+          } else if (data.status < 200 || data.status >= 300) {
             console.error("Error while fetching accessed user profile");
             console.error(dataJson);
             setAccessedUserProfile({});
@@ -115,7 +114,6 @@ export default function UserProfilePage(props) {
     }
 
     fetchProfile();
-
   }, [countryId, isOwnProfile, accessedUserId, metadata]);
 
   useEffect(() => {
