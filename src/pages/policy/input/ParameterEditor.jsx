@@ -11,7 +11,7 @@ import { currencyMap } from "../../../api/variables";
 import { defaultStartDate, defaultEndDate } from "data/constants";
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
-import moment from "moment";
+import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
 
 const { RangePicker } = DatePicker;
