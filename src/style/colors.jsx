@@ -34,6 +34,8 @@ const colors = {
   DARK_BLUE_HOVER,
   BLUE_LIGHT,
   BLUE_PRESSED,
+  ANT_BORDER_GRAY,
+  ANT_HOVERED_LIGHT_GRAY
 };
 
 export default colors;

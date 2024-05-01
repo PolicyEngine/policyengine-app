@@ -25,6 +25,7 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
 import useDisplayCategory from "hooks/useDisplayCategory";
+import style from "../../../style";
 
 const { RangePicker } = DatePicker;
 
@@ -275,7 +276,7 @@ function PeriodSetter(props) {
     <Popover trigger="click" content={popoverContent} placement="bottom">
       <Tooltip title="Click to edit parameter timespan">
         <Button
-          type="text"
+          type="default"
           style={{
             width: "max-content",
           }}
