@@ -5,7 +5,6 @@ import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from "./authUtils";
 export default function Auth0ProviderWithNavigate({ children }) {
   const navigate = useNavigate();
 
-  const redirectUri = "https://policyengine.org/callback";
   const domain = AUTH0_DOMAIN;
   const clientId = AUTH0_CLIENT_ID;
 
