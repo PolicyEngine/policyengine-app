@@ -339,9 +339,9 @@ function UserProfileSection(props) {
       }}
     >
       {dispState === STATES.OWN_PROFILE &&
-      isAuthenticated &&
-      user &&
-      user.picture ? (
+        isAuthenticated &&
+        user &&
+        user.picture ? (
         <img
           src={user.picture}
           alt="Profile"
@@ -609,7 +609,7 @@ function UsernameDisplayAndEditor(props) {
             size="small"
             onPressEnter={handleSubmit}
             onKeyDown={(e) => {
-              if (e.key == "Escape") {
+              if (e.key === "Escape") {
                 setIsEditing(false);
               }
             }}
