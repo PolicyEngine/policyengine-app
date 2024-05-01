@@ -24,7 +24,7 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-import useDisplayCategory from "redesign/components/useDisplayCategory";
+import useDisplayCategory from "hooks/useDisplayCategory";
 
 const { RangePicker } = DatePicker;
 
@@ -95,14 +95,23 @@ export default function ParameterEditor(props) {
     >
       <div
         style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "flex-start",
+          alignItems: "center",
+          gap: "10px"
+
+          /*
           display: "grid",
           justifyItems: "center",
           gridTemplate: gridTemplate,
           alignItems: "center",
-          padding: displayCategory !== "mobile" && "20px 80px 0 80px",
+          padding: displayCategory !== "mobile" && "20px 0px 0 0px",
           paddingTop: 20,
           gap: 10,
           width: "100%",
+          */
         }}
       >
         <PeriodSetter
@@ -240,7 +249,7 @@ function PeriodSetter(props) {
         <Button
           type="text"
           style={{
-            width: "100%",
+            width: "max-content",
           }}
         >
           {dateSelectButtonLabel}
