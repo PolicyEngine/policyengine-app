@@ -92,44 +92,55 @@ export default function ParameterEditor(props) {
       marginBottom={0}
       title={capitalize(parameter.label)}
       description={description + timePeriodSentence}
+      style={{
+        gap: "30px"
+      }}
     >
       <div
         style={{
-          width: "100%",
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
+          flexDirection: "column",
           gap: "10px"
-
-          /*
-          display: "grid",
-          justifyItems: "center",
-          gridTemplate: gridTemplate,
-          alignItems: "center",
-          padding: displayCategory !== "mobile" && "20px 0px 0 0px",
-          paddingTop: 20,
-          gap: 10,
-          width: "100%",
-          */
         }}
       >
-        <PeriodSetter
-          metadata={metadata}
-          startDate={startDate}
-          endDate={endDate}
-          setStartDate={setStartDate}
-          setEndDate={setEndDate}
-        />
-        <ValueSetter
-          startDate={startDate}
-          endDate={endDate}
-          parameterName={parameterName}
-          policy={policy}
-          metadata={metadata}
-          reformMap={reformMap}
-          baseMap={baseMap}
-        />
+        <p
+          style={{
+            paddingRight: 30,
+            color: "gray",
+            display: "inline-block",
+            fontFamily: "Roboto",
+            margin: 0
+          }}
+        >
+          Current value
+        </p>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-start",
+            alignItems: "center",
+            gap: "10px"
+          }}
+        >
+          <PeriodSetter
+            metadata={metadata}
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+          />
+          <ValueSetter
+            startDate={startDate}
+            endDate={endDate}
+            parameterName={parameterName}
+            policy={policy}
+            metadata={metadata}
+            reformMap={reformMap}
+            baseMap={baseMap}
+          />
+        </div>
       </div>
       {!parameter.economy && (
         <Alert
@@ -137,16 +148,33 @@ export default function ParameterEditor(props) {
           type="warning"
         />
       )}
-      <ParameterOverTime
-        baseMap={baseMap}
-        {...(reformData &&
-          Object.keys(reformData).length > 0 && {
-            reformMap: reformMap,
-          })}
-        parameter={parameter}
-        policy={policy}
-        metadata={metadata}
-      />
+      <div
+      >
+        <p
+          style={{
+            margin: 0,
+            color: "gray",
+            display: "inline-block",
+            fontFamily: "Roboto",
+            position: "relative",
+            zIndex: 5
+          }}
+        >
+          Historical values
+        </p>
+        <div style={{marginLeft: "-25px", marginTop: "-15px", position: "relative", zIndex: 1}}>
+          <ParameterOverTime
+            baseMap={baseMap}
+            {...(reformData &&
+              Object.keys(reformData).length > 0 && {
+                reformMap: reformMap,
+              })}
+            parameter={parameter}
+            policy={policy}
+            metadata={metadata}
+          />
+        </div>
+      </div>
     </CenteredMiddleColumn>
   );
 }

@@ -7,6 +7,7 @@ export default function CenteredMiddleColumn(props) {
     children,
     marginTop,
     descriptionLabel = true,
+    style
   } = props;
   const mobile = useMobile();
   return (
@@ -15,14 +16,11 @@ export default function CenteredMiddleColumn(props) {
         display: "flex",
         flexDirection: "column",
         marginTop: mobile ? "20%" : marginTop ? marginTop : "10%",
+        paddingLeft: 50,
+        paddingRight: 50,
+        ...style
       }}
     >
-      <div
-        style={{
-          paddingLeft: 50,
-          paddingRight: 50,
-        }}
-      >
         <h3 style={{ fontFamily: "Roboto Serif", fontWeight: 400 }}>{title}</h3>
 
         {description && (
@@ -43,9 +41,7 @@ export default function CenteredMiddleColumn(props) {
             <p style={{ fontFamily: "Roboto Serif" }}>{description}</p>
           </>
         )}
-        <div style={{ marginTop: 20 }} />
         {children}
       </div>
-    </div>
   );
 }
