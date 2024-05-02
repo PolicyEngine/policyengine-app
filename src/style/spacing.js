@@ -1,4 +1,4 @@
-import colors from "./colors.jsx";
+import colors from "../redesign/style/colors.jsx";
 
 export const HEADER_HEIGHT = 64;
 
