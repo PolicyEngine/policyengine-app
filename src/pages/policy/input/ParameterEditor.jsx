@@ -362,7 +362,8 @@ function ValueSetter(props) {
     return (
       <StableInputNumber
         style={{
-          width: displayCategory === "mobile" ? "50%" : "100%",
+          width: "100%",
+          minWidth: "100px"
         }}
         key={"input for" + parameter.parameter}
         {...(isCurrency
