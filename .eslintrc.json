@@ -16,9 +16,16 @@
   },
   "overrides": [
     {
-      "files": ["**/*test.js"],
-      "extends": ["eslint:recommended", "plugin:jest/recommended"],
-      "rules": { "jest/prefer-expect-assertions": "off" },
+      "files": [
+        "**/*test.js"
+      ],
+      "extends": [
+        "eslint:recommended",
+        "plugin:jest/recommended"
+      ],
+      "rules": {
+        "jest/prefer-expect-assertions": "off"
+      },
       "env": {
         "jest": true
       }
@@ -28,7 +35,12 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "jest", "jsx-a11y"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jest",
+    "jsx-a11y"
+  ],
   "rules": {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
@@ -37,9 +49,23 @@
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/mouse-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "jsx-a11y/no-static-element-interactions": "off"
+    "jsx-a11y/no-static-element-interactions": "off",
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "error",
+          "warn",
+          "info",
+          "table"
+        ]
+      }
+    ]
   },
-  "ignorePatterns": ["**/*.css", "**/*.scss"],
+  "ignorePatterns": [
+    "**/*.css",
+    "**/*.scss"
+  ],
   "settings": {
     "react": {
       "pragma": "React", // Pragma to use, default to "React"
