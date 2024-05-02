@@ -3,7 +3,7 @@ import Header from "../redesign/components/Header";
 import Helmet from "react-helmet";
 import Section from "../redesign/components/Section";
 import PageHeader from "../redesign/components/PageHeader";
-import style from "../redesign/style";
+import style from "../style";
 import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {

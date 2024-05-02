@@ -1,6 +1,6 @@
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import useCountryId from "../../hooks/useCountryId";
-import style from "../style";
+import style from "../../style";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
 import CalculatorIcon from "../images/icons/calculator.png";

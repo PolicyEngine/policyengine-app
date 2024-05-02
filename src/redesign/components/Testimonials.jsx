@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Footer from "../../layout/Footer";
 import Section from "./Section";
-import style from "../style";
+import style from "../../style";
 import { fullQuotes } from "../data/Quotes";
 import { allOrgs } from "redesign/data/Organisations";
 import useDisplayCategory from "../../hooks/useDisplayCategory";

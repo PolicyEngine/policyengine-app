@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import Section from "./Section";
 import codingScreenshot from "../images/home/coding_screenshot.png";
 import parameterScreenshot from "../images/home/parameter_screenshot.png";

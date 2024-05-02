@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import { SectionBottom, SectionTop } from "./Section";
 import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "../../hooks/useDisplayCategory";

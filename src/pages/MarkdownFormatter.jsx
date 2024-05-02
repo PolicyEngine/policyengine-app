@@ -3,7 +3,7 @@ import { TwitterTweetEmbed } from "react-twitter-embed";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import { useState, useRef, useEffect } from "react";
-import style from "../redesign/style";
+import style from "../style";
 import useDisplayCategory from "../hooks/useDisplayCategory";
 import Plot from "react-plotly.js";
 

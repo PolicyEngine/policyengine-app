@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 export default function Carousel(props) {

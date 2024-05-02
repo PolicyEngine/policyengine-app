@@ -1,4 +1,4 @@
-import style from "../redesign/style";
+import style from "../style";
 import Section from "../redesign/components/Section";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import useDisplayCategory from "../hooks/useDisplayCategory";

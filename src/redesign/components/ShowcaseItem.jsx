@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import EmphasisedLink from "./EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";

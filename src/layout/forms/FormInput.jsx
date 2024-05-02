@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "redesign/style";
+import style from "style";
 import { motion } from "framer-motion";
 
 /**

@@ -1,4 +1,4 @@
-import style from "../style";
+import style from "../../style";
 import useDisplayCategory from "../../hooks/useDisplayCategory.jsx";
 import { useState, useEffect } from "react";
 import { quoteData } from "../data/Quotes.jsx";
