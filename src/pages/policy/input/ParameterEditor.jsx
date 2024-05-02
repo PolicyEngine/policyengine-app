@@ -24,7 +24,6 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-import useDisplayCategory from "hooks/useDisplayCategory";
 
 const { RangePicker } = DatePicker;
 
@@ -53,8 +52,6 @@ export default function ParameterEditor(props) {
 
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
-
-  const displayCategory = useDisplayCategory();
 
   useEffect(() => {
     if (reformData && Object.keys(reformData).length > 0) {

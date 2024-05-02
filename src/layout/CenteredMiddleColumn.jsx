@@ -1,5 +1,3 @@
-import useMobile from "../layout/Responsive";
-
 export default function CenteredMiddleColumn(props) {
   const {
     title,
