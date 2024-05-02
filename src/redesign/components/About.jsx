@@ -3,7 +3,7 @@ import Footer from "../../layout/Footer.jsx";
 import Section from "./Section";
 import style from "../../style";
 import PageHeader from "./PageHeader";
-import { founders, staff, advisors } from "../data/staff.js";
+import { founders, staff, advisors } from "../../data/staff.js";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";

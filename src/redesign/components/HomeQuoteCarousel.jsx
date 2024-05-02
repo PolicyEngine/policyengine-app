@@ -1,8 +1,8 @@
 import style from "../../style";
 import useDisplayCategory from "../../hooks/useDisplayCategory.jsx";
 import { useState, useEffect } from "react";
-import { quoteData } from "../data/Quotes.jsx";
-import { orgData } from "../data/Organisations.jsx";
+import { quoteData } from "../../data/quotes.js";
+import { orgData } from "../../data/organisations";
 import Carousel from "./Carousel";
 import useCountryId from "../../hooks/useCountryId";
 import { Link } from "react-router-dom";

@@ -10,7 +10,7 @@ export const founders = {
 		data scientist at Google. Max has a master's degree in Data,
 		Economics, and Development Policy from MIT and a bachelor's
 		degree in operations research from UC Berkeley.`,
-    image: require("../../images/authors/max-ghenis.png"),
+    image: require("../images/authors/max-ghenis.png"),
   },
   nikhil_woodruff: {
     name: "Nikhil Woodruff",
@@ -20,7 +20,7 @@ export const founders = {
     scientist at Caspian, where he worked in improving anti-money laundering
     investigations. Nikhil has a bachelor's degree in Computer Science from the
     University of Durham.`,
-    image: require("../../images/authors/nikhil-woodruff.jpg"),
+    image: require("../images/authors/nikhil-woodruff.jpg"),
   },
 };
 
@@ -32,7 +32,7 @@ export const staff = {
     where he researched the economic implications of forced migration. 
     Pavel is currently enrolled in the International Economics Master’s 
     program at the Hochschule für Wirtschaft und Recht in Berlin.`,
-    image: require("../../images/authors/pavel-makarchuk.png"),
+    image: require("../images/authors/pavel-makarchuk.png"),
   },
   anthony_volk: {
     name: "Anthony Volk",
@@ -43,7 +43,7 @@ export const staff = {
     development with the Institute for State Effectiveness. He holds an
     A.B. in Government and East Asian Studies from Harvard 
     University.`,
-    image: require("../../images/authors/anthony-volk.jpg"),
+    image: require("../images/authors/anthony-volk.jpg"),
   },
   martin_holmer: {
     name: "Martin Holmer",
@@ -53,7 +53,7 @@ export const staff = {
     Previously, he was the lead developer for the Policy Simulation Library's Tax-Calculator federal income tax microsimulation model, 
     and he has built microsimulation models around the world for organizations including the World Bank and the US Social Security Administration. 
     Martin has a Ph.D. in economics from MIT.`,
-    image: require("../../images/authors/martin_holmer.png"),
+    image: require("../images/authors/martin_holmer.png"),
   },
 };
 
@@ -66,7 +66,7 @@ export const advisors = {
     organizations building microsimulation and computing systems for 
     policymaking. George holds an A.B. in Mathematics from Harvard University, 
     and an M.A. and Ph.D. in Economics from Yale University.`,
-    image: require("../../images/headshots/george_sadowsky.jpeg"),
+    image: require("../images/headshots/george_sadowsky.jpeg"),
   },
   damiola_ogundipe: {
     name: "Damola Ogundipe",
@@ -75,7 +75,7 @@ export const advisors = {
     public policy. He previously worked as a Senior Consultant at Oxford 
     Strategic Consulting. Damola holds a B.S. in Finance from the University 
     of Minnesota.`,
-    image: require("../../images/headshots/damiola_ogundipe.jpeg"),
+    image: require("../images/headshots/damiola_ogundipe.jpeg"),
   },
   jesse_horwitz: {
     name: "Jesse Horwitz",
@@ -83,7 +83,7 @@ export const advisors = {
     as a policy advisor to Andrew Yang's mayoral campaign and as an investment 
     analyst. Jesse holds a bachelor's degree in Economics-Mathematics from 
     Columbia University and attended Harvard Law School.`,
-    image: require("../../images/headshots/jesse_horwitz.jpeg"),
+    image: require("../images/headshots/jesse_horwitz.jpeg"),
   },
   matt_jensen: {
     name: "Matt Jensen",
@@ -91,6 +91,6 @@ export const advisors = {
     American Enterprise Institute. He is also a co-founder of the Open Research 
     Group, the Policy Simulation Library, and Compute Tooling. Jensen is a 
     graduate of Pomona College with a degree in math.`,
-    image: require("../../images/headshots/matt_jensen.png"),
+    image: require("../images/headshots/matt_jensen.png"),
   },
 };

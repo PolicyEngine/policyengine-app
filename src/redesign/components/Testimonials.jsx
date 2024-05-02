@@ -2,8 +2,8 @@ import Header from "./Header";
 import Footer from "../../layout/Footer";
 import Section from "./Section";
 import style from "../../style";
-import { fullQuotes } from "../data/Quotes";
-import { allOrgs } from "redesign/data/Organisations";
+import { fullQuotes } from "../../data/quotes";
+import { allOrgs } from "data/organisations";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 
 export default function Testimonials() {
