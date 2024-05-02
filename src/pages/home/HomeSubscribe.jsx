@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 import style from "../../style";
 import Section from "../../layout/Section";
-import FormContext from "layout/forms/FormContext";
-import FormInput from "layout/forms/FormInput";
+import FormContext from "forms/FormContext";
+import FormInput from "forms/FormInput";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { submitToMailchimp } from "../../data/mailchimpSubscription";
 
