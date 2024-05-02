@@ -93,87 +93,95 @@ export default function ParameterEditor(props) {
       marginBottom={0}
       title={capitalize(parameter.label)}
       description={description + timePeriodSentence}
-      style={{
-        gap: "30px"
-      }}
     >
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px"
+          gap: "30px",
+          // The below margin is because, for params with descriptions,
+          // the description already contains bottom padding
+          marginTop: "14px"
         }}
       >
-        <p
-          style={{
-            paddingRight: 30,
-            color: "gray",
-            display: "inline-block",
-            fontFamily: "Roboto",
-            margin: 0
-          }}
-        >
-          Current value
-        </p>
         <div
           style={{
-            width: "100%",
             display: "flex",
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center",
+            flexDirection: "column",
             gap: "10px"
           }}
         >
-          <PeriodSetter
-            metadata={metadata}
-            startDate={startDate}
-            endDate={endDate}
-            setStartDate={setStartDate}
-            setEndDate={setEndDate}
-          />
-          <ValueSetter
-            startDate={startDate}
-            endDate={endDate}
-            parameterName={parameterName}
-            policy={policy}
-            metadata={metadata}
-            reformMap={reformMap}
-            baseMap={baseMap}
-          />
+          <p
+            style={{
+              paddingRight: 30,
+              color: "gray",
+              display: "inline-block",
+              fontFamily: "Roboto",
+              margin: 0
+            }}
+          >
+            Current value
+          </p>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              gap: "10px"
+            }}
+          >
+            <PeriodSetter
+              metadata={metadata}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+            />
+            <ValueSetter
+              startDate={startDate}
+              endDate={endDate}
+              parameterName={parameterName}
+              policy={policy}
+              metadata={metadata}
+              reformMap={reformMap}
+              baseMap={baseMap}
+            />
+          </div>
         </div>
-      </div>
-      {!parameter.economy && (
-        <Alert
-          message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
-          type="warning"
-        />
-      )}
-      <div
-      >
-        <p
-          style={{
-            margin: 0,
-            color: "gray",
-            display: "inline-block",
-            fontFamily: "Roboto",
-            position: "relative",
-            zIndex: 5
-          }}
-        >
-          Historical values
-        </p>
-        <div style={{marginLeft: "-25px", marginTop: "-20px", position: "relative", zIndex: 1}}>
-          <ParameterOverTime
-            baseMap={baseMap}
-            {...(reformData &&
-              Object.keys(reformData).length > 0 && {
-                reformMap: reformMap,
-              })}
-            parameter={parameter}
-            policy={policy}
-            metadata={metadata}
+        {!parameter.economy && (
+          <Alert
+            message="PolicyEngine does not currently model this parameter in society-wide economic simulations."
+            type="warning"
           />
+        )}
+        <div
+        >
+          <p
+            style={{
+              margin: 0,
+              color: "gray",
+              display: "inline-block",
+              fontFamily: "Roboto",
+              position: "relative",
+              zIndex: 5
+            }}
+          >
+            Historical values
+          </p>
+          <div style={{marginLeft: "-25px", marginTop: "-20px", position: "relative", zIndex: 1}}>
+            <ParameterOverTime
+              baseMap={baseMap}
+              {...(reformData &&
+                Object.keys(reformData).length > 0 && {
+                  reformMap: reformMap,
+                })}
+              parameter={parameter}
+              policy={policy}
+              metadata={metadata}
+            />
+          </div>
         </div>
       </div>
     </CenteredMiddleColumn>
