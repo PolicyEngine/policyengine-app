@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import style from "../../style";
-import Section from "./Section";
+import Section from "../../redesign/components/Section";
 import FormContext from "layout/forms/FormContext";
 import FormInput from "layout/forms/FormInput";
 import useDisplayCategory from "../../hooks/useDisplayCategory";

@@ -1,5 +1,5 @@
 import style from "../../style";
-import Section from "./Section";
+import Section from "../../redesign/components/Section";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import LinkButton from "controls/LinkButton";
 import useCountryId from "../../hooks/useCountryId";

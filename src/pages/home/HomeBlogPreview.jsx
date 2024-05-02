@@ -1,12 +1,12 @@
 import style from "../../style";
-import { SectionBottom, SectionTop } from "./Section";
+import { SectionBottom, SectionTop } from "../../redesign/components/Section";
 import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import Carousel from "./Carousel";
+import Carousel from "../../redesign/components/Carousel";
 import moment from "moment";
 import { useState } from "react";
 import useCountryId from "../../hooks/useCountryId";
-import EmphasisedLink from "./EmphasisedLink";
+import EmphasisedLink from "../../redesign/components/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {

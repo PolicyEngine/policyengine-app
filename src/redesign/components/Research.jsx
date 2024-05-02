@@ -14,7 +14,7 @@ import {
   topicLabels,
 } from "../../posts/postTransformers";
 import authors from "../../posts/authors.json";
-import { MediumBlogPreview } from "./HomeBlogPreview";
+import { MediumBlogPreview } from "../../pages/home/HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
 import { useRef, useState } from "react";
