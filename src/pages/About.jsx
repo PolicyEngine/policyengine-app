@@ -4,7 +4,7 @@ import Section from "../layout/Section.jsx";
 import style from "../style/index.js";
 import PageHeader from "../layout/PageHeader.jsx";
 import { founders, staff, advisors } from "../data/staff.js";
-import useDisplayCategory from "../hooks/useDisplayCategory.jsx";
+import useDisplayCategory from "../hooks/useDisplayCategory.js";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 

@@ -1,10 +1,10 @@
 import style from "../../style/index.js";
-import useDisplayCategory from "../../hooks/useDisplayCategory.jsx";
+import useDisplayCategory from "../../hooks/useDisplayCategory.js";
 import { useState, useEffect } from "react";
 import { quoteData } from "../../data/quotes.js";
 import { orgData } from "../../data/organisations.js";
 import Carousel from "../../layout/Carousel.jsx";
-import useCountryId from "../../hooks/useCountryId.jsx";
+import useCountryId from "../../hooks/useCountryId.js";
 import { Link } from "react-router-dom";
 import FontIcon from "../../layout/FontIcon.jsx";
 import Section from "../../layout/Section.jsx";
