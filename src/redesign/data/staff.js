@@ -32,7 +32,7 @@ export const staff = {
     where he researched the economic implications of forced migration. 
     Pavel is currently enrolled in the International Economics Master’s 
     program at the Hochschule für Wirtschaft und Recht in Berlin.`,
-    image: require("../images/authors/pavel-makarchuk.png"),
+    image: require("../../images/authors/pavel-makarchuk.png"),
   },
   anthony_volk: {
     name: "Anthony Volk",
@@ -53,7 +53,7 @@ export const staff = {
     Previously, he was the lead developer for the Policy Simulation Library's Tax-Calculator federal income tax microsimulation model, 
     and he has built microsimulation models around the world for organizations including the World Bank and the US Social Security Administration. 
     Martin has a Ph.D. in economics from MIT.`,
-    image: require("../images/authors/martin_holmer.png"),
+    image: require("../../images/authors/martin_holmer.png"),
   },
 };
 
