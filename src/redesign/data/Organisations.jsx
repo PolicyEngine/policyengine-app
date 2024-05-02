@@ -1,4 +1,4 @@
-import Centre from "../images/logos/orgs/centre.png";
+import Centre from "../../images/logos/orgs/centre.png";
 import CPS from "../../images/logos/orgs/cps.png";
 import GPEW from "../../images/logos/orgs/gpew.png";
 import LiberalParty from "../../images/logos/orgs/liberal-party.jpeg";
@@ -15,7 +15,7 @@ import GCV from "../../images/logos/orgs/gary-community-ventures.png";
 import MCA from "../../images/logos/orgs/mca.jpg";
 import UBICenter from "../../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../../images/logos/orgs/mothers-outreach-network.png";
-import NIESR from "../images/logos/orgs/niesr.jpeg";
+import NIESR from "../../images/logos/orgs/niesr.jpeg";
 
 // eslint-disable-next-line
 export const orgData = {

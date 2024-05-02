@@ -1,8 +1,8 @@
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import useCountryId from "../../hooks/useCountryId";
 import style from "../../style";
-import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
-import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
+import PolicyEngineMainLogo from "../../images/logos/policyengine/white.svg";
+import PolicyEngineSmallLogo from "../../images/logos/policyengine/profile/white.svg";
 import CalculatorIcon from "../images/icons/calculator.png";
 import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
