@@ -5,7 +5,7 @@ import fonts from "./fonts";
 const style = {
   colors,
   spacing,
-  fonts
+  fonts,
 };
 
 export default style;

@@ -39,7 +39,7 @@ const colors = {
   TEAL_ACCENT,
   TEAL_LIGHT,
   TEAL_PRESSED,
-  WHITE
+  WHITE,
 };
 
 export default colors;
