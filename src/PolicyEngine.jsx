@@ -1,12 +1,12 @@
-import Home from "../../pages/Home";
-import Research from "../../pages/Research";
-import About from "../../pages/About";
-import Jobs from "../../pages/Jobs";
+import Home from "./pages/Home";
+import Research from "./pages/Research";
+import About from "./pages/About";
+import Jobs from "./pages/Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
-import Contact from "../../pages/Contact";
-import Donate from "../../pages/Donate";
+import Contact from "./pages/Contact";
+import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
-import BlogPage from "../../pages/BlogPage";
+import BlogPage from "./pages/BlogPage";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
@@ -14,27 +14,27 @@ import {
   copySearchParams,
   countryApiCall,
   updateMetadata,
-} from "../../api/call";
-import LoadingCentered from "../../layout/LoadingCentered";
-import ErrorPage from "../../layout/Error";
-import Header from "../../layout/Header";
-import Testimonials from "../../pages/Testimonials";
-import CalculatorInterstitial from "../../pages/CalculatorInterstitial";
-import CitizensEconomicCouncil from "../../applets/CitizensEconomicCouncil";
-import APIDocumentationPage from "../../pages/APIDocumentationPage";
-import CookieConsent from "../../modals/CookieConsent";
-import TrafwaCalculator from "../../applets/TrafwaCalculator";
-import AuthCallback from "../../layout/AuthCallback";
-import UserProfilePage from "../../pages/UserProfilePage";
-import PrivacyPage from "../../pages/PrivacyPage";
-import TACPage from "../../pages/TermsAndConditions";
+} from "./api/call";
+import LoadingCentered from "./layout/LoadingCentered";
+import ErrorPage from "./layout/Error";
+import Header from "./layout/Header";
+import Testimonials from "./pages/Testimonials";
+import CalculatorInterstitial from "./pages/CalculatorInterstitial";
+import CitizensEconomicCouncil from "./applets/CitizensEconomicCouncil";
+import APIDocumentationPage from "./pages/APIDocumentationPage";
+import CookieConsent from "./modals/CookieConsent";
+import TrafwaCalculator from "./applets/TrafwaCalculator";
+import AuthCallback from "./layout/AuthCallback";
+import UserProfilePage from "./pages/UserProfilePage";
+import PrivacyPage from "./pages/PrivacyPage";
+import TACPage from "./pages/TermsAndConditions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ConfigProvider } from "antd";
-import style from "../../style";
+import style from "./style";
 import moment from "dayjs";
 
-const PolicyPage = lazy(() => import("../../pages/PolicyPage"));
-const HouseholdPage = lazy(() => import("../../pages/HouseholdPage"));
+const PolicyPage = lazy(() => import("./pages/PolicyPage"));
+const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
