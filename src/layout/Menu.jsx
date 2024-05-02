@@ -2,9 +2,14 @@ import { useState } from "react";
 import { capitalize } from "../lang/format";
 import style from "../style";
 import { motion } from "framer-motion";
+import { Tag } from "antd";
 
 function MenuItem(props) {
   const { name, label, selected, onSelect } = props;
+
+  const betaBadge = <Tag color={style.colors.TEAL_ACCENT}>BETA</Tag>;
+  const isBeta = label.includes(" (experimental)");
+  const adjustedLabel = isBeta ? label.slice(0, -14) : label;
 
   return (
     <motion.div
@@ -37,10 +42,11 @@ function MenuItem(props) {
               fontWeight: 500,
             }}
           >
-            {label}
+            {adjustedLabel}
           </span>
         )}
-        {selected === name ? "" : label || name.split(".").pop()}
+        {selected === name ? "" : adjustedLabel || name.split(".").pop()}
+        {isBeta && betaBadge}
       </p>
     </motion.div>
   );
