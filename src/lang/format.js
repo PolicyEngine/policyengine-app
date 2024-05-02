@@ -85,7 +85,7 @@ export function formatPercent(number, countryId, options) {
 export function formatFullDate(date, countryId, options) {
   return new Intl.DateTimeFormat(localeCode(countryId), {
     dateStyle: "long",
-    ...options
+    ...options,
   }).format(new Date(date));
 }
 

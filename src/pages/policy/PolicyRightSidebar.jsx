@@ -269,8 +269,14 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel, countryId } =
-    props;
+  const {
+    startDateStr,
+    endDateStr,
+    parameterMetadata,
+    value,
+    paramLabel,
+    countryId,
+  } = props;
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);

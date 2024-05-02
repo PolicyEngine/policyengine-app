@@ -25,7 +25,6 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
 import useDisplayCategory from "hooks/useDisplayCategory";
-import style from "../../../style";
 
 const { RangePicker } = DatePicker;
 
@@ -71,13 +70,6 @@ export default function ParameterEditor(props) {
     }
   }, [reformData]);
 
-  let gridTemplate = null;
-  if (displayCategory === "mobile" || displayCategory === "tablet") {
-    gridTemplate = "repeat(2, 1fr) / 1fr";
-  } else {
-    gridTemplate = "1fr / repeat(2, 1fr)";
-  }
-
   const timePeriodSentence = parameter.period
     ? ` This parameter is ${parameter.period}ly.`
     : "";
@@ -101,14 +93,14 @@ export default function ParameterEditor(props) {
           gap: "30px",
           // The below margin is because, for params with descriptions,
           // the description already contains bottom padding
-          marginTop: "14px"
+          marginTop: "14px",
         }}
       >
         <div
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "10px"
+            gap: "10px",
           }}
         >
           <p
@@ -117,7 +109,7 @@ export default function ParameterEditor(props) {
               color: "gray",
               display: "inline-block",
               fontFamily: "Roboto",
-              margin: 0
+              margin: 0,
             }}
           >
             Current value
@@ -129,7 +121,7 @@ export default function ParameterEditor(props) {
               flexDirection: "row",
               justifyContent: "flex-start",
               alignItems: "center",
-              gap: "10px"
+              gap: "10px",
             }}
           >
             <PeriodSetter
@@ -156,8 +148,7 @@ export default function ParameterEditor(props) {
             type="warning"
           />
         )}
-        <div
-        >
+        <div>
           <p
             style={{
               margin: 0,
@@ -165,12 +156,19 @@ export default function ParameterEditor(props) {
               display: "inline-block",
               fontFamily: "Roboto",
               position: "relative",
-              zIndex: 5
+              zIndex: 5,
             }}
           >
             Historical values
           </p>
-          <div style={{marginLeft: "-25px", marginTop: "-20px", position: "relative", zIndex: 1}}>
+          <div
+            style={{
+              marginLeft: "-25px",
+              marginTop: "-20px",
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
             <ParameterOverTime
               baseMap={baseMap}
               {...(reformData &&
@@ -308,7 +306,6 @@ function ValueSetter(props) {
   } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const displayCategory = useDisplayCategory();
   const startValue = reformMap.get(startDate);
   const parameter = metadata.parameters[parameterName];
 
@@ -363,7 +360,7 @@ function ValueSetter(props) {
       <StableInputNumber
         style={{
           width: "100%",
-          minWidth: "100px"
+          minWidth: "100px",
         }}
         key={"input for" + parameter.parameter}
         {...(isCurrency
