@@ -114,10 +114,7 @@ export default function PolicyOutput(props) {
     return (
       <>
         <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
-        <LowLevelDisplay
-          {...props}
-          showPolicyImpactPopup={showPolicyImpactPopup}
-        >
+        <LowLevelDisplay {...props} showPolicyImpactPopup={false}>
           <PolicyReproducibility metadata={metadata} policy={policy} />
         </LowLevelDisplay>
       </>
