@@ -18,6 +18,7 @@ import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { defaultForeverYear } from "../../data/constants";
 import Collapsable from "../../redesign/components/Collapsable";
+import { formatFullDate } from "../../lang/format";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -268,7 +269,7 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } =
+  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel, countryId } =
     props;
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
@@ -321,7 +322,7 @@ function SinglePolicyChange(props) {
         )}
       </div>
       <div style={{ fontStyle: "italic" }}>
-        {`${startDateStr} ${isEndForever ? "onward" : `to ${endDateStr}`}`}
+        {`from ${formatFullDate(startDateStr, countryId)} ${isEndForever ? "onward" : `to ${formatFullDate(endDateStr, countryId)}`}`}
       </div>
     </div>
   );
@@ -339,6 +340,7 @@ function PolicyItem(props) {
         paramLabel={parameter.label}
         startDateStr={startDateStr}
         endDateStr={endDateStr}
+        countryId={metadata.countryId}
         parameterMetadata={parameter}
         value={value}
       />,

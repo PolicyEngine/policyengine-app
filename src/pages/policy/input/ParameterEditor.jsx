@@ -163,7 +163,7 @@ export default function ParameterEditor(props) {
         >
           Historical values
         </p>
-        <div style={{marginLeft: "-25px", marginTop: "-15px", position: "relative", zIndex: 1}}>
+        <div style={{marginLeft: "-25px", marginTop: "-20px", position: "relative", zIndex: 1}}>
           <ParameterOverTime
             baseMap={baseMap}
             {...(reformData &&
