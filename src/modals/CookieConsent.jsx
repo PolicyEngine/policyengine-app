@@ -1,4 +1,4 @@
-import "../redesign/style/App.css";
+import "../style/App.css";
 import { motion } from "framer-motion";
 import React from "react";
 import Button from "../controls/Button";
