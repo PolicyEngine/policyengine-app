@@ -204,8 +204,8 @@ export default function UserProfilePage(props) {
     </p>
   );
 
-  const accessedUserPolicyCards = accessedUserPolicies.map(
-    (userPolicy, index) => {
+  const accessedUserPolicyCards = accessedUserPolicies
+    .map((userPolicy, index) => {
       // This returns a React key error, but I see no way of fixing this (short of
       // returning empty JSX, which seems illogical), and React doesn't need the keys
       // to maintain the list anyway, since the list is empty
@@ -220,12 +220,12 @@ export default function UserProfilePage(props) {
           dateFormatter={dateFormatter}
         />
       );
-    },
-  );
+    })
+    .reverse();
 
   let sectionTitle = "Saved policy simulations";
   if (dispState === STATES.OWN_PROFILE) {
-    sectionTitle = "My saved policy simulations";
+    sectionTitle = "Your saved policy simulations";
   } else if (
     dispState === STATES.OTHER_PROFILE &&
     accessedUserProfile.username
@@ -274,7 +274,7 @@ export default function UserProfilePage(props) {
               width: "100%",
               gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
               gap: "12px",
-              marginTop: 20,
+              marginTop: 30,
             }}
           >
             {arePoliciesLoading
