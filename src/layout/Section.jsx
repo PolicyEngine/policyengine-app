@@ -1,5 +1,5 @@
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import style from "../../style";
+import useDisplayCategory from "../hooks/useDisplayCategory";
+import style from "../style";
 
 export default function Section({
   height,

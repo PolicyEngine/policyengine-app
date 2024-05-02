@@ -1,5 +1,5 @@
 import { Collapse } from "antd";
-import style_ from "../../style";
+import style_ from "../style";
 
 export default function Collapsable({ label, child, style, defaultOpen }) {
   return (

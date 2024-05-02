@@ -17,7 +17,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { defaultForeverYear } from "../../data/constants";
-import Collapsable from "../../redesign/components/Collapsable";
+import Collapsable from "../../layout/Collapsable";
 import { formatFullDate } from "../../lang/format";
 
 function RegionSelector(props) {

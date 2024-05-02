@@ -1,4 +1,4 @@
-import Header from "../redesign/components/Header";
+import Header from "../layout/Header";
 import HomeLanding from "./home/HomeLanding";
 import HomeCallToAction from "./home/HomeCallToAction";
 import HomeBlogPreview from "./home/HomeBlogPreview";

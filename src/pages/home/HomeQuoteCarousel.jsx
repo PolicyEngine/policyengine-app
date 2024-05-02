@@ -3,11 +3,11 @@ import useDisplayCategory from "../../hooks/useDisplayCategory.jsx";
 import { useState, useEffect } from "react";
 import { quoteData } from "../../data/quotes.js";
 import { orgData } from "../../data/organisations.js";
-import Carousel from "../../redesign/components/Carousel.jsx";
+import Carousel from "../../layout/Carousel.jsx";
 import useCountryId from "../../hooks/useCountryId.jsx";
 import { Link } from "react-router-dom";
-import FontIcon from "../../redesign/components/FontIcon.jsx";
-import Section from "../../redesign/components/Section.jsx";
+import FontIcon from "../../layout/FontIcon.jsx";
+import Section from "../../layout/Section.jsx";
 import ArrowButton from "controls/ArrowButton";
 
 export default function HomeQuoteCarousel() {

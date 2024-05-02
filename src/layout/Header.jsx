@@ -1,14 +1,14 @@
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import useCountryId from "../../hooks/useCountryId";
-import style from "../../style";
-import PolicyEngineMainLogo from "../../images/logos/policyengine/white.svg";
-import PolicyEngineSmallLogo from "../../images/logos/policyengine/profile/white.svg";
-import CalculatorIcon from "../../images/icons/calculator.png";
+import useDisplayCategory from "../hooks/useDisplayCategory";
+import useCountryId from "../hooks/useCountryId";
+import style from "../style";
+import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
+import PolicyEngineSmallLogo from "../images/logos/policyengine/profile/white.svg";
+import CalculatorIcon from "../images/icons/calculator.png";
 import { HoverBox } from "./HoverBox";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LinkButton from "../../controls/LinkButton";
+import LinkButton from "../controls/LinkButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   UserOutlined,
@@ -16,7 +16,7 @@ import {
   UserDeleteOutlined,
   ReadOutlined,
 } from "@ant-design/icons";
-import { loginOptions, logoutOptions } from "../../auth/authUtils";
+import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
 
 const BAR_TOP_PADDING = 10; // Desired top padding, px

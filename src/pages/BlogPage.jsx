@@ -1,8 +1,8 @@
 import { Link, Navigate } from "react-router-dom";
 import useCountryId from "../hooks/useCountryId";
-import Header from "../redesign/components/Header";
+import Header from "../layout/Header";
 import Footer from "../layout/Footer";
-import Section from "../redesign/components/Section";
+import Section from "../layout/Section";
 import style from "../style";
 import {
   locationLabels,

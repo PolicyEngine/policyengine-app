@@ -1,5 +1,5 @@
-import style from "../../style";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
+import style from "../style";
+import useDisplayCategory from "../hooks/useDisplayCategory";
 
 export default function Carousel(props) {
   const { current, total, setCurrent, noArrows } = props;
