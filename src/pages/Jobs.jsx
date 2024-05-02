@@ -1,10 +1,10 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "../../layout/Footer";
-import Section from "./Section";
-import style from "../../style";
-import PageHeader from "./PageHeader";
-import { HoverBox } from "./HoverBox";
+import Header from "../redesign/components/Header";
+import Footer from "../layout/Footer";
+import Section from "../redesign/components/Section";
+import style from "../style";
+import PageHeader from "../redesign/components/PageHeader";
+import { HoverBox } from "../redesign/components/HoverBox";
 
 function InternshipOpportunities() {
   return (

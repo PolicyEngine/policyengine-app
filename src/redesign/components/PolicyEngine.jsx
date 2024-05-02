@@ -1,10 +1,10 @@
 import Home from "../../pages/Home";
-import Research from "./Research";
-import About from "./About";
-import Jobs from "./Jobs";
+import Research from "../../pages/Research";
+import About from "../../pages/About";
+import Jobs from "../../pages/Jobs";
 import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
-import Contact from "./Contact";
-import Donate from "./Donate";
+import Contact from "../../pages/Contact";
+import Donate from "../../pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "../../pages/BlogPage";
 
@@ -18,8 +18,8 @@ import {
 import LoadingCentered from "../../layout/LoadingCentered";
 import ErrorPage from "../../layout/Error";
 import Header from "./Header";
-import Testimonials from "./Testimonials";
-import CalculatorInterstitial from "./CalculatorInterstitial";
+import Testimonials from "../../pages/Testimonials";
+import CalculatorInterstitial from "../../pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "./CitizensEconomicCouncil";
 import APIDocumentationPage from "../../pages/APIDocumentationPage";
 import CookieConsent from "../../modals/CookieConsent";

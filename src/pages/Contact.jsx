@@ -1,8 +1,8 @@
-import Header from "./Header";
-import Footer from "../../layout/Footer";
-import Section from "./Section";
-import PageHeader from "./PageHeader";
-import style from "../../style";
+import Header from "../redesign/components/Header";
+import Footer from "../layout/Footer";
+import Section from "../redesign/components/Section";
+import PageHeader from "../redesign/components/PageHeader";
+import style from "../style";
 
 export default function Contact() {
   return (

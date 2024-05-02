@@ -1,16 +1,17 @@
-import Header from "./Header";
-import Footer from "../../layout/Footer.jsx";
-import Section from "./Section";
-import style from "../../style";
-import PageHeader from "./PageHeader";
-import { founders, staff, advisors } from "../../data/staff.js";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import { Link } from "react-router-dom";
+import Header from "../redesign/components/Header.jsx";
+import Footer from "../layout/Footer.jsx";
+import Section from "../redesign/components/Section.jsx";
+import style from "../style/index.js";
+import PageHeader from "../redesign/components/PageHeader.jsx";
+import { founders, staff, advisors } from "../data/staff.js";
+import useDisplayCategory from "../hooks/useDisplayCategory.jsx";
+import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import useCountryId from "../../hooks/useCountryId.jsx";
 
 export default function About() {
-  const countryId = useCountryId();
+  const location = useLocation();
+  const pathParts = location.pathname.split("/");
+  const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
 
   Object.keys(founders).map((founder) => {
     console.log(founder);
