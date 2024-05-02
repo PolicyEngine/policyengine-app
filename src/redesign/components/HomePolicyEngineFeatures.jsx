@@ -1,8 +1,8 @@
 import style from "../../style";
 import Section from "./Section";
-import codingScreenshot from "../images/home/coding_screenshot.png";
-import parameterScreenshot from "../images/home/parameter_screenshot.png";
-import decileChartScreenshot from "../images/home/decile_chart_screenshot.png";
+import codingScreenshot from "../../images/home/coding_screenshot.png";
+import parameterScreenshot from "../../images/home/parameter_screenshot.png";
+import decileChartScreenshot from "../../images/home/decile_chart_screenshot.png";
 import ShowcaseItem from "./ShowcaseItem";
 import useCountryId from "../../hooks/useCountryId";
 
