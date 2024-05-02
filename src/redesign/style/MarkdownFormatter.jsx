@@ -139,7 +139,7 @@ export function PlotlyChartCode({ data, backgroundColor }) {
         <h5
           style={{
             fontFamily: "Roboto Serif",
-            color: style.colors.GRAY,
+            color: style.colors.MEDIUM_LIGHT_GRAY,
             textEmphasis: "italic",
           }}
         >
@@ -223,7 +223,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
             <p
               style={{
                 fontFamily: "Roboto Serif",
-                color: style.colors.GRAY,
+                color: style.colors.MEDIUM_LIGHT_GRAY,
                 textEmphasis: "italic",
               }}
             >

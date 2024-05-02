@@ -30,13 +30,13 @@ export const buttonStyles = {
   disabled: {
     standard: {
       backgroundColor: "transparent",
-      borderColor: colors.GRAY,
-      color: colors.GRAY,
+      borderColor: colors.MEDIUM_LIGHT_GRAY,
+      color: colors.MEDIUM_LIGHT_GRAY,
     },
     hover: {
       backgroundColor: "transparent",
-      borderColor: colors.GRAY,
-      color: colors.GRAY,
+      borderColor: colors.MEDIUM_LIGHT_GRAY,
+      color: colors.MEDIUM_LIGHT_GRAY,
     },
   },
 };
