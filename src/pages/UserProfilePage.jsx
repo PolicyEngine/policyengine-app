@@ -608,6 +608,11 @@ function UsernameDisplayAndEditor(props) {
             defaultValue={accessedUserProfile.username}
             size="small"
             onPressEnter={handleSubmit}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setIsEditing(false);
+              }
+            }}
             onChange={handleUpdate}
             style={{
               height: "1.3rem",
