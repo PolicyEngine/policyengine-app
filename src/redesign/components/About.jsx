@@ -5,13 +5,12 @@ import style from "../style";
 import PageHeader from "./PageHeader";
 import { founders, staff, advisors } from "../data/staff.js";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import useCountryId from "../../hooks/useCountryId.jsx";
 
 export default function About() {
-  const location = useLocation();
-  const pathParts = location.pathname.split("/");
-  const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
+  const countryId = useCountryId();
 
   Object.keys(founders).map((founder) => {
     console.log(founder);
