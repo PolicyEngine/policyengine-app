@@ -379,7 +379,7 @@ function PolicyDisplay(props) {
         indicators={false}
         interval={null}
         controls={reformLength > 1 ? true : false}
-        slide={false}
+        slide={true}
       >
         {Object.keys(policy.reform.data).map((parameterName) => (
           <Carousel.Item
