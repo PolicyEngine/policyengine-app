@@ -5,12 +5,14 @@ import CodeBlock from "layout/CodeBlock";
 import { useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { getReproducibilityCodeBlock } from "../../../data/reformDefinitionCode";
+import useMobile from "../../../layout/Responsive";
 
 export default function HouseholdReproducibility(props) {
   const { policy, policyLabel, metadata, householdInput, year } = props;
   const [earningVariation, setEarningVariation] = useState(false);
   const [searchParams] = useSearchParams();
   const region = searchParams.get("region");
+  const mobile = useMobile();
 
   let lines = getReproducibilityCodeBlock(
     "household",
@@ -31,7 +33,6 @@ export default function HouseholdReproducibility(props) {
       </Helmet>
       <ResultsPanel
         title="Reproduce these results"
-        description="Run the code below in a Python notebook to reproduce the results."
       >
         <div
           style={{
@@ -47,6 +48,14 @@ export default function HouseholdReproducibility(props) {
             onChange={() => setEarningVariation(!earningVariation)}
           />
         </div>
+        <p
+        style={{
+          paddingTop: mobile ? 5 : 20,
+          paddingBottom: mobile ? 5 : 40,
+        }}
+      >
+        Run the code below in a Python notebook to reproduce the results.
+      </p>
         <CodeBlock
           data={lines.join("\n")}
           language={"python"}
