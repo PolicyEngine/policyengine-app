@@ -15,6 +15,9 @@ const ResultsPanel = forwardRef((props, ref) => {
       }}
     >
       <h2 style={{ marginBottom: mobile ? 5 : 20 }}>{props.title}</h2>
+      <div ref={ref} style={{ paddingTop: 0, paddingBottom: 50 }}>
+        {props.children}
+      </div>
       {props.description && (
         <p
           style={{
@@ -26,9 +29,6 @@ const ResultsPanel = forwardRef((props, ref) => {
           {props.description}
         </p>
       )}
-      <div ref={ref} style={{ paddingTop: 0, paddingBottom: 50 }}>
-        {props.children}
-      </div>
     </div>
   );
 });
