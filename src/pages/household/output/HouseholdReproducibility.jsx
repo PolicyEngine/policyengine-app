@@ -31,9 +31,7 @@ export default function HouseholdReproducibility(props) {
       <Helmet>
         <title>{`${policyLabel} | Reproduce these results | PolicyEngine`}</title>
       </Helmet>
-      <ResultsPanel
-        title="Reproduce these results"
-      >
+      <ResultsPanel title="Reproduce these results">
         <div
           style={{
             display: "flex",
@@ -49,13 +47,13 @@ export default function HouseholdReproducibility(props) {
           />
         </div>
         <p
-        style={{
-          paddingTop: mobile ? 5 : 20,
-          paddingBottom: mobile ? 5 : 40,
-        }}
-      >
-        Run the code below in a Python notebook to reproduce the results.
-      </p>
+          style={{
+            paddingTop: mobile ? 5 : 20,
+            paddingBottom: mobile ? 5 : 40,
+          }}
+        >
+          Run the code below in a Python notebook to reproduce the results.
+        </p>
         <CodeBlock
           data={lines.join("\n")}
           language={"python"}
