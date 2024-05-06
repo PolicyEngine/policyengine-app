@@ -17,8 +17,8 @@ export function getReproducibilityCodeBlock(
 
   return [
     ...getHeaderCode(type, metadata, policy),
-    ...getBaselineCode(type, policy, region),
-    ...getReformCode(type, policy, region),
+    ...getBaselineCode(policy, metadata),
+    ...getReformCode(policy, metadata),
     ...getSituationCode(
       type,
       metadata,
@@ -27,7 +27,7 @@ export function getReproducibilityCodeBlock(
       householdInput,
       earningVariation,
     ),
-    ...getImplementationCode(type, region, year),
+    ...getImplementationCode(type, region, year, policy),
   ];
 }
 
@@ -43,89 +43,36 @@ export function getHeaderCode(type, metadata, policy) {
 
   // If there is a reform, add the following Python imports
   if (Object.keys(policy.reform.data).length > 0) {
-    lines.push(
-      "from policyengine_core.reforms import Reform",
-      "from policyengine_core.periods import instant",
-    );
+    lines.push("from policyengine_core.reforms import Reform");
   }
 
   return lines;
 }
 
-export function getBaselineCode(type, policy, region) {
-  // Disregard baseline code for household code
-  // or non-US locales
-  if (type === "household" || !US_REGIONS.includes(region)) {
+export function getBaselineCode(policy, metadata) {
+  if (
+    !policy?.baseline?.data ||
+    Object.keys(policy.baseline.data).length === 0
+  ) {
     return [];
   }
-
-  // Calculate the earliest start date and latest end date for
-  // the policies included in the simulation
-  const { earliestStart, latestEnd } = getStartEndDates(policy);
-
-  return [
-    "",
-    "",
-    `"""`,
-    "In US nationwide simulations,",
-    "use reported state income tax liabilities",
-    `"""`,
-    "def use_reported_state_income_tax(parameters):",
-    "    parameters.simulation.reported_state_income_tax.update(",
-    `        start=instant("${earliestStart}"), stop=instant("${latestEnd}"),`,
-    "        value=True)",
-    "    return parameters",
-    "",
-    "",
-    "class baseline_reform(Reform):",
-    "    def apply(self):",
-    "        self.modify_parameters(use_reported_state_income_tax)",
-  ];
+  let json_str = JSON.stringify(policy.baseline.data, null, 2);
+  let lines = [""].concat(json_str.split("\n"));
+  lines[1] = "baseline = Reform.from_dict({" + lines[0];
+  lines[lines.length - 1] =
+    lines[lines.length - 1] + ', country_id="' + metadata.countryId + '")';
+  return lines;
 }
 
-export function getReformCode(type, policy, region) {
-  // Return no reform code for households or for policies
-  // without reform parameters
-  if (Object.keys(policy.reform.data).length <= 0) {
+export function getReformCode(policy, metadata) {
+  if (!policy?.baseline?.data || Object.keys(policy.reform.data).length === 0) {
     return [];
   }
-
-  let lines = ["", "", "def reform_parameters(parameters):"];
-
-  for (let [parameterName, parameter] of Object.entries(policy.reform.data)) {
-    for (let [instant, value] of Object.entries(parameter)) {
-      const [start, end] = instant.split(".");
-      if (value === false) {
-        value = "False";
-      } else if (value === true) {
-        value = "True";
-      }
-      // If param name contains number, transform into valid Python
-      if (doesParamNameContainNumber(parameterName)) {
-        parameterName = transformNumberedParamName(parameterName);
-      }
-      lines.push(
-        `    parameters.${parameterName}.update(`,
-        `        start=instant("${start}"), stop=instant("${end}"),`,
-        `        value=${value})`,
-      );
-    }
-  }
-  lines.push("    return parameters");
-
-  lines = lines.concat([
-    "",
-    "",
-    "class reform(Reform):",
-    "    def apply(self):",
-    "        self.modify_parameters(reform_parameters)",
-  ]);
-
-  // For US reforms, when calculated society-wide, add reported state income tax
-  if (type === "policy" && US_REGIONS.includes(region)) {
-    lines.push("        self.modify_parameters(use_reported_state_income_tax)");
-  }
-
+  let json_str = JSON.stringify(policy.reform.data, null, 2);
+  let lines = [""].concat(json_str.split("\n"));
+  lines[1] = "reform = Reform.from_dict({" + lines[0];
+  lines[lines.length - 1] =
+    lines[lines.length - 1] + ', country_id="' + metadata.countryId + '")';
   return lines;
 }
 
@@ -200,32 +147,39 @@ export function getSituationCode(
   return lines;
 }
 
-export function getImplementationCode(type, region, timePeriod) {
+export function getImplementationCode(type, region, timePeriod, policy) {
   if (type !== "policy") {
     return [];
   }
 
-  const isCountryUS = US_REGIONS.includes(region);
+  const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
+  const hasReform = Object.keys(policy?.reform?.data).length > 0;
+  const hasDatasetSpecified = region === "enhanced_us";
+  const dataset = hasDatasetSpecified ? 'dataset="enhanced_cps_2022"' : "";
 
   return [
     "",
     "",
     `baseline = Microsimulation(${
-      isCountryUS
-        ? region === "enhanced_us"
-          ? `reform=baseline_reform, dataset="enhanced_cps_2022"`
-          : `reform=baseline_reform`
-        : ""
+      hasDatasetSpecified && hasBaseline
+        ? `reform=baseline, dataset=${dataset}`
+        : hasBaseline
+          ? `reform=baseline`
+          : hasDatasetSpecified
+            ? `dataset=${dataset}`
+            : ""
     })`,
     `reformed = Microsimulation(${
-      region === "enhanced_us"
-        ? `reform=reform, dataset="enhanced_cps_2022"`
-        : `reform=reform`
+      hasDatasetSpecified && hasReform
+        ? `reform=reform, dataset=${dataset}`
+        : hasReform
+          ? `reform=reform`
+          : hasDatasetSpecified
+            ? `dataset=${dataset}`
+            : ""
     })`,
-    `baseline_person = baseline.calc("household_net_income",
-      period=${timePeriod || defaultYear}, map_to="person")`,
-    `reformed_person = reformed.calc("household_net_income",
-      period=${timePeriod || defaultYear}, map_to="person")`,
+    `baseline_person = baseline.calculate("household_net_income", period=${timePeriod || defaultYear}, map_to="person")`,
+    `reformed_person = reformed.calculate("household_net_income", period=${timePeriod || defaultYear}, map_to="person")`,
     "difference_person = reformed_person - baseline_person",
   ];
 }
