@@ -42,11 +42,11 @@ describe("Test PoliciesModelledPopup", () => {
     // The below is necessary to prevent a litany of 'quiet' errors that
     // will materialize in the console
     sampleHousehold.people.you.state_name = {
-      2024: "az"
+      2024: "az",
     };
     sampleHousehold.households["your household"].state_name = {
-      2024: "az"
-    }
+      2024: "az",
+    };
 
     useSearchParams.mockImplementation(() => {
       const get = (param) => {
@@ -63,7 +63,13 @@ describe("Test PoliciesModelledPopup", () => {
 
     const { getByText } = render(
       <BrowserRouter>
-        <HouseholdOutput loading={true} policy={testProps.policy} metadata={metadataUS} setHasShownHouseholdPopup={() => false} householdInput={sampleHousehold}/>
+        <HouseholdOutput
+          loading={true}
+          policy={testProps.policy}
+          metadata={metadataUS}
+          setHasShownHouseholdPopup={() => false}
+          householdInput={sampleHousehold}
+        />
       </BrowserRouter>,
     );
 
@@ -73,6 +79,6 @@ describe("Test PoliciesModelledPopup", () => {
           "PolicyEngine results may not constitute exact tax liabilities or benefit entitlements.",
         ),
       ).toBeInTheDocument();
-    })
+    });
   });
 });
