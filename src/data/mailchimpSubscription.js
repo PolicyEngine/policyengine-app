@@ -42,5 +42,4 @@ export function submitToMailchimp(email) {
     });
   });
   return promise;
-
 }
