@@ -8,7 +8,7 @@ import UKEU from "../../images/logos/orgs/ukeu.svg";
 import ASI from "../../images/logos/orgs/asi.webp";
 import CEC from "../../images/logos/orgs/cec.svg";
 import CGO from "../../images/logos/orgs/cgo.jpg";
-/*import EPMT from "../../images/logos/orgs/epmt.jpg";*/
+import EPMT from "../../images/logos/orgs/epmt.jpg";
 import NISKANENCenter from "../../images/logos/orgs/niskanen-center.png";
 import F4GI from "../../images/logos/orgs/f4gi.jpg";
 import GCV from "../../images/logos/orgs/gary-community-ventures.png";
@@ -112,6 +112,11 @@ export const orgData = {
       name: "Mothers Outreach Network",
       logo: MothersOutreachNetwork,
       link: "https://mothersoutreachnetwork.org/",
+    },
+    epmt: {
+      name: "End Poverty, Make Trillions",
+      logo: EPMT,
+      link: "https://endpovertymaketrillions.medium.com/economic-modeling-of-how-to-end-poverty-in-the-united-states-while-saving-taxpayers-trillions-of-1679b751d0c0",
     },
   },
 };
