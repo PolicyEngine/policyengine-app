@@ -1,7 +1,7 @@
 import { Collapse } from "antd";
 import style_ from "../style";
 
-export default function Collapsable({ label, child, style, defaultOpen }) {
+export default function Collapsible({ label, child, style, defaultOpen }) {
   return (
     <Collapse
       defaultActiveKey={defaultOpen ? ["child"] : []}

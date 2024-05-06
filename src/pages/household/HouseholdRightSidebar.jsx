@@ -7,7 +7,7 @@ import {
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import LoadingCentered from "../../layout/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
-import Collapsable from "../../layout/Collapsable";
+import Collipsible from "../../layout/Collipsible";
 
 function Figure(props) {
   const { left, right } = props;
@@ -149,7 +149,7 @@ export default function HouseholdRightSidebar(props) {
         Our calculation{hasReform ? " under your reform" : " under current law"}
       </p>
       <div style={{ marginLeft: -15 }}>
-        <Collapsable
+        <Collapsible
           style={{ paddingLeft: 0 }}
           label={
             hasReform
