@@ -1,8 +1,6 @@
 import { optimiseHousehold } from "../api/variables";
 import { defaultYear } from "./constants";
 
-const US_REGIONS = ["us", "enhanced_us"];
-
 export function getReproducibilityCodeBlock(
   type,
   metadata,
