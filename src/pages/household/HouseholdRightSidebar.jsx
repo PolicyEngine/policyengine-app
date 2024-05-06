@@ -7,7 +7,7 @@ import {
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import LoadingCentered from "../../layout/LoadingCentered";
 import PolicySearch from "../policy/PolicySearch";
-import Collipsible from "../../layout/Collipsible";
+import Collapsible from "../../layout/Collapsible";
 
 function Figure(props) {
   const { left, right } = props;
