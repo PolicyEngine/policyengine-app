@@ -99,9 +99,9 @@ describe("Test main PolicyEngine component", () => {
   test("Fetches reform policy data");
   test("Fetches user profile if user is logged in");
   test("Redirects from / to /[countryId]");
-  test("Loads auth callback");
+  test("Routes to auth callback");
   */
-  test("Loads about page for US", () => {
+  test("Routes to about page for US", () => {
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -120,7 +120,7 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("Our people")).toBeInTheDocument();
   });
-  test("Loads jobs page for UK", () => {
+  test("Routes to jobs page for UK", () => {
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -139,7 +139,7 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("Join Our Team")).toBeInTheDocument();
   });
-  test("Loads testimonials page for US", () => {
+  test("Routes to testimonials page for US", () => {
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -158,7 +158,7 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("What people say about PolicyEngine")).toBeInTheDocument();
   });
-  test("Loads calculator interstitial page for UK", () => {
+  test("Routes to calculator interstitial page for UK", () => {
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -177,7 +177,7 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("Choose a calculator")).toBeInTheDocument();
   });
-  test("Loads research page for US", () => {
+  test("Routes to research page for US", () => {
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -200,7 +200,7 @@ describe("Test main PolicyEngine component", () => {
     // expect(getByText("us")).toBeInTheDocument(); 
 
   });
-  test("Loads research page for UK", () => {
+  test("Routes to research page for UK", () => {
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -223,17 +223,75 @@ describe("Test main PolicyEngine component", () => {
     // expect(getByText("uk")).toBeInTheDocument(); 
   });
   /*
-  test("Loads contact page for US");
-  test("Loads donate page");
-  test("Loads individual blog posts");
-  test("Loads privacy page");
-  test("Loads T&C page");
-  test("Loads household page");
-  test("Loads policy page");
-  test("Loads user profile page");
-  test("Loads API documentation page");
-  test("Loads TRAFWA calculator");
-  test("Loads Citizens Economic Council page");
+  test("Routes to contact page for US"); Unclear if this page is meant to exist
+  */
+  test("Routes to donate page for UK", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/donate",
+      origin: "https://www.policyengine.org/uk/donate"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("The Difference Your Support Makes")).toBeInTheDocument();
+  });
+  /*
+  test("Routes to individual blog posts");
+  */
+  test("Routes to privacy page for UK", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/privacy",
+      origin: "https://www.policyengine.org/uk/privacy"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Privacy")).toBeInTheDocument();
+  });
+  test("Routes to T&C page for US", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/terms",
+      origin: "https://www.policyengine.org/us/terms"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Terms of Service")).toBeInTheDocument();
+  });
+  /*
+  test("Routes to household page");
+  test("Routes to policy page");
+  test("Routes to user profile page");
+  test("Routes to API documentation page");
+  test("Routes to TRAFWA calculator");
+  test("Routes to Citizens Economic Council page");
   test("Redirects from /countryId/blog/slug to /countryId/research/slug");
   test("Redirects for unrecognized paths");
   */
