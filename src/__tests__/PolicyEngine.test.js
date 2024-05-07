@@ -14,8 +14,20 @@ jest.mock("react-router-dom", () => {
   };
 });
 
+jest.mock("react-plotly.js", () => jest.fn());
+
+jest.mock("react-router-dom", () => {
+  const originalModule = jest.requireActual("react-router-dom");
+  return {
+    __esModule: true,
+    ...originalModule,
+    useSearchParams: jest.fn(),
+  };
+});
+
 let metadataUS = null;
 let metadataUK = null;
+
 beforeAll(async () => {
   const res = await fetch("https://api.policyengine.org/us/metadata");
   const metadataRaw = await res.json();
@@ -27,7 +39,30 @@ beforeAll(async () => {
 });
 
 describe("Test main PolicyEngine component", () => {
-  test("Renders for US if proper data passed");
+  test("Renders for US if proper data passed", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.scrollTo = jest.fn();
+
+    delete window.location;
+    window.location = {
+      reload: jest.fn(),
+      pathname: "/us",
+      origin: "https://www.policyengine.org/us"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Computing Public Policy for Everyone")).toBeInTheDocument();
+
+  });
+  /*
   test("Renders for UK if proper data passed");
   test("Metadata re-fetches if country ID changes");
   test("Fetches baseline policy data");
@@ -53,4 +88,5 @@ describe("Test main PolicyEngine component", () => {
   test("Loads Citizens Economic Council page");
   test("Redirects from /countryId/blog/slug to /countryId/research/slug");
   test("Redirects for unrecognized paths");
-})
+  */
+});
