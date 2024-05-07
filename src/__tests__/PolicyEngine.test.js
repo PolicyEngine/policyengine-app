@@ -28,6 +28,8 @@ jest.mock("react-router-dom", () => {
 let metadataUS = null;
 let metadataUK = null;
 
+const {location} = window;
+
 beforeAll(async () => {
   const res = await fetch("https://api.policyengine.org/us/metadata");
   const metadataRaw = await res.json();
@@ -36,6 +38,17 @@ beforeAll(async () => {
   const resUK = await fetch("https://api.policyengine.org/uk/metadata");
   const metadataRawUK = await resUK.json();
   metadataUK = metadataRawUK.result;
+
+  window.scrollTo = jest.fn();
+
+  delete window.location;
+  window.location = {
+    reload: jest.fn()
+  };
+});
+
+afterAll(() => {
+  window.location = location;
 });
 
 describe("Test main PolicyEngine component", () => {
@@ -45,11 +58,8 @@ describe("Test main PolicyEngine component", () => {
       return [new URLSearchParams(), jest.fn()];
     });
 
-    window.scrollTo = jest.fn();
-
-    delete window.location;
     window.location = {
-      reload: jest.fn(),
+      ...window.location,
       pathname: "/us",
       origin: "https://www.policyengine.org/us"
     };
