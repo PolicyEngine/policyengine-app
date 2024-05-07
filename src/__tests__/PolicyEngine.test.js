@@ -70,10 +70,30 @@ describe("Test main PolicyEngine component", () => {
     </BrowserRouter>);
 
     expect(getByText("Computing Public Policy for Everyone")).toBeInTheDocument();
+    expect(getByText("Trusted across the US")).toBeInTheDocument();
 
   });
+  test("Renders for UK if proper data passed", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk",
+      origin: "https://www.policyengine.org/uk"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Computing Public Policy for Everyone")).toBeInTheDocument();
+    expect(getByText("Trusted across the UK")).toBeInTheDocument();
+  });
   /*
-  test("Renders for UK if proper data passed");
   test("Metadata re-fetches if country ID changes");
   test("Fetches baseline policy data");
   test("Fetches reform policy data");
