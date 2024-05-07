@@ -289,9 +289,73 @@ describe("Test main PolicyEngine component", () => {
   test("Routes to household page");
   test("Routes to policy page");
   test("Routes to user profile page");
-  test("Routes to API documentation page");
-  test("Routes to TRAFWA calculator");
-  test("Routes to Citizens Economic Council page");
+  */
+  test("Routes to API documentation page for US", () => {
+
+    // This test uses node-fetch to actually fetch country metadata,
+    // but can't use fetch to fetch the API component's sample data,
+    // and since it's not possible to conditionally polyfill fetch,
+    // this is a better way of silencing the inevitable 404 error
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/api",
+      origin: "https://www.policyengine.org/us/api"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("PolicyEngine API Documentation")).toBeInTheDocument();
+  });
+  test("Routes to TRAFWA calculator", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/trafwa-ctc-calculator",
+      origin: "https://www.policyengine.org/us/trafwa-ctc-calculator"
+    };
+
+    const {getByTitle} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByTitle("TRAFWA Child Tax Credit Calculator")).toBeInTheDocument();
+    
+  });
+  test("Routes to Citizens Economic Council page", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/cec",
+      origin: "https://www.policyengine.org/uk/cec"
+    };
+
+    const {getByTitle} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByTitle("Citizens' Economic Council reform simulator")).toBeInTheDocument();
+
+  });
+  /*
   test("Redirects from /countryId/blog/slug to /countryId/research/slug");
   test("Redirects for unrecognized paths");
   */
