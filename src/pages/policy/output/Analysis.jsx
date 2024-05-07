@@ -5,7 +5,7 @@ import Button from "../../../controls/Button";
 import CodeBlock from "layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
-import { MarkdownFormatter } from "../../../redesign/style/MarkdownFormatter";
+import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { asyncApiCall, countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 

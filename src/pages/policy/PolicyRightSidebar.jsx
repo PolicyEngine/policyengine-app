@@ -17,7 +17,7 @@ import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { defaultForeverYear } from "../../data/constants";
-import Collapsable from "../../redesign/components/Collapsable";
+import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 
 function RegionSelector(props) {
@@ -588,7 +588,7 @@ export default function PolicyRightSidebar(props) {
           />
         }
         <div style={{ paddingLeft: 5 }}>
-          <Collapsable
+          <Collapsible
             label="Find an existing policy"
             child={
               <div
@@ -630,7 +630,7 @@ export default function PolicyRightSidebar(props) {
           hideButtons={hideButtons}
         />
         <div style={{ paddingLeft: 5 }}>
-          <Collapsable
+          <Collapsible
             label="More options"
             defaultOpen={defaultOpen}
             child={
