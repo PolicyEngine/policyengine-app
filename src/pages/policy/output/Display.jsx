@@ -143,11 +143,7 @@ export function DisplayImpact(props) {
   }
   // Remove the below else-if block when labor supply impacts are expanded
   // back to all countries
-  else if (metadata.countryId !== "us" && impactType === "laborSupplyImpact") {
-    pane = (
-      <ErrorPage message="This service is temporarily unavailable. Please try again later." />
-    );
-  } else {
+  else {
     const { chart, csv } = getImpactReps(impactType, {
       impact: impact,
       metadata: metadata,

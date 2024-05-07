@@ -1,9 +1,9 @@
 import { Link, Navigate } from "react-router-dom";
 import useCountryId from "../hooks/useCountryId";
-import Header from "../redesign/components/Header";
+import Header from "../layout/Header";
 import Footer from "../layout/Footer";
-import Section from "../redesign/components/Section";
-import style from "../redesign/style";
+import Section from "../layout/Section";
+import style from "../style";
 import {
   locationLabels,
   locationTags,
@@ -26,11 +26,11 @@ import {
 import authors from "../posts/authors.json";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
-import { MarkdownFormatter } from "../redesign/style/MarkdownFormatter";
 import {
+  MarkdownFormatter,
   HighlightedBlock,
   PlotlyChartCode,
-} from "../redesign/style/MarkdownFormatter";
+} from "../layout/MarkdownFormatter";
 
 // Function to handle image loading
 const handleImageLoad = (path) => {

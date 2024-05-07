@@ -11,7 +11,7 @@ import {
   STATUS_COLORS,
   STATUS_TEXT_COLORS,
   COUNTRY_NAMES,
-} from "./statusPageDefaults";
+} from "../data/statusPageDefaults";
 import { Helmet } from "react-helmet";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {

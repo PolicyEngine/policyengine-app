@@ -41,7 +41,11 @@ function ImpactPlot(props) {
             },
           },
           connector: {
-            line: { color: style.colors.GRAY, width: 1, dash: "dot" },
+            line: {
+              color: style.colors.MEDIUM_LIGHT_GRAY,
+              width: 1,
+              dash: "dot",
+            },
           },
           hovertemplate: `<b>%{x}</b><extra></extra>`,
         },
@@ -95,8 +99,8 @@ function title(policyLabel, change, metadata) {
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
     change === 0
-      ? `${policyLabel} would have no effect on ${term1} this year`
-      : `${policyLabel} would ${signTerm} ${term1} by ${term2} this year`;
+      ? `${policyLabel} would have no effect on ${term1}`
+      : `${policyLabel} would ${signTerm} ${term1} by ${term2}`;
   return msg;
 }
 
@@ -104,6 +108,34 @@ export default function lsrImpact(props) {
   const { impact, policyLabel, metadata, mobile } = props;
   const incomeEffect = impact.labour_supply_response.income_lsr;
   const substitutionEffect = impact.labour_supply_response.substitution_lsr;
+  const budgetaryImpact = impact.budget.budgetary_impact;
+  const budgetaryImpactLSRChange = impact.labour_supply_response.revenue_change;
+  const originalBudgetaryImpact = budgetaryImpact - budgetaryImpactLSRChange;
+  const originalBudgetaryImpactStr = formatCurrencyAbbr(
+    originalBudgetaryImpact,
+    metadata.countryId,
+    {
+      maximumFractionDigits: 1,
+    },
+  );
+  const newBudgetaryImpactStr = formatCurrencyAbbr(
+    budgetaryImpact,
+    metadata.countryId,
+    {
+      maximumFractionDigits: 1,
+    },
+  );
+  const changeStr = formatCurrencyAbbr(
+    Math.abs(budgetaryImpactLSRChange),
+    metadata.countryId,
+    {
+      maximumFractionDigits: 1,
+    },
+  );
+  const relChangeStr = Math.round(
+    Math.abs(budgetaryImpact / originalBudgetaryImpact - 1) * 100,
+    1,
+  );
 
   const labels = ["Income effect", "Substitution effect", "Net change"];
   const values = [
@@ -113,6 +145,12 @@ export default function lsrImpact(props) {
   ];
   const chart = (
     <ImpactChart title={title(policyLabel, values[2], metadata)}>
+      <p style={{ marginBottom: 30 }}>
+        This {budgetaryImpactLSRChange > 0 ? "raises" : "lowers"} the budgetary
+        impact of the reform by {changeStr} (from {originalBudgetaryImpactStr}{" "}
+        to {newBudgetaryImpactStr}, a {relChangeStr}%{" "}
+        {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}).
+      </p>
       <ImpactPlot
         values={values}
         labels={labels}

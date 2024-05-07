@@ -82,6 +82,13 @@ export function formatPercent(number, countryId, options) {
   });
 }
 
+export function formatFullDate(date, countryId, options) {
+  return new Intl.DateTimeFormat(localeCode(countryId), {
+    dateStyle: "long",
+    ...options,
+  }).format(new Date(date));
+}
+
 /**
  *
  * @param {number} number a number

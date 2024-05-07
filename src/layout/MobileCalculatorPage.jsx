@@ -15,8 +15,8 @@ import { ParameterSearch } from "../pages/PolicyPage.jsx";
 import PolicyRightSidebar from "../pages/policy/PolicyRightSidebar.jsx";
 
 import style from "../style";
-import colors from "../redesign/style/colors";
-import spacing from "../redesign/style/spacing";
+import colors from "../style/colors";
+import spacing from "../style/spacing";
 
 /**
  * Layout component that overlays the household and policy pages on mobile

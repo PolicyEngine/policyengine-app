@@ -37,7 +37,7 @@ export default function SignupModal(props) {
       <h6
         style={{
           paddingBottom: "16px",
-          fontWeight: "bold",
+          fontWeight: 500,
           fontSize: 20,
         }}
       >

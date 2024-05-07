@@ -1,8 +1,8 @@
-import style from "../redesign/style";
-import Section from "../redesign/components/Section";
+import style from "../style";
+import Section from "./Section";
 import PolicyEngineMainLogo from "../images/logos/policyengine/white.svg";
 import useDisplayCategory from "../hooks/useDisplayCategory";
-import { SubscribeToPolicyEngine } from "../redesign/components/HomeSubscribe";
+import { SubscribeToPolicyEngine } from "../pages/home/HomeSubscribe";
 import {
   FacebookFilled,
   GithubFilled,

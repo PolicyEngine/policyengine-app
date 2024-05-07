@@ -1,9 +1,9 @@
 import Footer from "../layout/Footer";
-import Header from "../redesign/components/Header";
+import Header from "../layout/Header";
 import Helmet from "react-helmet";
-import Section from "../redesign/components/Section";
-import PageHeader from "../redesign/components/PageHeader";
-import style from "../redesign/style";
+import Section from "../layout/Section";
+import PageHeader from "../layout/PageHeader";
+import style from "../style";
 import { Link, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
@@ -204,8 +204,8 @@ export default function UserProfilePage(props) {
     </p>
   );
 
-  const accessedUserPolicyCards = accessedUserPolicies.map(
-    (userPolicy, index) => {
+  const accessedUserPolicyCards = accessedUserPolicies
+    .map((userPolicy, index) => {
       // This returns a React key error, but I see no way of fixing this (short of
       // returning empty JSX, which seems illogical), and React doesn't need the keys
       // to maintain the list anyway, since the list is empty
@@ -220,12 +220,12 @@ export default function UserProfilePage(props) {
           dateFormatter={dateFormatter}
         />
       );
-    },
-  );
+    })
+    .reverse();
 
   let sectionTitle = "Saved policy simulations";
   if (dispState === STATES.OWN_PROFILE) {
-    sectionTitle = "My saved policy simulations";
+    sectionTitle = "Your saved policy simulations";
   } else if (
     dispState === STATES.OTHER_PROFILE &&
     accessedUserProfile.username
@@ -274,7 +274,7 @@ export default function UserProfilePage(props) {
               width: "100%",
               gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
               gap: "12px",
-              marginTop: 20,
+              marginTop: 30,
             }}
           >
             {arePoliciesLoading
@@ -608,6 +608,11 @@ function UsernameDisplayAndEditor(props) {
             defaultValue={accessedUserProfile.username}
             size="small"
             onPressEnter={handleSubmit}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") {
+                setIsEditing(false);
+              }
+            }}
             onChange={handleUpdate}
             style={{
               height: "1.3rem",
