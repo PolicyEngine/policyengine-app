@@ -177,9 +177,53 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("Choose a calculator")).toBeInTheDocument();
   });
+  test("Loads research page for US", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/research",
+      origin: "https://www.policyengine.org/us/research"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Research and analysis")).toBeInTheDocument();
+    // The below test should be re-enabled when tags on the page are no longer text nodes
+    // inside divs, which does not follow proper semantic HTML and cannot be tested using getByText
+    // expect(getByText("us")).toBeInTheDocument(); 
+
+  });
+  test("Loads research page for UK", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/research",
+      origin: "https://www.policyengine.org/uk/research"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Research and analysis")).toBeInTheDocument();
+    // The below test should be re-enabled when tags on the page are no longer text nodes
+    // inside divs, which does not follow proper semantic HTML and cannot be tested using getByText
+    // expect(getByText("uk")).toBeInTheDocument(); 
+  });
   /*
-  test("Loads research page");
-  test("Loads contact page");
+  test("Loads contact page for US");
   test("Loads donate page");
   test("Loads individual blog posts");
   test("Loads privacy page");
