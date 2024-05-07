@@ -100,10 +100,84 @@ describe("Test main PolicyEngine component", () => {
   test("Fetches user profile if user is logged in");
   test("Redirects from / to /[countryId]");
   test("Loads auth callback");
-  test("Loads about page");
-  test("Loads jobs page");
-  test("Loads testimonials page");
-  test("Loads calculator interstitial page");
+  */
+  test("Loads about page for US", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/about",
+      origin: "https://www.policyengine.org/us/about"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Our people")).toBeInTheDocument();
+  });
+  test("Loads jobs page for UK", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/jobs",
+      origin: "https://www.policyengine.org/uk/jobs"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Join Our Team")).toBeInTheDocument();
+  });
+  test("Loads testimonials page for US", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/testimonials",
+      origin: "https://www.policyengine.org/us/testimonials"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("What people say about PolicyEngine")).toBeInTheDocument();
+  });
+  test("Loads calculator interstitial page for UK", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/calculator",
+      origin: "https://www.policyengine.org/uk/calculator"
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Choose a calculator")).toBeInTheDocument();
+  });
+  /*
   test("Loads research page");
   test("Loads contact page");
   test("Loads donate page");
