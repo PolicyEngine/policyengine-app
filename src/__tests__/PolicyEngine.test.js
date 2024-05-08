@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { render, waitFor } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 import fetch from "node-fetch";
+import postJson from "../posts/posts.json";
 
 import PolicyEngine from "../redesign/components/PolicyEngine";
 
@@ -93,10 +94,15 @@ describe("Test main PolicyEngine component", () => {
     expect(getByText("Computing Public Policy for Everyone")).toBeInTheDocument();
     expect(getByText("Trusted across the UK")).toBeInTheDocument();
   });
+
+  // Wasn't able at the moment to figure out how to properly execute
+  // the below tests
   /*
   test("Metadata re-fetches if country ID changes");
   test("Fetches baseline policy data");
   test("Fetches reform policy data");
+  */
+  /*
   test("Fetches user profile if user is logged in");
   test("Redirects from / to /[countryId]");
   test("Routes to auth callback");
@@ -244,8 +250,37 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("The Difference Your Support Makes")).toBeInTheDocument();
   });
+
+  // This test needs to be debugged for a Jest import error
   /*
-  test("Routes to individual blog posts");
+  test("Routes to individual blog posts for US", () => {
+
+    // Filter posts.json for US articles
+    const filteredPostJson = postJson.filter((post) => post.tags.includes("us"));
+
+    // Choose one at random
+    const randIndex = Math.floor(Math.random() * filteredPostJson.length);
+
+    const selectedPost = filteredPostJson[randIndex]
+    const postFilepath = selectedPost.filename.split(".")[0];
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: `/us/research/${postFilepath}`,
+      origin: `https://www.policyengine.org/us/research/${postFilepath}`
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText(selectedPost.title)).toBeInTheDocument();
+  });
   */
   test("Routes to privacy page for UK", () => {
 
