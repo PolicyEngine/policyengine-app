@@ -19,7 +19,10 @@ export default function Donate() {
       </Helmet>
       <div>
         <Header />
-        <PageHeader title="Donate" backgroundColor={style.colors.BLUE_98}>
+        <PageHeader
+          title={<p>Donate</p>}
+          backgroundColor={style.colors.BLUE_98}
+        >
           <p style={{ margin: 0 }}>
             Your donation to PolicyEngine isn&apos;t just a gift — it&apos;s an
             investment in a transparent, open-source approach to public policy
