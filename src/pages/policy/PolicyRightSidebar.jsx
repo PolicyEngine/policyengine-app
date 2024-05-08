@@ -326,9 +326,7 @@ export function SinglePolicyChange(props) {
           </>
         )}
       </div>
-      <div style={{ fontStyle: "italic" }}>
-        {dateString}
-      </div>
+      <div style={{ fontStyle: "italic" }}>{dateString}</div>
     </div>
   );
 }
@@ -772,7 +770,6 @@ export default function PolicyRightSidebar(props) {
 }
 
 function formatDateString(startDateStr, endDateStr, countryId) {
-
   // Determine if policy runs forever
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
   const isEndForever = endDateStr === FOREVER_DATE;
@@ -792,16 +789,12 @@ function formatDateString(startDateStr, endDateStr, countryId) {
   // If either date isn't simple, neither should be, unless end is FOREVER_DATE
   if (!isSimpleStart || !isSimpleEnd) {
     return formatFullDate(startDateStr, countryId).concat(
-      isEndForever
-        ? " onward"
-        : ` to ${formatFullDate(endDateStr, countryId)}`
-      );
+      isEndForever ? " onward" : ` to ${formatFullDate(endDateStr, countryId)}`,
+    );
   }
 
   // Otherwise, display only year, again being mindful of FOREVER_DATE
   return startDateArr[0].concat(
-    isEndForever
-      ? " onward"
-      : ` to ${endDateArr[0]}`
+    isEndForever ? " onward" : ` to ${endDateArr[0]}`,
   );
 }
