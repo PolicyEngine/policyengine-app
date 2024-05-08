@@ -423,4 +423,28 @@ describe("SinglePolicyChange", () => {
 
     expect(getByText(`${startOutput} to ${endOutput}`)).toBeInTheDocument();
   });
+  test("Should display rare use case of single-day policies as full date", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-01";
+    const testEndDate = "2024-01-01";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    const output = formatFullDate(testStartDate, testCountryId);
+
+    expect(getByText(output)).toBeInTheDocument();
+  });
 });

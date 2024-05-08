@@ -780,6 +780,12 @@ function formatDateString(startDateStr, endDateStr, countryId) {
   const isSimpleStart = startDateArr[1] === "01" && startDateArr[2] === "01";
   const isSimpleEnd = endDateArr[1] === "12" && endDateArr[2] === "31";
 
+  // In the rare case that a policy is valid for only a single day,
+  // return just that day
+  if (startDateStr === endDateStr) {
+    return formatFullDate(startDateStr, countryId);
+  }
+
   // Get simple-date, single-year policies out of the way, as they
   // only have one component to the string
   if (isSimpleStart && isSimpleEnd && startDateArr[0] === endDateArr[0]) {
