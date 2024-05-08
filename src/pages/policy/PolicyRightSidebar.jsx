@@ -268,7 +268,7 @@ function PolicyNamer(props) {
   );
 }
 
-function SinglePolicyChange(props) {
+export function SinglePolicyChange(props) {
   const {
     startDateStr,
     endDateStr,
@@ -781,7 +781,7 @@ function formatDateString(startDateStr, endDateStr, countryId) {
   const endDateArr = endDateStr.split("-");
 
   const isSimpleStart = startDateArr[1] === "01" && startDateArr[2] === "01";
-  const isSimpleEnd = endDateArr[1] === "12" && startDateArr[2] === "31";
+  const isSimpleEnd = endDateArr[1] === "12" && endDateArr[2] === "31";
 
   // Get simple-date, single-year policies out of the way, as they
   // only have one component to the string
