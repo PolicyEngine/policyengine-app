@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Tooltip } from "antd";
 import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
-import CodeMirror from "@uiw/react-codemirror";
+import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import { espresso } from "thememirror";
 
@@ -158,6 +158,7 @@ export default function CodeBlock({
                 : language === "markdown"
                   ? langs.markdown()
                   : langs.javascript(),
+            EditorView.lineWrapping,
           ]}
           theme={espresso}
         />
