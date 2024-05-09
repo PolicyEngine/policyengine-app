@@ -225,8 +225,8 @@ export default function Analysis(props) {
         asyncApiCall(
           `/${metadata.countryId}/analysis/${promptId}`,
           null,
-          9_000,
-          4_000,
+          5_000,
+          5_000,
           (data) => {
             // We've got to wait ten seconds for the next part of the response to be ready,
             // so let's add the response word-by-word with a small delay to make it seem typed.
@@ -243,7 +243,7 @@ export default function Analysis(props) {
                     " ",
                   ),
                 );
-              }, 100 * i);
+              }, 50 * i);
             }
             fullAnalysis = analysisFromCall;
           },
@@ -318,7 +318,9 @@ export default function Analysis(props) {
           />
         )}
         {hasClickedGenerate && analysis && (
+          <div style={{width: "100%"}}>
           <MarkdownFormatter markdown={analysis} dict={chartDict} />
+          </div>
         )}
       </div>
       <div
@@ -338,22 +340,6 @@ export default function Analysis(props) {
       </div>
       {showPrompt ? (
         <>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingTop: 30,
-              marginBottom: 30,
-            }}
-          >
-            <Button
-              text="Copy"
-              style={{ margin: "20px auto 10px" }}
-              onClick={() => {
-                navigator.clipboard.writeText(lines.join("\n"));
-              }}
-            />
-          </div>
           <p>
             <CodeBlock data={lines} language={"markdown"} />
           </p>
