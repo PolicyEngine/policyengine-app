@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import {
   getReproducibilityCodeBlock,
   getHeaderCode,
@@ -14,15 +13,7 @@ import {
   reformPolicyUK,
   householdUS,
 } from "../__setup__/sampleData";
-import { metadataUS } from "../__setup__/jest.test";
-
-// let metadataUS = null;
-
-// beforeAll(async () => {
-//   const res = await fetch("https://api.policyengine.org/us/metadata");
-//   const metadataRaw = await res.json();
-//   metadataUS = metadataRaw.result;
-// });
+import { metadataUS } from "../__setup__/metadata_fetch.test";
 
 const numberedPolicyUS = {
   baseline: {
