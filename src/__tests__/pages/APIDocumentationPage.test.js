@@ -2,12 +2,10 @@ import APIDocumentationPage, {
   exampleInputs,
   APIResultCard,
 } from "../../pages/APIDocumentationPage";
-import fetch from "node-fetch";
 import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import * as countryIdFuncs from "hooks/useCountryId";
 import { BrowserRouter } from "react-router-dom";
-import "whatwg-fetch";
 import { metadataCA, metadataUK, metadataUS } from "../__setup__/metadata_fetch.test";
 
 afterEach(() => {
