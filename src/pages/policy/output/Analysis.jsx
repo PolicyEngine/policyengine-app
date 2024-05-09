@@ -157,9 +157,8 @@ export default function Analysis(props) {
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
 
-  //const openai = new OpenAIApi(configuration);
   const [showPrompt, setShowPrompt] = useState(false);
-  const lines = prompt.split("\n");
+  const lines = prompt;
 
   const handleAudienceChange = (audienceValue) => {
     setAudience(audienceValue);
@@ -356,7 +355,7 @@ export default function Analysis(props) {
             />
           </div>
           <p>
-            <CodeBlock lines={lines} language={"markdown"} />
+            <CodeBlock data={lines} language={"markdown"} />
           </p>
         </>
       ) : null}

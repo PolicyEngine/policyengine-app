@@ -149,8 +149,16 @@ export default function CodeBlock({
         <CodeMirror
           value={data}
           maxHeight={maxHeight ? maxHeight : !isExpanded && "260px"}
-          editable={false}
-          extensions={[language === "json" ? langs.json() : langs.python()]}
+          editable={!data}
+          extensions={[
+            language === "json"
+              ? langs.json()
+              : language === "python"
+                ? langs.python()
+                : language === "markdown"
+                  ? langs.markdown()
+                  : langs.javascript(),
+          ]}
           theme={espresso}
         />
       </Card>
