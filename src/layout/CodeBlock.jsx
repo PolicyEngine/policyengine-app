@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Tooltip } from "antd";
 import { CopyOutlined, DownOutlined, UpOutlined } from "@ant-design/icons";
-import CodeMirror from "@uiw/react-codemirror";
+import CodeMirror, { EditorView } from "@uiw/react-codemirror";
 import { langs } from "@uiw/codemirror-extensions-langs";
 import { espresso } from "thememirror";
 
@@ -150,7 +150,14 @@ export default function CodeBlock({
           value={data}
           maxHeight={maxHeight ? maxHeight : !isExpanded && "260px"}
           editable={false}
-          extensions={[language === "json" ? langs.json() : langs.python()]}
+          extensions={[
+            language === "json"
+              ? langs.json()
+              : language === "markdown"
+                ? langs.markdown()
+                : langs.json(),
+            EditorView.lineWrapping,
+          ]}
           theme={espresso}
         />
       </Card>
