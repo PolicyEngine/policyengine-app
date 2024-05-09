@@ -63,8 +63,10 @@ module.exports = {
     "^.+\\.[jt]sx?$": "babel-jest",
   },
   transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
-  setupFiles: ["<rootDir>/src/__tests__/__setup__/setup.js",],
-  setupFilesAfterEnv: ["<rootDir>/src/__tests__/__setup__/metadata_fetch.test.js"],
+  setupFiles: ["<rootDir>/src/__tests__/__setup__/setup.js"],
+  setupFilesAfterEnv: [
+    "<rootDir>/src/__tests__/__setup__/metadata_fetch.test.js",
+  ],
   testMatch: ["**/__tests__/**/*.test.js"],
   moduleNameMapper: {
     "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":

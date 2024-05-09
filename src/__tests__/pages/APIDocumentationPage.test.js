@@ -6,7 +6,11 @@ import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import * as countryIdFuncs from "hooks/useCountryId";
 import { BrowserRouter } from "react-router-dom";
-import { metadataCA, metadataUK, metadataUS } from "../__setup__/metadata_fetch.test";
+import {
+  metadataCA,
+  metadataUK,
+  metadataUS,
+} from "../__setup__/metadata_fetch.test";
 
 afterEach(() => {
   jest.restoreAllMocks();
