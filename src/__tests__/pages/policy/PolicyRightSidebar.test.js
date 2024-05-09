@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import fetch from "node-fetch";
 import PolicyRightSidebar from "pages/policy/PolicyRightSidebar";
 import "@testing-library/jest-dom";
+import { metadataUK, metadataUS } from "../../__setup__/jest.test";
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");
@@ -14,8 +15,8 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-let metadataUS = null;
-let metadataUK = null;
+// let metadataUS = null;
+// let metadataUK = null;
 
 const standardPolicyUS = {
   baseline: {
@@ -43,19 +44,19 @@ const standardPolicyUK = {
   },
 };
 
-beforeAll(async () => {
-  async function fetchMetadata(countryId) {
-    const res = await fetch(
-      `https://api.policyengine.org/${countryId}/metadata`,
-    );
-    const metadataRaw = await res.json();
-    const metadata = metadataRaw.result;
-    return metadata;
-  }
+// beforeAll(async () => {
+//   async function fetchMetadata(countryId) {
+//     const res = await fetch(
+//       `https://api.policyengine.org/${countryId}/metadata`,
+//     );
+//     const metadataRaw = await res.json();
+//     const metadata = metadataRaw.result;
+//     return metadata;
+//   }
 
-  metadataUS = await fetchMetadata("us");
-  metadataUK = await fetchMetadata("uk");
-});
+//   metadataUS = await fetchMetadata("us");
+//   metadataUK = await fetchMetadata("uk");
+// });
 
 describe("Enhanced CPS selector", () => {
   test("Should be present for the US site", async () => {

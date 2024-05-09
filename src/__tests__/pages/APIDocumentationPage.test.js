@@ -8,25 +8,27 @@ import "@testing-library/jest-dom";
 import * as countryIdFuncs from "hooks/useCountryId";
 import { BrowserRouter } from "react-router-dom";
 import "whatwg-fetch";
+import { metadataCA, metadataUK, metadataUS } from "../__setup__/jest.test";
+// import { metadataUK, metadataUS, metadataCA } from "../../__setup__/setup";
 
-let metadataUS = null;
-let metadataUK = null;
-let metadataCA = null;
+// let metadataUS = null;
+// let metadataUK = null;
+// let metadataCA = null;
 
-beforeAll(async () => {
-  async function fetchMetadata(countryId) {
-    const res = await fetch(
-      `https://api.policyengine.org/${countryId}/metadata`,
-    );
-    const metadataRaw = await res.json();
-    const metadata = metadataRaw.result;
-    return metadata;
-  }
+// beforeAll(async () => {
+//   async function fetchMetadata(countryId) {
+//     const res = await fetch(
+//       `https://api.policyengine.org/${countryId}/metadata`,
+//     );
+//     const metadataRaw = await res.json();
+//     const metadata = metadataRaw.result;
+//     return metadata;
+//   }
 
-  metadataUS = await fetchMetadata("us");
-  metadataUK = await fetchMetadata("uk");
-  metadataCA = await fetchMetadata("ca");
-});
+//   metadataUS = await fetchMetadata("us");
+//   metadataUK = await fetchMetadata("uk");
+//   metadataCA = await fetchMetadata("ca");
+// });
 
 afterEach(() => {
   jest.restoreAllMocks();

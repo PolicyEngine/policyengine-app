@@ -14,14 +14,15 @@ import {
   reformPolicyUK,
   householdUS,
 } from "../__setup__/sampleData";
+import { metadataUS } from "../__setup__/jest.test";
 
-let metadataUS = null;
+// let metadataUS = null;
 
-beforeAll(async () => {
-  const res = await fetch("https://api.policyengine.org/us/metadata");
-  const metadataRaw = await res.json();
-  metadataUS = metadataRaw.result;
-});
+// beforeAll(async () => {
+//   const res = await fetch("https://api.policyengine.org/us/metadata");
+//   const metadataRaw = await res.json();
+//   metadataUS = metadataRaw.result;
+// });
 
 const numberedPolicyUS = {
   baseline: {
