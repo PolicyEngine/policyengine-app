@@ -48,8 +48,8 @@ export default function HouseholdReproducibility(props) {
         </div>
         <p
           style={{
-            paddingTop: mobile ? 5 : 20,
-            paddingBottom: mobile ? 5 : 40,
+            paddingTop: mobile ? 5 : 10,
+            paddingBottom: 5,
           }}
         >
           Run the code below in a Python notebook to reproduce the results.
