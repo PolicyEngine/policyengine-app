@@ -2,7 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
-import CodeBlock from "layout/CodeBlock";
+// import CodeBlock from "layout/CodeBlock";
+import CodeBlock from "../../../layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
@@ -356,7 +357,7 @@ export default function Analysis(props) {
             />
           </div>
           <p>
-            <CodeBlock lines={lines} language={"markdown"} />
+            <CodeBlock lines={lines} language={"markdown"} data={prompt} />
           </p>
         </>
       ) : null}
