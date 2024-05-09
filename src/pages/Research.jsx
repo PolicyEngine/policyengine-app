@@ -109,8 +109,8 @@ function ResearchExplorer() {
       }
     }
     return (
-      hasMetAtLeastOneFilteredLocation &
-      hasMetAtLeastOneFilteredTopic &
+      hasMetAtLeastOneFilteredLocation &&
+      hasMetAtLeastOneFilteredTopic &&
       hasMetAtLeastOneFilteredAuthor
     );
   };
