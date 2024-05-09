@@ -42,30 +42,4 @@ export function submitToMailchimp(email) {
     });
   });
   return promise;
-
-  /*
-  jsonp(
-    `${submitLink}&EMAIL=${email}`,
-    { param: "c" },
-    (error, data) => {
-      if (error) {
-        result.isSuccessful = false;
-        result.message = "There was an issue processing your subscription; please try again later."
-        return "testVal";
-      }
-      if (data) {
-        // "data" also contains "result" param
-        // of either "success" or "error"
-        const { msg } = data;
-        if (typeof msg === "string") {
-          console.log(data);
-          result.isSuccessful = true;
-          result.message = msg;
-        }
-        return "testVal";
-      }
-    },
-  ).then((data) => data);
-  */
-  // return result;
 }

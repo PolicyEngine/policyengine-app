@@ -393,7 +393,7 @@ export default function MarginalTaxRates(props) {
           name: "Your baseline MTR",
           mode: "markers",
           line: {
-            color: style.colors.GRAY,
+            color: style.colors.MEDIUM_LIGHT_GRAY,
           },
           hovertemplate:
             `<b>Your baseline MTR</b><br><br>` +

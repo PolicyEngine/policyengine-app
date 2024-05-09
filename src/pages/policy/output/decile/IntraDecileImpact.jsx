@@ -21,9 +21,9 @@ export function ImpactPlot(props) {
   } = props;
   const colorMap = {
     "Gain more than 5%": style.colors.BLUE,
-    "Gain less than 5%": style.colors.BLUE_98,
+    "Gain less than 5%": style.colors.BLUE_95,
     "No change": style.colors.LIGHT_GRAY,
-    "Lose less than 5%": style.colors.GRAY,
+    "Lose less than 5%": style.colors.MEDIUM_LIGHT_GRAY,
     "Lose more than 5%": style.colors.DARK_GRAY,
   };
 

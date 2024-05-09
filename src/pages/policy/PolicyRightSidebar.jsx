@@ -16,8 +16,9 @@ import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import moment from "moment";
-import Collapsable from "../../redesign/components/Collapsable";
+import { defaultForeverYear } from "../../data/constants";
+import Collapsible from "../../layout/Collapsible";
+import { formatFullDate } from "../../lang/format";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -268,11 +269,21 @@ function PolicyNamer(props) {
 }
 
 function SinglePolicyChange(props) {
-  const { startDateStr, endDateStr, parameterMetadata, value, paramLabel } =
-    props;
+  const {
+    startDateStr,
+    endDateStr,
+    parameterMetadata,
+    value,
+    paramLabel,
+    countryId,
+  } = props;
   const oldVal = getParameterAtInstant(parameterMetadata, startDateStr);
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
+
+  const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
+  const isEndForever = endDateStr === FOREVER_DATE;
+
   const isBool =
     parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition";
   const prefix = isBool
@@ -316,9 +327,8 @@ function SinglePolicyChange(props) {
           </>
         )}
       </div>
-      <div style={{ paddingTop: 10 }}>
-        from {moment(startDateStr).format("Do MMMM, YYYY")} until{" "}
-        {moment(endDateStr).format("Do MMMM, YYYY")}
+      <div style={{ fontStyle: "italic" }}>
+        {`from ${formatFullDate(startDateStr, countryId)} ${isEndForever ? "onward" : `to ${formatFullDate(endDateStr, countryId)}`}`}
       </div>
     </div>
   );
@@ -336,6 +346,7 @@ function PolicyItem(props) {
         paramLabel={parameter.label}
         startDateStr={startDateStr}
         endDateStr={endDateStr}
+        countryId={metadata.countryId}
         parameterMetadata={parameter}
         value={value}
       />,
@@ -577,7 +588,7 @@ export default function PolicyRightSidebar(props) {
           />
         }
         <div style={{ paddingLeft: 5 }}>
-          <Collapsable
+          <Collapsible
             label="Find an existing policy"
             child={
               <div
@@ -619,7 +630,7 @@ export default function PolicyRightSidebar(props) {
           hideButtons={hideButtons}
         />
         <div style={{ paddingLeft: 5 }}>
-          <Collapsable
+          <Collapsible
             label="More options"
             defaultOpen={defaultOpen}
             child={

@@ -8,7 +8,7 @@ import useMobile from "../../../layout/Responsive";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import { localeCode } from "lang/format";
-import { defaultEndDate, defaultStartDate } from "../../../data/constants";
+import { defaultPOTEndDate, defaultStartDate } from "../../../data/constants";
 import { useWindowHeight } from "../../../hooks/useWindow";
 
 /**
@@ -45,10 +45,14 @@ export default function ParameterOverTime(props) {
 
   let xaxisValues = reformedX ? x.concat(reformedX) : x;
   xaxisValues = xaxisValues.filter(
-    (e) => e !== "0000-01-01" && e !== "2099-12-31",
+    (e) => e !== "0000-01-01" && e < "2099-12-31",
   );
+
   xaxisValues.push(defaultStartDate);
-  xaxisValues.push(defaultEndDate);
+  // This value is used for preventing the chart from expanding
+  // beyond 10 years past the current date for policy changes
+  // defined until "forever" (i.e., 2100-12-31)
+  xaxisValues.push(defaultPOTEndDate);
   const yaxisValues = reformedY ? y.concat(reformedY) : y;
   const xaxisFormat = getPlotlyAxisFormat("date", xaxisValues);
   const yaxisFormat = getPlotlyAxisFormat(parameter.unit, yaxisValues);
@@ -87,7 +91,9 @@ export default function ParameterOverTime(props) {
               shape: "hv",
             },
             marker: {
-              color: !reformMap ? style.colors.DARK_GRAY : style.colors.GRAY,
+              color: !reformMap
+                ? style.colors.DARK_GRAY
+                : style.colors.MEDIUM_LIGHT_GRAY,
             },
             name: "Current law",
             customdata: customData,
