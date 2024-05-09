@@ -55,7 +55,7 @@ function ImpactPlot(props) {
           title: "",
         },
         yaxis: {
-          title: "Employment income (bn)",
+          title: "Earnings (bn)",
           tickformat: "$,.1f",
           fixedrange: true,
         },
@@ -92,7 +92,7 @@ function ImpactPlot(props) {
 function title(policyLabel, change, metadata) {
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
-  const term1 = `employment income${regionPhrase}`;
+  const term1 = `earnings${regionPhrase}`;
   const term2 = formatCurrencyAbbr(Math.abs(change * 1e9), metadata.countryId, {
     maximumFractionDigits: 1,
   });
