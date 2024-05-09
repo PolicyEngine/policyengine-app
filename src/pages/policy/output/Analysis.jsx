@@ -318,8 +318,8 @@ export default function Analysis(props) {
           />
         )}
         {hasClickedGenerate && analysis && (
-          <div style={{width: "100%"}}>
-          <MarkdownFormatter markdown={analysis} dict={chartDict} />
+          <div style={{ width: "100%" }}>
+            <MarkdownFormatter markdown={analysis} dict={chartDict} />
           </div>
         )}
       </div>
