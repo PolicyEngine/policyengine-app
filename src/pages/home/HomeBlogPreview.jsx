@@ -3,11 +3,11 @@ import { SectionBottom, SectionTop } from "../../layout/Section";
 import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import Carousel from "../../layout/Carousel";
-import moment from "moment";
 import { useState } from "react";
 import useCountryId from "../../hooks/useCountryId";
 import EmphasisedLink from "../../layout/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
+import { formatFullDate } from "../../lang/format";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
@@ -397,7 +397,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
         >
           <div style={{ padding: 20 }}>
             <p style={{ textTransform: "uppercase" }}>
-              {moment(currentBlog.date).format("MMMM D, YYYY")}
+              {formatFullDate(currentBlog.date, countryId)}
             </p>
             <h3 style={{ minHeight: 70 }}>{currentBlog.title}</h3>
             <p>{currentBlog.description}</p>
@@ -474,7 +474,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
       >
         <div style={{ padding: 20 }}>
           <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
-            {moment(blog.date).format("MMMM D, YYYY")}
+          {formatFullDate(blog.date, countryId)}
           </p>
           <h4>{blog.title}</h4>
           <p>{blog.description}</p>
@@ -557,7 +557,7 @@ export function SmallBlogPreview({ blog }) {
             fontFamily: "Roboto",
           }}
         >
-          {moment(blog.date).format("MMMM D, YYYY")}
+          {formatFullDate(blog.date, countryId)}
         </p>
       }
       bottomRight={
