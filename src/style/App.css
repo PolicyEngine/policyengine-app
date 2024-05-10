@@ -137,3 +137,7 @@ h1 {
 h3 {
   margin-bottom: 15px;
 }
+
+.zero-radius-modal >* .ant-modal-content {
+  border-radius: 0px !important;
+}

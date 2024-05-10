@@ -101,9 +101,6 @@ export default function PoliciesModelledPopup(props) {
             />
           </>
         ),
-        style: {
-          borderRadius: 0,
-        },
         okButtonProps: {
           style: {
             display: "none",
@@ -112,6 +109,7 @@ export default function PoliciesModelledPopup(props) {
         icon: null,
         closable: false,
         keyboard: true,
+        className: "zero-radius-modal",
       });
     };
     if (
