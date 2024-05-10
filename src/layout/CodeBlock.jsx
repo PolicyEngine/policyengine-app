@@ -151,11 +151,7 @@ export default function CodeBlock({
           maxHeight={maxHeight ? maxHeight : !isExpanded && "260px"}
           editable={false}
           extensions={[
-            language === "json"
-              ? langs.json()
-              : language === "markdown"
-                ? langs.markdown()
-                : langs.json(),
+            language in langs ? langs[language]() : langs.json(),
             EditorView.lineWrapping,
           ]}
           theme={espresso}
