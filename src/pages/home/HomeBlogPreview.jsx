@@ -474,7 +474,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
       >
         <div style={{ padding: 20 }}>
           <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
-          {formatFullDate(blog.date, countryId)}
+            {formatFullDate(blog.date, countryId)}
           </p>
           <h4>{blog.title}</h4>
           <p>{blog.description}</p>
