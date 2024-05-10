@@ -162,7 +162,7 @@ export default function MaritalStatus(props) {
         <SearchParamNavButton
           text="Submit"
           focus="input.household.children"
-          style={{ marginTop: 20 }}
+          style={{ marginTop: 20, width: 125 }}
         />
       </>
     </CenteredMiddleColumn>
