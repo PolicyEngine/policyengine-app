@@ -18,14 +18,17 @@ const ResultsPanel = forwardRef((props, ref) => {
       <div ref={ref} style={{ paddingTop: 0, paddingBottom: 50 }}>
         {props.children}
       </div>
-      <p
-        style={{
-          paddingTop: mobile ? 5 : 20,
-          paddingBottom: mobile ? 5 : 40,
-        }}
-      >
-        {props.description}
-      </p>
+      {props.description && (
+        <p
+          style={{
+            paddingTop: mobile ? 5 : 20,
+            paddingBottom: mobile ? 5 : 40,
+            textAlign: "center",
+          }}
+        >
+          {props.description}
+        </p>
+      )}
     </div>
   );
 });
