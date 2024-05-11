@@ -57,16 +57,14 @@ const esModules = [
 
 module.exports = {
   modulePaths: ["<rootDir>/src"],
+  moduleFileExtensions: ["js", "mjs", "jsx", "tsx", "json"],
   testEnvironment: "jsdom",
   testTimeout: 10000,
   transform: {
     "^.+\\.[jt]sx?$": "babel-jest",
+    "^.+\\.mjs$": "babel-jest"
   },
   transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
-  setupFiles: ["<rootDir>/src/__tests__/__setup__/setup.js"],
-  setupFilesAfterEnv: [
-    "<rootDir>/src/__tests__/__setup__/metadata_fetch.test.js",
-  ],
   testMatch: ["**/__tests__/**/*.test.js"],
   moduleNameMapper: {
     "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":

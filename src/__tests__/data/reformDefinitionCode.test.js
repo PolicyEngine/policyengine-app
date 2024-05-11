@@ -13,7 +13,7 @@ import {
   reformPolicyUK,
   householdUS,
 } from "../__setup__/sampleData";
-import { metadataUS } from "../__setup__/metadata_fetch.test";
+import { metadataUS } from "../../../metadata_fetch.mjs";
 
 const numberedPolicyUS = {
   baseline: {

@@ -4,8 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import TaxYear from "pages/household/input/TaxYear";
 import { defaultYear } from "data/constants";
 import { defaultHouseholds } from "data/defaultHouseholds";
-import { metadataUS } from "../../../__setup__/metadata_fetch.test";
-
+import { metadataUS } from "../../../../../metadata_fetch.mjs";
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");
   return {

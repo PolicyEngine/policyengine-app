@@ -2,7 +2,7 @@
 // Internal imports
 import { createDefaultHousehold } from "api/variables.js";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
-import { metadataUS } from "../__setup__/metadata_fetch.test";
+import { metadataUS } from "../../../metadata_fetch.mjs";
 
 function constructTestSituationUS() {
   let testHousehold = JSON.parse(JSON.stringify(defaultHouseholds.us));

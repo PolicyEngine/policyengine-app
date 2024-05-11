@@ -2,7 +2,7 @@ import { addVariable } from "pages/household/input/VariableEditor.jsx";
 import { defaultHouseholds } from "data/defaultHouseholds.js";
 import { addChild } from "pages/household/input/CountChildren.jsx";
 import { defaultYear } from "data/constants";
-import { metadataUK, metadataUS } from "../../../__setup__/metadata_fetch.test";
+import { metadataUK, metadataUS } from "../../../../../metadata_fetch.mjs";
 
 describe("Test addVariable function", () => {
   test("Add a variable to default UK household", () => {

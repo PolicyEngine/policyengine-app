@@ -10,7 +10,7 @@ import {
   metadataCA,
   metadataUK,
   metadataUS,
-} from "../__setup__/metadata_fetch.test";
+} from "../../../metadata_fetch.mjs";
 
 afterEach(() => {
   jest.restoreAllMocks();
@@ -107,7 +107,7 @@ describe("APIDocumentationPage", () => {
       .spyOn(countryIdFuncs, "default")
       .mockImplementation(() => "uk");
 
-    jest.spyOn(global, "fetch").mockImplementation(() =>
+    jest.spyOn(globalThis, "fetch").mockImplementation(() =>
       Promise.resolve({
         ok: true,
         status: 200,
@@ -146,7 +146,7 @@ describe("APIDocumentationPage", () => {
       .spyOn(countryIdFuncs, "default")
       .mockImplementation(() => "ca");
 
-    jest.spyOn(global, "fetch").mockImplementation(() =>
+    jest.spyOn(globalThis, "fetch").mockImplementation(() =>
       Promise.resolve({
         ok: true,
         status: 200,
