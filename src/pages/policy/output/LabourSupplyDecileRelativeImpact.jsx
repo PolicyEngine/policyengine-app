@@ -4,9 +4,6 @@ import Plot from "react-plotly.js";
 import { formatPercent, localeCode } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import { Switch } from "antd";
-import RadioButton from "../../../controls/RadioButton";
-import { useState } from "react";
 
 export default function LabourSupplyDecileRelativeImpact(props) {
   const { policyLabel, metadata, impact } = props;

@@ -1,6 +1,5 @@
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
-import moment from "dayjs";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
 
@@ -15,7 +14,6 @@ const POLICYENGINE_API = "https://api.policyengine.org";
  * @returns {JSON} The API call's response JSON object
  */
 export function apiCall(path, body, method, secondAttempt = false) {
-  const startTime = moment();
   return fetch(POLICYENGINE_API + path, {
     method: method || (body ? "POST" : "GET"),
     headers: {
@@ -81,7 +79,6 @@ export function copySearchParams(searchParams) {
 }
 
 export function updateMetadata(countryId, setMetadata) {
-  const startTime = moment();
   return countryApiCall(countryId, "/metadata")
     .then((res) => res.json())
     .then((dataHolder) => {

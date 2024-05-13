@@ -31,7 +31,6 @@ import TACPage from "./pages/TermsAndConditions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ConfigProvider } from "antd";
 import style from "./style";
-import moment from "dayjs";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -123,7 +122,6 @@ export default function PolicyEngine({ pathname }) {
 
   // Get the baseline policy data when the baseline policy ID changes.
   useEffect(() => {
-    const startTime = moment();
     if (metadata) {
       countryApiCall(countryId, `/policy/${baselinePolicyId}`)
         .then((res) => res.json())
@@ -142,7 +140,6 @@ export default function PolicyEngine({ pathname }) {
 
   // Get the reform policy data when the reform policy ID changes.
   useEffect(() => {
-    const startTime = moment();
     if (metadata) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
         .then((res) => res.json())
@@ -181,7 +178,6 @@ export default function PolicyEngine({ pathname }) {
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
     async function fetchUserProfile() {
-      const startTime = moment();
       const USER_PROFILE_PATH = `/${countryId}/user_profile`;
       // Determine if user already exists in user profile db
       try {
