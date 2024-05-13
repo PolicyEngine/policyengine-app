@@ -131,11 +131,6 @@ export default function PolicyEngine({ pathname }) {
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
           }
-          console.log(
-            "Time to fetch baseline policy:",
-            moment() - startTime,
-            "ms",
-          );
           setBaselinePolicy({
             data: dataHolder.result.policy_json,
             label: dataHolder.result.label,
@@ -155,11 +150,6 @@ export default function PolicyEngine({ pathname }) {
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
           }
-          console.log(
-            "Time to fetch reform policy:",
-            moment() - startTime,
-            "ms",
-          );
           setReformPolicy({
             data: dataHolder.result.policy_json,
             label: dataHolder.result.label,
@@ -211,11 +201,6 @@ export default function PolicyEngine({ pathname }) {
           };
           const resPost = await apiCall(USER_PROFILE_PATH, body, "POST");
           const resPostJson = await resPost.json();
-          console.log(
-            "Time to fetch user profile:",
-            moment() - startTime,
-            "ms",
-          );
           if (resPost.status !== 201) {
             console.error(
               `Error while trying to create new user with auth0_id ${user.sub}`,

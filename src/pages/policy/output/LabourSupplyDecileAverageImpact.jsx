@@ -4,15 +4,20 @@ import Plot from "react-plotly.js";
 import { formatPercent, localeCode } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
+import { Switch } from "antd";
+import RadioButton from "../../../controls/RadioButton";
+import { useState } from "react";
 
-export default function LabourSupplyDecileImpact(props) {
+export default function LabourSupplyDecileAverageImpact(props) {
   const { policyLabel, metadata, impact } = props;
 
   const decileImpact = impact.labour_supply_response;
 
-  const incomeChanges = Object.values(decileImpact.decile.income).slice(0, 10);
+  const data = decileImpact.decile.average;
+
+  const incomeChanges = Object.values(data.income).slice(0, 10);
   let substitutionChanges = Object.values(
-    decileImpact.decile.substitution,
+    data.substitution,
   ).slice(0, 10);
   const overallChange = [];
   for (let i = 0; i < 10; i++) {
@@ -20,7 +25,10 @@ export default function LabourSupplyDecileImpact(props) {
   }
 
   const chart = (
-    <ImpactChart title={`${policyLabel}'s labour supply impact by decile`}>
+    <ImpactChart title={`${policyLabel}'s average labor supply impact by decile`}>
+      <p>
+        This chart shows the estimated average change in earnings (as a percentage of market income) for each disposable income decile, and split by the substitution and income effects.
+      </p>
       {
         <Plot
           data={[
@@ -60,14 +68,10 @@ export default function LabourSupplyDecileImpact(props) {
               mode: "markers+lines",
               // line should be the same color as the marker
               line: {
-                color: overallChange.map((value) =>
-                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
-                ),
+                color: style.colors.TEAL_ACCENT,
               },
               marker: {
-                color: overallChange.map((value) =>
-                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
-                ),
+                color: style.colors.TEAL_ACCENT,
                 size: 10,
                 symbol: "diamond",
                 // white border to distinguish
@@ -84,11 +88,12 @@ export default function LabourSupplyDecileImpact(props) {
           ]}
           layout={{
             xaxis: {
-              title: "",
+              title: "Household income decile",
+              tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             },
             yaxis: {
-              title: "Relative change",
-              tickformat: `,.0%`,
+              title: "Change in earnings",
+              tickformat: "$,.0f",
               fixedrange: true,
             },
             uniformtext: {

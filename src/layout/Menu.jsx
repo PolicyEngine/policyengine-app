@@ -54,6 +54,9 @@ function MenuItem(props) {
 
 function MenuItemGroup(props) {
   const { name, label, selected, children, onSelect } = props;
+  const betaBadge = <Tag color={style.colors.TEAL_ACCENT}>BETA</Tag>;
+  const isBeta = label.includes(" (experimental)");
+  const adjustedLabel = isBeta ? label.slice(0, -14) : label;
 
   const [expanded, setExpanded] = useState(selected.includes(name));
   const [selectedWhenExpandedLastToggled, setSelectedWhenExpandedLastToggled] =
@@ -142,10 +145,11 @@ function MenuItemGroup(props) {
                 textShadow: "0 0 .2px #000",
               }}
             >
-              {label}
+              {adjustedLabel}
             </span>
           )}
-          {selected === name ? "" : label || name.split(".").pop()}
+          {selected === name ? "" : adjustedLabel || name.split(".").pop()}
+          {isBeta && betaBadge}
         </p>
       </motion.div>
       {expandedComponentSpace}

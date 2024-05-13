@@ -14,30 +14,38 @@ import povertyImpactByRace from "./poverty/PovertyImpactByRace";
 import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
-import LabourSupplyDecileImpact from "./LabourSupplyDecileImpact";
+import LabourSupplyDecileAverageImpact from "./LabourSupplyDecileAverageImpact";
+import LabourSupplyDecileRelativeImpact from "./LabourSupplyDecileRelativeImpact";
+import Analysis from "./Analysis";
 
 const map = {
-  netIncome: budgetaryImpact,
-  detailedBudgetaryImpact: detailedBudgetaryImpact,
-  laborSupplyImpact: laborSupplyImpact,
-  decileAverageImpact: averageImpactByDecile,
-  wealthDecileAverageImpact: averageImpactByWealthDecile,
-  decileRelativeImpact: relativeImpactByDecile,
-  wealthDecileRelativeImpact: relativeImpactByWealthDecile,
-  intraDecileImpact: intraDecileImpact,
-  intraWealthDecileImpact: intraWealthDecileImpact,
-  povertyImpact: povertyImpact,
-  deepPovertyImpact: deepPovertyImpact,
-  genderPovertyImpact: povertyImpactByGender,
-  genderDeepPovertyImpact: deepPovertyImpactByGender,
-  racialPovertyImpact: povertyImpactByRace,
-  inequalityImpact: inequalityImpact,
+  "budgetaryImpact.overall": budgetaryImpact,
+  "budgetaryImpact.byProgram": detailedBudgetaryImpact,
+  "laborSupplyImpact.overall": laborSupplyImpact,
+  "distributionalImpact.incomeDecile.average": averageImpactByDecile,
+  "distributionalImpact.wealthDecile.average": averageImpactByWealthDecile,
+  "distributionalImpact.incomeDecile.relative": relativeImpactByDecile,
+  "distributionalImpact.wealthDecile.relative": relativeImpactByWealthDecile,
+  "winnersAndLosers.incomeDecile": intraDecileImpact,
+  "winnersAndLosers.wealthDecile": intraWealthDecileImpact,
+  "povertyImpact.regular.byAge": povertyImpact,
+  "povertyImpact.deep.byAge": deepPovertyImpact,
+  "povertyImpact.regular.byGender": povertyImpactByGender,
+  "povertyImpact.deep.byGender": deepPovertyImpactByGender,
+  "povertyImpact.regular.byRace": povertyImpactByRace,
+  "inequalityImpact": inequalityImpact,
   // cliffImpact: cliffImpact,
-  labourSupplyDecileImpact: LabourSupplyDecileImpact,
+  "laborSupplyImpact.byDecile.relative": LabourSupplyDecileRelativeImpact,
+  "laborSupplyImpact.byDecile.average": LabourSupplyDecileAverageImpact,
+  "analysis": Analysis,
 };
 
 // get representations of the impact as a chart and a csv. The returned object
 // has type {chart: <a react component>, csv: <an array>}.
 export const getImpactReps = (impactKey, props) => {
-  return map[impactKey](props);
+  try {
+    return map[impactKey](props);
+  } catch (e) {
+    throw new Error(`Impact type ${impactKey} not found`);
+  }
 };
