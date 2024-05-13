@@ -146,13 +146,20 @@ export default function lsrImpact(props) {
   const chart = (
     <ImpactChart title={title(policyLabel, values[2], metadata)}>
       <p style={{ marginBottom: 30 }}>
-        This {(budgetaryImpactLSRChange > 0) == (originalBudgetaryImpact > 0) ? "raises" : "lowers"} the budgetary
-        impact of the reform by {changeStr} (from {originalBudgetaryImpactStr}{" "}
-        to {newBudgetaryImpactStr}, a {relChangeStr}%{" "}
-        {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}).
+        This{" "}
+        {budgetaryImpactLSRChange > 0 == originalBudgetaryImpact > 0
+          ? "raises"
+          : "lowers"}{" "}
+        the budgetary impact of the reform by {changeStr} (from{" "}
+        {originalBudgetaryImpactStr} to {newBudgetaryImpactStr}, a{" "}
+        {relChangeStr}% {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}
+        ).
       </p>
       <p>
-        The income effect is the change in earnings from individuals responding to the policy&apos;s effect on their net income. The substitution effect is the response due the policy&apos;s effect on effective marginal wages.
+        The income effect is the change in earnings from individuals responding
+        to the policy&apos;s effect on their net income. The substitution effect
+        is the response due the policy&apos;s effect on effective marginal
+        wages.
       </p>
       <ImpactPlot
         values={values}

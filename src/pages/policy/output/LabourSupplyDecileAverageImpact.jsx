@@ -16,18 +16,20 @@ export default function LabourSupplyDecileAverageImpact(props) {
   const data = decileImpact.decile.average;
 
   const incomeChanges = Object.values(data.income).slice(0, 10);
-  let substitutionChanges = Object.values(
-    data.substitution,
-  ).slice(0, 10);
+  let substitutionChanges = Object.values(data.substitution).slice(0, 10);
   const overallChange = [];
   for (let i = 0; i < 10; i++) {
     overallChange.push(incomeChanges[i] + substitutionChanges[i]);
   }
 
   const chart = (
-    <ImpactChart title={`${policyLabel}'s average labor supply impact by decile`}>
+    <ImpactChart
+      title={`${policyLabel}'s average labor supply impact by decile`}
+    >
       <p>
-        This chart shows the estimated average change in earnings (as a percentage of market income) for each disposable income decile, and split by the substitution and income effects.
+        This chart shows the estimated average change in earnings (as a
+        percentage of market income) for each disposable income decile, and
+        split by the substitution and income effects.
       </p>
       {
         <Plot

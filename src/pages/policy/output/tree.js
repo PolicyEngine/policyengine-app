@@ -16,16 +16,15 @@ export const policyOutputs = {
   inequalityImpact: "Income inequality impact",
   // cliffImpact: "Cliff impact",
   laborSupplyImpact: "Labor supply impact (experimental)",
-  laborSupplyDecileRelativeImpact: "Labor supply relative impact by decile (experimental)",
-  laborSupplyDecileAverageImpact: "Labor supply average impact by decile (experimental)",
+  laborSupplyDecileRelativeImpact:
+    "Labor supply relative impact by decile (experimental)",
+  laborSupplyDecileAverageImpact:
+    "Labor supply average impact by decile (experimental)",
   analysis: "AI summary (experimental)",
   codeReproducibility: "Reproduce in Python",
 };
 
-
-
 export function getPolicyOutputTree(countryId) {
-
   const tree = [
     {
       name: "policyOutput",
@@ -41,13 +40,13 @@ export function getPolicyOutputTree(countryId) {
           children: [
             {
               name: "policyOutput.budgetaryImpact.overall",
-              label: "Overall"
+              label: "Overall",
             },
             countryId === "uk" && {
               name: "policyOutput.budgetaryImpact.byProgram",
-              label: "By program"
-            }
-          ].filter(x => x)
+              label: "By program",
+            },
+          ].filter((x) => x),
         },
         {
           name: "policyOutput.distributionalImpact",
@@ -59,11 +58,11 @@ export function getPolicyOutputTree(countryId) {
               children: [
                 {
                   name: "policyOutput.distributionalImpact.incomeDecile.relative",
-                  label: "Relative"
+                  label: "Relative",
                 },
                 {
                   name: "policyOutput.distributionalImpact.incomeDecile.average",
-                  label: "Average"
+                  label: "Average",
                 },
               ],
             },
@@ -73,15 +72,15 @@ export function getPolicyOutputTree(countryId) {
               children: [
                 {
                   name: "policyOutput.distributionalImpact.wealthDecile.relative",
-                  label: "Relative"
+                  label: "Relative",
                 },
                 {
                   name: "policyOutput.distributionalImpact.wealthDecile.average",
-                  label: "Average"
+                  label: "Average",
                 },
               ],
-            }
-          ].filter(x => x)
+            },
+          ].filter((x) => x),
         },
         {
           name: "policyOutput.winnersAndLosers",
@@ -89,13 +88,13 @@ export function getPolicyOutputTree(countryId) {
           children: [
             {
               name: "policyOutput.winnersAndLosers.incomeDecile",
-              label: "By income decile"
+              label: "By income decile",
             },
             countryId === "uk" && {
               name: "policyOutput.winnersAndLosers.wealthDecile",
-              label: "By wealth decile"
-            }
-          ].filter(x => x)
+              label: "By wealth decile",
+            },
+          ].filter((x) => x),
         },
         {
           name: "policyOutput.povertyImpact",
@@ -107,17 +106,17 @@ export function getPolicyOutputTree(countryId) {
               children: [
                 {
                   name: "policyOutput.povertyImpact.regular.byAge",
-                  label: "By age"
+                  label: "By age",
                 },
                 countryId === "us" && {
                   name: "policyOutput.povertyImpact.regular.byRace",
-                  label: "By race"
+                  label: "By race",
                 },
                 {
                   name: "policyOutput.povertyImpact.regular.byGender",
                   label: "By gender",
                 },
-              ].filter(x => x)
+              ].filter((x) => x),
             },
             {
               name: "policyOutput.povertyImpact.deep",
@@ -125,7 +124,7 @@ export function getPolicyOutputTree(countryId) {
               children: [
                 {
                   name: "policyOutput.povertyImpact.deep.byAge",
-                  label: "By age"
+                  label: "By age",
                 },
                 {
                   name: "policyOutput.povertyImpact.deep.byGender",
@@ -141,7 +140,10 @@ export function getPolicyOutputTree(countryId) {
         },
         {
           name: "policyOutput.laborSupplyImpact",
-          label: countryId === "uk" ? "Labour supply impact (experimental)" : "Labor supply impact (experimental)",
+          label:
+            countryId === "uk"
+              ? "Labour supply impact (experimental)"
+              : "Labor supply impact (experimental)",
           children: [
             {
               name: "policyOutput.laborSupplyImpact.overall",
@@ -153,13 +155,13 @@ export function getPolicyOutputTree(countryId) {
               children: [
                 {
                   name: "policyOutput.laborSupplyImpact.byDecile.relative",
-                  label: "Relative"
+                  label: "Relative",
                 },
                 {
                   name: "policyOutput.laborSupplyImpact.byDecile.average",
-                  label: "Average"
+                  label: "Average",
                 },
-              ]
+              ],
             },
           ],
         },
@@ -170,10 +172,10 @@ export function getPolicyOutputTree(countryId) {
         {
           name: "policyOutput.codeReproducibility",
           label: "Reproduce in Python",
-        }
+        },
       ],
     },
-  ]
+  ];
 
   return tree;
 }

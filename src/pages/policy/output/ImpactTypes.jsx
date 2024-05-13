@@ -33,11 +33,11 @@ const map = {
   "povertyImpact.regular.byGender": povertyImpactByGender,
   "povertyImpact.deep.byGender": deepPovertyImpactByGender,
   "povertyImpact.regular.byRace": povertyImpactByRace,
-  "inequalityImpact": inequalityImpact,
+  inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
   "laborSupplyImpact.byDecile.relative": LabourSupplyDecileRelativeImpact,
   "laborSupplyImpact.byDecile.average": LabourSupplyDecileAverageImpact,
-  "analysis": Analysis,
+  analysis: Analysis,
 };
 
 // get representations of the impact as a chart and a csv. The returned object

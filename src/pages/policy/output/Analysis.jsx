@@ -19,7 +19,7 @@ export default function Analysis(props) {
     "povertyImpact.regular.byAge",
     metadata.countryId === "us" && "povertyImpact.regular.byRace",
     "inequalityImpact",
-  ].filter(x => x);
+  ].filter((x) => x);
   if (metadata.countryId === "uk") {
     impactLabels.splice(2, 1);
   }
