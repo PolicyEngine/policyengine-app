@@ -268,7 +268,7 @@ function PolicyNamer(props) {
   );
 }
 
-function SinglePolicyChange(props) {
+export function SinglePolicyChange(props) {
   const {
     startDateStr,
     endDateStr,
@@ -281,9 +281,6 @@ function SinglePolicyChange(props) {
   const oldValStr = formatVariableValue(parameterMetadata, oldVal);
   const newValueStr = formatVariableValue(parameterMetadata, value);
 
-  const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
-  const isEndForever = endDateStr === FOREVER_DATE;
-
   const isBool =
     parameterMetadata.unit === "bool" || parameterMetadata.unit === "abolition";
   const prefix = isBool
@@ -293,6 +290,8 @@ function SinglePolicyChange(props) {
     : value > oldVal
       ? "Raise"
       : "Lower";
+
+  const dateString = formatDateString(startDateStr, endDateStr, countryId);
 
   return (
     <div
@@ -327,9 +326,7 @@ function SinglePolicyChange(props) {
           </>
         )}
       </div>
-      <div style={{ fontStyle: "italic" }}>
-        {`from ${formatFullDate(startDateStr, countryId)} ${isEndForever ? "onward" : `to ${formatFullDate(endDateStr, countryId)}`}`}
-      </div>
+      <div style={{ fontStyle: "italic" }}>{dateString}</div>
     </div>
   );
 }
@@ -769,5 +766,41 @@ export default function PolicyRightSidebar(props) {
         )}
       </div>
     </div>
+  );
+}
+
+function formatDateString(startDateStr, endDateStr, countryId) {
+  // Determine if policy runs forever
+  const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
+  const isEndForever = endDateStr === FOREVER_DATE;
+
+  const startDateArr = startDateStr.split("-");
+  const endDateArr = endDateStr.split("-");
+
+  const isSimpleStart = startDateArr[1] === "01" && startDateArr[2] === "01";
+  const isSimpleEnd = endDateArr[1] === "12" && endDateArr[2] === "31";
+
+  // In the rare case that a policy is valid for only a single day,
+  // return just that day
+  if (startDateStr === endDateStr) {
+    return formatFullDate(startDateStr, countryId);
+  }
+
+  // Get simple-date, single-year policies out of the way, as they
+  // only have one component to the string
+  if (isSimpleStart && isSimpleEnd && startDateArr[0] === endDateArr[0]) {
+    return String(startDateArr[0]);
+  }
+
+  // If either date isn't simple, neither should be, unless end is FOREVER_DATE
+  if (!isSimpleStart || !isSimpleEnd) {
+    return formatFullDate(startDateStr, countryId).concat(
+      isEndForever ? " onward" : ` to ${formatFullDate(endDateStr, countryId)}`,
+    );
+  }
+
+  // Otherwise, display only year, again being mindful of FOREVER_DATE
+  return startDateArr[0].concat(
+    isEndForever ? " onward" : ` to ${endDateArr[0]}`,
   );
 }
