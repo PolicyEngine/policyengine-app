@@ -26,6 +26,19 @@ beforeAll(async () => {
   metadataUS = await fetchMetadata("us");
   metadataUK = await fetchMetadata("uk");
   metadataCA = await fetchMetadata("ca");
+
+  document.createRange = () => {
+    const range = new Range();
+
+    range.getBoundingClientRect = jest.fn();
+
+    range.getClientRects = jest.fn(() => ({
+      item: () => null,
+      length: 0,
+    }));
+
+    return range;
+  };
 });
 
 afterEach(() => {

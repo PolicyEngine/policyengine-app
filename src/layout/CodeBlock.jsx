@@ -141,8 +141,10 @@ export default function CodeBlock({
       <Card
         style={{}}
         loading={!data}
-        bodyStyle={{
-          padding: 0,
+        styles={{
+          body: {
+            padding: 0,
+          },
         }}
         title={cardTitleComponent}
       >
