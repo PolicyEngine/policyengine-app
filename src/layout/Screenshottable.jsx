@@ -11,7 +11,6 @@ export default function Screenshottable(props) {
 
   const handleKeyDown = useCallback((event) => {
     if (event.ctrlKey && event.key === "k") {
-      console.log("ctrl+k");
       setShow(true);
     }
   }, []);

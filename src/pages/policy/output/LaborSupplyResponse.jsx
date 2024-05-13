@@ -55,7 +55,7 @@ function ImpactPlot(props) {
           title: "",
         },
         yaxis: {
-          title: "Employment income (bn)",
+          title: "Earnings (bn)",
           tickformat: "$,.1f",
           fixedrange: true,
         },
@@ -143,13 +143,25 @@ export default function lsrImpact(props) {
     substitutionEffect / 1e9,
     incomeEffect / 1e9 + substitutionEffect / 1e9,
   ];
+  const budgetaryImpactPositive = budgetaryImpact > 0;
+  const originalImpactPositive = originalBudgetaryImpact > 0;
   const chart = (
     <ImpactChart title={title(policyLabel, values[2], metadata)}>
       <p style={{ marginBottom: 30 }}>
-        This {budgetaryImpactLSRChange > 0 ? "raises" : "lowers"} the budgetary
-        impact of the reform by {changeStr} (from {originalBudgetaryImpactStr}{" "}
-        to {newBudgetaryImpactStr}, a {relChangeStr}%{" "}
-        {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}).
+        This{" "}
+        {budgetaryImpactPositive === originalImpactPositive
+          ? "raises"
+          : "lowers"}{" "}
+        the budgetary impact of the reform by {changeStr} (from{" "}
+        {originalBudgetaryImpactStr} to {newBudgetaryImpactStr}, a{" "}
+        {relChangeStr}% {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}
+        ).
+      </p>
+      <p>
+        The income effect is the change in earnings from individuals responding
+        to the policy&apos;s effect on their net income. The substitution effect
+        is the response due the policy&apos;s effect on effective marginal
+        wages.
       </p>
       <ImpactPlot
         values={values}

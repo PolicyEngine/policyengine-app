@@ -2,7 +2,8 @@ import { useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
-import CodeBlock from "layout/CodeBlock";
+// import CodeBlock from "layout/CodeBlock";
+import CodeBlock from "../../../layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
@@ -14,11 +15,11 @@ export default function Analysis(props) {
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
   const impactLabels = [
-    "decileRelativeImpact",
-    "povertyImpact",
-    "racialPovertyImpact",
+    "distributionalImpact.incomeDecile.relative",
+    "povertyImpact.regular.byAge",
+    metadata.countryId === "us" && "povertyImpact.regular.byRace",
     "inequalityImpact",
-  ];
+  ].filter((x) => x);
   if (metadata.countryId === "uk") {
     impactLabels.splice(2, 1);
   }
@@ -333,6 +334,7 @@ export default function Analysis(props) {
       >
         <Button
           text={showPrompt ? "Hide prompt" : "Show prompt"}
+          type="secondary"
           onClick={() => setShowPrompt(!showPrompt)}
           style={{ maxWidth: 250, margin: "20px auto 10px" }}
         />
@@ -356,7 +358,7 @@ export default function Analysis(props) {
             />
           </div>
           <p>
-            <CodeBlock lines={lines} language={"markdown"} />
+            <CodeBlock lines={lines} language={"markdown"} data={prompt} />
           </p>
         </>
       ) : null}
