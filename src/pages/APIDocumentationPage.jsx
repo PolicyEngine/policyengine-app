@@ -464,7 +464,6 @@ function APIEndpoint({
       <p>{description}</p>
 
       <div
-        data-testid="APIEndpoint_json_blocks"
         style={{
           display: "flex",
           flexDirection: displayCategory === "mobile" && "column",
