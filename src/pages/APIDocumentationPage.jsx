@@ -249,7 +249,7 @@ function VariableParameterExplorer(props) {
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          bordered={false}
+          variant="borderless"
           placeholder="Search for a variable or parameter"
           style={{
             fontSize: 20,
