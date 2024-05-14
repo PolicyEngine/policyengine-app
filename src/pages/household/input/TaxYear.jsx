@@ -89,7 +89,7 @@ export default function TaxYear(props) {
         text="Submit"
         focus="input.household.maritalStatus"
         style={{ marginTop: 20, width: 125 }}
-        />
+      />
     </CenteredMiddleColumn>
   );
 }
