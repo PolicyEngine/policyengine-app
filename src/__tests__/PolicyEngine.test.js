@@ -349,7 +349,6 @@ describe("Test main PolicyEngine component", () => {
   /*
   test("Routes to household page");
   test("Routes to policy page");
-  test("Routes to user profile page if user is logged in");
   test("Routes to user profile page if supplied with a user ID");
   test("Redirects if /profile is accessed by unauthenticated user"); // This will currently fail
   */
