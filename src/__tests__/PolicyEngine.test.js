@@ -50,6 +50,7 @@ beforeAll(async () => {
 
 afterAll(() => {
   window.location = location;
+  jest.resetAllMocks();
 });
 
 describe("Test main PolicyEngine component", () => {
@@ -346,9 +347,51 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("Terms of Service")).toBeInTheDocument();
   });
+  // Note: This test only determines if routing occurs;
+  // more detailed testing should be done for the component
+  // itself
+  test("Routes to household page for US", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/us/household",
+      origin: "https://www.policyengine.org/us/household"
+    };
+
+    const {queryByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(queryByText("Computing Public Policy for Everyone")).not.toBeInTheDocument();
+  });
+  // Note: This test only determines if routing occurs;
+  // more detailed testing should be done for the component
+  // itself
+  test("Routes to policy page for UK", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/uk/policy",
+      origin: "https://www.policyengine.org/uk/policy"
+    };
+
+    const {queryByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(queryByText("Computing Public Policy for Everyone")).not.toBeInTheDocument();
+  });
   /*
-  test("Routes to household page");
-  test("Routes to policy page");
   test("Routes to user profile page if supplied with a user ID");
   test("Redirects if /profile is accessed by unauthenticated user"); // This will currently fail
   */
