@@ -100,6 +100,26 @@ const examplePolicies = {
   uk: "Universal Credit entitlement",
 };
 
+const tokenFetchCode = `import http.client
+
+conn = http.client.HTTPSConnection("policyengine.uk.auth0.com")
+
+payload = "{\\"client_id\\":\\"YOUR_CLIENT_ID\\", \\"client_secret\\":\\"YOUR_CLIENT_SECRET\\"}"
+
+headers = { 'content-type': "application/json" }
+
+conn.request("POST", "/oauth/token", payload, headers)
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))`;
+
+const tokenOutputCode = `{
+  "access_token": "YOUR_ACCESS_TOKEN",
+  "token_type": "Bearer"
+}`;
+
 export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
 
@@ -313,11 +333,12 @@ export default function APIDocumentationPage({ metadata }) {
             https://household.api.policyengine.org
           </a>
           ) simulates tax-benefit policy outcomes and reform impacts for
-          households. Access to the API requires an authentication token, which
-          will expire monthly for security reasons. This token must be passed
-          within the authorization heading of each request you make to the API.
-          For more information or to request your own token, feel free to reach
-          out to PolicyEngine at{" "}
+          households. Access to the API requires a <b>Client ID</b> and{" "}
+          <b>Client Secret</b> given by PolicyEngine. Use these credentials to
+          request an authentication token, which expires monthly. This token
+          must be passed within the authorization heading of each request you
+          make to the API. For more information or to request your own Client
+          ID, reach out to PolicyEngine at{" "}
           <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
         </p>
         <br />
@@ -325,6 +346,9 @@ export default function APIDocumentationPage({ metadata }) {
         <ul>
           <li>
             <a href="#calculate">Calculate household-level policy outcomes</a>
+          </li>
+          <li>
+            <a href="#fetch_token">Fetch an authentication token</a>
           </li>
           <li>
             <a href="#variables">Variable and parameter metadata search</a>
@@ -346,6 +370,16 @@ export default function APIDocumentationPage({ metadata }) {
             : exampleInputs.default
         }
         countryId={countryId}
+        displayCategory={displayCategory}
+      />
+      <APIEndpointStatic
+        id="fetch_token"
+        title="Fetch an authentication token"
+        description={
+          'Execute a credentials exchange, using your client ID and client secret to obtain an authentication token. This token must be included within the authorization header of every HTTP request you make to the PolicyEngine API in the format "Bearer YOUR_TOKEN" (including the space). Tokens expire every month for security purposes.'
+        }
+        exampleInput={tokenFetchCode}
+        exampleOutput={tokenOutputCode}
         displayCategory={displayCategory}
       />
       <VariableParameterExplorer
@@ -446,6 +480,47 @@ function APIEndpoint({
           data={JSON.stringify(outputJson, null, 2)}
           title="Output"
         />
+      </div>
+      {children}
+    </Section>
+  );
+}
+
+function APIEndpointStatic({
+  pattern,
+  method,
+  title,
+  description,
+  children,
+  exampleInput,
+  id,
+  displayCategory,
+  exampleOutput,
+}) {
+  const hasInput = Boolean(exampleInput);
+
+  return (
+    <Section>
+      <h3 id={id}>{title}</h3>
+      <h5>
+        <code>
+          {method} {pattern}
+        </code>
+      </h5>
+      <p>{description}</p>
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: displayCategory === "mobile" && "column",
+          gap: displayCategory === "mobile" ? "2rem" : "50px",
+          marginTop: displayCategory === "mobile" ? "2rem" : 40,
+        }}
+      >
+        {hasInput && (
+          <CodeBlock language="python" data={exampleInput} title="Input" />
+        )}
+        <CodeBlock language="json" data={exampleOutput} title="Output" />
       </div>
       {children}
     </Section>
