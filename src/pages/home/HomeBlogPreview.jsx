@@ -4,7 +4,7 @@ import { posts } from "../../posts/postTransformers";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import Carousel from "../../layout/Carousel";
 import moment from "moment";
-import { useState } from "react";
+import React, { useState } from "react";
 import useCountryId from "../../hooks/useCountryId";
 import EmphasisedLink from "../../layout/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
@@ -143,7 +143,6 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
   const smallPosts = allPosts.slice(0, 4);
   const leftHandPost = allPosts.slice(4, 5);
   const bottomPosts = allPosts.slice(5, 7);
-
   return (
     <SectionBottom>
       <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
@@ -158,7 +157,9 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
         }}
       >
         <div style={{ flex: 1 }}>
-          <MediumBlogPreview blog={leftHandPost[0]} />
+          {leftHandPost?.map((post, index) => (
+            <MediumBlogPreview blog={post} key={index} />
+          ))}
         </div>
         <div style={{ width: 40 }} />
         <div
@@ -170,12 +171,12 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
           }}
         >
           {smallPosts?.map((post, index) => (
-            <>
+            <React.Fragment key={index}>
               <SmallBlogPreview key={post.slug} blog={post} />
               {index !== smallPosts.length - 1 && (
                 <div style={{ height: 40 }} />
               )}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
@@ -188,10 +189,10 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
         }}
       >
         {bottomPosts?.map((post, index) => (
-          <>
+          <React.Fragment key={index}>
             <MediumBlogPreview key={post.slug} blog={post} />
             {index !== bottomPosts.length - 1 && <div style={{ width: 40 }} />}
-          </>
+          </React.Fragment>
         ))}
       </div>
       <ReadMore />
