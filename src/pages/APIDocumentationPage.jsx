@@ -333,12 +333,10 @@ export default function APIDocumentationPage({ metadata }) {
             https://household.api.policyengine.org
           </a>
           ) simulates tax-benefit policy outcomes and reform impacts for
-          households. Access to the API requires a &quot;client ID&quot; and
-          &quot;client secret&quot; given by PolicyEngine. This two items are
-          then used to request a token, which expires monthly for security
-          reasons. This token must be passed within the authorization heading of
+          households. Access to the API requires a <b>Client ID</b> and{" "}
+          <b>Client Secret</b> given by PolicyEngine. Use these credentials to request an authentication token, which expires monthly. This token must be passed within the authorization heading of
           each request you make to the API. For more information or to request
-          your own client ID, feel free to reach out to PolicyEngine at{" "}
+          your own Client ID, reach out to PolicyEngine at{" "}
           <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
         </p>
         <br />
