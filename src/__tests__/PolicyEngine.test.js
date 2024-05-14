@@ -4,7 +4,7 @@ import { BrowserRouter, useSearchParams } from "react-router-dom";
 import fetch from "node-fetch";
 import postJson from "../posts/posts.json";
 
-import PolicyEngine from "../redesign/components/PolicyEngine";
+import PolicyEngine from "../PolicyEngine";
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");
@@ -105,8 +105,27 @@ describe("Test main PolicyEngine component", () => {
   /*
   test("Fetches user profile if user is logged in");
   test("Redirects from / to /[countryId]");
-  test("Routes to auth callback");
   */
+  test("Routes to auth callback", () => {
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: "/callback",
+      origin: "https://www.policyengine.org/callback"
+    };
+
+    const {queryByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(queryByText("Follow us on social media")).not.toBeInTheDocument();
+
+  });
   test("Routes to about page for US", () => {
 
     useSearchParams.mockImplementation(() => {
