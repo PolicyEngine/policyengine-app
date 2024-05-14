@@ -264,27 +264,7 @@ export default function Analysis(props) {
         />
       </div>
       {showPrompt ? (
-        <>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              paddingTop: 30,
-              marginBottom: 30,
-            }}
-          >
-            <Button
-              text="Copy"
-              style={{ margin: "20px auto 10px" }}
-              onClick={() => {
-                navigator.clipboard.writeText(lines.join("\n"));
-              }}
-            />
-          </div>
-          <p>
-            <CodeBlock lines={lines} language={"markdown"} data={prompt} />
-          </p>
-        </>
+        <CodeBlock lines={lines} language={"markdown"} data={prompt} />
       ) : null}
     </>
   );
