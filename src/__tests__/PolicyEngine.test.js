@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render} from "@testing-library/react";
+import { render, screen} from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 import fetch from "node-fetch";
 import postJson from "../posts/posts.json";
@@ -104,7 +104,6 @@ describe("Test main PolicyEngine component", () => {
   test("Fetches reform policy data");
   */
   /*
-  test("Fetches user profile if user is logged in");
   test("Redirects from / to /[countryId]");
   */
   test("Routes to auth callback", () => {
@@ -391,10 +390,29 @@ describe("Test main PolicyEngine component", () => {
 
     expect(queryByText("Computing Public Policy for Everyone")).not.toBeInTheDocument();
   });
-  /*
-  test("Routes to user profile page if supplied with a user ID");
-  test("Redirects if /profile is accessed by unauthenticated user"); // This will currently fail
-  */
+  test("Routes to user profile page if supplied with a user ID for UK", () => {
+
+    const testUserId = "1";
+
+    useSearchParams.mockImplementation(() => {
+      return [new URLSearchParams(), jest.fn()];
+    });
+
+    window.location = {
+      ...window.location,
+      pathname: `/uk/profile/${testUserId}`,
+      origin: `https://www.policyengine.org/uk/profile/${testUserId}`
+    };
+
+    const {getByText} = render(
+    <BrowserRouter>
+      <PolicyEngine />
+    </BrowserRouter>);
+
+    expect(getByText("Profile")).toBeInTheDocument();
+  });
+  // The below should be implemented once we properly handle this case
+  // test("Redirects if /profile is accessed by unauthenticated user");
   test("Routes to API documentation page for US", () => {
 
     // This test uses node-fetch to actually fetch country metadata,
@@ -462,6 +480,7 @@ describe("Test main PolicyEngine component", () => {
   });
   /*
   test("Redirects from /countryId/blog/slug to /countryId/research/slug");
-  test("Redirects for unrecognized paths and removes garbage values"); // This would currently fail
   */
+  // The below should be implemented once we properly handle this case
+  // test("Redirects for unrecognized paths and removes garbage values");
 });
