@@ -1,7 +1,7 @@
 import style from "../../../style";
 import ImpactChart from "./ImpactChart";
 import Plot from "react-plotly.js";
-import { formatPercent, localeCode } from "../../../lang/format";
+import { localeCode, formatCurrency } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
@@ -41,7 +41,7 @@ export default function LabourSupplyDecileAverageImpact(props) {
                 ),
               },
               text: substitutionChanges.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) => (value >= 0 ? "+" : "") + formatCurrency(value),
               ),
               name: "Substitution effect",
             },
@@ -55,7 +55,7 @@ export default function LabourSupplyDecileAverageImpact(props) {
                 ),
               },
               text: incomeChanges.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) => (value >= 0 ? "+" : "") + formatCurrency(value),
               ),
               name: "Income effect",
             },
@@ -80,7 +80,7 @@ export default function LabourSupplyDecileAverageImpact(props) {
                 },
               },
               text: overallChange.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) => (value >= 0 ? "+" : "") + formatCurrency(value),
               ),
               name: "Overall change",
             },

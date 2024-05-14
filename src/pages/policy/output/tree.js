@@ -163,6 +163,10 @@ export function getPolicyOutputTree(countryId) {
                 },
               ],
             },
+            {
+              name: "policyOutput.laborSupplyImpact.hours",
+              label: "Hours",
+            },
           ],
         },
         {
