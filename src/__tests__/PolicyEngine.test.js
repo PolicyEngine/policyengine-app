@@ -95,17 +95,6 @@ describe("Test main PolicyEngine component", () => {
     expect(getByText("Computing Public Policy for Everyone")).toBeInTheDocument();
     expect(getByText("Trusted across the UK")).toBeInTheDocument();
   });
-
-  // Wasn't able at the moment to figure out how to properly execute
-  // the below tests
-  /*
-  test("Metadata re-fetches if country ID changes");
-  test("Fetches baseline policy data");
-  test("Fetches reform policy data");
-  */
-  /*
-  test("Redirects from / to /[countryId]");
-  */
   test("Routes to auth callback", () => {
 
     useSearchParams.mockImplementation(() => {
@@ -478,9 +467,4 @@ describe("Test main PolicyEngine component", () => {
     expect(getByTitle("Citizens' Economic Council reform simulator")).toBeInTheDocument();
 
   });
-  /*
-  test("Redirects from /countryId/blog/slug to /countryId/research/slug");
-  */
-  // The below should be implemented once we properly handle this case
-  // test("Redirects for unrecognized paths and removes garbage values");
 });
