@@ -28,24 +28,6 @@ beforeAll(async () => {
   metadataUK = metadataRawUK.result;
 });
 
-const numberedPolicyUS = {
-  baseline: {
-    data: {},
-    label: "Current law",
-    id: 2,
-  },
-  reform: {
-    data: {
-      "sample.reform.item.2": {
-        "2020.01.01": 15,
-        "2022.01.01": 20,
-      },
-    },
-    label: "Sample reform",
-    id: 0,
-  },
-};
-
 describe("Test getReproducibilityCodeBlock", () => {
   test("Properly outputs array of values from functions it calls", () => {
     const output = getReproducibilityCodeBlock(
