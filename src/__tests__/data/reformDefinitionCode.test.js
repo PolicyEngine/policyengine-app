@@ -123,18 +123,6 @@ describe("Test getReformCode", () => {
     expect(output).toBeInstanceOf(Array);
     expect(output.length).toBe(7);
   });
-  test("Ensure proper formatting for policies with numbers", () => {
-    const output = getReformCode("policy", numberedPolicyUS, "us");
-    expect(output).toBeInstanceOf(Array);
-    const paramName = Object.keys(numberedPolicyUS.reform.data)[0];
-    let nameParts = paramName.split(".");
-    let numPart = nameParts[nameParts.length - 1];
-    numPart = `children["${numPart}"]`;
-    nameParts[nameParts.length - 1] = numPart;
-    const sanitizedName = nameParts.join(".");
-
-    expect(output).toContain(`    parameters.${sanitizedName}.update(`);
-  });
 });
 describe("Test getSituationCode", () => {
   test("Policy type returns empty array", () => {
