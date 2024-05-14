@@ -19,7 +19,7 @@
     "bootstrap": "^5.3.3",
     "dayjs": "^1.11.11",
     "file-saver": "^2.0.5",
-    "framer-motion": "^10.16.16",
+    "framer-motion": "^11.1.9",
     "fuse.js": "^7.0.0",
     "html2canvas": "^1.4.1",
     "jsonp": "^0.2.1",
