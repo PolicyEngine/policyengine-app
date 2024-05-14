@@ -66,7 +66,7 @@ module.exports = {
   setupFiles: ["<rootDir>/src/__tests__/__setup__/setup.js"],
   testMatch: ["**/__tests__/**/*.test.js"],
   moduleNameMapper: {
-    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|md)$":
       "<rootDir>/src/__tests__/__setup__/fileMock.js",
     "\\.(css|less)$": "<rootDir>/src/__tests__/__setup__/fileMock.js",
   },

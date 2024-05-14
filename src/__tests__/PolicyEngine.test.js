@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render, waitFor } from "@testing-library/react";
+import { render} from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 import fetch from "node-fetch";
 import postJson from "../posts/posts.json";
@@ -270,9 +270,17 @@ describe("Test main PolicyEngine component", () => {
     expect(getByText("The Difference Your Support Makes")).toBeInTheDocument();
   });
 
-  // This test needs to be debugged for a Jest import error
-  /*
+  // This test only ensures that the JS page renders, not that markdown is transformed,
+  // as markdown files are stubbed out in our current implementation of Jest.
+  // Processing markdown properly, which should be done to test blog files,
+  // would likely require a custom webpack setup.
   test("Routes to individual blog posts for US", () => {
+
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        text: () => Promise.resolve("success"),
+      })
+    );
 
     // Filter posts.json for US articles
     const filteredPostJson = postJson.filter((post) => post.tags.includes("us"));
@@ -298,9 +306,8 @@ describe("Test main PolicyEngine component", () => {
       <PolicyEngine />
     </BrowserRouter>);
 
-    expect(getByText(selectedPost.title)).toBeInTheDocument();
+    expect(getByText("Our organization")).toBeInTheDocument();
   });
-  */
   test("Routes to privacy page for UK", () => {
 
     useSearchParams.mockImplementation(() => {
@@ -342,7 +349,9 @@ describe("Test main PolicyEngine component", () => {
   /*
   test("Routes to household page");
   test("Routes to policy page");
-  test("Routes to user profile page");
+  test("Routes to user profile page if user is logged in");
+  test("Routes to user profile page if supplied with a user ID");
+  test("Redirects if /profile is accessed by unauthenticated user"); // This will currently fail
   */
   test("Routes to API documentation page for US", () => {
 
@@ -411,6 +420,6 @@ describe("Test main PolicyEngine component", () => {
   });
   /*
   test("Redirects from /countryId/blog/slug to /countryId/research/slug");
-  test("Redirects for unrecognized paths");
+  test("Redirects for unrecognized paths and removes garbage values"); // This would currently fail
   */
 });
