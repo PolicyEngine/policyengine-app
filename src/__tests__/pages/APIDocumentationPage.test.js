@@ -6,11 +6,11 @@ import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import * as countryIdFuncs from "hooks/useCountryId";
 import { BrowserRouter } from "react-router-dom";
-import {
-  metadataCA,
-  metadataUK,
-  metadataUS,
-} from "../../../metadata_fetch.mjs";
+import data from "../__setup__/data.json";
+
+let metadataUS = data["metadataUS"];
+let metadataUK = data["metadataUK"];
+let metadataCA = data["metadataCA"];
 
 afterEach(() => {
   jest.restoreAllMocks();

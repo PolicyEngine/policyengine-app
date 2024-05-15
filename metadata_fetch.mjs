@@ -1,26 +1,42 @@
 import fetch from "node-fetch";
+import fs from "fs";
+import path from "path";
+
+// const fetch = require('node-fetch')
+// const fs = require('fs');
+// const path = require('path');
 
 var metadataUS = null;
 var metadataUK = null;
 var metadataCA = null;
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const filePath = path.join(
+  __dirname,
+  "src",
+  "__tests__",
+  "__setup__",
+  "data.json",
+);
 
 async function fetchMetadata(countryId) {
-  const res = await fetch(
-    `https://api.policyengine.org/${countryId}/metadata`,
-  );
+  const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
   const metadataRaw = await res.json();
   const metadata = metadataRaw.result;
-  // console.log('metadata, ', metadata)
   return metadata;
 }
 
-const fetchAllMetadata = async () => {
-  await fetchMetadata("us").then((result) => metadataUS = result);
-  await fetchMetadata("uk").then((result) => metadataUK = result);
-  await fetchMetadata("ca").then((result) => metadataCA = result);
+metadataUS = await fetchMetadata("us");
+metadataUK = await fetchMetadata("uk");
+metadataCA = await fetchMetadata("ca");
+
+let jsonData = {
+  metadataUS: metadataUS,
+  metadataUK: metadataUK,
+  metadataCA: metadataCA,
 };
+jsonData = JSON.stringify(jsonData);
 
-await fetchAllMetadata();
-console.log(metadataUS)
-
-export { metadataUS, metadataUK, metadataCA };
+fs.writeFile(filePath, jsonData, (err) => {
+  if (err) throw err;
+  console.log("Data has been written to src/__tests__/__setup__/data.json");
+});

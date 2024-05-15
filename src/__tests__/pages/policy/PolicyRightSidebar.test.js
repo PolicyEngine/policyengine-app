@@ -2,7 +2,10 @@ import { fireEvent, render, waitFor } from "@testing-library/react";
 import { useSearchParams } from "react-router-dom";
 import PolicyRightSidebar from "pages/policy/PolicyRightSidebar";
 import "@testing-library/jest-dom";
-import { metadataUK, metadataUS } from "../../../../metadata_fetch.mjs";
+import data from "../../__setup__/data.json";
+
+let metadataUS = data["metadataUS"];
+let metadataUK = data["metadataUK"];
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");

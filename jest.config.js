@@ -57,12 +57,15 @@ const esModules = [
 
 module.exports = {
   modulePaths: ["<rootDir>/src"],
-  moduleFileExtensions: ["js", "mjs", "jsx", "tsx", "json"],
+  moduleFileExtensions: ["js", "mjs", "jsx", "tsx"],
   testEnvironment: "jsdom",
   testTimeout: 10000,
   transform: {
     "^.+\\.[jt]sx?$": "babel-jest",
-    "^.+\\.mjs$": "babel-jest"
+    "^.+\\.mjs$": "babel-jest",
+  },
+  globals: {
+    fetch: global.fetch,
   },
   transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
   testMatch: ["**/__tests__/**/*.test.js"],

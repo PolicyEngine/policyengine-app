@@ -4,7 +4,10 @@ import { useSearchParams } from "react-router-dom";
 import TaxYear from "pages/household/input/TaxYear";
 import { defaultYear } from "data/constants";
 import { defaultHouseholds } from "data/defaultHouseholds";
-import { metadataUS } from "../../../../../metadata_fetch.mjs";
+import data from "../../../__setup__/data.json";
+
+let metadataUS = data["metadataUS"];
+
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");
   return {
