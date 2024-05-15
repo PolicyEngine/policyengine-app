@@ -59,6 +59,12 @@ export function getBaselineCode(policy, metadata) {
   lines[1] = "baseline = Reform.from_dict({" + lines[0];
   lines[lines.length - 1] =
     lines[lines.length - 1] + ', country_id="' + metadata.countryId + '")';
+  lines = lines.map((line) => {
+    return line
+      .replace(/true/g, "True")
+      .replace(/false/g, "False")
+      .replace(/null/g, "None");
+  });
   return lines;
 }
 
@@ -71,6 +77,12 @@ export function getReformCode(policy, metadata) {
   lines[1] = "reform = Reform.from_dict({" + lines[0];
   lines[lines.length - 1] =
     lines[lines.length - 1] + ', country_id="' + metadata.countryId + '")';
+  lines = lines.map((line) => {
+    return line
+      .replace(/true/g, "True")
+      .replace(/false/g, "False")
+      .replace(/null/g, "None");
+  });
   return lines;
 }
 
@@ -153,7 +165,7 @@ export function getImplementationCode(type, region, timePeriod, policy) {
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
   const hasDatasetSpecified = region === "enhanced_us";
-  const dataset = hasDatasetSpecified ? 'dataset="enhanced_cps_2022"' : "";
+  const dataset = hasDatasetSpecified ? '"enhanced_cps_2022"' : "";
 
   return [
     "",
