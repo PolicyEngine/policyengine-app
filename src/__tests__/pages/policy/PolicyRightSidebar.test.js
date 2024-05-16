@@ -1,7 +1,11 @@
 import { fireEvent, render, waitFor } from "@testing-library/react";
-import { useSearchParams } from "react-router-dom";
-import PolicyRightSidebar from "pages/policy/PolicyRightSidebar";
+import { BrowserRouter, useSearchParams } from "react-router-dom";
+import PolicyRightSidebar, {
+  SinglePolicyChange,
+} from "pages/policy/PolicyRightSidebar";
 import "@testing-library/jest-dom";
+import { defaultForeverYear } from "../../../data/constants";
+import { formatFullDate } from "../../../lang/format";
 import data from "../../__setup__/data.json";
 
 let metadataUS = data["metadataUS"];
@@ -229,5 +233,204 @@ describe("Enhanced CPS selector", () => {
     expect(mockSetSearchParams).toHaveBeenCalledWith(
       new URLSearchParams(expectedSearchParams),
     );
+  });
+});
+
+describe("SinglePolicyChange", () => {
+  const testCountryId = "us";
+  const testValue = 3;
+  const testParamLabel = "maxwell";
+
+  test("Should display simple, single-year policies correctly", () => {
+    // This must be declared here, and not in describe
+    // block, because "beforeAll" doesn't run before describe
+    // setup - strange pattern
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-01";
+    const testEndDate = "2024-12-31";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    expect(getByText("2024")).toBeInTheDocument();
+  });
+  test("Should display simple, multi-year policies correctly", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-01";
+    const testEndDate = "2025-12-31";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    expect(getByText("2024 to 2025")).toBeInTheDocument();
+  });
+  test("Should display simple-start, forever policies correctly", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-01";
+    const testEndDate = defaultForeverYear.concat("-12-31");
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    expect(getByText("2024 onward")).toBeInTheDocument();
+  });
+  test("Should display complex-start, forever policies correctly", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-02";
+    const testEndDate = defaultForeverYear.concat("-12-31");
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    const startOutput = formatFullDate(testStartDate, testCountryId);
+
+    expect(getByText(`${startOutput} onward`)).toBeInTheDocument();
+  });
+  test("Should display complex-start, complex-end policies correctly", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-02";
+    const testEndDate = "2025-12-30";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    const startOutput = formatFullDate(testStartDate, testCountryId);
+    const endOutput = formatFullDate(testEndDate, testCountryId);
+
+    expect(getByText(`${startOutput} to ${endOutput}`)).toBeInTheDocument();
+  });
+  test("Should display complex-start, simple-end policies correctly", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-02";
+    const testEndDate = "2025-12-31";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    const startOutput = formatFullDate(testStartDate, testCountryId);
+    const endOutput = formatFullDate(testEndDate, testCountryId);
+
+    expect(getByText(`${startOutput} to ${endOutput}`)).toBeInTheDocument();
+  });
+  test("Should display simple-start, complex-end policies correctly", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-01";
+    const testEndDate = "2025-12-30";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    const startOutput = formatFullDate(testStartDate, testCountryId);
+    const endOutput = formatFullDate(testEndDate, testCountryId);
+
+    expect(getByText(`${startOutput} to ${endOutput}`)).toBeInTheDocument();
+  });
+  test("Should display rare use case of single-day policies as full date", () => {
+    const allParams = metadataUS.parameters;
+    const testStartDate = "2024-01-01";
+    const testEndDate = "2024-01-01";
+
+    const { getByText } = render(
+      <BrowserRouter>
+        <SinglePolicyChange
+          startDateStr={testStartDate}
+          endDateStr={testEndDate}
+          parameterMetadata={
+            allParams[Object.keys(allParams)[Object.keys(allParams).length / 2]]
+          }
+          value={testValue}
+          paramLabel={testParamLabel}
+          countryId={testCountryId}
+        />
+      </BrowserRouter>,
+    );
+
+    const output = formatFullDate(testStartDate, testCountryId);
+
+    expect(getByText(output)).toBeInTheDocument();
   });
 });

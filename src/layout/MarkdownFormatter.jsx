@@ -123,12 +123,10 @@ export function HighlightedBlock({ data, leftContent, rightContent }) {
 }
 
 export function PlotlyChartCode({ data, backgroundColor }) {
-  console.log(data);
   let plotlyData = null;
   try {
     plotlyData = JSON.parse(data);
   } catch {
-    console.log(data[0]);
     plotlyData = JSON.parse(data[0]);
   }
   const title = plotlyData.layout?.title?.text;

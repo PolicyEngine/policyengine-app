@@ -14,8 +14,6 @@ export default function About() {
   const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
 
   Object.keys(founders).map((founder) => {
-    console.log(founder);
-    console.log(founders[founder]);
     return founder;
   });
 

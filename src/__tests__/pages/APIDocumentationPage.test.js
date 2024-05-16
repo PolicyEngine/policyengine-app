@@ -12,6 +12,34 @@ let metadataUS = data["metadataUS"];
 let metadataUK = data["metadataUK"];
 let metadataCA = data["metadataCA"];
 
+beforeAll(async () => {
+  // async function fetchMetadata(countryId) {
+  //   const res = await fetch(
+  //     `https://api.policyengine.org/${countryId}/metadata`,
+  //   );
+  //   const metadataRaw = await res.json();
+  //   const metadata = metadataRaw.result;
+  //   return metadata;
+  // }
+
+  // metadataUS = await fetchMetadata("us");
+  // metadataUK = await fetchMetadata("uk");
+  // metadataCA = await fetchMetadata("ca");
+
+  document.createRange = () => {
+    const range = new Range();
+
+    range.getBoundingClientRect = jest.fn();
+
+    range.getClientRects = jest.fn(() => ({
+      item: () => null,
+      length: 0,
+    }));
+
+    return range;
+  };
+});
+
 afterEach(() => {
   jest.restoreAllMocks();
 });
@@ -79,7 +107,7 @@ describe("APIDocumentationPage", () => {
       }),
     );
 
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = await render(
       <BrowserRouter>
         <APIDocumentationPage metadata={metadataUS} />
       </BrowserRouter>,
@@ -88,7 +116,7 @@ describe("APIDocumentationPage", () => {
     expect(countryIdSpy).toHaveBeenCalled();
     // Ensure that US sample object rendering properly
     expect(getByTestId("APIEndpoint_json_blocks")).toContainElement(
-      getByText('"snap"'),
+      getByText(/household.api.policyengine.org\/us/i),
     );
 
     // Ensure that return block also rendered
@@ -127,7 +155,7 @@ describe("APIDocumentationPage", () => {
     expect(countryIdSpy).toHaveBeenCalled();
     // Ensure that UK sample object rendering properly
     expect(getByTestId("APIEndpoint_json_blocks")).toContainElement(
-      getByText('"universal_credit_entitlement"'),
+      getByText(/household.api.policyengine.org\/uk/i),
     );
 
     // Ensure that return block also rendered
