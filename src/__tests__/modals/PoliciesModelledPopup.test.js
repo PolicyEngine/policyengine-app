@@ -2,10 +2,9 @@ import "@testing-library/jest-dom";
 import { render, waitFor } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 // External package imports
-import fetch from "node-fetch";
-
 import HouseholdOutput from "pages/household/output/HouseholdOutput";
 import { createDefaultHousehold } from "../../api/variables";
+import data from "../__setup__/data.json";
 
 jest.mock("react-plotly.js", () => jest.fn());
 
@@ -18,12 +17,7 @@ jest.mock("react-router-dom", () => {
   };
 });
 
-let metadataUS = null;
-beforeAll(async () => {
-  const res = await fetch("https://api.policyengine.org/us/metadata");
-  const metadataRaw = await res.json();
-  metadataUS = metadataRaw.result;
-});
+let metadataUS = data["metadataUS"];
 
 describe("Test PoliciesModelledPopup", () => {
   test("Pop-up appears after beginning calculations", async () => {
