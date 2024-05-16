@@ -6,6 +6,7 @@ import {
   getReformCode,
   getSituationCode,
   getImplementationCode,
+  sanitizeStringToPython,
 } from "data/reformDefinitionCode";
 import {
   baselinePolicyUS,
@@ -253,5 +254,26 @@ describe("Test getImplementationCode", () => {
     const output = getImplementationCode("policy", "uk", 2024, testPolicy);
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain("baseline = Microsimulation(reform=baseline)");
+  });
+});
+
+describe("Test sanitizeStringToPython", () => {
+  test("It should convert 'null' to 'None'", () => {
+    const testLine = "dworkin = null";
+
+    const testOutput = sanitizeStringToPython(testLine);
+    expect(testOutput).toBe("dworkin = None");
+  });
+  test("It should convert 'true' to 'True'", () => {
+    const testLine = "dworkin = true";
+
+    const testOutput = sanitizeStringToPython(testLine);
+    expect(testOutput).toBe("dworkin = True");
+  });
+  test("It should convert 'false' to 'False'", () => {
+    const testLine = "dworkin = false";
+
+    const testOutput = sanitizeStringToPython(testLine);
+    expect(testOutput).toBe("dworkin = False");
   });
 });

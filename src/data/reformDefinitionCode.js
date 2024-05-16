@@ -55,16 +55,11 @@ export function getBaselineCode(policy, metadata) {
     return [];
   }
   let json_str = JSON.stringify(policy.baseline.data, null, 2);
+  json_str = sanitizeStringToPython(json_str);
   let lines = [""].concat(json_str.split("\n"));
   lines[1] = "baseline = Reform.from_dict({" + lines[0];
   lines[lines.length - 1] =
     lines[lines.length - 1] + ', country_id="' + metadata.countryId + '")';
-  lines = lines.map((line) => {
-    return line
-      .replace(/true/g, "True")
-      .replace(/false/g, "False")
-      .replace(/null/g, "None");
-  });
   return lines;
 }
 
@@ -73,16 +68,11 @@ export function getReformCode(policy, metadata) {
     return [];
   }
   let json_str = JSON.stringify(policy.reform.data, null, 2);
+  json_str = sanitizeStringToPython(json_str);
   let lines = [""].concat(json_str.split("\n"));
   lines[1] = "reform = Reform.from_dict({" + lines[0];
   lines[lines.length - 1] =
     lines[lines.length - 1] + ', country_id="' + metadata.countryId + '")';
-  lines = lines.map((line) => {
-    return line
-      .replace(/true/g, "True")
-      .replace(/false/g, "False")
-      .replace(/null/g, "None");
-  });
   return lines;
 }
 
@@ -129,10 +119,7 @@ export function getSituationCode(
 
   let householdJson = JSON.stringify(householdInputCopy, null, 2);
   // It's Python-safe, so we need to make true -> True and false -> False and null -> None
-  householdJson = householdJson
-    .replace(/true/g, "True")
-    .replace(/false/g, "False")
-    .replace(/null/g, "None");
+  householdJson = sanitizeStringToPython(householdJson);
 
   let lines = [
     "",
@@ -264,4 +251,18 @@ export function doesParamNameContainNumber(paramName) {
   }
 
   return false;
+}
+
+/**
+ * Utility function to sanitize a string and ensure that it's valid Python;
+ * currently converts JS 'null', 'true', and 'false' to Python
+ * 'None', 'True', and 'False'
+ * @param {String} string
+ * @returns {String}
+ */
+export function sanitizeStringToPython(string) {
+  return string
+    .replace(/true/g, "True")
+    .replace(/false/g, "False")
+    .replace(/null/g, "None");
 }
