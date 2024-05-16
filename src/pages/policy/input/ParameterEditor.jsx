@@ -137,6 +137,16 @@ export default function ParameterEditor(props) {
               reformMap={reformMap}
               baseMap={baseMap}
             />
+            {startDate !== defaultStartDate && endDate !== defaultEndDate ? (
+              <Button
+                onClick={() => {
+                  setStartDate(defaultStartDate);
+                  setEndDate(defaultEndDate);
+                }}
+              >
+                Reset
+              </Button>
+            ) : null}
           </div>
         </div>
         {!parameter.economy && (
