@@ -6,9 +6,9 @@ import path from "path";
 // const fs = require('fs');
 // const path = require('path');
 
-var metadataUS = null;
-var metadataUK = null;
-var metadataCA = null;
+let metadataUS = null;
+let metadataUK = null;
+let metadataCA = null;
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 const filePath = path.join(
   __dirname,

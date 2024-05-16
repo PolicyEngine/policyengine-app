@@ -22,10 +22,6 @@ beforeAll(async () => {
   //   return metadata;
   // }
 
-  // metadataUS = await fetchMetadata("us");
-  // metadataUK = await fetchMetadata("uk");
-  // metadataCA = await fetchMetadata("ca");
-
   document.createRange = () => {
     const range = new Range();
 
