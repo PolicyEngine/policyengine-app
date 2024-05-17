@@ -11,7 +11,7 @@ import {
   STATUS_COLORS,
   STATUS_TEXT_COLORS,
   COUNTRY_NAMES,
-} from "../data/statusPageDefaults";
+} from "../data/countries";
 import { Helmet } from "react-helmet";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
@@ -31,7 +31,7 @@ function ApiStatus({ apiStatus, apiCategory, countryNames }) {
           }}
         >
           <p style={{ margin: 0, display: "flex" }}>
-            <span style={{ width: "30%" }}>{countryNames[apiRoute]}</span>
+            <span style={{ width: "30%" }}>{countryNames[apiRoute].standard}</span>
             <span style={{ width: "20%" }}>/{apiRoute}</span>
             <span style={{ width: "50%" }}>
               <strong>

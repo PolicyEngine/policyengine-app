@@ -22,7 +22,7 @@ import { useEffect, useState } from "react";
 import useCountryId from "../hooks/useCountryId";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
-import { countryNames } from "../data/countries";
+import { COUNTRY_NAMES } from "../data/countries";
 import moment from "moment";
 import { formatCurrencyAbbr } from "../lang/format";
 
@@ -317,10 +317,10 @@ function UserProfileSection(props) {
     dispCountry = "No user found";
   } else if (dispState === STATES.EMPTY) {
     dispCountry = "Loading";
-  } else if (countryNames[accessedUserProfile.primary_country].singleWord) {
-    dispCountry = countryNames[accessedUserProfile.primary_country].singleWord;
+  } else if (COUNTRY_NAMES[accessedUserProfile.primary_country].singleWord) {
+    dispCountry = COUNTRY_NAMES[accessedUserProfile.primary_country].singleWord;
   } else {
-    dispCountry = countryNames[accessedUserProfile.primary_country].standard;
+    dispCountry = COUNTRY_NAMES[accessedUserProfile.primary_country].standard;
   }
 
   return (
