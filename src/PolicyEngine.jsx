@@ -343,7 +343,7 @@ export function findCountryId() {
 
   const path = window.location.pathname;
   const pathParts = path.split("/");
-  let countryId = pathParts[1];
+  let pathCountry = pathParts[1];
 
   const locale = Intl.DateTimeFormat().resolvedOptions().locale;
   let localeCountry = undefined;
@@ -351,8 +351,8 @@ export function findCountryId() {
     localeCountry = locale.split("-")[1].toLowerCase();
   }
 
-  if (Object.keys(COUNTRY_NAMES).includes(countryId)) {
-    return countryId;
+  if (Object.keys(COUNTRY_NAMES).includes(pathCountry)) {
+    return pathCountry;
   } else if (Object.keys(COUNTRY_NAMES).includes(localeCountry)) {
     return localeCountry;
   } else {
