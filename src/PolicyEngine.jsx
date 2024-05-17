@@ -6,6 +6,7 @@ import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
+import { COUNTRY_NAMES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
@@ -45,25 +46,12 @@ function ScrollToTop() {
   return null;
 }
 
-export default function PolicyEngine({ pathname }) {
-  const COUNTRIES = ["us", "uk", "ca", "ng", "il"];
-
-  // First, check if the country is specified (.org/[country]/...)
-  const path = pathname || window.location.pathname;
+export default function PolicyEngine() {
+  const path = window.location.pathname;
   const pathParts = path.split("/");
-  let countryId = pathParts[1];
 
-  if (!COUNTRIES.includes(countryId)) {
-    // If the country is not specified, look up the country ID from the user's browser language
-    const browserLanguage = navigator.language;
-    countryId = {
-      "en-US": "us",
-      "en-GB": "uk",
-      "en-CA": "ca",
-      "en-NG": "ng",
-      "en-IL": "il",
-    }[browserLanguage];
-  }
+  // Find country ID
+  const countryId = findCountryId();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -344,4 +332,30 @@ export default function PolicyEngine({ pathname }) {
       </Routes>
     </ConfigProvider>
   );
+}
+
+/**
+ * Based on the URL and user's browser, determine country ID;
+ * if not possible, return "us" as country ID
+ * @returns {String}
+ */
+export function findCountryId() {
+
+  const path = window.location.pathname;
+  const pathParts = path.split("/");
+  let countryId = pathParts[1];
+
+  const locale = Intl.DateTimeFormat().resolvedOptions().locale;
+  let localeCountry = undefined;
+  if (locale.includes("-")) {
+    localeCountry = locale.split("-")[1].toLowerCase();
+  }
+
+  if (Object.keys(COUNTRY_NAMES).includes(countryId)) {
+    return countryId;
+  } else if (Object.keys(COUNTRY_NAMES).includes(localeCountry)) {
+    return localeCountry;
+  } else {
+    return "us";
+  }
 }
