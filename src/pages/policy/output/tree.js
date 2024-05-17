@@ -150,6 +150,10 @@ export function getPolicyOutputTree(countryId) {
               label: "Overall",
             },
             {
+              name: "policyOutput.laborSupplyImpact.hours",
+              label: "Hours worked",
+            },
+            {
               name: "policyOutput.laborSupplyImpact.byDecile",
               label: "By decile",
               children: [
