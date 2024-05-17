@@ -6,7 +6,7 @@ import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
-import { COUNTRY_NAMES } from "./data/countries";
+import { COUNTRY_NAMES, COUNTRY_BASELINE_POLICIES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
@@ -55,18 +55,12 @@ export default function PolicyEngine() {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
-  const defaultBaselinePolicy =
-    countryId === "uk"
-      ? 1
-      : countryId === "us"
-        ? 2
-        : countryId === "ca"
-          ? 3
-          : countryId === "ng"
-            ? 4
-            : countryId === "il"
-              ? 5
-              : 1;
+
+  let defaultBaselinePolicy = 1;
+  if (COUNTRY_BASELINE_POLICIES.includes(countryId)) {
+    defaultBaselinePolicy = COUNTRY_BASELINE_POLICIES[countryId];
+  }
+
   const reformPolicyId = searchParams.get("reform") || defaultBaselinePolicy;
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;

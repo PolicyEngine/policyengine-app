@@ -33,6 +33,14 @@ export const COUNTRY_NAMES = {
   },
 };
 
+export const COUNTRY_BASELINE_POLICIES = {
+  uk: 1,
+  us: 2,
+  ca: 3,
+  ng: 4,
+  il: 5
+};
+
 export const STATUS_COLORS = {
   OK: colors.BLUE_95,
   ERROR: colors.DARK_RED,
