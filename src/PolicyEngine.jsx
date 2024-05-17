@@ -57,7 +57,7 @@ export default function PolicyEngine() {
   const householdId = searchParams.get("household");
 
   let defaultBaselinePolicy = 1;
-  if (COUNTRY_BASELINE_POLICIES.includes(countryId)) {
+  if (Object.keys(COUNTRY_BASELINE_POLICIES).includes(countryId)) {
     defaultBaselinePolicy = COUNTRY_BASELINE_POLICIES[countryId];
   }
 
