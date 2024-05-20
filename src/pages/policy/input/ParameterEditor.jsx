@@ -24,7 +24,8 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-
+import { UndoOutlined } from "@ant-design/icons";
+// import { Und}
 const { RangePicker } = DatePicker;
 
 /**
@@ -128,6 +129,16 @@ export default function ParameterEditor(props) {
               setStartDate={setStartDate}
               setEndDate={setEndDate}
             />
+            {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
+              <Tooltip title="Reset date">
+                <UndoOutlined
+                  onClick={() => {
+                    setStartDate(defaultStartDate);
+                    setEndDate(defaultEndDate);
+                  }}
+                />
+              </Tooltip>
+            ) : null}
             <ValueSetter
               startDate={startDate}
               endDate={endDate}
@@ -137,16 +148,6 @@ export default function ParameterEditor(props) {
               reformMap={reformMap}
               baseMap={baseMap}
             />
-            {startDate !== defaultStartDate && endDate !== defaultEndDate ? (
-              <Button
-                onClick={() => {
-                  setStartDate(defaultStartDate);
-                  setEndDate(defaultEndDate);
-                }}
-              >
-                Reset
-              </Button>
-            ) : null}
           </div>
         </div>
         {!parameter.economy && (
