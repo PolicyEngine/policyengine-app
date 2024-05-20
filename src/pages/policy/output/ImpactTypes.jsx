@@ -14,6 +14,7 @@ import povertyImpactByRace from "./poverty/PovertyImpactByRace";
 import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
 import laborSupplyImpact from "./LaborSupplyResponse";
+import lsrHoursImpact from "./LaborSupplyHoursImpact";
 import LabourSupplyDecileAverageImpact from "./LabourSupplyDecileAverageImpact";
 import LabourSupplyDecileRelativeImpact from "./LabourSupplyDecileRelativeImpact";
 import Analysis from "./Analysis";
@@ -37,6 +38,7 @@ const map = {
   // cliffImpact: cliffImpact,
   "laborSupplyImpact.byDecile.relative": LabourSupplyDecileRelativeImpact,
   "laborSupplyImpact.byDecile.average": LabourSupplyDecileAverageImpact,
+  "laborSupplyImpact.hours": lsrHoursImpact,
   analysis: Analysis,
 };
 
