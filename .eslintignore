@@ -1,1 +1,2 @@
 /build/**
+/src/__tests__/__setup__/data.json

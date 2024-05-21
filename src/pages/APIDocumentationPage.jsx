@@ -101,20 +101,25 @@ const examplePolicies = {
   uk: "Universal Credit entitlement",
 };
 
-const tokenFetchCode = `import http.client
+const tokenFetchCode = `import requests
+import json
 
-conn = http.client.HTTPSConnection("policyengine.uk.auth0.com")
+CLIENT_ID = "YOUR_CLIENT_ID"
+CLIENT_SECRET = "YOUR_CLIENT_SECRET"
 
-payload = "{\"client_id\":\"YOUR_CLIENT_ID\",\"client_secret\":\"YOUR_CLIENT_SECRET\",\"audience\":\"https://policyengine.uk.auth0.com/api/v2/\",\"grant_type\":\"client_credentials\"}"
+payload = {
+  \"client_id\": CLIENT_ID,
+  \"client_secret\": CLIENT_SECRET,
+  \"audience\": \"https://household.api.policyengine.org\",
+  \"grant_type\": \"client_credentials\"
+}
 
-headers = { 'content-type': "application/json" }
+headers = { "content-type": "application/json" }
 
-conn.request("POST", "/oauth/token", payload, headers)
+auth_response = requests.post(\"https://policyengine.uk.auth0.com/oauth/token\", headers=headers, json=payload)
 
-res = conn.getresponse()
-data = res.read()
-
-print(data.decode("utf-8"))`;
+result = auth_response.json()
+print(result[\"access_token\"])`;
 
 const tokenOutputCode = `{
   "access_token": "YOUR_ACCESS_TOKEN",
