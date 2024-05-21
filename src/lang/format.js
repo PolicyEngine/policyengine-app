@@ -116,6 +116,25 @@ export function formatCurrencyAbbr(number, countryId, options) {
   return formatCurrency(number, countryId, options) + suffix;
 }
 
+export function formatNumberAbbr(number, countryId, options) {
+  let suffix = "";
+  const absNumber = Math.abs(number);
+  if (absNumber >= 1e12) {
+    number /= 1e12;
+    suffix = "tn";
+  } else if (absNumber >= 1e9) {
+    number /= 1e9;
+    suffix = "bn";
+  } else if (absNumber >= 1e6) {
+    number /= 1e6;
+    suffix = "m";
+  } else if (absNumber >= 1e3) {
+    number /= 1e3;
+    suffix = "k";
+  }
+  return formatNumber(number, countryId, options) + suffix;
+}
+
 /**
  *
  * @param {Array} values an array of numbers

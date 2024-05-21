@@ -1,4 +1,3 @@
-import fetch from "node-fetch";
 import {
   getReproducibilityCodeBlock,
   getHeaderCode,
@@ -15,19 +14,10 @@ import {
   reformPolicyUK,
   householdUS,
 } from "../__setup__/sampleData";
+import data from "../__setup__/data.json";
 
-let metadataUS = null;
-let metadataUK = null;
-
-beforeAll(async () => {
-  const res = await fetch("https://api.policyengine.org/us/metadata");
-  const metadataRaw = await res.json();
-  metadataUS = metadataRaw.result;
-
-  const resUK = await fetch("https://api.policyengine.org/us/metadata");
-  const metadataRawUK = await resUK.json();
-  metadataUK = metadataRawUK.result;
-});
+let metadataUS = data["metadataUS"];
+let metadataUK = data["metadataUK"];
 
 describe("Test getReproducibilityCodeBlock", () => {
   test("Properly outputs array of values from functions it calls", () => {

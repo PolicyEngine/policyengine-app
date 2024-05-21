@@ -1,10 +1,12 @@
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { useSearchParams } from "react-router-dom";
-import fetch from "node-fetch";
 import TaxYear from "pages/household/input/TaxYear";
 import { defaultYear } from "data/constants";
 import { defaultHouseholds } from "data/defaultHouseholds";
+import data from "../../../__setup__/data.json";
+
+let metadataUS = data["metadataUS"];
 
 jest.mock("react-router-dom", () => {
   const originalModule = jest.requireActual("react-router-dom");
@@ -21,14 +23,6 @@ useSearchParams.mockImplementation(() => {
 });
 
 describe("Test TaxYear component", () => {
-  let metadataUS = null;
-
-  beforeAll(async () => {
-    const res = await fetch("https://api.policyengine.org/us/metadata");
-    const metadataRaw = await res.json();
-    metadataUS = metadataRaw.result;
-  });
-
   test("Properly sets display years based on metadata", async () => {
     const setYear = jest.fn();
 

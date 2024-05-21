@@ -31,5 +31,5 @@ yarn-error.log*
 /requirements.txt
 **/__pycache__
 .env
-
+/src/__tests__/__setup__/data.json
 .idea

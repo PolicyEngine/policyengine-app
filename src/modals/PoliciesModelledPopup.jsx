@@ -101,8 +101,10 @@ export default function PoliciesModelledPopup(props) {
             />
           </>
         ),
-        style: {
-          borderRadius: 0,
+        styles: {
+          content: {
+            borderRadius: 0,
+          },
         },
         okButtonProps: {
           style: {

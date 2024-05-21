@@ -12,7 +12,7 @@ export default function HouseholdIntro() {
       <SearchParamNavButton
         text="Enter my household"
         focus="input.household.taxYear"
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 20, width: 300 }}
       />
     </CenteredMiddleColumn>
   );

@@ -2,30 +2,25 @@ import APIDocumentationPage, {
   exampleInputs,
   APIResultCard,
 } from "../../pages/APIDocumentationPage";
-import fetch from "node-fetch";
 import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import * as countryIdFuncs from "hooks/useCountryId";
 import { BrowserRouter } from "react-router-dom";
-import "whatwg-fetch";
+import data from "../__setup__/data.json";
 
-let metadataUS = null;
-let metadataUK = null;
-let metadataCA = null;
+let metadataUS = data["metadataUS"];
+let metadataUK = data["metadataUK"];
+let metadataCA = data["metadataCA"];
 
 beforeAll(async () => {
-  async function fetchMetadata(countryId) {
-    const res = await fetch(
-      `https://api.policyengine.org/${countryId}/metadata`,
-    );
-    const metadataRaw = await res.json();
-    const metadata = metadataRaw.result;
-    return metadata;
-  }
-
-  metadataUS = await fetchMetadata("us");
-  metadataUK = await fetchMetadata("uk");
-  metadataCA = await fetchMetadata("ca");
+  // async function fetchMetadata(countryId) {
+  //   const res = await fetch(
+  //     `https://api.policyengine.org/${countryId}/metadata`,
+  //   );
+  //   const metadataRaw = await res.json();
+  //   const metadata = metadataRaw.result;
+  //   return metadata;
+  // }
 
   document.createRange = () => {
     const range = new Range();
@@ -136,7 +131,7 @@ describe("APIDocumentationPage", () => {
       .spyOn(countryIdFuncs, "default")
       .mockImplementation(() => "uk");
 
-    jest.spyOn(global, "fetch").mockImplementation(() =>
+    jest.spyOn(globalThis, "fetch").mockImplementation(() =>
       Promise.resolve({
         ok: true,
         status: 200,
@@ -175,7 +170,7 @@ describe("APIDocumentationPage", () => {
       .spyOn(countryIdFuncs, "default")
       .mockImplementation(() => "ca");
 
-    jest.spyOn(global, "fetch").mockImplementation(() =>
+    jest.spyOn(globalThis, "fetch").mockImplementation(() =>
       Promise.resolve({
         ok: true,
         status: 200,

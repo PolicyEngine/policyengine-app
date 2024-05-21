@@ -149,6 +149,10 @@ export function getPolicyOutputTree(countryId) {
               name: "policyOutput.laborSupplyImpact.overall",
               label: "Overall",
             },
+            countryId === "us" && {
+              name: "policyOutput.laborSupplyImpact.hours",
+              label: "Hours worked",
+            },
             {
               name: "policyOutput.laborSupplyImpact.byDecile",
               label: "By decile",
@@ -163,7 +167,7 @@ export function getPolicyOutputTree(countryId) {
                 },
               ],
             },
-          ],
+          ].filter((x) => x),
         },
         {
           name: "policyOutput.analysis",
