@@ -113,7 +113,7 @@ export default function VariableEditor(props) {
             text="Submit"
             focus={nextVariable}
             type={"primary"}
-            style={{ marginTop: 20, width: 260 }}
+            style={{ marginTop: 20, width: 300 }}
           />
         )}
       </div>
