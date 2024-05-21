@@ -4,8 +4,10 @@ import {
   Alert,
   Button,
   DatePicker,
+  Input,
   Popover,
   Segmented,
+  Space,
   Switch,
   Tooltip,
 } from "antd";
@@ -122,23 +124,26 @@ export default function ParameterEditor(props) {
               gap: "10px",
             }}
           >
-            <PeriodSetter
-              metadata={metadata}
-              startDate={startDate}
-              endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-            />
-            {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
-              <Tooltip title="Reset date">
-                <UndoOutlined
+            <Space.Compact>
+              <PeriodSetter
+                metadata={metadata}
+                startDate={startDate}
+                endDate={endDate}
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
+              />
+              {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
+                <Button
+                  icon={<UndoOutlined />}
                   onClick={() => {
                     setStartDate(defaultStartDate);
                     setEndDate(defaultEndDate);
                   }}
                 />
-              </Tooltip>
-            ) : null}
+              ) : (
+                <Button icon={<UndoOutlined />} disabled />
+              )}
+            </Space.Compact>
             <ValueSetter
               startDate={startDate}
               endDate={endDate}
@@ -289,14 +294,16 @@ function PeriodSetter(props) {
   return (
     <Popover trigger="click" content={popoverContent} placement="bottom">
       <Tooltip title="Click to edit parameter timespan">
-        <Button
-          type="default"
-          style={{
-            width: "max-content",
-          }}
-        >
-          {dateSelectButtonLabel}
-        </Button>
+        <Space.Compact>
+          <Button
+            type="default"
+            style={{
+              width: "max-content",
+            }}
+          >
+            {dateSelectButtonLabel}
+          </Button>
+        </Space.Compact>
       </Tooltip>
     </Popover>
   );
