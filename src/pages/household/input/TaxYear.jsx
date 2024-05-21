@@ -88,7 +88,7 @@ export default function TaxYear(props) {
         data-testid="taxyear_navbutton"
         text="Submit"
         focus="input.household.maritalStatus"
-        style={{ marginTop: 20 }}
+        style={{ marginTop: 20, width: 300 }}
       />
     </CenteredMiddleColumn>
   );
