@@ -1,3 +1,4 @@
+/* eslint no-useless-escape: 0 */
 import style from "../style";
 import Footer from "../layout/Footer";
 import CodeBlock from "../layout/CodeBlock";
