@@ -105,7 +105,7 @@ const tokenFetchCode = `import http.client
 
 conn = http.client.HTTPSConnection("policyengine.uk.auth0.com")
 
-payload = "{\"client_id\":\"YOUR_CLIENT_ID\",\"client_secret\":\"YOUR_CLIENT_SECRET\",\"audience\":\"https://policyengine.uk.auth0.com/api/v2/\",\"grant_type\":\"client_credentials\"}"
+payload = "{\"client_id\":\"YOUR_CLIENT_ID\",\"client_secret\":\"YOUR_CLIENT_SECRET\",\"audience\":\"https://household.api.policyengine.org\",\"grant_type\":\"client_credentials\"}"
 
 headers = { 'content-type': "application/json" }
 
