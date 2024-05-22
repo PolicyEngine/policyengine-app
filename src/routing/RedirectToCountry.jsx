@@ -6,7 +6,7 @@ export default function RedirectToCountry() {
   // Find country ID
   const countryId = findCountryId();
 
-  return <Navigate to={`/${countryId}`} />;
+  return <Navigate to={`/${countryId}`} replace />;
 
 }
 

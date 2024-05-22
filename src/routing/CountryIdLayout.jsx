@@ -8,7 +8,7 @@ export default function CountryIdLayout() {
   if (COUNTRY_CODES.includes(countryId)) {
     return <Outlet />;
   } else {
-    return <Navigate to="/us" />;
+    return <Navigate to="/us" replace />;
   }
 
 }
