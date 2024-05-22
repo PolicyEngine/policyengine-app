@@ -1,7 +1,7 @@
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 
-const POLICYENGINE_API = "https://api.policyengine.org";
+const POLICYENGINE_API = "https://ai.policyengine.org";
 
 /**
  * Makes an API call to the back end and returns response

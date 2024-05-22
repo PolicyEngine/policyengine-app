@@ -25,6 +25,7 @@ import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 import { COUNTRY_NAMES } from "../data/countries";
 import moment from "moment";
 import { formatCurrencyAbbr } from "../lang/format";
+import ErrorPage from "../layout/Error";
 
 const STATES = {
   EMPTY: "empty",
@@ -54,12 +55,12 @@ export default function UserProfilePage(props) {
   // visiting. authedUserProfile is shared via props, as the entire
   // app has access to this info, while accessedUserProfile requires a fetch
 
-  const { metadata, authedUserProfile } = props;
+  const { metadata, authedUserProfile, metadataError } = props;
   let params = useParams();
   const accessedUserId = params.user_id;
   const isOwnProfile =
     Number(authedUserProfile?.user_id) === Number(accessedUserId);
-
+  
   const [dispState, setDispState] = useState(STATES.EMPTY);
   const [isHeaderLoading, setIsHeaderLoading] = useState(true);
   const [arePoliciesLoading, setArePoliciesLoading] = useState(true);
@@ -263,25 +264,31 @@ export default function UserProfilePage(props) {
             dateFormatter={dateFormatter}
             setAccessedUserProfile={setAccessedUserProfile}
             setDispState={setDispState}
+            metadataError={metadataError}
           />
         </PageHeader>
-        <Section title={sectionTitle} backgroundColor={style.colors.BLUE_98}>
-          <div
-            style={{
-              display: "grid",
-              width: "100%",
-              gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
-              gap: "12px",
-              marginTop: 30,
-            }}
-          >
-            {arePoliciesLoading
-              ? loadingCards
-              : accessedUserPolicies.length === 0
-                ? noCardPlaceholder
-                : accessedUserPolicyCards}
-          </div>
-        </Section>
+        {metadataError
+          ? <ErrorPage />
+          : (
+            <Section title={sectionTitle} backgroundColor={style.colors.BLUE_98}>
+              <div
+                style={{
+                  display: "grid",
+                  width: "100%",
+                  gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
+                  gap: "12px",
+                  marginTop: 30,
+                }}
+              >
+                {arePoliciesLoading
+                  ? loadingCards
+                  : accessedUserPolicies.length === 0
+                    ? noCardPlaceholder
+                    : accessedUserPolicyCards}
+              </div>
+            </Section>
+          )
+        }
         <Footer />
       </div>
     </>
@@ -298,6 +305,7 @@ function UserProfileSection(props) {
     dateFormatter,
     setAccessedUserProfile,
     setDispState,
+    metadataError
   } = props;
   const { isAuthenticated, user } = useAuth0();
   const countryId = useCountryId();
@@ -321,6 +329,10 @@ function UserProfileSection(props) {
     dispCountry = COUNTRY_NAMES[accessedUserProfile.primary_country].singleWord;
   } else {
     dispCountry = COUNTRY_NAMES[accessedUserProfile.primary_country].standard;
+  }
+
+  if (metadataError) {
+    return null;
   }
 
   return (
