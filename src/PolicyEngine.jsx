@@ -6,7 +6,7 @@ import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
-import { COUNTRY_NAMES, COUNTRY_BASELINE_POLICIES } from "./data/countries";
+import { COUNTRY_NAMES, COUNTRY_CODES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
@@ -57,7 +57,7 @@ export default function PolicyEngine() {
   const householdId = searchParams.get("household");
 
   let defaultBaselinePolicy = 1;
-  if (Object.keys(COUNTRY_BASELINE_POLICIES).includes(countryId)) {
+  if (COUNTRY_CODES).includes(countryId)) {
     defaultBaselinePolicy = COUNTRY_BASELINE_POLICIES[countryId];
   }
 
@@ -345,9 +345,9 @@ export function findCountryId() {
     localeCountry = locale.split("-")[1].toLowerCase();
   }
 
-  if (Object.keys(COUNTRY_NAMES).includes(pathCountry)) {
+  if (COUNTRY_CODES.includes(pathCountry)) {
     return pathCountry;
-  } else if (Object.keys(COUNTRY_NAMES).includes(localeCountry)) {
+  } else if (COUNTRY_CODES.includes(localeCountry)) {
     return localeCountry;
   } else {
     return "us";
