@@ -78,42 +78,53 @@ export function copySearchParams(searchParams) {
   return newSearch;
 }
 
-export function updateMetadata(countryId, setMetadata) {
-  return countryApiCall(countryId, "/metadata")
-    .then((res) => res.json())
-    .then((dataHolder) => {
-      let data = dataHolder.result;
-      const variableTree = buildVariableTree(
-        data.variables,
-        data.variableModules,
-        data.basicInputs,
-      );
-      // parameters = {p: {parameter: "x.y.z"}}. Filter out parameters with parameter containing "taxsim"
-      data.parameters = Object.fromEntries(
-        Object.entries(data.parameters).filter(
-          // eslint-disable-next-line no-unused-vars
-          ([key, value]) => !value.parameter.includes("taxsim"), // &&
-          // first value in parameter.values is not a list.
-          //(!value.values ||
-          //  !(Object.values(value.values)[0] instanceof Array)),
-        ),
-      );
-      const parameterTree = buildParameterTree(data.parameters);
-      const variablesInOrder = getTreeLeavesInOrder(variableTree);
-      const metadata = {
-        ...data,
-        variableTree: variableTree,
-        variablesInOrder: variablesInOrder,
-        parameterTree: parameterTree,
-        countryId: countryId,
-        package: {
-          uk: "policyengine_uk",
-          us: "policyengine_us",
-          ca: "policyengine_canada",
-        }[countryId],
-        currency: countryId === "uk" ? "£" : "$",
-      };
-      setMetadata(metadata);
-      return metadata;
-    });
+export async function updateMetadata(countryId) {
+  try {
+    const res = await countryApiCall(countryId, "/metadata");
+    if (!res.ok) {
+      console.error("Error response within updateMetadata:");
+      console.error(res);
+      return null;
+    }
+
+    const dataHolder = await res.json();
+
+    let data = dataHolder.result;
+    const variableTree = buildVariableTree(
+      data.variables,
+      data.variableModules,
+      data.basicInputs,
+    );
+    // parameters = {p: {parameter: "x.y.z"}}. Filter out parameters with parameter containing "taxsim"
+    data.parameters = Object.fromEntries(
+      Object.entries(data.parameters).filter(
+        // eslint-disable-next-line no-unused-vars
+        ([key, value]) => !value.parameter.includes("taxsim"), // &&
+        // first value in parameter.values is not a list.
+        //(!value.values ||
+        //  !(Object.values(value.values)[0] instanceof Array)),
+      ),
+    );
+    const parameterTree = buildParameterTree(data.parameters);
+    const variablesInOrder = getTreeLeavesInOrder(variableTree);
+    const metadata = {
+      ...data,
+      variableTree: variableTree,
+      variablesInOrder: variablesInOrder,
+      parameterTree: parameterTree,
+      countryId: countryId,
+      package: {
+        uk: "policyengine_uk",
+        us: "policyengine_us",
+        ca: "policyengine_canada",
+      }[countryId],
+      currency: countryId === "uk" ? "£" : "$",
+    };
+
+    return metadata;
+
+  } catch (e) {
+    console.error(e);
+  }
+
 }

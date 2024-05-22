@@ -67,8 +67,8 @@ export default function PolicyEngine() {
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;
 
+  const [metadataError, setMetadataError] = useState(false);
   const [metadata, setMetadata] = useState(null);
-  const [error] = useState(null);
 
   const [baselinePolicy, setBaselinePolicy] = useState({
     id: baselinePolicyId,
@@ -88,7 +88,8 @@ export default function PolicyEngine() {
   const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
   const [userProfile, setUserProfile] = useState({});
 
-  // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
+  // Update the metadata state when something happens to 
+  // the countryId (e.g. the user changes the country).
   useEffect(() => {
 
     // If we're accessing the page without a country ID,
@@ -99,17 +100,24 @@ export default function PolicyEngine() {
       return;
     }
 
-    try {
-      updateMetadata(countryId, setMetadata);
-    } catch (e) {
-      // Sometimes this fails. When it does, refresh the page, but only once (use a param in the URL to make sure it only happens once).
-      if (!searchParams.get("refreshed")) {
-        let newSearch = copySearchParams(searchParams);
-        newSearch.set("refreshed", true);
-        setSearchParams(newSearch);
-        window.location.reload();
+    async function asyncUpdateMetadata() {
+      try {
+        const metadata = await updateMetadata(countryId);
+        if (!metadata) {
+          setMetadataError(true);
+          setMetadata(null);
+        } else {
+          setMetadata(metadata);
+          setMetadataError(false);
+        }
+      } catch (e) {
+        console.error(e);
+        setMetadataError(true);
+        setMetadata(null);
       }
     }
+
+    asyncUpdateMetadata();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countryId]);
 
@@ -295,11 +303,11 @@ export default function PolicyEngine() {
 
           <Route
             path="household/*"
-            element={metadata ? householdPage : error ? errorPage : loadingPage}
+            element={metadataError ? errorPage : metadata ? householdPage : loadingPage}
           />
           <Route
             path="policy/*"
-            element={metadata ? policyPage : error ? errorPage : loadingPage}
+            element={metadataError ? errorPage : metadata ? policyPage : loadingPage}
           />
 
           <Route
@@ -314,6 +322,7 @@ export default function PolicyEngine() {
               <UserProfilePage
                 metadata={metadata}
                 authedUserProfile={userProfile}
+                metadataError={metadataError}
               />
             }
           />
