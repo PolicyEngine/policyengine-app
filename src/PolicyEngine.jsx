@@ -31,6 +31,7 @@ import TACPage from "./pages/TermsAndConditions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ConfigProvider } from "antd";
 import style from "./style";
+import RedirectToCountry from "./routing/RedirectToCountry";
 import { StatusPage } from "./pages/StatusPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -47,11 +48,9 @@ function ScrollToTop() {
 }
 
 export default function PolicyEngine() {
-  const path = window.location.pathname;
-  const pathParts = path.split("/");
-
-  // Find country ID
-  const countryId = findCountryId();
+  // This will either return the country ID or null,
+  // but the page is guaranteed to redirect to an ID
+  const countryId = extractCountryId();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const householdId = searchParams.get("household");
@@ -88,6 +87,15 @@ export default function PolicyEngine() {
 
   // Update the metadata state when something happens to the countryId (e.g. the user changes the country).
   useEffect(() => {
+
+    // If we're accessing the page without a country ID,
+    // our router will handle redirecting to a country ID;
+    // this process is guaranteed, thus we will just not fetch
+    // in this situation
+    if (!countryId) {
+      return;
+    }
+
     try {
       updateMetadata(countryId, setMetadata);
     } catch (e) {
@@ -262,7 +270,7 @@ export default function PolicyEngine() {
       <CookieConsent />
       <Routes>
         {/* Redirect from / to /[countryId] */}
-        <Route path="/" element={<Navigate to={`/${countryId}`} />} />
+        <Route path="/" element={<RedirectToCountry />} />
 
         <Route path="/callback" element={<AuthCallback />} />
         <Route path="/:countryId" element={<Home />} />
@@ -316,10 +324,12 @@ export default function PolicyEngine() {
         />
 
         {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
+        {/*
         <Route
           path="/:countryId/blog/:slug"
           element={<Navigate to={`/${countryId}/research/${pathParts[3]}`} />}
         />
+        */}
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
@@ -329,27 +339,17 @@ export default function PolicyEngine() {
 }
 
 /**
- * Based on the URL and user's browser, determine country ID;
- * if not possible, return "us" as country ID
- * @returns {String}
+ * Extracts country ID from path or returns null if one doesn't exist
+ * @returns {String|null}
  */
-export function findCountryId() {
-
+function extractCountryId() {
   const path = window.location.pathname;
-  const pathParts = path.split("/");
-  let pathCountry = pathParts[1];
+  const pathParts = path.split("/").filter((item) => item.length > 0);
 
-  const locale = Intl.DateTimeFormat().resolvedOptions().locale;
-  let localeCountry = undefined;
-  if (locale.includes("-")) {
-    localeCountry = locale.split("-")[1].toLowerCase();
-  }
-
-  if (COUNTRY_CODES.includes(pathCountry)) {
-    return pathCountry;
-  } else if (COUNTRY_CODES.includes(localeCountry)) {
-    return localeCountry;
+  // Find country ID
+  if (pathParts.length > 0) {
+    return pathParts[0];
   } else {
-    return "us";
+    return null;
   }
 }
