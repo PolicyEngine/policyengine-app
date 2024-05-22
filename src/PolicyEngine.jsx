@@ -32,6 +32,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { ConfigProvider } from "antd";
 import style from "./style";
 import RedirectToCountry from "./routing/RedirectToCountry";
+import CountryIdLayout from "./routing/CountryIdLayout";
 import { StatusPage } from "./pages/StatusPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -271,51 +272,54 @@ export default function PolicyEngine() {
       <Routes>
         {/* Redirect from / to /[countryId] */}
         <Route path="/" element={<RedirectToCountry />} />
-
         <Route path="/callback" element={<AuthCallback />} />
-        <Route path="/:countryId" element={<Home />} />
-        <Route path="/:countryId/about" element={<About />} />
-        <Route path="/:countryId/jobs" element={<Jobs />} />
-        <Route path="/:countryId/testimonials" element={<Testimonials />} />
-        <Route
-          path="/:countryId/calculator"
-          element={<CalculatorInterstitial />}
-        />
-        <Route path="/:countryId/research" element={<Research />} />
-        <Route path="/:countryId/donate" element={<Donate />} />
-        <Route path="/:countryId/research/*" element={<BlogPage />} />
-        <Route path="/:countryId/privacy" element={<PrivacyPage />} />
-        <Route path="/:countryId/terms" element={<TACPage />} />
+        <Route path="/:countryId" element={<CountryIdLayout />}>
+          <Route index={true} element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="jobs" element={<Jobs />} />
+          <Route path="testimonials" element={<Testimonials />} />
+          <Route
+            path="calculator"
+            element={<CalculatorInterstitial />}
+          />
+          <Route path="research" element={<Research />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="research/*" element={<BlogPage />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="terms" element={<TACPage />} />
 
-        <Route
-          path="/:countryId/household/*"
-          element={metadata ? householdPage : error ? errorPage : loadingPage}
-        />
-        <Route
-          path="/:countryId/policy/*"
-          element={metadata ? policyPage : error ? errorPage : loadingPage}
-        />
+          <Route
+            path="household/*"
+            element={metadata ? householdPage : error ? errorPage : loadingPage}
+          />
+          <Route
+            path="policy/*"
+            element={metadata ? policyPage : error ? errorPage : loadingPage}
+          />
 
-        <Route
-          path="/:countryId/profile"
-          element={
-            <Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />
-          }
-        />
-        <Route
-          path="/:countryId/profile/:user_id"
-          element={
-            <UserProfilePage
-              metadata={metadata}
-              authedUserProfile={userProfile}
-            />
-          }
-        />
+          <Route
+            path="profile"
+            element={
+              <Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />
+            }
+          />
+          <Route
+            path="profile/:user_id"
+            element={
+              <UserProfilePage
+                metadata={metadata}
+                authedUserProfile={userProfile}
+              />
+            }
+          />
 
-        <Route
-          path="/:countryId/api"
-          element={<APIDocumentationPage metadata={metadata} />}
-        />
+          <Route
+            path="api"
+            element={<APIDocumentationPage metadata={metadata} />}
+          />
+
+        </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
         <Route path="/:countryId/api_status" element={<StatusPage />} />
         <Route
@@ -346,10 +350,18 @@ function extractCountryId() {
   const path = window.location.pathname;
   const pathParts = path.split("/").filter((item) => item.length > 0);
 
-  // Find country ID
-  if (pathParts.length > 0) {
+  // If valid, return the normal country ID
+  if (pathParts.length > 0 && COUNTRY_CODES.includes(pathParts[0])) {
     return pathParts[0];
-  } else {
+  } 
+  // If we have an invalid ID (e.g., "undefined" or "garbage"),
+  // the router will redirect to "us", so return that as country ID
+  else if (pathParts.length > 0) {
+    return "us";
+  } 
+  // Otherwise, we're on the standard page; return null and allow
+  // router to redirect
+  else {
     return null;
   }
 }
