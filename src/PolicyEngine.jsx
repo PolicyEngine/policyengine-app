@@ -67,8 +67,8 @@ export default function PolicyEngine() {
   const baselinePolicyId =
     searchParams.get("baseline") || defaultBaselinePolicy;
 
-  const [metadataError, setMetadataError] = useState(false);
   const [metadata, setMetadata] = useState(null);
+  const [metadataError, setMetadataError] = useState(false);
 
   const [baselinePolicy, setBaselinePolicy] = useState({
     id: baselinePolicyId,
@@ -313,6 +313,7 @@ export default function PolicyEngine() {
           <Route
             path="profile"
             element={
+              !userProfile ? <ErrorPage /> :
               <Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />
             }
           />
