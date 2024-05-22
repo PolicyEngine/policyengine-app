@@ -2,7 +2,8 @@ import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
 import Jobs from "./pages/Jobs";
-import { Navigate, Route, Routes, useSearchParams } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes, useSearchParams } from "react-router-dom";
+import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
@@ -33,6 +34,7 @@ import { ConfigProvider } from "antd";
 import style from "./style";
 import RedirectToCountry from "./routing/RedirectToCountry";
 import CountryIdLayout from "./routing/CountryIdLayout";
+import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
@@ -282,10 +284,12 @@ export default function PolicyEngine() {
             path="calculator"
             element={<CalculatorInterstitial />}
           />
-          <Route path="research" element={<Research />} />
+          <Route path="research" element={<Outlet />}>
+            <Route index={true} element={<Research />} />
+            <Route path=":postName" element={<BlogPage />} />
+          </Route>
           <Route path="contact" element={<Contact />} />
           <Route path="donate" element={<Donate />} />
-          <Route path="research/*" element={<BlogPage />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
 
@@ -318,6 +322,8 @@ export default function PolicyEngine() {
             path="api"
             element={<APIDocumentationPage metadata={metadata} />}
           />
+          {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
+          <Route path="blog/:postName" element={<RedirectBlogPost />} />
 
         </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
@@ -326,14 +332,6 @@ export default function PolicyEngine() {
           path="/us/trafwa-ctc-calculator"
           element={<TrafwaCalculator />}
         />
-
-        {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
-        {/*
-        <Route
-          path="/:countryId/blog/:slug"
-          element={<Navigate to={`/${countryId}/research/${pathParts[3]}`} />}
-        />
-        */}
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
