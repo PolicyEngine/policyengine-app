@@ -6,7 +6,7 @@ import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function LabourSupplyDecileRelativeImpact(props) {
-  const { policyLabel, metadata, impact } = props;
+  const { policyLabel, metadata, impact, countryId } = props;
 
   const decileImpact = impact.labour_supply_response;
 
@@ -41,7 +41,12 @@ export default function LabourSupplyDecileRelativeImpact(props) {
                 ),
               },
               text: substitutionChanges.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatPercent(value, countryId, {
+                    maximumFractionDigits: 1,
+                    minimumFractionDigits: 1,
+                  }),
               ),
               name: "Substitution effect",
             },
@@ -55,7 +60,12 @@ export default function LabourSupplyDecileRelativeImpact(props) {
                 ),
               },
               text: incomeChanges.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatPercent(value, countryId, {
+                    maximumFractionDigits: 1,
+                    minimumFractionDigits: 1,
+                  }),
               ),
               name: "Income effect",
             },
@@ -80,7 +90,12 @@ export default function LabourSupplyDecileRelativeImpact(props) {
                 },
               },
               text: overallChange.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatPercent(value, countryId, {
+                    maximumFractionDigits: 1,
+                    minimumFractionDigits: 1,
+                  }),
               ),
               name: "Overall change",
             },
