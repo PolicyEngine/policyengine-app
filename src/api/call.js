@@ -122,9 +122,7 @@ export async function updateMetadata(countryId) {
     };
 
     return metadata;
-
   } catch (e) {
     console.error(e);
   }
-
 }

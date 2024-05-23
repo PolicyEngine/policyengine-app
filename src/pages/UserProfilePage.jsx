@@ -60,7 +60,7 @@ export default function UserProfilePage(props) {
   const accessedUserId = params.user_id;
   const isOwnProfile =
     Number(authedUserProfile?.user_id) === Number(accessedUserId);
-  
+
   const [dispState, setDispState] = useState(STATES.EMPTY);
   const [isHeaderLoading, setIsHeaderLoading] = useState(true);
   const [arePoliciesLoading, setArePoliciesLoading] = useState(true);
@@ -267,28 +267,27 @@ export default function UserProfilePage(props) {
             metadataError={metadataError}
           />
         </PageHeader>
-        {metadataError
-          ? <ErrorPage />
-          : (
-            <Section title={sectionTitle} backgroundColor={style.colors.BLUE_98}>
-              <div
-                style={{
-                  display: "grid",
-                  width: "100%",
-                  gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
-                  gap: "12px",
-                  marginTop: 30,
-                }}
-              >
-                {arePoliciesLoading
-                  ? loadingCards
-                  : accessedUserPolicies.length === 0
-                    ? noCardPlaceholder
-                    : accessedUserPolicyCards}
-              </div>
-            </Section>
-          )
-        }
+        {metadataError ? (
+          <ErrorPage />
+        ) : (
+          <Section title={sectionTitle} backgroundColor={style.colors.BLUE_98}>
+            <div
+              style={{
+                display: "grid",
+                width: "100%",
+                gridTemplateColumns: `repeat(${gridColumns}, 1fr)`,
+                gap: "12px",
+                marginTop: 30,
+              }}
+            >
+              {arePoliciesLoading
+                ? loadingCards
+                : accessedUserPolicies.length === 0
+                  ? noCardPlaceholder
+                  : accessedUserPolicyCards}
+            </div>
+          </Section>
+        )}
         <Footer />
       </div>
     </>
@@ -305,7 +304,7 @@ function UserProfileSection(props) {
     dateFormatter,
     setAccessedUserProfile,
     setDispState,
-    metadataError
+    metadataError,
   } = props;
   const { isAuthenticated, user } = useAuth0();
   const countryId = useCountryId();

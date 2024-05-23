@@ -38,7 +38,7 @@ export const COUNTRY_BASELINE_POLICIES = {
   us: 2,
   ca: 3,
   ng: 4,
-  il: 5
+  il: 5,
 };
 
 export const STATUS_COLORS = {

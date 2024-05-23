@@ -398,7 +398,7 @@ function PolicyDisplay(props) {
               newSearchParams.set("reform", policy.reform.id);
               newSearchParams.set("region", region);
               newSearchParams.set("timePeriod", timePeriod);
-              setSearchParams(newSearchParams, {replace: true});
+              setSearchParams(newSearchParams, { replace: true });
               hideButtons && closeDrawer();
             }}
           >
@@ -483,7 +483,7 @@ export default function PolicyRightSidebar(props) {
     } else {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("focus", "policyOutput.policyBreakdown");
-      setSearchParams(newSearch, {replace: true});
+      setSearchParams(newSearch, { replace: true });
     }
   };
 
@@ -515,7 +515,7 @@ export default function PolicyRightSidebar(props) {
         "baseline",
         searchParams.get("baseline") || defaults.baseline,
       );
-      setSearchParams(newSearch, {replace: true});
+      setSearchParams(newSearch, { replace: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);

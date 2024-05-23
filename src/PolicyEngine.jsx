@@ -2,7 +2,13 @@ import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
 import Jobs from "./pages/Jobs";
-import { Navigate, Outlet, Route, Routes, useSearchParams } from "react-router-dom";
+import {
+  Navigate,
+  Outlet,
+  Route,
+  Routes,
+  useSearchParams,
+} from "react-router-dom";
 import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
@@ -88,10 +94,9 @@ export default function PolicyEngine() {
   const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
   const [userProfile, setUserProfile] = useState({});
 
-  // Update the metadata state when something happens to 
+  // Update the metadata state when something happens to
   // the countryId (e.g. the user changes the country).
   useEffect(() => {
-
     // If we're accessing the page without a country ID,
     // our router will handle redirecting to a country ID;
     // this process is guaranteed, thus we will just not fetch
@@ -288,10 +293,7 @@ export default function PolicyEngine() {
           <Route path="about" element={<About />} />
           <Route path="jobs" element={<Jobs />} />
           <Route path="testimonials" element={<Testimonials />} />
-          <Route
-            path="calculator"
-            element={<CalculatorInterstitial />}
-          />
+          <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="research" element={<Outlet />}>
             <Route index={true} element={<Research />} />
             <Route path=":postName" element={<BlogPage />} />
@@ -303,18 +305,25 @@ export default function PolicyEngine() {
 
           <Route
             path="household/*"
-            element={metadataError ? errorPage : metadata ? householdPage : loadingPage}
+            element={
+              metadataError ? errorPage : metadata ? householdPage : loadingPage
+            }
           />
           <Route
             path="policy/*"
-            element={metadataError ? errorPage : metadata ? policyPage : loadingPage}
+            element={
+              metadataError ? errorPage : metadata ? policyPage : loadingPage
+            }
           />
 
           <Route
             path="profile"
             element={
-              !userProfile ? <ErrorPage /> :
-              <Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />
+              !userProfile ? (
+                <ErrorPage />
+              ) : (
+                <Navigate to={`/${countryId}/profile/${userProfile.user_id}`} />
+              )
             }
           />
           <Route
@@ -334,7 +343,6 @@ export default function PolicyEngine() {
           />
           {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
           <Route path="blog/:postName" element={<RedirectBlogPost />} />
-
         </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
         <Route path="/:countryId/api_status" element={<StatusPage />} />
@@ -361,12 +369,12 @@ function extractCountryId() {
   // If valid, return the normal country ID
   if (pathParts.length > 0 && COUNTRY_CODES.includes(pathParts[0])) {
     return pathParts[0];
-  } 
+  }
   // If we have an invalid ID (e.g., "undefined" or "garbage"),
   // the router will redirect to "us", so return that as country ID
   else if (pathParts.length > 0) {
     return "us";
-  } 
+  }
   // Otherwise, we're on the standard page; return null and allow
   // router to redirect
   else {

@@ -46,7 +46,7 @@ const handleImageLoad = (path) => {
 
 export default function BlogPage() {
   // /uk/research/blog-slug-here
-  const {postName} = useParams()
+  const { postName } = useParams();
   const countryId = useCountryId();
 
   const post = posts.find((post) => post.slug === postName);

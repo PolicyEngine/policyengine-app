@@ -130,7 +130,7 @@ export function FetchAndDisplayImpact(props) {
         "baseline",
         searchParams.get("baseline") || defaults.baseline,
       );
-      setSearchParams(newSearch, {replace: true});
+      setSearchParams(newSearch, { replace: true });
     }
     policyRef.current = policy;
     // eslint-disable-next-line react-hooks/exhaustive-deps
