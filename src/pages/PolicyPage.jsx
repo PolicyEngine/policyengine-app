@@ -91,7 +91,7 @@ export default function PolicyPage(props) {
     if (!focus) {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("focus", "gov");
-      setSearchParams(newSearch);
+      setSearchParams(newSearch, {replace: true});
     }
   });
 
@@ -103,7 +103,7 @@ export default function PolicyPage(props) {
         "reform",
         metadata.countryId === "us" ? 2 : metadata.countryId === "uk" ? 1 : 3,
       );
-      setSearchParams(newSearch);
+      setSearchParams(newSearch, {replace: true});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!policy.reform.data]);

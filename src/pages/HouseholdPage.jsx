@@ -56,7 +56,7 @@ export default function HouseholdPage(props) {
     if (focus === "") {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("focus", "intro");
-      setSearchParams(newSearch);
+      setSearchParams(newSearch, {replace: true});
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focus]);
@@ -311,7 +311,7 @@ export default function HouseholdPage(props) {
         (householdId) => {
           let newSearch = new URLSearchParams(window.location.search);
           newSearch.set("household", householdId);
-          setSearchParams(newSearch);
+          setSearchParams(newSearch, {replace: true});
         },
       );
       setLoading(true);
