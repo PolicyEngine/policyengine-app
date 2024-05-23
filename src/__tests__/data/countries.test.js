@@ -1,5 +1,5 @@
-import { countryNames } from "../../data/countries";
+import { COUNTRY_NAMES } from "../../data/countries";
 
 test("Country names exists", () => {
-  expect(countryNames).toBeTruthy();
+  expect(COUNTRY_NAMES).toBeTruthy();
 });
