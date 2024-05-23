@@ -6,6 +6,7 @@ import {
   DatePicker,
   Popover,
   Segmented,
+  Space,
   Switch,
   Tooltip,
 } from "antd";
@@ -24,7 +25,7 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-
+import { UndoOutlined } from "@ant-design/icons";
 const { RangePicker } = DatePicker;
 
 /**
@@ -121,13 +122,26 @@ export default function ParameterEditor(props) {
               gap: "10px",
             }}
           >
-            <PeriodSetter
-              metadata={metadata}
-              startDate={startDate}
-              endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-            />
+            <Space.Compact>
+              <PeriodSetter
+                metadata={metadata}
+                startDate={startDate}
+                endDate={endDate}
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
+              />
+              {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
+                <Button
+                  icon={<UndoOutlined />}
+                  onClick={() => {
+                    setStartDate(defaultStartDate);
+                    setEndDate(defaultEndDate);
+                  }}
+                />
+              ) : (
+                <Button icon={<UndoOutlined />} disabled />
+              )}
+            </Space.Compact>
             <ValueSetter
               startDate={startDate}
               endDate={endDate}
@@ -278,14 +292,16 @@ function PeriodSetter(props) {
   return (
     <Popover trigger="click" content={popoverContent} placement="bottom">
       <Tooltip title="Click to edit parameter timespan">
-        <Button
-          type="default"
-          style={{
-            width: "max-content",
-          }}
-        >
-          {dateSelectButtonLabel}
-        </Button>
+        <Space.Compact>
+          <Button
+            type="default"
+            style={{
+              width: "max-content",
+            }}
+          >
+            {dateSelectButtonLabel}
+          </Button>
+        </Space.Compact>
       </Tooltip>
     </Popover>
   );
