@@ -21,7 +21,7 @@ export default function LabourSupplyDecileAbsoluteImpactIncome(props) {
 
   const chart = (
     <ImpactChart
-      title={`${policyLabel}'s absolute labor supply impact by decile`}
+      title={`${policyLabel}'s income effect-driven absolute labor supply impact by decile`}
     >
       {
         <Plot

@@ -21,7 +21,7 @@ export default function LabourSupplyDecileRelativeImpactSubstitution(props) {
 
   const chart = (
     <ImpactChart
-      title={`${policyLabel}'s relative labor supply impact by decile`}
+      title={`${policyLabel}'s substitution effect-driven relative labor supply impact by decile`}
     >
       {
         <Plot
