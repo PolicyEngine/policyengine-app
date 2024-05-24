@@ -18,8 +18,8 @@ export const policyOutputs = {
   laborSupplyImpact: "Labor supply impact (experimental)",
   laborSupplyDecileRelativeImpact:
     "Labor supply relative impact by decile (experimental)",
-  laborSupplyDecileAverageImpact:
-    "Labor supply average impact by decile (experimental)",
+  laborSupplyDecileAbsoluteImpact:
+    "Labor supply absolute impact by decile (experimental)",
   analysis: "AI summary (experimental)",
   codeReproducibility: "Reproduce in Python",
 };
@@ -162,8 +162,8 @@ export function getPolicyOutputTree(countryId) {
                   label: "Relative",
                 },
                 {
-                  name: "policyOutput.laborSupplyImpact.byDecile.average",
-                  label: "Average",
+                  name: "policyOutput.laborSupplyImpact.byDecile.absolute",
+                  label: "Absolute",
                 },
               ],
             },
