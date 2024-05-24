@@ -157,18 +157,18 @@ export default function lsrImpact(props) {
         {relChangeStr}% {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}
         ).
       </p>
-      <p>
-        The income effect is the change in earnings from individuals responding
-        to the policy&apos;s effect on their net income. The substitution effect
-        is the response due the policy&apos;s effect on effective marginal
-        wages.
-      </p>
       <ImpactPlot
         values={values}
         labels={labels}
         metadata={metadata}
         mobile={mobile}
       />
+      <p>
+        The income effect is the change in earnings from individuals responding
+        to the policy&apos;s effect on their net income. The substitution effect
+        is the response due the policy&apos;s effect on effective marginal
+        wages.
+      </p>
     </ImpactChart>
   );
   const csv = () => {

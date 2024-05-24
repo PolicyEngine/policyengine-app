@@ -5,7 +5,7 @@ import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-export default function LabourSupplyDecileAverageImpact(props) {
+export default function LabourSupplyDecileAbsoluteImpact(props) {
   const { policyLabel, metadata, impact, countryId } = props;
 
   const decileImpact = impact.labour_supply_response;
@@ -21,13 +21,8 @@ export default function LabourSupplyDecileAverageImpact(props) {
 
   const chart = (
     <ImpactChart
-      title={`${policyLabel}'s average labor supply impact by decile`}
+      title={`${policyLabel}'s absolute labor supply impact by decile`}
     >
-      <p>
-        This chart shows the estimated average change in earnings (as a
-        percentage of market income) for each disposable income decile, and
-        split by the substitution and income effects.
-      </p>
       {
         <Plot
           data={[
@@ -133,6 +128,11 @@ export default function LabourSupplyDecileAverageImpact(props) {
           }}
         />
       }
+      <p>
+        This chart shows the estimated absolute change in earnings (as a
+        percentage of market income) for each disposable income decile, and
+        split by the substitution and income effects.
+      </p>
     </ImpactChart>
   );
 

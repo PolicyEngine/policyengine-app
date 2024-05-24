@@ -23,11 +23,6 @@ export default function LabourSupplyDecileRelativeImpact(props) {
     <ImpactChart
       title={`${policyLabel}'s relative labor supply impact by decile`}
     >
-      <p>
-        This chart shows the estimated relative change in earnings (as a
-        percentage of market income) for each disposable income decile, and
-        split by the substitution and income effects.
-      </p>
       {
         <Plot
           data={[
@@ -133,6 +128,11 @@ export default function LabourSupplyDecileRelativeImpact(props) {
           }}
         />
       }
+      <p>
+        This chart shows the estimated relative change in earnings (as a
+        percentage of market income) for each disposable income decile, and
+        split by the substitution and income effects.
+      </p>
     </ImpactChart>
   );
 
