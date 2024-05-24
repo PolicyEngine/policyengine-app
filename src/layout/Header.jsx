@@ -10,6 +10,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LinkButton from "../controls/LinkButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from "react";
 import {
   UserOutlined,
   LoadingOutlined,
@@ -209,8 +210,15 @@ function MobileCalculatorButton() {
 function LoginButton() {
   const countryId = useCountryId();
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
-  const desiredHeight =
-    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const desiredHeight = isMobile ? 44 : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
 
   const sharedStyle = {
     color: style.colors.WHITE,
@@ -227,7 +235,7 @@ function LoginButton() {
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
-        border: `1px solid ${style.colors.WHITE}`,
+        border: `1px solid ${style.colors.WHITE}`
       }}
       onClick={
         !isAuthenticated
@@ -247,7 +255,8 @@ function LoginButton() {
           alt="Profile"
           style={{
             width: "100%",
-            objectFit: "cover",
+            height: "100%",
+            objectFit: "cover"
           }}
         />
       ) : isLoading || isAuthenticated ? (
@@ -324,9 +333,16 @@ function LoginMenu() {
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
-  const desiredHeight =
-    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const desiredHeight = isMobile ? 44 : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
+
 
   return (
     <>
