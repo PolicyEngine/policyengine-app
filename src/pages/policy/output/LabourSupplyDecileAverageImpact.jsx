@@ -1,12 +1,12 @@
 import style from "../../../style";
 import ImpactChart from "./ImpactChart";
 import Plot from "react-plotly.js";
-import { formatPercent, localeCode } from "../../../lang/format";
+import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function LabourSupplyDecileAverageImpact(props) {
-  const { policyLabel, metadata, impact } = props;
+  const { policyLabel, metadata, impact, countryId } = props;
 
   const decileImpact = impact.labour_supply_response;
 
@@ -41,7 +41,12 @@ export default function LabourSupplyDecileAverageImpact(props) {
                 ),
               },
               text: substitutionChanges.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatCurrencyAbbr(value, countryId, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  }),
               ),
               name: "Substitution effect",
             },
@@ -55,7 +60,12 @@ export default function LabourSupplyDecileAverageImpact(props) {
                 ),
               },
               text: incomeChanges.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatCurrencyAbbr(value, countryId, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  }),
               ),
               name: "Income effect",
             },
@@ -80,7 +90,12 @@ export default function LabourSupplyDecileAverageImpact(props) {
                 },
               },
               text: overallChange.map(
-                (value) => (value >= 0 ? "+" : "") + formatPercent(value),
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatCurrencyAbbr(value, countryId, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  }),
               ),
               name: "Overall change",
             },

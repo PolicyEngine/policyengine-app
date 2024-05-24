@@ -15,6 +15,7 @@ import { downloadCsv } from "./utils";
 import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
+import useCountryId from "../../../hooks/useCountryId";
 
 /**
  *
@@ -110,6 +111,7 @@ function getPolicyLabel(policy) {
  */
 export function DisplayImpact(props) {
   const { impact, policy, metadata, showPolicyImpactPopup } = props;
+  const countryId = useCountryId();
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
   const region = urlParams.get("region");
@@ -149,6 +151,7 @@ export function DisplayImpact(props) {
       metadata: metadata,
       policyLabel: policyLabel,
       mobile: mobile,
+      countryId: countryId,
     });
     pane = chart;
     if (csv) {
