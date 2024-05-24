@@ -5,7 +5,7 @@ import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-export default function LabourSupplyDecileAbsoluteImpact(props) {
+export default function LabourSupplyDecileAbsoluteImpactTotal(props) {
   const { policyLabel, metadata, impact, countryId } = props;
 
   const decileImpact = impact.labour_supply_response;
@@ -26,44 +26,6 @@ export default function LabourSupplyDecileAbsoluteImpact(props) {
       {
         <Plot
           data={[
-            {
-              type: "bar",
-              x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-              y: substitutionChanges,
-              marker: {
-                color: substitutionChanges.map((value) =>
-                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
-                ),
-              },
-              text: substitutionChanges.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatCurrencyAbbr(value, countryId, {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }),
-              ),
-              name: "Substitution effect",
-            },
-            {
-              type: "bar",
-              x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-              y: incomeChanges,
-              marker: {
-                color: incomeChanges.map((value) =>
-                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
-                ),
-              },
-              text: incomeChanges.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatCurrencyAbbr(value, countryId, {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }),
-              ),
-              name: "Income effect",
-            },
             // Scattered points (square) for overall change
             {
               type: "line",
@@ -131,7 +93,7 @@ export default function LabourSupplyDecileAbsoluteImpact(props) {
       <p>
         This chart shows the estimated absolute change in earnings (in
         {`${countryId === "uk" ? " pounds" : " dollars"}`}) for each disposable
-        income decile, and split by the substitution and income effects.
+        income decile.
       </p>
     </ImpactChart>
   );

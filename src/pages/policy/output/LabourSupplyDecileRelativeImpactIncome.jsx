@@ -5,7 +5,7 @@ import { formatPercent, localeCode } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-export default function LabourSupplyDecileRelativeImpact(props) {
+export default function LabourSupplyDecileRelativeImpactIncome(props) {
   const { policyLabel, metadata, impact, countryId } = props;
 
   const decileImpact = impact.labour_supply_response;
@@ -29,25 +29,6 @@ export default function LabourSupplyDecileRelativeImpact(props) {
             {
               type: "bar",
               x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-              y: substitutionChanges,
-              marker: {
-                color: substitutionChanges.map((value) =>
-                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
-                ),
-              },
-              text: substitutionChanges.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatPercent(value, countryId, {
-                    maximumFractionDigits: 1,
-                    minimumFractionDigits: 1,
-                  }),
-              ),
-              name: "Substitution effect",
-            },
-            {
-              type: "bar",
-              x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
               y: incomeChanges,
               marker: {
                 color: incomeChanges.map((value) =>
@@ -63,36 +44,6 @@ export default function LabourSupplyDecileRelativeImpact(props) {
                   }),
               ),
               name: "Income effect",
-            },
-            // Scattered points (square) for overall change
-            {
-              type: "line",
-              x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-              y: overallChange,
-              mode: "markers+lines",
-              // line should be the same color as the marker
-              line: {
-                color: style.colors.TEAL_ACCENT,
-              },
-              marker: {
-                color: style.colors.TEAL_ACCENT,
-                size: 10,
-                symbol: "diamond",
-                // white border to distinguish
-                line: {
-                  color: "white",
-                  width: 1,
-                },
-              },
-              text: overallChange.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatPercent(value, countryId, {
-                    maximumFractionDigits: 1,
-                    minimumFractionDigits: 1,
-                  }),
-              ),
-              name: "Overall change",
             },
           ]}
           layout={{
