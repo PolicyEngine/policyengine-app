@@ -80,9 +80,9 @@ export default function LabourSupplyDecileRelativeImpactSubstitution(props) {
         />
       }
       <p>
-        This chart shows the estimated relative change in earnings (as a
-        percentage of total earnings) for each disposable income decile, and
-        split by the substitution and income effects.
+        This chart shows only the substitution effect-driven portion of 
+        the estimated relative change in earnings (as a percentage
+        of total earnings) for each disposable income decile.
       </p>
     </ImpactChart>
   );

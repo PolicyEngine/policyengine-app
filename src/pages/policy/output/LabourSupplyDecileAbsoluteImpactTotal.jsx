@@ -91,7 +91,7 @@ export default function LabourSupplyDecileAbsoluteImpactTotal(props) {
         />
       }
       <p>
-        This chart shows the estimated absolute change in earnings (in
+        This chart shows the estimated total absolute change in earnings (in
         {`${countryId === "uk" ? " pounds" : " dollars"}`}) for each disposable
         income decile.
       </p>
