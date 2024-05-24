@@ -3,7 +3,6 @@ import ImpactChart from "./ImpactChart";
 import Plot from "react-plotly.js";
 import {
   formatCurrencyAbbr,
-  formatPercent,
   localeCode,
 } from "../../../lang/format";
 import { ChartLogo } from "../../../api/charts";
