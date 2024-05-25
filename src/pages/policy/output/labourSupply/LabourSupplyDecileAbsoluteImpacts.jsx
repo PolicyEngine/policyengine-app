@@ -25,6 +25,15 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
     `change in earnings (in ${countryId === "uk" ? "pounds" : "dollars"}) ` +
     "for each disposable income decile."
   const yAxisTitle="Change in earnings"
+  const numberFormatter = (value) => {
+    return (
+      (value >= 0 ? "+" : "") +
+      formatCurrencyAbbr(value, countryId, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })
+    );
+  }
 
   const chart = (
     <LabourSupplyDecileIncome
@@ -33,6 +42,7 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
       countryId={countryId}
       description={description}
       yAxisTitle={yAxisTitle}
+      numberFormatter={numberFormatter}
     />);
 
   return { chart: chart, csv: () => {} };
@@ -57,6 +67,15 @@ export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
     `absolute change in earnings (in ${countryId === "uk" ? "pounds" : "dollars"}) ` +
     "for each disposable income decile."
   const yAxisTitle = "Change in earnings";
+  const numberFormatter = (value) => {
+    return (
+      (value >= 0 ? "+" : "") +
+      formatCurrencyAbbr(value, countryId, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })
+    );
+  }
   const chart = (
     <LabourSupplyDecileSubstitution
       title={title}
@@ -64,6 +83,7 @@ export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
       countryId={countryId}
       description={description}
       yAxisTitle={yAxisTitle}
+      numberFormatter={numberFormatter}
     />
   );
 
@@ -89,6 +109,15 @@ export function LabourSupplyDecileAbsoluteImpactTotal(props) {
     `${countryId === "uk" ? " pounds" : " dollars"}) for each disposable ` +
     "income decile.";
   const yAxisTitle = "Change in earnings";
+  const numberFormatter = (value) => {
+    return (
+      (value >= 0 ? "+" : "") +
+      formatCurrencyAbbr(value, countryId, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      })
+    );
+  }
 
 
   const chart = (
@@ -99,6 +128,7 @@ export function LabourSupplyDecileAbsoluteImpactTotal(props) {
       countryId={countryId}
       description={description}
       yAxisTitle={yAxisTitle}
+      numberFormatter={numberFormatter}
     />
   );
 

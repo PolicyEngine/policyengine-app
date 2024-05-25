@@ -13,6 +13,7 @@ export function LabourSupplyDecileIncome(props) {
     countryId,
     description,
     yAxisTitle,
+    numberFormatter
   } = props;
 
   return (
@@ -32,12 +33,7 @@ export function LabourSupplyDecileIncome(props) {
                 ),
               },
               text: incomeChanges.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatCurrencyAbbr(value, countryId, {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }),
+                (value) => numberFormatter(value)
               ),
               name: "Income effect",
             },
@@ -89,7 +85,8 @@ export function LabourSupplyDecileSubstitution(props) {
     substitutionChanges,
     yAxisTitle,
     countryId,
-    description
+    description,
+    numberFormatter
   } = props;
 
   return (
@@ -108,6 +105,7 @@ export function LabourSupplyDecileSubstitution(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
+              /*
               text: substitutionChanges.map(
                 (value) =>
                   (value >= 0 ? "+" : "") +
@@ -115,6 +113,10 @@ export function LabourSupplyDecileSubstitution(props) {
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 0,
                   }),
+              ),
+              */
+              text: substitutionChanges.map(
+                (value) => numberFormatter(value)
               ),
               name: "Substitution effect",
             },
@@ -171,7 +173,8 @@ export function LabourSupplyDecileTotal(props) {
     yAxisTitle,
     description,
     countryId,
-    overallChange
+    overallChange,
+    numberFormatter
   } = props;
 
   return (
@@ -190,6 +193,7 @@ export function LabourSupplyDecileTotal(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
+              /*
               text: overallChange.map(
                 (value) =>
                   (value >= 0 ? "+" : "") +
@@ -197,6 +201,10 @@ export function LabourSupplyDecileTotal(props) {
                     minimumFractionDigits: 0,
                     maximumFractionDigits: 0,
                   }),
+              ),
+              */
+              text: overallChange.map(
+                (value) => numberFormatter(value)
               ),
               name: "Overall change",
             },

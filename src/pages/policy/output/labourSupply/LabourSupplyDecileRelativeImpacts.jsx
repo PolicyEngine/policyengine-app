@@ -27,6 +27,16 @@ export function LabourSupplyDecileRelativeImpactIncome(props) {
     "of total earnings) for each disposable income decile.";
   const yAxisTitle = "Relative change";
 
+  const numberFormatter = (value) => {
+    return (
+      (value >= 0 ? "+" : "") +
+      formatPercent(value, countryId, {
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 1,
+      })
+    );
+  }
+
   const chart = (
     <LabourSupplyDecileIncome
       title={title}
@@ -34,6 +44,7 @@ export function LabourSupplyDecileRelativeImpactIncome(props) {
       countryId={countryId}
       description={description}
       yAxisTitle={yAxisTitle}
+      numberFormatter={numberFormatter}
     />);
 
   return { chart: chart, csv: () => {} };
@@ -57,6 +68,16 @@ export function LabourSupplyDecileRelativeImpactSubstitution(props) {
     "the estimated relative change in earnings (as a percentage " + 
     "of total earnings) for each disposable income decile.";
   const yAxisTitle = "Relative change";
+  const numberFormatter = (value) => {
+    return (
+      (value >= 0 ? "+" : "") +
+      formatPercent(value, countryId, {
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 1,
+      })
+    );
+  }
+
   const chart = (
     <LabourSupplyDecileSubstitution
       title={title}
@@ -64,6 +85,7 @@ export function LabourSupplyDecileRelativeImpactSubstitution(props) {
       countryId={countryId}
       description={description}
       yAxisTitle={yAxisTitle}
+      numberFormatter={numberFormatter}
     />
   );
 
@@ -88,6 +110,15 @@ export function LabourSupplyDecileRelativeImpactTotal(props) {
   const description = "This chart shows the estimated relative change in earnings (as a " + 
     "percentage of total earnings) for each disposable income decile.";
   const yAxisTitle = "Relative change";
+  const numberFormatter = (value) => {
+    return (
+      (value >= 0 ? "+" : "") +
+      formatPercent(value, countryId, {
+        maximumFractionDigits: 1,
+        minimumFractionDigits: 1,
+      })
+    );
+  }
 
   const chart = (
     <LabourSupplyDecileTotal
@@ -96,6 +127,7 @@ export function LabourSupplyDecileRelativeImpactTotal(props) {
       countryId={countryId}
       description={description}
       yAxisTitle={yAxisTitle}
+      numberFormatter={numberFormatter}
     />
   )
 
