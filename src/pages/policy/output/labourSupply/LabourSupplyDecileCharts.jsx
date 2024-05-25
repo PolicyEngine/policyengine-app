@@ -95,7 +95,6 @@ export function LabourSupplyDecileSubstitution(props) {
   return (
     <ImpactChart
       title={title}
-      // title={`${policyLabel}'s substitution effect-driven absolute labor supply impact by decile`}
     >
       {
         <Plot
@@ -178,30 +177,18 @@ export function LabourSupplyDecileTotal(props) {
   return (
     <ImpactChart
       title={title}
-      // title={`${policyLabel}'s absolute labor supply impact by decile`}
     >
       {
         <Plot
           data={[
-            // Scattered points (square) for overall change
             {
-              type: "line",
+              type: "bar",
               x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
               y: overallChange,
-              mode: "markers+lines",
-              // line should be the same color as the marker
-              line: {
-                color: style.colors.TEAL_ACCENT,
-              },
               marker: {
-                color: style.colors.TEAL_ACCENT,
-                size: 10,
-                symbol: "diamond",
-                // white border to distinguish
-                line: {
-                  color: "white",
-                  width: 1,
-                },
+                color: overallChange.map((value) =>
+                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
+                ),
               },
               text: overallChange.map(
                 (value) =>
