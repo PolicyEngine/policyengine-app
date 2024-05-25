@@ -19,7 +19,7 @@ import LabourSupplyDecileAbsoluteImpactSubstitution from "./labourSupply/LabourS
 import LabourSupplyDecileAbsoluteImpactTotal from "./labourSupply/LabourSupplyDecileAbsoluteImpactTotal";
 import { LabourSupplyDecileAbsoluteImpactIncome } from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
 import LabourSupplyDecileRelativeImpactTotal from "./labourSupply/LabourSupplyDecileRelativeImpactTotal";
-import LabourSupplyDecileRelativeImpactIncome from "./labourSupply/LabourSupplyDecileRelativeImpactIncome";
+import { LabourSupplyDecileRelativeImpactIncome } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
 import LabourSupplyDecileRelativeImpactSubstitution from "./labourSupply/LabourSupplyDecileRelativeImpactSubstitution";
 import Analysis from "./Analysis";
 
