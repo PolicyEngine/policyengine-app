@@ -25,6 +25,7 @@ export function LabourSupplyDecileRelativeImpactIncome(props) {
   const description = "This chart shows only the income effect-driven portion of " + 
     "the estimated relative change in earnings (as a percentage " + 
     "of total earnings) for each disposable income decile.";
+  const yAxisTitle = "Relative change";
 
   const chart = (
     <LabourSupplyDecileIncome
@@ -32,6 +33,7 @@ export function LabourSupplyDecileRelativeImpactIncome(props) {
       incomeChanges={incomeChanges}
       countryId={countryId}
       description={description}
+      yAxisTitle={yAxisTitle}
     />);
 
   return { chart: chart, csv: () => {} };
