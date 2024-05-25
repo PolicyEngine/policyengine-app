@@ -1,11 +1,11 @@
-import style from "../../../style";
-import ImpactChart from "./ImpactChart";
+import style from "../../../../style";
+import ImpactChart from "../ImpactChart";
 import Plot from "react-plotly.js";
-import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
-import { ChartLogo } from "../../../api/charts";
+import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
+import { ChartLogo } from "../../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-export default function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
+export default function LabourSupplyDecileAbsoluteImpactTotal(props) {
   const { policyLabel, metadata, impact, countryId } = props;
 
   const decileImpact = impact.labour_supply_response;
@@ -21,21 +21,32 @@ export default function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
 
   const chart = (
     <ImpactChart
-      title={`${policyLabel}'s substitution effect-driven absolute labor supply impact by decile`}
+      title={`${policyLabel}'s absolute labor supply impact by decile`}
     >
       {
         <Plot
           data={[
+            // Scattered points (square) for overall change
             {
-              type: "bar",
+              type: "line",
               x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-              y: substitutionChanges,
-              marker: {
-                color: substitutionChanges.map((value) =>
-                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
-                ),
+              y: overallChange,
+              mode: "markers+lines",
+              // line should be the same color as the marker
+              line: {
+                color: style.colors.TEAL_ACCENT,
               },
-              text: substitutionChanges.map(
+              marker: {
+                color: style.colors.TEAL_ACCENT,
+                size: 10,
+                symbol: "diamond",
+                // white border to distinguish
+                line: {
+                  color: "white",
+                  width: 1,
+                },
+              },
+              text: overallChange.map(
                 (value) =>
                   (value >= 0 ? "+" : "") +
                   formatCurrencyAbbr(value, countryId, {
@@ -43,7 +54,7 @@ export default function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
                     maximumFractionDigits: 0,
                   }),
               ),
-              name: "Substitution effect",
+              name: "Overall change",
             },
           ]}
           layout={{
@@ -80,9 +91,9 @@ export default function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
         />
       }
       <p>
-        This chart shows the estimated substitution effect-driven 
-        absolute change in earnings (in {`${countryId === "uk" ? "pounds" : "dollars"}`}) 
-        for each disposable income decile.
+        This chart shows the estimated total absolute change in earnings (in
+        {`${countryId === "uk" ? " pounds" : " dollars"}`}) for each disposable
+        income decile.
       </p>
     </ImpactChart>
   );

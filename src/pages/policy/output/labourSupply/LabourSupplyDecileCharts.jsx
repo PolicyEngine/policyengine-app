@@ -1,27 +1,22 @@
-import style from "../../../style";
-import ImpactChart from "./ImpactChart";
+import ImpactChart from "../ImpactChart";
 import Plot from "react-plotly.js";
-import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
-import { ChartLogo } from "../../../api/charts";
-import { plotLayoutFont } from "pages/policy/output/utils";
+import style from "../../../../style";
+import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
+import { ChartLogo } from "../../../../api/charts";
+import { plotLayoutFont } from "../utils";
 
-export default function LabourSupplyDecileAbsoluteImpactIncome(props) {
-  const { policyLabel, metadata, impact, countryId } = props;
+export function LabourSupplyDecileIncome(props) {
 
-  const decileImpact = impact.labour_supply_response;
+  const { 
+    title,
+    incomeChanges,
+    countryId,
+    description
+  } = props;
 
-  const data = decileImpact.decile.average;
-
-  const incomeChanges = Object.values(data.income).slice(0, 10);
-  let substitutionChanges = Object.values(data.substitution).slice(0, 10);
-  const overallChange = [];
-  for (let i = 0; i < 10; i++) {
-    overallChange.push(incomeChanges[i] + substitutionChanges[i]);
-  }
-
-  const chart = (
+  return (
     <ImpactChart
-      title={`${policyLabel}'s income effect-driven absolute labor supply impact by decile`}
+      title={title}
     >
       {
         <Plot
@@ -72,7 +67,7 @@ export default function LabourSupplyDecileAbsoluteImpactIncome(props) {
           config={{
             displayModeBar: false,
             responsive: true,
-            locale: localeCode(metadata.countryId),
+            locale: localeCode(countryId),
           }}
           style={{
             width: "100%",
@@ -80,12 +75,8 @@ export default function LabourSupplyDecileAbsoluteImpactIncome(props) {
         />
       }
       <p>
-        This chart shows the estimated income effect-driven absolute 
-        change in earnings (in {`${countryId === "uk" ? "pounds" : "dollars"}`}) 
-        for each disposable income decile.
+        {description}
       </p>
     </ImpactChart>
   );
-
-  return { chart: chart, csv: () => {} };
 }

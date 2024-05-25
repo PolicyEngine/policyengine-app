@@ -13,14 +13,14 @@ import povertyImpactByGender from "./poverty/PovertyImpactByGender";
 import povertyImpactByRace from "./poverty/PovertyImpactByRace";
 import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
-import laborSupplyImpact from "./LaborSupplyResponse";
-import lsrHoursImpact from "./LaborSupplyHoursImpact";
-import LabourSupplyDecileAbsoluteImpactSubstitution from "./LabourSupplyDecileAbsoluteImpactSubstitution";
-import LabourSupplyDecileAbsoluteImpactTotal from "./LabourSupplyDecileAbsoluteImpactTotal";
-import LabourSupplyDecileAbsoluteImpactIncome from "./LabourSupplyDecileAbsoluteImpactIncome";
-import LabourSupplyDecileRelativeImpactTotal from "./LabourSupplyDecileRelativeImpactTotal";
-import LabourSupplyDecileRelativeImpactIncome from "./LabourSupplyDecileRelativeImpactIncome";
-import LabourSupplyDecileRelativeImpactSubstitution from "./LabourSupplyDecileRelativeImpactSubstitution";
+import laborSupplyImpact from "./labourSupply/LaborSupplyResponse";
+import lsrHoursImpact from "./labourSupply/LaborSupplyHoursImpact";
+import LabourSupplyDecileAbsoluteImpactSubstitution from "./labourSupply/LabourSupplyDecileAbsoluteImpactSubstitution";
+import LabourSupplyDecileAbsoluteImpactTotal from "./labourSupply/LabourSupplyDecileAbsoluteImpactTotal";
+import { LabourSupplyDecileAbsoluteImpactIncome } from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
+import LabourSupplyDecileRelativeImpactTotal from "./labourSupply/LabourSupplyDecileRelativeImpactTotal";
+import LabourSupplyDecileRelativeImpactIncome from "./labourSupply/LabourSupplyDecileRelativeImpactIncome";
+import LabourSupplyDecileRelativeImpactSubstitution from "./labourSupply/LabourSupplyDecileRelativeImpactSubstitution";
 import Analysis from "./Analysis";
 
 const map = {

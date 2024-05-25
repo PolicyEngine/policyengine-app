@@ -1,8 +1,8 @@
-import style from "../../../style";
-import ImpactChart from "./ImpactChart";
+import style from "../../../../style";
+import ImpactChart from "../ImpactChart";
 import Plot from "react-plotly.js";
-import { formatPercent, localeCode } from "../../../lang/format";
-import { ChartLogo } from "../../../api/charts";
+import { formatPercent, localeCode } from "../../../../lang/format";
+import { ChartLogo } from "../../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
 export default function LabourSupplyDecileRelativeImpactIncome(props) {

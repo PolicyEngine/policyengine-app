@@ -1,14 +1,14 @@
 import React from "react";
 import Plot from "react-plotly.js";
-import { ChartLogo } from "../../../api/charts";
+import { ChartLogo } from "../../../../api/charts";
 import {
   formatNumberAbbr,
   formatPercent,
   localeCode,
-} from "../../../lang/format";
-import style from "../../../style";
+} from "../../../../lang/format";
+import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
-import ImpactChart, { regionName } from "./ImpactChart";
+import ImpactChart, { regionName } from "../ImpactChart";
 
 function ImpactPlot(props) {
   const { values, labels, metadata, mobile } = props;
