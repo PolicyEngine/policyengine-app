@@ -11,7 +11,8 @@ export function LabourSupplyDecileIncome(props) {
     title,
     incomeChanges,
     countryId,
-    description
+    description,
+    yAxisTitle,
   } = props;
 
   return (
@@ -47,7 +48,7 @@ export function LabourSupplyDecileIncome(props) {
               tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             },
             yaxis: {
-              title: "Change in earnings",
+              title: yAxisTitle,
               tickformat: "$,.0f",
               fixedrange: true,
             },
@@ -76,6 +77,89 @@ export function LabourSupplyDecileIncome(props) {
       }
       <p>
         {description}
+      </p>
+    </ImpactChart>
+  );
+}
+
+export function LabourSupplyDecileSubstitution(props) {
+
+  const {
+    title,
+    substitutionChanges,
+    yAxisTitle,
+    countryId,
+    description
+  } = props;
+
+  return (
+    <ImpactChart
+      title={title}
+      // title={`${policyLabel}'s substitution effect-driven absolute labor supply impact by decile`}
+    >
+      {
+        <Plot
+          data={[
+            {
+              type: "bar",
+              x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+              y: substitutionChanges,
+              marker: {
+                color: substitutionChanges.map((value) =>
+                  value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
+                ),
+              },
+              text: substitutionChanges.map(
+                (value) =>
+                  (value >= 0 ? "+" : "") +
+                  formatCurrencyAbbr(value, countryId, {
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  }),
+              ),
+              name: "Substitution effect",
+            },
+          ]}
+          layout={{
+            xaxis: {
+              title: "Household income decile",
+              tickvals: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            },
+            yaxis: {
+              title: yAxisTitle,
+              tickformat: "$,.0f",
+              fixedrange: true,
+            },
+            uniformtext: {
+              mode: "hide",
+              minsize: 12,
+            },
+            ...ChartLogo(0.97, -0.15),
+            margin: {
+              t: 0,
+              b: 100,
+              r: 0,
+            },
+            height: 500,
+            ...plotLayoutFont,
+          }}
+          config={{
+            displayModeBar: false,
+            responsive: true,
+            locale: localeCode(countryId),
+          }}
+          style={{
+            width: "100%",
+          }}
+        />
+      }
+      <p>
+        {description}
+        {/*
+        This chart shows the estimated substitution effect-driven 
+        absolute change in earnings (in {`${countryId === "uk" ? "pounds" : "dollars"}`}) 
+        for each disposable income decile.
+    */}
       </p>
     </ImpactChart>
   );
