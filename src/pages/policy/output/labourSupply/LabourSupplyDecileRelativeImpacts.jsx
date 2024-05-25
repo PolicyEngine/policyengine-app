@@ -5,7 +5,7 @@ import { formatPercent, localeCode } from "../../../../lang/format";
 import { ChartLogo } from "../../../../api/charts";
 import { plotLayoutFont } from "pages/policy/output/utils";
 
-import { LabourSupplyDecileIncome, LabourSupplyDecileSubstitution } from "./LabourSupplyDecileCharts";
+import { LabourSupplyDecileIncome, LabourSupplyDecileSubstitution, LabourSupplyDecileTotal } from "./LabourSupplyDecileCharts";
 
 export function LabourSupplyDecileRelativeImpactIncome(props) {
   const { policyLabel, metadata, impact, countryId } = props;
@@ -66,6 +66,38 @@ export function LabourSupplyDecileRelativeImpactSubstitution(props) {
       yAxisTitle={yAxisTitle}
     />
   );
+
+  return { chart: chart, csv: () => {} };
+}
+
+export function LabourSupplyDecileRelativeImpactTotal(props) {
+  const { policyLabel, metadata, impact, countryId } = props;
+
+  const decileImpact = impact.labour_supply_response;
+
+  const data = decileImpact.decile.relative;
+
+  const incomeChanges = Object.values(data.income).slice(0, 10);
+  let substitutionChanges = Object.values(data.substitution).slice(0, 10);
+  const overallChange = [];
+  for (let i = 0; i < 10; i++) {
+    overallChange.push(incomeChanges[i] + substitutionChanges[i]);
+  }
+
+  const title = `${policyLabel}'s relative labor supply impact by decile`;
+  const description = "This chart shows the estimated relative change in earnings (as a " + 
+    "percentage of total earnings) for each disposable income decile.";
+  const yAxisTitle = "Relative change";
+
+  const chart = (
+    <LabourSupplyDecileTotal
+      title={title}
+      overallChange={overallChange}
+      countryId={countryId}
+      description={description}
+      yAxisTitle={yAxisTitle}
+    />
+  )
 
   return { chart: chart, csv: () => {} };
 }

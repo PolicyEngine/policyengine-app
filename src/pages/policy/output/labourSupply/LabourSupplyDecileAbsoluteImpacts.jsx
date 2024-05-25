@@ -22,7 +22,7 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
 
   const title=`${policyLabel}'s income effect-driven absolute labor supply impact by decile`;
   const description="This chart shows the estimated income effect-driven absolute " +
-    `change in earnings (in ${countryId === "uk" ? "pounds" : "dollars"}` +
+    `change in earnings (in ${countryId === "uk" ? "pounds" : "dollars"}) ` +
     "for each disposable income decile."
   const yAxisTitle="Change in earnings"
 

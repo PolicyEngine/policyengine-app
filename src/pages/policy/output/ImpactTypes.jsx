@@ -16,8 +16,7 @@ import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile"
 import laborSupplyImpact from "./labourSupply/LaborSupplyResponse";
 import lsrHoursImpact from "./labourSupply/LaborSupplyHoursImpact";
 import { LabourSupplyDecileAbsoluteImpactIncome, LabourSupplyDecileAbsoluteImpactSubstitution, LabourSupplyDecileAbsoluteImpactTotal   } from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
-import LabourSupplyDecileRelativeImpactTotal from "./labourSupply/LabourSupplyDecileRelativeImpactTotal";
-import { LabourSupplyDecileRelativeImpactIncome, LabourSupplyDecileRelativeImpactSubstitution  } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
+import { LabourSupplyDecileRelativeImpactIncome, LabourSupplyDecileRelativeImpactSubstitution, LabourSupplyDecileRelativeImpactTotal } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
 import Analysis from "./Analysis";
 
 const map = {
