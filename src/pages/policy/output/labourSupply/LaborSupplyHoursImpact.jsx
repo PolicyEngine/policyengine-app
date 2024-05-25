@@ -98,7 +98,7 @@ function title(policyLabel, change, metadata) {
   const regionPhrase = region ? ` in ${region}` : "";
   const term1 = `hours worked${regionPhrase}`;
   const term2 = formatPercent(Math.abs(change), metadata.countryId, {
-    maximumFractionDigits: 1,
+    maximumFractionDigits: 2,
   });
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
