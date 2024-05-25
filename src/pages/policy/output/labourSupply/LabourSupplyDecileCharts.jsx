@@ -1,26 +1,23 @@
 import ImpactChart from "../ImpactChart";
 import Plot from "react-plotly.js";
 import style from "../../../../style";
-import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
+import { localeCode } from "../../../../lang/format";
 import { ChartLogo } from "../../../../api/charts";
 import { plotLayoutFont } from "../utils";
 
 export function LabourSupplyDecileIncome(props) {
-
-  const { 
+  const {
     title,
     incomeChanges,
     countryId,
     description,
     yAxisTitle,
     yAxisTickFormat,
-    numberFormatter
+    numberFormatter,
   } = props;
 
   return (
-    <ImpactChart
-      title={title}
-    >
+    <ImpactChart title={title}>
       {
         <Plot
           data={[
@@ -33,9 +30,7 @@ export function LabourSupplyDecileIncome(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
-              text: incomeChanges.map(
-                (value) => numberFormatter(value)
-              ),
+              text: incomeChanges.map((value) => numberFormatter(value)),
               name: "Income effect",
             },
           ]}
@@ -72,15 +67,12 @@ export function LabourSupplyDecileIncome(props) {
           }}
         />
       }
-      <p>
-        {description}
-      </p>
+      <p>{description}</p>
     </ImpactChart>
   );
 }
 
 export function LabourSupplyDecileSubstitution(props) {
-
   const {
     title,
     substitutionChanges,
@@ -88,13 +80,11 @@ export function LabourSupplyDecileSubstitution(props) {
     yAxisTickFormat,
     countryId,
     description,
-    numberFormatter
+    numberFormatter,
   } = props;
 
   return (
-    <ImpactChart
-      title={title}
-    >
+    <ImpactChart title={title}>
       {
         <Plot
           data={[
@@ -107,9 +97,7 @@ export function LabourSupplyDecileSubstitution(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
-              text: substitutionChanges.map(
-                (value) => numberFormatter(value)
-              ),
+              text: substitutionChanges.map((value) => numberFormatter(value)),
               name: "Substitution effect",
             },
           ]}
@@ -146,15 +134,12 @@ export function LabourSupplyDecileSubstitution(props) {
           }}
         />
       }
-      <p>
-        {description}
-      </p>
+      <p>{description}</p>
     </ImpactChart>
   );
 }
 
 export function LabourSupplyDecileTotal(props) {
-
   const {
     title,
     yAxisTitle,
@@ -162,13 +147,11 @@ export function LabourSupplyDecileTotal(props) {
     description,
     countryId,
     overallChange,
-    numberFormatter
+    numberFormatter,
   } = props;
 
   return (
-    <ImpactChart
-      title={title}
-    >
+    <ImpactChart title={title}>
       {
         <Plot
           data={[
@@ -181,9 +164,7 @@ export function LabourSupplyDecileTotal(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
-              text: overallChange.map(
-                (value) => numberFormatter(value)
-              ),
+              text: overallChange.map((value) => numberFormatter(value)),
               name: "Overall change",
             },
           ]}
@@ -220,9 +201,7 @@ export function LabourSupplyDecileTotal(props) {
           }}
         />
       }
-      <p>
-        {description}
-      </p>
+      <p>{description}</p>
     </ImpactChart>
   );
 }
