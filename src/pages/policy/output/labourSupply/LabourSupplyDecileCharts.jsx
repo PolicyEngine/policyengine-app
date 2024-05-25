@@ -13,6 +13,7 @@ export function LabourSupplyDecileIncome(props) {
     countryId,
     description,
     yAxisTitle,
+    yAxisTickFormat,
     numberFormatter
   } = props;
 
@@ -45,7 +46,7 @@ export function LabourSupplyDecileIncome(props) {
             },
             yaxis: {
               title: yAxisTitle,
-              tickformat: "$,.0f",
+              tickformat: yAxisTickFormat,
               fixedrange: true,
             },
             uniformtext: {
@@ -84,6 +85,7 @@ export function LabourSupplyDecileSubstitution(props) {
     title,
     substitutionChanges,
     yAxisTitle,
+    yAxisTickFormat,
     countryId,
     description,
     numberFormatter
@@ -105,16 +107,6 @@ export function LabourSupplyDecileSubstitution(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
-              /*
-              text: substitutionChanges.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatCurrencyAbbr(value, countryId, {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }),
-              ),
-              */
               text: substitutionChanges.map(
                 (value) => numberFormatter(value)
               ),
@@ -128,7 +120,7 @@ export function LabourSupplyDecileSubstitution(props) {
             },
             yaxis: {
               title: yAxisTitle,
-              tickformat: "$,.0f",
+              tickformat: yAxisTickFormat,
               fixedrange: true,
             },
             uniformtext: {
@@ -156,11 +148,6 @@ export function LabourSupplyDecileSubstitution(props) {
       }
       <p>
         {description}
-        {/*
-        This chart shows the estimated substitution effect-driven 
-        absolute change in earnings (in {`${countryId === "uk" ? "pounds" : "dollars"}`}) 
-        for each disposable income decile.
-    */}
       </p>
     </ImpactChart>
   );
@@ -171,6 +158,7 @@ export function LabourSupplyDecileTotal(props) {
   const {
     title,
     yAxisTitle,
+    yAxisTickFormat,
     description,
     countryId,
     overallChange,
@@ -193,16 +181,6 @@ export function LabourSupplyDecileTotal(props) {
                   value < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
                 ),
               },
-              /*
-              text: overallChange.map(
-                (value) =>
-                  (value >= 0 ? "+" : "") +
-                  formatCurrencyAbbr(value, countryId, {
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0,
-                  }),
-              ),
-              */
               text: overallChange.map(
                 (value) => numberFormatter(value)
               ),
@@ -216,7 +194,7 @@ export function LabourSupplyDecileTotal(props) {
             },
             yaxis: {
               title: yAxisTitle,
-              tickformat: "$,.0f",
+              tickformat: yAxisTickFormat,
               fixedrange: true,
             },
             uniformtext: {

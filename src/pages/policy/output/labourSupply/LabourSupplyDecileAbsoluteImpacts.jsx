@@ -43,6 +43,7 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
       description={description}
       yAxisTitle={yAxisTitle}
       numberFormatter={numberFormatter}
+      yAxisTickFormat="$,.0f"
     />);
 
   return { chart: chart, csv: () => {} };
@@ -84,6 +85,7 @@ export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
       description={description}
       yAxisTitle={yAxisTitle}
       numberFormatter={numberFormatter}
+      yAxisTickFormat="$,.0f"
     />
   );
 
@@ -129,6 +131,7 @@ export function LabourSupplyDecileAbsoluteImpactTotal(props) {
       description={description}
       yAxisTitle={yAxisTitle}
       numberFormatter={numberFormatter}
+      yAxisTickFormat="$,.0f"
     />
   );
 

@@ -45,6 +45,7 @@ export function LabourSupplyDecileRelativeImpactIncome(props) {
       description={description}
       yAxisTitle={yAxisTitle}
       numberFormatter={numberFormatter}
+      yAxisTickFormat=".1%"
     />);
 
   return { chart: chart, csv: () => {} };
@@ -86,6 +87,7 @@ export function LabourSupplyDecileRelativeImpactSubstitution(props) {
       description={description}
       yAxisTitle={yAxisTitle}
       numberFormatter={numberFormatter}
+      yAxisTickFormat=".1%"
     />
   );
 
@@ -128,6 +130,7 @@ export function LabourSupplyDecileRelativeImpactTotal(props) {
       description={description}
       yAxisTitle={yAxisTitle}
       numberFormatter={numberFormatter}
+      yAxisTickFormat=".1%"
     />
   )
 
