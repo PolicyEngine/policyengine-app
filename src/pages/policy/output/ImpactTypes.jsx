@@ -18,8 +18,7 @@ import lsrHoursImpact from "./labourSupply/LaborSupplyHoursImpact";
 import LabourSupplyDecileAbsoluteImpactTotal from "./labourSupply/LabourSupplyDecileAbsoluteImpactTotal";
 import { LabourSupplyDecileAbsoluteImpactIncome, LabourSupplyDecileAbsoluteImpactSubstitution  } from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
 import LabourSupplyDecileRelativeImpactTotal from "./labourSupply/LabourSupplyDecileRelativeImpactTotal";
-import { LabourSupplyDecileRelativeImpactIncome } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
-import LabourSupplyDecileRelativeImpactSubstitution from "./labourSupply/LabourSupplyDecileRelativeImpactSubstitution";
+import { LabourSupplyDecileRelativeImpactIncome, LabourSupplyDecileRelativeImpactSubstitution  } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
 import Analysis from "./Analysis";
 
 const map = {
