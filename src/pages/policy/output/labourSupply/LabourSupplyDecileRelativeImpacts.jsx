@@ -15,11 +15,6 @@ export function LabourSupplyDecileRelativeImpactIncome(props) {
   const data = decileImpact.decile.relative;
 
   const incomeChanges = Object.values(data.income).slice(0, 10);
-  let substitutionChanges = Object.values(data.substitution).slice(0, 10);
-  const overallChange = [];
-  for (let i = 0; i < 10; i++) {
-    overallChange.push(incomeChanges[i] + substitutionChanges[i]);
-  }
 
   const title=`${policyLabel}'s income effect-driven relative labor supply impact by decile`;
   const description = "This chart shows only the income effect-driven portion of " + 
@@ -58,12 +53,7 @@ export function LabourSupplyDecileRelativeImpactSubstitution(props) {
 
   const data = decileImpact.decile.relative;
 
-  const incomeChanges = Object.values(data.income).slice(0, 10);
   let substitutionChanges = Object.values(data.substitution).slice(0, 10);
-  const overallChange = [];
-  for (let i = 0; i < 10; i++) {
-    overallChange.push(incomeChanges[i] + substitutionChanges[i]);
-  }
   const title=`${policyLabel}'s substitution effect-driven relative labor supply impact by decile`;
   const description = "This chart shows only the substitution effect-driven portion of " + 
     "the estimated relative change in earnings (as a percentage " + 

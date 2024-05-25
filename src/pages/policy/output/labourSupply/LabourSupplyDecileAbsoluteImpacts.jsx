@@ -14,11 +14,6 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
   const data = decileImpact.decile.average;
 
   const incomeChanges = Object.values(data.income).slice(0, 10);
-  let substitutionChanges = Object.values(data.substitution).slice(0, 10);
-  const overallChange = [];
-  for (let i = 0; i < 10; i++) {
-    overallChange.push(incomeChanges[i] + substitutionChanges[i]);
-  }
 
   const title=`${policyLabel}'s income effect-driven absolute labor supply impact by decile`;
   const description="This chart shows the estimated income effect-driven absolute " +
@@ -56,12 +51,7 @@ export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
 
   const data = decileImpact.decile.average;
 
-  const incomeChanges = Object.values(data.income).slice(0, 10);
   let substitutionChanges = Object.values(data.substitution).slice(0, 10);
-  const overallChange = [];
-  for (let i = 0; i < 10; i++) {
-    overallChange.push(incomeChanges[i] + substitutionChanges[i]);
-  }
 
   const title = `${policyLabel}'s substitution effect-driven absolute labor supply impact by decile`;
   const description = "This chart shows the estimated substitution effect-driven " +
