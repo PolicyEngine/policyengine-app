@@ -160,10 +160,38 @@ export function getPolicyOutputTree(countryId) {
                 {
                   name: "policyOutput.laborSupplyImpact.byDecile.relative",
                   label: "Relative",
+                  children: [
+                    {
+                      name: "policyOutput.laborSupplyImpact.byDecile.relative.total",
+                      label: "Total",
+                    },
+                    {
+                      name: "policyOutput.laborSupplyImpact.byDecile.relative.income",
+                      label: "Income effect",
+                    },
+                    {
+                      name: "policyOutput.laborSupplyImpact.byDecile.relative.substitution",
+                      label: "Substitution effect",
+                    },
+                  ],
                 },
                 {
                   name: "policyOutput.laborSupplyImpact.byDecile.absolute",
                   label: "Absolute",
+                  children: [
+                    {
+                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.total",
+                      label: "Total",
+                    },
+                    {
+                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.income",
+                      label: "Income effect",
+                    },
+                    {
+                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.substitution",
+                      label: "Substitution effect",
+                    },
+                  ],
                 },
               ],
             },
