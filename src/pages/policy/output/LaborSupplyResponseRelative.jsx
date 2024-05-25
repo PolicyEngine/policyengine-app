@@ -1,7 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../api/charts";
-import { formatCurrencyAbbr, localeCode } from "../../../lang/format";
+import { formatCurrencyAbbr, formatPercent, localeCode } from "../../../lang/format";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "./ImpactChart";
@@ -28,8 +28,9 @@ function ImpactPlot(props) {
               : ["total"],
           textposition: "inside",
           text: values.map((value) =>
-            formatCurrencyAbbr(value * 1e9, metadata.countryId, {
-              maximumFractionDigits: 1,
+            formatPercent(value, metadata.countryId, {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2
             }),
           ),
           increasing: { marker: { color: style.colors.BLUE } },
@@ -55,8 +56,8 @@ function ImpactPlot(props) {
           title: "",
         },
         yaxis: {
-          title: "Earnings (bn)",
-          tickformat: "$,.1f",
+          title: "Relative change",
+          tickformat: ".1%",
           fixedrange: true,
         },
         hoverlabel: {
@@ -126,6 +127,10 @@ export default function lsrImpactRelative(props) {
     incomeEffect += incomeQuantiles[String(i)] / NUMBER_OF_QUANTILES;
     substitutionEffect += substitutionQuantiles[String(i)] / NUMBER_OF_QUANTILES;
   }
+  const netEffect = incomeEffect + substitutionEffect;
+
+  console.log(incomeEffect);
+  console.log(substitutionEffect);
 
   const budgetaryImpact = impact.budget.budgetary_impact;
   const budgetaryImpactLSRChange = impact.labour_supply_response.revenue_change;
@@ -158,9 +163,9 @@ export default function lsrImpactRelative(props) {
 
   const labels = ["Income effect", "Substitution effect", "Net change"];
   const values = [
-    incomeEffect / 1e9,
-    substitutionEffect / 1e9,
-    incomeEffect / 1e9 + substitutionEffect / 1e9,
+    incomeEffect,
+    substitutionEffect,
+    netEffect
   ];
   const budgetaryImpactPositive = budgetaryImpact > 0;
   const originalImpactPositive = originalBudgetaryImpact > 0;
