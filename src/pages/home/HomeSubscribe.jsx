@@ -75,10 +75,10 @@ export function SubscribeToPolicyEngine(props) {
         style={{
           width: displayCategory !== "mobile" && "40vw",
           paddingRight: displayCategory === "tablet" && 50,
-          marginBottom: displayCategory === "mobile" && 50,
+          marginBottom: displayCategory === "mobile" && 20,
         }}
       >
-        <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
+        {/* <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2> */}
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <FormContext
@@ -98,6 +98,7 @@ export function SubscribeToPolicyEngine(props) {
       >
         <FormInput
           name={inputFields.label}
+          labelDisabled={true}
           label={inputFields.label}
           type={inputFields.type}
           placeholder={inputFields.placeholder}
