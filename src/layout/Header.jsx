@@ -214,11 +214,13 @@ function LoginButton() {
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 767);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const desiredHeight = isMobile ? 44 : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
+  const desiredHeight = isMobile
+    ? 44
+    : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
 
   const sharedStyle = {
     color: style.colors.WHITE,
@@ -235,7 +237,7 @@ function LoginButton() {
         alignItems: "center",
         justifyContent: "center",
         cursor: "pointer",
-        border: `1px solid ${style.colors.WHITE}`
+        border: `1px solid ${style.colors.WHITE}`,
       }}
       onClick={
         !isAuthenticated
@@ -256,7 +258,7 @@ function LoginButton() {
           style={{
             width: "100%",
             height: "100%",
-            objectFit: "cover"
+            objectFit: "cover",
           }}
         />
       ) : isLoading || isAuthenticated ? (
@@ -337,12 +339,13 @@ function Hamburger() {
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 767);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const desiredHeight = isMobile ? 44 : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
-
+  const desiredHeight = isMobile
+    ? 44
+    : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
 
   return (
     <>
