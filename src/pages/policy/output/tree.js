@@ -1,3 +1,5 @@
+import PolicyOutput from "./PolicyOutput";
+
 export const policyOutputs = {
   policyBreakdown: "Overview",
   netIncome: "Budgetary impact",
@@ -15,6 +17,31 @@ export const policyOutputs = {
   racialPovertyImpact: "Poverty impact by race and ethnicity",
   inequalityImpact: "Income inequality impact",
   // cliffImpact: "Cliff impact",
+  "laborSupplyImpact.byDecile.relative.total":
+    "Labor supply impact by decile (relative)",
+  "laborSupplyImpact.byDecile.relative.income":
+    "Labor supply impact by decile (relative)",
+  "laborSupplyImpact.byDecile.relative.substitution":
+    "Labor supply impact by decile (relative)",
+  "laborSupplyImpact.byDecile.absolute.total":
+    "Labor supply impact by decile (absolute)",
+  "laborSupplyImpact.byDecile.absolute.income":
+    "Labor supply impact by decile (absolute)",
+  "laborSupplyImpact.byDecile.absolute.substitution":
+    "Labor supply impact by decile (absolute)",
+  "laborSupplyImpact.hours": "Labor supply impact by hours worked",
+  "laborSupplyImpact.overall": "Overall labor supply impact",
+  "povertyImpact.regular.byAge": "Regular poverty impact by age",
+  "povertyImpact.regular.byRace": "Regular poverty impact by race",
+  "povertyImpact.regular.byGender": "Regular poverty impact by gender",
+  "povertyImpact.deep.byAge": "Deep poverty impact by age",
+  "povertyImpact.deep.byGender": "Deep poverty impact by gender",
+  "winnersAndLosers.incomeDecile": "Winners and losers by income decile",
+  "distributionalImpact.incomeDecile.relative":
+    "Distributional impact by income decile (relative)",
+  "distributionalImpact.incomeDecile.average":
+    "Distributional impact by income decile (average)",
+  "budgetaryImpact.overall": "Overall budgetary impact",
   laborSupplyImpact: "Labor supply impact (experimental)",
   laborSupplyDecileRelativeImpact:
     "Labor supply relative impact by decile (experimental)",
