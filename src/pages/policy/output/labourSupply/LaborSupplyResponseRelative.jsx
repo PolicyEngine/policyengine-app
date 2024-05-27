@@ -94,8 +94,9 @@ function title(policyLabel, change, metadata) {
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
   const term1 = `earnings${regionPhrase}`;
-  const term2 = formatCurrencyAbbr(Math.abs(change * 1e9), metadata.countryId, {
-    maximumFractionDigits: 1,
+  const term2 = formatPercent(Math.abs(change), metadata.countryId, {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 1
   });
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
@@ -128,9 +129,6 @@ export default function lsrImpactRelative(props) {
     substitutionEffect += substitutionQuantiles[String(i)] / NUMBER_OF_QUANTILES;
   }
   const netEffect = incomeEffect + substitutionEffect;
-
-  console.log(incomeEffect);
-  console.log(substitutionEffect);
 
   const budgetaryImpact = impact.budget.budgetary_impact;
   const budgetaryImpactLSRChange = impact.labour_supply_response.revenue_change;
@@ -169,8 +167,9 @@ export default function lsrImpactRelative(props) {
   ];
   const budgetaryImpactPositive = budgetaryImpact > 0;
   const originalImpactPositive = originalBudgetaryImpact > 0;
+
   const chart = (
-    <ImpactChart title={title(policyLabel, values[2], metadata)}>
+    <ImpactChart title={title(policyLabel, netEffect, metadata)}>
       <p style={{ marginBottom: 30 }}>
         This{" "}
         {budgetaryImpactPositive === originalImpactPositive
