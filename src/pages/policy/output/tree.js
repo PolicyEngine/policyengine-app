@@ -165,51 +165,57 @@ export function getPolicyOutputTree(countryId) {
               ? "Labour supply impact (experimental)"
               : "Labor supply impact (experimental)",
           children: [
-            {
-              name: "policyOutput.laborSupplyImpact.overall",
-              label: "Overall",
-            },
             countryId === "us" && {
               name: "policyOutput.laborSupplyImpact.hours",
               label: "Hours worked",
             },
             {
-              name: "policyOutput.laborSupplyImpact.byDecile",
-              label: "By decile",
+              name: "policyOutput.laborSupplyImpact.earnings",
+              label: "Earnings",
               children: [
                 {
-                  name: "policyOutput.laborSupplyImpact.byDecile.relative",
-                  label: "Relative",
-                  children: [
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.relative.total",
-                      label: "Total",
-                    },
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.relative.income",
-                      label: "Income effect",
-                    },
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.relative.substitution",
-                      label: "Substitution effect",
-                    },
-                  ],
+                  name: "policyOutput.laborSupplyImpact.earnings.overall",
+                  label: "Overall",
                 },
                 {
-                  name: "policyOutput.laborSupplyImpact.byDecile.absolute",
-                  label: "Absolute",
+                  name: "policyOutput.laborSupplyImpact.earnings.byDecile",
+                  label: "By decile",
                   children: [
                     {
-                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.total",
-                      label: "Total",
+                      name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative",
+                      label: "Relative",
+                      children: [
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative.total",
+                          label: "Total",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative.income",
+                          label: "Income effect",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative.substitution",
+                          label: "Substitution effect",
+                        },
+                      ],
                     },
                     {
-                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.income",
-                      label: "Income effect",
-                    },
-                    {
-                      name: "policyOutput.laborSupplyImpact.byDecile.absolute.substitution",
-                      label: "Substitution effect",
+                      name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute",
+                      label: "Absolute",
+                      children: [
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute.total",
+                          label: "Total",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute.income",
+                          label: "Income effect",
+                        },
+                        {
+                          name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute.substitution",
+                          label: "Substitution effect",
+                        },
+                      ],
                     },
                   ],
                 },
