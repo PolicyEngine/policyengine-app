@@ -30,7 +30,7 @@ import Analysis from "./Analysis";
 const map = {
   "budgetaryImpact.overall": budgetaryImpact,
   "budgetaryImpact.byProgram": detailedBudgetaryImpact,
-  "laborSupplyImpact.overall": laborSupplyImpact,
+  "laborSupplyImpact.earnings.overall": laborSupplyImpact,
   "distributionalImpact.incomeDecile.average": averageImpactByDecile,
   "distributionalImpact.wealthDecile.average": averageImpactByWealthDecile,
   "distributionalImpact.incomeDecile.relative": relativeImpactByDecile,
@@ -44,17 +44,17 @@ const map = {
   "povertyImpact.regular.byRace": povertyImpactByRace,
   inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
-  "laborSupplyImpact.byDecile.relative.total":
+  "laborSupplyImpact.earnings.byDecile.relative.total":
     LabourSupplyDecileRelativeImpactTotal,
-  "laborSupplyImpact.byDecile.relative.income":
+  "laborSupplyImpact.earnings.byDecile.relative.income":
     LabourSupplyDecileRelativeImpactIncome,
-  "laborSupplyImpact.byDecile.relative.substitution":
+  "laborSupplyImpact.earnings.byDecile.relative.substitution":
     LabourSupplyDecileRelativeImpactSubstitution,
-  "laborSupplyImpact.byDecile.absolute.total":
+  "laborSupplyImpact.earnings.byDecile.absolute.total":
     LabourSupplyDecileAbsoluteImpactTotal,
-  "laborSupplyImpact.byDecile.absolute.income":
+  "laborSupplyImpact.earnings.byDecile.absolute.income":
     LabourSupplyDecileAbsoluteImpactIncome,
-  "laborSupplyImpact.byDecile.absolute.substitution":
+  "laborSupplyImpact.earnings.byDecile.absolute.substitution":
     LabourSupplyDecileAbsoluteImpactSubstitution,
   "laborSupplyImpact.hours": lsrHoursImpact,
   analysis: Analysis,
