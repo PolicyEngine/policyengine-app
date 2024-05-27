@@ -33,7 +33,7 @@ export default function Footer() {
 function LinkSection() {
   const countryId = useCountryId();
 
-  const title = countryId === "uk" ? "Our organisation" : "Our organization";
+  const title = "";
 
   const linkData = [
     {
@@ -139,9 +139,6 @@ function SocialLinks() {
           flexDirection: "column",
         }}
       >
-        <h2 style={{ color: "white", margin: "0" }}>
-          Follow us on social media
-        </h2>
         <div
           style={{
             display: "flex",
@@ -172,9 +169,6 @@ function SocialLinks() {
         marginTop: "20px",
       }}
     >
-      <h2 style={{ color: "white", marginBottom: "0" }}>
-        Follow us on social media
-      </h2>
       <div
         style={{
           marginBottom: displayCategory === "desktop" ? 0 : 30,

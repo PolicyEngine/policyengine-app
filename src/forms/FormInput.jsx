@@ -22,6 +22,7 @@ import { motion } from "framer-motion";
 export default function FormItem(props) {
   const {
     name,
+    labelDisabled,
     label = "",
     type,
     placeholder,
@@ -54,21 +55,24 @@ export default function FormItem(props) {
         ...containerStyle,
       }}
     >
-      <label
-        style={{
-          name: `form-label-${label.toLowerCase()}`,
-          fontFamily: "Roboto",
-          fontWeight: 300,
-          textTransform: "uppercase",
-          letterSpacing: 2.4,
-          width: "100%",
-          fontSize: "1rem",
-          lineHeight: "1.2",
-          ...labelStyle,
-        }}
-      >
-        {label}
-      </label>
+      {!labelDisabled && (
+        <label
+          style={{
+            name: `form-label-${label.toLowerCase()}`,
+            fontFamily: "Roboto",
+            fontWeight: 300,
+            color: style.colors.WHITE,
+            textTransform: "uppercase",
+            letterSpacing: 2.4,
+            width: "100%",
+            fontSize: "1rem",
+            lineHeight: "1.2",
+            ...labelStyle,
+          }}
+        >
+          {label}
+        </label>
+      )}
       <motion.input
         name={name}
         type={type || "text"}
