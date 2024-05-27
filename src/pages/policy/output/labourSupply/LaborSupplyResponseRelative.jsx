@@ -1,7 +1,11 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import { formatCurrencyAbbr, formatPercent, localeCode } from "../../../../lang/format";
+import {
+  formatCurrencyAbbr,
+  formatPercent,
+  localeCode,
+} from "../../../../lang/format";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "../ImpactChart";
@@ -30,7 +34,7 @@ function ImpactPlot(props) {
           text: values.map((value) =>
             formatPercent(value, metadata.countryId, {
               maximumFractionDigits: 2,
-              minimumFractionDigits: 2
+              minimumFractionDigits: 2,
             }),
           ),
           increasing: { marker: { color: style.colors.BLUE } },
@@ -96,7 +100,7 @@ function title(policyLabel, change, metadata) {
   const term1 = `earnings${regionPhrase}`;
   const term2 = formatPercent(Math.abs(change), metadata.countryId, {
     maximumFractionDigits: 2,
-    minimumFractionDigits: 1
+    minimumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
@@ -117,7 +121,8 @@ export default function lsrImpactRelative(props) {
   // of quantiles, then adds that into a total value
   const NUMBER_OF_QUANTILES = 10;
   const incomeQuantiles = impact.labour_supply_response.decile.relative.income;
-  const substitutionQuantiles = impact.labour_supply_response.decile.relative.substitution;
+  const substitutionQuantiles =
+    impact.labour_supply_response.decile.relative.substitution;
 
   let incomeEffect = 0;
   let substitutionEffect = 0;
@@ -126,7 +131,8 @@ export default function lsrImpactRelative(props) {
   // Object with keys 1 through number of quantiles, inclusive, not array
   for (let i = 1; i <= NUMBER_OF_QUANTILES; i++) {
     incomeEffect += incomeQuantiles[String(i)] / NUMBER_OF_QUANTILES;
-    substitutionEffect += substitutionQuantiles[String(i)] / NUMBER_OF_QUANTILES;
+    substitutionEffect +=
+      substitutionQuantiles[String(i)] / NUMBER_OF_QUANTILES;
   }
   const netEffect = incomeEffect + substitutionEffect;
 
@@ -160,11 +166,7 @@ export default function lsrImpactRelative(props) {
   );
 
   const labels = ["Income effect", "Substitution effect", "Net change"];
-  const values = [
-    incomeEffect,
-    substitutionEffect,
-    netEffect
-  ];
+  const values = [incomeEffect, substitutionEffect, netEffect];
   const budgetaryImpactPositive = budgetaryImpact > 0;
   const originalImpactPositive = originalBudgetaryImpact > 0;
 

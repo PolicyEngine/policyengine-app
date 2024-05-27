@@ -177,7 +177,7 @@ export function getPolicyOutputTree(countryId) {
                   name: "policyOutput.laborSupplyImpact.overall.absolute",
                   label: "Absolute",
                 },
-              ]
+              ],
             },
             countryId === "us" && {
               name: "policyOutput.laborSupplyImpact.hours",
