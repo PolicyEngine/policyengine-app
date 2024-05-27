@@ -145,7 +145,7 @@ export function StatusPage() {
             title="PolicyEngine API status"
             src="https://policyengine.betteruptime.com"
             width="1000"
-            height="800"
+            height="1000"
           ></iframe>
           <section style={{ display: "flex", marginBottom: 2 }}>
             <div style={{ flex: "50", textAlign: "left" }}>

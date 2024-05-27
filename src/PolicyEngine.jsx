@@ -30,6 +30,7 @@ import TACPage from "./pages/TermsAndConditions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { ConfigProvider } from "antd";
 import style from "./style";
+import { StatusPage } from "./pages/StatusPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -326,6 +327,7 @@ export default function PolicyEngine({ pathname }) {
           element={<APIDocumentationPage metadata={metadata} />}
         />
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
+        <Route path="/us/api" element={<StatusPage />} />
         <Route
           path="/us/trafwa-ctc-calculator"
           element={<TrafwaCalculator />}
