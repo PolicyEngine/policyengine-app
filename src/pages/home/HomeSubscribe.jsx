@@ -78,7 +78,7 @@ export function SubscribeToPolicyEngine(props) {
           marginBottom: displayCategory === "mobile" && 20,
         }}
       >
-        {/* <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2> */}
+        <h2 style={{ color: "white" }}>Subscribe to PolicyEngine</h2>
         <p>Get the latests posts delivered right to your inbox.</p>
       </div>
       <FormContext
