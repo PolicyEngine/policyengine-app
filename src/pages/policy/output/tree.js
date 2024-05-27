@@ -18,16 +18,16 @@ export const policyOutputs = {
   "laborSupplyImpact.byDecile.relative.total":
     "Labor supply impact by decile (relative)",
   "laborSupplyImpact.byDecile.relative.income":
-    "Labor supply impact by decile (relative)",
+    "Labor supply income effect impact by decile (relative)",
   "laborSupplyImpact.byDecile.relative.substitution":
-    "Labor supply impact by decile (relative)",
+    "Labor supply substitution effect impact by decile (relative)",
   "laborSupplyImpact.byDecile.absolute.total":
     "Labor supply impact by decile (absolute)",
   "laborSupplyImpact.byDecile.absolute.income":
-    "Labor supply impact by decile (absolute)",
+    "Labor supply income effect impact by decile (absolute)",
   "laborSupplyImpact.byDecile.absolute.substitution":
-    "Labor supply impact by decile (absolute)",
-  "laborSupplyImpact.hours": "Labor supply impact by hours worked",
+    "Labor supply substitution effect impact by decile (absolute)",
+  "laborSupplyImpact.hours": "Labor supply impact upon hours worked",
   "laborSupplyImpact.overall": "Overall labor supply impact",
   "povertyImpact.regular.byAge": "Regular poverty impact by age",
   "povertyImpact.regular.byRace": "Regular poverty impact by race",
@@ -40,11 +40,6 @@ export const policyOutputs = {
   "distributionalImpact.incomeDecile.average":
     "Distributional impact by income decile (average)",
   "budgetaryImpact.overall": "Overall budgetary impact",
-  laborSupplyImpact: "Labor supply impact (experimental)",
-  laborSupplyDecileRelativeImpact:
-    "Labor supply relative impact by decile (experimental)",
-  laborSupplyDecileAbsoluteImpact:
-    "Labor supply absolute impact by decile (experimental)",
   analysis: "AI summary (experimental)",
   codeReproducibility: "Reproduce in Python",
 };
