@@ -1,5 +1,3 @@
-import PolicyOutput from "./PolicyOutput";
-
 export const policyOutputs = {
   policyBreakdown: "Overview",
   netIncome: "Budgetary impact",
