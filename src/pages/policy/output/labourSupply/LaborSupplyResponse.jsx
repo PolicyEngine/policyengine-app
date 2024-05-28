@@ -147,16 +147,6 @@ export default function lsrImpact(props) {
   const originalImpactPositive = originalBudgetaryImpact > 0;
   const chart = (
     <ImpactChart title={title(policyLabel, values[2], metadata)}>
-      <p style={{ marginBottom: 30 }}>
-        This{" "}
-        {budgetaryImpactPositive === originalImpactPositive
-          ? "raises"
-          : "lowers"}{" "}
-        the budgetary impact of the reform by {changeStr} (from{" "}
-        {originalBudgetaryImpactStr} to {newBudgetaryImpactStr}, a{" "}
-        {relChangeStr}% {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}
-        ).
-      </p>
       <ImpactPlot
         values={values}
         labels={labels}
