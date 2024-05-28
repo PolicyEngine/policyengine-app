@@ -700,5 +700,14 @@
     "image": "uk_march_update.png",
     "authors": ["nikhil-woodruff"],
     "filename": "obr-forecast-update-spring-24.ipynb"
+  },
+  {
+    "title": "The Triple Lock Plus",
+    "description": "PolicyEngine estimates the impact of the UK government's proposed pension uprating policy reform.",
+    "date": "2024-05-28 09:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "uk-triple-lock-plus.ipynb",
+    "image": "uk-triple-lock-plus.jpg"
   }
 ]
