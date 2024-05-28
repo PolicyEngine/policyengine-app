@@ -11,7 +11,7 @@ import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
-  const featuredOrderPosts =
+  const featuredPosts =
     posts.filter(
       (post) =>
         post.tags.includes("featured") &&
@@ -20,15 +20,16 @@ export default function HomeBlogPreview() {
   const otherPosts = posts.filter(
     (post) =>
       (post.tags.includes(countryId) || post.tags.includes("global")) &&
-      !featuredOrderPosts.includes(post),
+      !featuredPosts.includes(post),
   ).sort((a, b) => b.date - a.date);
 
   // Combine featured posts and other posts
-  const allCombinePosts = featuredOrderPosts.concat(otherPosts);
+  const allCombinePosts = featuredPosts.concat(otherPosts);
 
   // Extract the first post and the rest of the posts
-  const [featuredPosts, ...allPosts] = allCombinePosts;
-  
+  // const [featuredPosts, ...allPosts] = allCombinePosts;
+  const [FirstPosts, ...allPosts] = allCombinePosts;
+
   const displayCategory = useDisplayCategory();
   return (
     <>
@@ -40,19 +41,19 @@ export default function HomeBlogPreview() {
         {
           mobile: (
             <MobileBlogPreview
-              featuredPosts={featuredPosts}
+              FirstPosts={FirstPosts}
               allPosts={allPosts}
             />
           ),
           tablet: (
             <TabletBlogPreview
-              featuredPosts={featuredPosts}
+              FirstPosts={FirstPosts}
               allPosts={allPosts}
             />
           ),
           desktop: (
             <DesktopBlogPreview
-              featuredPosts={featuredPosts}
+              FirstPosts={FirstPosts}
               allPosts={allPosts}
             />
           ),
@@ -89,7 +90,7 @@ function ReadMore() {
   );
 }
 
-function DesktopBlogPreview({ featuredPosts, allPosts }) {
+function DesktopBlogPreview({ FirstPosts, allPosts }) {
   const rightColumnPosts = allPosts?.slice(0, 4);
   const firstRowPosts = allPosts?.slice(4, 7);
 
@@ -110,7 +111,7 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
               top: style.spacing.HEADER_HEIGHT + 20,
             }}
           >
-            <FeaturedBlogPreview blogs={featuredPosts} />
+            <FeaturedBlogPreview blogs={FirstPosts} />
           </div>
         </div>
         <div
@@ -146,14 +147,14 @@ function DesktopBlogPreview({ featuredPosts, allPosts }) {
   );
 }
 
-function TabletBlogPreview({ featuredPosts, allPosts }) {
+function TabletBlogPreview({ FirstPosts, allPosts }) {
   const smallPosts = allPosts.slice(0, 4);
   const leftHandPost = allPosts.slice(4, 5);
   const bottomPosts = allPosts.slice(5, 7);
   return (
     <SectionBottom>
       <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
-        <FeaturedBlogPreview blogs={featuredPosts} />
+        <FeaturedBlogPreview blogs={FirstPosts} />
       </div>
       <div
         style={{
@@ -207,7 +208,7 @@ function TabletBlogPreview({ featuredPosts, allPosts }) {
   );
 }
 
-function MobileBlogPreview({ featuredPosts, allPosts }) {
+function MobileBlogPreview({ FirstPosts, allPosts }) {
   const smallPosts = allPosts.slice(0, 4);
   return (
     <div>
@@ -220,7 +221,7 @@ function MobileBlogPreview({ featuredPosts, allPosts }) {
         }}
       >
         <div style={{ minWidth: 20 }} />
-        {featuredPosts.map((post, i) => (
+        {FirstPosts.map((post, i) => (
           <div
             key={i}
             style={{
@@ -342,84 +343,6 @@ const handleImageLoad = (path) => {
     return "";
   }
 };
-
-export function FeaturedBlogPreview1({ blogs, width, imageHeight }) {
-  // Only defined for desktop and tablet displays
-  const displayCategory = useDisplayCategory();
-  const [currentBlogIndex, setCurrentBlogIndex] = useState(0);
-  const currentBlog = blogs[currentBlogIndex] || {};
-
-  const imageUrl = currentBlog.image ? handleImageLoad(currentBlog.image) : "";
-
-  const countryId = useCountryId();
-  const link = `/${countryId}/research/${currentBlog.slug}`;
-  return (
-    <div
-      style={{
-        width: width || "100%",
-        border: `1px solid ${style.colors.BLACK}`,
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-        }}
-      >
-        {imageUrl === "" ? (
-          <div style={{ height: "300px", width: "100%" }}>
-            <FileImageOutlined
-              style={{
-                objectFit: "cover",
-                fontSize: "32px",
-                position: "absolute",
-                top: "250px",
-                right: "20px",
-              }}
-            />
-          </div>
-        ) : (
-          // <FileImageOutlined />
-          <img
-            src={imageUrl}
-            alt={currentBlog.coverAltText || `${currentBlog.title} cover image`}
-            width="100%"
-            height={imageHeight || (displayCategory === "desktop" ? 450 : 400)}
-            style={{
-              objectFit: "cover",
-              borderBottom: `1px solid ${style.colors.BLACK}`,
-            }}
-          />
-        )}
-        <BlogBox
-          noBorder
-          topLeft={<BlogTags tags={currentBlog.tags || []} />}
-          bottomRight={
-            <div style={{ margin: 10 }}>
-              <EmphasisedLink text="Read" url={link} size={14} isStretched />
-            </div>
-          }
-          style={{
-            backgroundColor: style.colors.TEAL_LIGHT,
-            minHeight: 320,
-          }}
-        >
-          <div style={{ padding: 20 }}>
-            <p style={{ textTransform: "uppercase" }}>
-              {moment(currentBlog.date).format("MMMM D, YYYY")}
-            </p>
-            <h3 style={{ minHeight: 70 }}>{currentBlog.title}</h3>
-            <p>{currentBlog.description}</p>
-          </div>
-        </BlogBox>
-      </div>
-      <Carousel
-        current={currentBlogIndex}
-        total={blogs.length}
-        setCurrent={setCurrentBlogIndex}
-      />
-    </div>
-  );
-}
 
 
 export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
