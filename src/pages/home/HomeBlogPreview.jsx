@@ -111,7 +111,7 @@ function DesktopBlogPreview({ FirstPosts, allPosts }) {
               top: style.spacing.HEADER_HEIGHT + 20,
             }}
           >
-            <FeaturedBlogPreview blogs={FirstPosts} />
+            <FirstBlogPreview blogs={FirstPosts} />
           </div>
         </div>
         <div
@@ -154,7 +154,7 @@ function TabletBlogPreview({ FirstPosts, allPosts }) {
   return (
     <SectionBottom>
       <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
-        <FeaturedBlogPreview blogs={FirstPosts} />
+        <FirstBlogPreview blogs={FirstPosts} />
       </div>
       <div
         style={{
@@ -345,7 +345,7 @@ const handleImageLoad = (path) => {
 };
 
 
-export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
+export function FirstBlogPreview({ blogs, width, imageHeight }) {
   // Only defined for desktop and tablet displays
   const displayCategory = useDisplayCategory();
   const currentBlog = blogs || {};
