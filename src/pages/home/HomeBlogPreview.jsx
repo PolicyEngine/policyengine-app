@@ -26,7 +26,6 @@ export default function HomeBlogPreview() {
   const allCombinePosts = featuredPosts.concat(otherPosts);
 
   // Extract the first post and the rest of the posts
-  // const [featuredPosts, ...allPosts] = allCombinePosts;
   const [FirstPosts, ...allPosts] = allCombinePosts;
 
   const displayCategory = useDisplayCategory();
