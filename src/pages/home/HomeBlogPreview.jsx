@@ -26,7 +26,7 @@ export default function HomeBlogPreview() {
   const allCombinePosts = featuredPosts.concat(otherPosts);
 
   // Extract the first post and the rest of the posts
-  const [FirstPosts, ...allPosts] = allCombinePosts;
+  const [FirstPost, ...allPosts] = allCombinePosts;
 
   const displayCategory = useDisplayCategory();
   return (
@@ -39,19 +39,19 @@ export default function HomeBlogPreview() {
         {
           mobile: (
             <MobileBlogPreview
-              FirstPosts={FirstPosts}
+              FirstPost={FirstPost}
               allPosts={allPosts}
             />
           ),
           tablet: (
             <TabletBlogPreview
-              FirstPosts={FirstPosts}
+              FirstPost={FirstPost}
               allPosts={allPosts}
             />
           ),
           desktop: (
             <DesktopBlogPreview
-              FirstPosts={FirstPosts}
+              FirstPost={FirstPost}
               allPosts={allPosts}
             />
           ),
@@ -88,7 +88,7 @@ function ReadMore() {
   );
 }
 
-function DesktopBlogPreview({ FirstPosts, allPosts }) {
+function DesktopBlogPreview({ FirstPost, allPosts }) {
   const rightColumnPosts = allPosts?.slice(0, 4);
   const firstRowPosts = allPosts?.slice(4, 7);
 
@@ -109,7 +109,7 @@ function DesktopBlogPreview({ FirstPosts, allPosts }) {
               top: style.spacing.HEADER_HEIGHT + 20,
             }}
           >
-            <FirstBlogPreview blogs={FirstPosts} />
+            <FirstBlogPreview blogs={FirstPost} />
           </div>
         </div>
         <div
@@ -145,14 +145,14 @@ function DesktopBlogPreview({ FirstPosts, allPosts }) {
   );
 }
 
-function TabletBlogPreview({ FirstPosts, allPosts }) {
+function TabletBlogPreview({ FirstPost, allPosts }) {
   const smallPosts = allPosts.slice(0, 4);
   const leftHandPost = allPosts.slice(4, 5);
   const bottomPosts = allPosts.slice(5, 7);
   return (
     <SectionBottom>
       <div style={{ marginTop: 50, display: "flex", flexDirection: "row" }}>
-        <FirstBlogPreview blogs={FirstPosts} />
+        <FirstBlogPreview blogs={FirstPost} />
       </div>
       <div
         style={{
@@ -206,7 +206,7 @@ function TabletBlogPreview({ FirstPosts, allPosts }) {
   );
 }
 
-function MobileBlogPreview({ FirstPosts, allPosts }) {
+function MobileBlogPreview({ FirstPost, allPosts }) {
   const smallPosts = allPosts.slice(0, 4);
   return (
     <div>
@@ -227,7 +227,7 @@ function MobileBlogPreview({ FirstPosts, allPosts }) {
               height: "100%",
             }}
           >
-            <MediumBlogPreview blog={FirstPosts} />
+            <MediumBlogPreview blog={FirstPost} />
           </div>
         <div style={{ minWidth: 20 }} />
       </div>
