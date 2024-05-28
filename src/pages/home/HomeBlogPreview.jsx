@@ -397,7 +397,7 @@ export function FirstBlogPreview({ blogs, width, imageHeight }) {
           }
           style={{
             backgroundColor: style.colors.TEAL_LIGHT,
-            minHeight: 320,
+            minHeight: 340,
           }}
         >
           <div style={{ padding: 20 }}>
