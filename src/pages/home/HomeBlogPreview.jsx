@@ -219,9 +219,7 @@ function MobileBlogPreview({ FirstPosts, allPosts }) {
         }}
       >
         <div style={{ minWidth: 20 }} />
-        {FirstPosts.map((post, i) => (
           <div
-            key={i}
             style={{
               minWidth: 400,
               marginLeft: 20,
@@ -229,9 +227,8 @@ function MobileBlogPreview({ FirstPosts, allPosts }) {
               height: "100%",
             }}
           >
-            <MediumBlogPreview blog={post} />
+            <MediumBlogPreview blog={FirstPosts} />
           </div>
-        ))}
         <div style={{ minWidth: 20 }} />
       </div>
       <SectionBottom>
