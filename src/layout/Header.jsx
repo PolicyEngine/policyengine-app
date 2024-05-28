@@ -19,8 +19,10 @@ import {
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
 
-const BAR_TOP_PADDING = 10; // Desired top padding, px
+const BAR_TOP_PADDING = 10 // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
+const BAR_TOP_PADDING_DEFAULT = 8;
+const BAR_BOTTOM_PADDING_DEFAULT = 8;
 const BAR_SIDE_PADDING = 16;
 const LINKS = [
   {
@@ -211,10 +213,9 @@ function LoginButton() {
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
   const displayCategory = useDisplayCategory();
 
-  const desiredHeight =
-    displayCategory === "mobile"
-      ? 44
-      : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
+  const BAR_TOP_PADDING_CURRENT = displayCategory === "mobile" ? BAR_TOP_PADDING : BAR_TOP_PADDING_DEFAULT;
+  const BAR_BOTTOM_PADDING_CURRENT = displayCategory === "mobile" ? BAR_BOTTOM_PADDING : BAR_BOTTOM_PADDING_DEFAULT;
+  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING_CURRENT - BAR_BOTTOM_PADDING_CURRENT;
 
   const sharedStyle = {
     color: style.colors.WHITE,
@@ -331,10 +332,9 @@ function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
   const displayCategory = useDisplayCategory();
 
-  const desiredHeight =
-    displayCategory === "mobile"
-      ? 44
-      : style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING + 4;
+  const BAR_TOP_PADDING_CURRENT = displayCategory === "mobile" ? BAR_TOP_PADDING : BAR_TOP_PADDING_DEFAULT;
+  const BAR_BOTTOM_PADDING_CURRENT = displayCategory === "mobile" ? BAR_BOTTOM_PADDING : BAR_BOTTOM_PADDING_DEFAULT;
+  const desiredHeight = style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING_CURRENT - BAR_BOTTOM_PADDING_CURRENT;
 
   return (
     <>
