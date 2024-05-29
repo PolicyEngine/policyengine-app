@@ -20,11 +20,13 @@ import {
   LabourSupplyDecileAbsoluteImpactSubstitution,
   LabourSupplyDecileAbsoluteImpactTotal,
 } from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
+/*
 import {
   LabourSupplyDecileRelativeImpactIncome,
   LabourSupplyDecileRelativeImpactSubstitution,
   LabourSupplyDecileRelativeImpactTotal,
 } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
+*/
 import Analysis from "./Analysis";
 
 const map = {
@@ -44,12 +46,14 @@ const map = {
   "povertyImpact.regular.byRace": povertyImpactByRace,
   inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
+  /*
   "laborSupplyImpact.earnings.byDecile.relative.total":
     LabourSupplyDecileRelativeImpactTotal,
   "laborSupplyImpact.earnings.byDecile.relative.income":
     LabourSupplyDecileRelativeImpactIncome,
   "laborSupplyImpact.earnings.byDecile.relative.substitution":
     LabourSupplyDecileRelativeImpactSubstitution,
+  */
   "laborSupplyImpact.earnings.byDecile.absolute.total":
     LabourSupplyDecileAbsoluteImpactTotal,
   "laborSupplyImpact.earnings.byDecile.absolute.income":
