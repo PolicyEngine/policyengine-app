@@ -11,16 +11,20 @@ import { FileImageOutlined } from "@ant-design/icons";
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
   const featuredPosts =
-    posts.filter(
+    posts
+      .filter(
+        (post) =>
+          post.tags.includes("featured") &&
+          (post.tags.includes(countryId) || post.tags.includes("global")),
+      )
+      .sort((a, b) => b.date - a.date) || [];
+  const otherPosts = posts
+    .filter(
       (post) =>
-        post.tags.includes("featured") &&
-        (post.tags.includes(countryId) || post.tags.includes("global")),
-    ).sort((a, b) => b.date - a.date) || [];
-  const otherPosts = posts.filter(
-    (post) =>
-      (post.tags.includes(countryId) || post.tags.includes("global")) &&
-      !featuredPosts.includes(post),
-  ).sort((a, b) => b.date - a.date);
+        (post.tags.includes(countryId) || post.tags.includes("global")) &&
+        !featuredPosts.includes(post),
+    )
+    .sort((a, b) => b.date - a.date);
 
   // Combine featured posts and other posts
   const allCombinePosts = featuredPosts.concat(otherPosts);
@@ -38,22 +42,13 @@ export default function HomeBlogPreview() {
       {
         {
           mobile: (
-            <MobileBlogPreview
-              FirstPost={FirstPost}
-              allPosts={allPosts}
-            />
+            <MobileBlogPreview FirstPost={FirstPost} allPosts={allPosts} />
           ),
           tablet: (
-            <TabletBlogPreview
-              FirstPost={FirstPost}
-              allPosts={allPosts}
-            />
+            <TabletBlogPreview FirstPost={FirstPost} allPosts={allPosts} />
           ),
           desktop: (
-            <DesktopBlogPreview
-              FirstPost={FirstPost}
-              allPosts={allPosts}
-            />
+            <DesktopBlogPreview FirstPost={FirstPost} allPosts={allPosts} />
           ),
         }[displayCategory]
       }
@@ -219,16 +214,16 @@ function MobileBlogPreview({ FirstPost, allPosts }) {
         }}
       >
         <div style={{ minWidth: 20 }} />
-          <div
-            style={{
-              minWidth: 400,
-              marginLeft: 20,
-              marginRight: 20,
-              height: "100%",
-            }}
-          >
-            <MediumBlogPreview blog={FirstPost} />
-          </div>
+        <div
+          style={{
+            minWidth: 400,
+            marginLeft: 20,
+            marginRight: 20,
+            height: "100%",
+          }}
+        >
+          <MediumBlogPreview blog={FirstPost} />
+        </div>
         <div style={{ minWidth: 20 }} />
       </div>
       <SectionBottom>
@@ -338,7 +333,6 @@ const handleImageLoad = (path) => {
     return "";
   }
 };
-
 
 export function FirstBlogPreview({ blogs, width, imageHeight }) {
   // Only defined for desktop and tablet displays
