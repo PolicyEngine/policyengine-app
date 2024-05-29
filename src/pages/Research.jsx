@@ -393,7 +393,7 @@ function Expandable({ title, children }) {
   const titleRef = useRef();
   const titleComponent = (
     <div
-      style={{ display: "flex", alignItems: "center" }}
+      style={{ display: "flex", alignItems: "center", position: expanded && "sticky", top: expanded && 0, zIndex: expanded && 3, backgroundColor: style.colors.WHITE }}
       ref={titleRef}
       onClick={() => setExpanded(!expanded)}
     >
@@ -413,8 +413,9 @@ function Expandable({ title, children }) {
     <motion.div
       style={{
         cursor: "pointer",
-        overflowY: "hidden",
+        overflowY: expanded ? "scroll" : "hidden",
         marginTop: 10,
+        position: "relative"
       }}
       initial={{
         maxHeight: 30,
