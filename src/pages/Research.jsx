@@ -22,6 +22,7 @@ import { motion } from "framer-motion";
 import FontIcon from "../layout/FontIcon";
 import { Helmet } from "react-helmet";
 import { Checkbox } from "antd";
+import { useWindowHeight } from "../hooks/useWindow";
 
 export default function Research() {
   return (
@@ -290,15 +291,21 @@ function BlogPostSearchTools({
       />
     </>
   );
+
   const displayCategory = useDisplayCategory();
+  // Three display values, in pixels
+  const windowHeight = useWindowHeight();
+  const TOP = 150;
+  const BOTTOM_MARGIN = 24;
   if (displayCategory === "desktop") {
     return (
       <div
         style={{
           position: "sticky",
-          top: 150,
+          top: TOP,
           display: "flex",
           flexDirection: "column",
+          maxHeight: windowHeight - TOP - BOTTOM_MARGIN
         }}
       >
         {textBox}
