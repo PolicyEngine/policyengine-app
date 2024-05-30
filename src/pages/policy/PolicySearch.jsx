@@ -1,7 +1,9 @@
-import { AutoComplete } from "antd";
+import { AutoComplete, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
+import Button from "../../controls/Button";
+import { CheckOutlined } from "@ant-design/icons";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, onSelect } = props;
@@ -51,6 +53,7 @@ export default function PolicySearch(props) {
     }
   };
 
+  /*
   return (
     <AutoComplete
       options={policies || [{ value: defaultId, label: defaultLabel }]}
@@ -68,4 +71,69 @@ export default function PolicySearch(props) {
       value={value === defaultLabel ? null : value}
     />
   );
+  */
+
+
+  return (
+      <Space.Compact
+        style={{
+          // ...componentStyle,
+          width: width || "100%",
+        }}
+      >
+        <AutoComplete
+          options={policies || [{ value: defaultId, label: defaultLabel }]}
+          onSelect={(value) => {
+            let newSearch = copySearchParams(searchParams);
+            newSearch.set(target, value);
+            setSearchParams(newSearch);
+            if (onSelect) {
+              onSelect(value);
+            }
+          }}
+          onSearch={onSearch}
+          style={{ width: width || 200 }}
+          placeholder={defaultLabel}
+          value={value === defaultLabel ? null : value}
+        />
+        <Button
+          type="primary"
+          onClick={() => {}}
+          width={50}
+          style={{
+            padding: "unset"
+          }}
+          text={<CheckOutlined />}
+        />
+      </Space.Compact>
+  );
 }
+
+  /*
+    return (
+        {inputElement}
+        <Button
+          type={buttonStyle}
+          disabled={isDisabled}
+          onClick={(e) => onClick?.(e, inputValue)}
+          text={buttonText}
+          height={15}
+          width={100}
+        ></Button>
+      </Space.Compact>
+    );
+  const inputElement = (
+    <Input
+      style={boxStyle}
+      placeholder={placeholder}
+      disabled={isDisabled}
+      onChange={(e) => {
+        setInputValue(e.target.value);
+        onChange?.(e);
+      }}
+      status={error && "error"}
+      onPressEnter={(e) => onPressEnter?.(e, inputValue)}
+    />
+    
+  );
+*/
