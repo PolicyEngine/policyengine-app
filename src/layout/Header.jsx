@@ -180,7 +180,9 @@ function MobileCalculatorButton() {
   const countryId = useCountryId();
 
   const desiredHeight =
-    style.spacing.HEADER_HEIGHT - BAR_BOTTOM_PADDING_MOBILE - BAR_BOTTOM_PADDING_MOBILE;
+    style.spacing.HEADER_HEIGHT -
+    BAR_BOTTOM_PADDING_MOBILE -
+    BAR_BOTTOM_PADDING_MOBILE;
   return (
     <div
       style={{
@@ -214,7 +216,9 @@ function LoginButton() {
   const displayCategory = useDisplayCategory();
 
   const BAR_TOP_PADDING_CURRENT =
-    displayCategory === "mobile" ? BAR_TOP_PADDING_MOBILE : BAR_TOP_PADDING_DEFAULT;
+    displayCategory === "mobile"
+      ? BAR_TOP_PADDING_MOBILE
+      : BAR_TOP_PADDING_DEFAULT;
   const BAR_BOTTOM_PADDING_CURRENT =
     displayCategory === "mobile"
       ? BAR_BOTTOM_PADDING_MOBILE
@@ -340,7 +344,9 @@ function Hamburger() {
   const displayCategory = useDisplayCategory();
 
   const BAR_TOP_PADDING_CURRENT =
-    displayCategory === "mobile" ? BAR_TOP_PADDING_MOBILE : BAR_TOP_PADDING_DEFAULT;
+    displayCategory === "mobile"
+      ? BAR_TOP_PADDING_MOBILE
+      : BAR_TOP_PADDING_DEFAULT;
   const BAR_BOTTOM_PADDING_CURRENT =
     displayCategory === "mobile"
       ? BAR_BOTTOM_PADDING_MOBILE
