@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
 import Button from "../../controls/Button";
-import { CheckOutlined } from "@ant-design/icons";
+import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, onSelect } = props;
@@ -95,6 +95,16 @@ export default function PolicySearch(props) {
           style={{ width: width || 200 }}
           placeholder={defaultLabel}
           value={value === defaultLabel ? null : value}
+        />
+        <Button
+          type="secondary"
+          onClick={() => {}}
+          width={50}
+          style={{
+            padding: "unset",
+            borderWidth: "1px"
+          }}
+          text={<PlusOutlined />}
         />
         <Button
           type="primary"

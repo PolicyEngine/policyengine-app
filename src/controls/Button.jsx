@@ -75,9 +75,11 @@ export default function Button(props) {
         width: width,
         height: height || "auto",
         borderRadius: 0,
-        padding: 15,
+        padding: "15px 30px",
+        /*
         paddingLeft: 30,
         paddingRight: 30,
+        */
         fontSize: 14,
         fontFamily: "Roboto",
         fontWeight: 500,
