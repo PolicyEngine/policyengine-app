@@ -1,4 +1,4 @@
-import { AutoComplete, Space } from "antd";
+import { AutoComplete, Space, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams, countryApiCall } from "../../api/call";
@@ -73,7 +73,6 @@ export default function PolicySearch(props) {
   );
   */
 
-
   return (
       <Space.Compact
         style={{
@@ -96,27 +95,78 @@ export default function PolicySearch(props) {
           placeholder={defaultLabel}
           value={value === defaultLabel ? null : value}
         />
-        <Button
-          type="secondary"
-          onClick={() => {}}
-          width={50}
-          style={{
-            padding: "unset",
-            borderWidth: "1px"
-          }}
-          text={<PlusOutlined />}
-        />
-        <Button
-          type="primary"
-          onClick={() => {}}
-          width={50}
-          style={{
-            padding: "unset"
-          }}
-          text={<CheckOutlined />}
-        />
+        <Tooltip
+          title="Add to current policy"
+        >
+          <Button
+            type="secondary"
+            onClick={() => {}}
+            width={50}
+            style={{
+              padding: "unset",
+              borderWidth: "1px"
+            }}
+            text={<PlusOutlined />}
+          />
+        </Tooltip>
+        <Tooltip
+          title="Use this policy; it will replace your current policy"
+        >
+          <Button
+            type="primary"
+            onClick={() => {}}
+            width={50}
+            style={{
+              padding: "unset"
+            }}
+            text={<CheckOutlined />}
+          />
+        </Tooltip>
       </Space.Compact>
   );
+
+  /*
+  return (
+    <>
+        <Tooltip
+          title="Add to current policy"
+          defaultOpen={true}
+        >
+          <Button
+            text="Test text"
+          />
+          <Button
+            type="secondary"
+            onClick={() => {}}
+            width={50}
+            style={{
+              padding: "unset",
+              borderWidth: "1px"
+            }}
+            text={<PlusOutlined />}
+          />
+        </Tooltip>
+        <Tooltip
+          title="Test AntButton"
+        >
+          <AntButton>Test text</AntButton>
+        </Tooltip>
+        <Tooltip
+          title="Use this policy; it will replace your current policy"
+        >
+          <Button
+            type="primary"
+            onClick={() => {}}
+            width={50}
+            style={{
+              padding: "unset"
+            }}
+            text={<CheckOutlined />}
+          />
+        </Tooltip>
+    </>
+  )
+  */
 }
 
   /*
