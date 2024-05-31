@@ -327,7 +327,7 @@ export default function PolicyEngine({ pathname }) {
           element={<APIDocumentationPage metadata={metadata} />}
         />
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
-        <Route path="/us/api" element={<StatusPage />} />
+        <Route path="/:countryId/api_status" element={<StatusPage />} />
         <Route
           path="/us/trafwa-ctc-calculator"
           element={<TrafwaCalculator />}

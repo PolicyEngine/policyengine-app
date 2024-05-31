@@ -19,8 +19,10 @@ import {
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
 
-const BAR_TOP_PADDING = 10; // Desired top padding, px
-const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
+const BAR_TOP_PADDING_MOBILE = 10; // Desired top padding, px
+const BAR_BOTTOM_PADDING_MOBILE = 10; // Desired bottom padding, px
+const BAR_TOP_PADDING_DEFAULT = 8;
+const BAR_BOTTOM_PADDING_DEFAULT = 8;
 const BAR_SIDE_PADDING = 16;
 const LINKS = [
   {
@@ -167,7 +169,7 @@ function MobileHeaderLogo() {
         alt="PolicyEngine logo"
         style={{
           height: style.spacing.HEADER_HEIGHT,
-          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`,
+          padding: `${BAR_BOTTOM_PADDING_MOBILE}px 0 ${BAR_BOTTOM_PADDING_MOBILE}px 0`,
         }}
       />
     </Link>
@@ -178,7 +180,9 @@ function MobileCalculatorButton() {
   const countryId = useCountryId();
 
   const desiredHeight =
-    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
+    style.spacing.HEADER_HEIGHT -
+    BAR_BOTTOM_PADDING_MOBILE -
+    BAR_BOTTOM_PADDING_MOBILE;
   return (
     <div
       style={{
@@ -209,8 +213,20 @@ function MobileCalculatorButton() {
 function LoginButton() {
   const countryId = useCountryId();
   const { loginWithRedirect, isAuthenticated, user, isLoading } = useAuth0();
+  const displayCategory = useDisplayCategory();
+
+  const BAR_TOP_PADDING_CURRENT =
+    displayCategory === "mobile"
+      ? BAR_TOP_PADDING_MOBILE
+      : BAR_TOP_PADDING_DEFAULT;
+  const BAR_BOTTOM_PADDING_CURRENT =
+    displayCategory === "mobile"
+      ? BAR_BOTTOM_PADDING_MOBILE
+      : BAR_BOTTOM_PADDING_DEFAULT;
   const desiredHeight =
-    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
+    style.spacing.HEADER_HEIGHT -
+    BAR_TOP_PADDING_CURRENT -
+    BAR_BOTTOM_PADDING_CURRENT;
 
   const sharedStyle = {
     color: style.colors.WHITE,
@@ -247,6 +263,7 @@ function LoginButton() {
           alt="Profile"
           style={{
             width: "100%",
+            height: "100%",
             objectFit: "cover",
           }}
         />
@@ -324,9 +341,20 @@ function LoginMenu() {
 
 function Hamburger() {
   const [isOpen, setIsOpen] = useState(false);
+  const displayCategory = useDisplayCategory();
 
+  const BAR_TOP_PADDING_CURRENT =
+    displayCategory === "mobile"
+      ? BAR_TOP_PADDING_MOBILE
+      : BAR_TOP_PADDING_DEFAULT;
+  const BAR_BOTTOM_PADDING_CURRENT =
+    displayCategory === "mobile"
+      ? BAR_BOTTOM_PADDING_MOBILE
+      : BAR_BOTTOM_PADDING_DEFAULT;
   const desiredHeight =
-    style.spacing.HEADER_HEIGHT - BAR_TOP_PADDING - BAR_BOTTOM_PADDING;
+    style.spacing.HEADER_HEIGHT -
+    BAR_TOP_PADDING_CURRENT -
+    BAR_BOTTOM_PADDING_CURRENT;
 
   return (
     <>
@@ -382,7 +410,7 @@ function MainHeaderLogo() {
         style={{
           objectFit: "contain",
           height: style.spacing.HEADER_HEIGHT,
-          padding: `${BAR_TOP_PADDING}px 0 ${BAR_BOTTOM_PADDING}px 0`,
+          padding: `${BAR_TOP_PADDING_MOBILE}px 0 ${BAR_BOTTOM_PADDING_MOBILE}px 0`,
         }}
       />
     </Link>
