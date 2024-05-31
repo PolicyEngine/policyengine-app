@@ -165,20 +165,6 @@ export function getPolicyOutputTree(countryId) {
               ? "Labour supply impact (experimental)"
               : "Labor supply impact (experimental)",
           children: [
-            {
-              name: "policyOutput.laborSupplyImpact.overall",
-              label: "Overall",
-              children: [
-                {
-                  name: "policyOutput.laborSupplyImpact.overall.relative",
-                  label: "Relative",
-                },
-                {
-                  name: "policyOutput.laborSupplyImpact.overall.absolute",
-                  label: "Absolute",
-                },
-              ],
-            },
             countryId === "us" && {
               name: "policyOutput.laborSupplyImpact.hours",
               label: "Hours worked",
@@ -190,6 +176,16 @@ export function getPolicyOutputTree(countryId) {
                 {
                   name: "policyOutput.laborSupplyImpact.earnings.overall",
                   label: "Overall",
+                  children: [
+                    {
+                      name: "policyOutput.laborSupplyImpact.earnings.overall.relative",
+                      label: "Relative",
+                    },
+                    {
+                      name: "policyOutput.laborSupplyImpact.earnings.overall.absolute",
+                      label: "Absolute",
+                    },
+                  ]
                 },
                 {
                   name: "policyOutput.laborSupplyImpact.earnings.byDecile",

@@ -33,7 +33,7 @@ import Analysis from "./Analysis";
 const map = {
   "budgetaryImpact.overall": budgetaryImpact,
   "budgetaryImpact.byProgram": detailedBudgetaryImpact,
-  "laborSupplyImpact.earnings.overall": laborSupplyImpact,
+  // "laborSupplyImpact.earnings.overall": laborSupplyImpact,
   "distributionalImpact.incomeDecile.average": averageImpactByDecile,
   "distributionalImpact.wealthDecile.average": averageImpactByWealthDecile,
   "distributionalImpact.incomeDecile.relative": relativeImpactByDecile,
@@ -47,8 +47,8 @@ const map = {
   "povertyImpact.regular.byRace": povertyImpactByRace,
   inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
-  "laborSupplyImpact.overall.absolute": LaborSupplyResponseAbsolute,
-  "laborSupplyImpact.overall.relative": LaborSupplyResponseRelative,
+  "laborSupplyImpact.earnings.overall.absolute": LaborSupplyResponseAbsolute,
+  "laborSupplyImpact.earnings.overall.relative": LaborSupplyResponseRelative,
   /*
   "laborSupplyImpact.earnings.byDecile.relative.total":
     LabourSupplyDecileRelativeImpactTotal,
