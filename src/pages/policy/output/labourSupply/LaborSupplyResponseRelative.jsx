@@ -113,27 +113,8 @@ function title(policyLabel, change, metadata) {
 export default function lsrImpactRelative(props) {
   const { impact, policyLabel, metadata, mobile } = props;
 
-  // The API currently doesn't return the relative impact of the
-  // income and substitution effects throughout society, only
-  // for each decile. To determine the overall, the below code
-  // drops the "-1" decile from impact.decile.relative,
-  // then takes the remaining, divides them by the total number
-  // of quantiles, then adds that into a total value
-  const NUMBER_OF_QUANTILES = 10;
-  const incomeQuantiles = impact.labour_supply_response.decile.relative.income;
-  const substitutionQuantiles =
-    impact.labour_supply_response.decile.relative.substitution;
-
-  let incomeEffect = 0;
-  let substitutionEffect = 0;
-
-  // Note: start at 1 and run to 10 because we're iterating over
-  // Object with keys 1 through number of quantiles, inclusive, not array
-  for (let i = 1; i <= NUMBER_OF_QUANTILES; i++) {
-    incomeEffect += incomeQuantiles[String(i)] / NUMBER_OF_QUANTILES;
-    substitutionEffect +=
-      substitutionQuantiles[String(i)] / NUMBER_OF_QUANTILES;
-  }
+  const incomeEffect = impact.labour_supply_response.relative_lsr.income;
+  const substitutionEffect = impact.labour_supply_response.relative_lsr.substitution;
   const netEffect = incomeEffect + substitutionEffect;
 
   const budgetaryImpact = impact.budget.budgetary_impact;
