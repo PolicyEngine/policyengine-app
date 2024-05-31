@@ -42,7 +42,7 @@ export default function HomeBlogPreview() {
       {
         {
           mobile: (
-            <MobileBlogPreview FirstPost={FirstPost} allPosts={allPosts} />
+            <MobileBlogPreview allPosts={allPosts} />
           ),
           tablet: (
             <TabletBlogPreview FirstPost={FirstPost} allPosts={allPosts} />
