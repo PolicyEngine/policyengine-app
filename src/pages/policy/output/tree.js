@@ -160,7 +160,7 @@ export function getPolicyOutputTree(countryId) {
         },
         {
           name: "policyOutput.cliffImpact",
-          label: "Cliff impact"
+          label: "Cliff impact",
         },
         {
           name: "policyOutput.laborSupplyImpact",
