@@ -2,7 +2,6 @@ import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import {
-  formatCurrencyAbbr,
   formatPercent,
   localeCode,
 } from "../../../../lang/format";
@@ -117,52 +116,11 @@ export default function lsrImpactRelative(props) {
   const substitutionEffect = impact.labour_supply_response.relative_lsr.substitution;
   const netEffect = incomeEffect + substitutionEffect;
 
-  const budgetaryImpact = impact.budget.budgetary_impact;
-  const budgetaryImpactLSRChange = impact.labour_supply_response.revenue_change;
-  const originalBudgetaryImpact = budgetaryImpact - budgetaryImpactLSRChange;
-  const originalBudgetaryImpactStr = formatCurrencyAbbr(
-    originalBudgetaryImpact,
-    metadata.countryId,
-    {
-      maximumFractionDigits: 1,
-    },
-  );
-  const newBudgetaryImpactStr = formatCurrencyAbbr(
-    budgetaryImpact,
-    metadata.countryId,
-    {
-      maximumFractionDigits: 1,
-    },
-  );
-  const changeStr = formatCurrencyAbbr(
-    Math.abs(budgetaryImpactLSRChange),
-    metadata.countryId,
-    {
-      maximumFractionDigits: 1,
-    },
-  );
-  const relChangeStr = Math.round(
-    Math.abs(budgetaryImpact / originalBudgetaryImpact - 1) * 100,
-    1,
-  );
-
   const labels = ["Income effect", "Substitution effect", "Net change"];
   const values = [incomeEffect, substitutionEffect, netEffect];
-  const budgetaryImpactPositive = budgetaryImpact > 0;
-  const originalImpactPositive = originalBudgetaryImpact > 0;
 
   const chart = (
     <ImpactChart title={title(policyLabel, netEffect, metadata)}>
-      <p style={{ marginBottom: 30 }}>
-        This{" "}
-        {budgetaryImpactPositive === originalImpactPositive
-          ? "raises"
-          : "lowers"}{" "}
-        the budgetary impact of the reform by {changeStr} (from{" "}
-        {originalBudgetaryImpactStr} to {newBudgetaryImpactStr}, a{" "}
-        {relChangeStr}% {budgetaryImpactLSRChange > 0 ? "increase" : "decrease"}
-        ).
-      </p>
       <ImpactPlot
         values={values}
         labels={labels}
