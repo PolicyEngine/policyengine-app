@@ -6,7 +6,7 @@ import Button from "../../controls/Button";
 import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
 
 export default function PolicySearch(props) {
-  const { metadata, target, policy, width, onSelect } = props;
+  const { metadata, target, policy, width, enableStack } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultId = searchParams.get(target);
   let defaultLabel = policy[target].label || `Policy #${defaultId}`;
@@ -14,6 +14,7 @@ export default function PolicySearch(props) {
     defaultLabel = "Current law";
   }
   const [value, setValue] = useState(defaultLabel);
+  const [policyId, setPolicyId] = useState(searchParams.get(target));
 
   const [policies, setPolicies] = useState([]);
   const [lastRequestTime, setLastRequestTime] = useState(0);
@@ -23,8 +24,21 @@ export default function PolicySearch(props) {
     setValue(defaultLabel);
   }, [defaultLabel]);
 
-  // The search should query the API, but limited to one request every 1000ms.
+  // Handle when a user clicks an item in the list
+  function handleClickOnItem(value, option) {
+    setValue(option.label);
+    setPolicyId(value);
+  }
 
+  // Function to select a policy; this replaces any existing
+  // policy the user might have
+  function handleCheckmarkButton() {
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set(target, policyId);
+    setSearchParams(newSearch);
+  }
+
+  // The search should query the API, but limited to one request every 1000ms.
   const onSearch = (searchText) => {
     setValue(searchText);
     const now = new Date().getTime();
@@ -39,11 +53,7 @@ export default function PolicySearch(props) {
             data.result.map((item) => {
               return {
                 value: item.id,
-                label: (
-                  <>
-                    #{item.id} {item.label}
-                  </>
-                ),
+                label: `#${item.id} ${item.label}`
               };
             }) || [],
           );
@@ -53,68 +63,43 @@ export default function PolicySearch(props) {
     }
   };
 
-  /*
   return (
+    <Space.Compact
+      style={{
+        width: width || "100%",
+      }}
+    >
     <AutoComplete
       options={policies || [{ value: defaultId, label: defaultLabel }]}
-      onSelect={(value) => {
-        let newSearch = copySearchParams(searchParams);
-        newSearch.set(target, value);
-        setSearchParams(newSearch);
-        if (onSelect) {
-          onSelect(value);
-        }
-      }}
+      onSelect={(value, option) => handleClickOnItem(value, option)}
       onSearch={onSearch}
       style={{ width: width || 200 }}
       placeholder={defaultLabel}
       value={value === defaultLabel ? null : value}
     />
-  );
-  */
-
-  return (
-      <Space.Compact
-        style={{
-          // ...componentStyle,
-          width: width || "100%",
-        }}
-      >
-        <AutoComplete
-          options={policies || [{ value: defaultId, label: defaultLabel }]}
-          onSelect={(value) => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set(target, value);
-            setSearchParams(newSearch);
-            if (onSelect) {
-              onSelect(value);
-            }
-          }}
-          onSearch={onSearch}
-          style={{ width: width || 200 }}
-          placeholder={defaultLabel}
-          value={value === defaultLabel ? null : value}
-        />
-        <Tooltip
-          title="Add to current policy"
-        >
-          <Button
-            type="secondary"
-            onClick={() => {}}
-            width={50}
-            style={{
-              padding: "unset",
-              borderWidth: "1px"
-            }}
-            text={<PlusOutlined />}
-          />
-        </Tooltip>
+        {enableStack && (
+            <Tooltip
+              title="Add to current policy"
+            >
+              <Button
+                type="secondary"
+                onClick={() => {}}
+                width={50}
+                style={{
+                  padding: "unset",
+                  borderWidth: "1px"
+                }}
+                text={<PlusOutlined />}
+              />
+            </Tooltip>
+          )
+        }
         <Tooltip
           title="Use this policy; it will replace your current policy"
         >
           <Button
             type="primary"
-            onClick={() => {}}
+            onClick={handleCheckmarkButton}
             width={50}
             style={{
               padding: "unset"
@@ -122,78 +107,7 @@ export default function PolicySearch(props) {
             text={<CheckOutlined />}
           />
         </Tooltip>
-      </Space.Compact>
+    </Space.Compact>
   );
 
-  /*
-  return (
-    <>
-        <Tooltip
-          title="Add to current policy"
-          defaultOpen={true}
-        >
-          <Button
-            text="Test text"
-          />
-          <Button
-            type="secondary"
-            onClick={() => {}}
-            width={50}
-            style={{
-              padding: "unset",
-              borderWidth: "1px"
-            }}
-            text={<PlusOutlined />}
-          />
-        </Tooltip>
-        <Tooltip
-          title="Test AntButton"
-        >
-          <AntButton>Test text</AntButton>
-        </Tooltip>
-        <Tooltip
-          title="Use this policy; it will replace your current policy"
-        >
-          <Button
-            type="primary"
-            onClick={() => {}}
-            width={50}
-            style={{
-              padding: "unset"
-            }}
-            text={<CheckOutlined />}
-          />
-        </Tooltip>
-    </>
-  )
-  */
 }
-
-  /*
-    return (
-        {inputElement}
-        <Button
-          type={buttonStyle}
-          disabled={isDisabled}
-          onClick={(e) => onClick?.(e, inputValue)}
-          text={buttonText}
-          height={15}
-          width={100}
-        ></Button>
-      </Space.Compact>
-    );
-  const inputElement = (
-    <Input
-      style={boxStyle}
-      placeholder={placeholder}
-      disabled={isDisabled}
-      onChange={(e) => {
-        setInputValue(e.target.value);
-        onChange?.(e);
-      }}
-      status={error && "error"}
-      onPressEnter={(e) => onPressEnter?.(e, inputValue)}
-    />
-    
-  );
-*/
