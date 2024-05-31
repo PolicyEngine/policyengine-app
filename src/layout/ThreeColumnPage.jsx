@@ -1,8 +1,21 @@
 import { HEADER_HEIGHT } from "../style/spacing";
 import style from "../style";
+import { useState } from "react";
 
 export default function ThreeColumnPage(props) {
-  const { left, middle, right } = props;
+  const { 
+    left, 
+    middle, 
+    right,
+    isLeftExpanded = true,
+    isCenterExpanded = true
+  } = props;
+
+  // Calculate widths, in percentages
+  const leftWidth = isLeftExpanded ? 25 : 5;
+  const centerWidth = isCenterExpanded ? 25 : 5;
+  const rightWidth = 100 - leftWidth - centerWidth;
+
   return (
     <div
       style={{
@@ -12,7 +25,7 @@ export default function ThreeColumnPage(props) {
     >
       <div
         style={{
-          width: "25%",
+          width: `${leftWidth}%`,
           backgroundColor: style.colors.LIGHT_GRAY,
           overflowY: "scroll",
           // shadow
@@ -24,7 +37,7 @@ export default function ThreeColumnPage(props) {
       </div>
       <div
         style={{
-          width: "25%",
+          width: `${centerWidth}%`,
           backgroundColor: style.colors.LIGHT_GRAY,
           overflowY: "scroll",
           zIndex: 2,
@@ -35,7 +48,7 @@ export default function ThreeColumnPage(props) {
       </div>
       <div
         style={{
-          width: "50%",
+          width: `${rightWidth}%`,
           backgroundColor: style.colors.WHITE,
           padding: 20,
           paddingTop: 0,
