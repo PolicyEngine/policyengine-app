@@ -105,7 +105,7 @@ function DesktopBlogPreview({ allPosts }) {
               top: style.spacing.HEADER_HEIGHT + 20,
             }}
           >
-            <FirstBlogPreview blogs={FirstPost} />
+            <FeaturedBlogPreview blogs={firstPost} />
           </div>
         </div>
         <div
