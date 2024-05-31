@@ -35,7 +35,7 @@ function ImpactPlot(props) {
           ),
           increasing: { marker: { color: style.colors.BLUE } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
-          // Total should be dark gray if negative, dark green if positive
+          // Total should be dark gray if negative, dark blue if positive
           totals: {
             marker: {
               color: values[2] < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
