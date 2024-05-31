@@ -20,6 +20,8 @@ export default function PolicySearch(props) {
   const [lastRequestTime, setLastRequestTime] = useState(0);
   const [lastSearch, setLastSearch] = useState("");
 
+  const disableStack = policy.baseline.label === "Current law" && policy.reform.label === "Current law";
+
   useEffect(() => {
     setValue(defaultLabel);
   }, [defaultLabel]);
@@ -79,10 +81,10 @@ export default function PolicySearch(props) {
     />
         {enableStack && (
             <Tooltip
-              title="Add to current policy"
+              title={disableStack ? "" : "Add to current policy"}
             >
               <Button
-                type="secondary"
+                type={disableStack ? "disabled" : "secondary"}
                 onClick={() => {}}
                 width={50}
                 style={{
