@@ -83,7 +83,8 @@ function ReadMore() {
   );
 }
 
-function DesktopBlogPreview({ FirstPost, allPosts }) {
+function DesktopBlogPreview({ allPosts }) {
+  const firstPost = allPosts?.slice(0, 1);
   const rightColumnPosts = allPosts?.slice(0, 4);
   const firstRowPosts = allPosts?.slice(4, 7);
 
