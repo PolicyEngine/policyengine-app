@@ -191,7 +191,6 @@ export function getPolicyOutputTree(countryId) {
                   name: "policyOutput.laborSupplyImpact.earnings.byDecile",
                   label: "By decile",
                   children: [
-                    /*
                     {
                       name: "policyOutput.laborSupplyImpact.earnings.byDecile.relative",
                       label: "Relative",
@@ -210,7 +209,6 @@ export function getPolicyOutputTree(countryId) {
                         },
                       ],
                     },
-                    */
                     {
                       name: "policyOutput.laborSupplyImpact.earnings.byDecile.absolute",
                       label: "Absolute",
