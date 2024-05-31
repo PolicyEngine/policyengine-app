@@ -31,7 +31,6 @@ import Analysis from "./Analysis";
 const map = {
   "budgetaryImpact.overall": budgetaryImpact,
   "budgetaryImpact.byProgram": detailedBudgetaryImpact,
-  // "laborSupplyImpact.earnings.overall": laborSupplyImpact,
   "distributionalImpact.incomeDecile.average": averageImpactByDecile,
   "distributionalImpact.wealthDecile.average": averageImpactByWealthDecile,
   "distributionalImpact.incomeDecile.relative": relativeImpactByDecile,
