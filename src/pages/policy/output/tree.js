@@ -185,7 +185,7 @@ export function getPolicyOutputTree(countryId) {
                       name: "policyOutput.laborSupplyImpact.earnings.overall.absolute",
                       label: "Absolute",
                     },
-                  ]
+                  ],
                 },
                 {
                   name: "policyOutput.laborSupplyImpact.earnings.byDecile",

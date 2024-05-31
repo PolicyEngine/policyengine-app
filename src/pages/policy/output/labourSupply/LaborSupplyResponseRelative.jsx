@@ -1,10 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import {
-  formatPercent,
-  localeCode,
-} from "../../../../lang/format";
+import { formatPercent, localeCode } from "../../../../lang/format";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "../ImpactChart";
@@ -113,7 +110,8 @@ export default function lsrImpactRelative(props) {
   const { impact, policyLabel, metadata, mobile } = props;
 
   const incomeEffect = impact.labour_supply_response.relative_lsr.income;
-  const substitutionEffect = impact.labour_supply_response.relative_lsr.substitution;
+  const substitutionEffect =
+    impact.labour_supply_response.relative_lsr.substitution;
   const netEffect = incomeEffect + substitutionEffect;
 
   const labels = ["Income effect", "Substitution effect", "Net change"];
