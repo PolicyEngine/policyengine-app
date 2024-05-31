@@ -40,6 +40,18 @@ export default function PolicySearch(props) {
     setSearchParams(newSearch);
   }
 
+  function handleStack() {
+    // Set some sort of loading?
+
+    // Fetch policy to stack
+
+    // Do some sort of reconciling of these policies - what if parameters conflict?
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+
+    // Mimic handleCheckmark and setSearchParams using new ID
+  }
+
   // The search should query the API, but limited to one request every 1000ms.
   const onSearch = (searchText) => {
     setValue(searchText);
