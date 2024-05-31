@@ -3,16 +3,14 @@ import {
   DisplayError,
   DisplayImpact,
   DisplayWait,
-  LowLevelDisplay,
 } from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
-import ErrorPage from "layout/Error";
 import { defaultYear } from "data/constants";
 import { areObjectsSame } from "../../../data/areObjectsSame";
 import { updateUserPolicy } from "../../../api/userPolicies";
 import useCountryId from "../../../hooks/useCountryId";
-// import LoadingCentered from "layout/LoadingCentered";
+import LoadingCentered from "layout/LoadingCentered";
 
 /**
  *
@@ -200,7 +198,7 @@ export function FetchAndDisplayCliffImpact(props) {
   const [error, setError] = useState(null);
   const {
     metadata,
-    // policy,
+    policy,
   } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
@@ -254,14 +252,6 @@ export function FetchAndDisplayCliffImpact(props) {
     return <DisplayError error={error} />;
   }
 
-  // Remove the below block when cliff impacts are reinstated
-  return (
-    <LowLevelDisplay {...props}>
-      <ErrorPage message="This service is temporarily unavailable. Please try again later." />
-    </LowLevelDisplay>
-  );
-
-  /*
   if (!impact) {
     return <LoadingCentered message="Computing the cliff impact..." />;
   }
@@ -273,5 +263,4 @@ export function FetchAndDisplayCliffImpact(props) {
       metadata={metadata}
     />
   );
-  */
 }
