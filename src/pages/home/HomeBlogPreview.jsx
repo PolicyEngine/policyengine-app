@@ -335,7 +335,7 @@ const handleImageLoad = (path) => {
   }
 };
 
-export function FirstBlogPreview({ blogs, width, imageHeight }) {
+export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   // Only defined for desktop and tablet displays
   const displayCategory = useDisplayCategory();
   const currentBlog = blogs || {};
