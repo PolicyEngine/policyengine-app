@@ -27,7 +27,7 @@ export default function HomeBlogPreview() {
     .sort((a, b) => b.date - a.date);
 
   // Combine featured posts and other posts
-  const allCombinePosts = featuredPosts.concat(otherPosts);
+  const allPosts = featuredPosts.concat(otherPosts);
 
   // Extract the first post and the rest of the posts
   const [FirstPost, ...allPosts] = allCombinePosts;
