@@ -13,26 +13,24 @@ import povertyImpactByGender from "./poverty/PovertyImpactByGender";
 import povertyImpactByRace from "./poverty/PovertyImpactByRace";
 import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
-import laborSupplyImpact from "./labourSupply/LaborSupplyResponse";
+import LaborSupplyResponseAbsolute from "./labourSupply/LaborSupplyResponseAbsolute";
+import LaborSupplyResponseRelative from "./labourSupply/LaborSupplyResponseRelative";
 import lsrHoursImpact from "./labourSupply/LaborSupplyHoursImpact";
 import {
   LabourSupplyDecileAbsoluteImpactIncome,
   LabourSupplyDecileAbsoluteImpactSubstitution,
   LabourSupplyDecileAbsoluteImpactTotal,
 } from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
-/*
 import {
   LabourSupplyDecileRelativeImpactIncome,
   LabourSupplyDecileRelativeImpactSubstitution,
   LabourSupplyDecileRelativeImpactTotal,
 } from "./labourSupply/LabourSupplyDecileRelativeImpacts";
-*/
 import Analysis from "./Analysis";
 
 const map = {
   "budgetaryImpact.overall": budgetaryImpact,
   "budgetaryImpact.byProgram": detailedBudgetaryImpact,
-  "laborSupplyImpact.earnings.overall": laborSupplyImpact,
   "distributionalImpact.incomeDecile.average": averageImpactByDecile,
   "distributionalImpact.wealthDecile.average": averageImpactByWealthDecile,
   "distributionalImpact.incomeDecile.relative": relativeImpactByDecile,
@@ -46,14 +44,14 @@ const map = {
   "povertyImpact.regular.byRace": povertyImpactByRace,
   inequalityImpact: inequalityImpact,
   // cliffImpact: cliffImpact,
-  /*
+  "laborSupplyImpact.earnings.overall.absolute": LaborSupplyResponseAbsolute,
+  "laborSupplyImpact.earnings.overall.relative": LaborSupplyResponseRelative,
   "laborSupplyImpact.earnings.byDecile.relative.total":
     LabourSupplyDecileRelativeImpactTotal,
   "laborSupplyImpact.earnings.byDecile.relative.income":
     LabourSupplyDecileRelativeImpactIncome,
   "laborSupplyImpact.earnings.byDecile.relative.substitution":
     LabourSupplyDecileRelativeImpactSubstitution,
-  */
   "laborSupplyImpact.earnings.byDecile.absolute.total":
     LabourSupplyDecileAbsoluteImpactTotal,
   "laborSupplyImpact.earnings.byDecile.absolute.income":

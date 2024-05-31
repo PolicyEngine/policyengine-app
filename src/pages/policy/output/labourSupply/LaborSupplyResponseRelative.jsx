@@ -1,7 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
+import { formatPercent, localeCode } from "../../../../lang/format";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "../ImpactChart";
@@ -28,13 +28,14 @@ function ImpactPlot(props) {
               : ["total"],
           textposition: "inside",
           text: values.map((value) =>
-            formatCurrencyAbbr(value * 1e9, metadata.countryId, {
-              maximumFractionDigits: 1,
+            formatPercent(value, metadata.countryId, {
+              maximumFractionDigits: 2,
+              minimumFractionDigits: 2,
             }),
           ),
           increasing: { marker: { color: style.colors.BLUE } },
           decreasing: { marker: { color: style.colors.DARK_GRAY } },
-          // Total should be dark gray if negative, dark green if positive
+          // Total should be dark gray if negative, dark blue if positive
           totals: {
             marker: {
               color: values[2] < 0 ? style.colors.DARK_GRAY : style.colors.BLUE,
@@ -55,8 +56,8 @@ function ImpactPlot(props) {
           title: "",
         },
         yaxis: {
-          title: "Earnings (bn)",
-          tickformat: "$,.1f",
+          title: "Relative change",
+          tickformat: ".1%",
           fixedrange: true,
         },
         hoverlabel: {
@@ -93,8 +94,9 @@ function title(policyLabel, change, metadata) {
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
   const term1 = `earnings${regionPhrase}`;
-  const term2 = formatCurrencyAbbr(Math.abs(change * 1e9), metadata.countryId, {
-    maximumFractionDigits: 1,
+  const term2 = formatPercent(Math.abs(change), metadata.countryId, {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
@@ -104,19 +106,19 @@ function title(policyLabel, change, metadata) {
   return msg;
 }
 
-export default function lsrImpact(props) {
+export default function lsrImpactRelative(props) {
   const { impact, policyLabel, metadata, mobile } = props;
-  const incomeEffect = impact.labour_supply_response.income_lsr;
-  const substitutionEffect = impact.labour_supply_response.substitution_lsr;
+
+  const incomeEffect = impact.labour_supply_response.relative_lsr.income;
+  const substitutionEffect =
+    impact.labour_supply_response.relative_lsr.substitution;
+  const netEffect = incomeEffect + substitutionEffect;
 
   const labels = ["Income effect", "Substitution effect", "Net change"];
-  const values = [
-    incomeEffect / 1e9,
-    substitutionEffect / 1e9,
-    incomeEffect / 1e9 + substitutionEffect / 1e9,
-  ];
+  const values = [incomeEffect, substitutionEffect, netEffect];
+
   const chart = (
-    <ImpactChart title={title(policyLabel, values[2], metadata)}>
+    <ImpactChart title={title(policyLabel, netEffect, metadata)}>
       <ImpactPlot
         values={values}
         labels={labels}

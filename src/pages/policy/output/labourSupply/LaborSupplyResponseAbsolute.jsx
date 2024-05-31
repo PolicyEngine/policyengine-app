@@ -1,11 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import {
-  formatNumberAbbr,
-  formatPercent,
-  localeCode,
-} from "../../../../lang/format";
+import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "../ImpactChart";
@@ -32,7 +28,7 @@ function ImpactPlot(props) {
               : ["total"],
           textposition: "inside",
           text: values.map((value) =>
-            formatNumberAbbr(value, metadata.countryId, {
+            formatCurrencyAbbr(value * 1e9, metadata.countryId, {
               maximumFractionDigits: 1,
             }),
           ),
@@ -59,8 +55,8 @@ function ImpactPlot(props) {
           title: "",
         },
         yaxis: {
-          title: "Full time-equivalent hours",
-          tickformat: ",.0f",
+          title: "Earnings (bn)",
+          tickformat: "$,.1f",
           fixedrange: true,
         },
         hoverlabel: {
@@ -96,9 +92,9 @@ function ImpactPlot(props) {
 function title(policyLabel, change, metadata) {
   const region = regionName(metadata);
   const regionPhrase = region ? ` in ${region}` : "";
-  const term1 = `hours worked${regionPhrase}`;
-  const term2 = formatPercent(Math.abs(change), metadata.countryId, {
-    maximumFractionDigits: 2,
+  const term1 = `earnings${regionPhrase}`;
+  const term2 = formatCurrencyAbbr(Math.abs(change * 1e9), metadata.countryId, {
+    maximumFractionDigits: 1,
   });
   const signTerm = change > 0 ? "increase" : "decrease";
   const msg =
@@ -108,34 +104,19 @@ function title(policyLabel, change, metadata) {
   return msg;
 }
 
-export default function lsrHoursImpact(props) {
+export default function lsrImpactAbsolute(props) {
   const { impact, policyLabel, metadata, mobile } = props;
-  const laborSupply = impact.labour_supply_response;
-  const incomeEffect = laborSupply.hours.income_effect;
-  const substitutionEffect = laborSupply.hours.substitution_effect;
-  const overallEffect = laborSupply.hours.change;
-  const relEffect = overallEffect / laborSupply.hours.baseline;
+  const incomeEffect = impact.labour_supply_response.income_lsr;
+  const substitutionEffect = impact.labour_supply_response.substitution_lsr;
+
   const labels = ["Income effect", "Substitution effect", "Net change"];
   const values = [
-    incomeEffect / 40,
-    substitutionEffect / 40,
-    overallEffect / 40,
+    incomeEffect / 1e9,
+    substitutionEffect / 1e9,
+    incomeEffect / 1e9 + substitutionEffect / 1e9,
   ];
-  const hoursToFTE = (weeklyHours) => weeklyHours / 40;
-  const baselineFTE = hoursToFTE(laborSupply.hours.baseline);
-  const reformFTE = hoursToFTE(laborSupply.hours.reform);
-  const changeFTE = hoursToFTE(overallEffect);
-  const fmt = (x) =>
-    formatNumberAbbr(x, metadata.countryId, {
-      maximumFractionDigits: 1,
-    });
   const chart = (
-    <ImpactChart title={title(policyLabel, relEffect, metadata)}>
-      <p>
-        This is equivalent to {fmt(changeFTE)},{" "}
-        {overallEffect > 0 ? "increasing" : "decreasing"} full time-equivalent
-        hours from {fmt(baselineFTE)} to {fmt(reformFTE)}.
-      </p>
+    <ImpactChart title={title(policyLabel, values[2], metadata)}>
       <ImpactPlot
         values={values}
         labels={labels}
