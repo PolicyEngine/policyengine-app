@@ -17,7 +17,7 @@ export default function HomeBlogPreview() {
           post.tags.includes("featured") &&
           (post.tags.includes(countryId) || post.tags.includes("global")),
       )
-      .sort((a, b) => b.date - a.date) || [];
+      .sort((a, b) => b.date - a.date);
   const otherPosts = posts
     .filter(
       (post) =>
