@@ -10,16 +10,6 @@ import { FileImageOutlined } from "@ant-design/icons";
 
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
-<<<<<<< HEAD
-  const featuredPosts =
-    posts
-      .filter(
-        (post) =>
-          post.tags.includes("featured") &&
-          (post.tags.includes(countryId) || post.tags.includes("global")),
-      )
-      .sort((a, b) => b.date - a.date);
-=======
   const featuredPosts = posts
     .filter(
       (post) =>
@@ -27,7 +17,6 @@ export default function HomeBlogPreview() {
         (post.tags.includes(countryId) || post.tags.includes("global")),
     )
     .sort((a, b) => b.date - a.date);
->>>>>>> 7fc5faf (run make format")
   const otherPosts = posts
     .filter(
       (post) =>
