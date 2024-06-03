@@ -75,7 +75,11 @@ export default function PolicyOutput(props) {
         let failedAttempts = [];
         let policyId = null;
         try {
-          policyId = await postUserPolicy(countryId, policyToSave);
+          policyId = await postUserPolicy(
+            policyToSave.country_id,
+            policyToSave,
+          );
+
           setUserPolicyId(policyId);
         } catch (err) {
           failedAttempts = failedAttempts.concat(policyToSave);

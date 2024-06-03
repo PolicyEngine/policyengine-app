@@ -162,7 +162,7 @@ export default function UserProfilePage(props) {
         };
 
         try {
-          await postUserPolicy(countryId, policy);
+          await postUserPolicy(policy.country_id, policy);
         } catch (err) {
           // If for some reason, policy addition fails,
           // add it to a failed attempts array - this will
@@ -430,12 +430,13 @@ function UserProfileSection(props) {
 
 function PolicySimulationCard(props) {
   const { metadata, userPolicy, keyValue } = props;
+  console.log(Object.keys(metadata));
 
   const CURRENT_API_VERSION = metadata?.version;
   const geography =
     metadata.economy_options.region.filter(
       (region) => region.name === userPolicy.geography,
-    )[0].label || "Unknown";
+    )[0]?.label || "Unknown";
 
   const apiVersion = userPolicy.api_version;
   const dateAdded = userPolicy.added_date;
