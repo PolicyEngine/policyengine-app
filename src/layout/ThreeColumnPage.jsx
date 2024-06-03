@@ -11,7 +11,7 @@ export default function ThreeColumnPage(props) {
     isCenterCollapsed
   } = props;
 
-  const COLLAPSED_WIDTH = "42px";
+  const COLLAPSED_WIDTH = "50px";
 
   // Calculate widths
   // This should also work if neither of the collapse

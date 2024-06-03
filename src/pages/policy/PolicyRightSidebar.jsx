@@ -562,6 +562,7 @@ export default function PolicyRightSidebar(props) {
         flexDirection: "column",
         justifyContent: "space-between",
         height: "100%",
+        position: "relative"
       }}
     >
       <div>
@@ -619,10 +620,6 @@ export default function PolicyRightSidebar(props) {
           timePeriod={timePeriod}
           closeDrawer={closeDrawer}
           hideButtons={hideButtons}
-        />
-        <CollapseButton
-          onClick={() => setIsCollapsed((prev) => !prev)}
-          isCollapsed={isCollapsed}
         />
         <div style={{ paddingLeft: 5 }}>
           <Collapsible
@@ -763,6 +760,15 @@ export default function PolicyRightSidebar(props) {
           />
         )}
       </div>
+      <CollapseButton
+        onClick={() => setIsCollapsed((prev) => !prev)}
+        isCollapsed={isCollapsed}
+        style={{
+          position: "sticky",
+          bottom: 0,
+          width: "100%"
+        }}
+      />
     </div>
   );
 }

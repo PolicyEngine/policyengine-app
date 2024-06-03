@@ -1,11 +1,12 @@
 import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { Button as AntButton, Tooltip } from "antd";
-import style from "../style";
+import fixedStyles from "../style";
 
 export default function CollapseButton(props) {
   const {
     onClick,
-    isCollapsed
+    isCollapsed,
+    style
   } = props;
 
   function clickHandler() {
@@ -21,7 +22,12 @@ export default function CollapseButton(props) {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
-        padding: "0px 20px",
+        // Extra padding at bottom to 
+        // avoid collision with scrollbar
+        padding: "10px 20px 20px 20px", 
+        boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px",
+        backgroundColor: fixedStyles.colors.LIGHT_GRAY,
+        ...style
       }}
     >
       <Tooltip
