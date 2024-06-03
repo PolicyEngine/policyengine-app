@@ -20,6 +20,7 @@ import { defaultForeverYear } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 import { LeftExpansionContext } from "../../layout/ThreeColumnPage";
+import CollapseButton from "../../controls/CollapseButton";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -619,7 +620,7 @@ export default function PolicyRightSidebar(props) {
           closeDrawer={closeDrawer}
           hideButtons={hideButtons}
         />
-        <Button
+        <CollapseButton
           onClick={() => setIsCollapsed((prev) => !prev)}
         />
         <div style={{ paddingLeft: 5 }}>
