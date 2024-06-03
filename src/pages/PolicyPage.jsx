@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { copySearchParams } from "../api/call";
@@ -84,6 +84,8 @@ export default function PolicyPage(props) {
   const { metadata, policy, userProfile, setPolicy } = props;
   const mobile = useMobile();
 
+  const [isLeftCollapsed, setIsLeftCollapsed] = useState(false);
+  const [isRightCollapsed, setIsRightCollapsed] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
 
@@ -242,10 +244,14 @@ export default function PolicyPage(props) {
         <title>Policy | PolicyEngine</title>
       </Helmet>
       <ThreeColumnPage
+        isLeftCollapsed={isLeftCollapsed}
+        isRightCollapsed={isRightCollapsed}
         middle={<PolicyLeftSidebar metadata={metadata} />}
         right={middle}
         left={
           <PolicyRightSidebar
+            isCollapsed={isLeftCollapsed}
+            setIsCollapsed={setIsLeftCollapsed}
             metadata={metadata}
             policy={policy}
             setPolicy={setPolicy}

@@ -1,4 +1,4 @@
-import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
+import { SwapOutlined, QuestionCircleOutlined, StepBackwardOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -19,6 +19,7 @@ import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { defaultForeverYear } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
+import { LeftExpansionContext } from "../../layout/ThreeColumnPage";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -421,8 +422,9 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
+  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen, isCollapsed, setIsCollapsed } =
     props;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const region = searchParams.get("region");
@@ -616,6 +618,9 @@ export default function PolicyRightSidebar(props) {
           timePeriod={timePeriod}
           closeDrawer={closeDrawer}
           hideButtons={hideButtons}
+        />
+        <Button
+          onClick={() => setIsCollapsed((prev) => !prev)}
         />
         <div style={{ paddingLeft: 5 }}>
           <Collapsible

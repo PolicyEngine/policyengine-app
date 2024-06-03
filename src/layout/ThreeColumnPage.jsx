@@ -1,19 +1,21 @@
 import { HEADER_HEIGHT } from "../style/spacing";
 import style from "../style";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function ThreeColumnPage(props) {
   const { 
     left, 
     middle, 
     right,
-    isLeftExpanded = true,
-    isCenterExpanded = true
+    isLeftCollapsed,
+    isCenterCollapsed
   } = props;
 
   // Calculate widths, in percentages
-  const leftWidth = isLeftExpanded ? 25 : 5;
-  const centerWidth = isCenterExpanded ? 25 : 5;
+  // This should also work if neither of the collapse
+  // props are passed, as undefined evaluates to false
+  const leftWidth = isLeftCollapsed ? 5 : 25;
+  const centerWidth = isCenterCollapsed ? 5 : 25;
   const rightWidth = 100 - leftWidth - centerWidth;
 
   return (
