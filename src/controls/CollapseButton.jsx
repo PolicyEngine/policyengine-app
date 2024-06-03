@@ -1,10 +1,11 @@
-import { DoubleLeftOutlined } from "@ant-design/icons";
+import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { Button as AntButton, Tooltip } from "antd";
 import style from "../style";
 
 export default function CollapseButton(props) {
   const {
-    onClick
+    onClick,
+    isCollapsed
   } = props;
 
   function clickHandler() {
@@ -24,16 +25,28 @@ export default function CollapseButton(props) {
       }}
     >
       <Tooltip
-        title="Minimize panel"
+        title={`${isCollapsed ? "Maximize" : "Minimize"} panel`}
         placement="right"
       >
-        <DoubleLeftOutlined
-          onClick={clickHandler}
-          style={{
-            fontSize: "12px",
-            color: "rgba(0, 0, 0, 0.88)"
-          }}
-        />
+        {
+          isCollapsed ? (
+            <DoubleRightOutlined
+              onClick={clickHandler}
+              style={{
+                fontSize: "12px",
+                color: "rgba(0, 0, 0, 0.88)"
+              }}
+            />
+          ) : (
+            <DoubleLeftOutlined
+              onClick={clickHandler}
+              style={{
+                fontSize: "12px",
+                color: "rgba(0, 0, 0, 0.88)"
+              }}
+            />
+          )
+        }
       </Tooltip>
     </div>
   )

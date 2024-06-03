@@ -622,6 +622,7 @@ export default function PolicyRightSidebar(props) {
         />
         <CollapseButton
           onClick={() => setIsCollapsed((prev) => !prev)}
+          isCollapsed={isCollapsed}
         />
         <div style={{ paddingLeft: 5 }}>
           <Collapsible

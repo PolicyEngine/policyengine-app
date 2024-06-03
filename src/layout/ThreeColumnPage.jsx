@@ -11,12 +11,15 @@ export default function ThreeColumnPage(props) {
     isCenterCollapsed
   } = props;
 
-  // Calculate widths, in percentages
+  const COLLAPSED_WIDTH = "42px";
+
+  // Calculate widths
   // This should also work if neither of the collapse
   // props are passed, as undefined evaluates to false
-  const leftWidth = isLeftCollapsed ? 5 : 25;
-  const centerWidth = isCenterCollapsed ? 5 : 25;
-  const rightWidth = 100 - leftWidth - centerWidth;
+  const leftWidth = isLeftCollapsed ? COLLAPSED_WIDTH : "25%";
+  const centerWidth = isCenterCollapsed ? COLLAPSED_WIDTH : "25%";
+  const rightWidth = `calc(100% - ${leftWidth} - ${centerWidth})`
+  // const rightWidth = 100 - leftWidth - centerWidth;
 
   return (
     <div
@@ -27,7 +30,7 @@ export default function ThreeColumnPage(props) {
     >
       <div
         style={{
-          width: `${leftWidth}%`,
+          width: leftWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           overflowY: "scroll",
           // shadow
@@ -39,7 +42,7 @@ export default function ThreeColumnPage(props) {
       </div>
       <div
         style={{
-          width: `${centerWidth}%`,
+          width: centerWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           overflowY: "scroll",
           zIndex: 2,
@@ -50,7 +53,7 @@ export default function ThreeColumnPage(props) {
       </div>
       <div
         style={{
-          width: `${rightWidth}%`,
+          width: rightWidth,
           backgroundColor: style.colors.WHITE,
           padding: 20,
           paddingTop: 0,
