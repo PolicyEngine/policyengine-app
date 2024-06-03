@@ -21,6 +21,7 @@ import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 import { LeftExpansionContext } from "../../layout/ThreeColumnPage";
 import CollapseButton from "../../controls/CollapseButton";
+import CollapsedPanel from "../../layout/CollapsedPanel";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -521,6 +522,27 @@ export default function PolicyRightSidebar(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
+  const collapseButton = (
+    <CollapseButton
+      onClick={() => setIsCollapsed((prev) => !prev)}
+      isCollapsed={isCollapsed}
+      style={{
+        position: "absolute",
+        bottom: 0,
+        width: "100%"
+      }}
+    />
+  );
+
+  if (isCollapsed) {
+    return (
+      <CollapsedPanel
+        title="Policy settings"
+        collapseButton={collapseButton}
+      />
+    );
+  }
+
   if (!policy.reform.data) {
     return (
       <div
@@ -760,15 +782,7 @@ export default function PolicyRightSidebar(props) {
           />
         )}
       </div>
-      <CollapseButton
-        onClick={() => setIsCollapsed((prev) => !prev)}
-        isCollapsed={isCollapsed}
-        style={{
-          position: "sticky",
-          bottom: 0,
-          width: "100%"
-        }}
-      />
+      {collapseButton}
     </div>
   );
 }
