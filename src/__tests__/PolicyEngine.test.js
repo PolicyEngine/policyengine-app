@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 import postJson from "../posts/posts.json";
 
@@ -266,6 +266,7 @@ describe("Test main PolicyEngine component", () => {
 
     const selectedPost = filteredPostJson[randIndex];
     const postFilepath = selectedPost.filename.split(".")[0];
+    console.log(postFilepath);
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];
@@ -277,13 +278,14 @@ describe("Test main PolicyEngine component", () => {
       origin: `https://www.policyengine.org/us/research/${postFilepath}`,
     };
 
-    const { getByText } = render(
+    render(
       <BrowserRouter>
         <PolicyEngine />
       </BrowserRouter>,
     );
 
-    expect(getByText("Our organization")).toBeInTheDocument();
+    const link = screen.getByRole("link", { name: /Research/i });
+    expect(link).toBeInTheDocument();
   });
   test("Routes to privacy page for UK", () => {
     useSearchParams.mockImplementation(() => {
