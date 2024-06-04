@@ -45,8 +45,26 @@ describe("PolicySearch", () => {
     expect(stackButton).toBeDisabled();
 
   });
+  test("On current law, should allow policy selection", () => {
+
+    const testProps = {
+      metadata: metadataUS,
+      target: "reform",
+      policy: baselinePolicyUS,
+      displayStack: true
+    };
+
+    render(
+      <BrowserRouter>
+        <PolicySearch {...testProps}/>
+      </BrowserRouter>
+    );
+
+    const checkmarkButton = screen.getByRole("button", {name: /check/i});
+    expect(checkmarkButton).toBeInTheDocument();
+    expect(checkmarkButton).not.toBeDisabled();
+  });
   /*
-  test("On current law, should allow policy selection");
   test("Should stack non-conflicting policies");
   test("On conflicting policies, should prefer second over first");
   */
