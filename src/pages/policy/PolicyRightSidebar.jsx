@@ -591,7 +591,7 @@ export default function PolicyRightSidebar(props) {
                 policy={policy}
                 target="reform"
                 width="100%"
-                enableStack
+                displayStack
               />
             }
           />

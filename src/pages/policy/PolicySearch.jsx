@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { apiCall, copySearchParams, countryApiCall } from "../../api/call";
 import Button from "../../controls/Button";
-import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
+import { CheckOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import useCountryId from "../../hooks/useCountryId";
 import { getNewPolicyId } from "../../api/parameters";
 import style from "../../style";
 
 export default function PolicySearch(props) {
-  const { metadata, target, policy, width, enableStack } = props;
+  const { metadata, target, policy, width, displayStack } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const countryId = useCountryId();
   const defaultId = searchParams.get(target);
@@ -20,6 +20,7 @@ export default function PolicySearch(props) {
   const [value, setValue] = useState(defaultLabel);
   const [policyId, setPolicyId] = useState(searchParams.get(target));
   const [isError, setIsError] = useState(false);
+  const [isStackerLoading, setIsStackerLoading] = useState(false);
 
   const [policies, setPolicies] = useState([]);
   const [lastRequestTime, setLastRequestTime] = useState(0);
@@ -47,6 +48,7 @@ export default function PolicySearch(props) {
 
   async function handleStack() {
     // Set some sort of loading?
+    setIsStackerLoading(true);
 
     // Fetch policy to stack
     try {
@@ -58,6 +60,7 @@ export default function PolicySearch(props) {
         console.error("Network error while fetching existing policy");
         console.error(res)
         setIsError(true);
+        setIsStackerLoading(false);
       } else {
         const resJson = await res.json();
         const policyToStack = resJson.result;
@@ -77,11 +80,13 @@ export default function PolicySearch(props) {
           console.error("Network error while creating new policy");
           console.error(newPolicyRes)
           setIsError(true);
+          setIsStackerLoading(false);
         } else {
           // Mimic handleCheckmark and setSearchParams using new ID
           let newSearch = copySearchParams(searchParams);
           newSearch.set("reform", newPolicyRes.policy_id);
           setSearchParams(newSearch);
+          setIsStackerLoading(false);
         }
       }
     }
@@ -89,6 +94,7 @@ export default function PolicySearch(props) {
       console.error("Error while fetching existing policy");
       console.error(err);
       setIsError(true);
+      setIsStackerLoading(false);
     }
   }
 
@@ -140,9 +146,9 @@ export default function PolicySearch(props) {
       placeholder={defaultLabel}
       value={value === defaultLabel ? null : value}
     />
-        {enableStack && (
+        {displayStack && (
             <Tooltip
-              title={disableStack ? "" : "Add to current policy"}
+              title={isStackerLoading ? "Loading" : disableStack ? "" : "Add to current policy"}
             >
               <Button
                 type={disableStack ? "disabled" : "secondary"}
@@ -152,7 +158,10 @@ export default function PolicySearch(props) {
                   padding: "unset",
                   borderWidth: "1px"
                 }}
-                text={<PlusOutlined />}
+                text={isStackerLoading
+                  ? <LoadingOutlined />
+                  : <PlusOutlined />
+                }
               />
             </Tooltip>
           )
