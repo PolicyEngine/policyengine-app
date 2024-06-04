@@ -14,7 +14,7 @@ export default function ErrorPage(props) {
           flexDirection: "column",
           paddingLeft: "10vw",
           alignItems: "flex-start",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <h2>Sorry, something went wrong.</h2>
