@@ -38,14 +38,44 @@ const blogPosts = [
     image: "biden-budget-2025.jpeg",
   },
   {
-    title: "PolicyEngine launches state income tax modeling nationwide",
+    title: "Building the roots of PolicyEngine Nigeria",
     description:
-      "Free, open-source platform now covers all 50 states and D.C., just in time for tax season.",
-    date: "2024-04-15 09:00:00",
-    tags: ["us", "policy", "featured"],
-    authors: ["pavel-makarchuk"],
-    filename: "state-tax-model-beta.md",
-    image: "state-tax-model-beta.png",
+      "We’re expanding PolicyEngine’s reach by empowering Nigerians to understand personal income tax policies.",
+    date: "2023-04-21 09:00:00",
+    tags: ["ng", "technical"],
+    filename: "building-the-roots-of-policyengine-nigeria.md",
+    image: "building-the-roots-of-policyengine-nigeria.webp",
+    authors: ["nikhil-woodruff", "max-ghenis"],
+  },
+  {
+    title: "PolicyEngine adds New York Family Assistance (TANF) to US model",
+    description:
+      "Enhancing analysis of public policy impacts on needy families.",
+    date: "2023-04-08 09:00:00",
+    tags: ["us", "us-ny", "policy"],
+    filename: "new-york-tanf.md",
+    image: "new-york-tanf.png",
+    authors: ["max-ghenis", "donglai-xu", "lin-tao"],
+  },
+  {
+    title: "From OpenFisca to PolicyEngine",
+    description:
+      "OpenFisca has catapulted our progress, and now we’ve forked it into our own microsimulation framework.",
+    date: "2022-11-10",
+    tags: ["global", "technical"],
+    filename: "from-openfisca-to-policyengine.md",
+    image: "from-openfisca-to-policyengine.png",
+    authors: ["nikhil-woodruff"],
+  },
+  {
+    title: "Stamp duties in PolicyEngine UK",
+    date: "2022-09-22",
+    authors: ["nikhil-woodruff"],
+    tags: ["uk", "technical"],
+    description:
+      "The Times reported yesterday that Prime Minister Liz Truss will announce plans to cut Stamp Duty this week. PolicyEngine now supports\u2026",
+    filename: "stamp-duties-in-policyengine-uk.md",
+    image: "stamp-duties-in-policyengine-uk.jpg",
   },
   {
     title: "PolicyEngine's Spring 2024 update",
