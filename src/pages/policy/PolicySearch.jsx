@@ -6,6 +6,7 @@ import Button from "../../controls/Button";
 import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
 import useCountryId from "../../hooks/useCountryId";
 import { getNewPolicyId } from "../../api/parameters";
+import style from "../../style";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, enableStack } = props;
@@ -18,6 +19,7 @@ export default function PolicySearch(props) {
   }
   const [value, setValue] = useState(defaultLabel);
   const [policyId, setPolicyId] = useState(searchParams.get(target));
+  const [isError, setIsError] = useState(false);
 
   const [policies, setPolicies] = useState([]);
   const [lastRequestTime, setLastRequestTime] = useState(0);
@@ -55,6 +57,7 @@ export default function PolicySearch(props) {
       if (!res.ok) {
         console.error("Network error while fetching existing policy");
         console.error(res)
+        setIsError(true);
       } else {
         const resJson = await res.json();
         const policyToStack = resJson.result;
@@ -73,6 +76,7 @@ export default function PolicySearch(props) {
         if (!newPolicyRes.status === "ok") {
           console.error("Network error while creating new policy");
           console.error(newPolicyRes)
+          setIsError(true);
         } else {
           // Mimic handleCheckmark and setSearchParams using new ID
           let newSearch = copySearchParams(searchParams);
@@ -84,6 +88,7 @@ export default function PolicySearch(props) {
     catch (err) {
       console.error("Error while fetching existing policy");
       console.error(err);
+      setIsError(true);
     }
   }
 
@@ -113,6 +118,15 @@ export default function PolicySearch(props) {
   };
 
   return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        gap: "10px"
+      }}
+    >
     <Space.Compact
       style={{
         width: width || "100%",
@@ -157,6 +171,19 @@ export default function PolicySearch(props) {
           />
         </Tooltip>
     </Space.Compact>
+    {
+      isError && (
+        <p
+          style={{
+            margin: 0,
+            color: style.colors.DARK_RED
+          }}
+        >
+          We&apos;ve encountered an error; please try again later
+        </p>
+      )
+    }
+    </div>
   );
 
 }

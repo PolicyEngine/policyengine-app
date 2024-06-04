@@ -586,20 +586,13 @@ export default function PolicyRightSidebar(props) {
           <Collapsible
             label="Find an existing policy"
             child={
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <PolicySearch
-                  metadata={metadata}
-                  policy={policy}
-                  target="reform"
-                  width="100%"
-                  enableStack
-                />
-              </div>
+              <PolicySearch
+                metadata={metadata}
+                policy={policy}
+                target="reform"
+                width="100%"
+                enableStack
+              />
             }
           />
         </div>
