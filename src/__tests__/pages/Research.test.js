@@ -3,6 +3,7 @@ import "@testing-library/jest-dom";
 import { screen, render } from "@testing-library/react";
 import Research, { BlogPostResults } from "../../pages/Research";
 import { BrowserRouter } from "react-router-dom";
+import { MediumBlogPreview } from "../../pages/home/HomeBlogPreview";
 
 // Mock data for blog posts
 const blogPosts = [
@@ -116,29 +117,33 @@ describe("Research Page", () => {
     const subheading = screen.getByText(subheadingText);
     expect(subheading).toBeInTheDocument();
   });
+});
 
-  // test("displays the correct number of results", () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <BlogPostResults posts={blogPosts} />
-  //     </BrowserRouter>,
-  //   );
+describe("BlogPostResults Component", () => {
+  test("renders the correct number of blog posts", () => {
+    render(
+      <BrowserRouter>
+        <BlogPostResults posts={blogPosts} />
+      </BrowserRouter>,
+    );
 
-  //   const numberOfPosts = screen.getByText(
-  //     new RegExp(`${blogPosts.length}\n result\ns`),
-  //   );
-  //   expect(numberOfPosts).toBeInTheDocument();
-  // });
+    blogPosts.forEach((post) => {
+      const titleElement = screen.getByText(post.title);
+      expect(titleElement).toBeInTheDocument();
+
+      const descriptionElement = screen.getByText(post.description);
+      expect(descriptionElement).toBeInTheDocument();
+    });
+  });
 
   test("renders blog post links", () => {
     render(
       <BrowserRouter>
         <BlogPostResults posts={blogPosts} />
-        {/* Render the BlogPostResults component */}
       </BrowserRouter>,
     );
 
-    for (const post of blogPosts) {
+    blogPosts.forEach((post) => {
       const titleElement = screen.getByText(post.title);
       expect(titleElement).toBeInTheDocument();
 
@@ -160,6 +165,34 @@ describe("Research Page", () => {
       });
 
       expect(link).toBeInTheDocument();
-    }
+    });
+  });
+});
+describe("MediumBlogPreview Component", () => {
+  test("renders blog post details", () => {
+    blogPosts.forEach((mockPost, index) => {
+      render(
+        <BrowserRouter key={index}>
+          <MediumBlogPreview key={mockPost.title} blog={mockPost} />
+        </BrowserRouter>,
+      );
+
+      screen.debug();
+
+      const titleElement = screen.getByText(mockPost.title);
+      expect(titleElement).toBeInTheDocument();
+
+      const descriptionElement = screen.getByText(mockPost.description);
+      expect(descriptionElement).toBeInTheDocument();
+
+      // Check if at least one "Read" link exists
+      const readLinks = screen.getAllByText("Read");
+      const readLink = readLinks.find(
+        (link) =>
+          link.closest(".stretched-link")?.getAttribute("href") ===
+          `/null/research/${mockPost.filename.replace(/\.[^.]+$/, "")}`,
+      );
+      expect(readLink).toBeInTheDocument();
+    });
   });
 });
