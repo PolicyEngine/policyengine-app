@@ -47,7 +47,7 @@ export default function PolicySearch(props) {
   }
 
   async function handleStack() {
-    // Set some sort of loading?
+    // Set some sort of loading
     setIsStackerLoading(true);
 
     // Fetch policy to stack
@@ -130,22 +130,23 @@ export default function PolicySearch(props) {
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        gap: "10px"
+        gap: "10px",
       }}
     >
     <Space.Compact
       style={{
         width: width || "100%",
+        maxWidth: "100%",
       }}
     >
-    <AutoComplete
-      options={policies || [{ value: defaultId, label: defaultLabel }]}
-      onSelect={(value, option) => handleClickOnItem(value, option)}
-      onSearch={onSearch}
-      style={{ width: width || 200 }}
-      placeholder={defaultLabel}
-      value={value === defaultLabel ? null : value}
-    />
+      <AutoComplete
+        options={policies || [{ value: defaultId, label: defaultLabel }]}
+        onSelect={(value, option) => handleClickOnItem(value, option)}
+        onSearch={onSearch}
+        placeholder={defaultLabel}
+        value={value === defaultLabel ? null : value}
+        style={{overflow: "hidden", width: "100%"}}
+      />
         {displayStack && (
             <Tooltip
               title={isStackerLoading ? "Loading" : disableStack ? "" : "Add to current policy"}
@@ -153,10 +154,11 @@ export default function PolicySearch(props) {
               <Button
                 type={disableStack ? "disabled" : "secondary"}
                 onClick={handleStack}
-                width={50}
                 style={{
                   padding: "unset",
-                  borderWidth: "1px"
+                  borderWidth: "1px",
+                  minWidth: "32px",
+                  aspectRatio: "1"
                 }}
                 text={isStackerLoading
                   ? <LoadingOutlined />
@@ -172,9 +174,10 @@ export default function PolicySearch(props) {
           <Button
             type="primary"
             onClick={handleCheckmarkButton}
-            width={50}
             style={{
-              padding: "unset"
+              padding: "unset",
+              minWidth: "32px",
+              aspectRatio: "1"
             }}
             text={<CheckOutlined />}
           />

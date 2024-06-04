@@ -582,7 +582,7 @@ export default function PolicyRightSidebar(props) {
             setPolicy={setPolicy}
           />
         }
-        <div style={{ paddingLeft: 5 }}>
+        <div style={{ padding: "0px 4px" }}>
           <Collapsible
             label="Find an existing policy"
             child={
