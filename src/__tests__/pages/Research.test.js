@@ -179,19 +179,25 @@ describe("MediumBlogPreview Component", () => {
 
       screen.debug();
 
-      const titleElement = screen.getByText(mockPost.title);
+      const titleElement = screen.getByRole("heading", {
+        name: mockPost.title,
+      });
       expect(titleElement).toBeInTheDocument();
 
       const descriptionElement = screen.getByText(mockPost.description);
       expect(descriptionElement).toBeInTheDocument();
 
-      // Check if at least one "Read" link exists
-      const readLinks = screen.getAllByText("Read");
+      // Check if at least one "Read" link exists and validate its href attribute
+      const readLinks = screen.getAllByRole("link", {
+        name: /READ arrow_forward/i,
+      });
+
       const readLink = readLinks.find(
         (link) =>
-          link.closest(".stretched-link")?.getAttribute("href") ===
+          link.getAttribute("href") ===
           `/null/research/${mockPost.filename.replace(/\.[^.]+$/, "")}`,
       );
+
       expect(readLink).toBeInTheDocument();
     });
   });
