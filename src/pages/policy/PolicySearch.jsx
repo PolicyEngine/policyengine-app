@@ -6,6 +6,38 @@ import Button from "../../controls/Button";
 import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
 import useCountryId from "../../hooks/useCountryId";
 
+/**
+ * Stacks policyJsonToStack on top of a given currentPolicy, ignoring
+ * the baseline policy, policyId, and label
+ * @param {Object} currentPolicy This is a fully policy object, containing
+ * baseline and reform sub-objects, within which the data sub-object houses
+ * reform definitions
+ * @param {Object} policyJsonToStack The JSON of the policy reforms from a 
+ * fetched policy; this is not a full policy object
+ * @returns {Object} The combined policies as a full policy object; 
+ * conflicts are resolved in favor of policyJsonToStack
+ */
+export function stackPolicies(currentPolicy, policyJsonToStack) {
+
+  // Populate newPolicy with the current policy
+  let newPolicy = {...currentPolicy};
+
+  // Spread the reform object's data sub-object items into this policy;
+  // this will override any previously set value in currentPolicy
+  newPolicy = {
+    ...newPolicy,
+    reform: {
+      ...newPolicy.reform,
+      data: {
+        ...newPolicy.reform.data,
+        ...policyJsonToStack
+      }
+    }
+  }
+
+  return newPolicy;
+}
+
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, enableStack } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -60,17 +92,8 @@ export default function PolicySearch(props) {
         console.log(policyToStack);
         // Reconcile policies; when conflicts occur, defer to newer policy
 
-        let newPolicy = {...policy};
-        newPolicy = {
-          ...newPolicy,
-          reform: {
-            ...newPolicy.reform,
-            data: {
-              ...newPolicy.reform.data,
-              ...policyToStack.policy_json
-            }
-          }
-        }
+        let newPolicy = stackPolicies(policy, policyToStack.policy_json);
+        console.log(newPolicy);
 
         /*
         console.log(policy);
