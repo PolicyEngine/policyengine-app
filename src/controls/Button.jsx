@@ -82,7 +82,7 @@ export default function Button(props) {
         display: "flex",
         alignItems: "center",
         borderColor: buttonStyles[type].standard.borderColor,
-        borderWidth: 3,
+        borderWidth: 1,
         backgroundColor: buttonStyles[type].standard.backgroundColor,
         textTransform: "uppercase",
         width: width,
