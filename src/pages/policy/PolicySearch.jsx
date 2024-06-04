@@ -1,13 +1,15 @@
 import { AutoComplete, Space, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { copySearchParams, countryApiCall } from "../../api/call";
+import { apiCall, copySearchParams, countryApiCall } from "../../api/call";
 import Button from "../../controls/Button";
 import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
+import useCountryId from "../../hooks/useCountryId";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, enableStack } = props;
   const [searchParams, setSearchParams] = useSearchParams();
+  const countryId = useCountryId();
   const defaultId = searchParams.get(target);
   let defaultLabel = policy[target].label || `Policy #${defaultId}`;
   if (target === "baseline" && !defaultId) {
@@ -40,17 +42,88 @@ export default function PolicySearch(props) {
     setSearchParams(newSearch);
   }
 
-  function handleStack() {
+  async function handleStack() {
     // Set some sort of loading?
 
     // Fetch policy to stack
+    try {
+      const res = await countryApiCall(
+        countryId,
+        `/policy/${policyId}`
+      );
+      if (!res.ok) {
+        console.error("Network error while fetching existing policy");
+        console.error(res)
+      } else {
+        const resJson = await res.json();
+        const policyToStack = resJson.result;
+        console.log(policyToStack);
+        // Reconcile policies; when conflicts occur, defer to newer policy
 
-    // Do some sort of reconciling of these policies - what if parameters conflict?
+        let newPolicy = {...policy};
+        newPolicy = {
+          ...newPolicy,
+          reform: {
+            ...newPolicy.reform,
+            data: {
+              ...newPolicy.reform.data,
+              ...policyToStack.policy_json
+            }
+          }
+        }
 
-    // Create new policy with those parameters and emit to back end, receiving back ID
+        /*
+        console.log(policy);
+        console.log(policyToStack.policy_json);
+        console.log(newPolicy);
+        */
 
-    // Mimic handleCheckmark and setSearchParams using new ID
+        // Create new policy with those parameters and emit to back end, receiving back ID
+
+        // Mimic handleCheckmark and setSearchParams using new ID
+      }
+    }
+    catch (err) {
+      console.error("Error while fetching existing policy");
+      console.error(err);
+    }
+
+
   }
+
+  /*
+  function changeHandler(value) {
+    reformMap.set(startDate, nextDay(endDate), value);
+    let data = {};
+    reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
+      data[`${k1}.${prevDay(k2)}`] = v;
+    });
+    const newReforms = { ...policy.reform.data };
+    if (
+      Object.keys(data).length === 0 &&
+      Object.keys(newReforms).length === 1
+    ) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+    } else {
+      newReforms[parameterName] = data;
+      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+        if (result.status !== "ok") {
+          console.error(
+            "ParameterEditor: In attempting to fetch new " +
+              "policy, the following error occurred: " +
+              result.message,
+          );
+        } else {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("reform", result.policy_id);
+          setSearchParams(newSearch);
+        }
+      });
+    }
+  }
+  */
 
   // The search should query the API, but limited to one request every 1000ms.
   const onSearch = (searchText) => {
@@ -97,7 +170,7 @@ export default function PolicySearch(props) {
             >
               <Button
                 type={disableStack ? "disabled" : "secondary"}
-                onClick={() => {}}
+                onClick={handleStack}
                 width={50}
                 style={{
                   padding: "unset",
