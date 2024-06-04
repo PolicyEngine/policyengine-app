@@ -64,8 +64,41 @@ describe("PolicySearch", () => {
     expect(checkmarkButton).toBeInTheDocument();
     expect(checkmarkButton).not.toBeDisabled();
   });
+  test("Should stack non-conflicting policies", () => {
+
+    const testBasePolicy = {
+      "maxwell": {
+        "2024-01-01.2100-12-31": true
+      },
+      "dworkin": {
+        "2024-01-01.2100-12-31": true
+      }
+    };
+
+    const testStackingPolicy = {
+      "cruft": {
+        "2024-01-01.2100-12-31": true
+      }
+    };
+
+    const testProps = {
+      metadata: metadataUS,
+      target: "reform",
+      policy: testBasePolicy,
+      displayStack: true
+    };
+
+    render(
+      <BrowserRouter>
+        <PolicySearch {...testProps}/>
+      </BrowserRouter>
+    );
+
+    const checkmarkButton = screen.getByRole("button", {name: /check/i});
+    expect(checkmarkButton).toBeInTheDocument();
+    expect(checkmarkButton).not.toBeDisabled();
+  });
   /*
-  test("Should stack non-conflicting policies");
   test("On conflicting policies, should prefer second over first");
   */
 })
