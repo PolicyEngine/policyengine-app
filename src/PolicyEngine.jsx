@@ -9,7 +9,6 @@ import {
   Routes,
   useSearchParams,
 } from "react-router-dom";
-import Contact from "./pages/Contact";
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
@@ -298,7 +297,6 @@ export default function PolicyEngine() {
             <Route index={true} element={<Research />} />
             <Route path=":postName" element={<BlogPage />} />
           </Route>
-          <Route path="contact" element={<Contact />} />
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
