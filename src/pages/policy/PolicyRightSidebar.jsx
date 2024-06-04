@@ -527,7 +527,7 @@ export default function PolicyRightSidebar(props) {
       onClick={() => setIsCollapsed((prev) => !prev)}
       isCollapsed={isCollapsed}
       style={{
-        position: "absolute",
+        position: "sticky",
         bottom: 0,
         width: "100%"
       }}

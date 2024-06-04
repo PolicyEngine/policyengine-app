@@ -14,13 +14,17 @@ export default function CollapsedPanel(props) {
         width: "100%",
         backgroundColor: style.colors.LIGHT_GRAY,
         position: "relative",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center"
       }}
     >
       <p
         style={{
-          padding: "20px 0px 0px 16px",
           writingMode: "sideways-lr",
-          margin: "auto 0",
+          margin: "0",
+          paddingTop: "30px",
           fontSize: "12px",
           color: style.colors.DARK_GRAY
         }}
