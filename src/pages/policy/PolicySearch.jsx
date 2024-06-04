@@ -5,38 +5,7 @@ import { apiCall, copySearchParams, countryApiCall } from "../../api/call";
 import Button from "../../controls/Button";
 import { CheckOutlined, PlusOutlined } from "@ant-design/icons";
 import useCountryId from "../../hooks/useCountryId";
-
-/**
- * Stacks policyJsonToStack on top of a given currentPolicy, ignoring
- * the baseline policy, policyId, and label
- * @param {Object} currentPolicy This is a fully policy object, containing
- * baseline and reform sub-objects, within which the data sub-object houses
- * reform definitions
- * @param {Object} policyJsonToStack The JSON of the policy reforms from a 
- * fetched policy; this is not a full policy object
- * @returns {Object} The combined policies as a full policy object; 
- * conflicts are resolved in favor of policyJsonToStack
- */
-export function stackPolicies(currentPolicy, policyJsonToStack) {
-
-  // Populate newPolicy with the current policy
-  let newPolicy = {...currentPolicy};
-
-  // Spread the reform object's data sub-object items into this policy;
-  // this will override any previously set value in currentPolicy
-  newPolicy = {
-    ...newPolicy,
-    reform: {
-      ...newPolicy.reform,
-      data: {
-        ...newPolicy.reform.data,
-        ...policyJsonToStack
-      }
-    }
-  }
-
-  return newPolicy;
-}
+import { getNewPolicyId } from "../../api/parameters";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, enableStack } = props;
@@ -89,64 +58,34 @@ export default function PolicySearch(props) {
       } else {
         const resJson = await res.json();
         const policyToStack = resJson.result;
-        console.log(policyToStack);
         // Reconcile policies; when conflicts occur, defer to newer policy
 
-        let newPolicy = stackPolicies(policy, policyToStack.policy_json);
-        console.log(newPolicy);
-
-        /*
-        console.log(policy);
-        console.log(policyToStack.policy_json);
-        console.log(newPolicy);
-        */
+        let newPolicyData = {
+          ...policy.reform.data,
+          ...policyToStack.policy_json
+        }
 
         // Create new policy with those parameters and emit to back end, receiving back ID
-
-        // Mimic handleCheckmark and setSearchParams using new ID
+        const newPolicyRes = await getNewPolicyId(
+          countryId,
+          newPolicyData
+        );
+        if (!newPolicyRes.status === "ok") {
+          console.error("Network error while creating new policy");
+          console.error(newPolicyRes)
+        } else {
+          // Mimic handleCheckmark and setSearchParams using new ID
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("reform", newPolicyRes.policy_id);
+          setSearchParams(newSearch);
+        }
       }
     }
     catch (err) {
       console.error("Error while fetching existing policy");
       console.error(err);
     }
-
-
   }
-
-  /*
-  function changeHandler(value) {
-    reformMap.set(startDate, nextDay(endDate), value);
-    let data = {};
-    reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
-      data[`${k1}.${prevDay(k2)}`] = v;
-    });
-    const newReforms = { ...policy.reform.data };
-    if (
-      Object.keys(data).length === 0 &&
-      Object.keys(newReforms).length === 1
-    ) {
-      let newSearch = copySearchParams(searchParams);
-      newSearch.delete("reform");
-      setSearchParams(newSearch);
-    } else {
-      newReforms[parameterName] = data;
-      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
-        if (result.status !== "ok") {
-          console.error(
-            "ParameterEditor: In attempting to fetch new " +
-              "policy, the following error occurred: " +
-              result.message,
-          );
-        } else {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("reform", result.policy_id);
-          setSearchParams(newSearch);
-        }
-      });
-    }
-  }
-  */
 
   // The search should query the API, but limited to one request every 1000ms.
   const onSearch = (searchText) => {
