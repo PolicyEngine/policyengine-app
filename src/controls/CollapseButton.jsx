@@ -6,7 +6,8 @@ export default function CollapseButton(props) {
   const {
     onClick,
     isCollapsed,
-    style
+    isAtBottom,
+    style,
   } = props;
 
   function clickHandler() {
@@ -25,7 +26,7 @@ export default function CollapseButton(props) {
         // Extra padding at bottom to 
         // avoid collision with scrollbar
         padding: "10px 0px 20px 20px", 
-        boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 10px",
+        boxShadow: !isAtBottom && "rgba(0, 0, 0, 0.3) 0px 0px 10px",
         backgroundColor: fixedStyles.colors.LIGHT_GRAY,
         ...style
       }}

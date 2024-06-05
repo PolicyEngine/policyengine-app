@@ -429,6 +429,7 @@ export default function PolicyRightSidebar(props) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
@@ -447,6 +448,24 @@ export default function PolicyRightSidebar(props) {
   const validatedStateAbbreviation = options.find(
     (option) => option.value === stateAbbreviation,
   )?.value;
+
+  function handleScroll(e) {
+    const elem = e.target;
+    console.log(elem);
+
+    const isAtBottomPos = Math.abs(elem.scrollHeight - (elem.scrollTop + elem.clientHeight)) <= 1;
+
+    if (!isAtBottom && isAtBottomPos) {
+      setIsAtBottom(true);
+    } else if (isAtBottom && !isAtBottomPos) {
+      setIsAtBottom(false);
+    }
+  }
+
+  useEffect(() => {
+    console.log(isAtBottom);
+  }, [isAtBottom])
+
   const confirmEconomicImpact = () => {
     let message = "";
     if (validatedStateAbbreviation && stateAbbreviation !== region) {
@@ -526,6 +545,7 @@ export default function PolicyRightSidebar(props) {
     <CollapseButton
       onClick={() => setIsCollapsed((prev) => !prev)}
       isCollapsed={isCollapsed}
+      isAtBottom={isCollapsed ? true : isAtBottom}
       style={{
         position: "sticky",
         bottom: 0,
@@ -586,6 +606,7 @@ export default function PolicyRightSidebar(props) {
         height: "100%",
         position: "relative"
       }}
+      onScroll={handleScroll}
     >
       <div>
         <div style={{ paddingLeft: 20 }}>

@@ -4,7 +4,7 @@ import style from "../style";
 export default function CollapsedPanel(props) {
   const {
     title,
-    collapseButton
+    collapseButton,
   } = props;
 
   return (
