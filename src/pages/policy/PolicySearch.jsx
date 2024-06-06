@@ -4,19 +4,20 @@ import { useSearchParams } from "react-router-dom";
 import { apiCall, copySearchParams, countryApiCall } from "../../api/call";
 import Button from "../../controls/Button";
 import { CheckOutlined, LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import useCountryId from "../../hooks/useCountryId";
 import { getNewPolicyId } from "../../api/parameters";
 import style from "../../style";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, displayStack } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const countryId = useCountryId();
+
+  const countryId = metadata.countryId;
   const defaultId = searchParams.get(target);
   let defaultLabel = policy[target].label || `Policy #${defaultId}`;
   if (target === "baseline" && !defaultId) {
     defaultLabel = "Current law";
   }
+
   const [value, setValue] = useState(defaultLabel);
   const [policyId, setPolicyId] = useState(searchParams.get(target));
   const [isError, setIsError] = useState(false);
@@ -46,7 +47,7 @@ export default function PolicySearch(props) {
     setSearchParams(newSearch);
   }
 
-  async function handleStack() {
+  async function handleStack(countryId) {
     // Set some sort of loading
     setIsStackerLoading(true);
 
@@ -99,15 +100,27 @@ export default function PolicySearch(props) {
   }
 
   // The search should query the API, but limited to one request every 1000ms.
-  const onSearch = (searchText) => {
+  const onSearch = async (searchText) => {
     setValue(searchText);
     const now = new Date().getTime();
     if (now - lastRequestTime > 1000 || searchText !== lastSearch) {
-      countryApiCall(
+      const res = await countryApiCall(
         metadata.countryId,
         `/policies?query=${searchText}&unique_only=true`,
       )
-        .then((data) => data.json())
+      const resJson = await res.json();
+      setPolicies(
+        resJson.result.map((item) => {
+          return {
+            value: item.id,
+            label: `#${item.id} ${item.label}`
+          };
+        }) || [],
+      );
+      setLastRequestTime(new Date().getTime());
+      setLastSearch(searchText);
+
+      /*
         .then((data) => {
           setPolicies(
             data.result.map((item) => {
@@ -120,6 +133,7 @@ export default function PolicySearch(props) {
           setLastRequestTime(new Date().getTime());
           setLastSearch(searchText);
         });
+      */
     }
   };
 
@@ -153,7 +167,7 @@ export default function PolicySearch(props) {
             >
               <Button
                 type={disableStack ? "disabled" : "secondary"}
-                onClick={handleStack}
+                onClick={() => handleStack(countryId)}
                 style={{
                   padding: "unset",
                   borderWidth: "1px",

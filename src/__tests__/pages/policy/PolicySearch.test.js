@@ -4,8 +4,78 @@ import { BrowserRouter } from "react-router-dom";
 import { baselinePolicyUS } from "../../__setup__/sampleData";
 import PolicySearch from "../../../pages/policy/PolicySearch";
 import data from "../../__setup__/data.json";
+import userEvent from "@testing-library/user-event";
+import { when } from "jest-when";
 
 let metadataUS = data["metadataUS"];
+
+const testSearchResults = {
+  result: [
+    {
+      id: 1,
+      label: "Test stacking policy"
+    }
+  ]
+};
+
+const testSearchResultsWrapper = {
+  json: () => Promise.resolve(testSearchResults)
+};
+
+const testStackingPolicy = {
+  "cruft": {
+    "2024-01-01.2100-12-31": true
+  }
+};
+
+const testStackingPolicyWrapper = {
+  ok: true,
+  json: () => Promise.resolve({
+    result: {
+      policy_json: testStackingPolicy
+    }
+  })
+};
+
+const mockCountryApiCall = jest.fn();
+
+when(mockCountryApiCall)
+  .calledWith(expect.anything(), expect.stringContaining("/policy/1"))
+  .mockReturnValue(testStackingPolicyWrapper);
+
+when(mockCountryApiCall)
+  .calledWith("us", expect.stringContaining("policies"))
+  .mockReturnValue(testSearchResultsWrapper)
+  .defaultReturnValue(() => {
+    throw new Error("Error while mocking countryApiCall");
+  });
+
+jest.mock("../../../api/call.js", () => {
+  const originalModule = jest.requireActual("../../../api/call.js");
+  return {
+    __esModule: true,
+    ...originalModule,
+    countryApiCall: (...args) => mockCountryApiCall(...args)
+  }
+});
+
+const mockGetNewPolicyId = jest.fn();
+mockGetNewPolicyId.mockReturnValue({
+  status: "ok",
+  policy_id: 2
+});
+
+jest.mock("../../../api/parameters.js", () => {
+  const originalModule = jest.requireActual("../../../api/parameters.js");
+  return {
+    ...originalModule,
+    getNewPolicyId: () => mockGetNewPolicyId()
+  }
+});
+
+afterAll(() => {
+  jest.resetAllMocks();
+});
 
 describe("PolicySearch", () => {
   test("Should render", () => {
@@ -14,6 +84,11 @@ describe("PolicySearch", () => {
       metadata: metadataUS,
       target: "reform",
       policy: baselinePolicyUS,
+    };
+
+    metadataUS = {
+      ...metadataUS,
+      countryId: "us"
     };
 
     render(
@@ -64,20 +139,24 @@ describe("PolicySearch", () => {
     expect(checkmarkButton).toBeInTheDocument();
     expect(checkmarkButton).not.toBeDisabled();
   });
-  test("Should stack non-conflicting policies", () => {
+  test("Should stack policies", async () => {
 
     const testBasePolicy = {
-      "maxwell": {
-        "2024-01-01.2100-12-31": true
+      baseline: {
+        data: {},
+        label: "Current law",
+        id: 2
       },
-      "dworkin": {
-        "2024-01-01.2100-12-31": true
-      }
-    };
-
-    const testStackingPolicy = {
-      "cruft": {
-        "2024-01-01.2100-12-31": true
+      reform: {
+        data: {
+          maxwell: {
+            "2024-01-01.2100-12-31": true
+          },
+          dworkin: {
+            "2024-01-01.2100-12-31": true
+          },
+        },
+        label: "Test base policy",
       }
     };
 
@@ -88,17 +167,30 @@ describe("PolicySearch", () => {
       displayStack: true
     };
 
+
+    const user = userEvent.setup();
+
     render(
       <BrowserRouter>
         <PolicySearch {...testProps}/>
       </BrowserRouter>
     );
 
-    const checkmarkButton = screen.getByRole("button", {name: /check/i});
-    expect(checkmarkButton).toBeInTheDocument();
-    expect(checkmarkButton).not.toBeDisabled();
+    // Find the input
+    const input = screen.getByRole("combobox");
+
+    // Click on it and search for "t"
+    await user.click(input);
+    await user.type(input, "t");
+
+    // Select the only returned policy and click "plus" to stack it
+    const policyItem = screen.getByText(/#1 test stacking policy/i);
+    const plusButton = screen.getByRole("button", {name: /plus/i});
+    await user.click(policyItem);
+    await user.click(plusButton);
+
+    // Ensure that new policy is created
+    expect(params.get("reform")).toBe("2");
+
   });
-  /*
-  test("On conflicting policies, should prefer second over first");
-  */
 })
