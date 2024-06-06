@@ -63,13 +63,19 @@ export default function Button(props) {
   // for tooltips, but if we add all possible props, various other Ant Design
   // props override our own design elements; see
   // https://ant.design/components/tooltip#why-sometime-not-work-on-hoc
-  const {onMouseEnter, onMouseLeave, onPointerEnter, onPointerLeave, onFocus } = props;
+  const {
+    onMouseEnter,
+    onMouseLeave,
+    onPointerEnter,
+    onPointerLeave,
+    onFocus,
+  } = props;
   const tooltipProps = {
     onMouseEnter,
     onMouseLeave,
     onPointerEnter,
     onPointerLeave,
-    onFocus
+    onFocus,
   };
   // Assign fallback values for styling
   if (!type || !Object.keys(buttonStyles).includes(type)) {
