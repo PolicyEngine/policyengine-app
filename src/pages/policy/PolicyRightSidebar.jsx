@@ -432,8 +432,6 @@ export default function PolicyRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
-  // eslint-disable-next-line no-unused-vars
-  const [_, setShowReformSearch] = useState(false);
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -584,24 +582,17 @@ export default function PolicyRightSidebar(props) {
             setPolicy={setPolicy}
           />
         }
-        <div style={{ paddingLeft: 5 }}>
+        <div style={{ padding: "0px 4px" }}>
           <Collapsible
             label="Find an existing policy"
             child={
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
-                <PolicySearch
-                  metadata={metadata}
-                  policy={policy}
-                  target="reform"
-                  width="100%"
-                  onSelect={() => setShowReformSearch(false)}
-                />
-              </div>
+              <PolicySearch
+                metadata={metadata}
+                policy={policy}
+                target="reform"
+                width="100%"
+                displayStack
+              />
             }
           />
         </div>

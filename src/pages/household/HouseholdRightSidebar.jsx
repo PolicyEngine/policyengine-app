@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import {
   formatVariableValue,
@@ -52,8 +51,6 @@ export default function HouseholdRightSidebar(props) {
     policy,
     year,
   } = props;
-  // eslint-disable-next-line no-unused-vars
-  const [_, setShowReformSearch] = useState(false);
   const [searchParams] = useSearchParams();
   const hasReform = searchParams.get("reform") !== null;
   const focus = searchParams.get("focus") || "";
@@ -162,7 +159,6 @@ export default function HouseholdRightSidebar(props) {
               policy={policy}
               target="reform"
               width="100%"
-              onSelect={() => setShowReformSearch(false)}
             />
           }
         />

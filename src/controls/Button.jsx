@@ -58,6 +58,25 @@ export const buttonStyles = {
  */
 export default function Button(props) {
   let { text, onClick, width, type, size, height, style } = props;
+
+  // This is an ugly solution to the fact that Ant Design needs these props
+  // for tooltips, but if we add all possible props, various other Ant Design
+  // props override our own design elements; see
+  // https://ant.design/components/tooltip#why-sometime-not-work-on-hoc
+  const {
+    onMouseEnter,
+    onMouseLeave,
+    onPointerEnter,
+    onPointerLeave,
+    onFocus,
+  } = props;
+  const tooltipProps = {
+    onMouseEnter,
+    onMouseLeave,
+    onPointerEnter,
+    onPointerLeave,
+    onFocus,
+  };
   // Assign fallback values for styling
   if (!type || !Object.keys(buttonStyles).includes(type)) {
     type = "primary";
@@ -69,15 +88,13 @@ export default function Button(props) {
         display: "flex",
         alignItems: "center",
         borderColor: buttonStyles[type].standard.borderColor,
-        borderWidth: 3,
+        borderWidth: 1,
         backgroundColor: buttonStyles[type].standard.backgroundColor,
         textTransform: "uppercase",
         width: width,
         height: height || "auto",
         borderRadius: 0,
-        padding: 15,
-        paddingLeft: 30,
-        paddingRight: 30,
+        padding: "15px 30px",
         fontSize: 14,
         fontFamily: "Roboto",
         fontWeight: 500,
@@ -114,6 +131,7 @@ export default function Button(props) {
             : "300px"
       }
       onClick={onClick}
+      {...tooltipProps}
     >
       {text}
     </AntButton>
