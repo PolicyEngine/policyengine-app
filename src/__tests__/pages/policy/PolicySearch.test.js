@@ -185,7 +185,7 @@ describe("PolicySearch", () => {
     await user.click(plusButton);
 
     // Ensure that new policy is created
-    const params = new URLSearchParams(window.location.params);
+    const params = new URLSearchParams(window.location.search);
     expect(params.get("reform")).toBe("2");
   });
 });
