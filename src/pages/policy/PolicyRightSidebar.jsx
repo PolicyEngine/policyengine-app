@@ -1,4 +1,4 @@
-import { SwapOutlined, QuestionCircleOutlined, StepBackwardOutlined } from "@ant-design/icons";
+import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
@@ -19,9 +19,6 @@ import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { defaultForeverYear } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
-import { LeftExpansionContext } from "../../layout/ThreeColumnPage";
-import CollapseButton from "../../controls/CollapseButton";
-import CollapsedPanel from "../../layout/CollapsedPanel";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -424,7 +421,7 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen, isCollapsed, setIsCollapsed } =
+  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
     props;
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -448,23 +445,6 @@ export default function PolicyRightSidebar(props) {
   const validatedStateAbbreviation = options.find(
     (option) => option.value === stateAbbreviation,
   )?.value;
-
-  function handleScroll(e) {
-    const elem = e.target;
-    console.log(elem);
-
-    const isAtBottomPos = Math.abs(elem.scrollHeight - (elem.scrollTop + elem.clientHeight)) <= 1;
-
-    if (!isAtBottom && isAtBottomPos) {
-      setIsAtBottom(true);
-    } else if (isAtBottom && !isAtBottomPos) {
-      setIsAtBottom(false);
-    }
-  }
-
-  useEffect(() => {
-    console.log(isAtBottom);
-  }, [isAtBottom])
 
   const confirmEconomicImpact = () => {
     let message = "";
@@ -582,9 +562,8 @@ export default function PolicyRightSidebar(props) {
         flexDirection: "column",
         justifyContent: "space-between",
         height: "100%",
-        position: "relative"
+        position: "relative",
       }}
-      onScroll={handleScroll}
     >
       <div>
         <div style={{ paddingLeft: 20 }}>

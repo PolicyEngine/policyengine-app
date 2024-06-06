@@ -1,44 +1,65 @@
 import { HEADER_HEIGHT } from "../style/spacing";
 import style from "../style";
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 import CollapseButton from "../controls/CollapseButton";
 import CollapsedPanel from "./CollapsedPanel";
 
 export default function ThreeColumnPage(props) {
-  const { 
-    left, 
-    middle, 
+  const {
+    left,
+    middle,
     right,
     enableLeftCollapse,
     enableCenterCollapse,
     leftCollapseTitle,
-    centerCollapseTitle
+    centerCollapseTitle,
   } = props;
 
   const COLLAPSE_BUTTON_HEIGHT = "42px"; // 10px paddingTop, 20px paddingBottom, 12px text height
   const COLLAPSED_WIDTH = "52px";
 
-  const [isLeftCollapsed, setIsLeftCollapsed] = useState(false);
-  const [isCenterCollapsed, setIsCenterCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState({
+    left: false,
+    right: false,
+  });
+
+  const [isAtBottom, setIsAtBottom] = useState({
+    left: false,
+    right: false,
+  });
 
   // Calculate widths
   // This should also work if neither of the collapse
   // props are passed, as undefined evaluates to false
-  const leftWidth = (enableLeftCollapse && isLeftCollapsed) ? COLLAPSED_WIDTH : "25%";
-  const centerWidth = (enableCenterCollapse && isCenterCollapsed) ? COLLAPSED_WIDTH : "25%";
-  const rightWidth = `calc(100% - ${leftWidth} - ${centerWidth})`
-  // const rightWidth = 100 - leftWidth - centerWidth;
+  const leftWidth =
+    enableLeftCollapse && isCollapsed.left ? COLLAPSED_WIDTH : "25%";
+  const centerWidth =
+    enableCenterCollapse && isCollapsed.center ? COLLAPSED_WIDTH : "25%";
+  const rightWidth = `calc(100% - ${leftWidth} - ${centerWidth})`;
 
-  /*
-  if (isCollapsed) {
-    return (
-      <CollapsedPanel
-        title="Policy settings"
-        collapseButton={collapseButton}
-      />
-    );
+  function handleScroll(e, pos) {
+    const elem = e.target;
+    console.log(elem);
+
+    const isAtBottomPos =
+      Math.abs(elem.scrollHeight - (elem.scrollTop + elem.clientHeight)) <= 1;
+
+    if (!isAtBottom[pos] && isAtBottomPos) {
+      setIsAtBottom((prev) => ({
+        ...prev,
+        [pos]: true,
+      }));
+    } else if (isAtBottom[pos] && !isAtBottomPos) {
+      setIsAtBottom((prev) => ({
+        ...prev,
+        [pos]: false,
+      }));
+    }
   }
-  */
+
+  useEffect(() => {
+    console.log(isAtBottom);
+  }, [isAtBottom]);
 
   return (
     <div
@@ -48,32 +69,34 @@ export default function ThreeColumnPage(props) {
       }}
     >
       <div
+        onScroll={(e) => handleScroll(e, "left")}
         style={{
           width: leftWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
           overflowY: "scroll",
-          // shadow
           zIndex: 3,
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
-          marginBottom: enableLeftCollapse && COLLAPSE_BUTTON_HEIGHT
+          marginBottom: enableLeftCollapse && COLLAPSE_BUTTON_HEIGHT,
         }}
       >
-        {enableLeftCollapse && isLeftCollapsed ? (
+        {enableLeftCollapse && isCollapsed.left ? (
           <CollapsedPanel title={leftCollapseTitle || ""} />
-        ) : (left)
-      }
+        ) : (
+          left
+        )}
         {enableLeftCollapse && (
           <CollapseButton
-            onClick={() => setIsLeftCollapsed((prev) => !prev)}
-            isCollapsed={isLeftCollapsed}
-            // isAtBottom={isLeftCollapsed ? true : isAtBottom}
+            onClick={() =>
+              setIsCollapsed((prev) => ({ ...prev, left: !prev.left }))
+            }
+            isCollapsed={isCollapsed.left}
+            isAtBottom={isAtBottom.left}
             style={{
               position: "fixed",
               bottom: 0,
               width: "inherit",
             }}
           />
-
         )}
       </div>
       <div
@@ -83,29 +106,29 @@ export default function ThreeColumnPage(props) {
           overflowY: "scroll",
           zIndex: 2,
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
-          marginBottom: enableCenterCollapse && COLLAPSE_BUTTON_HEIGHT
+          marginBottom: enableCenterCollapse && COLLAPSE_BUTTON_HEIGHT,
         }}
+        onScroll={(e) => handleScroll(e, "center")}
       >
-        {
-          enableCenterCollapse && isCenterCollapsed ? (
-            <CollapsedPanel title={centerCollapseTitle || ""} />
-          ) : (
-            middle
-          )
-        }
+        {enableCenterCollapse && isCollapsed.center ? (
+          <CollapsedPanel title={centerCollapseTitle || ""} />
+        ) : (
+          middle
+        )}
         {enableCenterCollapse && (
           <CollapseButton
-            onClick={() => setIsCenterCollapsed((prev) => !prev)}
-            isCollapsed={isCenterCollapsed}
-            // isAtBottom={isLeftCollapsed ? true : isAtBottom}
+            onClick={() =>
+              setIsCollapsed((prev) => ({ ...prev, center: !prev.center }))
+            }
+            isCollapsed={isCollapsed.center}
+            isAtBottom={isAtBottom.center}
             style={{
               position: "fixed",
               bottom: 0,
-              width: "inherit"
+              width: "inherit",
             }}
-          />)
-
-        }
+          />
+        )}
       </div>
       <div
         style={{
@@ -115,7 +138,6 @@ export default function ThreeColumnPage(props) {
           paddingTop: 0,
           overflow: "auto",
           height: "100%",
-          // shadow
           zIndex: 1,
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
         }}

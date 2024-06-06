@@ -1,14 +1,9 @@
 import { DoubleLeftOutlined, DoubleRightOutlined } from "@ant-design/icons";
-import { Button as AntButton, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import fixedStyles from "../style";
 
 export default function CollapseButton(props) {
-  const {
-    onClick,
-    isCollapsed,
-    isAtBottom,
-    style,
-  } = props;
+  const { onClick, isCollapsed, isAtBottom, style } = props;
 
   function clickHandler() {
     if (onClick instanceof Function) {
@@ -23,39 +18,38 @@ export default function CollapseButton(props) {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
-        // Extra padding at bottom to 
+        // Extra padding at bottom to
         // avoid collision with scrollbar
-        padding: "10px 0px 20px 20px", 
-        boxShadow: !isAtBottom && "rgba(0, 0, 0, 0.3) 0px 0px 10px",
+        padding: "10px 0px 20px 20px",
+        boxShadow: isAtBottom
+          ? "rgba(0,0,0,0.3) 0px 10px 10px"
+          : "rgba(0, 0, 0, 0.3) 0px 0px 10px",
         backgroundColor: fixedStyles.colors.LIGHT_GRAY,
-        ...style
+        ...style,
       }}
     >
       <Tooltip
         title={`${isCollapsed ? "Maximize" : "Minimize"} panel`}
         placement="right"
       >
-        {
-          isCollapsed ? (
-            <DoubleRightOutlined
-              onClick={clickHandler}
-              style={{
-                fontSize: "12px",
-                color: fixedStyles.colors.DARK_GRAY
-              }}
-            />
-          ) : (
-            <DoubleLeftOutlined
-              onClick={clickHandler}
-              style={{
-                fontSize: "12px",
-                color: fixedStyles.colors.DARK_GRAY
-              }}
-            />
-          )
-        }
+        {isCollapsed ? (
+          <DoubleRightOutlined
+            onClick={clickHandler}
+            style={{
+              fontSize: "12px",
+              color: fixedStyles.colors.DARK_GRAY,
+            }}
+          />
+        ) : (
+          <DoubleLeftOutlined
+            onClick={clickHandler}
+            style={{
+              fontSize: "12px",
+              color: fixedStyles.colors.DARK_GRAY,
+            }}
+          />
+        )}
       </Tooltip>
     </div>
-  )
-
+  );
 }

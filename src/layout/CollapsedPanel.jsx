@@ -1,11 +1,7 @@
-import CollapseButton from "../controls/CollapseButton";
 import style from "../style";
 
 export default function CollapsedPanel(props) {
-  const {
-    title,
-    collapseButton,
-  } = props;
+  const { title } = props;
 
   return (
     <div
@@ -17,7 +13,7 @@ export default function CollapsedPanel(props) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
       }}
     >
       <p
@@ -26,12 +22,11 @@ export default function CollapsedPanel(props) {
           margin: "0",
           paddingTop: "30px",
           fontSize: "12px",
-          color: style.colors.DARK_GRAY
+          color: style.colors.DARK_GRAY,
         }}
       >
         {title}
       </p>
-      {/*{collapseButton}*/}
     </div>
-  )
+  );
 }
