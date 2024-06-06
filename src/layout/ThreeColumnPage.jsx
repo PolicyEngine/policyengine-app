@@ -56,7 +56,10 @@ export default function ThreeColumnPage(props) {
           marginBottom: enableLeftCollapse && COLLAPSE_BUTTON_HEIGHT
         }}
       >
-        {left}
+        {enableLeftCollapse && isLeftCollapsed ? (
+          <CollapsedPanel title="Policy settings" />
+        ) : (left)
+      }
         {enableLeftCollapse && (
           <CollapseButton
             onClick={() => setIsLeftCollapsed((prev) => !prev)}
@@ -81,7 +84,13 @@ export default function ThreeColumnPage(props) {
           marginBottom: enableCenterCollapse && COLLAPSE_BUTTON_HEIGHT
         }}
       >
-        {middle}
+        {
+          enableCenterCollapse && isCenterCollapsed ? (
+            <CollapsedPanel title="Policy parameters" />
+          ) : (
+            middle
+          )
+        }
         {enableCenterCollapse && (
           <CollapseButton
             onClick={() => setIsCenterCollapsed((prev) => !prev)}
