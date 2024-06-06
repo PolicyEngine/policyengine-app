@@ -246,6 +246,8 @@ export default function PolicyPage(props) {
       <ThreeColumnPage
         enableLeftCollapse
         enableCenterCollapse
+        leftCollapseTitle="Policy settings"
+        centerCollapseTitle="Policy parameters"
         middle={<PolicyLeftSidebar metadata={metadata} />}
         right={middle}
         left={

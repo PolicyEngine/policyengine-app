@@ -10,7 +10,9 @@ export default function ThreeColumnPage(props) {
     middle, 
     right,
     enableLeftCollapse,
-    enableCenterCollapse
+    enableCenterCollapse,
+    leftCollapseTitle,
+    centerCollapseTitle
   } = props;
 
   const COLLAPSE_BUTTON_HEIGHT = "42px"; // 10px paddingTop, 20px paddingBottom, 12px text height
@@ -57,7 +59,7 @@ export default function ThreeColumnPage(props) {
         }}
       >
         {enableLeftCollapse && isLeftCollapsed ? (
-          <CollapsedPanel title="Policy settings" />
+          <CollapsedPanel title={leftCollapseTitle || ""} />
         ) : (left)
       }
         {enableLeftCollapse && (
@@ -86,7 +88,7 @@ export default function ThreeColumnPage(props) {
       >
         {
           enableCenterCollapse && isCenterCollapsed ? (
-            <CollapsedPanel title="Policy parameters" />
+            <CollapsedPanel title={centerCollapseTitle || ""} />
           ) : (
             middle
           )
