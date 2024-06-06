@@ -244,14 +244,12 @@ export default function PolicyPage(props) {
         <title>Policy | PolicyEngine</title>
       </Helmet>
       <ThreeColumnPage
-        isLeftCollapsed={isLeftCollapsed}
-        isRightCollapsed={isRightCollapsed}
+        enableLeftCollapse
+        enableCenterCollapse
         middle={<PolicyLeftSidebar metadata={metadata} />}
         right={middle}
         left={
           <PolicyRightSidebar
-            isCollapsed={isLeftCollapsed}
-            setIsCollapsed={setIsLeftCollapsed}
             metadata={metadata}
             policy={policy}
             setPolicy={setPolicy}

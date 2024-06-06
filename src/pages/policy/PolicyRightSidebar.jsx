@@ -541,28 +541,6 @@ export default function PolicyRightSidebar(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
 
-  const collapseButton = (
-    <CollapseButton
-      onClick={() => setIsCollapsed((prev) => !prev)}
-      isCollapsed={isCollapsed}
-      isAtBottom={isCollapsed ? true : isAtBottom}
-      style={{
-        position: "sticky",
-        bottom: 0,
-        width: "100%"
-      }}
-    />
-  );
-
-  if (isCollapsed) {
-    return (
-      <CollapsedPanel
-        title="Policy settings"
-        collapseButton={collapseButton}
-      />
-    );
-  }
-
   if (!policy.reform.data) {
     return (
       <div
@@ -803,7 +781,6 @@ export default function PolicyRightSidebar(props) {
           />
         )}
       </div>
-      {collapseButton}
     </div>
   );
 }
