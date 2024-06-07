@@ -3,7 +3,7 @@ import { Tooltip } from "antd";
 import fixedStyles from "../style";
 
 export default function CollapseButton(props) {
-  const { onClick, isCollapsed, style } = props;
+  const { onClick, isCollapsed, style, title } = props;
 
   function clickHandler() {
     if (onClick instanceof Function) {
@@ -18,9 +18,11 @@ export default function CollapseButton(props) {
         display: "flex",
         justifyContent: "flex-start",
         alignItems: "center",
+        gap: "12px",
         // Extra padding at bottom to
         // avoid collision with scrollbar
-        padding: "10px 0px 20px 20px",
+        // padding: "10px 0px 0px 20px",
+        paddingLeft: "20px",
         borderStyle: "solid",
         borderImage: `linear-gradient(to right, 
           ${fixedStyles.colors.LIGHT_GRAY} 0px, 
@@ -32,6 +34,7 @@ export default function CollapseButton(props) {
         backgroundColor: fixedStyles.colors.LIGHT_GRAY,
         borderImageWidth: "1px",
         borderWidth: "1px",
+        height: "100%",
         ...style,
       }}
     >
@@ -57,6 +60,16 @@ export default function CollapseButton(props) {
           />
         )}
       </Tooltip>
+      <p
+        style={{
+          margin: "0",
+          // paddingTop: "30px",
+          fontSize: "12px",
+          color: fixedStyles.colors.DARK_GRAY,
+        }}
+      >
+        {title}
+      </p>
     </div>
   );
 }

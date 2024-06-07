@@ -60,11 +60,13 @@ export default function ThreeColumnPage(props) {
               setIsCollapsed((prev) => ({ ...prev, left: !prev.left }));
             }
             }
+            title={!isCollapsed.left && leftCollapseTitle}
             isCollapsed={isCollapsed.left}
             style={{
               position: "fixed",
               bottom: 0,
               width: "inherit",
+              height: COLLAPSE_BUTTON_HEIGHT
             }}
           />
         )}
@@ -86,6 +88,7 @@ export default function ThreeColumnPage(props) {
         )}
         {enableCenterCollapse && (
           <CollapseButton
+            title={!isCollapsed.center && centerCollapseTitle}
             onClick={() => {
               setIsCollapsed((prev) => ({ ...prev, center: !prev.center }))
             }
@@ -95,6 +98,7 @@ export default function ThreeColumnPage(props) {
               position: "fixed",
               bottom: 0,
               width: "inherit",
+              height: COLLAPSE_BUTTON_HEIGHT
             }}
           />
         )}

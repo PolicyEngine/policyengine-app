@@ -382,7 +382,7 @@ export default function HouseholdPage(props) {
         enableLeftCollapse
         enableCenterCollapse
         leftCollapseTitle="Household summary"
-        centerCollapseTitle="Household variables"
+        centerCollapseTitle={focus && focus.startsWith("householdOutput") ? "Household impact" : "Household variables"}
         middle={<HouseholdLeftSidebar metadata={metadata} />}
         right={middle}
         left={
