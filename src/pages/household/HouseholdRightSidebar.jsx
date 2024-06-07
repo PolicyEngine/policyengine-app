@@ -191,7 +191,6 @@ export default function HouseholdRightSidebar(props) {
         display: "flex",
         justifyContent: "space-between",
         flexDirection: "column",
-        height: "100%",
       }}
     >
       <div>
