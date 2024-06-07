@@ -56,7 +56,7 @@ export function DisplayError(props) {
  * @returns component for displaying a progress bar that fills up over time
  */
 export function DisplayWait(props) {
-  const { secondsElapsed, averageImpactTime } = props;
+  const { secondsElapsed, averageImpactTime, queueMsg } = props;
   return (
     <div style={{ textAlign: "center", paddingTop: 50 }}>
       <LoadingCentered message="Simulating the impact of your policy..." />
@@ -69,6 +69,7 @@ export function DisplayWait(props) {
         }
         strokeColor={style.colors.BLUE}
       />
+      <p style={{ paddingTop: "12px", marginBottom: "2px" }}>{queueMsg}</p>
       <p style={{ color: "grey" }}>
         This usually takes around {Math.round(averageImpactTime / 5) * 5}{" "}
         seconds, but may take longer.

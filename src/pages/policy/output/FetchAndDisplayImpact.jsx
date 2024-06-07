@@ -29,19 +29,37 @@ import useCountryId from "../../../hooks/useCountryId";
  * information to the user
  */
 export function FetchAndDisplayImpact(props) {
+  const { metadata, policy, userPolicyId, showPolicyImpactPopup } = props;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const renamed = searchParams.get("renamed");
+
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-  const { metadata, policy, userPolicyId, showPolicyImpactPopup } = props;
+  const [queueMsg, setQueueMsg] = useState("");
+
   const policyRef = useRef(null);
   const countryId = useCountryId();
+
+  /**
+   * Callback function utilized within asyncApiCall to
+   * display the queue position to the user
+   * @param {Object} data The data output within asyncApiCall to be consumed by the callback
+   * @returns {Void}
+   */
+  function computingCallback(data) {
+    // Position in queue message only occurs with average_time
+    // in the response object; if this is present, enable message
+    if (data.average_time && data.message) {
+      setQueueMsg(data.message);
+    }
+  }
 
   useEffect(() => {
     if (
@@ -71,7 +89,7 @@ export function FetchAndDisplayImpact(props) {
             setAverageImpactTime(intermediateData.average_time || 20);
           }
         });
-      asyncApiCall(url, null, 1_000, 1_000)
+      asyncApiCall(url, null, 1_000, 1_000, computingCallback)
         .then((data) => {
           if (data.status === "error") {
             if (!data.result.baseline_economy) {
@@ -160,6 +178,7 @@ export function FetchAndDisplayImpact(props) {
       <DisplayWait
         averageImpactTime={averageImpactTime}
         secondsElapsed={secondsElapsed}
+        queueMsg={queueMsg}
       />
     );
   }
