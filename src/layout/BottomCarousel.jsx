@@ -18,12 +18,13 @@ export default function BottomCarousel(props) {
         bottom: mobile ? "25vh" : 0,
         display: "flex",
         height: "min-content",
-        left: mobile ? 0 : "25%",
+        left: mobile ? 0 : "50%",
         width: mobile ? "100%" : "50%",
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
         justifyContent: mobile ? "center" : "right",
-        borderTop: "1px solid black",
+        // borderTop: "1px solid black",
+        borderTop: `1px solid ${style.colors.MEDIUM_DARK_GRAY}`,
         padding: "10px 20px",
         gap: "10px",
       }}
@@ -48,7 +49,7 @@ export default function BottomCarousel(props) {
           gap: 20,
         }}
       >
-        {previous.label ? (
+        {mobile && previous.label ? (
           <SearchParamNavButton
             focus={previous.name}
             direction="left"
@@ -58,7 +59,7 @@ export default function BottomCarousel(props) {
           <div style={{ width: 50 }} />
         )}
         {}
-        {next.label ? (
+        {mobile && next.label ? (
           <SearchParamNavButton
             focus={next.name}
             direction="right"
