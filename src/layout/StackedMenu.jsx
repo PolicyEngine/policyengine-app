@@ -15,6 +15,8 @@ export default function StackedMenu(props) {
   }
 
   return (
-    <div style={{ overflow: "scroll", padding: 20, height: "100%" }}>{result}</div>
+    <div style={{ overflow: "scroll", padding: 20, height: "100%" }}>
+      {result}
+    </div>
   );
 }
