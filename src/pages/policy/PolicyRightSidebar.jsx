@@ -561,7 +561,6 @@ export default function PolicyRightSidebar(props) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100%",
         position: "relative",
       }}
     >

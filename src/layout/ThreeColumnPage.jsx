@@ -1,6 +1,6 @@
 import { HEADER_HEIGHT } from "../style/spacing";
 import style from "../style";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CollapseButton from "../controls/CollapseButton";
 import CollapsedPanel from "./CollapsedPanel";
 
@@ -17,6 +17,11 @@ export default function ThreeColumnPage(props) {
 
   const COLLAPSE_BUTTON_HEIGHT = "42px"; // 10px paddingTop, 20px paddingBottom, 12px text height
   const COLLAPSED_WIDTH = "52px";
+
+  // Refs for the columns on top of which the expander
+  // buttons sit (via absolute positioning)
+  const leftColRef = useRef(null);
+  const centerColRef = useRef(null);
 
   const [isCollapsed, setIsCollapsed] = useState({
     left: false,
@@ -37,13 +42,22 @@ export default function ThreeColumnPage(props) {
     enableCenterCollapse && isCollapsed.center ? COLLAPSED_WIDTH : "25%";
   const rightWidth = `calc(100% - ${leftWidth} - ${centerWidth})`;
 
+  // Function to determine if a button is at the bottom
+  // of the panel on top of which it sits
+  function findIsAtBottom(elem) {
+    if (!elem) return false;
+    console.log(Math.abs(elem.scrollHeight - (elem.scrollTop + elem.clientHeight)) <= 1);
+
+    return Math.abs(elem.scrollHeight - (elem.scrollTop + elem.clientHeight)) <= 1;
+  }
+
   function handleScroll(e, pos) {
     const elem = e.target;
-    console.log(elem);
 
-    const isAtBottomPos =
-      Math.abs(elem.scrollHeight - (elem.scrollTop + elem.clientHeight)) <= 1;
+    const isAtBottomPos = findIsAtBottom(elem);
 
+    // Only update state if we need to make a change,
+    // not if any scroll occurs, to improve performance
     if (!isAtBottom[pos] && isAtBottomPos) {
       setIsAtBottom((prev) => ({
         ...prev,
@@ -57,9 +71,15 @@ export default function ThreeColumnPage(props) {
     }
   }
 
+  // On first load, the panels behind the collapse buttons don't exist,
+  // meaning we can set their box shadow based on state alone;
+  // after first paint, reassess whether they're at the bottom
   useEffect(() => {
-    console.log(isAtBottom);
-  }, [isAtBottom]);
+    setIsAtBottom({
+      left: findIsAtBottom(leftColRef.current),
+      center: findIsAtBottom(centerColRef.current)
+    });
+  }, []);
 
   return (
     <div
@@ -69,6 +89,7 @@ export default function ThreeColumnPage(props) {
       }}
     >
       <div
+        ref={leftColRef}
         onScroll={(e) => handleScroll(e, "left")}
         style={{
           width: leftWidth,
@@ -76,7 +97,7 @@ export default function ThreeColumnPage(props) {
           overflowY: "scroll",
           zIndex: 3,
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)",
-          marginBottom: enableLeftCollapse && COLLAPSE_BUTTON_HEIGHT,
+          paddingBottom: enableLeftCollapse && COLLAPSE_BUTTON_HEIGHT,
         }}
       >
         {enableLeftCollapse && isCollapsed.left ? (
@@ -100,6 +121,7 @@ export default function ThreeColumnPage(props) {
         )}
       </div>
       <div
+        ref={centerColRef}
         style={{
           width: centerWidth,
           backgroundColor: style.colors.LIGHT_GRAY,
