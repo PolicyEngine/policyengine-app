@@ -87,6 +87,8 @@ export default function PolicyPage(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
 
+  const isOutput = focus.includes("policyOutput");
+
   useEffect(() => {
     if (!focus) {
       let newSearch = copySearchParams(searchParams);
@@ -131,7 +133,7 @@ export default function PolicyPage(props) {
         {node.children}
       </FolderPage>
     );
-  } else if (focus.includes("policyOutput")) {
+  } else if (isOutput) {
     middle = (
       <>
         <PolicyOutput
@@ -245,7 +247,7 @@ export default function PolicyPage(props) {
         enableLeftCollapse
         enableCenterCollapse
         leftCollapseTitle="Policy settings"
-        centerCollapseTitle="Policy parameters"
+        centerCollapseTitle={isOutput ? "Policy impacts" : "Policy parameters"}
         middle={<PolicyLeftSidebar metadata={metadata} />}
         right={middle}
         left={
