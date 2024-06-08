@@ -1,6 +1,6 @@
 import style from "../../../style";
 import LoadingCentered from "../../../layout/LoadingCentered";
-import { policyOutputs } from "./tree";
+import { getPolicyOutputTree, policyOutputs } from "./tree";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import PolicyImpactPopup from "../../../modals/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
@@ -16,6 +16,7 @@ import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
+import BottomCarousel from "../../../layout/BottomCarousel";
 
 /**
  *
@@ -243,8 +244,10 @@ export function LowLevelDisplay(props) {
   }, [preparingForScreenshot, takeScreenShot]);
 
   const urlParams = new URLSearchParams(window.location.search);
+  const focus = urlParams.get("focus");
   const selectedVersion = urlParams.get("version") || metadata.version;
   const region = urlParams.get("region");
+  const policyOutputTree = getPolicyOutputTree(metadata.countryId);
   const url = encodeURIComponent(window.location.href);
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
   const twitterLink = `https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`;
@@ -270,7 +273,7 @@ export function LowLevelDisplay(props) {
 
     if (region === "enhanced_us") {
       bottomText = bottomText.concat(
-        "These calculations utilize enhanced CPS data, an experimental feature. ",
+        "These calculations utilize enhanced CPS data, a beta feature. ",
       );
     }
   } else if (metadata.countryId === "uk") {
@@ -351,6 +354,13 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
+      {!mobile && !preparingForScreenshot && (
+        <BottomCarousel
+          selected={focus}
+          options={policyOutputTree[0].children}
+          bottomElements={bottomElements}
+        />
+      )}
     </ResultsPanel>
   );
 }
