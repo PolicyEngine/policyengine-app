@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { formatPercent, localeCode, precision } from "../../../../lang/format";
-import { HoverCardContext } from "../../../../layout/HoverCard";
+import { ChartWidthContext, HoverCardContext } from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { relativeChangeMessage } from "../ImpactChart";
@@ -23,6 +23,7 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
+  const chartWidth = useContext(ChartWidthContext); 
   const yvaluePrecision = Math.max(1, precision(povertyChanges, 100));
   const ytickPrecision = precision(povertyChanges.concat(0), 10);
   const formatPer = (n) =>
@@ -101,15 +102,13 @@ export function ImpactPlot(props) {
           r: 0,
         },
         height: mobile ? 350 : 450,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{
         displayModeBar: false,
         responsive: true,
         locale: localeCode(metadata.countryId),
-      }}
-      style={{
-        width: "100%",
       }}
       {...(useHoverCard
         ? {

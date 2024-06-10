@@ -1,6 +1,6 @@
 import { HEADER_HEIGHT } from "../style/spacing";
 import style from "../style";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import CollapseButton from "../controls/CollapseButton";
 import CollapsedPanel from "./CollapsedPanel";
 

@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName } from "../ImpactChart";
+import { ChartWidthContext } from "../../../../layout/HoverCard";
 
 function ImpactPlot(props) {
   const { values, labels, metadata, mobile } = props;
   const xArray = labels;
   const yArray = values;
+  const chartWidth = useContext(ChartWidthContext); 
   // Waterfall chart
   return (
     <Plot
@@ -75,15 +77,13 @@ function ImpactPlot(props) {
           r: 0,
         },
         height: mobile ? 300 : 500,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{
         displayModeBar: false,
         responsive: true,
         locale: localeCode(metadata.countryId),
-      }}
-      style={{
-        width: "100%",
       }}
     />
   );

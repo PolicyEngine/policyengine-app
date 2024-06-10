@@ -22,6 +22,7 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
+  const chartWidth = useContext(ChartWidthContext); 
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
   const yvaluePrecision = Math.max(1, precision(yArray, 100));
@@ -117,15 +118,13 @@ function ImpactPlot(props) {
           b: 80,
         },
         height: mobile ? 300 : 450,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{
         displayModeBar: false,
         responsive: true,
         locale: localeCode(metadata.countryId),
-      }}
-      style={{
-        width: "100%",
       }}
       {...(useHoverCard
         ? {

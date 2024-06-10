@@ -8,11 +8,13 @@ import React from "react";
 import ImpactChart, { absoluteChangeMessage } from "../ImpactChart";
 import { HoverCardContext } from "layout/HoverCard";
 import { title } from "./BudgetaryImpact";
+import { ChartWidthContext } from "../../../../layout/HoverCard";
 
 function ImpactPlot(props) {
   const { xValues, yValues, budgetaryImpact, useHoverCard, metadata, mobile } =
     props;
   const setHoverCard = useContext(HoverCardContext);
+  const chartWidth = useContext(ChartWidthContext); 
   const formatCur = (x) =>
     formatCurrencyAbbr(x, metadata.countryId, {
       maximumFractionDigits: 1,
@@ -105,6 +107,7 @@ function ImpactPlot(props) {
           r: 20,
         },
         height: mobile ? 300 : 500,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{
@@ -113,7 +116,6 @@ function ImpactPlot(props) {
         locale: localeCode(metadata.countryId),
       }}
       style={{
-        width: "100%",
         marginBottom: !mobile && 50,
       }}
       {...(useHoverCard

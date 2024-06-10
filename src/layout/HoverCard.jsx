@@ -1,9 +1,11 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { createContext, useEffect, useState, memo } from "react";
+import { createContext, useEffect, useState, memo, useRef } from "react";
 import style from "../style";
 import Divider from "./Divider";
 
 export const HoverCardContext = createContext((obj) => obj);
+
+export const ChartWidthContext = createContext((obj) => obj);
 
 export default function HoverCard(props) {
   const { children } = props;
@@ -64,18 +66,46 @@ export default function HoverCard(props) {
 
 const MemoizedChildren = memo(function MemoizedChildren(props) {
   const { children, setContent, setEnabled } = props;
+
+  const [chartWidth, setChartWidth] = useState(0);
+
+  // This represents the div holding the hovercard item,
+  // and will be used for dynamic size updating
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      // If the container div
+      const observer = new ResizeObserver((entries) => {
+        setChartWidth(entries[0].contentRect.width);
+      });
+
+      observer.observe(containerRef.current);
+
+      return () => {observer.disconnect()}
+    }
+  });
+
   return (
     <HoverCardContext.Provider value={setContent}>
-      <div
-        onMouseEnter={() => {
-          setEnabled(true);
-        }}
-        onMouseLeave={() => {
-          setEnabled(false);
-        }}
-      >
-        {children}
-      </div>
+      <ChartWidthContext.Provider value={chartWidth}>
+        <div
+          className="test"
+          onMouseEnter={() => {
+            setEnabled(true);
+          }}
+          onMouseLeave={() => {
+            setEnabled(false);
+          }}
+          ref={containerRef}
+          style={{
+            height: "100%",
+            display: "flex"
+          }}
+        >
+          {children}
+        </div>
+      </ChartWidthContext.Provider>
     </HoverCardContext.Provider>
   );
 });
