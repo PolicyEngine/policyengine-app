@@ -4,7 +4,7 @@
 // allow for application into perpetuity, if that is desired behavior
 export const defaultForeverYear = "2100";
 
-export const defaultYear = new Date().getFullYear();
+export const defaultYear = new Date().getFullYear() + 1;
 export const defaultStartDate = defaultYear.toString().concat("-01-01");
 export const defaultEndDate = defaultForeverYear.toString().concat("-12-31");
 
