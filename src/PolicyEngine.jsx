@@ -23,6 +23,7 @@ import CitizensEconomicCouncil from "./applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "./pages/APIDocumentationPage";
 import CookieConsent from "./modals/CookieConsent";
 import TrafwaCalculator from "./applets/TrafwaCalculator";
+import StateEitcsCtcs from "./applets/StateEitcsCtcs";
 import AuthCallback from "./layout/AuthCallback";
 import UserProfilePage from "./pages/UserProfilePage";
 import PrivacyPage from "./pages/PrivacyPage";
@@ -332,6 +333,7 @@ export default function PolicyEngine({ pathname }) {
           path="/us/trafwa-ctc-calculator"
           element={<TrafwaCalculator />}
         />
+        <Route path="/us/state-eitcs-ctcs" element={<StateEitcsCtcs />} />
 
         {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
         <Route
