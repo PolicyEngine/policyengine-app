@@ -13,15 +13,6 @@ let metadataUK = data["metadataUK"];
 let metadataCA = data["metadataCA"];
 
 beforeAll(async () => {
-  // async function fetchMetadata(countryId) {
-  //   const res = await fetch(
-  //     `https://api.policyengine.org/${countryId}/metadata`,
-  //   );
-  //   const metadataRaw = await res.json();
-  //   const metadata = metadataRaw.result;
-  //   return metadata;
-  // }
-
   document.createRange = () => {
     const range = new Range();
 
@@ -61,7 +52,11 @@ describe("APIResultCard", () => {
     expect(
       getByText(`Period: ${cardMetadata.definitionPeriod}`),
     ).toBeInTheDocument();
-    expect(getByText(`Unit: ${cardMetadata.unit}`)).toBeInTheDocument();
+    expect(
+      getByText(
+        `Unit:${cardMetadata.unit === null ? "" : " " + cardMetadata.unit}`,
+      ),
+    ).toBeInTheDocument();
     expect(getByText(`Python name: ${cardMetadata.name}`)).toBeInTheDocument();
   });
   test("Properly displays a parameter card", () => {
