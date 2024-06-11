@@ -13,7 +13,6 @@ let metadataUK = data["metadataUK"];
 let metadataCA = data["metadataCA"];
 
 beforeAll(async () => {
-
   document.createRange = () => {
     const range = new Range();
 
@@ -53,7 +52,11 @@ describe("APIResultCard", () => {
     expect(
       getByText(`Period: ${cardMetadata.definitionPeriod}`),
     ).toBeInTheDocument();
-    expect(getByText(`Unit:${cardMetadata.unit === null ? "" : " " + cardMetadata.unit}`)).toBeInTheDocument();
+    expect(
+      getByText(
+        `Unit:${cardMetadata.unit === null ? "" : " " + cardMetadata.unit}`,
+      ),
+    ).toBeInTheDocument();
     expect(getByText(`Python name: ${cardMetadata.name}`)).toBeInTheDocument();
   });
   test("Properly displays a parameter card", () => {

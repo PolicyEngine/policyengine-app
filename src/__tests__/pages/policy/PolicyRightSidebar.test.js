@@ -257,9 +257,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -281,9 +279,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -305,9 +301,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -329,9 +323,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -355,9 +347,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -382,9 +372,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -409,9 +397,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -436,9 +422,7 @@ describe("SinglePolicyChange", () => {
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={
-            allParams[desiredParamName]
-          }
+          parameterMetadata={allParams[desiredParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
