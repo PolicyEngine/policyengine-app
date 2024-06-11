@@ -696,7 +696,7 @@
     "title": "PolicyEngine's Spring 2024 update",
     "description": "How PolicyEngine compares to the latest external forecasts.",
     "date": "2024-04-16 09:00:00",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "image": "uk_march_update.png",
     "authors": ["nikhil-woodruff"],
     "filename": "obr-forecast-update-spring-24.ipynb"
@@ -705,9 +705,18 @@
     "title": "The Triple Lock Plus",
     "description": "PolicyEngine estimates the impact of the UK government's proposed pension uprating policy reform.",
     "date": "2024-05-28 09:00:00",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff"],
     "filename": "uk-triple-lock-plus.ipynb",
     "image": "uk-triple-lock-plus.jpg"
+  },
+  {
+    "title": "The Liberal Democrat Manifesto",
+    "description": "PolicyEngine’s comprehensive impact score.",
+    "date": "2024-06-11 16:30:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "lib-dem-2024-manifesto.md",
+    "image": "lib-dem-manifesto-2024.jpeg"
   }
 ]
