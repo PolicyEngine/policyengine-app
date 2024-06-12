@@ -718,5 +718,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "lib-dem-2024-manifesto.md",
     "image": "lib-dem-manifesto-2024.jpeg"
+  },
+  {
+    "title": "The Conservative Manifesto",
+    "description": "PolicyEngine’s comprehensive impact score.",
+    "date": "2024-06-12 16:30:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff", "pavel-makarchuk", "anthony-volk"],
+    "filename": "conservative-2024-manifesto.md",
+    "image": "conservative-2024-manifesto.png"
   }
 ]
