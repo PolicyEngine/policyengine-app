@@ -1,7 +1,7 @@
 from PIL import Image, ImageDraw, ImageFont
 from argparse import ArgumentParser
 
-LOGO = "./src/redesign/images/logos/policyengine/profile/blue_bg.png"
+LOGO = "./src/images/logos/policyengine/profile/blue_bg.png"
 ROBOTO_SERIF_FONT = "./tools/RobotoSerif.ttf"
 SIZE_MULTIPLIER = 2
 
@@ -53,7 +53,7 @@ def create_social_card(
     # Load a font- Roboto Serif
     font = ImageFont.truetype(ROBOTO_SERIF_FONT, 25 * SIZE_MULTIPLIER)
     # Get the size of the text
-    _, text_height = draw.textsize(title, font=font)
+    text_height = draw.textlength(title, font=font)
     # Calculate the position of the text. Should be inside the box
     text_x = 20 * SIZE_MULTIPLIER
     text_y = (418 - 70) * SIZE_MULTIPLIER + (
