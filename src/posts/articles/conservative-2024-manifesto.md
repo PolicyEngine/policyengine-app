@@ -4,16 +4,15 @@ _Distributional impact of the Conservative 2024 Manifesto. See the full impact s
 
 1. The Conservatives propose a plan which we estimate will increase spending by £5.8bn over the next five years.
 
-2. The spending reform will include increases in education expenditures and NHS funding, while decreasing other public spending, raising a total of £43.9bn. 
+2. The spending reform will include increases in education expenditures and NHS funding, while decreasing other public spending, raising a total of £43.9bn.
 
 3. Tax reforms include lowering employee NICs while cutting self-employment NICs, additionally introducing the Triple Lock Plus and reforming the HICBC while abolishing stamp duty for first-time homebuyers. This will be partially offset by anti-tax avoidance spending which we assume falls largely on corporations, for an overall cost of £49.7bn.
 
-4. PolicyEngine concludes that the manifesto would increase poverty by 5.8%, increasing the senior poverty rate by 19.0%. 
+4. PolicyEngine concludes that the manifesto would increase poverty by 5.8%, increasing the senior poverty rate by 19.0%.
 
 5. The impacts of the manifesto would largely be regressive. The manifesto reduces disposable income for the bottom ten percent of people by 6.4%.
 
 6. The majority of people in the five lowest income deciles would experience a negative impact on net income while the majority of people in the five highest income deciles would experience a positive net income change.
-
 
 ## Introduction
 
@@ -37,14 +36,12 @@ The Conservatives propose a net spending decrease of £44bn through 2029. This w
 
 The Conservatives also propose spending increases to national defence, the NHS, and on some programs we classify as education-related (National Service and apprenticeship subsidies).
 
-
-| **Provision**                         | **Conservatives (£bn)** | **PolicyEngine (£bn)        |
-| ------------------------------------- | --------------------------- | -------------------------------------------- |
-| Increase education spending £2.4bn    | 2.4   | [2.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58028&region=uk&timePeriod=2029&baseline=1)  |
-| Increase NHS funding £2.3bn           | 2.3   | [2.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58059&region=uk&timePeriod=2029&baseline=1)  |
-| Decrease other public spending £48.6bn | -48.6| [-48.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58064&region=uk&timePeriod=2029&baseline=1)  |
-| Total spending changes                | -43.9 | [-43.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58038&region=uk&timePeriod=2029&baseline=1)  |
-
+| **Provision**                          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
+| -------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Increase education spending £2.4bn     | 2.4                     | [2.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58028&region=uk&timePeriod=2029&baseline=1)   |
+| Increase NHS funding £2.3bn            | 2.3                     | [2.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58059&region=uk&timePeriod=2029&baseline=1)   |
+| Decrease other public spending £48.6bn | -48.6                   | [-48.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58064&region=uk&timePeriod=2029&baseline=1) |
+| Total spending changes                 | -43.9                   | [-43.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58038&region=uk&timePeriod=2029&baseline=1) |
 
 ## Taxes
 
@@ -62,16 +59,15 @@ We estimate that the Conservatives’ tax policy changes would have a slightly l
 
 We also find roughly double the budgetary impact of abolishing the Stamp Duty Land Tax (SDLT) for first-time homebuyers, at a cost of £4.4bn, versus the Conservatives’ estimate of £2.3bn.
 
-
-| **Provision**                            | **Conservatives (£bn)** | **PolicyEngine (£bn)**   |
-| ------------------------------------ | ----------------- | ------------------------------------------------------------ |
-| Lowering the employee NIC base rate step-wise to 6% | -39.4   | [-41.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2029&baseline=1)  |
-| Abolishing self-employed NICs        | -6.8   | [-6.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2029&baseline=1)  |
-| Triple Lock Plus                     | -8.8  | [-7.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2029&baseline=1)  |
-| Reforming the HICBC single-earner policy | -4.5 | [-10.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2029&baseline=1&reform=57905) |
-| Abolish stamp duty for first-time homebuyers | -2.3 | [-4.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2029&baseline=1)  |
-| Taxes incident on capital            | 20.0| [20.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58131&region=uk&timePeriod=2029&baseline=1) |
-| Total tax changes                    | -41.9| [-49.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1) |
+| **Provision**                                       | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
+| --------------------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Lowering the employee NIC base rate step-wise to 6% | -39.4                   | [-41.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2029&baseline=1) |
+| Abolishing self-employed NICs                       | -6.8                    | [-6.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2029&baseline=1)  |
+| Triple Lock Plus                                    | -8.8                    | [-7.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2029&baseline=1)  |
+| Reforming the HICBC single-earner policy            | -4.5                    | [-10.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2029&baseline=1&reform=57905) |
+| Abolish stamp duty for first-time homebuyers        | -2.3                    | [-4.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2029&baseline=1)  |
+| Taxes incident on capital                           | 20.0                    | [20.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58131&region=uk&timePeriod=2029&baseline=1)  |
+| Total tax changes                                   | -41.9                   | [-49.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1) |
 
 ## Overall
 
@@ -79,12 +75,11 @@ The Conservative manifesto, according to their costings, balances £41.9bn of ta
 
 In the chart below, negative numbers refer to increased government expenditures, while positive numbers refer to budgetary savings.
 
-| **Provision**                            | **Conservatives (£bn)** | **PolicyEngine (£bn)|
-| ---------------------------------------- | ----------------------- | ------------------- |
-| Total spending changes | -43.9   | [-43.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58038&region=uk&timePeriod=2029&baseline=1)  |
-| Total tax changes        | 41.9   | [49.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1)  |
-| Overall net change                    | 2.0  | [-5.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58041&region=uk&timePeriod=2029&baseline=1)  |
-
+| **Provision**          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
+| ---------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Total spending changes | -43.9                   | [-43.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58038&region=uk&timePeriod=2029&baseline=1) |
+| Total tax changes      | 41.9                    | [49.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1)  |
+| Overall net change     | 2.0                     | [-5.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58041&region=uk&timePeriod=2029&baseline=1)  |
 
 ## Economic impact
 
@@ -100,9 +95,9 @@ We estimate the Conservatives’ manifesto to be [mostly regressive along income
 
 We also conclude that people in the lowest income deciles are more likely to experience the negative impacts of the proposal, with over 95% of people in the first income decile experiencing a decrease in net income. The majority of people in income deciles above the fifth start to experience net income increases with [overall 46% of the population benefiting, in net income terms, and 52% of people experience net income decreases](https://policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=58041&region=uk&timePeriod=2029&baseline=1).
 
-![Impacts within income deciles](/images/posts/conservative-2024-manifesto/poverty_impact.png "image_tooltip")
+![Impacts within income deciles](/images/posts/conservative-2024-manifesto/intra_decile_impact.png "image_tooltip")
 
-Regarding poverty rates, PolicyEngine estimates that the proposed policy changes would [increase the overall poverty rate 5.8%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=58041&region=uk&timePeriod=2029&baseline=1). The percentage of seniors in poverty would increase by 19% to a total of 13.4%, while child and working-age adult poverty rates would increase by 3.5% and 4.6% respectively. 
+Regarding poverty rates, PolicyEngine estimates that the proposed policy changes would [increase the overall poverty rate 5.8%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=58041&region=uk&timePeriod=2029&baseline=1). The percentage of seniors in poverty would increase by 19% to a total of 13.4%, while child and working-age adult poverty rates would increase by 3.5% and 4.6% respectively.
 
 ![Poverty rate impacts](/images/posts/conservative-2024-manifesto/poverty_impact.png "image_tooltip")
 
@@ -119,26 +114,26 @@ We welcome questions and comments on our findings or methodology- please feel fr
 We estimate the following per-year scores for each of the tax provisions of the manifesto below.
 
 PolicyEngine estimates of Conservative manifesto tax cuts.
-| **Provision**| **2025 (£bn)** | **2026 (£bn)**|**2027(£bn)**|**2028(£bn)**|**2029(£bn)**|**Total**|
+| **Provision**| **2025 (£bn)** | **2026 (£bn)**|**2027 (£bn)**|**2028 (£bn)**|**2029 (£bn)**|**Total**|
 | ------------ | -------------- | -------------- | ----------- | ----------- | ----------- | ------- |
-| Halve employee NICs | [5.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2025&baseline=1)  | [5.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2026&baseline=1)  |[10.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2027&baseline=1)  |[10.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2028&baseline=1)  | [10.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2029&baseline=1)  | 41.3 |
-| Abolish self-employed NICs  | [0.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2025&baseline=1)  |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2026&baseline=1)  |[1.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2027&baseline=1)  |[1.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2028&baseline=1)  |[2.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2029&baseline=1)  | 6.5 |
-| Triple Lock Plus  | [0.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2025&baseline=1)  |[1.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2026&baseline=1)  |[1.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2027&baseline=1)  |[1.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2028&baseline=1)  |[2.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2029&baseline=1)  | 7.3 |
-| Reform HICBC single-earner provisions | [0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1&reform=57905)  |[2.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2026&baseline=1&reform=57905)  |[2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2027&baseline=1&reform=57905)  |[2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2028&baseline=1&reform=57905)  |[2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2029&baseline=1&reform=57905)  |10.2 |
-| Abolish stamp duty for first-time buyers | [0.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2025&baseline=1)  |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2026&baseline=1)  |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2027&baseline=1)  |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2028&baseline=1)  |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2029&baseline=1)  |4.4 |
-| Anti-tax avoidance investment  | [-2.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2025&baseline=1)  |[-3.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2026&baseline=1)  |[-4.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2027&baseline=1)  |[-5.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2028&baseline=1)  |[-6.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2029&baseline=1)  | -20.0 |
-| Total      | [4.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2025&baseline=1)  |[7.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2026&baseline=1)  |[12.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2027&baseline=1)  |[12.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2028&baseline=1)  |[12.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1)  |49.7|
+| Halve employee NICs | [5.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2025&baseline=1) | [5.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2026&baseline=1) |[10.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2027&baseline=1) |[10.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2028&baseline=1) | [10.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57887&region=uk&timePeriod=2029&baseline=1) | 41.3 |
+| Abolish self-employed NICs | [0.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2025&baseline=1) |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2026&baseline=1) |[1.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2027&baseline=1) |[1.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2028&baseline=1) |[2.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57894&region=uk&timePeriod=2029&baseline=1) | 6.5 |
+| Triple Lock Plus | [0.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2025&baseline=1) |[1.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2026&baseline=1) |[1.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2027&baseline=1) |[1.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2028&baseline=1) |[2.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=56385&region=uk&timePeriod=2029&baseline=1) | 7.3 |
+| Reform HICBC single-earner provisions | [0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1&reform=57905) |[2.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2026&baseline=1&reform=57905) |[2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2027&baseline=1&reform=57905) |[2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2028&baseline=1&reform=57905) |[2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2029&baseline=1&reform=57905) |10.2 |
+| Abolish stamp duty for first-time buyers | [0.8](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2025&baseline=1) |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2026&baseline=1) |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2027&baseline=1) |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2028&baseline=1) |[0.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=57915&region=uk&timePeriod=2029&baseline=1) |4.4 |
+| Anti-tax avoidance investment | [-2.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2025&baseline=1) |[-3.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2026&baseline=1) |[-4.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2027&baseline=1) |[-5.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2028&baseline=1) |[-6.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58122&region=uk&timePeriod=2029&baseline=1) | -20.0 |
+| Total | [4.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2025&baseline=1) |[7.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2026&baseline=1) |[12.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2027&baseline=1) |[12.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2028&baseline=1) |[12.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=58015&region=uk&timePeriod=2029&baseline=1) |49.7|
 
 These compare to the Conservatives’ estimates below.
-| **Provision**| **2025 (£bn)** | **2026 (£bn)**|**2027(£bn)**|**2028(£bn)**|**2029(£bn)**|**Total**|
+| **Provision**| **2025 (£bn)** | **2026 (£bn)**|**2027 (£bn)**|**2028 (£bn)**|**2029 (£bn)**|**Total**|
 | ------------ | -------------- | -------------- | ----------- | ----------- | ----------- | ------- |
 | Halve employee NICs | 4.7 | 4.8 | 9.7 | 10.0 | 10.3 | 39.5 |
-| Abolish self-employed NICs  | 0.4 | 0.9 | 1.3 | 1.7 | 2.6 | 6.9 |
-| Triple Lock Plus  | 0.8 | 1.4 | 2.0 | 2.2 | 2.4 | 8.8 |
+| Abolish self-employed NICs | 0.4 | 0.9 | 1.3 | 1.7 | 2.6 | 6.9 |
+| Triple Lock Plus | 0.8 | 1.4 | 2.0 | 2.2 | 2.4 | 8.8 |
 | Reform HICBC single-earner provisions | 0 | 1.0 | 1.0 | 1.2 | 1.3 | 4.5 |
 | Abolish stamp duty for first-time buyers | 0.3 | 0.4 | 0.5 | 0.6 | 0.6 | 2.4 |
-| Anti-tax avoidance investment  | -2.0 | -3.0 | -4.0 | -5.0 | -6.0 | -20.0 |
-| Total      | 6.2 | 8.5 | 15.5 | 15.7 | 17.2 | 41.9 |
+| Anti-tax avoidance investment | -2.0 | -3.0 | -4.0 | -5.0 | -6.0 | -20.0 |
+| Total | 6.2 | 8.5 | 15.5 | 15.7 | 17.2 | 41.9 |
 
 Overall, we estimate differences in per-year revenue impacts of between £600m and £2.1bn.
 
