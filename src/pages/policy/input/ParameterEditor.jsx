@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
@@ -26,7 +26,6 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
 import { UndoOutlined } from "@ant-design/icons";
-import { PaneWidthContext } from "../../../layout/ThreeColumnPage";
 const { RangePicker } = DatePicker;
 
 /**
@@ -52,10 +51,28 @@ export default function ParameterEditor(props) {
     }
   }
 
-  const paneWidth = useContext(PaneWidthContext);
+  const chartContainerRef = useRef(null);
 
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
+  const [paramChartWidth, setParamChartWidth] = useState(0);
+
+  useEffect(() => {
+    if (chartContainerRef.current) {
+      // This piece of code may be unstable if items above Display are edited;
+      // if the bottom carousel on the policy output page breaks,
+      // the component above this one may be the cause (note the parentElement call)
+      const observer = new ResizeObserver((entries) => {
+        setParamChartWidth(entries[0].contentRect.width);
+      });
+
+      observer.observe(chartContainerRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  });
 
   useEffect(() => {
     if (reformData && Object.keys(reformData).length > 0) {
@@ -182,17 +199,20 @@ export default function ParameterEditor(props) {
               position: "relative",
               zIndex: 1,
             }}
+            ref={chartContainerRef}
           >
-            <ParameterOverTime
-              baseMap={baseMap}
-              {...(reformData &&
-                Object.keys(reformData).length > 0 && {
-                  reformMap: reformMap,
-                })}
-              parameter={parameter}
-              policy={policy}
-              metadata={metadata}
-            />
+            <ParamChartWidthContext.Provider value={paramChartWidth}>
+              <ParameterOverTime
+                baseMap={baseMap}
+                {...(reformData &&
+                  Object.keys(reformData).length > 0 && {
+                    reformMap: reformMap,
+                  })}
+                parameter={parameter}
+                policy={policy}
+                metadata={metadata}
+              />
+            </ParamChartWidthContext.Provider>
           </div>
         </div>
       </div>
@@ -453,3 +473,5 @@ function checkBoundaryDate(date, variant) {
   // If we've found no boundary dates, return false
   return false;
 }
+
+export const ParamChartWidthContext = createContext((obj) => obj);

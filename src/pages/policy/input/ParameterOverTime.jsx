@@ -10,6 +10,8 @@ import { plotLayoutFont } from "pages/policy/output/utils";
 import { localeCode } from "lang/format";
 import { defaultPOTEndDate, defaultStartDate } from "../../../data/constants";
 import { useWindowHeight } from "../../../hooks/useWindow";
+import { useContext } from "react";
+import { ParamChartWidthContext } from "./ParameterEditor";
 
 /**
  *
@@ -27,6 +29,8 @@ export default function ParameterOverTime(props) {
   const { baseMap, reformMap, parameter, policy, metadata } = props;
   const mobile = useMobile();
   const windowHeight = useWindowHeight();
+
+  const paramChartWidth = useContext(ParamChartWidthContext);
 
   // Extend the last value to 2099 so that the line appears to extend to +inf in
   // the chart
@@ -122,10 +126,10 @@ export default function ParameterOverTime(props) {
             x: mobile ? 0.05 : 0.04,
           },
           dragmode: mobile ? false : "zoom",
+          width: paramChartWidth,
         }}
         // Note that plotly does not dynamically resize inside flexbox
         style={{
-          width: "100%",
           height: mobile ? 0.5 * windowHeight : 400,
         }}
         config={{
