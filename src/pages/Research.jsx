@@ -182,7 +182,7 @@ function ResearchExplorer() {
   }
 }
 
-function BlogPostResults({ posts }) {
+export function BlogPostResults({ posts }) {
   const displayCategory = useDisplayCategory();
   let postComponents;
   if (displayCategory === "desktop") {
