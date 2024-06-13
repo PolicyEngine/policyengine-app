@@ -1,8 +1,7 @@
 import SearchParamNavButton from "../controls/SearchParamNavButton";
-import { PaneWidthContext } from "../pages/policy/output/Display";
 import style from "../style";
 import useMobile from "./Responsive";
-import { COLLAPSE_BUTTON_HEIGHT } from "./ThreeColumnPage";
+import { COLLAPSE_BUTTON_HEIGHT, PaneWidthContext } from "./ThreeColumnPage";
 import { useContext } from "react";
 
 export default function BottomCarousel(props) {

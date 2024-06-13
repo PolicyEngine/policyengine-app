@@ -6,7 +6,7 @@ import PolicyImpactPopup from "../../../modals/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
 import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
-import { createContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/Error";
@@ -123,28 +123,6 @@ export function DisplayImpact(props) {
   const filename = impactType + `${policyLabel}`;
   let pane, downloadCsvFn;
 
-  const [paneWidth, setPaneWidth] = useState(0);
-  const componentRef = useRef(null);
-
-  useEffect(() => {
-    if (componentRef.current) {
-      // This piece of code may be unstable if items above Display are edited;
-      // if the bottom carousel on the policy output page breaks,
-      // the component above this one may be the cause (note the parentElement call)
-      const observer = new ResizeObserver((entries) => {
-        setPaneWidth(
-          window.getComputedStyle(entries[0].target.parentElement).width,
-        );
-      });
-
-      observer.observe(componentRef.current);
-
-      return () => {
-        observer.disconnect();
-      };
-    }
-  });
-
   if (impactType === "analysis") {
     pane = (
       <Analysis
@@ -189,18 +167,14 @@ export function DisplayImpact(props) {
           {`${policyLabel} | ${policyOutputs[impactType]} | PolicyEngine`}
         </title>
       </Helmet>
-      <div ref={componentRef}>
-        <PaneWidthContext.Provider value={paneWidth}>
-          <LowLevelDisplay
-            downloadCsv={downloadCsvFn}
-            metadata={metadata}
-            policy={policy}
-            showPolicyImpactPopup={showPolicyImpactPopup}
-          >
-            {pane}
-          </LowLevelDisplay>
-        </PaneWidthContext.Provider>
-      </div>
+      <LowLevelDisplay
+        downloadCsv={downloadCsvFn}
+        metadata={metadata}
+        policy={policy}
+        showPolicyImpactPopup={showPolicyImpactPopup}
+      >
+        {pane}
+      </LowLevelDisplay>
     </>
   );
 }
@@ -393,5 +367,3 @@ export function LowLevelDisplay(props) {
     </ResultsPanel>
   );
 }
-
-export const PaneWidthContext = createContext((obj) => obj);

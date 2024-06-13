@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
@@ -26,6 +26,7 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
 import { UndoOutlined } from "@ant-design/icons";
+import { PaneWidthContext } from "../../../layout/ThreeColumnPage";
 const { RangePicker } = DatePicker;
 
 /**
@@ -50,6 +51,8 @@ export default function ParameterEditor(props) {
       reformMap.set(startDate, nextDay(endDate), value);
     }
   }
+
+  const paneWidth = useContext(PaneWidthContext);
 
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
