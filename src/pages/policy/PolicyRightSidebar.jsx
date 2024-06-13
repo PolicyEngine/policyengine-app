@@ -678,7 +678,6 @@ export default function PolicyRightSidebar(props) {
                     flexDirection: "row",
                     width: "100%",
                     gap: "10px",
-                    width: "100%"
                   }}
                 >
                   <PolicySearch

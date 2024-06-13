@@ -48,7 +48,7 @@ export default function BottomCarousel(props) {
             display: "flex",
             justifyContent: "flex-end",
             alignItems: "flex-start",
-            color: style.colors.DARK_GRAY
+            color: style.colors.DARK_GRAY,
           }}
         >
           {bottomElements}

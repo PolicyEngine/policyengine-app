@@ -14,7 +14,7 @@ function ImpactPlot(props) {
   const { xValues, yValues, budgetaryImpact, useHoverCard, metadata, mobile } =
     props;
   const setHoverCard = useContext(HoverCardContext);
-  const chartWidth = useContext(ChartWidthContext); 
+  const chartWidth = useContext(ChartWidthContext);
   const formatCur = (x) =>
     formatCurrencyAbbr(x, metadata.countryId, {
       maximumFractionDigits: 1,

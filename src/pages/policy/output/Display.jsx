@@ -132,12 +132,16 @@ export function DisplayImpact(props) {
       // if the bottom carousel on the policy output page breaks,
       // the component above this one may be the cause (note the parentElement call)
       const observer = new ResizeObserver((entries) => {
-        setPaneWidth(window.getComputedStyle(entries[0].target.parentElement).width);
+        setPaneWidth(
+          window.getComputedStyle(entries[0].target.parentElement).width,
+        );
       });
 
       observer.observe(componentRef.current);
 
-      return () => {observer.disconnect()}
+      return () => {
+        observer.disconnect();
+      };
     }
   });
 
@@ -382,9 +386,9 @@ export function LowLevelDisplay(props) {
         {children}
       </div>
       <BottomCarousel
-          selected={focus}
-          options={policyOutputTree[0].children}
-          bottomElements={bottomElements}
+        selected={focus}
+        options={policyOutputTree[0].children}
+        bottomElements={bottomElements}
       />
     </ResultsPanel>
   );

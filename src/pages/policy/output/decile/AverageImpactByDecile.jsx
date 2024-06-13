@@ -7,7 +7,10 @@ import {
   formatCurrency,
   precision,
 } from "../../../../lang/format";
-import { ChartWidthContext, HoverCardContext } from "../../../../layout/HoverCard";
+import {
+  ChartWidthContext,
+  HoverCardContext,
+} from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
 import React from "react";
@@ -24,7 +27,7 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-  const chartWidth = useContext(ChartWidthContext); 
+  const chartWidth = useContext(ChartWidthContext);
   const xArray = Object.keys(decileAverage);
   const yArray = Object.values(decileAverage);
   let yvaluePrecision = precision(yArray, 1);

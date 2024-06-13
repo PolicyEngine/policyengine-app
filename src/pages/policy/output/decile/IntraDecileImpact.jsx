@@ -21,7 +21,7 @@ export function ImpactPlot(props) {
     mobile,
   } = props;
 
-  const chartWidth = useContext(ChartWidthContext); 
+  const chartWidth = useContext(ChartWidthContext);
 
   const colorMap = {
     "Gain more than 5%": style.colors.BLUE,

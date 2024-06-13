@@ -8,12 +8,11 @@ import ImpactChart, { regionName } from "../ImpactChart";
 import { ChartWidthContext } from "../../../../layout/HoverCard";
 import { useContext } from "react";
 
-
 function ImpactPlot(props) {
   const { values, labels, metadata, mobile } = props;
   const xArray = labels;
   const yArray = values;
-  const chartWidth = useContext(ChartWidthContext); 
+  const chartWidth = useContext(ChartWidthContext);
   // Waterfall chart
   return (
     <Plot

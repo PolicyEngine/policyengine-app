@@ -11,6 +11,7 @@ import { HoverCardContext } from "../../../layout/HoverCard";
 import style from "../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, wordWrap } from "./ImpactChart";
+import { ChartWidthContext } from "../../../layout/HoverCard";
 
 function ImpactPlot(props) {
   const {
@@ -22,7 +23,7 @@ function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
-  const chartWidth = useContext(ChartWidthContext); 
+  const chartWidth = useContext(ChartWidthContext);
   const xArray = ["Cliff rate", "Cliff gap"];
   const yArray = [cliffShareChange, cliffGapChange];
   const yvaluePrecision = Math.max(1, precision(yArray, 100));

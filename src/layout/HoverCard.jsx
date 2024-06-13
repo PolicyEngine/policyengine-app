@@ -82,7 +82,9 @@ const MemoizedChildren = memo(function MemoizedChildren(props) {
 
       observer.observe(containerRef.current);
 
-      return () => {observer.disconnect()}
+      return () => {
+        observer.disconnect();
+      };
     }
   });
 
@@ -100,7 +102,7 @@ const MemoizedChildren = memo(function MemoizedChildren(props) {
           ref={containerRef}
           style={{
             height: "100%",
-            display: "flex"
+            display: "flex",
           }}
         >
           {children}

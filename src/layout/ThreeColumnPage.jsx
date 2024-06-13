@@ -18,7 +18,6 @@ export default function ThreeColumnPage(props) {
     centerCollapseTitle,
   } = props;
 
-
   const [isCollapsed, setIsCollapsed] = useState({
     left: false,
     right: false,
