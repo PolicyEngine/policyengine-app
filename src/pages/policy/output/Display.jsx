@@ -6,7 +6,7 @@ import PolicyImpactPopup from "../../../modals/PolicyImpactPopup";
 import { useScreenshot } from "use-react-screenshot";
 import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/Error";
@@ -122,6 +122,25 @@ export function DisplayImpact(props) {
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
   let pane, downloadCsvFn;
+
+  const [paneWidth, setPaneWidth] = useState(0);
+  const componentRef = useRef(null);
+
+  useEffect(() => {
+    if (componentRef.current) {
+      // This piece of code may be unstable if items above Display are edited;
+      // if the bottom carousel on the policy output page breaks,
+      // the component above this one may be the cause (note the parentElement call)
+      const observer = new ResizeObserver((entries) => {
+        setPaneWidth(window.getComputedStyle(entries[0].target.parentElement).width);
+      });
+
+      observer.observe(componentRef.current);
+
+      return () => {observer.disconnect()}
+    }
+  });
+
   if (impactType === "analysis") {
     pane = (
       <Analysis
@@ -166,14 +185,18 @@ export function DisplayImpact(props) {
           {`${policyLabel} | ${policyOutputs[impactType]} | PolicyEngine`}
         </title>
       </Helmet>
-      <LowLevelDisplay
-        downloadCsv={downloadCsvFn}
-        metadata={metadata}
-        policy={policy}
-        showPolicyImpactPopup={showPolicyImpactPopup}
-      >
-        {pane}
-      </LowLevelDisplay>
+      <div ref={componentRef}>
+        <PaneWidthContext.Provider value={paneWidth}>
+          <LowLevelDisplay
+            downloadCsv={downloadCsvFn}
+            metadata={metadata}
+            policy={policy}
+            showPolicyImpactPopup={showPolicyImpactPopup}
+          >
+            {pane}
+          </LowLevelDisplay>
+        </PaneWidthContext.Provider>
+      </div>
     </>
   );
 }
@@ -204,10 +227,14 @@ export function LowLevelDisplay(props) {
     policy,
     showPolicyImpactPopup,
   } = props;
+
   const mobile = useMobile();
+
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
+
   const [, takeScreenShot] = useScreenshot();
   const componentRef = useRef(null);
+
   useEffect(() => {
     if (preparingForScreenshot) {
       setTimeout(() => {
@@ -289,7 +316,7 @@ export function LowLevelDisplay(props) {
       <p
         style={{
           marginBottom: 0,
-          fontSize: region === "enhanced_us" && "12px",
+          fontSize: "12px",
         }}
       >
         {bottomText}
@@ -354,13 +381,13 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
-      {!mobile && !preparingForScreenshot && (
-        <BottomCarousel
+      <BottomCarousel
           selected={focus}
           options={policyOutputTree[0].children}
           bottomElements={bottomElements}
-        />
-      )}
+      />
     </ResultsPanel>
   );
 }
+
+export const PaneWidthContext = createContext((obj) => obj);

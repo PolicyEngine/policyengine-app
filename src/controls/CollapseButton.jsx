@@ -63,7 +63,6 @@ export default function CollapseButton(props) {
       <p
         style={{
           margin: "0",
-          // paddingTop: "30px",
           fontSize: "12px",
           color: fixedStyles.colors.DARK_GRAY,
         }}

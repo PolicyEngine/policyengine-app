@@ -4,6 +4,9 @@ import { useState } from "react";
 import CollapseButton from "../controls/CollapseButton";
 import CollapsedPanel from "./CollapsedPanel";
 
+export const COLLAPSE_BUTTON_HEIGHT = "42px"; // 10px paddingTop, 20px paddingBottom, 12px text height
+export const COLLAPSED_WIDTH = "52px";
+
 export default function ThreeColumnPage(props) {
   const {
     left,
@@ -15,8 +18,6 @@ export default function ThreeColumnPage(props) {
     centerCollapseTitle,
   } = props;
 
-  const COLLAPSE_BUTTON_HEIGHT = "42px"; // 10px paddingTop, 20px paddingBottom, 12px text height
-  const COLLAPSED_WIDTH = "52px";
 
   const [isCollapsed, setIsCollapsed] = useState({
     left: false,
