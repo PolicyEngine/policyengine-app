@@ -80,7 +80,7 @@ We also estimate that this level of redistribution would be progressive along in
 
 We also estimate that people in lower income deciles are more likely to be better off under the plans than those in higher deciles, though the lowest decile still has 10% of people worse off under the manifesto policy.
 
-![Impacts within income deciles](/images/posts/lib-dem-2024-manifesto/poverty_impact.jpeg "image_tooltip")
+![Impacts within income deciles](/images/posts/lib-dem-2024-manifesto/intra_decile_impact.jpeg "image_tooltip")
 
 On poverty rates, PolicyEngine estimates that the manifesto policy would reduce absolute child poverty by a quarter, lowering the number of children in poverty by 1.3m and the number of people in poverty by 2.4m. We also estimate that the Gini index of income inequality would fall by over 3%.
 
