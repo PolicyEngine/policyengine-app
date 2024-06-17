@@ -1,7 +1,7 @@
 import averageImpactByDecile from "./decile/AverageImpactByDecile";
 import averageImpactByWealthDecile from "./decile/AverageImpactByWealthDecile";
 import budgetaryImpact from "./budget/BudgetaryImpact";
-// import cliffImpact from "./CliffImpact";
+import cliffImpact from "./CliffImpact";
 import deepPovertyImpact from "./poverty/DeepPovertyImpact";
 import deepPovertyImpactByGender from "./poverty/DeepPovertyImpactByGender";
 import detailedBudgetaryImpact from "./budget/DetailedBudgetaryImpact";
@@ -43,7 +43,7 @@ const map = {
   "povertyImpact.deep.byGender": deepPovertyImpactByGender,
   "povertyImpact.regular.byRace": povertyImpactByRace,
   inequalityImpact: inequalityImpact,
-  // cliffImpact: cliffImpact,
+  cliffImpact: cliffImpact,
   "laborSupplyImpact.earnings.overall.absolute": LaborSupplyResponseAbsolute,
   "laborSupplyImpact.earnings.overall.relative": LaborSupplyResponseRelative,
   "laborSupplyImpact.earnings.byDecile.relative.total":
