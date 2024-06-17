@@ -30,7 +30,7 @@ export const promptContent = (
     * Cite PolicyEngine ${metadata.countryId.toUpperCase()} v${selectedVersion} and the ${
       metadata.countryId === "uk"
         ? "PolicyEngine-enhanced 2019 Family Resources Survey"
-        : "2021 Current Population Survey March Supplement"
+        : "2022 Current Population Survey March Supplement"
     } microdata when describing policy impacts.
     * When describing poverty impacts, note that the poverty measure reported is ${
       metadata.countryId === "uk"
