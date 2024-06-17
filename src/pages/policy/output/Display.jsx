@@ -281,6 +281,7 @@ export function LowLevelDisplay(props) {
       bottomText = bottomText.concat(
         "These calculations utilize enhanced CPS data, a beta feature. ",
       );
+      bottomLink = "/us/research/enhanced-cps-beta";
     }
   } else if (metadata.countryId === "uk") {
     bottomText = `PolicyEngine UK v${selectedVersion} estimates reform impacts using microsimulation. `;
