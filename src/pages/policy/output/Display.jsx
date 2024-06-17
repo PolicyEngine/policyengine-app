@@ -123,6 +123,7 @@ export function DisplayImpact(props) {
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
   let pane, downloadCsvFn;
+
   if (impactType === "analysis") {
     pane = (
       <Analysis
@@ -205,10 +206,14 @@ export function LowLevelDisplay(props) {
     policy,
     showPolicyImpactPopup,
   } = props;
+
   const mobile = useMobile();
+
   const [preparingForScreenshot, setPreparingForScreenshot] = useState(false);
+
   const [, takeScreenShot] = useScreenshot();
   const componentRef = useRef(null);
+
   useEffect(() => {
     if (preparingForScreenshot) {
       setTimeout(() => {
@@ -290,7 +295,7 @@ export function LowLevelDisplay(props) {
       <p
         style={{
           marginBottom: 0,
-          fontSize: region === "enhanced_us" && "12px",
+          fontSize: "12px",
         }}
       >
         {bottomText}
@@ -355,13 +360,11 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
-      {!mobile && !preparingForScreenshot && (
-        <BottomCarousel
-          selected={focus}
-          options={policyOutputTree[0].children}
-          bottomElements={bottomElements}
-        />
-      )}
+      <BottomCarousel
+        selected={focus}
+        options={policyOutputTree[0].children}
+        bottomElements={bottomElements}
+      />
     </ResultsPanel>
   );
 }

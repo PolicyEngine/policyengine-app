@@ -379,6 +379,14 @@ export default function HouseholdPage(props) {
         setIsRHPOpen={setIsRHPOpen}
       />
       <ThreeColumnPage
+        enableLeftCollapse
+        enableCenterCollapse
+        leftCollapseTitle="Household summary"
+        centerCollapseTitle={
+          focus && focus.startsWith("householdOutput")
+            ? "Household impact"
+            : "Household variables"
+        }
         middle={<HouseholdLeftSidebar metadata={metadata} />}
         right={middle}
         left={

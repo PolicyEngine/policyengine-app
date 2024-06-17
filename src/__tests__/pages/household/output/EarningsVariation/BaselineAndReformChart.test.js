@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import BaselineAndReformChart from "pages/household/output/EarningsVariation/BaselineAndReformChart";
 import { getValueFromHousehold } from "api/variables.js";
+import ResizeObserver from "resize-observer-polyfill";
 
 jest.mock("react-plotly.js", () => jest.fn());
 jest.mock("../../../../../api/variables.js", () => ({
@@ -21,6 +22,8 @@ const metadata = {
     },
   },
 };
+
+global.ResizeObserver = ResizeObserver;
 
 describe("Test Render Output", () => {
   test("Should render toggle", () => {

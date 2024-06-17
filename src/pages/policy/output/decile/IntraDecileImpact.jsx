@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import style from "../../../../style";
@@ -6,6 +6,7 @@ import { ordinal, formatPercent, localeCode } from "../../../../lang/format";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { regionName, wordWrap } from "../ImpactChart";
 import { description } from "./common";
+import { ChartWidthContext } from "../../../../layout/HoverCard";
 
 // this function is called in this file with yaxistitle="Income decile" from
 // IntraWealthDecileImpact with yaxistitle="Wealth decile"
@@ -19,6 +20,9 @@ export function ImpactPlot(props) {
     metadata,
     mobile,
   } = props;
+
+  const chartWidth = useContext(ChartWidthContext);
+
   const colorMap = {
     "Gain more than 5%": style.colors.BLUE,
     "Gain less than 5%": style.colors.BLUE_95,
@@ -166,6 +170,7 @@ export function ImpactPlot(props) {
           r: 0,
         },
         height: mobile ? 300 : 450,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{

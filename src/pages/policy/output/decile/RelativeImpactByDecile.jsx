@@ -2,7 +2,10 @@ import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import style from "../../../../style";
-import { HoverCardContext } from "../../../../layout/HoverCard";
+import {
+  ChartWidthContext,
+  HoverCardContext,
+} from "../../../../layout/HoverCard";
 import { ordinal, formatPercent, precision } from "../../../../lang/format";
 import { plotLayoutFont } from "../utils";
 import React from "react";
@@ -19,6 +22,7 @@ export function ImpactPlot(props) {
     useHoverCard,
   } = props;
   const setHoverCard = useContext(HoverCardContext);
+  const chartWidth = useContext(ChartWidthContext);
   const hoverMessage = (x, y) => {
     const obj = `the income of households in the ${ordinal(x)} ${decileType}`;
     return relativeChangeMessage("This reform", obj, y, 0.001, metadata);
@@ -92,6 +96,7 @@ export function ImpactPlot(props) {
           l: 60,
         },
         height: mobile ? 300 : 500,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{
@@ -99,7 +104,6 @@ export function ImpactPlot(props) {
         responsive: true,
       }}
       style={{
-        width: "100%",
         marginBottom: !mobile && 50,
       }}
       {...(useHoverCard

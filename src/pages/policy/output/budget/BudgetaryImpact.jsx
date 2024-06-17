@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import { formatCurrencyAbbr, localeCode } from "../../../../lang/format";
-import { HoverCardContext } from "../../../../layout/HoverCard";
+import {
+  ChartWidthContext,
+  HoverCardContext,
+} from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "pages/policy/output/utils";
 import ImpactChart, { absoluteChangeMessage, regionName } from "../ImpactChart";
@@ -10,7 +13,9 @@ import ImpactChart, { absoluteChangeMessage, regionName } from "../ImpactChart";
 function ImpactPlot(props) {
   const { budgetaryImpact, values, labels, metadata, mobile, useHoverCard } =
     props;
+
   const setHoverCard = useContext(HoverCardContext);
+  const chartWidth = useContext(ChartWidthContext);
   const xArray = labels.length > 0 ? labels : ["Net impact"];
   const yArray = labels.length > 0 ? values : [budgetaryImpact / 1e9];
   const formatCur = (x) =>
@@ -104,15 +109,13 @@ function ImpactPlot(props) {
           r: 0,
         },
         height: mobile ? 300 : 500,
+        width: chartWidth,
         ...plotLayoutFont,
       }}
       config={{
         displayModeBar: false,
         responsive: true,
         locale: localeCode(metadata.countryId),
-      }}
-      style={{
-        width: "100%",
       }}
       {...(useHoverCard
         ? {

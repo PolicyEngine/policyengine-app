@@ -423,8 +423,10 @@ function PolicyDisplay(props) {
 export default function PolicyRightSidebar(props) {
   const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
     props;
+
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+
   const region = searchParams.get("region");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
@@ -443,6 +445,7 @@ export default function PolicyRightSidebar(props) {
   const validatedStateAbbreviation = options.find(
     (option) => option.value === stateAbbreviation,
   )?.value;
+
   const confirmEconomicImpact = () => {
     let message = "";
     if (validatedStateAbbreviation && stateAbbreviation !== region) {
@@ -558,7 +561,7 @@ export default function PolicyRightSidebar(props) {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        height: "100%",
+        position: "relative",
       }}
     >
       <div>
