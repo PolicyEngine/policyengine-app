@@ -22,6 +22,7 @@ import { motion } from "framer-motion";
 import FontIcon from "../layout/FontIcon";
 import { Helmet } from "react-helmet";
 import { Checkbox } from "antd";
+import { useWindowHeight } from "../hooks/useWindow";
 
 export default function Research() {
   return (
@@ -236,6 +237,8 @@ function BlogPostSearchTools({
     authorKeys.map((key) => [key, authors[key].name]),
   );
 
+  const [expandedList, setExpandedList] = useState(null);
+
   const textBox = (
     <TextBox
       placeholder="Search by keyword, author, etc."
@@ -273,6 +276,8 @@ function BlogPostSearchTools({
         keyToLabel={topicLabels}
         checkedValues={filteredTopics}
         setCheckedValues={setFilteredTopics}
+        expandedList={expandedList}
+        setExpandedList={setExpandedList}
       />
       <ExpandableCheckBoxList
         title="Location"
@@ -280,6 +285,8 @@ function BlogPostSearchTools({
         keyToLabel={locationLabels}
         checkedValues={filteredLocations}
         setCheckedValues={setFilteredLocations}
+        expandedList={expandedList}
+        setExpandedList={setExpandedList}
       />
       <ExpandableCheckBoxList
         title="Author"
@@ -287,18 +294,26 @@ function BlogPostSearchTools({
         keyToLabel={authorKeyToLabel}
         checkedValues={filteredAuthors}
         setCheckedValues={setFilteredAuthors}
+        expandedList={expandedList}
+        setExpandedList={setExpandedList}
       />
     </>
   );
+
   const displayCategory = useDisplayCategory();
+  // Three display values, in pixels
+  const windowHeight = useWindowHeight();
+  const TOP = 150;
+  const BOTTOM_MARGIN = 24;
   if (displayCategory === "desktop") {
     return (
       <div
         style={{
           position: "sticky",
-          top: 150,
+          top: TOP,
           display: "flex",
           flexDirection: "column",
+          maxHeight: windowHeight - TOP - BOTTOM_MARGIN,
         }}
       >
         {textBox}
@@ -344,9 +359,15 @@ function ExpandableCheckBoxList({
   keyToLabel,
   checkedValues,
   setCheckedValues,
+  expandedList,
+  setExpandedList,
 }) {
   return (
-    <Expandable title={title}>
+    <Expandable
+      title={title}
+      expandedList={expandedList}
+      setExpandedList={setExpandedList}
+    >
       {keys.map((key) => (
         <AntCheckbox
           key={key}
@@ -380,15 +401,34 @@ function ExpandableCheckBoxList({
   );
 }
 
-function Expandable({ title, children }) {
-  const [expanded, setExpanded] = useState(false);
+function Expandable({ title, expandedList, setExpandedList, children }) {
+  const expanded = expandedList === title;
   const contentRef = useRef();
   const titleRef = useRef();
+
+  const contentHeight = contentRef.current?.getBoundingClientRect().height;
+  const titleHeight = 31;
+
+  function handleExpand() {
+    if (expanded) {
+      setExpandedList(null);
+    } else {
+      setExpandedList(title);
+    }
+  }
+
   const titleComponent = (
     <div
-      style={{ display: "flex", alignItems: "center" }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        position: "sticky",
+        top: 0,
+        zIndex: 3,
+        backgroundColor: style.colors.WHITE,
+      }}
       ref={titleRef}
-      onClick={() => setExpanded(!expanded)}
+      onClick={() => handleExpand()}
     >
       <p style={{ margin: 0 }}>{title}</p>
       <FontIcon
@@ -406,21 +446,16 @@ function Expandable({ title, children }) {
     <motion.div
       style={{
         cursor: "pointer",
-        overflowY: "hidden",
+        overflowY: expanded ? "scroll" : "hidden",
+        overflowX: "hidden",
         marginTop: 10,
+        position: "relative",
       }}
       initial={{
-        maxHeight: 30,
+        maxHeight: titleHeight,
       }}
       animate={{
-        maxHeight: expanded
-          ? contentRef.current?.getBoundingClientRect().height +
-            titleRef.current?.getBoundingClientRect().height
-          : titleRef.current?.getBoundingClientRect().height,
-      }}
-      transition={{
-        duration: 0.3,
-        easings: "ease-out",
+        maxHeight: expanded ? contentHeight + titleHeight : titleHeight,
       }}
     >
       {titleComponent}
