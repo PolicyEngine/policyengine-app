@@ -18,9 +18,10 @@ export default function CollapsedPanel(props) {
     >
       <p
         style={{
-          writingMode: "sideways-lr",
+          writingMode: "tb",
+          transform: "rotate(180deg)",
           margin: "0",
-          paddingTop: "30px",
+          paddingBottom: "30px",
           fontSize: "12px",
           color: style.colors.DARK_GRAY,
         }}
