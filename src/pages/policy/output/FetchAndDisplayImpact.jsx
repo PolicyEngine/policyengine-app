@@ -42,7 +42,7 @@ export function FetchAndDisplayImpact(props) {
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-  const [queueMsg, setQueueMsg] = useState("");
+  const [queuePos, setQueuePos] = useState("");
 
   const policyRef = useRef(null);
   const countryId = useCountryId();
@@ -56,8 +56,13 @@ export function FetchAndDisplayImpact(props) {
   function computingCallback(data) {
     // Position in queue message only occurs with average_time
     // in the response object; if this is present, enable message
+    /*
     if (data.average_time && data.message) {
       setQueueMsg(data.message);
+    }
+    */
+    if (data.queue_position) {
+      setQueuePos(data.queue_position);
     }
   }
 
@@ -178,7 +183,7 @@ export function FetchAndDisplayImpact(props) {
       <DisplayWait
         averageImpactTime={averageImpactTime}
         secondsElapsed={secondsElapsed}
-        queueMsg={queueMsg}
+        queuePos={queuePos}
       />
     );
   }
