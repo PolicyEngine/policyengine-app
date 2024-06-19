@@ -92,7 +92,6 @@ const MemoizedChildren = memo(function MemoizedChildren(props) {
     <HoverCardContext.Provider value={setContent}>
       <ChartWidthContext.Provider value={chartWidth}>
         <div
-          className="test"
           onMouseEnter={() => {
             setEnabled(true);
           }}
@@ -103,6 +102,8 @@ const MemoizedChildren = memo(function MemoizedChildren(props) {
           style={{
             height: "100%",
             display: "flex",
+            flexDirection: "column",
+            gap: "12px"
           }}
         >
           {children}
