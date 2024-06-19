@@ -13,9 +13,5 @@ export default function StackedMenu(props) {
     result = <Menu tree={firstTree} selected={selected} onSelect={onSelect} />;
   }
 
-  return (
-    <div style={{ padding: 20, height: "100%" }}>
-      {result}
-    </div>
-  );
+  return <div style={{ padding: 20, height: "100%" }}>{result}</div>;
 }
