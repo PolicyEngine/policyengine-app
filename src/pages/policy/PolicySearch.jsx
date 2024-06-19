@@ -118,21 +118,6 @@ export default function PolicySearch(props) {
       );
       setLastRequestTime(new Date().getTime());
       setLastSearch(searchText);
-
-      /*
-        .then((data) => {
-          setPolicies(
-            data.result.map((item) => {
-              return {
-                value: item.id,
-                label: `#${item.id} ${item.label}`
-              };
-            }) || [],
-          );
-          setLastRequestTime(new Date().getTime());
-          setLastSearch(searchText);
-        });
-      */
     }
   };
 
@@ -144,6 +129,7 @@ export default function PolicySearch(props) {
         justifyContent: "flex-start",
         alignItems: "flex-start",
         gap: "10px",
+        width: "100%",
       }}
     >
       <Space.Compact
