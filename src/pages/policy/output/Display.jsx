@@ -270,12 +270,10 @@ export function LowLevelDisplay(props) {
   });
 
   let bottomText = "";
-  let bottomLink = "";
+  let bottomLink = null;
 
   if (metadata.countryId === "us") {
     bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
-    bottomLink =
-      "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
 
     if (region === "enhanced_us") {
       bottomText = bottomText.concat(
@@ -285,8 +283,6 @@ export function LowLevelDisplay(props) {
     }
   } else if (metadata.countryId === "uk") {
     bottomText = `PolicyEngine UK v${selectedVersion} estimates reform impacts using microsimulation. `;
-    bottomLink =
-      "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
   }
 
   const embed = new URLSearchParams(window.location.search).get("embed");
@@ -300,9 +296,11 @@ export function LowLevelDisplay(props) {
         }}
       >
         {bottomText}
-        <a href={bottomLink} target="_blank" rel="noreferrer">
-          Learn more
-        </a>
+        {bottomLink && (
+          <a href={bottomLink} target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        )}
       </p>
     );
 
