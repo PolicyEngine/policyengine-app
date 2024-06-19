@@ -379,7 +379,7 @@ function PolicyDisplay(props) {
       style={{
         paddingTop: 20,
         maxHeight: "20vh",
-        overflow: "scroll",
+        overflowY: "scroll",
       }}
     >
       <Carousel
