@@ -57,7 +57,15 @@ export function DisplayError(props) {
  * @returns component for displaying a progress bar that fills up over time
  */
 export function DisplayWait(props) {
-  const { secondsElapsed, averageImpactTime, queueMsg } = props;
+  const { secondsElapsed, averageImpactTime, queuePos } = props;
+
+  let queueMsg = "";
+  if (Number(queuePos) === 0) {
+    queueMsg = "We are currently running your simulation.";
+  } else {
+    queueMsg = `Your position in the queue is ${queuePos}.`;
+  }
+
   return (
     <div style={{ textAlign: "center", paddingTop: 50 }}>
       <LoadingCentered message="Simulating the impact of your policy..." />
