@@ -1,13 +1,10 @@
-// src/components/ParameterEditor.test.jsx
-
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ParameterEditor from "../../../../pages/policy/input/ParameterEditor";
 import { BrowserRouter } from "react-router-dom";
 
-global.URL.createObjectURL = jest.fn();
-
+// Mock the react-plotly.js library to avoid rendering the actual Plotly component during tests
 jest.mock("react-plotly.js", () => {
   return {
     __esModule: true,
@@ -15,6 +12,7 @@ jest.mock("react-plotly.js", () => {
   };
 });
 
+// Example metadata to be used as props for the ParameterEditor component
 const metadata = {
   parameters: {
     exampleParameter: {
@@ -28,12 +26,13 @@ const metadata = {
       unit: "bool",
     },
   },
-  countryId: "exampleCountryId",
+  countryId: "us",
   economy_options: {
     time_period: [{ name: "2020" }, { name: "2021" }, { name: "2022" }],
   },
 };
 
+// Example policy data to be used as props for the ParameterEditor component
 const policy = {
   reform: {
     data: {
@@ -45,17 +44,22 @@ const policy = {
   },
 };
 
+// Parameter name to be used as a prop for the ParameterEditor component
 const parameterName = "exampleParameter";
 
-test("renders ParameterEditor component", () => {
-  render(
-    <BrowserRouter>
-      <ParameterEditor
-        metadata={metadata}
-        policy={policy}
-        parameterName={parameterName}
-      />
-      ,
-    </BrowserRouter>,
-  );
+// Test suite for the ParameterEditor component
+describe("ParameterEditor", () => {
+  // Test case to check if the ParameterEditor component renders correctly
+  test("renders ParameterEditor component", () => {
+    render(
+      <BrowserRouter>
+        <ParameterEditor
+          metadata={metadata}
+          policy={policy}
+          parameterName={parameterName}
+        />
+        ,
+      </BrowserRouter>,
+    );
+  });
 });
