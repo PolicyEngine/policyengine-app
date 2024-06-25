@@ -82,7 +82,6 @@ export default function Analysis(props) {
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
 
-  //const openai = new OpenAIApi(configuration);
   const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
 
