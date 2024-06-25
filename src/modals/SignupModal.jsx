@@ -4,6 +4,7 @@ import Button from "../controls/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { loginOptions } from "../auth/authUtils";
 import useCountryId from "../hooks/useCountryId";
+import { getCookie } from "../data/cookies";
 
 export default function SignupModal(props) {
   const { setShowPolicyImpactPopup } = props;
@@ -28,7 +29,11 @@ export default function SignupModal(props) {
   }
 
   if (isLoading || isAuthenticated) {
-    setShowPolicyImpactPopup(true);
+    if (getCookie("policyImpactPopup") === "disabled") {
+      setShowPolicyImpactPopup(false);
+    } else {
+      setShowPolicyImpactPopup(true);
+    }
     return null;
   }
 

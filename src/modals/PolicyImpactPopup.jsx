@@ -1,12 +1,23 @@
 import { Modal } from "antd";
 import { useState } from "react";
 import Button from "../controls/Button";
+import { useAuth0 } from "@auth0/auth0-react";
+import { getCookie, setCookie } from "../data/cookies";
 
 export default function PolicyImpactPopup(props) {
   const [needToOpenModal, setNeedToOpenModal] = useState(true);
   const { metadata, showPolicyImpactPopup } = props;
 
+  const { isAuthenticated } = useAuth0();
+
   function handleSubmit() {
+    // For authed users who accepted cookies, log cookie
+    // to prevent re-display
+    const consentCookie = getCookie("consent");
+    if (isAuthenticated && consentCookie === "granted") {
+      setCookie("policyImpactPopup", "disabled");
+    }
+
     // Destroy modal
     setNeedToOpenModal(false);
   }
