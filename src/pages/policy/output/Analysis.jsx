@@ -195,8 +195,8 @@ export default function Analysis(props) {
       <h2>Analysis</h2>
       <p>
         <a href="/us/research/gpt-analysis">
-          Read more about PolicyEn e&apos;s automatic GPT4-powered policy
-          analysis.
+          Read more about PolicyEngine&apos;s AI policy analysis, powered by
+          Claude 3.5 Sonnet.
         </a>{" "}
         Generation usually takes around 60 seconds. Please verify any results of
         this experimental feature against our charts.
