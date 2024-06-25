@@ -1,65 +1,52 @@
+// CenteredMiddleColumn.test.js
 import React from "react";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ParameterEditor from "../../../../pages/policy/input/ParameterEditor";
-import { BrowserRouter } from "react-router-dom";
+import CenteredMiddleColumn from "/Users/introvertedbot/Documents/Projects/open-source-work/policyengine-app/src/layout/CenteredMiddleColumn.jsx";
 
-// Mock the react-plotly.js library to avoid rendering the actual Plotly component during tests
-jest.mock("react-plotly.js", () => {
-  return {
-    __esModule: true,
-    default: () => <div data-testid="mock-plot">Mock Plot Component</div>,
-  };
-});
+describe("CenteredMiddleColumn", () => {
+  test("renders title", () => {
+    const { getByText } = render(<CenteredMiddleColumn title="Test Title" />);
+    expect(getByText("Test Title")).toBeInTheDocument();
+  });
 
-// Example metadata to be used as props for the ParameterEditor component
-const metadata = {
-  parameters: {
-    exampleParameter: {
-      label: "Example Parameter",
-      description: "This is an example parameter.",
-      period: "monthly",
-      values: {
-        "2024-01-01": 10,
-        "2024-02-01": 20,
-      },
-      unit: "bool",
-    },
-  },
-  countryId: "us",
-  economy_options: {
-    time_period: [{ name: "2020" }, { name: "2021" }, { name: "2022" }],
-  },
-};
-
-// Example policy data to be used as props for the ParameterEditor component
-const policy = {
-  reform: {
-    data: {
-      exampleParameter: {
-        "2024-01-01.2024-01-31": true,
-        "2024-02-01.2024-02-28": false,
-      },
-    },
-  },
-};
-
-// Parameter name to be used as a prop for the ParameterEditor component
-const parameterName = "exampleParameter";
-
-// Test suite for the ParameterEditor component
-describe("ParameterEditor", () => {
-  // Test case to check if the ParameterEditor component renders correctly
-  test("renders ParameterEditor component", () => {
-    render(
-      <BrowserRouter>
-        <ParameterEditor
-          metadata={metadata}
-          policy={policy}
-          parameterName={parameterName}
-        />
-        ,
-      </BrowserRouter>,
+  test("renders description when provided", () => {
+    const { getByText } = render(
+      <CenteredMiddleColumn
+        title="Test Title"
+        description="Test Description"
+      />,
     );
+    expect(getByText("Test Description")).toBeInTheDocument();
+  });
+
+  test("renders description label by default when description is provided", () => {
+    const { getByText } = render(
+      <CenteredMiddleColumn
+        title="Test Title"
+        description="Test Description"
+      />,
+    );
+    expect(getByText("Description")).toBeInTheDocument();
+  });
+
+  test("does not render description label when descriptionLabel is false", () => {
+    const { queryByText } = render(
+      <CenteredMiddleColumn
+        title="Test Title"
+        description="Test Description"
+        descriptionLabel={false}
+      />,
+    );
+    expect(queryByText("Description")).not.toBeInTheDocument();
+  });
+
+  test("renders children when provided", () => {
+    const { getByText } = render(
+      <CenteredMiddleColumn title="Test Title">
+        <div>Child Element</div>
+      </CenteredMiddleColumn>,
+    );
+    expect(getByText("Child Element")).toBeInTheDocument();
   });
 });
