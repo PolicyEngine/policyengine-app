@@ -82,7 +82,6 @@ export default function Analysis(props) {
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
 
-  //const openai = new OpenAIApi(configuration);
   const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
 
@@ -195,8 +194,8 @@ export default function Analysis(props) {
       <h2>Analysis</h2>
       <p>
         <a href="/us/research/gpt-analysis">
-          Read more about PolicyEn e&apos;s automatic GPT4-powered policy
-          analysis.
+          Read more about PolicyEngine&apos;s AI policy analysis, powered by
+          Claude 3.5 Sonnet.
         </a>{" "}
         Generation usually takes around 60 seconds. Please verify any results of
         this experimental feature against our charts.
