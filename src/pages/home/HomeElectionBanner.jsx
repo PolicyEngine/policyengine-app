@@ -110,6 +110,7 @@ export default function HomeElectionBanner() {
           backgroundColor="#84badb"
           borderColor="#84badb"
           activeBackgroundColor="#0087dc"
+          activeBorderColor="#0087dc"
           style={{
             width: "100%"
           }}
@@ -120,6 +121,7 @@ export default function HomeElectionBanner() {
           backgroundColor="#e388a0"
           borderColor="#e388a0"
           activeBackgroundColor="#e4003b"
+          activeBorderColor="#e4003b"
           style={{
             width: "100%"
           }}
@@ -130,6 +132,7 @@ export default function HomeElectionBanner() {
           backgroundColor="#fad496"
           borderColor="#fad496"
           activeBackgroundColor="#faa61a"
+          activeBorderColor="#faa61a"
           style={{
             width: "100%"
           }}
