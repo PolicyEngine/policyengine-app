@@ -45,19 +45,19 @@ export default function HomeElectionBanner() {
             left: "25px",
             height: "max-content",
             width: "80%",
-            backgroundColor: style.colors.BLUE_PRIMARY,
+            // This is BLUE_PRIMARY, but we're using RGBA
+            // to prevent opacity issues
+            backgroundColor: "rgba(44, 100, 150, 0.88)",
             display: "flex",
             flexDirection: "column",
             padding: "48px",
             justifyContent: "flex-end",
             alignItems: "flex-start",
-            opacity: "88%"
           }}
         >
           <h3
             style={{
               color: style.colors.WHITE,
-              opacity: "88%"
             }}
           >
             Explore PolicyEngine&apos;s UK election coverage
@@ -73,7 +73,6 @@ export default function HomeElectionBanner() {
               type="primary"
               text="Compare each party's impacts"
               style={{
-                opacity: "100%",
                 marginTop: "24px"
               }}
             />
