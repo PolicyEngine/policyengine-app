@@ -39,7 +39,6 @@ export default function HomeElectionBanner() {
         <div
           style={{
             position: "absolute",
-            // Absolute positioning doesn't factor in padding, hence 50
             top: 0,
             bottom: 0,
             margin: "auto 0",
@@ -96,7 +95,6 @@ export default function HomeElectionBanner() {
           justifyContent: "center",
           gap: "16px",
           height: "100%",
-          // backgroundColor: style.colors.MEDIUM_DARK_GRAY,
           marginLeft: "16px"
         }}
       >
@@ -110,27 +108,30 @@ export default function HomeElectionBanner() {
         <Button
           type="primary"
           text="Conservative"
+          backgroundColor="#84badb"
+          borderColor="#84badb"
+          activeBackgroundColor="#0087dc"
           style={{
-            backgroundColor: "#84badb",
-            borderColor: "#84badb",
             width: "100%"
           }}
         />
         <Button
           type="primary"
           text="Labour"
+          backgroundColor="#e388a0"
+          borderColor="#e388a0"
+          activeBackgroundColor="#e4003b"
           style={{
-            backgroundColor: "#e388a0",
-            borderColor: "#e388a0",
             width: "100%"
           }}
         />
         <Button
           type="primary"
           text="Liberal Democratic"
+          backgroundColor="#fad496"
+          borderColor="#fad496"
+          activeBackgroundColor="#faa61a"
           style={{
-            backgroundColor: "#fad496",
-            borderColor: "#fad496",
             width: "100%"
           }}
         />
