@@ -23,7 +23,7 @@ export function findCountryId() {
 
   const browserLanguage = navigator.language;
 
-  if (COUNTRY_CODES.includes(browserLanguage)) {
+  if (Object.keys(COUNTRY_CODES).includes(browserLanguage)) {
     return COUNTRY_CODES[browserLanguage];
   } else {
     return "us";
