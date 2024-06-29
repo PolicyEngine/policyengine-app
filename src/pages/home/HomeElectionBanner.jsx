@@ -2,9 +2,11 @@ import LinkButton from "../../controls/LinkButton";
 import style from "../../style";
 import westminster from "../../images/home/westminster.jpg";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
+import { useWindowWidth } from "../../hooks/useWindow";
 
 export default function HomeElectionBanner() {
   const dC = useDisplayCategory();
+  const windowWidth = useWindowWidth();
 
   if (dC === "mobile") {
     return (
@@ -110,7 +112,7 @@ export default function HomeElectionBanner() {
           >
             <LinkButton
               type="primary"
-              text="Conservative"
+              text={windowWidth > 650 ? "Conservative" : "Cons"}
               backgroundColor="#84badb"
               borderColor="#84badb"
               activeBackgroundColor="#0087dc"
@@ -122,7 +124,7 @@ export default function HomeElectionBanner() {
             />
             <LinkButton
               type="primary"
-              text="Labour"
+              text={windowWidth > 650 ? "Labour" : "Lab"}
               backgroundColor="#e388a0"
               borderColor="#e388a0"
               activeBackgroundColor="#e4003b"
@@ -134,7 +136,7 @@ export default function HomeElectionBanner() {
             />
             <LinkButton
               type="primary"
-              text="Liberal Democrat"
+              text={windowWidth > 650 ? "Liberal Democrat" : "Lib"}
               backgroundColor="#fad496"
               borderColor="#fad496"
               activeBackgroundColor="#faa61a"
