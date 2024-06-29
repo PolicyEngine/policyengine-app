@@ -112,7 +112,7 @@ export default function HomeElectionBanner() {
           >
             <LinkButton
               type="primary"
-              text={windowWidth > 650 ? "Conservative" : "Cons"}
+              text={windowWidth > 650 ? "Conservative" : "Con"}
               backgroundColor="#84badb"
               borderColor="#84badb"
               activeBackgroundColor="#0087dc"
