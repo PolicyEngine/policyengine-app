@@ -4,7 +4,6 @@ import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
 
 export default function ManifestosComparison() {
-
   const windowHeight = useWindowHeight();
 
   return (
@@ -18,7 +17,7 @@ export default function ManifestosComparison() {
           display: "flex",
           justifyContent: "center",
           height: windowHeight - style.spacing.HEADER_HEIGHT,
-          width: "100vw"
+          width: "100vw",
         }}
       >
         <iframe
