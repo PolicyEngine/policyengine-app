@@ -53,11 +53,24 @@ export const buttonStyles = {
  * @param {String} [props.hoverStart="left"] The desired direction from which the button's hover effect starts
  * @param {String} [props.backgroundColor] Desired background color, overriding default styling
  * @param {String} [props.activeBackgroundColor] Desired background color when button is hovered and ":active"
+ * @param {String} [props.activeBorderColor] Desired border color when button is hovered and ":active"
  * @param {Object} [props.style] Desired JSX-formatted styling object; overrides all other style attributes
  * @returns {import("react").ReactComponentElement}
  */
 export default function Button(props) {
-  let { text, onClick, width, type, size, height, style } = props;
+  let {
+    text,
+    onClick,
+    width,
+    type,
+    size,
+    height,
+    style,
+    borderColor,
+    backgroundColor,
+    activeBackgroundColor,
+    activeBorderColor,
+  } = props;
 
   // This is an ugly solution to the fact that Ant Design needs these props
   // for tooltips, but if we add all possible props, various other Ant Design
@@ -87,9 +100,10 @@ export default function Button(props) {
       style={{
         display: "flex",
         alignItems: "center",
-        borderColor: buttonStyles[type].standard.borderColor,
+        borderColor: borderColor || buttonStyles[type].standard.borderColor,
         borderWidth: 1,
-        backgroundColor: buttonStyles[type].standard.backgroundColor,
+        backgroundColor:
+          backgroundColor || buttonStyles[type].standard.backgroundColor,
         textTransform: "uppercase",
         width: width,
         height: height || "auto",
@@ -109,16 +123,16 @@ export default function Button(props) {
       disabled={type === "disabled"}
       onMouseOver={(e) =>
         (e.currentTarget.style.backgroundColor =
-          buttonStyles[type].hover.backgroundColor) &&
+          activeBackgroundColor || buttonStyles[type].hover.backgroundColor) &&
         (e.currentTarget.style.borderColor =
-          buttonStyles[type].hover.borderColor) &&
+          activeBorderColor || buttonStyles[type].hover.borderColor) &&
         (e.currentTarget.style.color = buttonStyles[type].hover.color)
       }
       onMouseOut={(e) =>
         (e.currentTarget.style.backgroundColor =
-          buttonStyles[type].standard.backgroundColor) &&
+          backgroundColor || buttonStyles[type].standard.backgroundColor) &&
         (e.currentTarget.style.borderColor =
-          buttonStyles[type].standard.borderColor) &&
+          borderColor || buttonStyles[type].standard.borderColor) &&
         (e.currentTarget.style.color = buttonStyles[type].standard.color)
       }
       size={
