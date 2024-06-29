@@ -652,7 +652,7 @@
     "description": "PolicyEngine estimates the impact of the UK Spring Budget.",
     "date": "2024-03-06 09:00:00",
     "filename": "uk-2024-spring-budget.ipynb",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "image": "uk_budget_box_hunt.jpg",
     "authors": ["nikhil-woodruff", "anthony-volk"]
   },
@@ -714,7 +714,7 @@
     "title": "The Liberal Democrat Manifesto",
     "description": "PolicyEngine’s comprehensive impact score.",
     "date": "2024-06-11 16:30:00",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff"],
     "filename": "lib-dem-2024-manifesto.md",
     "image": "lib-dem-manifesto-2024.jpeg"
@@ -723,9 +723,18 @@
     "title": "The Conservative Manifesto",
     "description": "PolicyEngine’s comprehensive impact score.",
     "date": "2024-06-12 16:30:00",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff", "pavel-makarchuk", "anthony-volk"],
     "filename": "conservative-2024-manifesto.md",
     "image": "conservative-2024-manifesto.png"
+  },
+  {
+    "title": "The Labour Party Manifesto",
+    "description": "PolicyEngine’s comprehensive impact score.",
+    "date": "2024-06-29 14:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff", "anthony-volk"],
+    "filename": "labour-2024-manifesto.md",
+    "image": "labour-2024-manifesto.png"
   }
 ]
