@@ -1,4 +1,4 @@
-import Button from "../../controls/Button"
+import LinkButton from "../../controls/LinkButton"
 import style from "../../style"
 import westminster from "../../images/home/westminster.jpg";
 
@@ -69,12 +69,13 @@ export default function HomeElectionBanner() {
           >
             Use our new interactive tool to estimate the society-wide and household-level impacts of each party&apos;s manifesto
           </p>
-            <Button
+            <LinkButton
               type="primary"
               text="Compare each party's impacts"
               style={{
                 marginTop: "24px"
               }}
+              link="/uk/2024-manifestos"
             />
         </div>
 
@@ -104,7 +105,7 @@ export default function HomeElectionBanner() {
         >
           Explore PolicyEngine&apos;s analysis of each party&apos;s manifesto
         </h4>
-        <Button
+        <LinkButton
           type="primary"
           text="Conservative"
           backgroundColor="#84badb"
@@ -114,8 +115,9 @@ export default function HomeElectionBanner() {
           style={{
             width: "100%"
           }}
+          link="/uk/research/conservative-2024-manifesto"
         />
-        <Button
+        <LinkButton
           type="primary"
           text="Labour"
           backgroundColor="#e388a0"
@@ -125,8 +127,9 @@ export default function HomeElectionBanner() {
           style={{
             width: "100%"
           }}
+          link="/uk/research/labour-2024-manifesto"
         />
-        <Button
+        <LinkButton
           type="primary"
           text="Liberal Democratic"
           backgroundColor="#fad496"
@@ -136,6 +139,7 @@ export default function HomeElectionBanner() {
           style={{
             width: "100%"
           }}
+          link="/uk/research/lib-dem-2024-manifesto"
         />
 
       </div>

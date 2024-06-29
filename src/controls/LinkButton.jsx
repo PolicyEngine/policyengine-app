@@ -27,6 +27,8 @@ export default function LinkButton(props) {
     hoverStart,
     backgroundColor,
     activeBackgroundColor,
+    borderColor,
+    activeBorderColor,
     link,
     style,
   } = props;
@@ -44,6 +46,8 @@ export default function LinkButton(props) {
       hoverStart={hoverStart}
       backgroundColor={backgroundColor}
       activeBackgroundColor={activeBackgroundColor}
+      borderColor={borderColor}
+      activeBorderColor={activeBorderColor}
       onClick={!isExternalLink && (() => navigate(link))}
       style={style}
     />
