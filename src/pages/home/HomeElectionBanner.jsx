@@ -143,7 +143,7 @@ export default function HomeElectionBanner() {
             />
             <LinkButton
               type="primary"
-              text="Liberal Democratic"
+              text="Liberal Democrat"
               backgroundColor="#fad496"
               borderColor="#fad496"
               activeBackgroundColor="#faa61a"
