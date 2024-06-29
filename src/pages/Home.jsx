@@ -13,7 +13,7 @@ import useCountryId from "../hooks/useCountryId";
 import HomeElectionBanner from "./home/HomeElectionBanner";
 
 export default function Home() {
-  const countryId = useCountryId()
+  const countryId = useCountryId();
 
   return (
     <>
@@ -22,11 +22,7 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
-        {
-          countryId === "uk" && (
-            <HomeElectionBanner />
-          )
-        }
+        {countryId === "uk" && <HomeElectionBanner />}
         <HomeLanding />
         <HomeUsedBy />
         <HomeBlogPreview />

@@ -1,5 +1,5 @@
-import LinkButton from "../../controls/LinkButton"
-import style from "../../style"
+import LinkButton from "../../controls/LinkButton";
+import style from "../../style";
 import westminster from "../../images/home/westminster.jpg";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 
@@ -20,7 +20,7 @@ export default function HomeElectionBanner() {
           paddingLeft: "40px",
           paddingRight: "40px",
           paddingTop: "24px",
-          paddingBottom: "24px"
+          paddingBottom: "24px",
         }}
       >
         <div
@@ -32,7 +32,7 @@ export default function HomeElectionBanner() {
             // Fallback
             backgroundColor: style.colors.BLUE_LIGHT,
             backgroundSize: "cover",
-            height: "min-content"
+            height: "min-content",
           }}
         >
           <div
@@ -47,7 +47,7 @@ export default function HomeElectionBanner() {
               padding: "24px",
               justifyContent: "flex-end",
               alignItems: "flex-start",
-              margin: "24px"
+              margin: "24px",
             }}
           >
             <h3
@@ -59,21 +59,21 @@ export default function HomeElectionBanner() {
             </h3>
             <p
               style={{
-                color: style.colors.WHITE
+                color: style.colors.WHITE,
               }}
             >
-              Use our new interactive tool to estimate the society-wide and household-level impacts of each party&apos;s manifesto
+              Use our new interactive tool to estimate the society-wide and
+              household-level impacts of each party&apos;s manifesto
             </p>
-              <LinkButton
-                type="primary"
-                text="Compare each party's impacts"
-                style={{
-                  marginTop: "16px"
-                }}
-                link="/uk/2024-manifestos"
-              />
+            <LinkButton
+              type="primary"
+              text="Compare each party's impacts"
+              style={{
+                marginTop: "16px",
+              }}
+              link="/uk/2024-manifestos"
+            />
           </div>
-
         </div>
         <div
           style={{
@@ -81,7 +81,7 @@ export default function HomeElectionBanner() {
             width: "100%",
             height: "1px",
             margin: "24px 0",
-            flexShrink: 0
+            flexShrink: 0,
           }}
         ></div>
         <div
@@ -96,7 +96,7 @@ export default function HomeElectionBanner() {
         >
           <h4
             style={{
-              color: style.colors.BLACK
+              color: style.colors.BLACK,
             }}
           >
             Explore PolicyEngine&apos;s analysis of each party&apos;s manifesto
@@ -105,7 +105,7 @@ export default function HomeElectionBanner() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "16px"
+              gap: "16px",
             }}
           >
             <LinkButton
@@ -116,7 +116,7 @@ export default function HomeElectionBanner() {
               activeBackgroundColor="#0087dc"
               activeBorderColor="#0087dc"
               style={{
-                width: "100%"
+                width: "100%",
               }}
               link="/uk/research/conservative-2024-manifesto"
             />
@@ -128,7 +128,7 @@ export default function HomeElectionBanner() {
               activeBackgroundColor="#e4003b"
               activeBorderColor="#e4003b"
               style={{
-                width: "100%"
+                width: "100%",
               }}
               link="/uk/research/labour-2024-manifesto"
             />
@@ -140,17 +140,14 @@ export default function HomeElectionBanner() {
               activeBackgroundColor="#faa61a"
               activeBorderColor="#faa61a"
               style={{
-                width: "100%"
+                width: "100%",
               }}
               link="/uk/research/lib-dem-2024-manifesto"
             />
-
-            </div>
-
+          </div>
         </div>
       </div>
-
-    )
+    );
   }
 
   return (
@@ -165,7 +162,7 @@ export default function HomeElectionBanner() {
         paddingLeft: dC === "desktop" ? "calc((100% - 1200px) / 2)" : "100px",
         paddingRight: dC === "desktop" ? "calc((100% - 1200px) / 2)" : "100px",
         paddingTop: "24px",
-        paddingBottom: "24px"
+        paddingBottom: "24px",
       }}
     >
       <div
@@ -173,7 +170,7 @@ export default function HomeElectionBanner() {
           position: "relative",
           width: "100%",
           display: "flex",
-          paddingRight: "16px"
+          paddingRight: "16px",
         }}
       >
         <img
@@ -214,27 +211,27 @@ export default function HomeElectionBanner() {
           </h3>
           <p
             style={{
-              color: style.colors.WHITE
+              color: style.colors.WHITE,
             }}
           >
-            Use our new interactive tool to estimate the society-wide and household-level impacts of each party&apos;s manifesto
+            Use our new interactive tool to estimate the society-wide and
+            household-level impacts of each party&apos;s manifesto
           </p>
-            <LinkButton
-              type="primary"
-              text="Compare each party's impacts"
-              style={{
-                marginTop: "24px"
-              }}
-              link="/uk/2024-manifestos"
-            />
+          <LinkButton
+            type="primary"
+            text="Compare each party's impacts"
+            style={{
+              marginTop: "24px",
+            }}
+            link="/uk/2024-manifestos"
+          />
         </div>
-
       </div>
       <div
         style={{
           backgroundColor: "rgba(0, 0, 0, 0.8)",
           width: "1px",
-          height: "100%"
+          height: "100%",
         }}
       ></div>
       <div
@@ -245,12 +242,12 @@ export default function HomeElectionBanner() {
           justifyContent: "center",
           gap: "16px",
           height: "100%",
-          marginLeft: "16px"
+          marginLeft: "16px",
         }}
       >
         <h4
           style={{
-            color: style.colors.BLACK
+            color: style.colors.BLACK,
           }}
         >
           Explore PolicyEngine&apos;s analysis of each party&apos;s manifesto
@@ -263,7 +260,7 @@ export default function HomeElectionBanner() {
           activeBackgroundColor="#0087dc"
           activeBorderColor="#0087dc"
           style={{
-            width: "100%"
+            width: "100%",
           }}
           link="/uk/research/conservative-2024-manifesto"
         />
@@ -275,7 +272,7 @@ export default function HomeElectionBanner() {
           activeBackgroundColor="#e4003b"
           activeBorderColor="#e4003b"
           style={{
-            width: "100%"
+            width: "100%",
           }}
           link="/uk/research/labour-2024-manifesto"
         />
@@ -287,12 +284,11 @@ export default function HomeElectionBanner() {
           activeBackgroundColor="#faa61a"
           activeBorderColor="#faa61a"
           style={{
-            width: "100%"
+            width: "100%",
           }}
           link="/uk/research/lib-dem-2024-manifesto"
         />
-
       </div>
     </div>
-  )
+  );
 }

@@ -22,7 +22,7 @@ export default function HomeLanding() {
           style={{
             width: "100%",
             height: mobile ? 600 : "100%",
-            backgroundColor: style.colors.DARKEST_BLUE
+            backgroundColor: style.colors.DARKEST_BLUE,
           }}
         />
       ) : (
@@ -56,7 +56,8 @@ export default function HomeLanding() {
             height: "100%",
             backdropFilter: countryId !== "uk" && "blur(10px)",
             WebkitBackdropFilter: countryId !== "uk" && "blur(10px)",
-            backgroundColor: countryId === "uk" ? "rgb(23, 53, 79)" : "rgba(23, 53, 79, 0.77)",
+            backgroundColor:
+              countryId === "uk" ? "rgb(23, 53, 79)" : "rgba(23, 53, 79, 0.77)",
             padding: 40,
           }}
         >
