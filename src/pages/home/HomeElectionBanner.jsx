@@ -28,27 +28,17 @@ export default function HomeElectionBanner() {
             position: "relative",
             width: "100%",
             display: "flex",
+            backgroundImage: `url(${westminster})`,
+            // Fallback
+            backgroundColor: style.colors.BLUE_LIGHT,
+            backgroundSize: "cover",
+            height: "min-content"
           }}
         >
-          <img
-            alt="Palace of Westminster"
-            src={westminster}
-            style={{
-              display: "block",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
           <div
             style={{
-              position: "absolute",
-              top: 0,
-              bottom: 0,
-              margin: "auto 0",
-              left: "12px",
               height: "max-content",
-              width: "calc(100% - 24px)",
+              width: "100%",
               // This is BLUE_PRIMARY, but we're using RGBA
               // to prevent opacity issues
               backgroundColor: "rgba(44, 100, 150, 0.88)",
@@ -57,6 +47,7 @@ export default function HomeElectionBanner() {
               padding: "24px",
               justifyContent: "flex-end",
               alignItems: "flex-start",
+              margin: "24px"
             }}
           >
             <h3
