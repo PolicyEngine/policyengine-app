@@ -157,7 +157,7 @@ export default function HomeElectionBanner() {
     <div
       style={{
         width: "100%",
-        height: "75vh",
+        height: "60vh",
         display: "grid",
         gridTemplateColumns: "75% 1px calc(25% - 1px)",
         gridTemplateRows: "100%",
