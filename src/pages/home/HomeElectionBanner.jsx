@@ -11,7 +11,7 @@ export default function HomeElectionBanner() {
         display: "grid",
         gridTemplateColumns: "75% 1px calc(25% - 1px)",
         gridTemplateRows: "100%",
-        backgroundColor: "#222222",
+        backgroundColor: style.colors.LIGHT_GRAY,
         paddingLeft: "calc((100% - 1200px) / 2)",
         paddingRight: "calc((100% - 1200px) / 2)",
         paddingTop: "24px",
@@ -82,7 +82,7 @@ export default function HomeElectionBanner() {
       </div>
       <div
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.8)",
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
           width: "1px",
           height: "100%"
         }}
@@ -100,7 +100,7 @@ export default function HomeElectionBanner() {
       >
         <h4
           style={{
-            color: style.colors.WHITE
+            color: style.colors.BLACK
           }}
         >
           Explore PolicyEngine&apos;s analysis of each party&apos;s manifesto
