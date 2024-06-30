@@ -27,7 +27,7 @@ def send_index_html():
         index_html = f.read()
     try:
         index_html = add_social_card_tags(
-            index_html, request.path, request.args, SOCIAL_CARDS
+            index_html, request.path, request.args, {}
         )
     except Exception as e:
         print(e)
