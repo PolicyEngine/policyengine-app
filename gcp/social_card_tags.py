@@ -2,6 +2,9 @@ import json
 from pathlib import Path
 from bs4 import BeautifulSoup
 
+CUSTOM_TITLES = {
+    "2024-manifestos": "UK 2024 Election Manifestos"
+}
 
 # Load src/posts/posts.json
 with open("src/posts/posts.json") as f:
@@ -26,7 +29,11 @@ def get_title(path: str, query_params: dict):
         main_text += f"Reform #{query_params['reform']} | "
 
     try:
-        page_name = path.split("/")[2].capitalize()
+        path_element = path.split("/")[2]
+        if CUSTOM_TITLES.get(path_element) is not None:
+            page_name = CUSTOM_TITLES.get(path_element)
+        else:
+            page_name = path_element.capitalize()
     except IndexError:
         page_name = "Home"
     main_text += f"{page_name} | "
