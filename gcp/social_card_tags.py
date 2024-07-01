@@ -2,9 +2,7 @@ import json
 from pathlib import Path
 from bs4 import BeautifulSoup
 
-CUSTOM_TITLES = {
-    "2024-manifestos": "UK 2024 Election Manifestos"
-}
+CUSTOM_TITLES = {"2024-manifestos": "UK 2024 Election Manifestos"}
 
 # Load src/posts/posts.json
 with open("src/posts/posts.json") as f:
