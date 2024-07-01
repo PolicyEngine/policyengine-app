@@ -34,7 +34,7 @@ The Conservatives propose a net spending decrease of £44bn through 2029. This w
 - Lowering research and development funding
 - Increasing international student visa fees
 
-The Conservatives also propose spending increases to national defence, the NHS, and on some programs we classify as education-related (National Service and apprenticeship subsidies).
+The Conservatives also propose spending increases to national defence, the NHS, and on some programs we classify as education-related (National Service and apprenticeship subsidies). Because none of these changes impact benefits modelled by PolicyEngine, we assume the Conservatives' costings and use the ONS’ estimates of the distributional impact of public service spending categories.
 
 | **Provision**                          | **Conservatives (£bn)** | **PolicyEngine (£bn)**                                                                                                           |
 | -------------------------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -93,7 +93,7 @@ We estimate the Conservatives’ manifesto to be [mostly regressive along income
 
 ![Impact by income decile](/images/posts/conservative-2024-manifesto/decile_impact.png "image_tooltip")
 
-We also conclude that people in the lowest income deciles are more likely to experience the negative impacts of the proposal, with over 95% of people in the first income decile experiencing a decrease in net income. The majority of people in income deciles above the fifth start to experience net income increases with [overall 46% of the population benefiting, in net income terms, and 52% of people experience net income decreases](https://policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=58041&region=uk&timePeriod=2029&baseline=1).
+We also conclude that people in the lowest income deciles are more likely to experience the negative impacts of the proposal, with over 95% of people in the first income decile experiencing a decrease in net income. The majority of people in income deciles above the fifth start to experience net income increases with [overall 46% of the population benefiting](https://policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=58041&region=uk&timePeriod=2029&baseline=1), in net income terms, and 52% of people experience net income decreases.
 
 ![Impacts within income deciles](/images/posts/conservative-2024-manifesto/intra_decile_impact.png "image_tooltip")
 
