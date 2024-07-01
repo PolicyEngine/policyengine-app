@@ -36,7 +36,7 @@ def get_title(path: str, query_params: dict):
         page_name = "Home"
     main_text += f"{page_name} | "
     main_text += f"PolicyEngine {country}"
-    return main_text
+    return main_text 
 
 
 def get_image(path: str, query_params: dict, social_cards: dict = {}):
