@@ -136,7 +136,7 @@ export default function HomeElectionBanner() {
             />
             <LinkButton
               type="primary"
-              text={windowWidth > 650 ? "Liberal Democrat" : "Lib"}
+              text={windowWidth > 650 ? "Liberal Democrats" : "Lib"}
               backgroundColor="#fad496"
               borderColor="#fad496"
               activeBackgroundColor="#faa61a"
@@ -280,7 +280,7 @@ export default function HomeElectionBanner() {
         />
         <LinkButton
           type="primary"
-          text="Liberal Democratic"
+          text="Liberal Democrats"
           backgroundColor="#fad496"
           borderColor="#fad496"
           activeBackgroundColor="#faa61a"
