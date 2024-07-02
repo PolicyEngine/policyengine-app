@@ -408,9 +408,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
             style={{
               marginTop: 30,
               marginBottom: 30,
-              // evenly distribute the table header cells
               display: "table",
-              tableLayout: "fixed",
               width: "100%",
             }}
           >
@@ -431,7 +429,6 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
               textAlign: "center",
               verticalAlign: "middle",
               color: "white",
-              width: "100%",
             }}
           >
             {children}

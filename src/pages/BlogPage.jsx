@@ -307,7 +307,7 @@ function PostBodySection({ post, markdown, notebook }) {
             <LeftContents markdown={markdown} notebook={notebook} />
           </div>
         </div>
-        <div style={{ flex: 4 }}>
+        <div style={{ flex: 4, minWidth: 0 }}>
           {bodyContent}
           <AuthorSection post={post} />
         </div>
