@@ -22,8 +22,8 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
-        {countryId === "uk" && <HomeElectionBanner />}
         <HomeLanding />
+        {countryId === "uk" && <HomeElectionBanner />}
         <HomeUsedBy />
         <HomeBlogPreview />
         <HomeSubscribe />
