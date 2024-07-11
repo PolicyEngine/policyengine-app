@@ -738,12 +738,12 @@
     "image": "labour-2024-manifesto.png"
   },
   {
-  "title": "PolicyEngine Powers Niskanen Center's Analysis",
-  "description": "Three new reports from the Niskanen Center think tank demonstrate PolicyEngine’s tax and benefit reform model.",
-  "date": "2024-07-12 09:00:00",
-  "tags": ["us", "policy", "featured"],
-  "authors": ["max-ghenis", "ben-gross"],
-  "filename": "niskanen_center_analysis.md",
-  "image": "niskanen_center_analysis.jpg"
+    "title": "PolicyEngine Powers Niskanen Center's Analysis",
+    "description": "Three new reports from the Niskanen Center think tank demonstrate PolicyEngine’s tax and benefit reform model.",
+    "date": "2024-07-12 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["max-ghenis", "ben-gross"],
+    "filename": "niskanen_center_analysis.md",
+    "image": "niskanen_center_analysis.jpg"
   }
 ]
