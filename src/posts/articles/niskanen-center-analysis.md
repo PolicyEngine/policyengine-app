@@ -4,7 +4,7 @@ The report, "[Building A Stronger Foundation for American Families](https://www.
 
 PolicyEngine's built-in instant interactive data visualizations powerfully illustrate the distributional effects of Niskanen's proposals across income deciles. For example, the chart below unpacks the distributional analysis of two simultaneous reforms–an expansion of the CTC combined with the elimination of the head of household (HoH) filing status, which reduces taxes for single parents compared to single individuals. Policy makers are often looking to find lower costs, and charts like these demonstrate how multivariate changes to the tax-code enable policymakers to balance budgetary concerns with impact. James Medlock, a favorite contributor to online policy discussion, applauded the chart: "Especially for more 'give and take' reforms like this, it's nice to show heterogeneity within deciles," [he wrote](https://x.com/jdcmedlock/status/1772638537059377660).
 
-![](images/posts/niskanen_center_analysis/ctc_graph.png)
+![](/images/posts/niskanen_center_analysis/ctc_graph.png "image_tooltip")
 
 PolicyEngine also empowers consumers of policy reforms to test the analysis and dig deeper. PolicyEngine's free open source model makes our assumptions transparent and enables anyone to design policy reforms. For example, by clicking [here](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=47843&region=enhanced_) you can see all component reforms and impacts of Niskanen's preferred policy design.
 
