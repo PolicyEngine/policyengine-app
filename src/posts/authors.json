@@ -91,7 +91,9 @@
   "ben-gross": {
     "name": "Ben Gross",
     "email": "ben@policyengine.org",
+    "bio": "Ben is a communications intern at PolicyEngine.",
     "linkedin": "https://www.linkedin.com/in/ben-gross-146330178/",
-    "twitter": "twitter.com/bengrossbg"
+    "twitter": "twitter.com/bengrossbg",
+    "title": "Communications Intern at PolicyEngine"
   }
 }
