@@ -742,8 +742,8 @@
     "description": "Three new reports from the Niskanen Center think tank demonstrate PolicyEngine’s tax and benefit reform model.",
     "date": "2024-07-12 09:00:00",
     "tags": ["us", "policy", "featured"],
-    "authors": ["max-ghenis", "ben-gross"],
-    "filename": "niskanen_center_analysis.md",
-    "image": "niskanen_center_analysis.jpg"
+    "authors": ["max-ghenis"],
+    "filename": "niskanen-center-analysis.md",
+    "image": "niskanen-center-analysis.jpg"
   }
 ]
