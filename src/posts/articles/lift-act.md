@@ -37,7 +37,7 @@ Applying elasticities from the Congressional Budget Office, we project that the 
 
 # Conclusion
 
-The LIFT Act proposed by then-Senator Kamala Harris includes a Middle Class Tax Credit that would reduce poverty and inequality through over $400 billion in annual transfers if fully taken up. This exceeds contemporaneous cost estimates (see Table 2), likely due to faster than expected inflation since 2018, which mechanically expands the nominal cost of the program through higher maximums and phase-outs.
+The LIFT Act proposed by then-Senator Kamala Harris includes a Middle Class Tax Credit that would reduce poverty and inequality through over $400 billion in annual transfers if fully taken up. This exceeds contemporaneous cost estimates (see Table 2), likely due to faster than expected inflation since 2018, which mechanically expands the nominal cost of the program through higher maximums and phase-outs. We also assume full take-up, which increases the costs compared to, for example, the Tax Policy Center's assumption of partial take-up.
 
 **Table 2: Comparison of LIFT Act Middle Class Tax Credit cost and poverty estimates**
 
