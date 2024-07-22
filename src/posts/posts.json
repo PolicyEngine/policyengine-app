@@ -10,7 +10,7 @@
   },
   {
     "title": "How machine learning tools make PolicyEngine more accurate",
-    "description": "Today, we’re launching new survey weights that cut deviations from administrative statistics by 97%.",
+    "description": "Today, we're launching new survey weights that cut deviations from administrative statistics by 97%.",
     "date": "2022-03-07",
     "tags": ["uk", "technical"],
     "filename": "how-machine-learning-tools-make-policyengine-more-accurate.md",
@@ -19,7 +19,7 @@
   },
   {
     "title": "Enhancing the Current Population Survey for policy analysis",
-    "description": "We’ve used modern data science techniques to make PolicyEngine the UK’s most accurate microsimulation model. In 2023, we’ll do the same in the US.",
+    "description": "We've used modern data science techniques to make PolicyEngine the UK's most accurate microsimulation model. In 2023, we'll do the same in the US.",
     "date": "2022-12-28",
     "tags": ["us", "technical"],
     "filename": "enhancing-the-current-population-survey-for-policy-analysis.md",
@@ -27,7 +27,7 @@
     "authors": ["max-ghenis"]
   },
   {
-    "title": "How charitable contributions affect Americans’ taxes",
+    "title": "How charitable contributions affect Americans' taxes",
     "description": "PolicyEngine estimates the tax impact of your donations for free.",
     "date": "2022-11-29",
     "tags": ["us", "policy"],
@@ -37,7 +37,7 @@
   },
   {
     "title": "Maryland's standard deduction",
-    "description": "PolicyEngine computes the program’s impact on Maryland and individual households.",
+    "description": "PolicyEngine computes the program's impact on Maryland and individual households.",
     "date": "2022-11-22",
     "tags": ["us", "policy"],
     "filename": "maryland-standard-deduction.md",
@@ -46,7 +46,7 @@
   },
   {
     "title": "From OpenFisca to PolicyEngine",
-    "description": "OpenFisca has catapulted our progress, and now we’ve forked it into our own microsimulation framework.",
+    "description": "OpenFisca has catapulted our progress, and now we've forked it into our own microsimulation framework.",
     "date": "2022-11-10",
     "tags": ["global", "technical"],
     "filename": "from-openfisca-to-policyengine.md",
@@ -54,8 +54,8 @@
     "authors": ["nikhil-woodruff"]
   },
   {
-    "title": "Oregon’s Nonrefundable Exemption Credit",
-    "description": "PolicyEngine computes the program’s impact on Oregon and individual households.",
+    "title": "Oregon's Nonrefundable Exemption Credit",
+    "description": "PolicyEngine computes the program's impact on Oregon and individual households.",
     "date": "2022-11-04",
     "tags": ["us", "policy"],
     "filename": "oregons-nonrefundable-exemption-credit.md",
@@ -157,7 +157,7 @@
     "date": "2021-10-15",
     "authors": ["nikhil-woodruff"],
     "tags": ["global", "impact"],
-    "description": "Today we’re (re)launching PolicyEngine to give the public unprecedented insight into the tax and benefit system.",
+    "description": "Today we're (re)launching PolicyEngine to give the public unprecedented insight into the tax and benefit system.",
     "filename": "make-everyone-a-policymaker.md",
     "image": "make-everyone-a-policymaker.webp"
   },
@@ -180,11 +180,11 @@
     "image": "income-tax-cuts-rishi-sunak-is-reportedly-considering.webp"
   },
   {
-    "title": "PolicyEngine’s 2021 year in review",
+    "title": "PolicyEngine's 2021 year in review",
     "date": "2021-12-29",
     "authors": ["max-ghenis"],
     "tags": ["global", "impact"],
-    "description": "PolicyEngine’s inaugural year was a substantial one for public policy.",
+    "description": "PolicyEngine's inaugural year was a substantial one for public policy.",
     "filename": "policyengines-2021-year-in-review.md",
     "image": "policyengines-2021-year-in-review.webp"
   },
@@ -202,7 +202,7 @@
     "date": "2022-03-31",
     "authors": ["max-ghenis"],
     "tags": ["us", "impact"],
-    "description": "Today, we’re beta-launching PolicyEngine US and several other new features.",
+    "description": "Today, we're beta-launching PolicyEngine US and several other new features.",
     "filename": "policyengine-comes-stateside.md",
     "image": "policyengine-comes-stateside.webp"
   },
@@ -216,7 +216,7 @@
     "image": "how-policyengine-estimates-the-effects-of-uk-carbon-taxes.png"
   },
   {
-    "title": "Tax cuts in Prime Minister Truss’s Growth Plan 2022",
+    "title": "Tax cuts in Prime Minister Truss's Growth Plan 2022",
     "date": "2022-09-23",
     "authors": ["max-ghenis"],
     "tags": ["uk", "policy"],
@@ -229,7 +229,7 @@
     "date": "2022-09-27",
     "authors": ["max-ghenis"],
     "tags": ["us", "technical"],
-    "description": "From universal basic income to age-dependent means-tested payments, we’ve got you covered.",
+    "description": "From universal basic income to age-dependent means-tested payments, we've got you covered.",
     "filename": "how-to-simulate-basic-and-guaranteed-income-policies-in-policyengine-us.md",
     "image": "how-to-simulate-basic-and-guaranteed-income-policies-in-policyengine-us.png"
   },
@@ -292,7 +292,7 @@
     "date": "2023-01-12 00:00:01",
     "authors": ["max-ghenis"],
     "tags": ["us", "impact"],
-    "description": "We’re exiting beta with the most accessible tax and benefit model ever built.",
+    "description": "We're exiting beta with the most accessible tax and benefit model ever built.",
     "filename": "us-the-new-policyengine.md",
     "image": "us-the-new-policyengine.png"
   },
@@ -301,7 +301,7 @@
     "date": "2023-01-12 00:00:01",
     "authors": ["max-ghenis"],
     "tags": ["uk", "impact"],
-    "description": "We’re taking economic policy to the next level with the most accessible tax and benefit model ever built.",
+    "description": "We're taking economic policy to the next level with the most accessible tax and benefit model ever built.",
     "filename": "uk-the-new-policyengine.md",
     "image": "uk-the-new-policyengine.png"
   },
@@ -310,13 +310,13 @@
     "date": "2023-02-02 21:00:00",
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "tags": ["us", "policy"],
-    "description": "We’ve added a new feature to the US version of PolicyEngine that lets you see how your reforms affect cliffs.",
+    "description": "We've added a new feature to the US version of PolicyEngine that lets you see how your reforms affect cliffs.",
     "filename": "how-would-reforms-affect-cliffs.md",
     "image": "how-would-reforms-affect-cliffs.png"
   },
   {
-    "title": "Reform UK’s Emergency Recovery Plan",
-    "description": "See the UK party’s proposed deficit-funded tax cuts in PolicyEngine",
+    "title": "Reform UK's Emergency Recovery Plan",
+    "description": "See the UK party's proposed deficit-funded tax cuts in PolicyEngine",
     "date": "2023-02-09 11:15:00",
     "tags": ["uk", "policy"],
     "filename": "reform-uks-emergency-recovery-plan.md",
@@ -333,7 +333,7 @@
     "authors": ["max-ghenis"]
   },
   {
-    "title": "Restoration of the American Rescue Plan Act’s expanded Child Tax Credit",
+    "title": "Restoration of the American Rescue Plan Act's expanded Child Tax Credit",
     "description": "PolicyEngine computes how the 2021 policy would affect Americans and America in 2023.",
     "date": "2023-02-10 00:00:00",
     "tags": ["us", "policy"],
@@ -342,7 +342,7 @@
     "authors": ["max-ghenis"]
   },
   {
-    "title": "OpenFisca wins Edge of Government’s Innovation Award",
+    "title": "OpenFisca wins Edge of Government's Innovation Award",
     "description": "The success of Rules as Code and its impact on citizens.",
     "date": "2023-02-15 00:00:00",
     "tags": ["global", "impact"],
@@ -351,7 +351,7 @@
     "authors": ["max-ghenis"]
   },
   {
-    "title": "Massachusetts Governor Maura Healey’s FY 2024 Budget Recommendation",
+    "title": "Massachusetts Governor Maura Healey's FY 2024 Budget Recommendation",
     "description": "PolicyEngine estimates the distributional impact of two provisions and the household impact of four provisions.",
     "date": "2023-03-03 00:00:00",
     "tags": ["us", "us-ma", "policy"],
@@ -360,7 +360,7 @@
     "authors": ["max-ghenis", "nicholas-rodelo"]
   },
   {
-    "title": "The UK’s extended Energy Price Guarantee",
+    "title": "The UK's extended Energy Price Guarantee",
     "description": "Analysis by PolicyEngine on the expected effects on income, poverty, and inequality.",
     "date": "2023-03-05 07:30:00",
     "tags": ["uk", "policy"],
@@ -396,7 +396,7 @@
     "authors": ["nikhil-woodruff"]
   },
   {
-    "title": "Automate policy analysis with PolicyEngine’s new ChatGPT integration",
+    "title": "Automate policy analysis with PolicyEngine's new ChatGPT integration",
     "description": "Score an economic impact in a few clicks. Write a report in one more.",
     "date": "2023-03-17 11:00:00",
     "tags": ["global", "technical"],
@@ -424,7 +424,7 @@
   },
   {
     "title": "FiscalSim and PolicyEngine: Emphasizing collaboration and open-source acknowledgment",
-    "description": "The Center for Growth and Opportunity launches FiscalSim, a US policy-computing web app drawing heavily from PolicyEngine’s work.",
+    "description": "The Center for Growth and Opportunity launches FiscalSim, a US policy-computing web app drawing heavily from PolicyEngine's work.",
     "date": "2023-03-24 01:00:00",
     "tags": ["us", "technical"],
     "filename": "fiscalsim.md",
@@ -442,7 +442,7 @@
   },
   {
     "title": "Breaking down policy impacts by wealth decile",
-    "description": "Income isn’t everything.",
+    "description": "Income isn't everything.",
     "date": "2023-03-28 09:00:00",
     "tags": ["uk", "technical"],
     "filename": "breaking-down-policy-impacts-by-wealth-decile.md",
@@ -460,7 +460,7 @@
   },
   {
     "title": "Announcing the addition of Kansas income tax to PolicyEngine",
-    "description": "We’ve expanded our tax calculator and customizable reform simulator to the Sunflower State.",
+    "description": "We've expanded our tax calculator and customizable reform simulator to the Sunflower State.",
     "date": "2023-04-03 09:00:00",
     "tags": ["us", "us-ks", "policy"],
     "filename": "kansas-income-tax.md",
@@ -469,7 +469,7 @@
   },
   {
     "title": "Revolutionizing policy analysis with AI",
-    "description": "Discover PolicyEngine’s new GPT-4 integration and audience modes.",
+    "description": "Discover PolicyEngine's new GPT-4 integration and audience modes.",
     "date": "2023-04-03 16:00:00",
     "tags": ["global", "technical"],
     "filename": "gpt-analysis.md",
@@ -496,7 +496,7 @@
   },
   {
     "title": "Analysis of the DC Financial Support for Families with Children Amendment Act",
-    "description": "Evaluating Councilmember Zachary Parker’s second Child Tax Credit proposal of 2023.",
+    "description": "Evaluating Councilmember Zachary Parker's second Child Tax Credit proposal of 2023.",
     "date": "2023-04-16 09:00:00",
     "tags": ["us", "us-dc", "policy"],
     "filename": "dc-financial-support-for-families-with-children.md",
@@ -514,7 +514,7 @@
   },
   {
     "title": "Building the roots of PolicyEngine Nigeria",
-    "description": "We’re expanding PolicyEngine’s reach by empowering Nigerians to understand personal income tax policies.",
+    "description": "We're expanding PolicyEngine's reach by empowering Nigerians to understand personal income tax policies.",
     "date": "2023-04-21 09:00:00",
     "tags": ["ng", "technical"],
     "filename": "building-the-roots-of-policyengine-nigeria.md",
@@ -522,7 +522,7 @@
     "authors": ["nikhil-woodruff", "max-ghenis"]
   },
   {
-    "title": "Kansas’s Flat Tax Proposal — SB169",
+    "title": "Kansas's Flat Tax Proposal — SB169",
     "description": "We review how the bill works and model its impact with PolicyEngine US.",
     "date": "2023-04-23 09:00:00",
     "tags": ["us", "us-ks", "policy"],
@@ -532,7 +532,7 @@
   },
   {
     "title": "Digital Public Goods Alliance recognizes PolicyEngine as a Digital Public Good",
-    "description": "The UN-endorsed initiative highlights PolicyEngine’s open source approach to supporting the Sustainable Development Goals.",
+    "description": "The UN-endorsed initiative highlights PolicyEngine's open source approach to supporting the Sustainable Development Goals.",
     "date": "2023-04-26 09:00:00",
     "tags": ["global", "impact", "featured"],
     "filename": "digital-public-goods-alliance-recognizes-policyengine-as-a-digital-public-good.md",
@@ -541,7 +541,7 @@
   },
   {
     "title": "How PolicyEngine shaped the outcome of the $1 million bet James Medlock won today",
-    "description": "Our free tax calculator helped determine Balaji Srinivasan’s $500,000 payments to Medlock and GiveDirectly.",
+    "description": "Our free tax calculator helped determine Balaji Srinivasan's $500,000 payments to Medlock and GiveDirectly.",
     "date": "2023-05-02 16:00:00",
     "tags": ["us", "technical"],
     "filename": "medlock-wins.md",
@@ -576,7 +576,7 @@
     "authors": ["max-ghenis"]
   },
   {
-    "title": "Scott Winship’s individualized Earned Income Tax Credit proposal",
+    "title": "Scott Winship's individualized Earned Income Tax Credit proposal",
     "description": "An analysis and note on the value of open-source models.",
     "date": "2023-07-14 08:00:00",
     "filename": "winship-individualized-eitc.md",
@@ -585,7 +585,7 @@
     "authors": ["max-ghenis"]
   },
   {
-    "title": "Dive Into New Mexico’s Income Tax Analysis on PolicyEngine",
+    "title": "Dive Into New Mexico's Income Tax Analysis on PolicyEngine",
     "description": "Expanding our tax calculator and reform simulator capabilities to the Land of Enchantment.",
     "date": "2023-08-02 16:00:00",
     "filename": "new-mexico-income-tax-launch.md",
@@ -604,7 +604,7 @@
   },
   {
     "title": "New King's College London research uses PolicyEngine",
-    "description": "A ‘Citizens’ Economic Council’ explores PolicyEngine-scored tax-benefit impacts.",
+    "description": "A ‘Citizens' Economic Council' explores PolicyEngine-scored tax-benefit impacts.",
     "date": "2023-11-04 09:00:00",
     "filename": "citizens-economic-council.md",
     "tags": ["uk", "impact", "featured"],
@@ -631,7 +631,7 @@
   },
   {
     "title": "Preliminary analysis of the Wyden-Smith Child Tax Credit expansion",
-    "description": "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit’s refundable component.",
+    "description": "PolicyEngine estimates the impact of the reported compromise to expand the Child Tax Credit's refundable component.",
     "date": "2024-01-11 12:00:00",
     "filename": "wyden-smith-ctc.md",
     "tags": ["us", "impact", "featured", "child-tax-credit"],
@@ -712,7 +712,7 @@
   },
   {
     "title": "The Liberal Democrat Manifesto",
-    "description": "PolicyEngine’s comprehensive impact score.",
+    "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-11 16:30:00",
     "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff"],
@@ -721,7 +721,7 @@
   },
   {
     "title": "The Conservative Manifesto",
-    "description": "PolicyEngine’s comprehensive impact score.",
+    "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-12 16:30:00",
     "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff", "pavel-makarchuk", "anthony-volk"],
@@ -730,7 +730,7 @@
   },
   {
     "title": "The Labour Party Manifesto",
-    "description": "PolicyEngine’s comprehensive impact score.",
+    "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-29 14:00:00",
     "tags": ["uk", "policy", "featured"],
     "authors": ["nikhil-woodruff", "anthony-volk"],
@@ -739,11 +739,20 @@
   },
   {
     "title": "PolicyEngine Powers Niskanen Center's Analysis",
-    "description": "Three new reports from the Niskanen Center think tank demonstrate PolicyEngine’s tax and benefit reform model.",
+    "description": "Three new reports from the Niskanen Center think tank demonstrate PolicyEngine's tax and benefit reform model.",
     "date": "2024-07-12 09:00:00",
     "tags": ["us", "policy", "featured"],
     "authors": ["max-ghenis", "ben-gross"],
     "filename": "niskanen-center-analysis.md",
     "image": "niskanen-center-analysis.jpg"
+  },
+  {
+    "title": "Kamala Harris's LIFT Act Middle Class Tax Credit",
+    "description": "A comprehensive analysis of the Vice President's 2018 proposal.",
+    "date": "2024-07-22 01:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "lift-act.md",
+    "image": "lift-act.jpg"
   }
 ]
