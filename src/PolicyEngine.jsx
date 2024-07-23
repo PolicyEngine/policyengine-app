@@ -43,6 +43,7 @@ import RedirectToCountry from "./routing/RedirectToCountry";
 import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
+import ManifestosComparison from "./applets/ManifestosComparison";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -349,6 +350,7 @@ export default function PolicyEngine() {
           <Route path="blog/:postName" element={<RedirectBlogPost />} />
         </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
+        <Route path="/uk/2024-manifestos" element={<ManifestosComparison />} />
         <Route path="/:countryId/api_status" element={<StatusPage />} />
         <Route
           path="/us/trafwa-ctc-calculator"

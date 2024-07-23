@@ -57,7 +57,15 @@ export function DisplayError(props) {
  * @returns component for displaying a progress bar that fills up over time
  */
 export function DisplayWait(props) {
-  const { secondsElapsed, averageImpactTime, queueMsg } = props;
+  const { secondsElapsed, averageImpactTime, queuePos } = props;
+
+  let queueMsg = "";
+  if (Number(queuePos) === 0) {
+    queueMsg = "We are currently running your simulation.";
+  } else {
+    queueMsg = `Your position in the queue is ${queuePos}.`;
+  }
+
   return (
     <div style={{ textAlign: "center", paddingTop: 50 }}>
       <LoadingCentered message="Simulating the impact of your policy..." />
@@ -270,22 +278,19 @@ export function LowLevelDisplay(props) {
   });
 
   let bottomText = "";
-  let bottomLink = "";
+  let bottomLink = null;
 
   if (metadata.countryId === "us") {
     bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
-    bottomLink =
-      "/us/research/enhancing-the-current-population-survey-for-policy-analysis";
 
     if (region === "enhanced_us") {
       bottomText = bottomText.concat(
         "These calculations utilize enhanced CPS data, a beta feature. ",
       );
+      bottomLink = "/us/research/enhanced-cps-beta";
     }
   } else if (metadata.countryId === "uk") {
     bottomText = `PolicyEngine UK v${selectedVersion} estimates reform impacts using microsimulation. `;
-    bottomLink =
-      "/uk/research/how-machine-learning-tools-make-policyengine-more-accurate";
   }
 
   const embed = new URLSearchParams(window.location.search).get("embed");
@@ -299,9 +304,11 @@ export function LowLevelDisplay(props) {
         }}
       >
         {bottomText}
-        <a href={bottomLink} target="_blank" rel="noreferrer">
-          Learn more
-        </a>
+        {bottomLink && (
+          <a href={bottomLink} target="_blank" rel="noreferrer">
+            Learn more
+          </a>
+        )}
       </p>
     );
 

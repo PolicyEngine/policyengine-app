@@ -1,5 +1,4 @@
 import { Navigate } from "react-router-dom";
-import { COUNTRY_CODES } from "../data/countries";
 
 export default function RedirectToCountry() {
   // Find country ID
@@ -14,14 +13,18 @@ export default function RedirectToCountry() {
  * @returns {String}
  */
 export function findCountryId() {
-  const locale = Intl.DateTimeFormat().resolvedOptions().locale;
-  let localeCountry = undefined;
-  if (locale.includes("-")) {
-    localeCountry = locale.split("-")[1].toLowerCase();
-  }
+  const COUNTRY_CODES = {
+    "en-US": "us",
+    "en-GB": "uk",
+    "en-CA": "ca",
+    "en-NG": "ng",
+    "en-IL": "il",
+  };
 
-  if (COUNTRY_CODES.includes(localeCountry)) {
-    return localeCountry;
+  const browserLanguage = navigator.language;
+
+  if (Object.keys(COUNTRY_CODES).includes(browserLanguage)) {
+    return COUNTRY_CODES[browserLanguage];
   } else {
     return "us";
   }

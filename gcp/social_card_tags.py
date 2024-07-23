@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 from bs4 import BeautifulSoup
 
+CUSTOM_TITLES = {"2024-manifestos": "UK 2024 Election Manifestos"}
 
 # Load src/posts/posts.json
 with open("src/posts/posts.json") as f:
@@ -26,7 +27,11 @@ def get_title(path: str, query_params: dict):
         main_text += f"Reform #{query_params['reform']} | "
 
     try:
-        page_name = path.split("/")[2].capitalize()
+        path_element = path.split("/")[2]
+        if CUSTOM_TITLES.get(path_element) is not None:
+            page_name = CUSTOM_TITLES.get(path_element)
+        else:
+            page_name = path_element.capitalize()
     except IndexError:
         page_name = "Home"
     main_text += f"{page_name} | "
@@ -53,6 +58,8 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
         .replace("=", "_")
         .replace(".", "_")
     )
+
+    print("Safe path", path)
 
     # Search the "./social_cards" directory for a file with the same name as the path and any extension
     if "/research/" in original_path:
@@ -81,7 +88,8 @@ def get_image(path: str, query_params: dict, social_cards: dict = {}):
             return f"https://policyengine.org/static/media/{filename}"
 
     # Check if there is a filename in the social_cards dict whose non-extension part matches the path
-    if path + ".png" in social_cards:
+    social_card_folder = Path("./build/images/social-cards")
+    if (social_card_folder / (path + ".png")).exists():
         print(f"Found a social card for {path}")
         return f"https://policyengine.org/images/social-cards/{path}.png"
     else:
