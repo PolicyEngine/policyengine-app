@@ -54,10 +54,11 @@ export default function BlogMVP() {
     const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
 
     const imageUrl = post.image ? handleImageLoad(post.image) : "";
-    const file = require(`../posts/articles/${post.filename}`);
+    const file = require(`../posts/articles/createMVP.ipynb`);
 
     const [content, setContent] = useState("");
-    const isNotebook = post.filename.endsWith(".ipynb");
+    // const isNotebook = post.filename.endsWith(".ipynb");
+    const isNotebook = true;
 
     // useEffect(() => {
     //     const fetchContent = async () => {
@@ -77,56 +78,17 @@ export default function BlogMVP() {
     
     //     fetchContent();
     // }, [post.filename, isNotebook]);
-    // useEffect(() => {
-    //     fetch(file)
-    //         .then((response) => response.text())
-    //         .then((text) => {
-    //             if (isNotebook) {
-    //                 console.log("Notebook content:", JSON.parse(text));
-    //                 setContent(JSON.parse(text));
-    //             } else {
-    //                 setContent(text);
-    //             }
-    //         });
-    // }, [file, isNotebook]);
-
-    async function loadPyodide() {
-        if (!window.pyodide) {
-            window.pyodide = await globalThis.loadPyodide({
-                indexURL: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/",
-            });
-        }
-    }
     useEffect(() => {
-        const fetchNotebook = async () => {
-            const response = await fetch(file);
-            const notebook = await response.json();
-    
-            if (isNotebook) {
-                await loadPyodide();
-                const pyodide = await window.pyodide;
-    
-                // Combine the code cells into a single script
-                const code = notebook.cells
-                    .filter(cell => cell.cell_type === 'code')
-                    .map(cell => cell.source.join('\n'))
-                    .join('\n');
-    
-                try {
-                    const output = await pyodide.runPythonAsync(code);
-                    console.log("Notebook output:", output);
-                    setContent(output);
-                } catch (error) {
-                    console.error("Error running the notebook:", error);
-                    setContent(`Error: ${error.message}`);
+        fetch(file)
+            .then((response) => response.text())
+            .then((text) => {
+                if (isNotebook) {
+                    console.log("Notebook content:", JSON.parse(text));
+                    setContent(JSON.parse(text));
+                } else {
+                    setContent(text);
                 }
-            } else {
-                const text = await response.text();
-                setContent(text);
-            }
-        };
-    
-        fetchNotebook();
+            });
     }, [file, isNotebook]);
 
     // Some old links might point to a dated URL format
@@ -138,6 +100,7 @@ export default function BlogMVP() {
     let markdown;
 
     if (isNotebook && content) {
+        console.log("content", content)
         markdown = content.cells
             .filter((cell) => cell.cell_type === "markdown")
             .map((cell) => cell.source.join(""))
@@ -191,7 +154,9 @@ export default function BlogMVP() {
 
 function NotebookCell({ data }) {
     const inputCell = data.source;
-    const outputCell = (data.outputs || [])[0]?.data;
+    // const outputCell = (data.outputs || [])[0]?.data;
+    const outputCell = (data.outputs || []).slice(-1)[0]?.data;
+    // console.log(data.outputs)
     let outputCellComponent;
     if (!outputCell) {
         outputCellComponent = null;
