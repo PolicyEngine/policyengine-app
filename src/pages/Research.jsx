@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Section from "../layout/Section";
@@ -79,35 +78,41 @@ function ResearchExplorer() {
   );
 
   const [filteredTopics, setFilteredTopics] = useState(
-    searchParams.get("topics")?.split(",") || [],
+    searchParams.get("topics")?.split(",") || topicTags,
   );
   const [filteredLocations, setFilteredLocations] = useState(
     searchParams.get("locations")?.split(",") || initialLocations,
   );
 
+  const authorKeys = Object.keys(authors);
+
   const [filteredAuthors, setFilteredAuthors] = useState(
-    searchParams.get("authors")?.split(",") || [],
+    searchParams.get("authors")?.split(",") || authorKeys,
   );
-
-  useEffect(() => {
-    setFilteredTopics(searchParams.get("topics")?.split(",") || []);
-    setFilteredLocations(
-      searchParams.get("locations")?.split(",") || initialLocations,
-    );
-    setFilteredAuthors(searchParams.get("authors")?.split(",") || []);
-  }, [searchParams, initialLocations]);
-
   const filterFunction = (post) => {
-    const meetsTopics =
-      filteredTopics.length === 0 ||
-      filteredTopics.some((tag) => post.tags.includes(tag));
-    const meetsLocations =
-      filteredLocations.length === 0 ||
-      filteredLocations.some((tag) => post.tags.includes(tag));
-    const meetsAuthors =
-      filteredAuthors.length === 0 ||
-      filteredAuthors.some((author) => post.authors.includes(author));
-    return meetsTopics && meetsLocations && meetsAuthors;
+    let hasMetAtLeastOneFilteredTopic = false;
+    for (const tag of filteredTopics) {
+      if (post.tags.includes(tag)) {
+        hasMetAtLeastOneFilteredTopic = true;
+      }
+    }
+    let hasMetAtLeastOneFilteredLocation = false;
+    for (const tag of filteredLocations) {
+      if (post.tags.includes(tag)) {
+        hasMetAtLeastOneFilteredLocation = true;
+      }
+    }
+    let hasMetAtLeastOneFilteredAuthor = false;
+    for (const author of filteredAuthors) {
+      if (post.authors.includes(author)) {
+        hasMetAtLeastOneFilteredAuthor = true;
+      }
+    }
+    return (
+      hasMetAtLeastOneFilteredLocation &
+      hasMetAtLeastOneFilteredTopic &
+      hasMetAtLeastOneFilteredAuthor
+    );
   };
 
   const preFilteredPosts = posts.filter(filterFunction);
@@ -368,12 +373,10 @@ function ExpandableCheckBoxList({
           key={key}
           label={keyToLabel[key] || key}
           checked={checkedValues.includes(key)}
-          onCheck={() =>
-            setCheckedValues(
-              checkedValues.includes(key)
-                ? checkedValues.filter((k) => k !== key)
-                : [...checkedValues, key],
-            )
+          onCheck={
+            checkedValues.includes(key)
+              ? () => setCheckedValues(checkedValues.filter((k) => k !== key))
+              : () => setCheckedValues(checkedValues.concat([key]))
           }
         />
       ))}
@@ -388,8 +391,10 @@ function ExpandableCheckBoxList({
       <AntCheckbox
         label="Select all"
         checked={checkedValues.length === keys.length}
-        onCheck={() =>
-          setCheckedValues(checkedValues.length === keys.length ? [] : keys)
+        onCheck={
+          checkedValues.length === keys.length
+            ? () => setCheckedValues([])
+            : () => setCheckedValues(keys)
         }
       />
     </Expandable>
