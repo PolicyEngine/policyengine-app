@@ -266,7 +266,6 @@ describe("Test main PolicyEngine component", () => {
 
     const selectedPost = filteredPostJson[randIndex];
     const postFilepath = selectedPost.filename.split(".")[0];
-    console.log(postFilepath);
 
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];

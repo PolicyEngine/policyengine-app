@@ -42,7 +42,6 @@ export function SubscribeToPolicyEngine(props) {
   async function submitHandler(event, formInput) {
     event.preventDefault();
 
-    console.log(submitToMailchimp);
     // "error" is if there is a connection issue, while "data" is Mailchimp's
     // res object, including signup errors
     const mailchimpResponse = await submitToMailchimp(formInput.email);

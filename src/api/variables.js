@@ -307,7 +307,7 @@ export function getValueFromHousehold(
     entityPlural =
       metadata.entities[metadata.variables[variable].entity].plural;
   } catch (e) {
-    console.log("Error getting variable value", variable, e);
+    console.error("Error getting variable value", variable, e);
   }
   if (!entityName) {
     let possibleEntities;
@@ -355,7 +355,7 @@ export function getValueFromHousehold(
     return null;
   }
   if (!timePeriodValues) {
-    console.log("Error getting variable value", variable);
+    console.error("Error getting variable value", variable);
     return null;
   }
   if (!timePeriod) {
