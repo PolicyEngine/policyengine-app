@@ -196,7 +196,7 @@ function NotebookOutputPlain({ data }) {
     content = parseJSONSafe(processedData);
     return <NotebookOutputPlotly data={content} />;
   } catch (e) {
-    console.log(e, data);
+    console.error(e, data);
     content = data;
   }
   return <p>{JSON.stringify(data)}</p>;

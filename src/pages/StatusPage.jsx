@@ -92,7 +92,7 @@ export function StatusPage() {
         setState((prevState) => ({ ...prevState, ...result }));
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setState((prevState) => ({ ...prevState, [country]: "ERROR" }));
       });
   }

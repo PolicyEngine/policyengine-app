@@ -66,7 +66,7 @@ export function buildParameterTree(parameters) {
       }
       currentNode.children.push(nodeToInsert);
     } catch (e) {
-      console.log("Error inserting node", nodeToInsert, "into", currentNode);
+      console.error("Error inserting node", nodeToInsert, "into", currentNode);
     }
   }
   return tree.children.find((child) => child.name === "gov");

@@ -85,7 +85,6 @@ function ResearchExplorer() {
     searchParams.get("locations")?.split(",") || initialLocations,
   );
 
-  const authorKeys = Object.keys(authors);
   const [filteredAuthors, setFilteredAuthors] = useState(
     searchParams.get("authors")?.split(",") || [],
   );
@@ -96,7 +95,7 @@ function ResearchExplorer() {
       searchParams.get("locations")?.split(",") || initialLocations,
     );
     setFilteredAuthors(searchParams.get("authors")?.split(",") || []);
-  }, [searchParams]);
+  }, [searchParams, initialLocations]);
 
   const filterFunction = (post) => {
     const meetsTopics =

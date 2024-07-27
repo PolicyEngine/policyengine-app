@@ -441,7 +441,6 @@ function UserProfileSection(props) {
 
 function PolicySimulationCard(props) {
   const { metadata, userPolicy, keyValue } = props;
-  console.log(Object.keys(metadata));
 
   const CURRENT_API_VERSION = metadata?.version;
   const geography =
