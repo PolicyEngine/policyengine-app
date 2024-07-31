@@ -1,0 +1,75 @@
+name: Pull request
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - uses: psf/black@stable
+        with:
+          options: ". -l 79 --check"
+
+  test:
+    name: CI
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [19.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: ${{ matrix.node-version }}
+      - name: Install repository
+        run: npm ci
+      - name: Lint repository
+        run: npm run lint
+      - name: Build package
+        run: npm run build
+      - name: Test repository
+        run: make test
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.2.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
+
+  execute_notebooks:
+    name: Execute Notebooks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'  # Specify the Python version you need
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install nbconvert nbclient
+      - name: Execute Jupyter Notebooks
+        run: python path/to/run_notebooks.py  # Replace with the actual path to your script
+
+  commit_changes:
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add path/to/notebooks/*  # Adjust the path to your notebooks
+          git commit -m "Executed and updated notebooks"
+          git push
