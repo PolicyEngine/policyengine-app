@@ -731,7 +731,9 @@ export default function PolicyRightSidebar(props) {
         {!hideButtons && focus && !focus.startsWith("policyOutput") && (
           <SearchParamNavButton
             type={
-              Object.keys(policy.reform.data).length === 0
+              // Disable output if both baseline and reform are current law
+              Object.keys(policy.reform.data).length === 0 &&
+              Object.keys(policy.baseline.data).length === 0
                 ? "disabled"
                 : "primary"
             }
