@@ -131,7 +131,6 @@ export default function PolicyOutput(props) {
           {...props}
           showPolicyImpactPopup={showPolicyImpactPopup}
         />
-        ;
       </>
     );
   }
