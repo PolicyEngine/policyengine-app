@@ -10,11 +10,18 @@ export const promptContent = (
   relevantParameterBaselineValues,
   relevantParameters,
 ) => {
+  const isEnhancedCPS = regionKeyToLabel[region].includes("enhanced CPS");
+
   const policyDetails = `I'm using PolicyEngine, a free, open source tool to compute the impact of public policy. I'm writing up an economic analysis of a hypothetical tax-benefit policy reform. Please write the analysis for me using the details below, in their order. You should:
     
     * First explain each provision of the reform, noting that it's hypothetical and won't represents policy reforms for ${timePeriod} and ${
       regionKeyToLabel[region]
     }. Explain how the parameters are changing from the baseline to the reform values using the given data.
+     ${
+      isEnhancedCPS
+        && "*  Explicitly mention that This analysis uses PolicyEngine's Enhanced CPS, constructed from the 2022 Current Population Survey and the 2015 IRS Public Use File, and calibrated to tax, benefit, income, and demographic aggregates."
+        
+    }
     * Round large numbers like: ${metadata.currency}3.1 billion, ${
       metadata.currency
     }300 million, ${metadata.currency}106,000, ${metadata.currency}1.50 (never ${
