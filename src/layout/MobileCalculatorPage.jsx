@@ -13,10 +13,51 @@ import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
 import VariableSearch from "../pages/household/VariableSearch";
 import { ParameterSearch } from "../pages/PolicyPage.jsx";
 import PolicyRightSidebar from "../pages/policy/PolicyRightSidebar.jsx";
+import { impactKeys } from "../pages/policy/output/ImpactTypes.jsx";
 
 import style from "../style";
 import colors from "../style/colors";
 import spacing from "../style/spacing";
+
+// Function to flatten the tree structure from which the currentNode is populated and include only leaf nodes. Current tree structure includes labels that are not in ImpactTypes.jsx.
+function flattenTree(tree) {
+  let flatTree = [];
+  
+  function traverse(node) {
+    flatTree.push({ name: node.name, label: node.label });
+    if (node.children) {
+      node.children.forEach(child => traverse(child));
+    }
+  }
+  
+  tree.forEach(node => traverse(node));
+  return flatTree;
+}
+
+// Helper function to adjust Focus when not in DOM
+function getPreviousValidFocus(options, currentIndex, validFocusValues) {
+  let previousIndex = currentIndex - 1;
+  while (previousIndex >= 0) {
+    if (validFocusValues.includes(options[previousIndex].name)) {
+      return options[previousIndex];
+    }
+    previousIndex -= 1;
+  }
+  return {}; // Return an empty object if no valid previous focus is found
+}
+
+// Helper function to adjust Focus when not in DOM
+function getNextValidFocus(options, currentIndex, validFocusValues) {
+  let nextIndex = currentIndex + 1;
+  while (nextIndex <= options.length - 1) {
+    const optionName = options[nextIndex].name.replace("policyOutput.", "");
+    if (validFocusValues.includes(optionName)) {
+      return options[nextIndex];
+    }
+    nextIndex += 1;
+  }
+  return {}; // Return an empty object if no valid previous focus is found
+}
 
 /**
  * Layout component that overlays the household and policy pages on mobile
@@ -217,7 +258,14 @@ function MobileTreeNavigationHolder(props) {
   const { metadata, type, buttonHeight } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
+  
+  // eslint-disable-next-line no-console
+  console.log('searchParams:', searchParams.toString());
+
   const focus = searchParams.get("focus");
+
+  // eslint-disable-next-line no-console
+  console.log('Focus:', focus);
 
   let currentNode;
 
@@ -237,6 +285,10 @@ function MobileTreeNavigationHolder(props) {
     }
   }
 
+  // eslint-disable-next-line no-console
+  console.log('Current Node:', currentNode);
+  
+
   useEffect(() => {
     // On load, scroll the current breadcrumb into view.
     const breadcrumb = document.getElementById("current-breadcrumb");
@@ -249,6 +301,7 @@ function MobileTreeNavigationHolder(props) {
       });
     }
   }, [focus]);
+
   let breadcrumbs = [];
   try {
     let stem = "";
@@ -267,6 +320,8 @@ function MobileTreeNavigationHolder(props) {
   } catch (e) {
     currentNode = null;
   }
+
+
   return (
     <div
       style={{
@@ -334,11 +389,25 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
   }
   if (type === "policy") {
     const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
-    options = POLICY_OUTPUT_TREE[0].children;
+    options = flattenTree(POLICY_OUTPUT_TREE[0].children);
   }
+
+  // eslint-disable-next-line no-console
+  console.log('Options:', options);
+
+
+  const validFocusValues = impactKeys;
+   // eslint-disable-next-line no-console
+   console.log('Valid Focus Falues:', validFocusValues);
+
+
   const currentIndex = options.map((option) => option.name).indexOf(focus);
-  const previous = options[currentIndex - 1] || {};
-  const next = options[currentIndex + 1] || {};
+  // eslint-disable-next-line no-console
+  console.log('Current Index:', currentIndex);
+  const previous = getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
+  const next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
+  // eslint-disable-next-line no-console
+  console.log('Next value:', next);
 
   return (
     <div
