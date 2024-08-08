@@ -20,5 +20,6 @@
     "noImplicitUseStrict": true,
     "ignoreDeprecations": "5.0"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": [".history"]
 }
