@@ -71,3 +71,5 @@ export const getImpactReps = (impactKey, props) => {
     throw new Error(`Impact type ${impactKey} not found`);
   }
 };
+
+export const impactKeys = Object.keys(map);
