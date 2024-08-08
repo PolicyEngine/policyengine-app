@@ -13,6 +13,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
+import Error from "../layout/Error";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
@@ -91,7 +92,7 @@ export default function PolicyPage(props) {
   // Evaluate if policy is deprecated or not
   const isPolicyDeprecated = checkIsPolicyDeprecated(metadata, policy);
   if (isPolicyDeprecated) {
-    policy = removeDeprecatedParams(metadata, policy);
+    const newPolicy = removeDeprecatedParams(metadata, policy);
   }
 
   useEffect(() => {
@@ -119,6 +120,8 @@ export default function PolicyPage(props) {
 
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
+  } else if (isPolicyDeprecated) {
+    middle = <Error message="This policy is deprecated" />;
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"
@@ -260,6 +263,7 @@ export default function PolicyPage(props) {
             metadata={metadata}
             policy={policy}
             setPolicy={setPolicy}
+            isPolicyDeprecated={isPolicyDeprecated}
           />
         }
       />
