@@ -7,14 +7,8 @@ import useCountryId from "../hooks/useCountryId";
 
 export default function TACPage() {
   const mobile = useMobile();
-  const countryId = useCountryId() || "us"; 
-
-  const governingLawContent = {
-    us: "the laws of the United States",
-    uk: "the laws of the United Kingdom",
-    // Add other countries' governing laws similarly
-  };
-
+  const countryId = useCountryId() || "us";
+  
   return (
     <>
       <Helmet>
@@ -95,15 +89,15 @@ export default function TACPage() {
         </p>
         <h4>Governing Law</h4>
         <p>
-          9.1 These Terms shall be governed by and construed in accordance with{" "}
-          {governingLawContent[countryId] || governingLawContent["us"]}.
+          9.1 These Terms shall be governed by and construed in accordance with
+          the laws of the United States.
         </p>
         <h4>Changes to the Terms</h4>
         <p>
           10.1 PolicyEngine may update this privacy policy at any time in order
           to reflect, for example, changes to our practices or for other
           operational legal or regulatory reasons. PolicyEngine will update this
-          page with a changelog, and the full history of changes is available
+          page with a changelog, and the full history of changes is be available
           on our{" "}
           <a href="https://github.com/policyengine/policyengine-app">
             GitHub repository

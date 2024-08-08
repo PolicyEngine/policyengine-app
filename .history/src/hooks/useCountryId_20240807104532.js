@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-   
+
 // Hook useCountryId that gets the countryId from the window pathname (e.g. /uk/research -> uk)
 function useCountryId() {
   const [countryId, setCountryId] = useState(null);
