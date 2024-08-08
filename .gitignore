@@ -33,3 +33,5 @@ yarn-error.log*
 .env
 /src/__tests__/__setup__/data.json
 .idea
+
+venv/
