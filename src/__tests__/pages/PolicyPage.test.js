@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { checkIsPolicyDeprecated } from "../../pages/PolicyPage";
+import { checkIsPolicyDeprecated, removeDeprecatedParams } from "../../pages/PolicyPage";
 
 jest.mock("react-plotly.js", () => jest.fn());
 
@@ -69,4 +69,82 @@ describe("checkIsPolicyDeprecated", () => {
   });
 
 
+});
+
+describe("removeDeprecatedParams", () => {
+  test("properly handles baseline", () => {
+    const testPolicy = {
+      baseline: {
+        data: null,
+      },
+      reform: {
+        data: {
+          "test-provision": {},
+        },
+      },
+    };
+
+    const testMetadata = {
+      parameters: {
+        "test-provision": {},
+      },
+    };
+
+    const testOutput = removeDeprecatedParams(testMetadata, testPolicy);
+
+    expect(testOutput).toMatchObject(testPolicy);
+  });
+  test("removes deprecated parameters", () => {
+    const testPolicy = {
+      baseline: {
+        data: null,
+      },
+      reform: {
+        data: {
+          "test-provision": {},
+          "deprecated-provision": {},
+        },
+      },
+    };
+
+    const testMetadata = {
+      parameters: {
+        "test-provision": {},
+      },
+    };
+
+    const testOutput = removeDeprecatedParams(testMetadata, testPolicy);
+
+    let expectedOutput = JSON.parse(JSON.stringify(testPolicy));
+    delete expectedOutput.reform.data["deprecated-provision"];
+
+    expect(testOutput.reform.data).not.toHaveProperty("deprecated-provision");
+    expect(testOutput).toMatchObject(expectedOutput);
+  });
+  test("properly handles policy with multiple non-deprecated parameters", () => {
+    const testPolicy = {
+      baseline: {
+        data: null,
+      },
+      reform: {
+        data: {
+          "test-provision": {},
+          "test-provision-2": {},
+          "test-provision-3": {},
+        },
+      },
+    };
+
+    const testMetadata = {
+      parameters: {
+        "test-provision": {},
+        "test-provision-2": {},
+        "test-provision-3": {},
+      },
+    };
+
+    const testOutput = removeDeprecatedParams(testMetadata, testPolicy);
+
+    expect(testOutput).toMatchObject(testPolicy);
+  });
 });
