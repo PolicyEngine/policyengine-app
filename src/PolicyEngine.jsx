@@ -22,7 +22,7 @@ import {
   updateMetadata,
 } from "./api/call";
 import LoadingCentered from "./layout/LoadingCentered";
-import ErrorPage from "./layout/Error";
+import ErrorPage from "./layout/ErrorPage";
 import Header from "./layout/Header";
 import Testimonials from "./pages/Testimonials";
 import CalculatorInterstitial from "./pages/CalculatorInterstitial";

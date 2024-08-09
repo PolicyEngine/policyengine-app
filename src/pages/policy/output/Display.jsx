@@ -9,7 +9,7 @@ import { Progress, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
 import useMobile from "layout/Responsive";
-import ErrorPage from "layout/Error";
+import ErrorPage from "layout/ErrorPage";
 import ResultActions from "layout/ResultActions";
 import { downloadCsv } from "./utils";
 import { useReactToPrint } from "react-to-print";

@@ -13,7 +13,7 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
-import Error from "../layout/Error";
+import ErrorComponent from "../layout/ErrorComponent";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
@@ -121,7 +121,7 @@ export default function PolicyPage(props) {
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
   } else if (isPolicyDeprecated) {
-    middle = <Error message="This policy is deprecated" />;
+    middle = <ErrorComponent message="This policy is deprecated" />;
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"

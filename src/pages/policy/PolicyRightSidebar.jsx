@@ -343,7 +343,7 @@ export function DeprecatedPolicyChange() {
     >
       <div>
         <span style={{ fontFamily: "Roboto Serif", color: "black" }}>
-          This policy has been deprecated.
+          This policy is deprecated.
         </span>
       </div>
     </div>
