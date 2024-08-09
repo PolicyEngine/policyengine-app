@@ -19,7 +19,11 @@ import style from "../style";
 import colors from "../style/colors";
 import spacing from "../style/spacing";
 
-// Function to flatten the tree structure from which the currentNode is populated and include only leaf nodes. Current tree structure includes labels that are not in ImpactTypes.jsx.
+/** Function to flatten the tree structure from which the currentNode is 
+ * populated and include only leaf nodes. Current tree structure includes 
+ * labels that are not in ImpactTypes.jsx. This is required for the logic in
+ * MobileBottomNavButtons.
+  */ 
 function flattenTree(tree) {
   let flatTree = [];
   
@@ -373,7 +377,9 @@ function MobileTreeNavigationHolder(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
-// This function creates navigation buttons of the 
+/** This function creates navigation buttons for mobile view. It checks if there is a 
+ * previous or next breadcrumb to determine if a back and/or forward arrow button should 
+ * be present. */ 
 function MobileBottomNavButtons({ focus, type, metadata }) {
   if (
     type === "household" &&
@@ -418,13 +424,6 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
     next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
   }
 
-  
-
-
-  
-
-
-
   // eslint-disable-next-line no-console
   console.log('Current Index:', currentIndex);
   
@@ -447,20 +446,20 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
         <SearchParamNavButton
           focus={previous.name}
           direction="left"
-          style={{ padding: 0 }}
+          style={{ padding: 0, width: 60 }}
         />
       ) : (
-        <div style={{ width: 60 }} />
+        <div />
       )}
       {}
       {next.label ? (
         <SearchParamNavButton
           focus={next.name}
           direction="right"
-          style={{ padding: 0 }}
+          style={{ padding: 0, width: 60 }}
         />
       ) : (
-        <div style={{ width: 60 }} />
+        <div />
       )}
     </div>
   );
