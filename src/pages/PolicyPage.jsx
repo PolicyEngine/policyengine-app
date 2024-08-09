@@ -18,6 +18,7 @@ import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
+import DeprecationModal from "../modals/DeprecationModal";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -91,9 +92,12 @@ export default function PolicyPage(props) {
   const isOutput = focus.includes("policyOutput");
   // Evaluate if policy is deprecated or not
   const isPolicyDeprecated = checkIsPolicyDeprecated(metadata, policy);
+  let newPolicy = {};
   if (isPolicyDeprecated) {
-    const newPolicy = removeDeprecatedParams(metadata, policy);
+    newPolicy = removeDeprecatedParams(metadata, policy);
   }
+
+  const countryVersion = metadata.version;
 
   useEffect(() => {
     if (!focus) {
@@ -121,7 +125,12 @@ export default function PolicyPage(props) {
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
   } else if (isPolicyDeprecated) {
-    middle = <ErrorComponent message="This policy is deprecated" />;
+    middle = (
+      <>
+        <DeprecationModal newPolicy={newPolicy} countryVersion={countryVersion}/>
+        <ErrorComponent message="This policy is deprecated" />
+      </>
+    );
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"
