@@ -8,7 +8,7 @@ import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 
 export default function DeprecationModal(props) {
-  const { oldPolicy, countryVersion, metadata } = props;
+  const { oldPolicy, countryVersion, metadata, deprecatedParams } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -71,6 +71,10 @@ export default function DeprecationModal(props) {
     setIsModalOpen(false);
   }
 
+  const deprecatedParamsJSX = deprecatedParams.map((param) => (
+    <p key={param} style={{fontStyle: "italic"}}>{`- ${param}`}</p>
+  ));
+
   return (
     <Modal open={isModalOpen} footer={null} closable={false}>
       <h6
@@ -82,8 +86,9 @@ export default function DeprecationModal(props) {
       >
         Your policy is deprecated
       </h6>
-      <p>{`Unfortunately, as of policyengine-${countryId} v.${countryVersion}, some of your parameters are no longer supported.`}
+      <p>{`Unfortunately, as of policyengine-${countryId} v.${countryVersion}, some of your parameters are no longer supported:`}
       </p>
+      {deprecatedParamsJSX}
       <p>{`Click the button on the left to transfer your remaining valid parameters to a new policy.`}</p>
       <div
         style={{

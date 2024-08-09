@@ -92,6 +92,10 @@ export default function PolicyPage(props) {
   const isOutput = focus.includes("policyOutput");
   // Evaluate if policy is deprecated or not
   const isPolicyDeprecated = checkIsPolicyDeprecated(metadata, policy);
+  let deprecatedParams = [];
+  if (isPolicyDeprecated) {
+    deprecatedParams = findDeprecatedParams(metadata, policy);
+  }
 
   const countryVersion = metadata.version;
 
@@ -123,7 +127,7 @@ export default function PolicyPage(props) {
   } else if (isPolicyDeprecated) {
     middle = (
       <>
-        <DeprecationModal oldPolicy={policy} countryVersion={countryVersion} metadata={metadata}/>
+        <DeprecationModal oldPolicy={policy} countryVersion={countryVersion} metadata={metadata} deprecatedParams={deprecatedParams}/>
         <ErrorComponent message="This policy is deprecated" />
       </>
     );
@@ -299,4 +303,25 @@ export function checkIsPolicyDeprecated(metadata, policy) {
 
   return false;
 
+}
+
+export function findDeprecatedParams(metadata, policy) {
+  const deprecatedParams = [];
+  const baselineAndReform = Object.values(policy)
+
+  for (const item of baselineAndReform) {
+    // Iterate over each provision
+
+    // Handle current law, where data is null, and handle empty object
+    if (!item.data || Object.keys(item.data).length === 0) {
+      continue;
+    } else {
+      for (const provision in item.data) {
+        if (!Object.keys(metadata.parameters).includes(provision)) {
+          deprecatedParams.push(provision);
+        }
+      }
+    }
+  }
+  return deprecatedParams;
 }
