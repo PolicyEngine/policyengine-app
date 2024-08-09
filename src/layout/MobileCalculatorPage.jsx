@@ -38,7 +38,8 @@ function flattenTree(tree) {
 function getPreviousValidFocus(options, currentIndex, validFocusValues) {
   let previousIndex = currentIndex - 1;
   while (previousIndex >= 0) {
-    if (validFocusValues.includes(options[previousIndex].name)) {
+    const optionName = options[previousIndex].name.replace("policyOutput.", "");
+    if (optionName === "policyBreakdown" || validFocusValues.includes(optionName)) {
       return options[previousIndex];
     }
     previousIndex -= 1;
@@ -51,7 +52,7 @@ function getNextValidFocus(options, currentIndex, validFocusValues) {
   let nextIndex = currentIndex + 1;
   while (nextIndex <= options.length - 1) {
     const optionName = options[nextIndex].name.replace("policyOutput.", "");
-    if (validFocusValues.includes(optionName)) {
+    if (optionName === "policyBreakdown" || validFocusValues.includes(optionName)) {
       return options[nextIndex];
     }
     nextIndex += 1;
@@ -385,7 +386,9 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
 
   let options = null;
   if (type === "household") {
-    options = HOUSEHOLD_OUTPUT_TREE[0].children;
+    options = flattenTree(HOUSEHOLD_OUTPUT_TREE[0].children);
+
+
   }
   if (type === "policy") {
     const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
@@ -395,19 +398,36 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
   // eslint-disable-next-line no-console
   console.log('Options:', options);
 
+  // Define currentIndex after options is determined
+  const currentIndex = options.map((option) => option.name).indexOf(focus);
+
+  // Apply logic based on type
+  let previous, next;
+
+  if (type === "household") {
+    previous = options[currentIndex - 1] || {};
+    next = options[currentIndex + 1] || {};
+  } else if (type === "policy") {
+    previous = getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
+    next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
+  }
+
+  
+
 
   const validFocusValues = impactKeys;
    // eslint-disable-next-line no-console
    console.log('Valid Focus Falues:', validFocusValues);
 
 
-  const currentIndex = options.map((option) => option.name).indexOf(focus);
+
   // eslint-disable-next-line no-console
   console.log('Current Index:', currentIndex);
-  const previous = getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
-  const next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
+  
   // eslint-disable-next-line no-console
   console.log('Next value:', next);
+  // eslint-disable-next-line no-console
+  console.log('Previous value:', previous);
 
   return (
     <div
