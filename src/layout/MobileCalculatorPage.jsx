@@ -373,6 +373,7 @@ function MobileTreeNavigationHolder(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
+// This function creates navigation buttons of the 
 function MobileBottomNavButtons({ focus, type, metadata }) {
   if (
     type === "household" &&
@@ -398,6 +399,11 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
   // eslint-disable-next-line no-console
   console.log('Options:', options);
 
+  // define valid focus values for checking if focus for previous and next is valid
+  const validFocusValues = impactKeys;
+   // eslint-disable-next-line no-console
+   console.log('Valid Focus Falues:', validFocusValues);
+
   // Define currentIndex after options is determined
   const currentIndex = options.map((option) => option.name).indexOf(focus);
 
@@ -415,9 +421,7 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
   
 
 
-  const validFocusValues = impactKeys;
-   // eslint-disable-next-line no-console
-   console.log('Valid Focus Falues:', validFocusValues);
+  
 
 
 
