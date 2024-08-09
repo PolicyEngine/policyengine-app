@@ -12,6 +12,11 @@ export default function DeprecationModal(props) {
   const countryId = useCountryId();
 
   async function handleSubmit() {
+    // Create new policy with parameters given
+
+    // On success, redirect
+
+    // Anything to do for authed users?
 
     // Destroy modal
     setIsModalOpen(false);
