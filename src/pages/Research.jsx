@@ -104,8 +104,8 @@ function ResearchExplorer() {
         post,
         filteredTopics,
         filteredLocations,
-        filteredAuthors
-      )
+        filteredAuthors,
+      ),
     );
 
     if (!searchField) return preFilteredPosts;
@@ -115,9 +115,14 @@ function ResearchExplorer() {
   }
 
   function meetsFilterCriteria(post, topics, locations, authors) {
-    const hasTopic = topics.length === 0 || topics.some((tag) => post.tags.includes(tag));
-    const hasLocation = locations.length === 0 || locations.some((tag) => post.tags.includes(tag));
-    const hasAuthor = authors.length === 0 || authors.some((author) => post.authors.includes(author));
+    const hasTopic =
+      topics.length === 0 || topics.some((tag) => post.tags.includes(tag));
+    const hasLocation =
+      locations.length === 0 ||
+      locations.some((tag) => post.tags.includes(tag));
+    const hasAuthor =
+      authors.length === 0 ||
+      authors.some((author) => post.authors.includes(author));
     return hasTopic && hasLocation && hasAuthor;
   }
 
@@ -313,7 +318,7 @@ function ExpandableCheckBoxList({
             setCheckedValues(
               checkedValues.includes(key)
                 ? checkedValues.filter((k) => k !== key)
-                : [...checkedValues, key]
+                : [...checkedValues, key],
             )
           }
         />
@@ -343,7 +348,9 @@ function Expandable({ title, children, expandedList, setExpandedList }) {
         position: "relative",
       }}
       initial={{ maxHeight: titleHeight }}
-      animate={{ maxHeight: isExpanded ? contentHeight + titleHeight : titleHeight }}
+      animate={{
+        maxHeight: isExpanded ? contentHeight + titleHeight : titleHeight,
+      }}
     >
       <div
         style={{
