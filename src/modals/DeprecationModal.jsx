@@ -6,6 +6,7 @@ import useCountryId from "../hooks/useCountryId";
 import { getNewPolicyId } from "../api/parameters";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
+import style from "../style";
 
 export default function DeprecationModal(props) {
   const { oldPolicy, countryVersion, metadata, deprecatedParams } = props;
@@ -134,6 +135,7 @@ export default function DeprecationModal(props) {
             onClick={handleCloseModal}
           />
         </div>
+        {error && <p style={{ color: style.colors.DARK_RED }}>{error}</p>}
       </div>
     </Modal>
   );
