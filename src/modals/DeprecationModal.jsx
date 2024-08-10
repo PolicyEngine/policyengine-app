@@ -21,28 +21,40 @@ export default function DeprecationModal(props) {
     const newPolicy = removeDeprecatedParams(metadata, oldPolicy);
 
     // Create new policy with parameters given
-    const {baseline, reform} = newPolicy;
+    const { baseline, reform } = newPolicy;
 
     let newBaselineId = null;
     let newReformId = null;
 
     try {
       if (!baseline.id) {
-        const baselineRes = await getNewPolicyId(countryId, baseline.data, baseline.label);
+        const baselineRes = await getNewPolicyId(
+          countryId,
+          baseline.data,
+          baseline.label,
+        );
         if (!baselineRes.status === "ok") {
           console.error("Error creating new baseline policy");
           console.error(baselineRes);
-          setError("Error: Back-end error while trying to create new baseline policy; please try again later");
+          setError(
+            "Error: Back-end error while trying to create new baseline policy; please try again later",
+          );
         } else {
           newBaselineId = baselineRes.policy_id;
         }
       }
       if (!reform.id) {
-        const reformRes = await getNewPolicyId(countryId, reform.data, reform.label);
+        const reformRes = await getNewPolicyId(
+          countryId,
+          reform.data,
+          reform.label,
+        );
         if (!reformRes.status === "ok") {
           console.error("Error creating new baseline policy");
           console.error(reformRes);
-          setError("Error: Back-end error while trying to create new baseline policy; please try again later");
+          setError(
+            "Error: Back-end error while trying to create new baseline policy; please try again later",
+          );
         } else {
           newReformId = reformRes.policy_id;
         }
@@ -50,12 +62,14 @@ export default function DeprecationModal(props) {
     } catch (err) {
       console.error("Network error while trying to create new policy");
       console.error(err);
-      setError("Error: Network connection error while trying to create new policy; please try again later");
+      setError(
+        "Error: Network connection error while trying to create new policy; please try again later",
+      );
     }
 
     // On success, redirect
     let newSearch = copySearchParams(searchParams);
-      
+
     // If new policy IDs are created, set them in the URL,
     // otherwise use old; redirect to input section of calculator
     newSearch.set("baseline", newBaselineId || baseline.id);
@@ -72,7 +86,7 @@ export default function DeprecationModal(props) {
   }
 
   const deprecatedParamsJSX = deprecatedParams.map((param) => (
-    <p key={param} style={{fontStyle: "italic"}}>{`- ${param}`}</p>
+    <p key={param} style={{ fontStyle: "italic" }}>{`- ${param}`}</p>
   ));
 
   return (
@@ -86,7 +100,8 @@ export default function DeprecationModal(props) {
       >
         Your policy is deprecated
       </h6>
-      <p>{`Unfortunately, as of policyengine-${countryId} v.${countryVersion}, some of your parameters are no longer supported:`}
+      <p>
+        {`Unfortunately, as of policyengine-${countryId} v.${countryVersion}, some of your parameters are no longer supported:`}
       </p>
       {deprecatedParamsJSX}
       <p>{`Click the button on the left to transfer your remaining valid parameters to a new policy.`}</p>
@@ -107,7 +122,11 @@ export default function DeprecationModal(props) {
             columnGap: "16px",
           }}
         >
-          <Button text="Transfer parameters" onClick={handleSubmit} width="100%" />
+          <Button
+            text="Transfer parameters"
+            onClick={handleSubmit}
+            width="100%"
+          />
           <Button
             text="Not at this time"
             type="secondary"
@@ -122,7 +141,7 @@ export default function DeprecationModal(props) {
 
 export function removeDeprecatedParams(metadata, policy) {
   const newPolicy = JSON.parse(JSON.stringify(policy));
-  const baselineAndReform = Object.values(newPolicy)
+  const baselineAndReform = Object.values(newPolicy);
 
   for (const item of baselineAndReform) {
     // Iterate over each provision

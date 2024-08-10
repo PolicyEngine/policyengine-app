@@ -332,7 +332,6 @@ export function SinglePolicyChange(props) {
 }
 
 export function DeprecatedPolicyChange() {
-
   return (
     <div
       style={{
@@ -399,8 +398,15 @@ function PolicyItem(props) {
 }
 
 function PolicyDisplay(props) {
-  const { policy, metadata, region, timePeriod, closeDrawer, hideButtons, isPolicyDeprecated } =
-    props;
+  const {
+    policy,
+    metadata,
+    region,
+    timePeriod,
+    closeDrawer,
+    hideButtons,
+    isPolicyDeprecated,
+  } = props;
   policy.reform.data = Object.fromEntries(
     Object.entries(policy.reform.data).filter(
       ([key, value]) =>
@@ -421,7 +427,7 @@ function PolicyDisplay(props) {
         variant="dark"
         indicators={false}
         interval={null}
-        controls={reformLength > 1 && !isPolicyDeprecated? true : false}
+        controls={reformLength > 1 && !isPolicyDeprecated ? true : false}
         slide={true}
       >
         {Object.keys(policy.reform.data).map((parameterName) => (
@@ -457,8 +463,15 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen, isPolicyDeprecated } =
-    props;
+  const {
+    policy,
+    setPolicy,
+    metadata,
+    hideButtons,
+    closeDrawer,
+    defaultOpen,
+    isPolicyDeprecated,
+  } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
