@@ -55,11 +55,35 @@ function ResearchExplorer() {
   const displayCategory = useDisplayCategory();
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Initialize filter states with empty arrays
-  const [filteredTopics, setFilteredTopics] = useState([]);
-  const [filteredLocations, setFilteredLocations] = useState([]);
-  const [filteredAuthors, setFilteredAuthors] = useState([]);
+  // Extract the country ID from the URL pathname
+  const extractCountryIdFromPathname = () => {
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
+    if (pathSegments.length > 0) {
+      return pathSegments[0];
+    }
+  };
 
+  // Determine initial locations based on the country ID
+  const initialLocations = locationTags.filter(
+    (location) =>
+      location === extractCountryIdFromPathname() ||
+      location.startsWith(extractCountryIdFromPathname() + "-") ||
+      location === "global",
+  );
+
+  // Initialize filter states with the appropriate values
+  const [filteredTopics, setFilteredTopics] = useState(
+    searchParams.get("topics")?.split(",") || topicTags,
+  );
+  const [filteredLocations, setFilteredLocations] = useState(
+    searchParams.get("locations")?.split(",") || initialLocations,
+  );
+  const authorKeys = Object.keys(authors);
+  const [filteredAuthors, setFilteredAuthors] = useState(
+    searchParams.get("authors")?.split(",") || authorKeys,
+  );
+
+  // Filter posts based on the selected criteria
   const filteredPosts = getFilteredPosts({
     filteredTopics,
     filteredLocations,
