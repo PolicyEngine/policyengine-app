@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import {
   checkIsPolicyDeprecated,
-  removeDeprecatedParams,
+  findDeprecatedParams,
 } from "../../pages/PolicyPage";
 
 jest.mock("react-plotly.js", () => jest.fn());
@@ -68,8 +68,8 @@ describe("checkIsPolicyDeprecated", () => {
   });
 });
 
-describe("removeDeprecatedParams", () => {
-  test("properly handles baseline", () => {
+describe("findDeprecatedParams", () => {
+  test("correctly handles baseline policy", () => {
     const testPolicy = {
       baseline: {
         data: null,
@@ -87,11 +87,27 @@ describe("removeDeprecatedParams", () => {
       },
     };
 
-    const testOutput = removeDeprecatedParams(testMetadata, testPolicy);
-
-    expect(testOutput).toMatchObject(testPolicy);
+    expect(findDeprecatedParams(testMetadata, testPolicy)).toMatchObject([]);
   });
-  test("removes deprecated parameters", () => {
+  test("correctly handles policy with empty data", () => {
+    const testPolicy = {
+      baseline: {
+        data: null,
+      },
+      reform: {
+        data: {},
+      },
+    };
+
+    const testMetadata = {
+      parameters: {
+        "test-provision": {},
+      },
+    };
+
+    expect(findDeprecatedParams(testMetadata, testPolicy)).toMatchObject([]);
+  });
+  test("correctly finds deprecated parameters", () => {
     const testPolicy = {
       baseline: {
         data: null,
@@ -110,38 +126,8 @@ describe("removeDeprecatedParams", () => {
       },
     };
 
-    const testOutput = removeDeprecatedParams(testMetadata, testPolicy);
-
-    let expectedOutput = JSON.parse(JSON.stringify(testPolicy));
-    delete expectedOutput.reform.data["deprecated-provision"];
-
-    expect(testOutput.reform.data).not.toHaveProperty("deprecated-provision");
-    expect(testOutput).toMatchObject(expectedOutput);
-  });
-  test("properly handles policy with multiple non-deprecated parameters", () => {
-    const testPolicy = {
-      baseline: {
-        data: null,
-      },
-      reform: {
-        data: {
-          "test-provision": {},
-          "test-provision-2": {},
-          "test-provision-3": {},
-        },
-      },
-    };
-
-    const testMetadata = {
-      parameters: {
-        "test-provision": {},
-        "test-provision-2": {},
-        "test-provision-3": {},
-      },
-    };
-
-    const testOutput = removeDeprecatedParams(testMetadata, testPolicy);
-
-    expect(testOutput).toMatchObject(testPolicy);
+    expect(findDeprecatedParams(testMetadata, testPolicy)).toMatchObject([
+      "deprecated-provision",
+    ]);
   });
 });
