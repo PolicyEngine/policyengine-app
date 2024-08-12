@@ -1,6 +1,6 @@
 Senator and vice presidential nominee JD Vance (R-OH) has proposed expanding the Child Tax Credit (CTC) to $5,000 per child. His statements suggest he’d also like to remove income limits, while leaving the question of refundability uncertain. Using PolicyEngine, we’ve analyzed two versions of this proposal: one maintaining current refundability rules and another making the credit fully refundable.
 
-The version maintaining current refundability would cost $106 billion in 2025 and reduce child poverty by 1%, assuming no behavioral responses. The fully refundable version would cost $241 billion and reduce child poverty by 41%. Applying labor supply assumptions from the Congressional Budget Office lowers the cost of the partially refundable by 8%, while increasing the cost of the fully refundable version by 2%. Both versions would increase disposable income across all income deciles and reduce income inequality.
+The version maintaining current refundability would cost $106 billion in 2025 and reduce child poverty by 1%, assuming no behavioral responses. The fully refundable version would cost $241 billion and reduce child poverty by 41%. Applying labor supply [assumptions](https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4) from the Congressional Budget Office lowers the cost of the partially refundable by 8%, while increasing the cost of the fully refundable version by 2%. Both versions would increase disposable income across all income deciles and reduce income inequality.
 
 ## Vance’s Statements
 
@@ -20,7 +20,9 @@ The most recent attempt to expand the CTC came in the Tax Relief for American Fa
 
 ## Household Impacts
 
-Vance’s proposal would provide up to $5,000 per child, though specific amounts vary with marital status, income, number of children, and the policy’s refundability.
+Vance’s proposal would provide up to $5,000 per child, though specific amounts vary with marital status, income, number of children, and the policy’s refundability.[^repo]
+
+[^repo]: We generated these custom charts with the `policyengine-us` Python package in [this notebook](https://github.com/PolicyEngine/analysis-notebooks/blob/main/us/irs/income/credits/ctc/vance_ctc.ipynb). Other charts we generated with the PolicyEngine web app.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*LozrS5KgfAaq8bVS)
 
@@ -30,7 +32,7 @@ For personalized calculations, you can use our calculators for the version with 
 
 ## Societal Impacts
 
-Applying the PolicyEngine US 1.45.2 microsimulation model and Enhanced CPS data, we project that the CTC expansion would cost $106 billion and $241 billion in 2025 if maintaining or expanding refundability, respectively, while reducing poverty and inequality.[^crfb] You can view the full results in PolicyEngine for the [current](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=63077&baseline=2&timePeriod=2025&region=enhanced_us) and [full](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=63076&baseline=2&timePeriod=2025&region=enhanced_us) refundability versions. The below table summarizes these impacts:
+Applying the PolicyEngine US 1.45.2 microsimulation model and Enhanced CPS data, we project that the CTC expansion would cost $106 billion and $241 billion in 2025 if maintaining or expanding refundability, respectively, while reducing poverty and inequality (we display the Gini index below, though other measures also fall).[^crfb] You can view the full results in PolicyEngine for the [current](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=63077&baseline=2&timePeriod=2025&region=enhanced_us) and [full](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=63076&baseline=2&timePeriod=2025&region=enhanced_us) refundability versions. The below table summarizes these impacts:
 
 [^crfb]: Comparing our budgetary projections to the Committee for Responsible Federal Budget's ["Build Your Own Child Tax Credit"](https://www.crfb.org/build-your-own-child-tax-credit) tool, we find similar results with full refundability, but significantly lower results with current refundability. Specifically, their estimates for no full refundability were \$238 billion (CRFB) versus \$106 billion (PolicyEngine), and with full refundability, \$264 billion (CRFB) versus \$241 billion (PolicyEngine). They shared that their estimates do not rely on microsimulation modeling, and could as a result become inaccurate for larger reforms.
 
