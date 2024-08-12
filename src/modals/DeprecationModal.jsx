@@ -87,7 +87,10 @@ export default function DeprecationModal(props) {
   }
 
   const deprecatedParamsJSX = deprecatedParams.map((param) => (
-    <p key={param} style={{ fontStyle: "italic" }}>{`- ${param}`}</p>
+    <p
+      key={param}
+      style={{ fontFamily: style.fonts.MONO_FONT, marginBottom: 0 }}
+    >{`- ${param}`}</p>
   ));
 
   return (
@@ -104,7 +107,13 @@ export default function DeprecationModal(props) {
       <p>
         {`Unfortunately, as of policyengine-${countryId} v.${countryVersion}, some of your parameters are no longer supported:`}
       </p>
-      {deprecatedParamsJSX}
+      <div
+        style={{
+          marginBottom: "16px",
+        }}
+      >
+        {deprecatedParamsJSX}
+      </div>
       <p>{`Click the button on the left to transfer your remaining valid parameters to a new policy.`}</p>
       <div
         style={{

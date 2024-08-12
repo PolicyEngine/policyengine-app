@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import DeprecationModal, { removeDeprecatedParams } from "../../modals/DeprecationModal";
+import DeprecationModal, {
+  removeDeprecatedParams,
+} from "../../modals/DeprecationModal";
 import { BrowserRouter } from "react-router-dom";
-import userEvent from "@testing-library/user-event";
 
 describe("DeprecationModal", () => {
-
   test("Renders and shows missing param correctly", () => {
     const testPolicy = {
       baseline: {
@@ -24,9 +24,7 @@ describe("DeprecationModal", () => {
       },
     };
 
-    const testDeprecatedParams = [
-      "test-deprecated-provision",
-    ];
+    const testDeprecatedParams = ["test-deprecated-provision"];
 
     const testCountryVersion = "0.0.0";
 
@@ -50,13 +48,11 @@ describe("DeprecationModal", () => {
 
     expect(heading).toBeInTheDocument();
     expect(renderedParam).toBeInTheDocument();
-
   });
   /*
   test("Close modal button works correctly");
   test("Transfer parameters button works correctly");
   */
-
 });
 
 describe("removeDeprecatedParams", () => {
