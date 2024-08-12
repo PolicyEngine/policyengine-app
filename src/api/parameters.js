@@ -8,9 +8,6 @@ export function buildParameterTree(parameters) {
   for (const parameter of Object.values(parameters).filter(
     (parameter) => parameter.economy || parameter.household,
   )) {
-    if (parameter.parameter.includes("abolitions")) {
-      continue;
-    }
     const nodeToInsert = {
       name: parameter.parameter,
       label: (
