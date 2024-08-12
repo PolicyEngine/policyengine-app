@@ -1,4 +1,4 @@
-Senator and vice presidential nominee JD Vance (R-OH) has proposed expanding the Child Tax Credit (CTC) to $5,000 per child. His statements suggest he’d also like to remove income limits, while leaving the question of refundability uncertain. Using PolicyEngine, we’ve analyzed two versions of this proposal: one maintaining current refundability rules and another making the credit fully refundable.
+Senator and vice presidential nominee JD Vance (R-OH) has suggested expanding the Child Tax Credit (CTC) to $5,000 per child. His statements suggest he’d also like to remove income limits, while leaving the question of refundability uncertain. Using PolicyEngine, we’ve analyzed two versions of this idea: one maintaining current refundability rules and another making the credit fully refundable.
 
 The version maintaining current refundability would cost $106 billion in 2025 and reduce child poverty by 1%, assuming no behavioral responses. The fully refundable version would cost $241 billion and reduce child poverty by 41%. Applying labor supply [assumptions](https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4) from the Congressional Budget Office lowers the cost of the partially refundable by 8%, while increasing the cost of the fully refundable version by 2%. Both versions would increase disposable income across all income deciles and reduce income inequality.
 
@@ -6,9 +6,11 @@ The version maintaining current refundability would cost $106 billion in 2025 an
 
 In a 2021 [interview](https://abcnews.go.com/US/vance-argued-higher-tax-rate-childless-americans-2021/story?id=112284318) with Charlie Kirk, Vance expressed support for a tax policy favoring families with children: "If you are making $100,000, $400,000 a year and you’ve got three kids, you should pay a different, lower tax rate than if you are making the same amount of money and you don’t have any kids."
 
-Vance spoke about this with Margaret Brennan of Face the Nation in an [interview](https://youtu.be/pK1V2q05Zi8?si=tyJuJ37hV7jPuaZQ) that aired today, including the CTC as an instantiation of his 2021 suggestion. He then proposed expanding it: "I’d love to see a child tax credit that’s $5,000 per child."
+Vance spoke about this with Margaret Brennan of Face the Nation in an [interview](https://youtu.be/pK1V2q05Zi8?si=tyJuJ37hV7jPuaZQ) that aired today, including the CTC as an instantiation of his 2021 idea. He then suggested expanding it: "I’d love to see a child tax credit that’s $5,000 per child."
 
 When asked about income limits, Vance added: "I’d like to have a broad-based family policy and a broad-based child tax credit. […] I think you want it to apply to all families. I don’t think that you want this massive cutoff for lower income families, which you have today, you don’t want a different policy for higher income families, you just want to have a pro-family child tax credit."
+
+While not a formal policy proposal, these statements provide insight into his thinking on family tax policy.
 
 ## Background on the Child Tax Credit
 
@@ -20,7 +22,7 @@ The most recent attempt to expand the CTC came in the Tax Relief for American Fa
 
 ## Household Impacts
 
-Vance’s proposal would provide up to $5,000 per child, though specific amounts vary with marital status, income, number of children, and the policy’s refundability.[^repo]
+Vance’s suggested policy would provide up to $5,000 per child, though specific amounts vary with marital status, income, number of children, and the policy’s refundability.[^repo]
 
 [^repo]: We generated these custom charts with the `policyengine-us` Python package in [this notebook](https://github.com/PolicyEngine/analysis-notebooks/blob/main/us/irs/income/credits/ctc/vance_ctc.ipynb). Other charts we generated with the PolicyEngine web app.
 
@@ -67,7 +69,7 @@ With full refundability, income effects lower labor supply, and substitution eff
 
 ## Conclusion
 
-JD Vance’s proposal to expand the Child Tax Credit to $5,000 per child and remove income limits would significantly alter current family tax policy. The impacts vary substantially based on refundability: the fully refundable version would cost 2 to 2.5x as much as the partially refundable version, but would reduce child poverty by 41% compared to 1%.
+JD Vance’s suggestion to expand the Child Tax Credit to $5,000 per child and remove income limits would significantly alter current family tax policy. The impacts vary substantially based on refundability: the fully refundable version would cost 2 to 2.5x as much as the partially refundable version, but would reduce child poverty by 41% compared to 1%.
 
 Both versions would increase disposable income for most families with children and reduce income inequality, with the refundable version providing more substantial benefits to lower-income households.
 
