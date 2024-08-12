@@ -49,10 +49,6 @@ describe("DeprecationModal", () => {
     expect(heading).toBeInTheDocument();
     expect(renderedParam).toBeInTheDocument();
   });
-  /*
-  test("Close modal button works correctly");
-  test("Transfer parameters button works correctly");
-  */
 });
 
 describe("removeDeprecatedParams", () => {
