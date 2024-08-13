@@ -51,10 +51,10 @@ export default function DeprecationModal(props) {
           reform.label,
         );
         if (!reformRes.status === "ok") {
-          console.error("Error creating new baseline policy");
+          console.error("Error creating new reform policy");
           console.error(reformRes);
           setError(
-            "Error: Back-end error while trying to create new baseline policy; please try again later",
+            "Error: Back-end error while trying to create new reform policy; please try again later",
           );
         } else {
           newReformId = reformRes.policy_id;
@@ -110,6 +110,8 @@ export default function DeprecationModal(props) {
       <div
         style={{
           marginBottom: "16px",
+          backgroundColor: style.colors.LIGHT_GRAY,
+          padding: "12px",
         }}
       >
         {deprecatedParamsJSX}
