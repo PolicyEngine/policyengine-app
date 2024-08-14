@@ -763,5 +763,14 @@
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "vance-ctc.md",
     "image": "vance-ctc.jpg"
+  },
+  {
+    "title": "PolicyEngine at the 117th Annual Conference on Taxation",
+    "description": "Exploring AI applications and enhanced data for tax policy analysis.",
+    "date": "2024-08-13 01:00:00",
+    "tags": ["us", "policy", "conferences"],
+    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "filename": "nta-2024.md",
+    "image": "nta-2024.png"
   }
 ]
