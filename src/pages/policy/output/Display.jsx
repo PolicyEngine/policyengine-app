@@ -367,11 +367,14 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
-      <BottomCarousel
-        selected={focus}
-        options={policyOutputTree[0].children}
-        bottomElements={bottomElements}
+      {!mobile && (
+        <BottomCarousel
+          selected={focus}
+          options={policyOutputTree[0].children}
+          bottomElements={bottomElements}
       />
+      )}
+      
     </ResultsPanel>
   );
 }

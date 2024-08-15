@@ -1,3 +1,5 @@
+// Was originally named "BottomCarousel" because the mobile view had a carousel but this was later removed.
+
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import useMobile from "./Responsive";
@@ -18,15 +20,15 @@ export default function BottomCarousel(props) {
     <div
       style={{
         position: "fixed",
-        bottom: mobile ? "25vh" : 0,
+        bottom: 0,
         display: "flex",
         height: "min-content",
         minHeight: COLLAPSE_BUTTON_HEIGHT,
         right: 0,
-        width: mobile ? "100%" : paneWidth,
+        width: paneWidth,
         alignItems: "center",
         backgroundColor: style.colors.WHITE,
-        justifyContent: mobile ? "center" : "left",
+        justifyContent: "left",
         borderImage: `linear-gradient(to right, 
           ${style.colors.LIGHT_GRAY} 0px, 
           ${style.colors.LIGHT_GRAY} 12px, 
@@ -51,36 +53,6 @@ export default function BottomCarousel(props) {
           }}
         >
           {bottomElements}
-        </div>
-      )}
-      {mobile && (
-        <div
-          style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: mobile ? "center" : "right",
-            alignItems: "flex-start",
-            gap: 20,
-          }}
-        >
-          {previous.label ? (
-            <SearchParamNavButton
-              focus={previous.name}
-              direction="left"
-              style={{ width: 50, fontSize: 16 }}
-            />
-          ) : (
-            <div style={{ width: 50 }} />
-          )}
-          {mobile && next.label ? (
-            <SearchParamNavButton
-              focus={next.name}
-              direction="right"
-              style={{ width: 50, fontSize: 16 }}
-            />
-          ) : (
-            <div style={{ width: 60 }} />
-          )}
         </div>
       )}
     </div>
