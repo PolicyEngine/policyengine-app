@@ -1,9 +1,10 @@
 import Button from "./Button";
 export default function ArrowButton(props) {
-  const { direction, onClick, type, style } = props;
+  const { direction, onClick, type, style, testId } = props;
 
   return (
     <Button
+      testId = {testId}
       text={
         <span className="material-symbols-outlined">
           {direction === "left" ? "arrow_back" : "arrow_forward"}

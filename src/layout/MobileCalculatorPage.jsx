@@ -1,3 +1,10 @@
+/** MobileBottomMenu is the bottom navigation section that is triggered when screens 
+ * are smaller than 768px. It currently includes the tree hierarchy of the material 
+ * displayed (breadcrumbs), buttons that go to next and previous content, a button
+ * that pulls up a view to edit the policy/household details, and a button that
+ * additionally enables the user to rename the policy and make a policy search.
+ * */
+
 // eslint-disable-next-line no-unused-vars
 import { useEffect, useState, ReactComponentElement } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -19,12 +26,27 @@ import style from "../style";
 import colors from "../style/colors";
 import spacing from "../style/spacing";
 
+/**
+ * Layout component that overlays the household and policy pages on mobile
+ * @param {Object} props
+ * @param {Object} props.metadata
+ * @param {ReactComponentElement} props.mainContent The React component that would
+ * typically be displayed in the middle portion of the calculator on desktop
+ * @param {Object} [props.householdInput] Required for "household" type
+ * @param {Object} [props.householdBaseline] Required for "household" type
+ * @param {Object} [props.householdReform] Required for "household" type
+ * @param {boolean} [props.autoCompute] Required for "household" type
+ * @param {Object} [props.policy] Required for "policy" type
+ * @param {('household'|'policy')} props.type The type of page to be rendered
+ * @returns {ReactComponentElement}
+ */
+
 /** Function to flatten the tree structure from which the currentNode is 
  * populated and include only leaf nodes. Current tree structure includes 
  * labels that are not in ImpactTypes.jsx. This is required for the logic in
  * MobileBottomNavButtons.
   */ 
-function flattenTree(tree) {
+export function flattenTree(tree) {
   let flatTree = [];
   
   function traverse(node) {
@@ -64,20 +86,6 @@ function getNextValidFocus(options, currentIndex, validFocusValues) {
   return {}; // Return an empty object if no valid previous focus is found
 }
 
-/**
- * Layout component that overlays the household and policy pages on mobile
- * @param {Object} props
- * @param {Object} props.metadata
- * @param {ReactComponentElement} props.mainContent The React component that would
- * typically be displayed in the middle portion of the calculator on desktop
- * @param {Object} [props.householdInput] Required for "household" type
- * @param {Object} [props.householdBaseline] Required for "household" type
- * @param {Object} [props.householdReform] Required for "household" type
- * @param {boolean} [props.autoCompute] Required for "household" type
- * @param {Object} [props.policy] Required for "policy" type
- * @param {('household'|'policy')} props.type The type of page to be rendered
- * @returns {ReactComponentElement}
- */
 export default function MobileCalculatorPage(props) {
   const {
     mainContent,
@@ -263,14 +271,8 @@ function MobileTreeNavigationHolder(props) {
   const { metadata, type, buttonHeight } = props;
   // Try to find the current focus in the tree.
   const [searchParams, setSearchParams] = useSearchParams();
-  
-  // eslint-disable-next-line no-console
-  console.log('searchParams:', searchParams.toString());
 
   const focus = searchParams.get("focus");
-
-  // eslint-disable-next-line no-console
-  console.log('Focus:', focus);
 
   let currentNode;
 
@@ -289,10 +291,6 @@ function MobileTreeNavigationHolder(props) {
       currentNode = { children: [metadata.parameterTree] };
     }
   }
-
-  // eslint-disable-next-line no-console
-  console.log('Current Node:', currentNode);
-  
 
   useEffect(() => {
     // On load, scroll the current breadcrumb into view.
@@ -351,11 +349,6 @@ function MobileTreeNavigationHolder(props) {
             margin: 0,
             fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter",
           }}
-          onClick={() => {
-            let newSearch = copySearchParams(searchParams);
-            newSearch.set("focus", breadcrumb.name);
-            setSearchParams(newSearch);
-          }}
         >
           {breadcrumb.label}
           {i < breadcrumbs.length - 1 && (
@@ -380,7 +373,7 @@ function MobileTreeNavigationHolder(props) {
 /** This function creates navigation buttons for mobile view. It checks if there is a 
  * previous or next breadcrumb to determine if a back and/or forward arrow button should 
  * be present. */ 
-function MobileBottomNavButtons({ focus, type, metadata }) {
+export function MobileBottomNavButtons({ focus, type, metadata }) {
   if (
     type === "household" &&
     !(focus && focus.startsWith("householdOutput."))
@@ -402,13 +395,9 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
     options = flattenTree(POLICY_OUTPUT_TREE[0].children);
   }
 
-  // eslint-disable-next-line no-console
-  console.log('Options:', options);
 
   // define valid focus values for checking if focus for previous and next is valid
   const validFocusValues = impactKeys;
-   // eslint-disable-next-line no-console
-   console.log('Valid Focus Falues:', validFocusValues);
 
   // Define currentIndex after options is determined
   const currentIndex = options.map((option) => option.name).indexOf(focus);
@@ -424,14 +413,6 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
     next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
   }
 
-  // eslint-disable-next-line no-console
-  console.log('Current Index:', currentIndex);
-  
-  // eslint-disable-next-line no-console
-  console.log('Next value:', next);
-  // eslint-disable-next-line no-console
-  console.log('Previous value:', previous);
-
   return (
     <div
       style={{
@@ -444,6 +425,7 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
     >
       {previous.label ? (
         <SearchParamNavButton
+          testId="prev-button"
           focus={previous.name}
           direction="left"
           style={{ padding: 0, width: 60 }}
@@ -454,6 +436,7 @@ function MobileBottomNavButtons({ focus, type, metadata }) {
       {}
       {next.label ? (
         <SearchParamNavButton
+          testId="next-button"
           focus={next.name}
           direction="right"
           style={{ padding: 0, width: 60 }}
