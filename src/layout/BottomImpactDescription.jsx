@@ -1,4 +1,4 @@
-// Was originally named "BottomCarousel" because the mobile view had a carousel but this was later removed.
+// This file was originally named "BottomCarousel" because the mobile view had a carousel but this was later removed.
 
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
@@ -6,7 +6,7 @@ import useMobile from "./Responsive";
 import { COLLAPSE_BUTTON_HEIGHT, PaneWidthContext } from "./ThreeColumnPage";
 import { useContext } from "react";
 
-export default function BottomCarousel(props) {
+export default function BottomImpactDescription(props) {
   const { selected, options, bottomElements } = props;
   const mobile = useMobile();
   const currentIndex = options.map((option) => option.name).indexOf(selected);
