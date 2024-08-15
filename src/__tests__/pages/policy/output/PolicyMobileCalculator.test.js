@@ -397,3 +397,56 @@ describe('MobileBottomNavButtons Component button click previous', () => {
         });
     });
 });
+
+// UK Previous button
+describe('MobileBottomNavButtons Component button click previous', () => {
+    test('focus is updated to the previous option.name when the previous button is clicked', () => {
+
+        const validFocusValues = impactKeys;
+        const POLICY_OUTPUT_TREE = getPolicyOutputTree(mockMetadataUK.countryId);
+        const options_prep = flattenTree(POLICY_OUTPUT_TREE[0].children);
+        const options = []
+        options_prep.forEach((option, index) => {
+            const optionName = option.name.replace("policyOutput.", "")
+            if (optionName === "policyBreakdown" || validFocusValues.includes(optionName)) {
+                options.push(option);
+            }
+        });
+        
+        options.forEach((option, index) => {
+            if (index > 0) {
+                const focus = option.name;
+
+                // Render the component with the initial focus
+                const { unmount } = render(
+                    <MemoryRouter>
+                        <MobileBottomNavButtons
+                            focus={focus}
+                            type="policy"
+                            metadata={mockMetadataUK}
+                        />
+                    </MemoryRouter>
+                );
+
+                // Get the next button
+                const prevButton = screen.getByTestId('prev-button');
+
+                // Simulate clicking the next button
+                fireEvent.click(prevButton);
+
+                // Assert that setSearchParams was called
+                expect(setSearchParams).toHaveBeenCalled();
+
+                // Extract the search params and assert the focus value
+                const recentCallIndex = setSearchParams.mock.calls.length - 1;
+                const searchParams = setSearchParams.mock.calls[recentCallIndex][0];
+                const focusValue = searchParams.get('focus');
+
+                expect(focusValue).toBe(options[index - 1].name);
+
+                unmount();
+
+            }
+        });
+    });
+});
