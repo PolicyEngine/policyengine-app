@@ -772,5 +772,14 @@
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "nta-2024.md",
     "image": "nta-2024.png"
+  },
+  {
+    "title": "Validation against the Survey of Personal Incomes",
+    "description": "Evaluating PolicyEngine's model performance against the UK SPI.",
+    "date": "2024-08-14 01:00:00",
+    "tags": ["uk", "technical"],
+    "authors": ["anthony-volk"],
+    "filename": "uk-spi-validation.ipynb",
+    "image": "uk-spi-validation.png"
   }
 ]
