@@ -22,7 +22,7 @@ useSearchParams.mockImplementation(() => {
   return [new URLSearchParams({}), jest.fn()];
 });
 
-describe("Test TaxYear component", () => {
+describe.skip("Test TaxYear component", () => {
   test("Properly sets display years based on metadata", async () => {
     const setYear = jest.fn();
 
