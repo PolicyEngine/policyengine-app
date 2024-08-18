@@ -781,5 +781,15 @@
     "authors": ["anthony-volk"],
     "filename": "uk-spi-validation.ipynb",
     "image": "uk-spi-validation.png"
+  },
+
+  {
+    "title": "Kamala Harris’s Child Tax Credit Proposal",
+    "description": "We analyze the Democratic nominee’s proposal to expand the 2021 expansion, giving $6,000 to parents of newborns.",
+    "date": "2024-08-17 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "harris-ctc.md",
+    "image": "harris-ctc.webp"
   }
 ]
