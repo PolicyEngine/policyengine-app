@@ -1,5 +1,5 @@
-/** MobileBottomMenu is the bottom navigation section that is triggered when screens 
- * are smaller than 768px. It currently includes the tree hierarchy of the material 
+/** MobileBottomMenu is the bottom navigation section that is triggered when screens
+ * are smaller than 768px. It currently includes the tree hierarchy of the material
  * displayed (breadcrumbs), buttons that go to next and previous content, a button
  * that pulls up a view to edit the policy/household details, and a button that
  * additionally enables the user to rename the policy and make a policy search.
@@ -14,7 +14,6 @@ import { Drawer } from "antd";
 
 import { formatVariableValue, getValueFromHousehold } from "../api/variables";
 import { getPolicyOutputTree } from "pages/policy/output/tree";
-import { copySearchParams } from "../api/call";
 import SearchParamNavButton from "controls/SearchParamNavButton";
 import HOUSEHOLD_OUTPUT_TREE from "../pages/household/output/tree";
 import VariableSearch from "../pages/household/VariableSearch";
@@ -41,22 +40,22 @@ import spacing from "../style/spacing";
  * @returns {ReactComponentElement}
  */
 
-/** Function to flatten the tree structure from which the currentNode is 
- * populated and include only leaf nodes. Current tree structure includes 
+/** Function to flatten the tree structure from which the currentNode is
+ * populated and include only leaf nodes. Current tree structure includes
  * labels that are not in ImpactTypes.jsx. This is required for the logic in
  * MobileBottomNavButtons.
-  */ 
+ */
 export function flattenTree(tree) {
   let flatTree = [];
-  
+
   function traverse(node) {
     flatTree.push({ name: node.name, label: node.label });
     if (node.children) {
-      node.children.forEach(child => traverse(child));
+      node.children.forEach((child) => traverse(child));
     }
   }
-  
-  tree.forEach(node => traverse(node));
+
+  tree.forEach((node) => traverse(node));
   return flatTree;
 }
 
@@ -65,7 +64,10 @@ function getPreviousValidFocus(options, currentIndex, validFocusValues) {
   let previousIndex = currentIndex - 1;
   while (previousIndex >= 0) {
     const optionName = options[previousIndex].name.replace("policyOutput.", "");
-    if (optionName === "policyBreakdown" || validFocusValues.includes(optionName)) {
+    if (
+      optionName === "policyBreakdown" ||
+      validFocusValues.includes(optionName)
+    ) {
       return options[previousIndex];
     }
     previousIndex -= 1;
@@ -78,7 +80,10 @@ function getNextValidFocus(options, currentIndex, validFocusValues) {
   let nextIndex = currentIndex + 1;
   while (nextIndex <= options.length - 1) {
     const optionName = options[nextIndex].name.replace("policyOutput.", "");
-    if (optionName === "policyBreakdown" || validFocusValues.includes(optionName)) {
+    if (
+      optionName === "policyBreakdown" ||
+      validFocusValues.includes(optionName)
+    ) {
       return options[nextIndex];
     }
     nextIndex += 1;
@@ -270,7 +275,7 @@ function MobileBottomMenu(props) {
 function MobileTreeNavigationHolder(props) {
   const { metadata, type, buttonHeight } = props;
   // Try to find the current focus in the tree.
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const focus = searchParams.get("focus");
 
@@ -324,7 +329,6 @@ function MobileTreeNavigationHolder(props) {
     currentNode = null;
   }
 
-
   return (
     <div
       style={{
@@ -370,9 +374,9 @@ function MobileTreeNavigationHolder(props) {
 
 // This function will run into merge conflicts with a button refactor (PR #867),
 // and is dependent upon that refactor for even spacing and styling
-/** This function creates navigation buttons for mobile view. It checks if there is a 
- * previous or next breadcrumb to determine if a back and/or forward arrow button should 
- * be present. */ 
+/** This function creates navigation buttons for mobile view. It checks if there is a
+ * previous or next breadcrumb to determine if a back and/or forward arrow button should
+ * be present. */
 export function MobileBottomNavButtons({ focus, type, metadata }) {
   if (
     type === "household" &&
@@ -387,14 +391,11 @@ export function MobileBottomNavButtons({ focus, type, metadata }) {
   let options = null;
   if (type === "household") {
     options = flattenTree(HOUSEHOLD_OUTPUT_TREE[0].children);
-
-
   }
   if (type === "policy") {
     const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
     options = flattenTree(POLICY_OUTPUT_TREE[0].children);
   }
-
 
   // define valid focus values for checking if focus for previous and next is valid
   const validFocusValues = impactKeys;
@@ -403,13 +404,15 @@ export function MobileBottomNavButtons({ focus, type, metadata }) {
   const currentIndex = options.map((option) => option.name).indexOf(focus);
 
   // Apply logic based on type
-  let previous, next;
+  let previous = null;
+  let next = null;
 
   if (type === "household") {
     previous = options[currentIndex - 1] || {};
     next = options[currentIndex + 1] || {};
   } else if (type === "policy") {
-    previous = getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
+    previous =
+      getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
     next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
   }
 

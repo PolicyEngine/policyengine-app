@@ -4,7 +4,7 @@ export default function ArrowButton(props) {
 
   return (
     <Button
-      testId = {testId}
+      testId={testId}
       text={
         <span className="material-symbols-outlined">
           {direction === "left" ? "arrow_back" : "arrow_forward"}
