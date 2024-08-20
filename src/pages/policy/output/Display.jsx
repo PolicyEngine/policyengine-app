@@ -372,9 +372,8 @@ export function LowLevelDisplay(props) {
           selected={focus}
           options={policyOutputTree[0].children}
           bottomElements={bottomElements}
-      />
+        />
       )}
-      
     </ResultsPanel>
   );
 }

@@ -39,4 +39,5 @@ In terms of inequality, the Gini coefficient decreases slightly from 0.336 to 0.
 The Spring Budget 2023’s policy changes regarding energy and fuel have a budgetary impact of £7.3 billion, with nearly all people (98%) gaining from these reforms. The policies have a larger relative impact on lower-income households, contribute to a reduction in poverty rates and inequality under several different metrics.
 
 [^1]: To estimate the impact of the fuel duty freeze, we compare it against a counterfactual scenario in which the fuel duty rate was raised to 65p.
+
 [^2]: See the policy costing document [here](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1142824/Costing_Document_-_Spring_Budget_2023.pdf#page=9).

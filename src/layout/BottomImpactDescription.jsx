@@ -1,17 +1,13 @@
 // This file was originally named "BottomCarousel" because the mobile view had a carousel but this was later removed.
 
-import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import useMobile from "./Responsive";
 import { COLLAPSE_BUTTON_HEIGHT, PaneWidthContext } from "./ThreeColumnPage";
 import { useContext } from "react";
 
 export default function BottomImpactDescription(props) {
-  const { selected, options, bottomElements } = props;
+  const { bottomElements } = props;
   const mobile = useMobile();
-  const currentIndex = options.map((option) => option.name).indexOf(selected);
-  const previous = options[currentIndex - 1] || {};
-  const next = options[currentIndex + 1] || {};
   const paneWidth = useContext(PaneWidthContext);
 
   // Show the previous to the left, the current in the middle, and the next to the right
