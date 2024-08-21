@@ -82,6 +82,7 @@ function getNextValidFocus(options, currentIndex, validFocusValues) {
     const optionName = options[nextIndex].name.replace("policyOutput.", "");
     if (
       optionName === "policyBreakdown" ||
+      optionName === "codeReproducibility" ||
       validFocusValues.includes(optionName)
     ) {
       return options[nextIndex];
