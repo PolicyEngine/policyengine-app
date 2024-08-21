@@ -277,6 +277,7 @@ describe("MobileBottomNavButtons Component US", () => {
     const optionName = option.name.replace("policyOutput.", "");
     if (
       optionName === "policyBreakdown" ||
+      optionName === "codeReproducibility" ||
       validFocusValues.includes(optionName)
     ) {
       options.push(option);
@@ -376,6 +377,7 @@ describe("MobileBottomNavButtons Component UK", () => {
     const optionName = option.name.replace("policyOutput.", "");
     if (
       optionName === "policyBreakdown" ||
+      optionName === "codeReproducibility" ||
       validFocusValues.includes(optionName)
     ) {
       options.push(option);
@@ -476,6 +478,7 @@ describe("MobileBottomNavButtons Component button click next US", () => {
     const optionName = option.name.replace("policyOutput.", "");
     if (
       optionName === "policyBreakdown" ||
+      optionName === "codeReproducibility" ||
       validFocusValues.includes(optionName)
     ) {
       options.push(option);
@@ -529,6 +532,7 @@ describe("MobileBottomNavButtons Component button click next UK", () => {
       const optionName = option.name.replace("policyOutput.", "");
       if (
         optionName === "policyBreakdown" ||
+        optionName === "codeReproducibility" ||
         validFocusValues.includes(optionName)
       ) {
         options.push(option);
@@ -581,6 +585,7 @@ describe("MobileBottomNavButtons Component button click previous US", () => {
       const optionName = option.name.replace("policyOutput.", "");
       if (
         optionName === "policyBreakdown" ||
+        optionName === "codeReproducibility" ||
         validFocusValues.includes(optionName)
       ) {
         options.push(option);
@@ -633,6 +638,7 @@ describe("MobileBottomNavButtons Component button click previous UK", () => {
       const optionName = option.name.replace("policyOutput.", "");
       if (
         optionName === "policyBreakdown" ||
+        optionName === "codeReproducibility" ||
         validFocusValues.includes(optionName)
       ) {
         options.push(option);
