@@ -782,7 +782,6 @@
     "filename": "uk-spi-validation.ipynb",
     "image": "uk-spi-validation.png"
   },
-
   {
     "title": "Kamala Harris’s Child Tax Credit Proposal",
     "description": "We analyze the Democratic nominee’s proposal to expand the 2021 expansion, giving $6,000 to parents of newborns.",
@@ -791,5 +790,14 @@
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "harris-ctc.md",
     "image": "harris-ctc.webp"
+  },
+  {
+    "title": "Individual Income Tax Provisions in Minnesota Bill HF1938 (2023)",
+    "description": "The reform signed by Governor Tim Walz expanded credits for low-income families, reduced taxes for middle-income retirees, and raised taxes for high-income filers.",
+    "date": "2024-08-21 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured", "minnesota"],
+    "authors": ["pavel-makarchuk"],
+    "filename": "mn-hf1938-walz.md",
+    "image": "mn-hf1938-walz.webp"
   }
 ]
