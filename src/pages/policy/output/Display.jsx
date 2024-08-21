@@ -16,7 +16,7 @@ import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
-import BottomCarousel from "../../../layout/BottomCarousel";
+import BottomImpactDescription from "../../../layout/BottomImpactDescription";
 
 /**
  *
@@ -367,11 +367,13 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
-      <BottomCarousel
-        selected={focus}
-        options={policyOutputTree[0].children}
-        bottomElements={bottomElements}
-      />
+      {!mobile && (
+        <BottomImpactDescription
+          selected={focus}
+          options={policyOutputTree[0].children}
+          bottomElements={bottomElements}
+        />
+      )}
     </ResultsPanel>
   );
 }
