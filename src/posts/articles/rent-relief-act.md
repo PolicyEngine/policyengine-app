@@ -82,6 +82,27 @@ Stacking the credit atop other tax and benefit programs for this household revea
 
 It’s worth noting that the bill does not set a maximum number of bedrooms based on household size, unlike the [Housing Choice Voucher](https://www.hud.gov/sites/dfiles/PIH/documents/HCV_Guidebook_Calculating_Rent_and_HAP_Payments.pdf#page=7) program. This means the San Diego example could theoretically apply to a single individual living in a four-bedroom home.
 
+## Comparison Across Household Types
+
+To illustrate how the Rent Relief Act affects different household types across various income levels, we can compare the credit amount for all three example households as a function of income:
+
+![](/images/posts/rent_relief/rent_relief_comparison.png "image_tooltip")
+
+This chart demonstrates several key features of the Rent Relief Act:
+
+Initial Credit Amount: The San Diego household starts with the highest credit due to the high local SAFMR, followed by the Sherman-Denison household, and then the Missouri household.
+
+Phase-Out Rates: All households experience the same 30% phase-out rate between income thresholds, as evidenced by the parallel slopes in these regions.
+Income Thresholds: The San Diego household’s income thresholds are $25,000 higher than the other two due to the use of SAFMRs for the Housing Choice Voucher program in that area.
+
+Credit Duration: The San Diego household remains eligible for the credit at much higher income levels compared to the other two households, due to both the higher initial credit amount and the elevated income thresholds.
+
+Cliff Effects: All three households experience cliff effects at their respective income thresholds, where the credit amount drops sharply over a small increase in income.
+
+Zero Credit Point: The income level at which each household becomes ineligible for the credit varies significantly, from $21,600 for the Missouri household to $60,000 for the Sherman-Denison household, and $125,000 for the San Diego household.
+
+This comparison illustrates how the Rent Relief Act’s impact varies based on local housing costs and whether an area uses SAFMRs for the Housing Choice Voucher program. It also highlights the uniform nature of the phase-out structure across different household types and locations, while showing how this structure interacts with varying rent levels to produce different outcomes for each household.
+
 # Conclusion
 
 The Rent Relief Act (RRA) of 2019 proposes a refundable tax credit that would have varying impacts on renter households across the United States. This analysis demonstrates several key aspects of the bill’s potential effects:
