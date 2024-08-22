@@ -802,11 +802,11 @@
   },
   {
     "title": "How the Rent Relief Act of 2019 Varies with Income and Location",
-    "description": "We show the impact on different households of the bill introduced by then-Senator Kamala Harris.",
+    "description": "We show the impact on different households of the tax credit bill introduced by then-Senator Kamala Harris.",
     "date": "2024-08-22 01:00:00",
-    "tags": ["us", "2024-election", "policy", "featured", "minnesota"],
+    "tags": ["us", "2024-election", "policy", "featured"],
     "authors": ["max-ghenis"],
-    "filename": "rent_relief_act.md",
-    "image": "rent_relief_act.png"
+    "filename": "rent-relief-act.md",
+    "image": "rent-relief-act.png"
   }
 ]
