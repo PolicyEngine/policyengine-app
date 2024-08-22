@@ -1,6 +1,6 @@
 Kamala Harris on Friday released her [economic plan](https://mailchi.mp/press.kamalaharris.com/vice-president-harris-lays-out-agenda-to-lower-costs-for-american-families), including an expanded Child Tax Credit we [analyzed](https://policyengine.org/us/research/harris-ctc) on Saturday. Absent from the housing portion of her plan was legislation she introduced in 2018 and 2019 as a Senator: the Rent Relief Act (RRA), a refundable tax credit based on income, rent paid, and local housing costs. In this post, we use the PolicyEngine model to explore its effects on different household types, and how it situates with other tax and benefit programs. We focus on a typical example, as well as two ends of the credit’s generosity spectrum, based on local housing costs, at which the bill caps countable rent.
 
-## Legislative History
+# Legislative History
 
 While Harris introduced the RRA in the Senate in 2018 and then 2019, the bill dates back to 2017 and continues to be active:
 
@@ -16,7 +16,7 @@ While Harris introduced the RRA in the Senate in 2018 and then 2019, the bill da
 
 The bill has not changed since 2019, and all 25 cosponsors in the latest House bill are Democrats.
 
-## Mechanics of the Proposed Credit
+# Mechanics of the Proposed Credit
 
 The RRA establishes a refundable tax credit based on household income, rent paid, and local housing costs. The bill defines local housing costs from Small Area Fair Market Rents (SAFMRs), which HUD [sets](https://www.huduser.gov/portal/datasets/fmr/fmrs/FY2024_code/2024summary_sa.odn) at the 40th percentile of rents in each ZIP code, broken down by the number of bedrooms. HUD publishes these SAFMRs annually, and [this spreadsheet](https://docs.google.com/spreadsheets/d/1tH3NQXmLisDgxjl0WUbnQvS05OskAKI27Lk1gIOsfA4/edit?usp=sharing) shows them for 2024.
 
@@ -36,11 +36,11 @@ Key features of the credit:
 
 This structure creates a varying impact on households depending on their income, rent, and location. The subsequent sections will explore these impacts through specific examples.
 
-## Examples of Credit Application
+# Examples of Credit Application
 
-### A Typical Example: Sherman-Denison, Texas
+## A Typical Example: Sherman-Denison, Texas
 
-Consider a single parent with two children living in ZIP code 75459 in Sherman-Denison, Texas, an area with SAFMRs close to the median that does not use SAFMRs for the HCV program. Suppose this household pays $1,500 per month in rent for their three-bedroom home, less than the $1,590 per month SAFMR. Suppose further that they earn $40,000 per year. The credit would cover 75% of the difference between their rent ($18,000) exceeding 30% of their income ($12,000), or 75% of $6,000 which is $4,500.
+Consider a [single parent](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46796&region=us&timePeriod=2024&baseline=2&reform=63509) with two children living in ZIP code 75459 in Sherman-Denison, Texas, an area with SAFMRs close to the median that does not use SAFMRs for the HCV program. Suppose this household pays $1,500 per month in rent for their three-bedroom home, less than the $1,590 per month SAFMR. Suppose further that they earn $40,000 per year. The credit would cover 75% of the difference between their rent ($18,000) exceeding 30% of their income ($12,000), or 75% of $6,000 which is $4,500.
 
 We can see this visually by displaying the credit with earnings, showing the steps at $25,000 and $50,000, and their ineligibility at $60,000 income (30% of which is $1,500 per month).
 
@@ -50,7 +50,7 @@ The steps at $25,000 and $50,000 income create cliffs. Combined with other tax a
 
 ![](https://cdn-images-1.medium.com/max/3200/0*EPuCVy97aGQvFyUk)
 
-### The low end: Missouri studios
+## The low end: Missouri studios
 
 HUD has designated the country’s lowest SAFMR as studios in a set of ZIPs in central Missouri, at $540 per month. Consider an [individual](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) living in a studio apartment in this area paying $600 per month:
 
@@ -66,7 +66,7 @@ As their baseline marginal tax rate ranges from 0% to 62% in this range, the RRA
 
 ![](https://cdn-images-1.medium.com/max/3044/0*TVnDJ119xe338vNK)
 
-### The high end: San Diego four-bedroom homes
+## The high end: San Diego four-bedroom homes
 
 The country’s highest SAFMR is 4bd in several areas in San Diego: $6,960. This is also an area where SAFMR is used for HCV, raising RRA income thresholds by $25,000.
 
@@ -82,7 +82,7 @@ Stacking the credit atop other tax and benefit programs for this household revea
 
 It’s worth noting that the bill does not set a maximum number of bedrooms based on household size, unlike the [Housing Choice Voucher](https://www.hud.gov/sites/dfiles/PIH/documents/HCV_Guidebook_Calculating_Rent_and_HAP_Payments.pdf#page=7) program. This means the San Diego example could theoretically apply to a single individual living in a four-bedroom home.
 
-## Conclusion
+# Conclusion
 
 The Rent Relief Act (RRA) of 2019 proposes a refundable tax credit that would have varying impacts on renter households across the United States. This analysis demonstrates several key aspects of the bill’s potential effects:
 
