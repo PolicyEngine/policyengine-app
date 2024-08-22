@@ -88,8 +88,6 @@ To illustrate how the Rent Relief Act affects different household types across v
 
 ![](/images/posts/rent_relief/rent_relief_comparison.png "image_tooltip")
 
-This chart demonstrates several key features of the Rent Relief Act:
-
 Initial Credit Amount: The San Diego household starts with the highest credit due to the high local SAFMR, followed by the Sherman-Denison household, and then the Missouri household.
 
 Phase-Out Rates: All households experience the same 30% phase-out rate between income thresholds, as evidenced by the parallel slopes in these regions.
