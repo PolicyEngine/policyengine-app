@@ -89,5 +89,7 @@ The Labour manifesto redistributes £4.2bn and raises £3.3bn surplus revenue pr
 ## Notes
 
 [^1]: Where a policy is clearly a tax on corporations or consumption, we distribute the burden according to imputed corporate wealth and consumption, respectively. For public service budget changes we apply the ONS’ estimates of public service consumption by income decile. Where a policy is clearly only incident on high incomes, we model it as a progressive tax after an appropriate income level.
+
 [^2]: See our open-source model addition [here](https://github.com/PolicyEngine/policyengine-uk/pull/880/files). We do not model the business rate increase.
+
 [^3]: [Advani et al](https://warwick.ac.uk/fac/soc/economics/research/centres/cage/manage/publications/bn36.2022.pdf) found that only 0.3% of people who have ever been non-doms earn less than £100,000, and non-dom status becomes more prevalent at higher incomes.
