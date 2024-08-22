@@ -13,7 +13,5 @@ From Governor Hochul to think tanks to families trying to better understand thei
 ![](https://cdn-images-1.medium.com/max/5868/1*TUzMiSu3Z9ktiA5_9syB-Q.png)
 
 [^1]: PolicyEngine results may not constitute exact tax liabilities or benefit entitlements.
-
 [^2]: PolicyEngine estimates New York-wide impacts using the Current Population Survey, which undercaptures income and benefits, especially among low- and high-income households.
-
 [^3]: Nikhil Woodruff and Aleida Baumgartner modeled PolicyEngine’s New York tax model.
