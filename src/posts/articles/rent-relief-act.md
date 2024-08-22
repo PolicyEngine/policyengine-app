@@ -50,7 +50,7 @@ The steps at $25,000 and $50,000 income create cliffs. Combined with other tax a
 
 ![](https://cdn-images-1.medium.com/max/3200/0*EPuCVy97aGQvFyUk)
 
-## The low end: Missouri studios
+## The Low End: Missouri studios
 
 HUD has designated the country’s lowest SAFMR as studios in a set of ZIPs in central Missouri, at $540 per month. Consider an [individual](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) living in a studio apartment in this area paying $600 per month:
 
@@ -66,7 +66,7 @@ As their baseline marginal tax rate ranges from 0% to 62% in this range, the RRA
 
 ![](https://cdn-images-1.medium.com/max/3044/0*TVnDJ119xe338vNK)
 
-## The high end: San Diego four-bedroom homes
+## The High End: San Diego four-bedroom homes
 
 The country’s highest SAFMR is 4bd in several areas in San Diego: $6,960. This is also an area where SAFMR is used for HCV, raising RRA income thresholds by $25,000.
 
