@@ -36,7 +36,9 @@ Key features of the credit:
 
 This structure creates a varying impact on households depending on their income, rent, and location. The subsequent sections will explore these impacts through specific examples.
 
-# Examples of Credit Application
+# Examples
+
+We will examine three examples to illustrate the Rent Relief Act’s effects on different household types across various income levels. These examples will focus on a typical household, as well as two households at opposite ends of the credit’s generosity spectrum based on local housing costs.
 
 ## A Typical Example: Sherman-Denison, Texas
 
@@ -44,9 +46,13 @@ Consider a [single parent](https://policyengine.org/us/household?focus=household
 
 We can see this visually by displaying the credit with earnings, showing the steps at $25,000 and $50,000, and their ineligibility at $60,000 income (30% of which is $1,500 per month).
 
+**Figure 1: Rent Relief Act for a Sherman-Denison, Texas 3-bedroom**
+
 ![](https://cdn-images-1.medium.com/max/3036/0*_bG50g06m6fg3p2c)
 
 The steps at $25,000 and $50,000 income create cliffs. Combined with other tax and benefit programs, the household would have a lower net income if earning between $25,000 and $48,000.
+
+**Figure 2: Rent Relief Act Impact on a Single Parent of Two in a Sherman-Denison, Texas 3-bedroom**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*EPuCVy97aGQvFyUk)
 
@@ -60,9 +66,13 @@ HUD has designated the country’s lowest SAFMR as studios in a set of ZIPs in c
 
 - At $21,600 annual income (30% of which is $540 per month), they would no longer be eligible for the credit.
 
+**Figure 3: Rent Relief Act for a Missouri Studio**
+
 ![](https://cdn-images-1.medium.com/max/3128/0*aWj1gSnt06wvXQAS)
 
 As their baseline marginal tax rate ranges from 0% to 62% in this range, the RRA [increases it](https://policyengine.org/us/household?focus=householdOutput.mtr&household=46651&region=us&timePeriod=2024&baseline=2&reform=63509) to between 30% and 92%.
+
+**Figure 4: Rent Relief Act Marginal Tax Rate Impact on a Single Person in a Missouri Studio**
 
 ![](https://cdn-images-1.medium.com/max/3044/0*TVnDJ119xe338vNK)
 
@@ -72,11 +82,15 @@ The country’s highest SAFMR is 4bd in several areas in San Diego: $6,960. This
 
 Consider a [married couple](https://policyengine.org/us/household?focus=householdOutput.earnings&household=46575&region=us&timePeriod=2024&baseline=2&reform=63509) with three children paying at least $6,960 per month in rent in a 4bd home in one of these areas. If they have no income, they will receive the full $6,960 per month, or $83,520 per year. That will phase out at a 30% rate, until they earn $50,000, at which point the credit covers 75%, rather than 100%, of the gap between rent and 30% of their income. It then steps down again at $75,000, $100,000, and finally $125,000 income at which point they become ineligible.
 
+**Figure 5: Rent Relief Act for a San Diego 4-bedroom**
+
 ![](https://cdn-images-1.medium.com/max/3100/0*IUCRsmREyRmi5cj-)
 
 While the credit phases out at a 30% rate for any segment, it creates a higher average marginal tax rate over the full earnings range due to the steps: by reducing the credit from $83,520 to $0 over the earnings range $0 to $125,000, it adds 67 percentage points to their marginal tax rate.
 
 Stacking the credit atop other tax and benefit programs for this household reveals its effect on cliffs. Accounting for state and federal income taxes, and benefits like the Supplemental Nutrition Assistance Program, the household faces a baseline average marginal tax rate of 38% from $0 to $125,000: they receive $22,817 at zero earnings and $100,351 at $125,000. The RRA thus increases their MTR to 105% over this range; their net income is $106,337 at zero earnings and $100,351 at $125,000.
+
+**Figure 6: Rent Relief Act Impact on a Couple with Three Children in a San Diego 4-bedroom**
 
 ![](https://cdn-images-1.medium.com/max/3136/0*laJ8B-XezYYRjNIA)
 
@@ -86,20 +100,18 @@ It’s worth noting that the bill does not set a maximum number of bedrooms base
 
 To illustrate how the Rent Relief Act affects different household types across various income levels, we can compare the credit amount for all three example households as a function of income:
 
+**Figure 7: Rent Relief Act Credit for Selected Homes**
+
 ![](/images/posts/rent_relief/rent_relief_comparison.png "image_tooltip")
 
 This chart demonstrates several key features of the Rent Relief Act:
 
-Initial Credit Amount: The San Diego household starts with the highest credit due to the high local SAFMR, followed by the Sherman-Denison household, and then the Missouri household.
-
-Phase-Out Rates: All households experience the same 30% phase-out rate between income thresholds, as evidenced by the parallel slopes in these regions.
-Income Thresholds: The San Diego household’s income thresholds are $25,000 higher than the other two due to the use of SAFMRs for the Housing Choice Voucher program in that area.
-
-Credit Duration: The San Diego household remains eligible for the credit at much higher income levels compared to the other two households, due to both the higher initial credit amount and the elevated income thresholds.
-
-Cliff Effects: All three households experience cliff effects at their respective income thresholds, where the credit amount drops sharply over a small increase in income.
-
-Zero Credit Point: The income level at which each household becomes ineligible for the credit varies significantly, from $21,600 for the Missouri household to $60,000 for the Sherman-Denison household, and $125,000 for the San Diego household.
+- Initial Credit Amount: The San Diego household starts with the highest credit due to the high local SAFMR, followed by the Sherman-Denison household, and then the Missouri household.
+- Phase-Out Rates: All households experience the same 30% phase-out rate between income thresholds, as evidenced by the parallel slopes in these regions.
+  Income Thresholds: The San Diego household’s income thresholds are $25,000 higher than the other two due to the use of SAFMRs for the Housing Choice Voucher program in that area.
+- Credit Duration: The San Diego household remains eligible for the credit at much higher income levels compared to the other two households, due to both the higher initial credit amount and the elevated income thresholds.
+- Cliff Effects: All three households experience cliff effects at their respective income thresholds, where the credit amount drops sharply over a small increase in income.
+- Zero Credit Point: The income level at which each household becomes ineligible for the credit varies significantly, from $21,600 for the Missouri household to $60,000 for the Sherman-Denison household, and $125,000 for the San Diego household.
 
 This comparison illustrates how the Rent Relief Act’s impact varies based on local housing costs and whether an area uses SAFMRs for the Housing Choice Voucher program. It also highlights the uniform nature of the phase-out structure across different household types and locations, while showing how this structure interacts with varying rent levels to produce different outcomes for each household.
 
