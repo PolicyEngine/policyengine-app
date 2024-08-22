@@ -59,6 +59,7 @@ export const buttonStyles = {
  */
 export default function Button(props) {
   let {
+    testId,
     text,
     onClick,
     width,
@@ -120,6 +121,7 @@ export default function Button(props) {
         transition: "none",
         ...style,
       }}
+      data-testid={testId}
       disabled={type === "disabled"}
       onMouseOver={(e) =>
         (e.currentTarget.style.backgroundColor =
