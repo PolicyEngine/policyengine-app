@@ -697,14 +697,7 @@ function LeftContents(props) {
     return text;
   });
   const headerSlugs = headers.map((header) =>
-    header
-      .split(" ")
-      .slice(1)
-      .join(" ")
-      .split(" ")
-      .join("-")
-      .replace("\\", "")
-      .replace(/,/g, ""),
+    header.replace(/[#,/]/g, "").trim().replace(/\s+/g, "-").toLowerCase(),
   );
 
   let contents = [];
@@ -712,6 +705,7 @@ function LeftContents(props) {
     const headerLevel = headerLevels[i];
     const headerText = headerTexts[i];
     const headerSlug = headerSlugs[i];
+
     contents.push(
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: 5 }}
