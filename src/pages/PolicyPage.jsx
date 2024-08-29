@@ -13,16 +13,17 @@ import ThreeColumnPage from "../layout/ThreeColumnPage";
 import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
+import ErrorComponent from "../layout/ErrorComponent";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
+import DeprecationModal from "../modals/DeprecationModal";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
   const [searchParams, setSearchParams] = useSearchParams();
   const options = Object.values(metadata.parameters)
-    .filter((parameter) => !parameter.parameter.includes("abolitions"))
     .filter((parameter) => parameter.type === "parameter")
     .map((parameter) => ({
       value: parameter.parameter,
@@ -88,6 +89,14 @@ export default function PolicyPage(props) {
   const focus = searchParams.get("focus") || "";
 
   const isOutput = focus.includes("policyOutput");
+  // Evaluate if policy is deprecated or not
+  const isPolicyDeprecated = checkIsPolicyDeprecated(metadata, policy);
+  let deprecatedParams = [];
+  if (isPolicyDeprecated) {
+    deprecatedParams = findDeprecatedParams(metadata, policy);
+  }
+
+  const countryVersion = metadata.version;
 
   useEffect(() => {
     if (!focus) {
@@ -114,6 +123,18 @@ export default function PolicyPage(props) {
 
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
+  } else if (isPolicyDeprecated) {
+    middle = (
+      <>
+        <DeprecationModal
+          oldPolicy={policy}
+          countryVersion={countryVersion}
+          metadata={metadata}
+          deprecatedParams={deprecatedParams}
+        />
+        <ErrorComponent message="This policy is deprecated" />
+      </>
+    );
   } else if (
     Object.keys(metadata.parameters).includes(focus) &&
     metadata.parameters[focus].type === "parameter"
@@ -255,9 +276,52 @@ export default function PolicyPage(props) {
             metadata={metadata}
             policy={policy}
             setPolicy={setPolicy}
+            isPolicyDeprecated={isPolicyDeprecated}
           />
         }
       />
     </>
   );
+}
+
+export function checkIsPolicyDeprecated(metadata, policy) {
+  // Iterate over baseline and reform
+  const baselineAndReform = Object.values(policy);
+  for (const item of baselineAndReform) {
+    // Iterate over each provision
+
+    // Handle current law, where data is null, and handle empty object
+    if (!item.data || Object.keys(item.data).length === 0) {
+      continue;
+    } else {
+      for (const provision in item.data) {
+        if (!Object.keys(metadata.parameters).includes(provision)) {
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
+export function findDeprecatedParams(metadata, policy) {
+  const deprecatedParams = [];
+  const baselineAndReform = Object.values(policy);
+
+  for (const item of baselineAndReform) {
+    // Iterate over each provision
+
+    // Handle current law, where data is null, and handle empty object
+    if (!item.data || Object.keys(item.data).length === 0) {
+      continue;
+    } else {
+      for (const provision in item.data) {
+        if (!Object.keys(metadata.parameters).includes(provision)) {
+          deprecatedParams.push(provision);
+        }
+      }
+    }
+  }
+  return deprecatedParams;
 }

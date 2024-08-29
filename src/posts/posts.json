@@ -750,9 +750,63 @@
     "title": "Kamala Harris's LIFT Act Middle Class Tax Credit",
     "description": "A comprehensive analysis of the Vice President's 2018 proposal.",
     "date": "2024-07-22 01:00:00",
-    "tags": ["us", "policy", "featured"],
+    "tags": ["us", "policy", "featured", "2024-election"],
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "lift-act.md",
     "image": "lift-act.jpg"
+  },
+  {
+    "title": "Analysis of JD Vance’s Suggested $5,000 Child Tax Credit Expansion",
+    "description": "Impacts of the vice presidential nominee’s reform depend largely on its uncertain refundability.",
+    "date": "2024-08-11 01:00:00",
+    "tags": ["us", "policy", "featured", "2024-election"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "vance-ctc.md",
+    "image": "vance-ctc.jpg"
+  },
+  {
+    "title": "PolicyEngine at the 117th Annual Conference on Taxation",
+    "description": "Exploring AI applications and enhanced data for tax policy analysis.",
+    "date": "2024-08-13 01:00:00",
+    "tags": ["us", "policy", "conferences"],
+    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "filename": "nta-2024.md",
+    "image": "nta-2024.png"
+  },
+  {
+    "title": "Validation against the Survey of Personal Incomes",
+    "description": "Evaluating PolicyEngine's model performance against the UK SPI.",
+    "date": "2024-08-14 01:00:00",
+    "tags": ["uk", "technical"],
+    "authors": ["anthony-volk"],
+    "filename": "uk-spi-validation.ipynb",
+    "image": "uk-spi-validation.png"
+  },
+  {
+    "title": "Kamala Harris’s Child Tax Credit Proposal",
+    "description": "We analyze the Democratic nominee’s proposal to expand the 2021 expansion, giving $6,000 to parents of newborns.",
+    "date": "2024-08-17 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "harris-ctc.md",
+    "image": "harris-ctc.webp"
+  },
+  {
+    "title": "Individual Income Tax Provisions in Minnesota Bill HF1938 (2023)",
+    "description": "The reform signed by Governor Tim Walz expanded credits for low-income families, reduced taxes for middle-income retirees, and raised taxes for high-income filers.",
+    "date": "2024-08-21 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured", "minnesota"],
+    "authors": ["pavel-makarchuk"],
+    "filename": "mn-hf1938-walz.md",
+    "image": "mn-hf1938-walz.webp"
+  },
+  {
+    "title": "How the Rent Relief Act of 2019 Varies with Income and Location",
+    "description": "We show the impact on different households of the tax credit bill introduced by then-Senator Kamala Harris.",
+    "date": "2024-08-22 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured"],
+    "authors": ["max-ghenis"],
+    "filename": "rent-relief-act.md",
+    "image": "rent-relief-act.png"
   }
 ]

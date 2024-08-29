@@ -6,7 +6,7 @@ import {
   getPlotlyAxisFormat,
   getValueFromHousehold,
 } from "../../../api/variables";
-import ErrorPage from "../../../layout/Error";
+import ErrorPage from "../../../layout/ErrorPage";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import FadeIn from "../../../layout/FadeIn";
