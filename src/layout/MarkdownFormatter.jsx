@@ -264,6 +264,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
         li: ({ children }) => {
           // Check if li p a exists. If it does, get the ID of the a tag.
           let value = null;
+          let validValue = false;
           try {
             let footnoteLinkBack = children
               .find((child) => child?.props?.node.tagName === "p")
@@ -271,16 +272,12 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
                 (child) => child?.props?.node.tagName === "a",
               ).props.node.properties.href;
             value = footnoteLinkBack.split("-").pop();
+            validValue = /^-?\d+$/.test(value);
           } catch (e) {
             // Do nothing
           }
           return (
-            <li
-              style={{
-                marginLeft: 10,
-              }}
-              value={value}
-            >
+            <li style={{ marginLeft: 10 }} value={validValue ? value : null}>
               {children}
             </li>
           );
