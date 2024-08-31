@@ -39,8 +39,11 @@ export function getHeaderCode(type, metadata, policy) {
     lines.push("from " + metadata.package + " import Microsimulation");
   }
 
-  // If there is a reform, add the following Python imports
-  if (Object.keys(policy.reform.data).length > 0) {
+  // If either baseline or reform is custom, add the following Python imports
+  if (
+    Object.keys(policy.reform.data).length > 0 ||
+    Object.keys(policy.baseline.data).length > 0
+  ) {
     lines.push("from policyengine_core.reforms import Reform");
   }
 
