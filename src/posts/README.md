@@ -23,4 +23,5 @@
 8. Replace superscript footnotes with Markdown footnotes.
 
 [^1]: This way, Medium does all the image optimisation and we can use their server space to host the images.
+
 [^2]: A 'slug' is a code-friendly version of the post title. For example, the slug for "How to write a blog post" is `how-to-write-a-blog-post`.
