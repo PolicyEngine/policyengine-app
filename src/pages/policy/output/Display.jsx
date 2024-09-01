@@ -9,14 +9,14 @@ import { Progress, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
 import useMobile from "layout/Responsive";
-import ErrorPage from "layout/ErrorPage";
+import ErrorPage from "layout/Error";
 import ResultActions from "layout/ResultActions";
 import { downloadCsv } from "./utils";
 import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
-import BottomImpactDescription from "../../../layout/BottomImpactDescription";
+import BottomCarousel from "../../../layout/BottomCarousel";
 
 /**
  *
@@ -367,13 +367,11 @@ export function LowLevelDisplay(props) {
       <div ref={componentRef} id="downloadable-content">
         {children}
       </div>
-      {!mobile && (
-        <BottomImpactDescription
-          selected={focus}
-          options={policyOutputTree[0].children}
-          bottomElements={bottomElements}
-        />
-      )}
+      <BottomCarousel
+        selected={focus}
+        options={policyOutputTree[0].children}
+        bottomElements={bottomElements}
+      />
     </ResultsPanel>
   );
 }

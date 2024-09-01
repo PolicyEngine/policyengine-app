@@ -25,7 +25,7 @@ import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 import { COUNTRY_NAMES } from "../data/countries";
 import moment from "moment";
 import { formatCurrencyAbbr } from "../lang/format";
-import ErrorPage from "../layout/ErrorPage";
+import ErrorPage from "../layout/Error";
 
 const STATES = {
   EMPTY: "empty",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { apiCall } from "../../../api/call";
-import ErrorPage from "../../../layout/ErrorPage";
+import ErrorPage from "../../../layout/Error";
 import ResultsPanel from "../../../layout/ResultsPanel";
 import { useSearchParams } from "react-router-dom";
 import LoadingCentered from "../../../layout/LoadingCentered";

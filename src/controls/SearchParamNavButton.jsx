@@ -5,17 +5,8 @@ import Button from "./Button";
 import ArrowButton from "./ArrowButton";
 
 export default function SearchParamNavButton(props) {
-  const {
-    text,
-    focus,
-    target,
-    style,
-    type,
-    onClick,
-    direction,
-    moreOnClick,
-    testId,
-  } = props;
+  const { text, focus, target, style, type, onClick, direction, moreOnClick } =
+    props;
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -24,7 +15,6 @@ export default function SearchParamNavButton(props) {
     (() => {
       let newSearch = copySearchParams(searchParams);
       newSearch.set("focus", focus);
-
       if (target) {
         navigate(target + "?" + newSearch);
         gtag("event", "navigate", {
@@ -49,7 +39,6 @@ export default function SearchParamNavButton(props) {
   if (direction) {
     return (
       <ArrowButton
-        testId={testId}
         direction={direction}
         type={type}
         style={{ ...style }}
@@ -60,7 +49,6 @@ export default function SearchParamNavButton(props) {
 
   return (
     <Button
-      testId={testId}
       type={type}
       text={text}
       style={{ ...style }}
