@@ -331,42 +331,8 @@ export function SinglePolicyChange(props) {
   );
 }
 
-export function DeprecatedPolicyChange() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        paddingLeft: 10,
-      }}
-    >
-      <div>
-        <span style={{ fontFamily: "Roboto Serif", color: "black" }}>
-          This policy is deprecated.
-        </span>
-      </div>
-    </div>
-  );
-}
-
 function PolicyItem(props) {
-  const { metadata, parameterName, reformData, isPolicyDeprecated } = props;
-
-  if (isPolicyDeprecated) {
-    return (
-      <div>
-        <div
-          style={{
-            paddingLeft: 10,
-            paddingRight: 40,
-          }}
-        >
-          <DeprecatedPolicyChange />
-        </div>
-      </div>
-    );
-  }
-
+  const { metadata, parameterName, reformData } = props;
   const parameter = metadata.parameters[parameterName];
   let changes = [];
   for (const [timePeriod, value] of Object.entries(reformData[parameterName])) {
@@ -398,15 +364,8 @@ function PolicyItem(props) {
 }
 
 function PolicyDisplay(props) {
-  const {
-    policy,
-    metadata,
-    region,
-    timePeriod,
-    closeDrawer,
-    hideButtons,
-    isPolicyDeprecated,
-  } = props;
+  const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } =
+    props;
   policy.reform.data = Object.fromEntries(
     Object.entries(policy.reform.data).filter(
       ([key, value]) =>
@@ -427,7 +386,7 @@ function PolicyDisplay(props) {
         variant="dark"
         indicators={false}
         interval={null}
-        controls={reformLength > 1 && !isPolicyDeprecated ? true : false}
+        controls={reformLength > 1 ? true : false}
         slide={true}
       >
         {Object.keys(policy.reform.data).map((parameterName) => (
@@ -448,7 +407,6 @@ function PolicyDisplay(props) {
               metadata={metadata}
               parameterName={parameterName}
               reformData={policy.reform.data}
-              isPolicyDeprecated={isPolicyDeprecated}
             />
           </Carousel.Item>
         ))}
@@ -463,15 +421,8 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const {
-    policy,
-    setPolicy,
-    metadata,
-    hideButtons,
-    closeDrawer,
-    defaultOpen,
-    isPolicyDeprecated,
-  } = props;
+  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
+    props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -668,7 +619,6 @@ export default function PolicyRightSidebar(props) {
           timePeriod={timePeriod}
           closeDrawer={closeDrawer}
           hideButtons={hideButtons}
-          isPolicyDeprecated={isPolicyDeprecated}
         />
         <div style={{ paddingLeft: 5 }}>
           <Collapsible

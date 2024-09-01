@@ -39,7 +39,6 @@ In 2021, ARPA made the following changes to the EITC for childless workers:
 1. Allowed separate filers in the same household to be eligible for the EITC
 
 [^1]: The value of $600 mentioned in the previous section is the inflation-adjusted figure for 2023.
-
 [^2]: Today’s inflation-adjusted value is $9,800.
 
 ## Limitations of PolicyEngine’s EITC model

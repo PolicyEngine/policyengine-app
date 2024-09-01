@@ -2,7 +2,7 @@ REACT_APP_DEBUG ?= false
 
 install:
 	npm ci
-	pip3 install -U black
+	pip install -U black
 
 build:
 	npm run build
