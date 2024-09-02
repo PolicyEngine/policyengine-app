@@ -336,14 +336,15 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
             </a>
           );
         },
-        h1: ({ children }) => {
-          const headerText = children[0];
+        h1: ({ children: headerText }) => {
+          const slug = headerText
+            .toLowerCase()
+            .replace(/[/,]/g, "")
+            .replace(/\s+/g, "-");
+
           return (
-            <h1
-              id={headerText.split(" ").join("-").replace(/,/g, "")}
-              style={{ marginBottom: 20 }}
-            >
-              {children}
+            <h1 id={slug} style={{ marginBottom: 20 }}>
+              {headerText}
             </h1>
           );
         },
@@ -369,8 +370,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
             return <section>{children}</section>;
           }
         },
-        h2: ({ children }) => {
-          let headerText = React.Children.toArray(children).join("");
+        h2: ({ children: headerText }) => {
           if (!headerText.split) {
             headerText = "";
           }
@@ -383,27 +383,25 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
 
           return (
             <h2 id={slug} style={{ marginBottom: 20 }}>
-              {children}
+              {headerText}
             </h2>
           );
         },
-        h3: ({ children }) => {
-          const headerText = React.Children.toArray(children).join("");
+        h3: ({ children: headerText }) => {
           const slug = headerText
             .toLowerCase()
             .replace(/[/,]/g, "")
             .replace(/\s+/g, "-");
 
-          return <h3 id={slug}>{children}</h3>;
+          return <h3 id={slug}>{headerText}</h3>;
         },
-        h4: ({ children }) => {
-          const headerText = React.Children.toArray(children).join("");
+        h4: ({ children: headerText }) => {
           const slug = headerText
             .toLowerCase()
             .replace(/[/,]/g, "")
             .replace(/\s+/g, "-");
 
-          return <h4 id={slug}>{children}</h4>;
+          return <h4 id={slug}>{headerText}</h4>;
         },
         table: ({ children }) => (
           <table
