@@ -3,9 +3,19 @@ import useMobile from "../layout/Responsive";
 import { Helmet } from "react-helmet";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
+import useCountryId from "../hooks/useCountryId";
 
 export default function TACPage() {
   const mobile = useMobile();
+
+  const countries = {
+    ca: "Canada",
+    uk: "the United Kingdom",
+    us: "the United States",
+  };
+  const countryId = useCountryId();
+  const country = countries[countryId] || "the United States";
+
   return (
     <>
       <Helmet>
@@ -87,7 +97,7 @@ export default function TACPage() {
         <h4>Governing Law</h4>
         <p>
           9.1 These Terms shall be governed by and construed in accordance with
-          the laws of the United States.
+          the laws of {country}.
         </p>
         <h4>Changes to the Terms</h4>
         <p>
