@@ -495,6 +495,26 @@ export default function PolicyRightSidebar(props) {
     (option) => option.value === stateAbbreviation,
   )?.value;
 
+  const baselineData = policy.baseline.data;
+  const reformData = policy.reform.data;
+
+  // Convenience function for determining if baseline and reform
+  // are both current law, and thus, there is no reform
+  function isNoReform(baselineData, reformData) {
+    if (!baselineData || !reformData) {
+      return true;
+    }
+
+    if (
+      Object.keys(baselineData).length === 0 &&
+      Object.keys(reformData).length === 0
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
   const confirmEconomicImpact = () => {
     let message = "";
     if (validatedStateAbbreviation && stateAbbreviation !== region) {
@@ -782,10 +802,7 @@ export default function PolicyRightSidebar(props) {
           <SearchParamNavButton
             type={
               // Disable output if both baseline and reform are current law
-              Object.keys(policy.reform.data).length === 0 &&
-              Object.keys(policy.baseline.data).length === 0
-                ? "disabled"
-                : "primary"
+              isNoReform(baselineData, reformData) ? "disabled" : "primary"
             }
             text="Calculate economic impact"
             onClick={confirmEconomicImpact}
