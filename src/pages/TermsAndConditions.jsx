@@ -4,17 +4,24 @@ import { Helmet } from "react-helmet";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import useCountryId from "../hooks/useCountryId";
+import { COUNTRY_NAMES } from "../data/countries";
 
 export default function TACPage() {
   const mobile = useMobile();
 
-  const countries = {
-    ca: "Canada",
-    uk: "the United Kingdom",
-    us: "the United States",
-  };
   const countryId = useCountryId();
-  const country = countries[countryId] || "the United States";
+  const DEFAULT_COUNTRY = "the United Kingdom";
+
+  const getCountryName = (id) => {
+    const country = COUNTRY_NAMES[id];
+
+    if (country) {
+      return country.phrasal || country.standard;
+    }
+    return DEFAULT_COUNTRY;
+  };
+
+  const countryName = getCountryName(countryId);
 
   return (
     <>
@@ -97,7 +104,7 @@ export default function TACPage() {
         <h4>Governing Law</h4>
         <p>
           9.1 These Terms shall be governed by and construed in accordance with
-          the laws of {country}.
+          the laws of {countryName}.
         </p>
         <h4>Changes to the Terms</h4>
         <p>
