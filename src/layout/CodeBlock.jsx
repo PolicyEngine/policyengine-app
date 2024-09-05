@@ -9,7 +9,8 @@ export default function CodeBlock({
   data,
   title,
   language,
-  maxHeight,
+  collapsedHeight = "260px", 
+  expandedHeight = "auto",
   showExpand = true,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,7 +24,6 @@ export default function CodeBlock({
   useEffect(() => {
     if (isCopied) {
       const timeoutId = setTimeout(() => setIsCopied(false), 1000);
-
       return () => clearTimeout(timeoutId);
     }
   }, [isCopied]);
@@ -35,18 +35,10 @@ export default function CodeBlock({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        // Padding is necessary so that button click effect
-        // is visible
         padding: "0 6px 0 0",
       }}
     >
-      <p
-        style={{
-          margin: 0,
-        }}
-      >
-        {language}
-      </p>
+      <p style={{ margin: 0 }}>{language}</p>
       <div
         style={{
           display: "flex",
@@ -76,11 +68,7 @@ export default function CodeBlock({
                 }}
               >
                 {isExpanded ? <UpOutlined /> : <DownOutlined />}
-                <p
-                  style={{
-                    margin: 0,
-                  }}
-                >
+                <p style={{ margin: 0 }}>
                   {isExpanded ? "Shrink" : "Expand"}
                 </p>
               </div>
@@ -108,11 +96,7 @@ export default function CodeBlock({
               }}
             >
               <CopyOutlined />
-              <p
-                style={{
-                  margin: 0,
-                }}
-              >
+              <p style={{ margin: 0 }}>
                 {isCopied ? "Copied!" : "Copy"}
               </p>
             </div>
@@ -123,11 +107,7 @@ export default function CodeBlock({
   );
 
   return (
-    <div
-      style={{
-        flex: 1,
-      }}
-    >
+    <div style={{ flex: 1 }}>
       <div
         style={{
           display: "flex",
@@ -139,18 +119,13 @@ export default function CodeBlock({
         <h4>{title}</h4>
       </div>
       <Card
-        style={{}}
         loading={!data}
-        styles={{
-          body: {
-            padding: 0,
-          },
-        }}
+        styles={{ body: { padding: 0 } }}
         title={cardTitleComponent}
       >
         <CodeMirror
           value={data}
-          maxHeight={maxHeight ? maxHeight : !isExpanded && "260px"}
+          maxHeight={isExpanded ? expandedHeight : collapsedHeight} // Toggle height
           editable={false}
           extensions={[
             language in langs ? langs[language]() : langs.json(),
