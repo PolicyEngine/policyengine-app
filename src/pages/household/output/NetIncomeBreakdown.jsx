@@ -2,6 +2,7 @@ import {
   CaretDownFilled,
   CaretUpFilled,
   PlusCircleOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
 import { Tooltip } from "antd";
 import { useState } from "react";
@@ -57,6 +58,7 @@ function VariableArithmetic(props) {
     forceShowChildValuesIfZero,
     year,
   } = props;
+
   let nodeSign = isAdd;
   const value = getValueFromHousehold(
     variableName,
@@ -225,6 +227,12 @@ function VariableArithmetic(props) {
     adds.length + subtracts.length > 0 &&
     childNodes.length > 0;
 
+  // Check if the current variable is "benefits"
+  const isBenefit = variable.label === "benefits"; // Check if current label is 'benefits'
+  
+    // Define content to display in tooltip - will add button to show AI explanation
+  const infoContent = 'Explain with AI';
+
   if (childrenOnly) {
     return (
       <div
@@ -282,6 +290,7 @@ function VariableArithmetic(props) {
               {valueStr}
             </h2>
           </Tooltip>
+          
           {expandable && (
             <PlusCircleOutlined
               style={{
@@ -307,7 +316,32 @@ function VariableArithmetic(props) {
             borderLeftColor: nodeColor(nodeSign),
           }}
         >
-          {childNodes}
+          {childNodes.map((child, index) => (
+      <div
+        key={index}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: 10,
+        }}
+      >
+        {/* Render the child node */}
+        {child}
+        
+        {/* Conditionally add the InfoCircleOutlined icon if isBenefit is true */}
+        {isBenefit && (
+          <Tooltip title={`More information about ${child.props.variableName}`}>
+            <InfoCircleOutlined
+              style={{
+                fontSize: "1.2rem",
+                marginLeft: "8px",
+                color: "gray",
+              }}
+            />
+          </Tooltip>
+        )}
+      </div>
+    ))}
         </div>
       )}
     </div>
