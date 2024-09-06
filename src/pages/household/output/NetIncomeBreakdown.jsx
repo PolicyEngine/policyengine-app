@@ -229,9 +229,6 @@ function VariableArithmetic(props) {
 
   // Check if the current variable is "benefits"
   const isBenefit = variable.label === "benefits"; // Check if current label is 'benefits'
-  
-    // Define content to display in tooltip - will add button to show AI explanation
-  const infoContent = 'Explain with AI';
 
   if (childrenOnly) {
     return (
@@ -323,6 +320,8 @@ function VariableArithmetic(props) {
           display: "flex",
           alignItems: "center",
           marginBottom: 10,
+          // Position the button relative to the icon
+          position: "relative",
         }}
       >
         {/* Render the child node */}
@@ -330,15 +329,41 @@ function VariableArithmetic(props) {
         
         {/* Conditionally add the InfoCircleOutlined icon if isBenefit is true */}
         {isBenefit && (
-          <Tooltip title={`More information about ${child.props.variableName}`}>
+          // <Tooltip title={`More information about ${child.props.variableName}`}>
+
+          <div
+            style={{
+              position: "relative",
+              marginLeft: "8px",
+            }}
+            className="info-icon-wrapper" // Wrapper class for hover logic
+          >
             <InfoCircleOutlined
               style={{
                 fontSize: "1.2rem",
                 marginLeft: "8px",
                 color: "gray",
+                cursor: "pointer", // Pointer cursor to indicate it's interactable
               }}
             />
-          </Tooltip>
+            <button
+                style={{
+                  position: "absolute",
+                  top: "100%", // Position below the icon
+                  left: 0,
+                  padding: "5px 10px",
+                  backgroundColor: "blue",
+                  color: "white",
+                  borderRadius: "4px",
+                  border: "none",
+                  cursor: "pointer",
+                  zIndex: 1, // Ensure the button appears above other content
+                }}
+                className="explain-ai-button"
+              >
+                Explain with AI
+              </button>
+          </div>
         )}
       </div>
     ))}
