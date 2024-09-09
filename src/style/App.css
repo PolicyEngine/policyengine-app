@@ -140,19 +140,12 @@ h3 {
   top: 100%;
   left: 0;
   padding: 5px 10px;
-  background-color: #2c6496; /* Same as the link color */
+  font-family: "Roboto Serif", serif;
   color: white;
-  border-radius: 4px;
-  border: none;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500; /* Slightly bolder for emphasis */
+  background-color: #2c6496;
   cursor: pointer;
   z-index: 1;
   transition: background-color 0.3s ease-in-out;
-}
-
-.explain-ai-button:hover {
-  background-color: #227773; /* Same as highlighted-link hover color */
 }
 
 .info-icon-wrapper:hover .explain-ai-button {

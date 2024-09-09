@@ -313,6 +313,7 @@ function VariableArithmetic(props) {
               }}
             />
           )}
+
         </div>
       </div>
       {expanded && (
@@ -328,57 +329,55 @@ function VariableArithmetic(props) {
           }}
         >
           {childNodes.map((child, index) => (
-      <div
-        key={index}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginBottom: 10,
-          // Position the button relative to the icon
-          position: "relative",
-        }}
-      >
-        {/* Render the child node */}
-        {child}
-        
-        {/* Conditionally add the InfoCircleOutlined icon if isBenefit is true */}
-        {isBenefit && (
+          <div
+            key={index}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: 10,
+              // Position the button relative to the icon
+              position: "relative",
+            }}
+          >
+          {/* Render the child node */}
+          {child}
+
+          {/* Conditionally add the InfoCircleOutlined icon if isBenefit is true */}
+          {isBenefit && (
           // <Tooltip title={`More information about ${child.props.variableName}`}>
 
-          <div
-            style={{
-              position: "relative",
-              marginLeft: "8px",
-            }}
-            className="info-icon-wrapper" // Wrapper class for hover logic
-          >
-            <InfoCircleOutlined
+            <div
               style={{
-                fontSize: "1.2rem",
+                position: "relative",
                 marginLeft: "8px",
-                color: "gray",
-                cursor: "pointer", // Pointer cursor to indicate it's interactable
               }}
-            />
-            <button
+              className="info-icon-wrapper"
+            >
+              <InfoCircleOutlined
                 style={{
-                  position: "absolute",
-                  top: "100%", // Position below the icon
-                  left: 0,
-                  padding: "5px 10px",
-                  backgroundColor: "blue",
-                  color: "white",
-                  borderRadius: "4px",
-                  border: "none",
-                  cursor: "pointer",
-                  zIndex: 1, // Ensure the button appears above other content
+                  fontSize: 14,
+                  marginLeft: 10,
+                  color: style.colors.DARK_GRAY,
+                  cursor: "pointer", // Pointer cursor to indicate it's interactable
                 }}
-                className="explain-ai-button"
-                onClick={showModal} // Show modal when button is clicked
-              >
-                Explain with AI
-              </button>
-          </div>
+              />
+              <Button
+                  style={{
+                    position: "absolute",
+                    top: "100%", // Position below the icon
+                    left: 0,
+                    padding: "5px 10px",
+                    borderWidth: 1,
+                    borderColor: nodeColor(nodeSign),
+                    cursor: "pointer",
+                    zIndex: 1, // Ensure the button appears above other content
+                  }}
+                  className="explain-ai-button"
+                  onClick={showModal} // Show modal when button is clicked
+                >
+                  Explain with AI
+                </Button>
+            </div>
         )}
       </div>
     ))}
