@@ -5,6 +5,7 @@ import useDisplayCategory from "../../hooks/useDisplayCategory";
 import moment from "moment";
 import React from "react";
 import useCountryId from "../../hooks/useCountryId";
+import { formatFullDate } from "../../lang/format";
 import EmphasisedLink from "../../layout/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 
@@ -335,6 +336,8 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   const imageUrl = blogs.image ? handleImageLoad(blogs.image) : "";
 
   const countryId = useCountryId();
+  const postDate = formatFullDate(moment(currentBlog.date), countryId);
+
   const link = `/${countryId}/research/${currentBlog.slug}`;
   return (
     <div
@@ -387,9 +390,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
           }}
         >
           <div style={{ padding: 20 }}>
-            <p style={{ textTransform: "uppercase" }}>
-              {moment(currentBlog.date).format("MMMM D, YYYY")}
-            </p>
+            <p style={{ textTransform: "uppercase" }}>{postDate}</p>
             <h3 style={{ minHeight: 70 }}>{currentBlog.title}</h3>
             <p>{currentBlog.description}</p>
           </div>
@@ -406,6 +407,8 @@ export function MediumBlogPreview({ blog, minHeight }) {
   const link = `/${countryId}/research/${slug}`;
 
   const imageUrl = blog.image ? handleImageLoad(blog.image) : "";
+
+  const postDate = formatFullDate(moment(blog.date), countryId);
 
   return (
     <div
@@ -460,7 +463,7 @@ export function MediumBlogPreview({ blog, minHeight }) {
       >
         <div style={{ padding: 20 }}>
           <p style={{ textTransform: "uppercase", fontFamily: "Roboto" }}>
-            {moment(blog.date).format("MMMM D, YYYY")}
+            {postDate}
           </p>
           <h4>{blog.title}</h4>
           <p>{blog.description}</p>
@@ -529,6 +532,8 @@ export function SmallBlogPreview({ blog }) {
   const slug = blog.filename.split(".")[0];
   const link = `/${countryId}/research/${slug}`;
 
+  const postDate = formatFullDate(moment(blog.date), countryId);
+
   return (
     <BlogBox
       topLeft={topLeft}
@@ -543,7 +548,7 @@ export function SmallBlogPreview({ blog }) {
             fontFamily: "Roboto",
           }}
         >
-          {moment(blog.date).format("MMMM D, YYYY")}
+          {postDate}
         </p>
       }
       bottomRight={
