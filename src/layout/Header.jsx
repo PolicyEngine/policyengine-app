@@ -328,7 +328,7 @@ function LoginMenu() {
           minWidth: "200px",
         },
       }}
-      trigger={displayCategory === "mobile" ? ["click"] : ["click"]}
+      trigger={["click"]}
       placement="bottomRight"
     >
       {/*This div necessary to properly render dropdown items*/}
