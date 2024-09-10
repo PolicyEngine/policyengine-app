@@ -229,6 +229,13 @@ function VariableArithmetic(props) {
     adds.length + subtracts.length > 0 &&
     childNodes.length > 0;
 
+  // Temporarily hardcoding the explainer variable and value
+  const EXPLAINER_VARIABLE_TEST = {
+    label: "Earned Income Tax Credit",
+    name: "eitc_new"
+  };
+  const EXPLAINER_VALUE_TEST = 0;
+
   // State for modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -362,6 +369,8 @@ function VariableArithmetic(props) {
     <AISoftcodedModal 
       isModalVisible={isModalVisible}
       setIsModalVisible={setIsModalVisible}
+      value={EXPLAINER_VALUE_TEST}
+      variable={EXPLAINER_VARIABLE_TEST}
     />
     </div>
   );

@@ -1,5 +1,5 @@
 
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd"
 import { getExplainerAIPromptContent } from "../pages/household/output/explainerAIPromptContent";
 import { countryApiCall, asyncApiCall } from "../api/call";
@@ -38,12 +38,32 @@ eitc<2024, (default)> = [6960.]
       eitc_child_count<2024, (default)> = [2]
 `;
 
+/**
+ * Modal for displaying AI output
+ * @param {Object} props 
+ * @param {Object} props.variable The object form of the variable, taken from metadata;
+ * contains 'name' field referring to variable name in back end (e.g., household_net_income)
+ * and 'label' referring to display label (e.g., household net income)
+ * @param {String} props.value The value of the variable
+ * @param {Boolean} props.isModalVisible Whether the modal is visible
+ * @param {Function} props.setIsModalVisible Function to set the visibility of the modal
+ * @returns {React.Component} The modal component
+ */
 export default function AISoftcodedModal(props) {
-  const {isModalVisible, setIsModalVisible} = props;
+  const {
+    isModalVisible, 
+    setIsModalVisible,
+    variable,
+    value
+  } = props;
 
   const [analysis, setAnalysis] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const countryId = useCountryId();
+  // Check if variable has changed by its name, not the 
+  // object itself; React will treat two objects with same keys
+  // and values as different if rendered separately
+  const prevVariableName = useRef(null);
 
   // Function to hide modal
   const handleCancel = () => {
@@ -94,26 +114,38 @@ export default function AISoftcodedModal(props) {
       });
   }, [countryId]);
 
-  // Temporarily hardcoding the explainer variable and value
-  const EXPLAINER_VARIABLE_TEST = "eitc";
-  const EXPLAINER_VALUE_TEST = 0;
   useEffect(() => {
+    function resetModalData() {
+      prevVariableName.current = variable.name;
+      setIsLoading(true);
+    }
+
+    // If modal isn't shown, don't do anything
     if (!isModalVisible) {
+      return;
+    }
+
+    // If variable hasn't changed and we generated analysis,
+    // don't do anything (e.g., user clicked on same variable)
+    if (variable.name === prevVariableName.current) {
       return;
     }
 
     const tracerOutput = fetchTracer();
 
     const prompt = getExplainerAIPromptContent(
-      EXPLAINER_VARIABLE_TEST,
-      EXPLAINER_VALUE_TEST,
+      variable.label,
+      value,
       tracerOutput
     );
 
+
     const aiAnalysis = fetchAI(prompt);
     setAnalysis(aiAnalysis);
+    resetModalData();
 
-  }, [isModalVisible, fetchAI])
+
+  }, [isModalVisible, variable, value, fetchAI])
 
   return (
       <Modal
