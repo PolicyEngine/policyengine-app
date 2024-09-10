@@ -1,5 +1,37 @@
 import { Button, Modal } from "antd"
 
+// Note that depending on implementation, this may instead be a 
+// JSON object at runtime, requiring some form of parsing be written in
+const tracerOutput = `
+eitc<2024, (default)> = [6960.]
+  eitc_eligible<2024, (default)> = [ True]
+    eitc_investment_income_eligible<2024, (default)> = [ True]
+      eitc_relevant_investment_income<2024, (default)> = [0.]
+    eitc_demographic_eligible<2024, (default)> = [ True]
+      eitc_child_count<2024, (default)> = [2]
+      age<2024, (default)> = [40.  5.  5.]
+      is_full_time_student<2024, (default)> = [False  True  True]
+  eitc_maximum<2024, (default)> = [6960.]
+    eitc_child_count<2024, (default)> = [2]
+  eitc_phased_in<2024, (default)> = [6960.]
+    eitc_maximum<2024, (default)> = [6960.]
+    eitc_phase_in_rate<2024, (default)> = [0.4]
+      eitc_child_count<2024, (default)> = [2]
+    filer_adjusted_earnings<2024, (default)> = [20000.]
+      adjusted_earnings<2024, (default)> = [20000.     0.     0.]
+      is_tax_unit_dependent<2024, (default)> = [False  True  True]
+  eitc_reduction<2024, (default)> = [0.]
+    filer_adjusted_earnings<2024, (default)> = [20000.]
+    adjusted_gross_income<2024, (default)> = [20000.]
+      irs_gross_income<2024, (default)> = [20000.     0.     0.]
+      above_the_line_deductions<2024, (default)> = [0.]
+    eitc_phase_out_start<2024, (default)> = [22720.]
+      eitc_child_count<2024, (default)> = [2]
+      tax_unit_is_joint<2024, (default)> = [False]
+    eitc_phase_out_rate<2024, (default)> = [0.2106]
+      eitc_child_count<2024, (default)> = [2]
+`;
+
 export default function AISoftcodedModal(props) {
   const {isModalVisible, setIsModalVisible} = props;
 
@@ -7,6 +39,13 @@ export default function AISoftcodedModal(props) {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  // Function to fetch tracer output; will just
+  // fetch local object for now; may later require
+  // adding JSON parsing
+  function handleFetchTracer() {
+    return tracerOutput;
+  }
 
   return (
       <Modal
