@@ -5,6 +5,7 @@ import { getExplainerAIPromptContent } from "../pages/household/output/explainer
 import { countryApiCall, asyncApiCall } from "../api/call";
 import useCountryId from "../hooks/useCountryId";
 import LoadingCentered from "../layout/LoadingCentered";
+import { MarkdownFormatter } from "../layout/MarkdownFormatter";
 
 // Note that depending on implementation, this may instead be a 
 // JSON object at runtime, requiring some form of parsing be written in
@@ -145,6 +146,7 @@ export default function AISoftcodedModal(props) {
     resetModalData();
 
 
+
   }, [isModalVisible, variable, value, fetchAI])
 
   return (
@@ -157,9 +159,13 @@ export default function AISoftcodedModal(props) {
             Close
           </Button>,
         ]}
+        width="50%"
       >
         {isLoading && <LoadingCentered />}
-        {analysis}
+        <MarkdownFormatter
+          markdown={analysis}
+          pSize={14}
+        />
       </Modal>
   )
 }

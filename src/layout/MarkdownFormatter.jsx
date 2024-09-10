@@ -164,7 +164,7 @@ export function PlotlyChartCode({ data, backgroundColor }) {
   );
 }
 
-export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
+export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const renderers = {
@@ -197,7 +197,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
           <p
             style={{
               fontFamily: "Roboto Serif",
-              fontSize: mobile ? 16 : 18,
+              fontSize: pSize ? pSize : mobile ? 16 : 18,
               backgroundColor: backgroundColor,
             }}
           >
@@ -243,7 +243,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
               paddingLeft: 20,
               marginBottom: 20,
               fontFamily: "Roboto Serif",
-              fontSize: mobile ? 16 : 18,
+              fontSize: pSize ? pSize : mobile ? 16 : 18,
             }}
           >
             {children}
@@ -255,7 +255,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict }) {
               paddingLeft: 20,
               marginBottom: 20,
               fontFamily: "Roboto Serif",
-              fontSize: mobile ? 16 : 18,
+              fontSize: pSize ? pSize : mobile ? 16 : 18,
             }}
           >
             {children}
