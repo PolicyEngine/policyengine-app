@@ -15,7 +15,6 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import { Helmet } from "react-helmet";
-import React from "react";
 
 const UpArrow = () => (
   <CaretUpFilled
@@ -341,7 +340,7 @@ function VariableArithmetic(props) {
                 className="explain-ai-button"
                 onClick={showModal} // Show modal when button is clicked
               >
-                Explain with AI
+                Explain with AI ✨
               </Button>
             </div>
           )}
