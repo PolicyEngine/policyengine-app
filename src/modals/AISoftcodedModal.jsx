@@ -1,4 +1,7 @@
+
+import { useState } from "react";
 import { Button, Modal } from "antd"
+import { getExplainerAIPromptContent } from "../pages/household/output/explainerAIPromptContent";
 
 // Note that depending on implementation, this may instead be a 
 // JSON object at runtime, requiring some form of parsing be written in
@@ -35,6 +38,8 @@ eitc<2024, (default)> = [6960.]
 export default function AISoftcodedModal(props) {
   const {isModalVisible, setIsModalVisible} = props;
 
+  const [tracerOutput, setTracerOutput] = useState("");
+
   // Function to hide modal
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -46,6 +51,16 @@ export default function AISoftcodedModal(props) {
   function handleFetchTracer() {
     return tracerOutput;
   }
+
+  // Temporarily hardcoding the explainer variable and value
+  const EXPLAINER_VARIABLE_TEST = "eitc";
+  const EXPLAINER_VALUE_TEST = 0;
+  const explainerAIPromptContent = getExplainerAIPromptContent(
+    EXPLAINER_VARIABLE_TEST,
+    EXPLAINER_VALUE_TEST,
+    tracerOutput
+  );
+  console.error(explainerAIPromptContent);
 
   return (
       <Modal
