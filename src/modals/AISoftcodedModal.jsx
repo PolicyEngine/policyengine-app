@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd"
 
-export default function AIHardcodedModal(props) {
+export default function AISoftcodedModal(props) {
   const {isModalVisible, setIsModalVisible} = props;
 
   // Function to hide modal
