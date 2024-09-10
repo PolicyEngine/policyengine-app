@@ -4,6 +4,7 @@ import { Button, Modal } from "antd"
 import { getExplainerAIPromptContent } from "../pages/household/output/explainerAIPromptContent";
 import { countryApiCall, asyncApiCall } from "../api/call";
 import useCountryId from "../hooks/useCountryId";
+import LoadingCentered from "../layout/LoadingCentered";
 
 // Note that depending on implementation, this may instead be a 
 // JSON object at runtime, requiring some form of parsing be written in
@@ -41,6 +42,7 @@ export default function AISoftcodedModal(props) {
   const {isModalVisible, setIsModalVisible} = props;
 
   const [analysis, setAnalysis] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const countryId = useCountryId();
 
   // Function to hide modal
@@ -87,6 +89,7 @@ export default function AISoftcodedModal(props) {
           },
         ).then((data) => {
           setAnalysis(data.result.analysis);
+          setIsLoading(false);
         });
       });
   }, [countryId]);
@@ -123,6 +126,7 @@ export default function AISoftcodedModal(props) {
           </Button>,
         ]}
       >
+        {isLoading && <LoadingCentered />}
         {analysis}
       </Modal>
   )
