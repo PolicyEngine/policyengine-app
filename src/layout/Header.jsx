@@ -280,7 +280,6 @@ function LoginMenu() {
   const { logout, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const countryId = useCountryId();
-  const displayCategory = useDisplayCategory();
 
   // Unfortunately, it's not possible with Ant Design
   // to set these on the individual menu items
