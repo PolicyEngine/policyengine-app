@@ -13,6 +13,8 @@ import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
 import BlogMVP from "./pages/BlogMVP";
+import DocsMVP from "./pages/DocsMVP";
+import Docs from './pages/Docs';
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
@@ -302,9 +304,10 @@ export default function PolicyEngine() {
           </Route>
           <Route path="anmol" element={<Outlet />}>
             <Route index={true} element={<Research />} />
-            <Route path=":postName" element={<BlogMVP />} />
+            <Route path=":postName" element={<DocsMVP />} />
           </Route>
           <Route path="donate" element={<Donate />} />
+          <Route path="docs" element={<Docs />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
 
