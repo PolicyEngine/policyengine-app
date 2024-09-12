@@ -12,7 +12,6 @@ import {
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
-import BlogMVP from "./pages/BlogMVP";
 import DocsMVP from "./pages/DocsMVP";
 import Docs from './pages/Docs';
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";

@@ -5,13 +5,9 @@ import style from "../style";
 import PageHeader from "../layout/PageHeader";
 import moment from "moment";
 import useDisplayCategory from "../hooks/useDisplayCategory";
-import LinkButton from "controls/LinkButton";
-import useCountryId from "../hooks/useCountryId";
 import EmphasisedLink from "../layout/EmphasisedLink";
 
 import { Helmet } from "react-helmet";
-import { posts } from "../posts/postTransformers";
-
 
 function SideTags({ tags }) {
     return (
@@ -60,22 +56,17 @@ function SideTags({ tags }) {
 
 export function SmallBlogPreview({ blog }) {
     const displayCategory = useDisplayCategory();
-    const countryId = useCountryId();
-    let topLeft = null,
-        left = null;
+    let left = null;
     if (displayCategory === "desktop") {
-        topLeft = <BlogTags tags={blog.tags} />;
+        left = <BlogTags tags={blog.tags} />;
     } else {
         left = <SideTags tags={blog.tags} />;
     }
 
-    const slug = blog.filename.split(".")[0];
-    // const link = `/${countryId}/research/${slug}`;
     const link = blog.link;
 
     return (
         <BlogBox
-            // topLeft={topLeft}
             left={left}
             topRight={
                 <p
@@ -191,12 +182,10 @@ function BlogBox({
 
 export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
     // Only defined for desktop and tablet displays
-    const displayCategory = useDisplayCategory();
     const currentBlog = blogs || {};
 
     //   const imageUrl = blogs.image ? handleImageLoad(blogs.image) : "";
 
-    const countryId = useCountryId();
     // const link = `/${countryId}/research/${currentBlog.slug}`;
     const link = currentBlog.link;
     return (

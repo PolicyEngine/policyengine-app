@@ -12,18 +12,8 @@ import {
   topicLabels,
   topicTags,
 } from "../posts/postTransformers";
-import moment from "moment";
 import useDisplayCategory from "../hooks/useDisplayCategory";
 import React, { useEffect, useState } from "react";
-import { useReadingTime } from "react-hook-reading-time";
-import {
-  FacebookOutlined,
-  LinkedinOutlined,
-  MailOutlined,
-  PrinterOutlined,
-  TwitterOutlined,
-  FileImageOutlined,
-} from "@ant-design/icons";
 import Plot from "react-plotly.js";
 import { Helmet } from "react-helmet";
 import {
@@ -50,7 +40,6 @@ export default function DocsMVP() {
   const countryId = useCountryId();
 
   const post = posts.find((post) => post.slug === postName);
-  const postDate = moment(post.date, "YYYY-MM-DD HH:mm:ss");
 
   const imageUrl = post.image ? handleImageLoad(post.image) : "";
   // const file = require(`../posts/articles/${post.filename}`);
@@ -148,7 +137,7 @@ function NotebookCell({ data }) {
         <NotebookOutputPlain data={outputCell[outputType]} />
       );
     }
-    else if(outputType == "execute_result"){
+    else if(outputType === "execute_result"){
       outputCellComponent = (
         <NotebookOutputHTML data={outputCell['data']['text/html']} />
       );
@@ -232,7 +221,7 @@ function NotebookOutputPlain({ data }) {
     content = parseJSONSafe(processedData);
     return <NotebookOutputPlotly data={content} />;
   } catch (e) {
-    console.log(e, data);
+    // console.log(e, data);
     content = data;
   }
   return <p>{JSON.stringify(data)}</p>;
@@ -492,146 +481,6 @@ function PostBodySection({ post, markdown, notebook }) {
   }
 }
 
-function PostHeadingSection({ post, markdown, notebook, postDate, imageUrl }) {
-  const displayCategory = useDisplayCategory();
-  if (!notebook && !markdown) {
-    return null;
-  }
-  if (displayCategory === "desktop") {
-    return (
-      <div style={{ display: "flex" }}>
-        <div style={{ flex: 1 }}>
-          <p className="spaced-sans-serif">
-            {postDate.format("MMMM DD, YYYY")}
-          </p>
-          <Authorship post={post} />
-          <div style={{ marginBottom: 100 }} />
-          <ReadTime markdown={markdown} />
-          <div style={{ marginTop: 100 }} />
-          <ShareLinks post={post} />
-        </div>
-        <div style={{ flex: 3 }}>
-          <h1>{post.title}</h1>
-          <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          {imageUrl === "" ? (
-            <div
-              style={{
-                height: "300px",
-                width: "100%",
-                display: "flex",
-                border: "1px solid grey",
-                position: "relative",
-              }}
-            >
-              <FileImageOutlined
-                style={{
-                  fontSize: "32px",
-                  position: "absolute",
-                  top: "250px",
-                  right: "20px",
-                }}
-              />
-            </div>
-          ) : (
-            <img
-              alt={post.title}
-              src={imageUrl}
-              style={{ width: "100%", marginTop: 50 }}
-            />
-          )}
-        </div>
-        <div style={{ flex: 1 }}></div>
-      </div>
-    );
-  } else if (displayCategory === "tablet") {
-    return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <h1>{post.title}</h1>
-          <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: 30,
-            }}
-          >
-            <Authorship post={post} />
-            <p className="spaced-sans-serif">
-              {postDate.format("MMMM DD, YYYY")}
-            </p>
-            <ReadTime markdown={markdown} />
-          </div>
-          <img alt={post.title} src={imageUrl} style={{ width: "100%" }} />
-          <ShareLinks post={post} />
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div style={{ display: "flex" }}>
-        <div>
-          <h1>{post.title}</h1>
-          <h5 style={{ marginTop: 50 }}>{post.description}</h5>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              marginTop: 30,
-            }}
-          >
-            <div>
-              <p className="spaced-sans-serif">
-                {postDate.format("MMMM DD, YYYY")}
-              </p>
-              <Authorship post={post} />
-            </div>
-            <ReadTime markdown={markdown} />
-          </div>
-          <img alt={post.title} src={imageUrl} style={{ width: "100%" }} />
-          <ShareLinks post={post} />
-        </div>
-      </div>
-    );
-  }
-}
-
-function Authorship({ post }) {
-  const countryId = useCountryId();
-  const authorNames = post.authors.map((author) => (
-    <nobr key={author}>
-      <span style={{ color: style.colors.BLUE_PRIMARY }}>
-        <Link
-          to={`/${countryId}/research?authors=${author}`}
-          className="highlighted-link"
-          style={{ marginBottom: 0, marginTop: 20 }}
-        >
-          {author.replaceAll("-", " ")}
-        </Link>
-      </span>
-    </nobr>
-  ));
-  let sentenceStructure;
-  if (authorNames.length === 1) {
-    sentenceStructure = <>By {authorNames}</>;
-  } else if (authorNames.length === 2) {
-    sentenceStructure = (
-      <>
-        By {authorNames[0]} <nobr>and {authorNames[1]}</nobr>
-      </>
-    );
-  } else {
-    const lastAuthor = authorNames.pop();
-    sentenceStructure = (
-      <>
-        By {authorNames.reduce((prev, curr) => [prev, ", ", curr])}, and{" "}
-        {lastAuthor}
-      </>
-    );
-  }
-  return <p className="spaced-sans-serif">{sentenceStructure}</p>;
-}
-
 function MoreOn({ post }) {
   const countryId = useCountryId();
   const categoryLinks = post.tags
@@ -672,91 +521,6 @@ function MoreOn({ post }) {
       </p>
       {categoryLinks}
     </>
-  );
-}
-
-function ReadTime({ markdown }) {
-  const { text } = useReadingTime(markdown);
-  return (
-    <p className="spaced-sans-serif" style={{ color: style.colors.GRAY }}>
-      {text}
-    </p>
-  );
-}
-
-function DesktopShareLink({ icon, url, action, text }) {
-  const displayCategory = useDisplayCategory();
-  const desktop = displayCategory === "desktop";
-  return (
-    <div
-      style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
-      onClick={() => {
-        if (url) {
-          window.open(url, "_blank");
-        } else action();
-      }}
-    >
-      {React.createElement(icon, {
-        style: {
-          color: desktop ? style.colors.WHITE : style.colors.DARK_GRAY,
-          border: !desktop && `2px solid ${style.colors.DARK_GRAY}`,
-          backgroundColor: desktop ? style.colors.GRAY : "transparent",
-          fontSize: displayCategory === "desktop" ? 15 : 40,
-          padding: 10,
-          marginTop: displayCategory === "desktop" ? 10 : 40,
-          marginBottom: 10,
-          marginRight: displayCategory === "desktop" ? 10 : 0,
-        },
-      })}
-      <p
-        className="spaced-sans-serif"
-        style={{ marginLeft: 35, margin: 0, color: style.colors.GRAY }}
-      >
-        {text}
-      </p>
-    </div>
-  );
-}
-
-function ShareLinks({ post }) {
-  const displayCategory = useDisplayCategory();
-  const desktop = displayCategory === "desktop";
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: desktop ? "column" : "row",
-        width: "100%",
-        justifyContent: desktop ? null : "space-between",
-      }}
-    >
-      {desktop && <p className="spaced-sans-serif">Share</p>}
-      <DesktopShareLink
-        icon={TwitterOutlined}
-        url={`https://twitter.com/intent/tweet?text=${post.title}&url=${window.location.href}`}
-        text={desktop && "Twitter"}
-      />
-      <DesktopShareLink
-        icon={FacebookOutlined}
-        url={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
-        text={desktop && "Facebook"}
-      />
-      <DesktopShareLink
-        icon={LinkedinOutlined}
-        url={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${post.title}&summary=${post.description}`}
-        text={desktop && "LinkedIn"}
-      />
-      <DesktopShareLink
-        icon={MailOutlined}
-        url={`mailto:?subject=${post.title}&body=${window.location.href}`}
-        text={desktop && "Email"}
-      />
-      <DesktopShareLink
-        icon={PrinterOutlined}
-        action={window.print}
-        text={desktop && "Print"}
-      />
-    </div>
   );
 }
 
