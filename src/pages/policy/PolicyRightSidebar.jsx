@@ -331,8 +331,42 @@ export function SinglePolicyChange(props) {
   );
 }
 
+export function DeprecatedPolicyChange() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: 10,
+      }}
+    >
+      <div>
+        <span style={{ fontFamily: "Roboto Serif", color: "black" }}>
+          This policy is deprecated.
+        </span>
+      </div>
+    </div>
+  );
+}
+
 function PolicyItem(props) {
-  const { metadata, parameterName, reformData } = props;
+  const { metadata, parameterName, reformData, isPolicyDeprecated } = props;
+
+  if (isPolicyDeprecated) {
+    return (
+      <div>
+        <div
+          style={{
+            paddingLeft: 10,
+            paddingRight: 40,
+          }}
+        >
+          <DeprecatedPolicyChange />
+        </div>
+      </div>
+    );
+  }
+
   const parameter = metadata.parameters[parameterName];
   let changes = [];
   for (const [timePeriod, value] of Object.entries(reformData[parameterName])) {
@@ -364,8 +398,15 @@ function PolicyItem(props) {
 }
 
 function PolicyDisplay(props) {
-  const { policy, metadata, region, timePeriod, closeDrawer, hideButtons } =
-    props;
+  const {
+    policy,
+    metadata,
+    region,
+    timePeriod,
+    closeDrawer,
+    hideButtons,
+    isPolicyDeprecated,
+  } = props;
   policy.reform.data = Object.fromEntries(
     Object.entries(policy.reform.data).filter(
       ([key, value]) =>
@@ -386,7 +427,7 @@ function PolicyDisplay(props) {
         variant="dark"
         indicators={false}
         interval={null}
-        controls={reformLength > 1 ? true : false}
+        controls={reformLength > 1 && !isPolicyDeprecated ? true : false}
         slide={true}
       >
         {Object.keys(policy.reform.data).map((parameterName) => (
@@ -407,6 +448,7 @@ function PolicyDisplay(props) {
               metadata={metadata}
               parameterName={parameterName}
               reformData={policy.reform.data}
+              isPolicyDeprecated={isPolicyDeprecated}
             />
           </Carousel.Item>
         ))}
@@ -421,8 +463,15 @@ function PolicyDisplay(props) {
 }
 
 export default function PolicyRightSidebar(props) {
-  const { policy, setPolicy, metadata, hideButtons, closeDrawer, defaultOpen } =
-    props;
+  const {
+    policy,
+    setPolicy,
+    metadata,
+    hideButtons,
+    closeDrawer,
+    defaultOpen,
+    isPolicyDeprecated,
+  } = props;
 
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -445,6 +494,26 @@ export default function PolicyRightSidebar(props) {
   const validatedStateAbbreviation = options.find(
     (option) => option.value === stateAbbreviation,
   )?.value;
+
+  const baselineData = policy.baseline.data;
+  const reformData = policy.reform.data;
+
+  // Convenience function for determining if baseline and reform
+  // are both current law, and thus, there is no reform
+  function isNoReform(baselineData, reformData) {
+    if (!baselineData || !reformData) {
+      return true;
+    }
+
+    if (
+      Object.keys(baselineData).length === 0 &&
+      Object.keys(reformData).length === 0
+    ) {
+      return true;
+    }
+
+    return false;
+  }
 
   const confirmEconomicImpact = () => {
     let message = "";
@@ -619,6 +688,7 @@ export default function PolicyRightSidebar(props) {
           timePeriod={timePeriod}
           closeDrawer={closeDrawer}
           hideButtons={hideButtons}
+          isPolicyDeprecated={isPolicyDeprecated}
         />
         <div style={{ paddingLeft: 5 }}>
           <Collapsible
@@ -731,9 +801,8 @@ export default function PolicyRightSidebar(props) {
         {!hideButtons && focus && !focus.startsWith("policyOutput") && (
           <SearchParamNavButton
             type={
-              Object.keys(policy.reform.data).length === 0
-                ? "disabled"
-                : "primary"
+              // Disable output if both baseline and reform are current law
+              isNoReform(baselineData, reformData) ? "disabled" : "primary"
             }
             text="Calculate economic impact"
             onClick={confirmEconomicImpact}

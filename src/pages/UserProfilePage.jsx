@@ -25,7 +25,7 @@ import { postUserPolicy, cullOldPolicies } from "../api/userPolicies";
 import { COUNTRY_NAMES } from "../data/countries";
 import moment from "moment";
 import { formatCurrencyAbbr } from "../lang/format";
-import ErrorPage from "../layout/Error";
+import ErrorPage from "../layout/ErrorPage";
 
 const STATES = {
   EMPTY: "empty",
@@ -441,7 +441,6 @@ function UserProfileSection(props) {
 
 function PolicySimulationCard(props) {
   const { metadata, userPolicy, keyValue } = props;
-  console.log(Object.keys(metadata));
 
   const CURRENT_API_VERSION = metadata?.version;
   const geography =

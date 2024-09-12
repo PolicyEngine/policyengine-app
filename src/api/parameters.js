@@ -8,9 +8,6 @@ export function buildParameterTree(parameters) {
   for (const parameter of Object.values(parameters).filter(
     (parameter) => parameter.economy || parameter.household,
   )) {
-    if (parameter.parameter.includes("abolitions")) {
-      continue;
-    }
     const nodeToInsert = {
       name: parameter.parameter,
       label: (
@@ -66,7 +63,7 @@ export function buildParameterTree(parameters) {
       }
       currentNode.children.push(nodeToInsert);
     } catch (e) {
-      console.log("Error inserting node", nodeToInsert, "into", currentNode);
+      console.error("Error inserting node", nodeToInsert, "into", currentNode);
     }
   }
   return tree.children.find((child) => child.name === "gov");
