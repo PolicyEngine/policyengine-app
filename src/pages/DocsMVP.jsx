@@ -44,25 +44,25 @@ export default function DocsMVP() {
   const imageUrl = post.image ? handleImageLoad(post.image) : "";
   // const file = require(`../posts/articles/${post.filename}`);
   // const file = require(`../posts/articles/child-benefit.ipynb`);
-  const file = require("../posts/articles/child-benefit.json")
+  const file = require("../posts/articles/child-benefit.json");
+  const fileUrl = "https://anmolchhabra21.github.io/policyengine-app/src/posts/articles/child-benefit.json";
 
   const [content, setContent] = useState("");
   // const isNotebook = post.filename.endsWith(".ipynb");
   const isNotebook = true;
-  useEffect(() => {
-    // fetch(file)
-    //   .then((response) => response.text())
-    //   .then((text) => {
-    //     if (isNotebook) {
-    //       // console.log("Notebook content:", JSON.parse(text));
-    //       // setContent(JSON.parse(text));
-    //       setContent(text);
-    //     } else {
-      //       setContent(text);
-      //     }
-      //   });
-      setContent(file)
-  }, [file, isNotebook]);
+
+useEffect(() => {
+    fetch(fileUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        if (isNotebook) {
+          setContent(data);
+        } else {
+          setContent(data);
+        }
+      })
+      .catch((error) => console.error('Error fetching the file:', error));
+  }, [fileUrl, isNotebook]);
 
   // Some old links might point to a dated URL format
   const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;
@@ -97,15 +97,6 @@ export default function DocsMVP() {
         <meta property="og:description" content={post.description} />
       </Helmet>
       <Header />
-      {/* <Section backgroundColor={style.colors.BLUE_98}>
-        <PostHeadingSection
-          post={post}
-          markdown={markdown}
-          notebook={isNotebook && content}
-          postDate={postDate}
-          imageUrl={imageUrl}
-        />
-      </Section> */}
       <Section>
         <PostBodySection
           post={post}
