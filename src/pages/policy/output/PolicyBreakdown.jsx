@@ -1,11 +1,21 @@
+import { useSearchParams } from "react-router-dom";
 import style from "../../../style";
 
 export default function PolicyBreakdown(props) {
   const { policyLabel, metadata, impact, timePeriod, region } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const regionObj = metadata.economy_options.region.find(
     (elem) => elem.name === region,
   );
+
+  const handleItemClick = (focusTarget) => {
+    let newSearch = new URLSearchParams(searchParams);
+
+    newSearch.set("focus", focusTarget);
+
+    setSearchParams(newSearch);
+  };
   let regionLabel;
   // This is a workaround for enhanced_us that should be changed
   // if and when it is treated as something other than a "region"
@@ -42,6 +52,7 @@ export default function PolicyBreakdown(props) {
     {
       value: budgetaryImpact,
       type: "budgetaryImpact",
+      focusTarget: "policyOutput.budgetaryImpact.overall",
       formatOptions: {
         currencyLabel: metadata.currency,
       },
@@ -49,6 +60,7 @@ export default function PolicyBreakdown(props) {
     {
       value: povertyRateChange,
       type: "povertyRateChange",
+      focusTarget: "policyOutput.povertyImpact.regular.byAge",
       formatOptions: {
         percentage: true,
         signFlip: true,
@@ -57,6 +69,7 @@ export default function PolicyBreakdown(props) {
     {
       value: decileOverview,
       type: "winnersLosersPercent",
+      focusTarget: "policyOutput.winnersAndLosers.incomeDecile",
     },
   ];
 
@@ -67,6 +80,7 @@ export default function PolicyBreakdown(props) {
         data={listItems}
         title={title}
         bottomText={bottomText}
+        onItemClick={handleItemClick}
       />
     </>
   );
@@ -82,7 +96,7 @@ export default function PolicyBreakdown(props) {
  * @returns {import("react-markdown/lib/react-markdown").ReactElement}
  */
 function BreakdownTemplate(props) {
-  const { data, title, bottomText } = props;
+  const { data, title, bottomText, onItemClick } = props;
 
   const COLORS = {
     pos: style.colors.BLUE,
@@ -96,6 +110,7 @@ function BreakdownTemplate(props) {
       return (
         <div
           key={index}
+          onClick={() => onItemClick(item.focusTarget)}
           style={{
             display: "flex",
             flexDirection: "row",
@@ -131,6 +146,7 @@ function BreakdownTemplate(props) {
     }
 
     const [descStart, descEnd] = formatDesc(item.value, item.type);
+    const focusTarget = item.focusTarget;
     const formattedValue = formatValue(
       item.value,
       item.type,
@@ -140,6 +156,7 @@ function BreakdownTemplate(props) {
     return (
       <div
         key={index}
+        onClick={() => onItemClick(focusTarget)}
         style={{
           display: "flex",
           flexDirection: "row",
@@ -194,6 +211,7 @@ function BreakdownTemplate(props) {
           gap: "30px",
           alignItems: "flex-start",
           justifyContent: "center",
+          cursor: "pointer",
         }}
       >
         {lineItems}
