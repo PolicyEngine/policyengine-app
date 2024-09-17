@@ -178,8 +178,8 @@ export function getImplementationCode(type, region, timePeriod, policy) {
             ? `dataset=${dataset}`
             : ""
     })`,
-    `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear}")`,
-    `reformed_income = reformed.calculate("household_net_income", period=${timePeriod || defaultYear}")`,
+    `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear})`,
+    `reformed_income = reformed.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     "difference_income = reformed_income - baseline_income",
   ];
 }
