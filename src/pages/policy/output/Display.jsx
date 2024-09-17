@@ -8,6 +8,7 @@ import { getImpactReps } from "./ImpactTypes";
 import { Progress, message } from "antd";
 import { useEffect, useRef, useState } from "react";
 import Analysis from "./Analysis";
+import PolicyReproducibility from "./PolicyReproducibility";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/ErrorPage";
 import ResultActions from "layout/ResultActions";
@@ -153,6 +154,8 @@ export function DisplayImpact(props) {
         region={region}
       />
     );
+  } else if (impactType === "codeReproducibility") {
+    pane = <PolicyReproducibility metadata={metadata} policy={policy} />;
   }
   // Remove the below else-if block when labor supply impacts are expanded
   // back to all countries
