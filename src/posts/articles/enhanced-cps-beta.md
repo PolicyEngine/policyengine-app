@@ -76,7 +76,7 @@ To use the ECPS in the PolicyEngine web app, run a microsimulation as normal, an
 To use the ECPS in the policyengine-us Python package, specify it in the Microsimulation call as follows, then use it as you would otherwise.
 
 ```python
-ecps = Microsimulation(dataset="enhanced_cps_2022")
+ecps = Microsimulation(dataset="enhanced_cps_2024")
 ```
 
 To download the ECPS, visit the [release page](https://github.com/PolicyEngine/policyengine-us/releases/tag/enhanced-cps-2022) and download the h5 file.

@@ -155,7 +155,7 @@ export function getImplementationCode(type, region, timePeriod, policy) {
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
   const hasDatasetSpecified = region === "enhanced_us";
-  const dataset = hasDatasetSpecified ? '"enhanced_cps_2022"' : "";
+  const dataset = hasDatasetSpecified ? '"enhanced_cps_2024"' : "";
 
   return [
     "",
