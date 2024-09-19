@@ -19,6 +19,11 @@ import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import DeprecationModal from "../modals/DeprecationModal";
+import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
+
+
+
+
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -120,6 +125,12 @@ export default function PolicyPage(props) {
   }, [!!policy.reform.data]);
 
   let middle = null;
+  // eslint-disable-next-line no-console
+  console.log('metadata.parameters:', metadata.parameters);
+  // eslint-disable-next-line no-console
+  console.log('metadata.parameterTree:', metadata.parameterTree);
+  // eslint-disable-next-line no-console
+  console.log(Object.keys(metadata.parameters).includes(focus))
 
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
@@ -147,14 +158,30 @@ export default function PolicyPage(props) {
         setPolicy={setPolicy}
       />
     );
-  } else if (Object.keys(metadata.parameters).includes(focus)) {
+  } 
+
+  else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
     middle = (
       <FolderPage label={node.label} metadata={metadata} inPolicySide>
         {node.children}
       </FolderPage>
     );
-  } else if (isOutput) {
+  } 
+  
+  else if (isOutput && focus === "policyOutput") {
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    // eslint-disable-next-line no-console
+    console.log('POLICY_OUTPUT_TREE:', POLICY_OUTPUT_TREE);
+
+    middle = (
+      <FolderPage label="Policy output results" metadata={metadata}>
+        {POLICY_OUTPUT_TREE[0].children}
+      </FolderPage>
+    );
+  }
+
+  else if (isOutput && focus !== "polityOutput") {
     middle = (
       <>
         <PolicyOutput
