@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import style from "../../../style";
+import { motion } from "framer-motion";
 
 export default function PolicyBreakdown(props) {
   const { policyLabel, metadata, impact, timePeriod, region } = props;
@@ -108,7 +109,7 @@ function BreakdownTemplate(props) {
     // If doing income decile display, use custom function
     if (item.type === "winnersLosersPercent") {
       return (
-        <div
+        <motion.div
           key={index}
           onClick={() => onItemClick(item.focusTarget)}
           style={{
@@ -117,10 +118,16 @@ function BreakdownTemplate(props) {
             alignItems: "center",
             justifyContent: "space-between",
             gap: "20px",
+            cursor: "pointer",
+          }}
+          whileHover={{
+            backgroundColor: style.colors.LIGHT_GRAY,
+            padding: "5px 5px 0px 5px",
+            borderRadius: "8px",
           }}
         >
           {formatWinnersLosers(item.value)}
-        </div>
+        </motion.div>
       );
     }
 
@@ -154,7 +161,7 @@ function BreakdownTemplate(props) {
     );
 
     return (
-      <div
+      <motion.div
         key={index}
         onClick={() => onItemClick(focusTarget)}
         style={{
@@ -163,6 +170,12 @@ function BreakdownTemplate(props) {
           alignItems: "center",
           justifyContent: "space-between",
           gap: "20px",
+          cursor: "pointer",
+        }}
+        whileHover={{
+          backgroundColor: style.colors.LIGHT_GRAY,
+          padding: "5px 5px 0px 5px",
+          borderRadius: "8px",
         }}
       >
         <h2
@@ -182,7 +195,7 @@ function BreakdownTemplate(props) {
           &nbsp;
           {descEnd}
         </h2>
-      </div>
+      </motion.div>
     );
   });
 
@@ -211,7 +224,6 @@ function BreakdownTemplate(props) {
           gap: "30px",
           alignItems: "flex-start",
           justifyContent: "center",
-          cursor: "pointer",
         }}
       >
         {lineItems}
