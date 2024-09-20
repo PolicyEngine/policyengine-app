@@ -54,11 +54,11 @@ export const STATUS_TEXT_COLORS = {
 };
 
 // Map region entries to default datasets;
-// at the moment, this only applies to the 
+// at the moment, this only applies to the
 // "enhanced_us" region selection
 export const DEFAULT_DATASETS = {
-  enhanced_us: "enhanced_cps_2024"
-}
+  enhanced_us: "enhanced_cps_2024",
+};
 
 const DEFAULT_US_HOUSEHOLD = {
   families: {

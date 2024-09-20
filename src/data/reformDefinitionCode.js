@@ -155,7 +155,7 @@ export function getImplementationCode(type, region, timePeriod, policy) {
 
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
- 
+
   // Check if the region has a dataset specified
   const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(region);
   const dataset = hasDatasetSpecified ? DEFAULT_DATASETS[region] : "";
