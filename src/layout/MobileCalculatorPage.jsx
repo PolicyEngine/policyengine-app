@@ -426,6 +426,13 @@ export function MobileBottomNavButtons({ focus, type, metadata }) {
     previous =
       getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
     next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
+    // eslint-disable-next-line no-console
+    console.log('previous:', previous);
+    // eslint-disable-next-line no-console
+    console.log('next:', next);
+
+
+
   }
 
   return (

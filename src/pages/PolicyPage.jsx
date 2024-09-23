@@ -19,11 +19,7 @@ import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import DeprecationModal from "../modals/DeprecationModal";
-import HOUSEHOLD_OUTPUT_TREE from "./household/output/tree";
-
-
-
-
+import { impactKeys } from "../pages/policy/output/ImpactTypes.jsx";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -125,12 +121,6 @@ export default function PolicyPage(props) {
   }, [!!policy.reform.data]);
 
   let middle = null;
-  // eslint-disable-next-line no-console
-  console.log('metadata.parameters:', metadata.parameters);
-  // eslint-disable-next-line no-console
-  console.log('metadata.parameterTree:', metadata.parameterTree);
-  // eslint-disable-next-line no-console
-  console.log(Object.keys(metadata.parameters).includes(focus))
 
   if (!policy.reform.data) {
     middle = <LoadingCentered />;
@@ -169,29 +159,85 @@ export default function PolicyPage(props) {
     );
   } 
   
-  else if (isOutput && focus === "policyOutput") {
-    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  else if (isOutput) {
     // eslint-disable-next-line no-console
-    console.log('POLICY_OUTPUT_TREE:', POLICY_OUTPUT_TREE);
-
-    middle = (
-      <FolderPage label="Policy output results" metadata={metadata}>
-        {POLICY_OUTPUT_TREE[0].children}
-      </FolderPage>
-    );
-  }
-
-  else if (isOutput && focus !== "polityOutput") {
-    middle = (
-      <>
+    console.log("focus:" + focus);
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    const validFocusValues = impactKeys;
+    const stripped_focus = focus.replace("policyOutput.", "");
+    // eslint-disable-next-line no-console
+    console.log("stripped_focus:" + stripped_focus);
+    // eslint-disable-next-line no-console
+    console.log("valid values:" + validFocusValues);
+  
+    // Check if the current focus is within validFocusValues
+    if (focus === "policyOutput.policyBreakdown" ||
+      focus === "policyOutput.codeReproducibility" || validFocusValues.includes(stripped_focus)) {
+      middle = (
         <PolicyOutput
           metadata={metadata}
           policy={policy}
           userProfile={userProfile}
         />
-      </>
-    );
-  }
+      );
+    } else {
+      // Find the node in the tree where the name matches the focus
+      const findNodeByName = (node, name) => {
+        if (node.name === name) {
+          return node;
+        }
+        if (node.children) {
+          for (let child of node.children) {
+            const result = findNodeByName(child, name);
+            if (result) {
+              return result;
+            }
+          }
+        }
+        return null;
+      };
+  
+      const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
+  
+      // Render FolderPage with its children if the node is found
+      if (node) {
+        middle = (
+          <FolderPage label={node.label} metadata={metadata}>
+            {node.children}
+          </FolderPage>
+        );
+      } else {
+        // eslint-disable-next-line no-console
+        console.log("no node");
+        middle = <div>No matching node found.</div>;
+      }
+    }
+}
+
+  // This code works
+  // else if (isOutput && focus === "policyOutput") {
+  //   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  //   // eslint-disable-next-line no-console
+  //   console.log('POLICY_OUTPUT_TREE:', POLICY_OUTPUT_TREE);
+
+  //   middle = (
+  //     <FolderPage label="Policy output results" metadata={metadata}>
+  //       {POLICY_OUTPUT_TREE[0].children}
+  //     </FolderPage>
+  //   );
+  // }
+
+  // else if (isOutput && focus !== "policyOutput") {
+  //   middle = (
+  //     <>
+  //       <PolicyOutput
+  //         metadata={metadata}
+  //         policy={policy}
+  //         userProfile={userProfile}
+  //       />
+  //     </>
+  //   );
+  // }
 
   if (mobile) {
     return (
