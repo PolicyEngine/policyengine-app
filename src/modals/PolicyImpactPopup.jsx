@@ -5,7 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { getCookie, setCookie } from "../data/cookies";
 
 export default function PolicyImpactPopup(props) {
-  const [needToOpenModal, setNeedToOpenModal] = useState(true);
+  const [needToOpenModal, setNeedToOpenModal] = useState(
+    !(getCookie("policyImpactPopup") === "disabled"),
+  );
   const { metadata, showPolicyImpactPopup } = props;
 
   const { isAuthenticated } = useAuth0();
@@ -15,7 +17,8 @@ export default function PolicyImpactPopup(props) {
     // to prevent re-display
     const consentCookie = getCookie("consent");
     if (isAuthenticated && consentCookie === "granted") {
-      setCookie("policyImpactPopup", "disabled");
+      document.cookie = "policyImpactPopup=disabled;max-age=31536000;path=/";
+      alert(getCookie("policyImpactPopup"));
     }
 
     // Destroy modal
