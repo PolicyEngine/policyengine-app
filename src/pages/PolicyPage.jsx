@@ -148,18 +148,14 @@ export default function PolicyPage(props) {
         setPolicy={setPolicy}
       />
     );
-  } 
-
-  else if (Object.keys(metadata.parameters).includes(focus)) {
+  } else if (Object.keys(metadata.parameters).includes(focus)) {
     const node = findInTree({ children: [metadata.parameterTree] }, focus);
     middle = (
       <FolderPage label={node.label} metadata={metadata} inPolicySide>
         {node.children}
       </FolderPage>
     );
-  } 
-  
-  else if (isOutput) {
+  } else if (isOutput) {
     // eslint-disable-next-line no-console
     console.log("focus:" + focus);
     const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
@@ -169,10 +165,13 @@ export default function PolicyPage(props) {
     console.log("stripped_focus:" + stripped_focus);
     // eslint-disable-next-line no-console
     console.log("valid values:" + validFocusValues);
-  
+
     // Check if the current focus is within validFocusValues
-    if (focus === "policyOutput.policyBreakdown" ||
-      focus === "policyOutput.codeReproducibility" || validFocusValues.includes(stripped_focus)) {
+    if (
+      focus === "policyOutput.policyBreakdown" ||
+      focus === "policyOutput.codeReproducibility" ||
+      validFocusValues.includes(stripped_focus)
+    ) {
       middle = (
         <PolicyOutput
           metadata={metadata}
@@ -196,9 +195,9 @@ export default function PolicyPage(props) {
         }
         return null;
       };
-  
+
       const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
-  
+
       // Render FolderPage with its children if the node is found
       if (node) {
         middle = (
@@ -212,7 +211,7 @@ export default function PolicyPage(props) {
         middle = <div>No matching node found.</div>;
       }
     }
-}
+  }
 
   // This code works
   // else if (isOutput && focus === "policyOutput") {

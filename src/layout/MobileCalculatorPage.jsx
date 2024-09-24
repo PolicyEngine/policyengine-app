@@ -354,16 +354,10 @@ function MobileTreeNavigationHolder(props) {
             margin: 0,
             fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter",
           }}
-
           onClick={() => {
-            // eslint-disable-next-line no-console
-            console.log('type:', type);
-            // eslint-disable-next-line no-console
-            console.log('breakcrumb.name:', breadcrumb.name);              
-              let newSearch = new URLSearchParams(searchParams);
-              newSearch.set("focus", breadcrumb.name);
-              setSearchParams(newSearch);
-            
+            let newSearch = new URLSearchParams(searchParams);
+            newSearch.set("focus", breadcrumb.name);
+            setSearchParams(newSearch);
           }}
         >
           {breadcrumb.label}
@@ -426,13 +420,6 @@ export function MobileBottomNavButtons({ focus, type, metadata }) {
     previous =
       getPreviousValidFocus(options, currentIndex, validFocusValues) || {};
     next = getNextValidFocus(options, currentIndex, validFocusValues) || {};
-    // eslint-disable-next-line no-console
-    console.log('previous:', previous);
-    // eslint-disable-next-line no-console
-    console.log('next:', next);
-
-
-
   }
 
   return (
