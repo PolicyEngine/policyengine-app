@@ -36,6 +36,7 @@ export function FetchAndDisplayImpact(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+  const maxHouseholds = searchParams.get("mode") == "lite" ? 10_000 : null;
   const renamed = searchParams.get("renamed");
 
   const [impact, setImpact] = useState(null);
@@ -80,7 +81,10 @@ export function FetchAndDisplayImpact(props) {
 
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const selectedVersion = searchParams.get("version") || metadata.version;
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}`;
+      const maxHouseholdString = maxHouseholds
+        ? `&max_households=${maxHouseholds}`
+        : "";
+      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}${maxHouseholdString}`;
       setImpact(null);
       setError(null);
       // start counting (but stop when the API call finishes)
@@ -157,7 +161,7 @@ export function FetchAndDisplayImpact(props) {
     }
     policyRef.current = policy;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
+  }, [region, timePeriod, reformPolicyId, baselinePolicyId, maxHouseholds]);
 
   useEffect(() => {
     if (!impact || !userPolicyId || !countryId) return;
