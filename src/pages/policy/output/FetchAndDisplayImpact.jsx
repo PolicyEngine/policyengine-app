@@ -36,7 +36,7 @@ export function FetchAndDisplayImpact(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
-  const maxHouseholds = searchParams.get("mode") == "lite" ? 10_000 : null;
+  const maxHouseholds = searchParams.get("mode") == "full" ? null : 10_000;
   const renamed = searchParams.get("renamed");
 
   const [impact, setImpact] = useState(null);
