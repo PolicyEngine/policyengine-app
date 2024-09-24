@@ -109,25 +109,18 @@ function BreakdownTemplate(props) {
     // If doing income decile display, use custom function
     if (item.type === "winnersLosersPercent") {
       return (
-        <motion.div
+        <div
           key={index}
-          onClick={() => onItemClick(item.focusTarget)}
           style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
             gap: "20px",
-            cursor: "pointer",
-          }}
-          whileHover={{
-            backgroundColor: style.colors.LIGHT_GRAY,
-            padding: "5px 5px 0px 5px",
-            borderRadius: "8px",
           }}
         >
-          {formatWinnersLosers(item.value)}
-        </motion.div>
+          {formatWinnersLosers(item, onItemClick)}
+        </div>
       );
     }
 
@@ -161,27 +154,26 @@ function BreakdownTemplate(props) {
     );
 
     return (
-      <motion.div
+      <div
         key={index}
-        onClick={() => onItemClick(focusTarget)}
         style={{
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "space-between",
           gap: "20px",
-          cursor: "pointer",
-        }}
-        whileHover={{
-          backgroundColor: style.colors.LIGHT_GRAY,
-          padding: "5px 5px 0px 5px",
-          borderRadius: "8px",
         }}
       >
-        <h2
+        <motion.h2
           style={{
             fontSize: 22,
+            cursor: "pointer",
           }}
+          whileHover={{
+            backgroundColor: style.colors.BLUE_LIGHT,
+          }}
+          transition={{ duration: 0.001 }}
+          onClick={() => onItemClick(focusTarget)}
         >
           {descStart}
           &nbsp;
@@ -194,8 +186,8 @@ function BreakdownTemplate(props) {
           </span>
           &nbsp;
           {descEnd}
-        </h2>
-      </motion.div>
+        </motion.h2>
+      </div>
     );
   });
 
@@ -375,7 +367,8 @@ function formatValue(value, type, options) {
  * @returns {React.JSX} The formatted JSX, as this can contain anywhere
  * between 0 and 2 values
  */
-function formatWinnersLosers(decileOverview) {
+function formatWinnersLosers(item, onItemClick) {
+  const { value: decileOverview, focusTarget } = item;
   const winnersPercent =
     decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
   const losersPercent =
@@ -384,13 +377,19 @@ function formatWinnersLosers(decileOverview) {
   // If both values are 0...
   if (!winnersPercent && !losersPercent) {
     return (
-      <h2
+      <motion.h2
         style={{
           fontSize: 22,
+          cursor: "pointer",
         }}
+        whileHover={{
+          backgroundColor: style.colors.BLUE_LIGHT,
+        }}
+        transition={{ duration: 0.001 }}
+        onClick={() => onItemClick(focusTarget)}
       >
         Does not affect anyone&apos;s net income
-      </h2>
+      </motion.h2>
     );
   }
 
@@ -413,10 +412,16 @@ function formatWinnersLosers(decileOverview) {
   // If both aren't 0...
   if (winnersPercent && losersPercent) {
     return (
-      <h2
+      <motion.h2
         style={{
           fontSize: 22,
+          cursor: "pointer",
         }}
+        whileHover={{
+          backgroundColor: style.colors.BLUE_LIGHT,
+        }}
+        transition={{ duration: 0.001 }}
+        onClick={() => onItemClick(focusTarget)}
       >
         Increases net income for&nbsp;
         <span
@@ -435,16 +440,22 @@ function formatWinnersLosers(decileOverview) {
           {losersValue}
         </span>
         &nbsp;of people
-      </h2>
+      </motion.h2>
     );
   }
 
   // Otherwise, conditionally return whichever is correct
   return (
-    <h2
+    <motion.h2
       style={{
         fontSize: 22,
+        cursor: "pointer",
       }}
+      whileHover={{
+        backgroundColor: style.colors.BLUE_LIGHT,
+      }}
+      transition={{ duration: 0.001 }}
+      onClick={() => onItemClick(focusTarget)}
     >
       {`${winnersPercent ? "Raises" : "Lowers"} net income for`}
       &nbsp;
@@ -456,7 +467,7 @@ function formatWinnersLosers(decileOverview) {
         {winnersPercent ? winnersValue : losersValue}
       </span>
       &nbsp;of people
-    </h2>
+    </motion.h2>
   );
 }
 
