@@ -1,5 +1,6 @@
 import { optimiseHousehold } from "../api/variables";
 import { defaultYear } from "./constants";
+import { DEFAULT_DATASETS } from "./countries";
 
 export function getReproducibilityCodeBlock(
   type,
@@ -154,28 +155,30 @@ export function getImplementationCode(type, region, timePeriod, policy) {
 
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
-  const hasDatasetSpecified = region === "enhanced_us";
-  const dataset = hasDatasetSpecified ? '"enhanced_cps_2022"' : "";
+
+  // Check if the region has a dataset specified
+  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(region);
+  const dataset = hasDatasetSpecified ? DEFAULT_DATASETS[region] : "";
 
   return [
     "",
     "",
     `baseline = Microsimulation(${
       hasDatasetSpecified && hasBaseline
-        ? `reform=baseline, dataset=${dataset}`
+        ? `reform=baseline, dataset='${dataset}'`
         : hasBaseline
           ? `reform=baseline`
           : hasDatasetSpecified
-            ? `dataset=${dataset}`
+            ? `dataset='${dataset}'`
             : ""
     })`,
     `reformed = Microsimulation(${
       hasDatasetSpecified && hasReform
-        ? `reform=reform, dataset=${dataset}`
+        ? `reform=reform, dataset='${dataset}'`
         : hasReform
           ? `reform=reform`
           : hasDatasetSpecified
-            ? `dataset=${dataset}`
+            ? `dataset='${dataset}'`
             : ""
     })`,
     `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear})`,

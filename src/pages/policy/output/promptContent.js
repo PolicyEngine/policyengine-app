@@ -19,7 +19,7 @@ export const promptContent = (
     }. Explain how the parameters are changing from the baseline to the reform values using the given data.
      ${
        isEnhancedCPS &&
-       "*  Explicitly mention that this analysis uses PolicyEngine's Enhanced CPS, constructed from the 2022 Current Population Survey and the 2015 IRS Public Use File, and calibrated to tax, benefit, income, and demographic aggregates."
+       "*  Explicitly mention that this analysis uses PolicyEngine's Enhanced CPS, constructed from the 2024 Current Population Survey and the 2015 IRS Public Use File, and calibrated to tax, benefit, income, and demographic aggregates."
      }
     * Round large numbers like: ${metadata.currency}3.1 billion, ${
       metadata.currency
