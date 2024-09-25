@@ -43,6 +43,28 @@ export default function SimulationsPage() {
     apiCall("/simulations").then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
+          // remove duplicates, identified by (reform_policy_id, baseline_policy_id, region, time_period, options_json)
+          // identify duplicates than pick in the following order: ok, error, computing
+
+          const uniqueSimulations = new Map();
+
+          data.result.forEach((simulation) => {
+            const key = `${simulation.reform_policy_id}-${simulation.baseline_policy_id}-${simulation.region}-${simulation.time_period}-${simulation.options_json}`;
+            if (!uniqueSimulations.has(key)) {
+              uniqueSimulations.set(key, simulation);
+            } else {
+              const existingSimulation = uniqueSimulations.get(key);
+              const statusPriority = { ok: 3, error: 2, computing: 1 };
+              if (
+                statusPriority[simulation.status] >
+                statusPriority[existingSimulation.status]
+              ) {
+                uniqueSimulations.set(key, simulation);
+              }
+            }
+          });
+
+          data.result = Array.from(uniqueSimulations.values());
           data.result.forEach(formatRow);
           setData(data.result);
         });
@@ -124,6 +146,18 @@ function formatRow(row) {
   if (row.status === "error" && row.message !== null) {
     row.message = <ErrorMessage message={row.message} />;
   }
+  const row_options_json = JSON.parse(row.options_json);
+  // add tags for each key: value pair
+  row.options_json = Object.keys(row_options_json).map((key) => (
+    <div key={key} style={{ display: "flex" }}>
+      <Tag key={key} style={{ margin: 0 }}>
+        {key}
+      </Tag>
+      <Tag key={key + "_value"} style={{ margin: 0 }} color="blue">
+        {row_options_json[key]}
+      </Tag>
+    </div>
+  ));
   row.status =
     {
       ok: <Tag color="green">OK</Tag>,
