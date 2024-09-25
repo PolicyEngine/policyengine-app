@@ -54,15 +54,8 @@ export default function Research() {
 function ResearchExplorer() {
   const displayCategory = useDisplayCategory();
   const [searchParams, setSearchParams] = useSearchParams();
-  const onSearch = (search) => {
-    if (!search) {
-      setSearchParams({});
-    } else {
-      setSearchParams({ search });
-    }
-    window.scrollTo(0, 0);
-  };
 
+  // Extract the country ID from the URL pathname
   const extractCountryIdFromPathname = () => {
     const pathSegments = window.location.pathname.split("/").filter(Boolean);
     if (pathSegments.length > 0) {
@@ -70,6 +63,7 @@ function ResearchExplorer() {
     }
   };
 
+  // Determine initial locations based on the country ID
   const initialLocations = locationTags.filter(
     (location) =>
       location === extractCountryIdFromPathname() ||
@@ -77,63 +71,31 @@ function ResearchExplorer() {
       location === "global",
   );
 
+  // Initialize filter states with the appropriate values
   const [filteredTopics, setFilteredTopics] = useState(
-    searchParams.get("topics")?.split(",") || topicTags,
+    searchParams.get("topics")?.split(",") || [],
   );
   const [filteredLocations, setFilteredLocations] = useState(
     searchParams.get("locations")?.split(",") || initialLocations,
   );
-
-  const authorKeys = Object.keys(authors);
-
   const [filteredAuthors, setFilteredAuthors] = useState(
-    searchParams.get("authors")?.split(",") || authorKeys,
+    searchParams.get("authors")?.split(",") || [],
   );
-  const filterFunction = (post) => {
-    let hasMetAtLeastOneFilteredTopic = false;
-    for (const tag of filteredTopics) {
-      if (post.tags.includes(tag)) {
-        hasMetAtLeastOneFilteredTopic = true;
-      }
-    }
-    let hasMetAtLeastOneFilteredLocation = false;
-    for (const tag of filteredLocations) {
-      if (post.tags.includes(tag)) {
-        hasMetAtLeastOneFilteredLocation = true;
-      }
-    }
-    let hasMetAtLeastOneFilteredAuthor = false;
-    for (const author of filteredAuthors) {
-      if (post.authors.includes(author)) {
-        hasMetAtLeastOneFilteredAuthor = true;
-      }
-    }
-    return (
-      hasMetAtLeastOneFilteredLocation &
-      hasMetAtLeastOneFilteredTopic &
-      hasMetAtLeastOneFilteredAuthor
-    );
-  };
 
-  const preFilteredPosts = posts.filter(filterFunction);
-  const fuse = new Fuse(preFilteredPosts, {
-    keys: ["title"],
+  // Filter posts based on the selected criteria
+  const filteredPosts = getFilteredPosts({
+    filteredTopics,
+    filteredLocations,
+    filteredAuthors,
+    searchField: searchParams.get("search"),
   });
-  const searchField = searchParams.get("search");
-  const filteredPosts = searchField
-    ? fuse
-        .search(searchField, {
-          distance: 10,
-        })
-        .map((result) => result.item)
-    : preFilteredPosts;
 
   const searchTools = (
     <BlogPostSearchTools
       onSearch={onSearch}
       filteredTopics={filteredTopics}
-      filteredLocations={filteredLocations}
       setFilteredTopics={setFilteredTopics}
+      filteredLocations={filteredLocations}
       setFilteredLocations={setFilteredLocations}
       filteredAuthors={filteredAuthors}
       setFilteredAuthors={setFilteredAuthors}
@@ -149,67 +111,59 @@ function ResearchExplorer() {
     </>
   );
 
-  if (displayCategory === "desktop") {
-    return (
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <div
-          style={{
-            flex: 1,
-          }}
-        >
-          {searchTools}
-        </div>
-        <div
-          style={{
-            flex: 3,
-            marginLeft: 50,
-          }}
-        >
-          {postResults}
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <>
-        {searchTools}
-        {postResults}
-      </>
-    );
+  function onSearch(search) {
+    setSearchParams(search ? { search } : {});
+    window.scrollTo(0, 0);
   }
+
+  function getFilteredPosts({
+    filteredTopics,
+    filteredLocations,
+    filteredAuthors,
+    searchField,
+  }) {
+    const preFilteredPosts = posts.filter((post) =>
+      meetsFilterCriteria(
+        post,
+        filteredTopics,
+        filteredLocations,
+        filteredAuthors,
+      ),
+    );
+
+    if (!searchField) return preFilteredPosts;
+
+    const fuse = new Fuse(preFilteredPosts, { keys: ["title"], distance: 10 });
+    return fuse.search(searchField).map((result) => result.item);
+  }
+
+  function meetsFilterCriteria(post, topics, locations, authors) {
+    const hasTopic =
+      topics.length === 0 || topics.some((tag) => post.tags.includes(tag));
+    const hasLocation =
+      locations.length === 0 ||
+      locations.some((tag) => post.tags.includes(tag));
+    const hasAuthor =
+      authors.length === 0 ||
+      authors.some((author) => post.authors.includes(author));
+    return hasTopic && hasLocation && hasAuthor;
+  }
+
+  return displayCategory === "desktop" ? (
+    <div style={{ display: "flex" }}>
+      <div style={{ flex: 1 }}>{searchTools}</div>
+      <div style={{ flex: 3, marginLeft: 50 }}>{postResults}</div>
+    </div>
+  ) : (
+    <>
+      {searchTools}
+      {postResults}
+    </>
+  );
 }
 
 export function BlogPostResults({ posts }) {
   const displayCategory = useDisplayCategory();
-  let postComponents;
-  if (displayCategory === "desktop") {
-    postComponents = posts.map((post) => (
-      <div
-        key={JSON.stringify(post)}
-        style={{
-          width: "47%",
-          marginBottom: 40,
-        }}
-      >
-        <MediumBlogPreview key={post.title} blog={post} />
-      </div>
-    ));
-  } else {
-    postComponents = posts.map((post) => (
-      <div
-        key={JSON.stringify(post)}
-        style={{
-          marginBottom: 40,
-        }}
-      >
-        <MediumBlogPreview key={post.title} blog={post} />
-      </div>
-    ));
-  }
   return (
     <div
       style={{
@@ -218,7 +172,17 @@ export function BlogPostResults({ posts }) {
         justifyContent: "space-between",
       }}
     >
-      {postComponents}
+      {posts.map((post) => (
+        <div
+          key={JSON.stringify(post)}
+          style={{
+            width: displayCategory === "desktop" ? "47%" : "100%",
+            marginBottom: 40,
+          }}
+        >
+          <MediumBlogPreview key={post.title} blog={post} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -373,92 +337,66 @@ function ExpandableCheckBoxList({
           key={key}
           label={keyToLabel[key] || key}
           checked={checkedValues.includes(key)}
-          onCheck={
-            checkedValues.includes(key)
-              ? () => setCheckedValues(checkedValues.filter((k) => k !== key))
-              : () => setCheckedValues(checkedValues.concat([key]))
+          onCheck={() =>
+            setCheckedValues(
+              checkedValues.includes(key)
+                ? checkedValues.filter((k) => k !== key)
+                : [...checkedValues, key],
+            )
           }
         />
       ))}
-      <div
-        style={{
-          borderBottom: "1px solid lightgray",
-          width: "100%",
-          marginTop: 5,
-          marginBottom: 5,
-        }}
-      />
-      <AntCheckbox
-        label="Select all"
-        checked={checkedValues.length === keys.length}
-        onCheck={
-          checkedValues.length === keys.length
-            ? () => setCheckedValues([])
-            : () => setCheckedValues(keys)
-        }
-      />
     </Expandable>
   );
 }
 
-function Expandable({ title, expandedList, setExpandedList, children }) {
-  const expanded = expandedList === title;
+function Expandable({ title, children, expandedList, setExpandedList }) {
+  const isExpanded = expandedList === title;
   const contentRef = useRef();
-  const titleRef = useRef();
 
-  const contentHeight = contentRef.current?.getBoundingClientRect().height;
+  const contentHeight = contentRef.current?.getBoundingClientRect().height || 0;
   const titleHeight = 31;
 
-  function handleExpand() {
-    if (expanded) {
-      setExpandedList(null);
-    } else {
-      setExpandedList(title);
-    }
-  }
+  const handleExpand = () => {
+    setExpandedList(isExpanded ? null : title);
+  };
 
-  const titleComponent = (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        position: "sticky",
-        top: 0,
-        zIndex: 3,
-        backgroundColor: style.colors.WHITE,
-      }}
-      ref={titleRef}
-      onClick={() => handleExpand()}
-    >
-      <p style={{ margin: 0 }}>{title}</p>
-      <FontIcon
-        name="arrow_drop_down"
-        size={20}
-        style={{
-          marginLeft: "auto",
-          transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
-          transition: "transform 0.3s ease-in-out",
-        }}
-      />
-    </div>
-  );
   return (
     <motion.div
       style={{
         cursor: "pointer",
-        overflowY: expanded ? "scroll" : "hidden",
+        overflowY: isExpanded ? "scroll" : "hidden",
         overflowX: "hidden",
         marginTop: 10,
         position: "relative",
       }}
-      initial={{
-        maxHeight: titleHeight,
-      }}
+      initial={{ maxHeight: titleHeight }}
       animate={{
-        maxHeight: expanded ? contentHeight + titleHeight : titleHeight,
+        maxHeight: isExpanded ? contentHeight + titleHeight : titleHeight,
       }}
     >
-      {titleComponent}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: 3,
+          backgroundColor: "white",
+        }}
+        onClick={handleExpand}
+      >
+        <p style={{ margin: 0 }}>{title}</p>
+        <FontIcon
+          name="arrow_drop_down"
+          size={20}
+          style={{
+            marginLeft: "auto",
+            transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 0.3s ease-in-out",
+          }}
+        />
+      </div>
       <div style={{ paddingLeft: 20, paddingTop: 10 }} ref={contentRef}>
         {children}
       </div>
@@ -486,9 +424,8 @@ function AntCheckbox({ label, checked, onCheck }) {
         `}
       </style>
       <Checkbox
-        onChange={() => {
-          onCheck(!checked);
-        }}
+        checked={checked}
+        onChange={onCheck}
         style={{
           margin: 5,
           appearance: "none",
