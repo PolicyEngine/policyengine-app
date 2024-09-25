@@ -114,12 +114,13 @@ moment.updateLocale("en", {
 });
 
 function formatRow(row) {
-  const moment_start_time = moment(row.start_time);
-  const moment_end_time = moment(row.end_time);
+  // Times are in GMT
+  const moment_start_time = moment.utc(row.start_time);
+  const moment_end_time = moment.utc(row.end_time);
   row.start_time = moment_start_time.fromNow();
   row.duration = row.end_time
     ? moment.duration(moment_end_time.diff(moment_start_time)).humanize()
-    : moment_start_time.fromNow();
+    : moment.duration(moment().diff(moment_start_time)).humanize();
   if (row.status === "error" && row.message !== null) {
     row.message = <ErrorMessage message={row.message} />;
   }
