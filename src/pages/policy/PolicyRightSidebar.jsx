@@ -97,7 +97,7 @@ function FullLiteToggle() {
   // Selector like the dataset selector that toggles between 'full' and 'lite' versions of the dataset.
   // should set a query param with mode=light or mode=full
   const [searchParams, setSearchParams] = useSearchParams();
-  const value = searchParams.get("mode") || "lite";
+  const value = searchParams.get("mode") || "full";
   const displayCategory = useDisplayCategory();
 
   return (
@@ -111,11 +111,11 @@ function FullLiteToggle() {
       }}
     >
       <Switch
-        checked={value === "full"}
+        checked={value === "lite"}
         size={displayCategory !== "mobile" && "small"}
         onChange={(checked) => {
           let newSearch = copySearchParams(searchParams);
-          newSearch.set("mode", checked ? "full" : "lite");
+          newSearch.set("mode", checked ? "lite" : "full");
           setSearchParams(newSearch);
         }}
       />
@@ -125,11 +125,11 @@ function FullLiteToggle() {
           fontSize: displayCategory !== "mobile" && "0.95em",
         }}
       >
-        Use full dataset
+        Use a smaller sample
       </p>
       <Tooltip
         placement="topRight"
-        title="When unchecked, limit simulations to a random 10,000 household set."
+        title="When checked, limit simulations to a random 10,000 household set."
         trigger={displayCategory === "mobile" ? "click" : "hover"}
       >
         <QuestionCircleOutlined
