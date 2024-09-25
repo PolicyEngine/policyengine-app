@@ -175,7 +175,7 @@ export function FetchAndDisplayImpact(props) {
   }, [impact, countryId, userPolicyId]);
 
   if (error) {
-    return <DisplayError error={error} />;
+    return <DisplayError />;
   }
 
   if (!impact) {
