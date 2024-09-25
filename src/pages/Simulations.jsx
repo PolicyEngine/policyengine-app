@@ -52,7 +52,7 @@ export default function SimulationsPage() {
 
   useEffect(() => {
     fetchSimulations();
-    const interval = setInterval(fetchSimulations, 5000);
+    const interval = setInterval(fetchSimulations, 15000);
     return () => clearInterval(interval);
   }, []);
 
@@ -93,7 +93,7 @@ export default function SimulationsPage() {
         <p style={{ margin: 0 }}>
           This page shows the simulations that are currently running or have run
           in the past for the current version of the API. The table below is
-          updated every 10 seconds.
+          updated every 15 seconds.
         </p>
       </PageHeader>
       <Section>
