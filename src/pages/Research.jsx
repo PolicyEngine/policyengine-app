@@ -73,14 +73,13 @@ function ResearchExplorer() {
 
   // Initialize filter states with the appropriate values
   const [filteredTopics, setFilteredTopics] = useState(
-    searchParams.get("topics")?.split(",") || topicTags,
+    searchParams.get("topics")?.split(",") || [],
   );
   const [filteredLocations, setFilteredLocations] = useState(
     searchParams.get("locations")?.split(",") || initialLocations,
   );
-  const authorKeys = Object.keys(authors);
   const [filteredAuthors, setFilteredAuthors] = useState(
-    searchParams.get("authors")?.split(",") || authorKeys,
+    searchParams.get("authors")?.split(",") || [],
   );
 
   // Filter posts based on the selected criteria
