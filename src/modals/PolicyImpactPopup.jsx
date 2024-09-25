@@ -17,8 +17,7 @@ export default function PolicyImpactPopup(props) {
     // to prevent re-display
     const consentCookie = getCookie("consent");
     if (isAuthenticated && consentCookie === "granted") {
-      document.cookie = "policyImpactPopup=disabled;max-age=31536000;path=/";
-      alert(getCookie("policyImpactPopup"));
+      setCookie("policyImpactPopup", "disabled", 31536000, "/");
     }
 
     // Destroy modal
