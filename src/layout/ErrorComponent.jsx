@@ -1,13 +1,11 @@
-import style from "../style";
-
 export default function ErrorComponent(props) {
   return (
     <div
       style={{
-        height: `calc(100vh - ${style.spacing.HEADER_HEIGHT}px)`,
+        height: `100%`,
         display: "flex",
         flexDirection: "column",
-        paddingLeft: "10vw",
+        padding: 50,
         alignItems: "flex-start",
         justifyContent: "center",
       }}

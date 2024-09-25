@@ -17,6 +17,8 @@ import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
+import { Link } from "react-router-dom";
+
 import moment from "moment";
 /**
  *
@@ -40,11 +42,10 @@ export function DisplayEmpty() {
  */
 
 export function DisplayError(props) {
-  const { error } = props;
   return (
     <ErrorPage
       message={`We ran into an issue when trying to simulate your policy. \
-      Please try again later. The full message is ${JSON.stringify(error)}`}
+      Please try again later.`}
     />
   );
 }
@@ -58,6 +59,8 @@ export function DisplayError(props) {
  */
 export function DisplayWait(props) {
   const { secondsElapsed, averageImpactTime, queuePos } = props;
+
+  const countryId = useCountryId();
 
   let queueMsg = "";
   if (Number(queuePos) === 0) {
@@ -88,6 +91,16 @@ export function DisplayWait(props) {
       <p style={{ paddingTop: "12px", marginBottom: "2px" }}>{queueMsg}</p>
       <p style={{ color: "grey" }}>
         This usually takes around {averageTime} seconds, but may take longer.
+      </p>
+      <p>
+        You can track the queue{" "}
+        <Link
+          to={`/${countryId}/simulations`}
+          style={{ color: style.colors.BLUE, textDecoration: "underline" }}
+        >
+          here
+        </Link>
+        .
       </p>
     </div>
   );

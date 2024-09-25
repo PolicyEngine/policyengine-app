@@ -28,6 +28,7 @@ import Testimonials from "./pages/Testimonials";
 import CalculatorInterstitial from "./pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "./applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "./pages/APIDocumentationPage";
+import SimulationsPage from "./pages/Simulations";
 import CookieConsent from "./modals/CookieConsent";
 import TrafwaCalculator from "./applets/TrafwaCalculator";
 import StateEitcsCtcs from "./applets/StateEitcsCtcs";
@@ -295,6 +296,7 @@ export default function PolicyEngine() {
           <Route path="jobs" element={<Jobs />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
+          <Route path="simulations" element={<SimulationsPage />} />
           <Route path="research" element={<Outlet />}>
             <Route index={true} element={<Research />} />
             <Route path=":postName" element={<BlogPage />} />
