@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { DisplayEmpty, LowLevelDisplay } from "./Display";
-import PolicyReproducibility from "./PolicyReproducibility";
+
+import { DisplayEmpty } from "./Display";
 import {
   FetchAndDisplayCliffImpact,
   FetchAndDisplayImpact,
@@ -114,16 +114,7 @@ export default function PolicyOutput(props) {
   if (!reformPolicyId) {
     return <DisplayEmpty />;
   }
-  if (impactType === "codeReproducibility") {
-    return (
-      <>
-        <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
-        <LowLevelDisplay {...props} showPolicyImpactPopup={false}>
-          <PolicyReproducibility metadata={metadata} policy={policy} />
-        </LowLevelDisplay>
-      </>
-    );
-  } else if (impactType === "cliffImpact") {
+  if (impactType === "cliffImpact") {
     return (
       <>
         <SignupModal setShowPolicyImpactPopup={setShowPolicyImpactPopup} />
