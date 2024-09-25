@@ -93,6 +93,57 @@ function TimePeriodSelector(props) {
   );
 }
 
+function FullLiteToggle() {
+  // Selector like the dataset selector that toggles between 'full' and 'lite' versions of the dataset.
+  // should set a query param with mode=light or mode=full
+  const [searchParams, setSearchParams] = useSearchParams();
+  const value = searchParams.get("mode") || "full";
+  const displayCategory = useDisplayCategory();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <Switch
+        checked={value === "lite"}
+        size={displayCategory !== "mobile" && "small"}
+        onChange={(checked) => {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("mode", checked ? "lite" : "full");
+          setSearchParams(newSearch);
+        }}
+      />
+      <p
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+        }}
+      >
+        Use a smaller sample
+      </p>
+      <Tooltip
+        placement="topRight"
+        title="When checked, limit simulations to a random 10,000 household set."
+        trigger={displayCategory === "mobile" ? "click" : "hover"}
+      >
+        <QuestionCircleOutlined
+          style={{
+            color: "rgba(0, 0, 0, 0.85)",
+            opacity: 0.85,
+            cursor: "pointer",
+          }}
+        />
+      </Tooltip>
+    </div>
+  );
+}
+
 /**
  * A (hopefully temporary) component meant to abstract away the fact
  * that the US enhanced CPS data is defined as a region within the US
@@ -783,6 +834,7 @@ export default function PolicyRightSidebar(props) {
                     timePeriod={timePeriod}
                   />
                 )}
+                <FullLiteToggle metadata={metadata} />
               </div>
             }
           />

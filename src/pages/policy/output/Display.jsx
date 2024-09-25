@@ -19,6 +19,7 @@ import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
 import { Link } from "react-router-dom";
 
+import moment from "moment";
 /**
  *
  * @returns component for displaying a message that the policy is empty
@@ -68,6 +69,13 @@ export function DisplayWait(props) {
     queueMsg = `Your position in the queue is ${queuePos}.`;
   }
 
+  const averageSeconds = Math.min(
+    Math.round(averageImpactTime / 5) * 5,
+    60 * 5,
+  );
+  // Use moment to format to "5 minutes and 30 seconds"
+  const averageTime = moment.duration(averageSeconds, "seconds").humanize();
+
   return (
     <div style={{ textAlign: "center", paddingTop: 50 }}>
       <LoadingCentered message="Simulating the impact of your policy..." />
@@ -82,8 +90,7 @@ export function DisplayWait(props) {
       />
       <p style={{ paddingTop: "12px", marginBottom: "2px" }}>{queueMsg}</p>
       <p style={{ color: "grey" }}>
-        This usually takes around {Math.round(averageImpactTime / 5) * 5}{" "}
-        seconds, but may take longer.
+        This usually takes around {averageTime} seconds, but may take longer.
       </p>
       <p>
         You can track the queue{" "}
