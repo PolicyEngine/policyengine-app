@@ -20,7 +20,6 @@ import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
 import { Link } from "react-router-dom";
 
-import moment from "moment";
 /**
  *
  * @returns component for displaying a message that the policy is empty
@@ -74,8 +73,21 @@ export function DisplayWait(props) {
     Math.round(averageImpactTime / 5) * 5,
     60 * 5,
   );
-  // Use moment to format to "5 minutes and 30 seconds"
-  const averageTime = moment.duration(averageSeconds, "seconds").humanize();
+
+  const formatDuration = (totalSeconds) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    if (minutes === 0) {
+      return `${seconds} second${seconds !== 1 ? "s" : ""}`;
+    } else if (seconds === 0) {
+      return `${minutes} minute${minutes !== 1 ? "s" : ""}`;
+    } else {
+      return `${minutes} minute${minutes !== 1 ? "s" : ""} and ${seconds} second${seconds !== 0 ? "s" : 0}`;
+    }
+  };
+
+  const averageTime = formatDuration(averageSeconds);
 
   return (
     <div style={{ textAlign: "center", paddingTop: 50 }}>
