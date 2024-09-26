@@ -91,7 +91,7 @@ export function DisplayWait(props) {
       />
       <p style={{ paddingTop: "12px", marginBottom: "2px" }}>{queueMsg}</p>
       <p style={{ color: "grey" }}>
-        This usually takes around {averageTime} seconds, but may take longer.
+        This usually takes around {averageTime}, but may take longer.
       </p>
       <p>
         You can track the queue{" "}
