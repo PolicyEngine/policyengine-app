@@ -11,4 +11,10 @@ Object.defineProperty(window.HTMLCanvasElement.prototype, 'getContext', {
 // Mock window.scrollTo
 global.window.scrollTo = jest.fn();
 
-// Add any other global mocks or setup here
+// Mock the cookie consent popup
+global.window.HTMLDivElement.prototype.scrollIntoView = jest.fn();
+
+// Mock a function to automatically accept the cookie
+jest.mock('../../modals/CookieConsent', () => () => null);
+
+global.URL.createObjectURL = jest.fn();
