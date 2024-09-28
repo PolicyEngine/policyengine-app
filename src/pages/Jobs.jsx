@@ -1,228 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Section from "../layout/Section";
 import style from "../style";
 import PageHeader from "../layout/PageHeader";
 import { HoverBox } from "../layout/HoverBox";
-
-function InternshipOpportunities() {
-  return (
-    <>
-      <p>
-        PolicyEngine invites dedicated individuals to internships in Software
-        Engineering, Policy Modeling, Data Science, Economic Research, and
-        Communications. These opportunities immerse you in efforts to make
-        public policy more accessible, transparent, and evidence-based. Engaging
-        with cutting-edge technology, you will learn how tax and benefit
-        policies affect everything from the budget and economic growth to
-        poverty and inequality. This invaluable experience prepares you for
-        diverse career paths in software development, data science, economics,
-        and policy, whether in academia, government, NGOs, or the private
-        sector, equipping you with skills and insights to shape societal
-        progress.
-      </p>
-      <p>
-        As an intern, you will engage deeply with PolicyEngine software,
-        contributing to its development and enhancing its utility. Collaborative
-        team projects will allow you to share knowledge and learn from others.
-        You will also have the opportunity to present your findings and progress
-        in various internal and external forums, contributing to important
-        policy discussions and decision-making processes.
-      </p>
-      <p>
-        You can apply at any time for spring, summer, and fall semester
-        internships (with the possibility of extension). PolicyEngine believes
-        that a wide range of perspectives enrich our collective understanding
-        and innovation, and we encourage candidates from all backgrounds to
-        apply. We primarily collaborate remotely, ensuring a flexible and
-        inclusive environment for all our team members. For those in the
-        Washington, DC area, we provide additional opportunities for in-person
-        collaboration. We prefer candidates who can commit 15 hours per week.
-        All internships include a paid stipend.
-      </p>
-    </>
-  );
-}
-
-function SoftwareEngineeringIntern() {
-  return (
-    <div>
-      <p>
-        Your software contributions will make policy analysis tools more
-        accessible, from our web app users to our internal team of developers.
-      </p>
-      <p> You will:</p>
-      <ul>
-        <li>
-          Develop and enhance Python libraries, and build new applications using
-          emerging technologies like generative AI.
-        </li>
-        <li>
-          Work on React-based front-end in the{" "}
-          <a
-            href="https://github.com/policyengine/policyengine-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "monospace",
-              color: style.colors.BLUE_PRIMARY,
-            }}
-          >
-            policyengine-app
-          </a>{" "}
-          repo and Flask/Python back-end development in the{" "}
-          <a
-            href="https://github.com/policyengine/policyengine-api"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "monospace",
-              color: style.colors.BLUE_PRIMARY,
-            }}
-          >
-            policyengine-api
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://github.com/policyengine/policyengine-core"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "monospace",
-              color: style.colors.BLUE_PRIMARY,
-            }}
-          >
-            policyengine-core
-          </a>{" "}
-          libraries.
-        </li>
-        <li>Develop and review code collaboratively in GitHub.</li>
-      </ul>
-    </div>
-  );
-}
-
-function PolicyModelingIntern() {
-  return (
-    <>
-      <p>
-        Your models of tax and benefit policies will power PolicyEngine&apos;s
-        rules engine, the heart of our software.
-      </p>
-      <p> You will:</p>
-      <ul>
-        <li>
-          Augment the{" "}
-          <a
-            href="https://github.com/policyengine/policyengine-us"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "monospace",
-              color: style.colors.BLUE_PRIMARY,
-            }}
-          >
-            policyengine-us
-          </a>
-          ,{" "}
-          <a
-            href="https://github.com/policyengine/policyengine-uk"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "monospace",
-              color: style.colors.BLUE_PRIMARY,
-            }}
-          >
-            policyengine-uk
-          </a>
-          , and{" "}
-          <a
-            href="https://github.com/policyengine/policyengine-canada"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "monospace",
-              color: style.colors.BLUE_PRIMARY,
-            }}
-          >
-            policyengine-canada
-          </a>{" "}
-          Python packages to model additional tax and benefit rules and
-          regulations in the US, UK, and Canada, respectively.
-        </li>
-        <li>
-          Monitor legislative and policy proposals, strategizing their
-          integration into PolicyEngine.
-        </li>
-        <li>Develop and review code collaboratively in GitHub.</li>
-      </ul>
-    </>
-  );
-}
-
-function DataScienceIntern() {
-  return (
-    <div>
-      <p>
-        Your policy analyses and data science tools will reveal the quantitative
-        implications of the most visible policy reforms.
-      </p>
-      <p> You will:</p>
-      <ul>
-        <li>Work with policy analysts to analyze tax and benefit policies.</li>
-        <li>
-          Create custom analyses and mini-apps using tools like Plotly and
-          Streamlit.
-        </li>
-        <li>Develop and review code collaboratively in GitHub.</li>
-      </ul>
-    </div>
-  );
-}
-
-function EconomicResearchIntern() {
-  return (
-    <div>
-      <p>
-        Your economic research will apply PolicyEngine software to discussions
-        that influence top public policy debates.
-      </p>
-      <p> You will:</p>
-      <ul>
-        <li>Research and summarize economic data and academic research.</li>
-        <li>Contribute to policy analysis discussions and write blog posts.</li>
-        <li>
-          Engage with policymakers and research institutions to inform and
-          enhance PolicyEngine’s analysis capabilities.
-        </li>
-      </ul>
-    </div>
-  );
-}
-
-function CommunicationsIntern() {
-  return (
-    <div>
-      <p>
-        Your strategic communications, media engagement, and content creation
-        will amplify PolicyEngine&apos;s impact by connecting more audiences to
-        relevant policy insights.
-      </p>
-      <p> You will:</p>
-      <ul>
-        <li>
-          Assist in distributing PolicyEngine&apos;s findings and analyses.
-        </li>
-        <li>
-          Engage in digital communications, including social media and webinars.
-        </li>
-        <li>Monitor media coverage and maintain contact lists.</li>
-      </ul>
-    </div>
-  );
-}
 
 function ApplyButton() {
   return (
@@ -260,46 +42,142 @@ function ApplyButton() {
   );
 }
 
+function JobContent({ content }) {
+  return (
+    <div>
+      <p>
+        <strong>{content.summary}</strong>
+      </p>
+      <p>
+        <strong>Location:</strong> {content.location}
+      </p>
+      <p>
+        <strong>
+          {content.type === "Full-Time" ? "Contract" : "Duration"}:
+        </strong>{" "}
+        {content.contract || content.duration}
+      </p>
+      <p>{content.description}</p>
+      <p>
+        <strong>Key Responsibilities:</strong>
+      </p>
+      <ul>
+        {content.responsibilities.map((resp, index) => (
+          <li key={index}>{resp}</li>
+        ))}
+      </ul>
+      <p>
+        <strong>Qualifications:</strong> {content.qualifications}
+      </p>
+      <p>
+        <strong>Benefits:</strong> {content.benefits}
+      </p>
+    </div>
+  );
+}
+
 export default function Jobs() {
-  const positions = [
-    <SoftwareEngineeringIntern key={0} />,
-    <PolicyModelingIntern key={1} />,
-    <DataScienceIntern key={2} />,
-    <EconomicResearchIntern key={3} />,
-    <CommunicationsIntern key={4} />,
-  ];
-  const titles = [
-    "Software Engineering Intern",
-    "Policy Modeling Intern",
-    "Data Science Intern",
-    "Economic Research Intern",
-    "Communications Intern",
-  ];
-  const colors = [
-    style.colors.WHITE,
-    style.colors.LIGHT_GRAY,
-    style.colors.WHITE,
-    style.colors.LIGHT_GRAY,
-    style.colors.WHITE,
-  ];
+  const [jobOpenings, setJobOpenings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch("/data/jobOpenings.json")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch job openings");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setJobOpenings(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const fullTimePositions = jobOpenings.filter(
+    (job) => job.type === "Full-Time",
+  );
+  const internshipPositions = jobOpenings.filter(
+    (job) => job.type === "Internship",
+  );
+
+  const renderJobSection = (position, index, isFullTime) => (
+    <Section key={position.title} title={position.title}>
+      <JobContent content={position.content} />
+    </Section>
+  );
+
+  if (isLoading) {
+    return <div>Loading job openings...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div>
       <Header />
-      <PageHeader title="Join Our Team" backgroundColor={style.colors.BLUE_98}>
+      <PageHeader title="Join our team" backgroundColor={style.colors.BLUE_98}>
         <p style={{ margin: 0 }}>
           Join PolicyEngine&apos;s team and contribute to a global movement of
-          open-source software development for public policy analysis.
+          open-source software development for public policy analysis and
+          benefit access.
         </p>
       </PageHeader>
-      <Section title="Internship Opportunities">
-        <InternshipOpportunities />
+      <Section backgroundColor={style.colors.WHITE}>
+        <h2>Ready to make an impact?</h2>
+        <p>
+          At PolicyEngine, we&apos;re revolutionizing public policy analysis and
+          benefit access with open-source software. Be part of a team
+          that&apos;s shaping the future of economic policy and making a real
+          difference in society.
+        </p>
+        <ApplyButton />
+        {/* Update this section depending on open positions */}
+        <p>
+          We&apos;re currently searching for a UK Research Associate and
+          interns.
+        </p>
       </Section>
-      {positions.map((position, i) => (
-        <Section key={i} title={titles[i]} backgroundColor={colors[i]}>
-          {position}
+      <Section backgroundColor={style.colors.LIGHT_GRAY}>
+        <h2>About PolicyEngine</h2>
+        <p>
+          PolicyEngine is an innovative platform dedicated to making public
+          policy more accessible, transparent, and evidence-based. By leveraging
+          cutting-edge technology, we empower individuals and organizations to
+          understand and analyze the impacts of tax and benefit policies on
+          budgets, economic growth, poverty, and inequality.
+        </p>
+      </Section>
+      {fullTimePositions.length > 0 && (
+        <Section backgroundColor={style.colors.WHITE}>
+          <h2>Full-Time Positions</h2>
+          {fullTimePositions.map((position, index) =>
+            renderJobSection(position, index, true),
+          )}
         </Section>
-      ))}
-      <Section>
+      )}
+      {internshipPositions.length > 0 && (
+        <Section backgroundColor={style.colors.LIGHT_GRAY}>
+          <h2>Internship Opportunities</h2>
+          {internshipPositions.map((position, index) =>
+            renderJobSection(position, index, false),
+          )}
+        </Section>
+      )}
+      <Section backgroundColor={style.colors.WHITE}>
+        <h2>Take the next step</h2>
+        <p>
+          If you&apos;re passionate about transforming public policy analysis
+          and want to contribute to meaningful change, we&apos;d love to hear
+          from you.
+        </p>
         <ApplyButton />
       </Section>
       <Footer />
