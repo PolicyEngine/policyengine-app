@@ -4,6 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import PolicyEngine from "../../PolicyEngine";
 import postJson from "../../posts/posts.json";
 
+// Mock react-plotly.js in this file
+jest.mock("react-plotly.js", () => () => <div>Mocked Plot</div>);
+
 describe("Test PolicyEngine Blog Posts page", () => {
   beforeEach(() => {
     const filteredPostJson = postJson.filter((post) => post.tags.includes("us"));

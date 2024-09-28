@@ -3,6 +3,14 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import PolicyEngine from "../../PolicyEngine";
 
+// Mock window.URL.createObjectURL to prevent error
+beforeAll(() => {
+  window.URL.createObjectURL = jest.fn();
+});
+
+// Mock react-plotly.js to avoid rendering plots in this test
+jest.mock("react-plotly.js", () => () => <div>Mocked Plot</div>);
+
 describe("Test PolicyEngine T&C page", () => {
   beforeEach(() => {
     Object.defineProperty(window, 'location', {
@@ -18,8 +26,10 @@ describe("Test PolicyEngine T&C page", () => {
       </BrowserRouter>
     );
 
+    // Use getAllByText and verify one of the elements matches
     await waitFor(() => {
-      expect(screen.getByText(/terms/i)).toBeInTheDocument();
+      const termsElements = screen.getAllByText(/terms of service/i);
+      expect(termsElements[0]).toBeInTheDocument();
     }, { timeout: 5000 });
   });
 });

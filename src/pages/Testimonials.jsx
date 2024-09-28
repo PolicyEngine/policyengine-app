@@ -3,17 +3,14 @@ import Footer from "../layout/Footer";
 import Section from "../layout/Section";
 import style from "../style";
 import { fullQuotes } from "../data/quotes";
-import { allOrgs } from "data/organisations";
+import { allOrgs } from "../data/organisations";
 import useDisplayCategory from "../hooks/useDisplayCategory";
 
 export default function Testimonials() {
   return (
     <div>
       <Header />
-      <Section
-        title="What people say about PolicyEngine"
-        backgroundColor={style.colors.WHITE}
-      >
+      <Section title="Testimonials" backgroundColor={style.colors.WHITE}>
         <QuotesDetail />
       </Section>
       <Footer />
@@ -24,9 +21,9 @@ export default function Testimonials() {
 function QuotesDetail() {
   return (
     <div style={{ marginTop: 50 }}>
-      {fullQuotes.map((quote) => {
-        return <IndividualQuoteDetail quote={quote} key={quote.name} />;
-      })}
+      {fullQuotes.map((quote, index) => (
+        <IndividualQuoteDetail quote={quote} key={`${quote.name}-${index}`} />
+      ))}
     </div>
   );
 }
@@ -34,8 +31,9 @@ function QuotesDetail() {
 function IndividualQuoteDetail({ quote }) {
   const text = quote.longQuote || quote.quote;
   const lines = text.split("\n");
-  const slug = quote.name.replace(" ", "-").toLowerCase();
+  const slug = quote.name.replace(/\s+/g, "-").toLowerCase(); // Handle multiple spaces
   const displayCategory = useDisplayCategory();
+
   const headshot = (
     <img
       src={quote.headshot}
@@ -53,11 +51,12 @@ function IndividualQuoteDetail({ quote }) {
       style={{ objectFit: "cover" }}
     />
   );
+
   const quoteContent = (
     <>
-      {lines.map((line) => (
+      {lines.map((line, idx) => (
         <p
-          key={line}
+          key={idx} // Ensure unique keys for each line
           style={{
             fontFamily: "Roboto Serif",
             fontSize: 16,
@@ -70,6 +69,7 @@ function IndividualQuoteDetail({ quote }) {
       <h6>{quote.position}</h6>
     </>
   );
+
   const mobile = displayCategory !== "desktop";
   const authorship = mobile ? (
     <div
@@ -80,11 +80,14 @@ function IndividualQuoteDetail({ quote }) {
       {orgLogo}
     </div>
   ) : (
-    <>
-      <div>{headshot}</div>
+    <div
+      style={{ display: "flex", flexDirection: "row", alignItems: "center" }}
+    >
+      {headshot}
       <div style={{ marginLeft: 20 }}>{orgLogo}</div>
-    </>
+    </div>
   );
+
   return (
     <div
       id={slug}
