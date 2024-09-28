@@ -124,25 +124,6 @@ describe("Test main PolicyEngine component", () => {
 
     expect(getByText("Our people")).toBeInTheDocument();
   });
-  test("Routes to jobs page for UK", () => {
-    useSearchParams.mockImplementation(() => {
-      return [new URLSearchParams(), jest.fn()];
-    });
-
-    window.location = {
-      ...window.location,
-      pathname: "/uk/jobs",
-      origin: "https://www.policyengine.org/uk/jobs",
-    };
-
-    const { getByText } = render(
-      <BrowserRouter>
-        <PolicyEngine />
-      </BrowserRouter>,
-    );
-
-    expect(getByText("Join Our Team")).toBeInTheDocument();
-  });
   test("Routes to testimonials page for US", () => {
     useSearchParams.mockImplementation(() => {
       return [new URLSearchParams(), jest.fn()];

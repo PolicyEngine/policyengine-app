@@ -1,0 +1,120 @@
+[
+  {
+    "title": "UK Research Associate",
+    "type": "Full-Time",
+    "content": {
+      "summary": "Shaping the future of economic policy analysis",
+      "location": "UK-based (Remote, with preference for 1 day per week in London office)",
+      "contract": "Full-time, starting as early as possible through September 30, 2025, with possibility of extension",
+      "description": "PolicyEngine is seeking a talented and motivated Research Associate to join our UK team. This full-time role is crucial to expanding PolicyEngine's capabilities over the next year, particularly in enhancing our UK economic policy model. This is a unique opportunity to contribute to an innovative project that aims to revolutionise public policy analysis and drive positive societal change.",
+      "responsibilities": [
+        "Expand the UK Tax-Benefit Rules Engine",
+        "Training and Community Engagement",
+        "Policy Analysis",
+        "Local Area Disaggregation",
+        "Model Validation and Accuracy",
+        "Beta Testing and User Feedback",
+        "User-Centric Enhancements and AI Integration",
+        "Documentation and Reporting"
+      ],
+      "qualifications": "Bachelor's degree in economics, computer science, public policy, or related fields; proficiency in Python and quantitative analysis; interest in UK public policy.",
+      "benefits": "Impactful work, innovative environment, professional growth, collaborative team, and flexible work arrangements."
+    }
+  },
+  {
+    "title": "Software Engineering Intern",
+    "type": "Internship",
+    "content": {
+      "summary": "Developing accessible policy analysis tools",
+      "location": "Remote (US-based preferred)",
+      "duration": "Spring, Summer, or Fall semester (possibility of extension)",
+      "description": "As a Software Engineering Intern at PolicyEngine, you will contribute to making policy analysis tools more accessible, from our web app users to our internal team of developers. This internship offers a unique opportunity to work on cutting-edge technology in the realm of public policy analysis.",
+      "responsibilities": [
+        "Develop and enhance Python libraries",
+        "Build new applications using emerging technologies like generative AI",
+        "Work on React-based front-end in the policyengine-app repo",
+        "Contribute to Flask/Python back-end development in the policyengine-api and policyengine-core libraries",
+        "Develop and review code collaboratively in GitHub"
+      ],
+      "qualifications": "Currently pursuing a degree in Computer Science or related field; proficiency in Python and JavaScript; familiarity with React and Flask is a plus.",
+      "benefits": "Paid stipend, flexible remote work, mentorship from experienced developers, and exposure to the intersection of technology and public policy."
+    }
+  },
+  {
+    "title": "Policy Modeling Intern",
+    "type": "Internship",
+    "content": {
+      "summary": "Powering PolicyEngine's core rules engine",
+      "location": "Remote (US, UK, or Canada-based preferred)",
+      "duration": "Spring, Summer, or Fall semester (possibility of extension)",
+      "description": "As a Policy Modeling Intern, you will play a crucial role in developing and enhancing the models of tax and benefit policies that power PolicyEngine's rules engine, the heart of our software. This internship provides a unique opportunity to directly impact the accuracy and comprehensiveness of our policy analysis tools.",
+      "responsibilities": [
+        "Augment the policyengine-us, policyengine-uk, and policyengine-canada Python packages",
+        "Model additional tax and benefit rules and regulations for the US, UK, and Canada",
+        "Monitor legislative and policy proposals",
+        "Strategize the integration of new policies into PolicyEngine",
+        "Develop and review code collaboratively in GitHub"
+      ],
+      "qualifications": "Currently pursuing a degree in Economics, Public Policy, or related field; strong analytical skills; proficiency in Python; interest in tax and benefit systems.",
+      "benefits": "Paid stipend, flexible remote work, exposure to cutting-edge policy modeling techniques, and the opportunity to contribute to impactful open-source projects."
+    }
+  },
+  {
+    "title": "Data Science Intern",
+    "type": "Internship",
+    "content": {
+      "summary": "Revealing quantitative implications of policy reforms",
+      "location": "Remote (US-based preferred)",
+      "duration": "Spring, Summer, or Fall semester (possibility of extension)",
+      "description": "As a Data Science Intern at PolicyEngine, you will work on revealing the quantitative implications of the most visible policy reforms. This role offers a unique blend of data analysis, visualization, and policy research, allowing you to make a tangible impact on public understanding of complex policy issues.",
+      "responsibilities": [
+        "Work with policy analysts to analyze tax and benefit policies",
+        "Create custom analyses using advanced statistical methods",
+        "Develop mini-apps and interactive visualizations using tools like Plotly and Streamlit",
+        "Contribute to data-driven policy reports and blog posts",
+        "Collaborate with the team to improve data processing and analysis pipelines"
+      ],
+      "qualifications": "Currently pursuing a degree in Data Science, Statistics, or related field; strong programming skills in Python; experience with data visualization libraries; interest in public policy.",
+      "benefits": "Paid stipend, flexible remote work, opportunity to work with large-scale policy datasets, and exposure to real-world applications of data science in policy analysis."
+    }
+  },
+  {
+    "title": "Economic Research Intern",
+    "type": "Internship",
+    "content": {
+      "summary": "Applying PolicyEngine to influence policy debates",
+      "location": "Remote (US, UK, or Canada-based preferred)",
+      "duration": "Spring, Summer, or Fall semester (possibility of extension)",
+      "description": "As an Economic Research Intern at PolicyEngine, you will apply our software to discussions that influence top public policy debates. This role offers a unique opportunity to bridge economic theory with practical policy analysis, contributing to some of the most pressing economic discussions of our time.",
+      "responsibilities": [
+        "Research and summarize economic data and academic research",
+        "Contribute to policy analysis discussions and write blog posts",
+        "Use PolicyEngine tools to model and analyze proposed economic policies",
+        "Engage with policymakers and research institutions",
+        "Assist in preparing reports and presentations for various stakeholders"
+      ],
+      "qualifications": "Currently pursuing a degree in Economics, Public Policy, or related field; strong analytical and writing skills; familiarity with economic research methods; interest in applied policy analysis.",
+      "benefits": "Paid stipend, flexible remote work, opportunity to contribute to high-level policy discussions, and exposure to cutting-edge economic modeling techniques."
+    }
+  },
+  {
+    "title": "Communications Intern",
+    "type": "Internship",
+    "content": {
+      "summary": "Amplifying PolicyEngine's impact through strategic communication",
+      "location": "Remote (US-based preferred)",
+      "duration": "Spring, Summer, or Fall semester (possibility of extension)",
+      "description": "As a Communications Intern at PolicyEngine, you will play a crucial role in amplifying our impact by connecting diverse audiences to relevant policy insights. This internship offers a unique opportunity to develop your strategic communications skills while contributing to important policy discussions.",
+      "responsibilities": [
+        "Assist in distributing PolicyEngine's findings and analyses",
+        "Engage in digital communications, including managing social media accounts",
+        "Create content for and help organize webinars and online events",
+        "Monitor media coverage of PolicyEngine and relevant policy topics",
+        "Maintain and expand contact lists for media, policymakers, and other stakeholders",
+        "Contribute to the development of communication strategies for new policy analyses"
+      ],
+      "qualifications": "Currently pursuing a degree in Communications, Journalism, Public Relations, or related field; excellent writing and editing skills; familiarity with social media platforms; interest in public policy and data-driven communication.",
+      "benefits": "Paid stipend, flexible remote work, opportunity to build a professional network in policy and media circles, and hands-on experience in strategic communications for a cutting-edge policy organization."
+    }
+  }
+]
