@@ -1,55 +1,79 @@
 import "@testing-library/jest-dom";
-import { render, waitFor } from "@testing-library/react";
-import { screen } from "@testing-library/react";
-
+import { render, waitFor, act, screen } from "@testing-library/react";
 import CookieConsent from "modals/CookieConsent";
 
+// Mock external dependencies
 jest.mock("react-plotly.js", () => jest.fn());
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useSearchParams: () => [new URLSearchParams()],
+}));
 
-jest.mock("react-router-dom", () => {
-  const originalModule = jest.requireActual("react-router-dom");
-  return {
-    __esModule: true,
-    ...originalModule,
-    useSearchParams: jest.fn(),
-  };
-});
+// Mock framer-motion to prevent animation issues
+jest.mock("framer-motion", () => ({
+  motion: {
+    div: ({ children, ...props }) => <div {...props}>{children}</div>,
+  },
+}));
+
+// Mock useDisplayCategory hook
+jest.mock("../hooks/useDisplayCategory", () => () => "desktop");
 
 describe("Test cookie consent pop-up", () => {
+  beforeEach(() => {
+    document.cookie = "consent=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    jest.useFakeTimers();
+    jest.spyOn(console, 'log').mockImplementation(() => {});
+  });
+
   test("Pop-up appears without cookie existing", async () => {
-    // Launch CookieConsent
-    const { getByText } = render(<CookieConsent />);
-
-    // Wait for pop-up to appear
-    await new Promise((r) => setTimeout(r, 1250));
-
-    // Ensure that component returns
-    await waitFor(() => {
-      expect(getByText("Accept")).toBeInTheDocument();
+    act(() => {
+      render(<CookieConsent />);
     });
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+
+    await waitFor(() => {
+      const popup = screen.queryByTestId("cookie-consent-popup");
+      console.log("Popup element:", popup);
+      expect(popup).toBeInTheDocument();
+    }, { timeout: 2000 });
+
+    const acceptButton = screen.queryByTestId("accept-cookies-button");
+    console.log("Accept button:", acceptButton);
+    expect(acceptButton).toBeInTheDocument();
+
+    const declineButton = screen.queryByTestId("decline-cookies-button");
+    console.log("Decline button:", declineButton);
+    expect(declineButton).toBeInTheDocument();
   });
 
   test("Pop-up does not appear if cookies have been accepted", async () => {
-    // Mock cookie that matches desired
     Object.defineProperty(window.document, "cookie", {
-      configurable: true,
       writable: true,
       value: "consent=granted;max-age=31536000;path=/",
     });
 
-    // Launch CookieConsent
-    render(<CookieConsent />);
-
-    // Wait for pop-up to appear
-    await new Promise((r) => setTimeout(r, 1250));
-
-    // Ensure that return is null
-    await waitFor(() => {
-      const acceptButton = screen.queryByText("Accept");
-      expect(acceptButton).toBeNull();
+    act(() => {
+      render(<CookieConsent />);
     });
 
-    // Remove cookie
-    delete window.document.cookie;
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
+
+    await waitFor(() => {
+      const popup = screen.queryByTestId("cookie-consent-popup");
+      console.log("Popup element (should be null):", popup);
+      expect(popup).toBeNull();
+    }, { timeout: 2000 });
+  });
+
+  afterEach(() => {
+    document.cookie = "consent=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    jest.useRealTimers();
+    console.log.mockRestore();
   });
 });
