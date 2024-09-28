@@ -51,6 +51,7 @@ export default function MarginalTaxRates(props) {
     householdInput,
     metadata,
   );
+
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
     year,
@@ -61,7 +62,11 @@ export default function MarginalTaxRates(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
+    // Ensure 'employment_income' exists for the current user and initialize if necessary
+    householdData.people.you.employment_income =
+      householdData.people.you.employment_income ?? {};
     householdData.people.you.employment_income[year] = null;
+
     householdData.axes = [
       [
         {
