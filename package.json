@@ -9,7 +9,6 @@
   "dependencies": {
     "@ant-design/icons": "^5.4.0",
     "@auth0/auth0-react": "^2.2.4",
-    "@babel/preset-react": "^7.24.7",
     "@n8tb1t/use-scroll-position": "^2.0.3",
     "@uiw/codemirror-extensions-langs": "^4.23.0",
     "@uiw/codemirror-theme-github": "^4.23.0",
@@ -17,6 +16,7 @@
     "@uiw/react-textarea-code-editor": "^3.0.2",
     "antd": ">=5",
     "bootstrap": "^5.3.3",
+    "canvas": "^2.11.2",
     "dayjs": "^1.11.13",
     "file-saver": "^2.0.5",
     "framer-motion": "^11.3.31",
@@ -88,6 +88,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^15.0.7",
     "@testing-library/user-event": "^14.5.2",

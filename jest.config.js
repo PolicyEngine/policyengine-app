@@ -56,6 +56,7 @@ const esModules = [
 ].join("|");
 
 module.exports = {
+  setupFilesAfterEnv: ['<rootDir>/src/__tests__/__setup__/setupTests.js'],
   modulePaths: ["<rootDir>/src"],
   moduleFileExtensions: ["js", "mjs", "jsx", "tsx"],
   testEnvironment: "./jsdom-env.js",
