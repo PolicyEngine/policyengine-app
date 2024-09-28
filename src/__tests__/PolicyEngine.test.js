@@ -141,7 +141,7 @@ describe("Test main PolicyEngine component", () => {
       </BrowserRouter>,
     );
 
-    expect(getByText("Join Our Team")).toBeInTheDocument();
+    expect(getByText("Take the next step")).toBeInTheDocument();
   });
   test("Routes to testimonials page for US", () => {
     useSearchParams.mockImplementation(() => {
