@@ -14,6 +14,8 @@
     "@uiw/codemirror-theme-github": "^4.23.0",
     "@uiw/react-codemirror": "^4.23.0",
     "@uiw/react-textarea-code-editor": "^3.0.2",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "antd": ">=5",
     "bootstrap": "^5.3.3",
     "canvas": "^2.11.2",
