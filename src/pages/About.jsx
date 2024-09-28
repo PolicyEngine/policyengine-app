@@ -54,10 +54,9 @@ export default function About() {
         <div style={{ display: "none" }}>
           <Section backgroundColor={style.colors.BLUE_PRIMARY}>
             <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
-            <InvertedBio member={advisors.george_sadowsky} />
-            <InvertedBio member={advisors.damiola_ogundipe} />
+            <InvertedBio member={advisors.tim_shaw} />
+            <InvertedBio member={advisors.damola_ogundipe} />
             <InvertedBio member={advisors.jesse_horwitz} />
-            <InvertedBio member={advisors.matt_jensen} />
           </Section>
         </div>
         <Footer />
