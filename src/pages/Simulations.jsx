@@ -110,7 +110,7 @@ export default function SimulationsPage() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <PageHeader title="Simulations" backgroundColor={style.colors.BLUE_98}>
         <p style={{ margin: 0 }}>
           This page shows the simulations that are currently running or have run

@@ -123,7 +123,7 @@ export function StatusPage() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div
         style={{
           paddingLeft: 50,
