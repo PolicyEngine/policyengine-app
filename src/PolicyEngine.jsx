@@ -44,6 +44,9 @@ import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
+import DeveloperPreview from "./pages/DeveloperLayout";
+import DeveloperLayout from "./pages/DeveloperLayout";
+import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
 import { wrappedResponseJson } from "./data/wrappedJson";
 
@@ -299,6 +302,11 @@ export default function PolicyEngine() {
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />
+          <Route path="developer-tools" element={<DeveloperLayout />} >
+            <Route index element={<DeveloperHome/>}/>
+            <Route path="simulations" element={<SimulationsPage />} />
+            <Route path="api_status" element={<StatusPage />} />
+          </Route>
           <Route path="research" element={<Outlet />}>
             <Route index={true} element={<Research />} />
             <Route path=":postName" element={<BlogPage />} />
@@ -350,7 +358,6 @@ export default function PolicyEngine() {
         </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
         <Route path="/uk/2024-manifestos" element={<ManifestosComparison />} />
-        <Route path="/:countryId/api_status" element={<StatusPage />} />
         <Route
           path="/us/trafwa-ctc-calculator"
           element={<TrafwaCalculator />}
