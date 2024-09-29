@@ -808,5 +808,14 @@
     "authors": ["max-ghenis"],
     "filename": "rent-relief-act.md",
     "image": "rent-relief-act.png"
+  },
+  {
+    "title": "How the Oregon Rebate May Affect Poverty Rates",
+    "description": "Our model finds the ballot measure could reduce poverty by between 22% and 35%, without macroeconomic effects.",
+    "date": "2024-09-29 01:00:00",
+    "tags": ["us", "2024-election", "policy", "us-or"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "oregon-rebate.md",
+    "image": "oregon-rebate.png"
   }
 ]
