@@ -39,12 +39,12 @@ describe("PolicyEngine Blog Posts", () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({
         text: () => Promise.resolve("success"),
-      })
+      }),
     );
 
     // Filter posts.json for US articles
     const filteredPostJson = postJson.filter((post) =>
-      post.tags.includes("us")
+      post.tags.includes("us"),
     );
 
     // Choose one at random
@@ -53,7 +53,10 @@ describe("PolicyEngine Blog Posts", () => {
     const selectedPost = filteredPostJson[randIndex];
     const postFilepath = selectedPost.filename.split(".")[0];
 
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -64,7 +67,7 @@ describe("PolicyEngine Blog Posts", () => {
     render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const link = screen.getByRole("link", { name: /Research/i });

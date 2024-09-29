@@ -31,7 +31,10 @@ afterAll(() => {
 
 describe("PolicyEngine Auth Callback Route", () => {
   test("Routes to auth callback", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -42,7 +45,7 @@ describe("PolicyEngine Auth Callback Route", () => {
     const { queryByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(queryByText("Follow us on social media")).not.toBeInTheDocument();

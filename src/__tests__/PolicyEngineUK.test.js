@@ -33,7 +33,10 @@ afterAll(() => {
 
 describe("PolicyEngine UK Routes", () => {
   test("Renders for UK if proper data passed", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -44,17 +47,20 @@ describe("PolicyEngine UK Routes", () => {
     const { getByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(
-      getByText("Computing Public Policy for Everyone")
+      getByText("Computing Public Policy for Everyone"),
     ).toBeInTheDocument();
     expect(getByText("Trusted across the UK")).toBeInTheDocument();
   });
 
   test("Routes to calculator interstitial page for UK", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -65,14 +71,17 @@ describe("PolicyEngine UK Routes", () => {
     const { getByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(getByText("Choose a calculator")).toBeInTheDocument();
   });
 
   test("Routes to research page for UK", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -83,7 +92,7 @@ describe("PolicyEngine UK Routes", () => {
     const { getByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(getByText("Research and analysis")).toBeInTheDocument();
@@ -93,7 +102,10 @@ describe("PolicyEngine UK Routes", () => {
   });
 
   test("Routes to donate page for UK", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -104,16 +116,17 @@ describe("PolicyEngine UK Routes", () => {
     const { getByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
-    expect(
-      getByText("The Difference Your Support Makes")
-    ).toBeInTheDocument();
+    expect(getByText("The Difference Your Support Makes")).toBeInTheDocument();
   });
 
   test("Routes to privacy page for UK", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -124,7 +137,7 @@ describe("PolicyEngine UK Routes", () => {
     const { getByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(getByText("Privacy")).toBeInTheDocument();
@@ -133,7 +146,10 @@ describe("PolicyEngine UK Routes", () => {
   // Note: This test only determines if routing occurs;
   // more detailed testing should be done for the component itself
   test("Routes to policy page for UK", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -144,18 +160,21 @@ describe("PolicyEngine UK Routes", () => {
     const { queryByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(
-      queryByText("Computing Public Policy for Everyone")
+      queryByText("Computing Public Policy for Everyone"),
     ).not.toBeInTheDocument();
   });
 
   test("Routes to user profile page if supplied with a user ID for UK", () => {
     const testUserId = "1";
 
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -166,14 +185,17 @@ describe("PolicyEngine UK Routes", () => {
     const { getByText } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(getByText("Profile")).toBeInTheDocument();
   });
 
   test("Routes to Citizens Economic Council page", () => {
-    useSearchParams.mockImplementation(() => [new URLSearchParams(), jest.fn()]);
+    useSearchParams.mockImplementation(() => [
+      new URLSearchParams(),
+      jest.fn(),
+    ]);
 
     window.location = {
       ...window.location,
@@ -184,11 +206,11 @@ describe("PolicyEngine UK Routes", () => {
     const { getByTitle } = render(
       <BrowserRouter>
         <PolicyEngine />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     expect(
-      getByTitle("Citizens' Economic Council reform simulator")
+      getByTitle("Citizens' Economic Council reform simulator"),
     ).toBeInTheDocument();
   });
 });
