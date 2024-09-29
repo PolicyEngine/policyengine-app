@@ -1,13 +1,13 @@
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
-import Section from "../layout/Section";
-import style from "../style";
-import PageHeader from "../layout/PageHeader";
-import useDisplayCategory from "../hooks/useDisplayCategory";
-import LinkButton from "controls/LinkButton";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
+import Section from "../../layout/Section";
+import style from "../../style";
+import PageHeader from "../../layout/PageHeader";
+import useDisplayCategory from "../../hooks/useDisplayCategory";
+import LinkButton from "../../controls/LinkButton";
 import { Helmet } from "react-helmet";
 
-export default function Donate() {
+export default function MicrosimulationModel() {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const desktop = displayCategory === "top";
@@ -32,7 +32,7 @@ export default function Donate() {
 
         <Section
           backgroundColor={style.colors.LIGHT_GRAY}
-          title="The difference your support makes"
+          title="The Difference Your Support Makes"
         >
           <div
             style={{
@@ -44,22 +44,22 @@ export default function Donate() {
           >
             <ul style={{ fontFamily: style.fonts.BODY_FONT }}>
               <li>
-                <b>Comprehensive policy analysis:</b> Funds enhance our ability
+                <b>Comprehensive Policy Analysis:</b> Funds enhance our ability
                 to create robust policy simulations that align policymaking with
                 societal goals.
               </li>
               <li>
-                <b>Streamlined benefit access:</b> Your support simplifies the
+                <b>Streamlined Benefit Access:</b> Your support simplifies the
                 process of determining eligibility, ensuring vital benefits
                 reach those in need.
               </li>
               <li>
-                <b>Open-source development:</b> Contributions support a
+                <b>Open-Source Development:</b> Contributions support a
                 transparent, collaborative approach, amplifying the impact of
                 each donation.
               </li>
               <li>
-                <b>Global impact:</b> Donations fuel our work across the US and
+                <b>Global Impact:</b> Donations fuel our work across the US and
                 the UK, with plans to grow our policy tools globally.
               </li>
             </ul>
@@ -69,7 +69,7 @@ export default function Donate() {
         {/* Donate Online Section */}
         <Section
           backgroundColor={style.colors.BLUE_PRIMARY}
-          title="How to donate"
+          title="How to Donate"
         >
           <div
             style={{

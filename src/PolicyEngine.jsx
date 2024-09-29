@@ -44,6 +44,10 @@ import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
+import BenefitAccess from "./pages/solutions/BenefitAccess";
+import Education from "./pages/solutions/Education";
+import ArtificialIntelligence from "./pages/solutions/ArtificialIntelligence";
+import MicrosimulationModel from "./pages/solutions/MicrosimulationModel";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -280,7 +284,7 @@ export default function PolicyEngine() {
         token: {
           borderRadius: 0,
           colorPrimary: style.colors.BLUE,
-          fontFamily: "Roboto Serif",
+          fontFamily: "Roboto",
         },
       }}
     >
@@ -296,6 +300,16 @@ export default function PolicyEngine() {
           <Route path="jobs" element={<Jobs />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
+          <Route
+            path="solutions/microsimulation-model"
+            element={<MicrosimulationModel />}
+          />
+          <Route path="solutions/education" element={<Education />} />
+          <Route path="solutions/benefit-access" element={<BenefitAccess />} />
+          <Route
+            path="solutions/artificial-intelligence"
+            element={<ArtificialIntelligence />}
+          />
           <Route path="simulations" element={<SimulationsPage />} />
           <Route path="research" element={<Outlet />}>
             <Route index={true} element={<Research />} />

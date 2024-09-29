@@ -11,6 +11,7 @@ import HomeQuoteCarousel from "./home/HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
 import useCountryId from "../hooks/useCountryId";
 import HomeElectionBanner from "./home/HomeElectionBanner";
+import HomeSolutions from "./home/HomeSolutions";
 
 export default function Home() {
   const countryId = useCountryId();
@@ -24,13 +25,14 @@ export default function Home() {
         <Header />
         <HomeLanding />
         {countryId === "uk" && <HomeElectionBanner />}
+        <HomeSolutions />
         <HomeUsedBy />
         <HomeBlogPreview />
-        <HomeSubscribe />
         <HomeCallToAction />
         <HomePolicyEngineFeatures />
         <HomeQuoteCarousel />
         <HomeTransparency />
+        <HomeSubscribe />
         <Footer />
       </div>
     </>
