@@ -11,8 +11,7 @@ const DeveloperHome = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    console.log("Scrolling to top on pathname change:", pathname);
-    window.scrollTo(0, 0); // Fallback to non-smooth scroll
+    window.scrollTo(0, 0);
   }, [pathname]);
   return (
     <>
@@ -56,7 +55,7 @@ function ToolsCard({ tool }) {
   const tablet = displayCategory === "tablet";
 
   return (
-    <ToolsStruct
+    <ToolsLayout
       tablet={tablet}
       mobile={mobile}
       top={
@@ -97,6 +96,7 @@ function ToolsCard({ tool }) {
       }
       style={{
         backgroundColor: style.colors.LIGHT_GRAY,
+        // maxWidth: "1000px", // Set a max width for ToolBox
         height: "100%",
         position: "relative",
       }}
@@ -130,11 +130,11 @@ function ToolsCard({ tool }) {
           </p>
         )}
       </div>
-    </ToolsStruct>
+    </ToolsLayout>
   );
 }
 
-function ToolsStruct({
+function ToolsLayout({
   children,
   top,
   tablet,
@@ -182,6 +182,7 @@ function ToolsStruct({
               marginTop: "auto",
             }}
           >
+            {/* <div>{bottomLeft}</div> */}
             <div>{bottomRight}</div>
           </div>
         </div>
