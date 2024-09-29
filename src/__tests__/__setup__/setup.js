@@ -3,3 +3,5 @@ import { TextEncoder, TextDecoder } from "util";
 
 // Globalize TextDecoder & TextEncoder
 Object.assign(global, { TextDecoder, TextEncoder });
+
+global.URL.createObjectURL = jest.fn();
