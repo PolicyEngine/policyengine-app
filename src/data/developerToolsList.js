@@ -1,7 +1,8 @@
 // A JSON data structure that describes PolicyEngine Developer tools,
 // for use on the Developer Hub page
-import apiImage from "../images/devHub/apistatus.png";
-import simImage from "../images/devHub/simulation.png";
+import apiImage from "../images/devTools/apistatus.png";
+import simImage from "../images/devTools/simulation.png";
+
 export const devTools = [
   {
     title: "API Status",
