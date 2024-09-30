@@ -13,8 +13,15 @@ export default function ShowcaseItem({
   borderColor,
   color,
   imageIsMissing,
+  imageShrinkPercentage,
 }) {
   const displayCategory = useDisplayCategory();
+
+  const imageWidth = imageShrinkPercentage
+    ? `${imageShrinkPercentage}%`
+    : displayCategory === "desktop"
+      ? 400
+      : "100%";
 
   return (
     <div
@@ -25,6 +32,8 @@ export default function ShowcaseItem({
         paddingBottom: 50,
         borderBottom: `1px solid ${borderColor || style.colors.WHITE}`,
         alignItems: "center",
+        justifyContent:
+          displayCategory === "desktop" ? "space-between" : "flex-start", // Conditional justifyContent
       }}
     >
       <div
@@ -69,7 +78,7 @@ export default function ShowcaseItem({
       ) : (
         <img
           src={image}
-          width={displayCategory === "desktop" ? 400 : "100%"}
+          width={imageWidth}
           height="100%"
           style={{
             objectFit: "contain",

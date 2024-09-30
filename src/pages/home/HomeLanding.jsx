@@ -50,7 +50,7 @@ export default function HomeLanding() {
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "between",
+            justifyContent: "space-between",
             flexDirection: mobile || tablet ? "column" : "row",
             gap: mobile || tablet ? 50 : 30,
             height: "100%",
@@ -69,13 +69,23 @@ export default function HomeLanding() {
             <h1
               style={{
                 color: "white",
-                fontSize: mobile || tablet ? 40 : 55,
+                fontSize: mobile || tablet ? 36 : 48,
                 alignItems: "center",
                 margin: 0,
               }}
             >
-              Computing Public Policy for Everyone
+              Democratizing Public Policy Analysis
             </h1>
+            <p
+              style={{
+                color: "white",
+                fontSize: mobile || tablet ? 18 : 24,
+                marginTop: 20,
+              }}
+            >
+              Leveraging cutting-edge technology to make policy analysis
+              accessible, transparent, and impactful for everyone.
+            </p>
           </div>
           <div
             style={{
@@ -86,13 +96,8 @@ export default function HomeLanding() {
             }}
           >
             <LinkButton
-              text="Compute my taxes and benefits"
-              link={`/${countryId}/household`}
-              width="100%"
-            />
-            <LinkButton
-              text="Compute policy reform impacts"
-              link={`/${countryId}/policy`}
+              text="Explore Our Solutions"
+              link="/solutions"
               width="100%"
             />
           </div>
