@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import useMobile from "../layout/Responsive";
+import style from "../style";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { countryApiCall, apiCall } from "../api/call";
@@ -13,6 +14,9 @@ import {
   COUNTRY_NAMES,
 } from "../data/countries";
 import { Helmet } from "react-helmet";
+import PageHeader from "../layout/PageHeader";
+import ArrowButton from "../controls/ArrowButton";
+import { useNavigate } from "react-router-dom";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
   return (
@@ -59,6 +63,8 @@ function ApiStatus({ apiStatus, apiCategory, countryNames }) {
 
 export function StatusPage() {
   const mobile = useMobile();
+  const navigate = useNavigate();
+
   const [countryStatuses, setCountryStatuses] = useState(
     INITIAL_COUNTRY_STATUSES,
   );
@@ -123,7 +129,6 @@ export function StatusPage() {
 
   return (
     <>
-      {/* <Header /> */}
       <div
         style={{
           paddingLeft: 50,
@@ -138,11 +143,25 @@ export function StatusPage() {
       >
         <div
           style={{
+            display: "flex",
+            alignItems: "baseline",
+            marginBottom: "50px",
+            width: "60%",            
+            justifyContent: "space-around",
+            justifyItems: "center",
+          }}
+        >
+          <ArrowButton direction={"left"} onClick={() => navigate(-1)} />
+
+          <h1>API status</h1>
+          <div></div>
+        </div>
+        <div
+          style={{
             paddingRight: 0,
             paddingLeft: 0,
           }}
         >
-          <h1>PolicyEngine API status</h1>
           <iframe
             title="PolicyEngine API status"
             src="https://policyengine.betteruptime.com"
