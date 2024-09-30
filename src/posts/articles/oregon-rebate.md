@@ -44,9 +44,20 @@ PolicyEngine does not currently consider macroeconomic effects such as these in 
 
 [The following dashboard](https://oregon-rebate.streamlit.app) summarizes the Oregon Rebate's poverty impact by age group and year, across a two-by-two of scenarios around federal taxability and whether the tax burden is allocated to households as a flat income tax. The results are "static" and do not account for potential macroeconomic effects.
 
-<iframe
-  src="https://oregon-rebate.streamlit.app?embed=true"
-></iframe>
+<div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  <iframe
+    src="https://oregon-rebate.streamlit.app?embedded=true"
+    title="Oregon Rebate Impact on Poverty"
+    height="1040"
+    width="1000"
+    style={{ overflow: "hidden" }}
+  />
+</div>
 
 You can view these impacts in the PolicyEngine app, which also calculates outcomes like inequality, at the links in this table:
 
@@ -59,7 +70,7 @@ You can view these impacts in the PolicyEngine app, which also calculates outcom
 
 # Methodology
 
-We produced this analysis with the PolicyEngine US microsimulation model v1.193.0. PolicyEngine's state-level microsimulation model applies the most recent three years of the Current Population Survey March Supplement—2021 to 2023—the same data used by the Census Bureau to estimate the Supplemental Poverty Measure by state. Across the three years, this data included 2,619 households in Oregon.
+We produced this analysis with the PolicyEngine US microsimulation model v1.103.0. PolicyEngine's state-level microsimulation model applies the most recent three years of the Current Population Survey March Supplement—2021 to 2023—the same data used by the Census Bureau to estimate the Supplemental Poverty Measure by state. Across the three years, this data included 2,619 households in Oregon.
 
 PolicyEngine then "ages" various characteristics of the microdata based on projections from government agencies like the Congressional Budget Office. For example, we age wages and salaries according to projected earnings growth, and poverty thresholds by projected inflation.
 
