@@ -12,7 +12,9 @@ import { Button, Drawer } from "antd";
 import CodeBlock from "../layout/CodeBlock";
 import PageHeader from "../layout/PageHeader";
 import style from "../style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ArrowButton from "../controls/ArrowButton";
+import useMobile from "../layout/Responsive";
 
 export default function SimulationsPage() {
   // call /simulations endpoint, which returns
@@ -37,7 +39,7 @@ export default function SimulationsPage() {
     
     Then put the results in a table with all columns. Refresh the table every 10 seconds.
     */
-
+  const navigate = useNavigate(-1);
   const [data, setData] = useState([]);
   const fetchSimulations = async () => {
     apiCall("/simulations").then((response) => {
@@ -107,20 +109,38 @@ export default function SimulationsPage() {
     { title: "Duration", dataIndex: "duration", key: "duration" },
     { title: "Link", dataIndex: "link", key: "link" },
   ];
+  const mobile = useMobile();
 
   return (
     <>
       {/* <Header /> */}
-      <PageHeader title="Simulations" backgroundColor={style.colors.BLUE_98}>
-        <p style={{ margin: 0 }}>
-          This page shows the simulations that are currently running or have run
-          in the past for the current version of the API. The table below is
-          updated every 15 seconds.
-        </p>
-      </PageHeader>
-      <Section>
-        <Table dataSource={data} columns={columns} rowKey="start_time" />
-      </Section>
+      <div style={{
+        display:"flex",
+        flexDirection:"column",
+        alignItems:"center",
+
+        paddingTop: 70,
+
+      }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            marginBottom: "50px",
+            width: "90%",            
+            justifyContent: "space-around",
+          }}
+        >
+          <ArrowButton direction={"left"} onClick={() => navigate(-1)} />
+
+          <h1>Simulations</h1>
+          <div></div>
+        </div>
+        <Section>
+          <Table dataSource={data} columns={columns} rowKey="start_time" />
+        </Section>
+      
+        </div>
       <Footer />
     </>
   );
