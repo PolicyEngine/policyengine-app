@@ -4,11 +4,11 @@ This November, Oregon voters will vote on [Measure 118](<https://ballotpedia.org
 
 If it passes, the measure would provide its first payments in early 2026, structured as either a refundable tax credit for the 2025 tax year, or as a payment for nonfilers. Oregon's Legislative Revenue Office projected that these first payments would amount to $1,160 for each person (regardless of age), followed by $1,605 in 2027 and $1,686 in 2028\.
 
-Using the PolicyEngine microsimulation model, we have projected the impact of this bill on poverty in each year, under four scenarios spanning the federal taxability of the payments and the incidence of the tax. Overall we find that the policy would reduce poverty by between 22% and 35% overall depending on the scenario and year, with larger effects for children and in later years. We do not model behavioral or macroeconomic effects of the policy, either resulting from the payments or from the tax.
+Using the PolicyEngine microsimulation model, we have projected the impact of this bill on poverty in each year, under four scenarios spanning the federal taxability of the payments and the incidence of the tax. Overall we find that the policy would reduce poverty by between 20% and 36% overall depending on the scenario and year, with larger effects for children and in later years. We do not model behavioral or macroeconomic effects of the policy, either resulting from the payments or from the tax.
 
 # Analysis
 
-Should the Oregon Rebate pass, the first payments, estimated at $1,160, will arrive in early 2026\. Since tax filers will receive them as a refundable credit, the Census Bureau would count them toward 2025 net resources when determining the Supplemental Poverty Measure. If the payments had no other effects on income or the economy, and if the federal government did not tax them, PolicyEngine estimates that it would reduce Oregon's poverty rate 26%, from 10.5% to 7.8%. Child poverty would fall 35%, from 9.1% to 6.0%, while adult poverty would fall 25%.
+Should the Oregon Rebate pass, the first payments, estimated at $1,160, will arrive in early 2026\. Since tax filers will receive them as a refundable credit, the Census Bureau would count them toward 2025 net resources when determining the Supplemental Poverty Measure. If the payments had no other effects on income or the economy, and if the federal government did not tax them, PolicyEngine estimates that it would reduce Oregon's poverty rate 24.3%, from 10% to 7.6%. Child poverty would fall 33.1%, from 8.5% to 5.7%, while adult poverty would fall 22.4%.
 
 Three other factors could affect these results:
 
