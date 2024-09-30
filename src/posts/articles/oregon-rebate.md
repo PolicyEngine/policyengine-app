@@ -8,7 +8,7 @@ Using the PolicyEngine microsimulation model, we have projected the impact of th
 
 # Analysis
 
-Should the Oregon Rebate pass, the first payments, estimated at $1,160, will arrive in early 2026\. Since tax filers will receive them as a refundable credit, the Census Bureau would count them toward 2025 net resources when determining the Supplemental Poverty Measure. If the payments had no other effects on income or the economy, and if the federal government did not tax them, PolicyEngine estimates that it would reduce Oregon's poverty rate 24.3%, from 10% to 7.6%. Child poverty would fall 33.1%, from 8.5% to 5.7%, while adult poverty would fall 22.4%.
+Should the Oregon Rebate pass, the first payments, estimated at $1,160, will arrive in early 2026\. Since tax filers will receive them as a refundable credit, the Census Bureau would count them toward 2025 net resources when determining the Supplemental Poverty Measure. If the payments had no other effects on income or the economy, and if the federal government did not tax them, PolicyEngine estimates that it would reduce Oregon's poverty rate 24%, from 10.0% to 7.6%. Child poverty would fall 33%, from 8.5% to 5.7%, while adult poverty would fall 22.4%.
 
 Three other factors could affect these results:
 
