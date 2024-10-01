@@ -114,33 +114,41 @@ export default function SimulationsPage() {
   return (
     <>
       {/* <Header /> */}
-      <div style={{
-        display:"flex",
-        flexDirection:"column",
-        alignItems:"center",
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
 
-        paddingTop: 70,
-
-      }}>
+          paddingTop: 70,
+        }}
+      >
         <div
           style={{
             display: "flex",
-            alignItems: "baseline",
+            alignItems: "center", // Center vertically
             marginBottom: "50px",
-            width: "90%",            
-            justifyContent: "space-around",
+            width: "90%",
+            justifyContent: "space-between", // Space items across the width
           }}
         >
           <ArrowButton direction={"left"} onClick={() => navigate(-1)} />
-
-          <h1>Simulations</h1>
-          <div></div>
+          <h1
+            style={{
+              flex: 1, // Allow the title to take up remaining space
+              textAlign: "center", // Center the text
+              margin: 0, // Remove default margin for proper centering
+            }}
+          >
+            Simulations
+          </h1>
+         
         </div>
+
         <Section>
           <Table dataSource={data} columns={columns} rowKey="start_time" />
         </Section>
-      
-        </div>
+      </div>
       <Footer />
     </>
   );
