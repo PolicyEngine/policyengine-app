@@ -817,5 +817,14 @@
     "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "oregon-rebate.md",
     "image": "oregon-rebate.png"
+  },
+  {
+    "title": "Kamala Harris’s Earned Income Tax Credit Expansion Proposal",
+    "description": "PolicyEngine projects that restoring the American Rescue Plan policy would cost $206 billion over a decade, while lowering poverty 1.6% in 2025.",
+    "date": "2024-10-01 09:00:00",
+    "tags": ["us", "2024-election", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "harris-eitc.md",
+    "image": "harris-eitc.jpg"
   }
 ]
