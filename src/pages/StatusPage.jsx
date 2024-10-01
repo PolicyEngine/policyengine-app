@@ -142,21 +142,28 @@ export function StatusPage() {
           textAlign: "center",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            marginBottom: "50px",
-            width: "60%",            
-            justifyContent: "space-around",
-            justifyItems: "center",
-          }}
-        >
-          <ArrowButton direction={"left"} onClick={() => navigate(-1)} />
+       <div
+  style={{
+    display: "flex",
+    alignItems: "center", // Center vertically
+    marginBottom: "50px",
+    width: "60%",
+    justifyContent: "space-between", // Space out items
+  }}
+>
+  <ArrowButton direction={"left"} onClick={() => navigate(-1)} />
 
-          <h1>API status</h1>
-          <div></div>
-        </div>
+  <h1 style={{ 
+      flex: 1, // Allow the title to take up remaining space
+      textAlign: "center", // Center the text
+      margin: 0, // Remove default margin for proper centering
+  }}>
+    API status
+  </h1>
+  
+ 
+</div>
+
         <div
           style={{
             paddingRight: 0,

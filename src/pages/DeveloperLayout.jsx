@@ -23,14 +23,17 @@ export default function DeveloperLayout() {
       </Helmet>
       <div>
         <Header />
-
-        <PageHeader title="Developer Hub" backgroundColor={style.colors.BLUE_98}>
-        <p style={{ margin: 0 }}>
-          Welcome to the Developer Hub page for PolicyEngine! This hub is
-          designed to enhance your experience with our open-source projects by
-          providing quick access to essential resources.
-        </p>
-      </PageHeader>        <Outlet />
+        <PageHeader
+          title="Developer Hub"
+          backgroundColor={style.colors.BLUE_98}
+        >
+          <p style={{ margin: 0 }}>
+            Welcome to the Developer Hub page for PolicyEngine! This hub is
+            designed to enhance your experience with our open-source projects by
+            providing quick access to essential resources.
+          </p>
+        </PageHeader>
+        <Outlet />
         <Footer />
       </div>
     </>

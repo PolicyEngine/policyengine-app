@@ -7,89 +7,191 @@ import useDisplayCategory from "../hooks/useDisplayCategory.js";
 import { useLocation } from "react-router-dom";
 
 const DeveloperHome = () => {
-  const location = useLocation();
-  const pathParts = location.pathname.split("/");
   const displayCategory = useDisplayCategory();
+  console.log(displayCategory);
+
   return (
     <>
       <Section>
-        <h2>Developer Tools</h2>
         <div
           style={{
             display: "flex",
-            flexDirection: "row",
-            columnGap: "40px",
+            justifyContent: "center",
+            alignItems: "center",
+            paddingBottom: "3rem",
           }}
         >
+          <h2>Developer Tools</h2>
+        </div>
+
+        <div
+          style={
+            {
+              desktop: {
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 1fr)", // Creates three equal columns
+                columnGap: "40px",
+                rowGap: "20px", // Adds some space between rows
+              },
+              tablet: {
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "3rem",
+              },
+              mobile: {
+                display: "flex",
+                flexDirection: "column",
+                rowGap: "2rem",
+              },
+            }[displayCategory]
+          }
+        >
           {devTools.map((tool, index) => (
-            <ToolBox
-              key={index}
-              top={
-                <div style={{ width: 500, height: 300 }}>
-                  <img style={{ width: 500, height: 300 }} src={tool.image} alt="" />
-                </div>
-              }
-              bottomRight={
-                <div style={{ marginRight: 10, marginBottom: 10 }}>
-                  <LinkButton text="Open" link={`${tool.path}`} width="100%" />
-                </div>
-              }
-              style={{
-                backgroundColor: style.colors.LIGHT_GRAY,
-                height: "100%",
-                position: "relative",
-              }}
-            >
-              <div
-                style={{
-                  padding: 10,
-                  paddingTop: 0,
-                  minHeight: displayCategory === "desktop" ? 100 : null,
-                  width: "500px",
-                }}
-              >
-                <h4>{tool.title}</h4>
-                <p>{tool.desc}</p>
-              </div>
-            </ToolBox>
+            <MobileBox key={index} tool={tool} />
           ))}
         </div>
       </Section>
-      {/* <Section backgroundColor={style.colors.BLUE_PRIMARY}>
-        <h2 style={{ color: style.colors.WHITE }}>Team</h2>
-        hi
-      </Section> */}
     </>
   );
 };
 
 export default DeveloperHome;
 
-function ToolBox({ children, top, bottomLeft, bottomRight, noBorder, style }) {
+function MobileBox({ tool }) {
+  const displayCategory = useDisplayCategory();
+  const mobile = displayCategory === "mobile";
+  const tablet = displayCategory === "tablet";
+
+  return (
+    <ToolBox
+      tablet={tablet}
+      mobile={mobile}
+      top={
+        <div
+          style={{
+            width: mobile || tablet ? "250px" : "100%",
+            height: mobile ? 150 : 300,
+          }}
+        >
+          {" "}
+          {/* Set width to 100% */}
+          <img
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            src={tool.image}
+            alt=""
+          />
+        </div>
+      }
+      bottomRight={
+        <div
+          style={{
+            marginRight: !mobile && 10,
+            marginBottom: !mobile && 10,
+            height: mobile && "100%",
+          }}
+        >
+          <LinkButton
+            text="Open"
+            link={`${tool.path}`}
+            width="100%"
+            height={"100%"}
+          />
+        </div>
+      }
+      style={{
+        backgroundColor: style.colors.LIGHT_GRAY,
+        // maxWidth: "1000px", // Set a max width for ToolBox
+        height: "100%",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          padding: "0",
+          minHeight: 100,
+          width: "100%", // Change to 100% for grid layout
+        }}
+      >
+        <h4
+          style={{
+            paddingTop: "1rem",
+            paddingLeft: "1rem",
+          }}
+        >
+          {tool.title}
+        </h4>
+        {displayCategory !== "mobile" && (
+          <p
+            style={{
+              paddingLeft: "1rem",
+              paddingTop: "10px",
+              paddingRight: "1rem",
+            }}
+          >
+            {tool.desc}
+          </p>
+        )}
+      </div>
+    </ToolBox>
+  );
+}
+
+function ToolBox({
+  children,
+  top,
+  tablet,
+
+  bottomRight,
+  noBorder,
+  style,
+  mobile,
+}) {
+  console.log(mobile);
   return (
     <div
       style={{
         display: "flex",
         border: noBorder ? null : `1px solid black`,
         ...style,
-        flexDirection: "row",
+        flexDirection: mobile ? "column" : "row",
       }}
     >
-      {/* <div style={{ display: "flex" }}>{left}</div> */}
-      <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: mobile ? "row" : tablet ? "row" : "column",
+          width: "100%",
+        }}
+      >
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {top}{" "}
+          {top}
         </div>
-        {children}
         <div
           style={{
+            width: mobile && "100%",
             display: "flex",
+            flexDirection: !mobile ? "column" : "row",
             justifyContent: "space-between",
-            marginTop: "auto",
+            alignItems: "baseline",
           }}
         >
-          <div>{bottomLeft}</div>
-          <div>{bottomRight}</div>
+          {children}
+          <div
+            style={{
+              display: "flex",
+              height: mobile && "100%",
+              justifyContent: "flex-end",
+              width: "100%",
+              marginTop: "auto",
+            }}
+          >
+            {/* <div>{bottomLeft}</div> */}
+            <div>{bottomRight}</div>
+          </div>
         </div>
       </div>
     </div>
