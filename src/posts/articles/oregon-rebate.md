@@ -44,19 +44,13 @@ PolicyEngine does not currently consider macroeconomic effects such as these in 
 
 [The following dashboard](https://oregon-rebate.streamlit.app) summarizes the Oregon Rebate's poverty impact by age group and year, across a two-by-two of scenarios around federal taxability and whether the tax burden is allocated to households as a flat income tax. The results are "static" and do not account for potential macroeconomic effects.
 
-<div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-  }}
->
+<div style="display: flex; justify-content: center; margin: 20px 0;">
   <iframe
     src="https://oregon-rebate.streamlit.app?embedded=true"
     title="Oregon Rebate Impact on Poverty"
     height="1040"
     width="1000"
-    style={{ overflow: "hidden" }}
-  />
+  ></iframe>
 </div>
 
 You can view these impacts in the PolicyEngine app, which also calculates outcomes like inequality, at the links in this table:
