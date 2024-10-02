@@ -44,6 +44,7 @@ import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
+import CTCComparison from "./applets/CTCComparison";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
