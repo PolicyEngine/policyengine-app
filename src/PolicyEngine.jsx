@@ -355,6 +355,7 @@ export default function PolicyEngine() {
           element={<TrafwaCalculator />}
         />
         <Route path="/us/state-eitcs-ctcs" element={<StateEitcsCtcs />} />
+        <Route path="/us/child-tax-credit-2024-election-calculator" element={<CTCComparison />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
