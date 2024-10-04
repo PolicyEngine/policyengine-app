@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import useMobile from "../layout/Responsive";
-import style from "../style";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { countryApiCall, apiCall } from "../api/call";
@@ -64,8 +63,6 @@ function ApiStatus({ apiStatus, apiCategory, countryNames }) {
 
 export function StatusPage() {
   const mobile = useMobile();
-  const navigate = useNavigate();
-
   const [countryStatuses, setCountryStatuses] = useState(
     INITIAL_COUNTRY_STATUSES,
   );
@@ -130,6 +127,7 @@ export function StatusPage() {
 
   return (
     <>
+      <Header />
       <div
         style={{
           paddingLeft: 50,
@@ -142,34 +140,13 @@ export function StatusPage() {
           textAlign: "center",
         }}
       >
-       <div
-  style={{
-    display: "flex",
-    alignItems: "center", // Center vertically
-    marginBottom: "50px",
-    width: "60%",
-    justifyContent: "space-between", // Space out items
-  }}
->
-  <ArrowButton direction={"left"} onClick={() => navigate(-1)} />
-
-  <h1 style={{ 
-      flex: 1, // Allow the title to take up remaining space
-      textAlign: "center", // Center the text
-      margin: 0, // Remove default margin for proper centering
-  }}>
-    API status
-  </h1>
-  
- 
-</div>
-
         <div
           style={{
             paddingRight: 0,
             paddingLeft: 0,
           }}
         >
+          <h1>PolicyEngine API status</h1>
           <iframe
             title="PolicyEngine API status"
             src="https://policyengine.betteruptime.com"
