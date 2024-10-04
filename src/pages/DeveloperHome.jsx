@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Section from "../layout/Section";
 import { devTools } from "../data/developerToolsList";
 import style from "../style/index.js";
@@ -8,22 +8,15 @@ import { useLocation } from "react-router-dom";
 
 const DeveloperHome = () => {
   const displayCategory = useDisplayCategory();
-  console.log(displayCategory);
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    console.log("Scrolling to top on pathname change:", pathname);
+    window.scrollTo(0, 0); // Fallback to non-smooth scroll
+  }, [pathname]);
   return (
     <>
       <Section>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            paddingBottom: "3rem",
-          }}
-        >
-          <h2>Developer Tools</h2>
-        </div>
-
         <div
           style={
             {
@@ -47,7 +40,7 @@ const DeveloperHome = () => {
           }
         >
           {devTools.map((tool, index) => (
-            <MobileBox key={index} tool={tool} />
+            <ToolsCard key={index} tool={tool} />
           ))}
         </div>
       </Section>
@@ -57,19 +50,19 @@ const DeveloperHome = () => {
 
 export default DeveloperHome;
 
-function MobileBox({ tool }) {
+function ToolsCard({ tool }) {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
   const tablet = displayCategory === "tablet";
 
   return (
-    <ToolBox
+    <ToolsStruct
       tablet={tablet}
       mobile={mobile}
       top={
         <div
           style={{
-            width: mobile || tablet ? "250px" : "100%",
+            width: mobile ? "150px" : tablet ? "350px" : "100%",
             height: mobile ? 150 : 300,
           }}
         >
@@ -120,6 +113,8 @@ function MobileBox({ tool }) {
           style={{
             paddingTop: "1rem",
             paddingLeft: "1rem",
+            paddingRight: "1rem",
+            width: `${mobile ? "150px" : "100%"}`,
           }}
         >
           {tool.title}
@@ -136,11 +131,11 @@ function MobileBox({ tool }) {
           </p>
         )}
       </div>
-    </ToolBox>
+    </ToolsStruct>
   );
 }
 
-function ToolBox({
+function ToolsStruct({
   children,
   top,
   tablet,
@@ -150,7 +145,6 @@ function ToolBox({
   style,
   mobile,
 }) {
-  console.log(mobile);
   return (
     <div
       style={{
