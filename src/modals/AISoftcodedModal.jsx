@@ -1,43 +1,11 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Button, Modal } from "antd"
-import { getExplainerAIPromptContent } from "../pages/household/output/explainerAIPromptContent";
-import { countryApiCall, asyncApiCall } from "../api/call";
+import { countryApiCall } from "../api/call";
 import useCountryId from "../hooks/useCountryId";
-import LoadingCentered from "../layout/LoadingCentered";
 import { MarkdownFormatter } from "../layout/MarkdownFormatter";
-
-// Note that depending on implementation, this may instead be a 
-// JSON object at runtime, requiring some form of parsing be written in
-const tracerOutput = `
-eitc<2024, (default)> = [6960.]
-  eitc_eligible<2024, (default)> = [ True]
-    eitc_investment_income_eligible<2024, (default)> = [ True]
-      eitc_relevant_investment_income<2024, (default)> = [0.]
-    eitc_demographic_eligible<2024, (default)> = [ True]
-      eitc_child_count<2024, (default)> = [2]
-      age<2024, (default)> = [40.  5.  5.]
-      is_full_time_student<2024, (default)> = [False  True  True]
-  eitc_maximum<2024, (default)> = [6960.]
-    eitc_child_count<2024, (default)> = [2]
-  eitc_phased_in<2024, (default)> = [6960.]
-    eitc_maximum<2024, (default)> = [6960.]
-    eitc_phase_in_rate<2024, (default)> = [0.4]
-      eitc_child_count<2024, (default)> = [2]
-    filer_adjusted_earnings<2024, (default)> = [20000.]
-      adjusted_earnings<2024, (default)> = [20000.     0.     0.]
-      is_tax_unit_dependent<2024, (default)> = [False  True  True]
-  eitc_reduction<2024, (default)> = [0.]
-    filer_adjusted_earnings<2024, (default)> = [20000.]
-    adjusted_gross_income<2024, (default)> = [20000.]
-      irs_gross_income<2024, (default)> = [20000.     0.     0.]
-      above_the_line_deductions<2024, (default)> = [0.]
-    eitc_phase_out_start<2024, (default)> = [22720.]
-      eitc_child_count<2024, (default)> = [2]
-      tax_unit_is_joint<2024, (default)> = [False]
-    eitc_phase_out_rate<2024, (default)> = [0.2106]
-      eitc_child_count<2024, (default)> = [2]
-`;
+import { useSearchParams } from "react-router-dom";
+import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
 
 /**
  * Modal for displaying AI output
@@ -54,71 +22,66 @@ export default function AISoftcodedModal(props) {
   const {
     isModalVisible, 
     setIsModalVisible,
+    value,
     variable,
-    value
   } = props;
 
   const [analysis, setAnalysis] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
   const countryId = useCountryId();
+
   // Check if variable has changed by its name, not the 
   // object itself; React will treat two objects with same keys
   // and values as different if rendered separately
   const prevVariableName = useRef(null);
+
+  const [searchParams] = useSearchParams();
+  const householdId = searchParams.get("household");
+  // Currently not implemented for baseline/reform comparison pairs
+  const policyId = COUNTRY_BASELINE_POLICIES[countryId];
 
   // Function to hide modal
   const handleCancel = () => {
     setIsModalVisible(false);
   };
 
-  // Function to fetch tracer output; will just
-  // fetch local object for now; may later require
-  // adding JSON parsing
-  function fetchTracer() {
-    return tracerOutput;
-  }
-
   // Convert this and fetchTracer to async/await
-  const fetchAI = useCallback((prompt) => {
+  const fetchAnalysis = useCallback(async () => {
 
-    let fullAnalysis = "";
+    const jsonObject = {
+      household_id: householdId,
+      policy_id: policyId,
+      variable: variable.name
+    };
 
-    countryApiCall(countryId, `/analysis`, {
-      prompt: prompt,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        return data.result.prompt_id;
-      })
-      .then((promptId) => {
-        asyncApiCall(
-          `/${countryId}/analysis/${promptId}`,
-          null,
-          9_000,
-          4_000,
-          (data) => {
-            // We've got to wait ten seconds for the next part of the response to be ready,
-            // so let's add the response word-by-word with a small delay to make it seem typed.
-            // This almost certainly doesn't work at present due to bug in streaming in API.
-            const analysisFromCall = data.result.analysis;
-            // Start from the new bit (compare against fullAnalysis)
-            const newAnalysis = analysisFromCall.substring(fullAnalysis.length);
-            // Start from the
-            const analysisWords = newAnalysis.split(" ");
-            fullAnalysis = analysisFromCall;
-            setAnalysis(fullAnalysis);
-          },
-        ).then((data) => {
-          setAnalysis(data.result.analysis);
-          setIsLoading(false);
-        });
+    const res = await countryApiCall(countryId, `/tracer_analysis`, jsonObject, "POST")
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    let isComplete = false;
+    while (!isComplete) {
+      const { done, value } = await reader.read().catch((error) => {
+        console.error("Error reading response stream:", error);
       });
+      if (done) {
+        isComplete = true;
+      }
+      const chunks = decoder.decode(value, {stream: true}).split("\n");
+      for (const chunk of chunks) {
+        if (chunk) {
+          const data = JSON.parse(chunk);
+          if (data.stream) {
+            setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
+          }
+        }
+      }
+    }
+
   }, [countryId]);
 
   useEffect(() => {
     function resetModalData() {
       prevVariableName.current = variable.name;
-      setIsLoading(true);
     }
 
     // If modal isn't shown, don't do anything
@@ -132,22 +95,10 @@ export default function AISoftcodedModal(props) {
       return;
     }
 
-    const tracerOutput = fetchTracer();
-
-    const prompt = getExplainerAIPromptContent(
-      variable.label,
-      value,
-      tracerOutput
-    );
-
-
-    const aiAnalysis = fetchAI(prompt);
-    setAnalysis(aiAnalysis);
+    fetchAnalysis();
     resetModalData();
 
-
-
-  }, [isModalVisible, variable, value, fetchAI])
+  }, [isModalVisible, variable, value, fetchAnalysis])
 
   return (
       <Modal
@@ -161,7 +112,6 @@ export default function AISoftcodedModal(props) {
         ]}
         width="50%"
       >
-        {isLoading && <LoadingCentered />}
         <MarkdownFormatter
           markdown={analysis}
           pSize={14}
