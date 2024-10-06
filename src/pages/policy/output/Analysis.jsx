@@ -8,7 +8,6 @@ import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
-import { promptContent } from "./promptContent";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -57,30 +56,10 @@ export default function Analysis(props) {
     {},
   );
   const [audience, setAudience] = useState("Normal");
-  const audienceDescriptions = {
-    ELI5: "Write this for a five-year-old who doesn't know anything about economics or policy. Explain fundamental concepts like taxes, poverty rates, and inequality as needed.",
-    Normal:
-      "Write this for a policy analyst who knows a bit about economics and policy.",
-    Wonk: "Write this for a policy analyst who knows a lot about economics and policy. Use acronyms and jargon if it makes the content more concise and informative.",
-  };
-
-  const prompt =
-    promptContent(
-      metadata,
-      selectedVersion,
-      timePeriod,
-      regionKeyToLabel,
-      impact,
-      policyLabel,
-      policy,
-      region,
-      relevantParameterBaselineValues,
-      relevantParameters,
-    ) + audienceDescriptions[audience];
-
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
+  const [prompt, setPrompt] = useState("");
 
   const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
@@ -129,7 +108,7 @@ export default function Analysis(props) {
 
   const displayCharts = (markdown) =>
     markdown.replace(
-      /{{(.*?)}}/g,
+      /{(.*?)}/g,
       (match, impactType) => `<abbr title="${impactType}"></abbr>`,
     );
 
@@ -164,8 +143,18 @@ export default function Analysis(props) {
       if (done) {
         isComplete = true;
       }
-      const chunk = decoder.decode(value, {stream: true});
-      setAnalysis((prevAnalysis) => prevAnalysis + chunk);
+      const chunks = decoder.decode(value, {stream: true}).split("\n");
+      for (const chunk of chunks) {
+        if (chunk) {
+          const data = JSON.parse(chunk);
+          if (data.stream) {
+            setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
+          }
+          if (data.prompt) {
+            setPrompt(data.prompt);
+          }
+        }
+      }
     }
 
     setAnalysis((analysis) => displayCharts(analysis).replaceAll("  ", " "));
