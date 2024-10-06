@@ -6,7 +6,7 @@ import CodeBlock from "../../../layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
-import { asyncApiCall, countryApiCall } from "../../../api/call";
+import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 import { promptContent } from "./promptContent";
 
@@ -136,8 +136,7 @@ export default function Analysis(props) {
   const onGenerate = async () => {
     setHasClickedGenerate(true);
     setLoading(true);
-    // setAnalysis(""); // Reset analysis content
-    // let fullAnalysis = "";
+    setAnalysis(""); // Reset analysis content
 
     const jsonObject = {
       currency: metadata.currency,
@@ -157,11 +156,13 @@ export default function Analysis(props) {
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
 
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      const { done, value } = await reader.read();
+    let isComplete = false;
+    while (!isComplete) {
+      const { done, value } = await reader.read().catch((error) => {
+        console.error("Error reading response stream:", error);
+      });
       if (done) {
-        break;
+        isComplete = true;
       }
       const chunk = decoder.decode(value, {stream: true});
       setAnalysis((prevAnalysis) => prevAnalysis + chunk);
