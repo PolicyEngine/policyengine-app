@@ -133,52 +133,42 @@ export default function Analysis(props) {
       (match, impactType) => `<abbr title="${impactType}"></abbr>`,
     );
 
-  const onGenerate = () => {
+  const onGenerate = async () => {
     setHasClickedGenerate(true);
     setLoading(true);
-    setAnalysis(""); // Reset analysis content
-    let fullAnalysis = "";
+    // setAnalysis(""); // Reset analysis content
+    // let fullAnalysis = "";
 
-    countryApiCall(metadata.countryId, `/analysis`, {
-      prompt: prompt,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        return data.result.prompt_id;
-      })
-      .then((promptId) => {
-        asyncApiCall(
-          `/${metadata.countryId}/analysis/${promptId}`,
-          null,
-          9_000,
-          4_000,
-          (data) => {
-            // We've got to wait ten seconds for the next part of the response to be ready,
-            // so let's add the response word-by-word with a small delay to make it seem typed.
-            const analysisFromCall = data.result.analysis;
-            // Start from the new bit (compare against fullAnalysis)
-            const newAnalysis = analysisFromCall.substring(fullAnalysis.length);
-            // Start from the
-            const analysisWords = newAnalysis.split(" ");
-            for (let i = 0; i < analysisWords.length; i++) {
-              setTimeout(() => {
-                setAnalysis((analysis) =>
-                  displayCharts(analysis + " " + analysisWords[i]).replaceAll(
-                    "  ",
-                    " ",
-                  ),
-                );
-              }, 100 * i);
-            }
-            fullAnalysis = analysisFromCall;
-          },
-        ).then((data) => {
-          setAnalysis(
-            displayCharts(data.result.analysis).replaceAll("  ", " "),
-          );
-          setLoading(false);
-        });
-      });
+    const jsonObject = {
+      currency: metadata.currency,
+      selected_version: selectedVersion,
+      time_period: timePeriod,
+      impact: impact,
+      policy_label: policyLabel,
+      policy: policy,
+      region: region,
+      relevant_parameter_baseline_values: relevantParameterBaselineValues,
+      relevant_parameters: relevantParameters,
+      audience: audience,
+    };
+
+    const res = await countryApiCall(metadata.countryId, `/simulation_analysis`, jsonObject, "POST")
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    // eslint-disable-next-line no-constant-condition
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) {
+        break;
+      }
+      const chunk = decoder.decode(value, {stream: true});
+      setAnalysis((prevAnalysis) => prevAnalysis + chunk);
+    }
+
+    setAnalysis((analysis) => displayCharts(analysis).replaceAll("  ", " "));
+    setLoading(false);
   };
   const buttonText = !hasClickedGenerate ? (
     "Generate an analysis"
