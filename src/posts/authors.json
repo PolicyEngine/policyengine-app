@@ -96,5 +96,14 @@
     "twitter": "twitter.com/bengrossbg",
     "headshot": "ben-gross.png",
     "title": "Communications Intern at PolicyEngine"
+  },
+  "david-trimmer": {
+    "name": "David Trimmer",
+    "email": "david@policyengine.org",
+    "bio": "David is a policy fellow at PolicyEngine.",
+    "linkedin": "https://www.linkedin.com/in/david-trimmer99/",
+    "twitter": "twitter.com/DTrim_99",
+    "headshot": "david-trimmer.jpeg",
+    "title": "Policy Fellow at PolicyEngine"
   }
 }
