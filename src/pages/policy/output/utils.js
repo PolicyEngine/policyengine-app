@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 import { message } from "antd";
+import { COUNTRY_CODES } from "../../../data/countries";
 
 const avgChangeDirection = (change) =>
   change >= 0 ? "would increase" : "would decrease";
@@ -56,6 +57,25 @@ function copyLink() {
   navigator.clipboard.writeText(window.location.href);
   message.info("Link copied to clipboard");
 }
+function extractCountryId() {
+  const path = window.location.pathname;
+  const pathParts = path.split("/").filter((item) => item.length > 0);
+
+  // If valid, return the normal country ID
+  if (pathParts.length > 0 && COUNTRY_CODES.includes(pathParts[0])) {
+    return pathParts[0];
+  }
+  // If we have an invalid ID (e.g., "undefined" or "garbage"),
+  // the router will redirect to "us", so return that as country ID
+  else if (pathParts.length > 0) {
+    return "us";
+  }
+  // Otherwise, we're on the standard page; return null and allow
+  // router to redirect
+  else {
+    return null;
+  }
+}
 
 export {
   avgChangeDirection,
@@ -63,4 +83,5 @@ export {
   downloadPng,
   downloadCsv,
   copyLink,
+  extractCountryId,
 };
