@@ -11,6 +11,7 @@ import { Input, Card, Divider, Tag, Drawer } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../hooks/useDisplayCategory";
+import useMetadata from "../hooks/useMetadata";
 
 export const exampleInputs = {
   us: {
@@ -319,9 +320,16 @@ function CardDrawer(props) {
   );
 }
 
-export default function APIDocumentationPage({ metadata }) {
+export default function APIDocumentationPage() {
   const countryId = useCountryId();
   const displayCategory = useDisplayCategory();
+  const {
+    metadata,
+    isMetadataLoading,
+    metadataError,
+    isMetadataError,
+    isMetadataSuccess,
+  } = useMetadata();
 
   return (
     <>

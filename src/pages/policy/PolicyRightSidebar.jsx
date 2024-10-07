@@ -19,6 +19,7 @@ import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { defaultForeverYear } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
+import usePolicy from "../../hooks/usePolicy";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -255,7 +256,7 @@ function PolicyNamer(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
-
+  const {refetchReformPolicy} = usePolicy()
   function handleSubmit(name) {
     if (!validateSubmit(name)) {
       setError("Error: Policy name invalid");
@@ -266,6 +267,8 @@ function PolicyNamer(props) {
       (data) => {
         let newSearch = copySearchParams(searchParams);
         newSearch.set("renamed", true);
+        //TODO delte above 2 lines
+        refetchReformPolicy()
         if (data.status === "ok") {
           newSearch.set("reform", data.policy_id);
         }

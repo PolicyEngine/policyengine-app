@@ -9,7 +9,8 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "react-app",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:@tanstack/query/recommended" // Extend the recommended rules from the Query plugin
   ],
   "globals": {
     "process": true
@@ -30,22 +31,23 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "jest", "jsx-a11y"],
+  "plugins": ["react", "react-hooks", "jest", "jsx-a11y", "@tanstack/query"],
   "rules": {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
     "react/prop-types": "off",
     "jsx-a11y/no-autofocus": "off",
+
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/mouse-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "no-console": [
-      "error",
-      {
-        "allow": ["error", "warn", "info", "table"]
-      }
-    ]
+    "jsx-a11y/no-static-element-interactions": "off"
+    // "no-console": [
+    //   "error",
+    //   {
+    //     "allow": ["error", "warn", "info", "table"]
+    //   }
+    // ]
   },
   "ignorePatterns": ["**/*.css", "**/*.scss"],
   "settings": {

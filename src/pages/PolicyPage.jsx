@@ -85,6 +85,7 @@ export default function PolicyPage(props) {
   const { metadata, policy, userProfile, setPolicy } = props;
   const mobile = useMobile();
 
+
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
 

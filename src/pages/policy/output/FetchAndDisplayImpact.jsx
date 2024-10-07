@@ -75,6 +75,7 @@ export function FetchAndDisplayImpact(props) {
         policyRef.current?.baseline?.data,
       ) &&
       renamed
+      //TODO use of query refetch instrad of renamed
     ) {
       return;
     }

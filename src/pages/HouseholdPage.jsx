@@ -47,6 +47,12 @@ export default function HouseholdPage(props) {
   const [autoCompute, setAutoCompute] = useState(false);
   const [isRHPOpen, setIsRHPOpen] = useState(false);
   const [year, setYear] = useState(defaultYear);
+  const {
+    isMetadataLoading,
+    metadataError,
+    isMetadataError,
+    isMetadataSuccess,
+  } = useMetadata();
 
   let middle;
   const focus = searchParams.get("focus") || "";
