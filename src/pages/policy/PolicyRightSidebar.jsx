@@ -256,7 +256,7 @@ function PolicyNamer(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const label = policy.reform.label || `Policy #${searchParams.get("reform")}`;
   const [error, setError] = useState(null);
-  const {refetchReformPolicy} = usePolicy()
+  const { refetchReformPolicy } = usePolicy();
   function handleSubmit(name) {
     if (!validateSubmit(name)) {
       setError("Error: Policy name invalid");
@@ -268,7 +268,7 @@ function PolicyNamer(props) {
         let newSearch = copySearchParams(searchParams);
         newSearch.set("renamed", true);
         //TODO delte above 2 lines
-        refetchReformPolicy()
+        refetchReformPolicy();
         if (data.status === "ok") {
           newSearch.set("reform", data.policy_id);
         }

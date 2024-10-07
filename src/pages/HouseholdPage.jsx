@@ -27,6 +27,7 @@ import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
 import TaxYear from "./household/input/TaxYear";
 import { Helmet } from "react-helmet";
+import useMetadata from "../hooks/useMetadata.js";
 
 export default function HouseholdPage(props) {
   const {
