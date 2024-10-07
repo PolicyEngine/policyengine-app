@@ -16,7 +16,7 @@ import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
  * @param {Function} props.setIsModalVisible Function to set the visibility of the modal
  * @returns {React.Component} The modal component
  */
-export default function AISoftcodedModal(props) {
+export default function HouseholdAIModal(props) {
   const {
     isModalVisible, 
     setIsModalVisible,

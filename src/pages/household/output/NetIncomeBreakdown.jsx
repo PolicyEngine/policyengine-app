@@ -16,7 +16,7 @@ import style from "../../../style";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import { Helmet } from "react-helmet";
 import React from "react";
-import AISoftcodedModal from "../../../modals/AISoftcodedModal";
+import HouseholdAIModal from "../../../modals/HouseholdAIModal";
 
 const UpArrow = () => (
   <CaretUpFilled
@@ -362,7 +362,7 @@ function VariableArithmetic(props) {
           {childNodes}
         </div>
       )}
-    <AISoftcodedModal 
+    <HouseholdAIModal 
       isModalVisible={isModalVisible}
       setIsModalVisible={setIsModalVisible}
       variableName={variableName}
