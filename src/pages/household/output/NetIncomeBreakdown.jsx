@@ -62,7 +62,8 @@ function VariableArithmetic(props) {
   } = props;
 
   // When providing AI analysis, we don't want to analyze input vars (e.g., employment income)
-  const isInput = metadata.variables[variableName].moduleName?.split(".")[0] === "input";
+  const isInput =
+    metadata.variables[variableName].moduleName?.split(".")[0] === "input";
 
   let nodeSign = isAdd;
   const value = getValueFromHousehold(
@@ -240,7 +241,6 @@ function VariableArithmetic(props) {
     setIsModalVisible(true);
   };
 
-
   if (childrenOnly) {
     return (
       <div
@@ -362,11 +362,11 @@ function VariableArithmetic(props) {
           {childNodes}
         </div>
       )}
-    <HouseholdAIModal 
-      isModalVisible={isModalVisible}
-      setIsModalVisible={setIsModalVisible}
-      variableName={variableName}
-    />
+      <HouseholdAIModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        variableName={variableName}
+      />
     </div>
   );
 }

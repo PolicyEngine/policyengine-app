@@ -122,7 +122,12 @@ export default function Analysis(props) {
       audience: audience,
     };
 
-    const res = await countryApiCall(metadata.countryId, `/simulation_analysis`, jsonObject, "POST")
+    const res = await countryApiCall(
+      metadata.countryId,
+      `/simulation_analysis`,
+      jsonObject,
+      "POST",
+    );
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
@@ -135,7 +140,7 @@ export default function Analysis(props) {
       if (done) {
         isComplete = true;
       }
-      const chunks = decoder.decode(value, {stream: true}).split("\n");
+      const chunks = decoder.decode(value, { stream: true }).split("\n");
       for (const chunk of chunks) {
         if (chunk) {
           const data = JSON.parse(chunk);

@@ -1,6 +1,5 @@
-
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Modal } from "antd"
+import { Button, Modal } from "antd";
 import { countryApiCall } from "../api/call";
 import useCountryId from "../hooks/useCountryId";
 import { MarkdownFormatter } from "../layout/MarkdownFormatter";
@@ -9,7 +8,7 @@ import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
 
 /**
  * Modal for displaying AI output
- * @param {Object} props 
+ * @param {Object} props
  * @param {Object} props.variableName The name of the variable
  * @param {String} props.value The value of the variable
  * @param {Boolean} props.isModalVisible Whether the modal is visible
@@ -17,16 +16,12 @@ import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
  * @returns {React.Component} The modal component
  */
 export default function HouseholdAIModal(props) {
-  const {
-    isModalVisible, 
-    setIsModalVisible,
-    variableName,
-  } = props;
+  const { isModalVisible, setIsModalVisible, variableName } = props;
 
   const [analysis, setAnalysis] = useState("");
   const countryId = useCountryId();
 
-  // Check if variable has changed by its name, not the 
+  // Check if variable has changed by its name, not the
   // object itself; React will treat two objects with same keys
   // and values as different if rendered separately
   const prevVariableName = useRef(null);
@@ -43,14 +38,18 @@ export default function HouseholdAIModal(props) {
 
   // Convert this and fetchTracer to async/await
   const fetchAnalysis = useCallback(async () => {
-
     const jsonObject = {
       household_id: householdId,
       policy_id: policyId,
-      variable: variableName
+      variable: variableName,
     };
 
-    const res = await countryApiCall(countryId, `/tracer_analysis`, jsonObject, "POST")
+    const res = await countryApiCall(
+      countryId,
+      `/tracer_analysis`,
+      jsonObject,
+      "POST",
+    );
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
@@ -63,7 +62,7 @@ export default function HouseholdAIModal(props) {
       if (done) {
         isComplete = true;
       }
-      const chunks = decoder.decode(value, {stream: true}).split("\n");
+      const chunks = decoder.decode(value, { stream: true }).split("\n");
       for (const chunk of chunks) {
         if (chunk) {
           const data = JSON.parse(chunk);
@@ -73,7 +72,6 @@ export default function HouseholdAIModal(props) {
         }
       }
     }
-
   }, [countryId, householdId, policyId, variableName]);
 
   useEffect(() => {
@@ -94,25 +92,21 @@ export default function HouseholdAIModal(props) {
 
     fetchAnalysis();
     resetModalData();
-
-  }, [isModalVisible, variableName, fetchAnalysis])
+  }, [isModalVisible, variableName, fetchAnalysis]);
 
   return (
-      <Modal
-        title="Explanation"
-        open={isModalVisible}
-        onCancel={handleCancel} // Hide the modal on cancel/close
-        footer={[
-          <Button key="back" onClick={handleCancel}>
-            Close
-          </Button>,
-        ]}
-        width="50%"
-      >
-        <MarkdownFormatter
-          markdown={analysis}
-          pSize={14}
-        />
-      </Modal>
-  )
+    <Modal
+      title="Explanation"
+      open={isModalVisible}
+      onCancel={handleCancel} // Hide the modal on cancel/close
+      footer={[
+        <Button key="back" onClick={handleCancel}>
+          Close
+        </Button>,
+      ]}
+      width="50%"
+    >
+      <MarkdownFormatter markdown={analysis} pSize={14} />
+    </Modal>
+  );
 }
