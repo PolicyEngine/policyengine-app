@@ -311,7 +311,7 @@ function VariableArithmetic(props) {
             />
           )}
 
-          {!expandable && !isInput && (
+          {!expandable && !isInput && !householdReform && (
             <div
               style={{
                 position: "relative",
