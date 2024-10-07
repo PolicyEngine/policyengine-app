@@ -302,8 +302,8 @@ export default function PolicyEngine() {
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />
-          <Route path="developer-tools" element={<DeveloperLayout />} >
-            <Route index element={<DeveloperHome/>}/>
+          <Route path="developer-tools" element={<DeveloperLayout />}>
+            <Route index element={<DeveloperHome />} />
             <Route path="simulations" element={<SimulationsPage />} />
             <Route path="api_status" element={<StatusPage />} />
           </Route>

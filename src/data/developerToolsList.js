@@ -15,5 +15,4 @@ export const devTools = [
     path: "simulations",
     image: simImage,
   },
-  
 ];

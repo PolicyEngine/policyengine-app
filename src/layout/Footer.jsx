@@ -67,7 +67,6 @@ function LinkSection() {
       label: "Developer tools",
       isInternal: true,
     },
-
   ];
 
   const links = linkData.map((link, index) => {

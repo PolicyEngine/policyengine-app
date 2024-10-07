@@ -5,10 +5,8 @@ import PageHeader from "../layout/PageHeader.jsx";
 import { Outlet, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-
 export default function DeveloperLayout() {
   const { pathname } = useLocation();
-  
 
   if (pathname.length > 20) {
     return (
@@ -23,9 +21,9 @@ export default function DeveloperLayout() {
       <Helmet>
         <title>Developer Tools | PolicyEngine</title>
       </Helmet>
-      <div >
+      <div>
         <Header />
-        
+
         <PageHeader
           title="Developer Tools"
           backgroundColor={style.colors.BLUE_98}
