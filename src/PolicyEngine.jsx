@@ -44,7 +44,6 @@ import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
-import DeveloperPreview from "./pages/DeveloperLayout";
 import DeveloperLayout from "./pages/DeveloperLayout";
 import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
