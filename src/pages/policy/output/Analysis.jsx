@@ -47,14 +47,6 @@ export default function Analysis(props) {
       };
     },
   );
-  // metadata.economy_options.region = [{name: "uk", label: "United Kingdom"}]
-  const regionKeyToLabel = metadata.economy_options.region.reduce(
-    (acc, { name, label }) => {
-      acc[name] = label;
-      return acc;
-    },
-    {},
-  );
   const [audience, setAudience] = useState("Normal");
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);

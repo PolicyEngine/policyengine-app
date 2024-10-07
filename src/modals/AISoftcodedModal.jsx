@@ -10,9 +10,7 @@ import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
 /**
  * Modal for displaying AI output
  * @param {Object} props 
- * @param {Object} props.variable The object form of the variable, taken from metadata;
- * contains 'name' field referring to variable name in back end (e.g., household_net_income)
- * and 'label' referring to display label (e.g., household net income)
+ * @param {Object} props.variableName The name of the variable
  * @param {String} props.value The value of the variable
  * @param {Boolean} props.isModalVisible Whether the modal is visible
  * @param {Function} props.setIsModalVisible Function to set the visibility of the modal
@@ -22,8 +20,7 @@ export default function AISoftcodedModal(props) {
   const {
     isModalVisible, 
     setIsModalVisible,
-    value,
-    variable,
+    variableName,
   } = props;
 
   const [analysis, setAnalysis] = useState("");
@@ -50,7 +47,7 @@ export default function AISoftcodedModal(props) {
     const jsonObject = {
       household_id: householdId,
       policy_id: policyId,
-      variable: variable.name
+      variable: variableName
     };
 
     const res = await countryApiCall(countryId, `/tracer_analysis`, jsonObject, "POST")
@@ -77,11 +74,11 @@ export default function AISoftcodedModal(props) {
       }
     }
 
-  }, [countryId]);
+  }, [countryId, householdId, policyId, variableName]);
 
   useEffect(() => {
     function resetModalData() {
-      prevVariableName.current = variable.name;
+      prevVariableName.current = variableName;
     }
 
     // If modal isn't shown, don't do anything
@@ -91,14 +88,14 @@ export default function AISoftcodedModal(props) {
 
     // If variable hasn't changed and we generated analysis,
     // don't do anything (e.g., user clicked on same variable)
-    if (variable.name === prevVariableName.current) {
+    if (variableName === prevVariableName.current) {
       return;
     }
 
     fetchAnalysis();
     resetModalData();
 
-  }, [isModalVisible, variable, value, fetchAnalysis])
+  }, [isModalVisible, variableName, fetchAnalysis])
 
   return (
       <Modal
