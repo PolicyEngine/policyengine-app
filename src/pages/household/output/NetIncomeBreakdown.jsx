@@ -61,6 +61,9 @@ function VariableArithmetic(props) {
     year,
   } = props;
 
+  // When providing AI analysis, we don't want to analyze input vars (e.g., employment income)
+  const isInput = metadata.variables[variableName].moduleName?.split(".")[0] === "input";
+
   let nodeSign = isAdd;
   const value = getValueFromHousehold(
     variableName,
@@ -308,7 +311,7 @@ function VariableArithmetic(props) {
             />
           )}
 
-          {!expandable && (
+          {!expandable && !isInput && (
             <div
               style={{
                 position: "relative",
