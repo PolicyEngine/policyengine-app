@@ -124,7 +124,7 @@ export default function Analysis(props) {
 
     const res = await countryApiCall(
       metadata.countryId,
-      `/simulation_analysis`,
+      `/simulation-analysis`,
       jsonObject,
       "POST",
     );

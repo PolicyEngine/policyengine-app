@@ -46,7 +46,7 @@ export default function HouseholdAIModal(props) {
 
     const res = await countryApiCall(
       countryId,
-      `/tracer_analysis`,
+      `/tracer-analysis`,
       jsonObject,
       "POST",
     );
