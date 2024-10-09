@@ -254,22 +254,6 @@ function PeriodSetter(props) {
     dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}:`;
   }
 
-  const yearSelector = (
-    <RangePicker
-      picker="year"
-      defaultValue={[moment(startDate), null]}
-      value={[moment(startDate), isEndForever ? null : moment(endDate)]}
-      onChange={(_, yearStrings) => {
-        setStartDate(yearStrings[0].concat("-01-01"));
-        setEndDate(yearStrings[1].concat("-12-31"));
-      }}
-      disabledDate={(date) =>
-        date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)
-      }
-      separator="→"
-    />
-  );
-
   const dateSelector = (
     <RangePicker
       defaultValue={[moment(startDate), null]}
@@ -309,7 +293,17 @@ function PeriodSetter(props) {
           marginBottom: "10px",
         }}
       />
-      {visibleDateSelector === "yearly" ? yearSelector : dateSelector}
+      {visibleDateSelector === "yearly" ? 
+          <YearSetter 
+            startDate={startDate}
+            endDate={endDate}
+            setStartDate={setStartDate}
+            setEndDate={setEndDate}
+            minPossibleDate={minPossibleDate}
+            maxPossibleDate={maxPossibleDate}
+            isEndForever={isEndForever}
+          />
+           : dateSelector}
     </div>
   );
 
@@ -329,6 +323,26 @@ function PeriodSetter(props) {
       </Tooltip>
     </Popover>
   );
+}
+
+function YearSetter(props) {
+  const { startDate, endDate, setStartDate, setEndDate, minPossibleDate, maxPossibleDate, isEndForever } = props;
+
+  return (
+    <RangePicker
+      picker="year"
+      defaultValue={[moment(startDate), null]}
+      value={[moment(startDate), isEndForever ? null : moment(endDate)]}
+      onChange={(_, yearStrings) => {
+        setStartDate(yearStrings[0].concat("-01-01"));
+        setEndDate(yearStrings[1].concat("-12-31"));
+      }}
+      disabledDate={(date) =>
+        date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)
+      }
+      separator="→"
+    />
+  )
 }
 
 function ValueSetter(props) {
