@@ -25,7 +25,8 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-import { RightOutlined, UndoOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined, UndoOutlined } from "@ant-design/icons";
+import style from "../../../style";
 const { RangePicker } = DatePicker;
 
 /**
@@ -442,9 +443,42 @@ function AdvancedValueSetter(props) {
     <>
       {
         isExpanded ? (
-          <p>Expanded Placeholder</p>
+          <Space.Compact block>
+            <Tooltip title="Infinity">
+              <Button
+                style={{
+                  fontSize: "1.2rem",
+                  aspectRatio: 1,
+                  fontFamily: style.fonts.BODY_FONT
+                }}
+              >
+                &infin;
+              </Button>
+            </Tooltip>
+            <Tooltip title="Negative infinity">
+              <Button
+                style={{
+                  fontSize: "1.2rem",
+                  aspectRatio: 1,
+                  fontFamily: style.fonts.BODY_FONT
+                }}
+              >
+                -&infin;
+              </Button>
+            </Tooltip>
+            <Tooltip title="Close options">
+              <Button 
+                style={{
+                  aspectRatio: 1,
+                }}
+                onClick={handleExpand}
+              >
+                <LeftOutlined />
+              </Button>
+            </Tooltip>
+          </Space.Compact>
         ) : (
-          <Tooltip title="More options">
+          <Tooltip title="More input options">
             <Button 
               style={{
                 aspectRatio: 1,
