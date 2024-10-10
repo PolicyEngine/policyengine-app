@@ -424,18 +424,40 @@ function ValueSetter(props) {
             changeHandler(+value.toFixed(maximumFractionDigits) / scale)
           }
         />
-        <Tooltip title="More options">
-          <Button 
-            style={{
-              aspectRatio: 1,
-            }}
-          >
-            <RightOutlined />
-          </Button>
-        </Tooltip>
+        <AdvancedValueSetter />
         </Space.Compact>
     );
   }
+}
+
+function AdvancedValueSetter(props) {
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  function handleExpand() {
+    setIsExpanded((prev) => !prev);
+  }
+
+  return (
+    <>
+      {
+        isExpanded ? (
+          <p>Expanded Placeholder</p>
+        ) : (
+          <Tooltip title="More options">
+            <Button 
+              style={{
+                aspectRatio: 1,
+              }}
+              onClick={handleExpand}
+            >
+              <RightOutlined />
+            </Button>
+          </Tooltip>
+        )
+      }
+    </>
+  )
 }
 
 /**
