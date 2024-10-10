@@ -5,6 +5,7 @@ import useCountryId from "../hooks/useCountryId";
 import { MarkdownFormatter } from "../layout/MarkdownFormatter";
 import { useSearchParams } from "react-router-dom";
 import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
+import LoadingCentered from "../layout/LoadingCentered";
 
 /**
  * Modal for displaying AI output
@@ -15,10 +16,12 @@ import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
  * @param {Function} props.setIsModalVisible Function to set the visibility of the modal
  * @returns {React.Component} The modal component
  */
+
 export default function HouseholdAIModal(props) {
   const { isModalVisible, setIsModalVisible, variableName } = props;
 
   const [analysis, setAnalysis] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const countryId = useCountryId();
 
   // Check if variable has changed by its name, not the
@@ -53,6 +56,7 @@ export default function HouseholdAIModal(props) {
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
+    setIsLoading(false);
 
     let isComplete = false;
     while (!isComplete) {
@@ -106,7 +110,14 @@ export default function HouseholdAIModal(props) {
       ]}
       width="50%"
     >
-      <MarkdownFormatter markdown={analysis} pSize={14} />
+      {
+        isLoading ? (
+          <LoadingCentered />
+        ) : (
+          <MarkdownFormatter markdown={analysis} pSize={14} />
+        )
+      }
+      {/* <MarkdownFormatter markdown={analysis} pSize={14} />*/}
     </Modal>
   );
 }
