@@ -6,6 +6,7 @@ import { MarkdownFormatter } from "../layout/MarkdownFormatter";
 import { useSearchParams } from "react-router-dom";
 import { COUNTRY_BASELINE_POLICIES } from "../data/countries";
 import LoadingCentered from "../layout/LoadingCentered";
+import ErrorComponent from "../layout/ErrorComponent";
 
 /**
  * Modal for displaying AI output
@@ -22,6 +23,7 @@ export default function HouseholdAIModal(props) {
 
   const [analysis, setAnalysis] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const countryId = useCountryId();
 
   // Check if variable has changed by its name, not the
@@ -69,9 +71,15 @@ export default function HouseholdAIModal(props) {
       const chunks = decoder.decode(value, { stream: true }).split("\n");
       for (const chunk of chunks) {
         if (chunk) {
-          const data = JSON.parse(chunk);
-          if (data.stream) {
-            setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
+          try {
+
+            const data = await JSON.parse(chunk);
+            if (data.stream) {
+              setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
+            }
+          } catch (error) {
+            console.error("Error parsing JSON:", error);
+            setIsError(true);
           }
         }
       }
@@ -113,11 +121,13 @@ export default function HouseholdAIModal(props) {
       {
         isLoading ? (
           <LoadingCentered />
-        ) : (
+        ) : isError ? (
+          <ErrorComponent message="Error loading analysis. Please try again later." />
+        ):
+        (
           <MarkdownFormatter markdown={analysis} pSize={14} />
         )
       }
-      {/* <MarkdownFormatter markdown={analysis} pSize={14} />*/}
     </Modal>
   );
 }
