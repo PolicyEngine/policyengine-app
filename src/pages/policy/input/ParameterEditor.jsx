@@ -25,7 +25,7 @@ import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import StableInputNumber from "controls/StableInputNumber";
-import { UndoOutlined } from "@ant-design/icons";
+import { RightOutlined, UndoOutlined } from "@ant-design/icons";
 const { RangePicker } = DatePicker;
 
 /**
@@ -393,35 +393,47 @@ function ValueSetter(props) {
     const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
     const maximumFractionDigits = isCurrency ? 2 : 16;
     return (
-      <StableInputNumber
-        style={{
-          minWidth: "100px",
-          maxWidth: "150px",
-        }}
-        key={"input for" + parameter.parameter}
-        {...(isCurrency
-          ? {
-              addonBefore: currencyMap[parameter.unit],
-            }
-          : {})}
-        {...(isPercent
-          ? {
-              addonAfter: "%",
-            }
-          : {})}
-        formatter={(value, { userTyping }) => {
-          const n = +value;
-          const isInteger = Number.isInteger(n);
-          return n.toLocaleString(localeCode(metadata.countryId), {
-            minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-            maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
-          });
-        }}
-        defaultValue={Number(startValue) * scale}
-        onPressEnter={(_, value) =>
-          changeHandler(+value.toFixed(maximumFractionDigits) / scale)
-        }
-      />
+      <Space.Compact block>
+        <StableInputNumber
+          style={{
+            minWidth: "100px",
+            maxWidth: "150px",
+          }}
+          key={"input for" + parameter.parameter}
+          {...(isCurrency
+            ? {
+                addonBefore: currencyMap[parameter.unit],
+              }
+            : {})}  
+          {...(isPercent
+            ? {
+                addonAfter: "%",
+              }
+            : {
+            })}
+          formatter={(value, { userTyping }) => {
+            const n = +value;
+            const isInteger = Number.isInteger(n);
+            return n.toLocaleString(localeCode(metadata.countryId), {
+              minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+              maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
+            });
+          }}
+          defaultValue={Number(startValue) * scale}
+          onPressEnter={(_, value) =>
+            changeHandler(+value.toFixed(maximumFractionDigits) / scale)
+          }
+        />
+        <Tooltip title="More options">
+          <Button 
+            style={{
+              aspectRatio: 1,
+            }}
+          >
+            <RightOutlined />
+          </Button>
+        </Tooltip>
+        </Space.Compact>
     );
   }
 }
