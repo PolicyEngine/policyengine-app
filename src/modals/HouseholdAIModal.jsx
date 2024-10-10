@@ -72,7 +72,6 @@ export default function HouseholdAIModal(props) {
       for (const chunk of chunks) {
         if (chunk) {
           try {
-
             const data = await JSON.parse(chunk);
             if (data.stream) {
               setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
@@ -118,16 +117,13 @@ export default function HouseholdAIModal(props) {
       ]}
       width="50%"
     >
-      {
-        isLoading ? (
-          <LoadingCentered />
-        ) : isError ? (
-          <ErrorComponent message="Error loading analysis. Please try again later." />
-        ):
-        (
-          <MarkdownFormatter markdown={analysis} pSize={14} />
-        )
-      }
+      {isLoading ? (
+        <LoadingCentered />
+      ) : isError ? (
+        <ErrorComponent message="Error loading analysis. Please try again later." />
+      ) : (
+        <MarkdownFormatter markdown={analysis} pSize={14} />
+      )}
     </Modal>
   );
 }
