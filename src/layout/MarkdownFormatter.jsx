@@ -6,6 +6,7 @@ import React, { useState, useRef, useEffect } from "react";
 import style from "../style";
 import useDisplayCategory from "../hooks/useDisplayCategory";
 import Plot from "react-plotly.js";
+import { wrappedJsonParse } from "../data/wrappedJson";
 
 function Td({ children }) {
   const displayCategory = useDisplayCategory();
@@ -125,9 +126,9 @@ export function HighlightedBlock({ data, leftContent, rightContent }) {
 export function PlotlyChartCode({ data, backgroundColor }) {
   let plotlyData = null;
   try {
-    plotlyData = JSON.parse(data);
+    plotlyData = wrappedJsonParse(data);
   } catch {
-    plotlyData = JSON.parse(data[0]);
+    plotlyData = wrappedJsonParse(data[0]);
   }
   const title = plotlyData.layout?.title?.text;
   const displayCategory = useDisplayCategory();

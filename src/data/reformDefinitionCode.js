@@ -1,6 +1,7 @@
 import { optimiseHousehold } from "../api/variables";
 import { defaultYear } from "./constants";
 import { DEFAULT_DATASETS } from "./countries";
+import { wrappedJsonStringify } from "./wrappedJson";
 
 export function getReproducibilityCodeBlock(
   type,
@@ -58,7 +59,7 @@ export function getBaselineCode(policy, metadata) {
   ) {
     return [];
   }
-  let json_str = JSON.stringify(policy.baseline.data, null, 2);
+  let json_str = wrappedJsonStringify(policy.baseline.data, null, 2);
   json_str = sanitizeStringToPython(json_str);
   let lines = [""].concat(json_str.split("\n"));
   lines[1] = "baseline = Reform.from_dict({" + lines[0];
@@ -71,7 +72,7 @@ export function getReformCode(policy, metadata) {
   if (!policy?.baseline?.data || Object.keys(policy.reform.data).length === 0) {
     return [];
   }
-  let json_str = JSON.stringify(policy.reform.data, null, 2);
+  let json_str = wrappedJsonStringify(policy.reform.data, null, 2);
   json_str = sanitizeStringToPython(json_str);
   let lines = [""].concat(json_str.split("\n"));
   lines[1] = "reform = Reform.from_dict({" + lines[0];

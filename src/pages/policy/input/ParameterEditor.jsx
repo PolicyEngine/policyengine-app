@@ -425,18 +425,25 @@ function ValueSetter(props) {
             changeHandler(+value.toFixed(maximumFractionDigits) / scale)
           }
         />
-        <AdvancedValueSetter />
-        </Space.Compact>
+        <AdvancedValueSetter changeHandler={changeHandler}/>
+      </Space.Compact>
     );
   }
 }
 
 function AdvancedValueSetter(props) {
+  const {
+    changeHandler
+  } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   function handleExpand() {
     setIsExpanded((prev) => !prev);
+  }
+
+  function handleValueInput(value) {
+    changeHandler(value);
   }
 
   return (
@@ -451,6 +458,7 @@ function AdvancedValueSetter(props) {
                   aspectRatio: 1,
                   fontFamily: style.fonts.BODY_FONT
                 }}
+                onClick={() => handleValueInput(Infinity)}
               >
                 &infin;
               </Button>
@@ -462,6 +470,7 @@ function AdvancedValueSetter(props) {
                   aspectRatio: 1,
                   fontFamily: style.fonts.BODY_FONT
                 }}
+                onClick={() => handleValueInput(-Infinity)}
               >
                 -&infin;
               </Button>

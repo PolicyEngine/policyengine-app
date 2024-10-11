@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
+import { wrappedJsonStringify } from "./src/data/wrappedJson";
 
 // const fetch = require('node-fetch')
 // const fs = require('fs');
@@ -34,7 +35,7 @@ let jsonData = {
   metadataUK: metadataUK,
   metadataCA: metadataCA,
 };
-jsonData = JSON.stringify(jsonData);
+jsonData = wrappedJsonStringify(jsonData);
 
 fs.writeFile(filePath, jsonData, (err) => {
   if (err) throw err;
