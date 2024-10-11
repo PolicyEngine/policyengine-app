@@ -37,7 +37,6 @@ import { useState } from "react";
 export default function StableInputNumber(props) {
   const { defaultValue, onPressEnter, onBlur, ...others } = props;
   const [value, setValue] = useState(defaultValue);
-  delete others.onChange;
   return (
     <InputNumber
       defaultValue={defaultValue}

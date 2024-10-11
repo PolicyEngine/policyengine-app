@@ -342,8 +342,9 @@ function ValueSetter(props) {
     policy,
   } = props;
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const startValue = reformMap.get(startDate);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
   function changeHandler(value) {
@@ -421,11 +422,13 @@ function ValueSetter(props) {
             });
           }}
           defaultValue={Number(startValue) * scale}
+          value={Number(value) * scale}
+          onChange={(value) => setValue(value)}
           onPressEnter={(_, value) =>
             changeHandler(+value.toFixed(maximumFractionDigits) / scale)
           }
         />
-        <AdvancedValueSetter changeHandler={changeHandler}/>
+        <AdvancedValueSetter changeHandler={changeHandler} setValue={setValue}/>
       </Space.Compact>
     );
   }
@@ -433,7 +436,8 @@ function ValueSetter(props) {
 
 function AdvancedValueSetter(props) {
   const {
-    changeHandler
+    changeHandler,
+    setValue
   } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -443,6 +447,7 @@ function AdvancedValueSetter(props) {
   }
 
   function handleValueInput(value) {
+    setValue(value);
     changeHandler(value);
   }
 
