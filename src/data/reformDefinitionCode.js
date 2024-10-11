@@ -262,8 +262,7 @@ export function doesParamNameContainNumber(paramName) {
 
 /**
  * Utility function to sanitize a string and ensure that it's valid Python;
- * currently converts JS 'null', 'true', and 'false' to Python
- * 'None', 'True', and 'False'
+ * currently converts JS 'null', 'true', 'false', '"Infinity"', and '"-Infinity"' to Python
  * @param {String} string
  * @returns {String}
  */
@@ -271,5 +270,7 @@ export function sanitizeStringToPython(string) {
   return string
     .replace(/true/g, "True")
     .replace(/false/g, "False")
-    .replace(/null/g, "None");
+    .replace(/null/g, "None")
+    .replace(/"Infinity"/g, ".inf")
+    .replace(/"-Infinity"/g, "-.inf");
 }
