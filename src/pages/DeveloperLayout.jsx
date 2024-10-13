@@ -29,7 +29,7 @@ export default function DeveloperLayout() {
           backgroundColor={style.colors.BLUE_98}
         >
           <p style={{ margin: 0 }}>
-            Welcome to the Developer Tools page for PolicyEngine! This hub is
+            Welcome to the Developer Tools page for PolicyEngine. This hub is
             designed to enhance your experience with our open-source projects by
             providing quick access to essential resources.
           </p>
