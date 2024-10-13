@@ -97,7 +97,6 @@ function ToolsCard({ tool }) {
       }
       style={{
         backgroundColor: style.colors.LIGHT_GRAY,
-        // maxWidth: "1000px", // Set a max width for ToolBox
         height: "100%",
         position: "relative",
       }}
