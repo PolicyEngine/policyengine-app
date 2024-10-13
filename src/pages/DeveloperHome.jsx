@@ -183,7 +183,6 @@ function ToolsStruct({
               marginTop: "auto",
             }}
           >
-            {/* <div>{bottomLeft}</div> */}
             <div>{bottomRight}</div>
           </div>
         </div>
