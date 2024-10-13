@@ -64,7 +64,7 @@ function LinkSection() {
     },
     {
       link: `/${countryId}/developer-tools`,
-      label: "Developer tools",
+      label: "Developer Tools",
       isInternal: true,
     },
   ];

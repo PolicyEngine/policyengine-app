@@ -2,7 +2,6 @@
 // for use on the Developer Hub page
 import apiImage from "../images/devTools/apistatus.png";
 import simImage from "../images/devTools/simulation.png";
-
 export const devTools = [
   {
     title: "API Status",
