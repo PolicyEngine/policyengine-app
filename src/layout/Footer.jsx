@@ -61,6 +61,11 @@ function LinkSection() {
       label: "Terms and Conditions",
       isInternal: true,
     },
+    {
+      link: `/${countryId}/developer-tools`,
+      label: "Developer Tools",
+      isInternal: true,
+    },
   ];
 
   const links = linkData.map((link, index) => {
