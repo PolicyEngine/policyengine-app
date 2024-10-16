@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   DatePicker,
+  InputNumber,
   Popover,
   Segmented,
   Space,
@@ -347,6 +348,10 @@ function ValueSetter(props) {
   const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
+  useEffect(() => {
+    console.log("Value changed to", value);
+  }, [value])
+
   function changeHandler(value) {
     reformMap.set(startDate, nextDay(endDate), value);
     let data = {};
@@ -394,9 +399,11 @@ function ValueSetter(props) {
     const scale = isPercent ? 100 : 1;
     const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
     const maximumFractionDigits = isCurrency ? 2 : 16;
+
+
     return (
       <Space.Compact block>
-        <StableInputNumber
+        <InputNumber
           style={{
             minWidth: "100px",
             maxWidth: "150px",
@@ -422,10 +429,11 @@ function ValueSetter(props) {
             });
           }}
           defaultValue={Number(startValue) * scale}
-          value={Number(value) * scale}
           onChange={(value) => setValue(value)}
-          onPressEnter={(_, value) =>
-            changeHandler(+value.toFixed(maximumFractionDigits) / scale)
+          onPressEnter={() => {
+            console.log(value);
+            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
+          }
           }
         />
         <AdvancedValueSetter changeHandler={changeHandler} setValue={setValue}/>
