@@ -440,7 +440,9 @@ function ValueSetter(props) {
           }
           }
         />
-        <AdvancedValueSetter changeHandler={changeHandler} setValue={setValue}/>
+        {!isPercent && (
+          <AdvancedValueSetter changeHandler={changeHandler} setValue={setValue}/>
+        )}
       </Space.Compact>
     );
   }
@@ -467,7 +469,7 @@ function AdvancedValueSetter(props) {
     <>
       {
         isExpanded ? (
-          <Space.Compact block>
+          <Space.Compact>
             <Tooltip title="Infinity">
               <Button
                 style={{
