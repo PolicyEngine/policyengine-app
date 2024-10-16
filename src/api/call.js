@@ -1,6 +1,6 @@
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
-import { wrappedJsonStringify } from "../data/wrappedJson";
+import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
 
@@ -88,7 +88,7 @@ export async function updateMetadata(countryId) {
       return null;
     }
 
-    const dataHolder = await res.json();
+    const dataHolder = await wrappedResponseJson(res);
 
     let data = dataHolder.result;
     const variableTree = buildVariableTree(

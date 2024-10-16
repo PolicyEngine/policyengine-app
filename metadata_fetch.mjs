@@ -1,11 +1,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
-import { wrappedJsonStringify } from "./src/data/wrappedJson";
-
-// const fetch = require('node-fetch')
-// const fs = require('fs');
-// const path = require('path');
+import { wrappedJsonStringify, wrappedResponseJson } from "./src/data/wrappedJson";
 
 let metadataUS = null;
 let metadataUK = null;
@@ -21,7 +17,7 @@ const filePath = path.join(
 
 async function fetchMetadata(countryId) {
   const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
-  const metadataRaw = await res.json();
+  const metadataRaw = await wrappedResponseJson(res);
   const metadata = metadataRaw.result;
   return metadata;
 }

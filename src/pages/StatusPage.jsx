@@ -13,6 +13,7 @@ import {
   COUNTRY_NAMES,
 } from "../data/countries";
 import { Helmet } from "react-helmet";
+import { wrappedResponseJson } from "../data/wrappedJson";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
   return (
@@ -77,7 +78,7 @@ export function StatusPage() {
       Object.keys(body).length > 0 ? api(path, body) : api(country, path);
 
     calledApi
-      .then((res) => res.json())
+      .then((res) => wrappedResponseJson(res))
       .then((res) => {
         const endTime = Date.now();
         const latency = endTime - startTime;

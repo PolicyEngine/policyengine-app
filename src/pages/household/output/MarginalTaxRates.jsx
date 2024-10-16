@@ -19,6 +19,7 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 import { localeCode } from "lang/format";
 import { Helmet } from "react-helmet";
+import { wrappedResponseJson } from "../../../data/wrappedJson";
 
 export default function MarginalTaxRates(props) {
   const {
@@ -82,7 +83,7 @@ export default function MarginalTaxRates(props) {
         household: householdData,
         policy: policy.baseline.data,
       })
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((data) => {
           setBaselineMtr(data.result);
         })
@@ -96,7 +97,7 @@ export default function MarginalTaxRates(props) {
           household: householdData,
           policy: policy.reform.data,
         })
-          .then((res) => res.json())
+          .then((res) => wrappedResponseJson(res))
           .then((data) => {
             setReformMtr(data.result);
           })

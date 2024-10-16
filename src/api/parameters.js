@@ -1,6 +1,7 @@
 import { IntervalMap } from "algorithms/IntervalMap";
 import { countryApiCall } from "./call";
 import { cmpDates } from "lang/stringDates";
+import { wrappedResponseJson } from "../data/wrappedJson";
 
 export function buildParameterTree(parameters) {
   let tree = {};
@@ -86,7 +87,7 @@ export function getNewPolicyId(countryId, newPolicyData, newPolicyLabel) {
     submission.label = newPolicyLabel;
   }
   return countryApiCall(countryId, "/policy", submission, "POST")
-    .then((response) => response.json())
+    .then((response) => wrappedResponseJson(response))
     .then((data) => {
       let result = {};
       if (data.status === "ok") {

@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { getNewPolicyId } from "../../api/parameters";
 import style from "../../style";
+import { wrappedResponseJson } from "../../data/wrappedJson";
 
 export default function PolicySearch(props) {
   const { metadata, target, policy, width, displayStack } = props;
@@ -66,7 +67,7 @@ export default function PolicySearch(props) {
         setIsError(true);
         setIsStackerLoading(false);
       } else {
-        const resJson = await res.json();
+        const resJson = await wrappedResponseJson(res);
         const policyToStack = resJson.result;
         // Reconcile policies; when conflicts occur, defer to newer policy
 
@@ -107,7 +108,7 @@ export default function PolicySearch(props) {
         metadata.countryId,
         `/policies?query=${searchText}&unique_only=true`,
       );
-      const resJson = await res.json();
+      const resJson = await wrappedResponseJson(res);
       setPolicies(
         resJson.result.map((item) => {
           return {

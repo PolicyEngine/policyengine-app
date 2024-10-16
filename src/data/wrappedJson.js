@@ -39,3 +39,17 @@ export function wrappedJsonParse() {
 export function wrappedJsonStringify() {
   return JSON.stringify(...arguments, JsonReplacer);
 }
+
+/**
+ * Replaces Response.json(), which unfortunately has no
+ * native way of passing a reviver
+ * @param {Response} response The response object
+ * @returns {Promise} The JSON object, parsed with custom reviver
+ */
+export function wrappedResponseJson(response) {
+  return new Promise((resolve, reject) => {
+    response.text().then((text) => {
+      resolve(wrappedJsonParse(text));
+    });
+  });
+}
