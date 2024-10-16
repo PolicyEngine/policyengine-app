@@ -348,10 +348,6 @@ function ValueSetter(props) {
   const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
-  useEffect(() => {
-    console.log("Value changed to", value);
-  }, [value])
-
   function changeHandler(value) {
     reformMap.set(startDate, nextDay(endDate), value);
     let data = {};
@@ -384,6 +380,19 @@ function ValueSetter(props) {
     }
   }
 
+  const isPercent = parameter.unit === "/1";
+  const scale = isPercent ? 100 : 1;
+  const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
+  const maximumFractionDigits = isCurrency ? 2 : 16;
+
+  // This is necessary because technically, ValueSetter does not
+  // unmount when we change between parameters, leading to the possibility
+  // for a stale "value" state in this controlled component
+  useEffect(() => {
+    setValue(Number(startValue) * scale);
+  
+  }, [parameterName, startValue, scale])
+
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 10 }}>
@@ -395,11 +404,6 @@ function ValueSetter(props) {
       </div>
     );
   } else {
-    const isPercent = parameter.unit === "/1";
-    const scale = isPercent ? 100 : 1;
-    const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
-    const maximumFractionDigits = isCurrency ? 2 : 16;
-
 
     return (
       <Space.Compact block>
@@ -429,9 +433,9 @@ function ValueSetter(props) {
             });
           }}
           defaultValue={Number(startValue) * scale}
+          value={value}
           onChange={(value) => setValue(value)}
           onPressEnter={() => {
-            console.log(value);
             changeHandler(+value.toFixed(maximumFractionDigits) / scale);
           }
           }
