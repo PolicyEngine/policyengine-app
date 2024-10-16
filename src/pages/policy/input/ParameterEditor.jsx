@@ -409,8 +409,7 @@ function ValueSetter(props) {
       <Space.Compact block>
         <InputNumber
           style={{
-            minWidth: "100px",
-            maxWidth: "150px",
+            width: "125px",
           }}
           key={"input for" + parameter.parameter}
           {...(isCurrency
