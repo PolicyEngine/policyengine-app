@@ -18,8 +18,12 @@ const testSearchResults = {
   ],
 };
 
+// Note that any fetch will return text, which is then passed
+// to wrappedJsonParse, hence the need to stringify, only for the
+// app to then custom parse
 const testSearchResultsWrapper = {
   json: () => Promise.resolve(testSearchResults),
+  text: () => Promise.resolve(JSON.stringify(testSearchResults)),
 };
 
 const testStackingPolicy = {
@@ -36,6 +40,14 @@ const testStackingPolicyWrapper = {
         policy_json: testStackingPolicy,
       },
     }),
+  text: () =>
+    Promise.resolve(
+      JSON.stringify({
+        result: {
+          policy_json: testStackingPolicy,
+        },
+      }),
+    ),
 };
 
 const mockCountryApiCall = jest.fn();
