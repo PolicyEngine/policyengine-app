@@ -1,10 +1,6 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
-import {
-  wrappedJsonStringify,
-  wrappedResponseJson,
-} from "./src/data/wrappedJson";
 
 let metadataUS = null;
 let metadataUK = null;
@@ -20,7 +16,9 @@ const filePath = path.join(
 
 async function fetchMetadata(countryId) {
   const res = await fetch(`https://api.policyengine.org/${countryId}/metadata`);
-  const metadataRaw = await wrappedResponseJson(res);
+  // For the time being, this is being kept as res.json(), unlike
+  // the rest of the repo, due to Jest's challenges with ES6 modules
+  const metadataRaw = await res.json();
   const metadata = metadataRaw.result;
   return metadata;
 }
@@ -34,7 +32,9 @@ let jsonData = {
   metadataUK: metadataUK,
   metadataCA: metadataCA,
 };
-jsonData = wrappedJsonStringify(jsonData);
+// For the time being, this is being kept as res.json(), unlike
+// the rest of the repo, due to Jest's challenges with ES6 modules
+jsonData = JSON.stringify(jsonData);
 
 fs.writeFile(filePath, jsonData, (err) => {
   if (err) throw err;
