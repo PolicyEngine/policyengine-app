@@ -6,6 +6,7 @@ import {
   DatePicker,
   InputNumber,
   Popover,
+  Radio,
   Space,
   Switch,
   Tooltip,
@@ -571,9 +572,56 @@ function AdvancedValueSetter(props) {
 }
 
 function SettingsPanel() {
+
+  const modeOptions = [
+    {
+      label: "Default",
+      value: DATE_INPUT_MODES.DEFAULT
+    },
+    {
+      label: "Yearly",
+      value: DATE_INPUT_MODES.YEARLY
+    },
+    {
+      label: "Date",
+      value: DATE_INPUT_MODES.DATE
+    },
+    {
+      label: "10-Year",
+      value: DATE_INPUT_MODES.TEN_YEAR
+    }
+  ]
+
+  const popoverContent = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+          fontSize: "0.8rem",
+          marginBottom: 0,
+          paddingBottom: 0,
+          color: style.colors.DARK_GRAY
+        }}
+      >Input Mode</p>
+      <Radio.Group 
+        optionType="button" 
+        options={modeOptions} 
+        defaultValue={modeOptions[0].value}
+        buttonStyle="solid"
+      />
+    </div>
+  );
+
   return (
     <Popover 
-      content={<p>Test value</p>} 
+      content={popoverContent} 
       placement="bottomRight" 
       trigger="click"
     >
