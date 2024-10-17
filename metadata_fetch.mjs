@@ -1,7 +1,10 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
-import { wrappedJsonStringify, wrappedResponseJson } from "./src/data/wrappedJson";
+import {
+  wrappedJsonStringify,
+  wrappedResponseJson,
+} from "./src/data/wrappedJson";
 
 let metadataUS = null;
 let metadataUK = null;

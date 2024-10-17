@@ -25,7 +25,6 @@ import {
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
-import StableInputNumber from "controls/StableInputNumber";
 import { LeftOutlined, RightOutlined, UndoOutlined } from "@ant-design/icons";
 import style from "../../../style";
 const { RangePicker } = DatePicker;
@@ -390,8 +389,7 @@ function ValueSetter(props) {
   // for a stale "value" state in this controlled component
   useEffect(() => {
     setValue(Number(startValue) * scale);
-  
-  }, [parameterName, startValue, scale])
+  }, [parameterName, startValue, scale]);
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
@@ -404,7 +402,6 @@ function ValueSetter(props) {
       </div>
     );
   } else {
-
     return (
       <Space.Compact block>
         <InputNumber
@@ -416,13 +413,12 @@ function ValueSetter(props) {
             ? {
                 addonBefore: currencyMap[parameter.unit],
               }
-            : {})}  
+            : {})}
           {...(isPercent
             ? {
                 addonAfter: "%",
               }
-            : {
-            })}
+            : {})}
           formatter={(value, { userTyping }) => {
             const n = +value;
             const isInteger = Number.isInteger(n);
@@ -436,11 +432,13 @@ function ValueSetter(props) {
           onChange={(value) => setValue(value)}
           onPressEnter={() => {
             changeHandler(+value.toFixed(maximumFractionDigits) / scale);
-          }
-          }
+          }}
         />
         {!isPercent && (
-          <AdvancedValueSetter changeHandler={changeHandler} setValue={setValue}/>
+          <AdvancedValueSetter
+            changeHandler={changeHandler}
+            setValue={setValue}
+          />
         )}
       </Space.Compact>
     );
@@ -448,10 +446,7 @@ function ValueSetter(props) {
 }
 
 function AdvancedValueSetter(props) {
-  const {
-    changeHandler,
-    setValue
-  } = props;
+  const { changeHandler, setValue } = props;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -466,59 +461,57 @@ function AdvancedValueSetter(props) {
 
   return (
     <>
-      {
-        isExpanded ? (
-          <Space.Compact>
-            <Tooltip title="Infinity">
-              <Button
-                style={{
-                  fontSize: "1.2rem",
-                  aspectRatio: 1,
-                  fontFamily: style.fonts.BODY_FONT
-                }}
-                onClick={() => handleValueInput(Infinity)}
-              >
-                &infin;
-              </Button>
-            </Tooltip>
-            <Tooltip title="Negative infinity">
-              <Button
-                style={{
-                  fontSize: "1.2rem",
-                  aspectRatio: 1,
-                  fontFamily: style.fonts.BODY_FONT
-                }}
-                onClick={() => handleValueInput(-Infinity)}
-              >
-                -&infin;
-              </Button>
-            </Tooltip>
-            <Tooltip title="Close options">
-              <Button 
-                style={{
-                  aspectRatio: 1,
-                }}
-                onClick={handleExpand}
-              >
-                <LeftOutlined />
-              </Button>
-            </Tooltip>
-          </Space.Compact>
-        ) : (
-          <Tooltip title="More input options">
-            <Button 
+      {isExpanded ? (
+        <Space.Compact>
+          <Tooltip title="Infinity">
+            <Button
+              style={{
+                fontSize: "1.2rem",
+                aspectRatio: 1,
+                fontFamily: style.fonts.BODY_FONT,
+              }}
+              onClick={() => handleValueInput(Infinity)}
+            >
+              &infin;
+            </Button>
+          </Tooltip>
+          <Tooltip title="Negative infinity">
+            <Button
+              style={{
+                fontSize: "1.2rem",
+                aspectRatio: 1,
+                fontFamily: style.fonts.BODY_FONT,
+              }}
+              onClick={() => handleValueInput(-Infinity)}
+            >
+              -&infin;
+            </Button>
+          </Tooltip>
+          <Tooltip title="Close options">
+            <Button
               style={{
                 aspectRatio: 1,
               }}
               onClick={handleExpand}
             >
-              <RightOutlined />
+              <LeftOutlined />
             </Button>
           </Tooltip>
-        )
-      }
+        </Space.Compact>
+      ) : (
+        <Tooltip title="More input options">
+          <Button
+            style={{
+              aspectRatio: 1,
+            }}
+            onClick={handleExpand}
+          >
+            <RightOutlined />
+          </Button>
+        </Tooltip>
+      )}
     </>
-  )
+  );
 }
 
 /**
