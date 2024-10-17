@@ -268,7 +268,9 @@ function PeriodSetter(props) {
 
   if (inputMode === DATE_INPUT_MODES.YEARLY) {
     return <YearPeriodSetter {...sharedProps} />
-  } 
+  } else if (inputMode === DATE_INPUT_MODES.DATE) {
+    return <DatePeriodSetter {...sharedProps} />
+  }
   
   /*
   else if (inputMode = DATE_INPUT_MODES.DATE) {
@@ -304,18 +306,6 @@ function PeriodSetterOld(props) {
   }
 
   const dateSelector = (
-    <RangePicker
-      defaultValue={[moment(startDate), null]}
-      value={[moment(startDate), isEndForever ? null : moment(endDate)]}
-      onChange={(_, dateStrings) => {
-        setStartDate(dateStrings[0]);
-        setEndDate(dateStrings[1]);
-      }}
-      disabledDate={(date) =>
-        date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)
-      }
-      separator="→"
-    />
   );
 
   const popoverContent = (
@@ -384,6 +374,25 @@ function YearPeriodSetter(props) {
       separator="→"
     />
   )
+}
+
+function DatePeriodSetter(props) {
+  const { startDate, endDate, setStartDate, setEndDate, minPossibleDate, maxPossibleDate, isEndForever } = props;
+
+  return (
+    <RangePicker
+      defaultValue={[moment(startDate), null]}
+      value={[moment(startDate), isEndForever ? null : moment(endDate)]}
+      onChange={(_, dateStrings) => {
+        setStartDate(dateStrings[0]);
+        setEndDate(dateStrings[1]);
+      }}
+      disabledDate={(date) =>
+        date.isBefore(minPossibleDate) || date.isAfter(maxPossibleDate)
+      }
+      separator="→"
+    />
+  );
 }
 
 function ValueSetter(props) {
