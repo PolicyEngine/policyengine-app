@@ -172,7 +172,7 @@ export default function ParameterEditor(props) {
               reformMap={reformMap}
               baseMap={baseMap}
             />
-            <SettingsButton />
+            <SettingsPanel />
           </div>
         </div>
         {!parameter.economy && (
@@ -531,9 +531,13 @@ function AdvancedValueSetter(props) {
   );
 }
 
-function SettingsButton() {
+function SettingsPanel() {
   return (
-    <Tooltip title="Input settings">
+    <Popover 
+      content={<p>Test value</p>} 
+      placement="bottomRight" 
+      trigger="click"
+    >
       <Button
         style={{
           aspectRatio: 1,
@@ -541,7 +545,7 @@ function SettingsButton() {
       >
         <SettingOutlined />
       </Button>
-    </Tooltip>
+    </Popover>
   );
 }
 
