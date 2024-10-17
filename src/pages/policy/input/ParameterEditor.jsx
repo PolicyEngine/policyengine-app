@@ -25,7 +25,7 @@ import {
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
-import { LeftOutlined, RightOutlined, UndoOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined, SettingOutlined, UndoOutlined } from "@ant-design/icons";
 import style from "../../../style";
 const { RangePicker } = DatePicker;
 
@@ -135,7 +135,7 @@ export default function ParameterEditor(props) {
           </p>
           <div
             style={{
-              width: "100%",
+              width: "fit-content",
               display: "flex",
               flexDirection: "row",
               justifyContent: "flex-start",
@@ -172,6 +172,7 @@ export default function ParameterEditor(props) {
               reformMap={reformMap}
               baseMap={baseMap}
             />
+            <SettingsButton />
           </div>
         </div>
         {!parameter.economy && (
@@ -527,6 +528,20 @@ function AdvancedValueSetter(props) {
         </Tooltip>
       )}
     </>
+  );
+}
+
+function SettingsButton() {
+  return (
+    <Tooltip title="Input settings">
+      <Button
+        style={{
+          aspectRatio: 1,
+        }}
+      >
+        <SettingOutlined />
+      </Button>
+    </Tooltip>
   );
 }
 
