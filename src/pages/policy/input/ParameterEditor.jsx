@@ -67,12 +67,7 @@ export default function ParameterEditor(props) {
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [paramChartWidth, setParamChartWidth] = useState(0);
-  const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.YEARLY);
-
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log("startDate: ", startDate)
-  }, [startDate]);
+  const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.DEFAULT);
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -168,17 +163,6 @@ export default function ParameterEditor(props) {
                 setEndDate={setEndDate}
                 inputMode={dateInputMode}
               />
-              {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
-                <Button
-                  icon={<UndoOutlined />}
-                  onClick={() => {
-                    setStartDate(defaultStartDate);
-                    setEndDate(defaultEndDate);
-                  }}
-                />
-              ) : (
-                <Button icon={<UndoOutlined />} disabled />
-              )}
             </Space.Compact>
             <ValueSetter
               startDate={startDate}
@@ -392,9 +376,6 @@ function DefaultPeriodSetter(props) {
     setEndDate(FOREVER_DATE);
   }, [FOREVER_DATE, defaultStartYear, setStartDate, setEndDate]);
 
-  // eslint-disable-next-line no-console
-  console.log(defaultStartYear);
-
   function handleStartYearChange(value) {
     setStartDate(String(value).concat("-01-01"));
   }
@@ -420,7 +401,7 @@ function DefaultPeriodSetter(props) {
         // the selector components
         fontSize: "14px",
         padding: "0 12px",
-        gap: "4px"
+        gap: "10px"
       }}
     >
       <p style={{marginBottom: 0}}>from</p>
