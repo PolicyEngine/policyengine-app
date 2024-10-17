@@ -571,7 +571,12 @@ function AdvancedValueSetter(props) {
   );
 }
 
-function SettingsPanel() {
+function SettingsPanel(props) {
+  const { setDateInputMode } = props;
+
+  const handleModeChange = (e) => {
+    setDateInputMode(e.target.value);
+  };
 
   const modeOptions = [
     {
@@ -615,6 +620,7 @@ function SettingsPanel() {
         options={modeOptions} 
         defaultValue={modeOptions[0].value}
         buttonStyle="solid"
+        onChange={handleModeChange}
       />
     </div>
   );
