@@ -491,6 +491,7 @@ function AdvancedValueSetter(props) {
             <Button
               style={{
                 aspectRatio: 1,
+                backgroundColor: style.colors.TEAL_LIGHT
               }}
               onClick={handleExpand}
             >
@@ -503,6 +504,7 @@ function AdvancedValueSetter(props) {
           <Button
             style={{
               aspectRatio: 1,
+              backgroundColor: style.colors.TEAL_LIGHT
             }}
             onClick={handleExpand}
           >
