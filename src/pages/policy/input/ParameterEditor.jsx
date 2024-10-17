@@ -6,7 +6,6 @@ import {
   DatePicker,
   InputNumber,
   Popover,
-  Segmented,
   Space,
   Switch,
   Tooltip,
@@ -38,6 +37,14 @@ const { RangePicker } = DatePicker;
  * @param {String} props.parameterName
  * @returns {import("react-markdown/lib/react-markdown").ReactElement}
  */
+
+const DATE_INPUT_MODES = {
+  DEFAULT: "default",
+  YEARLY: "yearly",
+  DATE: "date",
+  TEN_YEAR: "ten-year"
+};
+
 export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
   const parameter = metadata.parameters[parameterName];
@@ -57,6 +64,7 @@ export default function ParameterEditor(props) {
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [paramChartWidth, setParamChartWidth] = useState(0);
+  const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.YEARLY);
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -150,6 +158,7 @@ export default function ParameterEditor(props) {
                 endDate={endDate}
                 setStartDate={setStartDate}
                 setEndDate={setEndDate}
+                inputMode={dateInputMode}
               />
               {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
                 <Button
@@ -172,7 +181,9 @@ export default function ParameterEditor(props) {
               reformMap={reformMap}
               baseMap={baseMap}
             />
-            <SettingsPanel />
+            <SettingsPanel 
+              setDateInputMode={setDateInputMode}
+            />
           </div>
         </div>
         {!parameter.economy && (
@@ -223,14 +234,15 @@ export default function ParameterEditor(props) {
 }
 
 function PeriodSetter(props) {
-  const { metadata, startDate, endDate, setStartDate, setEndDate } = props;
-
-  const [visibleDateSelector, setVisibleDateSelector] = useState("yearly");
-
-  function handleSegmentedChange(value) {
-    setVisibleDateSelector(value);
-  }
-
+  const { 
+    inputMode,
+    metadata,
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate
+  } = props;
+  
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
 
   // Array of selectable years, sorted in ascending order
@@ -242,6 +254,41 @@ function PeriodSetter(props) {
     possibleYears[possibleYears.length - 1] + 10,
   ).concat("-12-31");
   const isEndForever = endDate === FOREVER_DATE;
+
+  const sharedProps = {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    minPossibleDate,
+    maxPossibleDate,
+    isEndForever
+  };
+
+  if (inputMode === DATE_INPUT_MODES.YEARLY) {
+    return <YearPeriodSetter {...sharedProps} />
+  } 
+  
+  /*
+  else if (inputMode = DATE_INPUT_MODES.DATE) {
+    return <DateSetter {...sharedProps} />
+  } 
+    */
+  
+  /*
+  else if (inputMode = DATE_INPUT_MODES.TEN_YEAR) {
+    return <TenYearPeriodSetter {...sharedProps} />
+  } else {
+    return <DefaultPeriodSetter {...sharedProps} />
+  }
+    */
+}
+
+/*
+function PeriodSetterOld(props) {
+  const { metadata, startDate, endDate, setStartDate, setEndDate, inputMode } = props;
+
+
 
   let dateSelectButtonLabel = "";
   const isFullYearSet =
@@ -278,16 +325,7 @@ function PeriodSetter(props) {
     >
       <Segmented
         block
-        options={[
-          {
-            label: "Yearly",
-            value: "yearly",
-          },
-          {
-            label: "Advanced",
-            value: "date",
-          },
-        ]}
+        options={MODES}
         width="100%"
         onChange={handleSegmentedChange}
         style={{
@@ -325,8 +363,9 @@ function PeriodSetter(props) {
     </Popover>
   );
 }
+  */
 
-function YearSetter(props) {
+function YearPeriodSetter(props) {
   const { startDate, endDate, setStartDate, setEndDate, minPossibleDate, maxPossibleDate, isEndForever } = props;
 
   return (
