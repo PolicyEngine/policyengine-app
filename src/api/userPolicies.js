@@ -1,3 +1,4 @@
+import { wrappedResponseJson } from "../data/wrappedJson";
 import { apiCall } from "./call";
 
 const USER_POLICY_ENDPOINT = "/user_policy";
@@ -17,7 +18,7 @@ export async function postUserPolicy(countryId, policyToAdd) {
       policyToAdd,
       "POST",
     );
-    const resJson = await res.json();
+    const resJson = await wrappedResponseJson(res);
     // If the record already exists...
     if (res.status === 200 && resJson.status === "ok") {
       // Update the API version and updated_date fields
@@ -49,7 +50,7 @@ export async function updateUserPolicy(countryId, policyToAdd) {
       policyToAdd,
       "PUT",
     );
-    const resJson = await res.json();
+    const resJson = await wrappedResponseJson(res);
     if (resJson.status !== "ok") {
       console.error("Error while POSTing user policy:");
       console.error(resJson.message);

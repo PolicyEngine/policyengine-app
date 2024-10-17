@@ -45,6 +45,7 @@ import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
 import CTCComparison from "./applets/CTCComparison";
+import { wrappedResponseJson } from "./data/wrappedJson";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -133,7 +134,7 @@ export default function PolicyEngine() {
   useEffect(() => {
     if (metadata) {
       countryApiCall(countryId, `/policy/${baselinePolicyId}`)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((dataHolder) => {
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
@@ -151,7 +152,7 @@ export default function PolicyEngine() {
   useEffect(() => {
     if (metadata) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((dataHolder) => {
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
@@ -168,7 +169,7 @@ export default function PolicyEngine() {
   useEffect(() => {
     if (searchParams.get("renamed") && reformPolicyId) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((dataHolder) => {
           setReformPolicy({
             data: dataHolder.result.policy_json,

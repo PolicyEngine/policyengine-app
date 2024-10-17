@@ -4,6 +4,7 @@ import {
   Alert,
   Button,
   DatePicker,
+  InputNumber,
   Popover,
   Segmented,
   Space,
@@ -24,8 +25,8 @@ import {
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
-import StableInputNumber from "controls/StableInputNumber";
-import { UndoOutlined } from "@ant-design/icons";
+import { LeftOutlined, RightOutlined, UndoOutlined } from "@ant-design/icons";
+import style from "../../../style";
 const { RangePicker } = DatePicker;
 
 /**
@@ -341,8 +342,9 @@ function ValueSetter(props) {
     policy,
   } = props;
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const startValue = reformMap.get(startDate);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
   function changeHandler(value) {
@@ -377,6 +379,18 @@ function ValueSetter(props) {
     }
   }
 
+  const isPercent = parameter.unit === "/1";
+  const scale = isPercent ? 100 : 1;
+  const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
+  const maximumFractionDigits = isCurrency ? 2 : 16;
+
+  // This is necessary because technically, ValueSetter does not
+  // unmount when we change between parameters, leading to the possibility
+  // for a stale "value" state in this controlled component
+  useEffect(() => {
+    setValue(Number(startValue) * scale);
+  }, [parameterName, startValue, scale]);
+
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 10 }}>
@@ -388,42 +402,118 @@ function ValueSetter(props) {
       </div>
     );
   } else {
-    const isPercent = parameter.unit === "/1";
-    const scale = isPercent ? 100 : 1;
-    const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
-    const maximumFractionDigits = isCurrency ? 2 : 16;
     return (
-      <StableInputNumber
-        style={{
-          minWidth: "100px",
-          maxWidth: "150px",
-        }}
-        key={"input for" + parameter.parameter}
-        {...(isCurrency
-          ? {
-              addonBefore: currencyMap[parameter.unit],
-            }
-          : {})}
-        {...(isPercent
-          ? {
-              addonAfter: "%",
-            }
-          : {})}
-        formatter={(value, { userTyping }) => {
-          const n = +value;
-          const isInteger = Number.isInteger(n);
-          return n.toLocaleString(localeCode(metadata.countryId), {
-            minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-            maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
-          });
-        }}
-        defaultValue={Number(startValue) * scale}
-        onPressEnter={(_, value) =>
-          changeHandler(+value.toFixed(maximumFractionDigits) / scale)
-        }
-      />
+      <Space.Compact block>
+        <InputNumber
+          style={{
+            width: "125px",
+          }}
+          key={"input for" + parameter.parameter}
+          {...(isCurrency
+            ? {
+                addonBefore: currencyMap[parameter.unit],
+              }
+            : {})}
+          {...(isPercent
+            ? {
+                addonAfter: "%",
+              }
+            : {})}
+          formatter={(value, { userTyping }) => {
+            const n = +value;
+            const isInteger = Number.isInteger(n);
+            return n.toLocaleString(localeCode(metadata.countryId), {
+              minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+              maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
+            });
+          }}
+          defaultValue={Number(startValue) * scale}
+          value={value}
+          onChange={(value) => setValue(value)}
+          onPressEnter={() => {
+            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
+          }}
+        />
+        {!isPercent && (
+          <AdvancedValueSetter
+            changeHandler={changeHandler}
+            setValue={setValue}
+          />
+        )}
+      </Space.Compact>
     );
   }
+}
+
+function AdvancedValueSetter(props) {
+  const { changeHandler, setValue } = props;
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  function handleExpand() {
+    setIsExpanded((prev) => !prev);
+  }
+
+  function handleValueInput(value) {
+    setValue(value);
+    changeHandler(value);
+  }
+
+  return (
+    <>
+      {isExpanded ? (
+        <Space.Compact>
+          <Tooltip title="Infinity">
+            <Button
+              style={{
+                fontSize: "1.2rem",
+                aspectRatio: 1,
+                fontFamily: style.fonts.BODY_FONT,
+              }}
+              onClick={() => handleValueInput(Infinity)}
+            >
+              &infin;
+            </Button>
+          </Tooltip>
+          <Tooltip title="Negative infinity">
+            <Button
+              style={{
+                fontSize: "1.2rem",
+                aspectRatio: 1,
+                fontFamily: style.fonts.BODY_FONT,
+              }}
+              onClick={() => handleValueInput(-Infinity)}
+            >
+              -&infin;
+            </Button>
+          </Tooltip>
+          <Tooltip title="Close options">
+            <Button
+              style={{
+                aspectRatio: 1,
+                backgroundColor: style.colors.TEAL_LIGHT,
+              }}
+              onClick={handleExpand}
+            >
+              <LeftOutlined />
+            </Button>
+          </Tooltip>
+        </Space.Compact>
+      ) : (
+        <Tooltip title="More input options">
+          <Button
+            style={{
+              aspectRatio: 1,
+              backgroundColor: style.colors.TEAL_LIGHT,
+            }}
+            onClick={handleExpand}
+          >
+            <RightOutlined />
+          </Button>
+        </Tooltip>
+      )}
+    </>
+  );
 }
 
 /**
