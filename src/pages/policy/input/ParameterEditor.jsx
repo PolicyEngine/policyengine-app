@@ -7,6 +7,7 @@ import {
   InputNumber,
   Popover,
   Radio,
+  Select,
   Space,
   Switch,
   Tooltip,
@@ -27,6 +28,7 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import { LeftOutlined, RightOutlined, SettingOutlined, UndoOutlined } from "@ant-design/icons";
 import style from "../../../style";
+import { defaultYear } from "../../../data/constants";
 const { RangePicker } = DatePicker;
 
 /**
@@ -66,6 +68,11 @@ export default function ParameterEditor(props) {
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [paramChartWidth, setParamChartWidth] = useState(0);
   const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.YEARLY);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log("startDate: ", startDate)
+  }, [startDate]);
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -263,13 +270,17 @@ function PeriodSetter(props) {
     setEndDate,
     minPossibleDate,
     maxPossibleDate,
-    isEndForever
+    isEndForever,
+    possibleYears,
+    FOREVER_DATE
   };
 
   if (inputMode === DATE_INPUT_MODES.YEARLY) {
     return <YearPeriodSetter {...sharedProps} />
   } else if (inputMode === DATE_INPUT_MODES.DATE) {
     return <DatePeriodSetter {...sharedProps} />
+  } else {
+    return <DefaultPeriodSetter {...sharedProps} />
   }
   
   /*
@@ -355,6 +366,74 @@ function PeriodSetterOld(props) {
   );
 }
   */
+
+function DefaultPeriodSetter(props) {
+  const {
+    startDate,
+    setStartDate,
+    setEndDate,
+    possibleYears,
+    FOREVER_DATE
+  } = props;
+
+  let defaultStartYear = null;
+  if (startDate) {
+    defaultStartYear = new Date(startDate).getFullYear();
+  } else if (possibleYears.includes(defaultYear)) {
+    defaultStartYear = defaultYear;
+  } else {
+    defaultStartYear = possibleYears[0];
+  }
+
+  // When this component mounts, set the start date to Jan. 1 of
+  // either the reform year or the default year, and set end to FOREVER_DATE
+  useEffect(() => {
+    setStartDate(String(defaultStartYear).concat("-01-01"));
+    setEndDate(FOREVER_DATE);
+  }, [FOREVER_DATE, defaultStartYear, setStartDate, setEndDate]);
+
+  // eslint-disable-next-line no-console
+  console.log(defaultStartYear);
+
+  function handleStartYearChange(value) {
+    setStartDate(String(value).concat("-01-01"));
+  }
+
+  // Manipulate possibleYears Array-type into options
+  // Array of Object-types for the Select component
+  const options = possibleYears.map((year) => {
+    return {
+      label: year,
+      value: year
+    };
+  });
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        // The below keeps the font in line with
+        // the selector components
+        fontSize: "14px",
+        padding: "0 12px",
+        gap: "4px"
+      }}
+    >
+      <p style={{marginBottom: 0}}>from</p>
+      <Select
+        options={options}
+        defaultValue={defaultStartYear}
+        onChange={handleStartYearChange}
+      />
+      <p style={{marginBottom: 0}}>onward:</p>
+    </div>
+  );
+
+}
 
 function YearPeriodSetter(props) {
   const { startDate, endDate, setStartDate, setEndDate, minPossibleDate, maxPossibleDate, isEndForever } = props;
