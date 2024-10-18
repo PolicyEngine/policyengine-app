@@ -517,42 +517,29 @@ function TenYearPeriodSetter(props) {
 
 function OneYearValueSetter(props) {
   const {
-    /*
-    startDate,
-    endDate,
-    */
     year,
     parameterName,
     metadata,
-    // reformMap,
     valueMap,
     setValueMap,
-    /*
-    baseMap,
-    */
-    policy,
   } = props;
 
-  const startDate = String(year).concat("-01-01");
-  // const endDate = String(year).concat("-12-31");
-
-  const startValue = valueMap.get(startDate);
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const [value, setValue] = useState(startValue);
+  const startValue = valueMap.get(year);
   const parameter = metadata.parameters[parameterName];
-
-  function changeHandler(value) {
-    setValueMap((prev) => {
-      const newMap = new Map(prev);
-      newMap.set(year, value);
-      return newMap;
-    });
-  }
 
   const isPercent = parameter.unit === "/1";
   const scale = isPercent ? 100 : 1;
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
   const maximumFractionDigits = isCurrency ? 2 : 16;
+
+  function changeHandler(value) {
+    setValueMap((prev) => {
+      const scaledValue = +value.toFixed(maximumFractionDigits) / scale;
+      const newMap = new Map(prev);
+      newMap.set(year, scaledValue);
+      return newMap;
+    });
+  }
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
@@ -590,14 +577,9 @@ function OneYearValueSetter(props) {
               maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
             });
           }}
-          defaultValue={Number(startValue) * scale}
+          defaultValue={startValue * scale}
           value={valueMap.get(year) * scale}
           onChange={changeHandler}
-          /*
-          onPressEnter={() => {
-            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
-          }}
-          */
         />
         {!isPercent && (
           <AdvancedValueSetter
