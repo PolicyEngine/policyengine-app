@@ -162,6 +162,8 @@ export default function ParameterEditor(props) {
                 setStartDate={setStartDate}
                 setEndDate={setEndDate}
                 inputMode={dateInputMode}
+                parameterName={parameterName}
+                reformMap={reformMap}
               />
             </Space.Compact>
             <ValueSetter
@@ -232,7 +234,9 @@ function PeriodSetter(props) {
     startDate,
     endDate,
     setStartDate,
-    setEndDate
+    setEndDate,
+    parameterName,
+    reformMap,
   } = props;
   
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
@@ -259,12 +263,21 @@ function PeriodSetter(props) {
     FOREVER_DATE
   };
 
-  if (inputMode === DATE_INPUT_MODES.YEARLY) {
-    return <YearPeriodSetter {...sharedProps} />
-  } else if (inputMode === DATE_INPUT_MODES.DATE) {
-    return <DatePeriodSetter {...sharedProps} />
-  } else {
-    return <DefaultPeriodSetter {...sharedProps} />
+  const tenYearProps = {
+    parameterName,
+    metadata,
+    reformMap
+  };
+
+  switch (inputMode) {
+    case DATE_INPUT_MODES.YEARLY:
+      return <YearPeriodSetter {...sharedProps} />;
+    case DATE_INPUT_MODES.DATE:
+      return <DatePeriodSetter {...sharedProps} />;
+    case DATE_INPUT_MODES.TEN_YEAR:
+      return <TenYearPeriodSetter {...sharedProps} {...tenYearProps} />;
+    default:
+      return <DefaultPeriodSetter {...sharedProps} />;
   }
   
   /*
@@ -453,6 +466,200 @@ function DatePeriodSetter(props) {
       separator="→"
     />
   );
+}
+
+function TenYearPeriodSetter(props) {
+  const { startDate, endDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName, reformMap, metadata } = props;
+
+  // Handler that iterates over each entry, validates that
+  // all values are valid, then updates each value one by one
+
+  // Iterate over possibleYears, beginning with
+  // defaultYear, and return up to 10 input
+  // components
+  const yearInputs = possibleYears.map((year, index) => {
+    if (year >= defaultYear && year <= defaultYear + 9) {
+      return (
+        <div
+          key={String(year).concat("-input")}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            gap: "10px",
+            fontSize: "14px",
+            padding: "0 12px",
+          }}
+        >
+          <p style={{marginBottom: 0}}>{year}:</p>
+          <OneYearValueSetter 
+            year={year}
+            parameterName={parameterName}
+            metadata={metadata}
+            reformMap={reformMap}
+          />
+        </div>
+      );
+    }
+  });
+
+  // Submit button (no setting without clicking)
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+      }}
+    >
+      {yearInputs}
+      <Button
+        type="primary"
+        style={{
+          width: "max-content",
+        }}
+      >
+        Submit
+      </Button>
+    </div>
+  );
+}
+
+function OneYearValueSetter(props) {
+  const {
+    /*
+    startDate,
+    endDate,
+    */
+    year,
+    parameterName,
+    metadata,
+    reformMap,
+    /*
+    baseMap,
+    */
+    policy,
+  } = props;
+
+  const startDate = String(year).concat("-01-01");
+  const endDate = String(year).concat("-12-31");
+
+  const startValue = reformMap.get(startDate);
+  // const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState(startValue);
+  const parameter = metadata.parameters[parameterName];
+
+  function changeHandler(value) {
+    /*
+    reformMap.set(startDate, nextDay(endDate), value);
+    let data = {};
+    reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
+      data[`${k1}.${prevDay(k2)}`] = v;
+    });
+    const newReforms = { ...policy.reform.data };
+    if (
+      Object.keys(data).length === 0 &&
+      Object.keys(newReforms).length === 1
+    ) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+    } else {
+      newReforms[parameterName] = data;
+      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+        if (result.status !== "ok") {
+          console.error(
+            "ParameterEditor: In attempting to fetch new " +
+              "policy, the following error occurred: " +
+              result.message,
+          );
+        } else {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("reform", result.policy_id);
+          setSearchParams(newSearch);
+        }
+      });
+    }
+    */
+  }
+
+  const isPercent = parameter.unit === "/1";
+  const scale = isPercent ? 100 : 1;
+  const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
+  const maximumFractionDigits = isCurrency ? 2 : 16;
+
+  // This is necessary because technically, OneYearValueSetter does not
+  // unmount when we change between parameters, leading to the possibility
+  // for a stale "value" state in this controlled component
+  useEffect(() => {
+    setValue(Number(startValue) * scale);
+  }, [parameterName, startValue, scale]);
+
+  if (parameter.unit === "bool" || parameter.unit === "abolition") {
+    return (
+      <div style={{ padding: 10 }}>
+        <Switch
+          key={"input for" + parameter.parameter}
+          defaultChecked={startValue}
+          onChange={(value) => changeHandler(!!value)}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <Space.Compact block>
+        <InputNumber
+          style={{
+            width: "125px",
+          }}
+          key={"input for" + parameter.parameter}
+          {...(isCurrency
+            ? {
+                addonBefore: currencyMap[parameter.unit],
+              }
+            : {})}
+          {...(isPercent
+            ? {
+                addonAfter: "%",
+              }
+            : {})}
+          formatter={(value, { userTyping }) => {
+            const n = +value;
+            const isInteger = Number.isInteger(n);
+            return n.toLocaleString(localeCode(metadata.countryId), {
+              minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+              maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
+            });
+          }}
+          defaultValue={Number(startValue) * scale}
+          value={value}
+          onChange={(value) => setValue(value)}
+          /*
+          onPressEnter={() => {
+            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
+          }}
+          */
+        />
+        {!isPercent && (
+          <AdvancedValueSetter
+            changeHandler={changeHandler}
+            setValue={setValue}
+          />
+        )}
+      </Space.Compact>
+    );
+  }
+  /*
+  return (
+    <InputNumber
+      style={{
+        width: "125px",
+      }}
+    />
+  );
+  */
 }
 
 function ValueSetter(props) {
