@@ -163,7 +163,9 @@ export default function ParameterEditor(props) {
                 setEndDate={setEndDate}
                 inputMode={dateInputMode}
                 parameterName={parameterName}
+                baseMap={baseMap}
                 reformMap={reformMap}
+                policy={policy}
               />
             </Space.Compact>
             <ValueSetter
@@ -236,7 +238,9 @@ function PeriodSetter(props) {
     setStartDate,
     setEndDate,
     parameterName,
+    baseMap,
     reformMap,
+    policy
   } = props;
   
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
@@ -266,7 +270,9 @@ function PeriodSetter(props) {
   const tenYearProps = {
     parameterName,
     metadata,
-    reformMap
+    baseMap,
+    reformMap,
+    policy
   };
 
   switch (inputMode) {
@@ -386,10 +392,11 @@ function DatePeriodSetter(props) {
 }
 
 function TenYearPeriodSetter(props) {
-  const { startDate, endDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName, reformMap, metadata } = props;
+  const { startDate, endDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName, baseMap, reformMap, metadata, policy } = props;
 
   const NUMBER_OF_YEARS = 10;
   const [valueMap, setValueMap] = useState(populateValueMap());
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // Populate map before rendering anything
   function populateValueMap() {
@@ -414,6 +421,44 @@ function TenYearPeriodSetter(props) {
 
   // Handler that iterates over each entry, validates that
   // all values are valid, then updates each value one by one
+  function handleSubmit() {
+
+    let data = {}
+    for (const [year, value] of valueMap) {
+      const startDate = String(year).concat("-01-01");
+      const endDate = String(year).concat("-12-31");
+      reformMap.set(startDate, nextDay(endDate), value);
+      data = {};
+      reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
+        data[`${k1}.${prevDay(k2)}`] = v;
+      }); 
+    }
+
+    const newReforms = { ...policy.reform.data };
+    if (
+      Object.keys(data).length === 0 &&
+      Object.keys(newReforms).length === 1
+    ) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+    } else {
+      newReforms[parameterName] = data;
+      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+        if (result.status !== "ok") {
+          console.error(
+            "ParameterEditor: In attempting to fetch new " +
+              "policy, the following error occurred: " +
+              result.message,
+          );
+        } else {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("reform", result.policy_id);
+          setSearchParams(newSearch);
+        }
+      });
+    }
+  }
 
   // Iterate over possibleYears, beginning with
   // defaultYear, and return up to 10 input
@@ -448,8 +493,6 @@ function TenYearPeriodSetter(props) {
     }
   });
 
-  // Submit button (no setting without clicking)
-
   return (
     <div
       style={{
@@ -464,6 +507,7 @@ function TenYearPeriodSetter(props) {
         style={{
           width: "max-content",
         }}
+        onClick={handleSubmit}
       >
         Submit
       </Button>
@@ -503,37 +547,6 @@ function OneYearValueSetter(props) {
       newMap.set(year, value);
       return newMap;
     });
-    /*
-    reformMap.set(startDate, nextDay(endDate), value);
-    let data = {};
-    reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
-      data[`${k1}.${prevDay(k2)}`] = v;
-    });
-    const newReforms = { ...policy.reform.data };
-    if (
-      Object.keys(data).length === 0 &&
-      Object.keys(newReforms).length === 1
-    ) {
-      let newSearch = copySearchParams(searchParams);
-      newSearch.delete("reform");
-      setSearchParams(newSearch);
-    } else {
-      newReforms[parameterName] = data;
-      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
-        if (result.status !== "ok") {
-          console.error(
-            "ParameterEditor: In attempting to fetch new " +
-              "policy, the following error occurred: " +
-              result.message,
-          );
-        } else {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("reform", result.policy_id);
-          setSearchParams(newSearch);
-        }
-      });
-    }
-    */
   }
 
   const isPercent = parameter.unit === "/1";
