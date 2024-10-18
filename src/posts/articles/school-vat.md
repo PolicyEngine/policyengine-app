@@ -27,9 +27,6 @@ The chart presents PolicyEngine's estimates of the effects of Labour's proposed 
 | 2028 | [1.3](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2028&baseline=1) | 2.5 |
 | 2029 | [1.3](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2029&baseline=1) | 2.5 |
 
-### 
-
-### 
 
 ### Distributional impact
 
@@ -40,19 +37,19 @@ Our analysis of Labour's proposal to remove tax exemptions from private schools 
 * Deciles 7-8: Upper-middle income groups are slightly affected, experiencing small but noticeable reductions in their net income.  
 * Deciles 9-10: The highest income households bear the brunt of the policy's impact, with the most significant reductions in net income, as they are the primary users of private schools.
 
-![](/images/posts/vat-school/Screenshot 2024-10-17 at 13.38.30.png)
+![Distributional impact](/images/posts/school-vat/gini-plot.png "image_tooltip")
 
 ### Winners and losers
 
 Our analysis of Labour's plan reveals a targeted impact on household incomes across different income groups in FY2025. The policy would decrease net income for 3% of the population, with effects predominantly concentrated in higher income deciles. The lowest income groups (deciles 1-3) see no change, while the impact begins to appear from the 4th decile upwards. The most significant effect is observed in the highest income group (decile 10), where 13% of households experience a loss of less than 5% in their net income. Overall, 97% of the population sees no change in their net income, indicating that the policy's financial impact is limited to a small segment of relatively higher-income households.
 
-![](/images/posts/vat-school/Screenshot 2024-10-17 at 13.38.07.png)
+![Winners and losers](/images/posts/school_vat/winner-loser.png "image_tooltip")
 
 ### Inequality impact
 
 Labour's proposal to remove tax exemptions from private schools is projected to have a modest impact on income inequality from FY2025. The Gini index, a common measure of income inequality, is projected to decrease by 0.04%. This suggests a slight overall reduction in income disparity across the population. The policy also appears to have a targeted impact on high-income groups, with the income share of the top 10% decreasing by 0.01%. The income share of the top 1% is also expected to decrease slightly by the same amount.
 
-![](/images/posts/vat-school/Screenshot 2024-10-17 at 13.37.34.png)
+![Inequality impact](/images/posts/school-vat/income.png "image_tooltip")
 
 ## Conclusion
 
