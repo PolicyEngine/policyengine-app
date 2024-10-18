@@ -471,14 +471,44 @@ function DatePeriodSetter(props) {
 function TenYearPeriodSetter(props) {
   const { startDate, endDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName, reformMap, metadata } = props;
 
+  const NUMBER_OF_YEARS = 10;
+  const [valueMap, setValueMap] = useState(populateValueMap());
+
+  // Populate map before rendering anything
+  function populateValueMap() {
+
+    const valueMap = new Map();
+    possibleYears.forEach((year) => {
+      if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
+        const startDate = String(year).concat("-01-01");
+        const startValue = reformMap.get(startDate);
+        console.log(year, startDate, startValue);
+        valueMap.set(year, startValue);
+      }
+    });
+    return valueMap;
+  }
+
+  // This is necessary because technically, TenYearPeriodSetter does not
+  // unmount when we change between parameters, leading to the possibility
+  // for a stale "value" state in this controlled component
+  useEffect(() => {
+    setValueMap(populateValueMap());
+  }, [parameterName]);
+
   // Handler that iterates over each entry, validates that
   // all values are valid, then updates each value one by one
 
   // Iterate over possibleYears, beginning with
   // defaultYear, and return up to 10 input
   // components
-  const yearInputs = possibleYears.map((year, index) => {
-    if (year >= defaultYear && year <= defaultYear + 9) {
+  const yearInputs = possibleYears.map((year) => {
+    if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
+
+      const startDate = String(year).concat("-01-01");
+      const startValue = reformMap.get(startDate);
+      // setValueMap((prev) => prev.set(year, startValue));
+
       return (
         <div
           key={String(year).concat("-input")}
@@ -498,6 +528,8 @@ function TenYearPeriodSetter(props) {
             parameterName={parameterName}
             metadata={metadata}
             reformMap={reformMap}
+            valueMap={valueMap}
+            setValueMap={setValueMap}
           />
         </div>
       );
@@ -536,7 +568,9 @@ function OneYearValueSetter(props) {
     year,
     parameterName,
     metadata,
-    reformMap,
+    // reformMap,
+    valueMap,
+    setValueMap,
     /*
     baseMap,
     */
@@ -544,14 +578,19 @@ function OneYearValueSetter(props) {
   } = props;
 
   const startDate = String(year).concat("-01-01");
-  const endDate = String(year).concat("-12-31");
+  // const endDate = String(year).concat("-12-31");
 
-  const startValue = reformMap.get(startDate);
+  const startValue = valueMap.get(startDate);
   // const [searchParams, setSearchParams] = useSearchParams();
-  const [value, setValue] = useState(startValue);
+  // const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
   function changeHandler(value) {
+    setValueMap((prev) => {
+      const newMap = new Map(prev);
+      newMap.set(year, value);
+      return newMap;
+    });
     /*
     reformMap.set(startDate, nextDay(endDate), value);
     let data = {};
@@ -590,18 +629,12 @@ function OneYearValueSetter(props) {
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
   const maximumFractionDigits = isCurrency ? 2 : 16;
 
-  // This is necessary because technically, OneYearValueSetter does not
-  // unmount when we change between parameters, leading to the possibility
-  // for a stale "value" state in this controlled component
-  useEffect(() => {
-    setValue(Number(startValue) * scale);
-  }, [parameterName, startValue, scale]);
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 10 }}>
         <Switch
-          key={"input for" + parameter.parameter}
+          key={"input for" + parameter.parameter + year}
           defaultChecked={startValue}
           onChange={(value) => changeHandler(!!value)}
         />
@@ -614,7 +647,7 @@ function OneYearValueSetter(props) {
           style={{
             width: "125px",
           }}
-          key={"input for" + parameter.parameter}
+          key={"input for" + parameter.parameter + year}
           {...(isCurrency
             ? {
                 addonBefore: currencyMap[parameter.unit],
@@ -634,8 +667,8 @@ function OneYearValueSetter(props) {
             });
           }}
           defaultValue={Number(startValue) * scale}
-          value={value}
-          onChange={(value) => setValue(value)}
+          value={valueMap.get(year)}
+          onChange={changeHandler}
           /*
           onPressEnter={() => {
             changeHandler(+value.toFixed(maximumFractionDigits) / scale);
@@ -645,7 +678,7 @@ function OneYearValueSetter(props) {
         {!isPercent && (
           <AdvancedValueSetter
             changeHandler={changeHandler}
-            setValue={setValue}
+            setValue={(value) => setValueMap((prev) => prev.set(year, value))}
           />
         )}
       </Space.Compact>
