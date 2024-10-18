@@ -168,18 +168,24 @@ export default function ParameterEditor(props) {
                 policy={policy}
               />
             </Space.Compact>
-            <ValueSetter
-              startDate={startDate}
-              endDate={endDate}
-              parameterName={parameterName}
-              policy={policy}
-              metadata={metadata}
-              reformMap={reformMap}
-              baseMap={baseMap}
-            />
-            <SettingsPanel 
-              setDateInputMode={setDateInputMode}
-            />
+            {
+              dateInputMode !== DATE_INPUT_MODES.TEN_YEAR && (
+                <>
+                  <ValueSetter
+                    startDate={startDate}
+                    endDate={endDate}
+                    parameterName={parameterName}
+                    policy={policy}
+                    metadata={metadata}
+                    reformMap={reformMap}
+                    baseMap={baseMap}
+                  />
+                  <SettingsPanel 
+                    setDateInputMode={setDateInputMode}
+                  />
+                </>
+              )
+            }
           </div>
         </div>
         {!parameter.economy && (
