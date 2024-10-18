@@ -105,5 +105,15 @@
     "twitter": "twitter.com/DTrim_99",
     "headshot": "david-trimmer.jpeg",
     "title": "Policy Fellow at PolicyEngine"
+  },
+  "vahid-ahmadi": {
+    "name": "Vahid Ahmadi",
+    "email": "vahid@policyengine.org",
+    "bio": "Vahid is a research associate at PolicyEngine.",
+    "linkedin": "https://www.linkedin.com/in/vahidahmadi/",
+    "github": "https://github.com/vahid-ahmadi",
+    "twitter": "twitter.com/vahiidahmadi",
+    "headshot": "vahid-ahmadi.jpeg",
+    "title": "Research Associate at PolicyEngine"
   }
 }
