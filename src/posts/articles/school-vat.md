@@ -35,22 +35,22 @@ Our analysis of Labour's proposal to remove tax exemptions from private schools 
 * Deciles 7-8: Upper-middle income groups are slightly affected, experiencing small but noticeable reductions in their net income.  
 * Deciles 9-10: The highest income households bear the brunt of the policy's impact, with the most significant reductions in net income, as they are the primary users of private schools.
 
-![Distributional impact](/images/posts/school-vat/gini-plot.png "image_tooltip")
+![](/images/posts/school_vat/gini-plot.png)
 
 ### Winners and losers
 
 Our analysis of Labour's plan reveals a targeted impact on household incomes across different income groups in FY2025. The policy would decrease net income for 3% of the population, with effects predominantly concentrated in higher income deciles. The lowest income groups (deciles 1-3) see no change, while the impact begins to appear from the 4th decile upwards. The most significant effect is observed in the highest income group (decile 10), where 13% of households experience a loss of less than 5% in their net income. Overall, 97% of the population sees no change in their net income, indicating that the policy's financial impact is limited to a small segment of relatively higher-income households.
 
-![Winners and losers](/images/posts/school_vat/winner-loser.png "image_tooltip")
+![](/images/posts/school_vat/winner-loser.png)
 
 ### Inequality impact
 
 Labour's proposal to remove tax exemptions from private schools is projected to have a modest impact on income inequality from FY2025. The Gini index, a common measure of income inequality, is projected to decrease by 0.04%. This suggests a slight overall reduction in income disparity across the population. The policy also appears to have a targeted impact on high-income groups, with the income share of the top 10% decreasing by 0.01%. The income share of the top 1% is also expected to decrease slightly by the same amount.
 
-![Inequality impact](/images/posts/school-vat/income.png "image_tooltip")
+![](/images/posts/school_vat/income.png)
 
 ## Conclusion
 
-We estimate that Labour’s X would raise £1.3 billion in revenue in FY2025, primarily affecting higher-income households, with 2.8% of the population experiencing a decrease in net income. It also would cause a modest reduction in income inequality, decreasing the Gini index by 0.04%. 
+We estimate that Labour’s plan would raise £1.3 billion in revenue in FY2025, primarily affecting higher-income households, with 2.8% of the population experiencing a decrease in net income. It also would cause a modest reduction in income inequality, decreasing the Gini index by 0.04%. 
 
 [^1]:  Our analysis does not account for potential long-term changes in consumer preferences that may result from applying different VAT rates. The analysis assumes static behavioural responses and does not model potential shifts in educational choices or school operations that might occur over time.
