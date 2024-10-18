@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import useMobile from "../layout/Responsive";
-import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { countryApiCall, apiCall } from "../api/call";
 import {
@@ -124,7 +123,6 @@ export function StatusPage() {
 
   return (
     <>
-      <Header />
       <div
         style={{
           paddingLeft: 50,
