@@ -26,7 +26,7 @@ import {
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
-import { LeftOutlined, RightOutlined, SettingOutlined, UndoOutlined } from "@ant-design/icons";
+import { DownOutlined, EllipsisOutlined, FunctionOutlined, LeftOutlined, RightOutlined, SettingOutlined, UndoOutlined, UpOutlined } from "@ant-design/icons";
 import style from "../../../style";
 import { defaultYear } from "../../../data/constants";
 const { RangePicker } = DatePicker;
@@ -154,20 +154,18 @@ export default function ParameterEditor(props) {
               gap: "10px",
             }}
           >
-            <Space.Compact>
-              <PeriodSetter
-                metadata={metadata}
-                startDate={startDate}
-                endDate={endDate}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
-                inputMode={dateInputMode}
-                parameterName={parameterName}
-                baseMap={baseMap}
-                reformMap={reformMap}
-                policy={policy}
-              />
-            </Space.Compact>
+            <PeriodSetter
+              metadata={metadata}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              inputMode={dateInputMode}
+              parameterName={parameterName}
+              baseMap={baseMap}
+              reformMap={reformMap}
+              policy={policy}
+            />
             {
               dateInputMode !== DATE_INPUT_MODES.TEN_YEAR && (
                 <ValueSetter
@@ -713,70 +711,92 @@ function ValueSetter(props) {
 function AdvancedValueSetter(props) {
   const { changeHandler, setValue } = props;
 
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  function handleExpand() {
-    setIsExpanded((prev) => !prev);
-  }
-
   function handleValueInput(value) {
     setValue(value);
     changeHandler(value);
   }
 
+  const popoverContent = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        width: "100%",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+          fontSize: "0.8rem",
+          marginBottom: 0,
+          paddingBottom: 0,
+          color: style.colors.DARK_GRAY
+        }}
+      >Custom values</p>
+      <Button
+        style={{
+          fontSize: "14px",
+          aspectRatio: 1,
+          fontFamily: style.fonts.BODY_FONT,
+          marginBottom: "5px",
+          textAlign: "left",
+          width: "100%"
+        }}
+        onClick={() => handleValueInput(Infinity)}
+      >
+        <span
+          style={{
+            fontSize: "1.2rem"
+          }}
+        >
+          &infin;&nbsp;
+        </span>
+        Infinity
+      </Button>
+      <Button
+        style={{
+          fontSize: "14px",
+          aspectRatio: 1,
+          fontFamily: style.fonts.BODY_FONT,
+          textAlign: "left",
+          width: "100%"
+        }}
+        onClick={() => handleValueInput(-Infinity)}
+      >
+        <span
+          style={{
+            fontSize: "1.2rem"
+          }}
+        >
+          -&infin;&nbsp;
+        </span>
+        -Infinity
+      </Button>
+    </div>
+  );
+
   return (
     <>
-      {isExpanded ? (
-        <Space.Compact>
-          <Tooltip title="Infinity">
-            <Button
-              style={{
-                fontSize: "1.2rem",
-                aspectRatio: 1,
-                fontFamily: style.fonts.BODY_FONT,
-              }}
-              onClick={() => handleValueInput(Infinity)}
-            >
-              &infin;
-            </Button>
-          </Tooltip>
-          <Tooltip title="Negative infinity">
-            <Button
-              style={{
-                fontSize: "1.2rem",
-                aspectRatio: 1,
-                fontFamily: style.fonts.BODY_FONT,
-              }}
-              onClick={() => handleValueInput(-Infinity)}
-            >
-              -&infin;
-            </Button>
-          </Tooltip>
-          <Tooltip title="Close options">
-            <Button
-              style={{
-                aspectRatio: 1,
-                backgroundColor: style.colors.TEAL_LIGHT,
-              }}
-              onClick={handleExpand}
-            >
-              <LeftOutlined />
-            </Button>
-          </Tooltip>
-        </Space.Compact>
-      ) : (
-        <Tooltip title="More input options">
+      <Tooltip title="More input options">
+        <Popover 
+          content={popoverContent} 
+          placement="bottomRight" 
+          trigger="click"
+          overlayStyle={{
+            minWidth: "150px"
+          }}
+        >
           <Button
             style={{
               aspectRatio: 1,
-              backgroundColor: style.colors.TEAL_LIGHT,
             }}
-            onClick={handleExpand}
           >
-            <RightOutlined />
+            <EllipsisOutlined />
           </Button>
-        </Tooltip>
-      )}
+        </Popover>
+      </Tooltip>
     </>
   );
 }
