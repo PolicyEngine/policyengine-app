@@ -109,6 +109,8 @@ export default function ParameterEditor(props) {
     description = "";
   }
 
+  const gridColumns = dateInputMode === DATE_INPUT_MODES.TEN_YEAR ? "auto min-content" : "auto min-content min-content";
+
   return (
     <CenteredMiddleColumn
       marginTop="5%"
@@ -146,12 +148,12 @@ export default function ParameterEditor(props) {
           </p>
           <div
             style={{
-              width: "fit-content",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              gap: "10px",
+              width: "100%",
+              maxWidth: "480px",
+              minWidth: "430px",
+              display: "grid",
+              gridTemplateColumns: gridColumns,
+              gap: "10px"
             }}
           >
             <PeriodSetter
@@ -338,7 +340,7 @@ function DefaultPeriodSetter(props) {
         // The below keeps the font in line with
         // the selector components
         fontSize: "14px",
-        padding: "0 12px",
+        padding: "0 0 0 12px",
         gap: "10px"
       }}
     >
@@ -465,9 +467,9 @@ function TenYearPeriodSetter(props) {
   // Iterate over possibleYears, beginning with
   // defaultYear, and return up to 10 input
   // components
-  const yearInputs = possibleYears.map((year) => {
-    if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
-
+  const yearInputs = possibleYears.filter((year) => 
+    year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS
+  ).map((year) => {
       return (
         <div
           key={String(year).concat("-input")}
@@ -478,7 +480,6 @@ function TenYearPeriodSetter(props) {
             justifyContent: "flex-start",
             gap: "10px",
             fontSize: "14px",
-            padding: "0 12px",
           }}
         >
           <p style={{marginBottom: 0}}>{year}:</p>
@@ -492,18 +493,50 @@ function TenYearPeriodSetter(props) {
           />
         </div>
       );
-    }
-  });
+    });
+
+  // This will give us the first half of the year inputs (if NUMBER_OF_YEARS is even)
+  // or the first half, plus 1, if NUMBER_OF_YEARS is odd
+   const yearInputsLeft = yearInputs.slice(0, Math.ceil(NUMBER_OF_YEARS / 2));
+   const yearInputsRight = yearInputs.slice(Math.ceil(NUMBER_OF_YEARS / 2));
 
   return (
     <div
       style={{
         display: "flex",
         flexDirection: "column",
+        paddingLeft: "12px",
         gap: "10px",
       }}
     >
-      {yearInputs}
+      <div
+        style={{
+          display: "flex",
+          gap: "10px",
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          {yearInputsLeft}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          {yearInputsRight}
+        </div>
+      </div>
       <Button
         type="primary"
         style={{
@@ -864,6 +897,7 @@ function SettingsPanel(props) {
       <Button
         style={{
           aspectRatio: 1,
+          width: "100%"
         }}
       >
         <SettingOutlined />
