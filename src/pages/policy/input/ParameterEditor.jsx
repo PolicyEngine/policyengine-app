@@ -279,90 +279,7 @@ function PeriodSetter(props) {
     default:
       return <DefaultPeriodSetter {...sharedProps} />;
   }
-  
-  /*
-  else if (inputMode = DATE_INPUT_MODES.DATE) {
-    return <DateSetter {...sharedProps} />
-  } 
-    */
-  
-  /*
-  else if (inputMode = DATE_INPUT_MODES.TEN_YEAR) {
-    return <TenYearPeriodSetter {...sharedProps} />
-  } else {
-    return <DefaultPeriodSetter {...sharedProps} />
-  }
-    */
 }
-
-/*
-function PeriodSetterOld(props) {
-  const { metadata, startDate, endDate, setStartDate, setEndDate, inputMode } = props;
-
-
-
-  let dateSelectButtonLabel = "";
-  const isFullYearSet =
-    checkBoundaryDate(startDate, "start") && checkBoundaryDate(endDate, "end");
-
-  if (!isFullYearSet) {
-    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}:`;
-  } else if (isEndForever) {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} onward:`;
-  } else {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}:`;
-  }
-
-  const dateSelector = (
-  );
-
-  const popoverContent = (
-    <div
-      style={{
-        width: "100%",
-      }}
-    >
-      <Segmented
-        block
-        options={MODES}
-        width="100%"
-        onChange={handleSegmentedChange}
-        style={{
-          marginBottom: "10px",
-        }}
-      />
-      {visibleDateSelector === "yearly" ? 
-          <YearSetter 
-            startDate={startDate}
-            endDate={endDate}
-            setStartDate={setStartDate}
-            setEndDate={setEndDate}
-            minPossibleDate={minPossibleDate}
-            maxPossibleDate={maxPossibleDate}
-            isEndForever={isEndForever}
-          />
-           : dateSelector}
-    </div>
-  );
-
-  return (
-    <Popover trigger="click" content={popoverContent} placement="bottom">
-      <Tooltip title="Click to edit parameter timespan">
-        <Space.Compact>
-          <Button
-            type="default"
-            style={{
-              width: "max-content",
-            }}
-          >
-            {dateSelectButtonLabel}
-          </Button>
-        </Space.Compact>
-      </Tooltip>
-    </Popover>
-  );
-}
-  */
 
 function DefaultPeriodSetter(props) {
   const {
@@ -482,7 +399,6 @@ function TenYearPeriodSetter(props) {
       if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
         const startDate = String(year).concat("-01-01");
         const startValue = reformMap.get(startDate);
-        console.log(year, startDate, startValue);
         valueMap.set(year, startValue);
       }
     });
@@ -504,10 +420,6 @@ function TenYearPeriodSetter(props) {
   // components
   const yearInputs = possibleYears.map((year) => {
     if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
-
-      const startDate = String(year).concat("-01-01");
-      const startValue = reformMap.get(startDate);
-      // setValueMap((prev) => prev.set(year, startValue));
 
       return (
         <div
@@ -629,7 +541,6 @@ function OneYearValueSetter(props) {
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
   const maximumFractionDigits = isCurrency ? 2 : 16;
 
-
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 10 }}>
@@ -667,7 +578,7 @@ function OneYearValueSetter(props) {
             });
           }}
           defaultValue={Number(startValue) * scale}
-          value={valueMap.get(year)}
+          value={valueMap.get(year) * scale}
           onChange={changeHandler}
           /*
           onPressEnter={() => {
@@ -684,15 +595,6 @@ function OneYearValueSetter(props) {
       </Space.Compact>
     );
   }
-  /*
-  return (
-    <InputNumber
-      style={{
-        width: "125px",
-      }}
-    />
-  );
-  */
 }
 
 function ValueSetter(props) {
