@@ -12,6 +12,7 @@ import {
   COUNTRY_NAMES,
 } from "../data/countries";
 import { Helmet } from "react-helmet";
+import Header from "../layout/Header";
 import PageHeader from "../layout/PageHeader";
 import ArrowButton from "../controls/ArrowButton";
 import { useNavigate } from "react-router-dom";
@@ -126,6 +127,7 @@ export function StatusPage() {
 
   return (
     <>
+      <Header />
       <div
         style={{
           paddingLeft: 50,

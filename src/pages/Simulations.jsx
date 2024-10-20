@@ -12,6 +12,7 @@ import CodeBlock from "../layout/CodeBlock";
 import PageHeader from "../layout/PageHeader";
 import style from "../style";
 import { Link } from "react-router-dom";
+import Header from "../layout/Header";
 
 export default function SimulationsPage() {
   // call /simulations endpoint, which returns
@@ -109,7 +110,7 @@ export default function SimulationsPage() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <PageHeader title="Simulations" backgroundColor={style.colors.BLUE_98}>
         <p style={{ margin: 0 }}>
           This page shows the simulations that are currently running or have run
