@@ -109,7 +109,7 @@ export default function ParameterEditor(props) {
     description = "";
   }
 
-  const gridColumns = dateInputMode === DATE_INPUT_MODES.MULTI_YEAR ? "auto min-content" : "auto min-content min-content";
+  const gridColumns = dateInputMode === DATE_INPUT_MODES.MULTI_YEAR ? "auto min-content" : "auto auto min-content";
 
   return (
     <CenteredMiddleColumn
@@ -149,11 +149,10 @@ export default function ParameterEditor(props) {
           <div
             style={{
               width: "100%",
-              maxWidth: "480px",
-              minWidth: "430px",
               display: "grid",
               gridTemplateColumns: gridColumns,
-              gap: "10px"
+              gap: "10px",
+              padding: "0px 50px 0px 12px"
             }}
           >
             <PeriodSetter
@@ -340,7 +339,6 @@ function DefaultPeriodSetter(props) {
         // The below keeps the font in line with
         // the selector components
         fontSize: "14px",
-        padding: "0 0 0 12px",
         gap: "10px"
       }}
     >
@@ -505,14 +503,13 @@ function MultiYearPeriodSetter(props) {
       style={{
         display: "flex",
         flexDirection: "column",
-        paddingLeft: "12px",
         gap: "10px",
       }}
     >
       <div
         style={{
           display: "flex",
-          gap: "10px",
+          gap: "20px",
           width: "100%",
           flexDirection: "row",
           justifyContent: "space-between",
@@ -591,7 +588,7 @@ function OneYearValueSetter(props) {
       <Space.Compact block>
         <InputNumber
           style={{
-            width: "125px",
+            width: "100%",
           }}
           key={"input for" + parameter.parameter + year}
           {...(isCurrency
@@ -702,7 +699,7 @@ function ValueSetter(props) {
       <Space.Compact block>
         <InputNumber
           style={{
-            width: "125px",
+            width: "100%",
           }}
           key={"input for" + parameter.parameter}
           {...(isCurrency
