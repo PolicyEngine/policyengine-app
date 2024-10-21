@@ -13,7 +13,7 @@ import {
   Tooltip,
 } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
@@ -396,12 +396,9 @@ function DatePeriodSetter(props) {
 function MultiYearPeriodSetter(props) {
   const { possibleYears, parameterName, baseMap, reformMap, metadata, policy } = props;
 
-  const NUMBER_OF_YEARS = 10;
-  const [valueMap, setValueMap] = useState(populateValueMap());
-  const [searchParams, setSearchParams] = useSearchParams();
-
   // Populate map before rendering anything
-  function populateValueMap() {
+  // function populateValueMap() {
+  const populateValueMap = useCallback(() => {
 
     const valueMap = new Map();
     possibleYears.forEach((year) => {
@@ -412,14 +409,31 @@ function MultiYearPeriodSetter(props) {
       }
     });
     return valueMap;
-  }
+  }, [possibleYears, reformMap]);
+
+  const NUMBER_OF_YEARS = 10;
+  const [valueMap, setValueMap] = useState(populateValueMap());
+  const [searchParams, setSearchParams] = useSearchParams();
+  const paramRef = useRef(parameterName);
+
 
   // This is necessary because technically, MultiYearPeriodSetter does not
   // unmount when we change between parameters, leading to the possibility
   // for a stale "value" state in this controlled component
+
+  // We're using a ref here because each time the changeHandler is called,
+  // it updates reformMap. This then re-renders the callback above, causing
+  // valueMap to be re-populated with stale data, creating a visual bug.
+  // All of this wouldn't be necessary if we either 1. didn't add populateValueMap
+  // as an effect hook dep (but then we'd be overriding linting) or 2. fully
+  // unmounted the component when we changed pages (but that'd require far
+  // more work)
   useEffect(() => {
-    setValueMap(populateValueMap());
-  }, [parameterName]);
+    if (paramRef.current !== parameterName) {
+      setValueMap(populateValueMap());
+      paramRef.current = parameterName;
+    }
+  }, [parameterName, populateValueMap]);
 
   // Handler that iterates over each entry, validates that
   // all values are valid, then updates each value one by one
