@@ -855,7 +855,7 @@ function SettingsPanel(props) {
       value: DATE_INPUT_MODES.DATE
     },
     {
-      label: "Multi-Year",
+      label: "Multi-year",
       value: DATE_INPUT_MODES.MULTI_YEAR
     }
   ]
@@ -877,7 +877,7 @@ function SettingsPanel(props) {
           paddingBottom: 0,
           color: style.colors.DARK_GRAY
         }}
-      >Input Mode</p>
+      >Input mode</p>
       <Radio.Group 
         optionType="button" 
         options={modeOptions} 
