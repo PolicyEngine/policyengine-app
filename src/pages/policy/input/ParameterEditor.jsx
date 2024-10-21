@@ -267,7 +267,7 @@ function PeriodSetter(props) {
     isEndForever,
     possibleYears,
     FOREVER_DATE,
-    parameterName
+    parameterName,
   };
 
   const tenYearProps = {
@@ -290,8 +290,15 @@ function PeriodSetter(props) {
 }
 
 function DefaultPeriodSetter(props) {
-  const { startDate, setStartDate, endDate, setEndDate, possibleYears, FOREVER_DATE, parameterName } =
-    props;
+  const {
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    possibleYears,
+    FOREVER_DATE,
+    parameterName,
+  } = props;
 
   const startYear = new Date(startDate).getFullYear();
 
@@ -303,7 +310,7 @@ function DefaultPeriodSetter(props) {
   useEffect(() => {
     setStartDate(String(value).concat("-01-01"));
     setEndDate(FOREVER_DATE);
-  }, [endDate, parameterName, FOREVER_DATE, value, setStartDate, setEndDate ]);
+  }, [endDate, parameterName, FOREVER_DATE, value, setStartDate, setEndDate]);
 
   // On change, set the start date to Jan. 1 of the selected year
   // and update value
