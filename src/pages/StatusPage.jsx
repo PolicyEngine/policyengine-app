@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 import useMobile from "../layout/Responsive";
-import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { countryApiCall, apiCall } from "../api/call";
 import {
@@ -13,6 +12,7 @@ import {
   COUNTRY_NAMES,
 } from "../data/countries";
 import { Helmet } from "react-helmet";
+import Header from "../layout/Header";
 import { wrappedResponseJson } from "../data/wrappedJson";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
