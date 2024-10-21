@@ -290,19 +290,20 @@ function PeriodSetter(props) {
 }
 
 function DefaultPeriodSetter(props) {
-  const { startDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName } =
+  const { startDate, setStartDate, endDate, setEndDate, possibleYears, FOREVER_DATE, parameterName } =
     props;
 
   const startYear = new Date(startDate).getFullYear();
 
   const [value, setValue] = useState(startYear);
 
-  // When this component mounts or param name changes, set the start date to Jan. 1 of
+  // When this component mounts, or param name changes, or ParameterEditor
+  // updates endDate (this happens in select few cases), set the start date to Jan. 1 of
   // the startDate value's year and set end to FOREVER_DATE
   useEffect(() => {
     setStartDate(String(value).concat("-01-01"));
     setEndDate(FOREVER_DATE);
-  }, [FOREVER_DATE, value, setStartDate, setEndDate, parameterName]);
+  }, [endDate, parameterName, FOREVER_DATE, value, setStartDate, setEndDate ]);
 
   // On change, set the start date to Jan. 1 of the selected year
   // and update value
