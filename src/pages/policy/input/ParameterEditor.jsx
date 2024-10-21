@@ -495,10 +495,10 @@ function TenYearPeriodSetter(props) {
       );
     });
 
-  // This will give us the first half of the year inputs (if NUMBER_OF_YEARS is even)
-  // or the first half, plus 1, if NUMBER_OF_YEARS is odd
-   const yearInputsLeft = yearInputs.slice(0, Math.ceil(NUMBER_OF_YEARS / 2));
-   const yearInputsRight = yearInputs.slice(Math.ceil(NUMBER_OF_YEARS / 2));
+  // This will give us the first half of the year inputs (if length of yearInputs is even)
+  // or the first half, plus 1, if length of yearInputs is odd
+   const yearInputsLeft = yearInputs.slice(0, Math.ceil(yearInputs.length / 2));
+   const yearInputsRight = yearInputs.slice(Math.ceil(yearInputs.length / 2));
 
   return (
     <div
