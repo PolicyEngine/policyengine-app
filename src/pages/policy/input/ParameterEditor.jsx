@@ -609,9 +609,9 @@ function OneYearValueSetter(props) {
               maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
             });
           }}
-          defaultValue={startValue * scale}
+          defaultValue={Number(startValue) * scale}
           value={valueMap.get(year) * scale}
-          onChange={changeHandler}
+          onChange={(value) => changeHandler(Number(value))}
         />
         {!isPercent && (
           <AdvancedValueSetter
