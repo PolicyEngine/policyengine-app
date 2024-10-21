@@ -13,9 +13,6 @@ import {
 } from "../data/countries";
 import { Helmet } from "react-helmet";
 import Header from "../layout/Header";
-import PageHeader from "../layout/PageHeader";
-import ArrowButton from "../controls/ArrowButton";
-import { useNavigate } from "react-router-dom";
 import { wrappedResponseJson } from "../data/wrappedJson";
 
 function ApiStatus({ apiStatus, apiCategory, countryNames }) {
