@@ -45,7 +45,7 @@ const DATE_INPUT_MODES = {
   DEFAULT: "default",
   YEARLY: "yearly",
   DATE: "date",
-  TEN_YEAR: "ten-year"
+  MULTI_YEAR: "multi-year"
 };
 
 export default function ParameterEditor(props) {
@@ -109,7 +109,7 @@ export default function ParameterEditor(props) {
     description = "";
   }
 
-  const gridColumns = dateInputMode === DATE_INPUT_MODES.TEN_YEAR ? "auto min-content" : "auto min-content min-content";
+  const gridColumns = dateInputMode === DATE_INPUT_MODES.MULTI_YEAR ? "auto min-content" : "auto min-content min-content";
 
   return (
     <CenteredMiddleColumn
@@ -169,7 +169,7 @@ export default function ParameterEditor(props) {
               policy={policy}
             />
             {
-              dateInputMode !== DATE_INPUT_MODES.TEN_YEAR && (
+              dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
                 <ValueSetter
                   startDate={startDate}
                   endDate={endDate}
@@ -284,8 +284,8 @@ function PeriodSetter(props) {
       return <YearPeriodSetter {...sharedProps} />;
     case DATE_INPUT_MODES.DATE:
       return <DatePeriodSetter {...sharedProps} />;
-    case DATE_INPUT_MODES.TEN_YEAR:
-      return <TenYearPeriodSetter {...sharedProps} {...tenYearProps} />;
+    case DATE_INPUT_MODES.MULTI_YEAR:
+      return <MultiYearPeriodSetter {...sharedProps} {...tenYearProps} />;
     default:
       return <DefaultPeriodSetter {...sharedProps} />;
   }
@@ -395,7 +395,7 @@ function DatePeriodSetter(props) {
   );
 }
 
-function TenYearPeriodSetter(props) {
+function MultiYearPeriodSetter(props) {
   const { startDate, endDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName, baseMap, reformMap, metadata, policy } = props;
 
   const NUMBER_OF_YEARS = 10;
@@ -416,7 +416,7 @@ function TenYearPeriodSetter(props) {
     return valueMap;
   }
 
-  // This is necessary because technically, TenYearPeriodSetter does not
+  // This is necessary because technically, MultiYearPeriodSetter does not
   // unmount when we change between parameters, leading to the possibility
   // for a stale "value" state in this controlled component
   useEffect(() => {
@@ -855,8 +855,8 @@ function SettingsPanel(props) {
       value: DATE_INPUT_MODES.DATE
     },
     {
-      label: "10-Year",
-      value: DATE_INPUT_MODES.TEN_YEAR
+      label: "Multi-Year",
+      value: DATE_INPUT_MODES.MULTI_YEAR
     }
   ]
 
