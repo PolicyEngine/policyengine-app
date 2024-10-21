@@ -45,7 +45,7 @@ const DATE_INPUT_MODES = {
   DEFAULT: "default",
   YEARLY: "yearly",
   DATE: "date",
-  MULTI_YEAR: "multi-year"
+  MULTI_YEAR: "multi-year",
 };
 
 export default function ParameterEditor(props) {
@@ -109,7 +109,10 @@ export default function ParameterEditor(props) {
     description = "";
   }
 
-  const gridColumns = dateInputMode === DATE_INPUT_MODES.MULTI_YEAR ? "auto min-content" : "auto auto min-content";
+  const gridColumns =
+    dateInputMode === DATE_INPUT_MODES.MULTI_YEAR
+      ? "auto min-content"
+      : "auto auto min-content";
 
   return (
     <CenteredMiddleColumn
@@ -152,7 +155,7 @@ export default function ParameterEditor(props) {
               display: "grid",
               gridTemplateColumns: gridColumns,
               gap: "10px",
-              padding: "0px 50px 0px 12px"
+              padding: "0px 50px 0px 12px",
             }}
           >
             <PeriodSetter
@@ -167,22 +170,18 @@ export default function ParameterEditor(props) {
               reformMap={reformMap}
               policy={policy}
             />
-            {
-              dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
-                <ValueSetter
-                  startDate={startDate}
-                  endDate={endDate}
-                  parameterName={parameterName}
-                  policy={policy}
-                  metadata={metadata}
-                  reformMap={reformMap}
-                  baseMap={baseMap}
-                />
-              )
-            }
-            <SettingsPanel 
-              setDateInputMode={setDateInputMode}
-            />
+            {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
+              <ValueSetter
+                startDate={startDate}
+                endDate={endDate}
+                parameterName={parameterName}
+                policy={policy}
+                metadata={metadata}
+                reformMap={reformMap}
+                baseMap={baseMap}
+              />
+            )}
+            <SettingsPanel setDateInputMode={setDateInputMode} />
           </div>
         </div>
         {!parameter.economy && (
@@ -233,7 +232,7 @@ export default function ParameterEditor(props) {
 }
 
 function PeriodSetter(props) {
-  const { 
+  const {
     inputMode,
     metadata,
     startDate,
@@ -243,9 +242,9 @@ function PeriodSetter(props) {
     parameterName,
     baseMap,
     reformMap,
-    policy
+    policy,
   } = props;
-  
+
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
 
   // Array of selectable years, sorted in ascending order
@@ -267,7 +266,7 @@ function PeriodSetter(props) {
     maxPossibleDate,
     isEndForever,
     possibleYears,
-    FOREVER_DATE
+    FOREVER_DATE,
   };
 
   const tenYearProps = {
@@ -275,7 +274,7 @@ function PeriodSetter(props) {
     metadata,
     baseMap,
     reformMap,
-    policy
+    policy,
   };
 
   switch (inputMode) {
@@ -291,13 +290,8 @@ function PeriodSetter(props) {
 }
 
 function DefaultPeriodSetter(props) {
-  const {
-    startDate,
-    setStartDate,
-    setEndDate,
-    possibleYears,
-    FOREVER_DATE
-  } = props;
+  const { startDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE } =
+    props;
 
   let defaultStartYear = null;
   if (startDate) {
@@ -324,7 +318,7 @@ function DefaultPeriodSetter(props) {
   const options = possibleYears.map((year) => {
     return {
       label: year,
-      value: year
+      value: year,
     };
   });
 
@@ -339,23 +333,30 @@ function DefaultPeriodSetter(props) {
         // The below keeps the font in line with
         // the selector components
         fontSize: "14px",
-        gap: "10px"
+        gap: "10px",
       }}
     >
-      <p style={{marginBottom: 0}}>from</p>
+      <p style={{ marginBottom: 0 }}>from</p>
       <Select
         options={options}
         defaultValue={defaultStartYear}
         onChange={handleStartYearChange}
       />
-      <p style={{marginBottom: 0}}>onward:</p>
+      <p style={{ marginBottom: 0 }}>onward:</p>
     </div>
   );
-
 }
 
 function YearPeriodSetter(props) {
-  const { startDate, endDate, setStartDate, setEndDate, minPossibleDate, maxPossibleDate, isEndForever } = props;
+  const {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    minPossibleDate,
+    maxPossibleDate,
+    isEndForever,
+  } = props;
 
   return (
     <RangePicker
@@ -371,11 +372,19 @@ function YearPeriodSetter(props) {
       }
       separator="→"
     />
-  )
+  );
 }
 
 function DatePeriodSetter(props) {
-  const { startDate, endDate, setStartDate, setEndDate, minPossibleDate, maxPossibleDate, isEndForever } = props;
+  const {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    minPossibleDate,
+    maxPossibleDate,
+    isEndForever,
+  } = props;
 
   return (
     <RangePicker
@@ -394,12 +403,12 @@ function DatePeriodSetter(props) {
 }
 
 function MultiYearPeriodSetter(props) {
-  const { possibleYears, parameterName, baseMap, reformMap, metadata, policy } = props;
+  const { possibleYears, parameterName, baseMap, reformMap, metadata, policy } =
+    props;
 
   // Populate map before rendering anything
   // function populateValueMap() {
   const populateValueMap = useCallback(() => {
-
     const valueMap = new Map();
     possibleYears.forEach((year) => {
       if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
@@ -415,7 +424,6 @@ function MultiYearPeriodSetter(props) {
   const [valueMap, setValueMap] = useState(populateValueMap());
   const [searchParams, setSearchParams] = useSearchParams();
   const paramRef = useRef(parameterName);
-
 
   // This is necessary because technically, MultiYearPeriodSetter does not
   // unmount when we change between parameters, leading to the possibility
@@ -438,7 +446,6 @@ function MultiYearPeriodSetter(props) {
   // Handler that iterates over each entry, validates that
   // all values are valid, then updates each value one by one
   function handleSubmit() {
-
     let allData = {};
     for (const [year, value] of valueMap) {
       const startDate = String(year).concat("-01-01");
@@ -447,7 +454,7 @@ function MultiYearPeriodSetter(props) {
       let data = {};
       reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
         data[`${k1}.${prevDay(k2)}`] = v;
-      }); 
+      });
       allData = { ...allData, ...data };
     }
 
@@ -480,9 +487,11 @@ function MultiYearPeriodSetter(props) {
   // Iterate over possibleYears, beginning with
   // defaultYear, and return up to 10 input
   // components
-  const yearInputs = possibleYears.filter((year) => 
-    year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS
-  ).map((year) => {
+  const yearInputs = possibleYears
+    .filter(
+      (year) => year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS,
+    )
+    .map((year) => {
       return (
         <div
           key={String(year).concat("-input")}
@@ -495,8 +504,8 @@ function MultiYearPeriodSetter(props) {
             fontSize: "14px",
           }}
         >
-          <p style={{marginBottom: 0}}>{year}:</p>
-          <OneYearValueSetter 
+          <p style={{ marginBottom: 0 }}>{year}:</p>
+          <OneYearValueSetter
             year={year}
             parameterName={parameterName}
             metadata={metadata}
@@ -510,8 +519,8 @@ function MultiYearPeriodSetter(props) {
 
   // This will give us the first half of the year inputs (if length of yearInputs is even)
   // or the first half, plus 1, if length of yearInputs is odd
-   const yearInputsLeft = yearInputs.slice(0, Math.ceil(yearInputs.length / 2));
-   const yearInputsRight = yearInputs.slice(Math.ceil(yearInputs.length / 2));
+  const yearInputsLeft = yearInputs.slice(0, Math.ceil(yearInputs.length / 2));
+  const yearInputsRight = yearInputs.slice(Math.ceil(yearInputs.length / 2));
 
   return (
     <div
@@ -563,13 +572,7 @@ function MultiYearPeriodSetter(props) {
 }
 
 function OneYearValueSetter(props) {
-  const {
-    year,
-    parameterName,
-    metadata,
-    valueMap,
-    setValueMap,
-  } = props;
+  const { year, parameterName, metadata, valueMap, setValueMap } = props;
 
   const startValue = valueMap.get(year);
   const parameter = metadata.parameters[parameterName];
@@ -777,9 +780,11 @@ function AdvancedValueSetter(props) {
           fontSize: "0.8rem",
           marginBottom: 0,
           paddingBottom: 0,
-          color: style.colors.DARK_GRAY
+          color: style.colors.DARK_GRAY,
         }}
-      >Custom values</p>
+      >
+        Custom values
+      </p>
       <Button
         style={{
           fontSize: "14px",
@@ -787,13 +792,13 @@ function AdvancedValueSetter(props) {
           fontFamily: style.fonts.BODY_FONT,
           marginBottom: "5px",
           textAlign: "left",
-          width: "100%"
+          width: "100%",
         }}
         onClick={() => handleValueInput(Infinity)}
       >
         <span
           style={{
-            fontSize: "1.2rem"
+            fontSize: "1.2rem",
           }}
         >
           &infin;&nbsp;
@@ -806,13 +811,13 @@ function AdvancedValueSetter(props) {
           aspectRatio: 1,
           fontFamily: style.fonts.BODY_FONT,
           textAlign: "left",
-          width: "100%"
+          width: "100%",
         }}
         onClick={() => handleValueInput(-Infinity)}
       >
         <span
           style={{
-            fontSize: "1.2rem"
+            fontSize: "1.2rem",
           }}
         >
           -&infin;&nbsp;
@@ -825,12 +830,12 @@ function AdvancedValueSetter(props) {
   return (
     <>
       <Tooltip title="More input options">
-        <Popover 
-          content={popoverContent} 
-          placement="bottomRight" 
+        <Popover
+          content={popoverContent}
+          placement="bottomRight"
           trigger="click"
           overlayStyle={{
-            minWidth: "150px"
+            minWidth: "150px",
           }}
         >
           <Button
@@ -856,21 +861,21 @@ function SettingsPanel(props) {
   const modeOptions = [
     {
       label: "Default",
-      value: DATE_INPUT_MODES.DEFAULT
+      value: DATE_INPUT_MODES.DEFAULT,
     },
     {
       label: "Yearly",
-      value: DATE_INPUT_MODES.YEARLY
+      value: DATE_INPUT_MODES.YEARLY,
     },
     {
       label: "Date",
-      value: DATE_INPUT_MODES.DATE
+      value: DATE_INPUT_MODES.DATE,
     },
     {
       label: "Multi-year",
-      value: DATE_INPUT_MODES.MULTI_YEAR
-    }
-  ]
+      value: DATE_INPUT_MODES.MULTI_YEAR,
+    },
+  ];
 
   const popoverContent = (
     <div
@@ -887,12 +892,14 @@ function SettingsPanel(props) {
           fontSize: "0.8rem",
           marginBottom: 0,
           paddingBottom: 0,
-          color: style.colors.DARK_GRAY
+          color: style.colors.DARK_GRAY,
         }}
-      >Input mode</p>
-      <Radio.Group 
-        optionType="button" 
-        options={modeOptions} 
+      >
+        Input mode
+      </p>
+      <Radio.Group
+        optionType="button"
+        options={modeOptions}
         defaultValue={modeOptions[0].value}
         buttonStyle="solid"
         onChange={handleModeChange}
@@ -901,15 +908,11 @@ function SettingsPanel(props) {
   );
 
   return (
-    <Popover 
-      content={popoverContent} 
-      placement="bottomRight" 
-      trigger="click"
-    >
+    <Popover content={popoverContent} placement="bottomRight" trigger="click">
       <Button
         style={{
           aspectRatio: 1,
-          width: "100%"
+          width: "100%",
         }}
       >
         <SettingOutlined />
