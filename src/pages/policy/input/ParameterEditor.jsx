@@ -267,10 +267,10 @@ function PeriodSetter(props) {
     isEndForever,
     possibleYears,
     FOREVER_DATE,
+    parameterName
   };
 
   const tenYearProps = {
-    parameterName,
     metadata,
     baseMap,
     reformMap,
@@ -290,26 +290,24 @@ function PeriodSetter(props) {
 }
 
 function DefaultPeriodSetter(props) {
-  const { startDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE } =
+  const { startDate, setStartDate, setEndDate, possibleYears, FOREVER_DATE, parameterName } =
     props;
 
-  let defaultStartYear = null;
-  if (startDate) {
-    defaultStartYear = new Date(startDate).getFullYear();
-  } else if (possibleYears.includes(defaultYear)) {
-    defaultStartYear = defaultYear;
-  } else {
-    defaultStartYear = possibleYears[0];
-  }
+  const startYear = new Date(startDate).getFullYear();
 
-  // When this component mounts, set the start date to Jan. 1 of
-  // either the reform year or the default year, and set end to FOREVER_DATE
+  const [value, setValue] = useState(startYear);
+
+  // When this component mounts or param name changes, set the start date to Jan. 1 of
+  // the startDate value's year and set end to FOREVER_DATE
   useEffect(() => {
-    setStartDate(String(defaultStartYear).concat("-01-01"));
+    setStartDate(String(value).concat("-01-01"));
     setEndDate(FOREVER_DATE);
-  }, [FOREVER_DATE, defaultStartYear, setStartDate, setEndDate]);
+  }, [FOREVER_DATE, value, setStartDate, setEndDate, parameterName]);
 
+  // On change, set the start date to Jan. 1 of the selected year
+  // and update value
   function handleStartYearChange(value) {
+    setValue(value);
     setStartDate(String(value).concat("-01-01"));
   }
 
@@ -339,7 +337,8 @@ function DefaultPeriodSetter(props) {
       <p style={{ marginBottom: 0 }}>from</p>
       <Select
         options={options}
-        defaultValue={defaultStartYear}
+        defaultValue={startYear}
+        value={value}
         onChange={handleStartYearChange}
       />
       <p style={{ marginBottom: 0 }}>onward:</p>
