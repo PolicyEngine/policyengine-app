@@ -835,5 +835,14 @@
     "authors": ["vahid-ahmadi"],
     "filename": "school-vat.md",
     "image": "classroom-2093744.jpg"
+  },
+  {
+    "title": "Kamala Harris’s Earned Income Tax Credit Expansion Proposal",
+    "description": "PolicyEngine projects that restoring the American Rescue Plan policy would cost $144 billion over a decade, while lowering poverty by 1.6% in 2025.",
+    "date": "2024-10-21 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "harris-eitc.md",
+    "image": "harris-eitc.webp"
   }
 ]
