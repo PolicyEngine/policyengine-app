@@ -425,27 +425,28 @@ function MultiYearPeriodSetter(props) {
   // all values are valid, then updates each value one by one
   function handleSubmit() {
 
-    let data = {}
+    let allData = {};
     for (const [year, value] of valueMap) {
       const startDate = String(year).concat("-01-01");
       const endDate = String(year).concat("-12-31");
       reformMap.set(startDate, nextDay(endDate), value);
-      data = {};
+      let data = {};
       reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
         data[`${k1}.${prevDay(k2)}`] = v;
       }); 
+      allData = { ...allData, ...data };
     }
 
     const newReforms = { ...policy.reform.data };
     if (
-      Object.keys(data).length === 0 &&
+      Object.keys(allData).length === 0 &&
       Object.keys(newReforms).length === 1
     ) {
       let newSearch = copySearchParams(searchParams);
       newSearch.delete("reform");
       setSearchParams(newSearch);
     } else {
-      newReforms[parameterName] = data;
+      newReforms[parameterName] = allData;
       getNewPolicyId(metadata.countryId, newReforms).then((result) => {
         if (result.status !== "ok") {
           console.error(
