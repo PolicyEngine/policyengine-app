@@ -10,18 +10,18 @@ In her [economic plan](https://kamalaharris.com/wp-content/uploads/2024/09/Polic
 
 This would:
 
-* Increase the phase-in and phase-out rates from 7.65% to 15.3%
+- Increase the phase-in and phase-out rates from 7.65% to 15.3%
 
-* Lower the minimum age from 25 to 19 (or 24 for students)
+- Lower the minimum age from 25 to 19 (or 24 for students)
 
-* Remove the maximum age, currently 65
+- Remove the maximum age, currently 65
 
-* Raise the maximum credit from $632 to $1,774 (adjusted from $1,502 in 2021 for inflation, and continuing to rise with inflation in future years)
+- Raise the maximum credit from $632 to $1,774 (adjusted from $1,502 in 2021 for inflation, and continuing to rise with inflation in future years)
 
 These characterize the EITC policy as shown below.
 
 | Year | Max age | Min age | Min student age | Max credit | Phase-in rate | Phase-out rate | Phase-out start |
-|------|---------|---------|-----------------|------------|---------------|----------------|-----------------|
+| ---- | ------- | ------- | --------------- | ---------- | ------------- | -------------- | --------------- |
 | 2025 | 100     | 19      | 24              | $1,774     | 15.3%         | 15.3%          | $13,706         |
 | 2026 | 100     | 19      | 24              | $1,815     | 15.3%         | 15.3%          | $14,022         |
 | 2027 | 100     | 19      | 24              | $1,852     | 15.3%         | 15.3%          | $14,306         |
@@ -32,7 +32,6 @@ These characterize the EITC policy as shown below.
 | 2032 | 100     | 19      | 24              | $2,041     | 15.3%         | 15.3%          | $15,758         |
 | 2033 | 100     | 19      | 24              | $2,082     | 15.3%         | 15.3%          | $16,074         |
 | 2034 | 100     | 19      | 24              | $2,124     | 15.3%         | 15.3%          | $16,398         |
-
 
 Single filers between $8,000 and $37,000 would see their net incomes increase due to this policy change.
 
@@ -70,57 +69,57 @@ The Gini index of income inequality also [falls](https://policyengine.org/us/pol
 
 We [estimate](https://colab.research.google.com/drive/1uf-gmlWPDCasV6KP68M2165wGLqjDf8m#scrollTo=fKBzuOkw9i8n) (in static terms) that the proposal would cost the federal government $18.9bn in 2025, with this increasing to $21.9bn in 2034. The total ten-year cost is $205.7bn.
 
-| Year     | Federal budget impact (billions $) |
-|----------|------------------------------------|
-| 2025     | -14.3                              |
-| 2026     | -14.4                              |
-| 2027     | -14.7                              |
-| 2028     | -14.6                              |
-| 2029     | -14.5                              |
-| 2030     | -14.4                              |
-| 2031     | -14.3                              |
-| 2032     | -14.2                              |
-| 2033     | -14.2                              |
-| 2034     | -14.1                              |
-| 2025-34  | -143.7                             |
+| Year    | Federal budget impact (billions $) |
+| ------- | ---------------------------------- |
+| 2025    | -14.3                              |
+| 2026    | -14.4                              |
+| 2027    | -14.7                              |
+| 2028    | -14.6                              |
+| 2029    | -14.5                              |
+| 2030    | -14.4                              |
+| 2031    | -14.3                              |
+| 2032    | -14.2                              |
+| 2033    | -14.2                              |
+| 2034    | -14.1                              |
+| 2025-34 | -143.7                             |
 
 ## Labor supply responses
 
 Incorporating elasticities of labor supply used by the Congressional Budget Office [changes](https://policyengine.org/us/policy?focus=policyOutput.laborSupplyImpact.hours&reform=67706&region=enhanced_us&timePeriod=2025&baseline=2) these estimates. In 2025:
 
-* Hours worked falls by 0.27%, or 411,000 full-time equivalent jobs
+- Hours worked falls by 0.27%, or 411,000 full-time equivalent jobs
 
-* Total earnings fall by 0.09%, or $11.7 billion
+- Total earnings fall by 0.09%, or $11.7 billion
 
-* The federal budgetary cost rises to $19.7 billion (a 38% increase)
+- The federal budgetary cost rises to $19.7 billion (a 38% increase)
 
 Applying these elasticities over the full budget window increases our cost estimate from $143.7 billion to $181.1 billion.
 
-| Year     | Federal budget impact (billions $) |
-|----------|------------------------------------|
-| 2025     | -19.7                              |
-| 2026     | -20.2                              |
-| 2027     | -20.2                              |
-| 2028     | -20.4                              |
-| 2029     | -20.4                              |
-| 2030     | -20.1                              |
-| 2031     | -19.8                              |
-| 2032     | -20.2                              |
-| 2033     | -20.0                              |
-| 2034     | -19.9                              |
-| 2025-34  | 200.9                              |
+| Year    | Federal budget impact (billions $) |
+| ------- | ---------------------------------- |
+| 2025    | -19.7                              |
+| 2026    | -20.2                              |
+| 2027    | -20.2                              |
+| 2028    | -20.4                              |
+| 2029    | -20.4                              |
+| 2030    | -20.1                              |
+| 2031    | -19.8                              |
+| 2032    | -20.2                              |
+| 2033    | -20.0                              |
+| 2034    | -19.9                              |
+| 2025-34 | 200.9                              |
 
 ## Comparison to other analysts
 
 The Office of Management and Budget estimated the cost of restoring the ARPA EITC when President Biden released his 2025 budget, which included the provision. The Tax Foundation and Penn Wharton Budget Model have also estimated the proposal’s cost. PolicyEngine projects higher costs than these other organizations.
 
-| Organization                         | Cost, 2025-2034 ($ billions) | Notes                                      |
-|--------------------------------------|------------------------------|--------------------------------------------|
-| PolicyEngine (static)                | 144                          |                                            |
-| PolicyEngine (behavioral responses)  | 201                          | CBO elasticities                           |
-| [Office of Management and Budget](https://www.whitehouse.gov/wp-content/uploads/2024/03/budget_fy2025.pdf#page=150) | 163                          |                                            |
-| [Tax Foundation](https://taxfoundation.org/research/all/federal/kamala-harris-tax-plan-2024/)  | 160                          | Does not include nonfilers                 |
-| [Penn Wharton Budget Model](https://budgetmodel.wharton.upenn.edu/estimates/2024/8/20/harris-campaign-revenue-effects-of-ctc-eitc-and-aca-premium-subsidy) | 126                          |                                            |
+| Organization                                                                                                                                               | Cost, 2025-2034 ($ billions) | Notes                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | -------------------------- |
+| PolicyEngine (static)                                                                                                                                      | 144                          |                            |
+| PolicyEngine (behavioral responses)                                                                                                                        | 201                          | CBO elasticities           |
+| [Office of Management and Budget](https://www.whitehouse.gov/wp-content/uploads/2024/03/budget_fy2025.pdf#page=150)                                        | 163                          |                            |
+| [Tax Foundation](https://taxfoundation.org/research/all/federal/kamala-harris-tax-plan-2024/)                                                              | 160                          | Does not include nonfilers |
+| [Penn Wharton Budget Model](https://budgetmodel.wharton.upenn.edu/estimates/2024/8/20/harris-campaign-revenue-effects-of-ctc-eitc-and-aca-premium-subsidy) | 126                          |                            |
 
 PolicyEngine’s Enhanced CPS data is calibrated to be consistent with EITC payment statistics. For this policy score, we added statistical calibration over EITC returns and dollar amounts by tax filer child counts. We also added take-up rate modeling by child counts, assuming a 65% take-up rate for childless EITC filers in line with [the last available IRS estimate](https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/JRC20_Volume3.pdf#page=62) from 2020. Although unclear by how much, it’s possible that these take-up rates become under-estimates where policy becomes more generous, meaning our estimate could be low.
 
