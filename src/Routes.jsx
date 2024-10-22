@@ -153,9 +153,7 @@ const HouseholdPageLayout = () => {
   const {
     metadata,
     isMetadataLoading,
-    metadataError,
     isMetadataError,
-    isMetadataSuccess,
   } = useMetadata();
   const { policy, isPolicyLoading, isPolicyError } = usePolicy();
   if (isMetadataLoading || isPolicyLoading) {
@@ -176,9 +174,7 @@ const PolicyPageLayout = () => {
   const {
     metadata,
     isMetadataLoading,
-    metadataError,
     isMetadataError,
-    isMetadataSuccess,
   } = useMetadata();
   const { policy, isPolicyError, isPolicyLoading } = usePolicy();
   const { userProfile, isUserProfileLoading, isUserProfileError } =
@@ -210,7 +206,7 @@ const SuspenseLayout = ({ children }) => {
 };
 
 const UserProfileRoute = () => {
-  const { user_id, countryId } = useParams();
+  const {  countryId } = useParams();
   // const countryId = extractCountryId();
   const { userProfile, isUserProfileLoading, isUserProfileError } =
     useUserProfile();

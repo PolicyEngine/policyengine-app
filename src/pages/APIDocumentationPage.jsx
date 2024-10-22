@@ -325,10 +325,10 @@ export default function APIDocumentationPage() {
   const displayCategory = useDisplayCategory();
   const {
     metadata,
-    isMetadataLoading,
-    metadataError,
-    isMetadataError,
-    isMetadataSuccess,
+    // isMetadataLoading,
+    // metadataError,
+    // isMetadataError,
+    // isMetadataSuccess,
   } = useMetadata();
 
   return (

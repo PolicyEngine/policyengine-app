@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+      {/* uncomment below line during development */}
+
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const QueryCover = ({ children }) => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -13,7 +15,8 @@ const QueryCover = ({ children }) => {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* uncomment below line during development */}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   );
 };
