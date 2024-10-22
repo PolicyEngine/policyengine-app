@@ -85,7 +85,7 @@ export default function UserProfilePage(props) {
       if (metadata) {
         try {
           const data = await apiCall(
-            `/${countryId}/user_profile?user_id=${accessedUserId}`,
+            `/${countryId}/user-profile?user_id=${accessedUserId}`,
           );
           const dataJson = await data.json();
           if (data.status === 404 && dataJson.status === "ok") {
@@ -125,7 +125,7 @@ export default function UserProfilePage(props) {
       if (metadata) {
         try {
           const data = await apiCall(
-            `/${countryId}/user_policy/${accessedUserId}`,
+            `/${countryId}/user-policy/${accessedUserId}`,
           );
           const dataJson = await data.json();
           if (data.status < 200 || data.status >= 300) {
@@ -555,7 +555,7 @@ function UsernameDisplayAndEditor(props) {
   }
 
   async function handleSubmit() {
-    const USER_PROFILE_PATH = `/${countryId}/user_profile`;
+    const USER_PROFILE_PATH = `/${countryId}/user-profile`;
     const body = {
       user_id: accessedUserProfile.user_id,
       username: value,
@@ -566,7 +566,7 @@ function UsernameDisplayAndEditor(props) {
       const resJson = await wrappedResponseJson(res);
       if (resJson.status === "ok") {
         const data = await apiCall(
-          `/${countryId}/user_profile?user_id=${accessedUserProfile.user_id}`,
+          `/${countryId}/user-profile?user_id=${accessedUserProfile.user_id}`,
         );
         const dataJson = await data.json();
         if (data.status === 404 && dataJson.status === "ok") {
