@@ -1,7 +1,7 @@
 import { wrappedResponseJson } from "../data/wrappedJson";
 import { apiCall } from "./call";
 
-const USER_POLICY_ENDPOINT = "/user_policy";
+const USER_POLICY_ENDPOINT = "/user-policy";
 
 export async function postUserPolicy(countryId, policyToAdd) {
   // Prevent creation of records where baseline and reform are the same;

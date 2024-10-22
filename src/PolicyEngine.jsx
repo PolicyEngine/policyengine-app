@@ -190,7 +190,7 @@ export default function PolicyEngine() {
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
     async function fetchUserProfile() {
-      const USER_PROFILE_PATH = `/${countryId}/user_profile`;
+      const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
       try {
         const resGet = await apiCall(
