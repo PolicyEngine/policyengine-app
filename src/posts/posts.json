@@ -839,10 +839,19 @@
   {
     "title": "Kamala Harris’s Earned Income Tax Credit Expansion Proposal",
     "description": "PolicyEngine projects that restoring the American Rescue Plan policy would cost $144 billion over a decade, while lowering poverty by 1.6% in 2025.",
-    "date": "2024-10-21 01:00:00",
+    "date": "2024-10-24 01:00:00",
     "tags": ["us", "2024-election", "policy", "featured"],
     "authors": ["nikhil-woodruff"],
     "filename": "harris-eitc.md",
     "image": "harris-eitc.webp"
+  },
+  {
+    "title": "Autumn Budget policy choices",
+    "description": "PolicyEngine estimates that four reported tax reforms would raise £23 billion per year",
+    "date": "2024-10-24 16:30:00",
+    "tags": ["uk", "autumn-budget", "featured", "policy"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "autumn-budget-policy-choices.ipynb",
+    "image": "autumn-budget-policy-choices.png"
   }
 ]

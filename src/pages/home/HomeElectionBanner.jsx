@@ -4,6 +4,12 @@ import westminster from "../../images/home/westminster.jpg";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { useWindowWidth } from "../../hooks/useWindow";
 
+/**
+ * UK 2024 general election banner from home page. If used again,
+ * at breakpoints around 900px, the text content should push upward
+ * on the banner instead of overflowing.
+ * @returns {JSX.Element}
+ */
 export default function HomeElectionBanner() {
   const dC = useDisplayCategory();
   const windowWidth = useWindowWidth();

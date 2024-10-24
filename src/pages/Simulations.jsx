@@ -1,4 +1,3 @@
-import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { apiCall } from "../api/call";
 import { Table } from "antd";
@@ -13,6 +12,7 @@ import CodeBlock from "../layout/CodeBlock";
 import PageHeader from "../layout/PageHeader";
 import style from "../style";
 import { Link } from "react-router-dom";
+import Header from "../layout/Header";
 
 export default function SimulationsPage() {
   // call /simulations endpoint, which returns
