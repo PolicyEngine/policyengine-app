@@ -1,12 +1,10 @@
-## Summary
-
-Vice President Harris proposes expanding the Earned Income Tax Credit (EITC) to provide a tax cut of up to $1,500 for individuals and couples in lower-income jobs who are not raising children in their home. This analysis examines the proposal’s key aspects, potential impacts, and provides economic projections from PolicyEngine’s microsimulation model.
+Vice President Harris proposes expanding the Earned Income Tax Credit (EITC) for filers without qualifying dependents. This analysis examines the proposal’s key aspects, potential impacts, and provides economic projections from PolicyEngine’s microsimulation model.
 
 [**See the full impact in PolicyEngine**](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2&household=47732)
 
 ## The proposal
 
-In her [economic plan](https://kamalaharris.com/wp-content/uploads/2024/09/Policy_Book_Economic-Opportunity.pdf), Harris proposes to restore the expanded Earned Income Tax Credit for workers without children to its level under the American Rescue Plan Act in 2021.
+In her [economic plan](https://kamalaharris.com/wp-content/uploads/2024/09/Policy_Book_Economic-Opportunity.pdf#page=13), Harris proposes to restore the expanded Earned Income Tax Credit for workers without children to its level under the American Rescue Plan Act in 2021.
 
 This would:
 
@@ -53,7 +51,7 @@ The average household [sees](https://policyengine.org/us/policy?focus=policyOutp
 
 ![](https://cdn-images-1.medium.com/max/3152/0*r6VvrLKiMIAkn9jx)
 
-12% of the population benefits, and 5% gain more than 5% of their prior income. There are a small (less than 1%) number of households who lose income due to their State EITC match being more generous for demographically-ineligible EITC households than the expanded EITC is.
+12% of the population benefits, and 5% gain more than 5% of their prior net income. Under one percent of households lose income due to their state EITC match being more generous for demographically-ineligible EITC households than the expanded EITC is.
 
 ![](https://cdn-images-1.medium.com/max/3200/0*s42zWiiXqimZLITE)
 
@@ -67,21 +65,21 @@ The Gini index of income inequality also [falls](https://policyengine.org/us/pol
 
 ## Budget window impact
 
-We [estimate](https://colab.research.google.com/drive/1uf-gmlWPDCasV6KP68M2165wGLqjDf8m#scrollTo=fKBzuOkw9i8n) (in static terms) that the proposal would cost the federal government $18.9bn in 2025, with this increasing to $21.9bn in 2034. The total ten-year cost is $205.7bn.
+We [estimate](https://colab.research.google.com/drive/1uf-gmlWPDCasV6KP68M2165wGLqjDf8m#scrollTo=fKBzuOkw9i8n) (in static terms) that the proposal would cost the federal government $18.9bn in 2025, with this increasing to $21.9bn in 2034. Over the ten-year budget window, the EITC expansion would cost $205.7bn.
 
-| Year    | Federal budget impact (billions $) |
-| ------- | ---------------------------------- |
-| 2025    | -14.3                              |
-| 2026    | -14.4                              |
-| 2027    | -14.7                              |
-| 2028    | -14.6                              |
-| 2029    | -14.5                              |
-| 2030    | -14.4                              |
-| 2031    | -14.3                              |
-| 2032    | -14.2                              |
-| 2033    | -14.2                              |
-| 2034    | -14.1                              |
-| 2025-34 | -143.7                             |
+| Year    | Federal cost (billions $) |
+| ------- | ------------------------- |
+| 2025    | 14.3                      |
+| 2026    | 14.4                      |
+| 2027    | 14.7                      |
+| 2028    | 14.6                      |
+| 2029    | 14.5                      |
+| 2030    | 14.4                      |
+| 2031    | 14.3                      |
+| 2032    | 14.2                      |
+| 2033    | 14.2                      |
+| 2034    | 14.1                      |
+| 2025-34 | 143.7                     |
 
 ## Labor supply responses
 
@@ -93,21 +91,21 @@ Incorporating elasticities of labor supply used by the Congressional Budget Offi
 
 - The federal budgetary cost rises to $19.7 billion (a 38% increase)
 
-Applying these elasticities over the full budget window increases our cost estimate from $143.7 billion to $181.1 billion.
+Applying these elasticities over the full budget window increases our cost estimate from $143.7 billion to $200.9 billion.
 
-| Year    | Federal budget impact (billions $) |
-| ------- | ---------------------------------- |
-| 2025    | -19.7                              |
-| 2026    | -20.2                              |
-| 2027    | -20.2                              |
-| 2028    | -20.4                              |
-| 2029    | -20.4                              |
-| 2030    | -20.1                              |
-| 2031    | -19.8                              |
-| 2032    | -20.2                              |
-| 2033    | -20.0                              |
-| 2034    | -19.9                              |
-| 2025-34 | 200.9                              |
+| Year    | Federal cost (billions $) |
+| ------- | ------------------------- |
+| 2025    | 19.7                      |
+| 2026    | 20.2                      |
+| 2027    | 20.2                      |
+| 2028    | 20.4                      |
+| 2029    | 20.4                      |
+| 2030    | 20.1                      |
+| 2031    | 19.8                      |
+| 2032    | 20.2                      |
+| 2033    | 20.0                      |
+| 2034    | 19.9                      |
+| 2025-34 | 200.9                     |
 
 ## Comparison to other analysts
 
@@ -121,7 +119,7 @@ The Office of Management and Budget estimated the cost of restoring the ARPA EIT
 | [Tax Foundation](https://taxfoundation.org/research/all/federal/kamala-harris-tax-plan-2024/)                                                              | 160                          | Does not include nonfilers |
 | [Penn Wharton Budget Model](https://budgetmodel.wharton.upenn.edu/estimates/2024/8/20/harris-campaign-revenue-effects-of-ctc-eitc-and-aca-premium-subsidy) | 126                          |                            |
 
-PolicyEngine’s Enhanced CPS data is calibrated to be consistent with EITC payment statistics. For this policy score, we added statistical calibration over EITC returns and dollar amounts by tax filer child counts. We also added take-up rate modeling by child counts, assuming a 65% take-up rate for childless EITC filers in line with [the last available IRS estimate](https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/JRC20_Volume3.pdf#page=62) from 2020. Although unclear by how much, it’s possible that these take-up rates become under-estimates where policy becomes more generous, meaning our estimate could be low.
+PolicyEngine’s Enhanced CPS data is calibrated to be consistent with EITC payment statistics. For this policy score, we added statistical calibration over EITC returns and dollar amounts by tax filer child counts. We also added take-up rate modeling by child counts, assuming a 65% take-up rate for childless EITC filers in line with [the last available IRS estimate](https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/JRC20_Volume3.pdf#page=62) from 2020 (though recalibration adjusts the effective take-up).
 
 Other organizations have not provided distributional impacts.
 
@@ -129,10 +127,10 @@ Other organizations have not provided distributional impacts.
 
 The PolicyEngine static microsimulation model projects the following:
 
-1. Expanding the Earned Income Tax Credit to its level from 2021 would cost $144 billion over the 2025–2034 budget window, with costs rising each year.
+1. Expanding the Earned Income Tax Credit to its level from 2021 would cost $144 billion over the 2025–2034 budget window on a static basis, or $201 billion with labor supply responses (per CBO).
 
-1. The proposal disproportionately benefits lower-income households, both in terms of relative impacts on net income and population share gaining.
+2. The proposal disproportionately benefits lower-income households, both in terms of relative impacts on net income and population share gaining.
 
-1. Overall poverty falls 0.4 percentage points, with the largest impact on people aged 18 to 64.
+3. Overall poverty falls 0.4 percentage points, with the largest impact on people aged 18 to 64.
 
-1. Income inequality, as measured by the Gini coefficient, falls 0.2% .
+4. Income inequality, as measured by the Gini coefficient, falls 0.2% .
