@@ -31,7 +31,7 @@ These characterize the EITC policy as shown below.
 | 2033 | 15.3%         | $2,082     | $16,074         | 15.3%          |
 | 2034 | 15.3%         | $2,124     | $16,398         | 15.3%          |
 
-Single filers between $8,000 and $37,000 would see their net incomes increase due to this policy change.
+Single filers with earnings between $8,000 and $37,000 would see their net incomes increase due to this policy change.
 
 ![](https://cdn-images-1.medium.com/max/3044/0*rozC7JqH_bOzaUD_)
 
