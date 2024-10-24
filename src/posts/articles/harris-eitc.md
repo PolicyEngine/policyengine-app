@@ -41,31 +41,15 @@ For more examples of the policy’s household impacts, see our [2023 article](ht
 
 Based on [static microsimulation modeling](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) with PolicyEngine US (version 1.103.0), we project the following economic impacts for 2025.
 
-## Budgetary impact
+### Cost
 
-We project that the EITC expansion will cost the federal government $18.9 billion in 2025. Due to state and local EITC matches, it will also cost state and local governments $2.7 billion.
+Here we estimate the ten-year costs, both with and without behavioral responses, and compare against other scorekeepers.
 
-## Income distribution impacts
+#### Static
 
-The average household [sees](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=67064&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) an increase in net income of $109, between federal, state, and local EITCs, while households in the bottom two deciles gain the most on a relative basis.
+Assuming no behavioral responses, we project that the EITC expansion will cost the federal government $14.3 billion in 2025. Due to state and local EITC matches, it will also cost state and local governments $1.6 billion.
 
-![](https://cdn-images-1.medium.com/max/3152/0*r6VvrLKiMIAkn9jx)
-
-12% of the population benefits, and 5% gain more than 5% of their prior net income. Under one percent of households lose income due to their state EITC match being more generous for demographically-ineligible EITC households than the expanded EITC is.
-
-![](https://cdn-images-1.medium.com/max/3200/0*s42zWiiXqimZLITE)
-
-## Poverty and inequality impacts
-
-We [estimate](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) that the expanded EITC would reduce the poverty rate by 1.3% (0.4 percentage points), or about 1 million people. Child poverty falls less than 0.1% because some children live in households with workers who file separately to them.
-
-The Gini index of income inequality also [falls](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) by 0.2%, and the top-10 and top-1 percent shares of income fall by around 0.1%.
-
-![](https://cdn-images-1.medium.com/max/3196/0*AeI48oVouiLsbEg-)
-
-## Budget window impact
-
-We [estimate](https://colab.research.google.com/drive/1uf-gmlWPDCasV6KP68M2165wGLqjDf8m#scrollTo=fKBzuOkw9i8n) (in static terms) that the proposal would cost the federal government $18.9bn in 2025, with this increasing to $21.9bn in 2034. Over the ten-year budget window, the EITC expansion would cost $205.7bn.
+Over the [ten-year budget window](https://colab.research.google.com/drive/1uf-gmlWPDCasV6KP68M2165wGLqjDf8m#scrollTo=fKBzuOkw9i8n), this amounts to $143.7 billion.
 
 | Year    | Federal cost (billions $) |
 | ------- | ------------------------- |
@@ -81,17 +65,17 @@ We [estimate](https://colab.research.google.com/drive/1uf-gmlWPDCasV6KP68M2165wG
 | 2034    | 14.1                      |
 | 2025-34 | 143.7                     |
 
-## Labor supply responses
+#### Dynamic
 
-Incorporating elasticities of labor supply used by the Congressional Budget Office [changes](https://policyengine.org/us/policy?focus=policyOutput.laborSupplyImpact.hours&reform=67706&region=enhanced_us&timePeriod=2025&baseline=2) these estimates. In 2025:
+Incorporating elasticities of labor supply used by the Congressional Budget Office increases the reform's cost. [In 2025](https://policyengine.org/us/policy?focus=policyOutput.laborSupplyImpact.hours&reform=67706&region=enhanced_us&timePeriod=2025&baseline=2):
 
 - Hours worked falls by 0.27%, or 411,000 full-time equivalent jobs
 
 - Total earnings fall by 0.09%, or $11.7 billion
 
-- The federal budgetary cost rises to $19.7 billion (a 38% increase)
+- The federal budgetary cost rises 38% to $19.7 billion, including $2.1 billion in spending on benefit programs like the Supplemental Nutrition Assistance Program (SNAP)
 
-Applying these elasticities over the full budget window increases our cost estimate from $143.7 billion to $200.9 billion.
+Applying these elasticities over the full budget window increases our cost estimate by 40%, from $143.7 billion to $200.9 billion.
 
 | Year    | Federal cost (billions $) |
 | ------- | ------------------------- |
@@ -107,9 +91,9 @@ Applying these elasticities over the full budget window increases our cost estim
 | 2034    | 19.9                      |
 | 2025-34 | 200.9                     |
 
-## Comparison to other analysts
+#### Comparison to other analysts
 
-The Office of Management and Budget estimated the cost of restoring the ARPA EITC when President Biden released his 2025 budget, which included the provision. The Tax Foundation and Penn Wharton Budget Model have also estimated the proposal’s cost. PolicyEngine projects higher costs than these other organizations.
+The Office of Management and Budget estimated the cost of restoring the ARPA EITC when President Biden released his 2025 budget, which included the provision. The Tax Foundation and Penn Wharton Budget Model have also estimated the proposal’s cost. PolicyEngine projects higher costs than these other organizations when considering behavioral responses, as they have.
 
 | Organization                                                                                                                                               | Cost, 2025-2034 ($ billions) | Notes                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | -------------------------- |
@@ -119,9 +103,33 @@ The Office of Management and Budget estimated the cost of restoring the ARPA EIT
 | [Tax Foundation](https://taxfoundation.org/research/all/federal/kamala-harris-tax-plan-2024/)                                                              | 160                          | Does not include nonfilers |
 | [Penn Wharton Budget Model](https://budgetmodel.wharton.upenn.edu/estimates/2024/8/20/harris-campaign-revenue-effects-of-ctc-eitc-and-aca-premium-subsidy) | 126                          |                            |
 
-PolicyEngine’s Enhanced CPS data is calibrated to be consistent with EITC payment statistics. For this policy score, we added statistical calibration over EITC returns and dollar amounts by tax filer child counts. We also added take-up rate modeling by child counts, assuming a 65% take-up rate for childless EITC filers in line with [the last available IRS estimate](https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/JRC20_Volume3.pdf#page=62) from 2020 (though recalibration adjusts the effective take-up).
+PolicyEngine’s Enhanced CPS data is calibrated to be consistent with EITC payment statistics. For this policy score, we added statistical calibration over EITC returns and dollar amounts by tax filer child counts, which account for [non-take-up](https://www.taxpayeradvocate.irs.gov/wp-content/uploads/2020/08/JRC20_Volume3.pdf#page=62).
 
-Other organizations have not provided distributional impacts.
+Our higher cost may partly owe to our accounting of benefit programs like SNAP; for example, if a worker is in the EITC phase-out earnings range, the reform will increase their marginal tax rate. We would then simulate their earnings to fall, in accord with CBO assumptions. At a lower earnings level, the person may be eligible for additional SNAP benefits. Our rules engine accounts for that additional cost, while some other organizations only account for federal costs via taxes.
+
+## Distributional impacts
+
+The PolicyEngine microsimulation model supports distributional analysis by decile, as well as poverty and inequality. Unlike cost, other organizations have not provided distributional impacts for us to compare against.
+
+### By decile
+
+The average household [sees](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=67064&region=enhanced_us&timePeriod=2025&baseline=2&household=47732) an increase in net income of $109, between federal, state, and local EITCs, while households in the bottom two deciles gain the most on a relative basis.
+
+![](https://cdn-images-1.medium.com/max/3152/0*r6VvrLKiMIAkn9jx)
+
+12% of the population benefits, and 5% gain more than 5% of their prior net income. Under one percent of households lose income due to their state EITC match being more generous for demographically-ineligible EITC households than the expanded EITC is.
+
+![](https://cdn-images-1.medium.com/max/3200/0*s42zWiiXqimZLITE)
+
+### Poverty
+
+We [estimate](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) that the expanded EITC would reduce the poverty rate by 1.3% (0.4 percentage points), or about 1 million people. Child poverty falls less than 0.1% because some children live in households with workers who file separately to them.
+
+### Inequality
+
+The Gini index of income inequality also [falls](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=67696&region=enhanced_us&timePeriod=2025&baseline=2) by 0.2%, and the top-10 and top-1 percent shares of income fall by around 0.1%.
+
+![](https://cdn-images-1.medium.com/max/3196/0*AeI48oVouiLsbEg-)
 
 ## Key findings
 
