@@ -128,7 +128,7 @@ export default function relativeImpactByDecile(props) {
   const decileRelative = impact.decile.relative;
 
   // Hot fix to be removed to avoid deciles outside of 1-10
-  Object.keys(decileRelative).map((key) => {
+  Object.keys(decileRelative).forEach((key) => {
     if (key > 10 || key < 1) {
       delete decileRelative[key];
     }

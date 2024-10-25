@@ -137,7 +137,7 @@ export default function averageImpactByDecile(props) {
   const decileAverage = impact.decile.average;
 
   // Hot fix to be removed to avoid deciles outside of 1-10
-  Object.keys(decileAverage).map((key) => {
+  Object.keys(decileAverage).forEach((key) => {
     if (key > 10 || key < 1) {
       delete decileAverage[key];
     }
