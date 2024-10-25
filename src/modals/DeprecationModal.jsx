@@ -7,6 +7,7 @@ import { getNewPolicyId } from "../api/parameters";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../api/call";
 import style from "../style";
+import { wrappedJsonParse, wrappedJsonStringify } from "../data/wrappedJson";
 
 export default function DeprecationModal(props) {
   const { oldPolicy, countryVersion, metadata, deprecatedParams } = props;
@@ -153,7 +154,7 @@ export default function DeprecationModal(props) {
 }
 
 export function removeDeprecatedParams(metadata, policy) {
-  const newPolicy = JSON.parse(JSON.stringify(policy));
+  const newPolicy = wrappedJsonParse(wrappedJsonStringify(policy));
   const baselineAndReform = Object.values(newPolicy);
 
   for (const item of baselineAndReform) {

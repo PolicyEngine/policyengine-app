@@ -44,7 +44,10 @@ import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
+import DeveloperLayout from "./pages/DeveloperLayout";
+import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
+import { wrappedResponseJson } from "./data/wrappedJson";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -133,7 +136,7 @@ export default function PolicyEngine() {
   useEffect(() => {
     if (metadata) {
       countryApiCall(countryId, `/policy/${baselinePolicyId}`)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((dataHolder) => {
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
@@ -151,7 +154,7 @@ export default function PolicyEngine() {
   useEffect(() => {
     if (metadata) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((dataHolder) => {
           if (dataHolder.result.label === "None") {
             dataHolder.result.label = null;
@@ -168,7 +171,7 @@ export default function PolicyEngine() {
   useEffect(() => {
     if (searchParams.get("renamed") && reformPolicyId) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((dataHolder) => {
           setReformPolicy({
             data: dataHolder.result.policy_json,
@@ -298,6 +301,11 @@ export default function PolicyEngine() {
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />
+          <Route path="developer-tools" element={<DeveloperLayout />}>
+            <Route index element={<DeveloperHome />} />
+            <Route path="simulations" element={<SimulationsPage />} />
+            <Route path="api_status" element={<StatusPage />} />
+          </Route>
           <Route path="research" element={<Outlet />}>
             <Route index={true} element={<Research />} />
             <Route path=":postName" element={<BlogPage />} />
@@ -349,7 +357,6 @@ export default function PolicyEngine() {
         </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
         <Route path="/uk/2024-manifestos" element={<ManifestosComparison />} />
-        <Route path="/:countryId/api_status" element={<StatusPage />} />
         <Route
           path="/us/trafwa-ctc-calculator"
           element={<TrafwaCalculator />}

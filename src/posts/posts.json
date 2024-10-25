@@ -381,7 +381,7 @@
     "title": "Breaking down poverty impacts by sex",
     "description": "PolicyEngine estimates the impact of customisable policy reforms on poverty — overall, by age, and now by sex.",
     "date": "2023-03-08 07:30:00",
-    "tags": ["uk", "featured", "technical"],
+    "tags": ["uk", "technical"],
     "filename": "breaking-down-uk-poverty-impacts-by-sex.md",
     "image": "breaking-down-poverty-impacts-by-sex.png",
     "authors": ["nikhil-woodruff"]
@@ -390,7 +390,7 @@
     "title": "Analysis of the Spring Budget 2023",
     "description": "PolicyEngine analysis estimates the impact of the EPG extension and the fuel duty freeze.",
     "date": "2023-03-15 18:10:00",
-    "tags": ["uk", "featured", "policy"],
+    "tags": ["uk", "policy"],
     "filename": "analysis-of-the-spring-budget-2023.md",
     "image": "analysis-of-the-spring-budget-2023.jpeg",
     "authors": ["nikhil-woodruff"]
@@ -534,7 +534,7 @@
     "title": "Digital Public Goods Alliance recognizes PolicyEngine as a Digital Public Good",
     "description": "The UN-endorsed initiative highlights PolicyEngine's open source approach to supporting the Sustainable Development Goals.",
     "date": "2023-04-26 09:00:00",
-    "tags": ["global", "impact", "featured"],
+    "tags": ["global", "impact"],
     "filename": "digital-public-goods-alliance-recognizes-policyengine-as-a-digital-public-good.md",
     "image": "digital-public-goods-alliance-recognizes-policyengine-as-a-digital-public-good.webp",
     "authors": ["nikhil-woodruff"]
@@ -607,7 +607,7 @@
     "description": "A ‘Citizens' Economic Council' explores PolicyEngine-scored tax-benefit impacts.",
     "date": "2023-11-04 09:00:00",
     "filename": "citizens-economic-council.md",
-    "tags": ["uk", "impact", "featured"],
+    "tags": ["uk", "impact"],
     "image": "citizens-economic-council.png",
     "authors": ["nikhil-woodruff"]
   },
@@ -616,7 +616,7 @@
     "description": "Chancellor Jeremy Hunt just announced National Insurance cuts and benefit uprating. We've evaluated these reforms.",
     "date": "2023-11-22 17:25",
     "filename": "autumn-statement-2023.md",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "image": "jeremy-hunt.jpg",
     "authors": ["nikhil-woodruff"]
   },
@@ -732,7 +732,7 @@
     "title": "The Labour Party Manifesto",
     "description": "PolicyEngine's comprehensive impact score.",
     "date": "2024-06-29 14:00:00",
-    "tags": ["uk", "policy", "featured"],
+    "tags": ["uk", "policy"],
     "authors": ["nikhil-woodruff", "anthony-volk"],
     "filename": "labour-2024-manifesto.md",
     "image": "labour-2024-manifesto.png"
@@ -835,5 +835,23 @@
     "authors": ["vahid-ahmadi"],
     "filename": "school-vat.md",
     "image": "classroom-2093744.jpg"
+  },
+  {
+    "title": "Kamala Harris’s Earned Income Tax Credit Expansion Proposal",
+    "description": "PolicyEngine projects that restoring the American Rescue Plan policy would cost $144 billion (static) or $201 billion (dynamic) over a decade, while lowering poverty by 1.6% in 2025.",
+    "date": "2024-10-24 01:00:00",
+    "tags": ["us", "2024-election", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "harris-eitc.md",
+    "image": "harris-eitc.webp"
+  },
+  {
+    "title": "Autumn Budget policy choices",
+    "description": "PolicyEngine estimates that four reported tax reforms would raise £23 billion per year",
+    "date": "2024-10-24 16:30:00",
+    "tags": ["uk", "autumn-budget", "featured", "policy"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "autumn-budget-2024-policy-choices.ipynb",
+    "image": "autumn-budget-policy-choices.png"
   }
 ]

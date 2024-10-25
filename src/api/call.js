@@ -1,5 +1,6 @@
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
+import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
 
@@ -19,7 +20,7 @@ export function apiCall(path, body, method, secondAttempt = false) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: body ? JSON.stringify(body) : null,
+    body: body ? wrappedJsonStringify(body) : null,
   }).then((response) => {
     // If the response is a 500, try again once.
     if (response.status === 500 && !secondAttempt) {
@@ -87,7 +88,7 @@ export async function updateMetadata(countryId) {
       return null;
     }
 
-    const dataHolder = await res.json();
+    const dataHolder = await wrappedResponseJson(res);
 
     let data = dataHolder.result;
     const variableTree = buildVariableTree(

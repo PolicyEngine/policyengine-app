@@ -14,6 +14,7 @@ import gtag from "../../../api/analytics";
 import { useEffect } from "react";
 import StableInputNumber from "controls/StableInputNumber";
 import { defaultYear } from "data/constants";
+import { useState } from "react";
 
 export default function VariableEditor(props) {
   const [searchParams] = useSearchParams();
@@ -185,6 +186,7 @@ function HouseholdVariableEntityInput(props) {
     setEdited,
     singleEntity,
   } = props;
+
   const submitValue = (value) => {
     value = Number.isNaN(+value) ? value : +value;
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
@@ -246,6 +248,9 @@ function HouseholdVariableEntityInput(props) {
       defaultValue = variable.possibleValues[0];
     }
   }
+
+  const [value, setValue] = useState(defaultValue);
+
   const mobile = useMobile();
 
   let control;
@@ -281,6 +286,8 @@ function HouseholdVariableEntityInput(props) {
         defaultValue={defaultValue}
         onPressEnter={onPressEnter}
         onBlur={onPressEnter}
+        value={value}
+        onChange={(value) => setValue(value)}
       />
     );
   } else if (variable.valueType === "bool") {

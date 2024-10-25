@@ -27,6 +27,7 @@ import MobileCalculatorPage from "../layout/MobileCalculatorPage.jsx";
 import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.jsx";
 import TaxYear from "./household/input/TaxYear";
 import { Helmet } from "react-helmet";
+import { wrappedResponseJson } from "../data/wrappedJson.js";
 
 export default function HouseholdPage(props) {
   const {
@@ -100,7 +101,7 @@ export default function HouseholdPage(props) {
           console.error("Back-end error while attempting to get household");
         }
 
-        const resJSON = await res.json();
+        const resJSON = await wrappedResponseJson(res);
         dataHolder = {
           input: resJSON.result.household_json,
         };
@@ -158,7 +159,7 @@ export default function HouseholdPage(props) {
             (metadata ? metadata.current_law_id : "current-law")
           }`,
         )
-          .then((res) => res.json())
+          .then((res) => wrappedResponseJson(res))
           .then((dataHolder) => {
             if (dataHolder.status === "error") {
               setLoading(false);
@@ -178,7 +179,7 @@ export default function HouseholdPage(props) {
             countryId,
             `/household/${householdId}/policy/${policy.reform.id}`,
           )
-            .then((res) => res.json())
+            .then((res) => wrappedResponseJson(res))
             .then((dataHolder) => {
               if (dataHolder.status === "error") {
                 setLoading(false);
