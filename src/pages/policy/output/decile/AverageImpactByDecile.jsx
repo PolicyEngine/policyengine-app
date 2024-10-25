@@ -135,6 +135,14 @@ export function ImpactPlot(props) {
 export default function averageImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const decileAverage = impact.decile.average;
+
+  // Hot fix to be removed to avoid deciles outside of 1-10
+  Object.keys(decileAverage).map((key) => {
+    if (key > 10 || key < 1) {
+      delete decileAverage[key];
+    }
+  });
+
   const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
   const chart = (
