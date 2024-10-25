@@ -1,7 +1,7 @@
 ## Key findings
 
 - We estimate a [£1.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2025&baseline=1) revenue increase from Labour's proposal to raise the VAT rate on private schools to 20%.
-- Our analysis projects that Labour's proposal to remove tax exemptions from private schools would raise a total of £6.1 billion in tax revenue over the five-year period from FY2025 to FY2029.
+- Our analysis projects that Labour's proposal to remove tax exemptions from private schools would raise a total of £7.7 billion in tax revenue over the five-year period from FY2025 to FY2029.
 - We estimate that the Gini index of income inequality would decrease slightly by 0.01% in FY2025.
 - We also estimate that Labour's plan would lower net income for 3.3% of people.
 
@@ -20,10 +20,10 @@ The chart presents PolicyEngine's estimates of the effects of Labour's proposed 
 | Year | Budgetary impact (£ billion)                                                                                                    | People affected (%) |
 | :--- | :------------------------------------------------------------------------------------------------------------------------------ | :------------------ |
 | 2025 | [1.5](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2025&baseline=1) | 3.3                 |
-| 2026 | [1.0](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2026&baseline=1) | 2.7                 |
-| 2027 | [1.2](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2027&baseline=1) | 3.1                 |
-| 2028 | [1.3](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2028&baseline=1) | 2.5                 |
-| 2029 | [1.3](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2029&baseline=1) | 2.5                 |
+| 2026 | [1.5](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2026&baseline=1) | 3.3                 |
+| 2027 | [1.5](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2027&baseline=1) | 3.3                 |
+| 2028 | [1.6](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2028&baseline=1) | 3.4                 |
+| 2029 | [1.6](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2029&baseline=1) | 3.4                 |
 
 ### Distributional impact
 
