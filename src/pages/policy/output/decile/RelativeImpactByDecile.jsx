@@ -126,6 +126,14 @@ export function ImpactPlot(props) {
 export default function relativeImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const decileRelative = impact.decile.relative;
+
+  // Hot fix to be removed to avoid deciles outside of 1-10
+  Object.keys(decileRelative).forEach((key) => {
+    if (key > 10 || key < 1) {
+      delete decileRelative[key];
+    }
+  });
+
   const relativeChange =
     -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
   const chart = (
