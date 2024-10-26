@@ -853,5 +853,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "autumn-budget-2024-policy-choices.ipynb",
     "image": "autumn-budget-policy-choices.png"
+  },
+  {
+    "title": "Levying employer National Insurance on pension contributions",
+    "description": "PolicyEngine estimates the now-scrapped Autumn Budget reform would have raised between £10 and £18 billion per year, depending on how employers pass it on to wages.",
+    "date": "2024-10-26 09:00:00",
+    "tags": ["uk", "autumn-budget", "policy"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "autumn-budget-2024-employer-nic-pension-contributions.md",
+    "image": "autumn-budget-2024-employer-nic-pension-contributions.png"
   }
 ]
