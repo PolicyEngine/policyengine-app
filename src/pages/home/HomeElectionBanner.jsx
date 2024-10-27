@@ -4,9 +4,102 @@ import usFlag from "../../images/home/us_flag.jpg";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { useWindowWidth } from "../../hooks/useWindow";
 
+const primaryArticles = [
+  {
+    title: "Harris Child Tax Credit Proposal",
+    shortTitle: "Harris CTC",
+    link: "/us/research/harris-ctc"
+  },
+  {
+    title: "Harris Earned Income Tax Credit Proposal",
+    shortTitle: "Harris EITC",
+    link: "/us/research/harris-eitc"
+  },
+  {
+    title: "Harris High-Income Tax Reform Proposal",
+    shortTitle: "Harris High-Income",
+    link: "#"
+  },
+  {
+    title: "Trump Social Security Tax Exemption Proposal",
+    shortTitle: "Trump Social Security",
+    link: "/us/research/social-security-tax-exemption"
+  }
+];
+
+const secondaryArticles = [
+  {
+    title: "Harris LIFT Act Proposal of 2018",
+    shortTitle: "Harris LIFT Act (2018)",
+    link: "/us/research/lift-act"
+  },
+  {
+    title: "Harris Rent Relief Act of 2019",
+    shortTitle: "Harris Rent Relief (2019)",
+    link: "/us/research/rent-relief-act"
+  },
+  {
+    title: "Walz Minnesota State Income Tax Reforms of 2023",
+    shortTitle: "Walz MN Income Tax (2023)",
+    link: "/us/research/mn-hf1938-walz"
+  },
+  {
+    title: "Vance Child Tax Credit Suggestion",
+    shortTitle: "Vance CTC",
+    link: "/us/research/vance-ctc"
+  }
+];
+
 export default function HomeElectionBanner() {
   const dC = useDisplayCategory();
   const windowWidth = useWindowWidth();
+
+  const title = "Explore PolicyEngine's coverage of the 2024 election";
+  const subtitle = "Use our new dashboard to estimate the society-wide and " + 
+  "household-level impacts of each party's policy proposals, suggestions, and ideas";
+  const ctaText = "Compare each party's impacts";
+  const ctaLink = "#";
+  const ariaLabel = "United States flag flying against grayish-blue sky. " +
+  "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
+  const articlesHeader = "Read PolicyEngine's analysis of policy ideas " + 
+  "and proposals from both parties";
+
+
+  const primaryArticlesJSX = primaryArticles.map((article, index) => {
+
+    const shouldUseShortTitle = (
+      (dC !== "mobile" && windowWidth <= 1000) ||
+      (dC === "mobile" && windowWidth <= 600)
+    );
+
+    return (
+      <LinkButton
+        type="primary"
+        text={shouldUseShortTitle ? article.shortTitle : article.title}
+        style={{ width: "100%" }}
+        link={article.link}
+        key={String(index).concat(article.text)}
+      />
+    )
+  });
+
+  const secondaryArticlesJSX = secondaryArticles.map((article, index) => {
+
+    const shouldUseShortTitle = (
+      (dC !== "mobile" && windowWidth <= 1000) ||
+      (dC === "mobile" && windowWidth <= 600)
+    );
+
+    return (
+      <LinkButton
+        type="secondary"
+        text={shouldUseShortTitle ? article.shortTitle : article.title}
+        style={{ width: "100%" }}
+        link={article.link}
+        key={String(index).concat(article.text)}
+      />
+    )
+  });
 
   if (dC === "mobile") {
     return (
@@ -36,7 +129,7 @@ export default function HomeElectionBanner() {
             minHeight: "fit-content",
           }}
           role="img"
-          aria-label={"United States flag flying against grayish-blue sky. Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/"}
+          aria-label={ariaLabel}
         >
           <div
             style={{
@@ -52,18 +145,16 @@ export default function HomeElectionBanner() {
             }}
           >
             <h3 style={{ color: style.colors.WHITE }}>
-              Explore PolicyEngine&apos;s coverage of the 2024 election
+              {title}
             </h3>
             <p style={{ color: style.colors.WHITE }}>
-              Use our new dashboard to estimate the society-wide and 
-              household-level impacts of each party&apos;s policy proposals,
-              suggestions, and ideas
+              {subtitle}
             </p>
             <LinkButton
               type="primary"
-              text="Compare each party's impacts"
+              text={ctaText}
               style={{ marginTop: "16px" }}
-              link="#"
+              link={ctaLink}
             />
           </div>
         </div>
@@ -87,46 +178,18 @@ export default function HomeElectionBanner() {
           }}
         >
           <h4 style={{ color: style.colors.BLACK }}>
-            Read PolicyEngine&apos;s analysis of policy ideas
-            and proposals from both parties
+            {articlesHeader}
           </h4>
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateRows: "repeat(4, 1fr)",
               gap: "16px",
             }}
           >
-            <LinkButton
-              type="primary"
-              text={windowWidth > 650 ? "Conservative" : "Con"}
-              backgroundColor="#84badb"
-              borderColor="#84badb"
-              activeBackgroundColor="#0087dc"
-              activeBorderColor="#0087dc"
-              style={{ width: "100%" }}
-              link="/uk/research/conservative-2024-manifesto"
-            />
-            <LinkButton
-              type="primary"
-              text={windowWidth > 650 ? "Labour" : "Lab"}
-              backgroundColor="#e388a0"
-              borderColor="#e388a0"
-              activeBackgroundColor="#e4003b"
-              activeBorderColor="#e4003b"
-              style={{ width: "100%" }}
-              link="/uk/research/labour-2024-manifesto"
-            />
-            <LinkButton
-              type="primary"
-              text={windowWidth > 650 ? "Liberal Democrats" : "Lib"}
-              backgroundColor="#fad496"
-              borderColor="#fad496"
-              activeBackgroundColor="#faa61a"
-              activeBorderColor="#faa61a"
-              style={{ width: "100%" }}
-              link="/uk/research/lib-dem-2024-manifesto"
-            />
+            {primaryArticlesJSX}
+            {secondaryArticlesJSX}
           </div>
         </div>
       </div>
@@ -171,7 +234,7 @@ export default function HomeElectionBanner() {
             height: "min-content",
           }}
           role="img"
-          aria-label={"United States flag flying against grayish-blue sky. Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/"}
+          aria-label={ariaLabel}
         >
           <div
             style={{
@@ -189,18 +252,16 @@ export default function HomeElectionBanner() {
             }}
           >
             <h3 style={{ color: style.colors.WHITE }}>
-              Explore PolicyEngine&apos;s coverage of the 2024 election
+              {title}
             </h3>
             <p style={{ color: style.colors.WHITE }}>
-              Use our new dashboard to estimate the society-wide and 
-              household-level impacts of each party&apos;s policy proposals,
-              suggestions, and ideas
+              {subtitle}
             </p>
             <LinkButton
               type="primary"
-              text="Compare each party's impacts"
+              text={ctaText}
               style={{ marginTop: "8px" }}
-              link="#"
+              link={ctaLink}
             />
           </div>
         </div>
@@ -220,46 +281,18 @@ export default function HomeElectionBanner() {
               textAlign: "center",
             }}
           >
-            Read PolicyEngine&apos;s analysis of policy ideas
-            and proposals from both parties
+            {articlesHeader}
           </h4>
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
+              display: "grid",
               gap: "16px",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gridTemplateRows: "repeat(2, 1fr)",
             }}
           >
-            <LinkButton
-              type="primary"
-              text="Conservative"
-              backgroundColor="#84badb"
-              borderColor="#84badb"
-              activeBackgroundColor="#0087dc"
-              activeBorderColor="#0087dc"
-              style={{ flex: 1, maxWidth: "200px" }}
-              link="/uk/research/conservative-2024-manifesto"
-            />
-            <LinkButton
-              type="primary"
-              text="Labour"
-              backgroundColor="#e388a0"
-              borderColor="#e388a0"
-              activeBackgroundColor="#e4003b"
-              activeBorderColor="#e4003b"
-              style={{ flex: 1, maxWidth: "200px" }}
-              link="/uk/research/labour-2024-manifesto"
-            />
-            <LinkButton
-              type="primary"
-              text="Liberal Democrats"
-              backgroundColor="#fad496"
-              borderColor="#fad496"
-              activeBackgroundColor="#faa61a"
-              activeBorderColor="#faa61a"
-              style={{ flex: 1, maxWidth: "200px" }}
-              link="/uk/research/lib-dem-2024-manifesto"
-            />
+            {primaryArticlesJSX}
+            {secondaryArticlesJSX}
           </div>
         </div>
       </div>
