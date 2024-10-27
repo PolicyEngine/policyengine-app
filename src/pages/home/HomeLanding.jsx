@@ -17,26 +17,13 @@ export default function HomeLanding() {
         position: "relative",
       }}
     >
-      {countryId === "uk" ? (
-        <div
-          style={{
-            width: "100%",
-            height: mobile ? 600 : "100%",
-            backgroundColor: style.colors.DARKEST_BLUE,
-          }}
-        />
-      ) : (
-        <img
-          src={Hero}
-          style={{
-            width: "100%",
-            height: mobile ? 600 : "100%",
-            objectFit: "cover",
-            position: "absolute",
-          }}
-          alt="Neon-style abstract lights background"
-        />
-      )}
+      <div
+        style={{
+          width: "100%",
+          height: mobile ? 600 : "100%",
+          backgroundColor: style.colors.DARKEST_BLUE,
+        }}
+      />
       <div
         style={{
           width: mobile ? "80vw" : "60vw",
