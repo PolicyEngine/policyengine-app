@@ -22,12 +22,12 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
-        <HomeLanding />
         {
           countryId === "us" && (
             <HomeElectionBanner />
           )
         }
+        <HomeLanding />
         <HomeUsedBy />
         <HomeBlogPreview />
         <HomeSubscribe />
