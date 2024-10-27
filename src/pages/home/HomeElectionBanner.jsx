@@ -35,6 +35,8 @@ export default function HomeElectionBanner() {
             backgroundSize: "cover",
             minHeight: "fit-content",
           }}
+          role="img"
+          aria-label={"United States flag flying against grayish-blue sky. Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/"}
         >
           <div
             style={{
@@ -50,17 +52,18 @@ export default function HomeElectionBanner() {
             }}
           >
             <h3 style={{ color: style.colors.WHITE }}>
-              Explore PolicyEngine&apos;s UK election coverage
+              Explore PolicyEngine&apos;s coverage of the 2024 election
             </h3>
             <p style={{ color: style.colors.WHITE }}>
-              Use our new interactive tool to estimate the society-wide and
-              household-level impacts of each party&apos;s manifesto
+              Use our new dashboard to estimate the society-wide and 
+              household-level impacts of each party&apos;s policy proposals,
+              suggestions, and ideas
             </p>
             <LinkButton
               type="primary"
               text="Compare each party's impacts"
               style={{ marginTop: "16px" }}
-              link="/uk/2024-manifestos"
+              link="#"
             />
           </div>
         </div>
@@ -84,7 +87,8 @@ export default function HomeElectionBanner() {
           }}
         >
           <h4 style={{ color: style.colors.BLACK }}>
-            Explore PolicyEngine&apos;s analysis of each party&apos;s manifesto
+            Read PolicyEngine&apos;s analysis of policy ideas
+            and proposals from both parties
           </h4>
           <div
             style={{
@@ -166,6 +170,8 @@ export default function HomeElectionBanner() {
             backgroundPosition: "bottom 20% right",
             height: "min-content",
           }}
+          role="img"
+          aria-label={"United States flag flying against grayish-blue sky. Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/"}
         >
           <div
             style={{
@@ -183,17 +189,18 @@ export default function HomeElectionBanner() {
             }}
           >
             <h3 style={{ color: style.colors.WHITE }}>
-              Explore PolicyEngine&apos;s UK election coverage
+              Explore PolicyEngine&apos;s coverage of the 2024 election
             </h3>
             <p style={{ color: style.colors.WHITE }}>
-              Use our new interactive tool to estimate the society-wide and
-              household-level impacts of each party&apos;s manifesto
+              Use our new dashboard to estimate the society-wide and 
+              household-level impacts of each party&apos;s policy proposals,
+              suggestions, and ideas
             </p>
             <LinkButton
               type="primary"
               text="Compare each party's impacts"
               style={{ marginTop: "8px" }}
-              link="/uk/2024-manifestos"
+              link="#"
             />
           </div>
         </div>
@@ -213,7 +220,8 @@ export default function HomeElectionBanner() {
               textAlign: "center",
             }}
           >
-            Explore PolicyEngine&apos;s analysis of each party&apos;s manifesto
+            Read PolicyEngine&apos;s analysis of policy ideas
+            and proposals from both parties
           </h4>
           <div
             style={{

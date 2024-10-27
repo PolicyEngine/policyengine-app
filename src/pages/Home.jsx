@@ -9,7 +9,7 @@ import HomeTransparency from "./home/HomeTransparency";
 import Footer from "../layout/Footer";
 import HomeQuoteCarousel from "./home/HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
-import HomeElectionBanner from "./home/HomeElectionBanner";
+import HomeElectionBanner from "./home/HomeElectionBanner.jsx";
 import useCountryId from "../hooks/useCountryId";
 
 export default function Home() {
