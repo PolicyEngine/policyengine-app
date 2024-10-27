@@ -9,6 +9,7 @@ import HomeTransparency from "./home/HomeTransparency";
 import Footer from "../layout/Footer";
 import HomeQuoteCarousel from "./home/HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
+import HomeElectionBanner from "./home/HomeElectionBanner";
 
 export default function Home() {
   return (
@@ -19,6 +20,11 @@ export default function Home() {
       <div>
         <Header />
         <HomeLanding />
+        {
+          countryId === "us" && (
+            <HomeElectionBanner />
+          )
+        }
         <HomeUsedBy />
         <HomeBlogPreview />
         <HomeSubscribe />
