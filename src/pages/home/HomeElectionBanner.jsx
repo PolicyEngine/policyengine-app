@@ -1,6 +1,6 @@
 import LinkButton from "../../controls/LinkButton";
 import style from "../../style";
-import usFlag from "../../images/home/us_flag.jpg";
+import usFlags from "../../images/home/american-flags-flagpoles-blue-sky.jpg";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
 import { useWindowWidth } from "../../hooks/useWindow";
 
@@ -77,16 +77,17 @@ export default function HomeElectionBanner() {
     "Read PolicyEngine's analysis of policy ideas " +
     "and proposals from both parties";
 
+  const shouldUseShortTitle =
+    (dC !== "mobile" && windowWidth < 1150 && windowWidth >= 950) ||
+    (dC === "mobile" && windowWidth < 600);
+
   const primaryArticlesJSX = primaryArticles.map((article, index) => {
-    const shouldUseShortTitle =
-      (dC !== "mobile" && windowWidth <= 1000) ||
-      (dC === "mobile" && windowWidth <= 600);
 
     return (
       <LinkButton
         type="primary"
         text={shouldUseShortTitle ? article.shortTitle : article.title}
-        style={{ width: "100%" }}
+        // style={{ width: "100%" }}
         link={article.link}
         key={String(index).concat(article.text)}
       />
@@ -94,9 +95,6 @@ export default function HomeElectionBanner() {
   });
 
   const secondaryArticlesJSX = secondaryArticles.map((article, index) => {
-    const shouldUseShortTitle =
-      (dC !== "mobile" && windowWidth <= 1000) ||
-      (dC === "mobile" && windowWidth <= 600);
 
     return (
       <LinkButton
@@ -131,7 +129,7 @@ export default function HomeElectionBanner() {
             position: "relative",
             width: "100%",
             display: "flex",
-            backgroundImage: `url(${usFlag})`,
+            backgroundImage: `url(${usFlags})`,
             backgroundColor: style.colors.BLUE_LIGHT,
             backgroundSize: "cover",
             minHeight: "fit-content",
@@ -228,11 +226,11 @@ export default function HomeElectionBanner() {
             width: "100%",
             position: "relative",
             marginBottom: "24px",
-            backgroundImage: `url(${usFlag})`,
+            backgroundImage: `url(${usFlags})`,
             // Fallback
             backgroundColor: style.colors.BLUE_LIGHT,
             backgroundSize: "cover",
-            backgroundPosition: "bottom 20% right",
+            backgroundPosition: "right top",
             height: "min-content",
           }}
           role="img"
@@ -285,8 +283,8 @@ export default function HomeElectionBanner() {
             style={{
               display: "grid",
               gap: "16px",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gridTemplateRows: "repeat(2, 1fr)",
+              gridTemplateColumns: windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(5, 1fr)",
+              gridTemplateRows: windowWidth < 950 ? "repeat(5, 1fr)" : "repeat(2, 1fr)",
             }}
           >
             {primaryArticlesJSX}
