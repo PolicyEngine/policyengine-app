@@ -129,7 +129,7 @@ function FullLiteToggle() {
       </p>
       <Tooltip
         placement="topRight"
-        title="When checked, limit simulations to a random 10,000 household set."
+        title="When selected, limit simulations to a random 10,000 household set."
         trigger={displayCategory === "mobile" ? "click" : "hover"}
       >
         <QuestionCircleOutlined
