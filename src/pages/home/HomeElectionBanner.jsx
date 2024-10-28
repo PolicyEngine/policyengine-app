@@ -66,7 +66,7 @@ export default function HomeElectionBanner() {
 
   const title = "Explore PolicyEngine's coverage of the 2024 election";
   const subtitle =
-    "Use our new dashboard to estimate the society-wide and " +
+    "Use our new dashboard to estimate the " +
     "household-level impacts of each party's policy proposals, suggestions, and ideas";
   const ctaText = "Compare each party's impacts";
   const ctaLink = "#";
