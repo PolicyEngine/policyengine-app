@@ -8,46 +8,56 @@ const primaryArticles = [
   {
     title: "Harris Child Tax Credit Proposal",
     shortTitle: "Harris CTC",
-    link: "/us/research/harris-ctc"
+    link: "/us/research/harris-ctc",
   },
   {
     title: "Harris Earned Income Tax Credit Proposal",
     shortTitle: "Harris EITC",
-    link: "/us/research/harris-eitc"
+    link: "/us/research/harris-eitc",
   },
   {
     title: "Harris High-Income Tax Reform Proposal",
     shortTitle: "Harris High-Income",
-    link: "#"
+    link: "#",
   },
   {
     title: "Trump Social Security Tax Exemption Proposal",
     shortTitle: "Trump Social Security",
-    link: "/us/research/social-security-tax-exemption"
-  }
+    link: "/us/research/social-security-tax-exemption",
+  },
+  {
+    title: "Trump Combined Tax Reform Proposal",
+    shortTitle: "Trump Combined Tax Reforms",
+    link: "#",
+  },
 ];
 
 const secondaryArticles = [
   {
     title: "Harris LIFT Act Proposal of 2018",
     shortTitle: "Harris LIFT Act (2018)",
-    link: "/us/research/lift-act"
+    link: "/us/research/lift-act",
   },
   {
     title: "Harris Rent Relief Act of 2019",
     shortTitle: "Harris Rent Relief (2019)",
-    link: "/us/research/rent-relief-act"
+    link: "/us/research/rent-relief-act",
   },
   {
     title: "Walz Minnesota State Income Tax Reforms of 2023",
     shortTitle: "Walz MN Income Tax (2023)",
-    link: "/us/research/mn-hf1938-walz"
+    link: "/us/research/mn-hf1938-walz",
   },
   {
     title: "Vance Child Tax Credit Suggestion",
     shortTitle: "Vance CTC",
-    link: "/us/research/vance-ctc"
-  }
+    link: "/us/research/vance-ctc",
+  },
+  {
+    title: "Tax Cuts and Jobs Act",
+    shortTitle: "TCJA",
+    link: "#",
+  },
 ];
 
 export default function HomeElectionBanner() {
@@ -55,22 +65,22 @@ export default function HomeElectionBanner() {
   const windowWidth = useWindowWidth();
 
   const title = "Explore PolicyEngine's coverage of the 2024 election";
-  const subtitle = "Use our new dashboard to estimate the society-wide and " + 
-  "household-level impacts of each party's policy proposals, suggestions, and ideas";
+  const subtitle =
+    "Use our new dashboard to estimate the society-wide and " +
+    "household-level impacts of each party's policy proposals, suggestions, and ideas";
   const ctaText = "Compare each party's impacts";
   const ctaLink = "#";
-  const ariaLabel = "United States flag flying against grayish-blue sky. " +
-  "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
-  const articlesHeader = "Read PolicyEngine's analysis of policy ideas " + 
-  "and proposals from both parties";
-
+  const ariaLabel =
+    "United States flag flying against grayish-blue sky. " +
+    "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
+  const articlesHeader =
+    "Read PolicyEngine's analysis of policy ideas " +
+    "and proposals from both parties";
 
   const primaryArticlesJSX = primaryArticles.map((article, index) => {
-
-    const shouldUseShortTitle = (
+    const shouldUseShortTitle =
       (dC !== "mobile" && windowWidth <= 1000) ||
-      (dC === "mobile" && windowWidth <= 600)
-    );
+      (dC === "mobile" && windowWidth <= 600);
 
     return (
       <LinkButton
@@ -80,15 +90,13 @@ export default function HomeElectionBanner() {
         link={article.link}
         key={String(index).concat(article.text)}
       />
-    )
+    );
   });
 
   const secondaryArticlesJSX = secondaryArticles.map((article, index) => {
-
-    const shouldUseShortTitle = (
+    const shouldUseShortTitle =
       (dC !== "mobile" && windowWidth <= 1000) ||
-      (dC === "mobile" && windowWidth <= 600)
-    );
+      (dC === "mobile" && windowWidth <= 600);
 
     return (
       <LinkButton
@@ -98,7 +106,7 @@ export default function HomeElectionBanner() {
         link={article.link}
         key={String(index).concat(article.text)}
       />
-    )
+    );
   });
 
   if (dC === "mobile") {
@@ -144,12 +152,8 @@ export default function HomeElectionBanner() {
               margin: "24px",
             }}
           >
-            <h3 style={{ color: style.colors.WHITE }}>
-              {title}
-            </h3>
-            <p style={{ color: style.colors.WHITE }}>
-              {subtitle}
-            </p>
+            <h3 style={{ color: style.colors.WHITE }}>{title}</h3>
+            <p style={{ color: style.colors.WHITE }}>{subtitle}</p>
             <LinkButton
               type="primary"
               text={ctaText}
@@ -177,14 +181,12 @@ export default function HomeElectionBanner() {
             height: "100%",
           }}
         >
-          <h4 style={{ color: style.colors.BLACK }}>
-            {articlesHeader}
-          </h4>
+          <h4 style={{ color: style.colors.BLACK }}>{articlesHeader}</h4>
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(2, 1fr)",
-              gridTemplateRows: "repeat(4, 1fr)",
+              gridTemplateRows: "repeat(5, 1fr)",
               gap: "16px",
             }}
           >
@@ -248,15 +250,11 @@ export default function HomeElectionBanner() {
               flexDirection: "column",
               padding: "48px",
               gap: "16px",
-              margin: "24px"
+              margin: "24px",
             }}
           >
-            <h3 style={{ color: style.colors.WHITE }}>
-              {title}
-            </h3>
-            <p style={{ color: style.colors.WHITE }}>
-              {subtitle}
-            </p>
+            <h3 style={{ color: style.colors.WHITE }}>{title}</h3>
+            <p style={{ color: style.colors.WHITE }}>{subtitle}</p>
             <LinkButton
               type="primary"
               text={ctaText}
@@ -287,7 +285,7 @@ export default function HomeElectionBanner() {
             style={{
               display: "grid",
               gap: "16px",
-              gridTemplateColumns: "repeat(4, 1fr)",
+              gridTemplateColumns: "repeat(5, 1fr)",
               gridTemplateRows: "repeat(2, 1fr)",
             }}
           >
