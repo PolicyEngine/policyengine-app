@@ -172,7 +172,7 @@ export default function PolicySearch(props) {
         )}
         <Tooltip title="Use this policy; it will replace your current policy">
           <Button
-            type="primary"
+            type="primaryBlue"
             onClick={handleCheckmarkButton}
             style={{
               padding: "unset",
