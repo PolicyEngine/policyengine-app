@@ -12,7 +12,7 @@ Key results:
 
 [_Try our personalized calculator:_](https://policyengine.org/us/household?focus=intro&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2) See how extending the TCJA would affect your household.
 
-# What did the TCJA change?
+## What did the TCJA change?
 
 The TCJA implemented key changes to the individual tax code that will expire at the end of 2025. The major reforms include:
 
@@ -66,11 +66,13 @@ Beyond these individual provisions, the TCJA permanently reduced the top corpora
 | QBID Difference Between Threshold Amounts and Phase-in Range Amounts | Inactive                                                       | $50,000/$100,000                                   |
 | QBID Phase-out Start                                                 | Inactive                                                       | $204,900/$408,900\*                                |
 
+_Starred parameters indexed to inflation._
+
 [Our simulations](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) include every listed provision except the mortgage interest deduction and estate tax exemption.[^2]
 
 [^2]: PolicyEngine's US model is currently unable to evaluate the impact of the mortgage interest deduction or estate tax. Based on external analysis, the revenue gained from limiting the mortgage interest deduction partially offsets the revenue lost from doubling the estate tax exemption, suggesting our budgetary projections remain fairly accurate. Nevertheless, including these provisions in a TCJA extension would affect the distributional analysis for households subject to either or both policies.
 
-# Household Impacts
+## Household Impacts
 
 Extending the TCJA will affect households differently depending on their size, income, and other characteristics. To illustrate these effects, let's examine the impacts for a few example households—with income only from wages and no itemized deductions—for 2026.
 
@@ -90,7 +92,7 @@ While taxes do not always decrease monotonically with income (see Appendix A), e
 
 ![](https://cdn-images-1.medium.com/max/2000/0*IHaa_oaR4N7qaXK0)
 
-# Federal Budgetary Impact
+## Federal Budgetary Impact
 
 Extending the TCJA would reduce federal revenues by [$4.2 trillion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48812) over ten years using static modeling. [When considering behavioral effects](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=69005&region=enhanced_us&timePeriod=2026&baseline=2) (applying CBO elasticities), earnings rise 0.78%, in turn lowering the cost by 7.7% to $3.9 trillion; these effects primarily occur through the substitution effect (people working more as their marginal tax rate falls), partly offset by the income effect (people working less as they have a higher net income). The Congressional Budget Office (CBO) [currently projects](https://www.cbo.gov/publication/59710) federal deficits to total $20 trillion from 2025-2034; extending the TCJA's individual provisions, without any offsets, would thus raise deficits by roughly 20% over a decade.
 
@@ -132,7 +134,7 @@ The CBO, using estimates from the Joint Committee on Taxation, projects costs 0.
 
 [^6]: The CBO, Tax Foundation, and Yale Budget Lab only project the cost of extending the TCJA through 2034. In order to compare its estimate with ours, we utilized the same process to obtain our 2035 projection by taking the percent growth from each organization's 2033 to 2034 scores and multiplying this growth to each estimate in 2034.
 
-# Income Distribution 2026
+## Income Distribution 2026
 
 Extending the TCJA would [benefit 80% of the U.S. population](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=69001&region=enhanced_us&timePeriod=2026&baseline=2&household=48809) while reducing the net income for 2% of Americans. More households in the top half of the income distribution would benefit than in the bottom half.
 
@@ -146,7 +148,7 @@ Extending the TCJA would also [reduce the Supplemental Poverty Measure](https://
 
 ![](https://cdn-images-1.medium.com/max/2000/0*ThsBUfxd5XSPzEqa)
 
-# Conclusion
+## Conclusion
 
 Extending the individual provisions of the TCJA would reduce federal revenues by $4.2 trillion (static) or $3.9 trillion (dynamic) over the next decade, absent offsetting measures. The reform would increase the net income of 80% of Americans while lowering it for 2%. The majority of benefits (54%) would flow to the top income quintile, while the bottom quintile would receive just 2%.
 
@@ -154,7 +156,7 @@ As policymakers evaluate options for addressing these expiring provisions, analy
 
 We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
-# Appendix A: Explanation for non-monotonic impacts for a joint filer with two children
+## Appendix A: Explanation for non-monotonic impacts for a joint filer with two children
 
 For most filers and income ranges, the benefit of TCJA rises with income. However, for a married couple with two children (as an example), the benefit of extending the TCJA declines in at least two earnings ranges for 2026:
 
@@ -164,7 +166,7 @@ For most filers and income ranges, the benefit of TCJA rises with income. Howeve
 
 Both ranges occur for similar reasons, namely the interaction between standard deductions, personal exemptions, and the CTC.
 
-## $34,600 to $37,800
+### $34,600 to $37,800
 
 To illustrate this nonmonotonicity, we calculate the effect at both ends of the range.
 
@@ -186,7 +188,7 @@ Therefore the net benefit of extending the TCJA for this household would be $1,2
 
 The declining benefit ($1,600 -> $1,280) occurs because the TCJA's standard deduction ($30,600) is lower than the combination of standard deduction and exemptions ($37,800) under current law. This results in a household developing taxable income sooner, thus creating a higher tax liability and reducing the TCJA's advantage over this range.
 
-## $54,850 to $62,050
+### $54,850 to $62,050
 
 At this income range, we see another decline in TCJA benefits due to the interaction between tax brackets and the CTC.
 
