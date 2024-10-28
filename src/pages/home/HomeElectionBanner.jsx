@@ -82,7 +82,6 @@ export default function HomeElectionBanner() {
     (dC === "mobile" && windowWidth < 600);
 
   const primaryArticlesJSX = primaryArticles.map((article, index) => {
-
     return (
       <LinkButton
         type="primary"
@@ -95,7 +94,6 @@ export default function HomeElectionBanner() {
   });
 
   const secondaryArticlesJSX = secondaryArticles.map((article, index) => {
-
     return (
       <LinkButton
         type="secondary"
@@ -283,8 +281,10 @@ export default function HomeElectionBanner() {
             style={{
               display: "grid",
               gap: "16px",
-              gridTemplateColumns: windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(5, 1fr)",
-              gridTemplateRows: windowWidth < 950 ? "repeat(5, 1fr)" : "repeat(2, 1fr)",
+              gridTemplateColumns:
+                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(5, 1fr)",
+              gridTemplateRows:
+                windowWidth < 950 ? "repeat(5, 1fr)" : "repeat(2, 1fr)",
             }}
           >
             {primaryArticlesJSX}
