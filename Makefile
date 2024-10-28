@@ -2,16 +2,16 @@ REACT_APP_DEBUG ?= false
 
 install:
 	npm ci
-	pip install -U black
+	pip3 install -U black
 
 build:
 	npm run build
 
 debug-no-lint:
-	set ESLINT_NO_DEV_ERRORS=true&& npm start
+	ESLINT_NO_DEV_ERRORS=true npm start
 
 debug:
-	set REACT_APP_DEBUG=true&& npm start
+	REACT_APP_DEBUG=true npm start
 
 test:
 	node metadata_fetch.mjs
