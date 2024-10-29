@@ -54,9 +54,9 @@ const secondaryArticles = [
     link: "/us/research/vance-ctc",
   },
   {
-    title: "Tax Cuts and Jobs Act",
+    title: "Extending Tax Cuts and Jobs Act",
     shortTitle: "TCJA",
-    link: "#",
+    link: "/us/research/tcja-extension",
   },
 ];
 
