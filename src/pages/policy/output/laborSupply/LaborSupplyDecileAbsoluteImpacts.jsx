@@ -1,20 +1,20 @@
 import { formatCurrencyAbbr } from "../../../../lang/format";
 import {
-  LabourSupplyDecileIncome,
-  LabourSupplyDecileSubstitution,
-  LabourSupplyDecileTotal,
-} from "./LabourSupplyDecileCharts";
+  LaborSupplyDecileIncome,
+  LaborSupplyDecileSubstitution,
+  LaborSupplyDecileTotal,
+} from "./LaborSupplyDecileCharts";
 
-export function LabourSupplyDecileAbsoluteImpactIncome(props) {
+export function LaborSupplyDecileAbsoluteImpactIncome(props) {
   const { policyLabel, impact, countryId } = props;
 
-  const decileImpact = impact.labour_supply_response;
+  const decileImpact = impact.labor_supply_response;
 
   const data = decileImpact.decile.average;
 
   const incomeChanges = Object.values(data.income).slice(0, 10);
 
-  const title = `${policyLabel}'s income effect-driven absolute labor supply impact by decile`;
+  const title = `${policyLabel}'s income effect-driven absolute ${countryId === "us" ? "labor" : "labour"} supply impact by decile`;
   const description =
     "This chart shows the estimated income effect-driven absolute " +
     `change in earnings (in ${countryId === "uk" ? "pounds" : "dollars"}) ` +
@@ -31,7 +31,7 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
   };
 
   const chart = (
-    <LabourSupplyDecileIncome
+    <LaborSupplyDecileIncome
       title={title}
       incomeChanges={incomeChanges}
       countryId={countryId}
@@ -45,16 +45,16 @@ export function LabourSupplyDecileAbsoluteImpactIncome(props) {
   return { chart: chart, csv: () => {} };
 }
 
-export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
+export function LaborSupplyDecileAbsoluteImpactSubstitution(props) {
   const { policyLabel, impact, countryId } = props;
 
-  const decileImpact = impact.labour_supply_response;
+  const decileImpact = impact.labor_supply_response;
 
   const data = decileImpact.decile.average;
 
   let substitutionChanges = Object.values(data.substitution).slice(0, 10);
 
-  const title = `${policyLabel}'s substitution effect-driven absolute labor supply impact by decile`;
+  const title = `${policyLabel}'s substitution effect-driven absolute ${countryId === "us" ? "labor" : "labour"} supply impact by decile`;
   const description =
     "This chart shows the estimated substitution effect-driven " +
     `absolute change in earnings (in ${countryId === "uk" ? "pounds" : "dollars"}) ` +
@@ -70,7 +70,7 @@ export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
     );
   };
   const chart = (
-    <LabourSupplyDecileSubstitution
+    <LaborSupplyDecileSubstitution
       title={title}
       substitutionChanges={substitutionChanges}
       countryId={countryId}
@@ -84,10 +84,10 @@ export function LabourSupplyDecileAbsoluteImpactSubstitution(props) {
   return { chart: chart, csv: () => {} };
 }
 
-export function LabourSupplyDecileAbsoluteImpactTotal(props) {
+export function LaborSupplyDecileAbsoluteImpactTotal(props) {
   const { policyLabel, impact, countryId } = props;
 
-  const decileImpact = impact.labour_supply_response;
+  const decileImpact = impact.labor_supply_response;
 
   const data = decileImpact.decile.average;
 
@@ -98,7 +98,7 @@ export function LabourSupplyDecileAbsoluteImpactTotal(props) {
     overallChange.push(incomeChanges[i] + substitutionChanges[i]);
   }
 
-  const title = `${policyLabel}'s absolute labor supply impact by decile`;
+  const title = `${policyLabel}'s absolute ${countryId === "us" ? "labor" : "labour"} supply impact by decile`;
   const description =
     "This chart shows the estimated total absolute change in earnings (in " +
     `${countryId === "uk" ? " pounds" : " dollars"}) for each disposable ` +
@@ -115,7 +115,7 @@ export function LabourSupplyDecileAbsoluteImpactTotal(props) {
   };
 
   const chart = (
-    <LabourSupplyDecileTotal
+    <LaborSupplyDecileTotal
       title={title}
       overallChange={overallChange}
       countryId={countryId}
