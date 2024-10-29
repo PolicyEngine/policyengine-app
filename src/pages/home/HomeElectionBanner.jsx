@@ -69,7 +69,7 @@ export default function HomeElectionBanner() {
     "Use our new dashboard to estimate the " +
     "household-level impacts of each party's policy proposals, suggestions, and ideas";
   const ctaText = "Compare each party's impacts";
-  const ctaLink = "#";
+  const ctaLink = "/us/2024-election-calculator";
   const ariaLabel =
     "United States flag flying against grayish-blue sky. " +
     "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
