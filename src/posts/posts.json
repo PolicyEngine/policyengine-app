@@ -880,5 +880,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "autumn-budget-24-employer-ni.md",
     "image": "autumn-budget-24-employer-ni.png"
+  },
+  {
+    "title": "Fuel duty reforms in the Autumn Budget 2024",
+    "description": "PolicyEngine projects the reforms to fuel duty will cost £2.4 billion in 2025.",
+    "date": "2024-10-30 17:30:00",
+    "tags": ["uk", "autumn-budget", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "autumn-budget-24-fuel-duty.md",
+    "image": "autumn-budget-24-fuel-duty.png"
   }
 ]
