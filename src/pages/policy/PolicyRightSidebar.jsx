@@ -93,6 +93,133 @@ function TimePeriodSelector(props) {
   );
 }
 
+const behaviouralResponseReforms = {
+  uk: {
+    "gov.simulation.capital_gains_responses.elasticity": {
+      "2024-01-01.2100-01-01": -0.7,
+    },
+    "gov.simulation.labor_supply_responses.income_elasticity": {
+      "2024-01-01.2100-01-01": -0.05,
+    },
+    "gov.simulation.labor_supply_responses.substitution_elasticity": {
+      "2024-01-01.2100-01-01": 0.25,
+    },
+  },
+  us: {},
+};
+
+function BehaviouralResponseToggle(props) {
+  // Selector like the full lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
+  // should set a query param with mode=static or mode=dynamic
+
+  const { policy, metadata } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const value = searchParams.get("mode") || "static";
+  const displayCategory = useDisplayCategory();
+
+  async function setBehaviouralResponses() {
+    const policyToStack = behaviouralResponseReforms[metadata.countryId];
+
+    // Fetch policy to stack
+    let newPolicyData = {
+      ...policy.reform.data,
+      ...policyToStack,
+    };
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+    const newPolicyRes = await getNewPolicyId(
+      metadata.countryId,
+      newPolicyData,
+    );
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("reform", newPolicyRes.policy_id);
+    setSearchParams(newSearch);
+  }
+
+  async function removeBehaviouralResponses() {
+    const policyToStack = behaviouralResponseReforms[metadata.countryId];
+
+    // Fetch policy to stack
+    let newPolicyData = {
+      ...policy.reform.data,
+    };
+
+    for (const [key, value] of Object.entries(policyToStack)) {
+      delete newPolicyData[key];
+    }
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+    const newPolicyRes = await getNewPolicyId(
+      metadata.countryId,
+      newPolicyData,
+    );
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("reform", newPolicyRes.policy_id);
+    setSearchParams(newSearch);
+  }
+
+  const hasBehaviouralResponses = Object.keys(
+    behaviouralResponseReforms[metadata.countryId],
+  ).some((key) => {
+    return Object.keys(policy.reform.data).includes(key);
+  });
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+        }}
+      >
+        Static
+      </p>
+      <Switch
+        checked={hasBehaviouralResponses}
+        size={displayCategory !== "mobile" && "small"}
+        onChange={(checked) => {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("mode", checked ? "dynamic" : "static");
+          if (checked) {
+            setBehaviouralResponses();
+          } else {
+            removeBehaviouralResponses();
+          }
+        }}
+      />
+      <p
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+        }}
+      >
+        Dynamic
+      </p>
+      <Tooltip
+        placement="topRight"
+        title="When selected, use dynamic behavioral responses in simulations."
+        trigger={displayCategory === "mobile" ? "click" : "hover"}
+      >
+        <QuestionCircleOutlined
+          style={{
+            color: "rgba(0, 0, 0, 0.85)",
+            opacity: 0.85,
+            cursor: "pointer",
+          }}
+        />
+      </Tooltip>
+    </div>
+  );
+}
+
 function FullLiteToggle() {
   // Selector like the dataset selector that toggles between 'full' and 'lite' versions of the dataset.
   // should set a query param with mode=light or mode=full
@@ -835,6 +962,10 @@ export default function PolicyRightSidebar(props) {
                   />
                 )}
                 <FullLiteToggle metadata={metadata} />
+                <BehaviouralResponseToggle
+                  metadata={metadata}
+                  policy={policy}
+                />
               </div>
             }
           />
