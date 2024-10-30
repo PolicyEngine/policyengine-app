@@ -9,8 +9,11 @@ import HomeTransparency from "./home/HomeTransparency";
 import Footer from "../layout/Footer";
 import HomeQuoteCarousel from "./home/HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
+import HomeElectionBanner from "./home/HomeElectionBanner.jsx";
+import useCountryId from "../hooks/useCountryId";
 
 export default function Home() {
+  const countryId = useCountryId();
   return (
     <>
       <Helmet>
@@ -18,6 +21,7 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
+        {countryId === "us" && <HomeElectionBanner />}
         <HomeLanding />
         <HomeUsedBy />
         <HomeBlogPreview />
