@@ -16,19 +16,9 @@ const primaryArticles = [
     link: "/us/research/harris-eitc",
   },
   {
-    title: "Harris High-Income Tax Reform Proposal",
-    shortTitle: "Harris High-Income",
-    link: "#",
-  },
-  {
     title: "Trump Social Security Tax Exemption Proposal",
     shortTitle: "Trump Social Security",
     link: "/us/research/social-security-tax-exemption",
-  },
-  {
-    title: "Trump Combined Tax Reform Proposal",
-    shortTitle: "Trump Combined Tax Reforms",
-    link: "#",
   },
 ];
 
@@ -86,9 +76,11 @@ export default function HomeElectionBanner() {
       <LinkButton
         type="primary"
         text={shouldUseShortTitle ? article.shortTitle : article.title}
-        // style={{ width: "100%" }}
         link={article.link}
         key={String(index).concat(article.text)}
+        style={{
+          gridColumn: windowWidth < 950 ? "span 1" : "span 5",
+        }}
       />
     );
   });
@@ -98,9 +90,11 @@ export default function HomeElectionBanner() {
       <LinkButton
         type="secondary"
         text={shouldUseShortTitle ? article.shortTitle : article.title}
-        style={{ width: "100%" }}
         link={article.link}
         key={String(index).concat(article.text)}
+        style={{
+          gridColumn: windowWidth < 950 ? "span 1" : "span 3",
+        }}
       />
     );
   });
@@ -281,8 +275,10 @@ export default function HomeElectionBanner() {
             style={{
               display: "grid",
               gap: "16px",
+              // 15 columns: lowest common multiple of 3 (# of primary articles)
+              // and 5 (# of secondary articles)
               gridTemplateColumns:
-                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(5, 1fr)",
+                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(15, 1fr)",
               gridTemplateRows:
                 windowWidth < 950 ? "repeat(5, 1fr)" : "repeat(2, 1fr)",
             }}
