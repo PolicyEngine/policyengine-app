@@ -871,5 +871,14 @@
     "description": "PolicyEngine projects extending the TCJA individual tax provisions would cost $3.9 trillion over a ten-year budget window.",
     "filename": "tcja-extension.md",
     "image": "tcja-extension.jpg"
+  },
+  {
+    "title": "Employer National Insurance reforms in the Autumn Budget 2024",
+    "description": "PolicyEngine projects the reforms to employer NI would raise £23 billion in 2025 and affect two thirds of people.",
+    "date": "2024-10-30 16:30:00",
+    "tags": ["uk", "autumn-budget", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "autumn-budget-24-employer-ni.md",
+    "image": "autumn-budget-24-employer-ni.png"
   }
 ]
