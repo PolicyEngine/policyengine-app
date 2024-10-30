@@ -4,7 +4,7 @@ import reeves from "../../../images/home/chancellor_reeves_2024_autumn_budget.jp
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import { useWindowWidth } from "../../../hooks/useWindow";
 
-const primaryArticles = [
+const articles = [
   {
     title: "Harris Child Tax Credit Proposal",
     shortTitle: "Harris CTC",
@@ -22,79 +22,28 @@ const primaryArticles = [
   },
 ];
 
-const secondaryArticles = [
-  {
-    title: "Harris LIFT Act Proposal of 2018",
-    shortTitle: "Harris LIFT Act (2018)",
-    link: "/us/research/lift-act",
-  },
-  {
-    title: "Harris Rent Relief Act of 2019",
-    shortTitle: "Harris Rent Relief (2019)",
-    link: "/us/research/rent-relief-act",
-  },
-  {
-    title: "Walz Minnesota State Income Tax Reforms of 2023",
-    shortTitle: "Walz MN Income Tax (2023)",
-    link: "/us/research/mn-hf1938-walz",
-  },
-  {
-    title: "Vance Child Tax Credit Suggestion",
-    shortTitle: "Vance CTC",
-    link: "/us/research/vance-ctc",
-  },
-  {
-    title: "Extending Tax Cuts and Jobs Act",
-    shortTitle: "TCJA",
-    link: "/us/research/tcja-extension",
-  },
-];
-
 export default function UK2024AutumnBudgetBanner() {
   const dC = useDisplayCategory();
   const windowWidth = useWindowWidth();
 
-  const title = "Explore PolicyEngine's coverage of the 2024 election";
+  const title = "Read PolicyEngine's detailed costings of the 2024 Autumn Budget";
   const subtitle =
-    "Use our new dashboard to estimate the " +
-    "household-level impacts of each party's policy proposals, suggestions, and ideas";
-  const ctaText = "Compare each party's impacts";
-  const ctaLink = "/us/2024-election-calculator";
+    "View our in-depth analysis of each major provision from Number 11"
   const ariaLabel =
-    "United States flag flying against grayish-blue sky. " +
-    "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
-  const articlesHeader =
-    "Read PolicyEngine's analysis of policy ideas " +
-    "and proposals from both parties";
+    "Chancellor of the Exchequer Rachel Reeves holding a budget box in front of Number 11 Downing Street" +
+    "Courtesy of HM Treasury, https://www.flickr.com/photos/hmtreasury/54104908129/";
 
   const shouldUseShortTitle =
     (dC !== "mobile" && windowWidth < 1150 && windowWidth >= 950) ||
     (dC === "mobile" && windowWidth < 600);
 
-  const primaryArticlesJSX = primaryArticles.map((article, index) => {
+  const articlesJSX = articles.map((article, index) => {
     return (
       <LinkButton
         type="primary"
         text={shouldUseShortTitle ? article.shortTitle : article.title}
         link={article.link}
         key={String(index).concat(article.text)}
-        style={{
-          gridColumn: windowWidth < 950 ? "span 1" : "span 5",
-        }}
-      />
-    );
-  });
-
-  const secondaryArticlesJSX = secondaryArticles.map((article, index) => {
-    return (
-      <LinkButton
-        type="secondary"
-        text={shouldUseShortTitle ? article.shortTitle : article.title}
-        link={article.link}
-        key={String(index).concat(article.text)}
-        style={{
-          gridColumn: windowWidth < 950 ? "span 1" : "span 3",
-        }}
       />
     );
   });
@@ -144,12 +93,6 @@ export default function UK2024AutumnBudgetBanner() {
           >
             <h3 style={{ color: style.colors.WHITE }}>{title}</h3>
             <p style={{ color: style.colors.WHITE }}>{subtitle}</p>
-            <LinkButton
-              type="primary"
-              text={ctaText}
-              style={{ marginTop: "16px" }}
-              link={ctaLink}
-            />
           </div>
         </div>
         <div
@@ -171,17 +114,14 @@ export default function UK2024AutumnBudgetBanner() {
             height: "100%",
           }}
         >
-          <h4 style={{ color: style.colors.BLACK }}>{articlesHeader}</h4>
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(2, 1fr)",
-              gridTemplateRows: "repeat(5, 1fr)",
               gap: "16px",
             }}
           >
-            {primaryArticlesJSX}
-            {secondaryArticlesJSX}
+            {articlesJSX}
           </div>
         </div>
       </div>
@@ -245,12 +185,6 @@ export default function UK2024AutumnBudgetBanner() {
           >
             <h3 style={{ color: style.colors.WHITE }}>{title}</h3>
             <p style={{ color: style.colors.WHITE }}>{subtitle}</p>
-            <LinkButton
-              type="primary"
-              text={ctaText}
-              style={{ marginTop: "8px" }}
-              link={ctaLink}
-            />
           </div>
         </div>
 
@@ -263,28 +197,15 @@ export default function UK2024AutumnBudgetBanner() {
             gap: "16px",
           }}
         >
-          <h4
-            style={{
-              color: style.colors.BLACK,
-              textAlign: "center",
-            }}
-          >
-            {articlesHeader}
-          </h4>
           <div
             style={{
               display: "grid",
               gap: "16px",
-              // 15 columns: lowest common multiple of 3 (# of primary articles)
-              // and 5 (# of secondary articles)
               gridTemplateColumns:
-                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(15, 1fr)",
-              gridTemplateRows:
-                windowWidth < 950 ? "repeat(5, 1fr)" : "repeat(2, 1fr)",
+                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
             }}
           >
-            {primaryArticlesJSX}
-            {secondaryArticlesJSX}
+            {articlesJSX}
           </div>
         </div>
       </div>
