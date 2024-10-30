@@ -93,7 +93,7 @@ function TimePeriodSelector(props) {
   );
 }
 
-const behaviouralResponseReforms = {
+const behavioralResponseReforms = {
   uk: {
     "gov.simulation.capital_gains_responses.elasticity": {
       "2024-01-01.2100-01-01": -0.7,
@@ -108,7 +108,7 @@ const behaviouralResponseReforms = {
   us: {},
 };
 
-function BehaviouralResponseToggle(props) {
+function BehavioralResponseToggle(props) {
   // Selector like the full lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
   // should set a query param with mode=static or mode=dynamic
 
@@ -117,8 +117,8 @@ function BehaviouralResponseToggle(props) {
   const value = searchParams.get("mode") || "static";
   const displayCategory = useDisplayCategory();
 
-  async function setBehaviouralResponses() {
-    const policyToStack = behaviouralResponseReforms[metadata.countryId];
+  async function setBehavioralResponses() {
+    const policyToStack = behavioralResponseReforms[metadata.countryId];
 
     // Fetch policy to stack
     let newPolicyData = {
@@ -136,8 +136,8 @@ function BehaviouralResponseToggle(props) {
     setSearchParams(newSearch);
   }
 
-  async function removeBehaviouralResponses() {
-    const policyToStack = behaviouralResponseReforms[metadata.countryId];
+  async function removeBehavioralResponses() {
+    const policyToStack = behavioralResponseReforms[metadata.countryId];
 
     // Fetch policy to stack
     let newPolicyData = {
@@ -158,8 +158,8 @@ function BehaviouralResponseToggle(props) {
     setSearchParams(newSearch);
   }
 
-  const hasBehaviouralResponses = Object.keys(
-    behaviouralResponseReforms[metadata.countryId],
+  const hasBehavioralResponses = Object.keys(
+    behavioralResponseReforms[metadata.countryId],
   ).some((key) => {
     return Object.keys(policy.reform.data).includes(key);
   });
@@ -183,15 +183,15 @@ function BehaviouralResponseToggle(props) {
         Static
       </p>
       <Switch
-        checked={hasBehaviouralResponses}
+        checked={hasBehavioralResponses}
         size={displayCategory !== "mobile" && "small"}
         onChange={(checked) => {
           let newSearch = copySearchParams(searchParams);
           newSearch.set("mode", checked ? "dynamic" : "static");
           if (checked) {
-            setBehaviouralResponses();
+            setBehavioralResponses();
           } else {
-            removeBehaviouralResponses();
+            removeBehavioralResponses();
           }
         }}
       />
@@ -962,7 +962,7 @@ export default function PolicyRightSidebar(props) {
                   />
                 )}
                 <FullLiteToggle metadata={metadata} />
-                <BehaviouralResponseToggle
+                <BehavioralResponseToggle
                   metadata={metadata}
                   policy={policy}
                 />
