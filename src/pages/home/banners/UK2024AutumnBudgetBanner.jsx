@@ -8,7 +8,7 @@ const articles = [
   {
     title: "Employer National Insurance Contributions",
     shortTitle: "Employer NICs",
-    link: "#",
+    link: "/uk/research/autumn-budget-24-employer-ni",
   },
   {
     title: "Capital Gains",
@@ -18,12 +18,12 @@ const articles = [
   {
     title: "Private School Value-Added Tax",
     shortTitle: "Private School VAT",
-    link: "#",
+    link: "/uk/research/school-vat",
   },
   {
     title: "Fuel Duty",
     shortTitle: "Fuel Duty",
-    link: "#",
+    link: "/uk/research/autumn-budget-24-fuel-duty",
   },
 ];
 
