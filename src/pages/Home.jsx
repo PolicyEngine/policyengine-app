@@ -23,11 +23,7 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
-        {
-          countryId === "uk" && (
-            <UK2024AutumnBudgetBanner />
-          )
-        }
+        {countryId === "uk" && <UK2024AutumnBudgetBanner />}
 
         {countryId === "us" && <HomeElectionBanner />}
         <HomeLanding />
