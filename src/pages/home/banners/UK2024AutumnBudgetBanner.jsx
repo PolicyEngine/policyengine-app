@@ -6,20 +6,25 @@ import { useWindowWidth } from "../../../hooks/useWindow";
 
 const articles = [
   {
-    title: "Harris Child Tax Credit Proposal",
-    shortTitle: "Harris CTC",
-    link: "/us/research/harris-ctc",
+    title: "Employer National Insurance Contributions",
+    shortTitle: "Emlpoyer NICs",
+    link: "#",
   },
   {
-    title: "Harris Earned Income Tax Credit Proposal",
-    shortTitle: "Harris EITC",
-    link: "/us/research/harris-eitc",
+    title: "Capital Gains",
+    shortTitle: "Capital Gains",
+    link: "#",
   },
   {
-    title: "Trump Social Security Tax Exemption Proposal",
-    shortTitle: "Trump Social Security",
-    link: "/us/research/social-security-tax-exemption",
+    title: "Private School Value-Added Tax",
+    shortTitle: "Private School VAT",
+    link: "#",
   },
+  {
+    title: "Fuel Duty",
+    shortTitle: "Fuel Duty",
+    link: "#",
+  }
 ];
 
 export default function UK2024AutumnBudgetBanner() {
