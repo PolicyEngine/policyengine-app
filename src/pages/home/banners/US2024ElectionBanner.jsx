@@ -1,8 +1,8 @@
-import LinkButton from "../../controls/LinkButton";
-import style from "../../style";
-import usFlags from "../../images/home/american-flags-flagpoles-blue-sky.jpg";
-import useDisplayCategory from "../../hooks/useDisplayCategory";
-import { useWindowWidth } from "../../hooks/useWindow";
+import LinkButton from "../../../controls/LinkButton";
+import style from "../../../style";
+import usFlags from "../../../images/home/american-flags-flagpoles-blue-sky.jpg";
+import useDisplayCategory from "../../../hooks/useDisplayCategory";
+import { useWindowWidth } from "../../../hooks/useWindow";
 
 const primaryArticles = [
   {
@@ -55,7 +55,7 @@ const secondaryArticles = [
   },
 ];
 
-export default function HomeElectionBanner() {
+export default function US2024ElectionBanner() {
   const dC = useDisplayCategory();
   const windowWidth = useWindowWidth();
 
