@@ -138,7 +138,6 @@ export default function HomeElectionBanner() {
             style={{
               minHeight: "fit-content",
               width: "100%",
-              backgroundColor: "rgba(44, 100, 150, 0.88)",
               display: "flex",
               flexDirection: "column",
               padding: "24px",
@@ -240,7 +239,6 @@ export default function HomeElectionBanner() {
               // instead of 100% since this behavior only desired at select
               // visual breakpoint (like 800px width)
               width: "min(600px, 92%)",
-              backgroundColor: "rgba(44, 100, 150, 0.88)",
               display: "flex",
               flexDirection: "column",
               padding: "48px",
