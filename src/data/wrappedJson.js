@@ -37,7 +37,15 @@ export function wrappedJsonParse() {
 }
 
 export function wrappedJsonStringify() {
-  return JSON.stringify(...arguments, JsonReplacer);
+  // json.stringify's second argument is a replacer function
+  // Because JS doesn't allow passing params by name (akin to Python),
+  // we need to specifically override the second arg to allow
+  // callers of wrappedJsonStringify to pass later args,
+  // such as JSON.stringify's 3rd arg, the space arg.
+
+  let modifiedArgs = [...arguments];
+  modifiedArgs[1] = JsonReplacer;
+  return JSON.stringify(...modifiedArgs);
 }
 
 /**
