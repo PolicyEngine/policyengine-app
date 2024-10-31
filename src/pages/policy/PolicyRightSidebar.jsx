@@ -1,5 +1,11 @@
 import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -105,52 +111,60 @@ function BehavioralResponseToggle(props) {
   const { policy, metadata } = props;
 
   const dateString = `${defaultStartDate}.${String(defaultForeverYear)}-12-31`;
-  const behavioralResponseReforms = {
-    uk: {
-      "gov.simulation.capital_gains_responses.elasticity": {
-        [dateString]: -0.7,
+  const behavioralResponseReforms = useMemo(
+    () => ({
+      uk: {
+        "gov.simulation.capital_gains_responses.elasticity": {
+          [dateString]: -0.7,
+        },
+        "gov.simulation.labor_supply_responses.income_elasticity": {
+          [dateString]: -0.05,
+        },
+        "gov.simulation.labor_supply_responses.substitution_elasticity": {
+          [dateString]: 0.25,
+        },
       },
-      "gov.simulation.labor_supply_responses.income_elasticity": {
-        [dateString]: -0.05,
+      us: {
+        "gov.contrib.cbo.labor_supply.elasticities": {
+          [dateString]: true,
+        },
       },
-      "gov.simulation.labor_supply_responses.substitution_elasticity": {
-        [dateString]: 0.25,
-      },
-    },
-    us: {
-      "gov.contrib.cbo.labor_supply.elasticities": {
-        [dateString]: true,
-      },
-    },
-  };
-
+    }),
+    [dateString],
+  );
   const countryId = useCountryId();
-  const spellsBehaviour = ["uk", "ca"].includes(countryId);
+
+  const hasBehavioralResponses = useCallback(
+    (policy) => {
+      // If country isn't even present, opt out to prevent Object accessing error
+      if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+        return false;
+      }
+
+      // Determine the requisite elasticity params for given country
+      const behavioralResponseParams = Object.keys(
+        behavioralResponseReforms[countryId],
+      );
+
+      // Make sure policy has every param
+      return behavioralResponseParams.every((param) => {
+        return Object.keys(policy.reform.data).includes(param);
+      });
+    },
+    [countryId, behavioralResponseReforms],
+  );
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const displayCategory = useDisplayCategory();
-
   const [isChecked, setIsChecked] = useState(hasBehavioralResponses(policy));
+  const spellsBehaviour = ["uk", "ca"].includes(countryId);
+  const displayCategory = useDisplayCategory();
 
   // Ref for storing previous label in case user reverts
   const prevLabelRef = useRef(null);
 
-  function hasBehavioralResponses(policy) {
-    // If country isn't even present, opt out to prevent Object accessing error
-    if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
-      return false;
-    }
-
-    // Determine the requisite elasticity params for given country
-    const behavioralResponseParams = Object.keys(
-      behavioralResponseReforms[countryId],
-    );
-
-    // Make sure policy has every param
-    return behavioralResponseParams.every((param) => {
-      return Object.keys(policy.reform.data).includes(param);
-    });
-  }
+  useEffect(() => {
+    setIsChecked(hasBehavioralResponses(policy));
+  }, [policy, hasBehavioralResponses]);
 
   async function handleChange(value) {
     if (value) {
@@ -214,7 +228,7 @@ function BehavioralResponseToggle(props) {
     const newPolicyRes = await getNewPolicyId(
       metadata.countryId,
       newPolicyData,
-      newPolicyLabel
+      newPolicyLabel,
     );
     let newSearch = copySearchParams(searchParams);
     newSearch.set("reform", newPolicyRes.policy_id);
