@@ -1,3 +1,5 @@
+[*See the full impact on PolicyEngine here.*](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2025&baseline=1)
+
 The Autumn Budget 2024 confirms the previously signalled intention to levy VAT on private school fees. Using PolicyEngine's open-source model, we analyse the fiscal and distributional implications of this reform.
 
 ## Budgetary impacts
@@ -8,11 +10,11 @@ Projections from [HM Treasury](https://assets.publishing.service.gov.uk/media/67
 
 #### Revenue from private school VAT by scorekeeper (£ billions)
 
-| Fiscal Year  | 2024-25 | 2025-26 | 2026-27 | 2027-28 | 2028-29 | 2029-30 | Total |
-| :----------- | :------ | :------ | :------ | :------ | :------ | :------ | :---- |
-| PolicyEngine | 0.0     | 1.5     | 1.5     | 1.5     | 1.6     | 1.6     | 7.7   |
-| HM Treasury  | 0.5     | 1.5     | 1.6     | 1.6     | 1.7     | 1.7     | 8.6   |
-| OBR          | 0.5     | 1.5     | 1.6     | 1.6     | 1.7     | 1.7     | 8.6   |
+| Fiscal Year | 2024-25 | 2025-26 | 2026-27 | 2027-28 | 2028-29 | 2029-30 | Total |
+| :---- | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
+| PolicyEngine | 0.0 | [1.5](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2025&baseline=1) | [1.5](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=60649&region=uk&timePeriod=2026&baseline=1) | [1.5](https://policyengine.org/uk/policy?focus=gov&reform=60649&region=uk&timePeriod=2027&baseline=1) | [1.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60649&region=uk&timePeriod=2028&baseline=1) | [1.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=60649&region=uk&timePeriod=2029&baseline=1) | 7.7 |
+| HM Treasury | 0.5 | 1.5 | 1.6 | 1.6 | 1.7 | 1.7 | 8.6 |
+| OBR | 0.5 | 1.5 | 1.6 | 1.6 | 1.7 | 1.7 | 8.6 |
 
 The variations between our estimates and official projections may stem from different assumptions about the total value of private school fees or varying projections of future enrollment patterns.
 
