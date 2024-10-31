@@ -907,5 +907,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "autumn-budget-24-fuel-duty.md",
     "image": "autumn-budget-24-fuel-duty.png"
+  },
+  {
+    "title": "Donald Trump's Economic Agenda",
+    "description": "PolicyEngine projects three provisions of Donald Trump’s tax plan would cost $5.4 trillion over the next ten years.",
+    "date": "2024-10-31 17:30:00",
+    "tags": ["us", "election", "donald-trump", "featured"],
+    "authors": ["david-trimmer"],
+    "filename": "trump-2024.md",
+    "image": "trump-2024.webp"
   }
 ]
