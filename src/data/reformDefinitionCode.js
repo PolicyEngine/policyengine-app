@@ -49,7 +49,7 @@ export function getHeaderCode(type, metadata, policy) {
     lines.push("from policyengine_core.reforms import Reform");
   }
 
-  // If either baseline or reform contains Infinity or -Infinity, 
+  // If either baseline or reform contains Infinity or -Infinity,
   // add the following Python imports
   const allValues = getAllPolicyValues(policy);
   if (allValues.some((value) => value === Infinity || value === -Infinity)) {
@@ -270,7 +270,7 @@ export function doesParamNameContainNumber(paramName) {
 /**
  * Given a standard "policy" object, get all individual
  * values for both the baseline and reform policies
- * @param {Object} policy 
+ * @param {Object} policy
  * @returns {Array<Number | String >} An array of values
  */
 export function getAllPolicyValues(policy) {
