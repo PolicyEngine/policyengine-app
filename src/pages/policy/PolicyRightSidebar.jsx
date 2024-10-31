@@ -16,9 +16,10 @@ import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import { defaultForeverYear } from "../../data/constants";
+import { defaultForeverYear, defaultStartDate } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
+import useCountryId from "../../hooks/useCountryId";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -93,6 +94,7 @@ function TimePeriodSelector(props) {
   );
 }
 
+/*
 const behavioralResponseReforms = {
   uk: {
     "gov.simulation.capital_gains_responses.elasticity": {
@@ -105,12 +107,43 @@ const behavioralResponseReforms = {
       "2024-01-01.2100-01-01": 0.25,
     },
   },
-  us: {},
+  us: {
+    "gov.contrib.cbo.labor_supply.elasticities": {
+
+    }
+  },
 };
+*/
+
 
 function BehavioralResponseToggle(props) {
   // Selector like the full lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
   // should set a query param with mode=static or mode=dynamic
+
+  const dateString = `${defaultStartDate}.${String(defaultForeverYear)}-12-31`;
+
+  const behavioralResponseReforms = {
+    uk: {
+      "gov.simulation.capital_gains_responses.elasticity": {
+        [dateString]: -0.7,
+      },
+      "gov.simulation.labor_supply_responses.income_elasticity": {
+        [dateString]: -0.05,
+      },
+      "gov.simulation.labor_supply_responses.substitution_elasticity": {
+        [dateString]: 0.25,
+      },
+    },
+    us: {
+      "gov.contrib.cbo.labor_supply.elasticities": {
+        [dateString]: true
+      }
+    },
+  };
+
+  const countryId = useCountryId();
+
+  const spellsBehaviour = ["uk", "ca"].includes(countryId);
 
   const { policy, metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -148,6 +181,15 @@ function BehavioralResponseToggle(props) {
       delete newPolicyData[key];
     }
 
+    // Current law is represented by an empty object;
+    // if the new policy is empty, remove the reform query parameter
+    if (Object.keys(newPolicyData).length === 0) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+      return;
+    }
+
     // Create new policy with those parameters and emit to back end, receiving back ID
     const newPolicyRes = await getNewPolicyId(
       metadata.countryId,
@@ -164,6 +206,12 @@ function BehavioralResponseToggle(props) {
     return Object.keys(policy.reform.data).includes(key);
   });
 
+  // Don't show behavior response toggle for countries without 
+  // policies to set them
+  if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+    return null
+  }
+
   return (
     <div
       style={{
@@ -174,14 +222,6 @@ function BehavioralResponseToggle(props) {
         gap: "10px",
       }}
     >
-      <p
-        style={{
-          margin: 0,
-          fontSize: displayCategory !== "mobile" && "0.95em",
-        }}
-      >
-        Static
-      </p>
       <Switch
         checked={hasBehavioralResponses}
         size={displayCategory !== "mobile" && "small"}
@@ -201,11 +241,11 @@ function BehavioralResponseToggle(props) {
           fontSize: displayCategory !== "mobile" && "0.95em",
         }}
       >
-        Dynamic
+        Apply {spellsBehaviour ? "behavioural" : "behavioral"} responses
       </p>
       <Tooltip
         placement="topRight"
-        title="When selected, use dynamic behavioral responses in simulations."
+        title={`When selected, use dynamic ${spellsBehaviour ? "behavioural" : "behavioral"} responses in simulations`}
         trigger={displayCategory === "mobile" ? "click" : "hover"}
       >
         <QuestionCircleOutlined
@@ -962,10 +1002,7 @@ export default function PolicyRightSidebar(props) {
                   />
                 )}
                 <FullLiteToggle metadata={metadata} />
-                <BehavioralResponseToggle
-                  metadata={metadata}
-                  policy={policy}
-                />
+                <BehavioralResponseToggle metadata={metadata} policy={policy} />
               </div>
             }
           />
