@@ -48,6 +48,7 @@ import DeveloperLayout from "./pages/DeveloperLayout";
 import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
 import { wrappedResponseJson } from "./data/wrappedJson";
+import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -365,6 +366,10 @@ export default function PolicyEngine() {
         <Route
           path="/us/child-tax-credit-2024-election-calculator"
           element={<CTCComparison />}
+        />
+        <Route
+          path="/us/2024-election-calculator"
+          element={<US2024ElectionCalculator />}
         />
 
         {/* Redirect for unrecognized paths */}
