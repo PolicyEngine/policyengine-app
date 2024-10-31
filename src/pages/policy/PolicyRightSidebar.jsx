@@ -1,5 +1,5 @@
 import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -115,10 +115,15 @@ const behavioralResponseReforms = {
 };
 */
 
-
+/**
+ * Selector like the full/lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
+ * @param {Object} props
+ * @param {Object} props.policy
+ * @param {Object} props.metadata
+ * @returns {React.ReactElement}
+ */
 function BehavioralResponseToggle(props) {
-  // Selector like the full lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
-  // should set a query param with mode=static or mode=dynamic
+  const { policy, metadata } = props;
 
   const dateString = `${defaultStartDate}.${String(defaultForeverYear)}-12-31`;
 
@@ -136,19 +141,45 @@ function BehavioralResponseToggle(props) {
     },
     us: {
       "gov.contrib.cbo.labor_supply.elasticities": {
-        [dateString]: true
-      }
+        [dateString]: true,
+      },
     },
   };
 
   const countryId = useCountryId();
-
   const spellsBehaviour = ["uk", "ca"].includes(countryId);
 
-  const { policy, metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const value = searchParams.get("mode") || "static";
   const displayCategory = useDisplayCategory();
+
+  const [isChecked, setIsChecked] = useState(hasBehavioralResponses(policy));
+
+  function hasBehavioralResponses(policy) {
+    // If country isn't even present, opt out to prevent Object accessing error
+    if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+      return false;
+    }
+
+    // Determine the requisite elasticity params for given country
+    const behavioralResponseParams = Object.keys(
+      behavioralResponseReforms[countryId],
+    );
+
+    // Make sure policy has every param
+    return behavioralResponseParams.every((param) => {
+      return Object.keys(policy.reform.data).includes(param);
+    });
+  }
+
+  async function handleChange(value) {
+    if (value) {
+      await setBehavioralResponses();
+    } else {
+      await removeBehavioralResponses();
+    }
+
+    setIsChecked(value);
+  }
 
   async function setBehavioralResponses() {
     const policyToStack = behavioralResponseReforms[metadata.countryId];
@@ -177,7 +208,7 @@ function BehavioralResponseToggle(props) {
       ...policy.reform.data,
     };
 
-    for (const [key, value] of Object.entries(policyToStack)) {
+    for (const key of Object.keys(policyToStack)) {
       delete newPolicyData[key];
     }
 
@@ -200,16 +231,10 @@ function BehavioralResponseToggle(props) {
     setSearchParams(newSearch);
   }
 
-  const hasBehavioralResponses = Object.keys(
-    behavioralResponseReforms[metadata.countryId],
-  ).some((key) => {
-    return Object.keys(policy.reform.data).includes(key);
-  });
-
-  // Don't show behavior response toggle for countries without 
+  // Don't show behavior response toggle for countries without
   // policies to set them
   if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
-    return null
+    return null;
   }
 
   return (
@@ -223,17 +248,9 @@ function BehavioralResponseToggle(props) {
       }}
     >
       <Switch
-        checked={hasBehavioralResponses}
+        checked={isChecked}
         size={displayCategory !== "mobile" && "small"}
-        onChange={(checked) => {
-          let newSearch = copySearchParams(searchParams);
-          newSearch.set("mode", checked ? "dynamic" : "static");
-          if (checked) {
-            setBehavioralResponses();
-          } else {
-            removeBehavioralResponses();
-          }
-        }}
+        onChange={handleChange}
       />
       <p
         style={{
