@@ -23,8 +23,8 @@ const primaryArticles = [
   {
     title: "Trump Economic Agenda",
     shortTitle: "Trump Economic Agenda",
-    link: "/us/research/trump-2024"
-  }
+    link: "/us/research/trump-2024",
+  },
 ];
 
 const secondaryArticles = [
