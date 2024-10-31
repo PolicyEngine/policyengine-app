@@ -1,5 +1,5 @@
 import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -94,27 +94,6 @@ function TimePeriodSelector(props) {
   );
 }
 
-/*
-const behavioralResponseReforms = {
-  uk: {
-    "gov.simulation.capital_gains_responses.elasticity": {
-      "2024-01-01.2100-01-01": -0.7,
-    },
-    "gov.simulation.labor_supply_responses.income_elasticity": {
-      "2024-01-01.2100-01-01": -0.05,
-    },
-    "gov.simulation.labor_supply_responses.substitution_elasticity": {
-      "2024-01-01.2100-01-01": 0.25,
-    },
-  },
-  us: {
-    "gov.contrib.cbo.labor_supply.elasticities": {
-
-    }
-  },
-};
-*/
-
 /**
  * Selector like the full/lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
  * @param {Object} props
@@ -126,7 +105,6 @@ function BehavioralResponseToggle(props) {
   const { policy, metadata } = props;
 
   const dateString = `${defaultStartDate}.${String(defaultForeverYear)}-12-31`;
-
   const behavioralResponseReforms = {
     uk: {
       "gov.simulation.capital_gains_responses.elasticity": {
@@ -153,6 +131,9 @@ function BehavioralResponseToggle(props) {
   const displayCategory = useDisplayCategory();
 
   const [isChecked, setIsChecked] = useState(hasBehavioralResponses(policy));
+
+  // Ref for storing previous label in case user reverts
+  const prevLabelRef = useRef(null);
 
   function hasBehavioralResponses(policy) {
     // If country isn't even present, opt out to prevent Object accessing error
@@ -182,6 +163,8 @@ function BehavioralResponseToggle(props) {
   }
 
   async function setBehavioralResponses() {
+    // Save the previous reform's label in case user reverts
+    prevLabelRef.current = policy.reform.label;
     const policyToStack = behavioralResponseReforms[metadata.countryId];
 
     // Fetch policy to stack
@@ -212,6 +195,12 @@ function BehavioralResponseToggle(props) {
       delete newPolicyData[key];
     }
 
+    let newPolicyLabel = null;
+    // If there's a previous label, revert to it
+    if (prevLabelRef.current) {
+      newPolicyLabel = prevLabelRef.current;
+    }
+
     // Current law is represented by an empty object;
     // if the new policy is empty, remove the reform query parameter
     if (Object.keys(newPolicyData).length === 0) {
@@ -225,6 +214,7 @@ function BehavioralResponseToggle(props) {
     const newPolicyRes = await getNewPolicyId(
       metadata.countryId,
       newPolicyData,
+      newPolicyLabel
     );
     let newSearch = copySearchParams(searchParams);
     newSearch.set("reform", newPolicyRes.policy_id);
