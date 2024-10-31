@@ -4,9 +4,9 @@
 
 PolicyEngine estimates that the 1.7% benefits uprating for 2025/26:
 
-* increases government costs by [£2.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=69807&mode=lite)  
-* lowers poverty by 1.8%  
-* raises net income for 45.9% of people
+- increases government costs by [£2.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=69807&mode=lite)
+- lowers poverty by 1.8%
+- raises net income for 45.9% of people
 
 ## Introduction
 
@@ -32,13 +32,13 @@ Uprating would benefit around 45% of the population, disproportionately those in
 
 ### Poverty impact
 
-The 1.7% benefits uprating reduces the total poverty rate (absolute, before housing costs) by 1.8% and the child poverty rate by 4.0%.  
+The 1.7% benefits uprating reduces the total poverty rate (absolute, before housing costs) by 1.8% and the child poverty rate by 4.0%.
 
 ![](/images/posts/benefit_uprating/poverty-effect.png)
 
 ### Inequality impact
 
-Our analysis measures the impact of the 1.7% benefits uprating on inequality through multiple metrics. The reduction in inequality is shown by a 0.27% decrease in the Gini index, with smaller income shares for the highest earners – the top 10% share falls by 0.14% and the top 1% share by 0.17%.  
+Our analysis measures the impact of the 1.7% benefits uprating on inequality through multiple metrics. The reduction in inequality is shown by a 0.27% decrease in the Gini index, with smaller income shares for the highest earners – the top 10% share falls by 0.14% and the top 1% share by 0.17%.
 
 ![](/images/posts/benefit_uprating/inequality-effect.png)
 
