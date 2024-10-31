@@ -837,9 +837,18 @@
     "image": "classroom-2093744.jpg"
   },
   {
+    "title": "Levying VAT on private school fees in the Autumn Budget",
+    "description": "PolicyEngine projects the reforms to private school VAT would raise £1.5 billion in 2025.",
+    "date": "2024-10-31 15:00:00",
+    "tags": ["uk", "tax", "policy", "vat", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "vat-school-comparison.md",
+    "image": "vat-school-comparison-post.jpg"
+  },
+  {
     "title": "Benefits uprating 2025/26",
     "description": "PolicyEngine projects Labour's 1.7% benefits uprating would cost £2.5 billion, mainly benefiting lower-income households.",
-    "date": "2024-10-31 01:00:00",
+    "date": "2024-10-31 15:00:00",
     "tags": ["uk", "benefit", "inflation"],
     "authors": ["vahid-ahmadi"],
     "filename": "Benefit-uprating-25.md",
