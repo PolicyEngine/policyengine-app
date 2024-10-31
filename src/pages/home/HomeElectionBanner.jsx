@@ -20,6 +20,11 @@ const primaryArticles = [
     shortTitle: "Trump Social Security",
     link: "/us/research/social-security-tax-exemption",
   },
+  {
+    title: "Trump Economic Agenda",
+    shortTitle: "Trump Economic Agenda",
+    link: "/us/research/trump-2024",
+  },
 ];
 
 const secondaryArticles = [
@@ -93,7 +98,7 @@ export default function HomeElectionBanner() {
         link={article.link}
         key={String(index).concat(article.text)}
         style={{
-          gridColumn: windowWidth < 950 ? "span 1" : "span 3",
+          gridColumn: windowWidth < 950 ? "span 1" : "span 4",
         }}
       />
     );
@@ -275,10 +280,10 @@ export default function HomeElectionBanner() {
             style={{
               display: "grid",
               gap: "16px",
-              // 15 columns: lowest common multiple of 3 (# of primary articles)
+              // 20 columns: lowest common multiple of 4 (# of primary articles)
               // and 5 (# of secondary articles)
               gridTemplateColumns:
-                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(15, 1fr)",
+                windowWidth < 950 ? "repeat(2, 1fr)" : "repeat(20, 1fr)",
               gridTemplateRows:
                 windowWidth < 950 ? "repeat(5, 1fr)" : "repeat(2, 1fr)",
             }}
