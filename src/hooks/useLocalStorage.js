@@ -1,12 +1,13 @@
 // Taken from https://designcode.io/react-hooks-handbook-uselocalstorage-hook
 import { useEffect, useState } from "react";
+import { wrappedJsonParse, wrappedJsonStringify } from "../data/wrappedJson";
 
 export default function useLocalStorage(key, defaultValue) {
   const [value, setValue] = useState(() => {
     let currentValue = null;
 
     try {
-      currentValue = JSON.parse(
+      currentValue = wrappedJsonParse(
         localStorage.getItem(key) || String(defaultValue),
       );
     } catch (error) {
@@ -17,7 +18,7 @@ export default function useLocalStorage(key, defaultValue) {
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, wrappedJsonStringify(value));
   }, [value, key]);
 
   return [value, setValue];

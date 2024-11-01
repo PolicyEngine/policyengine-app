@@ -2,6 +2,7 @@ import { countryApiCall } from "./call";
 import { capitalize } from "../lang/format";
 import { defaultHouseholds } from "../data/defaultHouseholds";
 import { defaultYear } from "data/constants";
+import { wrappedResponseJson } from "../data/wrappedJson";
 
 export function removePerson(situation, name) {
   // Remove a person from the situation
@@ -356,7 +357,7 @@ export function getValueFromHousehold(
   }
   if (!timePeriodValues) {
     console.error("Error getting variable value", variable);
-    return null;
+    return 0;
   }
   if (!timePeriod) {
     const possibleTimePeriods = Object.keys(timePeriodValues);
@@ -401,7 +402,7 @@ export function getDefaultHouseholdId(metadata) {
     { data: defaultHousehold },
     "POST",
   )
-    .then((res) => res.json())
+    .then((res) => wrappedResponseJson(res))
     .then((dataHolder) => {
       return dataHolder.result.household_id;
     });

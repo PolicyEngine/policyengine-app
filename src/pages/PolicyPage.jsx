@@ -19,6 +19,7 @@ import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import DeprecationModal from "../modals/DeprecationModal";
+import { impactKeys } from "../pages/policy/output/ImpactTypes.jsx";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -156,15 +157,53 @@ export default function PolicyPage(props) {
       </FolderPage>
     );
   } else if (isOutput) {
-    middle = (
-      <>
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    const validFocusValues = impactKeys;
+    const stripped_focus = focus.replace("policyOutput.", "");
+
+    // Check if the current focus is within validFocusValues
+    if (
+      focus === "policyOutput.policyBreakdown" ||
+      focus === "policyOutput.codeReproducibility" ||
+      validFocusValues.includes(stripped_focus)
+    ) {
+      middle = (
         <PolicyOutput
           metadata={metadata}
           policy={policy}
           userProfile={userProfile}
         />
-      </>
-    );
+      );
+    } else {
+      // Find the node in the tree where the name matches the focus
+      const findNodeByName = (node, name) => {
+        if (node.name === name) {
+          return node;
+        }
+        if (node.children) {
+          for (let child of node.children) {
+            const result = findNodeByName(child, name);
+            if (result) {
+              return result;
+            }
+          }
+        }
+        return null;
+      };
+
+      const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
+
+      // Render FolderPage with its children if the node is found
+      if (node) {
+        middle = (
+          <FolderPage label={node.label} metadata={metadata}>
+            {node.children}
+          </FolderPage>
+        );
+      } else {
+        middle = <div>Page cannot be found.</div>;
+      }
+    }
   }
 
   if (mobile) {

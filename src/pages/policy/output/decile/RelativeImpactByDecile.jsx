@@ -126,6 +126,7 @@ export function ImpactPlot(props) {
 export default function relativeImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const decileRelative = impact.decile.relative;
+
   const relativeChange =
     -impact.budget.budgetary_impact / impact.budget.baseline_net_income;
   const chart = (

@@ -4,14 +4,16 @@ import {
   Alert,
   Button,
   DatePicker,
+  InputNumber,
   Popover,
-  Segmented,
+  Radio,
+  Select,
   Space,
   Switch,
   Tooltip,
 } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
@@ -24,8 +26,9 @@ import {
 import { IntervalMap } from "algorithms/IntervalMap";
 import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
-import StableInputNumber from "controls/StableInputNumber";
-import { UndoOutlined } from "@ant-design/icons";
+import { EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
+import style from "../../../style";
+import { defaultYear } from "../../../data/constants";
 const { RangePicker } = DatePicker;
 
 /**
@@ -37,6 +40,14 @@ const { RangePicker } = DatePicker;
  * @param {String} props.parameterName
  * @returns {import("react-markdown/lib/react-markdown").ReactElement}
  */
+
+const DATE_INPUT_MODES = {
+  DEFAULT: "default",
+  YEARLY: "yearly",
+  DATE: "date",
+  MULTI_YEAR: "multi-year",
+};
+
 export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
   const parameter = metadata.parameters[parameterName];
@@ -56,6 +67,7 @@ export default function ParameterEditor(props) {
   const [startDate, setStartDate] = useState(defaultStartDate);
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [paramChartWidth, setParamChartWidth] = useState(0);
+  const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.DEFAULT);
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -97,6 +109,11 @@ export default function ParameterEditor(props) {
     description = "";
   }
 
+  const gridColumns =
+    dateInputMode === DATE_INPUT_MODES.MULTI_YEAR
+      ? "auto min-content"
+      : "auto auto min-content";
+
   return (
     <CenteredMiddleColumn
       marginTop="5%"
@@ -135,42 +152,36 @@ export default function ParameterEditor(props) {
           <div
             style={{
               width: "100%",
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
+              display: "grid",
+              gridTemplateColumns: gridColumns,
               gap: "10px",
+              padding: "0px 50px 0px 12px",
             }}
           >
-            <Space.Compact>
-              <PeriodSetter
-                metadata={metadata}
-                startDate={startDate}
-                endDate={endDate}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
-              />
-              {startDate !== defaultStartDate || endDate !== defaultEndDate ? (
-                <Button
-                  icon={<UndoOutlined />}
-                  onClick={() => {
-                    setStartDate(defaultStartDate);
-                    setEndDate(defaultEndDate);
-                  }}
-                />
-              ) : (
-                <Button icon={<UndoOutlined />} disabled />
-              )}
-            </Space.Compact>
-            <ValueSetter
+            <PeriodSetter
+              metadata={metadata}
               startDate={startDate}
               endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              inputMode={dateInputMode}
               parameterName={parameterName}
-              policy={policy}
-              metadata={metadata}
-              reformMap={reformMap}
               baseMap={baseMap}
+              reformMap={reformMap}
+              policy={policy}
             />
+            {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
+              <ValueSetter
+                startDate={startDate}
+                endDate={endDate}
+                parameterName={parameterName}
+                policy={policy}
+                metadata={metadata}
+                reformMap={reformMap}
+                baseMap={baseMap}
+              />
+            )}
+            <SettingsPanel setDateInputMode={setDateInputMode} />
           </div>
         </div>
         {!parameter.economy && (
@@ -221,13 +232,18 @@ export default function ParameterEditor(props) {
 }
 
 function PeriodSetter(props) {
-  const { metadata, startDate, endDate, setStartDate, setEndDate } = props;
-
-  const [visibleDateSelector, setVisibleDateSelector] = useState("yearly");
-
-  function handleSegmentedChange(value) {
-    setVisibleDateSelector(value);
-  }
+  const {
+    inputMode,
+    metadata,
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    parameterName,
+    baseMap,
+    reformMap,
+    policy,
+  } = props;
 
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
 
@@ -241,19 +257,115 @@ function PeriodSetter(props) {
   ).concat("-12-31");
   const isEndForever = endDate === FOREVER_DATE;
 
-  let dateSelectButtonLabel = "";
-  const isFullYearSet =
-    checkBoundaryDate(startDate, "start") && checkBoundaryDate(endDate, "end");
+  const sharedProps = {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    minPossibleDate,
+    maxPossibleDate,
+    isEndForever,
+    possibleYears,
+    FOREVER_DATE,
+    parameterName,
+  };
 
-  if (!isFullYearSet) {
-    dateSelectButtonLabel = `from ${moment(startDate).format("MMMM Do, YYYY")} to ${moment(endDate).format("MMMM Do, YYYY")}:`;
-  } else if (isEndForever) {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} onward:`;
-  } else {
-    dateSelectButtonLabel = `from ${moment(startDate).year()} to ${moment(endDate).year()}:`;
+  const tenYearProps = {
+    metadata,
+    baseMap,
+    reformMap,
+    policy,
+  };
+
+  switch (inputMode) {
+    case DATE_INPUT_MODES.YEARLY:
+      return <YearPeriodSetter {...sharedProps} />;
+    case DATE_INPUT_MODES.DATE:
+      return <DatePeriodSetter {...sharedProps} />;
+    case DATE_INPUT_MODES.MULTI_YEAR:
+      return <MultiYearPeriodSetter {...sharedProps} {...tenYearProps} />;
+    default:
+      return <DefaultPeriodSetter {...sharedProps} />;
+  }
+}
+
+function DefaultPeriodSetter(props) {
+  const {
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    possibleYears,
+    FOREVER_DATE,
+    parameterName,
+  } = props;
+
+  const startYear = new Date(startDate).getFullYear();
+
+  const [value, setValue] = useState(startYear);
+
+  // When this component mounts, or param name changes, or ParameterEditor
+  // updates endDate (this happens in select few cases), set the start date to Jan. 1 of
+  // the startDate value's year and set end to FOREVER_DATE
+  useEffect(() => {
+    setStartDate(String(value).concat("-01-01"));
+    setEndDate(FOREVER_DATE);
+  }, [endDate, parameterName, FOREVER_DATE, value, setStartDate, setEndDate]);
+
+  // On change, set the start date to Jan. 1 of the selected year
+  // and update value
+  function handleStartYearChange(value) {
+    setValue(value);
+    setStartDate(String(value).concat("-01-01"));
   }
 
-  const yearSelector = (
+  // Manipulate possibleYears Array-type into options
+  // Array of Object-types for the Select component
+  const options = possibleYears.map((year) => {
+    return {
+      label: year,
+      value: year,
+    };
+  });
+
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        // The below keeps the font in line with
+        // the selector components
+        fontSize: "14px",
+        gap: "10px",
+      }}
+    >
+      <p style={{ marginBottom: 0 }}>from</p>
+      <Select
+        options={options}
+        defaultValue={startYear}
+        value={value}
+        onChange={handleStartYearChange}
+      />
+      <p style={{ marginBottom: 0 }}>onward:</p>
+    </div>
+  );
+}
+
+function YearPeriodSetter(props) {
+  const {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    minPossibleDate,
+    maxPossibleDate,
+    isEndForever,
+  } = props;
+
+  return (
     <RangePicker
       picker="year"
       defaultValue={[moment(startDate), null]}
@@ -268,8 +380,20 @@ function PeriodSetter(props) {
       separator="→"
     />
   );
+}
 
-  const dateSelector = (
+function DatePeriodSetter(props) {
+  const {
+    startDate,
+    endDate,
+    setStartDate,
+    setEndDate,
+    minPossibleDate,
+    maxPossibleDate,
+    isEndForever,
+  } = props;
+
+  return (
     <RangePicker
       defaultValue={[moment(startDate), null]}
       value={[moment(startDate), isEndForever ? null : moment(endDate)]}
@@ -283,51 +407,246 @@ function PeriodSetter(props) {
       separator="→"
     />
   );
+}
 
-  const popoverContent = (
-    <div
-      style={{
-        width: "100%",
-      }}
-    >
-      <Segmented
-        block
-        options={[
-          {
-            label: "Yearly",
-            value: "yearly",
-          },
-          {
-            label: "Advanced",
-            value: "date",
-          },
-        ]}
-        width="100%"
-        onChange={handleSegmentedChange}
-        style={{
-          marginBottom: "10px",
-        }}
-      />
-      {visibleDateSelector === "yearly" ? yearSelector : dateSelector}
-    </div>
-  );
+function MultiYearPeriodSetter(props) {
+  const { possibleYears, parameterName, baseMap, reformMap, metadata, policy } =
+    props;
+
+  // Populate map before rendering anything
+  // function populateValueMap() {
+  const populateValueMap = useCallback(() => {
+    const valueMap = new Map();
+    possibleYears.forEach((year) => {
+      if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
+        const startDate = String(year).concat("-01-01");
+        const startValue = reformMap.get(startDate);
+        valueMap.set(year, startValue);
+      }
+    });
+    return valueMap;
+  }, [possibleYears, reformMap]);
+
+  const NUMBER_OF_YEARS = 10;
+  const [valueMap, setValueMap] = useState(populateValueMap());
+  const [searchParams, setSearchParams] = useSearchParams();
+  const paramRef = useRef(parameterName);
+
+  // This is necessary because technically, MultiYearPeriodSetter does not
+  // unmount when we change between parameters, leading to the possibility
+  // for a stale "value" state in this controlled component
+
+  // We're using a ref here because each time the changeHandler is called,
+  // it updates reformMap. This then re-renders the callback above, causing
+  // valueMap to be re-populated with stale data, creating a visual bug.
+  // All of this wouldn't be necessary if we either 1. didn't add populateValueMap
+  // as an effect hook dep (but then we'd be overriding linting) or 2. fully
+  // unmounted the component when we changed pages (but that'd require far
+  // more work)
+  useEffect(() => {
+    if (paramRef.current !== parameterName) {
+      setValueMap(populateValueMap());
+      paramRef.current = parameterName;
+    }
+  }, [parameterName, populateValueMap]);
+
+  // Handler that iterates over each entry, validates that
+  // all values are valid, then updates each value one by one
+  function handleSubmit() {
+    let allData = {};
+    for (const [year, value] of valueMap) {
+      const startDate = String(year).concat("-01-01");
+      const endDate = String(year).concat("-12-31");
+      reformMap.set(startDate, nextDay(endDate), value);
+      let data = {};
+      reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
+        data[`${k1}.${prevDay(k2)}`] = v;
+      });
+      allData = { ...allData, ...data };
+    }
+
+    const newReforms = { ...policy.reform.data };
+    if (
+      Object.keys(allData).length === 0 &&
+      Object.keys(newReforms).length === 1
+    ) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+    } else {
+      newReforms[parameterName] = allData;
+      getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+        if (result.status !== "ok") {
+          console.error(
+            "ParameterEditor: In attempting to fetch new " +
+              "policy, the following error occurred: " +
+              result.message,
+          );
+        } else {
+          let newSearch = copySearchParams(searchParams);
+          newSearch.set("reform", result.policy_id);
+          setSearchParams(newSearch);
+        }
+      });
+    }
+  }
+
+  // Iterate over possibleYears, beginning with
+  // defaultYear, and return up to 10 input
+  // components
+  const yearInputs = possibleYears
+    .filter(
+      (year) => year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS,
+    )
+    .map((year) => {
+      return (
+        <div
+          key={String(year).concat("-input")}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            gap: "10px",
+            fontSize: "14px",
+          }}
+        >
+          <p style={{ marginBottom: 0 }}>{year}:</p>
+          <OneYearValueSetter
+            year={year}
+            parameterName={parameterName}
+            metadata={metadata}
+            reformMap={reformMap}
+            valueMap={valueMap}
+            setValueMap={setValueMap}
+          />
+        </div>
+      );
+    });
+
+  // This will give us the first half of the year inputs (if length of yearInputs is even)
+  // or the first half, plus 1, if length of yearInputs is odd
+  const yearInputsLeft = yearInputs.slice(0, Math.ceil(yearInputs.length / 2));
+  const yearInputsRight = yearInputs.slice(Math.ceil(yearInputs.length / 2));
 
   return (
-    <Popover trigger="click" content={popoverContent} placement="bottom">
-      <Tooltip title="Click to edit parameter timespan">
-        <Space.Compact>
-          <Button
-            type="default"
-            style={{
-              width: "max-content",
-            }}
-          >
-            {dateSelectButtonLabel}
-          </Button>
-        </Space.Compact>
-      </Tooltip>
-    </Popover>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          gap: "20px",
+          width: "100%",
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          {yearInputsLeft}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
+          }}
+        >
+          {yearInputsRight}
+        </div>
+      </div>
+      <Button
+        type="primary"
+        style={{
+          width: "max-content",
+        }}
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+    </div>
   );
+}
+
+function OneYearValueSetter(props) {
+  const { year, parameterName, metadata, valueMap, setValueMap } = props;
+
+  const startValue = valueMap.get(year);
+  const parameter = metadata.parameters[parameterName];
+
+  const isPercent = parameter.unit === "/1";
+  const scale = isPercent ? 100 : 1;
+  const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
+  const maximumFractionDigits = isCurrency ? 2 : 16;
+
+  function changeHandler(value) {
+    setValueMap((prev) => {
+      const scaledValue = +value.toFixed(maximumFractionDigits) / scale;
+      const newMap = new Map(prev);
+      newMap.set(year, scaledValue);
+      return newMap;
+    });
+  }
+
+  if (parameter.unit === "bool" || parameter.unit === "abolition") {
+    return (
+      <div style={{ padding: 10 }}>
+        <Switch
+          key={"input for" + parameter.parameter + year}
+          defaultChecked={startValue}
+          onChange={(value) => changeHandler(!!value)}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <Space.Compact block>
+        <InputNumber
+          style={{
+            width: "100%",
+          }}
+          key={"input for" + parameter.parameter + year}
+          {...(isCurrency
+            ? {
+                addonBefore: currencyMap[parameter.unit],
+              }
+            : {})}
+          {...(isPercent
+            ? {
+                addonAfter: "%",
+              }
+            : {})}
+          formatter={(value, { userTyping }) => {
+            const n = +value;
+            const isInteger = Number.isInteger(n);
+            return n.toLocaleString(localeCode(metadata.countryId), {
+              minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+              maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
+            });
+          }}
+          defaultValue={Number(startValue) * scale}
+          value={valueMap.get(year) * scale}
+          onChange={(value) => changeHandler(Number(value))}
+        />
+        {!isPercent && (
+          <AdvancedValueSetter
+            changeHandler={changeHandler}
+            setValue={(value) => setValueMap((prev) => prev.set(year, value))}
+          />
+        )}
+      </Space.Compact>
+    );
+  }
 }
 
 function ValueSetter(props) {
@@ -341,8 +660,9 @@ function ValueSetter(props) {
     policy,
   } = props;
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const startValue = reformMap.get(startDate);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
   function changeHandler(value) {
@@ -377,6 +697,18 @@ function ValueSetter(props) {
     }
   }
 
+  const isPercent = parameter.unit === "/1";
+  const scale = isPercent ? 100 : 1;
+  const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
+  const maximumFractionDigits = isCurrency ? 2 : 16;
+
+  // This is necessary because technically, ValueSetter does not
+  // unmount when we change between parameters, leading to the possibility
+  // for a stale "value" state in this controlled component
+  useEffect(() => {
+    setValue(Number(startValue) * scale);
+  }, [parameterName, startValue, scale]);
+
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 10 }}>
@@ -388,90 +720,212 @@ function ValueSetter(props) {
       </div>
     );
   } else {
-    const isPercent = parameter.unit === "/1";
-    const scale = isPercent ? 100 : 1;
-    const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
-    const maximumFractionDigits = isCurrency ? 2 : 16;
     return (
-      <StableInputNumber
-        style={{
-          minWidth: "100px",
-          maxWidth: "150px",
-        }}
-        key={"input for" + parameter.parameter}
-        {...(isCurrency
-          ? {
-              addonBefore: currencyMap[parameter.unit],
-            }
-          : {})}
-        {...(isPercent
-          ? {
-              addonAfter: "%",
-            }
-          : {})}
-        formatter={(value, { userTyping }) => {
-          const n = +value;
-          const isInteger = Number.isInteger(n);
-          return n.toLocaleString(localeCode(metadata.countryId), {
-            minimumFractionDigits: userTyping || isInteger ? 0 : 2,
-            maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
-          });
-        }}
-        defaultValue={Number(startValue) * scale}
-        onPressEnter={(_, value) =>
-          changeHandler(+value.toFixed(maximumFractionDigits) / scale)
-        }
-      />
+      <Space.Compact block>
+        <InputNumber
+          style={{
+            width: "100%",
+          }}
+          key={"input for" + parameter.parameter}
+          {...(isCurrency
+            ? {
+                addonBefore: currencyMap[parameter.unit],
+              }
+            : {})}
+          {...(isPercent
+            ? {
+                addonAfter: "%",
+              }
+            : {})}
+          formatter={(value, { userTyping }) => {
+            const n = +value;
+            const isInteger = Number.isInteger(n);
+            return n.toLocaleString(localeCode(metadata.countryId), {
+              minimumFractionDigits: userTyping || isInteger ? 0 : 2,
+              maximumFractionDigits: userTyping ? 16 : maximumFractionDigits,
+            });
+          }}
+          defaultValue={Number(startValue) * scale}
+          value={value}
+          onChange={(value) => setValue(value)}
+          onPressEnter={() => {
+            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
+          }}
+        />
+        {!isPercent && (
+          <AdvancedValueSetter
+            changeHandler={changeHandler}
+            setValue={setValue}
+          />
+        )}
+      </Space.Compact>
     );
   }
 }
 
-/**
- * Checks whether or not an input date is a boundary date -
- * the first or last day of a fixed period (e.g., Jan. 1 or
- * Dec. 31)
- * @param {String} date
- * @param {("start"|"end")} variant The date type - either a
- * period's start or its end date
- * @returns {Boolean} Whether or not the date is a boundary date
- */
-function checkBoundaryDate(date, variant) {
-  // Define boundary dates and types
-  // Note that month is 0-indexed in moment
-  const boundaries = [
+function AdvancedValueSetter(props) {
+  const { changeHandler, setValue } = props;
+
+  function handleValueInput(value) {
+    setValue(value);
+    changeHandler(value);
+  }
+
+  const popoverContent = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+        width: "100%",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+          fontSize: "0.8rem",
+          marginBottom: 0,
+          paddingBottom: 0,
+          color: style.colors.DARK_GRAY,
+        }}
+      >
+        Custom values
+      </p>
+      <Button
+        style={{
+          fontSize: "14px",
+          aspectRatio: 1,
+          fontFamily: style.fonts.BODY_FONT,
+          marginBottom: "5px",
+          textAlign: "left",
+          width: "100%",
+        }}
+        onClick={() => handleValueInput(Infinity)}
+      >
+        <span
+          style={{
+            fontSize: "1.2rem",
+          }}
+        >
+          &infin;&nbsp;
+        </span>
+        Infinity
+      </Button>
+      <Button
+        style={{
+          fontSize: "14px",
+          aspectRatio: 1,
+          fontFamily: style.fonts.BODY_FONT,
+          textAlign: "left",
+          width: "100%",
+        }}
+        onClick={() => handleValueInput(-Infinity)}
+      >
+        <span
+          style={{
+            fontSize: "1.2rem",
+          }}
+        >
+          -&infin;&nbsp;
+        </span>
+        -Infinity
+      </Button>
+    </div>
+  );
+
+  return (
+    <>
+      <Tooltip title="More input options">
+        <Popover
+          content={popoverContent}
+          placement="bottomRight"
+          trigger="click"
+          overlayStyle={{
+            minWidth: "150px",
+          }}
+        >
+          <Button
+            style={{
+              aspectRatio: 1,
+            }}
+          >
+            <EllipsisOutlined />
+          </Button>
+        </Popover>
+      </Tooltip>
+    </>
+  );
+}
+
+function SettingsPanel(props) {
+  const { setDateInputMode } = props;
+
+  const handleModeChange = (e) => {
+    setDateInputMode(e.target.value);
+  };
+
+  const modeOptions = [
     {
-      type: "start",
-      month: 0,
-      date: 1,
+      label: "Default",
+      value: DATE_INPUT_MODES.DEFAULT,
     },
     {
-      type: "end",
-      month: 11,
-      date: 31,
+      label: "Yearly",
+      value: DATE_INPUT_MODES.YEARLY,
+    },
+    {
+      label: "Date",
+      value: DATE_INPUT_MODES.DATE,
+    },
+    {
+      label: "Multi-year",
+      value: DATE_INPUT_MODES.MULTI_YEAR,
     },
   ];
 
-  // Take the date and define it in terms of moment package
-  const momentDate = moment(date);
+  const popoverContent = (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+        justifyContent: "flex-start",
+      }}
+    >
+      <p
+        style={{
+          margin: 0,
+          fontSize: "0.8rem",
+          marginBottom: 0,
+          paddingBottom: 0,
+          color: style.colors.DARK_GRAY,
+        }}
+      >
+        Input mode
+      </p>
+      <Radio.Group
+        optionType="button"
+        options={modeOptions}
+        defaultValue={modeOptions[0].value}
+        buttonStyle="solid"
+        onChange={handleModeChange}
+      />
+    </div>
+  );
 
-  // Duplicate its year for testing purposes
-  const testYear = momentDate.year();
-
-  // For each boundary defined above
-  for (const boundary of boundaries) {
-    // Set up a test date using the test year and the boundary's defined
-    // month and date
-    const testDate = moment()
-      .year(testYear)
-      .month(boundary.month)
-      .date(boundary.date);
-    // If the date is a boundary date, return true
-    if (boundary.type === variant && testDate.isSame(momentDate, "date")) {
-      return true;
-    }
-  }
-  // If we've found no boundary dates, return false
-  return false;
+  return (
+    <Popover content={popoverContent} placement="bottomRight" trigger="click">
+      <Button
+        style={{
+          aspectRatio: 1,
+          width: "100%",
+        }}
+      >
+        <SettingOutlined />
+      </Button>
+    </Popover>
+  );
 }
 
 export const ParamChartWidthContext = createContext((obj) => obj);

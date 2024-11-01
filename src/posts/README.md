@@ -1,5 +1,7 @@
 # Instructions for adding posts
 
+_This only currently works on Unix/Mac. `mediumexporter` creates corrupted files on Windows._
+
 1. Publish a post to Medium (any site will do but preferably blog.policyengine.org).[^1]
 2. Ensure `npm install -g mediumexporter` is installed.
 3. Run `mediumexporter {url_of_post} > src/posts/articles/{slug}.md`.[^2]

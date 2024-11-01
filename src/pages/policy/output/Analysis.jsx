@@ -6,9 +6,8 @@ import CodeBlock from "../../../layout/CodeBlock";
 import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
-import { asyncApiCall, countryApiCall } from "../../../api/call";
+import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
-import { promptContent } from "./promptContent";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -48,39 +47,11 @@ export default function Analysis(props) {
       };
     },
   );
-  // metadata.economy_options.region = [{name: "uk", label: "United Kingdom"}]
-  const regionKeyToLabel = metadata.economy_options.region.reduce(
-    (acc, { name, label }) => {
-      acc[name] = label;
-      return acc;
-    },
-    {},
-  );
   const [audience, setAudience] = useState("Normal");
-  const audienceDescriptions = {
-    ELI5: "Write this for a five-year-old who doesn't know anything about economics or policy. Explain fundamental concepts like taxes, poverty rates, and inequality as needed.",
-    Normal:
-      "Write this for a policy analyst who knows a bit about economics and policy.",
-    Wonk: "Write this for a policy analyst who knows a lot about economics and policy. Use acronyms and jargon if it makes the content more concise and informative.",
-  };
-
-  const prompt =
-    promptContent(
-      metadata,
-      selectedVersion,
-      timePeriod,
-      regionKeyToLabel,
-      impact,
-      policyLabel,
-      policy,
-      region,
-      relevantParameterBaselineValues,
-      relevantParameters,
-    ) + audienceDescriptions[audience];
-
   const [analysis, setAnalysis] = useState("");
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
+  const [prompt, setPrompt] = useState("");
 
   const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
@@ -129,56 +100,62 @@ export default function Analysis(props) {
 
   const displayCharts = (markdown) =>
     markdown.replace(
-      /{{(.*?)}}/g,
+      /{(.*?)}/g,
       (match, impactType) => `<abbr title="${impactType}"></abbr>`,
     );
 
-  const onGenerate = () => {
+  const onGenerate = async () => {
     setHasClickedGenerate(true);
     setLoading(true);
     setAnalysis(""); // Reset analysis content
-    let fullAnalysis = "";
 
-    countryApiCall(metadata.countryId, `/analysis`, {
-      prompt: prompt,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        return data.result.prompt_id;
-      })
-      .then((promptId) => {
-        asyncApiCall(
-          `/${metadata.countryId}/analysis/${promptId}`,
-          null,
-          9_000,
-          4_000,
-          (data) => {
-            // We've got to wait ten seconds for the next part of the response to be ready,
-            // so let's add the response word-by-word with a small delay to make it seem typed.
-            const analysisFromCall = data.result.analysis;
-            // Start from the new bit (compare against fullAnalysis)
-            const newAnalysis = analysisFromCall.substring(fullAnalysis.length);
-            // Start from the
-            const analysisWords = newAnalysis.split(" ");
-            for (let i = 0; i < analysisWords.length; i++) {
-              setTimeout(() => {
-                setAnalysis((analysis) =>
-                  displayCharts(analysis + " " + analysisWords[i]).replaceAll(
-                    "  ",
-                    " ",
-                  ),
-                );
-              }, 100 * i);
-            }
-            fullAnalysis = analysisFromCall;
-          },
-        ).then((data) => {
-          setAnalysis(
-            displayCharts(data.result.analysis).replaceAll("  ", " "),
-          );
-          setLoading(false);
-        });
+    const jsonObject = {
+      currency: metadata.currency,
+      selected_version: selectedVersion,
+      time_period: timePeriod,
+      impact: impact,
+      policy_label: policyLabel,
+      policy: policy,
+      region: region,
+      relevant_parameter_baseline_values: relevantParameterBaselineValues,
+      relevant_parameters: relevantParameters,
+      audience: audience,
+    };
+
+    const res = await countryApiCall(
+      metadata.countryId,
+      `/simulation-analysis`,
+      jsonObject,
+      "POST",
+    );
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    let isComplete = false;
+    while (!isComplete) {
+      const { done, value } = await reader.read().catch((error) => {
+        console.error("Error reading response stream:", error);
       });
+      if (done) {
+        isComplete = true;
+      }
+      const chunks = decoder.decode(value, { stream: true }).split("\n");
+      for (const chunk of chunks) {
+        if (chunk) {
+          const data = JSON.parse(chunk);
+          if (data.stream) {
+            setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
+          }
+          if (data.prompt) {
+            setPrompt(data.prompt);
+          }
+        }
+      }
+    }
+
+    setAnalysis((analysis) => displayCharts(analysis).replaceAll("  ", " "));
+    setLoading(false);
   };
   const buttonText = !hasClickedGenerate ? (
     "Generate an analysis"

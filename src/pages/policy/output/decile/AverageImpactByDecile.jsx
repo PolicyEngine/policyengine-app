@@ -135,6 +135,7 @@ export function ImpactPlot(props) {
 export default function averageImpactByDecile(props) {
   const { impact, policyLabel, metadata, mobile, useHoverCard = false } = props;
   const decileAverage = impact.decile.average;
+
   const averageChange =
     -impact.budget.budgetary_impact / impact.budget.households;
   const chart = (

@@ -95,6 +95,7 @@ describe("APIDocumentationPage", () => {
           Promise.resolve({
             message: "successfully resolved",
           }),
+        text: () => Promise.resolve('{"message": "successfully resolved"}'),
       }),
     );
 
@@ -134,6 +135,7 @@ describe("APIDocumentationPage", () => {
           Promise.resolve({
             message: "successfully resolved",
           }),
+        text: () => Promise.resolve('{"message": "successfully resolved"}'),
       }),
     );
 
@@ -173,6 +175,7 @@ describe("APIDocumentationPage", () => {
           Promise.resolve({
             message: "successfully resolved",
           }),
+        text: () => Promise.resolve('{"message": "successfully resolved"}'),
       }),
     );
 

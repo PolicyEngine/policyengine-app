@@ -28,6 +28,7 @@ import { formatCurrencyAbbr } from "../lang/format";
 import ErrorPage from "../layout/ErrorPage";
 import useMetadata from "../hooks/useMetadata";
 import useUserProfile from "../hooks/useUserProfile";
+import { wrappedResponseJson } from "../data/wrappedJson";
 
 const STATES = {
   EMPTY: "empty",
@@ -572,7 +573,7 @@ function UsernameDisplayAndEditor(props) {
 
     try {
       const res = await apiCall(USER_PROFILE_PATH, body, "PUT");
-      const resJson = await res.json();
+      const resJson = await wrappedResponseJson(res);
       if (resJson.status === "ok") {
         const data = await apiCall(
           `/${countryId}/user_profile?user_id=${accessedUserProfile.user_id}`,

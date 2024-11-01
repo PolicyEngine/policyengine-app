@@ -276,7 +276,7 @@ function MobileBottomMenu(props) {
 function MobileTreeNavigationHolder(props) {
   const { metadata, type, buttonHeight } = props;
   // Try to find the current focus in the tree.
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const focus = searchParams.get("focus");
 
@@ -353,6 +353,11 @@ function MobileTreeNavigationHolder(props) {
             whiteSpace: "wrap",
             margin: 0,
             fontWeight: i === breadcrumbs.length - 1 ? "normal" : "lighter",
+          }}
+          onClick={() => {
+            let newSearch = new URLSearchParams(searchParams);
+            newSearch.set("focus", breadcrumb.name);
+            setSearchParams(newSearch);
           }}
         >
           {breadcrumb.label}

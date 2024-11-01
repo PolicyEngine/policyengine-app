@@ -41,6 +41,15 @@ State Effectiveness. Anthony earned bachelor's degrees in Government and East
 Asian Studies from Harvard University.`,
     image: require("../images/authors/anthony-volk.jpg"),
   },
+  vahid_ahmadi: {
+    name: "Vahid Ahmadi",
+    bio: `is a research associate at PolicyEngine. Previously, he served as a 
+  pre-doctoral researcher at the Centre for Macroeconomics (CFM) at the London 
+School of Economics (LSE). Vahid holds a master's degree in Economics from the 
+University of Munich (LMU) and a bachelor's degree in Electrical Engineering 
+from the Sharif University of Technology.`,
+    image: require("../images/authors/vahid-ahmadi.jpeg"),
+  },
   leigh_gibson: {
     name: "Leigh Gibson",
     bio: `is a strategy consultant at PolicyEngine. Previously she was Vice

@@ -19,6 +19,7 @@ import useMobile from "layout/Responsive";
 import Screenshottable from "layout/Screenshottable";
 import { localeCode } from "lang/format";
 import { Helmet } from "react-helmet";
+import { wrappedResponseJson } from "../../../data/wrappedJson";
 
 export default function MarginalTaxRates(props) {
   const {
@@ -51,6 +52,7 @@ export default function MarginalTaxRates(props) {
     householdInput,
     metadata,
   );
+
   const currentMtr = getValueFromHousehold(
     "marginal_tax_rate",
     year,
@@ -61,7 +63,12 @@ export default function MarginalTaxRates(props) {
 
   useEffect(() => {
     let householdData = JSON.parse(JSON.stringify(householdInput));
+    // Ensure 'employment_income' exists for the current user and initialize if necessary
+    householdData.people.you = householdData.people.you || {};
+    householdData.people.you.employment_income =
+      householdData.people.you.employment_income || {};
     householdData.people.you.employment_income[year] = null;
+
     householdData.axes = [
       [
         {
@@ -82,7 +89,7 @@ export default function MarginalTaxRates(props) {
         household: householdData,
         policy: policy.baseline.data,
       })
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((data) => {
           setBaselineMtr(data.result);
         })
@@ -96,7 +103,7 @@ export default function MarginalTaxRates(props) {
           household: householdData,
           policy: policy.reform.data,
         })
-          .then((res) => res.json())
+          .then((res) => wrappedResponseJson(res))
           .then((data) => {
             setReformMtr(data.result);
           })

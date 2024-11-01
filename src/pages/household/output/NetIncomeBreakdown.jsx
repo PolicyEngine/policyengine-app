@@ -2,8 +2,9 @@ import {
   CaretDownFilled,
   CaretUpFilled,
   PlusCircleOutlined,
+  InfoCircleOutlined,
 } from "@ant-design/icons";
-import { Tooltip } from "antd";
+import { Tooltip, Button } from "antd";
 import { useState } from "react";
 import { getParameterAtInstant } from "../../../api/parameters";
 import {
@@ -14,6 +15,8 @@ import ResultsPanel from "../../../layout/ResultsPanel";
 import style from "../../../style";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import { Helmet } from "react-helmet";
+import React from "react";
+import HouseholdAIModal from "../../../modals/HouseholdAIModal";
 
 const UpArrow = () => (
   <CaretUpFilled
@@ -57,6 +60,11 @@ function VariableArithmetic(props) {
     forceShowChildValuesIfZero,
     year,
   } = props;
+
+  // When providing AI analysis, we don't want to analyze input vars (e.g., employment income)
+  const isInput =
+    metadata.variables[variableName].moduleName?.split(".")[0] === "input";
+
   let nodeSign = isAdd;
   const value = getValueFromHousehold(
     variableName,
@@ -225,6 +233,14 @@ function VariableArithmetic(props) {
     adds.length + subtracts.length > 0 &&
     childNodes.length > 0;
 
+  // State for modal visibility
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  // Function to show modal
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
   if (childrenOnly) {
     return (
       <div
@@ -282,6 +298,7 @@ function VariableArithmetic(props) {
               {valueStr}
             </h2>
           </Tooltip>
+
           {expandable && (
             <PlusCircleOutlined
               style={{
@@ -292,6 +309,41 @@ function VariableArithmetic(props) {
                 transition: "transform 0.2s",
               }}
             />
+          )}
+
+          {!expandable && !isInput && !householdReform && (
+            <div
+              style={{
+                position: "relative",
+                marginLeft: "8px",
+              }}
+              className="info-icon-wrapper"
+            >
+              <InfoCircleOutlined
+                style={{
+                  fontSize: 14,
+                  marginLeft: 10,
+                  color: style.colors.DARK_GRAY,
+                  cursor: "pointer", // Pointer cursor to indicate it's interactable
+                }}
+              />
+              <Button
+                style={{
+                  position: "absolute",
+                  top: "100%", // Position below the icon
+                  left: 0,
+                  padding: "5px 10px",
+                  borderWidth: 1,
+                  borderColor: nodeColor(nodeSign),
+                  cursor: "pointer",
+                  zIndex: 1, // Ensure the button appears above other content
+                }}
+                className="explain-ai-button"
+                onClick={showModal} // Show modal when button is clicked
+              >
+                Explain with AI ✨
+              </Button>
+            </div>
           )}
         </div>
       </div>
@@ -310,6 +362,11 @@ function VariableArithmetic(props) {
           {childNodes}
         </div>
       )}
+      <HouseholdAIModal
+        isModalVisible={isModalVisible}
+        setIsModalVisible={setIsModalVisible}
+        variableName={variableName}
+      />
     </div>
   );
 }

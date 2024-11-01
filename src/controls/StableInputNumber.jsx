@@ -1,5 +1,4 @@
 import { InputNumber } from "antd";
-import { useState } from "react";
 
 /**
  *
@@ -35,13 +34,11 @@ import { useState } from "react";
  * @returns a StableInputNumber component
  */
 export default function StableInputNumber(props) {
-  const { defaultValue, onPressEnter, onBlur, ...others } = props;
-  const [value, setValue] = useState(defaultValue);
-  delete others.onChange;
+  const { defaultValue, onPressEnter, onBlur, value, ...others } = props;
   return (
     <InputNumber
       defaultValue={defaultValue}
-      onChange={setValue}
+      value={value}
       onPressEnter={(e) => onPressEnter?.(e, value)}
       onBlur={(e) => onBlur?.(e, value)}
       {...others}

@@ -14,6 +14,7 @@ import {
 import { createElement } from "react";
 import useCountryId from "../hooks/useCountryId";
 import { Link } from "react-router-dom";
+import { defaultYear } from "../data/constants";
 
 export default function Footer() {
   const displayCategory = useDisplayCategory();
@@ -59,6 +60,11 @@ function LinkSection() {
     {
       link: `/${countryId}/terms`,
       label: "Terms and Conditions",
+      isInternal: true,
+    },
+    {
+      link: `/${countryId}/developer-tools`,
+      label: "Developer Tools",
       isInternal: true,
     },
   ];
@@ -220,6 +226,45 @@ export function SocialLink({ icon, url, backgroundColor, color }) {
   );
 }
 
+export function CharityInfo() {
+  const countryId = useCountryId();
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+      }}
+    >
+      {countryId === "uk" && (
+        <p
+          style={{
+            color: style.colors.WHITE,
+            fontSize: "12px",
+            textAlign: "left",
+            margin: 0,
+          }}
+        >
+          PolicyEngine is a registered charity with the Charity Commission of
+          England and Wales (no. 1210532) and as a private company limited by
+          guarantee with Companies House (no. 15023806).
+        </p>
+      )}
+      <p
+        style={{
+          color: style.colors.WHITE,
+          fontSize: "12px",
+          textAlign: "left",
+          margin: 0,
+        }}
+      >
+        {`© ${defaultYear} PolicyEngine. All rights reserved.`}
+      </p>
+    </div>
+  );
+}
+
 function MobileFooter() {
   return (
     <div
@@ -233,6 +278,7 @@ function MobileFooter() {
       <LinkSection />
       <SubscribeToPolicyEngine displaySize="mobile" />
       <SocialLinks />
+      <CharityInfo />
     </div>
   );
 }
@@ -256,6 +302,7 @@ function TabletFooter() {
         <SubscribeToPolicyEngine displaySize="mobile" />
       </div>
       <SocialLinks />
+      <CharityInfo />
     </div>
   );
 }
@@ -289,6 +336,7 @@ function DesktopFooter() {
           <SubscribeToPolicyEngine displaySize="mobile" />
         </div>
       </div>
+      <CharityInfo />
     </div>
   );
 }

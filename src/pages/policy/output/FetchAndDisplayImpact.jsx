@@ -12,6 +12,7 @@ import { defaultYear } from "data/constants";
 import { areObjectsSame } from "../../../data/areObjectsSame";
 import { updateUserPolicy } from "../../../api/userPolicies";
 import useCountryId from "../../../hooks/useCountryId";
+import { wrappedResponseJson } from "../../../data/wrappedJson";
 // import LoadingCentered from "layout/LoadingCentered";
 
 /**
@@ -93,7 +94,7 @@ export function FetchAndDisplayImpact(props) {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
       }, 1000);
       apiCall(url, null)
-        .then((res) => res.json())
+        .then((res) => wrappedResponseJson(res))
         .then((intermediateData) => {
           if (averageImpactTime === 20) {
             setAverageImpactTime(intermediateData.average_time || 20);

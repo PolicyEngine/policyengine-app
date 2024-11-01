@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../hooks/useDisplayCategory";
 import useMetadata from "../hooks/useMetadata";
+import { wrappedResponseJson } from "../data/wrappedJson";
 
 export const exampleInputs = {
   us: {
@@ -453,7 +454,7 @@ function APIEndpoint({
             body: JSON.stringify(exampleInputJson),
           },
         );
-        const resJson = await res.json();
+        const resJson = await wrappedResponseJson(res);
         setOutputJson(resJson);
       } catch (err) {
         console.error(err);

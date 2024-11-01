@@ -240,6 +240,8 @@ describe("SinglePolicyChange", () => {
   const testCountryId = "us";
   const testValue = 3;
   const testParamLabel = "maxwell";
+  // Test against changes to IRS income tax bracket 1
+  const testParamName = "gov.irs.income.bracket.rates.1";
 
   test("Should display simple, single-year policies correctly", () => {
     // This must be declared here, and not in describe
@@ -249,15 +251,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-01";
     const testEndDate = "2024-12-31";
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
-
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -272,14 +271,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-01";
     const testEndDate = "2025-12-31";
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -294,14 +291,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-01";
     const testEndDate = defaultForeverYear.concat("-12-31");
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -316,14 +311,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-02";
     const testEndDate = defaultForeverYear.concat("-12-31");
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -340,14 +333,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-02";
     const testEndDate = "2025-12-30";
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -365,14 +356,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-02";
     const testEndDate = "2025-12-31";
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -390,14 +379,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-01";
     const testEndDate = "2025-12-30";
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
@@ -415,14 +402,12 @@ describe("SinglePolicyChange", () => {
     const testStartDate = "2024-01-01";
     const testEndDate = "2024-01-01";
 
-    const index = Math.floor(Object.keys(allParams).length / 2);
-    const desiredParamName = Object.keys(allParams)[index];
     const { getByText } = render(
       <BrowserRouter>
         <SinglePolicyChange
           startDateStr={testStartDate}
           endDateStr={testEndDate}
-          parameterMetadata={allParams[desiredParamName]}
+          parameterMetadata={allParams[testParamName]}
           value={testValue}
           paramLabel={testParamLabel}
           countryId={testCountryId}
