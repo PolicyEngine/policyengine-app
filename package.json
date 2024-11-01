@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://policyengine.org",
   "engines": {
-    "node": ">=19.0.0"
+    "node": ">=22.0.0"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
