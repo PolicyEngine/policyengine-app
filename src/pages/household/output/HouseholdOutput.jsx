@@ -23,8 +23,7 @@ export default function HouseholdOutput(props) {
     householdBaseline,
     householdReform,
     loading,
-    hasShownHouseholdPopup,
-    setHasShownHouseholdPopup,
+  
     year,
   } = props;
   const mobile = useMobile();
@@ -50,8 +49,7 @@ export default function HouseholdOutput(props) {
           <PoliciesModelledPopup
             metadata={metadata}
             householdInput={householdInput}
-            hasShownHouseholdPopup={hasShownHouseholdPopup}
-            setHasShownHouseholdPopup={setHasShownHouseholdPopup}
+           
             year={year}
           />
         )}

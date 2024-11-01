@@ -26,6 +26,8 @@ import { COUNTRY_NAMES } from "../data/countries";
 import moment from "moment";
 import { formatCurrencyAbbr } from "../lang/format";
 import ErrorPage from "../layout/ErrorPage";
+import useMetadata from "../hooks/useMetadata";
+import useUserProfile from "../hooks/useUserProfile";
 import { wrappedResponseJson } from "../data/wrappedJson";
 
 const STATES = {
@@ -56,7 +58,15 @@ export default function UserProfilePage(props) {
   // visiting. authedUserProfile is shared via props, as the entire
   // app has access to this info, while accessedUserProfile requires a fetch
 
-  const { metadata, authedUserProfile, metadataError } = props;
+  const {
+    metadata,
+    metadataError,
+  
+  } = useMetadata();
+  const { userProfile:authedUserProfile} =
+  useUserProfile();
+  
+
   let params = useParams();
   const accessedUserId = params.user_id;
   const isOwnProfile =
