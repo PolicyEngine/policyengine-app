@@ -81,11 +81,11 @@ function PoliciesModelledChecklist(props) {
 
 export default function PoliciesModelledPopup(props) {
   const [needToOpenModal, setNeedToOpenModal] = useState(true);
+  const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
   const {
     metadata,
     householdInput,
-    hasShownHouseholdPopup,
-    setHasShownHouseholdPopup,
+   
     year,
   } = props;
   useEffect(() => {

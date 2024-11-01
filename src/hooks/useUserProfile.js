@@ -46,7 +46,8 @@ const useUserProfile = () => {
   const countryId = extractCountryId();
 
   const { data, isPending, isError, refetch, error } = useQuery({
-    queryKey: ["userProfile", countryId, user?.sub, isAuthenticated],
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey: ["userProfile",  user?.sub],
     queryFn: () => fetchUserProfile(countryId, isAuthenticated, user?.sub),
     enabled: isAuthenticated && !!user?.sub,
     onError: (error) => {

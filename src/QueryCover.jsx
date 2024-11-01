@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
-      {/* uncomment below line during development */}
-
+      // {/* uncomment below line during development */}
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 const QueryCover = ({ children }) => {
   const queryClient = new QueryClient({

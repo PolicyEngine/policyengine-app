@@ -33,8 +33,7 @@ export default function HouseholdPage(props) {
     metadata,
     householdId,
     policy,
-    hasShownHouseholdPopup,
-    setHasShownHouseholdPopup,
+   
   } = props;
   const countryId = metadata.countryId;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -326,8 +325,7 @@ export default function HouseholdPage(props) {
           householdInput={householdInput}
           policy={policy}
           loading={loading}
-          hasShownHouseholdPopup={hasShownHouseholdPopup}
-          setHasShownHouseholdPopup={setHasShownHouseholdPopup}
+        
           year={year}
         />
       </>

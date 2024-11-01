@@ -1,4 +1,4 @@
-import React, { lazy, Profiler, Suspense, useEffect } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import {
   Navigate,
   Route,
@@ -40,6 +40,9 @@ import useUserProfile from "./hooks/useUserProfile";
 import { ConfigProvider } from "antd";
 import style from "./style";
 import CookieConsent from "./modals/CookieConsent";
+import DeveloperLayout from "./pages/DeveloperLayout";
+import DeveloperHome from "./pages/DeveloperHome";
+import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -56,87 +59,80 @@ function ScrollToTop() {
 
 const PolicyEngineRoutes = () => {
   const countryId = extractCountryId();
-  const onRender = (
-    id,
-    phase,
-    actualDuration,
-    baseDuration,
-    startTime,
-    commitTime,
-  ) => {
-    console.log({
-      id,
-      phase,
-      actualDuration,
-      baseDuration,
-      startTime,
-      commitTime,
-    });
-  };
+  // If the path is /, redirect to /[countryId]
+  // If the path is /[countryId], render the homepage
+  // If the path is /[countryId]/about, render the about page
+  // If the path is /[countryId]/jobs, render the jobs page
+  // If the path is /[countryId]/research, render the research page
+  // If the path is not recognized, redirect to /[countryId]
 
   return (
-    <Profiler id="App" onRender={onRender}>
-      {/* //TODO temporary will be shifting back to policy engine */}
-      <ConfigProvider
-        theme={{
-          token: {
-            borderRadius: 0,
-            colorPrimary: style.colors.BLUE,
-            fontFamily: "Roboto Serif",
-          },
-        }}
-      >
-        <ScrollToTop />
-        <CookieConsent />
-        {/* till here */}
+    //TODO temporary will be shifting back to policy engine
+    <ConfigProvider
+      theme={{
+        token: {
+          borderRadius: 0,
+          colorPrimary: style.colors.BLUE,
+          fontFamily: "Roboto Serif",
+        },
+      }}
+    >
+      <ScrollToTop />
+      <CookieConsent />
+      {/* till here */}
 
-        <Routes>
-          {/* Redirect from / to /[countryId] */}
-          <Route path="/" element={<RedirectToCountry />} />
-          <Route path="/callback" element={<AuthCallback />} />
-          <Route path="/:countryId" element={<CountryIdLayout />}>
-            <Route index={true} element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="jobs" element={<Jobs />} />
-            <Route path="testimonials" element={<Testimonials />} />
-            <Route path="calculator" element={<CalculatorInterstitial />} />
+      <Routes>
+        {/* Redirect from / to /[countryId] */}
+        <Route path="/" element={<RedirectToCountry />} />
+        <Route path="/callback" element={<AuthCallback />} />
+        <Route path="/:countryId" element={<CountryIdLayout />}>
+          <Route index={true} element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="jobs" element={<Jobs />} />
+          <Route path="testimonials" element={<Testimonials />} />
+          <Route path="calculator" element={<CalculatorInterstitial />} />
+          <Route path="simulations" element={<SimulationsPage />} />
+          <Route path="developer-tools" element={<DeveloperLayout />}>
+            <Route index element={<DeveloperHome />} />
             <Route path="simulations" element={<SimulationsPage />} />
-            <Route path="research" element={<Research />} />
-            <Route path="research/:postName" element={<BlogPage />} />
-            <Route path="donate" element={<Donate />} />
-            <Route path="privacy" element={<PrivacyPage />} />
-            <Route path="terms" element={<TACPage />} />
-
-            <Route path="household/*" element={<HouseholdPageLayout />} />
-            <Route path="policy/*" element={<PolicyPageLayout />} />
-
-            <Route path="profile" element={<UserProfileRoute />} />
-            <Route path="profile/:user_id" element={<UserProfilePage />} />
-            <Route path="api" element={<APIDocumentationPage />} />
-            {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
-            <Route path="blog/:postName" element={<RedirectBlogPost />} />
+            <Route path="api_status" element={<StatusPage />} />
           </Route>
-          <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
-          <Route
-            path="/uk/2024-manifestos"
-            element={<ManifestosComparison />}
-          />
-          <Route path="/:countryId/api_status" element={<StatusPage />} />
-          <Route
-            path="/us/trafwa-ctc-calculator"
-            element={<TrafwaCalculator />}
-          />
-          <Route path="/us/state-eitcs-ctcs" element={<StateEitcsCtcs />} />
-          <Route
-            path="/us/child-tax-credit-2024-election-calculator"
-            element={<CTCComparison />}
-          />
+          <Route path="research" element={<Research />} />
+          <Route path="research/:postName" element={<BlogPage />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="privacy" element={<PrivacyPage />} />
+          <Route path="terms" element={<TACPage />} />
 
-          {/* Redirect for unrecognized paths */}
-          <Route path="*" element={<Navigate to={`/${countryId}`} />} />
-        </Routes>
-      </ConfigProvider>
-    </Profiler>
+          <Route path="household/*" element={<HouseholdPageLayout />} />
+          <Route path="policy/*" element={<PolicyPageLayout />} />
+
+          <Route path="profile" element={<UserProfileRoute />} />
+          <Route path="profile/:user_id" element={<UserProfilePage />} />
+          <Route path="api" element={<APIDocumentationPage />} />
+          {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
+          <Route path="blog/:postName" element={<RedirectBlogPost />} />
+        </Route>
+        <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
+        <Route path="/uk/2024-manifestos" element={<ManifestosComparison />} />
+        <Route path="/:countryId/api_status" element={<StatusPage />} />
+        <Route
+          path="/us/trafwa-ctc-calculator"
+          element={<TrafwaCalculator />}
+        />
+        <Route path="/us/state-eitcs-ctcs" element={<StateEitcsCtcs />} />
+        <Route
+          path="/us/child-tax-credit-2024-election-calculator"
+          element={<CTCComparison />}
+        />
+        <Route
+          path="/us/2024-election-calculator"
+          element={<US2024ElectionCalculator />}
+        />
+
+        {/* Redirect for unrecognized paths */}
+        <Route path="*" element={<Navigate to={`/${countryId}`} />} />
+      </Routes>
+    </ConfigProvider>
   );
 };
 
@@ -150,11 +146,7 @@ export const LoadingPage = () => (
 );
 
 const HouseholdPageLayout = () => {
-  const {
-    metadata,
-    isMetadataLoading,
-    isMetadataError,
-  } = useMetadata();
+  const { metadata, isMetadataLoading, isMetadataError } = useMetadata();
   const { policy, isPolicyLoading, isPolicyError } = usePolicy();
   if (isMetadataLoading || isPolicyLoading) {
     return <LoadingPage />;
@@ -171,11 +163,7 @@ const HouseholdPageLayout = () => {
 };
 
 const PolicyPageLayout = () => {
-  const {
-    metadata,
-    isMetadataLoading,
-    isMetadataError,
-  } = useMetadata();
+  const { metadata, isMetadataLoading, isMetadataError } = useMetadata();
   const { policy, isPolicyError, isPolicyLoading } = usePolicy();
   const { userProfile, isUserProfileLoading, isUserProfileError } =
     useUserProfile();
@@ -206,7 +194,7 @@ const SuspenseLayout = ({ children }) => {
 };
 
 const UserProfileRoute = () => {
-  const {  countryId } = useParams();
+  const { countryId } = useParams();
   // const countryId = extractCountryId();
   const { userProfile, isUserProfileLoading, isUserProfileError } =
     useUserProfile();
