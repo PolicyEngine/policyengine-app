@@ -11,14 +11,9 @@ const articles = [
     link: "/uk/research/autumn-budget-24-employer-ni",
   },
   {
-    title: "Capital Gains",
-    shortTitle: "Capital Gains",
-    link: "#",
-  },
-  {
     title: "Private School Value-Added Tax",
     shortTitle: "Private School VAT",
-    link: "/uk/research/school-vat",
+    link: "/uk/research/vat-school-comparison",
   },
   {
     title: "Fuel Duty",
@@ -39,9 +34,7 @@ export default function UK2024AutumnBudgetBanner() {
     "Chancellor of the Exchequer Rachel Reeves holding a budget box in front of Number 11 Downing Street" +
     "Courtesy of HM Treasury, https://www.flickr.com/photos/hmtreasury/54104908129/";
 
-  const shouldUseShortTitle =
-    (dC !== "mobile" && windowWidth < 1150 && windowWidth >= 800) ||
-    (dC === "mobile" && windowWidth < 625);
+  const shouldUseShortTitle = windowWidth < 1150;
 
   const articlesJSX = articles.map((article, index) => {
     return (
@@ -120,7 +113,7 @@ export default function UK2024AutumnBudgetBanner() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateColumns: "repeat(3, 1fr)",
               gap: "16px",
               width: "100%",
             }}
@@ -192,9 +185,11 @@ export default function UK2024AutumnBudgetBanner() {
       {/* Buttons section */}
       <div
         style={{
-          display: "grid",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
           gap: "16px",
-          gridTemplateRows: "repeat(4, 1fr)",
         }}
       >
         {articlesJSX}
