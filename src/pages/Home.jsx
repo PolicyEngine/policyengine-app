@@ -9,7 +9,8 @@ import HomeTransparency from "./home/HomeTransparency";
 import Footer from "../layout/Footer";
 import HomeQuoteCarousel from "./home/HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
-import HomeElectionBanner from "./home/HomeElectionBanner.jsx";
+import UK2024AutumnBudgetBanner from "./home/banners/UK2024AutumnBudgetBanner";
+import US2024ElectionBanner from "./home/banners/US2024ElectionBanner.jsx";
 import useCountryId from "../hooks/useCountryId";
 
 export default function Home() {
@@ -21,7 +22,9 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
-        {countryId === "us" && <HomeElectionBanner />}
+        {countryId === "uk" && <UK2024AutumnBudgetBanner />}
+
+        {countryId === "us" && <US2024ElectionBanner />}
         <HomeLanding />
         <HomeUsedBy />
         <HomeBlogPreview />
