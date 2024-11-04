@@ -49,6 +49,13 @@ export function getHeaderCode(type, metadata, policy) {
     lines.push("from policyengine_core.reforms import Reform");
   }
 
+  // If either baseline or reform contains Infinity or -Infinity,
+  // add the following Python imports
+  const allValues = getAllPolicyValues(policy);
+  if (allValues.some((value) => value === Infinity || value === -Infinity)) {
+    lines.push("import numpy as np");
+  }
+
   return lines;
 }
 
@@ -261,6 +268,30 @@ export function doesParamNameContainNumber(paramName) {
 }
 
 /**
+ * Given a standard "policy" object, get all individual
+ * values for both the baseline and reform policies
+ * @param {Object} policy
+ * @returns {Array<Number | String >} An array of values
+ */
+export function getAllPolicyValues(policy) {
+  const { baseline, reform } = policy;
+
+  /** @type {Array<Object>} */
+  let valueSettings = [];
+
+  for (const policy of [baseline, reform]) {
+    const values = Object.values(policy.data);
+    valueSettings = valueSettings.concat(values);
+  }
+
+  const output = valueSettings.reduce((accu, item) => {
+    return accu.concat(...Object.values(item));
+  }, []);
+
+  return output;
+}
+
+/**
  * Utility function to sanitize a string and ensure that it's valid Python;
  * currently converts JS 'null', 'true', 'false', '"Infinity"', and '"-Infinity"' to Python
  * @param {String} string
@@ -271,6 +302,6 @@ export function sanitizeStringToPython(string) {
     .replace(/true/g, "True")
     .replace(/false/g, "False")
     .replace(/null/g, "None")
-    .replace(/"Infinity"/g, ".inf")
-    .replace(/"-Infinity"/g, "-.inf");
+    .replace(/"Infinity"/g, "np.inf")
+    .replace(/"-Infinity"/g, "-np.inf");
 }
