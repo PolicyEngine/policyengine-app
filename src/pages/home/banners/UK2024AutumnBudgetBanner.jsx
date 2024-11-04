@@ -161,7 +161,7 @@ export default function UK2024AutumnBudgetBanner() {
             // Instead of struggling to find the right solution, just set to 90%
             // instead of 100% since this behavior only desired at select
             // visual breakpoint (like 800px width)
-            width: "min(600px, 90%)",
+            width: "min(620px, 90%)",
             backgroundColor: "rgba(44, 100, 150, 0.88)",
             display: "flex",
             flexDirection: "column",
