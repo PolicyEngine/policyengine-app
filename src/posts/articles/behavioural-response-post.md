@@ -28,23 +28,23 @@ By default, PolicyEngine’s model assumes no behavioural responses. PolicyEngin
 
 This section shows how incorporating behavioural responses affects policy analysis. By comparing estimates with and without behavioural responses, we illustrate the importance of accounting for how individuals and businesses adapt their economic decisions in response to policy changes.
 
-To demonstrate this comparison, we examine two tax reforms proposed by the UK government in October 2024: changes to Capital Gains Tax and employer National Insurance contributions. For a detailed analysis of these and other reforms proposed in the Autumn Budget, see [PolicyEngine's reform impact analysis](https://policyengine.org/uk/research/autumn-budget-2024-policy-choices). 
+To demonstrate this comparison, we examine two tax reforms proposed by the UK government in October 2024: changes to Capital Gains Tax and employer National Insurance contributions. For a detailed analysis of these and other reforms proposed in the Autumn Budget, see [PolicyEngine's reform impact analysis](https://policyengine.org/uk/research/autumn-budget-2024-policy-choices).
 
 In estimating the impacts of these reforms, we model how individuals with capital gains respond to changes in their marginal tax rate and how employers respond to changes in their tax liability by adjusting employee wages. The table below compares the five-year revenue impacts under both static and dynamic scenarios.
 
-| Reform | Static revenue impact	 | Dynamic revenue impact	 | Relative change |
-| :---- | :---- | :---- | :---- |
-| Levy employer pension NICs | 90.3 | 66.6 | \-26% |
-| Raise CGT to 24%	 | 21.5 | 10.1 | \-53% |
+| Reform                     | Static revenue impact | Dynamic revenue impact | Relative change |
+| :------------------------- | :-------------------- | :--------------------- | :-------------- |
+| Levy employer pension NICs | 90.3                  | 66.6                   | \-26%           |
+| Raise CGT to 24%           | 21.5                  | 10.1                   | \-53%           |
 
 ## Conclusion
 
 In this report, we present how PolicyEngine models behavioural responses through income, substitution, and capital gains elasticities to capture how individuals adjust their economic decisions to policy changes. Using recent UK tax reforms as examples, we demonstrate how incorporating these behavioural responses changes government revenue compared to static analysis.
 
-[^1]:  Chetty, R., Guren, A., Manoli, D., & Weber, A. (2011). Are Micro and Macro Labor Supply Elasticities Consistent? A Review of Evidence on the Intensive and Extensive Margins. American Economic Review, 101(3), 471–475.
+[^1]: Chetty, R., Guren, A., Manoli, D., & Weber, A. (2011). Are Micro and Macro Labor Supply Elasticities Consistent? A Review of Evidence on the Intensive and Extensive Margins. American Economic Review, 101(3), 471–475.
 
-[^2]:  Saez, E., Slemrod, J., & Giertz, S. H. (2012). The Elasticity of Taxable Income with Respect to Marginal Tax Rates: A Critical Review. Journal of Economic Literature, 50(1), 3-50.
+[^2]: Saez, E., Slemrod, J., & Giertz, S. H. (2012). The Elasticity of Taxable Income with Respect to Marginal Tax Rates: A Critical Review. Journal of Economic Literature, 50(1), 3-50.
 
-[^3]:  Feldstein, M., Behavioural Responses to Taxation: Lessons from the Tax Reform Act of 1986, American Economic Review, 1995\.
+[^3]: Feldstein, M., Behavioural Responses to Taxation: Lessons from the Tax Reform Act of 1986, American Economic Review, 1995\.
 
-[^4]:  Agersnap, Ole, and Owen Zidar (2021). "The Tax Elasticity of Capital Gains and Revenue-Maximizing Rates." American Economic Review: Insights, vol. 3, no. 4, pp. 399–416.
+[^4]: Agersnap, Ole, and Owen Zidar (2021). "The Tax Elasticity of Capital Gains and Revenue-Maximizing Rates." American Economic Review: Insights, vol. 3, no. 4, pp. 399–416.
