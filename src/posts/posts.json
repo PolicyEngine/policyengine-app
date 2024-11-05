@@ -846,6 +846,15 @@
     "image": "vat-school-comparison-post.jpg"
   },
   {
+    "title": "How PolicyEngine UK models behavioural responses",
+    "description": "PolicyEngine has enhanced its modelling with behavioural responses, including income, substitution and capital gains elasticities.",
+    "date": "2024-11-05 15:00:00",
+    "tags": ["uk", "policy", "elasticity", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "behavioural-response-post.md",
+    "image": "behavorial-post.jpg"
+  },
+  {
     "title": "Benefits uprating 2025/26",
     "description": "PolicyEngine projects Labour's 1.7% benefits uprating would cost £2.5 billion, mainly benefiting lower-income households.",
     "date": "2024-10-31 15:00:00",
