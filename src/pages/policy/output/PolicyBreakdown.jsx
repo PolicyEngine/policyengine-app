@@ -171,6 +171,7 @@ function BreakdownTemplate(props) {
           }}
           whileHover={{
             backgroundColor: style.colors.BLUE_LIGHT,
+            fontWeight: 500,
           }}
           transition={{ duration: 0.001 }}
           onClick={() => onItemClick(focusTarget)}
@@ -453,6 +454,7 @@ function formatWinnersLosers(item, onItemClick) {
       }}
       whileHover={{
         backgroundColor: style.colors.BLUE_LIGHT,
+        fontWeight: 500,
       }}
       transition={{ duration: 0.001 }}
       onClick={() => onItemClick(focusTarget)}
