@@ -47,6 +47,7 @@ import ManifestosComparison from "./applets/ManifestosComparison";
 import DeveloperLayout from "./pages/DeveloperLayout";
 import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
+import CTCCalculator from "./applets/CTCCalculator";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 
@@ -366,6 +367,10 @@ export default function PolicyEngine() {
         <Route
           path="/us/child-tax-credit-2024-election-calculator"
           element={<CTCComparison />}
+        />
+        <Route
+          path="/us/child-tax-credit-calculator"
+          element={<CTCCalculator />}
         />
         <Route
           path="/us/2024-election-calculator"
