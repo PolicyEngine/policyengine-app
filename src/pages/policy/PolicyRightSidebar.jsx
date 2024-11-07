@@ -126,41 +126,52 @@ function BehavioralResponseToggle(props) {
       },
       us: {
         "gov.simulation.labor_supply_responses.elasticities.income": {
-          "2024-01-01.2100-12-31": -0.05
+          "2024-01-01.2100-12-31": -0.05,
         },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.1": {
-          "2024-01-01.2100-12-31": 0.31
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.10": {
-          "2024-01-01.2100-12-31": 0.22
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.2": {
-          "2024-01-01.2100-12-31": 0.28
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.3": {
-          "2024-01-01.2100-12-31": 0.27
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.4": {
-          "2024-01-01.2100-12-31": 0.27
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.5": {
-          "2024-01-01.2100-12-31": 0.25
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.6": {
-          "2024-01-01.2100-12-31": 0.25
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.7": {
-          "2024-01-01.2100-12-31": 0.22
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.8": {
-          "2024-01-01.2100-12-31": 0.22
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.9": {
-          "2024-01-01.2100-12-31": 0.22
-        },
-        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.secondary": {
-          "2024-01-01.2100-12-31": 0.27
-        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.1":
+          {
+            "2024-01-01.2100-12-31": 0.31,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.10":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.2":
+          {
+            "2024-01-01.2100-12-31": 0.28,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.3":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.4":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.5":
+          {
+            "2024-01-01.2100-12-31": 0.25,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.6":
+          {
+            "2024-01-01.2100-12-31": 0.25,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.7":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.8":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.9":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.secondary":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
       },
     }),
     [dateString],
@@ -280,16 +291,19 @@ function BehavioralResponseToggle(props) {
 
   // Apply the correct label based on the country
   const tooltipDesc = {
-    us: "When selected, simulations adjust earnings using the US Congressional " + 
-    "Budget Office's behavioral income and substitution elasticities."
-  }
-
-  const tooltipLink = {
-    us: "https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4"
+    us:
+      "When selected, simulations adjust earnings using the US Congressional " +
+      "Budget Office's behavioral income and substitution elasticities.",
   };
 
-  const tooltipText = tooltipDesc[countryId] ?? (`When selected, use dynamic ${spellsBehaviour ? "behavioural" : "behavioral"} ` + 
-  "responses in simulations.");
+  const tooltipLink = {
+    us: "https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4",
+  };
+
+  const tooltipText =
+    tooltipDesc[countryId] ??
+    `When selected, use dynamic ${spellsBehaviour ? "behavioural" : "behavioral"} ` +
+      "responses in simulations.";
 
   const tooltipJSX = (
     <div>
@@ -299,7 +313,7 @@ function BehavioralResponseToggle(props) {
           href={tooltipLink[countryId]}
           target="_blank"
           rel="noreferrer"
-          style={{ 
+          style={{
             marginLeft: "5px",
             textDecoration: "underline",
             color: "rgb(84, 140, 190)", // This is BLUE_PRIMARY + 20 for each RGB value, so brighter
@@ -332,7 +346,8 @@ function BehavioralResponseToggle(props) {
           fontSize: displayCategory !== "mobile" && "0.95em",
         }}
       >
-        Apply {preLabel[countryId] ?? ""} {spellsBehaviour ? "behavioural" : "behavioral"} responses
+        Apply {preLabel[countryId] ?? ""}{" "}
+        {spellsBehaviour ? "behavioural" : "behavioral"} responses
       </p>
       <Tooltip
         placement="topRight"
