@@ -20,6 +20,11 @@ const articles = [
     shortTitle: "Fuel Duty",
     link: "/uk/research/autumn-budget-24-fuel-duty",
   },
+  {
+    title: "Capital Gains Tax",
+    shortTitle: "Capital Gains Tax",
+    link: "/uk/research/cgt-autumn-budget",
+  },
 ];
 
 export default function UK2024AutumnBudgetBanner() {
@@ -113,7 +118,8 @@ export default function UK2024AutumnBudgetBanner() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateRows: "repeat(2, 1fr)",
               gap: "16px",
               width: "100%",
             }}
