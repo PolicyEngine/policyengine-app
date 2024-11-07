@@ -1,10 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  DisplayError,
-  DisplayImpact,
-  DisplayWait,
-  LowLevelDisplay,
-} from "./Display";
+import { DisplayError, DisplayImpact, DisplayWait } from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
 import ErrorPage from "layout/ErrorPage";
@@ -13,7 +8,7 @@ import { areObjectsSame } from "../../../data/areObjectsSame";
 import { updateUserPolicy } from "../../../api/userPolicies";
 import useCountryId from "../../../hooks/useCountryId";
 import { wrappedResponseJson } from "../../../data/wrappedJson";
-// import LoadingCentered from "layout/LoadingCentered";
+import LoadingCentered from "layout/LoadingCentered";
 
 /**
  *
@@ -227,10 +222,7 @@ export function FetchAndDisplayCliffImpact(props) {
   // eslint-disable-next-line no-unused-vars
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const {
-    metadata,
-    // policy,
-  } = props;
+  const { metadata, policy } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
@@ -283,24 +275,9 @@ export function FetchAndDisplayCliffImpact(props) {
     return <DisplayError error={error} />;
   }
 
-  // Remove the below block when cliff impacts are reinstated
-  return (
-    <LowLevelDisplay {...props}>
-      <ErrorPage message="This service is temporarily unavailable. Please try again later." />
-    </LowLevelDisplay>
-  );
-
-  /*
   if (!impact) {
     return <LoadingCentered message="Computing the cliff impact..." />;
   }
 
-  return (
-    <DisplayImpact
-      impact={impact}
-      policy={policy}
-      metadata={metadata}
-    />
-  );
-  */
+  return <DisplayImpact impact={impact} policy={policy} metadata={metadata} />;
 }
