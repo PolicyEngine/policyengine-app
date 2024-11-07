@@ -11,6 +11,7 @@ export function buildParameterTree(parameters) {
   )) {
     const nodeToInsert = {
       name: parameter.parameter,
+      type: parameter.type,
       label: (
         parameter.label || parameter.parameter.split(/\.|\[/).pop()
       ).replaceAll("_", " "),
