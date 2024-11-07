@@ -125,8 +125,41 @@ function BehavioralResponseToggle(props) {
         },
       },
       us: {
-        "gov.contrib.cbo.labor_supply.elasticities": {
-          [dateString]: true,
+        "gov.simulation.labor_supply_responses.elasticities.income": {
+          "2024-01-01.2100-12-31": -0.05
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.1": {
+          "2024-01-01.2100-12-31": 0.31
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.10": {
+          "2024-01-01.2100-12-31": 0.22
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.2": {
+          "2024-01-01.2100-12-31": 0.28
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.3": {
+          "2024-01-01.2100-12-31": 0.27
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.4": {
+          "2024-01-01.2100-12-31": 0.27
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.5": {
+          "2024-01-01.2100-12-31": 0.25
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.6": {
+          "2024-01-01.2100-12-31": 0.25
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.7": {
+          "2024-01-01.2100-12-31": 0.22
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.8": {
+          "2024-01-01.2100-12-31": 0.22
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.9": {
+          "2024-01-01.2100-12-31": 0.22
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.secondary": {
+          "2024-01-01.2100-12-31": 0.27
         },
       },
     }),
