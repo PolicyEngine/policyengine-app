@@ -274,6 +274,43 @@ function BehavioralResponseToggle(props) {
     return null;
   }
 
+  const preLabel = {
+    us: "CBO",
+  };
+
+  // Apply the correct label based on the country
+  const tooltipDesc = {
+    us: "When selected, simulations adjust earnings using the US Congressional " + 
+    "Budget Office's behavioral income and substitution elasticities."
+  }
+
+  const tooltipLink = {
+    us: "https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4"
+  };
+
+  const tooltipText = tooltipDesc[countryId] ?? (`When selected, use dynamic ${spellsBehaviour ? "behavioural" : "behavioral"} ` + 
+  "responses in simulations.");
+
+  const tooltipJSX = (
+    <div>
+      <span>{tooltipText}</span>
+      {tooltipLink[countryId] && (
+        <a
+          href={tooltipLink[countryId]}
+          target="_blank"
+          rel="noreferrer"
+          style={{ 
+            marginLeft: "5px",
+            textDecoration: "underline",
+            color: "rgb(84, 140, 190)", // This is BLUE_PRIMARY + 20 for each RGB value, so brighter
+          }}
+        >
+          Learn more.
+        </a>
+      )}
+    </div>
+  );
+
   return (
     <div
       style={{
@@ -295,11 +332,11 @@ function BehavioralResponseToggle(props) {
           fontSize: displayCategory !== "mobile" && "0.95em",
         }}
       >
-        Apply {spellsBehaviour ? "behavioural" : "behavioral"} responses
+        Apply {preLabel[countryId] ?? ""} {spellsBehaviour ? "behavioural" : "behavioral"} responses
       </p>
       <Tooltip
         placement="topRight"
-        title={`When selected, use dynamic ${spellsBehaviour ? "behavioural" : "behavioral"} responses in simulations`}
+        title={tooltipJSX}
         trigger={displayCategory === "mobile" ? "click" : "hover"}
       >
         <QuestionCircleOutlined
