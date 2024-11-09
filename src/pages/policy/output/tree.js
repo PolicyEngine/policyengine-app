@@ -14,7 +14,7 @@ export const policyOutputs = {
   genderDeepPovertyImpact: "Deep poverty impact by sex",
   racialPovertyImpact: "Poverty impact by race and ethnicity",
   inequalityImpact: "Income inequality impact",
-  // cliffImpact: "Cliff impact",
+  cliffImpact: "Cliff impact",
   "laborSupplyImpact.byDecile.relative.total":
     "Labor supply impact by decile (relative)",
   "laborSupplyImpact.byDecile.relative.income":
@@ -157,6 +157,10 @@ export function getPolicyOutputTree(countryId) {
         {
           name: "policyOutput.inequalityImpact",
           label: "Inequality impact",
+        },
+        {
+          name: "policyOutput.cliffImpact",
+          label: "Cliff impact",
         },
         {
           name: "policyOutput.laborSupplyImpact",

@@ -13,7 +13,7 @@ import { areObjectsSame } from "../../../data/areObjectsSame";
 import { updateUserPolicy } from "../../../api/userPolicies";
 import useCountryId from "../../../hooks/useCountryId";
 import { wrappedResponseJson } from "../../../data/wrappedJson";
-// import LoadingCentered from "layout/LoadingCentered";
+import LoadingCentered from "layout/LoadingCentered";
 
 /**
  *
@@ -223,13 +223,11 @@ export function FetchAndDisplayCliffImpact(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
 
-  // Remove the following eslint ignore when cliff impacts are restored
-  // eslint-disable-next-line no-unused-vars
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const {
     metadata,
-    // policy,
+    policy,
   } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
@@ -283,14 +281,15 @@ export function FetchAndDisplayCliffImpact(props) {
     return <DisplayError error={error} />;
   }
 
-  // Remove the below block when cliff impacts are reinstated
+  // Remove the below commented block when cliff impacts are reinstated
+  /*
   return (
     <LowLevelDisplay {...props}>
       <ErrorPage message="This service is temporarily unavailable. Please try again later." />
     </LowLevelDisplay>
   );
+  */
 
-  /*
   if (!impact) {
     return <LoadingCentered message="Computing the cliff impact..." />;
   }
@@ -302,5 +301,4 @@ export function FetchAndDisplayCliffImpact(props) {
       metadata={metadata}
     />
   );
-  */
 }
