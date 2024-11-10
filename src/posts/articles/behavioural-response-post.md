@@ -1,11 +1,11 @@
-Public policies change incentives and behaviours. When governments introduce or modify policies, individuals respond by adjusting their decisions. Workers may change their work hours,[^1] investors might shift when they realise gains,[^2] and businesses often adapt their practices in response.[^3] The static analysis fails to capture how individuals adjust their economic decisions when facing new incentives.   
+Public policies change incentives and behaviours. When governments introduce or modify policies, individuals respond by adjusting their decisions. Workers may change their work hours,[^1] investors might shift when they realise gains,[^2] and businesses often adapt their practices in response.[^3] The static analysis fails to capture how individuals adjust their economic decisions when facing new incentives.  
 This report presents how PolicyEngine currently models three key behavioural responses to policy changes :
 
-1. Income effects on labour supply  
-2. Substitution effects on labour supply  
+1. Income effects on labour supply
+2. Substitution effects on labour supply
 3. Capital gains tax responses
 
-To model these responses, we apply *elasticities,* which quantify the magnitude of the response: larger elasticities indicate stronger behavioural responses, while smaller ones suggest more limited adjustments. PolicyEngine empowers users to set their own elasticities, while we apply our best guesses in our reports. This review describes these responses and our selected elasticities. 
+To model these responses, we apply _elasticities,_ which quantify the magnitude of the response: larger elasticities indicate stronger behavioural responses, while smaller ones suggest more limited adjustments. PolicyEngine empowers users to set their own elasticities, while we apply our best guesses in our reports. This review describes these responses and our selected elasticities.
 
 ## Labour supply
 
@@ -28,7 +28,7 @@ To understand how these elasticities work, consider a worker earning £30,000 pe
 
 For this worker earning £14.42 per hour (£30,000/2,080 hours), the take-home pay per extra hour drops from £10.38 to £10.21 under the new policy – a 1.6% decrease. Using PolicyEngine's central estimates, we calculate two effects:
 
-1. Substitution effect: Workers reduce hours by 0.25% for each 1% decrease in wages. A 1.6% wage decrease leads to a 0.4% reduction in hours (1.6% × 0.25).  
+1. Substitution effect: Workers reduce hours by 0.25% for each 1% decrease in wages. A 1.6% wage decrease leads to a 0.4% reduction in hours (1.6% × 0.25).
 2. Income effect: Workers increase hours by 0.05% for each 1% drop in income. The £175 decrease represents a 0.7% drop in take-home pay (£175/£24,961), leading to a 0.035% increase in hours (0.7% × \-0.05).
 
 The net effect combines these responses: 0.4% decrease minus 0.035% increase equals a 0.365% decrease. Given the baseline of £30,000 earnings and 2,080 hours, this translates to a predicted 7 fewer work hours and £109 less earnings per year.
@@ -46,41 +46,40 @@ By default, the PolicyEngine web app assumes no behavioural responses. When user
 
 ## Comparing static and dynamic analysis
 
-Here we demonstrate how incorporating behavioural responses affects policy analysis by examining a tax reform proposed by the UK government in October 2024: change to Capital Gains Tax. For a detailed analysis of this and other reforms proposed in the Autumn Budget, see [PolicyEngine's reform impact analysis](https://policyengine.org/uk/research/autumn-budget-2024-policy-choices). 
+Here we demonstrate how incorporating behavioural responses affects policy analysis by examining a tax reform proposed by the UK government in October 2024: change to Capital Gains Tax. For a detailed analysis of this and other reforms proposed in the Autumn Budget, see [PolicyEngine's reform impact analysis](https://policyengine.org/uk/research/autumn-budget-2024-policy-choices).
 
 In estimating the impacts of this reform, we model how individuals with capital gains respond to changes in their marginal tax rate. The table below compares the five-year revenue impacts under both static and dynamic scenarios.
 
-| Reform | Static revenue impact	 | Dynamic revenue impact	 | Relative change |
-| :---- | :---- | :---- | :---- |
-| Basic rate to 18% Higher/additional rate to 24%	 | 21.5 | 10.1 | \-53% |
+| Reform                                          | Static revenue impact | Dynamic revenue impact | Relative change |
+| :---------------------------------------------- | :-------------------- | :--------------------- | :-------------- |
+| Basic rate to 18% Higher/additional rate to 24% | 21.5                  | 10.1                   | \-53%           |
 
 ## Conclusion
 
 In this report, we present how PolicyEngine models three behavioural responses:
 
-1. **Income effect for labour supply: \-0.05 elasticity** (a 10% increase to net income reduces work hours by 0.5%)  
-2. **Substitution effect for labour supply: 0.25 elasticity** (a 10% increase to the net marginal wage increases work hours by 2.5%)  
+1. **Income effect for labour supply: \-0.05 elasticity** (a 10% increase to net income reduces work hours by 0.5%)
+2. **Substitution effect for labour supply: 0.25 elasticity** (a 10% increase to the net marginal wage increases work hours by 2.5%)
 3. **Capital gains response: \-0.7 elasticity** (a 10% increase in the marginal tax rate with respect to capital gains reduces capital gains by 7%)
 
-While this report focuses on these three core elasticities, PolicyEngine is expanding its behavioural modelling capabilities. For instance, we developed responses to [employer National Insurance contributions](https://policyengine.org/uk/research/autumn-budget-24-employer-ni), indicating the extent to which employers pass on the burden to lower wages. Using the CGT reform as an example demonstrates the importance of these behavioural responses. PolicyEngine's flexibility allows users to adjust behavioural response assumptions such as labour elasticities and capital gains elasticity to analyse the impact of public policies.  
+While this report focuses on these three core elasticities, PolicyEngine is expanding its behavioural modelling capabilities. For instance, we developed responses to [employer National Insurance contributions](https://policyengine.org/uk/research/autumn-budget-24-employer-ni), indicating the extent to which employers pass on the burden to lower wages. Using the CGT reform as an example demonstrates the importance of these behavioural responses. PolicyEngine's flexibility allows users to adjust behavioural response assumptions such as labour elasticities and capital gains elasticity to analyse the impact of public policies.
 
+[^1]: Chetty, R., Guren, A., Manoli, D., & Weber, A. (2011). Are Micro and Macro Labor Supply Elasticities Consistent? A Review of Evidence on the Intensive and Extensive Margins. American Economic Review, 101(3), 471–475.
 
-[^1]:  Chetty, R., Guren, A., Manoli, D., & Weber, A. (2011). Are Micro and Macro Labor Supply Elasticities Consistent? A Review of Evidence on the Intensive and Extensive Margins. American Economic Review, 101(3), 471–475.
+[^2]: Saez, E., Slemrod, J., & Giertz, S. H. (2012). The Elasticity of Taxable Income with Respect to Marginal Tax Rates: A Critical Review. Journal of Economic Literature, 50(1), 3-50.
 
-[^2]:  Saez, E., Slemrod, J., & Giertz, S. H. (2012). The Elasticity of Taxable Income with Respect to Marginal Tax Rates: A Critical Review. Journal of Economic Literature, 50(1), 3-50.
+[^3]: Feldstein, M., Behavioural Responses to Taxation: Lessons from the Tax Reform Act of 1986, American Economic Review, 1995\.
 
-[^3]:  Feldstein, M., Behavioural Responses to Taxation: Lessons from the Tax Reform Act of 1986, American Economic Review, 1995\.
+[^4]: Burman, Leonard E., and William C. Randolph. "Measuring permanent responses to capital-gains tax changes in panel data." The American Economic Review (1994): 794-809.
 
-[^4]:  Burman, Leonard E., and William C. Randolph. "Measuring permanent responses to capital-gains tax changes in panel data." The American Economic Review (1994): 794-809.
+[^5]: Dowd, Tim, and Robert McClelland. 2019\. "The Bunching of Capital Gains Realizations." National Tax Journal 72(2): 323-358.
 
-[^5]:  Dowd, Tim, and Robert McClelland. 2019\. "The Bunching of Capital Gains Realizations." National Tax Journal 72(2): 323-358.
+[^6]: Auten, Gerald, and Charles Clotfelter. 1982\. "Permanent versus Transitory Tax Effects and the Realization of Capital Gains." Quarterly Journal of Economics 97(4): 613-632.
 
-[^6]:  Auten, Gerald, and Charles Clotfelter. 1982\. "Permanent versus Transitory Tax Effects and the Realization of Capital Gains." Quarterly Journal of Economics 97(4): 613-632.
+[^7]: U.S. Congress, House Committee on Financial Services, _The Future of Housing in America: A Comparison of the United Kingdom and United States Models of Affordable Housing_, hearing, 114th Congress, 2nd session, May 12, 2016\.
 
-[^7]:  U.S. Congress, House Committee on Financial Services, *The Future of Housing in America: A Comparison of the United Kingdom and United States Models of Affordable Housing*, hearing, 114th Congress, 2nd session, May 12, 2016\.
+[^8]: Odean, T. (1999). Do investors trade too much? _American Economic Review_, 89(5), 1279-1298.
 
-[^8]:  Odean, T. (1999). Do investors trade too much? *American Economic Review*, 89(5), 1279-1298.
+[^9]: Financial Expert. (n.d.). [A summary of the differences between UK and US investors](https://www.financial-expert.co.uk/differences-between-uk-and-us-investors/).
 
-[^9]:  Financial Expert. (n.d.). [A summary of the differences between UK and US investors](https://www.financial-expert.co.uk/differences-between-uk-and-us-investors/).
-
-[^10]:  [Tax Policy Center (2023)](https://taxpolicycenter.org/briefing-book/how-do-us-taxes-compare-internationally)
+[^10]: [Tax Policy Center (2023)](https://taxpolicycenter.org/briefing-book/how-do-us-taxes-compare-internationally)
