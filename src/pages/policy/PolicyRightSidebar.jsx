@@ -289,26 +289,18 @@ function BehavioralResponseToggle(props) {
     us: "CBO",
   };
 
-  // Apply the correct label based on the country
-  const tooltipDesc = {
-    uk:
-      "When selected, simulations adjust earnings and capital gains using " +
-      "a modified version of the US Congressional Budget Office's behavioural " +
-      "income and substitution elasticities.",
-    us:
-      "When selected, simulations adjust earnings using the US Congressional " +
-      "Budget Office's behavioral income and substitution elasticities.",
-  };
-
   const tooltipLink = {
     us: "https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4",
     uk: "https://policyengine.org/uk/research/behavioural-responses",
   };
 
   const tooltipText =
-    tooltipDesc[countryId] ??
-    `When selected, use dynamic ${spellsBehaviour ? "behavioural" : "behavioral"} ` +
-      "responses in simulations.";
+    "When selected, simulations adjust earnings and capital gains based on how " +
+    `reforms affect net income and marginal tax rates${
+      countryId === "us"
+        ? ", applying the Congressional Budget Office's assumptions."
+        : "."
+    }`;
 
   const tooltipJSX = (
     <div>
