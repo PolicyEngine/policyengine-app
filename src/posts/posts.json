@@ -955,10 +955,7 @@
     "title": "Federal Tax Inflation Adjustments for Tax Year 2025",
     "description": "PolicyEngine has updated all relevant federal tax parameters based on the latest IRS announcements.",
     "date": "2024-11-19 09:30:00",
-    "tags": [
-      "us",
-      "featured"
-    ],
+    "tags": ["us", "featured"],
     "authors": ["david-trimmer"],
     "filename": "fed_tax_inflation_adjustments.md",
     "image": "fed_tax_inflation_adjustments.webp"

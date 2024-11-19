@@ -16,36 +16,36 @@ The IRS updates generally increased the inflation adjustment by about 10% beyond
 
 In addition to updating the standard deduction values, we also modified the values for the following provisions.
 
-* [Aged/blind standard deduction amount](https://policyengine.org/us/policy?focus=gov.irs.deductions.standard.aged_or_blind.amount.HEAD_OF_HOUSEHOLD)
+- [Aged/blind standard deduction amount](https://policyengine.org/us/policy?focus=gov.irs.deductions.standard.aged_or_blind.amount.HEAD_OF_HOUSEHOLD)
 
-* [Dependent standard deduction amount](https://policyengine.org/us/policy?focus=gov.irs.deductions.standard.dependent.amount)
+- [Dependent standard deduction amount](https://policyengine.org/us/policy?focus=gov.irs.deductions.standard.dependent.amount)
 
-* [Additional earned income amount for the dependent standard deduction](https://policyengine.org/us/policy?focus=gov.irs.deductions.standard.dependent.additional_earned_income)
+- [Additional earned income amount for the dependent standard deduction](https://policyengine.org/us/policy?focus=gov.irs.deductions.standard.dependent.additional_earned_income)
 
-* [Income tax bracket thresholds](https://policyengine.org/us/policy?focus=gov.irs.income.bracket.thresholds.1.HEAD_OF_HOUSEHOLD)
+- [Income tax bracket thresholds](https://policyengine.org/us/policy?focus=gov.irs.income.bracket.thresholds.1.HEAD_OF_HOUSEHOLD)
 
-* [Capital gains bracket thresholds](https://policyengine.org/us/policy?focus=gov.irs.capital_gains.brackets.thresholds.1.HEAD_OF_HOUSEHOLD)
+- [Capital gains bracket thresholds](https://policyengine.org/us/policy?focus=gov.irs.capital_gains.brackets.thresholds.1.HEAD_OF_HOUSEHOLD)
 
-* [EITC maximum values](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.max%5B0%5D.amount)
+- [EITC maximum values](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.max%5B0%5D.amount)
 
-* [EITC joint bonus](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.phase_out.joint_bonus%5B0%5D.amount) (difference between phase-out for single and joint filers)
+- [EITC joint bonus](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.phase_out.joint_bonus%5B0%5D.amount) (difference between phase-out for single and joint filers)
 
-* [EITC maximum investment income amount](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.phase_out.max_investment_income)
+- [EITC maximum investment income amount](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.phase_out.max_investment_income)
 
-* [EITC phase-out start](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.phase_out.start%5B0%5D.amount)
+- [EITC phase-out start](https://policyengine.org/us/policy?focus=gov.irs.credits.eitc.phase_out.start%5B0%5D.amount)
 
-* [Estate tax exemption](https://policyengine.org/us/policy?focus=gov.irs.credits.estate.base)
+- [Estate tax exemption](https://policyengine.org/us/policy?focus=gov.irs.credits.estate.base)
 
-* [Qualified business income deduction phase-out start](https://policyengine.org/us/policy?focus=gov.irs.deductions.qbi.phase_out.start.HEAD_OF_HOUSEHOLD)
+- [Qualified business income deduction phase-out start](https://policyengine.org/us/policy?focus=gov.irs.deductions.qbi.phase_out.start.HEAD_OF_HOUSEHOLD)
 
-* [Alternative minimum tax (AMT) threshold](https://policyengine.org/us/policy?focus=gov.irs.income.amt.brackets%5B1%5D.threshold)
+- [Alternative minimum tax (AMT) threshold](https://policyengine.org/us/policy?focus=gov.irs.income.amt.brackets%5B1%5D.threshold)
 
-* [AMT exemption amount](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.amount.HEAD_OF_HOUSEHOLD)
+- [AMT exemption amount](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.amount.HEAD_OF_HOUSEHOLD)
 
-* [AMT child exemption amount](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.child.amount)
+- [AMT child exemption amount](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.child.amount)
 
-* [AMT phase-out start](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.phase_out.start.HEAD_OF_HOUSEHOLD)
+- [AMT phase-out start](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.phase_out.start.HEAD_OF_HOUSEHOLD)
 
-* [AMT separate limit](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.separate_limit)
+- [AMT separate limit](https://policyengine.org/us/policy?focus=gov.irs.income.amt.exemption.separate_limit)
 
 We invite you to view all of the listed provisions above in our model and [compute your own policy reforms](https://policyengine.org/us/policy?focus=gov) using the updated parameters.
