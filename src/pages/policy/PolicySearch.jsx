@@ -158,7 +158,7 @@ export default function PolicySearch(props) {
             }
           >
             <Button
-              type={disableStack ? "disabled" : "secondary"}
+              type={disableStack ? "disabled" : "secondaryBlue"}
               onClick={() => handleStack(countryId)}
               style={{
                 padding: "unset",
