@@ -1,5 +1,11 @@
 import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -16,9 +22,10 @@ import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import { defaultForeverYear } from "../../data/constants";
+import { defaultForeverYear, defaultStartDate } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
+import useCountryId from "../../hooks/useCountryId";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -90,6 +97,269 @@ function TimePeriodSelector(props) {
         setSearchParams(newSearch);
       }}
     />
+  );
+}
+
+/**
+ * Selector like the full/lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
+ * @param {Object} props
+ * @param {Object} props.policy
+ * @param {Object} props.metadata
+ * @returns {React.ReactElement}
+ */
+function BehavioralResponseToggle(props) {
+  const { policy, metadata } = props;
+
+  const dateString = `${defaultStartDate}.${String(defaultForeverYear)}-12-31`;
+  const behavioralResponseReforms = useMemo(
+    () => ({
+      uk: {
+        "gov.simulation.capital_gains_responses.elasticity": {
+          [dateString]: -0.7,
+        },
+        "gov.simulation.labor_supply_responses.income_elasticity": {
+          [dateString]: -0.05,
+        },
+        "gov.simulation.labor_supply_responses.substitution_elasticity": {
+          [dateString]: 0.25,
+        },
+      },
+      us: {
+        "gov.simulation.labor_supply_responses.elasticities.income": {
+          "2024-01-01.2100-12-31": -0.05,
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.1":
+          {
+            "2024-01-01.2100-12-31": 0.31,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.10":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.2":
+          {
+            "2024-01-01.2100-12-31": 0.28,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.3":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.4":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.5":
+          {
+            "2024-01-01.2100-12-31": 0.25,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.6":
+          {
+            "2024-01-01.2100-12-31": 0.25,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.7":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.8":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.9":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.secondary":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+      },
+    }),
+    [dateString],
+  );
+  const countryId = useCountryId();
+
+  const hasBehavioralResponses = useCallback(
+    (policy) => {
+      // If country isn't even present, opt out to prevent Object accessing error
+      if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+        return false;
+      }
+
+      // Determine the requisite elasticity params for given country
+      const behavioralResponseParams = Object.keys(
+        behavioralResponseReforms[countryId],
+      );
+
+      // Make sure policy has every param
+      return behavioralResponseParams.every((param) => {
+        return Object.keys(policy.reform.data).includes(param);
+      });
+    },
+    [countryId, behavioralResponseReforms],
+  );
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isChecked, setIsChecked] = useState(hasBehavioralResponses(policy));
+  const spellsBehaviour = ["uk", "ca"].includes(countryId);
+  const displayCategory = useDisplayCategory();
+
+  // Ref for storing previous label in case user reverts
+  const prevLabelRef = useRef(null);
+
+  useEffect(() => {
+    setIsChecked(hasBehavioralResponses(policy));
+  }, [policy, hasBehavioralResponses]);
+
+  async function handleChange(value) {
+    if (value) {
+      await setBehavioralResponses();
+    } else {
+      await removeBehavioralResponses();
+    }
+
+    setIsChecked(value);
+  }
+
+  async function setBehavioralResponses() {
+    // Save the previous reform's label in case user reverts
+    prevLabelRef.current = policy.reform.label;
+    const policyToStack = behavioralResponseReforms[metadata.countryId];
+
+    // Fetch policy to stack
+    let newPolicyData = {
+      ...policy.reform.data,
+      ...policyToStack,
+    };
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+    const newPolicyRes = await getNewPolicyId(
+      metadata.countryId,
+      newPolicyData,
+    );
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("reform", newPolicyRes.policy_id);
+    setSearchParams(newSearch);
+  }
+
+  async function removeBehavioralResponses() {
+    const policyToStack = behavioralResponseReforms[metadata.countryId];
+
+    // Fetch policy to stack
+    let newPolicyData = {
+      ...policy.reform.data,
+    };
+
+    for (const key of Object.keys(policyToStack)) {
+      delete newPolicyData[key];
+    }
+
+    let newPolicyLabel = null;
+    // If there's a previous label, revert to it
+    if (prevLabelRef.current) {
+      newPolicyLabel = prevLabelRef.current;
+    }
+
+    // Current law is represented by an empty object;
+    // if the new policy is empty, remove the reform query parameter
+    if (Object.keys(newPolicyData).length === 0) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+      return;
+    }
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+    const newPolicyRes = await getNewPolicyId(
+      metadata.countryId,
+      newPolicyData,
+      newPolicyLabel,
+    );
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("reform", newPolicyRes.policy_id);
+    setSearchParams(newSearch);
+  }
+
+  // Don't show behavior response toggle for countries without
+  // policies to set them
+  if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+    return null;
+  }
+
+  const preLabel = {
+    us: "CBO",
+  };
+
+  const tooltipLink = {
+    us: "https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4",
+    uk: "https://policyengine.org/uk/research/behavioural-responses",
+  };
+
+  const tooltipText =
+    "When selected, simulations adjust earnings and capital gains based on how " +
+    `reforms affect net income and marginal tax rates${
+      countryId === "us"
+        ? ", applying the Congressional Budget Office's assumptions."
+        : "."
+    }`;
+
+  const tooltipJSX = (
+    <div>
+      <span>{tooltipText}</span>
+      {tooltipLink[countryId] && (
+        <a
+          href={tooltipLink[countryId]}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            marginLeft: "5px",
+            textDecoration: "underline",
+            color: "rgb(84, 140, 190)", // This is BLUE_PRIMARY + 20 for each RGB value, so brighter
+          }}
+        >
+          Learn more.
+        </a>
+      )}
+    </div>
+  );
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <Switch
+        checked={isChecked}
+        size={displayCategory !== "mobile" && "small"}
+        onChange={handleChange}
+      />
+      <p
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+        }}
+      >
+        Apply {preLabel[countryId] ?? ""}{" "}
+        {spellsBehaviour ? "behavioural" : "behavioral"} responses
+      </p>
+      <Tooltip
+        placement="topRight"
+        title={tooltipJSX}
+        trigger={displayCategory === "mobile" ? "click" : "hover"}
+      >
+        <QuestionCircleOutlined
+          style={{
+            color: "rgba(0, 0, 0, 0.85)",
+            opacity: 0.85,
+            cursor: "pointer",
+          }}
+        />
+      </Tooltip>
+    </div>
   );
 }
 
@@ -835,6 +1105,7 @@ export default function PolicyRightSidebar(props) {
                   />
                 )}
                 <FullLiteToggle metadata={metadata} />
+                <BehavioralResponseToggle metadata={metadata} policy={policy} />
               </div>
             }
           />
