@@ -106,8 +106,8 @@ function title(policyLabel, change, metadata) {
 
 export default function lsrImpactAbsolute(props) {
   const { impact, policyLabel, metadata, mobile } = props;
-  const incomeEffect = impact.labour_supply_response.income_lsr;
-  const substitutionEffect = impact.labour_supply_response.substitution_lsr;
+  const incomeEffect = impact.labor_supply_response.income_lsr;
+  const substitutionEffect = impact.labor_supply_response.substitution_lsr;
 
   const labels = ["Income effect", "Substitution effect", "Net change"];
   const values = [
