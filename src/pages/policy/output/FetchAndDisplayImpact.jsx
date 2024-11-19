@@ -52,11 +52,6 @@ export function FetchAndDisplayImpact(props) {
   function computingCallback(data) {
     // Position in queue message only occurs with average_time
     // in the response object; if this is present, enable message
-    /*
-    if (data.average_time && data.message) {
-      setQueueMsg(data.message);
-    }
-    */
     if (data.queue_position) {
       setQueuePos(data.queue_position);
     }
@@ -271,15 +266,6 @@ export function FetchAndDisplayCliffImpact(props) {
   if (error) {
     return <DisplayError error={error} />;
   }
-
-  // Remove the below commented block when cliff impacts are reinstated
-  /*
-  return (
-    <LowLevelDisplay {...props}>
-      <ErrorPage message="This service is temporarily unavailable. Please try again later." />
-    </LowLevelDisplay>
-  );
-  */
 
   if (!impact) {
     return <LoadingCentered message="Computing the cliff impact..." />;
