@@ -541,8 +541,6 @@ export default function PolicyRightSidebar(props) {
     dataset = "enhanced_cps";
   }
 
-  console.log(dataset);
-
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
