@@ -165,7 +165,7 @@ function description(metadata) {
   return (
     <p style={{ marginTop: "10px" }}>
       The cliff rate is the share of households whose net income falls if each
-      adult earned an additional {metadata.currency}2,000. The cliff gap is the
+      adult earned an additional {metadata.currency}1,000. The cliff gap is the
       sum of the losses incurred by all households on a cliff if their income
       rose in this way.{" "}
       <a href="https://policyengine.org/us/research/how-would-reforms-affect-cliffs">
