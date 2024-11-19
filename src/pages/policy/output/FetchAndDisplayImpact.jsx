@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  DisplayError,
-  DisplayImpact,
-  DisplayWait,
-  LowLevelDisplay,
-} from "./Display";
+import { DisplayError, DisplayImpact, DisplayWait } from "./Display";
 import { useSearchParams } from "react-router-dom";
 import { asyncApiCall, copySearchParams, apiCall } from "../../../api/call";
-import ErrorPage from "layout/ErrorPage";
 import { defaultYear } from "data/constants";
 import { areObjectsSame } from "../../../data/areObjectsSame";
 import { updateUserPolicy } from "../../../api/userPolicies";
@@ -225,10 +219,7 @@ export function FetchAndDisplayCliffImpact(props) {
 
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
-  const {
-    metadata,
-    policy,
-  } = props;
+  const { metadata, policy } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
       const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
@@ -294,11 +285,5 @@ export function FetchAndDisplayCliffImpact(props) {
     return <LoadingCentered message="Computing the cliff impact..." />;
   }
 
-  return (
-    <DisplayImpact
-      impact={impact}
-      policy={policy}
-      metadata={metadata}
-    />
-  );
+  return <DisplayImpact impact={impact} policy={policy} metadata={metadata} />;
 }
