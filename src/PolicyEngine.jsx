@@ -50,6 +50,7 @@ import CTCComparison from "./applets/CTCComparison";
 import CTCCalculator from "./applets/CTCCalculator";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
+import SaltAMTCalculator from "./applets/SaltAMTCalculator";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -376,6 +377,7 @@ export default function PolicyEngine() {
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}
         />
+        <Route path="/us/salt-amt-calculator" element={<SaltAMTCalculator />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
