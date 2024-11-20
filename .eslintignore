@@ -1,2 +1,34 @@
-/build/**
+# Build outputs
+build/
+dist/
+out/
+.next/
+coverage/
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Config files
+*.config.js
+
+# Public assets
+public/
+
+# Cache
+.cache/
+.eslintcache
+
+# Environment files
+.env*
+!.env.example
+
+# Test files (optional, depending on your needs)
 /src/__tests__/__setup__/data.json
+# **/*.test.js
+# **/*.spec.js
+# **/*.cy.js
+
+# Generated files
+*.min.js
+*.bundle.js

@@ -1,37 +1,46 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Production
+build/
+dist/
+out/
+.next/
+coverage/
+
 # dependencies
-/node_modules
-/.pnp
+node_modules/
+.pnp
 .pnp.js
 
-## vscode settings
-/.vscode
+# IDE settings
+.vscode/
+.idea/
 
 # testing
-/coverage
+coverage/
+cypress/screenshots
+cypress/videos
+cypress/downloads
+src/__tests__/__setup__/data.json
 
-# production
-/build
-
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
+# Cache and logs
+.cache/
+*.log
+logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-/.gcloudignore
-/app.yaml
-/main.py
-/requirements.txt
+.pnpm-debug.log*
+.eslintcache
+.stylelintcache
 **/__pycache__
-.env
-/src/__tests__/__setup__/data.json
-.idea
 
-venv/*
+# environment variables
+.env*
+
+# Misc
+.DS_Store
+.gcloudignore
+app.yaml
+main.py
+requirements.txt
