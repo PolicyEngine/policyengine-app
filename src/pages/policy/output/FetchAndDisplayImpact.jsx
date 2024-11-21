@@ -226,6 +226,7 @@ export function FetchAndDisplayCliffImpact(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+  const dataset = searchParams.get("dataset");
 
   // Remove the following eslint ignore when cliff impacts are restored
   // eslint-disable-next-line no-unused-vars
@@ -237,7 +238,7 @@ export function FetchAndDisplayCliffImpact(props) {
   } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
+      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff&dataset=${dataset}`;
       setImpact(null);
       setError(null);
       asyncApiCall(url, null, 5_000)
@@ -281,7 +282,7 @@ export function FetchAndDisplayCliffImpact(props) {
       setSearchParams(newSearch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
+  }, [region, timePeriod, reformPolicyId, baselinePolicyId, dataset]);
 
   if (error) {
     return <DisplayError error={error} />;
