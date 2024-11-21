@@ -27,8 +27,9 @@ function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
 
-  // These lines enable backward compatibility with a previous design whereby
-  // enhanced_cps was also a region value
+  // The below allows backward compatibility with a past design where enhanced_cps
+  // was also a region value
+  options = options.filter((option) => option.value !== "enhanced_us");
   let inputRegion = searchParams.get("region");
   if (inputRegion === "enhanced_us") {
     inputRegion = "us";
