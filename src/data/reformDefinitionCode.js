@@ -9,6 +9,7 @@ export function getReproducibilityCodeBlock(
   policy,
   region,
   year,
+  dataset = null,
   householdInput = null,
   earningVariation = null,
 ) {
@@ -27,7 +28,7 @@ export function getReproducibilityCodeBlock(
       householdInput,
       earningVariation,
     ),
-    ...getImplementationCode(type, region, year, policy),
+    ...getImplementationCode(type, region, year, policy, dataset),
   ];
 }
 
@@ -156,7 +157,7 @@ export function getSituationCode(
   return lines;
 }
 
-export function getImplementationCode(type, region, timePeriod, policy) {
+export function getImplementationCode(type, region, timePeriod, policy, dataset) {
   if (type !== "policy") {
     return [];
   }
@@ -164,29 +165,36 @@ export function getImplementationCode(type, region, timePeriod, policy) {
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
 
-  // Check if the region has a dataset specified
-  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(region);
-  const dataset = hasDatasetSpecified ? DEFAULT_DATASETS[region] : "";
+  // Check if the region has a dataset specified; enhanced_us is legacy implemntation
+  // whereby enhanced_us region correlated with enhanced_cps dataset
+  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
+  
+  let formattedDataset = null;
+  if (region === "enhanced_us") {
+    formattedDataset = "enhanced_cps_2024";
+  } else if (hasDatasetSpecified) {
+    formattedDataset = DEFAULT_DATASETS[dataset];
+  }
 
   return [
     "",
     "",
     `baseline = Microsimulation(${
       hasDatasetSpecified && hasBaseline
-        ? `reform=baseline, dataset='${dataset}'`
+        ? `reform=baseline, dataset='${formattedDataset}'`
         : hasBaseline
           ? `reform=baseline`
           : hasDatasetSpecified
-            ? `dataset='${dataset}'`
+            ? `dataset='${formattedDataset}'`
             : ""
     })`,
     `reformed = Microsimulation(${
       hasDatasetSpecified && hasReform
-        ? `reform=reform, dataset='${dataset}'`
+        ? `reform=reform, dataset='${formattedDataset}'`
         : hasReform
           ? `reform=reform`
           : hasDatasetSpecified
-            ? `dataset='${dataset}'`
+            ? `dataset='${formattedDataset}'`
             : ""
     })`,
     `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear})`,
