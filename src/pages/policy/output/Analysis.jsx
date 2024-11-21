@@ -8,6 +8,7 @@ import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
+import ErrorComponent from "../../../layout/ErrorComponent";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -52,6 +53,7 @@ export default function Analysis(props) {
   const [loading, setLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [isError, setIsError] = useState(false);
 
   const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
@@ -105,6 +107,7 @@ export default function Analysis(props) {
     );
 
   const onGenerate = async () => {
+    setIsError(false);
     setHasClickedGenerate(true);
     setLoading(true);
     setAnalysis(""); // Reset analysis content
@@ -128,6 +131,14 @@ export default function Analysis(props) {
       jsonObject,
       "POST",
     );
+
+    if (!res || !res.ok) {
+      console.error("Error response within onGenerate");
+      console.error(res);
+      setLoading(false);
+      setIsError(true);
+      return;
+    }
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
@@ -221,6 +232,9 @@ export default function Analysis(props) {
         )}
         {hasClickedGenerate && analysis && (
           <MarkdownFormatter markdown={analysis} dict={chartDict} />
+        )}
+        {isError && (
+          <ErrorComponent message="There was an error generating the analysis." />
         )}
       </div>
       <div
