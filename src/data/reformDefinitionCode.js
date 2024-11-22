@@ -157,7 +157,13 @@ export function getSituationCode(
   return lines;
 }
 
-export function getImplementationCode(type, region, timePeriod, policy, dataset) {
+export function getImplementationCode(
+  type,
+  region,
+  timePeriod,
+  policy,
+  dataset,
+) {
   if (type !== "policy") {
     return [];
   }
@@ -167,8 +173,9 @@ export function getImplementationCode(type, region, timePeriod, policy, dataset)
 
   // Check if the region has a dataset specified; enhanced_us is legacy implemntation
   // whereby enhanced_us region correlated with enhanced_cps dataset
-  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
-  
+  const hasDatasetSpecified =
+    Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
+
   let formattedDataset = null;
   if (region === "enhanced_us") {
     formattedDataset = "enhanced_cps_2024";

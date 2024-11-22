@@ -16,7 +16,7 @@ export default function PolicyReproducibility(props) {
     policy,
     region,
     timePeriod,
-    dataset
+    dataset,
   );
 
   const colabLink =

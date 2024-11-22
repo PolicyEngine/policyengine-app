@@ -29,6 +29,7 @@ export default function PolicyOutput(props) {
   const reformPolicyId = urlParams.get("reform");
   const geography = urlParams.get("region");
   const timePeriod = urlParams.get("timePeriod");
+  const dataset = urlParams.get("dataset");
 
   useEffect(() => {
     function addPolicyToLocalStorage(policyToAdd) {
@@ -56,6 +57,7 @@ export default function PolicyOutput(props) {
         baseline_label: policy.baseline.label,
         baseline_id: policy.baseline.id,
         geography: geography,
+        dataset: dataset,
         year: timePeriod,
         api_version: metadata.version,
         number_of_provisions: countProvisions(policy),
@@ -99,6 +101,7 @@ export default function PolicyOutput(props) {
   }, [
     countryId,
     geography,
+    dataset,
     isAuthenticated,
     metadata,
     policy,

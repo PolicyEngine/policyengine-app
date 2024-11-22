@@ -87,8 +87,9 @@ export function FetchAndDisplayImpact(props) {
         ? `&max_households=${maxHouseholds}`
         : "";
       const datasetString = dataset ? `&dataset=${dataset}` : "";
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/` + 
-        `${baselinePolicyId}?region=${region}&time_period=${timePeriod}` + 
+      const url =
+        `/${metadata.countryId}/economy/${reformPolicyId}/over/` +
+        `${baselinePolicyId}?region=${region}&time_period=${timePeriod}` +
         `&version=${selectedVersion}${maxHouseholdString}${datasetString}`;
       setImpact(null);
       setError(null);
@@ -166,7 +167,14 @@ export function FetchAndDisplayImpact(props) {
     }
     policyRef.current = policy;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [region, dataset, timePeriod, reformPolicyId, baselinePolicyId, maxHouseholds]);
+  }, [
+    region,
+    dataset,
+    timePeriod,
+    reformPolicyId,
+    baselinePolicyId,
+    maxHouseholds,
+  ]);
 
   useEffect(() => {
     if (!impact || !userPolicyId || !countryId) return;

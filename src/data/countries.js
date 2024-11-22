@@ -54,12 +54,12 @@ export const STATUS_TEXT_COLORS = {
 };
 
 // Map dataset keywords to their equivalents
-// in the actual US package; at the moment, 
-// this only applies to the "enhanced_cps" 
+// in the actual US package; at the moment,
+// this only applies to the "enhanced_cps"
 // dataset selection
 export const DEFAULT_DATASETS = {
-  "enhanced_cps": "enhanced_cps_2024"
-}
+  enhanced_cps: "enhanced_cps_2024",
+};
 
 const DEFAULT_US_HOUSEHOLD = {
   families: {

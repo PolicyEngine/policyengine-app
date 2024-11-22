@@ -166,12 +166,9 @@ function DatasetSelector(props) {
     const sliderStartYear = 2024;
 
     // Return whether or not slider should be enabled
-    // Null timePeriod reflects no URL param setting yet - 
+    // Null timePeriod reflects no URL param setting yet -
     // this is actually default behavior
-    if (
-      !timePeriod ||
-      timePeriod >= sliderStartYear
-    ) {
+    if (!timePeriod || timePeriod >= sliderStartYear) {
       return true;
     }
 
@@ -225,10 +222,8 @@ function DatasetSelector(props) {
         style={{
           margin: 0,
           fontSize: displayCategory !== "mobile" && "0.95em",
-          color:
-            !shouldEnableSlider(timePeriod) && "rgba(0,0,0,0.5)",
-          cursor:
-            !shouldEnableSlider(timePeriod) && "not-allowed",
+          color: !shouldEnableSlider(timePeriod) && "rgba(0,0,0,0.5)",
+          cursor: !shouldEnableSlider(timePeriod) && "not-allowed",
         }}
       >
         Use Enhanced CPS (beta)
@@ -536,7 +531,7 @@ export default function PolicyRightSidebar(props) {
   const hasHousehold = searchParams.get("household") !== null;
 
   let dataset = searchParams.get("dataset");
-  // This allows backward compatibility with a past 
+  // This allows backward compatibility with a past
   // design where enhanced_cps was also a region value
   if (region === "enhanced_us" && !dataset) {
     dataset = "enhanced_cps";
