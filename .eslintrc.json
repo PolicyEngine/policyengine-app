@@ -30,7 +30,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "react-hooks", "jest", "jsx-a11y"],
+  "plugins": ["react", "jest", "jsx-a11y"],
   "rules": {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
