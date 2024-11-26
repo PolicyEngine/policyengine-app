@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://policyengine.org",
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=19.0.0"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
@@ -66,9 +66,14 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
-    "fix": "eslint --fix --ext js,jsx . && prettier -w .",
-    "lint": "eslint --ext js,jsx --max-warnings 0 . && prettier -c .",
-    "prepare-husky": "husky"
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint --fix && npm run format",
+    "prepare-husky": "husky",
+    "cy:dev": "npm start & wait-on http://localhost:3000 && STAGE_ENV=development cypress run",
+    "cy:prod": "npm run build && STAGE_ENV=production cypress run",
+    "cy:dev:open": "npm start & wait-on http://localhost:3000 && STAGE_ENV=development cypress open",
+    "cy:prod:open": "npm run build && STAGE_ENV=production cypress open"
   },
   "browserslist": {
     "production": [
@@ -83,8 +88,8 @@
     ]
   },
   "lint-staged": {
-    "*.{js,jsx}": "eslint --fix",
-    "*": "prettier -w"
+    "*.{js,jsx,ts,tsx}": "npm run lint:fix",
+    "*": "npm run format"
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -94,7 +99,10 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.14",
     "babel-jest": "^29.7.0",
+    "cypress": "^13.16.0",
+    "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
+    "eslint-plugin-cypress": "^4.1.0",
     "eslint-plugin-jest": "^28.8.3",
     "eslint-plugin-react": "^7.37.2",
     "husky": "^9.1.6",
@@ -106,6 +114,7 @@
     "prettier": "^3.3.3",
     "resize-observer-polyfill": "^1.5.1",
     "typescript": "^5.6.3",
+    "wait-on": "^8.0.1",
     "whatwg-fetch": "^3.6.20"
   }
 }

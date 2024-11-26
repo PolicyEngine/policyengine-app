@@ -3,13 +3,15 @@
     "browser": true,
     "node": true,
     "es2021": true,
-    "jest/globals": true
+    "jest/globals": true,
+    "cypress/globals": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "react-app",
-    "plugin:jsx-a11y/recommended"
+    "plugin:jsx-a11y/recommended",
+    "plugin:cypress/recommended"
   ],
   "globals": {
     "process": true
@@ -30,7 +32,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "jest", "jsx-a11y"],
+  "plugins": ["react", "jest", "jsx-a11y", "cypress"],
   "rules": {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",

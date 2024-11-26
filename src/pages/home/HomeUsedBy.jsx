@@ -24,6 +24,7 @@ export default function HomeUsedBy() {
 
   return (
     <Section
+      id="home-used-by"
       backgroundColor={style.colors.WHITE}
       title={`Trusted across the ${countryId.toUpperCase()}`}
       titleStyle={{

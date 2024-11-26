@@ -40,6 +40,7 @@ export default function Section({
         borderBottom: `1px solid ${style.colors.BLACK}`,
         color: color || titleColor,
       }}
+      data-cy="section"
     >
       <div
         style={{
