@@ -175,32 +175,6 @@ describe("Enhanced CPS selector", () => {
       "ant-switch-disabled",
     );
   });
-  test("Should not be enabled when region is a state", async () => {
-    const testSearchParams = {
-      focus: "gov",
-      region: "ar",
-    };
-
-    useSearchParams.mockImplementation(() => {
-      return [new URLSearchParams(testSearchParams), jest.fn()];
-    });
-
-    // Declare props
-    const props = {
-      metadata: {
-        ...metadataUS,
-        countryId: "us",
-      },
-      policy: standardPolicyUS,
-      defaultOpen: true,
-    };
-
-    const { getByTestId } = render(<PolicyRightSidebar {...props} />);
-
-    expect(getByTestId("enhanced_cps_switch").classList).toContain(
-      "ant-switch-disabled",
-    );
-  });
   test("Should change region when selected", () => {
     const testSearchParams = {
       focus: "gov",
@@ -209,7 +183,8 @@ describe("Enhanced CPS selector", () => {
 
     const expectedSearchParams = {
       focus: "gov",
-      region: "enhanced_us",
+      region: "us",
+      dataset: "enhanced_cps"
     };
 
     const mockSetSearchParams = jest.fn();
