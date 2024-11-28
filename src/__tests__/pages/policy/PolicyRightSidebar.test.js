@@ -184,7 +184,7 @@ describe("Enhanced CPS selector", () => {
     const expectedSearchParams = {
       focus: "gov",
       region: "us",
-      dataset: "enhanced_cps"
+      dataset: "enhanced_cps",
     };
 
     const mockSetSearchParams = jest.fn();

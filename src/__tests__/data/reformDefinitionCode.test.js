@@ -255,7 +255,9 @@ describe("Test getImplementationCode", () => {
       "enhanced_cps",
     );
     expect(output).toBeInstanceOf(Array);
-    expect(output).toContain("baseline = Microsimulation(dataset='enhanced_cps_2024')");
+    expect(output).toContain(
+      "baseline = Microsimulation(dataset='enhanced_cps_2024')",
+    );
   });
 });
 
