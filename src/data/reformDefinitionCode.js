@@ -28,7 +28,7 @@ export function getReproducibilityCodeBlock(
       householdInput,
       earningVariation,
     ),
-    ...getImplementationCode(type, region, year, policy, dataset),
+    ...getImplementationCode(type, region, metadata, year, policy, dataset),
   ];
 }
 
@@ -160,10 +160,13 @@ export function getSituationCode(
 export function getImplementationCode(
   type,
   region,
+  metadata,
   timePeriod,
   policy,
   dataset,
 ) {
+  const countryId = metadata.economy_options.region[0].name;
+
   if (type !== "policy") {
     return [];
   }
@@ -176,34 +179,34 @@ export function getImplementationCode(
   const hasDatasetSpecified =
     Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
 
-  let formattedDataset = null;
-  if (region === "enhanced_us") {
-    formattedDataset = "enhanced_cps_2024";
-  } else if (hasDatasetSpecified) {
-    formattedDataset = DEFAULT_DATASETS[dataset];
-  }
+  // TODO: Check into how DEFAULT_DATASETS works now post-rebase
+
+  const isState =
+    countryId === "us" &&
+    region !== "us" &&
+    region !== "enhanced_us" &&
+    !Object.keys(DEFAULT_DATASETS).includes(region);
+
+    let dataset = "";
+    if (hasDatasetSpecified) {
+      dataset = DEFAULT_DATASETS[region];
+    } else if (isState) {
+      dataset = "pooled_3_year_cps_2023";
+    }
+  
+    const datasetSpecifier = dataset ? `dataset="${dataset}"` : "";
+  
+    const baselineSpecifier = hasBaseline ? "reform=baseline" : "";
+    const baselineComma = hasBaseline && dataset ? ", " : "";
+  
+    const reformSpecifier = hasReform ? "reform=reform" : "";
+    const reformComma = hasReform && dataset ? ", " : "";
 
   return [
     "",
     "",
-    `baseline = Microsimulation(${
-      hasDatasetSpecified && hasBaseline
-        ? `reform=baseline, dataset='${formattedDataset}'`
-        : hasBaseline
-          ? `reform=baseline`
-          : hasDatasetSpecified
-            ? `dataset='${formattedDataset}'`
-            : ""
-    })`,
-    `reformed = Microsimulation(${
-      hasDatasetSpecified && hasReform
-        ? `reform=reform, dataset='${formattedDataset}'`
-        : hasReform
-          ? `reform=reform`
-          : hasDatasetSpecified
-            ? `dataset='${formattedDataset}'`
-            : ""
-    })`,
+    `baseline = Microsimulation(${baselineSpecifier}${baselineComma}${datasetSpecifier})`,
+    `reformed = Microsimulation(${reformSpecifier}${reformComma}${datasetSpecifier})`,
     `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     `reformed_income = reformed.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     "difference_income = reformed_income - baseline_income",

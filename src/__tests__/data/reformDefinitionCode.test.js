@@ -211,7 +211,7 @@ describe("Test getSituationCode", () => {
 });
 describe("Test getImplementationCode", () => {
   test("If not a policy type, return empty array", () => {
-    const output = getImplementationCode("household", "us", 2024);
+    const output = getImplementationCode("household", "us", metadataUS, 2024);
     expect(output).toBeInstanceOf(Array);
     expect(output.length).toBe(0);
   });
@@ -219,12 +219,22 @@ describe("Test getImplementationCode", () => {
     const output = getImplementationCode(
       "policy",
       "uk",
+      metadataUK,
       2024,
       baselinePolicyUK,
     );
     expect(output).toBeInstanceOf(Array);
+    // Ensure we don't code for reversed baseline and reform
     expect(output).not.toContain(
       "baseline = Microsimulation(reform=baseline_reform)",
+    );
+    // Ensure we don't code for state-level runs
+    expect(output).not.toContain(
+      'baseline = Microsimulation(dataset="pooled_3_year_cps_2023")',
+    );
+    // And ensure we don't code for both simultaneously
+    expect(output).not.toContain(
+      'baseline = Microsimulation(reform=baseline_reform, dataset="pooled_3_year_cps_2023")',
     );
   });
   test("If set baseline, return lines with baseline", () => {
@@ -242,9 +252,44 @@ describe("Test getImplementationCode", () => {
         id: 1,
       },
     };
-    const output = getImplementationCode("policy", "uk", 2024, testPolicy);
+    const output = getImplementationCode(
+      "policy",
+      "uk",
+      metadataUK,
+      2024,
+      testPolicy,
+    );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain("baseline = Microsimulation(reform=baseline)");
+  });
+  test("If US state, return lines with pooled 3-year CPS dataset", () => {
+    let testPolicy = JSON.parse(JSON.stringify(baselinePolicyUS));
+    testPolicy = {
+      ...testPolicy,
+      reform: {
+        data: {
+          "sample.reform.item": {
+            "2020.01.01": true,
+            "2022.01.01": true,
+          },
+        },
+      },
+    };
+
+    const output = getImplementationCode(
+      "policy",
+      "ca",
+      metadataUS,
+      2024,
+      testPolicy,
+    );
+    expect(output).toBeInstanceOf(Array);
+    expect(output).toContain(
+      'baseline = Microsimulation(dataset="pooled_3_year_cps_2023")',
+    );
+    expect(output).toContain(
+      'reformed = Microsimulation(reform=reform, dataset="pooled_3_year_cps_2023")',
+    );
   });
   test("If dataset provided, return lines with dataset", () => {
     const output = getImplementationCode(
