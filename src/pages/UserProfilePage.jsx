@@ -443,10 +443,16 @@ function UserProfileSection(props) {
 function PolicySimulationCard(props) {
   const { metadata, userPolicy, keyValue } = props;
 
+  console.log(userPolicy);
+
   const CURRENT_API_VERSION = metadata?.version;
   const geography =
     metadata.economy_options.region.filter(
       (region) => region.name === userPolicy.geography,
+    )[0]?.label || "Unknown";
+  const datasetName =
+    metadata.economy_options.datasets.filter(
+      (dataset) => dataset.name === userPolicy.dataset,
     )[0]?.label || "Unknown";
 
   const apiVersion = userPolicy.api_version;
@@ -480,7 +486,12 @@ function PolicySimulationCard(props) {
   return (
     <Link
       key={keyValue}
-      to={`/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}&timePeriod=${userPolicy.year}&region=${userPolicy.geography}`}
+      to={
+        `/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown` +
+        `&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}` +
+        `&timePeriod=${userPolicy.year}&region=${userPolicy.geography}` +
+        `${userPolicy.dataset ? `&dataset=${userPolicy.dataset}` : ""}`
+      }
       style={{ height: "100%" }}
     >
       <Card
@@ -516,7 +527,12 @@ function PolicySimulationCard(props) {
           Simulated in{" "}
           <span style={{ fontWeight: 500 }}>{userPolicy.year}</span> over{" "}
           <span style={{ fontWeight: 500 }}>{geography}</span> against{" "}
-          <span style={{ fontWeight: 500 }}>{userPolicy.baseline_label}</span>.
+          <span style={{ fontWeight: 500 }}>{userPolicy.baseline_label}</span>
+          {userPolicy.dataset ? (
+            <span style={{ fontWeight: 500 }}> ({datasetName})</span>
+          ) : (
+            "."
+          )}
         </p>
         <p>
           <span style={{ fontWeight: 500 }}>

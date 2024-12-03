@@ -27,6 +27,7 @@ describe("Test getReproducibilityCodeBlock", () => {
       reformPolicyUS,
       "us",
       2024,
+      null,
       householdUS,
     );
 
@@ -244,6 +245,19 @@ describe("Test getImplementationCode", () => {
     const output = getImplementationCode("policy", "uk", 2024, testPolicy);
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain("baseline = Microsimulation(reform=baseline)");
+  });
+  test("If dataset provided, return lines with dataset", () => {
+    const output = getImplementationCode(
+      "policy",
+      "us",
+      2024,
+      baselinePolicyUS,
+      "enhanced_cps",
+    );
+    expect(output).toBeInstanceOf(Array);
+    expect(output).toContain(
+      "baseline = Microsimulation(dataset='enhanced_cps_2024')",
+    );
   });
 });
 

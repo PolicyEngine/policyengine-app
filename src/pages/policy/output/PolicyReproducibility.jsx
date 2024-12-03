@@ -8,6 +8,7 @@ export default function PolicyReproducibility(props) {
   const [searchParams] = useSearchParams();
   const timePeriod = searchParams.get("timePeriod");
   const region = searchParams.get("region");
+  const dataset = searchParams.get("dataset");
 
   let codeLines = getReproducibilityCodeBlock(
     "policy",
@@ -15,6 +16,7 @@ export default function PolicyReproducibility(props) {
     policy,
     region,
     timePeriod,
+    dataset,
   );
 
   const colabLink =

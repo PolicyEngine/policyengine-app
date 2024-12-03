@@ -34,15 +34,9 @@ function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
 
-  // This is a temporary solution that will need to be superseded by
-  // an improved back end design; removing this value allows
-  // DatasetSelector to handle choosing between enhanced CPS data and
-  // standard US data
+  // The below allows backward compatibility with a past design where enhanced_cps
+  // was also a region value
   options = options.filter((option) => option.value !== "enhanced_us");
-
-  // These lines are also a temporary solution; if user accesses the component
-  // with the enhanced_us region via URL, the component should instead display
-  // the US
   let inputRegion = searchParams.get("region");
   if (inputRegion === "enhanced_us") {
     inputRegion = "us";
@@ -415,54 +409,46 @@ function FullLiteToggle() {
 }
 
 /**
- * A (hopefully temporary) component meant to abstract away the fact
- * that the US enhanced CPS data is defined as a region within the US
- * country package; this displays the enhanced CPS as a dataset on the
- * right-hand policy panel
+ * This displays the enhanced CPS as a dataset on the right-hand policy panel
  * @param {Object} props
- * @param {String} presentRegion The region, taken from the searchParams
+ * @param {String} presentDataset The dataset, taken from the searchParams
  * @param {Number|String} timePeriod The year the simulation should run over
  * @returns {import("react").ReactElement}
  */
 function DatasetSelector(props) {
-  const { presentRegion, timePeriod } = props;
+  const { presentDataset, timePeriod } = props;
+  const [isChecked, setIsChecked] = useState(confirmIsChecked(presentDataset));
   const [searchParams, setSearchParams] = useSearchParams();
   const displayCategory = useDisplayCategory();
 
-  // Determine whether slider should be enabled or disabled
-  function shouldEnableSlider(presentRegion, timePeriod) {
-    // Define the regions the slider should be enabled
-    const showRegions = ["enhanced_us", "us", null];
+  function confirmIsChecked(presentDataset) {
+    // Define presentDataset value that activates check
+    const checkValue = "enhanced_cps";
+    if (presentDataset === checkValue) {
+      return true;
+    }
+    return false;
+  }
 
-    // Define the times the slider should NOT be enabled
-    const dontShowTimes = ["2021"];
+  // Determine whether slider should be enabled or disabled
+  function shouldEnableSlider(timePeriod) {
+    // Define earliest year slider should be shown for
+    const sliderStartYear = 2024;
 
     // Return whether or not slider should be enabled
-    if (
-      showRegions.includes(presentRegion) &&
-      !dontShowTimes.includes(String(timePeriod))
-    ) {
+    // Null timePeriod reflects no URL param setting yet -
+    // this is actually default behavior
+    if (!timePeriod || timePeriod >= sliderStartYear) {
       return true;
     }
 
     return false;
   }
 
-  /**
-   * Switch change handler
-   * @param {Boolean} isChecked Whether or not the switch is "checked";
-   * note that the event is not passed to the handler by default
-   * @returns {undefined|null} Returns null as a safety check in cases where
-   * switch shouldn't be active in the first place
-   */
-  function handleChange(isChecked) {
-    // Define our desired states; item 0 corresponds to
-    // "true" and 1 to "false", since bools can't be used as keys
-    const outputStates = ["enhanced_us", "us"];
-
+  function handleChange() {
     // First, safety check - if the button isn't even
     // supposed to be shown, do nothing
-    if (!shouldEnableSlider(presentRegion, timePeriod)) {
+    if (!shouldEnableSlider(timePeriod)) {
       return;
     }
 
@@ -470,7 +456,18 @@ function DatasetSelector(props) {
     let newSearch = copySearchParams(searchParams);
 
     // Set params accordingly
-    newSearch.set("region", isChecked ? outputStates[0] : outputStates[1]);
+    if (isChecked) {
+      newSearch.delete("dataset");
+      // Allows for backwards compatibility with a past design
+      // where enhanced_cps was also a region value
+      if (searchParams.get("region") === "enhanced_us") {
+        newSearch.set("region", "us");
+      }
+      setIsChecked(false);
+    } else {
+      newSearch.set("dataset", "enhanced_cps");
+      setIsChecked(true);
+    }
     setSearchParams(newSearch);
   }
 
@@ -488,17 +485,15 @@ function DatasetSelector(props) {
         data-testid="enhanced_cps_switch"
         size={displayCategory !== "mobile" && "small"}
         onChange={handleChange}
-        disabled={!shouldEnableSlider(presentRegion, timePeriod)}
-        checked={presentRegion === "enhanced_us" ? true : false}
+        disabled={!shouldEnableSlider(timePeriod)}
+        checked={presentDataset === "enhanced_cps" ? true : false}
       />
       <p
         style={{
           margin: 0,
           fontSize: displayCategory !== "mobile" && "0.95em",
-          color:
-            !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
-          cursor:
-            !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed",
+          color: !shouldEnableSlider(timePeriod) && "rgba(0,0,0,0.5)",
+          cursor: !shouldEnableSlider(timePeriod) && "not-allowed",
         }}
       >
         Use Enhanced CPS (beta)
@@ -804,6 +799,14 @@ export default function PolicyRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
+
+  let dataset = searchParams.get("dataset");
+  // This allows backward compatibility with a past
+  // design where enhanced_cps was also a region value
+  if (region === "enhanced_us" && !dataset) {
+    dataset = "enhanced_cps";
+  }
+
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -1100,7 +1103,7 @@ export default function PolicyRightSidebar(props) {
                 </div>
                 {metadata.countryId === "us" && (
                   <DatasetSelector
-                    presentRegion={region}
+                    presentDataset={dataset}
                     timePeriod={timePeriod}
                   />
                 )}

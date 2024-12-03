@@ -28,6 +28,7 @@ export function FetchAndDisplayImpact(props) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const region = searchParams.get("region");
+  const dataset = searchParams.get("dataset");
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
@@ -74,7 +75,11 @@ export function FetchAndDisplayImpact(props) {
       const maxHouseholdString = maxHouseholds
         ? `&max_households=${maxHouseholds}`
         : "";
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&version=${selectedVersion}${maxHouseholdString}`;
+      const datasetString = dataset ? `&dataset=${dataset}` : "";
+      const url =
+        `/${metadata.countryId}/economy/${reformPolicyId}/over/` +
+        `${baselinePolicyId}?region=${region}&time_period=${timePeriod}` +
+        `&version=${selectedVersion}${maxHouseholdString}${datasetString}`;
       setImpact(null);
       setError(null);
       // start counting (but stop when the API call finishes)
@@ -151,7 +156,14 @@ export function FetchAndDisplayImpact(props) {
     }
     policyRef.current = policy;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [region, timePeriod, reformPolicyId, baselinePolicyId, maxHouseholds]);
+  }, [
+    region,
+    dataset,
+    timePeriod,
+    reformPolicyId,
+    baselinePolicyId,
+    maxHouseholds,
+  ]);
 
   useEffect(() => {
     if (!impact || !userPolicyId || !countryId) return;
@@ -211,13 +223,14 @@ export function FetchAndDisplayCliffImpact(props) {
   const timePeriod = searchParams.get("timePeriod");
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
+  const dataset = searchParams.get("dataset");
 
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const { metadata, policy } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff`;
+      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff&dataset=${dataset}`;
       setImpact(null);
       setError(null);
       asyncApiCall(url, null, 5_000)
@@ -261,7 +274,7 @@ export function FetchAndDisplayCliffImpact(props) {
       setSearchParams(newSearch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [region, timePeriod, reformPolicyId, baselinePolicyId]);
+  }, [region, timePeriod, reformPolicyId, baselinePolicyId, dataset]);
 
   if (error) {
     return <DisplayError error={error} />;
