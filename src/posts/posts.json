@@ -961,11 +961,11 @@
     "image": "fed_tax_inflation_adjustments.webp"
   },
   {
-    "title": "GiveCalc: A New Tool to Calculate the True Cost of US Charitable Giving",
-    "description": "This Giving Tuesday, PolicyEngine is launching GiveCalc, a free tool that calculates how charitable giving affects your US taxes and net income.",
+    "title": "Introducing GiveCalc",
+    "description": "Calculate the true cost of charitable giving.",
     "date": "2024-12-03 09:30:00",
-    "tags": ["us", "featured"],
-    "authors": ["max-ghenis"],
+    "tags": ["us", "featured", "giving"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
     "filename": "givecalc.md",
     "image": "givecalc.png"
   }
