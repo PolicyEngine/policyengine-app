@@ -48,6 +48,7 @@ import DeveloperLayout from "./pages/DeveloperLayout";
 import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
 import CTCCalculator from "./applets/CTCCalculator";
+import GiveCalc from "./applets/GiveCalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 import SaltAMTCalculator from "./applets/SaltAMTCalculator";
@@ -373,6 +374,7 @@ export default function PolicyEngine() {
           path="/us/child-tax-credit-calculator"
           element={<CTCCalculator />}
         />
+        <Route path="/us/givecalc" element={<GiveCalc />} />
         <Route
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}
