@@ -282,6 +282,7 @@ describe("Test getImplementationCode", () => {
       metadataUS,
       2024,
       testPolicy,
+      null,
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
@@ -295,13 +296,28 @@ describe("Test getImplementationCode", () => {
     const output = getImplementationCode(
       "policy",
       "us",
+      metadataUS,
       2024,
       baselinePolicyUS,
       "enhanced_cps",
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      "baseline = Microsimulation(dataset='enhanced_cps_2024')",
+      'baseline = Microsimulation(dataset="enhanced_cps_2024")',
+    );
+  });
+  test("If dataset provided alongside US state, return lines with dataset, not Pooled 3-Year CPS", () => {
+    const output = getImplementationCode(
+      "policy",
+      "ks",
+      metadataUS,
+      2024,
+      baselinePolicyUS,
+      "enhanced_cps",
+    );
+    expect(output).toBeInstanceOf(Array);
+    expect(output).toContain(
+      'baseline = Microsimulation(dataset="enhanced_cps_2024")',
     );
   });
 });
