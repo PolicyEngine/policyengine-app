@@ -174,10 +174,8 @@ export function getImplementationCode(
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
 
-  // Check if the region has a dataset specified; enhanced_us is legacy implemntation
-  // whereby enhanced_us region correlated with enhanced_cps dataset
-  const hasDatasetSpecified =
-    Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
+  // Check if the region has a dataset specified
+  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset);
 
   const COUNTRY_LEVEL_US_REGIONS = ["us", "enhanced_us"];
 
@@ -185,6 +183,9 @@ export function getImplementationCode(
     countryId === "us" && !COUNTRY_LEVEL_US_REGIONS.includes(region);
 
   let datasetText = "";
+
+  // enhanced_us is legacy implemntation
+  // whereby enhanced_us region correlated with enhanced_cps dataset
   if (hasDatasetSpecified) {
     datasetText = DEFAULT_DATASETS[dataset];
   } else if (isState) {
