@@ -179,28 +179,27 @@ export function getImplementationCode(
   const hasDatasetSpecified =
     Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
 
-  // TODO: Check into how DEFAULT_DATASETS works now post-rebase
+  const COUNTRY_LEVEL_US_REGIONS = ["us", "enhanced_us"];
 
   const isState =
-    countryId === "us" &&
-    region !== "us" &&
-    region !== "enhanced_us" &&
-    !Object.keys(DEFAULT_DATASETS).includes(region);
+    countryId === "us" && !COUNTRY_LEVEL_US_REGIONS.includes(region);
 
-    let dataset = "";
-    if (hasDatasetSpecified) {
-      dataset = DEFAULT_DATASETS[region];
-    } else if (isState) {
-      dataset = "pooled_3_year_cps_2023";
-    }
-  
-    const datasetSpecifier = dataset ? `dataset="${dataset}"` : "";
-  
-    const baselineSpecifier = hasBaseline ? "reform=baseline" : "";
-    const baselineComma = hasBaseline && dataset ? ", " : "";
-  
-    const reformSpecifier = hasReform ? "reform=reform" : "";
-    const reformComma = hasReform && dataset ? ", " : "";
+  let datasetText = "";
+  if (hasDatasetSpecified) {
+    datasetText = DEFAULT_DATASETS[dataset];
+  } else if (isState) {
+    datasetText = "pooled_3_year_cps_2023";
+  } else if (region === "enhanced_us") {
+    datasetText = "enhanced_cps_2024";
+  }
+
+  const datasetSpecifier = datasetText ? `dataset="${datasetText}"` : "";
+
+  const baselineSpecifier = hasBaseline ? "reform=baseline" : "";
+  const baselineComma = hasBaseline && datasetText ? ", " : "";
+
+  const reformSpecifier = hasReform ? "reform=reform" : "";
+  const reformComma = hasReform && datasetText ? ", " : "";
 
   return [
     "",
