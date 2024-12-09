@@ -1,24 +1,24 @@
 [
   {
-    "title": "UK Research Associate",
+    "title": "US Research Analyst",
     "type": "Full-Time",
     "content": {
-      "summary": "Shaping the future of economic policy analysis",
-      "location": "UK-based (Remote, with preference for 1 day per week in London office)",
-      "contract": "Full-time, starting as early as possible through September 30, 2025, with possibility of extension",
-      "description": "PolicyEngine is seeking a talented and motivated Research Associate to join our UK team. This full-time role is crucial to expanding PolicyEngine's capabilities over the next year, particularly in enhancing our UK economic policy model. This is a unique opportunity to contribute to an innovative project that aims to revolutionise public policy analysis and drive positive societal change.",
-      "responsibilities": [
-        "Expand the UK Tax-Benefit Rules Engine",
-        "Training and Community Engagement",
-        "Policy Analysis",
-        "Local Area Disaggregation",
-        "Model Validation and Accuracy",
-        "Beta Testing and User Feedback",
-        "User-Centric Enhancements and AI Integration",
-        "Documentation and Reporting"
-      ],
-      "qualifications": "Bachelor's degree in economics, computer science, public policy, or related fields; proficiency in Python and quantitative analysis; interest in UK public policy.",
-      "benefits": "Impactful work, innovative environment, professional growth, collaborative team, and flexible work arrangements."
+        "summary": "Shaping the future of economic policy analysis",
+        "location": "Washington DC (In-person - minimum 3 days per week)",
+        "contract": "Full-time, immediate start",
+        "description": "PolicyEngine is seeking a Research Analyst to join our US team. This role is crucial to expanding PolicyEngine's capabilities by developing and validating our economic policy models, conducting policy impact assessments, and supporting stakeholder engagement. This is a unique opportunity to contribute to an innovative project that aims to revolutionize public policy analysis and drive positive societal change.",
+        "responsibilities": [
+            "Develop and Maintain Microsimulation Models",
+            "Policy Analysis and Impact Assessment",
+            "Data Validation and Quality Assurance",
+            "Stakeholder Engagement and Training",
+            "Technical Documentation",
+            "Open Source Community Participation",
+            "Policy Research and Reporting",
+            "Model Enhancement and Testing"
+        ],
+        "qualifications": "Bachelor's degree or equivalent experience in economics, public policy, statistics, or related fields; proficiency in Python, R, or similar languages; strong analytical and communication skills; interest in US public policy.",
+        "benefits": "Impactful work in policy analysis, innovative technical environment, professional growth opportunities, collaborative international team, and flexible work arrangements."
     }
   },
   {
