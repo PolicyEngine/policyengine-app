@@ -141,8 +141,7 @@ export default function Jobs() {
         <ApplyButton />
         {/* Update this section depending on open positions */}
         <p>
-          We&apos;re currently searching for a UK Research Associate and
-          interns.
+          We&apos;re currently searching for a US Research Analyst and interns.
         </p>
       </Section>
       <Section backgroundColor={style.colors.LIGHT_GRAY}>
