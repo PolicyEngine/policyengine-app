@@ -1,4 +1,3 @@
-
 Last week, Governor Jeff Landry (R-LA) signed [HLS 243ES-13](https://legis.la.gov/legis/ViewDocument.aspx?d=1390576), which reforms several parts of the individual income tax code:
 
 1. Converting the current three income bracket structure of 1.85%, 3.5%, and 4.25% into a flat tax at a rate of 3%.
