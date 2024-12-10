@@ -11,7 +11,9 @@ Last week, Governor Jeff Landry (R-LA) signed [HLS 243ES-13](https://legis.la.go
 
 4. Increasing the exemptions for retirement and disability income from $6,000 to $12,000.
 
-We at PolicyEngine have updated our model to reflect these changes and analyzed their effects on the state of Louisiana and its residents.¹
+We at PolicyEngine have updated our model to reflect these changes and analyzed their effects on the state of Louisiana and its residents.[^eagx]
+
+[^eagx]: HLS 243ES-13 also converted the graduated corporate tax rate to a flat 5.5% rate, increased the state sales tax from 4.45% to 5%, and eliminated the corporate franchise tax. PolicyEngine does not currently model these policies.
 
 Key results for 2025:
 
@@ -67,5 +69,3 @@ The individual income tax changes signed into law by Gov. Jeff Landry will reduc
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
 We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
-
-1. HLS 243ES-13 also converted the graduated corporate tax rate to a flat 5.5% rate, increasing the state sales tax from 4.45% to 5%, and eliminating the corporate franchise tax. PolicyEngine does not currently model these policies.
