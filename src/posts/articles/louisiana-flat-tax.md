@@ -1,4 +1,3 @@
-## Introduction
 
 Last week, Governor Jeff Landry (R-LA) signed [HLS 243ES-13](https://legis.la.gov/legis/ViewDocument.aspx?d=1390576), which reforms several parts of the individual income tax code:
 
@@ -10,9 +9,9 @@ Last week, Governor Jeff Landry (R-LA) signed [HLS 243ES-13](https://legis.la.go
 
 4. Increasing the exemptions for retirement and disability income from $6,000 to $12,000.
 
-We at PolicyEngine have updated our model to reflect these changes and analyzed their effects on the state of Louisiana and its residents.[^eagx]
+We at PolicyEngine have updated our model to reflect these changes and analyzed their effects on the state of Louisiana and its residents.[^bill]
 
-[^eagx]: HLS 243ES-13 also converted the graduated corporate tax rate to a flat 5.5% rate, increased the state sales tax from 4.45% to 5%, and eliminated the corporate franchise tax. PolicyEngine does not currently model these policies.
+[^bill]: HLS 243ES-13 also converted the graduated corporate tax rate to a flat 5.5% rate, increased the state sales tax from 4.45% to 5%, and eliminated the corporate franchise tax. PolicyEngine does not currently model these policies.
 
 Key results for 2025:
 
