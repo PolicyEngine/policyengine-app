@@ -61,7 +61,7 @@ The tax changes would reduce Louisiana’s poverty rate by 0.8% and deep child p
 
 ## Conclusion
 
-The individual income tax changes signed into law by Gov. Jeff Landry will reduce state revenues by $1.3 billion in 2025. 82% of Louisiana residents will see an increase in their net income from the analyzed provisions, disproportionately those in higher-income households. The top quintile would receive 57% of the tax savings while the bottom quintile would reduce 1.4%.
+The individual income tax changes signed into law by Gov. Jeff Landry will reduce state revenues by $1.3 billion in 2025. 82% of Louisiana residents will see an increase in their net income from the analyzed provisions, disproportionately those in higher-income households. The top quintile would receive 57% of the tax savings while the bottom quintile would gain 1.4%.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
