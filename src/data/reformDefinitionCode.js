@@ -28,7 +28,7 @@ export function getReproducibilityCodeBlock(
       householdInput,
       earningVariation,
     ),
-    ...getImplementationCode(type, region, year, policy, dataset),
+    ...getImplementationCode(type, region, metadata, year, policy, dataset),
   ];
 }
 
@@ -160,10 +160,13 @@ export function getSituationCode(
 export function getImplementationCode(
   type,
   region,
+  metadata,
   timePeriod,
   policy,
   dataset,
 ) {
+  const countryId = metadata.economy_options.region[0].name;
+
   if (type !== "policy") {
     return [];
   }
@@ -171,39 +174,39 @@ export function getImplementationCode(
   const hasBaseline = Object.keys(policy?.baseline?.data).length > 0;
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
 
-  // Check if the region has a dataset specified; enhanced_us is legacy implemntation
-  // whereby enhanced_us region correlated with enhanced_cps dataset
-  const hasDatasetSpecified =
-    Object.keys(DEFAULT_DATASETS).includes(dataset) || region === "enhanced_us";
+  // Check if the region has a dataset specified
+  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset);
 
-  let formattedDataset = null;
-  if (region === "enhanced_us") {
-    formattedDataset = "enhanced_cps_2024";
-  } else if (hasDatasetSpecified) {
-    formattedDataset = DEFAULT_DATASETS[dataset];
+  const COUNTRY_LEVEL_US_REGIONS = ["us", "enhanced_us"];
+
+  const isState =
+    countryId === "us" && !COUNTRY_LEVEL_US_REGIONS.includes(region);
+
+  let datasetText = "";
+
+  // enhanced_us is legacy implemntation
+  // whereby enhanced_us region correlated with enhanced_cps dataset
+  if (hasDatasetSpecified) {
+    datasetText = DEFAULT_DATASETS[dataset];
+  } else if (isState) {
+    datasetText = "pooled_3_year_cps_2023";
+  } else if (region === "enhanced_us") {
+    datasetText = "enhanced_cps_2024";
   }
+
+  const datasetSpecifier = datasetText ? `dataset="${datasetText}"` : "";
+
+  const baselineSpecifier = hasBaseline ? "reform=baseline" : "";
+  const baselineComma = hasBaseline && datasetText ? ", " : "";
+
+  const reformSpecifier = hasReform ? "reform=reform" : "";
+  const reformComma = hasReform && datasetText ? ", " : "";
 
   return [
     "",
     "",
-    `baseline = Microsimulation(${
-      hasDatasetSpecified && hasBaseline
-        ? `reform=baseline, dataset='${formattedDataset}'`
-        : hasBaseline
-          ? `reform=baseline`
-          : hasDatasetSpecified
-            ? `dataset='${formattedDataset}'`
-            : ""
-    })`,
-    `reformed = Microsimulation(${
-      hasDatasetSpecified && hasReform
-        ? `reform=reform, dataset='${formattedDataset}'`
-        : hasReform
-          ? `reform=reform`
-          : hasDatasetSpecified
-            ? `dataset='${formattedDataset}'`
-            : ""
-    })`,
+    `baseline = Microsimulation(${baselineSpecifier}${baselineComma}${datasetSpecifier})`,
+    `reformed = Microsimulation(${reformSpecifier}${reformComma}${datasetSpecifier})`,
     `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     `reformed_income = reformed.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     "difference_income = reformed_income - baseline_income",
