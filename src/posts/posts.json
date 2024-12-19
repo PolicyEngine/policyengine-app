@@ -977,5 +977,14 @@
     "authors": ["david-trimmer"],
     "filename": "louisiana-flat-tax.md",
     "image": "louisiana-flat-tax.webp"
+  },
+  {
+    "title": "PolicyEngine Receives General Operating Support from NEO Philanthropy",
+    "description": "NEO Philanthropy's Economic Mobility & Opportunity Fund supports PolicyEngine's mission to democratize policy analysis.",
+    "date": "2024-12-18 09:30:00",
+    "tags": ["us", "featured"],
+    "authors": ["max-ghenis"],
+    "filename": "neo-philanthropy.md",
+    "image": "neo-philanthropy.png"
   }
 ]
