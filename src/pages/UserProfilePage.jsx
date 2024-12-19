@@ -17,7 +17,7 @@ import {
 import { useDisplayCategory } from "../layout/Responsive";
 import { Card, Input, Skeleton, Tooltip } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
-import { apiCall } from "../api/call";
+import { apiCall, useAuthenticatedApiCall } from "../api/call";
 import { useEffect, useState } from "react";
 import useCountryId from "../hooks/useCountryId";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -578,7 +578,7 @@ function UsernameDisplayAndEditor(props) {
     };
 
     try {
-      const res = await apiCall(USER_PROFILE_PATH, body, "PUT");
+      const res = await useAuthenticatedApiCall(USER_PROFILE_PATH, body, "PUT");
       const resJson = await wrappedResponseJson(res);
       if (resJson.status === "ok") {
         const data = await apiCall(
