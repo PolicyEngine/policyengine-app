@@ -986,5 +986,14 @@
     "authors": ["max-ghenis"],
     "filename": "neo-philanthropy.md",
     "image": "neo-philanthropy.png"
+  },
+  {
+    "title": "Nuffield Foundation awards £250k to enhance PolicyEngine UK",
+    "description": "Grant will support expanding and localising tax-benefit microsimulation capabilities.",
+    "date": "2024-12-19 14:00:00",
+    "tags": ["uk", "featured"],
+    "authors": ["max-ghenis"],
+    "filename": "uk-nuffield-grant.md",
+    "image": "uk-nuffield-grant.png"
   }
 ]
