@@ -1,8 +1,33 @@
+import { useCallback } from "react";
 import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
+import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch";
 
 const POLICYENGINE_API = "https://api.policyengine.org";
+
+/**
+ * returns an api call function that can be used to make requests
+ * against the policyengine api endpoint.
+ *
+ * @returns {{authenticatedApiCall:(path:string, body:any, method:string)=>Promise}}
+ *
+ * @returns
+ */
+export function useAuthenticatedApiCall() {
+  const { authenticatedFetch } = useAuthenticatedFetch();
+
+  const authenticatedApiCall = useCallback(
+    (path, body, method) => {
+      return apiCall(path, body, method, false, authenticatedFetch);
+    },
+    [authenticatedFetch],
+  );
+
+  return {
+    authenticatedApiCall,
+  };
+}
 
 /**
  * Makes an API call to the back end and returns response
@@ -12,10 +37,17 @@ const POLICYENGINE_API = "https://api.policyengine.org";
  * or to POST if a body is passed
  * @param {boolean} [secondAttempt=false] Whether or not to attempt the request a second
  * time if it fails the first time
- * @returns {JSON} The API call's response JSON object
+ * @param {function} [fetchMethod=fetch] Specify a custom fetch method.
+ * @returns { Promise } The API call's response JSON object
  */
-export function apiCall(path, body, method, secondAttempt = false) {
-  return fetch(POLICYENGINE_API + path, {
+export function apiCall(
+  path,
+  body,
+  method,
+  secondAttempt = false,
+  fetchMethod = fetch,
+) {
+  return fetchMethod(POLICYENGINE_API + path, {
     method: method || (body ? "POST" : "GET"),
     headers: {
       "Content-Type": "application/json",
