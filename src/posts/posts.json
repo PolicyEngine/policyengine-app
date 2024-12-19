@@ -873,6 +873,15 @@
     "image": "cgt-autumn-budget.jpg"
   },
   {
+    "title": "Behavioral responses in PolicyEngine US",
+    "description": "PolicyEngine US has expanded its modeling framework to capture how policy changes affect labor supply.",
+    "date": "2024-12-16 15:00:00",
+    "tags": ["us", "policy", "behavioral-response"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "us-behavioral-response.md",
+    "image": "us-behavioral-response.jpg"
+  },
+  {
     "title": "Kamala Harris’s Earned Income Tax Credit Expansion Proposal",
     "description": "PolicyEngine projects that restoring the American Rescue Plan policy would cost $144 billion (static) or $201 billion (dynamic) over a decade, while lowering poverty by 1.6% in 2025.",
     "date": "2024-10-24 01:00:00",
