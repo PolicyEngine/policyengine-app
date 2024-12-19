@@ -11,12 +11,12 @@ import CGO from "../images/logos/orgs/cgo.jpg";
 import EPMT from "../images/logos/orgs/epmt.jpg";
 import NISKANENCenter from "../images/logos/orgs/niskanen-center.png";
 import F4GI from "../images/logos/orgs/f4gi.jpg";
-import GCV from "../images/logos/orgs/gary-community-ventures.png";
 import MFB from "../images/logos/orgs/myfriendben.png";
 import MCA from "../images/logos/orgs/mca.jpg";
 import UBICenter from "../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
 import NIESR from "../images/logos/orgs/niesr.jpeg";
+import PN3Policy from "../images/logos/orgs/pn3policy.png";
 
 // eslint-disable-next-line
 export const orgData = {
@@ -93,10 +93,10 @@ export const orgData = {
       logo: EPMT,
       link: "https://endpovertymaketrillions.com/",
     },
-    gcv: {
-      name: "Gary Community Ventures",
-      logo: GCV,
-      link: "https://garycommunity.org/",
+    pn3policy: {
+      name: "Prenatal-to-3 Policy Impact Center",
+      logo: PN3Policy,
+      link: "https://pn3policy.org/",
     },
     mfb: {
       name: "MyFriendBen",
