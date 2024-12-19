@@ -16,10 +16,10 @@ import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
 import {
-  apiCall,
   copySearchParams,
   countryApiCall,
   updateMetadata,
+  useAuthenticatedApiCall,
 } from "./api/call";
 import LoadingCentered from "./layout/LoadingCentered";
 import ErrorPage from "./layout/ErrorPage";
@@ -103,6 +103,8 @@ export default function PolicyEngine() {
 
   const [hasShownHouseholdPopup, setHasShownHouseholdPopup] = useState(false);
   const [userProfile, setUserProfile] = useState({});
+
+  const { authenticatedApiCall } = useAuthenticatedApiCall();
 
   // Update the metadata state when something happens to
   // the countryId (e.g. the user changes the country).
@@ -197,7 +199,7 @@ export default function PolicyEngine() {
       const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
       try {
-        const resGet = await apiCall(
+        const resGet = await authenticatedApiCall(
           USER_PROFILE_PATH + `?auth0_id=${user.sub}`,
         );
         const resGetJson = await resGet.json();
@@ -211,7 +213,11 @@ export default function PolicyEngine() {
             primary_country: countryId,
             user_since: Date.now(),
           };
-          const resPost = await apiCall(USER_PROFILE_PATH, body, "POST");
+          const resPost = await authenticatedApiCall(
+            USER_PROFILE_PATH,
+            body,
+            "POST",
+          );
           const resPostJson = await resPost.json();
           if (resPost.status !== 201) {
             console.error(
@@ -239,7 +245,7 @@ export default function PolicyEngine() {
     if (countryId && isAuthenticated && user?.sub) {
       fetchUserProfile().then((userProfile) => setUserProfile(userProfile));
     }
-  }, [countryId, user?.sub, isAuthenticated]);
+  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall]);
 
   const loadingPage = (
     <>

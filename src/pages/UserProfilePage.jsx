@@ -17,7 +17,7 @@ import {
 import { useDisplayCategory } from "../layout/Responsive";
 import { Card, Input, Skeleton, Tooltip } from "antd";
 import { useWindowWidth } from "../hooks/useWindow";
-import { apiCall } from "../api/call";
+import { apiCall, useAuthenticatedApiCall } from "../api/call";
 import { useEffect, useState } from "react";
 import useCountryId from "../hooks/useCountryId";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -74,6 +74,7 @@ export default function UserProfilePage(props) {
   const countryId = useCountryId();
   const windowWidth = useWindowWidth();
   const dispCat = useDisplayCategory();
+  const { authenticatedApiCall } = useAuthenticatedApiCall();
 
   const maxCardWidth = 375; // Max card width (relative to screen, so not exact), in pixels
   const gridColumns =
@@ -84,7 +85,7 @@ export default function UserProfilePage(props) {
       setIsHeaderLoading(true);
       if (metadata) {
         try {
-          const data = await apiCall(
+          const data = await authenticatedApiCall(
             `/${countryId}/user-profile?user_id=${accessedUserId}`,
           );
           const dataJson = await data.json();
@@ -116,7 +117,7 @@ export default function UserProfilePage(props) {
     }
 
     fetchProfile();
-  }, [countryId, isOwnProfile, accessedUserId, metadata]);
+  }, [countryId, isOwnProfile, accessedUserId, metadata, authenticatedApiCall]);
 
   useEffect(() => {
     async function fetchAccessedPolicies() {
@@ -565,6 +566,7 @@ function UsernameDisplayAndEditor(props) {
 
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState("");
+  const { authenticatedApiCall } = useAuthenticatedApiCall();
 
   function handleClick() {
     setIsEditing((prev) => !prev);
@@ -578,10 +580,10 @@ function UsernameDisplayAndEditor(props) {
     };
 
     try {
-      const res = await apiCall(USER_PROFILE_PATH, body, "PUT");
+      const res = await authenticatedApiCall(USER_PROFILE_PATH, body, "PUT");
       const resJson = await wrappedResponseJson(res);
       if (resJson.status === "ok") {
-        const data = await apiCall(
+        const data = await authenticatedApiCall(
           `/${countryId}/user-profile?user_id=${accessedUserProfile.user_id}`,
         );
         const dataJson = await data.json();
