@@ -2,11 +2,10 @@ PolicyEngine has received a [£251,296 grant](https://www.nuffieldfoundation.org
 
 The funding will support several major expansions to PolicyEngine UK's modelling capabilities, including:
 
-
-* Creation of representative micro-datasets for each local authority and constituency
-* Integration of all childcare subsidies and major public service spending, including education, NHS, adult social care, and travel subsidies at the household level
-* Development of an open dashboard validating PolicyEngine's outputs against other microsimulation models
-* Implementation of user-centric, AI-capable design improvements
+- Creation of representative micro-datasets for each local authority and constituency
+- Integration of all childcare subsidies and major public service spending, including education, NHS, adult social care, and travel subsidies at the household level
+- Development of an open dashboard validating PolicyEngine's outputs against other microsimulation models
+- Implementation of user-centric, AI-capable design improvements
 
 "Tax-benefit microsimulation is essential for understanding the impacts of fiscal policy, yet most models are proprietary or expensive," said Max Ghenis, CEO of PolicyEngine. "With the Nuffield Foundation's support, we'll make these tools more comprehensive and accessible to inform critical policy discussions across the UK."
 
