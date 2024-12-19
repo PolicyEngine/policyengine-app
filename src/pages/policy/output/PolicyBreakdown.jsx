@@ -1,11 +1,22 @@
+import { useSearchParams } from "react-router-dom";
 import style from "../../../style";
+import { motion } from "framer-motion";
 
 export default function PolicyBreakdown(props) {
   const { policyLabel, metadata, impact, timePeriod, region } = props;
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const regionObj = metadata.economy_options.region.find(
     (elem) => elem.name === region,
   );
+
+  const handleItemClick = (focusTarget) => {
+    let newSearch = new URLSearchParams(searchParams);
+
+    newSearch.set("focus", focusTarget);
+
+    setSearchParams(newSearch);
+  };
   let regionLabel;
   // This is a workaround for enhanced_us that should be changed
   // if and when it is treated as something other than a "region"
@@ -42,6 +53,7 @@ export default function PolicyBreakdown(props) {
     {
       value: budgetaryImpact,
       type: "budgetaryImpact",
+      focusTarget: "policyOutput.budgetaryImpact.overall",
       formatOptions: {
         currencyLabel: metadata.currency,
       },
@@ -49,6 +61,7 @@ export default function PolicyBreakdown(props) {
     {
       value: povertyRateChange,
       type: "povertyRateChange",
+      focusTarget: "policyOutput.povertyImpact.regular.byAge",
       formatOptions: {
         percentage: true,
         signFlip: true,
@@ -57,6 +70,7 @@ export default function PolicyBreakdown(props) {
     {
       value: decileOverview,
       type: "winnersLosersPercent",
+      focusTarget: "policyOutput.winnersAndLosers.incomeDecile",
     },
   ];
 
@@ -67,6 +81,7 @@ export default function PolicyBreakdown(props) {
         data={listItems}
         title={title}
         bottomText={bottomText}
+        onItemClick={handleItemClick}
       />
     </>
   );
@@ -82,7 +97,7 @@ export default function PolicyBreakdown(props) {
  * @returns {import("react-markdown/lib/react-markdown").ReactElement}
  */
 function BreakdownTemplate(props) {
-  const { data, title, bottomText } = props;
+  const { data, title, bottomText, onItemClick } = props;
 
   const COLORS = {
     pos: style.colors.BLUE,
@@ -104,7 +119,7 @@ function BreakdownTemplate(props) {
             gap: "20px",
           }}
         >
-          {formatWinnersLosers(item.value)}
+          {formatWinnersLosers(item, onItemClick)}
         </div>
       );
     }
@@ -131,6 +146,7 @@ function BreakdownTemplate(props) {
     }
 
     const [descStart, descEnd] = formatDesc(item.value, item.type);
+    const focusTarget = item.focusTarget;
     const formattedValue = formatValue(
       item.value,
       item.type,
@@ -148,10 +164,17 @@ function BreakdownTemplate(props) {
           gap: "20px",
         }}
       >
-        <h2
+        <motion.h2
           style={{
             fontSize: 22,
+            cursor: "pointer",
           }}
+          whileHover={{
+            backgroundColor: style.colors.BLUE_LIGHT,
+            fontWeight: 500,
+          }}
+          transition={{ duration: 0.001 }}
+          onClick={() => onItemClick(focusTarget)}
         >
           {descStart}
           &nbsp;
@@ -164,7 +187,7 @@ function BreakdownTemplate(props) {
           </span>
           &nbsp;
           {descEnd}
-        </h2>
+        </motion.h2>
       </div>
     );
   });
@@ -345,7 +368,8 @@ function formatValue(value, type, options) {
  * @returns {React.JSX} The formatted JSX, as this can contain anywhere
  * between 0 and 2 values
  */
-function formatWinnersLosers(decileOverview) {
+function formatWinnersLosers(item, onItemClick) {
+  const { value: decileOverview, focusTarget } = item;
   const winnersPercent =
     decileOverview["Gain more than 5%"] + decileOverview["Gain less than 5%"];
   const losersPercent =
@@ -354,13 +378,19 @@ function formatWinnersLosers(decileOverview) {
   // If both values are 0...
   if (!winnersPercent && !losersPercent) {
     return (
-      <h2
+      <motion.h2
         style={{
           fontSize: 22,
+          cursor: "pointer",
         }}
+        whileHover={{
+          backgroundColor: style.colors.BLUE_LIGHT,
+        }}
+        transition={{ duration: 0.001 }}
+        onClick={() => onItemClick(focusTarget)}
       >
         Does not affect anyone&apos;s net income
-      </h2>
+      </motion.h2>
     );
   }
 
@@ -383,10 +413,16 @@ function formatWinnersLosers(decileOverview) {
   // If both aren't 0...
   if (winnersPercent && losersPercent) {
     return (
-      <h2
+      <motion.h2
         style={{
           fontSize: 22,
+          cursor: "pointer",
         }}
+        whileHover={{
+          backgroundColor: style.colors.BLUE_LIGHT,
+        }}
+        transition={{ duration: 0.001 }}
+        onClick={() => onItemClick(focusTarget)}
       >
         Increases net income for&nbsp;
         <span
@@ -405,16 +441,23 @@ function formatWinnersLosers(decileOverview) {
           {losersValue}
         </span>
         &nbsp;of people
-      </h2>
+      </motion.h2>
     );
   }
 
   // Otherwise, conditionally return whichever is correct
   return (
-    <h2
+    <motion.h2
       style={{
         fontSize: 22,
+        cursor: "pointer",
       }}
+      whileHover={{
+        backgroundColor: style.colors.BLUE_LIGHT,
+        fontWeight: 500,
+      }}
+      transition={{ duration: 0.001 }}
+      onClick={() => onItemClick(focusTarget)}
     >
       {`${winnersPercent ? "Raises" : "Lowers"} net income for`}
       &nbsp;
@@ -426,7 +469,7 @@ function formatWinnersLosers(decileOverview) {
         {winnersPercent ? winnersValue : losersValue}
       </span>
       &nbsp;of people
-    </h2>
+    </motion.h2>
   );
 }
 

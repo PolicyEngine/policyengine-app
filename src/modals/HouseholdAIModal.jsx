@@ -43,6 +43,7 @@ export default function HouseholdAIModal(props) {
 
   // Convert this and fetchTracer to async/await
   const fetchAnalysis = useCallback(async () => {
+    setIsError(false);
     const jsonObject = {
       household_id: householdId,
       policy_id: policyId,
@@ -55,6 +56,14 @@ export default function HouseholdAIModal(props) {
       jsonObject,
       "POST",
     );
+
+    if (!res || !res.ok) {
+      console.error("Error response within fetchAnalysis");
+      console.error(res);
+      setIsLoading(false);
+      setIsError(true);
+      return;
+    }
 
     const reader = res.body.getReader();
     const decoder = new TextDecoder();

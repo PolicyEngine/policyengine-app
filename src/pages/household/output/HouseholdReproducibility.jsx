@@ -12,6 +12,7 @@ export default function HouseholdReproducibility(props) {
   const [earningVariation, setEarningVariation] = useState(false);
   const [searchParams] = useSearchParams();
   const region = searchParams.get("region");
+  const dataset = searchParams.get("dataset");
   const mobile = useMobile();
 
   let lines = getReproducibilityCodeBlock(
@@ -20,6 +21,7 @@ export default function HouseholdReproducibility(props) {
     policy,
     region,
     year,
+    dataset,
     householdInput,
     earningVariation,
   );

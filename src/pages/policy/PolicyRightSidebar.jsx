@@ -1,5 +1,11 @@
 import { SwapOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Carousel } from "react-bootstrap";
 import { copySearchParams } from "../../api/call";
@@ -16,9 +22,10 @@ import { Alert, Modal, Switch, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
-import { defaultForeverYear } from "../../data/constants";
+import { defaultForeverYear, defaultStartDate } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
+import useCountryId from "../../hooks/useCountryId";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -27,15 +34,9 @@ function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
 
-  // This is a temporary solution that will need to be superseded by
-  // an improved back end design; removing this value allows
-  // DatasetSelector to handle choosing between enhanced CPS data and
-  // standard US data
+  // The below allows backward compatibility with a past design where enhanced_cps
+  // was also a region value
   options = options.filter((option) => option.value !== "enhanced_us");
-
-  // These lines are also a temporary solution; if user accesses the component
-  // with the enhanced_us region via URL, the component should instead display
-  // the US
   let inputRegion = searchParams.get("region");
   if (inputRegion === "enhanced_us") {
     inputRegion = "us";
@@ -93,6 +94,269 @@ function TimePeriodSelector(props) {
   );
 }
 
+/**
+ * Selector like the full/lite toggle that toggles between 'static' and 'dynamic' versions of the dataset.
+ * @param {Object} props
+ * @param {Object} props.policy
+ * @param {Object} props.metadata
+ * @returns {React.ReactElement}
+ */
+function BehavioralResponseToggle(props) {
+  const { policy, metadata } = props;
+
+  const dateString = `${defaultStartDate}.${String(defaultForeverYear)}-12-31`;
+  const behavioralResponseReforms = useMemo(
+    () => ({
+      uk: {
+        "gov.simulation.capital_gains_responses.elasticity": {
+          [dateString]: -0.7,
+        },
+        "gov.simulation.labor_supply_responses.income_elasticity": {
+          [dateString]: -0.05,
+        },
+        "gov.simulation.labor_supply_responses.substitution_elasticity": {
+          [dateString]: 0.25,
+        },
+      },
+      us: {
+        "gov.simulation.labor_supply_responses.elasticities.income": {
+          "2024-01-01.2100-12-31": -0.05,
+        },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.1":
+          {
+            "2024-01-01.2100-12-31": 0.31,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.10":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.2":
+          {
+            "2024-01-01.2100-12-31": 0.28,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.3":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.4":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.5":
+          {
+            "2024-01-01.2100-12-31": 0.25,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.6":
+          {
+            "2024-01-01.2100-12-31": 0.25,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.7":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.8":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.primary.9":
+          {
+            "2024-01-01.2100-12-31": 0.22,
+          },
+        "gov.simulation.labor_supply_responses.elasticities.substitution.by_position_and_decile.secondary":
+          {
+            "2024-01-01.2100-12-31": 0.27,
+          },
+      },
+    }),
+    [dateString],
+  );
+  const countryId = useCountryId();
+
+  const hasBehavioralResponses = useCallback(
+    (policy) => {
+      // If country isn't even present, opt out to prevent Object accessing error
+      if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+        return false;
+      }
+
+      // Determine the requisite elasticity params for given country
+      const behavioralResponseParams = Object.keys(
+        behavioralResponseReforms[countryId],
+      );
+
+      // Make sure policy has every param
+      return behavioralResponseParams.every((param) => {
+        return Object.keys(policy.reform.data).includes(param);
+      });
+    },
+    [countryId, behavioralResponseReforms],
+  );
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isChecked, setIsChecked] = useState(hasBehavioralResponses(policy));
+  const spellsBehaviour = ["uk", "ca"].includes(countryId);
+  const displayCategory = useDisplayCategory();
+
+  // Ref for storing previous label in case user reverts
+  const prevLabelRef = useRef(null);
+
+  useEffect(() => {
+    setIsChecked(hasBehavioralResponses(policy));
+  }, [policy, hasBehavioralResponses]);
+
+  async function handleChange(value) {
+    if (value) {
+      await setBehavioralResponses();
+    } else {
+      await removeBehavioralResponses();
+    }
+
+    setIsChecked(value);
+  }
+
+  async function setBehavioralResponses() {
+    // Save the previous reform's label in case user reverts
+    prevLabelRef.current = policy.reform.label;
+    const policyToStack = behavioralResponseReforms[metadata.countryId];
+
+    // Fetch policy to stack
+    let newPolicyData = {
+      ...policy.reform.data,
+      ...policyToStack,
+    };
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+    const newPolicyRes = await getNewPolicyId(
+      metadata.countryId,
+      newPolicyData,
+    );
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("reform", newPolicyRes.policy_id);
+    setSearchParams(newSearch);
+  }
+
+  async function removeBehavioralResponses() {
+    const policyToStack = behavioralResponseReforms[metadata.countryId];
+
+    // Fetch policy to stack
+    let newPolicyData = {
+      ...policy.reform.data,
+    };
+
+    for (const key of Object.keys(policyToStack)) {
+      delete newPolicyData[key];
+    }
+
+    let newPolicyLabel = null;
+    // If there's a previous label, revert to it
+    if (prevLabelRef.current) {
+      newPolicyLabel = prevLabelRef.current;
+    }
+
+    // Current law is represented by an empty object;
+    // if the new policy is empty, remove the reform query parameter
+    if (Object.keys(newPolicyData).length === 0) {
+      let newSearch = copySearchParams(searchParams);
+      newSearch.delete("reform");
+      setSearchParams(newSearch);
+      return;
+    }
+
+    // Create new policy with those parameters and emit to back end, receiving back ID
+    const newPolicyRes = await getNewPolicyId(
+      metadata.countryId,
+      newPolicyData,
+      newPolicyLabel,
+    );
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("reform", newPolicyRes.policy_id);
+    setSearchParams(newSearch);
+  }
+
+  // Don't show behavior response toggle for countries without
+  // policies to set them
+  if (!Object.keys(behavioralResponseReforms).includes(countryId)) {
+    return null;
+  }
+
+  const preLabel = {
+    us: "CBO",
+  };
+
+  const tooltipLink = {
+    us: "https://www.cbo.gov/sites/default/files/112th-congress-2011-2012/reports/43674-laborsupplyfiscalpolicy.pdf#page=4",
+    uk: "https://policyengine.org/uk/research/behavioural-responses",
+  };
+
+  const tooltipText =
+    "When selected, simulations adjust earnings and capital gains based on how " +
+    `reforms affect net income and marginal tax rates${
+      countryId === "us"
+        ? ", applying the Congressional Budget Office's assumptions."
+        : "."
+    }`;
+
+  const tooltipJSX = (
+    <div>
+      <span>{tooltipText}</span>
+      {tooltipLink[countryId] && (
+        <a
+          href={tooltipLink[countryId]}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            marginLeft: "5px",
+            textDecoration: "underline",
+            color: "rgb(84, 140, 190)", // This is BLUE_PRIMARY + 20 for each RGB value, so brighter
+          }}
+        >
+          Learn more.
+        </a>
+      )}
+    </div>
+  );
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <Switch
+        checked={isChecked}
+        size={displayCategory !== "mobile" && "small"}
+        onChange={handleChange}
+      />
+      <p
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+        }}
+      >
+        Apply {preLabel[countryId] ?? ""}{" "}
+        {spellsBehaviour ? "behavioural" : "behavioral"} responses
+      </p>
+      <Tooltip
+        placement="topRight"
+        title={tooltipJSX}
+        trigger={displayCategory === "mobile" ? "click" : "hover"}
+      >
+        <QuestionCircleOutlined
+          style={{
+            color: "rgba(0, 0, 0, 0.85)",
+            opacity: 0.85,
+            cursor: "pointer",
+          }}
+        />
+      </Tooltip>
+    </div>
+  );
+}
+
 function FullLiteToggle() {
   // Selector like the dataset selector that toggles between 'full' and 'lite' versions of the dataset.
   // should set a query param with mode=light or mode=full
@@ -145,54 +409,46 @@ function FullLiteToggle() {
 }
 
 /**
- * A (hopefully temporary) component meant to abstract away the fact
- * that the US enhanced CPS data is defined as a region within the US
- * country package; this displays the enhanced CPS as a dataset on the
- * right-hand policy panel
+ * This displays the enhanced CPS as a dataset on the right-hand policy panel
  * @param {Object} props
- * @param {String} presentRegion The region, taken from the searchParams
+ * @param {String} presentDataset The dataset, taken from the searchParams
  * @param {Number|String} timePeriod The year the simulation should run over
  * @returns {import("react").ReactElement}
  */
 function DatasetSelector(props) {
-  const { presentRegion, timePeriod } = props;
+  const { presentDataset, timePeriod } = props;
+  const [isChecked, setIsChecked] = useState(confirmIsChecked(presentDataset));
   const [searchParams, setSearchParams] = useSearchParams();
   const displayCategory = useDisplayCategory();
 
-  // Determine whether slider should be enabled or disabled
-  function shouldEnableSlider(presentRegion, timePeriod) {
-    // Define the regions the slider should be enabled
-    const showRegions = ["enhanced_us", "us", null];
+  function confirmIsChecked(presentDataset) {
+    // Define presentDataset value that activates check
+    const checkValue = "enhanced_cps";
+    if (presentDataset === checkValue) {
+      return true;
+    }
+    return false;
+  }
 
-    // Define the times the slider should NOT be enabled
-    const dontShowTimes = ["2021"];
+  // Determine whether slider should be enabled or disabled
+  function shouldEnableSlider(timePeriod) {
+    // Define earliest year slider should be shown for
+    const sliderStartYear = 2024;
 
     // Return whether or not slider should be enabled
-    if (
-      showRegions.includes(presentRegion) &&
-      !dontShowTimes.includes(String(timePeriod))
-    ) {
+    // Null timePeriod reflects no URL param setting yet -
+    // this is actually default behavior
+    if (!timePeriod || timePeriod >= sliderStartYear) {
       return true;
     }
 
     return false;
   }
 
-  /**
-   * Switch change handler
-   * @param {Boolean} isChecked Whether or not the switch is "checked";
-   * note that the event is not passed to the handler by default
-   * @returns {undefined|null} Returns null as a safety check in cases where
-   * switch shouldn't be active in the first place
-   */
-  function handleChange(isChecked) {
-    // Define our desired states; item 0 corresponds to
-    // "true" and 1 to "false", since bools can't be used as keys
-    const outputStates = ["enhanced_us", "us"];
-
+  function handleChange() {
     // First, safety check - if the button isn't even
     // supposed to be shown, do nothing
-    if (!shouldEnableSlider(presentRegion, timePeriod)) {
+    if (!shouldEnableSlider(timePeriod)) {
       return;
     }
 
@@ -200,7 +456,18 @@ function DatasetSelector(props) {
     let newSearch = copySearchParams(searchParams);
 
     // Set params accordingly
-    newSearch.set("region", isChecked ? outputStates[0] : outputStates[1]);
+    if (isChecked) {
+      newSearch.delete("dataset");
+      // Allows for backwards compatibility with a past design
+      // where enhanced_cps was also a region value
+      if (searchParams.get("region") === "enhanced_us") {
+        newSearch.set("region", "us");
+      }
+      setIsChecked(false);
+    } else {
+      newSearch.set("dataset", "enhanced_cps");
+      setIsChecked(true);
+    }
     setSearchParams(newSearch);
   }
 
@@ -218,17 +485,15 @@ function DatasetSelector(props) {
         data-testid="enhanced_cps_switch"
         size={displayCategory !== "mobile" && "small"}
         onChange={handleChange}
-        disabled={!shouldEnableSlider(presentRegion, timePeriod)}
-        checked={presentRegion === "enhanced_us" ? true : false}
+        disabled={!shouldEnableSlider(timePeriod)}
+        checked={presentDataset === "enhanced_cps" ? true : false}
       />
       <p
         style={{
           margin: 0,
           fontSize: displayCategory !== "mobile" && "0.95em",
-          color:
-            !shouldEnableSlider(presentRegion, timePeriod) && "rgba(0,0,0,0.5)",
-          cursor:
-            !shouldEnableSlider(presentRegion, timePeriod) && "not-allowed",
+          color: !shouldEnableSlider(timePeriod) && "rgba(0,0,0,0.5)",
+          cursor: !shouldEnableSlider(timePeriod) && "not-allowed",
         }}
       >
         Use Enhanced CPS (beta)
@@ -534,6 +799,14 @@ export default function PolicyRightSidebar(props) {
   const focus = searchParams.get("focus") || "";
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
+
+  let dataset = searchParams.get("dataset");
+  // This allows backward compatibility with a past
+  // design where enhanced_cps was also a region value
+  if (region === "enhanced_us" && !dataset) {
+    dataset = "enhanced_cps";
+  }
+
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
   });
@@ -830,11 +1103,12 @@ export default function PolicyRightSidebar(props) {
                 </div>
                 {metadata.countryId === "us" && (
                   <DatasetSelector
-                    presentRegion={region}
+                    presentDataset={dataset}
                     timePeriod={timePeriod}
                   />
                 )}
                 <FullLiteToggle metadata={metadata} />
+                <BehavioralResponseToggle metadata={metadata} policy={policy} />
               </div>
             }
           />

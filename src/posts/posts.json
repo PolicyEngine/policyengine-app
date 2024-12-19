@@ -846,6 +846,15 @@
     "image": "vat-school-comparison-post.jpg"
   },
   {
+    "title": "How PolicyEngine UK models behavioural responses",
+    "description": "PolicyEngine has enhanced its modelling with behavioural responses, including income, substitution and capital gains elasticities.",
+    "date": "2024-11-12 15:00:00",
+    "tags": ["uk", "policy", "behavioural-responses", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "behavioural-responses.md",
+    "image": "behavioural-responses.jpg"
+  },
+  {
     "title": "Benefits uprating 2025/26",
     "description": "PolicyEngine projects Labour's 1.7% benefits uprating would cost £2.5 billion, mainly benefiting lower-income households.",
     "date": "2024-10-31 15:00:00",
@@ -925,5 +934,66 @@
     "authors": ["nikhil-woodruff"],
     "filename": "autumn-budget-24-fuel-duty.md",
     "image": "autumn-budget-24-fuel-duty.png"
+  },
+  {
+    "title": "Donald Trump's Economic Agenda",
+    "description": "PolicyEngine projects three provisions of Donald Trump’s tax plan would cost $5.4 trillion over the next ten years.",
+    "date": "2024-10-31 17:30:00",
+    "tags": ["us", "election", "donald-trump", "featured"],
+    "authors": ["david-trimmer"],
+    "filename": "trump-2024.md",
+    "image": "trump-2024.webp"
+  },
+  {
+    "title": "How Would Each Presidential Candidate’s Economic Plans Affect Your Household?",
+    "description": "PolicyEngine has created a personalized calculator for the 2024 presidential election’s tax proposals.",
+    "date": "2024-11-03 17:30:00",
+    "tags": [
+      "us",
+      "election",
+      "donald-trump",
+      "kamala-harris",
+      "featured",
+      "interactives"
+    ],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "introducing-2024-election-calculator.md",
+    "image": "introducing-2024-election-calculator.png"
+  },
+  {
+    "title": "Federal Tax Inflation Adjustments for Tax Year 2025",
+    "description": "PolicyEngine has updated all relevant federal tax parameters based on the latest IRS announcements.",
+    "date": "2024-11-19 09:30:00",
+    "tags": ["us", "featured"],
+    "authors": ["david-trimmer"],
+    "filename": "federal-tax-inflation-adjustments-2025.md",
+    "image": "fed_tax_inflation_adjustments.webp"
+  },
+  {
+    "title": "Introducing GiveCalc",
+    "description": "Calculate the true cost of charitable giving.",
+    "date": "2024-12-03 09:30:00",
+    "tags": ["us", "featured", "giving"],
+    "authors": ["max-ghenis", "pavel-makarchuk"],
+    "filename": "givecalc.md",
+    "image": "givecalc.png"
+  },
+  {
+    "title": "Louisiana Transitions to a Flat Tax",
+    "description": "Analysis of the individual tax changes signed into law by Governor Jeff Landry.",
+    "date": "2024-12-10 09:30:00",
+    "tags": ["us", "featured", "louisiana"],
+    "authors": ["david-trimmer"],
+    "filename": "louisiana-flat-tax.md",
+    "image": "louisiana-flat-tax.webp"
+  },
+  {
+    "title": "NEO Philanthropy Awards $200,000 Grant to PolicyEngine",
+    "description": "Economic Mobility & Opportunity Fund supports expanding access to policy analysis tools.",
+    "date": "2024-12-18 09:30:00",
+    "tags": ["us", "featured"],
+    "authors": ["max-ghenis"],
+    "filename": "neo-philanthropy.md",
+    "image": "neo-philanthropy.png"
   }
 ]

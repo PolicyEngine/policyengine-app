@@ -534,13 +534,15 @@ function PolicyDrawerButton({ policy, metadata, buttonHeight }) {
         placement="bottom"
         title="Your policy"
         height="min(100vh, auto)"
+        styles={{
+          wrapper: {
+            maxHeight: "100vh",
+          },
+        }}
         style={{
           maxHeight: "100vh",
           overflow: "scroll",
           height: "unset",
-        }}
-        contentWrapperStyle={{
-          maxHeight: "100vh",
         }}
       >
         <PolicyRightSidebar

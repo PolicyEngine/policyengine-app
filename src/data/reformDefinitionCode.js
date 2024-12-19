@@ -9,6 +9,7 @@ export function getReproducibilityCodeBlock(
   policy,
   region,
   year,
+  dataset = null,
   householdInput = null,
   earningVariation = null,
 ) {
@@ -27,7 +28,7 @@ export function getReproducibilityCodeBlock(
       householdInput,
       earningVariation,
     ),
-    ...getImplementationCode(type, region, year, policy),
+    ...getImplementationCode(type, region, metadata, year, policy, dataset),
   ];
 }
 
@@ -47,6 +48,13 @@ export function getHeaderCode(type, metadata, policy) {
     Object.keys(policy.baseline.data).length > 0
   ) {
     lines.push("from policyengine_core.reforms import Reform");
+  }
+
+  // If either baseline or reform contains Infinity or -Infinity,
+  // add the following Python imports
+  const allValues = getAllPolicyValues(policy);
+  if (allValues.some((value) => value === Infinity || value === -Infinity)) {
+    lines.push("import numpy as np");
   }
 
   return lines;
@@ -149,7 +157,16 @@ export function getSituationCode(
   return lines;
 }
 
-export function getImplementationCode(type, region, timePeriod, policy) {
+export function getImplementationCode(
+  type,
+  region,
+  metadata,
+  timePeriod,
+  policy,
+  dataset,
+) {
+  const countryId = metadata.economy_options.region[0].name;
+
   if (type !== "policy") {
     return [];
   }
@@ -158,30 +175,38 @@ export function getImplementationCode(type, region, timePeriod, policy) {
   const hasReform = Object.keys(policy?.reform?.data).length > 0;
 
   // Check if the region has a dataset specified
-  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(region);
-  const dataset = hasDatasetSpecified ? DEFAULT_DATASETS[region] : "";
+  const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset);
+
+  const COUNTRY_LEVEL_US_REGIONS = ["us", "enhanced_us"];
+
+  const isState =
+    countryId === "us" && !COUNTRY_LEVEL_US_REGIONS.includes(region);
+
+  let datasetText = "";
+
+  // enhanced_us is legacy implemntation
+  // whereby enhanced_us region correlated with enhanced_cps dataset
+  if (hasDatasetSpecified) {
+    datasetText = DEFAULT_DATASETS[dataset];
+  } else if (isState) {
+    datasetText = "pooled_3_year_cps_2023";
+  } else if (region === "enhanced_us") {
+    datasetText = "enhanced_cps_2024";
+  }
+
+  const datasetSpecifier = datasetText ? `dataset="${datasetText}"` : "";
+
+  const baselineSpecifier = hasBaseline ? "reform=baseline" : "";
+  const baselineComma = hasBaseline && datasetText ? ", " : "";
+
+  const reformSpecifier = hasReform ? "reform=reform" : "";
+  const reformComma = hasReform && datasetText ? ", " : "";
 
   return [
     "",
     "",
-    `baseline = Microsimulation(${
-      hasDatasetSpecified && hasBaseline
-        ? `reform=baseline, dataset='${dataset}'`
-        : hasBaseline
-          ? `reform=baseline`
-          : hasDatasetSpecified
-            ? `dataset='${dataset}'`
-            : ""
-    })`,
-    `reformed = Microsimulation(${
-      hasDatasetSpecified && hasReform
-        ? `reform=reform, dataset='${dataset}'`
-        : hasReform
-          ? `reform=reform`
-          : hasDatasetSpecified
-            ? `dataset='${dataset}'`
-            : ""
-    })`,
+    `baseline = Microsimulation(${baselineSpecifier}${baselineComma}${datasetSpecifier})`,
+    `reformed = Microsimulation(${reformSpecifier}${reformComma}${datasetSpecifier})`,
     `baseline_income = baseline.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     `reformed_income = reformed.calculate("household_net_income", period=${timePeriod || defaultYear})`,
     "difference_income = reformed_income - baseline_income",
@@ -261,6 +286,30 @@ export function doesParamNameContainNumber(paramName) {
 }
 
 /**
+ * Given a standard "policy" object, get all individual
+ * values for both the baseline and reform policies
+ * @param {Object} policy
+ * @returns {Array<Number | String >} An array of values
+ */
+export function getAllPolicyValues(policy) {
+  const { baseline, reform } = policy;
+
+  /** @type {Array<Object>} */
+  let valueSettings = [];
+
+  for (const policy of [baseline, reform]) {
+    const values = Object.values(policy.data);
+    valueSettings = valueSettings.concat(values);
+  }
+
+  const output = valueSettings.reduce((accu, item) => {
+    return accu.concat(...Object.values(item));
+  }, []);
+
+  return output;
+}
+
+/**
  * Utility function to sanitize a string and ensure that it's valid Python;
  * currently converts JS 'null', 'true', 'false', '"Infinity"', and '"-Infinity"' to Python
  * @param {String} string
@@ -271,6 +320,6 @@ export function sanitizeStringToPython(string) {
     .replace(/true/g, "True")
     .replace(/false/g, "False")
     .replace(/null/g, "None")
-    .replace(/"Infinity"/g, ".inf")
-    .replace(/"-Infinity"/g, "-.inf");
+    .replace(/"Infinity"/g, "np.inf")
+    .replace(/"-Infinity"/g, "-np.inf");
 }

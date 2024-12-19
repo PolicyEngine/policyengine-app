@@ -1,7 +1,7 @@
 import averageImpactByDecile from "./decile/AverageImpactByDecile";
 import averageImpactByWealthDecile from "./decile/AverageImpactByWealthDecile";
 import budgetaryImpact from "./budget/BudgetaryImpact";
-// import cliffImpact from "./CliffImpact";
+import cliffImpact from "./CliffImpact";
 import deepPovertyImpact from "./poverty/DeepPovertyImpact";
 import deepPovertyImpactByGender from "./poverty/DeepPovertyImpactByGender";
 import detailedBudgetaryImpact from "./budget/DetailedBudgetaryImpact";
@@ -13,19 +13,19 @@ import povertyImpactByGender from "./poverty/PovertyImpactByGender";
 import povertyImpactByRace from "./poverty/PovertyImpactByRace";
 import relativeImpactByDecile from "./decile/RelativeImpactByDecile";
 import relativeImpactByWealthDecile from "./decile/RelativeImpactByWealthDecile";
-import LaborSupplyResponseAbsolute from "./labourSupply/LaborSupplyResponseAbsolute";
-import LaborSupplyResponseRelative from "./labourSupply/LaborSupplyResponseRelative";
-import lsrHoursImpact from "./labourSupply/LaborSupplyHoursImpact";
+import LaborSupplyResponseAbsolute from "./laborSupply/LaborSupplyResponseAbsolute";
+import LaborSupplyResponseRelative from "./laborSupply/LaborSupplyResponseRelative";
+import lsrHoursImpact from "./laborSupply/LaborSupplyHoursImpact";
 import {
-  LabourSupplyDecileAbsoluteImpactIncome,
-  LabourSupplyDecileAbsoluteImpactSubstitution,
-  LabourSupplyDecileAbsoluteImpactTotal,
-} from "./labourSupply/LabourSupplyDecileAbsoluteImpacts";
+  LaborSupplyDecileAbsoluteImpactIncome,
+  LaborSupplyDecileAbsoluteImpactSubstitution,
+  LaborSupplyDecileAbsoluteImpactTotal,
+} from "./laborSupply/LaborSupplyDecileAbsoluteImpacts";
 import {
-  LabourSupplyDecileRelativeImpactIncome,
-  LabourSupplyDecileRelativeImpactSubstitution,
-  LabourSupplyDecileRelativeImpactTotal,
-} from "./labourSupply/LabourSupplyDecileRelativeImpacts";
+  LaborSupplyDecileRelativeImpactIncome,
+  LaborSupplyDecileRelativeImpactSubstitution,
+  LaborSupplyDecileRelativeImpactTotal,
+} from "./laborSupply/LaborSupplyDecileRelativeImpacts";
 import Analysis from "./Analysis";
 
 const map = {
@@ -43,21 +43,21 @@ const map = {
   "povertyImpact.deep.byGender": deepPovertyImpactByGender,
   "povertyImpact.regular.byRace": povertyImpactByRace,
   inequalityImpact: inequalityImpact,
-  // cliffImpact: cliffImpact,
+  cliffImpact: cliffImpact,
   "laborSupplyImpact.earnings.overall.absolute": LaborSupplyResponseAbsolute,
   "laborSupplyImpact.earnings.overall.relative": LaborSupplyResponseRelative,
   "laborSupplyImpact.earnings.byDecile.relative.total":
-    LabourSupplyDecileRelativeImpactTotal,
+    LaborSupplyDecileRelativeImpactTotal,
   "laborSupplyImpact.earnings.byDecile.relative.income":
-    LabourSupplyDecileRelativeImpactIncome,
+    LaborSupplyDecileRelativeImpactIncome,
   "laborSupplyImpact.earnings.byDecile.relative.substitution":
-    LabourSupplyDecileRelativeImpactSubstitution,
+    LaborSupplyDecileRelativeImpactSubstitution,
   "laborSupplyImpact.earnings.byDecile.absolute.total":
-    LabourSupplyDecileAbsoluteImpactTotal,
+    LaborSupplyDecileAbsoluteImpactTotal,
   "laborSupplyImpact.earnings.byDecile.absolute.income":
-    LabourSupplyDecileAbsoluteImpactIncome,
+    LaborSupplyDecileAbsoluteImpactIncome,
   "laborSupplyImpact.earnings.byDecile.absolute.substitution":
-    LabourSupplyDecileAbsoluteImpactSubstitution,
+    LaborSupplyDecileAbsoluteImpactSubstitution,
   "laborSupplyImpact.hours": lsrHoursImpact,
   analysis: Analysis,
 };

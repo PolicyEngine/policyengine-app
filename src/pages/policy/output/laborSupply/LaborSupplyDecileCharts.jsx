@@ -5,7 +5,7 @@ import { localeCode } from "../../../../lang/format";
 import { ChartLogo } from "../../../../api/charts";
 import { plotLayoutFont } from "../utils";
 
-export function LabourSupplyDecileIncome(props) {
+export function LaborSupplyDecileIncome(props) {
   const {
     title,
     incomeChanges,
@@ -72,7 +72,7 @@ export function LabourSupplyDecileIncome(props) {
   );
 }
 
-export function LabourSupplyDecileSubstitution(props) {
+export function LaborSupplyDecileSubstitution(props) {
   const {
     title,
     substitutionChanges,
@@ -139,7 +139,7 @@ export function LabourSupplyDecileSubstitution(props) {
   );
 }
 
-export function LabourSupplyDecileTotal(props) {
+export function LaborSupplyDecileTotal(props) {
   const {
     title,
     yAxisTitle,

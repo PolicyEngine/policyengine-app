@@ -47,8 +47,11 @@ import ManifestosComparison from "./applets/ManifestosComparison";
 import DeveloperLayout from "./pages/DeveloperLayout";
 import DeveloperHome from "./pages/DeveloperHome";
 import CTCComparison from "./applets/CTCComparison";
+import CTCCalculator from "./applets/CTCCalculator";
+import GiveCalc from "./applets/GiveCalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
+import SaltAMTCalculator from "./applets/SaltAMTCalculator";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -191,7 +194,7 @@ export default function PolicyEngine() {
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
     async function fetchUserProfile() {
-      const USER_PROFILE_PATH = `/${countryId}/user_profile`;
+      const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
       try {
         const resGet = await apiCall(
@@ -368,9 +371,15 @@ export default function PolicyEngine() {
           element={<CTCComparison />}
         />
         <Route
+          path="/us/child-tax-credit-calculator"
+          element={<CTCCalculator />}
+        />
+        <Route path="/us/givecalc" element={<GiveCalc />} />
+        <Route
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}
         />
+        <Route path="/us/salt-amt-calculator" element={<SaltAMTCalculator />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />

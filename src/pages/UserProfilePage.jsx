@@ -85,7 +85,7 @@ export default function UserProfilePage(props) {
       if (metadata) {
         try {
           const data = await apiCall(
-            `/${countryId}/user_profile?user_id=${accessedUserId}`,
+            `/${countryId}/user-profile?user_id=${accessedUserId}`,
           );
           const dataJson = await data.json();
           if (data.status === 404 && dataJson.status === "ok") {
@@ -125,7 +125,7 @@ export default function UserProfilePage(props) {
       if (metadata) {
         try {
           const data = await apiCall(
-            `/${countryId}/user_policy/${accessedUserId}`,
+            `/${countryId}/user-policy/${accessedUserId}`,
           );
           const dataJson = await data.json();
           if (data.status < 200 || data.status >= 300) {
@@ -443,10 +443,16 @@ function UserProfileSection(props) {
 function PolicySimulationCard(props) {
   const { metadata, userPolicy, keyValue } = props;
 
+  console.log(userPolicy);
+
   const CURRENT_API_VERSION = metadata?.version;
   const geography =
     metadata.economy_options.region.filter(
       (region) => region.name === userPolicy.geography,
+    )[0]?.label || "Unknown";
+  const datasetName =
+    metadata.economy_options.datasets.filter(
+      (dataset) => dataset.name === userPolicy.dataset,
     )[0]?.label || "Unknown";
 
   const apiVersion = userPolicy.api_version;
@@ -480,7 +486,12 @@ function PolicySimulationCard(props) {
   return (
     <Link
       key={keyValue}
-      to={`/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}&timePeriod=${userPolicy.year}&region=${userPolicy.geography}`}
+      to={
+        `/${userPolicy.country_id}/policy?focus=policyOutput.policyBreakdown` +
+        `&reform=${userPolicy.reform_id}&baseline=${userPolicy.baseline_id}` +
+        `&timePeriod=${userPolicy.year}&region=${userPolicy.geography}` +
+        `${userPolicy.dataset ? `&dataset=${userPolicy.dataset}` : ""}`
+      }
       style={{ height: "100%" }}
     >
       <Card
@@ -516,7 +527,12 @@ function PolicySimulationCard(props) {
           Simulated in{" "}
           <span style={{ fontWeight: 500 }}>{userPolicy.year}</span> over{" "}
           <span style={{ fontWeight: 500 }}>{geography}</span> against{" "}
-          <span style={{ fontWeight: 500 }}>{userPolicy.baseline_label}</span>.
+          <span style={{ fontWeight: 500 }}>{userPolicy.baseline_label}</span>
+          {userPolicy.dataset ? (
+            <span style={{ fontWeight: 500 }}> ({datasetName})</span>
+          ) : (
+            "."
+          )}
         </p>
         <p>
           <span style={{ fontWeight: 500 }}>
@@ -555,7 +571,7 @@ function UsernameDisplayAndEditor(props) {
   }
 
   async function handleSubmit() {
-    const USER_PROFILE_PATH = `/${countryId}/user_profile`;
+    const USER_PROFILE_PATH = `/${countryId}/user-profile`;
     const body = {
       user_id: accessedUserProfile.user_id,
       username: value,
@@ -566,7 +582,7 @@ function UsernameDisplayAndEditor(props) {
       const resJson = await wrappedResponseJson(res);
       if (resJson.status === "ok") {
         const data = await apiCall(
-          `/${countryId}/user_profile?user_id=${accessedUserProfile.user_id}`,
+          `/${countryId}/user-profile?user_id=${accessedUserProfile.user_id}`,
         );
         const dataJson = await data.json();
         if (data.status === 404 && dataJson.status === "ok") {
