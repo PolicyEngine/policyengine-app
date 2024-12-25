@@ -9,6 +9,9 @@ import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 import ErrorComponent from "../../../layout/ErrorComponent";
+import { motion, AnimatePresence } from "framer-motion";
+import { CaretDownOutlined, FileTextOutlined } from "@ant-design/icons";
+import { Collapse } from "react-collapse";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -237,25 +240,106 @@ export default function Analysis(props) {
           <ErrorComponent message="There was an error generating the analysis." />
         )}
       </div>
-      <div
+      <motion.div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: 20,
+          margin: "20px 0",
+          backgroundColor: "#fff",
         }}
       >
-        <Button
-          text={showPrompt ? "Hide prompt" : "Show prompt"}
-          type="secondary"
-          onClick={() => setShowPrompt(!showPrompt)}
-          style={{ maxWidth: 250, margin: "20px auto 10px" }}
-        />
-      </div>
-      {showPrompt ? (
-        <CodeBlock lines={lines} language={"markdown"} data={prompt} />
-      ) : null}
+        <motion.div
+          style={{
+            border: "1px solid #E6E8EB",
+            borderRadius: "12px",
+            overflow: "hidden",
+          }}
+          whileHover={{
+            boxShadow:
+              "0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08)",
+          }}
+          transition={{ duration: 0.2 }}
+        >
+          <motion.button
+            onClick={() => setShowPrompt(!showPrompt)}
+            style={{
+              width: "100%",
+              padding: "16px 24px",
+              backgroundColor: "#fff",
+              border: "none",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              cursor: "pointer",
+            }}
+            whileHover={{ backgroundColor: "#f8f9fa" }}
+            whileTap={{ backgroundColor: "#f1f3f5" }}
+            transition={{ duration: 0.2 }}
+          >
+            <motion.div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+              }}
+              initial={false}
+            >
+              <FileTextOutlined
+                style={{
+                  fontSize: "20px",
+                  color: showPrompt ? "#1A1F36" : "#697386",
+                }}
+              />
+              <div style={{ textAlign: "left" }}>
+                <div
+                  style={{
+                    fontWeight: 500,
+                    color: "#1A1F36",
+                    fontSize: "15px",
+                  }}
+                >
+                  Prompt Details
+                </div>
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: "#697386",
+                    marginTop: "4px",
+                  }}
+                >
+                  View the AI prompt used for this analysis
+                </div>
+              </div>
+            </motion.div>
+            <motion.span
+              animate={{ rotate: showPrompt ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CaretDownOutlined
+                style={{
+                  fontSize: "12px",
+                  color: showPrompt ? "#1A1F36" : "#697386",
+                }}
+              />
+            </motion.span>
+          </motion.button>
+          <Collapse isOpened={showPrompt}>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div
+                style={{
+                  padding: "24px",
+                  borderTop: "1px solid #E6E8EB",
+                  backgroundColor: "#FAFAFA",
+                }}
+              >
+                <CodeBlock lines={lines} language={"markdown"} data={prompt} />
+              </div>
+            </motion.div>
+          </Collapse>
+        </motion.div>
+      </motion.div>
     </>
   );
 }
