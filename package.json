@@ -30,6 +30,7 @@
     "plotly.js": "^2.35.2",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.6",
+    "react-collapse": "^5.1.1",
     "react-detect-print": "^0.1.2",
     "react-dom": "^18.3.1",
     "react-ga": "^3.3.1",
