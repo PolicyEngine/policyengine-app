@@ -9,7 +9,7 @@ import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 import ErrorComponent from "../../../layout/ErrorComponent";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { CaretDownOutlined, FileTextOutlined } from "@ant-design/icons";
 import { Collapse } from "react-collapse";
 
