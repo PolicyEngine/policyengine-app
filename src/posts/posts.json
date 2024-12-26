@@ -1004,5 +1004,23 @@
     "authors": ["max-ghenis"],
     "filename": "uk-nuffield-grant.md",
     "image": "uk-nuffield-grant.png"
+  },
+  {
+    "title": "New AI Feature Helps People Understand Their Taxes and Benefits",
+    "description": "We’re applying large language models to clarify complex policy rules.",
+    "date": "2024-12-26 09:00:00",
+    "tags": ["us", "featured", "ai"],
+    "authors": ["anthony-volk"],
+    "filename": "us-household-ai.md",
+    "image": "us-household-ai.png"
+  },
+  {
+    "title": "New AI feature helps people understand their taxes and benefits",
+    "description": "We’re applying large language models to clarify complex policy rules.",
+    "date": "2024-12-26 09:00:00",
+    "tags": ["uk", "featured", "ai"],
+    "authors": ["anthony-volk"],
+    "filename": "uk-household-ai.md",
+    "image": "uk-household-ai.png"
   }
 ]
