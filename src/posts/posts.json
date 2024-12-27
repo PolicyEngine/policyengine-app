@@ -1019,7 +1019,12 @@
     "description": "We've expanded our modeling framework to capture how policy changes affect labor supply.",
     "date": "2024-12-27 09:00:00",
     "tags": ["us", "policy", "behavioral-responses", "featured"],
-    "authors": ["max-ghenis", "nikhil-woodruff", "jason-debacker", "vahid-ahmadi"],
+    "authors": [
+      "max-ghenis",
+      "nikhil-woodruff",
+      "jason-debacker",
+      "vahid-ahmadi"
+    ],
     "filename": "us-behavioral-responses.md",
     "image": "behavioural-responses.jpg"
   }
