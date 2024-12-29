@@ -1034,10 +1034,7 @@
     "description": "From AI-powered analysis to election impact, we transformed policy research through technology.",
     "date": "2024-12-28 09:00:00",
     "tags": ["uk", "year-in-review", "featured"],
-    "authors": [
-      "max-ghenis",
-      "nikhil-woodruff"
-    ],
+    "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "uk-year-in-review-2024.md",
     "image": "year-in-review-2024.png"
   }
