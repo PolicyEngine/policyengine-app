@@ -1028,7 +1028,6 @@
     "filename": "us-behavioral-responses.md",
     "image": "behavioural-responses.jpg"
   },
-
   {
     "title": "PolicyEngine UK in 2024: A year in review",
     "description": "From AI-powered analysis to election impact, we transformed policy research through technology.",
@@ -1036,6 +1035,15 @@
     "tags": ["uk", "year-in-review", "featured"],
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "uk-year-in-review-2024.md",
+    "image": "year-in-review-2024.png"
+  },
+  {
+    "title": "PolicyEngine US in 2024: A year in review",
+    "description": "From state-level modeling to AI-powered analysis, we expanded the frontier of policy research through technology.",
+    "date": "2024-12-29 09:00:00",
+    "tags": ["us", "year-in-review", "featured"],
+    "authors": ["max-ghenis", "nikhil-woodruff"],
+    "filename": "us-year-in-review-2024.md",
     "image": "year-in-review-2024.png"
   }
 ]
