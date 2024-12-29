@@ -1,4 +1,4 @@
-In 2024, PolicyEngine UK made significant strides in democratising policy analysis through technological innovation and comprehensive coverage of major policy developments. Here’s a detailed look at our achievements and impact this year.
+In 2024, PolicyEngine UK made significant strides in democratising policy analysis through technological innovation and comprehensive coverage of major policy developments. Together with our [achievements in the US](https://policyengine.org/us/research/us-year-in-review-2024), we've expanded the frontier of evidence-based policymaking on both sides of the Atlantic. Here’s a detailed look at our achievements and impact this year.
 
 <center><iframe width="560" height="315" src="https://www.youtube.com/embed/1JAjg_sBZSs" frameborder="0" allowfullscreen></iframe></center>
 
