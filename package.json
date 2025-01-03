@@ -40,7 +40,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.27.0",
     "react-scripts": "^5.0.1",
-    "react-to-print": "^2.15.1",
+    "react-to-print": "^3.0.4",
     "react-twitter-embed": "^4.0.4",
     "reading-time": "^1.5.0",
     "rehype-raw": "^7.0.0",
