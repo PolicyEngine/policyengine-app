@@ -55,7 +55,7 @@ describe("useAuthenticatedFetch", () => {
         ...requestOptions,
         headers: {
           ...requestOptions.headers,
-          Authentication: "Bearer TEST_AUTH_TOKEN",
+          Authorization: "Bearer TEST_AUTH_TOKEN",
         },
       },
     ]);
