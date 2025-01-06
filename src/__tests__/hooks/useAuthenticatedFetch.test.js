@@ -34,6 +34,7 @@ describe("useAuthenticatedFetch", () => {
       },
     });
   }
+
   test("given the user is logged in then it adds the bearer token", async () => {
     givenTheUserIsLoggedIn("TEST_AUTH_TOKEN");
     const requestOptions = {
@@ -60,6 +61,7 @@ describe("useAuthenticatedFetch", () => {
       },
     ]);
   });
+
   test("given the user is not logged in then it adds nothing", async () => {
     const { result } = renderHook(() => useAuthenticatedFetch());
 
