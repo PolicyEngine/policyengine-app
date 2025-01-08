@@ -17,7 +17,9 @@ export function useAuthenticatedFetch() {
       if (isAuthenticated) {
         try {
           //as per https://auth0.com/docs/quickstart/spa/react/02-calling-an-api
-          const accessToken = await getAccessTokenSilently();
+          const accessToken = await getAccessTokenSilently({
+            audience: "https://api.policyengine.org/",
+          });
           headers["Authorization"] = `Bearer ${accessToken}`;
         } catch (error) {
           //IGNORE. If we can't get an access token we just call the API
