@@ -50,6 +50,15 @@ University of Munich (LMU) and a bachelor's degree in Electrical Engineering
 from the Sharif University of Technology.`,
     image: require("../images/authors/vahid-ahmadi.jpeg"),
   },
+  david_trimmer: {
+    name: "David Trimmer",
+    bio: `is a policy research fellow at PolicyEngine. He is also a contributor
+  at the People's Policy Project. Previously, he was a social policy intern at  
+the Niskanen Center and a staff writer for Policy Perspectives. David holds an 
+MPA from The George Washington University and a B.S. in Political Science from 
+The Rochester Institute of Technology.`,
+    image: require("../images/authors/david-trimmer.jpeg"),
+  },
   leigh_gibson: {
     name: "Leigh Gibson",
     bio: `is a strategy consultant at PolicyEngine. Previously she was Vice
