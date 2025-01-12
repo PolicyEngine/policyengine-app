@@ -35,6 +35,10 @@ const LINKS = [
     title: "Donate",
     link: "donate",
   },
+  {
+    title: "Docs",
+    link: "docs",
+  }
 ];
 
 export default function Header() {
