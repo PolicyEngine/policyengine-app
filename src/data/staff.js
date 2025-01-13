@@ -59,28 +59,6 @@ MPA from The George Washington University and a B.S. in Political Science from
 The Rochester Institute of Technology.`,
     image: require("../images/authors/david-trimmer.jpeg"),
   },
-  leigh_gibson: {
-    name: "Leigh Gibson",
-    bio: `is a strategy consultant at PolicyEngine. Previously she was Vice
-President of Social Policy at the Niskanen Center, Senior Policy Officer at the
-Robert Wood Johnson Foundation, and Senior Director of State Network
-Advancement at the Center on Budget and Policy Priorities. Leigh earned a
-bachelor's degree in Religion from Princeton University, a master's degree in
-Social Work from Hunter College, and a Ph.D. in Religion/Religious Studies from
-Princeton University.`,
-    image: require("../images/authors/leigh-gibson.png"),
-  },
-  martin_holmer: {
-    name: "Martin Holmer",
-    bio: `is an economics consultant at PolicyEngine. He focuses on our state
-income tax models and validation architecture, and has contributed other models
-such as the premium tax credit. Previously, he was the lead developer for the
-Policy Simulation Library's Tax-Calculator federal income tax microsimulation
-model, and he has built microsimulation models around the world for
-organizations including the World Bank and the US Social Security
-Administration. Martin earned a Ph.D. in economics from MIT.`,
-    image: require("../images/authors/martin-holmer.png"),
-  },
 };
 
 export const advisors = {
