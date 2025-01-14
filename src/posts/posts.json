@@ -1045,5 +1045,14 @@
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "us-year-in-review-2024.md",
     "image": "year-in-review-2024.png"
+  },
+  {
+    "title": "Policyengine's analysis of the Family First Act",
+    "description": "On January 13th, Congressman Blake Moore (R-UT) introduced the Family First Act, a bill that reforms the Child Tax Credit and other tax programs.",
+    "date": "2025-01-15 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["pavel-makarchuk"],
+    "filename": "family-first-act.md",
+    "image": "family-first-act.jpg"
   }
 ]
