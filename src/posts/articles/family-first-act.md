@@ -61,11 +61,11 @@ We estimate national impacts using the PolicyEngine US microsimulation model. Se
 The FFA raises [$20 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=73465&region=enhanced_us&timePeriod=2026&baseline=2) in net federal revenue in 2026.
 While the Child Tax Credit expansion (including the pregnant mother's credit) costs $170 billion, other provisions raise $190 billion-—primarily the SALT deduction cap which raises $111 billion. Figure 4 shows the revenue impact of each provision.
 
-![Figure 4: Federal budgetary impacts of Family First Act provisions in 2026](https://cdn-images-1.medium.com/max/2000/1*1WWqPxqlKr2yN3ds9BZzfQ.png)
+![Figure 4: Federal budgetary impacts of Family First Act provisions in 2026](/images/posts/family-first-act/FFA-waterfall.png)
 
-Over the 2025-2034 budget window, the reform raises $494 billion, with federal revenue gains growing each year as shown in Figure 5.
+Over the 2025-2034 budget window, the reform raises $505 billion, with federal revenue gains growing each year as shown in Figure 5.
 
-![Figure 5: Federal budgetary impacts of Family First Act from 2025 to 2034](https://cdn-images-1.medium.com/max/2640/0*mwlUL3jthCnKvis8)
+![Figure 5: Federal budgetary impacts of Family First Act from 2025 to 2034](/images/posts/family-first-act/FFA-10-year-impact.png)
 
 ### State Revenue Effects
 
@@ -89,7 +89,7 @@ Finally, the reform increases the [prevalence of cliffs](https://policyengine.or
 
 ## Conclusion
 
-Congressman Blake Moore’s Family First Act modifies multiple tax policies. The bill changes the Earned Income Tax Credit, Child Tax Credit, Child and Dependent Care Credit, and SALT deduction, and it repeals head of household filing status and dependent exemptions. We project that these reforms would raise $494.4 billion in federal revenues from 2026 to 2034, with the amount increasing annually. According to our simulation, the reform raises net income for 36% of the population and reduces poverty by 5.9% (and child poverty by 10.7%).
+Congressman Blake Moore’s Family First Act modifies multiple tax policies. The bill changes the Earned Income Tax Credit, Child Tax Credit, Child and Dependent Care Credit, and SALT deduction, and it repeals head of household filing status and dependent exemptions. We project that these reforms would raise $505 billion in federal revenues from 2026 to 2034, with the amount increasing annually. According to our simulation, the reform raises net income for 36% of the population and reduces poverty by 5.9% (and child poverty by 10.7%).
 
 ## Appendix A: Detailed Policy Comparison
 
