@@ -72,7 +72,7 @@ We estimate national impacts using the PolicyEngine US microsimulation model. Se
 
 ## Federal Revenue Effects
 
-The FFA raises [$24.3 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=73465&region=enhanced_us&timePeriod=2026&baseline=2) in net revenue in 2026. While the Child Tax Credit expansion (including the pregnant mother's credit) reduces revenue by $170 billion, other provisions—particularly maintaining the SALT deduction cap—raise $111.2 billion. Figure 1 shows the revenue impact of each component.
+The FFA raises [$20.4 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=73465&region=enhanced_us&timePeriod=2026&baseline=2) in net revenue in 2026. While the Child Tax Credit expansion (including the pregnant mother's credit) reduces revenue by $170 billion, other provisions—particularly maintaining the SALT deduction cap—raise $111.2 billion. Figure 1 shows the revenue impact of each component.
 
 ![Revenue effects by provision](https://cdn-images-1.medium.com/max/2000/1*1WWqPxqlKr2yN3ds9BZzfQ.png)
 _Figure 1. Budgetary impact of Family First Act provisions in 2026_
