@@ -111,7 +111,7 @@ The reform also reduces income inequality, [lowering the Gini index by 1.4%](htt
 
 # Conclusion
 
-Congressman Blake Moore’s Family First Act modifies multiple tax policies. The bill changes the Earned Income Tax Credit, Child Tax Credit, Child and Dependent Care Credit, and SALT deduction, and it repeals head of household filing status and dependent exemptions. We project that these reforms would raise $534.7 billion from 2026 to 2034, with revenues increasing each year. According to our simulation, the reform raises net income for 36% of the population and reduces poverty by 5.9% (and child poverty by 10.7%).
+Congressman Blake Moore’s Family First Act modifies multiple tax policies. The bill changes the Earned Income Tax Credit, Child Tax Credit, Child and Dependent Care Credit, and SALT deduction, and it repeals head of household filing status and dependent exemptions. We project that these reforms would raise $494.4 billion in federal revenues from 2026 to 2034, with the amount increasing annually. According to our simulation, the reform raises net income for 36% of the population and reduces poverty by 5.9% (and child poverty by 10.7%).
 
 # Appendix A: Detailed Policy Comparison
 
