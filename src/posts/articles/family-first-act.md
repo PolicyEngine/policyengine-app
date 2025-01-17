@@ -1,4 +1,5 @@
 On January 13th, Congressman Blake Moore (R-UT) [introduced](https://blakemoore.house.gov/media/press-releases/congressman-blake-moore-introduces-legislation-to-enhance-the-child-tax-credit-and-provide-tax-relief-for-parents) the [Family First Act (FFA)](https://blakemoore.house.gov/imo/media/doc/ctc_bill_text.pdf), which would reform several tax provisions starting in 2026 after the Tax Cuts and Jobs Act expires. This analysis uses PolicyEngine's microsimulation model to estimate its impacts on household incomes, poverty, inequality, and federal revenue.
+The introduced changes include:
 
 - **Child Tax Credit**: Increases amounts to $4,200 (up to age five) and $3,000 (ages six to 17), up to six children. Introduces a phase-in from $0 to $20,000 of earnings, continues a phase-out at $200,000 ($400,000 joint).
 - **Pregnant Mother’s Credit**: Offers up to $2,800 per newborn, with a phase-in until $10,000 of earnings.
