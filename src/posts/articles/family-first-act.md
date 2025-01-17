@@ -90,9 +90,9 @@ The annual federal impacts are:
 
 ## State Revenue Effects
 
-State revenues rise by $3.9 billion in 2026, mainly from state-level credits that match federal amounts. States such as Colorado (25%), Connecticut (40%), Louisianna (5%), and others provide income tax credits, mathcing the federal EITC amount by a varying percentage. Additionally, states such as Arkansas (20%), Colorado (up to 50%), Delaware (50%), and others match the federal CDCC amount under state specific child and dependent care income tax credits.[^1]
+State revenues rise by $3.9 billion in 2026, largely from state-level credits that match federal amounts. States such as Colorado (25%), Connecticut (40%), Louisianna (5%), and others provide income tax credits that matching the federal EITC amount by varying percentages. Additionally, states such as Arkansas (20%), Colorado (up to 50%), Delaware (50%), and others match the federal CDCC amount under state-specific Child and Dependent Care Income Tax Credits.[^1]
 
-[^1]: [For more detailed information about state-level credit imapcts, see our State EITC and CTC Impact Calculator](https://us-state-eitcs-ctcs.streamlit.app/)
+[^1]: [For more detailed information about state-level credit impacts, see our State EITC and CTC Impact Calculator](https://us-state-eitcs-ctcs.streamlit.app/)
 
 ## Changes in Income Distribution
 
