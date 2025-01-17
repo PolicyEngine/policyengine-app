@@ -1045,5 +1045,14 @@
     "authors": ["max-ghenis", "nikhil-woodruff"],
     "filename": "us-year-in-review-2024.md",
     "image": "year-in-review-2024.png"
+  },
+  {
+    "title": "Analysis of the Family First Act",
+    "description": "We project that Representative Blake Moore's Child Tax Credit bill would raise revenue and reduce poverty.",
+    "date": "2025-01-17 09:00:00",
+    "tags": ["us", "policy", "featured"],
+    "authors": ["pavel-makarchuk"],
+    "filename": "family-first-act.md",
+    "image": "family-first-act.jpg"
   }
 ]
