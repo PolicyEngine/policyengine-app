@@ -34,13 +34,13 @@ The $10,000 SALT deduction cap from the TCJA is scheduled to expire in 2026. The
 
 ## Household Impacts of the Family First Act
 
-Consider a single parent with two children, ages five and ten, earning $30,000 in Utah. Under the FFA, [household net income increases by $1,835](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2&household=48565). The increase comes from a $5,395 expansion in the Child Tax Credit, partially offset by reductions in tax credits and increased tax liability. The federal EITC falls by $1,688, and the Utah EITC, which matches the federal credit, decreases by $338. The household pays $1,854 more in tax before credits due to the elimination of both dependent exemptions and head of household filing status.
+Consider a single parent with two children, ages five and ten, earning $30,000 in Utah. Under the FFA, [household net income increases by $1,835](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2&household=48565). The increase comes from a $5,395 expansion in the Child Tax Credit, partially offset by reductions in tax credits and increased tax liability. The federal EITC falls by $1,688, and the Utah EITC, which matches the federal credit, decreases by $338. The household pays $1,854 more in tax before credits due to the elimination of both dependent exemptions and head of household filing status.
 
-Figure 1 shows how this household's experience [varies with income](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2&household=48565). Net income rises until earnings reach $188,000, after which the gains diminish and eventually become losses. At $350,000 of earnings, the household faces its largest reduction in net income of $5,900.
+Figure 1 shows how this household's experience [varies with income](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2&household=48565). Net income rises until earnings reach $188,000, after which the gains diminish and eventually become losses. At $350,000 of earnings, the household faces its largest reduction in net income of $5,900.
 
 ![Figure 1: FFA effect on net income for a single parent in Utah with two children ages 5 and 10](https://cdn-images-1.medium.com/max/3200/0*x8MiEDhoh0QJu5gI)
 
-Figure 2 shows how the reform [alters the household's marginal tax rates](https://policyengine.org/us/household?focus=householdOutput.mtr&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2&household=48565), particularly if they earn under $50,000, where more programs change such as the Earned Income Tax Credit and dependent exemptions.
+Figure 2 shows how the reform [alters the household's marginal tax rates](https://policyengine.org/us/household?focus=householdOutput.mtr&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2&household=48565), particularly if they earn under $50,000, where more programs change such as the Earned Income Tax Credit and dependent exemptions.
 
 ![Figure 2: FFA effect on marginal tax rates for a single parent in Utah with two children ages 5 and 10](https://cdn-images-1.medium.com/max/3200/0*karwlvhwpukVHknG)
 
@@ -58,7 +58,7 @@ We estimate national impacts using the PolicyEngine US microsimulation model. Se
 
 ### Federal Revenue Effects
 
-The FFA raises [$20 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=73465&region=enhanced_us&timePeriod=2026&baseline=2) in net federal revenue in 2026.
+The FFA raises [$20 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2) in net federal revenue in 2026.
 While the Child Tax Credit expansion (including the pregnant mother's credit) costs $170 billion, other provisions raise $190 billion-—primarily the SALT deduction cap which raises $111 billion. Figure 4 shows the revenue impact of each provision.
 
 ![Figure 4: Federal budgetary impacts of Family First Act provisions in 2026](/images/posts/family-first-act/FFA-waterfall.png)
@@ -69,23 +69,23 @@ Over the 2025-2034 budget window, the reform raises $505 billion, with federal r
 
 ### State Revenue Effects
 
-State revenues rise by [$3.9 billion in 2026](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=73465&region=enhanced_us&timePeriod=2026&baseline=2), largely from state-level credits that match federal amounts. States such as Colorado (25%), Connecticut (40%), Louisiana (5%), and others provide income tax credits that matching the federal EITC amount by varying percentages. Additionally, states such as Arkansas (20%), Colorado (up to 50%), Delaware (50%), and others match the federal CDCC amount under state-specific Child and Dependent Care Income Tax Credits. We consider these state impacts in the following distributional analysis.
+State revenues rise by [$3.9 billion in 2026](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2), largely from state-level credits that match federal amounts. States such as Colorado (25%), Connecticut (40%), Louisiana (5%), and others provide income tax credits that matching the federal EITC amount by varying percentages. Additionally, states such as Arkansas (20%), Colorado (up to 50%), Delaware (50%), and others match the federal CDCC amount under state-specific Child and Dependent Care Income Tax Credits. We consider these state impacts in the following distributional analysis.
 
 ### Changes in Income Distribution
 
-The reform affects household incomes across the income distribution, as shown in Figure 6. [Net income rises for 36% of people and falls for 16%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2). The ninth income decile sees the highest share of households with income gains (47%), while the top decile has the highest share with income losses (49%).
+The reform affects household incomes across the income distribution, as shown in Figure 6. [Net income rises for 36% of people and falls for 16%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2). The ninth income decile sees the highest share of households with income gains (47%), while the top decile has the highest share with income losses (49%).
 
 ![Figure 6: Distribution of gains and losses](https://cdn-images-1.medium.com/max/3200/0*f-gK9uscrzd-5170)
 
 ### Poverty Reduction
 
-The reform [reduces poverty by 5.9%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2) overall (a 1.5 percentage point reduction in the Supplemental Poverty Measure). As shown in Figure 7, child poverty falls by 10.7%, while deep poverty—households below half the poverty line—declines by 2.1%.
+The reform [reduces poverty by 5.9%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2) overall (a 1.5 percentage point reduction in the Supplemental Poverty Measure). As shown in Figure 7, child poverty falls by 10.7%, while deep poverty—households below half the poverty line—declines by 2.1%.
 
 ![Figure 7: Poverty reduction by age group](https://cdn-images-1.medium.com/max/3200/0*Xp698QhswZMUp5u6)
 
-The reform also reduces income inequality, [lowering the Gini index by 1.4%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2). The share of total income held by the top 1% of households falls by 3.1%.
+The reform also reduces income inequality, [lowering the Gini index by 1.4%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2). The share of total income held by the top 1% of households falls by 3.1%.
 
-Finally, the reform increases the [prevalence of cliffs](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=73466&region=enhanced_us&timePeriod=2026&baseline=2) by 0.07% and reduces the severity of cliffs by 0.2%.
+Finally, the reform increases the [prevalence of cliffs](https://policyengine.org/us/policy?focus=policyOutput.cliffImpact&reform=73854&region=enhanced_us&timePeriod=2026&baseline=2) by 0.07% and reduces the severity of cliffs by 0.2%.
 
 ## Conclusion
 
