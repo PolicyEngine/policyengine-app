@@ -64,7 +64,7 @@ Finally, the President proposed increasing both the top Medicare tax rate and to
 
 ### Provisions not modeled
 
-The Budget introduces three additional individual income tax reforms that PolicyEngine does not yet model:
+The Budget introduces four additional individual income tax reforms that PolicyEngine does not yet model:
 
 1. Applying the NIIT to pass-through business income of taxpayers with income above $400,000
 
