@@ -1054,5 +1054,14 @@
     "authors": ["pavel-makarchuk"],
     "filename": "family-first-act.md",
     "image": "family-first-act.jpg"
+  },
+  {
+    "title": "The New York Working Families Tax Credit",
+    "description": "A comprehensive analysis of the proposal from New York State Senator Andrew Gounardes.",
+    "date": "2025-01-21 09:00:00",
+    "tags": ["us", "policy", "featured", "us-ny"],
+    "authors": ["david-trimmer"],
+    "filename": "ny-wftc.md",
+    "image": "ny-wftc.webp"
   }
 ]
