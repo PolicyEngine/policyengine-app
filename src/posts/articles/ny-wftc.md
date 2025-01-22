@@ -92,9 +92,9 @@ Using PolicyEngine’s microsimulation capabilities through 3 years of pooled da
 
 **Figure 1: Winners and Losers from the NY WFTC by Income Decile (2025)**
 
-![](https://cdn-images-1.medium.com/max/2000/0*jRjNv_ApjbG60hWv)
+![](https://cdn-images-1.medium.com/max/1000/1*SICGa9ii5d7HiCNy9xiocw.png)
 
-In 2025, the NY WFTC would benefit 30% of New York residents as the initial maximum benefit of the NY WFTC ($550) exceeds the existing Empire State Child Credit ($330). This translates to an increase in average net income [across all income deciles](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2025&baseline=2) and a reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2025&baseline=2) of 1.6% and 4.0%, respectively, applying the Supplemental Poverty Measure. Furthermore, higher-income households are unaffected in 2025 as the WFTC’s minimum benefit and Senate Bill S277C’s changes to the dependent exemption do not come into effect until 2026.
+In 2025, the NY WFTC would benefit 30.7% of New York residents as the initial maximum benefit of the NY WFTC ($550) exceeds the existing Empire State Child Credit ($330). This translates to an increase in average net income [across all income deciles](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2025&baseline=2) and a reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2025&baseline=2) of 1.6% and 4.0%, respectively, applying the Supplemental Poverty Measure. Furthermore, higher-income households are unaffected in 2025 as the WFTC’s minimum benefit and Senate Bill S277C’s changes to the dependent exemption do not come into effect until 2026.
 
 ## Statewide Impact in 2029
 
@@ -108,7 +108,7 @@ In 2025, the NY WFTC would benefit 30% of New York residents as the initial maxi
 
 **Figure 2: Winners and Losers from the NY WFTC by Income Decile (2029)**
 
-![](https://cdn-images-1.medium.com/max/2000/0*JohuFoEPyZwxCc2v)
+![](https://cdn-images-1.medium.com/max/1000/1*qp0po4EGMoqHejBO9Y-HTw.png)
 
 Once the NY WFTC phases in completely for tax year 2029, a greater percentage of New York residents will see their net income [increase by more than 5%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2029&baseline=2). Additionally, the reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) grows significantly as the maximum benefit of the NY WFTC rises. Deep child poverty would [drop by 22.0%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) in 2029 as well. To see the impact of Senate Bill S277C for all years of implementation, see the table in Appendix A.
 
