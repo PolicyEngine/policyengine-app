@@ -84,37 +84,37 @@ Using PolicyEngine’s microsimulation capabilities through 3 years of pooled da
 
 [PolicyEngine estimates](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2025&baseline=2) that the NY WFTC would in 2025:
 
-- Cost $650 million
+- Cost $660 million
 
-- Lower poverty by 1.1% and child poverty by 3.3%
+- Lower poverty by 1.6% and child poverty by 4.0%
 
-- Increase net income for 30% of New Yorkers
+- Increase net income for 30.7% of New Yorkers
 
 **Figure 1: Winners and Losers from the NY WFTC by Income Decile (2025)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*jRjNv_ApjbG60hWv)
 
-In 2025, the NY WFTC would benefit 30% of New York residents as the initial maximum benefit of the NY WFTC ($550) exceeds the existing Empire State Child Credit ($330). This translates to an increase in average net income [across all income deciles](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2025&baseline=2) and a reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2025&baseline=2) of 1.1% and 3.3%, respectively, applying the Supplemental Poverty Measure. Furthermore, higher-income households are unaffected in 2025 as the WFTC’s minimum benefit and Senate Bill S277C’s changes to the dependent exemption do not come into effect until 2026.
+In 2025, the NY WFTC would benefit 30% of New York residents as the initial maximum benefit of the NY WFTC ($550) exceeds the existing Empire State Child Credit ($330). This translates to an increase in average net income [across all income deciles](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2025&baseline=2) and a reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2025&baseline=2) of 1.6% and 4.0%, respectively, applying the Supplemental Poverty Measure. Furthermore, higher-income households are unaffected in 2025 as the WFTC’s minimum benefit and Senate Bill S277C’s changes to the dependent exemption do not come into effect until 2026.
 
 ## Statewide Impact in 2029
 
 [PolicyEngine estimates](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2029&baseline=2) that the NY WFTC would in 2029:
 
-- Cost $3.0 billion
+- Cost $3.1 billion
 
-- Lower poverty by 6.0% and child poverty by 15.5%
+- Lower poverty by 6.1% and child poverty by 16.8%
 
-- Increase net income for 33% of New York residents
+- Increase net income for 34.4% of New York residents
 
 **Figure 2: Winners and Losers from the NY WFTC by Income Decile (2029)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*JohuFoEPyZwxCc2v)
 
-Once the NY WFTC phases in completely for tax year 2029, a greater percentage of New York residents will see their net income [increase by more than 5%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2029&baseline=2). However, fewer New Yorkers will benefit in 2029 than in 2025 due to the elimination of New York’s EITC for families with children eligible for the NY WFTC. Additionally, the reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) grows significantly as the maximum benefit of the NY WFTC rises. Deep child poverty would [drop by 24.4%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) in 2029 as well. To see the impact of Senate Bill S277C for all years of implementation, see the table in Appendix A.
+Once the NY WFTC phases in completely for tax year 2029, a greater percentage of New York residents will see their net income [increase by more than 5%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2029&baseline=2). Additionally, the reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) grows significantly as the maximum benefit of the NY WFTC rises. Deep child poverty would [drop by 22.0%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) in 2029 as well. To see the impact of Senate Bill S277C for all years of implementation, see the table in Appendix A.
 
 ## Conclusion
 
-Senate Bill S277C and the creation of the NY WFTC would partially consolidate New York’s family tax policies while disproportionately benefiting lower-income families. In the first year of implementation, the NY WFTC would cost $650 million while benefiting 30% of households and lowering child poverty by 4.4%. Once fully phased in, New York’s tax revenue would decrease by $3.0 billion, without any offsets. The poverty impact would rise as the state’s Supplemental Poverty Measure would drop by 6.0% and child poverty would fall by 15.5%.
+Senate Bill S277C and the creation of the NY WFTC would partially consolidate New York’s family tax policies while disproportionately benefiting lower-income families. In the first year of implementation, the NY WFTC would cost $650 million while benefiting 30% of households and lowering child poverty by 4.0%. Once fully phased in, New York’s tax revenue would decrease by $3.1 billion, without any offsets. The poverty impact would rise as the state’s Supplemental Poverty Measure would drop by 6.1% and child poverty would fall by 16.8%.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
@@ -124,11 +124,11 @@ We invite you to explore our [additional analyses](https://policyengine.org/us/r
 
 |                                                              Tax Year                                                               | Budget Impact ($ million) | People with Increased Net Income | People with Reduced Net Income | Poverty | Deep Poverty | Child Poverty | Deep Child Poverty |
 | :---------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: | :------------------------------: | :----------------------------: | :-----: | :----------: | :-----------: | :----------------: |
-| **[2025](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2025&baseline=2)** |            650            |              29.9%               |              0.0%              | \-1.1%  |    \-2.8%    |    \-3.3%     |       \-9.1%       |
-| **[2026](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2026&baseline=2)** |           1,216           |              32.0%               |              0.1%              | \-2.3%  |    \-4.0%    |    \-7.0%     |      \-13.1%       |
-| **[2027](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2027&baseline=2)** |           1,752           |              32.6%               |              0.1%              | \-2.8%  |    \-4.1%    |    \-8.4%     |      \-15.5%       |
-| **[2028](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2028&baseline=2)** |           2,303           |              33.7%               |              0.0%              | \-3.7%  |    \-3.9%    |    \-10.1%    |      \-15.3%       |
-| **[2029](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2029&baseline=2)** |           3,034           |              33.3%               |              0.0%              | \-6.0%  |    \-6.2%    |    \-15.5%    |      \-24.4%       |
+| **[2025](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2025&baseline=2)** |            660            |              30.7%               |              0.0%              | \-1.6%  |    \-1.1%    |    \-4.0%     |       \-4.0%       |
+| **[2026](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2026&baseline=2)** |           1,231           |              32.7%               |              0.1%              | \-1.6%  |    \-3.8%    |    \-4.6%     |      \-12.0%       |
+| **[2027](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2027&baseline=2)** |           1,769           |              33.3%               |              0.1%              | \-3.0%  |    \-4.2%    |    \-8.2%     |      \-15.2%       |
+| **[2028](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2028&baseline=2)** |           2,329           |              34.4%               |              0.0%              | \-4.5%  |    \-5.0%    |    \-11.9%    |      \-18.4%       |
+| **[2029](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2029&baseline=2)** |           3,068           |              34.4%               |              0.0%              | \-6.1%  |    \-5.6%    |    \-16.8%    |      \-22.0%       |
 
 [^1]: In addition to the discussed exceptions for the NY EITC under Senate Bill S277C, [households with both WFTC qualifying dependents and older dependents](https://www.nysenate.gov/legislation/bills/2023/S277/amendment/C) would continue to receive their full EITC until year five (2029), at which point they would receive the more generous WFTC for dependents who qualify and the EITC only for older dependents who are outside of the WFTC qualifying ages.
 
