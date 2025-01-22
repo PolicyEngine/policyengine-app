@@ -88,7 +88,7 @@ Using PolicyEngine’s microsimulation capabilities through 3 years of pooled da
 
 - Lower poverty by 1.6% and child poverty by 4.0%
 
-- Increase net income for 30.7% of New Yorkers
+- Increase net income for 31% of New Yorkers
 
 **Figure 1: Winners and Losers from the NY WFTC by Income Decile (2025)**
 
