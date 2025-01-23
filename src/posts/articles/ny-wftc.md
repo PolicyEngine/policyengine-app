@@ -30,7 +30,7 @@ Table 1 displays how each policy changes by year, with 2025 as the first year of
 |        **2025**        |                 Eliminated                  |                     25% Match                      |           $1,000 for All Dependents            |         $550         |      No Minimum      |     $75,000/ $110,000     |
 |        **2026**        |                 Eliminated                  |                     20% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents |        $854\*        |         $100         |     $65,000/ $110,000     |
 |        **2027**        |                 Eliminated                  |                     15% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents |       $1,091\*       |         $100         |     $55,000/ $110,000     |
-|        **2028**        |                 Eliminated                  |                     10% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents |       $1,338\*       |         $100         |     $45,000/ $90,000      |
+|        **2028**        |                 Eliminated                  |                     10% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents |       $1,338\* (Expanded to 17-year-olds)      |         $100         |     $45,000/ $90,000      |
 |        **2029**        |                 Eliminated                  |                     Eliminated                     | $1,000 Only for Non-WFTC Qualifying Dependents |       $1,822\*       |         $100         |    $28,462/ $56,924\*     |
 
 _\* Indexed for inflation from 2023_
@@ -114,7 +114,7 @@ Once the NY WFTC phases in completely for tax year 2029, a greater percentage of
 
 ## Conclusion
 
-Senate Bill S277C and the creation of the NY WFTC would partially consolidate New York’s family tax policies while disproportionately benefiting lower-income families. In the first year of implementation, the NY WFTC would cost $650 million while benefiting 30% of households and lowering child poverty by 4.0%. Once fully phased in, New York’s tax revenue would decrease by $3.1 billion, without any offsets. The poverty impact would rise as the state’s Supplemental Poverty Measure would drop by 6.1% and child poverty would fall by 16.8%.
+Senate Bill S277C and the creation of the NY WFTC would partially consolidate New York’s family tax policies while disproportionately benefiting lower-income families. In the first year of implementation, the NY WFTC would cost $660 million while benefiting 30.7% of households and lowering child poverty by 4.0%. Once fully phased in, New York’s tax revenue would decrease by $3.1 billion, without any offsets. The poverty impact would rise as the state’s Supplemental Poverty Measure would drop by 6.1% and child poverty would fall by 16.8%.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
@@ -129,6 +129,18 @@ We invite you to explore our [additional analyses](https://policyengine.org/us/r
 | **[2027](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2027&baseline=2)** |           1,769           |              33.3%               |              0.1%              | \-3.0%  |    \-4.2%    |    \-8.2%     |      \-15.2%       |
 | **[2028](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2028&baseline=2)** |           2,329           |              34.4%               |              0.0%              | \-4.5%  |    \-5.0%    |    \-11.9%    |      \-18.4%       |
 | **[2029](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2029&baseline=2)** |           3,068           |              34.4%               |              0.0%              | \-6.1%  |    \-5.6%    |    \-16.8%    |      \-22.0%       |
+
+## Appendix B: Impact of Senate Bill S277C for Tax Years 2025–2029 in NYC
+
+PolicyEngine’s microsimulation model can also calculate the impact of Senate Bill S277C on New York City and its population. The table below displays the effect of the NY WFTC on NYC including the net tax benefits, percentage of residents affected, and change in poverty. 
+
+| Tax Year | Net Tax Benefits ($ million) | People with Increased Net Income | People with Reduced Net Income | Poverty | Deep Poverty | Child Poverty | Deep Child Poverty |
+|-----------|---------------------------|--------------------------------|------------------------------|---------|--------------|---------------|-------------------|
+| **[2025](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2025&baseline=2)** | 302 | 31.9% | 0.0% | -0.6% | -1.3% | -1.3% | -4.6% |
+| **[2026](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2026&baseline=2)** | 520 | 32.5% | 0.1% | -0.4% | -5.4% | -1.0% | -14.7% |
+| **[2027](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2027&baseline=2)** | 753 | 33.8% | 0.1% | -2.4% | -6.2% | -5.6% | -19.5% |
+| **[2028](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2028&baseline=2)** | 1,005 | 35.2% | 0.0% | -4.1% | 7.8% | -9.5% | -24.3% |
+| **[2029](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2029&baseline=2)** | 1,341 | 35.7% | 0.0% | -5.7% | -8.5% | -13.9% | -28.6% |
 
 [^1]: In addition to the discussed exceptions for the NY EITC under Senate Bill S277C, [households with both WFTC qualifying dependents and older dependents](https://www.nysenate.gov/legislation/bills/2023/S277/amendment/C) would continue to receive their full EITC until year five (2029), at which point they would receive the more generous WFTC for dependents who qualify and the EITC only for older dependents who are outside of the WFTC qualifying ages.
 
