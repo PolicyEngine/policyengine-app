@@ -58,7 +58,7 @@ export const STATUS_TEXT_COLORS = {
 // this only applies to the "enhanced_cps"
 // dataset selection
 export const DEFAULT_DATASETS = {
-  enhanced_cps: "enhanced_cps_2024",
+  enhanced_cps: "hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5",
 };
 
 const DEFAULT_US_HOUSEHOLD = {
