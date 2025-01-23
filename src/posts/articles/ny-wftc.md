@@ -24,14 +24,14 @@ Table 1 displays how each policy changes by year, with 2025 as the first year of
 
 **Table 1: New York’s Family Tax Policies by Year After Passage of S277C**
 
-|        Tax Year        |          Empire State Child Credit          | NY EITC for filers with WFTC-qualifying dependents |              Dependent Exemption               |        WFTC Maximum Benefit         | WFTC Minimum Benefit | WFTC Phase-out Thresholds |
-| :--------------------: | :-----------------------------------------: | :------------------------------------------------: | :--------------------------------------------: | :---------------------------------: | :------------------: | :-----------------------: |
-| **2024 (Current Law)** | 33% Match of 2017 CTC; $100 Minimum Benefit |             30% Match of Federal EITC              |           $1,000 for All Dependents            |                 N/A                 |         N/A          |            N/A            |
-|        **2025**        |                 Eliminated                  |                     25% Match                      |           $1,000 for All Dependents            |                $550                 |      No Minimum      |     $75,000/ $110,000     |
-|        **2026**        |                 Eliminated                  |                     20% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents |               $854\*                |         $100         |     $65,000/ $110,000     |
-|        **2027**        |                 Eliminated                  |                     15% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents |              $1,091\*               |         $100         |     $55,000/ $110,000     |
-|        **2028**        |                 Eliminated                  |                     10% Match                      | $1,000 Only for Non-WFTC Qualifying Dependents | $1,338\* (Expanded to 17-year-olds) |         $100         |     $45,000/ $90,000      |
-|        **2029**        |                 Eliminated                  |                     Eliminated                     | $1,000 Only for Non-WFTC Qualifying Dependents |              $1,822\*               |         $100         |    $28,462/ $56,924\*     |
+|        Tax Year        |      Empire State Child Credit      | EITC match for filers with WFTC-qualifying dependents | $1,000 Dependent Exemption Eligibility | WFTC Age Limit | WFTC Maximum Benefit | WFTC Minimum Benefit | WFTC Phase-out Threshold |
+| :--------------------: | :---------------------------------: | :---------------------------------------------------: | :------------------------------------: | :------------: | :------------------: | :------------------: | :----------------------: |
+| **2024 (Current Law)** | Greater of $100 and 33% of 2017 CTC |                          30%                          |             All dependents             |      N/A       |         N/A          |         N/A          |           N/A            |
+|        **2025**        |             Eliminated              |                          25%                          |             All dependents             |       16       |         $550         |          $0          |    $75,000/ $110,000     |
+|        **2026**        |             Eliminated              |                          20%                          |     Dependents ineligible for WFTC     |       16       |        $854\*        |         $100         |    $65,000/ $110,000     |
+|        **2027**        |             Eliminated              |                          15%                          |     Dependents ineligible for WFTC     |       16       |       $1,091\*       |         $100         |    $55,000/ $110,000     |
+|        **2028**        |             Eliminated              |                          10%                          |     Dependents ineligible for WFTC     |       17       |       $1,338\*       |         $100         |     $45,000/ $90,000     |
+|        **2029**        |             Eliminated              |                          0%                           |     Dependents ineligible for WFTC     |       17       |       $1,822\*       |         $100         |    $28,462/ $56,924\*    |
 
 _\* Indexed for inflation from 2023_
 
@@ -110,7 +110,7 @@ In 2025, the NY WFTC would benefit 30.7% of New York residents as the initial ma
 
 ![](https://cdn-images-1.medium.com/max/1000/1*qp0po4EGMoqHejBO9Y-HTw.png)
 
-Once the NY WFTC phases in completely for tax year 2029, a greater percentage of New York residents will see their net income [increase by more than 5%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2029&baseline=2). Additionally, the reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) grows significantly as the maximum benefit of the NY WFTC rises. Deep child poverty would [drop by 22.0%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) in 2029 as well. To see the impact of Senate Bill S277C for all years of implementation, see the table in Appendix A.
+Once the NY WFTC phases in completely for tax year 2029, a greater percentage of New York residents will see their net income [increase by more than 5%](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=72622&region=ny&timePeriod=2029&baseline=2). Additionally, the reduction in [poverty and child poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) grows significantly as the maximum benefit of the NY WFTC rises. Deep child poverty would [drop by 22.0%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=72622&region=ny&timePeriod=2029&baseline=2) in 2029 as well. To see the impact of Senate Bill S277C for all years of implementation, see Appendix A (statewide) and Appendix B (New York City).
 
 ## Conclusion
 
@@ -122,6 +122,8 @@ We invite you to explore our [additional analyses](https://policyengine.org/us/r
 
 ## Appendix A: Impact of Senate Bill S277C for Tax Years 2025–2029
 
+From 2025 to 2029, the NY WFTC would cost $9.1 billion, with costs, share of individuals benefiting, and poverty impacts rising each year.
+
 |                                                              Tax Year                                                               | Budget Impact ($ million) | People with Increased Net Income | People with Reduced Net Income | Poverty | Deep Poverty | Child Poverty | Deep Child Poverty |
 | :---------------------------------------------------------------------------------------------------------------------------------: | :-----------------------: | :------------------------------: | :----------------------------: | :-----: | :----------: | :-----------: | :----------------: |
 | **[2025](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=ny&timePeriod=2025&baseline=2)** |            660            |              30.7%               |              0.0%              | \-1.6%  |    \-1.1%    |    \-4.0%     |       \-4.0%       |
@@ -132,14 +134,14 @@ We invite you to explore our [additional analyses](https://policyengine.org/us/r
 
 ## Appendix B: Impact of Senate Bill S277C for Tax Years 2025–2029 in NYC
 
-PolicyEngine’s microsimulation model can also calculate the impact of Senate Bill S277C on New York City and its population. The table below displays the effect of the NY WFTC on NYC including the net tax benefits, percentage of residents affected, and change in poverty.
+From 2025 to 2029, the WFTC would provide $3.9 billion in tax benefits to New York City residents, or 43% of the total state costs. New York City residents are disproportionately likely to gain from the reform. While the WFTC reduces poverty relatively less in NYC than outside NYC, it reduces deep poverty relatively more.
 
 | Tax Year                                                                                                                             | Net Tax Benefits ($ million) | People with Increased Net Income | People with Reduced Net Income | Poverty | Deep Poverty | Child Poverty | Deep Child Poverty |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------- | -------------------------------- | ------------------------------ | ------- | ------------ | ------------- | ------------------ |
 | **[2025](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2025&baseline=2)** | 302                          | 31.9%                            | 0.0%                           | -0.6%   | -1.3%        | -1.3%         | -4.6%              |
 | **[2026](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2026&baseline=2)** | 520                          | 32.5%                            | 0.1%                           | -0.4%   | -5.4%        | -1.0%         | -14.7%             |
 | **[2027](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2027&baseline=2)** | 753                          | 33.8%                            | 0.1%                           | -2.4%   | -6.2%        | -5.6%         | -19.5%             |
-| **[2028](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2028&baseline=2)** | 1,005                        | 35.2%                            | 0.0%                           | -4.1%   | 7.8%         | -9.5%         | -24.3%             |
+| **[2028](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2028&baseline=2)** | 1,005                        | 35.2%                            | 0.0%                           | -4.1%   | -7.8%        | -9.5%         | -24.3%             |
 | **[2029](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=72622&region=nyc&timePeriod=2029&baseline=2)** | 1,341                        | 35.7%                            | 0.0%                           | -5.7%   | -8.5%        | -13.9%        | -28.6%             |
 
 [^1]: In addition to the discussed exceptions for the NY EITC under Senate Bill S277C, [households with both WFTC qualifying dependents and older dependents](https://www.nysenate.gov/legislation/bills/2023/S277/amendment/C) would continue to receive their full EITC until year five (2029), at which point they would receive the more generous WFTC for dependents who qualify and the EITC only for older dependents who are outside of the WFTC qualifying ages.
