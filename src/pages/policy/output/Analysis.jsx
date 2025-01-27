@@ -50,7 +50,7 @@ export default function Analysis(props) {
   );
   const [audience, setAudience] = useState("Normal");
   const [analysis, setAnalysis] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [analysisLoading, setAnalysisLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
   const [prompt, setPrompt] = useState("");
   const [isError, setIsError] = useState(false);
@@ -58,9 +58,51 @@ export default function Analysis(props) {
   const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
 
+  const jsonPostBody = {
+    currency: metadata.currency,
+    selected_version: selectedVersion,
+    time_period: timePeriod,
+    impact: impact,
+    policy_label: policyLabel,
+    policy: policy,
+    region: region,
+    relevant_parameter_baseline_values: relevantParameterBaselineValues,
+    relevant_parameters: relevantParameters,
+    audience: audience,
+  };
+
   const handleAudienceChange = (audienceValue) => {
     setAudience(audienceValue);
+    setAnalysis("");
   };
+
+  async function handlePromptGeneration() {
+    setShowPrompt(false);
+    const PROMPT_NAME = "simulation_analysis";
+
+    try {
+      const res = await countryApiCall(
+        metadata.countryId,
+        `/ai-prompts/${PROMPT_NAME}`,
+        jsonPostBody,
+        "POST",
+      );
+
+      if (!res || !res.ok) {
+        throw new Error("Error response within handlePromptGeneration");
+      } 
+      
+      const resJson = await res.json();
+      const prompt = resJson.result;
+      setPrompt(prompt);
+      setShowPrompt(true);
+
+    } catch (error) {
+      console.error("Error generating prompt:", error);
+      setIsError(true);
+    }
+
+  }
 
   const buttonWidth = "80px";
   const activeColor = colors.DARK_GRAY;
@@ -106,36 +148,23 @@ export default function Analysis(props) {
       (match, impactType) => `<abbr title="${impactType}"></abbr>`,
     );
 
-  const onGenerate = async () => {
+  const handleAnalysisGeneration = async () => {
     setIsError(false);
     setHasClickedGenerate(true);
-    setLoading(true);
+    setAnalysisLoading(true);
     setAnalysis(""); // Reset analysis content
-
-    const jsonObject = {
-      currency: metadata.currency,
-      selected_version: selectedVersion,
-      time_period: timePeriod,
-      impact: impact,
-      policy_label: policyLabel,
-      policy: policy,
-      region: region,
-      relevant_parameter_baseline_values: relevantParameterBaselineValues,
-      relevant_parameters: relevantParameters,
-      audience: audience,
-    };
 
     const res = await countryApiCall(
       metadata.countryId,
       `/simulation-analysis`,
-      jsonObject,
+      jsonPostBody,
       "POST",
     );
 
     if (!res || !res.ok) {
-      console.error("Error response within onGenerate");
+      console.error("Error response within handleAnalysisGeneration");
       console.error(res);
-      setLoading(false);
+      setAnalysisLoading(false);
       setIsError(true);
       return;
     }
@@ -158,19 +187,17 @@ export default function Analysis(props) {
           if (data.stream) {
             setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
           }
-          if (data.prompt) {
-            setPrompt(data.prompt);
-          }
         }
       }
     }
 
     setAnalysis((analysis) => displayCharts(analysis).replaceAll("  ", " "));
-    setLoading(false);
+    setAnalysisLoading(false);
   };
+
   const buttonText = !hasClickedGenerate ? (
     "Generate an analysis"
-  ) : loading ? (
+  ) : analysisLoading ? (
     <>
       <Spinner style={{ marginRight: 10 }} />
       Generating
@@ -226,7 +253,7 @@ export default function Analysis(props) {
           <Button
             type="primary"
             text={buttonText}
-            onClick={onGenerate}
+            onClick={handleAnalysisGeneration}
             style={{ maxWidth: 250, margin: "20px auto 25px" }}
           />
         )}
@@ -249,7 +276,8 @@ export default function Analysis(props) {
         <Button
           text={showPrompt ? "Hide prompt" : "Show prompt"}
           type="secondary"
-          onClick={() => setShowPrompt(!showPrompt)}
+          onClick={handlePromptGeneration}
+          // onClick={() => setShowPrompt(!showPrompt)}
           style={{ maxWidth: 250, margin: "20px auto 10px" }}
         />
       </div>
