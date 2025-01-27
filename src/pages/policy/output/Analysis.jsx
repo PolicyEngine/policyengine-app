@@ -74,18 +74,20 @@ export default function Analysis(props) {
   const handleAudienceChange = (audienceValue) => {
     setAudience(audienceValue);
     setAnalysis("");
+    setPrompt("");
+    setShowPrompt(false);
     setHasClickedGenerate(false);
   };
 
-  function handleShowPrompt() {
-    setShowPrompt(!showPrompt);
+  async function handleShowPrompt() {
+    const newShowPrompt = !showPrompt;
+    setShowPrompt(newShowPrompt);
+    if (newShowPrompt) {
+      generatePrompt();
+    }
   }
 
-  async function handlePromptGeneration() {
-    if (showPrompt) {
-      setShowPrompt(false);
-      return;
-    }
+  async function generatePrompt() {
     const PROMPT_NAME = "simulation_analysis";
 
     try {
@@ -97,7 +99,7 @@ export default function Analysis(props) {
       );
 
       if (!res || !res.ok) {
-        throw new Error("Error response within handlePromptGeneration");
+        throw new Error("Error response within generatePrompt");
       } 
       
       const resJson = await res.json();
@@ -109,7 +111,6 @@ export default function Analysis(props) {
       console.error("Error generating prompt:", error);
       setIsError(true);
     }
-
   }
 
   const buttonWidth = "80px";
@@ -284,7 +285,7 @@ export default function Analysis(props) {
         <Button
           text={showPrompt ? "Hide prompt" : "Show prompt"}
           type="secondary"
-          onClick={handlePromptGeneration}
+          onClick={handleShowPrompt}
           style={{ maxWidth: 250, margin: "20px auto 10px" }}
         />
       </div>
