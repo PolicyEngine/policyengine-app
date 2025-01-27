@@ -152,7 +152,7 @@ export default function Analysis(props) {
 
   const displayCharts = (markdown) =>
     markdown.replace(
-      /{(.*?)}/g,
+      /{{(.*?)}}/g,
       (match, impactType) => `<abbr title="${impactType}"></abbr>`,
     );
 
