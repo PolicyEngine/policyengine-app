@@ -74,10 +74,18 @@ export default function Analysis(props) {
   const handleAudienceChange = (audienceValue) => {
     setAudience(audienceValue);
     setAnalysis("");
+    setHasClickedGenerate(false);
   };
 
+  function handleShowPrompt() {
+    setShowPrompt(!showPrompt);
+  }
+
   async function handlePromptGeneration() {
-    setShowPrompt(false);
+    if (showPrompt) {
+      setShowPrompt(false);
+      return;
+    }
     const PROMPT_NAME = "simulation_analysis";
 
     try {
@@ -277,7 +285,6 @@ export default function Analysis(props) {
           text={showPrompt ? "Hide prompt" : "Show prompt"}
           type="secondary"
           onClick={handlePromptGeneration}
-          // onClick={() => setShowPrompt(!showPrompt)}
           style={{ maxWidth: 250, margin: "20px auto 10px" }}
         />
       </div>
