@@ -3,12 +3,12 @@ import { useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
 import CodeBlock from "../../../layout/CodeBlock";
-import colors from "../../../style/colors";
 import { getParameterAtInstant } from "../../../api/parameters";
 import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 import ErrorComponent from "../../../layout/ErrorComponent";
+import { Radio } from "antd";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -53,9 +53,9 @@ export default function Analysis(props) {
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [hasClickedGenerate, setHasClickedGenerate] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [showPrompt, setShowPrompt] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const [showPrompt, setShowPrompt] = useState(false);
   const lines = prompt.split("\n");
 
   const jsonPostBody = {
@@ -71,8 +71,8 @@ export default function Analysis(props) {
     audience: audience,
   };
 
-  const handleAudienceChange = (audienceValue) => {
-    setAudience(audienceValue);
+  const handleAudienceChange = (e) => {
+    setAudience(e.target.value);
     setAnalysis("");
     setPrompt("");
     setShowPrompt(false);
@@ -113,42 +113,47 @@ export default function Analysis(props) {
     }
   }
 
-  const buttonWidth = "80px";
-  const activeColor = colors.DARK_GRAY;
+  const audienceOptions = [
+    {
+      label: "ELI5",
+      value: "ELI5",
+    },
+    {
+      label: "Normal",
+      value: "Normal",
+    },
+    {
+      label: "Wonk",
+      value: "Wonk",
+    },
+  ];
 
-  const inactiveColor = "white";
-  const borderColor = "1px solid #6c757d";
-
-  function AudienceButton({
-    audienceValue,
-    currentAudience,
-    handleAudienceChange,
-  }) {
+  const AudienceButton = () => {
     return (
-      <button
+      <div
         style={{
-          backgroundColor:
-            audienceValue === currentAudience ? activeColor : inactiveColor,
-          color:
-            audienceValue === currentAudience ? inactiveColor : activeColor,
-          borderRadius:
-            audienceValue === "ELI5"
-              ? "5px 0 0 5px"
-              : audienceValue === "Wonk"
-                ? "0 5px 5px 0"
-                : 0,
-          border: borderColor,
-          borderRight: audienceValue !== "Wonk" ? "none" : borderColor,
-          padding: "5px 10px",
-          margin: 0,
-          cursor: "pointer",
-          width: buttonWidth,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+          width: "100%",
         }}
-        onClick={() => handleAudienceChange(audienceValue)}
       >
-        {audienceValue}
-      </button>
-    );
+        <Radio.Group
+          block
+          optionType="button"
+          options={audienceOptions}
+          value={audience}
+          defaultValue={audienceOptions[1].value} // Default to "Normal"
+          buttonStyle="solid"
+          onChange={handleAudienceChange}
+          style={{
+            width: "100%",
+            gap: "5px"
+          }}
+        />
+      </div>
+    )
   }
 
   const displayCharts = (markdown) =>
@@ -240,21 +245,10 @@ export default function Analysis(props) {
             alignItems: "center",
             justifyContent: "center",
             marginBottom: 20,
+            width: "100%"
           }}
         >
           <AudienceButton
-            audienceValue="ELI5"
-            currentAudience={audience}
-            handleAudienceChange={handleAudienceChange}
-          />
-          <AudienceButton
-            audienceValue="Normal"
-            currentAudience={audience}
-            handleAudienceChange={handleAudienceChange}
-          />
-          <AudienceButton
-            audienceValue="Wonk"
-            currentAudience={audience}
             handleAudienceChange={handleAudienceChange}
           />
         </div>
