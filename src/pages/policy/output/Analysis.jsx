@@ -8,7 +8,7 @@ import { MarkdownFormatter } from "../../../layout/MarkdownFormatter";
 import { countryApiCall } from "../../../api/call";
 import { getImpactReps } from "./ImpactTypes";
 import ErrorComponent from "../../../layout/ErrorComponent";
-import { Radio } from "antd";
+import { Radio, Segmented } from "antd";
 
 export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
@@ -72,7 +72,7 @@ export default function Analysis(props) {
   };
 
   const handleAudienceChange = (e) => {
-    setAudience(e.target.value);
+    setAudience(e);
     setAnalysis("");
     setPrompt("");
     setShowPrompt(false);
@@ -114,19 +114,10 @@ export default function Analysis(props) {
   }
 
   const audienceOptions = [
-    {
-      label: "ELI5",
-      value: "ELI5",
-    },
-    {
-      label: "Normal",
-      value: "Normal",
-    },
-    {
-      label: "Wonk",
-      value: "Wonk",
-    },
-  ];
+    "ELI5",
+    "Normal",
+    "Wonk",
+  ]
 
   const AudienceButton = () => {
     return (
@@ -139,17 +130,15 @@ export default function Analysis(props) {
           width: "100%",
         }}
       >
-        <Radio.Group
+        <p style={{ marginBottom: "5px" }}>Select an audience:</p>
+        <Segmented
           block
-          optionType="button"
           options={audienceOptions}
           value={audience}
-          defaultValue={audienceOptions[1].value} // Default to "Normal"
-          buttonStyle="solid"
           onChange={handleAudienceChange}
+          defaultValue={audienceOptions[1]} // Default to "Normal"
           style={{
             width: "100%",
-            gap: "5px"
           }}
         />
       </div>
@@ -209,14 +198,12 @@ export default function Analysis(props) {
     setAnalysisLoading(false);
   };
 
-  const buttonText = !hasClickedGenerate ? (
-    "Generate an analysis"
-  ) : analysisLoading ? (
+  const buttonText = analysisLoading ? (
     <>
       <Spinner style={{ marginRight: 10 }} />
       Generating
     </>
-  ) : null;
+  ) : "Generate an analysis";
 
   return (
     <>
@@ -235,23 +222,68 @@ export default function Analysis(props) {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginBottom: 20,
+          marginTop: "24px"
         }}
       >
+        <AudienceButton
+          handleAudienceChange={handleAudienceChange}
+        />
         <div
           style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "center",
-            marginBottom: 20,
-            width: "100%"
+            width: "100%",
+            gap: "10px",
+            marginTop: "10px",
+            marginBottom: "24px"
           }}
         >
-          <AudienceButton
-            handleAudienceChange={handleAudienceChange}
+          <Button
+            type="primary"
+            text={buttonText}
+            onClick={handleAnalysisGeneration}
+            style={{
+              width: "100%",
+              height: "32px"
+            }}
+          />
+          <Button
+            text={showPrompt ? "Hide prompt" : "Show prompt"}
+            type="secondary"
+            onClick={handleShowPrompt}
+            style={{
+              width: "100%",
+              height: "32px"
+            }}
           />
         </div>
+        {showPrompt ? (
+          <div
+            style={{
+              marginBottom: "12px"
+            }}
+          >
+            <CodeBlock lines={lines} language={"markdown"} data={prompt} />
+          </div>
+        ) : null}
+        {hasClickedGenerate && analysis && (
+          <div
+            style={{
+              border: "1px solid rgba(0,0,0,0.65)"
+            }}
+          >
+            <MarkdownFormatter markdown={analysis} dict={chartDict} />
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+
+/*
         {buttonText && (
           <Button
             type="primary"
@@ -286,6 +318,5 @@ export default function Analysis(props) {
       {showPrompt ? (
         <CodeBlock lines={lines} language={"markdown"} data={prompt} />
       ) : null}
-    </>
-  );
-}
+
+*/
