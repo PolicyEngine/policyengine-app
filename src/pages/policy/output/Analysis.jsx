@@ -53,11 +53,18 @@ export function PromptDisplayButton(props) {
     setPromptError,
   } = props;
 
+  function resetPrompt() {
+    setPrompt("");
+    setPromptError(false);
+  }
+
   async function handleShowPrompt() {
     const newShowPrompt = !showPrompt;
     setShowPrompt(newShowPrompt);
     if (newShowPrompt) {
       fetchPrompt();
+    } else {
+      resetPrompt();
     }
   }
 
@@ -322,10 +329,21 @@ export default function Analysis(props) {
             countryId={metadata.countryId}
           />
         </div>
-        {showPrompt ? (
+        {promptError ? (
           <div
             style={{
               marginBottom: "12px",
+              width: "100%",
+              border: "1px solid rgb(240, 240, 240)",
+            }}
+          >
+            <ErrorComponent message="There was an error generating the prompt." />
+          </div>
+        ) : showPrompt ? (
+          <div
+            style={{
+              marginBottom: "12px",
+              width: "100%",
             }}
           >
             <CodeBlock lines={lines} language={"markdown"} data={prompt} />
