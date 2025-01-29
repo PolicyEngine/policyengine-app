@@ -129,6 +129,10 @@ export function GenerateAnalysisButton(props) {
     setAnalysisLoading(false);
   }
 
+  function updateAnalysisWithCharts() {
+    setAnalysis((analysis) => displayCharts(analysis).replaceAll("  ", " "));
+  }
+
   async function handleAnalysisGeneration() {
     resetAnalysis();
     setAnalysisLoading(true);
@@ -146,6 +150,17 @@ export function GenerateAnalysisButton(props) {
         throw new Error(errorMessage);
       }
 
+      // Response can either be static or streaming; if static, parse and set analysis
+      if (res.headers.get("Content-Type") !== "application/x-ndjson") {
+        const resJson = await res.json();
+        const result = await JSON.parse(resJson.result);
+        setAnalysis(result);
+        updateAnalysisWithCharts();
+        aiOutputStream.current = null;
+        return;
+      }
+
+      // Otherwise, handle streaming
       const reader = res.body.getReader();
       aiOutputStream.current = reader;
 
@@ -170,7 +185,7 @@ export function GenerateAnalysisButton(props) {
         }
       }
 
-      setAnalysis((analysis) => displayCharts(analysis).replaceAll("  ", " "));
+      updateAnalysisWithCharts();
     } catch (error) {
       console.error("Error generating analysis:", error);
       setAnalysisError(true);
