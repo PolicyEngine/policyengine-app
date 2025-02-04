@@ -286,10 +286,10 @@ describe("Test getImplementationCode", () => {
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      'baseline = Microsimulation(dataset="pooled_3_year_cps_2023")',
+      'baseline = Microsimulation(dataset="hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5")',
     );
     expect(output).toContain(
-      'reformed = Microsimulation(reform=reform, dataset="pooled_3_year_cps_2023")',
+      'reformed = Microsimulation(reform=reform, dataset="hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5")',
     );
   });
   test("If dataset provided, return lines with dataset", () => {
@@ -303,7 +303,7 @@ describe("Test getImplementationCode", () => {
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      'baseline = Microsimulation(dataset="enhanced_cps_2024")',
+      'baseline = Microsimulation(dataset="hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5")',
     );
   });
   test("If dataset provided alongside US state, return lines with dataset, not Pooled 3-Year CPS", () => {
@@ -317,7 +317,7 @@ describe("Test getImplementationCode", () => {
     );
     expect(output).toBeInstanceOf(Array);
     expect(output).toContain(
-      'baseline = Microsimulation(dataset="enhanced_cps_2024")',
+      'baseline = Microsimulation(dataset="hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5")',
     );
   });
 });
