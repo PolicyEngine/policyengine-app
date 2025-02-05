@@ -285,6 +285,7 @@ export default function Analysis(props) {
   function resetDisplay() {
     setAnalysis("");
     setPrompt("");
+    setPromptError(false);
     setShowPrompt(false);
     if (aiOutputStream.current) {
       aiOutputStream.current.cancel();
