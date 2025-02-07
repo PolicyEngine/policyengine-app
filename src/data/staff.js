@@ -59,6 +59,15 @@ MPA from The George Washington University and a B.S. in Political Science from
 The Rochester Institute of Technology.`,
     image: require("../images/authors/david-trimmer.jpeg"),
   },
+  john_wong: {
+    name: "John Wong",
+    bio: `is a policy modeling fellow at PolicyEngine. He is also working towards 
+    a master's degree in economics at George Mason University and a MA Fellow at 
+    Mercatus Center. Previously, he was a fiscal policy fellow at Progressive 
+    Policy Institute and a Peterson Foundation fiscal intern. John holds a 
+    bachelor's degree in economics and finance from the University of Hong Kong.`,
+    image: require("../images/authors/john-wong.jpg"),
+  },
 };
 
 export const advisors = {
