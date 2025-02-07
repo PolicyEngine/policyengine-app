@@ -50,6 +50,14 @@ University of Munich (LMU) and a bachelor's degree in Electrical Engineering
 from the Sharif University of Technology.`,
     image: require("../images/authors/vahid-ahmadi.jpeg"),
   },
+  daphne_hansell: {
+    name: "Daphne Hansell",
+    bio: `is a research assosiate at PolicyEngine. She focuses on the intersection 
+    of healthcare and the tax code. Previously, he was a health policy intern at  
+the Niskanen Center and a policy fellow at the Progressive Policy Institute. Daphne holds an 
+B.A. in Public Health from Bryn Mawr College.`,
+    image: require("../images/authors/daphne-hansell.jpeg"),
+  },
   david_trimmer: {
     name: "David Trimmer",
     bio: `is a policy research fellow at PolicyEngine. He is also a contributor
