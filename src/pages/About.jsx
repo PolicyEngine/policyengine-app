@@ -31,7 +31,7 @@ export default function About() {
             <Link
               to={`/${countryId}/jobs`}
               style={{
-                color: style.colors.BLUE_PRIMARY,
+                color: style.colors.BLUE,
                 textDecoration: "underline",
               }}
             >
@@ -45,14 +45,14 @@ export default function About() {
             return <Bio key={index} member={founders[founder]} />;
           })}
         </Section>
-        <Section backgroundColor={style.colors.BLUE_PRIMARY}>
+        <Section backgroundColor={style.colors.BLUE}>
           <h2 style={{ color: style.colors.WHITE }}>Team</h2>
           {Object.keys(staff).map((member, index) => {
             return <InvertedBio key={index} member={staff[member]} />;
           })}
         </Section>
         <div style={{ display: "none" }}>
-          <Section backgroundColor={style.colors.BLUE_PRIMARY}>
+          <Section backgroundColor={style.colors.BLUE}>
             <h2 style={{ color: style.colors.WHITE }}>Advisory board</h2>
             <InvertedBio member={advisors.tim_shaw} />
             <InvertedBio member={advisors.damola_ogundipe} />

@@ -307,7 +307,7 @@ function BehavioralResponseToggle(props) {
           style={{
             marginLeft: "5px",
             textDecoration: "underline",
-            color: "rgb(84, 140, 190)", // This is BLUE_PRIMARY + 20 for each RGB value, so brighter
+            color: "rgb(84, 140, 190)", // This is BLUE + 20 for each RGB value, so brighter
           }}
         >
           Learn more.

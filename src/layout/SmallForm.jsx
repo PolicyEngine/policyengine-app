@@ -118,14 +118,14 @@ export default function SmallForm(props) {
           fontSize: 20,
           fontWeight: 300,
           padding: 10,
-          boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
+          boxShadow: `0px 0px 0px ${style.colors.BLUE}`,
           ...inputStyle,
         }}
         // While focussing, make the bottom border blue from left to right
         whileFocus={{
           boxShadow: isFormSubmitted
             ? `0px 5px 0px ${style.colors.TEAL_ACCENT}`
-            : `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
+            : `0px 5px 0px ${style.colors.BLUE}`,
         }}
       />
     </div>

@@ -704,7 +704,7 @@ function PublicPrivateSwitch(props) {
         padding: 0,
         display: "inline",
         appearance: "none",
-        color: style.colors.BLUE_PRIMARY,
+        color: style.colors.BLUE,
         gridColumn: "1 / -1",
         width: "max-content",
         marginTop: 5,
@@ -714,7 +714,7 @@ function PublicPrivateSwitch(props) {
         style={{
           marginBottom: 0,
           textDecorationLine: "underline",
-          textDecorationColor: style.colors.BLUE_PRIMARY,
+          textDecorationColor: style.colors.BLUE,
         }}
       >
         {dispState === STATES.OWN_PROFILE
