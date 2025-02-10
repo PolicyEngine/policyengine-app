@@ -42,7 +42,7 @@ export const COUNTRY_BASELINE_POLICIES = {
 };
 
 export const STATUS_COLORS = {
-  OK: colors.BLUE_95,
+  OK: colors.BLUE_LIGHT,
   ERROR: colors.DARK_RED,
   Pending: colors.LIGHT_GRAY,
 };

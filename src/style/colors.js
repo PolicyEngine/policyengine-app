@@ -1,5 +1,4 @@
 const BLACK = "#000000";
-const BLUE_95 = "#D8E6F3";
 const BLUE_98 = "#F7FAFD";
 const BLUE = "#2C6496";
 const BLUE_LIGHT = "#D8E6F3";
@@ -20,7 +19,6 @@ const WHITE = "#FFFFFF";
 
 const colors = {
   BLACK,
-  BLUE_95,
   BLUE_98,
   BLUE,
   BLUE_LIGHT,
