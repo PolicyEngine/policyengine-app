@@ -24,9 +24,7 @@ export default function Section({
   }[displayCategory];
   let titleColor = null;
   if (
-    [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
-      backgroundColor,
-    )
+    [style.colors.BLUE, style.colors.BLUE_PRESSED].includes(backgroundColor)
   ) {
     titleColor = style.colors.WHITE;
   }
@@ -87,9 +85,7 @@ export function SectionTop({ height, backgroundColor, title }) {
   }[displayCategory];
   let titleColor = null;
   if (
-    [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
-      backgroundColor,
-    )
+    [style.colors.BLUE, style.colors.BLUE_PRESSED].includes(backgroundColor)
   ) {
     titleColor = style.colors.WHITE;
   }
@@ -135,9 +131,7 @@ export function SectionBottom({ height, backgroundColor, children }) {
   }[displayCategory];
   let titleColor = null;
   if (
-    [style.colors.BLUE_PRIMARY, style.colors.BLUE_PRESSED].includes(
-      backgroundColor,
-    )
+    [style.colors.BLUE, style.colors.BLUE_PRESSED].includes(backgroundColor)
   ) {
     titleColor = style.colors.WHITE;
   }

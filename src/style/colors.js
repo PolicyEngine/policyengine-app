@@ -1,10 +1,8 @@
 const BLACK = "#000000";
-const BLUE_95 = "#D8E6F3";
 const BLUE_98 = "#F7FAFD";
 const BLUE = "#2C6496";
 const BLUE_LIGHT = "#D8E6F3";
 const BLUE_PRESSED = "#17354F";
-const BLUE_PRIMARY = "#2C6496";
 const DARK_BLUE_HOVER = "#1d3e5e";
 const DARK_GRAY = "#616161";
 const DARK_RED = "#b50d0d";
@@ -21,12 +19,10 @@ const WHITE = "#FFFFFF";
 
 const colors = {
   BLACK,
-  BLUE_95,
   BLUE_98,
   BLUE,
   BLUE_LIGHT,
   BLUE_PRESSED,
-  BLUE_PRIMARY,
   DARK_BLUE_HOVER,
   DARK_GRAY,
   DARK_RED,

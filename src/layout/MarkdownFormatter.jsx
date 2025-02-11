@@ -423,7 +423,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
               fontFamily: "Roboto Serif",
               fontSize: mobile ? 16 : 18,
               borderBottom: "1px solid black",
-              backgroundColor: style.colors.BLUE_PRIMARY,
+              backgroundColor: style.colors.BLUE,
               textAlign: "center",
               verticalAlign: "middle",
               color: "white",

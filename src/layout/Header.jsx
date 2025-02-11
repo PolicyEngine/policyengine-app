@@ -43,7 +43,7 @@ export default function Header() {
     <>
       <div
         style={{
-          backgroundColor: style.colors.BLUE_PRIMARY,
+          backgroundColor: style.colors.BLUE,
           width: "100vw",
           height: style.spacing.HEADER_HEIGHT,
           display: "flex",
@@ -239,7 +239,7 @@ function LoginButton() {
         (e.currentTarget.style.backgroundColor = style.colors.DARK_BLUE_HOVER)
       }
       onMouseOut={(e) =>
-        (e.currentTarget.style.backgroundColor = style.colors.BLUE_PRIMARY)
+        (e.currentTarget.style.backgroundColor = style.colors.BLUE)
       }
     >
       {isAuthenticated && user && user.picture ? (
@@ -429,7 +429,7 @@ function PageLinks() {
                     cursor: "pointer",
                   }}
                   whileHover={{
-                    color: style.colors.BLUE_PRIMARY,
+                    color: style.colors.BLUE,
                   }}
                   transition={{
                     duration: 0.2,
@@ -459,7 +459,7 @@ function LeftNavigationMenu(props) {
         left: 0,
         width: "100vw",
         height: "100vh",
-        backgroundColor: style.colors.BLUE_PRIMARY,
+        backgroundColor: style.colors.BLUE,
         zIndex: -1,
         paddingTop: 100,
       }}
@@ -508,7 +508,7 @@ function LeftNavigationMenu(props) {
                   color: style.colors.WHITE,
                 }}
                 whileHover={{
-                  color: style.colors.BLUE_PRIMARY,
+                  color: style.colors.BLUE,
                 }}
                 animate={
                   isOpen

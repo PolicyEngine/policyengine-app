@@ -464,7 +464,7 @@ function Authorship({ post }) {
   const countryId = useCountryId();
   const authorNames = post.authors.map((author) => (
     <nobr key={author}>
-      <span style={{ color: style.colors.BLUE_PRIMARY }}>
+      <span style={{ color: style.colors.BLUE }}>
         <Link
           to={`/${countryId}/research?authors=${author}`}
           className="highlighted-link"
@@ -526,7 +526,7 @@ function AuthorSection({ post }) {
         <p style={{ paddingTop: 5 }}>
           <span
             className="spaced-sans-serif"
-            style={{ color: style.colors.BLUE_PRIMARY }}
+            style={{ color: style.colors.BLUE }}
           >
             <Link
               to={`/${countryId}/research?authors=${author}`}
@@ -581,7 +581,7 @@ function MoreOn({ post }) {
     <>
       <p
         className="spaced-sans-serif"
-        style={{ color: style.colors.BLUE_PRIMARY, zIndex: -1 }}
+        style={{ color: style.colors.BLUE, zIndex: -1 }}
       >
         More on
       </p>
