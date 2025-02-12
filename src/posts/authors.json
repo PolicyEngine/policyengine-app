@@ -125,5 +125,13 @@
     "twitter": "twitter.com/jasondebacker",
     "headshot": "jason-debacker.jpeg",
     "title": "Associate Professor of Economics at the University of South Carolina"
+  },
+  "michael-smit": {
+    "name": "Michael Smit",
+    "email": "michael@policyengine.org",
+    "bio": "Michael is a Software Engineer volunteering at PolicyEngine",
+    "linkedin": "https://www.linkedin.com/in/michaeldsmit/",
+    "headshot": "michael-smit.jpeg",
+    "title": "Volunteer Software Engineer for PolicyEngine"
   }
 }
