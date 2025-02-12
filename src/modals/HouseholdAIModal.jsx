@@ -65,6 +65,16 @@ export default function HouseholdAIModal(props) {
       return;
     }
 
+    // Response can either be static or streaming; if static, parse and set analysis
+    if (res.headers.get("Content-Type") !== "application/x-ndjson") {
+      const resJson = await res.json();
+      const result = await JSON.parse(resJson.result);
+      setIsLoading(false);
+      setAnalysis(result);
+      return;
+    }
+
+    // Otherwise, handle streaming using ReadableStream
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
     setIsLoading(false);
