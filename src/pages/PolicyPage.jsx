@@ -57,31 +57,6 @@ function PolicyLeftSidebar(props) {
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const selected = searchParams.get("focus") || "";
 
-  function recursiveAlphaSort(tree) {
-    if (!tree) {
-      return [];
-    }
-
-    let sorted = tree.sort((a, b) => {
-      // JS sorts by ASCII value - Z comes before a
-      if (a.label.toLowerCase() < b.label.toLowerCase()) {
-        return -1;
-      }
-      if (a.label.toLowerCase() > b.label.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    });
-
-    for (let i = 0; i < sorted.length; i++) {
-      sorted[i].children = recursiveAlphaSort(sorted[i].children);
-    }
-
-    return sorted;
-  }
-
-  const firstTree = recursiveAlphaSort(metadata.parameterTree.children);
-
   const onSelect = (name) => {
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", name);
@@ -101,8 +76,7 @@ function PolicyLeftSidebar(props) {
         </div>
       )}
       <StackedMenu
-        // firstTree={metadata.parameterTree.children}
-        firstTree={firstTree}
+        firstTree={metadata.parameterTree.children}
         selected={selected}
         onSelect={onSelect}
         secondTree={POLICY_OUTPUT_TREE[0].children}

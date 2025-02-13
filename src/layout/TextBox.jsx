@@ -49,11 +49,11 @@ export default function TextBox({
             fontSize: fontSize || 20,
             fontWeight: 300,
             padding: 10,
-            boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
+            boxShadow: `0px 0px 0px ${style.colors.BLUE}`,
           }}
           // While focussing, make the bottom border blue from left to right
           whileFocus={{
-            boxShadow: `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
+            boxShadow: `0px 5px 0px ${style.colors.BLUE}`,
           }}
         />
       </form>

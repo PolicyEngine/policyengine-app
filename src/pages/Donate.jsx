@@ -67,10 +67,7 @@ export default function Donate() {
         </Section>
 
         {/* Donate Online Section */}
-        <Section
-          backgroundColor={style.colors.BLUE_PRIMARY}
-          title="How to Donate"
-        >
+        <Section backgroundColor={style.colors.BLUE} title="How to Donate">
           <div
             style={{
               display: "flex",
