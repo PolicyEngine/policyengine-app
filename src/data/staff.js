@@ -52,8 +52,8 @@ from the Sharif University of Technology.`,
   },
   daphne_hansell: {
     name: "Daphne Hansell",
-    bio: `is a research assosiate at PolicyEngine. She focuses on the intersection 
-    of healthcare and the tax code. Previously, he was a health policy intern at  
+    bio: `is a research associate at PolicyEngine. She focuses on the intersection 
+    of healthcare and the tax code. Previously, she was a health policy intern at  
 the Niskanen Center and a policy fellow at the Progressive Policy Institute. Daphne holds an 
 B.A. in Public Health from Bryn Mawr College.`,
     image: require("../images/authors/daphne-hansell.jpeg"),
