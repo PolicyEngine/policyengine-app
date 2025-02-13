@@ -220,6 +220,7 @@ export default function Analysis(props) {
   const { impact, policyLabel, metadata, policy, region, timePeriod } = props;
   const [searchParams] = useSearchParams();
   const selectedVersion = searchParams.get("version") || metadata.version;
+  const dataset = searchParams.get("dataset") || null;
   const impactLabels = [
     "distributionalImpact.incomeDecile.relative",
     "povertyImpact.regular.byAge",
@@ -271,6 +272,7 @@ export default function Analysis(props) {
 
   const jsonPostBody = {
     currency: metadata.currency,
+    dataset: dataset,
     selected_version: selectedVersion,
     time_period: timePeriod,
     impact: impact,
