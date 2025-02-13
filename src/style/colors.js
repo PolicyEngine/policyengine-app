@@ -8,7 +8,6 @@ const DARK_GRAY = "#616161";
 const DARK_RED = "#b50d0d";
 const DARKEST_BLUE = "#0C1A27";
 const GRAY = "#808080";
-const GREEN = "#29d40f";
 const LIGHT_GRAY = "#F2F2F2";
 const MEDIUM_DARK_GRAY = "#D2D2D2";
 const MEDIUM_LIGHT_GRAY = "#BDBDBD";
@@ -28,7 +27,6 @@ const colors = {
   DARK_RED,
   DARKEST_BLUE,
   GRAY,
-  GREEN,
   LIGHT_GRAY,
   MEDIUM_DARK_GRAY,
   MEDIUM_LIGHT_GRAY,
