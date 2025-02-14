@@ -28,7 +28,7 @@
     "moment": "^2.30.1",
     "openai": "^4.77.0",
     "plotly.js": "^2.35.3",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-detect-print": "^0.1.2",
     "react-dom": "^18.3.1",
