@@ -224,7 +224,7 @@ export default function HouseholdRightSidebar(props) {
         )}
         {hasReform && (
           <SearchParamNavButton
-            text="Edit my reform"
+            text="View Economic Impact"
             focus="gov"
             type="secondary"
             target={`/${metadata.countryId}/policy`}
