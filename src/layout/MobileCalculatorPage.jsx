@@ -2,7 +2,8 @@
  * are smaller than 768px. It currently includes the tree hierarchy of the material
  * displayed (breadcrumbs), buttons that go to next and previous content, a button
  * that pulls up a view to edit the policy/household details, and a button that
- * additionally enables the user to rename the policy and make a policy search.
+ * 
+ * itionally enables the user to rename the policy and make a policy search.
  * */
 
 // eslint-disable-next-line no-unused-vars
@@ -735,7 +736,7 @@ function NavOptionsBar(props) {
 
     if (hasReform) {
       buttonData.push({
-        text: "Edit my reform",
+        text: "VIEW ECONOMIC IMPACT",
         focus: "gov",
         target: `/${metadata.countryId}/policy`,
       });
