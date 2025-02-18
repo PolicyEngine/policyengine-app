@@ -2,7 +2,7 @@
  * are smaller than 768px. It currently includes the tree hierarchy of the material
  * displayed (breadcrumbs), buttons that go to next and previous content, a button
  * that pulls up a view to edit the policy/household details, and a button that
- * 
+ *
  * itionally enables the user to rename the policy and make a policy search.
  * */
 

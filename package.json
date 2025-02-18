@@ -25,6 +25,7 @@
     "html2canvas": "^1.4.1",
     "jsonp": "^0.2.1",
     "lint": "^0.8.19",
+    "make": "^0.8.1",
     "markdown-to-jsx": "^7.7.3",
     "moment": "^2.30.1",
     "openai": "^4.82.0",
