@@ -1,7 +1,3 @@
-
-
-![](https://cdn-images-1.medium.com/max/2400/1*kkmPbArWrz5cAB6eHXaLQQ.jpeg)
-
 As New York’s legislative session progresses, lawmakers are proposing various changes to the state’s income tax code. [Senate Bill S2238](https://www.nysenate.gov/legislation/bills/2025/S2238), sponsored by State Senator Andrew Gounardes, would establish a New York City Child Tax Credit (NYC CTC) while restructuring the existing School Tax Credit (STC) to raise revenue to offset the cost of the NYC CTC. Using PolicyEngine’s household calculator and microsimulation capabilities, this analysis examines the specific effects of Senate Bill S2238 on individual families as well as its impact on the budget, income distribution, and poverty.
 
 [PolicyEngine projects](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) that in 2025, Senate Bill S2238 would:
@@ -20,7 +16,7 @@ The School Tax Credit, like other tax credits available to New York City residen
 
 1. The **fixed amount** provides $63 ($125 for joint and surviving spouse filers) to filers with state AGI at $250,000 or less.
 
-1. The **rate reduction amount** increases with taxable income and is limited to filers with taxable income below $500,000. For filers with taxable income below $12,000 ($21,600 for joint filers and $14,400 for heads of households), the rate reduction amount equals 0.171% of taxable income; above that threshold, it equals 0.228% of taxable income.
+2. The **rate reduction amount** increases with taxable income and is limited to filers with taxable income below $500,000. For filers with taxable income below $12,000 ($21,600 for joint filers and $14,400 for heads of households), the rate reduction amount equals 0.171% of taxable income; above that threshold, it equals 0.228% of taxable income.
 
 Figure 1 shows the total amount of the School Tax Credit for a single filer based on household income.
 
@@ -51,9 +47,9 @@ The impact of Senate Bill S2238 varies based on household composition and income
 | **Single, One Child, \$50,000**   | \$152                      | \$152                 | \$300   | [+\$300](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) |
 | **Single, One Child, \$85,000**   | \$221                      | \$0                   | \$0     | [-\$221](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50997) |
 
-A single adult with $50,000 in earnings and zero children would continue to receive their current School Tax Credit at $152¹ as their income is below the phaseout threshold of $75,000. Additionally, because they have no children, they are ineligible for the NYC CTC, leaving their net income unchanged. However, if their earnings increase to $85,000, their STC would phase out completely, reducing their net income by $232 (what they would otherwise receive from the STC if Senate Bill S2238 were not implemented).
+A single adult with $50,000 in earnings and zero children would continue to receive their current School Tax Credit at $152[^1] as their income is below the phaseout threshold of $75,000. Additionally, because they have no children, they are ineligible for the NYC CTC, leaving their net income unchanged. However, if their earnings increase to $85,000, their STC would phase out completely, reducing their net income by $232 (what they would otherwise receive from the STC if Senate Bill S2238 were not implemented).
 
-For a single parent of one making $50,000 a year, their net income would increase by $300 as their STC would also remain unchanged at $152, but they would now receive the $300 NYC CTC. The STC phases out from $75,000 to $78,040 of earnings, and the CTC phases out from $75,000 to $81,000, so at $85,000 of earnings, their net income falls by $221.² Figure 3 displays the change in net income for a single parent with one child under Senate Bill S2238, while Figure 4 shows how marginal tax rates are affected.
+For a single parent of one making $50,000 a year, their net income would increase by $300 as their STC would also remain unchanged at $152, but they would now receive the $300 NYC CTC. The STC phases out from $75,000 to $78,040 of earnings, and the CTC phases out from $75,000 to $81,000, so at $85,000 of earnings, their net income falls by $221.[^2] Figure 3 displays the change in net income for a single parent with one child under Senate Bill S2238, while Figure 4 shows how marginal tax rates are affected.
 
 **Figure 3: Change in Net Income for a Single Parent of One Child Under Senate Bill S2238 Based on Household Income**
 
@@ -86,7 +82,7 @@ As displayed in Figure 5, the proposed legislation provides net benefits to the 
 
 Furthermore, while the average dollar amount gained in each decile in the bottom half of the distribution would vary, households in these deciles would see their net income increase [between 0.2% and 0.3%](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900) on average.
 
-**Figure 5: Average Benefit of Senate Bill S2238 by Income Decile³**
+**Figure 5: Average Benefit of Senate Bill S2238 by Income Decile[^3]**
 
 ![](https://cdn-images-1.medium.com/max/2000/1*H404oqvkm7Am75Cjq_ugAQ.png)
 
@@ -102,7 +98,7 @@ Senate Bill S2238 would lower the city’s Supplemental Poverty Measure [by 0.8%
 
 ![](https://cdn-images-1.medium.com/max/2000/1*KHmC00tZhNNzIwEqWckwmw.png)
 
-Finally, the city’s Gini index of income inequality would [drop by 0.3%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51083).⁴
+Finally, the city’s Gini index of income inequality would [drop by 0.3%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51083).[^4]
 
 ## Conclusion
 
@@ -112,10 +108,10 @@ As policymakers evaluate reforms such as these, analytical tools like PolicyEngi
 
 We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
-1. The childless adult would receive the STC’s fixed amount of $63, plus the rate reduction portion. With $50,000 in annual earnings, their taxable income is $42,000 as they receive New York’s $8,000 standard deduction. 0.171% of the first $12,000 is $20.52. 0.228% of the remaining $30,000 is $68.40. Combined the rate reduction amount is around $89. $63 plus $89 is $152, the adult’s total STC.
+[^1] The childless adult would receive the STC’s fixed amount of $63, plus the rate reduction portion. With $50,000 in annual earnings, their taxable income is $42,000 as they receive New York’s $8,000 standard deduction. 0.171% of the first $12,000 is $20.52. 0.228% of the remaining $30,000 is $68.40. Combined the rate reduction amount is around $89. $63 plus $89 is $152, the adult’s total STC.
 
-1. The School Tax Credit amounts for a childless adult and a single parent who earn $85,000 are not the same due to the differences of the phase in rate thresholds of the “rate reduction” portion of the STC. The childless adult is a single filer while the single parent can use the head of household filing status.
+[^2] The School Tax Credit amounts for a childless adult and a single parent who earn $85,000 are not the same due to the differences of the phase in rate thresholds of the “rate reduction” portion of the STC. The childless adult is a single filer while the single parent can use the head of household filing status.
 
-1. Note that these income deciles are based on the national income distribution, rather than NYC income distribution.
+[^3] Note that these income deciles are based on the national income distribution, rather than NYC income distribution.
 
-1. PolicyEngine’s analysis shows that Senate Bill S2238 would increase the share of total net income held by the top 1% of households by less than 0.1%. This may be a relative effect rather than an absolute benefit to the top 1%. Since households in the top 1% typically have taxable incomes above $500,000, they would be largely unaffected by the bill’s provisions. However, the bill would reduce total net income held by all New Yorkers (by raising $93.3 million net tax revenue), leaving the top 1%’s constant dollar value a larger share of the total.
+[^4] PolicyEngine’s analysis shows that Senate Bill S2238 would increase the share of total net income held by the top 1% of households by less than 0.1%. This may be a relative effect rather than an absolute benefit to the top 1%. Since households in the top 1% typically have taxable incomes above $500,000, they would be largely unaffected by the bill’s provisions. However, the bill would reduce total net income held by all New Yorkers (by raising $93.3 million net tax revenue), leaving the top 1%’s constant dollar value a larger share of the total.
