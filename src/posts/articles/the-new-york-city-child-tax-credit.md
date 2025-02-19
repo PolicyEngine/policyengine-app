@@ -1,7 +1,4 @@
 
-# The New York City Child Tax Credit
-
-Analysis of Senate Bill S2238, sponsored by Sen. Andrew Gounardes
 
 ![](https://cdn-images-1.medium.com/max/2400/1*kkmPbArWrz5cAB6eHXaLQQ.jpeg)
 
@@ -47,7 +44,12 @@ The impact of Senate Bill S2238 varies based on household composition and income
 
 **Table 1: Impact of Senate Bill S2238 on Various Household Compositions**
 
-![](https://cdn-images-1.medium.com/max/2000/1*pAN2qzlqChRjh4Y_toYtSA.png)
+| Household Composition             | Baseline School Tax Credit | New School Tax Credit | NYC CTC | Change in Net Income                                                                                                                               |
+|:--------------|---------------|---------------|---------------|---------------|
+| **Single, No Children, \$50,000** | \$152                      | \$152                 | \$0     | [\$0](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900)    |
+| **Single, No Children, \$85,000** | \$232                      | \$0                   | \$0     | [-\$232](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50993) |
+| **Single, One Child, \$50,000**   | \$152                      | \$152                 | \$300   | [+\$300](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) |
+| **Single, One Child, \$85,000**   | \$221                      | \$0                   | \$0     | [-\$221](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50997) |
 
 A single adult with $50,000 in earnings and zero children would continue to receive their current School Tax Credit at $152¹ as their income is below the phaseout threshold of $75,000. Additionally, because they have no children, they are ineligible for the NYC CTC, leaving their net income unchanged. However, if their earnings increase to $85,000, their STC would phase out completely, reducing their net income by $232 (what they would otherwise receive from the STC if Senate Bill S2238 were not implemented).
 
@@ -65,8 +67,13 @@ In summation, households with no children are unaffected if their earnings are l
 
 **Table 2: Breakeven Points by Household Composition**
 
-![](https://cdn-images-1.medium.com/max/2000/1*A9CvKMePTvx6JeMJo-Q8jg.png)
-
+| Number of Children |                                                                       Single                                                                        |                                                                       Married                                                                        |
+|:----------------------:|:----------------------:|:----------------------:|
+|       **0**        | [\$75,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50956) | [\$150,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51087) |
+|       **1**        | [\$78,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51088) | [\$153,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51089) |
+|       **2**        | [\$82,700](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51090) | [\$156,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51091) |
+|       **3**        | [\$88,500](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51094) | [\$159,300](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51095) |
+|       **4**        | [\$94,300](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51096) | [\$165,100](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51097) |
 *Rounded to the nearest $100.*
 
 Using PolicyEngine’s microsimulation capabilities through 3 years of pooled data (2021–2023) from the Current Population Survey (CPS), we can also estimate the impact of Senate Bill S2238 on New York City at large.
