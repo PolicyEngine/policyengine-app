@@ -2,13 +2,13 @@ As New York’s legislative session progresses, lawmakers are proposing various 
 
 [PolicyEngine projects](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) that in 2025, Senate Bill S2238 would:
 
-* Generate $93.3 million in state revenue
+- Generate $93.3 million in state revenue
 
-* Affect 57% of NYC residents, with 32% seeing increased net income and 25% seeing decreased net income
+- Affect 57% of NYC residents, with 32% seeing increased net income and 25% seeing decreased net income
 
-* Lower poverty by 0.8% and child poverty by 2.0%
+- Lower poverty by 0.8% and child poverty by 2.0%
 
-* Reduce the Gini index of income inequality by 0.3%
+- Reduce the Gini index of income inequality by 0.3%
 
 ## Background
 
@@ -36,12 +36,12 @@ At the same time, the legislation would introduce a $300 fully refundable Child 
 
 The impact of Senate Bill S2238 varies based on household composition and income level. To understand this, let’s examine different family examples and how the proposal changes their net income.
 
-*See how a New York City Child Tax Credit would affect your household with our [personalized calculator](https://policyengine.org/us/household?focus=intro&reform=74381&region=nyc&timePeriod=2025&baseline=2).*
+_See how a New York City Child Tax Credit would affect your household with our [personalized calculator](https://policyengine.org/us/household?focus=intro&reform=74381&region=nyc&timePeriod=2025&baseline=2)._
 
 **Table 1: Impact of Senate Bill S2238 on Various Household Compositions**
 
 | Household Composition             | Baseline School Tax Credit | New School Tax Credit | NYC CTC | Change in Net Income                                                                                                                               |
-|:--------------|---------------|---------------|---------------|---------------|
+| :-------------------------------- | -------------------------- | --------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Single, No Children, \$50,000** | \$152                      | \$152                 | \$0     | [\$0](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50900)    |
 | **Single, No Children, \$85,000** | \$232                      | \$0                   | \$0     | [-\$232](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50993) |
 | **Single, One Child, \$50,000**   | \$152                      | \$152                 | \$300   | [+\$300](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50953) |
@@ -64,13 +64,14 @@ In summation, households with no children are unaffected if their earnings are l
 **Table 2: Breakeven Points by Household Composition**
 
 | Number of Children |                                                                       Single                                                                        |                                                                       Married                                                                        |
-|:----------------------:|:----------------------:|:----------------------:|
+| :----------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------: |
 |       **0**        | [\$75,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=50956) | [\$150,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51087) |
 |       **1**        | [\$78,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51088) | [\$153,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51089) |
 |       **2**        | [\$82,700](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51090) | [\$156,000](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51091) |
 |       **3**        | [\$88,500](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51094) | [\$159,300](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51095) |
 |       **4**        | [\$94,300](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51096) | [\$165,100](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=74381&region=nyc&timePeriod=2025&baseline=2&household=51097) |
-*Rounded to the nearest $100.*
+
+_Rounded to the nearest $100._
 
 Using PolicyEngine’s microsimulation capabilities through 3 years of pooled data (2021–2023) from the Current Population Survey (CPS), we can also estimate the impact of Senate Bill S2238 on New York City at large.
 
