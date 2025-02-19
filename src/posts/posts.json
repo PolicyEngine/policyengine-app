@@ -1072,5 +1072,14 @@
     "authors": ["michael-smit"],
     "filename": "api-v2.md",
     "image": "api-v2.webp"
+  },
+  {
+    "title": "The New York City Child Tax Credit",
+    "date": "2025-02-18 00:00:01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ny-nyc", "featured", "child tax credit", "policy"],
+    "description": "Analysis of Senate Bill S2238, sponsored by Sen. Andrew Gounardes.",
+    "filename": "the-new-york-city-child-tax-credit.md",
+    "image": "the-new-york-city-child-tax-credit.webp"
   }
 ]
