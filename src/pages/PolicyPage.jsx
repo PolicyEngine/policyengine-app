@@ -54,7 +54,10 @@ export function ParameterSearch(props) {
 function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+    metadata.countryId,
+    searchParams,
+  );
   const selected = searchParams.get("focus") || "";
 
   const onSelect = (name) => {
@@ -159,7 +162,10 @@ export default function PolicyPage(props) {
       </FolderPage>
     );
   } else if (isOutput) {
-    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+      metadata.countryId,
+      searchParams,
+    );
     const validFocusValues = impactKeys;
     const stripped_focus = focus.replace("policyOutput.", "");
 

@@ -296,7 +296,7 @@ export function LowLevelDisplay(props) {
   const dataset = urlParams.get("dataset");
   const selectedVersion = urlParams.get("version") || metadata.version;
   const region = urlParams.get("region");
-  const policyOutputTree = getPolicyOutputTree(metadata.countryId);
+  const policyOutputTree = getPolicyOutputTree(metadata.countryId, urlParams);
   const url = encodeURIComponent(window.location.href);
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
   const twitterLink = `https://twitter.com/intent/tweet?url=${url}&text=${encodedPolicyLabel}%2C%20on%20PolicyEngine`;
