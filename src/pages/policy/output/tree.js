@@ -114,6 +114,10 @@ export function getPolicyOutputTree(countryId) {
               name: "policyOutput.winnersAndLosers.wealthDecile",
               label: "By wealth decile",
             },
+            countryId === "uk" && {
+              name: "policyOutput.winnersAndLosers.constituencies",
+              label: "By Parliamentary constituency",
+            },
           ].filter((x) => x),
         },
         {
@@ -161,6 +165,20 @@ export function getPolicyOutputTree(countryId) {
         {
           name: "policyOutput.cliffImpact",
           label: "Cliff impact",
+        },
+        countryId === "uk" && {
+          name: "policyOutput.constituencies",
+          label: "Parliamentary constituencies (experimental)",
+          children: [
+            {
+              name: "policyOutput.constituencies.relative",
+              label: "Relative change",
+            },
+            {
+              name: "policyOutput.constituencies.average",
+              label: "Average change",
+            },
+          ],
         },
         {
           name: "policyOutput.laborSupplyImpact",

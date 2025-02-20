@@ -27,6 +27,9 @@ import {
   LaborSupplyDecileRelativeImpactTotal,
 } from "./laborSupply/LaborSupplyDecileRelativeImpacts";
 import Analysis from "./Analysis";
+import WinnersLosersByConstituency from "./constituencies/WinnersLosersByConstituency";
+import RelativeChangeByConstituency from "./constituencies/RelativeChangeByConstituency";
+import AverageChangeByConstituency from "./constituencies/AverageChangeByConstituency";
 
 const map = {
   "budgetaryImpact.overall": budgetaryImpact,
@@ -37,11 +40,14 @@ const map = {
   "distributionalImpact.wealthDecile.relative": relativeImpactByWealthDecile,
   "winnersAndLosers.incomeDecile": intraDecileImpact,
   "winnersAndLosers.wealthDecile": intraWealthDecileImpact,
+  "winnersAndLosers.constituencies": WinnersLosersByConstituency,
   "povertyImpact.regular.byAge": povertyImpact,
   "povertyImpact.deep.byAge": deepPovertyImpact,
   "povertyImpact.regular.byGender": povertyImpactByGender,
   "povertyImpact.deep.byGender": deepPovertyImpactByGender,
   "povertyImpact.regular.byRace": povertyImpactByRace,
+  "constituencies.relative": RelativeChangeByConstituency,
+  "constituencies.average": AverageChangeByConstituency,
   inequalityImpact: inequalityImpact,
   cliffImpact: cliffImpact,
   "laborSupplyImpact.earnings.overall.absolute": LaborSupplyResponseAbsolute,
