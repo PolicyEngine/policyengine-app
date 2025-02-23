@@ -44,7 +44,7 @@ export const policyOutputs = {
   codeReproducibility: "Reproduce in Python",
 };
 
-export function getPolicyOutputTree(countryId) {
+export function getPolicyOutputTree(countryId, searchParams = {}) {
   const tree = [
     {
       name: "policyOutput",
@@ -114,6 +114,10 @@ export function getPolicyOutputTree(countryId) {
               name: "policyOutput.winnersAndLosers.wealthDecile",
               label: "By wealth decile",
             },
+            searchParams.get("uk_local_areas_beta") && {
+              name: "policyOutput.winnersAndLosers.constituencies",
+              label: "By Parliamentary constituency",
+            },
           ].filter((x) => x),
         },
         {
@@ -161,6 +165,20 @@ export function getPolicyOutputTree(countryId) {
         {
           name: "policyOutput.cliffImpact",
           label: "Cliff impact",
+        },
+        searchParams.get("uk_local_areas_beta") && {
+          name: "policyOutput.constituencies",
+          label: "Parliamentary constituencies (experimental)",
+          children: [
+            {
+              name: "policyOutput.constituencies.relative",
+              label: "Relative change",
+            },
+            {
+              name: "policyOutput.constituencies.average",
+              label: "Average change",
+            },
+          ],
         },
         {
           name: "policyOutput.laborSupplyImpact",
@@ -245,7 +263,7 @@ export function getPolicyOutputTree(countryId) {
           name: "policyOutput.codeReproducibility",
           label: "Reproduce in Python",
         },
-      ],
+      ].filter((x) => x),
     },
   ];
 
