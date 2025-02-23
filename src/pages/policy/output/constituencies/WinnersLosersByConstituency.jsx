@@ -1,26 +1,15 @@
-import { useContext } from "react";
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
 import {
-  ordinal,
   localeCode,
-  formatCurrency,
-  precision,
-  formatPercent,
 } from "../../../../lang/format";
-import {
-  ChartWidthContext,
-  HoverCardContext,
-} from "../../../../layout/HoverCard";
 import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
 import React from "react";
-import ImpactChart, { absoluteChangeMessage, wordWrap } from "../ImpactChart";
+import ImpactChart, { wordWrap } from "../ImpactChart";
 
 export function ImpactPlot(props) {
-  const { yaxistitle, all, policyLabel, metadata, mobile } = props;
-
-  const chartWidth = useContext(ChartWidthContext);
+  const { yaxistitle, outcomes_by_region, policyLabel, metadata, mobile } = props;
 
   const colorMap = {
     "Gain more than 5%": style.colors.BLUE,
@@ -53,32 +42,38 @@ export function ImpactPlot(props) {
     function hoverMessage(x, y) {
       const term1 =
         type1 === "all"
-          ? "Of all households,"
-          : `Of households in the ${ordinal(y)} decile,`;
+          ? "Of all constituencies,"
+          : `Of households in ${y},`;
       const term2 = x;
-      const msg = `${policyLabel} would cause ${term2} constituencies to ${hoverTextMap[type2]} their net income.`;
+      const msg = `${term1} ${policyLabel} would cause ${term2} constituencies to ${hoverTextMap[type2]} their net income.`;
       return wordWrap(msg, 50).replaceAll("\n", "<br>");
     }
-    const xArray = [all[type2]];
-    const yArray = ["All"];
+    const regions = type1 === "all" ? ["uk"] : ["england", "wales", "scotland", "northern_ireland"].reverse();
+    const regionLabels = type1 === "all" ? ["All"] : ["England", "Wales", "Scotland", "Northern Ireland"].reverse();
+    const counstituencyCounts = regions.map(region => outcomes_by_region[region][type2]);
+    const totalConstituencies = regions.map(region => Object.values(outcomes_by_region[region]).reduce((a, b) => a+b));
+    let percentages = []
+    for (let i = 0; i < counstituencyCounts.length; i++) {
+      percentages.push(counstituencyCounts[i] / totalConstituencies[i])
+    }
     return {
-      x: xArray,
-      y: yArray,
-      xaxis: "x",
-      yaxis: "y",
+      x: percentages,
+      y: regionLabels,
+      xaxis: type1 === "all" ? "x" : "x2",
+      yaxis: type1 === "all" ? "y" : "y2",
       type: "bar",
       name: legendTextMap[type2],
       legendgroup: type2,
-      showlegend: true,
+      showlegend: type1 === "all",
       marker: {
         color: colorMap[type2],
       },
       orientation: "h",
-      text: xArray,
+      text: counstituencyCounts,
       textposition: "inside",
       textangle: 0,
-      customdata: xArray.map((x, i) => {
-        const y = yArray[i];
+      customdata: counstituencyCounts.map((x, i) => {
+        const y = regionLabels[i];
         return { title: hoverTitle(y), msg: hoverMessage(x, y) };
       }),
       hovertemplate: `<b>%{customdata.title}</b><br><br>%{customdata.msg}<extra></extra>`,
@@ -89,7 +84,7 @@ export function ImpactPlot(props) {
     a.reduce((p, x) => [...p, ...b.map((y) => [x, y])], []);
 
   const data = product(
-    ["all"],
+    ["all", "regions"],
     [
       "Gain more than 5%",
       "Gain less than 5%",
@@ -107,19 +102,40 @@ export function ImpactPlot(props) {
       layout={{
         barmode: "stack",
         orientation: "h",
+        grid: {
+          rows: 2,
+          columns: 1,
+        },
         yaxis: {
           title: "",
           tickvals: ["All"],
           domain: [0.8, 1],
         },
         xaxis: {
-          title: "Constituencies",
+          title: "",
+          tickformat: ".0%",
+          anchor: "y",
+          matches: "x2",
+          showgrid: false,
+          showticklabels: false,
+          fixedrange: true,
         },
-        ...ChartLogo(0.9, 0.3),
+        xaxis2: {
+          title: "Constituency share",
+          tickformat: ".0%",
+          anchor: "y2",
+          fixedrange: true,
+        },
+        yaxis2: {
+          title: yaxistitle,
+          anchor: "x2",
+          domain: [0, 0.75],
+        },
+        ...ChartLogo(0.97, -0.3),
         margin: {
           t: 0,
           b: 80,
-          l: 40,
+          l: 130,
           r: 0,
         },
         hoverlabel: {
@@ -137,6 +153,7 @@ export function ImpactPlot(props) {
         legend: {
           x: 1,
           y: 1.25,
+          tracegroupgap: 10,
           title: {
             text: "Change in income<br>",
             font: {
@@ -152,18 +169,23 @@ export function ImpactPlot(props) {
         displayModeBar: false,
         locale: localeCode(metadata.countryId),
       }}
+      style={{
+        width: "100%",
+        marginBottom: !mobile && 50,
+      }}
     />
   );
 }
 
 export function title(policyLabel, impact) {
+  const outcomes = impact?.constituency_impact?.outcomes_by_region?.uk
   const count_benefiting =
-    impact?.constituency_impact?.overall["Gain more than 5%"] +
-    impact?.constituency_impact?.overall["Gain less than 5%"];
+    outcomes["Gain more than 5%"] +
+    outcomes["Gain less than 5%"];
   const count_losing =
-    impact?.constituency_impact?.overall["Lose more than 5%"] +
-    impact?.constituency_impact?.overall["Lose less than 5%"];
-  const count_no_change = impact?.constituency_impact?.overall["No change"];
+    outcomes["Lose more than 5%"] +
+    outcomes["Lose less than 5%"];
+  const count_no_change = outcomes["No change"];
   if (count_benefiting > count_no_change + count_no_change) {
     return `${policyLabel} would raise net income on average in a majority (of ${count_benefiting - count_losing - count_no_change}) of Parliamentary constituencies`;
   } else if (count_no_change > count_benefiting + count_losing) {
@@ -183,7 +205,7 @@ export default function WinnersLosersByConstituency(props) {
     <ImpactChart title={title(policyLabel, impact)}>
       <ImpactPlot
         policyLabel={policyLabel}
-        all={impact?.constituency_impact?.overall}
+        outcomes_by_region={impact?.constituency_impact?.outcomes_by_region}
         metadata={metadata}
         mobile={mobile}
       />
