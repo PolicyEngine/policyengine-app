@@ -1,9 +1,6 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import {
-  localeCode,
-  formatPercent,
-} from "../../../../lang/format";
+import { localeCode, formatPercent } from "../../../../lang/format";
 import style from "../../../../style";
 import React from "react";
 import ImpactChart from "../ImpactChart";
@@ -27,9 +24,7 @@ export function ImpactPlot(props) {
     valueStr = formatPercent(colorValues[i], metadata.countryId, {
       minimumFractionDigits: 1,
     });
-    text.push(
-      `${constituencyNames[i]}: ${valueStr}`,
-    )
+    text.push(`${constituencyNames[i]}: ${valueStr}`);
   }
   const maxAbsValue = Math.max(...colorValues.map(Math.abs));
   return (

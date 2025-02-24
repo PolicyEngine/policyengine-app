@@ -1,15 +1,14 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import {
-  localeCode,
-} from "../../../../lang/format";
+import { localeCode } from "../../../../lang/format";
 import style from "../../../../style";
 import { plotLayoutFont } from "../utils";
 import React from "react";
 import ImpactChart, { wordWrap } from "../ImpactChart";
 
 export function ImpactPlot(props) {
-  const { yaxistitle, outcomes_by_region, policyLabel, metadata, mobile } = props;
+  const { yaxistitle, outcomes_by_region, policyLabel, metadata, mobile } =
+    props;
 
   const colorMap = {
     "Gain more than 5%": style.colors.BLUE,
@@ -41,20 +40,28 @@ export function ImpactPlot(props) {
     const hoverTitle = (y) => (y === "All" ? `All households` : `Decile ${y}`);
     function hoverMessage(x, y) {
       const term1 =
-        type1 === "all"
-          ? "Of all constituencies,"
-          : `Of households in ${y},`;
+        type1 === "all" ? "Of all constituencies," : `Of households in ${y},`;
       const term2 = x;
       const msg = `${term1} ${policyLabel} would cause ${term2} constituencies to ${hoverTextMap[type2]} their net income.`;
       return wordWrap(msg, 50).replaceAll("\n", "<br>");
     }
-    const regions = type1 === "all" ? ["uk"] : ["england", "wales", "scotland", "northern_ireland"].reverse();
-    const regionLabels = type1 === "all" ? ["All"] : ["England", "Wales", "Scotland", "Northern Ireland"].reverse();
-    const counstituencyCounts = regions.map(region => outcomes_by_region[region][type2]);
-    const totalConstituencies = regions.map(region => Object.values(outcomes_by_region[region]).reduce((a, b) => a+b));
-    let percentages = []
+    const regions =
+      type1 === "all"
+        ? ["uk"]
+        : ["england", "wales", "scotland", "northern_ireland"].reverse();
+    const regionLabels =
+      type1 === "all"
+        ? ["All"]
+        : ["England", "Wales", "Scotland", "Northern Ireland"].reverse();
+    const counstituencyCounts = regions.map(
+      (region) => outcomes_by_region[region][type2],
+    );
+    const totalConstituencies = regions.map((region) =>
+      Object.values(outcomes_by_region[region]).reduce((a, b) => a + b),
+    );
+    let percentages = [];
     for (let i = 0; i < counstituencyCounts.length; i++) {
-      percentages.push(counstituencyCounts[i] / totalConstituencies[i])
+      percentages.push(counstituencyCounts[i] / totalConstituencies[i]);
     }
     return {
       x: percentages,
@@ -178,13 +185,11 @@ export function ImpactPlot(props) {
 }
 
 export function title(policyLabel, impact) {
-  const outcomes = impact?.constituency_impact?.outcomes_by_region?.uk
+  const outcomes = impact?.constituency_impact?.outcomes_by_region?.uk;
   const count_benefiting =
-    outcomes["Gain more than 5%"] +
-    outcomes["Gain less than 5%"];
+    outcomes["Gain more than 5%"] + outcomes["Gain less than 5%"];
   const count_losing =
-    outcomes["Lose more than 5%"] +
-    outcomes["Lose less than 5%"];
+    outcomes["Lose more than 5%"] + outcomes["Lose less than 5%"];
   const count_no_change = outcomes["No change"];
   if (count_benefiting > count_no_change + count_no_change) {
     return `${policyLabel} would raise net income on average in a majority (of ${count_benefiting - count_losing - count_no_change}) of Parliamentary constituencies`;

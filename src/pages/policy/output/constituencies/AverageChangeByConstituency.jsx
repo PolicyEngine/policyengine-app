@@ -1,9 +1,6 @@
 import Plot from "react-plotly.js";
 import { ChartLogo } from "../../../../api/charts";
-import {
-  localeCode,
-  formatCurrency,
-} from "../../../../lang/format";
+import { localeCode, formatCurrency } from "../../../../lang/format";
 import style from "../../../../style";
 import React from "react";
 import ImpactChart from "../ImpactChart";
@@ -11,24 +8,22 @@ import { title } from "./WinnersLosersByConstituency";
 
 export function ImpactPlot(props) {
   const { data, metadata, mobile } = props;
-  
-    let xValues = Object.values(data).map((item) => item.x);
-    const constituencyNames = Object.keys(data);
-    let text = [];
-    const yValues = Object.values(data).map((item) => item.y);
-    const colorValues = Object.values(data).map(
-      (item) => item.average_household_income_change,
-    );
-    let valueStr;
-    for (let i = 0; i < xValues.length; i++) {
-      if (yValues[i] % 2 === 0) {
-        xValues[i] = xValues[i] + 0.5;
-      }
-      valueStr = formatCurrency(colorValues[i], metadata.countryId);
-      text.push(
-        `${constituencyNames[i]}: ${valueStr}`,
-      )
+
+  let xValues = Object.values(data).map((item) => item.x);
+  const constituencyNames = Object.keys(data);
+  let text = [];
+  const yValues = Object.values(data).map((item) => item.y);
+  const colorValues = Object.values(data).map(
+    (item) => item.average_household_income_change,
+  );
+  let valueStr;
+  for (let i = 0; i < xValues.length; i++) {
+    if (yValues[i] % 2 === 0) {
+      xValues[i] = xValues[i] + 0.5;
     }
+    valueStr = formatCurrency(colorValues[i], metadata.countryId);
+    text.push(`${constituencyNames[i]}: ${valueStr}`);
+  }
   const maxAbsValue = Math.max(...colorValues.map(Math.abs));
   return (
     <Plot
