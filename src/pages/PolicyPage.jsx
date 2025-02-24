@@ -71,7 +71,7 @@ function PolicyLeftSidebar(props) {
     const sortTreeInPlace = (tree) => {
       if (!Array.isArray(tree)) return [];
       
-      tree.sort((a, b) => a.name.localeCompare(b.name));
+      tree.sort((a, b) => a.label.localeCompare(b.label));
   
       tree.forEach((item) => {
         if (Array.isArray(item.children)) {
