@@ -217,7 +217,38 @@ export default function WinnersLosersByConstituency(props) {
     </ImpactChart>
   );
   const csv = () => {
-    return null;
+    const header = ["Region", "Category", "Count", "Percentage"];
+    const outcomesData = impact?.constituency_impact?.outcomes_by_region || {};
+    
+    const regions = ["uk", "england", "wales", "scotland", "northern_ireland"];
+    const regionLabels = ["All", "England", "Wales", "Scotland", "Northern Ireland"];
+    const categories = [
+      "Gain more than 5%",
+      "Gain less than 5%",
+      "No change",
+      "Lose less than 5%",
+      "Lose more than 5%"
+    ];
+    
+    const data = [header];
+    
+    for (let i = 0; i < regions.length; i++) {
+      const region = regions[i];
+      const regionLabel = regionLabels[i];
+      
+      if (outcomesData[region]) {
+        const totalConstituencies = Object.values(outcomesData[region]).reduce((a, b) => a + b, 0);
+        
+        for (const category of categories) {
+          const count = outcomesData[region][category] || 0;
+          const percentage = totalConstituencies > 0 ? count / totalConstituencies : 0;
+          
+          data.push([regionLabel, category, count, percentage]);
+        }
+      }
+    }
+    
+    return data;
   };
   return { chart: chart, csv: csv };
 }
