@@ -169,7 +169,8 @@ function description(metadata) {
       sum of the losses incurred by all households on a cliff if their income
       rose in this way.{" "}
       <a href="https://policyengine.org/us/research/how-would-reforms-affect-cliffs">
-        Read more about how PolicyEngine models the effect of reforms on cliffs.{" "}
+        Read more about how PolicyEngine models the effect of reforms on
+        cliffs.{" "}
       </a>
     </p>
   );

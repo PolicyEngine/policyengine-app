@@ -67,25 +67,24 @@ function PolicyLeftSidebar(props) {
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
 
+  const sortTreeInPlace = (tree) => {
+    if (!Array.isArray(tree)) return [];
 
-    const sortTreeInPlace = (tree) => {
-      if (!Array.isArray(tree)) return [];
-      
-      tree.sort((a, b) => a.label.localeCompare(b.label));
-  
-      tree.forEach((item) => {
-        if (Array.isArray(item.children)) {
-          sortTreeInPlace(item.children); 
-        }
-      });
-  
-      return tree;
-    };
-  
-    sortTreeInPlace(metadata.parameterTree.children);
-    if (POLICY_OUTPUT_TREE.length > 0) {
-      sortTreeInPlace(POLICY_OUTPUT_TREE[0].children);
-    }
+    tree.sort((a, b) => a.label.localeCompare(b.label));
+
+    tree.forEach((item) => {
+      if (Array.isArray(item.children)) {
+        sortTreeInPlace(item.children);
+      }
+    });
+
+    return tree;
+  };
+
+  sortTreeInPlace(metadata.parameterTree.children);
+  if (POLICY_OUTPUT_TREE.length > 0) {
+    sortTreeInPlace(POLICY_OUTPUT_TREE[0].children);
+  }
 
   // The menu, then the search bar anchored to the bottom
   return (
