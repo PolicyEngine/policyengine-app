@@ -192,15 +192,15 @@ export function title(policyLabel, impact) {
     outcomes["Lose more than 5%"] + outcomes["Lose less than 5%"];
   const count_no_change = outcomes["No change"];
   if (count_benefiting > count_no_change + count_no_change) {
-    return `${policyLabel} would raise net income on average in a majority (of ${count_benefiting - count_losing - count_no_change}) of Parliamentary constituencies`;
+    return `${policyLabel} would raise net income on average in a majority (of ${Math.abs(count_benefiting - count_losing - count_no_change)}) of parliamentary constituencies`;
   } else if (count_no_change > count_benefiting + count_losing) {
-    return `${policyLabel} would lower net income on average in a majority (of ${count_losing - count_benefiting - count_no_change}) of Parliamentary constituencies`;
+    return `${policyLabel} would lower net income on average in a majority (of ${Math.abs(count_losing - count_benefiting - count_no_change)}) of parliamentary constituencies`;
   } else if (count_benefiting > count_losing) {
-    return `${policyLabel} would raise net income on average in ${count_benefiting} Parliamentary constituencies`;
+    return `${policyLabel} would raise net income on average in ${count_benefiting} parliamentary constituencies`;
   } else if (count_benefiting < count_losing) {
-    return `${policyLabel} would lower net income on average in ${count_losing} Parliamentary constituencies`;
+    return `${policyLabel} would lower net income on average in ${count_losing} parliamentary constituencies`;
   }
-  return `${policyLabel} would not change net income on average in any Parliamentary constituency`;
+  return `${policyLabel} would not change net income on average in any parliamentary constituency`;
 }
 
 export default function WinnersLosersByConstituency(props) {

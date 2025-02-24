@@ -116,7 +116,7 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
             },
             searchParams.get("uk_local_areas_beta") && {
               name: "policyOutput.winnersAndLosers.constituencies",
-              label: "By Parliamentary constituency",
+              label: "By parliamentary constituency",
             },
           ].filter((x) => x),
         },
