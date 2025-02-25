@@ -1,6 +1,7 @@
 # PolicyEngine App Development Guidelines
 
 ## Build & Test Commands
+
 - Install: `make install` (npm ci & black)
 - Start dev server: `make debug` (or `npm start`)
 - Run all tests: `make test` or `npm run test`
@@ -9,6 +10,7 @@
 - Check lint only: `npm run lint`
 
 ## Code Style Guidelines
+
 - **Node version**: Use Node >=22.0.0 (use nvm to manage versions)
 - **Formatting**: Uses Prettier (default config) with ESLint
 - **React**: Functional components with hooks; no need to import React due to new JSX transform
@@ -20,7 +22,8 @@
 - **Pre-commit hooks**: Uses husky and lint-staged to enforce linting on commit
 
 ## Common Patterns & Gotchas
-- Use the spread operator for state updates: `setState({...state, property: value})` 
+
+- Use the spread operator for state updates: `setState({...state, property: value})`
 - Use regex with global flag (`/pattern/g`) when replacing multiple occurrences in strings
 - `findInTree` function navigates variable hierarchies using path strings like "input.household.children"
 - URL-encoded parameters need proper decoding (e.g., %5B to [, %5D to ])
