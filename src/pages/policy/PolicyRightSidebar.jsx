@@ -41,6 +41,12 @@ function RegionSelector(props) {
   if (inputRegion === "enhanced_us") {
     inputRegion = "us";
   }
+  if (!searchParams.get("uk_local_areas_beta")) {
+    console.log(options);
+    options = options.filter(
+      (option) => !option.value.includes("constituency/"),
+    );
+  }
   const [value] = useState(inputRegion || options[0].value);
 
   return (
