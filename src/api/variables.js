@@ -56,7 +56,7 @@ export function findInTree(tree, path) {
     cumulativePath = "";
     // Square brackets are not allowed in the URL, so we need to decode them.
     // Replace %5B with [ and %5D with ].
-    path = path.replace("%5B", "[").replace("%5D", "]");
+    path = path.replace(/%5B/g, "[").replace(/%5D/g, "]");
     const pathParts = path.split(/(\.|\[)/);
     const names = pathParts.filter((part) => part !== "." && part !== "[");
     const delimiters = pathParts.filter((part) => part === "." || part === "[");
