@@ -65,7 +65,7 @@ export function ImpactPlot(props) {
           colorbar: {
             outlinewidth: 0,
             thickness: 10,
-            tickformat: ".0%",
+            tickformat: ".1%",
           },
           colorscale: [
             [0, style.colors.DARK_GRAY],
