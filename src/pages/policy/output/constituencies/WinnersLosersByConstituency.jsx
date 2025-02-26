@@ -193,7 +193,7 @@ export function title(policyLabel, impact) {
   const count_no_change = outcomes["No change"];
   if (count_benefiting > count_no_change + count_no_change) {
     return `${policyLabel} would raise net income on average in a majority (of ${Math.abs(count_benefiting - count_losing - count_no_change)}) of parliamentary constituencies`;
-  } else if (count_no_change > count_benefiting + count_losing) {
+  } else if (count_losing > count_benefiting + count_no_change) {
     return `${policyLabel} would lower net income on average in a majority (of ${Math.abs(count_losing - count_benefiting - count_no_change)}) of parliamentary constituencies`;
   } else if (count_benefiting > count_losing) {
     return `${policyLabel} would raise net income on average in ${count_benefiting} parliamentary constituencies`;
