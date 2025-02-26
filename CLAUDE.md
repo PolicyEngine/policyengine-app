@@ -41,3 +41,12 @@
 - Follow the "PolicyEngine React commandments" in `src/README.md` for component structure
 - Add docstrings to all components and graceful error handling
 - When making changes, follow existing patterns in the codebase
+
+## Blog Posts
+
+- Keep URLs in blog post markdown files short (without query parameters) to prevent line-breaking issues
+- When adding blog posts, remember to remove the title (with the single #), description, and cover image
+- Use proper Markdown footnote syntax (`[^1]`) instead of superscript footnotes
+- New blog posts in `posts.json` should be added at the beginning of the array (most recent first)
+- For new blog posts from Medium, install `mediumexporter` and use it to download the post content
+- Image file paths should match the blog post filename in the posts.json entry
