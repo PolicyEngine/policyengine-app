@@ -16,7 +16,7 @@ _Use PolicyEngine to [view the full results](https://policyengine.org/us/policy)
 
 ## Household Impacts
 
-To understand the extent of this reform, it is important to note that higher-income households receive larger tax savings because they have more taxable income and therefore higher initial tax liability. For example, a childless adult earning $20,000 in Kentucky gains $58 from the 0.5% rate reduction, while they would gain $483 if they earned $100,000, or $1,664 if they earned $500,000.
+To understand the extent of this reform, it is important to note that higher-income households receive larger tax savings because they have more taxable income and therefore higher initial tax liability. For example, a childless adult earning $20,000 in Kentucky gains $58 from the 0.5pp rate reduction, while they would gain $483 if they earned $100,000, or $1,664 if they earned $500,000.
 
 **Table 1: Change in Net Income by Household Income for a Single Adult**
 
@@ -56,7 +56,7 @@ The tax changes are projected to [reduce Kentucky's poverty rate by 1.3%](https:
 
 ## Conclusion
 
-The 0.5% rate reduction of Kentucky's income tax signed into law by Gov. Beshear will lower state revenues by $684 million in 2026, while also reducing poverty by 1.3% and increasing income inequality by 0.14%. The reform reduces tax liability for households across all income deciles, with higher-income households receiving larger benefits on both an [absolute](https://policyengine.org/us/policy) and [relative](https://policyengine.org/us/policy) basis.
+The 0.5pp rate reduction of Kentucky's income tax will lower state revenues by $684 million in 2026, while reducing poverty by 1.3% and increasing income inequality by 0.14%. The reform reduces tax liability for households across all income deciles, with higher-income households receiving larger benefits on both an [absolute](https://policyengine.org/us/policy) and [relative](https://policyengine.org/us/policy) basis.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
