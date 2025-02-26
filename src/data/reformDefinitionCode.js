@@ -189,9 +189,10 @@ export function getImplementationCode(
   if (hasDatasetSpecified) {
     datasetText = DEFAULT_DATASETS[dataset];
   } else if (isState) {
-    datasetText = "pooled_3_year_cps_2023";
+    datasetText =
+      "hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5";
   } else if (region === "enhanced_us") {
-    datasetText = "enhanced_cps_2024";
+    datasetText = "hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5";
   }
 
   const datasetSpecifier = datasetText ? `dataset="${datasetText}"` : "";

@@ -88,12 +88,12 @@ export default function FormItem(props) {
           fontSize: 15,
           fontWeight: 300,
           padding: 10,
-          boxShadow: `0px 0px 0px ${style.colors.BLUE_PRIMARY}`,
+          boxShadow: `0px 0px 0px ${style.colors.BLUE}`,
           ...inputStyle,
         }}
         // While focusing, make the bottom border blue from left to right
         whileFocus={{
-          boxShadow: focusStyle || `0px 5px 0px ${style.colors.BLUE_PRIMARY}`,
+          boxShadow: focusStyle || `0px 5px 0px ${style.colors.BLUE}`,
         }}
       />
     </div>

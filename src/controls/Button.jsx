@@ -17,8 +17,8 @@ export const buttonStyles = {
   },
   primaryBlue: {
     standard: {
-      backgroundColor: colors.BLUE_PRIMARY,
-      borderColor: colors.BLUE_PRIMARY,
+      backgroundColor: colors.BLUE,
+      borderColor: colors.BLUE,
       color: colors.WHITE,
     },
     hover: {
@@ -42,8 +42,8 @@ export const buttonStyles = {
   secondaryBlue: {
     standard: {
       backgroundColor: "transparent",
-      borderColor: colors.BLUE_PRIMARY,
-      color: colors.BLUE_PRIMARY,
+      borderColor: colors.BLUE,
+      color: colors.BLUE,
     },
     hover: {
       backgroundColor: colors.BLUE_PRESSED,

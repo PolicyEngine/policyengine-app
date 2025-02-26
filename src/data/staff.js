@@ -50,6 +50,14 @@ University of Munich (LMU) and a bachelor's degree in Electrical Engineering
 from the Sharif University of Technology.`,
     image: require("../images/authors/vahid-ahmadi.jpeg"),
   },
+  daphne_hansell: {
+    name: "Daphne Hansell",
+    bio: `is a research associate at PolicyEngine. She focuses on the intersection 
+    of healthcare and the tax code. Previously, she was a health policy intern at  
+the Niskanen Center and a policy fellow at the Progressive Policy Institute. Daphne holds an 
+B.A. in Public Health from Bryn Mawr College.`,
+    image: require("../images/authors/daphne-hansell.jpeg"),
+  },
   david_trimmer: {
     name: "David Trimmer",
     bio: `is a policy research fellow at PolicyEngine. He is also a contributor
@@ -58,6 +66,15 @@ the Niskanen Center and a staff writer for Policy Perspectives. David holds an
 MPA from The George Washington University and a B.S. in Political Science from 
 The Rochester Institute of Technology.`,
     image: require("../images/authors/david-trimmer.jpeg"),
+  },
+  john_wong: {
+    name: "John Wong",
+    bio: `is a policy modeling fellow at PolicyEngine. He is also working towards 
+    a master's degree in economics at George Mason University and a MA Fellow at 
+    Mercatus Center. Previously, he was a fiscal policy fellow at Progressive 
+    Policy Institute and a Peterson Foundation fiscal intern. John holds a 
+    bachelor's degree in economics and finance from the University of Hong Kong.`,
+    image: require("../images/authors/john-wong.jpg"),
   },
 };
 

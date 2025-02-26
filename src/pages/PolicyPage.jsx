@@ -56,14 +56,17 @@ function PolicyLeftSidebar(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
   const selected = searchParams.get("focus") || "";
+
   const onSelect = (name) => {
     let newSearch = copySearchParams(searchParams);
     newSearch.set("focus", name);
     setSearchParams(newSearch);
   };
+
   const isOnOutput =
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
+
   // The menu, then the search bar anchored to the bottom
   return (
     <div style={{ backgroundColor: style.colors.LIGHT_GRAY }}>

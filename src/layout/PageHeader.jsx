@@ -45,7 +45,7 @@ export default function PageHeader({
         >
           <h2
             style={{
-              color: style.colors.BLUE_PRIMARY,
+              color: style.colors.BLUE,
             }}
           >
             {title}
