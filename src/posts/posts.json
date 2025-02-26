@@ -1081,5 +1081,14 @@
     "description": "Analysis of Senate Bill S2238, introduced by Senator Andrew Gounardes.",
     "filename": "nyc-ctc-s2238.md",
     "image": "nyc-ctc-s2238.webp"
+  },
+  {
+    "title": "Kentucky Cuts Income Tax Rate",
+    "description": "Analysis of lowering Kentucky's 4% income tax rate to 3.5%.",
+    "date": "2025-02-26",
+    "tags": ["us", "us-ky", "policy", "featured"],
+    "filename": "kentucky-cuts-income-tax-rate.md",
+    "image": "kentucky-cuts-income-tax-rate.webp",
+    "authors": ["david-trimmer"]
   }
 ]
