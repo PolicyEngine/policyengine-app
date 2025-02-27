@@ -18,7 +18,7 @@ import SearchOptions from "../../controls/SearchOptions";
 import SearchParamNavButton from "../../controls/SearchParamNavButton";
 import style from "../../style";
 import PolicySearch from "./PolicySearch";
-import { Alert, Modal, Switch, Tooltip } from "antd";
+import { Alert, Modal, Switch, Tag, Tooltip } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { defaultYear } from "data/constants";
 import useDisplayCategory from "../../hooks/useDisplayCategory";
@@ -40,6 +40,11 @@ function RegionSelector(props) {
   let inputRegion = searchParams.get("region");
   if (inputRegion === "enhanced_us") {
     inputRegion = "us";
+  }
+  if (!(searchParams.get("uk_local_areas_beta") === "true")) {
+    options = options.filter(
+      (option) => !option.value.includes("constituency/"),
+    );
   }
   const [value] = useState(inputRegion || options[0].value);
 
@@ -353,6 +358,47 @@ function BehavioralResponseToggle(props) {
           }}
         />
       </Tooltip>
+    </div>
+  );
+}
+
+function LocalAreaFunctionalitySelector() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isChecked, setIsChecked] = useState(
+    searchParams.get("uk_local_areas_beta") === "true",
+  );
+  const displayCategory = useDisplayCategory();
+
+  function handleChange(value) {
+    let newSearch = copySearchParams(searchParams);
+    newSearch.set("uk_local_areas_beta", value);
+    setSearchParams(newSearch);
+    setIsChecked(value);
+  }
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <Switch
+        checked={isChecked}
+        size={displayCategory !== "mobile" && "small"}
+        onChange={handleChange}
+      />
+      <p
+        style={{
+          margin: 0,
+          fontSize: displayCategory !== "mobile" && "0.95em",
+        }}
+      >
+        Enable UK local areas <Tag color={style.colors.TEAL_ACCENT}>BETA</Tag>
+      </p>
     </div>
   );
 }
@@ -1109,6 +1155,9 @@ export default function PolicyRightSidebar(props) {
                 )}
                 <FullLiteToggle metadata={metadata} />
                 <BehavioralResponseToggle metadata={metadata} policy={policy} />
+                {metadata.countryId === "uk" && (
+                  <LocalAreaFunctionalitySelector />
+                )}
               </div>
             }
           />

@@ -14,7 +14,10 @@ function FolderPageDescription(props) {
   const { metadata, inPolicySide } = props;
   const mobile = useMobile();
   if (!metadata) return null;
-  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+    metadata.countryId,
+    searchParams,
+  );
   let currentNode;
 
   if (focus && focus.startsWith("policyOutput")) {

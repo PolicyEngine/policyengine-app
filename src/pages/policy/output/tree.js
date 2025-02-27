@@ -44,7 +44,19 @@ export const policyOutputs = {
   codeReproducibility: "Reproduce in Python",
 };
 
-export function getPolicyOutputTree(countryId) {
+export function getPolicyOutputTree(countryId, searchParams = {}) {
+  // Helper to safely check if a URL parameter exists
+  const hasParam = (param) => {
+    if (!searchParams) return false;
+    if (typeof searchParams.get === "function") {
+      return !!searchParams.get(param);
+    }
+    return !!searchParams[param];
+  };
+  const uk_local_areas_beta = hasParam("uk_local_areas_beta")
+    ? searchParams.get("uk_local_areas_beta")
+    : false;
+
   const tree = [
     {
       name: "policyOutput",
@@ -114,6 +126,10 @@ export function getPolicyOutputTree(countryId) {
               name: "policyOutput.winnersAndLosers.wealthDecile",
               label: "By wealth decile",
             },
+            uk_local_areas_beta && {
+              name: "policyOutput.winnersAndLosers.constituencies",
+              label: "By parliamentary constituency",
+            },
           ].filter((x) => x),
         },
         {
@@ -162,6 +178,20 @@ export function getPolicyOutputTree(countryId) {
           name: "policyOutput.cliffImpact",
           label: "Cliff impact",
         },
+        uk_local_areas_beta && {
+          name: "policyOutput.constituencies",
+          label: "Parliamentary constituencies (experimental)",
+          children: [
+            {
+              name: "policyOutput.constituencies.relative",
+              label: "Relative change",
+            },
+            {
+              name: "policyOutput.constituencies.average",
+              label: "Average change",
+            },
+          ],
+        },
         {
           name: "policyOutput.laborSupplyImpact",
           label:
@@ -169,6 +199,10 @@ export function getPolicyOutputTree(countryId) {
               ? "Labour supply impact (experimental)"
               : "Labor supply impact (experimental)",
           children: [
+            uk_local_areas_beta && {
+              name: "policyOutput.constituencies.laborSupplyFTEs",
+              label: "By parliamentary constituency",
+            },
             countryId === "us" && {
               name: "policyOutput.laborSupplyImpact.hours",
               label: "Hours worked",
@@ -245,7 +279,7 @@ export function getPolicyOutputTree(countryId) {
           name: "policyOutput.codeReproducibility",
           label: "Reproduce in Python",
         },
-      ],
+      ].filter((x) => x),
     },
   ];
 
