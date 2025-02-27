@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import Spinner from "../../../layout/Spinner";
 import Button from "../../../controls/Button";
 import CodeBlock from "../../../layout/CodeBlock";
