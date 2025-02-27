@@ -82,9 +82,6 @@ function PolicyLeftSidebar(props) {
   };
 
   sortTreeInPlace(metadata.parameterTree.children);
-  if (POLICY_OUTPUT_TREE.length > 0) {
-    sortTreeInPlace(POLICY_OUTPUT_TREE[0].children);
-  }
 
   // The menu, then the search bar anchored to the bottom
   return (
