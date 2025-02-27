@@ -71,7 +71,11 @@ const map = {
 // get representations of the impact as a chart and a csv. The returned object
 // has type {chart: <a react component>, csv: <an array>}.
 export const getImpactReps = (impactKey, props) => {
-  return map[impactKey](props);
+  try {
+    return map[impactKey](props);
+  } catch (e) {
+    throw new Error(`Impact type ${impactKey} not found`);
+  }
 };
 
 export const impactKeys = Object.keys(map);
