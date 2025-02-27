@@ -41,6 +41,7 @@ export function ImpactPlot(props) {
             coloraxis: "coloraxis",
           },
           showscale: true,
+          hoverinfo: "text",
         },
       ]}
       layout={{
