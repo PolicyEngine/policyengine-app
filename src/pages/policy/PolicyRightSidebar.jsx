@@ -1155,10 +1155,9 @@ export default function PolicyRightSidebar(props) {
                 )}
                 <FullLiteToggle metadata={metadata} />
                 <BehavioralResponseToggle metadata={metadata} policy={policy} />
-                {metadata.countryId === "uk" &&
-                  (
-                    <LocalAreaFunctionalitySelector />
-                  )}
+                {metadata.countryId === "uk" && (
+                  <LocalAreaFunctionalitySelector />
+                )}
               </div>
             }
           />

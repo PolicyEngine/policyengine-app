@@ -53,8 +53,9 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
     }
     return !!searchParams[param];
   };
-  const uk_local_areas_beta = hasParam("uk_local_areas_beta") ?
-    searchParams.get("uk_local_areas_beta") : false;
+  const uk_local_areas_beta = hasParam("uk_local_areas_beta")
+    ? searchParams.get("uk_local_areas_beta")
+    : false;
 
   const tree = [
     {
