@@ -115,6 +115,14 @@ export function GenerateAnalysisButton(props) {
     aiOutputStream,
   } = props;
 
+  const errorMessages = {
+    overloaded_error:
+      "Claude, our partner service, is currently overloaded. Please try again later.",
+    api_error:
+      "Claude, our partner service, is currently experiencing an error. Please try again later.",
+    default: "The AI service has experienced an error.",
+  };
+
   const [analysisLoading, setAnalysisLoading] = useState(false);
 
   const displayCharts = (markdown) =>
@@ -179,7 +187,9 @@ export function GenerateAnalysisButton(props) {
           if (chunk) {
             const data = JSON.parse(chunk);
             if (data.type === "error") {
-              setAnalysisError(data.stream);
+              const errorMessage =
+                errorMessages[data.error] || errorMessages["default"];
+              setAnalysisError(errorMessage);
               break;
             } else if (data.type === "text" && data.stream) {
               setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
