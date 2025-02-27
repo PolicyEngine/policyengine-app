@@ -181,8 +181,7 @@ export function GenerateAnalysisButton(props) {
             if (data.type === "error") {
               setAnalysisError(data.stream);
               break;
-            }
-            else if (data.type === "text" && data.stream) {
+            } else if (data.type === "text" && data.stream) {
               setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
             }
           }
