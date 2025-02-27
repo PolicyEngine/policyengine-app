@@ -178,11 +178,11 @@ export function GenerateAnalysisButton(props) {
         for (const chunk of chunks) {
           if (chunk) {
             const data = JSON.parse(chunk);
-            console.log(data);
             if (data.type === "error") {
               setAnalysisError(data.stream);
               break;
-            } else if (data.type === "text" && data.stream) {
+            }
+            else if (data.type === "text" && data.stream) {
               setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
             }
           }
