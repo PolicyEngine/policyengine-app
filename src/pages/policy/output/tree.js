@@ -53,6 +53,8 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
     }
     return !!searchParams[param];
   };
+  const uk_local_areas_beta = hasParam("uk_local_areas_beta") ?
+    searchParams.get("uk_local_areas_beta") : false;
 
   const tree = [
     {
@@ -123,7 +125,7 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
               name: "policyOutput.winnersAndLosers.wealthDecile",
               label: "By wealth decile",
             },
-            hasParam("uk_local_areas_beta") && {
+            uk_local_areas_beta && {
               name: "policyOutput.winnersAndLosers.constituencies",
               label: "By parliamentary constituency",
             },
@@ -175,7 +177,7 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
           name: "policyOutput.cliffImpact",
           label: "Cliff impact",
         },
-        hasParam("uk_local_areas_beta") && {
+        uk_local_areas_beta && {
           name: "policyOutput.constituencies",
           label: "Parliamentary constituencies (experimental)",
           children: [
@@ -196,6 +198,10 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
               ? "Labour supply impact (experimental)"
               : "Labor supply impact (experimental)",
           children: [
+            uk_local_areas_beta && {
+              name: "policyOutput.constituencies.laborSupplyFTEs",
+              label: "By parliamentary constituency",
+            },
             countryId === "us" && {
               name: "policyOutput.laborSupplyImpact.hours",
               label: "Hours worked",
