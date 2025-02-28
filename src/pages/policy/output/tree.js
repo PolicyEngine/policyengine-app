@@ -46,7 +46,8 @@ export const policyOutputs = {
 
 export function getPolicyOutputTree(countryId, searchParams = {}) {
   // Checks if UK local areas is explicitly enabled in the URl Parameter
-  const uk_local_areas_beta = searchParams.get("uk_local_areas_beta") === "true";
+  const uk_local_areas_beta =
+    searchParams.get("uk_local_areas_beta") === "true";
 
   const tree = [
     {
