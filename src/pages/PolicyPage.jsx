@@ -70,6 +70,22 @@ function PolicyLeftSidebar(props) {
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
 
+  const sortTreeInPlace = (tree) => {
+    if (!Array.isArray(tree)) return [];
+
+    tree.sort((a, b) => a.label.localeCompare(b.label));
+
+    tree.forEach((item) => {
+      if (Array.isArray(item.children)) {
+        sortTreeInPlace(item.children);
+      }
+    });
+
+    return tree;
+  };
+
+  sortTreeInPlace(metadata.parameterTree.children);
+
   // The menu, then the search bar anchored to the bottom
   return (
     <div style={{ backgroundColor: style.colors.LIGHT_GRAY }}>
@@ -82,7 +98,7 @@ function PolicyLeftSidebar(props) {
         firstTree={metadata.parameterTree.children}
         selected={selected}
         onSelect={onSelect}
-        secondTree={POLICY_OUTPUT_TREE[0].children}
+        secondTree={POLICY_OUTPUT_TREE[0]?.children || []}
       />
     </div>
   );
