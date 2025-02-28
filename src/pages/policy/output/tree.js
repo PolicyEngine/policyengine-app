@@ -45,17 +45,11 @@ export const policyOutputs = {
 };
 
 export function getPolicyOutputTree(countryId, searchParams = {}) {
-  // Helper to safely check if a URL parameter exists
-  const hasParam = (param) => {
-    if (!searchParams) return false;
-    if (typeof searchParams.get === "function") {
-      return !!searchParams.get(param);
-    }
-    return !!searchParams[param];
-  };
-  const uk_local_areas_beta = hasParam("uk_local_areas_beta")
-    ? searchParams.get("uk_local_areas_beta")
-    : false;
+  // Checks if UK local areas is explicitly enabled in the URl Parameter
+  const uk_local_areas_beta =
+    searchParams && typeof searchParams.get === "function"
+      ? searchParams.get("uk_local_areas_beta") === "true"
+      : false;
 
   const tree = [
     {
