@@ -170,7 +170,7 @@ describe("PolicySearch", () => {
     expect(stackButton).toBeInTheDocument();
     expect(stackButton).toBeDisabled();
   });
-  test("On current law, should allow policy selection", () => {
+  test("On current law, should allow only valid policy selection", () => {
     const testProps = {
       metadata: metadataUS,
       target: "reform",
@@ -226,8 +226,17 @@ describe("PolicySearch", () => {
     // Find the input
     const input = screen.getByRole("combobox");
 
-    // Click on it and search for "t"
+    // Type gibberish
     await user.click(input);
+    await user.type(input, "randomgibberish123");
+
+    // Ensure that no policy appears
+    await waitFor(() => {
+      expect(screen.queryByText(/#1 test stacking policy/i)).not.toBeInTheDocument();
+    });
+
+    // Clear input and type a valid input "t"
+    await user.clear(input);
     await user.type(input, "t");
 
     // Select the only returned policy and click "plus" to stack it
