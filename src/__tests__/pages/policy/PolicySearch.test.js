@@ -63,6 +63,13 @@ when(mockCountryApiCall)
     throw new Error("Error while mocking countryApiCall");
   });
 
+when(mockCountryApiCall)
+  .calledWith("us", expect.stringContaining("policies?query=ndsjbjkvs"))
+  .mockReturnValue({
+    json: () => Promise.resolve({ result: [] }), // Return empty array instead of throwing error
+    text: () => Promise.resolve(JSON.stringify({ result: [] })),
+  });
+
 jest.mock("../../../api/call.js", () => {
   const originalModule = jest.requireActual("../../../api/call.js");
   return {
@@ -111,6 +118,37 @@ describe("PolicySearch", () => {
 
     const heading = screen.getByText("Current law");
     expect(heading).toBeInTheDocument();
+  });
+  test("Handles empty search results gracefully", async () => {
+    const testProps = {
+      metadata: metadataUS,
+      target: "reform",
+      policy: baselinePolicyUS,
+      displayStack: true,
+    };
+  
+    const user = userEvent.setup();
+  
+    render(
+      <BrowserRouter>
+        <PolicySearch {...testProps} />
+      </BrowserRouter>
+    );
+  
+    // Find the input
+    const input = screen.getByRole("combobox");
+  
+    // Click on it and type an invalid policy name
+    await user.click(input);
+    await user.type(input, "ndsjbjkvs");
+  
+    // Wait for the search results to update
+    await waitFor(() => {
+      expect(screen.queryByText(/#1 test stacking policy/i)).not.toBeInTheDocument();
+    });
+  
+    // Ensure that no options are displayed
+    expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
   });
   test("On current law, should disable stacking", () => {
     const testProps = {
@@ -191,7 +229,7 @@ describe("PolicySearch", () => {
     await user.type(input, "t");
 
     // Select the only returned policy and click "plus" to stack it
-    const policyItem = screen.getByText(/#1 test stacking policy/i);
+    const policyItem = await waitFor(() => screen.getByText(/#1 test stacking policy/i));
     const plusButton = screen.getByRole("button", { name: /plus/i });
     await user.click(policyItem);
     await user.click(plusButton);
