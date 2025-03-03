@@ -126,27 +126,29 @@ describe("PolicySearch", () => {
       policy: baselinePolicyUS,
       displayStack: true,
     };
-  
+
     const user = userEvent.setup();
-  
+
     render(
       <BrowserRouter>
         <PolicySearch {...testProps} />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
-  
+
     // Find the input
     const input = screen.getByRole("combobox");
-  
+
     // Click on it and type an invalid policy name
     await user.click(input);
     await user.type(input, "ndsjbjkvs");
-  
+
     // Wait for the search results to update
     await waitFor(() => {
-      expect(screen.queryByText(/#1 test stacking policy/i)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/#1 test stacking policy/i),
+      ).not.toBeInTheDocument();
     });
-  
+
     // Ensure that no options are displayed
     expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
   });
@@ -229,7 +231,9 @@ describe("PolicySearch", () => {
     await user.type(input, "t");
 
     // Select the only returned policy and click "plus" to stack it
-    const policyItem = await waitFor(() => screen.getByText(/#1 test stacking policy/i));
+    const policyItem = await waitFor(() =>
+      screen.getByText(/#1 test stacking policy/i),
+    );
     const plusButton = screen.getByRole("button", { name: /plus/i });
     await user.click(policyItem);
     await user.click(plusButton);
