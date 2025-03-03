@@ -170,7 +170,7 @@ describe("PolicySearch", () => {
     expect(stackButton).toBeInTheDocument();
     expect(stackButton).toBeDisabled();
   });
-  test("On current law, should allow only valid policy selection", () => {
+  test("On current law, should allow policy selection", () => {
     const testProps = {
       metadata: metadataUS,
       target: "reform",
@@ -232,7 +232,9 @@ describe("PolicySearch", () => {
 
     // Ensure that no policy appears
     await waitFor(() => {
-      expect(screen.queryByText(/#1 test stacking policy/i)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/#1 test stacking policy/i),
+      ).not.toBeInTheDocument();
     });
 
     // Clear input and type a valid input "t"
