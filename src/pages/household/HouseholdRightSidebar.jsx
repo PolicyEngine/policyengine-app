@@ -216,7 +216,11 @@ export default function HouseholdRightSidebar(props) {
           />
         )}
         <SearchParamNavButton
-          text={hasHouseholdDetails ? "View Economic Impact" : "Edit My Reform"}
+          text={
+            hasHouseholdDetails && hasReform
+              ? "View Economic Impact"
+              : "Edit My Reform"
+          }
           focus="gov"
           type="secondary"
           target={`/${metadata.countryId}/policy`}
