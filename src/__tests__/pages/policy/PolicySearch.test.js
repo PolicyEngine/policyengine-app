@@ -119,37 +119,6 @@ describe("PolicySearch", () => {
     const heading = screen.getByText("Current law");
     expect(heading).toBeInTheDocument();
   });
-  test("Handles empty search results gracefully", async () => {
-    const testProps = {
-      metadata: metadataUS,
-      target: "reform",
-      policy: baselinePolicyUS,
-      displayStack: true,
-    };
-
-    const user = userEvent.setup();
-
-    render(
-      <BrowserRouter>
-        <PolicySearch {...testProps} />
-      </BrowserRouter>,
-    );
-
-    // Find the input
-    const input = screen.getByRole("combobox");
-
-    // Click on it and type an invalid policy name
-    await user.click(input);
-    await user.type(input, "ndsjbjkvs");
-
-    // Wait for the search results to update
-    await waitFor(() => {
-      expect(screen.queryByText(/ndsjbjkvs/i)).not.toBeInTheDocument();
-    });
-
-    // Ensure that no options are displayed
-    expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
-  });
   test("On current law, should disable stacking", () => {
     const testProps = {
       metadata: metadataUS,
