@@ -115,6 +115,14 @@ export function GenerateAnalysisButton(props) {
     aiOutputStream,
   } = props;
 
+  const errorMessages = {
+    overloaded_error:
+      "Claude, our partner service, is currently overloaded. Please try again later.",
+    api_error:
+      "Claude, our partner service, is currently experiencing an error. Please try again later.",
+    default: "The AI service has experienced an error.",
+  };
+
   const [analysisLoading, setAnalysisLoading] = useState(false);
 
   const displayCharts = (markdown) =>
@@ -124,7 +132,7 @@ export function GenerateAnalysisButton(props) {
     );
 
   function resetAnalysis() {
-    setAnalysisError(false);
+    setAnalysisError(null);
     setAnalysis(""); // Reset analysis content
     setAnalysisLoading(false);
   }
@@ -178,7 +186,12 @@ export function GenerateAnalysisButton(props) {
         for (const chunk of chunks) {
           if (chunk) {
             const data = JSON.parse(chunk);
-            if (data.stream) {
+            if (data.type === "error") {
+              const errorMessage =
+                errorMessages[data.error] || errorMessages["default"];
+              setAnalysisError(errorMessage);
+              break;
+            } else if (data.type === "text" && data.stream) {
               setAnalysis((prevAnalysis) => prevAnalysis + data.stream);
             }
           }
@@ -259,7 +272,7 @@ export default function Analysis(props) {
   // Stateful vars for analysis output
   const [audience, setAudience] = useState("Normal");
   const [analysis, setAnalysis] = useState("");
-  const [analysisError, setAnalysisError] = useState(false);
+  const [analysisError, setAnalysisError] = useState(null);
 
   // Stateful vars for generating prompt itself
   const [prompt, setPrompt] = useState("");
@@ -368,7 +381,7 @@ export default function Analysis(props) {
           </div>
         ) : null}
         {analysisError ? (
-          <ErrorComponent message="There was an error generating the analysis." />
+          <ErrorComponent message={analysisError} />
         ) : (
           analysis && <MarkdownFormatter markdown={analysis} dict={chartDict} />
         )}
