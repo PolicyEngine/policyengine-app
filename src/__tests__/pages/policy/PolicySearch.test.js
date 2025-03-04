@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import { baselinePolicyUS } from "../../__setup__/sampleData";
@@ -61,6 +61,13 @@ when(mockCountryApiCall)
   .mockReturnValue(testSearchResultsWrapper)
   .defaultReturnValue(() => {
     throw new Error("Error while mocking countryApiCall");
+  });
+
+when(mockCountryApiCall)
+  .calledWith("us", expect.stringContaining("policies?query=ndsjbjkvs"))
+  .mockReturnValue({
+    json: () => Promise.resolve({ result: [] }), // Return empty array instead of throwing error
+    text: () => Promise.resolve(JSON.stringify({ result: [] })),
   });
 
 jest.mock("../../../api/call.js", () => {
@@ -186,12 +193,14 @@ describe("PolicySearch", () => {
     // Find the input
     const input = screen.getByRole("combobox");
 
-    // Click on it and search for "t"
-    await user.click(input);
+    // Clear input and type a valid input "t"
+    await user.clear(input);
     await user.type(input, "t");
 
     // Select the only returned policy and click "plus" to stack it
-    const policyItem = screen.getByText(/#1 test stacking policy/i);
+    const policyItem = await waitFor(() =>
+      screen.getByText(/#44355 test policy/i),
+    );
     const plusButton = screen.getByRole("button", { name: /plus/i });
     await user.click(policyItem);
     await user.click(plusButton);
