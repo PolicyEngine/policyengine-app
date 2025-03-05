@@ -170,6 +170,7 @@ export default function HouseholdRightSidebar(props) {
       )}
     </div>
   );
+
   const notEnoughInfo = (
     <div
       style={{
@@ -215,17 +216,15 @@ export default function HouseholdRightSidebar(props) {
             style={{ width: "100%", marginTop: 20 }}
           />
         )}
-        <SearchParamNavButton
-          text={
-            hasHouseholdDetails && hasReform
-              ? "View Economic Impact"
-              : "Edit My Reform"
-          }
-          focus="gov"
-          type="secondary"
-          target={`/${metadata.countryId}/policy`}
-          style={{ width: "100%", marginTop: 20 }}
-        />
+        {hasHouseholdDetails && (
+          <SearchParamNavButton
+            text={hasReform ? "View Economic Impact" : "Create a Reform"}
+            focus="gov"
+            type="secondary"
+            target={`/${metadata.countryId}/policy`}
+            style={{ width: "100%", marginTop: 20 }}
+          />
+        )}
       </div>
     </div>
   );
