@@ -855,15 +855,6 @@
     "image": "behavioural-responses.jpg"
   },
   {
-    "title": "Modelling the two-child limit removal in PolicyEngine",
-    "description": "PolicyEngine estimates that limiting the Universal Credit and Child Tax Credit child cap to families with children under 5 years old in 2025 would cost £504.3 million.",
-    "date": "2025-03-05 15:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi", "pavel-makarchuk"],
-    "filename": "two-child-limit-removal-2025.md",
-    "image": "two-child-limit-removal-2025.jpg"
-  },
-  {
     "title": "Benefits uprating 2025/26",
     "description": "PolicyEngine projects Labour's 1.7% benefits uprating would cost £2.5 billion, mainly benefiting lower-income households.",
     "date": "2024-10-31 15:00:00",
@@ -1099,5 +1090,14 @@
     "filename": "kentucky-cuts-income-tax-rate.md",
     "image": "kentucky-cuts-income-tax-rate.webp",
     "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Modelling the two-child limit removal in PolicyEngine",
+    "description": "PolicyEngine estimates that limiting the Universal Credit and Child Tax Credit child cap to families with children under 5 years old in 2025 would cost £504.3 million.",
+    "date": "2025-03-05 15:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi", "pavel-makarchuk"],
+    "filename": "two-child-limit-removal-2025.md",
+    "image": "two-child-limit-removal-2025.jpg"
   }
 ]
