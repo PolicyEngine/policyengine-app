@@ -26,19 +26,21 @@ PolicyEngine currently models the date-based exemption (children born before Apr
 
 # Economic impact of the reform
 
-Using PolicyEngine’s microsimulation model, we estimate that limiting the Universal Credit (UC) and Child Tax Credit (CTC) child cap to families with children under 5 years old in 2025 would cost £479.9 million and £24.5 million respectively, while limiting the UC reduces child poverty by 0.6%.  
+Using PolicyEngine’s microsimulation model, we estimate that limiting the Universal Credit (UC) and Child Tax Credit (CTC) child cap to families with children under 5 years old in 2025 would cost [£479.9 million](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77113&region=uk&timePeriod=2025&baseline=1) and [£24.5 million](https://policyengine.org/uk/policy?reform=77112&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) respectively, while limiting the UC [reduces poverty by 0.3%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=77113&region=uk&timePeriod=2025&baseline=1).  
 
-When considering applying the child limit to the UC and CTC in combination, teh cost increase to £504.3 million while decreasing child poverty by 0.6%.  
+When considering applying the child limit to the UC and CTC in combination, the cost increase to £504.3 million, [decreasing child poverty by 0.6%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=77114&region=uk&timePeriod=2025&baseline=1).  
+
+The combined reform will increase net income for [5% of the popualtion](https://policyengine.org/uk/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=77114&region=uk&timePeriod=2025&baseline=1), with the largest impact in the 5th decile, benefiting over 10% of the population. 
 
 **Figure 1: Impacts of exempting families with children under 5 from the two-child limit**
 | Reform                                                                    | Cost (£ million) | Child Poverty reduction (%) | PE Link                                                                                                                         |
 | :------------------------------------------------------------------------ | :----------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| Universal Credit Reform         | 24.5               | -                      | [Link](https://policyengine.org/uk/policy?reform=77113&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) |
-| Child Tax Credit Reform        | 479.9              | 0.6                         | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77112&region=uk&timePeriod=2025&baseline=1) |
+| Universal Credit Reform         | 24.5               | -                      | [Link](https://policyengine.org/uk/policy?reform=77112&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) |
+| Child Tax Credit Reform        | 479.9              | 0.6                         | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77113&region=uk&timePeriod=2025&baseline=1) |
 | Universal and Child Tax Credit Reform | 504.3              | 0.6                         | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77114&region=uk&timePeriod=2025&baseline=1) |
 
 # Conclusion 
 
 The current two-child limit restricts child-related benefits (Universal Credit and Child Tax Credit) to the first two children born after April 2017.
 
-PolicyEngine estimates that exempting families with children under 5 years old from this limit would cost £504.3 million, while reducing child poverty by 0.6% in 2025.
+PolicyEngine estimates that exempting families with children under 5 years old from this limit would cost £504.3 million, while reducing child poverty by 0.6% and benefiting 5$ of the population in 2025.
