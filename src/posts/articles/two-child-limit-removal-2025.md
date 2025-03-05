@@ -31,7 +31,7 @@ Below is a breakdown of the impacts:
 
 | Reform                                                                    | Impact (£ million) | Child Poverty reduction (%) | PE Link                                                                                                                         |
 | :------------------------------------------------------------------------ | :----------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| Limit **UC** two-child limit to families with children 5 and over         | 24.5               | < 0.01                     | [Link](https://policyengine.org/uk/policy?reform=77113&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) |
+| Limit **UC** two-child limit to families with children 5 and over         | 24.5               | < 0.01                      | [Link](https://policyengine.org/uk/policy?reform=77113&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) |
 | Limit **CTC** two-child limit to families with children 5 and over        | 479.9              | 0.6                         | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77112&region=uk&timePeriod=2025&baseline=1) |
 | Limit **UC and CTC** two-child limit to families with children 5 and over | 504.3              | 0.6                         | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77114&region=uk&timePeriod=2025&baseline=1) |
 
@@ -39,19 +39,19 @@ Below is a breakdown of the impacts:
 
 In the table below, we summarise the results of PolicyEngine estimates on increasing the child limit to three children, combined with repealing the overall benefit cap[^1] benchmark reform compared to Resolution Foundation estimates:
 
-| Model | Impact (£ billion) | Year | Note |
-| :---- | :---- | :---- | :---- |
-| [PolicyEngine](https://policyengine.org/uk/policy?reform=77108&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) | 3.8 | 2025 | Replacing the two-child limit with a three-child cap, combined with scrapping the overall benefit cap |
-| [Resolution Foundation](https://www.devonlive.com/news/cost-of-living/government-considers-two-child-benefit-9980420) | 3.2 | 2025 | Government considers two-child benefit cap changes |
+| Model                                                                                                                                   | Impact (£ billion) | Year | Note                                                                                                  |
+| :-------------------------------------------------------------------------------------------------------------------------------------- | :----------------- | :--- | :---------------------------------------------------------------------------------------------------- |
+| [PolicyEngine](https://policyengine.org/uk/policy?reform=77108&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) | 3.8                | 2025 | Replacing the two-child limit with a three-child cap, combined with scrapping the overall benefit cap |
+| [Resolution Foundation](https://www.devonlive.com/news/cost-of-living/government-considers-two-child-benefit-9980420)                   | 3.2                | 2025 | Government considers two-child benefit cap changes                                                    |
 
 ## Removing the two-child limit
 
 In the table below, we summarise the results of PolicyEngine estimates on removing the two-child limit completely compared to estimates from the Institute for Fiscal Studies and Resolution Foundation:
 
-| Model | Impact (£ billion) | Year | Note |
-| :---- | :---- | :---- | :---- |
-| [PolicyEngine](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77100&region=uk&timePeriod=2025&baseline=1) | 2.0 | 2025 | Removing the two-child limit |
-| [IFS](https://ifs.org.uk/articles/two-child-limit-poverty-incentives-and-cost) | 2.1 | 2025 | 3.4bn with full roll-out and take-up |
-| [Resolution Foundation](https://www.resolutionfoundation.org/publications/catastophic-caps/) | 2.5 | 2025 | 3.6bn if applied to all families  |
+| Model                                                                                                                                   | Impact (£ billion) | Year | Note                                 |
+| :-------------------------------------------------------------------------------------------------------------------------------------- | :----------------- | :--- | :----------------------------------- |
+| [PolicyEngine](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77100&region=uk&timePeriod=2025&baseline=1) | 2.0                | 2025 | Removing the two-child limit         |
+| [IFS](https://ifs.org.uk/articles/two-child-limit-poverty-incentives-and-cost)                                                          | 2.1                | 2025 | 3.4bn with full roll-out and take-up |
+| [Resolution Foundation](https://www.resolutionfoundation.org/publications/catastophic-caps/)                                            | 2.5                | 2025 | 3.6bn if applied to all families     |
 
 [^1]: All two-child limit reforms apply to the CTC and UC.
