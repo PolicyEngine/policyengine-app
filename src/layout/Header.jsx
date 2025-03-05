@@ -432,116 +432,198 @@ function MainHeaderLogo() {
   );
 }
 
-function PageLinks() {
-  const countryId = useCountryId();
+const StandardLinkItem = ({ title, link, countryId }) => {
+  const linkStyle = {
+    color: "white",
+    fontSize: 16,
+    fontFamily: "Roboto",
+    fontWeight: 500,
+    letterSpacing: 2.4,
+    textTransform: "uppercase",
+  };
+
+  return (
+    <Link to={`/${countryId}/${link}`}>
+      <div style={linkStyle}>
+        <HoverBox
+          hoverBackgroundColor={style.colors.BLUE_LIGHT}
+          hoverStart="bottom"
+        >
+          <motion.div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              height: style.spacing.HEADER_HEIGHT,
+              padding: 15,
+              cursor: "pointer",
+            }}
+            whileHover={{
+              color: style.colors.BLUE,
+            }}
+            transition={{
+              duration: 0.2,
+            }}
+          >
+            {title}
+          </motion.div>
+        </HoverBox>
+      </div>
+    </Link>
+  );
+};
+
+const DropdownLinkItem = ({ title, items, countryId }) => {
   const navigate = useNavigate();
+  const linkStyle = {
+    color: "white",
+    fontSize: 16,
+    fontFamily: "Roboto",
+    fontWeight: 500,
+    letterSpacing: 2.4,
+    textTransform: "uppercase",
+  };
 
   const handleMenuClick = ({ key }) => {
     navigate(key);
   };
 
-  const renderLink = (link) => {
-    const linkStyle = {
-      color: "white",
-      fontSize: 16,
-      fontFamily: "Roboto",
-      fontWeight: 500,
-      letterSpacing: 2.4,
-      textTransform: "uppercase",
-    };
+  const menuItems = items.map((item) => ({
+    key: `/${countryId}/${item.link}`,
+    label: (
+      <span
+        style={{
+          display: "flex",
+          alignItems: "center",
+          fontSize: 14,
+          gap: 8,
+        }}
+      >
+        {item.icon} {item.title}
+      </span>
+    ),
+  }));
 
-    if (link.isDropdown) {
-      const menuItems = link.items.map((item) => ({
-        key: `/${countryId}/${item.link}`,
-        label: (
-          <span
+  return (
+    <Dropdown
+      menu={{
+        items: menuItems,
+        onClick: handleMenuClick,
+        style: {
+          borderRadius: 0,
+          fontFamily: style.fonts.BODY_FONT,
+        },
+      }}
+      placement="bottomCenter"
+      arrow
+    >
+      <div style={linkStyle}>
+        <HoverBox
+          hoverBackgroundColor={style.colors.BLUE_LIGHT}
+          hoverStart="bottom"
+        >
+          <motion.div
             style={{
               display: "flex",
               alignItems: "center",
-              fontSize: 14,
-              gap: 8,
+              justifyContent: "center",
+              height: style.spacing.HEADER_HEIGHT,
+              padding: 15,
+              cursor: "pointer",
+              gap: 5,
+            }}
+            whileHover={{
+              color: style.colors.BLUE
+            }}
+            transition={{
+              duration: 0.2,
             }}
           >
-            {item.icon} {item.title}
-          </span>
-        ),
-      }));
+            {title} <DownOutlined style={{ fontSize: 12 }} />
+          </motion.div>
+        </HoverBox>
+      </div>
+    </Dropdown>
+  );
+};
 
+// Main PageLinks component that renders the appropriate link type
+function PageLinks() {
+  const countryId = useCountryId();
+  
+  const LINKS = [
+    {
+      title: "Research",
+      link: "research",
+    },
+    {
+      title: "About",
+      link: "about",
+    },
+    {
+      title: "Donate",
+      link: "donate",
+    },
+    {
+      title: "Learn",
+      isDropdown: true,
+      items: [
+        {
+          title: "AI & ML",
+          link: "ai",
+          icon: <BarChartOutlined />,
+        },
+        {
+          title: "Microsimulation",
+          link: "microsim",
+          icon: <BarChartOutlined />,
+        },
+        {
+          title: "Benefit Access",
+          link: "benefits",
+          icon: <QuestionCircleOutlined />,
+        },
+        {
+          title: "API",
+          link: "api",
+          icon: <ApiOutlined />,
+        },
+        {
+          title: "Educational Use",
+          link: "education",
+          icon: <BookOutlined />,
+        },
+        {
+          title: "Open Source",
+          link: "opensource",
+          icon: <GithubOutlined />,
+        },
+      ],
+    },
+  ];
+
+  const renderLinkItem = (link) => {
+    const key = link.title;
+    
+    if (link.isDropdown) {
       return (
-        <Dropdown
-          key={link.title}
-          menu={{
-            items: menuItems,
-            onClick: handleMenuClick,
-            style: {
-              borderRadius: 0,
-              fontFamily: style.fonts.BODY_FONT,
-            },
-          }}
-          placement="bottomCenter"
-          arrow
-        >
-          <div style={linkStyle}>
-            <HoverBox
-              hoverBackgroundColor={style.colors.BLUE_LIGHT}
-              hoverStart="bottom"
-            >
-              <motion.div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: style.spacing.HEADER_HEIGHT,
-                  padding: 15,
-                  cursor: "pointer",
-                  gap: 5,
-                }}
-                whileHover={{
-                  color: style.colors.WHITE,
-                  textDecoration: "underline",
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
-              >
-                {link.title} <DownOutlined style={{ fontSize: 12 }} />
-              </motion.div>
-            </HoverBox>
-          </div>
-        </Dropdown>
-      );
-    } else {
-      return (
-        <Link to={`/${countryId}/${link.link}`} key={link.title}>
-          <div style={linkStyle}>
-            <HoverBox
-              hoverBackgroundColor={style.colors.BLUE_LIGHT}
-              hoverStart="bottom"
-            >
-              <motion.div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  height: style.spacing.HEADER_HEIGHT,
-                  padding: 15,
-                  cursor: "pointer",
-                }}
-                whileHover={{
-                  color: style.colors.WHITE,
-                  textDecoration: "underline",
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
-              >
-                {link.title}
-              </motion.div>
-            </HoverBox>
-          </div>
-        </Link>
+        <DropdownLinkItem 
+          key={key}
+          title={link.title} 
+          items={link.items} 
+          countryId={countryId} 
+        />
       );
     }
+    
+    return (
+      <StandardLinkItem 
+        key={key}
+        title={link.title} 
+        link={link.link} 
+        countryId={countryId} 
+      />
+    );
   };
 
   return (
@@ -553,7 +635,7 @@ function PageLinks() {
         gap: 16,
       }}
     >
-      {LINKS.map(renderLink)}
+      {LINKS.map(renderLinkItem)}
     </div>
   );
 }
