@@ -6,8 +6,8 @@ import Footer from "../../layout/Footer";
 import { Helmet } from "react-helmet";
 import PageHeader from "../../layout/PageHeader";
 import Section from "../../layout/Section";
-import { Link } from "react-router-dom";
 import style from "../../style";
+import SecondaryNav from "./SecondaryNav";
 
 /**
  * Benefit Access page component - showcasing benefit screening tools powered by PolicyEngine
@@ -21,27 +21,6 @@ const BenefitAccessPage = () => {
     document.title = "Benefit Access | PolicyEngine";
     window.scrollTo(0, 0);
   }, [location]);
-
-  const generalPages = [
-    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
-    { id: "api", label: "API", path: `/${countryId}/api` },
-    {
-      id: "microsim",
-      label: "Microsimulation",
-      path: `/${countryId}/microsim`,
-    },
-    { id: "benefits", label: "Benefit Access", path: `/${countryId}/benefits` },
-    {
-      id: "education",
-      label: "Educational Use",
-      path: `/${countryId}/education`,
-    },
-    {
-      id: "opensource",
-      label: "Open Source",
-      path: `/${countryId}/opensource`,
-    },
-  ];
 
   // Partner organizations using PolicyEngine API for benefit access tools
   const partnerOrganizations = [
@@ -93,37 +72,7 @@ const BenefitAccessPage = () => {
         </p>
       </PageHeader>
 
-      {/* General navigation tabs */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#F7FAFD",
-          padding: "0 1rem 1rem",
-          flexWrap: "wrap",
-          gap: "0.5rem",
-        }}
-      >
-        {generalPages.map((page) => (
-          <Link
-            key={page.id}
-            to={page.path}
-            style={{
-              padding: "0.5rem 1rem",
-              textDecoration: "none",
-              fontWeight: page.id === "benefits" ? "bold" : "normal",
-              borderBottom:
-                page.id === "benefits"
-                  ? `2px solid ${style.colors.BLUE}`
-                  : "none",
-              color: style.colors.BLACK,
-            }}
-          >
-            {page.label}
-          </Link>
-        ))}
-      </div>
-
+      <SecondaryNav countryId={countryId} pageType="benefits" />
       <Section>
         <div className="benefits-intro">
           <h2>Increasing Access to Public Benefits</h2>

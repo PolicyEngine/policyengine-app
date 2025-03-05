@@ -30,36 +30,36 @@ const BAR_TOP_PADDING = 10; // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
 const BAR_SIDE_PADDING = 16;
 export const LEARN_DROPDOWN_LINKS = [
-      {
-        title: "AI & ML",
-        link: "ai",
-        icon: <DeploymentUnitOutlined />,
-      },
-      {
-        title: "API",
-        link: "api",
-        icon: <ApiOutlined />,
-      },
-      {
-        title: "Microsimulation",
-        link: "microsim",
-        icon: <BarChartOutlined />,
-      },
-      {
-        title: "Benefit Access",
-        link: "benefits",
-        icon: <QuestionCircleOutlined />,
-      },
-      {
-        title: "Educational Use",
-        link: "education",
-        icon: <BookOutlined />,
-      },
-      {
-        title: "Open Source",
-        link: "opensource",
-        icon: <GithubOutlined />,
-      },
+  {
+    title: "AI & ML",
+    link: "ai",
+    icon: <DeploymentUnitOutlined />,
+  },
+  {
+    title: "API",
+    link: "api",
+    icon: <ApiOutlined />,
+  },
+  {
+    title: "Microsimulation",
+    link: "microsim",
+    icon: <BarChartOutlined />,
+  },
+  {
+    title: "Benefit Access",
+    link: "benefits",
+    icon: <QuestionCircleOutlined />,
+  },
+  {
+    title: "Educational Use",
+    link: "education",
+    icon: <BookOutlined />,
+  },
+  {
+    title: "Open Source",
+    link: "open-source",
+    icon: <GithubOutlined />,
+  },
 ];
 
 const LINKS = [
@@ -78,7 +78,7 @@ const LINKS = [
   {
     title: "Learn",
     isDropdown: true,
-    items: LEARN_DROPDOWN_LINKS
+    items: LEARN_DROPDOWN_LINKS,
   },
 ];
 

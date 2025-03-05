@@ -332,7 +332,7 @@ export default function PolicyEngine() {
           <Route path="microsim" element={<MicrosimPage />} />
           <Route path="benefits" element={<BenefitAccessPage />} />
           <Route path="education" element={<EducationPage />} />
-          <Route path="opensource" element={<OpenSourcePage />} />
+          <Route path="open-source" element={<OpenSourcePage />} />
 
           <Route
             path="household/*"

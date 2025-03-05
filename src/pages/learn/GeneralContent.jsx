@@ -42,7 +42,6 @@ const GeneralContent = ({
   // Merge provided content with defaults
   const pageContent = { ...defaultContent, ...content };
 
-
   return (
     <div>
       <PageHeader title={pageContent.title} backgroundColor="#F7FAFD">

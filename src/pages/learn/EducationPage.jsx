@@ -6,8 +6,8 @@ import Footer from "../../layout/Footer";
 import { Helmet } from "react-helmet";
 import PageHeader from "../../layout/PageHeader";
 import Section from "../../layout/Section";
-import { Link } from "react-router-dom";
 import style from "../../style";
+import SecondaryNav from "./SecondaryNav";
 
 /**
  * Educational Use page component - placeholder for future content
@@ -34,6 +34,7 @@ const EducationPage = () => {
         </p>
       </PageHeader>
 
+      <SecondaryNav countryId={countryId} pageType="education" />
       <Section>
         <div className="placeholder-content">
           <h2>Coming Soon</h2>
