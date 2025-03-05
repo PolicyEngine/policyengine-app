@@ -76,6 +76,13 @@ The Rochester Institute of Technology.`,
     bachelor's degree in economics and finance from the University of Hong Kong.`,
     image: require("../images/authors/john-wong.jpg"),
   },
+  maria_juaristi: {
+    name: "María Juaristi",
+    bio: `is a policy modeling intern at PolicyEngine.  She is also pursuing an 
+    undergraduate degree in Political Science and Data Science at Minerva University. 
+    Previously, she was a research intern at University of Chicago.`,
+    image: require("../images/authors/maria-juaristi.png"),
+  },
 };
 
 export const advisors = {
