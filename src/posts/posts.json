@@ -859,7 +859,7 @@
     "description": "PolicyEngine estimates that limiting the Universal Credit and Child Tax Credit child cap to families with children under 5 years old in 2025 would cost £504.3 million.",
     "date": "2025-03-05 15:00:00",
     "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi"],
+    "authors": ["vahid-ahmadi", "pavel-makarchuk"],
     "filename": "two-child-limit-removal-2025.md",
     "image": "two-child-limit-removal-2025.jpg"
   },
