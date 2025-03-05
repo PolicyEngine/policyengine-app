@@ -113,7 +113,7 @@ const OpenSourcePage = () => {
         }
         
         .github-link:hover {
-          background-color: ${style.colors.DARK_BLUE_HOVER};
+          background-color: ${style.colors.BLUE_LIGHT};
         }
       `}</style>
       <Footer />
