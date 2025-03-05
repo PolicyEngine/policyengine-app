@@ -1090,23 +1090,5 @@
     "filename": "kentucky-cuts-income-tax-rate.md",
     "image": "kentucky-cuts-income-tax-rate.webp",
     "authors": ["david-trimmer"]
-  },
-  {
-    "title": "The Family Income Supplemental Credit (FISC) Act",
-    "description": "Representative Jared Golden's Child Tax Credit reform would cost $193 billion in 2026 while reducing poverty and inequality.",
-    "date": "2025-03-05",
-    "tags": ["us", "policy", "featured"],
-    "filename": "fisc-act.md",
-    "image": "jared-golden.jpeg",
-    "authors": ["pavel-makarchuk"]
-  },
-  {
-    "title": "Modelling options to limit the two-child limit",
-    "description": "Analysis of the potential impact of limiting the two-child limit to families with children under 5 years old.",
-    "date": "2025-03-04 00:00:00",
-    "tags": ["uk", "policy", "featured"],
-    "authors": ["vahid-ahmadi", "pavel-makarchuk"],
-    "filename": "two-child-limit-removal-2025.md",
-    "image": "two-child-limit-removal-2025.jpg"
   }
 ]
