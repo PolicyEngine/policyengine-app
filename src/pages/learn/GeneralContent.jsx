@@ -3,8 +3,7 @@ import Section from "../../layout/Section";
 import PageHeader from "../../layout/PageHeader";
 import FontIcon from "../../layout/FontIcon";
 import LinkButton from "../../controls/LinkButton";
-import { Link } from "react-router-dom";
-import style from "../../style";
+import SecondaryNav from "./SecondaryNav";
 
 /**
  * Shared component for general information pages
@@ -43,64 +42,13 @@ const GeneralContent = ({
   // Merge provided content with defaults
   const pageContent = { ...defaultContent, ...content };
 
-  // Define general navigation
-  const generalPages = [
-    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
-    { id: "api", label: "API", path: `/${countryId}/api` },
-    {
-      id: "microsim",
-      label: "Microsimulation",
-      path: `/${countryId}/microsim`,
-    },
-    { id: "benefits", label: "Benefit Access", path: `/${countryId}/benefits` },
-    {
-      id: "education",
-      label: "Educational Use",
-      path: `/${countryId}/education`,
-    },
-    {
-      id: "opensource",
-      label: "Open Source",
-      path: `/${countryId}/opensource`,
-    },
-  ];
 
   return (
     <div>
       <PageHeader title={pageContent.title} backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>{pageContent.subtitle}</p>
       </PageHeader>
-
-      {/* General navigation tabs */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#F7FAFD",
-          padding: "0 1rem 1rem",
-          flexWrap: "wrap",
-          gap: "0.5rem",
-        }}
-      >
-        {generalPages.map((page) => (
-          <Link
-            key={page.id}
-            to={page.path}
-            style={{
-              padding: "0.5rem 1rem",
-              textDecoration: "none",
-              fontWeight: page.id === pageType ? "bold" : "normal",
-              borderBottom:
-                page.id === pageType
-                  ? `2px solid ${style.colors.BLUE}`
-                  : "none",
-              color: style.colors.BLACK,
-            }}
-          >
-            {page.label}
-          </Link>
-        ))}
-      </div>
+      <SecondaryNav countryId={countryId} pageType={pageType} />
 
       <Section style={{ marginTop: 0, paddingTop: "1rem" }}>
         <div className="hero-section">

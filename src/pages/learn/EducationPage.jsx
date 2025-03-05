@@ -22,26 +22,6 @@ const EducationPage = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  const generalPages = [
-    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
-    { id: "api", label: "API", path: `/${countryId}/api` },
-    {
-      id: "microsim",
-      label: "Microsimulation",
-      path: `/${countryId}/microsim`,
-    },
-    {
-      id: "education",
-      label: "Educational Use",
-      path: `/${countryId}/education`,
-    },
-    {
-      id: "opensource",
-      label: "Open Source",
-      path: `/${countryId}/opensource`,
-    },
-  ];
-
   return (
     <>
       <Helmet>
@@ -53,37 +33,6 @@ const EducationPage = () => {
           How PolicyEngine can be used in classrooms and educational settings
         </p>
       </PageHeader>
-
-      {/* General navigation tabs */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          backgroundColor: "#F7FAFD",
-          padding: "0 1rem 1rem",
-          flexWrap: "wrap",
-          gap: "0.5rem",
-        }}
-      >
-        {generalPages.map((page) => (
-          <Link
-            key={page.id}
-            to={page.path}
-            style={{
-              padding: "0.5rem 1rem",
-              textDecoration: "none",
-              fontWeight: page.id === "education" ? "bold" : "normal",
-              borderBottom:
-                page.id === "education"
-                  ? `2px solid ${style.colors.BLUE}`
-                  : "none",
-              color: style.colors.BLACK,
-            }}
-          >
-            {page.label}
-          </Link>
-        ))}
-      </div>
 
       <Section>
         <div className="placeholder-content">

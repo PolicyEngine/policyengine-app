@@ -29,6 +29,39 @@ import { Dropdown } from "antd";
 const BAR_TOP_PADDING = 10; // Desired top padding, px
 const BAR_BOTTOM_PADDING = 10; // Desired bottom padding, px
 const BAR_SIDE_PADDING = 16;
+export const LEARN_DROPDOWN_LINKS = [
+      {
+        title: "AI & ML",
+        link: "ai",
+        icon: <DeploymentUnitOutlined />,
+      },
+      {
+        title: "API",
+        link: "api",
+        icon: <ApiOutlined />,
+      },
+      {
+        title: "Microsimulation",
+        link: "microsim",
+        icon: <BarChartOutlined />,
+      },
+      {
+        title: "Benefit Access",
+        link: "benefits",
+        icon: <QuestionCircleOutlined />,
+      },
+      {
+        title: "Educational Use",
+        link: "education",
+        icon: <BookOutlined />,
+      },
+      {
+        title: "Open Source",
+        link: "opensource",
+        icon: <GithubOutlined />,
+      },
+];
+
 const LINKS = [
   {
     title: "Research",
@@ -45,38 +78,7 @@ const LINKS = [
   {
     title: "Learn",
     isDropdown: true,
-    items: [
-      {
-        title: "AI & ML",
-        link: "ai",
-        icon: <DeploymentUnitOutlined />,
-      },
-      {
-        title: "Microsimulation",
-        link: "microsim",
-        icon: <BarChartOutlined />,
-      },
-      {
-        title: "Benefit Access",
-        link: "benefits",
-        icon: <QuestionCircleOutlined />,
-      },
-      {
-        title: "API",
-        link: "api",
-        icon: <ApiOutlined />,
-      },
-      {
-        title: "Educational Use",
-        link: "education",
-        icon: <BookOutlined />,
-      },
-      {
-        title: "Open Source",
-        link: "opensource",
-        icon: <GithubOutlined />,
-      },
-    ],
+    items: LEARN_DROPDOWN_LINKS
   },
 ];
 
