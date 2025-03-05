@@ -23,11 +23,23 @@ const EducationPage = () => {
   }, [location]);
 
   const generalPages = [
-    { id: 'ai', label: 'AI & ML', path: `/${countryId}/ai` },
-    { id: 'api', label: 'API', path: `/${countryId}/api` },
-    { id: 'microsim', label: 'Microsimulation', path: `/${countryId}/microsim` },
-    { id: 'education', label: 'Educational Use', path: `/${countryId}/education` },
-    { id: 'opensource', label: 'Open Source', path: `/${countryId}/opensource` }
+    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
+    { id: "api", label: "API", path: `/${countryId}/api` },
+    {
+      id: "microsim",
+      label: "Microsimulation",
+      path: `/${countryId}/microsim`,
+    },
+    {
+      id: "education",
+      label: "Educational Use",
+      path: `/${countryId}/education`,
+    },
+    {
+      id: "opensource",
+      label: "Open Source",
+      path: `/${countryId}/opensource`,
+    },
   ];
 
   return (
@@ -43,24 +55,29 @@ const EducationPage = () => {
       </PageHeader>
 
       {/* General navigation tabs */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        backgroundColor: '#F7FAFD',
-        padding: '0 1rem 1rem',
-        flexWrap: 'wrap',
-        gap: '0.5rem'
-      }}>
-        {generalPages.map(page => (
-          <Link 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "#F7FAFD",
+          padding: "0 1rem 1rem",
+          flexWrap: "wrap",
+          gap: "0.5rem",
+        }}
+      >
+        {generalPages.map((page) => (
+          <Link
             key={page.id}
             to={page.path}
-            style={{ 
-              padding: '0.5rem 1rem',
-              textDecoration: 'none',
-              fontWeight: page.id === 'education' ? 'bold' : 'normal',
-              borderBottom: page.id === 'education' ? `2px solid ${style.colors.BLUE}` : 'none',
-              color: style.colors.BLACK
+            style={{
+              padding: "0.5rem 1rem",
+              textDecoration: "none",
+              fontWeight: page.id === "education" ? "bold" : "normal",
+              borderBottom:
+                page.id === "education"
+                  ? `2px solid ${style.colors.BLUE}`
+                  : "none",
+              color: style.colors.BLACK,
             }}
           >
             {page.label}
@@ -72,19 +89,23 @@ const EducationPage = () => {
         <div className="placeholder-content">
           <h2>Coming Soon</h2>
           <p>
-            We&apos;re currently developing comprehensive content about how PolicyEngine 
-            can be used in educational settings. This page will include:
+            We&apos;re currently developing comprehensive content about how
+            PolicyEngine can be used in educational settings. This page will
+            include:
           </p>
           <ul>
             <li>Classroom guides for teaching tax and benefit policies</li>
-            <li>University case studies of PolicyEngine in research and teaching</li>
+            <li>
+              University case studies of PolicyEngine in research and teaching
+            </li>
             <li>Educational resources for various learning levels</li>
             <li>Integration with educational curricula</li>
             <li>Workshop materials and lesson plans</li>
           </ul>
           <p>
-            If you&apos;re using PolicyEngine in an educational setting and would like to 
-            contribute your story or resources, please contact us at{" "}
+            If you&apos;re using PolicyEngine in an educational setting and
+            would like to contribute your story or resources, please contact us
+            at{" "}
             <a href="mailto:hello@policyengine.org">hello@policyengine.org</a>.
           </p>
         </div>

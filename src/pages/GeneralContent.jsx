@@ -9,7 +9,7 @@ import style from "../style";
 /**
  * Shared component for general information pages
  * Used as a base for pages like AI, API, Microsimulation, Benefit Access, etc.
- * 
+ *
  * @param {Object} props
  * @param {string} props.countryId - The country ID (us or uk)
  * @param {boolean} props.isUK - Whether this is the UK version
@@ -17,12 +17,12 @@ import style from "../style";
  * @param {Object} props.content - Content configuration specific to the page type
  * @param {React.ReactNode} props.children - Additional content specific to the page type
  */
-const GeneralContent = ({ 
-  countryId, 
-  isUK = false, 
+const GeneralContent = ({
+  countryId,
+  isUK = false,
   pageType,
   content = {},
-  children
+  children,
 }) => {
   // Use appropriate spelling based on country
   const democratize = isUK ? "democratise" : "democratize";
@@ -41,7 +41,7 @@ const GeneralContent = ({
     heroImage: null, // Will be filled in by specific page implementations
     heroButtonText: "Learn More",
     heroButtonLink: `/${countryId}`,
-    sections: [] // Will be filled by specific page implementations
+    sections: [], // Will be filled by specific page implementations
   };
 
   // Merge provided content with defaults
@@ -49,41 +49,56 @@ const GeneralContent = ({
 
   // Define general navigation
   const generalPages = [
-    { id: 'ai', label: 'AI & ML', path: `/${countryId}/ai` },
-    { id: 'api', label: 'API', path: `/${countryId}/api` },
-    { id: 'microsim', label: 'Microsimulation', path: `/${countryId}/microsim` },
-    { id: 'benefits', label: 'Benefit Access', path: `/${countryId}/benefits` },
-    { id: 'education', label: 'Educational Use', path: `/${countryId}/education` },
-    { id: 'opensource', label: 'Open Source', path: `/${countryId}/opensource` }
+    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
+    { id: "api", label: "API", path: `/${countryId}/api` },
+    {
+      id: "microsim",
+      label: "Microsimulation",
+      path: `/${countryId}/microsim`,
+    },
+    { id: "benefits", label: "Benefit Access", path: `/${countryId}/benefits` },
+    {
+      id: "education",
+      label: "Educational Use",
+      path: `/${countryId}/education`,
+    },
+    {
+      id: "opensource",
+      label: "Open Source",
+      path: `/${countryId}/opensource`,
+    },
   ];
 
   return (
     <div>
       <PageHeader title={pageContent.title} backgroundColor="#F7FAFD">
-        <p style={{ margin: 0 }}>
-          {pageContent.subtitle}
-        </p>
+        <p style={{ margin: 0 }}>{pageContent.subtitle}</p>
       </PageHeader>
 
       {/* General navigation tabs */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        backgroundColor: '#F7FAFD',
-        padding: '0 1rem 1rem',
-        flexWrap: 'wrap',
-        gap: '0.5rem'
-      }}>
-        {generalPages.map(page => (
-          <Link 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "#F7FAFD",
+          padding: "0 1rem 1rem",
+          flexWrap: "wrap",
+          gap: "0.5rem",
+        }}
+      >
+        {generalPages.map((page) => (
+          <Link
             key={page.id}
             to={page.path}
-            style={{ 
-              padding: '0.5rem 1rem',
-              textDecoration: 'none',
-              fontWeight: page.id === pageType ? 'bold' : 'normal',
-              borderBottom: page.id === pageType ? `2px solid ${style.colors.BLUE}` : 'none',
-              color: style.colors.BLACK
+            style={{
+              padding: "0.5rem 1rem",
+              textDecoration: "none",
+              fontWeight: page.id === pageType ? "bold" : "normal",
+              borderBottom:
+                page.id === pageType
+                  ? `2px solid ${style.colors.BLUE}`
+                  : "none",
+              color: style.colors.BLACK,
             }}
           >
             {page.label}
@@ -121,9 +136,7 @@ const GeneralContent = ({
       {/* Page-specific sections */}
       {pageContent.sections.map((section, index) => (
         <Section key={index} title={section.title} id={section.id}>
-          <div className={section.className || ''}>
-            {section.content}
-          </div>
+          <div className={section.className || ""}>{section.content}</div>
         </Section>
       ))}
 

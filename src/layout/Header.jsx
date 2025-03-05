@@ -451,15 +451,17 @@ function PageLinks() {
     };
 
     if (link.isDropdown) {
-      const menuItems = link.items.map(item => ({
+      const menuItems = link.items.map((item) => ({
         key: `/${countryId}/${item.link}`,
         label: (
-          <span style={{ 
-            display: 'flex', 
-            alignItems: 'center',
-            fontSize: 14,
-            gap: 8,
-          }}>
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: 14,
+              gap: 8,
+            }}
+          >
             {item.icon} {item.title}
           </span>
         ),
@@ -617,9 +619,13 @@ function LeftNavigationMenu(props) {
                   delay: 0,
                 },
               }}
-              onClick={() => setExpandedDropdown(expandedDropdown === link.title ? null : link.title)}
+              onClick={() =>
+                setExpandedDropdown(
+                  expandedDropdown === link.title ? null : link.title,
+                )
+              }
             >
-              {link.title} {expandedDropdown === link.title ? '▲' : '▼'}
+              {link.title} {expandedDropdown === link.title ? "▲" : "▼"}
             </motion.div>
           </HoverBox>
 

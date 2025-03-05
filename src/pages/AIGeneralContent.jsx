@@ -25,7 +25,8 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
   // Configure content specific to the AI page
   const aiContent = {
     title: "AI & Machine Learning",
-    subtitle: "PolicyEngine uses artificial intelligence and machine learning to make policy analysis more accurate and accessible.",
+    subtitle:
+      "PolicyEngine uses artificial intelligence and machine learning to make policy analysis more accurate and accessible.",
     heroTitle: "Making Policy Accessible With AI",
     heroSubtitle: `PolicyEngine combines tax-benefit microsimulation with cutting-edge AI to ${democratize} policy understanding`,
     heroImage: householdImage,
@@ -63,7 +64,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
               </p>
             </div>
           </>
-        )
+        ),
       },
       {
         title: "Our AI Journey",
@@ -110,7 +111,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
               through plain-language explanations.
             </p>
           </div>
-        )
+        ),
       },
       {
         title: "How It Works",
@@ -121,20 +122,20 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
             <div className="how-it-works-text">
               <p>
                 PolicyEngine integrates large language models with our
-                computational tax-benefit engine to transform complex calculations
-                into clear explanations.
+                computational tax-benefit engine to transform complex
+                calculations into clear explanations.
               </p>
               <p>
                 For household calculations, we process thousands of intermediate
-                values across tax and benefit programs, then use Anthropic&apos;s
-                Claude API to generate plain-language explanations of eligibility,
-                amounts, and potential changes.
+                values across tax and benefit programs, then use
+                Anthropic&apos;s Claude API to generate plain-language
+                explanations of eligibility, amounts, and potential changes.
               </p>
               <p>
                 For policy analysis, we leverage GPT-4 to weave narratives from
-                our computational results, explaining reforms in terms anyone can
-                understand - from simplified &quot;ELI5&quot; explanations to
-                detailed technical analyses for policy experts.
+                our computational results, explaining reforms in terms anyone
+                can understand - from simplified &quot;ELI5&quot; explanations
+                to detailed technical analyses for policy experts.
               </p>
             </div>
             <div className="how-it-works-image">
@@ -145,9 +146,9 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
               />
             </div>
           </>
-        )
-      }
-    ]
+        ),
+      },
+    ],
   };
 
   return (
@@ -162,7 +163,10 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
         <section className="section">
           <div className="section-content">
             <h2>Try PolicyEngine AI</h2>
-            <div className="demo-button-container" style={{ textAlign: "center", margin: "2rem 0" }}>
+            <div
+              className="demo-button-container"
+              style={{ textAlign: "center", margin: "2rem 0" }}
+            >
               <h3>Try the AI explanation feature</h3>
               <HouseholdAIModal isDemo={true} />
             </div>

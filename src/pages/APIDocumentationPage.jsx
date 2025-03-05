@@ -332,10 +332,10 @@ export default function APIDocumentationPage({ metadata }) {
         <title>API Documentation | PolicyEngine</title>
       </Helmet>
       <Header />
-      <APIGeneralContent 
-        countryId={countryId} 
-        isUK={isUK} 
-        metadata={metadata} 
+      <APIGeneralContent
+        countryId={countryId}
+        isUK={isUK}
+        metadata={metadata}
       />
       <Footer />
     </>

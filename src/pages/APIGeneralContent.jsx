@@ -54,11 +54,11 @@ print(result[\"access_token\"])`;
           },
         },
       },
-      "households": {
-        "household": {
-          "members": ["parent", "child"]
-        }
-      }
+      households: {
+        household: {
+          members: ["parent", "child"],
+        },
+      },
     },
   };
 
@@ -78,9 +78,11 @@ print(response.json())`;
   // Configure content specific to the API page
   const apiContent = {
     title: "API Documentation",
-    subtitle: "Access PolicyEngine's powerful tax-benefit microsimulation engine programmatically",
+    subtitle:
+      "Access PolicyEngine's powerful tax-benefit microsimulation engine programmatically",
     heroTitle: "PolicyEngine REST API",
-    heroSubtitle: "Build tax and benefit policy analysis into your applications with our comprehensive API",
+    heroSubtitle:
+      "Build tax and benefit policy analysis into your applications with our comprehensive API",
     heroImage: require("../images/home/api_screenshot.png"),
     heroButtonText: "Try API Playground",
     heroButtonLink: `#api-playground`,
@@ -97,12 +99,15 @@ print(response.json())`;
               </a>
               ) simulates tax-benefit policy outcomes and reform impacts for
               households. Access to the API requires a <b>Client ID</b> and{" "}
-              <b>Client Secret</b> given by PolicyEngine. Use these credentials to
-              request an authentication token, which expires monthly. This token
-              must be passed within the authorization heading of each request you
-              make to the API. For more information or to request your own Client
-              ID, reach out to PolicyEngine at{" "}
-              <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
+              <b>Client Secret</b> given by PolicyEngine. Use these credentials
+              to request an authentication token, which expires monthly. This
+              token must be passed within the authorization heading of each
+              request you make to the API. For more information or to request
+              your own Client ID, reach out to PolicyEngine at{" "}
+              <a href="mailto: hello@policyengine.org">
+                hello@policyengine.org
+              </a>
+              .
             </p>
             <div className="api-documentation-links">
               <h4>On this page</h4>
@@ -111,7 +116,9 @@ print(response.json())`;
                   <a href="#fetch-token">Fetch an authentication token</a>
                 </li>
                 <li>
-                  <a href="#calculate">Calculate household-level policy outcomes</a>
+                  <a href="#calculate">
+                    Calculate household-level policy outcomes
+                  </a>
                 </li>
                 <li>
                   <a href="#variables">Variable and parameter metadata</a>
@@ -122,7 +129,7 @@ print(response.json())`;
               </ul>
             </div>
           </div>
-        )
+        ),
       },
       {
         title: "Fetch an authentication token",
@@ -130,16 +137,27 @@ print(response.json())`;
         content: (
           <div className="api-section">
             <p>
-              Execute a credentials exchange, using your client ID and client secret to obtain an authentication token. 
-              This token must be included within the authorization header of every HTTP request you make to the PolicyEngine API 
-              in the format &quot;Bearer YOUR_TOKEN&quot; (including the space). Tokens expire every month for security purposes.
+              Execute a credentials exchange, using your client ID and client
+              secret to obtain an authentication token. This token must be
+              included within the authorization header of every HTTP request you
+              make to the PolicyEngine API in the format &quot;Bearer
+              YOUR_TOKEN&quot; (including the space). Tokens expire every month
+              for security purposes.
             </p>
             <div className="code-blocks">
-              <CodeBlock language="python" data={tokenFetchCode} title="Request" />
-              <CodeBlock language="json" data={tokenOutputCode} title="Response" />
+              <CodeBlock
+                language="python"
+                data={tokenFetchCode}
+                title="Request"
+              />
+              <CodeBlock
+                language="json"
+                data={tokenOutputCode}
+                title="Response"
+              />
             </div>
           </div>
-        )
+        ),
       },
       {
         title: "Calculate household-level policy outcomes",
@@ -147,25 +165,32 @@ print(response.json())`;
         content: (
           <div className="api-section">
             <p>
-              Returns household-level policy outcomes. Pass in a household object defining people, 
-              groups and any variable values. Then, pass in null values for requested variables - 
-              these will be filled in with computed values.
+              Returns household-level policy outcomes. Pass in a household
+              object defining people, groups and any variable values. Then, pass
+              in null values for requested variables - these will be filled in
+              with computed values.
             </p>
             <h5>
-              <code>
-                POST /{countryId}/calculate
-              </code>
+              <code>POST /{countryId}/calculate</code>
             </h5>
             <div className="code-blocks">
-              <CodeBlock language="python" data={pythonInputCode} title="Request" />
-              <CodeBlock 
-                language="json" 
-                data={metadata ? JSON.stringify(metadata.sample_result || {}, null, 2) : "Loading..."} 
-                title="Response" 
+              <CodeBlock
+                language="python"
+                data={pythonInputCode}
+                title="Request"
+              />
+              <CodeBlock
+                language="json"
+                data={
+                  metadata
+                    ? JSON.stringify(metadata.sample_result || {}, null, 2)
+                    : "Loading..."
+                }
+                title="Response"
               />
             </div>
           </div>
-        )
+        ),
       },
       {
         title: "Variable and parameter metadata",
@@ -173,16 +198,16 @@ print(response.json())`;
         content: (
           <div className="api-section">
             <p>
-              Access information about all available variables and parameters in the PolicyEngine API.
-              This endpoint returns metadata about all the inputs and outputs that can be used in calculations.
+              Access information about all available variables and parameters in
+              the PolicyEngine API. This endpoint returns metadata about all the
+              inputs and outputs that can be used in calculations.
             </p>
             <h5>
-              <code>
-                GET /{countryId}/metadata
-              </code>
+              <code>GET /{countryId}/metadata</code>
             </h5>
             <p>
-              Variables represent inputs and outputs of the tax-benefit system, such as:
+              Variables represent inputs and outputs of the tax-benefit system,
+              such as:
             </p>
             <ul>
               <li>Employment income</li>
@@ -191,7 +216,8 @@ print(response.json())`;
               <li>Net income</li>
             </ul>
             <p>
-              Parameters represent policy settings that can be adjusted in reforms, such as:
+              Parameters represent policy settings that can be adjusted in
+              reforms, such as:
             </p>
             <ul>
               <li>Tax rates</li>
@@ -200,9 +226,9 @@ print(response.json())`;
               <li>Eligibility thresholds</li>
             </ul>
           </div>
-        )
-      }
-    ]
+        ),
+      },
+    ],
   };
 
   return (

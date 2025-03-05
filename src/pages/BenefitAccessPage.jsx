@@ -23,40 +23,61 @@ const BenefitAccessPage = () => {
   }, [location]);
 
   const generalPages = [
-    { id: 'ai', label: 'AI & ML', path: `/${countryId}/ai` },
-    { id: 'api', label: 'API', path: `/${countryId}/api` },
-    { id: 'microsim', label: 'Microsimulation', path: `/${countryId}/microsim` },
-    { id: 'benefits', label: 'Benefit Access', path: `/${countryId}/benefits` },
-    { id: 'education', label: 'Educational Use', path: `/${countryId}/education` },
-    { id: 'opensource', label: 'Open Source', path: `/${countryId}/opensource` }
+    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
+    { id: "api", label: "API", path: `/${countryId}/api` },
+    {
+      id: "microsim",
+      label: "Microsimulation",
+      path: `/${countryId}/microsim`,
+    },
+    { id: "benefits", label: "Benefit Access", path: `/${countryId}/benefits` },
+    {
+      id: "education",
+      label: "Educational Use",
+      path: `/${countryId}/education`,
+    },
+    {
+      id: "opensource",
+      label: "Open Source",
+      path: `/${countryId}/opensource`,
+    },
   ];
 
   // Partner organizations using PolicyEngine API for benefit access tools
   const partnerOrganizations = [
     {
       name: "MyFriendBen",
-      description: "An open-source multi-benefit screener operating in Colorado, currently expanding to North Carolina and Massachusetts. MyFriendBen helps individuals quickly identify benefits they may qualify for through an accessible, user-friendly interface.",
+      description:
+        "An open-source multi-benefit screener operating in Colorado, currently expanding to North Carolina and Massachusetts. MyFriendBen helps individuals quickly identify benefits they may qualify for through an accessible, user-friendly interface.",
       website: "https://www.myfriendben.org/",
-      imageUrl: "https://www.myfriendben.org/wp-content/uploads/2024/08/MFB-National-Site-Triple-Phone-1024x844.png",
-      logoUrl: "https://www.myfriendben.org/wp-content/uploads/2024/05/MFB-Horizontal-color-nobk.webp",
+      imageUrl:
+        "https://www.myfriendben.org/wp-content/uploads/2024/08/MFB-National-Site-Triple-Phone-1024x844.png",
+      logoUrl:
+        "https://www.myfriendben.org/wp-content/uploads/2024/05/MFB-Horizontal-color-nobk.webp",
       regions: ["Colorado", "North Carolina", "Massachusetts"],
     },
     {
       name: "Benefit Navigator",
-      description: "A tool developed by IMAGINE LA to support case workers in Los Angeles County. Benefit Navigator helps social service providers quickly assess client eligibility for multiple benefit programs, streamlining the assistance process.",
+      description:
+        "A tool developed by IMAGINE LA to support case workers in Los Angeles County. Benefit Navigator helps social service providers quickly assess client eligibility for multiple benefit programs, streamlining the assistance process.",
       website: "https://www.imaginela.org/benefit-navigator",
-      imageUrl: "https://images.squarespace-cdn.com/content/v1/5f6287b7ba52c722644c43c2/0938452b-fc33-483a-be9c-bc6ae1f98191/Screen+1.png?format=1500w",
-      logoUrl: "https://static1.squarespace.com/static/5f6287b7ba52c722644c43c2/t/5f87a74f3990a2436a9f1b56/1740173730712/",
+      imageUrl:
+        "https://images.squarespace-cdn.com/content/v1/5f6287b7ba52c722644c43c2/0938452b-fc33-483a-be9c-bc6ae1f98191/Screen+1.png?format=1500w",
+      logoUrl:
+        "https://static1.squarespace.com/static/5f6287b7ba52c722644c43c2/t/5f87a74f3990a2436a9f1b56/1740173730712/",
       regions: ["Los Angeles County"],
     },
     {
       name: "Navvy",
-      description: "A benefits screener developed by Impactica for the Student Basic Needs Coalition. Navvy helps students identify and access critical support services and benefits specifically designed for higher education students.",
+      description:
+        "A benefits screener developed by Impactica for the Student Basic Needs Coalition. Navvy helps students identify and access critical support services and benefits specifically designed for higher education students.",
       website: "https://www.studentbasicneeds.com/navvy",
-      imageUrl: "https://static.wixstatic.com/media/bc112d_b0a5a365b2ec4fa587724e776fa99934~mv2.png/v1/crop/x_0,y_10,w_1436,h_1322/fill/w_832,h_766,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed-2_edited.png",
-      logoUrl: "https://images.fillout.com/orgid-238912/flowpublicid-ry5gBXBRnAus/widgetid-undefined/h3ChNmTFXJmNApWY1HQVt6/SBNC-Red-Logo.png?a=gtLw4QD91bZPuWMyguZPWw",
+      imageUrl:
+        "https://static.wixstatic.com/media/bc112d_b0a5a365b2ec4fa587724e776fa99934~mv2.png/v1/crop/x_0,y_10,w_1436,h_1322/fill/w_832,h_766,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/unnamed-2_edited.png",
+      logoUrl:
+        "https://images.fillout.com/orgid-238912/flowpublicid-ry5gBXBRnAus/widgetid-undefined/h3ChNmTFXJmNApWY1HQVt6/SBNC-Red-Logo.png?a=gtLw4QD91bZPuWMyguZPWw",
       regions: ["National (US)"],
-    }
+    },
   ];
 
   return (
@@ -67,29 +88,35 @@ const BenefitAccessPage = () => {
       <Header />
       <PageHeader title="Benefit Access" backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>
-          Powering benefit eligibility screening tools through the PolicyEngine API
+          Powering benefit eligibility screening tools through the PolicyEngine
+          API
         </p>
       </PageHeader>
 
       {/* General navigation tabs */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        backgroundColor: '#F7FAFD',
-        padding: '0 1rem 1rem',
-        flexWrap: 'wrap',
-        gap: '0.5rem'
-      }}>
-        {generalPages.map(page => (
-          <Link 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "#F7FAFD",
+          padding: "0 1rem 1rem",
+          flexWrap: "wrap",
+          gap: "0.5rem",
+        }}
+      >
+        {generalPages.map((page) => (
+          <Link
             key={page.id}
             to={page.path}
-            style={{ 
-              padding: '0.5rem 1rem',
-              textDecoration: 'none',
-              fontWeight: page.id === 'benefits' ? 'bold' : 'normal',
-              borderBottom: page.id === 'benefits' ? `2px solid ${style.colors.BLUE}` : 'none',
-              color: style.colors.BLACK
+            style={{
+              padding: "0.5rem 1rem",
+              textDecoration: "none",
+              fontWeight: page.id === "benefits" ? "bold" : "normal",
+              borderBottom:
+                page.id === "benefits"
+                  ? `2px solid ${style.colors.BLUE}`
+                  : "none",
+              color: style.colors.BLACK,
             }}
           >
             {page.label}
@@ -101,18 +128,24 @@ const BenefitAccessPage = () => {
         <div className="benefits-intro">
           <h2>Increasing Access to Public Benefits</h2>
           <p>
-            PolicyEngine&apos;s tax-benefit engine and API power a range of benefit eligibility screening 
-            tools, helping people discover and access the support they&apos;re entitled to.
+            PolicyEngine&apos;s tax-benefit engine and API power a range of
+            benefit eligibility screening tools, helping people discover and
+            access the support they&apos;re entitled to.
           </p>
           <p>
-            Our partners leverage PolicyEngine&apos;s computational capabilities to create user-friendly 
-            applications that simplify the complex landscape of public benefits programs, making it 
-            easier for individuals, families, and case workers to identify available assistance.
+            Our partners leverage PolicyEngine&apos;s computational capabilities
+            to create user-friendly applications that simplify the complex
+            landscape of public benefits programs, making it easier for
+            individuals, families, and case workers to identify available
+            assistance.
           </p>
         </div>
       </Section>
 
-      <Section title="Partner Organizations" style={{ backgroundColor: '#f8f9fa' }}>
+      <Section
+        title="Partner Organizations"
+        style={{ backgroundColor: "#f8f9fa" }}
+      >
         <div className="partner-organizations">
           {partnerOrganizations.map((org, index) => (
             <div className="partner-card" key={index}>
@@ -124,7 +157,9 @@ const BenefitAccessPage = () => {
                   <h3>{org.name}</h3>
                   <div className="partner-regions">
                     {org.regions.map((region, idx) => (
-                      <span key={idx} className="region-tag">{region}</span>
+                      <span key={idx} className="region-tag">
+                        {region}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -135,9 +170,9 @@ const BenefitAccessPage = () => {
                   <img src={org.imageUrl} alt={`${org.name} screenshot`} />
                 </div>
               )}
-              <a 
-                href={org.website} 
-                target="_blank" 
+              <a
+                href={org.website}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="partner-website"
               >
@@ -148,32 +183,34 @@ const BenefitAccessPage = () => {
         </div>
       </Section>
 
-
       <Section title="Build Your Own Benefit Screening Tool">
         <div className="cta-section">
           <p>
-            Are you interested in creating a benefit screening tool for your organization or community?
-            PolicyEngine&apos;s API provides accurate, up-to-date benefit calculations that can be 
-            integrated into your own applications.
+            Are you interested in creating a benefit screening tool for your
+            organization or community? PolicyEngine&apos;s API provides
+            accurate, up-to-date benefit calculations that can be integrated
+            into your own applications.
           </p>
-          <p>
-            Our API offers:
-          </p>
+          <p>Our API offers:</p>
           <ul>
-            <li>Calculation of eligibility and benefit amounts for major US and UK tax and benefit programs</li>
-            <li>Flexible integration options to fit your organization&apos;s needs</li>
-            <li>Regularly updated policy parameters to reflect current legislation</li>
+            <li>
+              Calculation of eligibility and benefit amounts for major US and UK
+              tax and benefit programs
+            </li>
+            <li>
+              Flexible integration options to fit your organization&apos;s needs
+            </li>
+            <li>
+              Regularly updated policy parameters to reflect current legislation
+            </li>
             <li>Technical support from our team</li>
           </ul>
           <div className="cta-buttons">
-            <a 
-              href={`/${countryId}/api`} 
-              className="cta-button primary"
-            >
+            <a href={`/${countryId}/api`} className="cta-button primary">
               Explore Our API
             </a>
-            <a 
-              href="mailto:hello@policyengine.org" 
+            <a
+              href="mailto:hello@policyengine.org"
               className="cta-button secondary"
             >
               Contact Us

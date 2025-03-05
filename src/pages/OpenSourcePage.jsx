@@ -24,11 +24,23 @@ const OpenSourcePage = () => {
   }, [location]);
 
   const generalPages = [
-    { id: 'ai', label: 'AI & ML', path: `/${countryId}/ai` },
-    { id: 'api', label: 'API', path: `/${countryId}/api` },
-    { id: 'microsim', label: 'Microsimulation', path: `/${countryId}/microsim` },
-    { id: 'education', label: 'Educational Use', path: `/${countryId}/education` },
-    { id: 'opensource', label: 'Open Source', path: `/${countryId}/opensource` }
+    { id: "ai", label: "AI & ML", path: `/${countryId}/ai` },
+    { id: "api", label: "API", path: `/${countryId}/api` },
+    {
+      id: "microsim",
+      label: "Microsimulation",
+      path: `/${countryId}/microsim`,
+    },
+    {
+      id: "education",
+      label: "Educational Use",
+      path: `/${countryId}/education`,
+    },
+    {
+      id: "opensource",
+      label: "Open Source",
+      path: `/${countryId}/opensource`,
+    },
   ];
 
   return (
@@ -39,29 +51,35 @@ const OpenSourcePage = () => {
       <Header />
       <PageHeader title="Open Source" backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>
-          PolicyEngine&apos;s commitment to open source software and transparent policy analysis
+          PolicyEngine&apos;s commitment to open source software and transparent
+          policy analysis
         </p>
       </PageHeader>
 
       {/* General navigation tabs */}
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        backgroundColor: '#F7FAFD',
-        padding: '0 1rem 1rem',
-        flexWrap: 'wrap',
-        gap: '0.5rem'
-      }}>
-        {generalPages.map(page => (
-          <Link 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "#F7FAFD",
+          padding: "0 1rem 1rem",
+          flexWrap: "wrap",
+          gap: "0.5rem",
+        }}
+      >
+        {generalPages.map((page) => (
+          <Link
             key={page.id}
             to={page.path}
-            style={{ 
-              padding: '0.5rem 1rem',
-              textDecoration: 'none',
-              fontWeight: page.id === 'opensource' ? 'bold' : 'normal',
-              borderBottom: page.id === 'opensource' ? `2px solid ${style.colors.BLUE}` : 'none',
-              color: style.colors.BLACK
+            style={{
+              padding: "0.5rem 1rem",
+              textDecoration: "none",
+              fontWeight: page.id === "opensource" ? "bold" : "normal",
+              borderBottom:
+                page.id === "opensource"
+                  ? `2px solid ${style.colors.BLUE}`
+                  : "none",
+              color: style.colors.BLACK,
             }}
           >
             {page.label}
@@ -73,26 +91,29 @@ const OpenSourcePage = () => {
         <div className="placeholder-content">
           <h2>Coming Soon</h2>
           <div className="github-icon">
-            <GithubOutlined style={{ fontSize: 64, color: style.colors.BLUE }} />
+            <GithubOutlined
+              style={{ fontSize: 64, color: style.colors.BLUE }}
+            />
           </div>
           <p>
-            We&apos;re currently developing comprehensive content about PolicyEngine&apos;s 
-            open source software and our commitment to transparency. This page will include:
+            We&apos;re currently developing comprehensive content about
+            PolicyEngine&apos;s open source software and our commitment to
+            transparency. This page will include:
           </p>
           <ul>
-            <li>Overview of our open source repositories and software architecture</li>
+            <li>
+              Overview of our open source repositories and software architecture
+            </li>
             <li>Contributor guidelines and how to get involved</li>
             <li>Our open source philosophy and commitment to transparency</li>
             <li>Case studies of community contributions</li>
             <li>Development roadmap and future plans</li>
           </ul>
-          <p>
-            In the meantime, you can explore our code on GitHub:
-          </p>
+          <p>In the meantime, you can explore our code on GitHub:</p>
           <div className="github-button">
-            <a 
-              href="https://github.com/PolicyEngine" 
-              target="_blank" 
+            <a
+              href="https://github.com/PolicyEngine"
+              target="_blank"
               rel="noopener noreferrer"
               className="github-link"
             >
