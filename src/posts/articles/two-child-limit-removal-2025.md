@@ -35,8 +35,8 @@ The combined reform will increase net income for [5% of the popualtion](https://
 **Figure 1: Impacts of exempting families with children under 5 from the two-child limit**
 | Reform | Cost (£ million) | Child Poverty reduction (%) | PE Link |
 | :------------------------------------------------------------------------ | :----------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| Universal Credit Reform | 24.5 | - | [Link](https://policyengine.org/uk/policy?reform=77112&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) |
-| Child Tax Credit Reform | 479.9 | 0.6 | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77113&region=uk&timePeriod=2025&baseline=1) |
+| Child Tax Credit Reform | 24.5 | - | [Link](https://policyengine.org/uk/policy?reform=77112&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) |
+| Universal Credit Reform | 479.9 | 0.6 | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77113&region=uk&timePeriod=2025&baseline=1) |
 | Universal and Child Tax Credit Reform | 504.3 | 0.6 | [Link](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=77114&region=uk&timePeriod=2025&baseline=1) |
 
 # Conclusion
