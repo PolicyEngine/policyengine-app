@@ -14,8 +14,15 @@
 
 - **Node version**: Use Node >=22.0.0 (use nvm to manage versions)
 - **Formatting**: Uses Prettier (default config) with ESLint
-- **React**: Functional components with hooks; no need to import React due to new JSX transform
-- **Imports**: Group by external/internal; prefer named imports
+- **React**: 
+  - Functional components with hooks
+  - No need to import React in most files due to new JSX transform (React 17+)
+  - Only import React when using React namespace features directly (React.lazy, React.Suspense, etc.)
+  - Use named exports from React (e.g., `import { useState, useEffect } from "react"`)
+- **Imports**: 
+  - Group by external/internal
+  - Prefer named imports
+  - Keep imports organized and minimize unused imports
 - **Testing**: Jest with React Testing Library; tests in `__tests__` directory with `.test.js` suffix
 - **File naming**: Use PascalCase for components, camelCase for utilities
 - **TypeScript**: Gradually adopting; new files should use TypeScript when possible
