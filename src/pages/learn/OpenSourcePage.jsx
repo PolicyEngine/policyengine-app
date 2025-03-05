@@ -40,11 +40,6 @@ const OpenSourcePage = () => {
       <Section>
         <div className="placeholder-content">
           <h2>Coming Soon</h2>
-          <div className="github-icon">
-            <GithubOutlined
-              style={{ fontSize: 64, color: style.colors.BLUE }}
-            />
-          </div>
           <p>
             We&apos;re currently developing comprehensive content about
             PolicyEngine&apos;s open source software and our commitment to
