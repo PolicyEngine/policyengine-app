@@ -497,7 +497,8 @@ function PageLinks() {
                   gap: 5,
                 }}
                 whileHover={{
-                  color: style.colors.BLUE,
+                  color: style.colors.WHITE,
+                  textDecoration: "underline",
                 }}
                 transition={{
                   duration: 0.2,
@@ -527,7 +528,8 @@ function PageLinks() {
                   cursor: "pointer",
                 }}
                 whileHover={{
-                  color: style.colors.BLUE,
+                  color: style.colors.WHITE,
+                  textDecoration: "underline",
                 }}
                 transition={{
                   duration: 0.2,
@@ -598,7 +600,7 @@ function LeftNavigationMenu(props) {
                 color: style.colors.WHITE,
               }}
               whileHover={{
-                color: style.colors.BLUE,
+                textDecoration: "underline",
               }}
               animate={
                 isOpen
@@ -665,7 +667,7 @@ function LeftNavigationMenu(props) {
                         color: style.colors.WHITE,
                       }}
                       whileHover={{
-                        color: style.colors.BLUE,
+                        textDecoration: "underline",
                       }}
                       animate={{
                         opacity: 1,
@@ -725,7 +727,7 @@ function LeftNavigationMenu(props) {
                 color: style.colors.WHITE,
               }}
               whileHover={{
-                color: style.colors.BLUE,
+                textDecoration: "underline",
               }}
               animate={
                 isOpen

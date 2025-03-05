@@ -182,6 +182,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                aria-label="Video demonstration of PolicyEngine AI features"
               ></iframe>
             </div>
           </div>
