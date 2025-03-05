@@ -28,6 +28,10 @@ const LINKS = [
     link: "research",
   },
   {
+    title: "AI",
+    link: "ai",
+  },
+  {
     title: "About",
     link: "about",
   },

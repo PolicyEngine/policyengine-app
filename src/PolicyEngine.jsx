@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
-import { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import {
   copySearchParams,
   countryApiCall,
@@ -52,6 +52,7 @@ import GiveCalc from "./applets/GiveCalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 import SaltAMTCalculator from "./applets/SaltAMTCalculator";
+import AIPage from "./pages/AI";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -323,6 +324,12 @@ export default function PolicyEngine() {
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
+          <Route path="ai" element={
+            <>
+              <Header />
+              <AIPage />
+            </>
+          } />
 
           <Route
             path="household/*"
