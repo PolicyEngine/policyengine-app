@@ -58,7 +58,7 @@ The FISC Act would reduce federal revenues by [$193.1 billion](https://policyeng
 
 ## Poverty Impact
 
-The FISC Act would lower the nation’s Supplemental Poverty Measure by [9.2%](http://v) and child poverty by 17.7%. PolicyEngine projects the legislation would reduce deep poverty by [11.7%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=76672&baseline=2&timePeriod=2026&region=us&dataset=enhanced_cps&household=51531).
+The FISC Act would lower the nation’s Supplemental Poverty Measure by [9.2%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=76612&baseline=2&timePeriod=2026&region=us&dataset=enhanced_cps&household=51531) and child poverty by 17.7%. PolicyEngine projects the legislation would reduce deep poverty by [11.7%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=76672&baseline=2&timePeriod=2026&region=us&dataset=enhanced_cps&household=51531).
 
 ![](https://cdn-images-1.medium.com/max/3200/0*iLhr0pdmo70LGE1t)
 
