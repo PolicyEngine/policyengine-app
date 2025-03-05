@@ -173,7 +173,7 @@ print(response.json())`;
             <h5>
               <code>POST /{countryId}/calculate</code>
             </h5>
-            <div className="code-blocks">
+            <div className="code-blocks" data-testid="APIEndpoint_json_blocks">
               <CodeBlock
                 language="python"
                 data={pythonInputCode}
