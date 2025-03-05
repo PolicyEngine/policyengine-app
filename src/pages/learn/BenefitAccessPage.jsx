@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import useCountryId from "../hooks/useCountryId";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import useCountryId from "../../hooks/useCountryId";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
 import { Helmet } from "react-helmet";
-import PageHeader from "../layout/PageHeader";
-import Section from "../layout/Section";
+import PageHeader from "../../layout/PageHeader";
+import Section from "../../layout/Section";
 import { Link } from "react-router-dom";
-import style from "../style";
+import style from "../../style";
 
 /**
  * Benefit Access page component - showcasing benefit screening tools powered by PolicyEngine

@@ -1,6 +1,6 @@
 import React from "react";
 import GeneralContent from "./GeneralContent";
-import HouseholdAIModal from "../modals/HouseholdAIModal";
+import HouseholdAIModal from "../../modals/HouseholdAIModal";
 
 /**
  * AI page content using the new general page structure
@@ -16,8 +16,8 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
 
   // Use appropriate image paths based on country
   const householdImage = isUK
-    ? require("../images/posts/uk-household-ai.png")
-    : require("../images/posts/us-household-ai.png");
+    ? require("../../images/posts/uk-household-ai.png")
+    : require("../../images/posts/us-household-ai.png");
 
   // Configure content specific to the AI page
   const aiContent = {
@@ -137,7 +137,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
             </div>
             <div className="how-it-works-image">
               <img
-                src={require("../images/posts/ai-analysis.png")}
+                src={require("../../images/posts/ai-analysis.png")}
                 alt="AI-powered analysis"
                 className="architecture-img"
               />

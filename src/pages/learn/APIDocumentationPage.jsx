@@ -1,7 +1,7 @@
 /* eslint no-useless-escape: 0 */
-import Footer from "../layout/Footer";
-import Header from "../layout/Header";
-import useCountryId from "../hooks/useCountryId";
+import Footer from "../../layout/Footer";
+import Header from "../../layout/Header";
+import useCountryId from "../../hooks/useCountryId";
 import { Card, Tag } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";

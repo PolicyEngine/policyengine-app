@@ -1,7 +1,7 @@
 import React from "react";
 import GeneralContent from "./GeneralContent";
-import CodeBlock from "../layout/CodeBlock";
-import style from "../style";
+import CodeBlock from "../../layout/CodeBlock";
+import style from "../../style";
 
 /**
  * API page content using the new general page structure
@@ -83,7 +83,7 @@ print(response.json())`;
     heroTitle: "PolicyEngine REST API",
     heroSubtitle:
       "Build tax and benefit policy analysis into your applications with our comprehensive API",
-    heroImage: require("../images/home/api_screenshot.png"),
+    heroImage: require("../../images/home/api_screenshot.png"),
     heroButtonText: "Try API Playground",
     heroButtonLink: `#api-playground`,
     sections: [

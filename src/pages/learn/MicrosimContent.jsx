@@ -19,7 +19,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
     subtitle: "How PolicyEngine's tax and benefit models work",
     heroTitle: "Tax-Benefit Microsimulation",
     heroSubtitle: `PolicyEngine uses microsimulation models to ${analyze} the impact of policy reforms on real households`,
-    heroImage: require("../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png"),
+    heroImage: require("../../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png"),
     heroButtonText: "Try Policy Analysis",
     heroButtonLink: `/${countryId}/policy`,
     sections: [
@@ -112,7 +112,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
             </div>
             <div className="model-diagram">
               <img
-                src={require("../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png")}
+                src={require("../../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png")}
                 alt="PolicyEngine model architecture"
                 className="diagram-img"
               />

@@ -1,10 +1,10 @@
 import React from "react";
-import Section from "../layout/Section";
-import PageHeader from "../layout/PageHeader";
-import FontIcon from "../layout/FontIcon";
-import LinkButton from "../controls/LinkButton";
+import Section from "../../layout/Section";
+import PageHeader from "../../layout/PageHeader";
+import FontIcon from "../../layout/FontIcon";
+import LinkButton from "../../controls/LinkButton";
 import { Link } from "react-router-dom";
-import style from "../style";
+import style from "../../style";
 
 /**
  * Shared component for general information pages

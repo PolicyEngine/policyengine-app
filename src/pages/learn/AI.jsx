@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import useCountryId from "../hooks/useCountryId";
+import useCountryId from "../../hooks/useCountryId";
 import AIGeneralContent from "./AIGeneralContent";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
 import { Helmet } from "react-helmet";
 
 /**
