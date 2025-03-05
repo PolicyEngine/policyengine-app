@@ -1,7 +1,3 @@
-# The Family Income Supplemental Credit (FISC) Act
-
-_Representative Jared Golden’s Child Tax Credit reform would cost $193 billion in 2026 while reducing poverty and inequality._
-
 ## Executive Summary
 
 The [Family Income Supplemental Credit (FISC) Act](https://golden.house.gov/sites/evo-subsites/golden.house.gov/files/evo-media-document/GoldenFISC.pdf), introduced by Representative Jared Golden (D-ME), would establish a new refundable tax credit for families with children of various ages. Using PolicyEngine’s household calculator and microsimulation capabilities, this analysis examines the specific effects of the FISC Act on individual families as well as its impact on the federal budget, income distribution, and poverty.
