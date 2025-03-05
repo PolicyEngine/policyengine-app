@@ -49,6 +49,20 @@
 - When making changes, follow existing patterns in the codebase
 - Run `npm run lint -- --max-warnings=0` locally to ensure the CI pipeline will pass (CI uses zero tolerance for warnings)
 
+## Accessibility Guidelines
+
+- Color contrast: Ensure text remains readable on hover states - avoid blue text on blue backgrounds
+- Prefer text underlines or other non-color indicators for hover states when possible
+- Add appropriate ARIA attributes to interactive and multimedia elements:
+  - Use `aria-label` for iframes, images, and controls that need better descriptions
+  - Include `title` attribute for iframes
+- Avoid using logical operators (`&&`) for compound assignments in event handlers - use explicit code blocks with braces `{}`
+- Test all interactive elements with keyboard navigation (Tab key)
+- When using ANTD components, check for accessibility-specific props and options
+- Image elements should always have descriptive `alt` text
+- Maintain focus visibility for keyboard users
+- Test with a screen reader periodically to verify interface usability
+
 ## Blog Posts
 
 - Keep URLs in blog post markdown files short (without query parameters) to prevent line-breaking issues
