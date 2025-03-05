@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useCountryId from "../../hooks/useCountryId";
-import AIContent from "../AIContent";
+import AIGeneralContent from "../AIGeneralContent";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import { Helmet } from "react-helmet";
 
 /**
  * UK AI page component
- * This serves as a wrapper for the AIContent component,
+ * This serves as a wrapper for the AIGeneralContent component,
  * automatically setting isUK to true
  */
 const AIPage = () => {
@@ -26,7 +26,7 @@ const AIPage = () => {
         <title>AI & Machine Learning | PolicyEngine</title>
       </Helmet>
       <Header />
-      <AIContent countryId={countryId} isUK={true} />
+      <AIGeneralContent countryId={countryId} isUK={true} />
       <Footer />
     </>
   );

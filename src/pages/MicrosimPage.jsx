@@ -1,35 +1,34 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import useCountryId from "../hooks/useCountryId";
-import AIGeneralContent from "./AIGeneralContent";
+import MicrosimContent from "./MicrosimContent";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { Helmet } from "react-helmet";
 
 /**
- * AI page component
- * This serves as a wrapper for the AIGeneralContent component,
- * which contains the actual content shared between US and UK versions
+ * Microsimulation page component
+ * This serves as a wrapper for the MicrosimContent component
  */
-const AIPage = () => {
+const MicrosimPage = () => {
   const location = useLocation();
   const countryId = useCountryId();
 
   useEffect(() => {
-    document.title = "AI | PolicyEngine";
+    document.title = "Microsimulation | PolicyEngine";
     window.scrollTo(0, 0);
   }, [location]);
 
   return (
     <>
       <Helmet>
-        <title>AI & Machine Learning | PolicyEngine</title>
+        <title>Microsimulation | PolicyEngine</title>
       </Helmet>
       <Header />
-      <AIGeneralContent countryId={countryId} isUK={countryId === "uk"} />
+      <MicrosimContent countryId={countryId} isUK={countryId === "uk"} />
       <Footer />
     </>
   );
 };
 
-export default AIPage;
+export default MicrosimPage;
