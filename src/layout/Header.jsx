@@ -49,7 +49,7 @@ const LINKS = [
       {
         title: "AI & ML",
         link: "ai",
-        icon: <DeploymentUnitOutlined/>,
+        icon: <DeploymentUnitOutlined />,
       },
       {
         title: "Microsimulation",
@@ -535,7 +535,7 @@ const DropdownLinkItem = ({ title, items, countryId }) => {
               gap: 5,
             }}
             whileHover={{
-              color: style.colors.BLUE
+              color: style.colors.BLUE,
             }}
             transition={{
               duration: 0.2,
@@ -552,28 +552,27 @@ const DropdownLinkItem = ({ title, items, countryId }) => {
 // Main PageLinks component that renders the appropriate link type
 function PageLinks() {
   const countryId = useCountryId();
-  
 
   const renderLinkItem = (link) => {
     const key = link.title;
-    
+
     if (link.isDropdown) {
       return (
-        <DropdownLinkItem 
+        <DropdownLinkItem
           key={key}
-          title={link.title} 
-          items={link.items} 
-          countryId={countryId} 
+          title={link.title}
+          items={link.items}
+          countryId={countryId}
         />
       );
     }
-    
+
     return (
-      <StandardLinkItem 
+      <StandardLinkItem
         key={key}
-        title={link.title} 
-        link={link.link} 
-        countryId={countryId} 
+        title={link.title}
+        link={link.link}
+        countryId={countryId}
       />
     );
   };
@@ -655,7 +654,13 @@ const MobileStandardLink = ({ link, countryId, isOpen, index }) => {
   );
 };
 
-const MobileDropdownHeader = ({ link, isOpen, index, isExpanded, onToggle }) => {
+const MobileDropdownHeader = ({
+  link,
+  isOpen,
+  index,
+  isExpanded,
+  onToggle,
+}) => {
   return (
     <HoverBox
       hoverStart="left"
@@ -773,19 +778,26 @@ const MobileDropdownItem = ({ item, countryId, index }) => {
   );
 };
 
-const MobileDropdownMenu = ({ link, isOpen, index, expandedDropdown, setExpandedDropdown, countryId }) => {
+const MobileDropdownMenu = ({
+  link,
+  isOpen,
+  index,
+  expandedDropdown,
+  setExpandedDropdown,
+  countryId,
+}) => {
   const isExpanded = expandedDropdown === link.title;
-  
+
   const handleToggleExpand = () => {
     setExpandedDropdown(isExpanded ? null : link.title);
   };
 
   return (
     <div key={link.title}>
-      <MobileDropdownHeader 
-        link={link} 
-        isOpen={isOpen} 
-        index={index} 
+      <MobileDropdownHeader
+        link={link}
+        isOpen={isOpen}
+        index={index}
         isExpanded={isExpanded}
         onToggle={handleToggleExpand}
       />
@@ -793,10 +805,10 @@ const MobileDropdownMenu = ({ link, isOpen, index, expandedDropdown, setExpanded
       {isExpanded && (
         <div style={{ marginLeft: 50 }}>
           {link.items.map((item, itemIndex) => (
-            <MobileDropdownItem 
+            <MobileDropdownItem
               key={item.title}
-              item={item} 
-              countryId={countryId} 
+              item={item}
+              countryId={countryId}
               index={itemIndex}
             />
           ))}
@@ -831,7 +843,7 @@ function LeftNavigationMenu({ isOpen }) {
         />
       );
     }
-    
+
     return (
       <MobileStandardLink
         key={link.title}

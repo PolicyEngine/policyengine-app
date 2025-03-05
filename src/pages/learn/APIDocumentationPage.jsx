@@ -1,4 +1,3 @@
-/* eslint no-useless-escape: 0 */
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 import useCountryId from "../../hooks/useCountryId";
