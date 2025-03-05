@@ -324,12 +324,7 @@ export default function PolicyEngine() {
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
-          <Route path="ai" element={
-            <>
-              <Header />
-              <AIPage />
-            </>
-          } />
+          <Route path="ai" element={<AIPage />} />
 
           <Route
             path="household/*"
