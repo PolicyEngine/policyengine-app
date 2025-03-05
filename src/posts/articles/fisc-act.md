@@ -1,9 +1,6 @@
-
 # The Family Income Supplemental Credit (FISC) Act
 
-
-
-*Representative Jared Golden’s Child Tax Credit reform would cost $193 billion in 2026 while reducing poverty and inequality.*
+_Representative Jared Golden’s Child Tax Credit reform would cost $193 billion in 2026 while reducing poverty and inequality._
 
 ## Executive Summary
 
@@ -11,11 +8,11 @@ The [Family Income Supplemental Credit (FISC) Act](https://golden.house.gov/site
 
 PolicyEngine projects that in 2026, the FISC Act would:
 
-* Reduce federal tax revenue by $193 billion
+- Reduce federal tax revenue by $193 billion
 
-* Increase net income for 37% of US residents
+- Increase net income for 37% of US residents
 
-* Lower the Supplemental Poverty Measure by 9.2% and child poverty by 17.7%
+- Lower the Supplemental Poverty Measure by 9.2% and child poverty by 17.7%
 
 ## Background
 
