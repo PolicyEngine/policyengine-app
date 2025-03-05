@@ -34,6 +34,14 @@ const LINKS = [
     link: "research",
   },
   {
+    title: "About",
+    link: "about",
+  },
+  {
+    title: "Donate",
+    link: "donate",
+  },
+  {
     title: "Learn",
     isDropdown: true,
     items: [
@@ -68,14 +76,6 @@ const LINKS = [
         icon: <GithubOutlined />,
       },
     ],
-  },
-  {
-    title: "About",
-    link: "about",
-  },
-  {
-    title: "Donate",
-    link: "donate",
   },
 ];
 
@@ -385,6 +385,7 @@ function Hamburger() {
           border: "1px solid white",
           fontSize: 20,
           cursor: "pointer",
+          backgroundColor: style.colors.BLUE,
         }}
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -551,56 +552,6 @@ const DropdownLinkItem = ({ title, items, countryId }) => {
 function PageLinks() {
   const countryId = useCountryId();
   
-  const LINKS = [
-    {
-      title: "Research",
-      link: "research",
-    },
-    {
-      title: "About",
-      link: "about",
-    },
-    {
-      title: "Donate",
-      link: "donate",
-    },
-    {
-      title: "Learn",
-      isDropdown: true,
-      items: [
-        {
-          title: "AI & ML",
-          link: "ai",
-          icon: <BarChartOutlined />,
-        },
-        {
-          title: "Microsimulation",
-          link: "microsim",
-          icon: <BarChartOutlined />,
-        },
-        {
-          title: "Benefit Access",
-          link: "benefits",
-          icon: <QuestionCircleOutlined />,
-        },
-        {
-          title: "API",
-          link: "api",
-          icon: <ApiOutlined />,
-        },
-        {
-          title: "Educational Use",
-          link: "education",
-          icon: <BookOutlined />,
-        },
-        {
-          title: "Open Source",
-          link: "opensource",
-          icon: <GithubOutlined />,
-        },
-      ],
-    },
-  ];
 
   const renderLinkItem = (link) => {
     const key = link.title;
@@ -640,204 +591,223 @@ function PageLinks() {
   );
 }
 
-function LeftNavigationMenu(props) {
-  // The menu that slides in from the left when the hamburger is clicked
-  const { isOpen } = props;
+const MobileStandardLink = ({ link, countryId, isOpen, index }) => {
+  return (
+    <Link to={`/${countryId}/${link.link}`}>
+      <HoverBox
+        hoverStart="left"
+        size="100vw"
+        hoverBackgroundColor={style.colors.WHITE}
+        style={{
+          margin: 30,
+        }}
+      >
+        <motion.div
+          style={{
+            cursor: "pointer",
+            color: "white",
+            fontSize: 20,
+            fontFamily: "Roboto",
+            fontWeight: 500,
+            letterSpacing: 2.4,
+            textTransform: "uppercase",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: 90,
+            padding: 15,
+            border: "1px solid white",
+            zIndex: 100,
+          }}
+          initial={{
+            opacity: 0,
+            x: -50,
+            color: style.colors.WHITE,
+          }}
+          whileHover={{
+            textDecoration: "underline",
+          }}
+          animate={
+            isOpen
+              ? {
+                  opacity: 1,
+                  x: 0,
+                }
+              : {
+                  opacity: 0,
+                  x: -50,
+                }
+          }
+          transition={{
+            duration: isOpen ? 0.3 : 0.1,
+            delay: isOpen ? 0.1 * index + 0.2 : 0,
+            color: {
+              duration: 0.1,
+              delay: 0,
+            },
+          }}
+        >
+          {link.title}
+        </motion.div>
+      </HoverBox>
+    </Link>
+  );
+};
+
+const MobileDropdownHeader = ({ link, isOpen, index, isExpanded, onToggle }) => {
+  return (
+    <HoverBox
+      hoverStart="left"
+      size="100vw"
+      hoverBackgroundColor={style.colors.WHITE}
+      style={{
+        margin: 30,
+      }}
+    >
+      <motion.div
+        style={{
+          cursor: "pointer",
+          color: "white",
+          fontSize: 20,
+          fontFamily: "Roboto",
+          fontWeight: 500,
+          letterSpacing: 2.4,
+          textTransform: "uppercase",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: 90,
+          padding: 15,
+          border: "1px solid white",
+          zIndex: 100,
+        }}
+        initial={{
+          opacity: 0,
+          x: -50,
+          color: style.colors.WHITE,
+        }}
+        whileHover={{
+          textDecoration: "underline",
+        }}
+        animate={
+          isOpen
+            ? {
+                opacity: 1,
+                x: 0,
+              }
+            : {
+                opacity: 0,
+                x: -50,
+              }
+        }
+        transition={{
+          duration: isOpen ? 0.3 : 0.1,
+          delay: isOpen ? 0.1 * index + 0.2 : 0,
+          color: {
+            duration: 0.1,
+            delay: 0,
+          },
+        }}
+        onClick={onToggle}
+      >
+        {link.title} {isExpanded ? "▲" : "▼"}
+      </motion.div>
+    </HoverBox>
+  );
+};
+
+const MobileDropdownItem = ({ item, countryId, index }) => {
+  return (
+    <Link to={`/${countryId}/${item.link}`}>
+      <HoverBox
+        hoverStart="left"
+        size="100vw"
+        hoverBackgroundColor={style.colors.WHITE}
+        style={{
+          margin: "15px 30px",
+        }}
+      >
+        <motion.div
+          style={{
+            cursor: "pointer",
+            color: "white",
+            fontSize: 18,
+            fontFamily: "Roboto",
+            fontWeight: 400,
+            letterSpacing: 1.5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: 70,
+            padding: 15,
+            border: "1px solid white",
+            zIndex: 100,
+            gap: 10,
+          }}
+          initial={{
+            opacity: 0,
+            x: -50,
+            color: style.colors.WHITE,
+          }}
+          whileHover={{
+            textDecoration: "underline",
+          }}
+          animate={{
+            opacity: 1,
+            x: 0,
+          }}
+          transition={{
+            duration: 0.2,
+            delay: 0.05 * index,
+            color: {
+              duration: 0.1,
+              delay: 0,
+            },
+          }}
+        >
+          {item.icon} {item.title}
+        </motion.div>
+      </HoverBox>
+    </Link>
+  );
+};
+
+const MobileDropdownMenu = ({ link, isOpen, index, expandedDropdown, setExpandedDropdown, countryId }) => {
+  const isExpanded = expandedDropdown === link.title;
+  
+  const handleToggleExpand = () => {
+    setExpandedDropdown(isExpanded ? null : link.title);
+  };
+
+  return (
+    <div key={link.title}>
+      <MobileDropdownHeader 
+        link={link} 
+        isOpen={isOpen} 
+        index={index} 
+        isExpanded={isExpanded}
+        onToggle={handleToggleExpand}
+      />
+
+      {isExpanded && (
+        <div style={{ marginLeft: 50 }}>
+          {link.items.map((item, itemIndex) => (
+            <MobileDropdownItem 
+              key={item.title}
+              item={item} 
+              countryId={countryId} 
+              index={itemIndex}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+function LeftNavigationMenu({ isOpen }) {
   const countryId = useCountryId();
   const [expandedDropdown, setExpandedDropdown] = useState(null);
-
-  const renderMobileLink = (link, i) => {
-    if (link.isDropdown) {
-      // Render dropdown header
-      return (
-        <div key={link.title}>
-          <HoverBox
-            hoverStart="left"
-            size="100vw"
-            hoverBackgroundColor={style.colors.WHITE}
-            style={{
-              margin: 30,
-            }}
-          >
-            <motion.div
-              style={{
-                cursor: "pointer",
-                color: "white",
-                fontSize: 20,
-                fontFamily: "Roboto",
-                fontWeight: 500,
-                letterSpacing: 2.4,
-                textTransform: "uppercase",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 90,
-                padding: 15,
-                border: "1px solid white",
-                zIndex: 100,
-              }}
-              initial={{
-                opacity: 0,
-                x: -50,
-                color: style.colors.WHITE,
-              }}
-              whileHover={{
-                textDecoration: "underline",
-              }}
-              animate={
-                isOpen
-                  ? {
-                      opacity: 1,
-                      x: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      x: -50,
-                    }
-              }
-              transition={{
-                duration: isOpen ? 0.3 : 0.1,
-                delay: isOpen ? 0.1 * i + 0.2 : 0,
-                color: {
-                  duration: 0.1,
-                  delay: 0,
-                },
-              }}
-              onClick={() =>
-                setExpandedDropdown(
-                  expandedDropdown === link.title ? null : link.title,
-                )
-              }
-            >
-              {link.title} {expandedDropdown === link.title ? "▲" : "▼"}
-            </motion.div>
-          </HoverBox>
-
-          {/* Render dropdown items if expanded */}
-          {expandedDropdown === link.title && (
-            <div style={{ marginLeft: 50 }}>
-              {link.items.map((item, j) => (
-                <Link to={`/${countryId}/${item.link}`} key={item.title}>
-                  <HoverBox
-                    hoverStart="left"
-                    size="100vw"
-                    hoverBackgroundColor={style.colors.WHITE}
-                    style={{
-                      margin: "15px 30px",
-                    }}
-                  >
-                    <motion.div
-                      style={{
-                        cursor: "pointer",
-                        color: "white",
-                        fontSize: 18,
-                        fontFamily: "Roboto",
-                        fontWeight: 400,
-                        letterSpacing: 1.5,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        height: 70,
-                        padding: 15,
-                        border: "1px solid white",
-                        zIndex: 100,
-                        gap: 10,
-                      }}
-                      initial={{
-                        opacity: 0,
-                        x: -50,
-                        color: style.colors.WHITE,
-                      }}
-                      whileHover={{
-                        textDecoration: "underline",
-                      }}
-                      animate={{
-                        opacity: 1,
-                        x: 0,
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        delay: 0.05 * j,
-                        color: {
-                          duration: 0.1,
-                          delay: 0,
-                        },
-                      }}
-                    >
-                      {item.icon} {item.title}
-                    </motion.div>
-                  </HoverBox>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      );
-    } else {
-      // Render regular link
-      return (
-        <Link to={`/${countryId}/${link.link}`} key={link.title}>
-          <HoverBox
-            hoverStart="left"
-            size="100vw"
-            hoverBackgroundColor={style.colors.WHITE}
-            style={{
-              margin: 30,
-            }}
-          >
-            <motion.div
-              style={{
-                cursor: "pointer",
-                color: "white",
-                fontSize: 20,
-                fontFamily: "Roboto",
-                fontWeight: 500,
-                letterSpacing: 2.4,
-                textTransform: "uppercase",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 90,
-                padding: 15,
-                border: "1px solid white",
-                zIndex: 100,
-              }}
-              key={link.title}
-              initial={{
-                opacity: 0,
-                x: -50,
-                color: style.colors.WHITE,
-              }}
-              whileHover={{
-                textDecoration: "underline",
-              }}
-              animate={
-                isOpen
-                  ? {
-                      opacity: 1,
-                      x: 0,
-                    }
-                  : {
-                      opacity: 0,
-                      x: -50,
-                    }
-              }
-              transition={{
-                duration: isOpen ? 0.3 : 0.1,
-                delay: isOpen ? 0.1 * i + 0.2 : 0,
-                color: {
-                  duration: 0.1,
-                  delay: 0,
-                },
-              }}
-            >
-              {link.title}
-            </motion.div>
-          </HoverBox>
-        </Link>
-      );
-    }
-  };
 
   // Reset expanded dropdown when menu closes
   useEffect(() => {
@@ -845,6 +815,32 @@ function LeftNavigationMenu(props) {
       setExpandedDropdown(null);
     }
   }, [isOpen]);
+
+  const renderMobileNavItem = (link, index) => {
+    if (link.isDropdown) {
+      return (
+        <MobileDropdownMenu
+          key={link.title}
+          link={link}
+          isOpen={isOpen}
+          index={index}
+          expandedDropdown={expandedDropdown}
+          setExpandedDropdown={setExpandedDropdown}
+          countryId={countryId}
+        />
+      );
+    }
+    
+    return (
+      <MobileStandardLink
+        key={link.title}
+        link={link}
+        countryId={countryId}
+        isOpen={isOpen}
+        index={index}
+      />
+    );
+  };
 
   return (
     <motion.div
@@ -869,7 +865,7 @@ function LeftNavigationMenu(props) {
         duration: 0.4,
       }}
     >
-      {LINKS.map(renderMobileLink)}
+      {LINKS.map(renderMobileNavItem)}
     </motion.div>
   );
 }
