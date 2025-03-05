@@ -19,26 +19,28 @@ const AIContent = ({ countryId, isUK = false }) => {
   const behavior = isUK ? "behaviour" : "behavior";
   const analyze = isUK ? "analyse" : "analyze";
   const recognized = isUK ? "recognised" : "recognized";
-  
+
   // Use appropriate image paths based on country
-  const householdImage = isUK 
-    ? require("../images/posts/uk-household-ai.png") 
+  const householdImage = isUK
+    ? require("../images/posts/uk-household-ai.png")
     : require("../images/posts/us-household-ai.png");
-  
+
   return (
     <div>
       <PageHeader title="AI & Machine Learning" backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>
-          PolicyEngine uses artificial intelligence and machine learning to make policy analysis more accurate and accessible.
+          PolicyEngine uses artificial intelligence and machine learning to make
+          policy analysis more accurate and accessible.
         </p>
       </PageHeader>
-      
+
       <Section style={{ marginTop: 0, paddingTop: "1rem" }}>
         <div className="hero-section">
           <div className="hero-content">
             <h2>Making Policy Accessible With AI</h2>
             <p className="hero-subtitle">
-              PolicyEngine combines tax-benefit microsimulation with cutting-edge AI to {democratize} policy understanding
+              PolicyEngine combines tax-benefit microsimulation with
+              cutting-edge AI to {democratize} policy understanding
             </p>
             <div className="hero-buttons">
               <LinkButton
@@ -56,9 +58,9 @@ const AIContent = ({ countryId, isUK = false }) => {
             </div>
           </div>
           <div className="hero-image">
-            <img 
-              src={householdImage} 
-              alt="AI explanation example" 
+            <img
+              src={householdImage}
+              alt="AI explanation example"
               className="hero-img"
             />
           </div>
@@ -70,17 +72,26 @@ const AIContent = ({ countryId, isUK = false }) => {
           <div className="feature-card">
             <div className="feature-icon">✨</div>
             <h3>Instant Analysis</h3>
-            <p>Generate comprehensive policy analysis with natural language, tailored to different knowledge levels</p>
+            <p>
+              Generate comprehensive policy analysis with natural language,
+              tailored to different knowledge levels
+            </p>
           </div>
           <div className="feature-card">
             <div className="feature-icon">🧠</div>
             <h3>Plain Language Explanations</h3>
-            <p>Understand complex tax and benefit calculations through clear, accessible explanations of your household&apos;s finances</p>
+            <p>
+              Understand complex tax and benefit calculations through clear,
+              accessible explanations of your household&apos;s finances
+            </p>
           </div>
           <div className="feature-card">
             <div className="feature-icon">📊</div>
             <h3>Data-Driven Insights</h3>
-            <p>Combine computational precision with narrative insights to tell the complete story of policy impacts</p>
+            <p>
+              Combine computational precision with narrative insights to tell
+              the complete story of policy impacts
+            </p>
           </div>
         </div>
       </Section>
@@ -90,23 +101,41 @@ const AIContent = ({ countryId, isUK = false }) => {
           <div className="journey-text">
             <h3>Machine Learning Foundations: 2021-2022</h3>
             <p>
-              PolicyEngine has leveraged artificial intelligence since our inception. In 2021, we pioneered the use of machine learning to enhance our microsimulation models, applying gradient descent to {optimized} survey weights and match administrative totals with unprecedented accuracy.
+              PolicyEngine has leveraged artificial intelligence since our
+              inception. In 2021, we pioneered the use of machine learning to
+              enhance our microsimulation models, applying gradient descent to{" "}
+              {optimized} survey weights and match administrative totals with
+              unprecedented accuracy.
             </p>
             <p>
-              By 2022, our UK model had achieved up to 80% lower aggregate errors compared to other microsimulation models. This foundation of AI-enhanced accuracy has been central to our mission of providing reliable policy analysis.
+              By 2022, our UK model had achieved up to 80% lower aggregate
+              errors compared to other microsimulation models. This foundation
+              of AI-enhanced accuracy has been central to our mission of
+              providing reliable policy analysis.
             </p>
-            
+
             <h3>Data Science Innovation: 2023</h3>
             <p>
-              We expanded our AI capabilities in 2023 with our Enhanced Current Population Survey (ECPS) for the US model, using quantile regression forests to integrate tax record information with survey data, creating the first open alternative to restricted tax microdata for policy microsimulation.
+              We expanded our AI capabilities in 2023 with our Enhanced Current
+              Population Survey (ECPS) for the US model, using quantile
+              regression forests to integrate tax record information with survey
+              data, creating the first open alternative to restricted tax
+              microdata for policy microsimulation.
             </p>
-            
+
             <h3>AI-Powered Analysis: 2023-Present</h3>
             <p>
-              When OpenAI released GPT-4 in March 2023, we immediately {recognized} its potential to {democratize} policy understanding. Within just one month, we launched our AI-powered Analysis tool that translates complex computational results into accessible narratives.
+              When OpenAI released GPT-4 in March 2023, we immediately{" "}
+              {recognized} its potential to {democratize} policy understanding.
+              Within just one month, we launched our AI-powered Analysis tool
+              that translates complex computational results into accessible
+              narratives.
             </p>
             <p>
-              In 2024, we extended this capability to household-level calculations with Anthropic&apos;s Claude API, enabling users to understand exactly how their taxes and benefits are calculated through plain-language explanations.
+              In 2024, we extended this capability to household-level
+              calculations with Anthropic&apos;s Claude API, enabling users to
+              understand exactly how their taxes and benefits are calculated
+              through plain-language explanations.
             </p>
           </div>
         </div>
@@ -116,19 +145,27 @@ const AIContent = ({ countryId, isUK = false }) => {
         <div className="how-it-works">
           <div className="how-it-works-text">
             <p>
-              PolicyEngine integrates large language models with our computational tax-benefit engine to transform complex calculations into clear explanations.
+              PolicyEngine integrates large language models with our
+              computational tax-benefit engine to transform complex calculations
+              into clear explanations.
             </p>
             <p>
-              For household calculations, we process thousands of intermediate values across tax and benefit programs, then use Anthropic&apos;s Claude API to generate plain-language explanations of eligibility, amounts, and potential changes.
+              For household calculations, we process thousands of intermediate
+              values across tax and benefit programs, then use Anthropic&apos;s
+              Claude API to generate plain-language explanations of eligibility,
+              amounts, and potential changes.
             </p>
             <p>
-              For policy analysis, we leverage GPT-4 to weave narratives from our computational results, explaining reforms in terms anyone can understand - from simplified &quot;ELI5&quot; explanations to detailed technical analyses for policy experts.
+              For policy analysis, we leverage GPT-4 to weave narratives from
+              our computational results, explaining reforms in terms anyone can
+              understand - from simplified &quot;ELI5&quot; explanations to
+              detailed technical analyses for policy experts.
             </p>
           </div>
           <div className="how-it-works-image">
-            <img 
-              src={require("../images/posts/ai-analysis.png")} 
-              alt="AI-powered analysis" 
+            <img
+              src={require("../images/posts/ai-analysis.png")}
+              alt="AI-powered analysis"
               className="architecture-img"
             />
           </div>
@@ -140,49 +177,75 @@ const AIContent = ({ countryId, isUK = false }) => {
           <div className="feature">
             <h3>Household AI Explanations</h3>
             <p>
-              Understand exactly how your taxes and benefits are calculated with AI-generated explanations that break down complex rules into plain language.
+              Understand exactly how your taxes and benefits are calculated with
+              AI-generated explanations that break down complex rules into plain
+              language.
             </p>
             <div className="feature-image">
-              <img 
-                src={householdImage} 
-                alt="Household AI explanation example" 
+              <img
+                src={householdImage}
+                alt="Household AI explanation example"
               />
             </div>
           </div>
-          
+
           <div className="feature">
             <h3>Policy Reform Analysis</h3>
             <p>
-              Our Analysis tool offers three audience modes to make policy impacts accessible to everyone:
+              Our Analysis tool offers three audience modes to make policy
+              impacts accessible to everyone:
             </p>
             <ul>
-              <li><strong>ELI5:</strong> Simple language for general audiences</li>
-              <li><strong>Normal:</strong> Balanced for policy analysts</li>
-              <li><strong>Wonk:</strong> Technical language for experts</li>
+              <li>
+                <strong>ELI5:</strong> Simple language for general audiences
+              </li>
+              <li>
+                <strong>Normal:</strong> Balanced for policy analysts
+              </li>
+              <li>
+                <strong>Wonk:</strong> Technical language for experts
+              </li>
             </ul>
             <div className="feature-image">
-              <img 
-                src={require("../images/posts/automate-policy-analysis-with-policy-engines-new-chatgpt-integration.png")} 
-                alt="Policy analysis audience modes" 
+              <img
+                src={require("../images/posts/automate-policy-analysis-with-policy-engines-new-chatgpt-integration.png")}
+                alt="Policy analysis audience modes"
               />
             </div>
           </div>
-          
+
           <div className="feature">
             <h3>Research & Innovation</h3>
             <p>
-              We&apos;re advancing the field through research on how AI can enhance policy analysis:
+              We&apos;re advancing the field through research on how AI can
+              enhance policy analysis:
             </p>
             <ul>
-              <li><strong>LLM Tax {behavior} Analysis:</strong> Exploring how large language models perceive {behavior}al responses to tax policy changes</li>
-              <li><strong>Enhanced Microsimulation Data:</strong> Using machine learning to integrate tax records with survey data for more accurate policy analysis</li>
-              <li><strong>{optimized} Survey Data:</strong> Applying gradient descent algorithms to improve the representativeness of underlying survey data</li>
-              <li><strong>AI-Enhanced Communication:</strong> Developing techniques to combine computational precision with narrative accessibility</li>
+              <li>
+                <strong>LLM Tax {behavior} Analysis:</strong> Exploring how
+                large language models perceive {behavior}al responses to tax
+                policy changes
+              </li>
+              <li>
+                <strong>Enhanced Microsimulation Data:</strong> Using machine
+                learning to integrate tax records with survey data for more
+                accurate policy analysis
+              </li>
+              <li>
+                <strong>{optimized} Survey Data:</strong> Applying gradient
+                descent algorithms to improve the representativeness of
+                underlying survey data
+              </li>
+              <li>
+                <strong>AI-Enhanced Communication:</strong> Developing
+                techniques to combine computational precision with narrative
+                accessibility
+              </li>
             </ul>
             <div className="feature-image">
-              <img 
-                src={require("../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png")} 
-                alt="Research visualization" 
+              <img
+                src={require("../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png")}
+                alt="Research visualization"
               />
             </div>
           </div>
@@ -193,19 +256,29 @@ const AIContent = ({ countryId, isUK = false }) => {
         <div className="vision-container">
           <div className="vision-text">
             <p>
-              At PolicyEngine, we believe everyone should have access to accurate, {personalized} information about public policy. Our vision is to {democratize} understanding of complex policy systems through both conventional means and artificial intelligence.
+              At PolicyEngine, we believe everyone should have access to
+              accurate, {personalized} information about public policy. Our
+              vision is to {democratize} understanding of complex policy systems
+              through both conventional means and artificial intelligence.
             </p>
             <p>
-              By combining the precision of microsimulation with the accessibility of AI, we&apos;re building tools that make public policy more transparent, personal, and accessible to all - from researchers and policymakers to advocates and individuals.
+              By combining the precision of microsimulation with the
+              accessibility of AI, we&apos;re building tools that make public
+              policy more transparent, personal, and accessible to all - from
+              researchers and policymakers to advocates and individuals.
             </p>
             <p>
-              As we continue to develop these capabilities, we&apos;re committed to maintaining the highest standards of accuracy, transparency, and responsibility in our use of AI - ensuring our tools provide trustworthy information while making complex policy systems easier to understand.
+              As we continue to develop these capabilities, we&apos;re committed
+              to maintaining the highest standards of accuracy, transparency,
+              and responsibility in our use of AI - ensuring our tools provide
+              trustworthy information while making complex policy systems easier
+              to understand.
             </p>
           </div>
           <div className="vision-image">
-            <img 
-              src={require("../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png")} 
-              alt="Future of policy understanding" 
+            <img
+              src={require("../images/posts/how-machine-learning-tools-make-policyengine-more-accurate.png")}
+              alt="Future of policy understanding"
               className="vision-img"
             />
           </div>
@@ -217,7 +290,8 @@ const AIContent = ({ countryId, isUK = false }) => {
           <div className="cta-text">
             <h3>Experience the future of policy understanding</h3>
             <p>
-              Explore your household finances with AI explanations or {analyze} policy reforms with our intelligent analysis tools.
+              Explore your household finances with AI explanations or {analyze}{" "}
+              policy reforms with our intelligent analysis tools.
             </p>
           </div>
           <div className="cta-buttons">
@@ -237,7 +311,7 @@ const AIContent = ({ countryId, isUK = false }) => {
 
       <Section title="Watch Our AI Demo" id="demo-video">
         <div className="video-container">
-          <iframe 
+          <iframe
             src="https://www.youtube.com/embed/fnuDyLKpt90"
             width="100%"
             height="500"
@@ -250,7 +324,10 @@ const AIContent = ({ countryId, isUK = false }) => {
       </Section>
 
       {/* Demo modal for household AI */}
-      <div className="demo-button-container" style={{ textAlign: "center", margin: "2rem 0" }}>
+      <div
+        className="demo-button-container"
+        style={{ textAlign: "center", margin: "2rem 0" }}
+      >
         <h3>Try the AI explanation feature</h3>
         <HouseholdAIModal isDemo={true} />
       </div>

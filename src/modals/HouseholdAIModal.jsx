@@ -20,8 +20,13 @@ import ErrorComponent from "../layout/ErrorComponent";
  */
 
 export default function HouseholdAIModal(props) {
-  const { isModalVisible = false, setIsModalVisible, variableName, isDemo = false } = props || {};
-  
+  const {
+    isModalVisible = false,
+    setIsModalVisible,
+    variableName,
+    isDemo = false,
+  } = props || {};
+
   // For demo version on the AI page
   const [internalModalVisible, setInternalModalVisible] = useState(false);
   const showModal = isDemo ? internalModalVisible : isModalVisible;
@@ -82,7 +87,7 @@ Your WIC benefit amount could change if:
       setAnalysis(demoExplanation);
       return;
     }
-    
+
     setIsError(false);
     const jsonObject = {
       household_id: householdId,
@@ -168,8 +173,8 @@ Your WIC benefit amount could change if:
   if (isDemo) {
     return (
       <>
-        <Button 
-          type="primary" 
+        <Button
+          type="primary"
           onClick={() => setInternalModalVisible(true)}
           style={{ marginTop: "1rem" }}
         >
