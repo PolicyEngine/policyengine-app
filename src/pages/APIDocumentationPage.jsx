@@ -1,17 +1,10 @@
 /* eslint no-useless-escape: 0 */
-import style from "../style";
 import Footer from "../layout/Footer";
-import CodeBlock from "../layout/CodeBlock";
 import Header from "../layout/Header";
-import Section from "../layout/Section";
 import useCountryId from "../hooks/useCountryId";
-import { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { Input, Card, Divider, Tag, Drawer } from "antd";
+import { Card, Tag } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
-import useDisplayCategory from "../hooks/useDisplayCategory";
-import { wrappedResponseJson } from "../data/wrappedJson";
 import APIGeneralContent from "./APIGeneralContent";
 
 export const exampleInputs = {
@@ -98,35 +91,7 @@ export const exampleInputs = {
   },
 };
 
-const examplePolicies = {
-  us: "SNAP benefit",
-  uk: "Universal Credit entitlement",
-};
-
-const tokenFetchCode = `import requests
-import json
-
-CLIENT_ID = "YOUR_CLIENT_ID"
-CLIENT_SECRET = "YOUR_CLIENT_SECRET"
-
-payload = {
-  \"client_id\": CLIENT_ID,
-  \"client_secret\": CLIENT_SECRET,
-  \"audience\": \"https://household.api.policyengine.org\",
-  \"grant_type\": \"client_credentials\"
-}
-
-headers = { "content-type": "application/json" }
-
-auth_response = requests.post(\"https://policyengine.uk.auth0.com/oauth/token\", headers=headers, json=payload)
-
-result = auth_response.json()
-print(result[\"access_token\"])`;
-
-const tokenOutputCode = `{
-  "access_token": "YOUR_ACCESS_TOKEN",
-  "token_type": "Bearer"
-}`;
+// Note: These constants are kept for reference but not currently used
 
 export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
@@ -143,7 +108,7 @@ export function APIResultCard(props) {
         bordered={true}
         style={{
           width: 400,
-          backgroundColor: style.colors.WHITE,
+          backgroundColor: "white",
           margin: 15,
           overflow: "hidden",
         }}
@@ -199,6 +164,8 @@ function APIVariableCard(props) {
   );
 }
 
+// This component is not currently used but kept for future reference
+/*
 function VariableParameterExplorer(props) {
   const { metadata, id } = props;
   const [query, setQuery] = useState("");
@@ -252,57 +219,10 @@ function VariableParameterExplorer(props) {
         />
       );
     });
+*/
 
-  return (
-    <>
-      <Drawer
-        title={selectedCardData ? selectedCardData.label : ""}
-        placement="right"
-        closable={true}
-        onClose={() => setSelectedCardData(null)}
-        width={400}
-      >
-        <CardDrawer metadata={selectedCardData} />
-      </Drawer>
-      <Container>
-        <div
-          style={{
-            marginTop: 50,
-            marginBottom: 50,
-            marginLeft: 8,
-          }}
-        >
-          <h3 id={id}>Variables and parameters</h3>
-        </div>
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          variant="borderless"
-          placeholder="Search for a variable or parameter"
-          style={{
-            fontSize: 20,
-            // Show cursor
-            caretColor: style.colors.BLACK,
-            marginLeft: 0,
-          }}
-        />
-        <Divider />
-
-        <div // make cards display in a grid
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "left",
-          }}
-        >
-          {parameterCards}
-          {variableCards}
-        </div>
-      </Container>
-    </>
-  );
-}
-
+// This component is not currently used but kept for future reference
+/*
 function CardDrawer(props) {
   const { metadata } = props;
 
@@ -320,10 +240,10 @@ function CardDrawer(props) {
     </>
   );
 }
+*/
 
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
-  const displayCategory = useDisplayCategory();
   const isUK = countryId === "uk";
 
   return (
@@ -342,6 +262,8 @@ export default function APIDocumentationPage({ metadata }) {
   );
 }
 
+// These components are not currently used but kept for future reference
+/*
 function APIEndpoint({
   pattern,
   method,
@@ -466,3 +388,4 @@ function APIEndpointStatic({
     </Section>
   );
 }
+*/

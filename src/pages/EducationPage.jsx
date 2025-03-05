@@ -15,7 +15,7 @@ import style from "../style";
 const EducationPage = () => {
   const location = useLocation();
   const countryId = useCountryId();
-  const isUK = countryId === "uk";
+  // Country identification logic
 
   useEffect(() => {
     document.title = "Educational Use | PolicyEngine";

@@ -19,18 +19,18 @@ CLIENT_ID = "YOUR_CLIENT_ID"
 CLIENT_SECRET = "YOUR_CLIENT_SECRET"
 
 payload = {
-  \"client_id\": CLIENT_ID,
-  \"client_secret\": CLIENT_SECRET,
-  \"audience\": \"https://household.api.policyengine.org\",
-  \"grant_type\": \"client_credentials\"
+  "client_id": CLIENT_ID,
+  "client_secret": CLIENT_SECRET,
+  "audience": "https://household.api.policyengine.org",
+  "grant_type": "client_credentials"
 }
 
 headers = { "content-type": "application/json" }
 
-auth_response = requests.post(\"https://policyengine.uk.auth0.com/oauth/token\", headers=headers, json=payload)
+auth_response = requests.post("https://policyengine.uk.auth0.com/oauth/token", headers=headers, json=payload)
 
 result = auth_response.json()
-print(result[\"access_token\"])`;
+print(result["access_token"])`;
 
   const tokenOutputCode = `{
   "access_token": "YOUR_ACCESS_TOKEN",

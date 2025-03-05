@@ -16,7 +16,7 @@ import { GithubOutlined } from "@ant-design/icons";
 const OpenSourcePage = () => {
   const location = useLocation();
   const countryId = useCountryId();
-  const isUK = countryId === "uk";
+  // Country identification logic
 
   useEffect(() => {
     document.title = "Open Source | PolicyEngine";

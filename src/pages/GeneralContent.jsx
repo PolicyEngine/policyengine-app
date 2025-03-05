@@ -25,12 +25,8 @@ const GeneralContent = ({
   children,
 }) => {
   // Use appropriate spelling based on country
-  const democratize = isUK ? "democratise" : "democratize";
-  const personalized = isUK ? "personalised" : "personalized";
-  const optimized = isUK ? "optimised" : "optimized";
-  const behavior = isUK ? "behaviour" : "behavior";
-  const analyze = isUK ? "analyse" : "analyze";
-  const recognized = isUK ? "recognised" : "recognized";
+  // Uncomment and use these variables as needed
+  // const democratize = isUK ? "democratise" : "democratize";
 
   // Default content that can be overridden
   const defaultContent = {

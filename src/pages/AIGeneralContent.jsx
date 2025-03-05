@@ -11,10 +11,7 @@ import HouseholdAIModal from "../modals/HouseholdAIModal";
 const AIGeneralContent = ({ countryId, isUK = false }) => {
   // Use appropriate spelling based on country
   const democratize = isUK ? "democratise" : "democratize";
-  const personalized = isUK ? "personalised" : "personalized";
   const optimized = isUK ? "optimised" : "optimized";
-  const behavior = isUK ? "behaviour" : "behavior";
-  const analyze = isUK ? "analyse" : "analyze";
   const recognized = isUK ? "recognised" : "recognized";
 
   // Use appropriate image paths based on country
