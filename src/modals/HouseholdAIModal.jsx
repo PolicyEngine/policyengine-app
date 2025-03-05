@@ -147,7 +147,7 @@ Your WIC benefit amount could change if:
         }
       }
     }
-  }, [countryId, householdId, policyId, variableName, isDemo]);
+  }, [countryId, householdId, policyId, variableName, isDemo, demoExplanation]);
 
   useEffect(() => {
     function resetModalData() {
