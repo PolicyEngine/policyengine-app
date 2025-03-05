@@ -21,6 +21,7 @@ import {
   BookOutlined,
   GithubOutlined,
   DownOutlined,
+  DeploymentUnitOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
@@ -48,7 +49,7 @@ const LINKS = [
       {
         title: "AI & ML",
         link: "ai",
-        icon: <BarChartOutlined />,
+        icon: <DeploymentUnitOutlined/>,
       },
       {
         title: "Microsimulation",
