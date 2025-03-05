@@ -30,6 +30,9 @@
 - **React Router**: Uses `react-router-dom` v6 with search params for state preservation
 - **Charts/Graphs**: Uses `plotly.js` and `react-plotly.js` for data visualization
 - **Markdown**: Uses `react-markdown` with plugins for rendering markdown content
+- **Page Structure**: Typically follows Header -> PageHeader -> Content -> Footer pattern
+- **Country-specific content**: Use the `countryId` hook and conditionals/props to handle US/UK differences
+- **Image loading**: Use `require()` for dynamic images rather than direct string paths
 
 ## Common Gotchas & Best Practices
 
@@ -38,9 +41,13 @@
 - `findInTree` function navigates variable hierarchies using path strings like "input.household.children"
 - URL-encoded parameters need proper decoding (e.g., %5B to [, %5D to ])
 - React.useEffect with empty deps array (`[]`) runs once on mount, no array runs on every render
+- Always include all dependencies in React hooks' dependency arrays (especially with useCallback and useEffect)
+- For shared components used across multiple country pages (UK/US), create a common component and pass country info as props
+- When creating new pages, ensure they follow the same page structure as existing ones (i.e., include Header/Footer)
 - Follow the "PolicyEngine React commandments" in `src/README.md` for component structure
 - Add docstrings to all components and graceful error handling
 - When making changes, follow existing patterns in the codebase
+- Run `npm run lint -- --max-warnings=0` locally to ensure the CI pipeline will pass (CI uses zero tolerance for warnings)
 
 ## Blog Posts
 
