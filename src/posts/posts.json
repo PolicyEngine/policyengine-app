@@ -1099,5 +1099,14 @@
     "filename": "fisc-act.md",
     "image": "jared-golden.jpeg",
     "authors": ["pavel-makarchuk"]
+  },
+  {
+    "title": "Exempting young children from the two-child limit",
+    "description": "Analysis of the potential impact of limiting the two-child limit to families with children under 5 years old.",
+    "date": "2025-03-06 00:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi", "pavel-makarchuk"],
+    "filename": "young-child-exemption-two-child-limit.md",
+    "image": "young-child-exemption-two-child-limit.jpg"
   }
 ]
