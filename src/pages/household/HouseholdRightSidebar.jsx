@@ -170,6 +170,7 @@ export default function HouseholdRightSidebar(props) {
       )}
     </div>
   );
+
   const notEnoughInfo = (
     <div
       style={{
@@ -182,6 +183,8 @@ export default function HouseholdRightSidebar(props) {
       <p>Tell us more about your household to see your results</p>
     </div>
   );
+
+  const hasHouseholdDetails = autoCompute && householdBaseline;
 
   return (
     <div
@@ -213,18 +216,9 @@ export default function HouseholdRightSidebar(props) {
             style={{ width: "100%", marginTop: 20 }}
           />
         )}
-        {!hasReform && (
+        {hasHouseholdDetails && (
           <SearchParamNavButton
-            text="Create a reform"
-            focus="gov"
-            type="secondary"
-            target={`/${metadata.countryId}/policy`}
-            style={{ width: "100%", marginTop: 20 }}
-          />
-        )}
-        {hasReform && (
-          <SearchParamNavButton
-            text="Edit my reform"
+            text={hasReform ? "View Economic Impact" : "Create a Reform"}
             focus="gov"
             type="secondary"
             target={`/${metadata.countryId}/policy`}
