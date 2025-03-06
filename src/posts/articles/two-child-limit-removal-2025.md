@@ -1,6 +1,4 @@
-# Modelling the two-child limit removal in PolicyEngine
-
-The two-child limit is a UK welfare policy that restricts child-related benefits to the first two children in a family for children born after April 2017. This policy affects the Universal Credit (UC) as well as the Child Tax Credit (CTC).
+The UK limits the Child Tax Credit and Universal Credit child element to two children per family for children born after April 2017. 
 
 PolicyEngine allows modelling both the current implementation and [policy reforms](https://www.theguardian.com/society/2025/feb/26/parents-under-fives-could-be-exempted-two-child-benefit-cap-uk) to the two-child limit, including an age-based exemption mechanism.
 
