@@ -1,5 +1,6 @@
 import React from "react";
 import GeneralContent from "./GeneralContent";
+import style from "../../style";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -175,20 +176,6 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
             <h2>Technical Documentation</h2>
             <div className="documentation-links">
               <div className="doc-card">
-                <h3>UK Model Documentation</h3>
-                <p>
-                  Detailed information about the UK tax and benefit model,
-                  including data sources, calibration methodology, and
-                  validation results.
-                </p>
-                <a
-                  href={`/${countryId}/research/uk-spi-validation`}
-                  className="doc-link"
-                >
-                  UK Model Validation →
-                </a>
-              </div>
-              <div className="doc-card">
                 <h3>US Model Documentation</h3>
                 <p>
                   Technical details about the US Enhanced Current Population
@@ -200,6 +187,20 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
                   className="doc-link"
                 >
                   Enhanced CPS Documentation →
+                </a>
+              </div>
+              <div className="doc-card">
+                <h3>UK Model Validation</h3>
+                <p>
+                  Detailed information about the UK tax and benefit model,
+                  including data sources, calibration methodology, and
+                  validation results.
+                </p>
+                <a
+                  href={`/${countryId}/research/uk-spi-validation`}
+                  className="doc-link"
+                >
+                  UK Model Validation →
                 </a>
               </div>
               <div className="doc-card">
@@ -276,7 +277,7 @@ const MicrosimContent = ({ countryId, isUK = false }) => {
         }
         
         .doc-link {
-          color: #1a5fb4;
+          color: ${style.colors.BLUE};
           font-weight: 500;
           margin-top: auto;
           padding-top: 1rem;
