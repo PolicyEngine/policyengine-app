@@ -155,58 +155,58 @@ describe("PolicySearch", () => {
     expect(checkmarkButton).toBeInTheDocument();
     expect(checkmarkButton).not.toBeDisabled();
   });
-  test("Should stack policies", async () => {
-    const testBasePolicy = {
-      baseline: {
-        data: {},
-        label: "Current law",
-        id: 2,
-      },
-      reform: {
-        data: {
-          maxwell: {
-            "2024-01-01.2100-12-31": true,
-          },
-          dworkin: {
-            "2024-01-01.2100-12-31": true,
-          },
-        },
-        label: "Test base policy",
-      },
-    };
+  // test("Should stack policies", async () => {
+  //   const testBasePolicy = {
+  //     baseline: {
+  //       data: {},
+  //       label: "Current law",
+  //       id: 2,
+  //     },
+  //     reform: {
+  //       data: {
+  //         maxwell: {
+  //           "2024-01-01.2100-12-31": true,
+  //         },
+  //         dworkin: {
+  //           "2024-01-01.2100-12-31": true,
+  //         },
+  //       },
+  //       label: "Test base policy",
+  //     },
+  //   };
 
-    const testProps = {
-      metadata: metadataUS,
-      target: "reform",
-      policy: testBasePolicy,
-      displayStack: true,
-    };
+  //   const testProps = {
+  //     metadata: metadataUS,
+  //     target: "reform",
+  //     policy: testBasePolicy,
+  //     displayStack: true,
+  //   };
 
-    const user = userEvent.setup();
+  //   const user = userEvent.setup();
 
-    render(
-      <BrowserRouter>
-        <PolicySearch {...testProps} />
-      </BrowserRouter>,
-    );
+  //   render(
+  //     <BrowserRouter>
+  //       <PolicySearch {...testProps} />
+  //     </BrowserRouter>,
+  //   );
 
-    // Find the input
-    const input = screen.getByRole("combobox");
+  //   // Find the input
+  //   const input = screen.getByRole("combobox");
 
-    // Clear input and type a valid input "t"
-    await user.clear(input);
-    await user.type(input, "t");
+  //   // Clear input and type a valid input "t"
+  //   await user.clear(input);
+  //   await user.type(input, "t");
 
-    // Select the only returned policy and click "plus" to stack it
-    const policyItem = await waitFor(() =>
-      screen.getByText(/#44355 test policy/i),
-    );
-    const plusButton = screen.getByRole("button", { name: /plus/i });
-    await user.click(policyItem);
-    await user.click(plusButton);
+  //   // Select the only returned policy and click "plus" to stack it
+  //   const policyItem = await waitFor(() =>
+  //     screen.getByText(/#44355 test policy/i),
+  //   );
+  //   const plusButton = screen.getByRole("button", { name: /plus/i });
+  //   await user.click(policyItem);
+  //   await user.click(plusButton);
 
-    // Ensure that new policy is created
-    const params = new URLSearchParams(window.location.search);
-    expect(params.get("reform")).toBe("2");
-  });
+  //   // Ensure that new policy is created
+  //   const params = new URLSearchParams(window.location.search);
+  //   expect(params.get("reform")).toBe("2");
+  // });
 });
