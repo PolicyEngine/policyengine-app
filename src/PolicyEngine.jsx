@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
-import { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import {
   copySearchParams,
   countryApiCall,
@@ -52,6 +52,11 @@ import GiveCalc from "./applets/GiveCalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 import SaltAMTCalculator from "./applets/SaltAMTCalculator";
+import AIPage from "./pages/AI";
+import MicrosimPage from "./pages/MicrosimPage";
+import EducationPage from "./pages/EducationPage";
+import OpenSourcePage from "./pages/OpenSourcePage";
+import BenefitAccessPage from "./pages/BenefitAccessPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -323,6 +328,11 @@ export default function PolicyEngine() {
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
+          <Route path="ai" element={<AIPage />} />
+          <Route path="microsim" element={<MicrosimPage />} />
+          <Route path="benefits" element={<BenefitAccessPage />} />
+          <Route path="education" element={<EducationPage />} />
+          <Route path="opensource" element={<OpenSourcePage />} />
 
           <Route
             path="household/*"
