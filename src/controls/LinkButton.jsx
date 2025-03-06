@@ -35,6 +35,26 @@ export default function LinkButton(props) {
 
   const navigate = useNavigate();
   const isExternalLink = checkIfExternalLink(link);
+  const isHashLink = checkIfHashLink(link);
+
+  function clickHandler() {
+    // If isExternalLink, Link component handles clicks
+    if (isExternalLink) {
+      return;
+    }
+
+    // If hashLink, we have to handle manually, as react-router-dom
+    // provides no handling
+    if (isHashLink) {
+      const element = document.getElementById(link.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    navigate(link);
+  }
 
   const button = (
     <Button
@@ -48,7 +68,7 @@ export default function LinkButton(props) {
       activeBackgroundColor={activeBackgroundColor}
       borderColor={borderColor}
       activeBorderColor={activeBorderColor}
-      onClick={!isExternalLink && (() => navigate(link))}
+      onClick={clickHandler}
       style={style}
     />
   );
@@ -59,13 +79,27 @@ export default function LinkButton(props) {
         {button}
       </Link>
     );
-  } else {
-    return button;
   }
+
+  return button;
 }
 
 function checkIfExternalLink(link) {
   if (link.slice(0, 4) === "http") {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * Check if a link is a hash link, i.e., a link to a specific
+ * section of the CURRENT page; this will return false for external links,
+ * including those with hashes
+ * @param {String} link
+ * @returns {Boolean}
+ */
+function checkIfHashLink(link) {
+  if (link.slice(0, 1) === "#") {
     return true;
   }
   return false;
