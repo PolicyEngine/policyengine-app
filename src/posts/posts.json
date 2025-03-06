@@ -1101,12 +1101,12 @@
     "authors": ["pavel-makarchuk"]
   },
   {
-    "title": "Modelling options to limit the two-child limit",
+    "title": "Exempting young children from the two-child limit",
     "description": "Analysis of the potential impact of limiting the two-child limit to families with children under 5 years old.",
-    "date": "2025-03-04 00:00:00",
+    "date": "2025-03-06 00:00:00",
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi", "pavel-makarchuk"],
-    "filename": "two-child-limit-removal-2025.md",
-    "image": "two-child-limit-removal-2025.jpg"
+    "filename": "young-child-exemption-two-child-limit.md",
+    "image": "young-child-exemption-two-child-limit.jpg"
   }
 ]
