@@ -2,6 +2,10 @@ import { Link } from "react-router-dom";
 import style from "../../style";
 import { LEARN_DROPDOWN_LINKS } from "../../layout/Header.jsx";
 
+// During front-end redesign, this feature should be rethought,
+// as it does not fit best design practices. This should not be
+// in the code base on or after Jan. 1, 2026.
+
 export default function SecondaryNav(props) {
   const { countryId, pageType } = props;
   return (

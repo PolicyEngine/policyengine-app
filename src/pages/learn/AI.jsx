@@ -6,6 +6,9 @@ import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
 import { Helmet } from "react-helmet";
 
+// During front-end redesign, this page should be refactored
+// to use design system layout components and improved best practices.
+
 /**
  * AI page component
  * This serves as a wrapper for the AIGeneralContent component,

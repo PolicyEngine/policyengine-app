@@ -1,6 +1,9 @@
 import React from "react";
 import GeneralContent from "./GeneralContent";
 
+// During front-end redesign, this page should be refactored
+// to use design system layout components and improved best practices.
+
 /**
  * Microsimulation page content using the new general page structure
  * @param {Object} props

@@ -3,6 +3,9 @@ import GeneralContent from "./GeneralContent";
 import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
 
+// During front-end redesign, this page should be refactored
+// to use design system layout components and improved best practices.
+
 /**
  * API page content using the new general page structure
  * @param {Object} props

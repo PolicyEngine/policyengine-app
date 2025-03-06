@@ -5,6 +5,12 @@ import FontIcon from "../../layout/FontIcon";
 import LinkButton from "../../controls/LinkButton";
 import SecondaryNav from "./SecondaryNav";
 
+// During front-end redesign, this component should be heavily
+// refactored. This component is too limiting of an implementation
+// for the pages it uses. Better would be to break these up into
+// modular components minimally adapted from the design system
+// that each page can implement individually.
+
 /**
  * Shared component for general information pages
  * Used as a base for pages like AI, API, Microsimulation, Benefit Access, etc.

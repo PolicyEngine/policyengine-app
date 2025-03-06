@@ -9,6 +9,9 @@ import Section from "../../layout/Section";
 import style from "../../style";
 import SecondaryNav from "./SecondaryNav";
 
+// During front-end redesign, this page should be refactored
+// to use design system layout components and improved best practices.
+
 /**
  * Benefit Access page component - showcasing benefit screening tools powered by PolicyEngine
  */

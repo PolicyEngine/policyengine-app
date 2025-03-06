@@ -6,6 +6,9 @@ import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
 import APIGeneralContent from "./APIGeneralContent";
 
+// During front-end redesign, this page should be refactored
+// to use design system layout components and improved best practices.
+
 export const exampleInputs = {
   us: {
     household: {

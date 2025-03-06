@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import {
   copySearchParams,
   countryApiCall,
