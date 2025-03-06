@@ -1,6 +1,6 @@
 import React from "react";
 import GeneralContent from "./GeneralContent";
-import HouseholdAIModal from "../../modals/HouseholdAIModal";
+import style from "../../style";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -30,8 +30,8 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
     heroTitle: "Making Policy Accessible With AI",
     heroSubtitle: `PolicyEngine combines tax-benefit microsimulation with cutting-edge AI to ${democratize} policy understanding`,
     heroImage: householdImage,
-    heroButtonText: "Try AI Explanations",
-    heroButtonLink: `/${countryId}/household`,
+    heroButtonText: "Learn about our AI Explanations tool",
+    heroButtonLink: `/${countryId}/research/us-household-ai`,
     sections: [
       {
         title: "AI-Powered Policy Analysis",
@@ -162,19 +162,6 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
         {/* Additional AI-specific content */}
         <section className="section">
           <div className="section-content">
-            <h2>Try PolicyEngine AI</h2>
-            <div
-              className="demo-button-container"
-              style={{ textAlign: "center", margin: "2rem 0" }}
-            >
-              <h3>Try the AI explanation feature</h3>
-              <HouseholdAIModal isDemo={true} />
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="section-content">
             <h2 id="demo-video">Watch Our AI Demo</h2>
             <div className="video-container">
               <iframe
@@ -226,7 +213,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
         }
         
         .journey-text h3 {
-          color: #1a5fb4;
+          color: ${style.colors.BLUE};
           margin-top: 1.5rem;
           margin-bottom: 0.5rem;
         }
