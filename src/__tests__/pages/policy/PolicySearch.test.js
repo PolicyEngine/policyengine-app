@@ -1,10 +1,9 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { BrowserRouter } from "react-router-dom";
 import { baselinePolicyUS } from "../../__setup__/sampleData";
 import PolicySearch from "../../../pages/policy/PolicySearch";
 import data from "../../__setup__/data.json";
-import userEvent from "@testing-library/user-event";
 import { when } from "jest-when";
 
 let metadataUS = data["metadataUS"];
