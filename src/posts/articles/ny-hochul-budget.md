@@ -1,10 +1,3 @@
-
-# New York Governor Hochul’s Tax Proposals
-
-PolicyEngine analyzed several individual income tax policies included in Governor Kathy Hochul’s FY2026 budget.
-
-![](https://cdn-images-1.medium.com/max/2000/1*4ktk8D_B--q0ZSCtx_2Lfw.jpeg)
-
 On January 21, 2025, New York Governor Kathy Hochul [unveiled her budget](https://www.budget.ny.gov/pubs/press/2025/fy26-executive-budget.html) for Fiscal Year 2026, including three provisions PolicyEngine can simulate:
 
 * Introducing “inflation rebates” that would provide $300 to single filers with earnings of $150,000 or less and $500 for joint filers at $300,000 or below.
@@ -17,15 +10,19 @@ Using PolicyEngine’s household calculator and microsimulation capabilities, we
 
 ## Background
 
-## Inflation Rebates
+### Inflation Rebates
 
 The proposed inflation rebates would function as fully refundable tax credits as they would provide direct payments to households that have filed their taxes. The rebates’ value and income limit depend on filing status, as displayed in Table 1. Households above the limits would not receive the rebates, creating an income cliff. These payments would only be active for 2025.
 
 **Table 1: Inflation Rebate Value and Income Limit by Filing Status**
 
-![](https://cdn-images-1.medium.com/max/2000/1*l1JYrPYQS3KSPsDXSzMuhA.png)
+| Filing Status | Rebate Amount | Income Limit |
+|--------------|--------------|-------------|
+| Single and Head of Household | $300 | $150,000 |
+| Married Filing Jointly and Surviving Spouse | $500 | $300,000 |
+| Married Filing Separately | $250 | $150,000 |
 
-## Empire State Child Credit
+### Empire State Child Credit
 
 In addition to the increase in the value of the ESCC, the maximum credit amount would also be extended to families with low incomes. Currently, a single parent with annual earnings of $5,000 or less receives only $100. Between $5,000 and $10,000, the ESCC phases into its current maximum of $330. Hochul’s proposal would eliminate the earnings requirement, allowing this single parent to receive the full credit. For tax year 2025, children under the age of 4 would see their credit increase from $330 to $1,000. Children between 4 and 16 would still receive $330, until 2026 when their credit is increased to $500. The current phase-out structure of the ESCC would remain, though the credit would no longer be coupled to the pre-TCJA federal CTC.
 
@@ -33,13 +30,17 @@ In addition to the increase in the value of the ESCC, the maximum credit amount 
 
 ![](https://cdn-images-1.medium.com/max/2652/0*OHmEv_nybbouJJ0L)
 
-## Income Tax Cuts
+### Income Tax Cuts
 
 Finally, Governor Hochul would decrease the tax rate for New York state’s first five income tax brackets by 0.1% in 2025 and 2026. The rates under current law and the proposed cuts can be seen in Table 2 below.
 
 **Table 2: Current Tax Rates and Proposed Cuts in 2025 and 2026**
 
-![](https://cdn-images-1.medium.com/max/2000/1*5PG5amy8Q7imZddAgYOe-w.png)
+| Tax Year | Tax Rate 1 | Tax Rate 2 | Tax Rate 3 | Tax Rate 4 | Tax Rate 5 |
+|---------|-----------|-----------|-----------|-----------|-----------|
+| 2024 | 4.0% | 4.5% | 5.25% | 5.5% | 6.0% |
+| 2025 | 3.9% | 4.4% | 5.15% | 5.4% | 5.9% |
+| 2026 | 3.8% | 4.3% | 5.05% | 5.3% | 5.8% |
 
 In addition to several other proposals, Governor Hochul also included an extension of the Temporary PIT High Income Surcharge from 2028 to 2032. We have limited this analysis to three provisions that have been discussed.
 
@@ -55,17 +56,29 @@ A single parent with two children earning $160,000 exceeds the income threshold 
 
 A married couple with three children earning $250,000 qualifies for the full $500 inflation rebate in 2025, as their income falls below the $300,000 joint filer threshold. While their income level excludes them from additional ESCC benefits, they receive $231 from the tax rate reductions, totaling $731 in increased net income for 2025. In 2026, without the inflation rebate, their benefit comes exclusively from the income tax cuts, providing $462 in tax relief.
 
-If this married couple’s income grows to $310,000, they would exceed the joint filer threshold for the inflation rebate in 2025, receiving no benefit from this program. However, their benefit from the tax rate reductions would increase to $291 in 2025. In 2026, their tax liability would drop by $461, resulting in a gain in net income.¹
+If this married couple’s income grows to $310,000, they would exceed the joint filer threshold for the inflation rebate in 2025, receiving no benefit from this program. However, their benefit from the tax rate reductions would increase to $291 in 2025. In 2026, their tax liability would drop by $461, resulting in a gain in net income.[^1]
 
 Tables 3 and 4 summarize the changes in each program and net income for each examined household for 2025 and 2026.
 
 **Table 3: Change in Net Income Based on Household Composition (2025)**
 
-![](https://cdn-images-1.medium.com/max/2000/1*YuLqgzDVdgOmNs03YgzrUQ.png)
+| Martial Status | Number of Children | Annual Income | Inflation Rebate | ESCC Change | Income Tax Cut | Total Change in Net Income |
+|---------------|-------------------|--------------|-----------------|-------------|---------------|---------------------------|
+| Single | 1 | $0 | $300 | $230 | $0 | [+$530](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=49692&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single | 1 | $50,000 | $300 | $0 | $38 | [+$338](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51379&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single | 2 | $160,000 | $0 | $0 | $147 | [+$147](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51399&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married | 3 | $250,000 | $500 | $0 | $231 | [+$731](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51446&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married | 3 | $310,000 | $0 | $0 | $291 | [+$291](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51448&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 
 **Table 4: Change in Net Income Based on Household Composition (2026)**
 
-![](https://cdn-images-1.medium.com/max/2000/1*VFDF9CyfwzBNILH0WSW66g.png)
+| Martial Status | Number of Children | Annual Income | ESCC Change | Income Tax Cut | Total Change in Net Income |
+|---------------|-------------------|--------------|-------------|---------------|---------------------------|
+| Single | 1 | $0 | $400 | $0 | [+$400](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51394&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single | 1 | $50,000 | $170 | $76 | [+$246](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51451&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Single | 2 | $160,000 | $0 | $294 | [+$294](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51453&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married | 3 | $250,000 | $0 | $462 | [+$462](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51456&region=ny&timePeriod=2025&baseline=2&reform=75827) |
+| Married | 3 | $310,000 | $0 | $461 | [+$461](https://policyengine.org/us/household?focus=householdOutput.netIncome&household=51457&region=ny&timePeriod=2025&baseline=2&reform=75827) |
 
 Figures 2 through 5 display the changes in net income and marginal tax rates for a single parent of two children, ages 3 and 6, (household example 3) based on their annual income (ranging from $0 to $500,000) in 2025 and 2026.
 
@@ -91,11 +104,11 @@ For tax year 2025, PolicyEngine projects that these reforms would:
 
 * [Cost $4.8 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), with the following breakdown:
 
-* Inflation Rebates: [$3.7 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76266&region=ny&timePeriod=2025&baseline=2)²
+    * Inflation Rebates: [$3.7 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76266&region=ny&timePeriod=2025&baseline=2)[^2]
 
-* ESCC expansion: [$481 million](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2025&baseline=2)
+    * ESCC expansion: [$481 million](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2025&baseline=2)
 
-* Income tax cuts: [$623 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76590)
+    * Income tax cuts: [$623 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76590)
 
 * Lower the state’s Supplemental Poverty Measure by 5.2%
 
@@ -109,7 +122,7 @@ These use PolicyEngine’s microsimulation capabilities through 3 years of poole
 
 ![](https://cdn-images-1.medium.com/max/2000/0*3OEHXel8uNfoA62E)
 
-The reform provides an average of [$611 per household in 2025](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), varying based on income decile.³ Households in the ninth income bracket would receive $781, the highest average benefit of any decile. Though the first decile’s average benefit is the lowest at $404, it represents a [2.5% gain in net income](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) for households, the largest percentage of any decile.
+The reform provides an average of [$611 per household in 2025](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580), varying based on income decile.[^3] Households in the ninth income bracket would receive $781, the highest average benefit of any decile. Though the first decile’s average benefit is the lowest at $404, it represents a [2.5% gain in net income](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&household=51448&region=ny&timePeriod=2025&baseline=2&reform=76580) for households, the largest percentage of any decile.
 
 **Figure 7: Average Benefit Based on Household Income Decile (2025)**
 
@@ -127,11 +140,11 @@ Finally, the tax reforms would [decrease income inequality](https://policyengine
 
 For tax year 2026, PolicyEngine projects that these reforms would:
 
-* Cost [$2.1 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), with the following breakdown
+* Cost [$2.1 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76580), with the following breakdown:
 
-* ESCC expansion: [$821 million](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2026&baseline=2)
+    * ESCC expansion: [$821 million](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=76581&region=ny&timePeriod=2026&baseline=2)
 
-* Income tax cuts: [$1.3 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76590)⁴
+    * Income tax cuts: [$1.3 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&household=51448&region=ny&timePeriod=2026&baseline=2&reform=76590)[^4]
 
 * Increase net income for 83.5% of New York residents
 
@@ -171,14 +184,22 @@ We invite you to explore our [additional analyses](https://policyengine.org/us/r
 
 ## Appendix A: Impact Summary of Major Tax Proposals for 2025 and 2026
 
-![](https://cdn-images-1.medium.com/max/2000/1*BTvIlgg8Gn0ew0O7ymOACA.png)
+| Year | Reform | Cost ($ millions) | Percentage of Net Beneficiaries | Poverty Impact | Deep Poverty Impact | Inequality Impact |
+|------|--------|------------------|--------------------------------|---------------|---------------------|-------------------|
+| 2025 | Inflation Rebates | 3,716 | 94.0% | -4.0% | -2.8% | -0.53% |
+| 2025 | ESCC Expansion | 481 | 15.1% | -1.3% | -1.5% | -0.16% |
+| 2025 | Income Tax Cuts | 623 | 68.3% | -0.2% | 0% | +0.02% |
+| **2025** | **Total Impact** | **4,820** | **99.4%** | **-5.2%** | **-5.0%** | **-0.67%** |
+| 2026 | ESCC Expansion | 821 | 31.1% | -2.3% | -1.6% | -0.27% |
+| 2026 | Income Tax Cuts | 1,311 | 77.7% | 0% | 0% | +0.03% |
+| **2026** | **Total Impact** | **2,132** | **83.5%** | **-2.0%** | **-1.6%** | **-0.24%** |
 
-1. Once New York households reach a specific annual income, their state tax liability exceeds the value of the federal standard deduction, making itemizing their deductions (specifically claiming the State and Local Tax Deduction) more valuable. However, the alternative minimum tax effectively caps the SALT deduction’s value once the household reaches a certain income.
+[^1]: Once New York households reach a specific annual income, their state tax liability exceeds the value of the federal standard deduction, making itemizing their deductions (specifically claiming the State and Local Tax Deduction) more valuable. However, the alternative minimum tax effectively caps the SALT deduction’s value once the household reaches a certain income.
 
-1. We assume full take up for the inflation rebates (i.e., every filer under the income limits filed taxes in 2023 and is therefore eligible for the refund). This explains why PolicyEngine’s estimate of the inflation rebates is higher than one found in the Executive Budget ($3.0 million).
+[^2]: We assume full take up for the inflation rebates (i.e., every filer under the income limits filed taxes in 2023 and is therefore eligible for the refund). This explains why PolicyEngine’s estimate of the inflation rebates is higher than one found in the Executive Budget ($3.0 million).
 
-1. PolicyEngine sorts households into deciles by baseline net income, with boundaries set nationally rather than within states.
+[^3]: PolicyEngine sorts households into deciles by baseline net income, with boundaries set nationally rather than within states.
 
-1. While the reduction of New York’s income taxes in 2026 would lower state revenues by $1.3 billion, it would also raise federal revenue. Currently, New Yorkers can report their state income tax liability to reduce their federal taxes when claiming the State and Local Tax Deduction. Since New Yorkers will have a lower state income tax liability under the reform, their federal tax owed will increase, thus increasing federal revenue by $128.9 million in 2026.
+[^4]: While the reduction of New York’s income taxes in 2026 would lower state revenues by $1.3 billion, it would also raise federal revenue. Currently, New Yorkers can report their state income tax liability to reduce their federal taxes when claiming the State and Local Tax Deduction. Since New Yorkers will have a lower state income tax liability under the reform, their federal tax owed will increase, thus increasing federal revenue by $128.9 million in 2026.
 
 
