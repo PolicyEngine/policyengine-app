@@ -1108,5 +1108,14 @@
     "authors": ["vahid-ahmadi", "pavel-makarchuk"],
     "filename": "young-child-exemption-two-child-limit.md",
     "image": "young-child-exemption-two-child-limit.jpg"
+  },
+  {
+    "title": "New York Governor Hochul's Tax Proposals",
+    "date": "2025-03-07",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ny", "featured", "policy"],
+    "description": "PolicyEngine analyzed several individual income tax policies included in Governor Kathy Hochul's FY2026 budget.",
+    "filename": "ny-hochul-budget.md",
+    "image": "ny-hochul-budget.jpg"
   }
 ]
