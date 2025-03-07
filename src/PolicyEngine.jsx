@@ -27,7 +27,7 @@ import Header from "./layout/Header";
 import Testimonials from "./pages/Testimonials";
 import CalculatorInterstitial from "./pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "./applets/CitizensEconomicCouncil";
-import APIDocumentationPage from "./pages/APIDocumentationPage";
+import APIDocumentationPage from "./pages/learn/APIDocumentationPage";
 import SimulationsPage from "./pages/Simulations";
 import CookieConsent from "./modals/CookieConsent";
 import TrafwaCalculator from "./applets/TrafwaCalculator";
@@ -52,6 +52,11 @@ import GiveCalc from "./applets/GiveCalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
 import SaltAMTCalculator from "./applets/SaltAMTCalculator";
+import AIPage from "./pages/learn/AI";
+import MicrosimPage from "./pages/learn/MicrosimPage";
+import EducationPage from "./pages/learn/EducationPage";
+import OpenSourcePage from "./pages/learn/OpenSourcePage";
+import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -323,6 +328,11 @@ export default function PolicyEngine() {
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
+          <Route path="ai" element={<AIPage />} />
+          <Route path="microsim" element={<MicrosimPage />} />
+          <Route path="benefits" element={<BenefitAccessPage />} />
+          <Route path="education" element={<EducationPage />} />
+          <Route path="open-source" element={<OpenSourcePage />} />
 
           <Route
             path="household/*"
