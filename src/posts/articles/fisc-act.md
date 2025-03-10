@@ -28,12 +28,12 @@ Considering a married couple in Virginia with $40,000 of earnings and two childr
 
 Figure 1 shows how this household’s experience [varies with net income](https://policyengine.org/us/household?focus=householdOutput.earnings&reform=76612&baseline=2&timePeriod=2026&region=us&dataset=enhanced_cps&household=51530). The family income supplement credit phases in at a steeper rate than the current CTC, reaching the maximum amount at earnings of $9,400 while the CTC is fully phased-in at earnings levels of $17,000. Furthermore, the CTC fully phases out at earnings of $110,000 while the family income supplement credit does not start to phase out until $250,000 for joint filers.
 
-**Figure 1: Household Impact of the FISC by Household Income**
+**Figure 1: Household Net Income Impact of the FISC Act by Household Earnings**
 ![](https://cdn-images-1.medium.com/max/3200/0*9REG5tMXk4KVwCO9)
 
 Figure 2. shows how the FISC Act alters the household’s marginal tax rates, with the steeper phase-in structure being reflected in the earnings up to $17,000.
 
-**Figure 2: Change in Marginal Tax Rates based on Household Income**
+**Figure 2: Change in Marginal Tax Rates based on Household Earnings**
 ![](https://cdn-images-1.medium.com/max/3200/0*0NTnOnqtdGX0tMlK)
 
 The new credit amount varies with children’s ages while adding an additional pregnancy credit amount. Figure 3 shows the impacts of this credit on net income of a single parent with one child of varying ages. We currently lump four months of the $400 pregnancy credit in with 12 months of the $400 base credit for parents of newborns, applying the full $6,400 in the same year, though we [will improve this](https://github.com/PolicyEngine/policyengine-us/issues/5659).
