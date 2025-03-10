@@ -67,7 +67,7 @@ The FISC Act would reduce federal revenues by [$193.1 billion](https://policyeng
 
 37% of US residents would gain: 50% of those in the sixth decile and 14% of those in the upper decile representing the extrema.
 
-**Figure 5: Winners and Loosers of the FISC Act in 2026**
+**Figure 5: Winners and Losers of the FISC Act in 2026**
 ![](https://cdn-images-1.medium.com/max/3200/0*Vh2YnnLEIx8Tfhi9)
 
 ## Poverty Impact
