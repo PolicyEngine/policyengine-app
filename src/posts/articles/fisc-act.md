@@ -51,20 +51,19 @@ The FISC Act would reduce federal revenues by [$193.1 billion](https://policyeng
 ![](https://cdn-images-1.medium.com/max/3200/0*C1SnOSqPhLBgE1BZ)
 
 **Table 1: 10-Year Budgetary Impact of the FISC Act**
-| Tax Year | Static Impact ($bn) | Dynamic Impact ($bn) | 
-| -------- | ------------------- | -------------------- | 
-| 2026     | -193.1              | -217.4               |
-| 2027     | -194.5              | -218.4               |
-| 2028     | -195.5              | -219.7               |
-| 2029     | -196.3              | -216.6               |
-| 2030     | -197.0              | -219.2               |
-| 2031     | -197.1              | -224.8               |
-| 2032     | -196.3              | -227.4               |
-| 2033     | -194.7              | -225.6               |
-| 2034     | -193.1              | -227.6               |
-| 2035     | -190.0              | -230.4               |
-| Total    | -1,947.6            | -2,227.1             |
-
+| Tax Year | Static Impact ($bn) | Dynamic Impact ($bn) |
+| -------- | ------------------- | -------------------- |
+| 2026 | -193.1 | -217.4 |
+| 2027 | -194.5 | -218.4 |
+| 2028 | -195.5 | -219.7 |
+| 2029 | -196.3 | -216.6 |
+| 2030 | -197.0 | -219.2 |
+| 2031 | -197.1 | -224.8 |
+| 2032 | -196.3 | -227.4 |
+| 2033 | -194.7 | -225.6 |
+| 2034 | -193.1 | -227.6 |
+| 2035 | -190.0 | -230.4 |
+| Total | -1,947.6 | -2,227.1 |
 
 37% of US residents would gain: 50% of those in the sixth decile and 14% of those in the upper decile representing the extrema.
 
