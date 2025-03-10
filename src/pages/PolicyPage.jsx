@@ -54,7 +54,10 @@ export function ParameterSearch(props) {
 function PolicyLeftSidebar(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+  const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+    metadata.countryId,
+    searchParams,
+  );
   const selected = searchParams.get("focus") || "";
 
   const onSelect = (name) => {
@@ -66,6 +69,22 @@ function PolicyLeftSidebar(props) {
   const isOnOutput =
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
+
+  const sortTreeInPlace = (tree) => {
+    if (!Array.isArray(tree)) return [];
+
+    tree.sort((a, b) => a.label.localeCompare(b.label));
+
+    tree.forEach((item) => {
+      if (Array.isArray(item.children)) {
+        sortTreeInPlace(item.children);
+      }
+    });
+
+    return tree;
+  };
+
+  sortTreeInPlace(metadata.parameterTree.children);
 
   // The menu, then the search bar anchored to the bottom
   return (
@@ -79,7 +98,7 @@ function PolicyLeftSidebar(props) {
         firstTree={metadata.parameterTree.children}
         selected={selected}
         onSelect={onSelect}
-        secondTree={POLICY_OUTPUT_TREE[0].children}
+        secondTree={POLICY_OUTPUT_TREE[0]?.children || []}
       />
     </div>
   );
@@ -159,7 +178,10 @@ export default function PolicyPage(props) {
       </FolderPage>
     );
   } else if (isOutput) {
-    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+      metadata.countryId,
+      searchParams,
+    );
     const validFocusValues = impactKeys;
     const stripped_focus = focus.replace("policyOutput.", "");
 

@@ -1,17 +1,13 @@
-/* eslint no-useless-escape: 0 */
-import style from "../style";
-import Footer from "../layout/Footer";
-import CodeBlock from "../layout/CodeBlock";
-import Header from "../layout/Header";
-import Section from "../layout/Section";
-import useCountryId from "../hooks/useCountryId";
-import { useState, useEffect } from "react";
-import { Container } from "react-bootstrap";
-import { Input, Card, Divider, Tag, Drawer } from "antd";
+import Footer from "../../layout/Footer";
+import Header from "../../layout/Header";
+import useCountryId from "../../hooks/useCountryId";
+import { Card, Tag } from "antd";
 import { Helmet } from "react-helmet";
 import { defaultYear } from "data/constants";
-import useDisplayCategory from "../hooks/useDisplayCategory";
-import { wrappedResponseJson } from "../data/wrappedJson";
+import APIGeneralContent from "./APIGeneralContent";
+
+// During front-end redesign, this page should be refactored
+// to use design system layout components and improved best practices.
 
 export const exampleInputs = {
   us: {
@@ -97,35 +93,7 @@ export const exampleInputs = {
   },
 };
 
-const examplePolicies = {
-  us: "SNAP benefit",
-  uk: "Universal Credit entitlement",
-};
-
-const tokenFetchCode = `import requests
-import json
-
-CLIENT_ID = "YOUR_CLIENT_ID"
-CLIENT_SECRET = "YOUR_CLIENT_SECRET"
-
-payload = {
-  \"client_id\": CLIENT_ID,
-  \"client_secret\": CLIENT_SECRET,
-  \"audience\": \"https://household.api.policyengine.org\",
-  \"grant_type\": \"client_credentials\"
-}
-
-headers = { "content-type": "application/json" }
-
-auth_response = requests.post(\"https://policyengine.uk.auth0.com/oauth/token\", headers=headers, json=payload)
-
-result = auth_response.json()
-print(result[\"access_token\"])`;
-
-const tokenOutputCode = `{
-  "access_token": "YOUR_ACCESS_TOKEN",
-  "token_type": "Bearer"
-}`;
+// Note: These constants are kept for reference but not currently used
 
 export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
@@ -142,7 +110,7 @@ export function APIResultCard(props) {
         bordered={true}
         style={{
           width: 400,
-          backgroundColor: style.colors.WHITE,
+          backgroundColor: "white",
           margin: 15,
           overflow: "hidden",
         }}
@@ -198,6 +166,8 @@ function APIVariableCard(props) {
   );
 }
 
+// This component is not currently used but kept for future reference
+/*
 function VariableParameterExplorer(props) {
   const { metadata, id } = props;
   const [query, setQuery] = useState("");
@@ -251,57 +221,10 @@ function VariableParameterExplorer(props) {
         />
       );
     });
+*/
 
-  return (
-    <>
-      <Drawer
-        title={selectedCardData ? selectedCardData.label : ""}
-        placement="right"
-        closable={true}
-        onClose={() => setSelectedCardData(null)}
-        width={400}
-      >
-        <CardDrawer metadata={selectedCardData} />
-      </Drawer>
-      <Container>
-        <div
-          style={{
-            marginTop: 50,
-            marginBottom: 50,
-            marginLeft: 8,
-          }}
-        >
-          <h3 id={id}>Variables and parameters</h3>
-        </div>
-        <Input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          variant="borderless"
-          placeholder="Search for a variable or parameter"
-          style={{
-            fontSize: 20,
-            // Show cursor
-            caretColor: style.colors.BLACK,
-            marginLeft: 0,
-          }}
-        />
-        <Divider />
-
-        <div // make cards display in a grid
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "left",
-          }}
-        >
-          {parameterCards}
-          {variableCards}
-        </div>
-      </Container>
-    </>
-  );
-}
-
+// This component is not currently used but kept for future reference
+/*
 function CardDrawer(props) {
   const { metadata } = props;
 
@@ -319,10 +242,11 @@ function CardDrawer(props) {
     </>
   );
 }
+*/
 
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
-  const displayCategory = useDisplayCategory();
+  const isUK = countryId === "uk";
 
   return (
     <>
@@ -330,85 +254,18 @@ export default function APIDocumentationPage({ metadata }) {
         <title>API Documentation | PolicyEngine</title>
       </Helmet>
       <Header />
-      <Section
-        title="PolicyEngine API Documentation"
-        backgroundColor={style.colors.BLUE_98}
-      >
-        <p>
-          PolicyEngine&apos;s REST API (
-          <a href="https://household.api.policyengine.org">
-            https://household.api.policyengine.org
-          </a>
-          ) simulates tax-benefit policy outcomes and reform impacts for
-          households. Access to the API requires a <b>Client ID</b> and{" "}
-          <b>Client Secret</b> given by PolicyEngine. Use these credentials to
-          request an authentication token, which expires monthly. This token
-          must be passed within the authorization heading of each request you
-          make to the API. For more information or to request your own Client
-          ID, reach out to PolicyEngine at{" "}
-          <a href="mailto: hello@policyengine.org">hello@policyengine.org</a>.
-        </p>
-        <br />
-        <h4>On this page</h4>
-        <ul>
-          <li>
-            <a href="#calculate">Calculate household-level policy outcomes</a>
-          </li>
-          <li>
-            <a href="#fetch_token">Fetch an authentication token</a>
-          </li>
-          <li>
-            <a href="#variables">Variable and parameter metadata search</a>
-          </li>
-          <li>
-            <a href="#playground">API playground</a>
-          </li>
-        </ul>
-      </Section>
-      <APIEndpoint
-        pattern={`/${countryId}/calculate`}
-        id="calculate"
-        method="POST"
-        title="Calculate household-level policy outcomes"
-        description={`Returns household-level policy outcomes. Pass in a household object defining people, groups and any variable values (see the /metadata endpoint for a full list). Then, pass in null values for requested variables - these will be filled in with computed values. Using the group/name/variable/optional time period/value structure is recommended. ${Object.keys(examplePolicies).includes(countryId) ? `The below code block estimates a sample family's ${examplePolicies[countryId]}.` : ""}`}
-        exampleInputJson={
-          Object.keys(exampleInputs).includes(countryId)
-            ? exampleInputs[countryId]
-            : exampleInputs.default
-        }
+      <APIGeneralContent
         countryId={countryId}
-        displayCategory={displayCategory}
-      />
-      <APIEndpointStatic
-        id="fetch_token"
-        title="Fetch an authentication token"
-        description={
-          'Execute a credentials exchange, using your client ID and client secret to obtain an authentication token. This token must be included within the authorization header of every HTTP request you make to the PolicyEngine API in the format "Bearer YOUR_TOKEN" (including the space). Tokens expire every month for security purposes.'
-        }
-        exampleInput={tokenFetchCode}
-        exampleOutput={tokenOutputCode}
-        displayCategory={displayCategory}
-      />
-      <VariableParameterExplorer
-        id="variables"
-        countryId={countryId}
+        isUK={isUK}
         metadata={metadata}
       />
-      <Section title="API playground" id="playground">
-        <p>Try out the API in this interactive demo.</p>
-        <iframe
-          src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/?embed=true&embed_options=light_theme&embed_options=hide_footer&mode=${countryId}`}
-          // the demo is in the policyengine-api-demo repository in PolicyEngine
-          title="PolicyEngine API demo"
-          height="600px"
-          width={"100%"}
-        />
-      </Section>
       <Footer />
     </>
   );
 }
 
+// These components are not currently used but kept for future reference
+/*
 function APIEndpoint({
   pattern,
   method,
@@ -533,3 +390,4 @@ function APIEndpointStatic({
     </Section>
   );
 }
+*/
