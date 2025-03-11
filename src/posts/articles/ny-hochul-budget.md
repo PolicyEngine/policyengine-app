@@ -176,7 +176,7 @@ Income inequality [would decrease](https://policyengine.org/us/policy?focus=poli
 
 Governor Hochul’s major tax proposals would send one-time inflation rebates to New York residents, expand the Empire State Child Credit to $1,000 for children under 4 and to $500 for all other eligible children, and reduce the first five state income tax brackets by 0.2 percentage points over two years. In 2025, these reforms would reduce state revenue by $4.8 billion. The combined impact of the tax provisions would affect 99.4% of New Yorkers, providing an average household benefit of $611. These changes would also lower poverty by 5.2% and child poverty by 6.4%.
 
-The impact of these proposals would shrink in 2026. The total cost would amount to $2.1 billion, as ESCC increases to $500 for children aged 4–16 and income tax rates decrease by an additional 0.1 percentage point, while the inflation rebates expire. These changes would reduce poverty by 2.0% and child poverty by 5.6% while increasing net income for 83.5% of New Yorkers.
+The impact of these proposals would shrink in 2026. The total cost would amount to $2.1 billion, as ESCC increases to $500 for children aged 4–16 and income tax rates decrease by an additional 0.1 percentage point, while the inflation rebates expire. These changes would reduce poverty by 2.5% and child poverty by 7.4% while increasing net income for 83.5% of New Yorkers.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
