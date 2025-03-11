@@ -1117,5 +1117,14 @@
     "description": "PolicyEngine analyzed several individual income tax policies included in Governor Kathy Hochul's FY2026 budget.",
     "filename": "ny-hochul-budget.md",
     "image": "ny-hochul-budget.jpg"
+  },
+  {
+    "title": "The impact of Personal Independence Payment, and freezing its level in 2025",
+    "date": "2025-03-11",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["uk", "policy", "featured"],
+    "description": "How the disability benefit, and one reform the government is reportedly considering, affect the UK household sector.",
+    "filename": "pip-and-freeze.md",
+    "image": "pip_and_freeze.jpg"
   }
 ]
