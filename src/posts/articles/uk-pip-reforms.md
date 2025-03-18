@@ -34,7 +34,7 @@ The reform may affect both non-enhanced and enhanced PIP DL enrollees, so we sim
 
 | **Realisation**       | **Cut to PIP DL non-enhanced** | **Cut to total PIP DL** | **Poverty** | **Deep poverty** |
 | --------------------- | ------------------------------ | ----------------------- | ----------- | ---------------- |
-| Only cut non-enhanced | 70%                            | 35%                     | 141,000     | 32,000           |
+| Only cut non-enhanced | 62%                            | 35%                     | 134,000     | 28,000           |
 | Cut all               | 25%                            | 25%                     | 119,000     | 63,000           |
 
 In the realisation that cuts both enhanced and non-enhanced, the reform increases female poverty in greater absolute numbers than male, but the reverse is true for deep poverty.
