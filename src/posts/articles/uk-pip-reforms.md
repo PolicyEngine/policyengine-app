@@ -13,20 +13,18 @@ DWP qualifies people for PIP based on a [points system](https://www.legislation.
 
 **Table 1: PIP amounts (2025)**
 
-| **Component** | **Lower weekly rate** | **Higher weekly rate** |
-|---------------|----------------------|------------------------|
-| Daily living part | £72.65 | £108.55 |
-| Mobility part | £28.70 | £75.75 |
+| **Component**     | **Lower weekly rate** | **Higher weekly rate** |
+| ----------------- | --------------------- | ---------------------- |
+| Daily living part | £72.65                | £108.55                |
+| Mobility part     | £28.70                | £75.75                 |
 
 We uprate these elements with inflation, projecting that by 2029, the daily living part will be [£80.31 (lower)](https://policyengine.org/uk/policy?reform=1&focus=gov.dwp.pip.daily_living.standard) and [£119.99 (higher)](https://policyengine.org/uk/policy?reform=1&focus=gov.dwp.pip.daily_living.enhanced) per week.
 
-
 ## The reform
 
-The [green paper](https://www.gov.uk/government/consultations/pathways-to-work-reforming-benefits-and-support-to-get-britain-working-green-paper/pathways-to-work-reforming-benefits-and-support-to-get-britain-working-green-paper#section-1--what-the-reformed-system-will-look-like) states: 
+The [green paper](https://www.gov.uk/government/consultations/pathways-to-work-reforming-benefits-and-support-to-get-britain-working-green-paper/pathways-to-work-reforming-benefits-and-support-to-get-britain-working-green-paper#section-1--what-the-reformed-system-will-look-like) states:
 
-*"We will introduce a new, additional eligibility requirement so that a minimum of 4 points must be scored on one PIP daily living activity to receive the daily living element of the benefit. This means that people who only score the lowest points on each of the PIP daily living activities will lose their entitlement in future."*
-
+_"We will introduce a new, additional eligibility requirement so that a minimum of 4 points must be scored on one PIP daily living activity to receive the daily living element of the benefit. This means that people who only score the lowest points on each of the PIP daily living activities will lose their entitlement in future."_
 
 ## The simulation results
 
@@ -34,11 +32,10 @@ The reform may affect both non-enhanced and enhanced PIP DL enrollees, so we sim
 
 **Table 2: Total impacts of PIP DL reforms in 2029**
 
-| **Realisation** | **Cut to PIP DL non-enhanced** | **Cut to total PIP DL** | **Poverty** | **Deep poverty** |
-|-----------------|--------------------------------|-------------------------|-------------|------------------|
-| Only cut non-enhanced | 70% | 35% | 141,000 | 32,000 |
-| Cut all | 25% | 25% | 119,000 | 63,000 |
-
+| **Realisation**       | **Cut to PIP DL non-enhanced** | **Cut to total PIP DL** | **Poverty** | **Deep poverty** |
+| --------------------- | ------------------------------ | ----------------------- | ----------- | ---------------- |
+| Only cut non-enhanced | 70%                            | 35%                     | 141,000     | 32,000           |
+| Cut all               | 25%                            | 25%                     | 119,000     | 63,000           |
 
 In the realisation that cuts both enhanced and non-enhanced, the reform increases female poverty in greater absolute numbers than male, but the reverse is true for deep poverty.
 
