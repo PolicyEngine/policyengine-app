@@ -2,7 +2,8 @@
 
 * DONE: Mock up basic component
 * DONE: Figure out how to integrate as non-default input
-* Generate and display list of counties
+* DONE: Generate and display list of counties
+* Add state abbreviation onto end when displaying
 * Filter said list by input state
 * Map input county to FIPS code
 * Add code to update householdInput with FIPS
@@ -17,14 +18,12 @@ import { Select } from "antd";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
+import { arrCounties } from "../../../data/counties";
 
 
-const options = [
-  {
-    value: "Test value",
-    label: "Test Value"
-  }
-];
+const options = arrCounties.map((county) => {
+  return { value: county.getName(), label: county.getName() };
+});
 
 
 export default function County(props) {

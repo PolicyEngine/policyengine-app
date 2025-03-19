@@ -1,24 +1,43 @@
 
+import {get} from "fips-county-codes";
+
 // Duplicated with slight modifications from 
 // https://gist.github.com/JoshuaCarroll/54ee2090e79fe3b261ae42aea9b999b2
-class County {
-  constructor(strState, strCountyName) {
+export class County {
+  constructor(strState, strName) {
     this.state = strState;
-    this.countyName = strCountyName;
+    this.name = strName;
   }
 
+  /**
+   * 
+   * @returns {string} The name of a given county
+   */
   getName() {
-    return this.countyName;
+    return this.name;
   }
 
+  /**
+   * 
+   * @returns {string} The two-letter state code for a given county
+   */
   getStateCode() {
     return this.state;
   }
+
+  /**
+   * 
+   * @returns {string | undefined} A given county's five-digit FIPS code as a string
+   */
+  getFipsCode() {
+    const dataObj = get({state: this.state, county: this.name});
+    return dataObj?.fips;
+  }
 }
 
-var arrStates = new Array("AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY");
+// const arrStates = new Array("AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY", "OH","OK","OR","PA","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY");
 
-var arrCounties = new Array(
+export const arrCounties = [
   new County("AL","Autauga County"),
   new County("AL","Baldwin County"),
   new County("AL","Barbour County"),
@@ -3161,4 +3180,4 @@ var arrCounties = new Array(
   new County("WY","Uinta County"),
   new County("WY","Washakie County"),
   new County("WY","Weston County")
-);
+];
