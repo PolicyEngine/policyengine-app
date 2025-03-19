@@ -8,7 +8,7 @@ Key results for 2026:
 
 - Benefits 73% of Kentucky residents
 
-- Lowers the state's Supplemental Poverty Measure by 1.0%
+- Lowers the state's Supplemental Poverty Measure by 1.3%
 
 - Increases the Gini index of income inequality by 0.14%
 
