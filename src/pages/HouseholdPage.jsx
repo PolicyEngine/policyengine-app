@@ -234,6 +234,8 @@ export default function HouseholdPage(props) {
     middle = (
       <County
         metadata={metadata}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
       />
     )
   } else if (focus === "input.household.maritalStatus") {

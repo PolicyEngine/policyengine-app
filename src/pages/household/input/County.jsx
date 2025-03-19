@@ -3,11 +3,12 @@
 * DONE: Mock up basic component
 * DONE: Figure out how to integrate as non-default input
 * DONE: Generate and display list of counties
-* Add state abbreviation onto end when displaying
-* Filter said list by input state
+* DONE: Add state abbreviation onto end when displaying
+* DONE: Filter said list by input state
+* Modify HouseholdPage to properly display as variable within search
+* Set default county based on state
 * Map input county to FIPS code
 * Add code to update householdInput with FIPS
-* Modify HouseholdPage to properly display as variable within search
 * Test properly showing county as searched variable
 * Ensure component only displays for US
 * Test?
@@ -20,15 +21,27 @@ import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import { arrCounties } from "../../../data/counties";
 
-
-const options = arrCounties.map((county) => {
-  return { value: county.getNameAndStateAbbrev(), label: county.getNameAndStateAbbrev() };
-});
-
-
 export default function County(props) {
+  const {
+    metadata,
+    householdInput,
+    setHouseholdInput
+  } = props;
 
   const dC = useDisplayCategory();
+
+  // Filter display options to only list those in household state (if present)
+  const householdState = householdInput?.households["your household"].state_name;
+
+  const countyOptions = arrCounties.reduce((accu, county) => {
+    if (!householdState || householdState === county.getStateCode()) {
+      accu.push({
+        value: county.getNameAndStateAbbrev(),
+        label: county.getNameAndStateAbbrev()
+      })
+    }
+    return accu;
+  }, []);
   
 
   return (
@@ -40,7 +53,7 @@ export default function County(props) {
         showSearch
         optionFilterProp="label"
         style={{ width: dC === "mobile" ? 150 : 200 }}
-        options={options}
+        options={countyOptions}
         // defaultValue={year}
         // onSelect={handleSubmit}
       />
