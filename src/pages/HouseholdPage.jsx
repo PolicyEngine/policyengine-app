@@ -28,6 +28,7 @@ import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.js
 import TaxYear from "./household/input/TaxYear";
 import { Helmet } from "react-helmet";
 import { wrappedResponseJson } from "../data/wrappedJson.js";
+import County from "./household/input/County.jsx";
 
 export default function HouseholdPage(props) {
   const {
@@ -229,6 +230,45 @@ export default function HouseholdPage(props) {
 
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
+  } else if (focus === "input.household.county") {
+    middle = (
+      <County
+        metadata={metadata}
+      />
+    )
+  } else if (focus === "input.household.maritalStatus") {
+    middle = (
+      <MaritalStatus
+        metadata={metadata}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+        autoCompute={autoCompute}
+        year={year}
+      />
+    );
+  } else if (focus === "intro") {
+    middle = <HouseholdIntro />;
+  } else if (focus === "input.household.children") {
+    middle = (
+      <CountChildren
+        metadata={metadata}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+        autoCompute={autoCompute}
+        year={year}
+      />
+    );
+  } else if (focus === "input.household.taxYear") {
+    middle = (
+      <TaxYear
+        metadata={metadata}
+        year={year}
+        setYear={setYear}
+        householdId={householdId}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+      />
+    );
   } else if (
     Object.keys(metadata.variables).includes(
       focus.split(".")[focus.split(".").length - 1],
@@ -269,39 +309,6 @@ export default function HouseholdPage(props) {
       >
         {node.children}
       </FolderPage>
-    );
-  } else if (focus === "input.household.maritalStatus") {
-    middle = (
-      <MaritalStatus
-        metadata={metadata}
-        householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
-        autoCompute={autoCompute}
-        year={year}
-      />
-    );
-  } else if (focus === "intro") {
-    middle = <HouseholdIntro />;
-  } else if (focus === "input.household.children") {
-    middle = (
-      <CountChildren
-        metadata={metadata}
-        householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
-        autoCompute={autoCompute}
-        year={year}
-      />
-    );
-  } else if (focus === "input.household.taxYear") {
-    middle = (
-      <TaxYear
-        metadata={metadata}
-        year={year}
-        setYear={setYear}
-        householdId={householdId}
-        householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
-      />
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
     if (!autoCompute) {
