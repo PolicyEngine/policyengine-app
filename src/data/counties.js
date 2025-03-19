@@ -27,6 +27,14 @@ export class County {
 
   /**
    * 
+   * @returns {string} The name of a given county and its state abbreviation
+   */
+  getNameAndStateAbbrev() {
+    return `${this.name}, ${this.state}`;
+  }
+
+  /**
+   * 
    * @returns {string | undefined} A given county's five-digit FIPS code as a string
    */
   getFipsCode() {

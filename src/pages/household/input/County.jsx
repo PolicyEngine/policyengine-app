@@ -22,7 +22,7 @@ import { arrCounties } from "../../../data/counties";
 
 
 const options = arrCounties.map((county) => {
-  return { value: county.getName(), label: county.getName() };
+  return { value: county.getNameAndStateAbbrev(), label: county.getNameAndStateAbbrev() };
 });
 
 
