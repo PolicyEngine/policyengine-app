@@ -56,7 +56,7 @@ export default function County(props) {
         optionFilterProp="label"
         style={{ width: dC === "mobile" ? 150 : 200 }}
         options={countyOptions}
-        // defaultValue={year}
+        defaultValue={countyOptions[0]}
         // onSelect={handleSubmit}
       />
       <SearchParamNavButton
