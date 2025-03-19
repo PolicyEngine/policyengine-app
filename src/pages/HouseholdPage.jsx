@@ -230,12 +230,13 @@ export default function HouseholdPage(props) {
 
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
-  } else if (focus === "input.household.county") {
+  } else if (focus === "input.household.countyName") {
     middle = (
       <County
         metadata={metadata}
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
+        year={year}
       />
     )
   } else if (focus === "input.household.maritalStatus") {

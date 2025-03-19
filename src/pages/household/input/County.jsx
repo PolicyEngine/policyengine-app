@@ -5,7 +5,7 @@
 * DONE: Generate and display list of counties
 * DONE: Add state abbreviation onto end when displaying
 * DONE: Filter said list by input state
-* Modify HouseholdPage to properly display as variable within search
+* DONE: Modify HouseholdPage to properly display as variable within search
 * Set default county based on state
 * Map input county to FIPS code
 * Add code to update householdInput with FIPS
@@ -25,16 +25,18 @@ export default function County(props) {
   const {
     metadata,
     householdInput,
-    setHouseholdInput
+    setHouseholdInput,
+    year
   } = props;
 
   const dC = useDisplayCategory();
 
   // Filter display options to only list those in household state (if present)
-  const householdState = householdInput?.households["your household"].state_name;
+
+  const householdStateCode = householdInput?.households?.["your household"]?.state_name?.[year];
 
   const countyOptions = arrCounties.reduce((accu, county) => {
-    if (!householdState || householdState === county.getStateCode()) {
+    if (!householdStateCode || householdStateCode === county.getStateCode()) {
       accu.push({
         value: county.getNameAndStateAbbrev(),
         label: county.getNameAndStateAbbrev()
