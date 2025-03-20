@@ -8,7 +8,7 @@
 * DONE: Modify HouseholdPage to properly display as variable within search
 * DONE: Set default county based on state
 * DONE: Replace fips-county-codes with bug-free package
-* Consider replacing county generation with some means of reading from fips package
+* DONE: Consider replacing county generation with some means of reading from fips package
 * Map input county to FIPS code in counties dataset
 * Add code to update householdInput with FIPS
 * Test properly showing county as searched variable
