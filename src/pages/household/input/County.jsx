@@ -7,7 +7,7 @@
 * DONE: Filter said list by input state
 * DONE: Modify HouseholdPage to properly display as variable within search
 * DONE: Set default county based on state
-* Replace fips-county-codes with bug-free package
+* DONE: Replace fips-county-codes with bug-free package
 * Consider replacing county generation with some means of reading from fips package
 * Map input county to FIPS code in counties dataset
 * Add code to update householdInput with FIPS
@@ -27,7 +27,7 @@ import { Select } from "antd";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
-import { arrCounties } from "../../../data/counties";
+import { getAllCounties } from "../../../data/counties";
 
 export default function County(props) {
   const {
@@ -44,13 +44,16 @@ export default function County(props) {
     return;
   }
 
+  // Fetch all counties
+  const allCounties = getAllCounties();
+
   // Filter display options to only list those in household state (if present)
 
   const householdStateCode = householdInput?.households?.["your household"]?.state_name?.[year];
 
   // Ant Design requires value and label not be Object-typed; store the full County
   // class instance as a custom "county" key
-  const countyOptions = arrCounties.reduce((accu, county) => {
+  const countyOptions = allCounties.reduce((accu, county) => {
     if (!householdStateCode || householdStateCode === county.getStateCode()) {
       accu.push({
         value: county.getFipsCode(),
@@ -59,7 +62,6 @@ export default function County(props) {
     }
     return accu;
   }, []);
-  
 
   return (
     <CenteredMiddleColumn
