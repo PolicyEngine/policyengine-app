@@ -151,7 +151,10 @@ export default function ParameterEditor(props) {
           </p>
           <div
             style={{
-              width: "100%",
+              width:
+                parameter.unit === "bool" || parameter.unit === "abolition"
+                  ? "50%"
+                  : "100%",
               display: "grid",
               gridTemplateColumns: gridColumns,
               gap: "10px",
@@ -711,7 +714,7 @@ function ValueSetter(props) {
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
-      <div style={{ padding: 10 }}>
+      <div style={{ padding: 3 }}>
         <Switch
           key={"input for" + parameter.parameter}
           defaultChecked={startValue}
