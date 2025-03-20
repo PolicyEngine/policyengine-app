@@ -1,5 +1,5 @@
 
-import {get} from "fips-county-codes";
+import {getByCountyAndState} from "@aciesai/fips-county-codes";
 
 // Duplicated with slight modifications from 
 // https://gist.github.com/JoshuaCarroll/54ee2090e79fe3b261ae42aea9b999b2
@@ -38,7 +38,11 @@ export class County {
    * @returns {string | undefined} A given county's five-digit FIPS code as a string
    */
   getFipsCode() {
-    const dataObj = get({state: this.state, county: this.name});
+    console.log("FIPS state: ", this.state);
+    console.log("FIPS county: ", this.name)
+    const dataObj = getByCountyAndState(this.state, this.name);
+    console.log(dataObj);
+    console.log("FIPS: ", dataObj?.fips);
     return dataObj?.fips;
   }
 }
@@ -138,7 +142,7 @@ export const arrCounties = [
   new County("AK","Skagway Municipality"),
   new County("AK","Southeast Fairbanks Census Area"),
   new County("AK","Valdez-Cordova Census Area"),
-  new County("AK","Wade Hampton Census Area"),
+  new County("AK","Kusilvak Census Area"),
   new County("AK","Wrangell City and Borough"),
   new County("AK","Yakutat City and Borough"),
   new County("AK","Yukon-Koyukuk Census Area"),
@@ -1848,7 +1852,7 @@ export const arrCounties = [
   new County("NM","Colfax County"),
   new County("NM","Curry County"),
   new County("NM","De Baca County"),
-  new County("NM","Dona Ana County"),
+  new County("NM","Doña Ana County"),
   new County("NM","Eddy County"),
   new County("NM","Grant County"),
   new County("NM","Guadalupe County"),
@@ -2463,7 +2467,7 @@ export const arrCounties = [
   new County("SD","Potter County"),
   new County("SD","Roberts County"),
   new County("SD","Sanborn County"),
-  new County("SD","Shannon County"),
+  new County("SD","Oglala Lakota County"),
   new County("SD","Spink County"),
   new County("SD","Stanley County"),
   new County("SD","Sully County"),
