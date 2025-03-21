@@ -34,7 +34,7 @@ export class County {
    * @returns {string} The name of a given county and its state abbreviation
    */
   getNameAndStateAbbrev() {
-    return `${this.name}, ${this.stateCode}`;
+    return `${this.fullName}, ${this.stateCode}`;
   }
 
   /**

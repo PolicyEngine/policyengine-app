@@ -11,7 +11,7 @@
 * DONE: Consider replacing county generation with some means of reading from fips package
 * DONE: Map input county to FIPS code in counties dataset
 * DONE: Add code to update householdInput with FIPS
-* Fix bug to show entire county name
+* DONE: Fix bug to show entire county name
 * Test properly showing county as searched variable
 * Ensure component only displays for US
 * Test?
