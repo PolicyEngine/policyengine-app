@@ -230,7 +230,7 @@ export default function HouseholdPage(props) {
 
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
-  } else if (focus === "input.geography.countyName") {
+  } else if (focus === "input.geography.countyName" && countryId === "us") {
     middle = (
       <County
         metadata={metadata}
@@ -433,7 +433,7 @@ function HouseholdLeftSidebar(props) {
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
 
-  metadata.variableTree.children = addCustomInputs(metadata.variableTree.children);
+  metadata.variableTree.children = addCustomInputs(metadata.variableTree.children, metadata.countryId);
 
   return (
     <div>
@@ -455,11 +455,17 @@ function HouseholdLeftSidebar(props) {
 /**
  * Add custom non-default input values to the display tree
  * @param {Array<Object>} displayTree An array of items with keys name and label
+ * @param {String} countryId The country ID
  * @returns {Array<Object>} The updated display tree
  */
-export function addCustomInputs(displayTree) {
+export function addCustomInputs(displayTree, countryId) {
 
-  // Add county name input to first tree
+  if (countryId !== "us") {
+    return displayTree;
+  }
+
+  console.log("Adding custom inputs to display tree");
+  // Add county name input to US display tree
   const newNode = {
     label: "County",
     name: "input.geography.countyName",

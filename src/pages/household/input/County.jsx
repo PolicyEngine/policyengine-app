@@ -12,8 +12,8 @@
 * DONE: Map input county to FIPS code in counties dataset
 * DONE: Add code to update householdInput with FIPS
 * DONE: Fix bug to show entire county name
-* Test properly showing county as searched variable
 * Ensure component only displays for US
+* Test properly showing county as searched variable
 * Test?
   * Test that counties with same name, diff. state, return the right value
   * Test that counties with FIPS beginning in 0 return correct value

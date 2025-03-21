@@ -49,7 +49,7 @@ export class County {
       const dataObj = getByCountyAndState(this.stateCode, this.fullName);
       return dataObj?.fips;
     } catch (err) {
-      console.error(err);
+      console.error("Unable to get FIPS code for county", this.fullName, "in state", this.stateCode);
       return undefined;
     }
   }
