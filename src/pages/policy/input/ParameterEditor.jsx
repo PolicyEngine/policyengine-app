@@ -300,7 +300,7 @@ function DefaultPeriodSetter(props) {
     parameterName,
   } = props;
 
-  const startYear = new Date(startDate).getFullYear();
+  const startYear = new Date(startDate).getUTCFullYear();
 
   const [value, setValue] = useState(startYear);
 
