@@ -239,7 +239,7 @@ export default function HouseholdPage(props) {
         year={year}
         autoCompute={autoCompute}
       />
-    )
+    );
   } else if (focus === "input.household.maritalStatus") {
     middle = (
       <MaritalStatus
@@ -433,7 +433,10 @@ function HouseholdLeftSidebar(props) {
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
 
-  metadata.variableTree.children = addCustomInputs(metadata.variableTree.children, metadata.countryId);
+  metadata.variableTree.children = addCustomInputs(
+    metadata.variableTree.children,
+    metadata.countryId,
+  );
 
   return (
     <div>
@@ -459,7 +462,6 @@ function HouseholdLeftSidebar(props) {
  * @returns {Array<Object>} The updated display tree
  */
 export function addCustomInputs(displayTree, countryId) {
-
   if (countryId !== "us") {
     return displayTree;
   }
@@ -469,14 +471,14 @@ export function addCustomInputs(displayTree, countryId) {
   const newNode = {
     label: "County",
     name: "input.geography.countyName",
-  }
+  };
 
   const geographyTree = displayTree.find(
     (node) => node.name === "input.geography",
   );
 
   const nodeExists = geographyTree?.children.some(
-    (node) => node.name === newNode.name
+    (node) => node.name === newNode.name,
   );
 
   if (geographyTree && !nodeExists) {

@@ -33,20 +33,17 @@ import { getNewHouseholdId } from "../../../api/variables";
 import { useSearchParams } from "react-router-dom";
 
 export default function County(props) {
-  const {
-    metadata,
-    householdInput,
-    setHouseholdInput,
-    year,
-    autoCompute
-  } = props;
+  const { metadata, householdInput, setHouseholdInput, year, autoCompute } =
+    props;
 
   const dC = useDisplayCategory();
   const [_, setSearchParams] = useSearchParams();
 
   function handleSubmit(value) {
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
-    newHousehold["households"]["your household"]["county_fips"] = {[year]: value}
+    newHousehold["households"]["your household"]["county_fips"] = {
+      [year]: value,
+    };
     setHouseholdInput(newHousehold);
     if (autoCompute) {
       getNewHouseholdId(metadata.countryId, newHousehold).then(
@@ -63,14 +60,15 @@ export default function County(props) {
 
   // Filter display options to only list those in household state (if present)
 
-  const householdStateCode = householdInput?.households?.["your household"]?.state_name?.[year];
+  const householdStateCode =
+    householdInput?.households?.["your household"]?.state_name?.[year];
 
   const countyOptions = allCounties.reduce((accu, county) => {
     if (!householdStateCode || householdStateCode === county.getStateCode()) {
       accu.push({
         value: county.getFipsCode(),
         label: county.getNameAndStateAbbrev(),
-      })
+      });
     }
     return accu;
   }, []);
@@ -98,5 +96,4 @@ export default function County(props) {
       />
     </CenteredMiddleColumn>
   );
-
 }
