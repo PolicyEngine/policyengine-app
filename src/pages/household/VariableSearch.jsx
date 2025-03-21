@@ -14,6 +14,10 @@ export default function VariableSearch(props) {
       label: variable.label,
     }))
     .filter((option) => !!option.label && !!option.value);
+  options.push({
+    value: "input.household.countyName",
+    label: "County name",
+  });
   return (
     <SearchOptions
       options={options}
