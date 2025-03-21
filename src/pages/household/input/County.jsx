@@ -9,8 +9,9 @@
 * DONE: Set default county based on state
 * DONE: Replace fips-county-codes with bug-free package
 * DONE: Consider replacing county generation with some means of reading from fips package
-* Map input county to FIPS code in counties dataset
-* Add code to update householdInput with FIPS
+* DONE: Map input county to FIPS code in counties dataset
+* DONE: Add code to update householdInput with FIPS
+* Fix bug to show entire county name
 * Test properly showing county as searched variable
 * Ensure component only displays for US
 * Test?
@@ -28,22 +29,35 @@ import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
 import SearchParamNavButton from "../../../controls/SearchParamNavButton";
 import { getAllCounties } from "../../../data/counties";
+import { getNewHouseholdId } from "../../../api/variables";
+import { useSearchParams } from "react-router-dom";
 
 export default function County(props) {
   const {
     metadata,
     householdInput,
     setHouseholdInput,
-    year
+    year,
+    autoCompute
   } = props;
 
   const dC = useDisplayCategory();
+  const [_, setSearchParams] = useSearchParams();
 
   function handleSubmit(value) {
-    console.log(value);
-    return;
+    let newHousehold = JSON.parse(JSON.stringify(householdInput));
+    newHousehold["households"]["your household"]["county_fips"] = {[year]: value}
+    setHouseholdInput(newHousehold);
+    if (autoCompute) {
+      getNewHouseholdId(metadata.countryId, newHousehold).then(
+        (householdId) => {
+          let newSearch = new URLSearchParams(window.location.search);
+          newSearch.set("household", householdId);
+          setSearchParams(newSearch);
+        },
+      );
+    }
   }
-
   // Fetch all counties
   const allCounties = getAllCounties();
 
@@ -51,8 +65,6 @@ export default function County(props) {
 
   const householdStateCode = householdInput?.households?.["your household"]?.state_name?.[year];
 
-  // Ant Design requires value and label not be Object-typed; store the full County
-  // class instance as a custom "county" key
   const countyOptions = allCounties.reduce((accu, county) => {
     if (!householdStateCode || householdStateCode === county.getStateCode()) {
       accu.push({
@@ -62,6 +74,9 @@ export default function County(props) {
     }
     return accu;
   }, []);
+
+  // Hard-code the next variable, which is the first item from the input.income group
+  const nextVariable = "input.income.employment_income_before_lsr";
 
   return (
     <CenteredMiddleColumn
@@ -78,7 +93,7 @@ export default function County(props) {
       />
       <SearchParamNavButton
         text="Submit"
-        // focus="input.household.maritalStatus"
+        focus={nextVariable}
         style={{ marginTop: 20, width: 300 }}
       />
     </CenteredMiddleColumn>

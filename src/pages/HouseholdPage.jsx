@@ -230,13 +230,14 @@ export default function HouseholdPage(props) {
 
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
-  } else if (focus === "input.household.countyName") {
+  } else if (focus === "input.geography.countyName") {
     middle = (
       <County
         metadata={metadata}
         householdInput={householdInput}
         setHouseholdInput={setHouseholdInput}
         year={year}
+        autoCompute={autoCompute}
       />
     )
   } else if (focus === "input.household.maritalStatus") {
@@ -432,6 +433,8 @@ function HouseholdLeftSidebar(props) {
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
 
+  metadata.variableTree.children = addCustomInputs(metadata.variableTree.children);
+
   return (
     <div>
       {!isOnOutput && (
@@ -447,6 +450,37 @@ function HouseholdLeftSidebar(props) {
       />
     </div>
   );
+}
+
+/**
+ * Add custom non-default input values to the display tree
+ * @param {Array<Object>} displayTree An array of items with keys name and label
+ * @returns {Array<Object>} The updated display tree
+ */
+export function addCustomInputs(displayTree) {
+
+  // Add county name input to first tree
+  const newNode = {
+    label: "County",
+    name: "input.geography.countyName",
+  }
+
+  const geographyTree = displayTree.find(
+    (node) => node.name === "input.geography",
+  );
+
+  const nodeExists = geographyTree?.children.some(
+    (node) => node.name === newNode.name
+  );
+
+  if (geographyTree && !nodeExists) {
+    geographyTree.children.push({
+      label: "County name",
+      name: "input.geography.countyName",
+    });
+  }
+
+  return displayTree;
 }
 
 /**
