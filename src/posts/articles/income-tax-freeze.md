@@ -56,7 +56,7 @@ The extension of the freeze would affect taxpayers across the income distributio
       "text": ["-0.31%", "-0.34%", "-0.29%", "-0.40%", "-0.41%", "-0.48%", "-0.58%", "-0.57%", "-0.66%", "-0.35%"],
       "textposition": "inside",
       "insidetextfont": {
-        "family": "Roboto Mono",
+        "family": "Roboto Serif",
         "color": "white",
         "size": 10
       }
@@ -78,7 +78,7 @@ The extension of the freeze would affect taxpayers across the income distributio
         "family": "Roboto Serif"
       },
       "tickfont": {
-        "family": "Roboto Mono"
+        "family": "Roboto Serif"
       },
       "tickformat": ",.1%",
       "automargin": true
@@ -146,7 +146,7 @@ The extension of the freeze would affect taxpayers across the income distributio
       "text": ["0.64m", "0.91m", "0m"],
       "textposition": "inside",
       "insidetextfont": {
-        "family": "Roboto Mono",
+        "family": "Roboto Serif",
         "color": "white",
         "size": 10
       }
@@ -168,7 +168,7 @@ The extension of the freeze would affect taxpayers across the income distributio
         "family": "Roboto Serif"
       },
       "tickfont": {
-        "family": "Roboto Mono"
+        "family": "Roboto Serif"
       },
       "automargin": true
     },
