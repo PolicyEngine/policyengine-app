@@ -2,13 +2,11 @@ _Credit: HM Treasury_
 
 [See the full impacts on PolicyEngine here in 2028](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=68997&region=uk&timePeriod=2028&baseline=1) and [2029](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=68997&region=uk&timePeriod=2029&baseline=1).
 
-The UK government is considering extending the freeze on the income tax personal allowance and higher rate threshold for an additional two years. This policy would raise over £12 billion in tax revenue and would affect taxpayers across all income groups.
+The Resolution Foundation on Monday 17th March [proposed](https://www.resolutionfoundation.org/press-releases/chancellor-needs-take-action-to-balance-the-books/) extending the freeze on the income tax personal allowance and higher rate threshold for an additional two years. This policy would raise over £12 billion in tax revenue and would affect taxpayers across all income groups.
 
 ## The reforms
 
 Currently, the personal allowance (£12,570) and higher rate threshold (£50,270) are frozen until 2028. The proposed extension would maintain these thresholds at their current levels until 2030, representing a seven-year freeze since they were last uprated in 2021.
-
-This "fiscal drag" measure effectively increases tax burdens over time as inflation and wage growth push more income into higher tax brackets without increasing the thresholds accordingly.
 
 ### Taxpayer band changes
 
