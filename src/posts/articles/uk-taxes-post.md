@@ -112,10 +112,18 @@ VAT is a consumption tax placed on products and services at each stage where val
   
 - **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
 
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79816) that abolishing value added tax (VAT) would raise the government budget by £200.0 billion in 2025. The following image shows the distributional impact of this reform.
+
+![](/images/posts/uk-taxes-post/vat.png)
+
 ### Fuel duty
 Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuels for vehicles or heating, calculated as [`fuel_duty`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/fuel_duty/fuel_duty.py).
 
 - **Petrol and diesel rates**: Set at a rate per litre for both petrol and diesel, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
+
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79820) that abolishing fuel duty would raise the government budget by £28.3 billion in 2025. The following image shows the distributional impact of this reform.
+
+![](/images/posts/uk-taxes-post/fuel-duty.png)
 
 ## Property and land taxes
 These taxes apply to property ownership, occupation and transactions throughout the UK.
