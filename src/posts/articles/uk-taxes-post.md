@@ -85,6 +85,10 @@ National insurance is a system of contributions that funds state benefits and th
     
   - **Additional rate**: Paid on self-employed profits above the upper profits limit, calculated as [`ni_class_4_maximum`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_maximum.py).
 
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79808) that abolishing national insurance would raise the government budget by £133.1 billion while raising poverty by 2.8% in 2025. The following image shows the distributional impact of this reform.
+
+![](/images/posts/uk-taxes-post/national-insurance.png)
+
 ### Capital gains tax
 Capital gains tax is charged on the profit when selling or disposing of an asset that has increased in value. It applies to most assets including investments, second properties and business assets, but not main residences, calculated as [`capital_gains_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/capital_gains_tax/capital_gains_tax.py).
 
@@ -93,6 +97,10 @@ Capital gains tax is charged on the profit when selling or disposing of an asset
 - **Higher rate (20%)**: Applied to gains for higher and additional rate taxpayers, or a higher rate for residential property, defined by the [`higher_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/higher_rate.yaml) parameter.
   
 - **Annual exempt amount**: A tax-free allowance for capital gains set by the government each tax year, defined by the [`annual_exempt_amount`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/annual_exempt_amount.yaml) parameter.
+
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=79813&reform=1) that abolishing capital gain tax would raise the government budget by £17.3 billion and it would lower net income for 3.5% of people in 2025. The following image shows the distributional impact of this reform.
+
+![](/images/posts/uk-taxes-post/capital-gain-tax.png)
 
 ## Core indirect taxes
 Indirect taxes are collected by intermediaries and passed to the government, included in the price of goods and services. These taxes take a percentage of income from households regardless of their ability to pay.
