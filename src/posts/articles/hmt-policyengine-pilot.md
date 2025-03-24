@@ -6,8 +6,7 @@ According to a [recently published Algorithmic Transparency Record](https://www.
 
 The Treasury record notes that PolicyEngine UK "uses machine learning and gradient descent methods to tackle two key sources of error in household survey data typically used for modelling tax and welfare policies: under-sampling of certain demographics of households or individuals, and measurement errors such as underreporting of income and benefits."
 
-HM Treasury explored the scope for "making greater use of this model for advising policymakers on the impact of tax and welfare measures on households, supplementing the existing models used for this (such the Intra-Governmental Tax and Benefit Microsimulation model – IGOTM)."
-
+HM Treasury explored the scope for "making greater use of this model for advising policymakers on the impact of tax and welfare measures on households, supplementing the existing models used for this (such as the Intra-Governmental Tax and Benefit Microsimulation model – IGOTM)."
 Media coverage of this pilot appeared in [The Times](https://www.thetimes.co.uk/uk/politics/article/how-civil-servants-really-use-ai-from-lesson-plans-to-recruitment-k8nzghbn8), which noted that "The Treasury is using the technology to more accurately measure how changes to national insurance, income tax and universal credit would affect different groups. It is believed that the tool, PolicyEngine, can more accurately predict the outcome of ministers' decisions and is expected to be used mostly in budget periods." The Guardian also [mentioned](https://www.theguardian.com/technology/2024/dec/17/amazon-hosted-ai-tool-for-uk-military-recruitment-carries-risk-of-data-breach) PolicyEngine in its coverage of the government's AI tools initiatives.
 
 The Treasury's review of PolicyEngine highlighted several features, including:
