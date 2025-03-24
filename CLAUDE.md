@@ -72,9 +72,28 @@
 
 ## Blog Posts
 
+### General Content Guidelines
+
 - Keep URLs in blog post markdown files short (without query parameters) to prevent line-breaking issues
 - When adding blog posts, remember to remove the title (with the single #), description, and cover image
 - Use proper Markdown footnote syntax (`[^1]`) instead of superscript footnotes
 - New blog posts in `posts.json` should be added at the beginning of the array (most recent first)
 - For new blog posts from Medium, install `mediumexporter` and use it to download the post content
 - Image file paths should match the blog post filename in the posts.json entry
+
+### Writing Style Guidelines
+
+- Use factual, objective language throughout - avoid adjectives like "significantly," "slightly," or "progressively"
+- Present data without qualitative judgments - let numbers speak for themselves
+- Do not use title case for section headings or bullet points; use sentence case instead
+- Avoid phrases like "small impact" or "large effect" - instead specify the exact percentage or numerical change
+- Don't round numbers unless necessary, and when rounding, indicate the level of precision
+- Ensure all chart titles could be quoted out of context and still provide full information
+  - Example: "Income tax threshold freeze to 2030: Change in net income by income decile"
+  - Include the specific reform name in the chart title
+- When describing change, specify baseline and reform values when possible (e.g., "from 12.20% to 12.23%")
+- Focus on "what" rather than "why" in descriptions of results
+- Avoid words that imply value judgments (e.g., "burden," "benefit," "progressive," "regressive")
+- When describing higher-numbered deciles, prefer "higher-income" over "rich" or "wealthy"
+- When describing lower-numbered deciles, prefer "lower-income" over "poor"
+- Use precise language: "would" rather than "could" or "might" when describing modeled outcomes
