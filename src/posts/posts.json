@@ -1108,5 +1108,14 @@
     "authors": ["vahid-ahmadi", "pavel-makarchuk"],
     "filename": "young-child-exemption-two-child-limit.md",
     "image": "young-child-exemption-two-child-limit.jpg"
+  },
+  {
+    "title": "PolicyEngine UK tax guide",
+    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
+    "date": "2025-03-25 00:00:00",
+    "tags": ["uk", "policy", "featured", "tax"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-taxes-post.md",
+    "image": "uk-tax-post.jpg"
   }
 ]
