@@ -1,8 +1,8 @@
 This post provides an overview of how taxes are modeled in PolicyEngine UK. It details both existing taxes in the UK tax system and proposed/contributed taxes that are simulated within our platform. Each tax component is linked to its specific implementation in the codebase, making this document a technical reference for understanding how tax calculations are performed in the PolicyEngine UK microsimulation model.
 
-The post is organized into three main sections. First, we explain core direct taxes (income tax, national insurance, and capital gains tax), which are collected directly from individuals and businesses. Next, we cover core indirect taxes (VAT and fuel duty) which are embedded in the prices of goods and services. Finally, we explore both existing property and land taxes (including stamp duty variations across UK nations, business rates, and council tax) and contributed/proposed taxes (such as carbon tax, wealth tax, land value tax, and others) that are modeled in PolicyEngine but not currently implemented in the UK.
+The post is organized into three main sections. First, we explain direct taxes (income tax, national insurance, and capital gains tax), which are collected directly from individuals and businesses. Next, we cover indirect taxes (VAT and fuel duty) which are embedded in the prices of goods and services. Finally, we explore both existing property and land taxes (including stamp duty variations across UK nations, business rates, and council tax) and contributed/proposed taxes (such as carbon tax, wealth tax, land value tax, and others) that are modeled in PolicyEngine but not currently implemented in the UK.
 
-## Core direct taxes
+## Direct taxes
 Direct taxes are collected from individuals and businesses based on income, profits or gains. The three main direct taxes in the UK system—income tax, National Insurance, and capital gains tax—work together to tax different forms of income and wealth accrual.
 
 ### Income tax
@@ -65,8 +65,8 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ![](/images/posts/uk-taxes-post/income-tax.png)
 
 ### National Insurance
-While income tax is the most visible direct tax, National Insurance serves as a complementary system that funds specific social programs.
-National Insurance is a system of contributions that funds state benefits and the NHS. It functions as a secondary income tax paid by employees, employers and the self-employed, with overall liability calculated as [`national_insurance`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/national_insurance.py).
+National Insurance operates alongside income tax and funds state benefits and the NHS.
+National Insurance consists of contributions paid by employees, employers and the self-employed, with overall liability calculated as [`national_insurance`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/national_insurance.py).
 
 - **Class 1** (Employees and employers)
   These are contributions paid on employee earnings above the primary threshold. Employers also pay secondary contributions, meaning employment has a dual tax, implemented in [`class_1`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1).
@@ -95,7 +95,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ![](/images/posts/uk-taxes-post/national-insurance.png)
 
 ### Capital gains tax
-Complementing income tax and National Insurance, which primarily target earned income, capital gains tax addresses the growth in asset values.
+Capital gains tax applies to profits from asset sales, unlike income tax and National Insurance which apply to earnings.
 Capital gains tax is charged on the profit when selling or disposing of an asset that has increased in value. It applies to most assets including investments, second properties and business assets, but not main residences, calculated as [`capital_gains_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/capital_gains_tax/capital_gains_tax.py).
 
 - **Basic rate (10%)**: Applied to gains for basic rate taxpayers on most assets, or a higher rate for residential property. The applicable rate depends on the taxpayer's income tax band and the asset type, defined by the [`basic_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/basic_rate.yaml) parameter.
@@ -108,12 +108,11 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ![](/images/posts/uk-taxes-post/capital-gain-tax.png)
 
-## Core indirect taxes
-While direct taxes are visible in tax returns and payslips, indirect taxes operate through different mechanisms and affect consumers in less transparent ways.
-Indirect taxes are collected by intermediaries and passed to the government, included in the price of goods and services. These taxes take a percentage of income from households regardless of their ability to pay.
+## Indirect taxes
+Indirect taxes are collected by intermediaries and passed to the government. They form part of the price of goods and services that consumers pay.
 
 ### Value added tax (VAT)
-As the UK's primary consumption tax, VAT represents one of the largest revenue sources for the government.
+VAT generates substantial revenue for the UK government.
 VAT is a consumption tax placed on products and services at each stage where value is added, calculated in PolicyEngine as [`vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/vat.py).
 
 - **Standard rate (20%)**: Applied to most goods and services in the UK, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
@@ -125,7 +124,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ![](/images/posts/uk-taxes-post/vat.png)
 
 ### Fuel duty
-In addition to the broad-based VAT, the UK applies specific excise duties to particular products, with fuel duty being the most significant.
+The UK applies excise duties to specific products, including fuels.
 Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuels for vehicles or heating, calculated as [`fuel_duty`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/fuel_duty/fuel_duty.py).
 
 - **Petrol and diesel rates**: Set at a rate per litre for both petrol and diesel, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
@@ -135,8 +134,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ![](/images/posts/uk-taxes-post/fuel-duty.png)
 
 ## Property and land taxes
-Beyond taxing income and consumption, the UK tax system also targets wealth held in property and land through several mechanisms that vary by nation and property type.
-These taxes apply to property ownership, occupation and transactions throughout the UK.
+The UK tax system includes taxes on property ownership, occupation and transactions. These taxes vary by nation and property type.
 
 ### Stamp duty land tax (SDLT) - England & Northern Ireland
 SDLT is a tax paid when purchasing property over certain price thresholds in England and Northern Ireland, calculated as [`stamp_duty_land_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/stamp_duty_land_tax.py).
@@ -162,7 +160,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ![](/images/posts/uk-taxes-post/stamp-duty.png)
   
 ### Land and buildings transaction tax (LBTT) - Scotland
-While England and Northern Ireland use SDLT, Scotland has developed its own property transaction tax system with a similar structure but distinct rates and thresholds.
+Scotland uses a different property transaction tax than England and Northern Ireland.
 LBTT is Scotland's equivalent to SDLT, applying to property and land transactions in Scotland, calculated as [`lbtt`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/revenue_scotland/lbtt.py).
 
 - **Residential property**
@@ -184,7 +182,7 @@ LBTT is Scotland's equivalent to SDLT, applying to property and land transaction
   - **Rental agreements**: LBTT applies to the net present value of commercial lease rent above a threshold, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
 
 ### Land transaction tax (LTT) - Wales
-Completing the UK's devolved approach to property transaction taxes, Wales has also implemented its own system.
+Wales has its own property transaction tax system.
 LTT is Wales' equivalent to SDLT, applying to property and land transactions in Wales, calculated as [`land_transaction_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/wra/land_transaction_tax.py).
 
 - **Residential property**
@@ -204,7 +202,7 @@ LTT is Wales' equivalent to SDLT, applying to property and land transactions in 
   - **Rental agreements**: LTT applies to the net present value of commercial lease rent with threshold and rate structures, defined by specific rental parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
 
 ### Business rates
-Beyond transaction taxes, the UK also imposes annual taxes on property occupation. For businesses, this takes the form of business rates.
+The UK imposes annual taxes on property occupation, including business rates for non-domestic properties.
 Business rates are a tax on non-domestic properties like shops, offices and factories throughout the UK. They are set by central government but collected by local authorities, based on the property's estimated rental value, calculated as [`business_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/business_rates.py).
 
 - **Corporate tax on non-domestic properties**: Calculated as a percentage (the multiplier) of a property's assessed rateable value, defined in business rates statistics parameters in [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
@@ -212,7 +210,7 @@ Business rates are a tax on non-domestic properties like shops, offices and fact
 - **Regional variation (England, Scotland, Wales, Northern Ireland)**: Each nation sets its own multipliers and relief schemes, creating regional differences, defined in region-specific sections within [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
 
 ### Council tax/domestic rates
-For residential properties, a parallel system of property taxation exists in the form of council tax (or domestic rates in Northern Ireland).
+Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
 Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
 
 - **Local authority property tax**: The primary revenue source for local authorities, funding services like waste collection, defined by domestic rates parameters in [`rates.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/local_authorities/domestic_rates/rates.yaml).
@@ -225,7 +223,7 @@ Council tax is a local tax on domestic properties in England, Scotland and Wales
 Beyond modeling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications.
 
 ### Carbon tax
-As climate policy becomes increasingly important, carbon taxation represents a market-based approach to reducing emissions.
+Carbon taxes can be used to price emissions and influence production and consumption patterns.
 A carbon tax is a levy on carbon emissions required to produce goods and services, calculated in PolicyEngine as [`carbon_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/ubi_center/carbon_tax.py).
 
 - **Per-ton CO2 emission tax**: A fixed monetary amount charged per ton of carbon dioxide equivalent emitted, defined by the carbon tax rate parameter in [`carbon_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/ubi_center/carbon_tax.yaml).
@@ -235,15 +233,14 @@ A carbon tax is a levy on carbon emissions required to produce goods and service
 - **Applied to carbon consumption**: The tax applies to the carbon footprint of household consumption across categories, using household carbon intensity variables in [`carbon.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/household/consumption/carbon.py).
 
 ### Wealth tax
-While the UK already taxes income and consumption extensively, wealth remains relatively lightly taxed. Some have proposed more direct taxation of accumulated assets.
-A wealth tax would apply to the total value of an individual's assets, potentially addressing wealth inequality, calculated as [`wealth_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/ubi_center/wealth_tax.py).
+A wealth tax would apply to the total value of an individual's assets, calculated as [`wealth_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/ubi_center/wealth_tax.py).
 
 - **Annual tax on total household wealth**: A percentage tax applied to a household's total net wealth above a threshold, defined by wealth tax rate parameters in [`wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/ubi_center/wealth_tax.yaml).
   
 - **Progressive rate structure based on wealth brackets**: Higher tax rates would apply to larger wealth holdings, similar to income tax bands, defined by wealth tax bracket parameters in [`wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/ubi_center/wealth_tax.yaml).
 
 ### Land value tax (LVT)
-Many economists advocate for land value taxation as an efficient alternative to existing property taxes, as it targets economic rent rather than productive investment.
+Land value tax focuses on the value of land itself, not the buildings or improvements on it.
 Land value tax is a levy on the unimproved value of land, disregarding buildings or other improvements, calculated as [`land_value_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/ubi_center/land_value_tax.py).
 
 - **Tax on land value separate from improvements**: Only the underlying land value is taxed, not buildings or developments on the land. This differs from council tax and business rates, which tax the combined property value, defined by land value tax rate parameters in [`land_value_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/ubi_center/land_value_tax.yaml).
@@ -256,8 +253,8 @@ Land value tax is a levy on the unimproved value of land, disregarding buildings
   - **Corporate land value tax**: A rate applied to commercially used land. This could replace or supplement business rates, potentially reducing business investment distortions, included in the commercial component of [`land_value_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/ubi_center/land_value_tax.py).
 
 ### Private school VAT
-Narrower tax proposals can target specific sectors or activities, such as the Labour Party's proposal to end VAT exemptions for private education.
-This would apply VAT to private school fees, ending the current exemption for private education. The Labour Party has proposed this policy to raise revenue for state education investment, calculated as [`private_school_vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py).
+One proposal is to apply VAT to private education.
+This would apply VAT to private school fees, ending the current exemption for private education, calculated as [`private_school_vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py).
 
 - **VAT applied to private school fees**: The standard VAT rate would apply to fees currently exempt as educational services, defined by private school VAT rate parameters in [`private_school_vat.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/labour/private_school_vat.yaml).
   
@@ -266,9 +263,9 @@ This would apply VAT to private school fees, ending the current exemption for pr
 - **Adjusts for actual private school attendance rates**: The model accounts for varying private school attendance rates across income groups using the [`private_school_attendance_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) parameter.
 
 ### Non-primary residence wealth tax
-Recognizing the political sensitivity of taxing main residences, some proposals take a more targeted approach to wealth taxation.
+Some wealth tax proposals exempt the main residence from taxation.
 This is a targeted wealth tax that would exempt one's main residence but tax other assets, calculated as [`non_primary_residence_wealth_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/cec/non_primary_residence_wealth_tax.py).
 
-- **Wealth tax that exempts main residence**: Applies only to assets beyond a household's primary home, making it more politically acceptable, defined by wealth tax exemption parameters in [`non_primary_residence_wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/cec/non_primary_residence_wealth_tax.yaml).
+- **Wealth tax that exempts main residence**: Applies only to assets beyond a household's primary home, defined by wealth tax exemption parameters in [`non_primary_residence_wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/cec/non_primary_residence_wealth_tax.yaml).
   
 - **Applied to all other wealth including secondary properties, financial assets, etc.**: Would capture investment properties, shares, bonds, business assets and other wealth forms through the non-primary wealth components in [`non_primary_residence_wealth_tax.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/cec/non_primary_residence_wealth_tax.py).
