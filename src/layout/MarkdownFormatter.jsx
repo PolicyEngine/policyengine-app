@@ -133,7 +133,6 @@ export function PlotlyChartCode({ data, backgroundColor }) {
   const displayCategory = useDisplayCategory();
   return (
     <>
-      
       <Plot
         data={plotlyData.data}
         layout={Object.assign(plotlyData.layout, {

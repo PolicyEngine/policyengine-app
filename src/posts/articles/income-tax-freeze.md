@@ -13,9 +13,7 @@ Currently, the personal allowance (£12,570) and higher rate threshold (£50,270
 Our analysis shows the following changes in taxpayer bands due to the extended freeze:
 
 - **Basic rate taxpayers**: By 2029, an estimated 640,000 additional people would become basic rate taxpayers who otherwise would have remained below the personal allowance threshold.
-  
 - **Higher rate taxpayers**: Approximately 906,000 additional people would move from basic rate to higher rate taxpayers by 2029.
-  
 - **Additional rate taxpayers**: The counts of additional rate taxpayers are not affected by the threshold freeze.
 
 These shifts would occur primarily in England, Wales and Northern Ireland, as Scotland sets its own income tax thresholds.
@@ -128,7 +126,6 @@ The extension of the freeze would affect taxpayers across the income distributio
   }
 }
 ```
-
 
 ```plotly
 {
