@@ -130,29 +130,14 @@ export function PlotlyChartCode({ data, backgroundColor }) {
   } catch {
     plotlyData = wrappedJsonParse(data[0]);
   }
-  const title = plotlyData.layout?.title?.text;
   const displayCategory = useDisplayCategory();
   return (
     <>
-      {title && (
-        <h5
-          style={{
-            fontFamily: "Roboto Serif",
-            color: style.colors.MEDIUM_LIGHT_GRAY,
-            textEmphasis: "italic",
-          }}
-        >
-          {title}
-        </h5>
-      )}
       <Plot
         data={plotlyData.data}
         layout={Object.assign(plotlyData.layout, {
           width: displayCategory === "mobile" ? 400 : "100%",
           height: 600,
-          title: {
-            text: "",
-          },
           plot_bgcolor: backgroundColor || "transparent",
           paper_bgcolor: backgroundColor || "transparent",
         })}

@@ -21,7 +21,7 @@ export default function SaltAMTCalculator() {
         }}
       >
         <iframe
-          src="https://policyengine-salt-amt-calculator.streamlit.app/?embedded=true"
+          src="https://salt-amt-calculator-578039519715.us-central1.run.app/?embedded=true"
           title="SALT-AMT Policy Reform Calculator"
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
           width="100%"

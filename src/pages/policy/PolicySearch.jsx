@@ -104,19 +104,34 @@ export default function PolicySearch(props) {
     setValue(searchText);
     const now = new Date().getTime();
     if (now - lastRequestTime > 1000 || searchText !== lastSearch) {
-      const res = await countryApiCall(
-        metadata.countryId,
-        `/policies?query=${searchText}&unique_only=true`,
-      );
-      const resJson = await wrappedResponseJson(res);
-      setPolicies(
-        resJson.result.map((item) => {
-          return {
+      try {
+        const res = await countryApiCall(
+          metadata.countryId,
+          `/policies?query=${searchText}&unique_only=true`,
+        );
+
+        if (!res.ok) {
+          if (res.status === 404) {
+            // If no policies are found, return an empty list instead of erroring
+            setPolicies([]);
+          } else {
+            console.error(`API error: ${res.status} - ${res.statusText}`);
+          }
+          return;
+        }
+
+        const resJson = await wrappedResponseJson(res);
+        setPolicies(
+          resJson.result.map((item) => ({
             value: item.id,
             label: `#${item.id} ${item.label}`,
-          };
-        }) || [],
-      );
+          })) || [],
+        );
+      } catch (error) {
+        console.error("Error fetching policies:", error);
+        setPolicies([]);
+      }
+
       setLastRequestTime(new Date().getTime());
       setLastSearch(searchText);
     }

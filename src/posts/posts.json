@@ -1,5 +1,23 @@
 [
   {
+    "title": "HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation",
+    "description": "The UK government's finance ministry explores PolicyEngine as a potential supplement to existing models.",
+    "date": "2025-03-24",
+    "tags": ["uk", "impact", "featured"],
+    "filename": "hmt-policyengine-pilot.md",
+    "image": "analysis-of-the-spring-budget-2023.jpeg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Extending the Income Tax threshold freeze to 2030",
+    "description": "PolicyEngine estimates extending the personal allowance and higher rate threshold freeze would raise £12.2 billion over two years.",
+    "date": "2025-03-25",
+    "tags": ["uk", "policy", "featured"],
+    "filename": "income-tax-freeze.md",
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
     "title": "PolicyEngine's 2022 year in review",
     "description": "A year of launches, analysis, and building for the future.",
     "date": "2022-12-30",
@@ -1108,6 +1126,33 @@
     "authors": ["vahid-ahmadi", "pavel-makarchuk"],
     "filename": "young-child-exemption-two-child-limit.md",
     "image": "young-child-exemption-two-child-limit.jpg"
+  },
+  {
+    "title": "New York Governor Hochul's Tax Proposals",
+    "date": "2025-03-07",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ny", "featured", "policy"],
+    "description": "PolicyEngine analyzed several individual income tax policies included in Governor Kathy Hochul's FY2026 budget.",
+    "filename": "ny-hochul-budget.md",
+    "image": "ny-hochul-budget.jpg"
+  },
+  {
+    "title": "The impact of Personal Independence Payment, and freezing its level in 2025",
+    "date": "2025-03-11",
+    "authors": ["nikhil-woodruff"],
+    "tags": ["uk", "policy", "featured"],
+    "description": "How the disability benefit, and one reform the government is reportedly considering, affect the UK household sector.",
+    "filename": "pip-and-freeze.md",
+    "image": "pip_and_freeze.jpg"
+  },
+  {
+    "title": "Restricting eligibility for the Personal Independence Payment Daily Living part",
+    "date": "2025-03-18",
+    "authors": ["nikhil-woodruff", "max-ghenis"],
+    "tags": ["uk", "policy", "featured"],
+    "description": "We simulate potential realisations of the Government's new £5 billion reform.",
+    "filename": "uk-pip-reforms.md",
+    "image": "uk-pip-reforms.jpg"
   },
   {
     "title": "PolicyEngine UK tax guide",

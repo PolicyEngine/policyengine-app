@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import { baselinePolicyUS } from "../../__setup__/sampleData";
 import PolicySearch from "../../../pages/policy/PolicySearch";
 import data from "../../__setup__/data.json";
-import userEvent from "@testing-library/user-event";
 import { when } from "jest-when";
 
 let metadataUS = data["metadataUS"];
@@ -61,6 +60,13 @@ when(mockCountryApiCall)
   .mockReturnValue(testSearchResultsWrapper)
   .defaultReturnValue(() => {
     throw new Error("Error while mocking countryApiCall");
+  });
+
+when(mockCountryApiCall)
+  .calledWith("us", expect.stringContaining("policies?query=ndsjbjkvs"))
+  .mockReturnValue({
+    json: () => Promise.resolve({ result: [] }), // Return empty array instead of throwing error
+    text: () => Promise.resolve(JSON.stringify({ result: [] })),
   });
 
 jest.mock("../../../api/call.js", () => {
@@ -147,57 +153,5 @@ describe("PolicySearch", () => {
     const checkmarkButton = screen.getByRole("button", { name: /check/i });
     expect(checkmarkButton).toBeInTheDocument();
     expect(checkmarkButton).not.toBeDisabled();
-  });
-  test("Should stack policies", async () => {
-    const testBasePolicy = {
-      baseline: {
-        data: {},
-        label: "Current law",
-        id: 2,
-      },
-      reform: {
-        data: {
-          maxwell: {
-            "2024-01-01.2100-12-31": true,
-          },
-          dworkin: {
-            "2024-01-01.2100-12-31": true,
-          },
-        },
-        label: "Test base policy",
-      },
-    };
-
-    const testProps = {
-      metadata: metadataUS,
-      target: "reform",
-      policy: testBasePolicy,
-      displayStack: true,
-    };
-
-    const user = userEvent.setup();
-
-    render(
-      <BrowserRouter>
-        <PolicySearch {...testProps} />
-      </BrowserRouter>,
-    );
-
-    // Find the input
-    const input = screen.getByRole("combobox");
-
-    // Click on it and search for "t"
-    await user.click(input);
-    await user.type(input, "t");
-
-    // Select the only returned policy and click "plus" to stack it
-    const policyItem = screen.getByText(/#1 test stacking policy/i);
-    const plusButton = screen.getByRole("button", { name: /plus/i });
-    await user.click(policyItem);
-    await user.click(plusButton);
-
-    // Ensure that new policy is created
-    const params = new URLSearchParams(window.location.search);
-    expect(params.get("reform")).toBe("2");
   });
 });

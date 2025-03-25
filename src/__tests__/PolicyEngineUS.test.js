@@ -192,7 +192,7 @@ describe("PolicyEngine US Routes", () => {
       </BrowserRouter>,
     );
 
-    expect(getByText("PolicyEngine API Documentation")).toBeInTheDocument();
+    expect(getByText("API Documentation")).toBeInTheDocument();
   });
 
   test("Routes to TRAFWA calculator", () => {

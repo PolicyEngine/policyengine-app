@@ -14,8 +14,15 @@
 
 - **Node version**: Use Node >=22.0.0 (use nvm to manage versions)
 - **Formatting**: Uses Prettier (default config) with ESLint
-- **React**: Functional components with hooks; no need to import React due to new JSX transform
-- **Imports**: Group by external/internal; prefer named imports
+- **React**:
+  - Functional components with hooks
+  - No need to import React in most files due to new JSX transform (React 17+)
+  - Only import React when using React namespace features directly (React.lazy, React.Suspense, etc.)
+  - Use named exports from React (e.g., `import { useState, useEffect } from "react"`)
+- **Imports**:
+  - Group by external/internal
+  - Prefer named imports
+  - Keep imports organized and minimize unused imports
 - **Testing**: Jest with React Testing Library; tests in `__tests__` directory with `.test.js` suffix
 - **File naming**: Use PascalCase for components, camelCase for utilities
 - **TypeScript**: Gradually adopting; new files should use TypeScript when possible
@@ -30,6 +37,9 @@
 - **React Router**: Uses `react-router-dom` v6 with search params for state preservation
 - **Charts/Graphs**: Uses `plotly.js` and `react-plotly.js` for data visualization
 - **Markdown**: Uses `react-markdown` with plugins for rendering markdown content
+- **Page Structure**: Typically follows Header -> PageHeader -> Content -> Footer pattern
+- **Country-specific content**: Use the `countryId` hook and conditionals/props to handle US/UK differences
+- **Image loading**: Use `require()` for dynamic images rather than direct string paths
 
 ## Common Gotchas & Best Practices
 
@@ -38,11 +48,31 @@
 - `findInTree` function navigates variable hierarchies using path strings like "input.household.children"
 - URL-encoded parameters need proper decoding (e.g., %5B to [, %5D to ])
 - React.useEffect with empty deps array (`[]`) runs once on mount, no array runs on every render
+- Always include all dependencies in React hooks' dependency arrays (especially with useCallback and useEffect)
+- For shared components used across multiple country pages (UK/US), create a common component and pass country info as props
+- When creating new pages, ensure they follow the same page structure as existing ones (i.e., include Header/Footer)
 - Follow the "PolicyEngine React commandments" in `src/README.md` for component structure
 - Add docstrings to all components and graceful error handling
 - When making changes, follow existing patterns in the codebase
+- Run `npm run lint -- --max-warnings=0` locally to ensure the CI pipeline will pass (CI uses zero tolerance for warnings)
+
+## Accessibility Guidelines
+
+- Color contrast: Ensure text remains readable on hover states - avoid blue text on blue backgrounds
+- Prefer text underlines or other non-color indicators for hover states when possible
+- Add appropriate ARIA attributes to interactive and multimedia elements:
+  - Use `aria-label` for iframes, images, and controls that need better descriptions
+  - Include `title` attribute for iframes
+- Avoid using logical operators (`&&`) for compound assignments in event handlers - use explicit code blocks with braces `{}`
+- Test all interactive elements with keyboard navigation (Tab key)
+- When using ANTD components, check for accessibility-specific props and options
+- Image elements should always have descriptive `alt` text
+- Maintain focus visibility for keyboard users
+- Test with a screen reader periodically to verify interface usability
 
 ## Blog Posts
+
+### General Content Guidelines
 
 - Keep URLs in blog post markdown files short (without query parameters) to prevent line-breaking issues
 - When adding blog posts, remember to remove the title (with the single #), description, and cover image
@@ -50,3 +80,20 @@
 - New blog posts in `posts.json` should be added at the beginning of the array (most recent first)
 - For new blog posts from Medium, install `mediumexporter` and use it to download the post content
 - Image file paths should match the blog post filename in the posts.json entry
+
+### Writing Style Guidelines
+
+- Use factual, objective language throughout - avoid adjectives like "significantly," "slightly," or "progressively"
+- Present data without qualitative judgments - let numbers speak for themselves
+- Do not use title case for section headings or bullet points; use sentence case instead
+- Avoid phrases like "small impact" or "large effect" - instead specify the exact percentage or numerical change
+- Don't round numbers unless necessary, and when rounding, indicate the level of precision
+- Ensure all chart titles could be quoted out of context and still provide full information
+  - Example: "Income tax threshold freeze to 2030: Change in net income by income decile"
+  - Include the specific reform name in the chart title
+- When describing change, specify baseline and reform values when possible (e.g., "from 12.20% to 12.23%")
+- Focus on "what" rather than "why" in descriptions of results
+- Avoid words that imply value judgments (e.g., "burden," "benefit," "progressive," "regressive")
+- When describing higher-numbered deciles, prefer "higher-income" over "rich" or "wealthy"
+- When describing lower-numbered deciles, prefer "lower-income" over "poor"
+- Use precise language: "would" rather than "could" or "might" when describing modeled outcomes

@@ -147,20 +147,20 @@ export default function Button(props) {
       }}
       data-testid={testId}
       disabled={type === "disabled"}
-      onMouseOver={(e) =>
-        (e.currentTarget.style.backgroundColor =
-          activeBackgroundColor || buttonStyles[type].hover.backgroundColor) &&
-        (e.currentTarget.style.borderColor =
-          activeBorderColor || buttonStyles[type].hover.borderColor) &&
-        (e.currentTarget.style.color = buttonStyles[type].hover.color)
-      }
-      onMouseOut={(e) =>
-        (e.currentTarget.style.backgroundColor =
-          backgroundColor || buttonStyles[type].standard.backgroundColor) &&
-        (e.currentTarget.style.borderColor =
-          borderColor || buttonStyles[type].standard.borderColor) &&
-        (e.currentTarget.style.color = buttonStyles[type].standard.color)
-      }
+      onMouseOver={(e) => {
+        e.currentTarget.style.backgroundColor =
+          activeBackgroundColor || buttonStyles[type].hover.backgroundColor;
+        e.currentTarget.style.borderColor =
+          activeBorderColor || buttonStyles[type].hover.borderColor;
+        e.currentTarget.style.color = buttonStyles[type].hover.color;
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.backgroundColor =
+          backgroundColor || buttonStyles[type].standard.backgroundColor;
+        e.currentTarget.style.borderColor =
+          borderColor || buttonStyles[type].standard.borderColor;
+        e.currentTarget.style.color = buttonStyles[type].standard.color;
+      }}
       size={
         size
           ? size

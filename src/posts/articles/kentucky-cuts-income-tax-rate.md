@@ -8,11 +8,11 @@ Key results for 2026:
 
 - Benefits 73% of Kentucky residents
 
-- Lowers the state's Supplemental Poverty Measure by 1.0%
+- Lowers the state's Supplemental Poverty Measure by 1.3%
 
-- Increases the Gini index of income inequality by 0.13%
+- Increases the Gini index of income inequality by 0.14%
 
-_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy) or calculate the [effect on your household](https://policyengine.org/us/household)._
+_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=2&region=ky&timePeriod=2026&baseline=76143) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=2&region=ky&timePeriod=2026&baseline=76143)._
 
 ## Household Impacts
 
@@ -34,29 +34,29 @@ Below, Figure 1 displays the reduction in Kentucky income tax for a childless ad
 
 ## Statewide Impacts
 
-Using PolicyEngine static modeling, the individual income tax rate reduction enacted in Kentucky will [cost the state $684 million](https://policyengine.org/us/policy) for tax year 2026. The measure would also increase federal revenues by $48 million, as residents would have less state income tax to take as an itemized deduction. On net, the tax cut would increase residents' net income by $636 million, without considering behavioral responses.
+Using PolicyEngine static modeling, the individual income tax rate reduction enacted in Kentucky will [cost the state $684 million](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=2&region=ky&timePeriod=2026&baseline=76143) for tax year 2026. The measure would also increase federal revenues by $48 million, as residents would have less state income tax to take as an itemized deduction. On net, the tax cut would increase residents' net income by $636 million, without considering behavioral responses.
 
 **Figure 2: Budgetary Impact of Kentucky's Income Tax Cut**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*K9gfVVMZgO36y7L_)
 
-73% of Kentuckians will see an [increase in their net income](https://policyengine.org/us/policy), including 99% of those in the top income decile and 6% of those in the bottom decile.
+73% of Kentuckians will see an [increase in their net income](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=2&region=ky&timePeriod=2026&baseline=76143), including 99% of those in the top income decile and 6% of those in the bottom decile.
 
 **Figure 3: Winners of Kentucky's Income Tax Cut by Decile**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*c3r5UopZtVsyE3CZ)
 
-The tax cut will provide an [average benefit of $335](https://policyengine.org/us/policy) per household, ranging from $5 in the bottom income decile to $1,470 in the top decile.
+The tax cut will provide an [average benefit of $335](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=2&region=ky&timePeriod=2026&baseline=76143) per household, ranging from $5 in the bottom income decile to $1,470 in the top decile.
 
 **Figure 4: Income Distribution of Kentucky's Income Tax Cut by Decile**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*thDpBTm7YsAjCpGU)
 
-The tax changes are projected to [reduce Kentucky's poverty rate by 1.3%](https://policyengine.org/us/policy), applying the Supplemental Poverty Measure, while leaving deep poverty unchanged. The income tax reduction will also increase the state's Gini index of income inequality [by 0.14%](https://policyengine.org/us/policy).
+The tax changes are projected to [reduce Kentucky's poverty rate by 1.3%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=2&region=ky&timePeriod=2026&baseline=76143), applying the Supplemental Poverty Measure, while leaving deep poverty unchanged. The income tax reduction will also increase the state's Gini index of income inequality [by 0.14%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=2&region=ky&timePeriod=2026&baseline=76143).
 
 ## Conclusion
 
-The 0.5pp rate reduction of Kentucky's income tax will lower state revenues by $684 million in 2026, while reducing poverty by 1.3% and increasing income inequality by 0.14%. The reform reduces tax liability for households across all income deciles, with higher-income households receiving larger benefits on both an [absolute](https://policyengine.org/us/policy) and [relative](https://policyengine.org/us/policy) basis.
+The 0.5pp rate reduction of Kentucky's income tax will lower state revenues by $684 million in 2026, while reducing poverty by 1.3% and increasing income inequality by 0.14%. The reform reduces tax liability for households across all income deciles, with higher-income households receiving larger benefits on both an [absolute](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=2&region=ky&timePeriod=2026&baseline=76143) and [relative](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.relative&reform=2&region=ky&timePeriod=2026&baseline=76143) basis.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
