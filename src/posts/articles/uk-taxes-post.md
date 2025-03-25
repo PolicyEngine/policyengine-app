@@ -60,7 +60,7 @@ HMRC administers this tax using a band system with different rates for certain i
   
   - **Child benefit high income tax charge (HITC)**: A tax charge on high earners who or whose partner receives child benefit. It withdraws child benefit when income exceeds a threshold, with full withdrawal at a higher threshold, calculated as [`child_benefit_hitc`](https://github.com/PolicyEngine/policyengine-uk/blob/280e7b2bef9a6ff82d94eb2111a7aff160d0c209/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py).
 
-PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79847) that abolishing income tax would reduce government revenue by £307.5 billion in 2025. The following image shows the distributional impact of this reform.
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79847) that abolishing income tax would raise government revenue by £307.5 billion in 2025. The following figure shows the distributional impact of this reform.
 
 ![](/images/posts/uk-taxes-post/income-tax.png)
 
@@ -90,7 +90,7 @@ National Insurance consists of contributions paid by employees, employers and th
     
   - **Additional rate**: Paid on self-employed profits above the upper profits limit, calculated as [`ni_class_4_maximum`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_maximum.py).
 
-PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79825) that abolishing National Insurance would reduce government revenue by £130.1 billion in 2025. The following image shows the distributional impact of this reform.
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79825) that abolishing National Insurance would raise government revenue by £130.1 billion in 2025. The following figure shows the distributional impact of this reform.
 
 ![](/images/posts/uk-taxes-post/national-insurance.png)
 
@@ -104,7 +104,7 @@ Capital gains tax is charged on the profit when selling or disposing of an asset
   
 - **Annual exempt amount**: A tax-free allowance for capital gains set by the government each tax year, defined by the [`annual_exempt_amount`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/annual_exempt_amount.yaml) parameter.
 
-PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) that abolishing capital gains tax would reduce government revenue by £17.3 billion in 2025. The following image shows the distributional impact of this reform.
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) that abolishing capital gains tax would raise government revenue by £17.3 billion in 2025. The following figure shows the distributional impact of this reform.
 
 ![](/images/posts/uk-taxes-post/capital-gain-tax.png)
 
@@ -119,7 +119,7 @@ VAT is a consumption tax placed on products and services at each stage where val
   
 - **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
 
-PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) that abolishing value added tax (VAT) would reduce government revenue by £198.6 billion in 2025. The following image shows the distributional impact of this reform.
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) that abolishing value added tax (VAT) would raise government revenue by £198.6 billion in 2025. The following figure shows the distributional impact of this reform.
 
 ![](/images/posts/uk-taxes-post/vat.png)
 
@@ -129,7 +129,7 @@ Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuel
 
 - **Petrol and diesel rates**: Set at a rate per litre for both petrol and diesel, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
 
-PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) that abolishing fuel duty would reduce government revenue by £28.3 billion in 2025. The following image shows the distributional impact of this reform.
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) that abolishing fuel duty would raise government revenue by £28.3 billion in 2025. The following figure shows the distributional impact of this reform.
 
 ![](/images/posts/uk-taxes-post/fuel-duty.png)
 
@@ -155,7 +155,7 @@ SDLT is a tax paid when purchasing property over certain price thresholds in Eng
     
   - **Rental agreements**: SDLT applies to the net present value of commercial lease rent above a threshold, defined by non-residential rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/rent.yaml).
 
-PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) that abolishing stamp duty would reduce government revenue by £11.4 billion in 2025. The following image shows the distributional impact of this reform.
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) that abolishing stamp duty would raise government revenue by £11.4 billion in 2025. The following figure shows the distributional impact of this reform.
 
 ![](/images/posts/uk-taxes-post/stamp-duty.png)
   
@@ -181,6 +181,10 @@ LBTT is Scotland's equivalent to SDLT, applying to property and land transaction
     
   - **Rental agreements**: LBTT applies to the net present value of commercial lease rent above a threshold, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
 
+PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) that abolishing land and buildings transaction tax would raise government revenue by £669.0 million in 2025. The following figure shows the distributional impact of this reform.
+
+![](/images/posts/uk-taxes-post/lbtt.png)
+
 ### Land transaction tax (LTT) - Wales
 Wales has its own property transaction tax system.
 LTT is Wales' equivalent to SDLT, applying to property and land transactions in Wales, calculated as [`land_transaction_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/wra/land_transaction_tax.py).
@@ -200,6 +204,10 @@ LTT is Wales' equivalent to SDLT, applying to property and land transactions in 
   - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/non_residential.yaml).
     
   - **Rental agreements**: LTT applies to the net present value of commercial lease rent with threshold and rate structures, defined by specific rental parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
+
+PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) that abolishing land transaction tax would raise government revenue by £388.3 million in 2025. The following figure shows the distributional impact of this reform.
+
+![](/images/posts/uk-taxes-post/ltt.png)
 
 ### Business rates
 The UK imposes annual taxes on property occupation, including business rates for non-domestic properties.
