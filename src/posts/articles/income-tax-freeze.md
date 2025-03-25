@@ -112,7 +112,7 @@ The extension of the freeze would affect taxpayers across the income distributio
       {
         "source": "/logo512.png",
         "x": 1,
-        "y": -0.18,
+        "y": -0.20,
         "xref": "paper",
         "yref": "paper",
         "sizex": 0.1,
@@ -200,7 +200,7 @@ The extension of the freeze would affect taxpayers across the income distributio
       {
         "source": "/logo512.png",
         "x": 1,
-        "y": -0.18,
+        "y": -0.20,
         "xref": "paper",
         "yref": "paper",
         "sizex": 0.1,

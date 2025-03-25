@@ -1,5 +1,14 @@
 [
   {
+    "title": "Analysis of the Spring 2025 OBR Economic Forecast",
+    "description": "PolicyEngine will integrate the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
+    "date": "2025-03-26",
+    "tags": ["uk", "impact", "featured"],
+    "filename": "obr-forecast-2025.md",
+    "image": "jeremy-hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
     "title": "HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation",
     "description": "The UK government's finance ministry explores PolicyEngine as a potential supplement to existing models.",
     "date": "2025-03-24",

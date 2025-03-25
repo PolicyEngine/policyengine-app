@@ -19,7 +19,14 @@ import { defaultYear } from "../data/constants";
 export default function Footer() {
   const displayCategory = useDisplayCategory();
   return (
-    <Section backgroundColor={style.colors.BLUE_PRESSED}>
+    <Section 
+      backgroundColor={style.colors.BLUE_PRESSED}
+      style={{ 
+        position: "relative", // Ensure positioning context
+        zIndex: 10, // Give footer higher z-index to stay on top
+        marginTop: 25 // Reduced space above the footer
+      }}
+    >
       {
         {
           mobile: <MobileFooter />,

@@ -8,6 +8,13 @@ import useDisplayCategory from "../hooks/useDisplayCategory";
 import Plot from "react-plotly.js";
 import { wrappedJsonParse } from "../data/wrappedJson";
 
+// Add Roboto Mono font for code blocks and tables
+const fontFaceStyle = document.createElement("style");
+fontFaceStyle.innerHTML = `
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+`;
+document.head.appendChild(fontFaceStyle);
+
 function Td({ children }) {
   const displayCategory = useDisplayCategory();
   const mobile = displayCategory === "mobile";
@@ -20,12 +27,13 @@ function Td({ children }) {
     <td
       ref={ref}
       style={{
-        padding: 5,
+        padding: 8,
         fontFamily: "Roboto Serif",
-        fontSize: mobile ? 16 : 18,
+        fontSize: mobile ? 14 : 16,
         borderRight: columnNumber === 0 ? "1px solid black" : "",
         textAlign: columnNumber === 0 ? "left" : "center",
         verticalAlign: "middle",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
       }}
     >
       {children}
@@ -131,22 +139,42 @@ export function PlotlyChartCode({ data, backgroundColor }) {
     plotlyData = wrappedJsonParse(data[0]);
   }
   const displayCategory = useDisplayCategory();
+  const mobile = displayCategory === "mobile";
+  
+  // Use the margins defined in the plotly data, falling back to reasonable defaults
+  // Don't override what's in the data, but ensure we have at least some bottom margin
+  const defaultMargins = { l: 50, r: 50, t: 50, b: 50 };
+  const margins = { ...defaultMargins, ...(plotlyData.layout?.margin || {}) };
+  
   return (
-    <>
+    <div style={{ 
+      paddingLeft: 20,
+      width: "100%", 
+      display: "flex", 
+      justifyContent: "center",
+      marginBottom: 20 // Moderate bottom margin to container
+    }}>
       <Plot
         data={plotlyData.data}
-        layout={Object.assign(plotlyData.layout, {
-          width: displayCategory === "mobile" ? 400 : "100%",
+        layout={Object.assign({}, plotlyData.layout, {
+          width: mobile ? 400 : "100%",
           height: 600,
           plot_bgcolor: backgroundColor || "transparent",
           paper_bgcolor: backgroundColor || "transparent",
+          margin: margins,
+          autosize: true,
         })}
         config={{
           displayModeBar: false,
           responsive: true,
+          fillFrame: true,
+        }}
+        style={{
+          maxWidth: "100%",
+          boxSizing: "border-box"
         }}
       />
-    </>
+    </div>
   );
 }
 
@@ -165,7 +193,22 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
         return <TwitterTweetEmbed tweetId={tweetId} />;
       }
 
-      return <blockquote>{children}</blockquote>;
+      return (
+        <blockquote
+          style={{
+            borderLeft: `4px solid ${style.colors.BLUE}`,
+            paddingLeft: 16,
+            margin: "20px 0",
+            fontStyle: "italic",
+            color: "#555",
+            backgroundColor: "#f9f9f9",
+            padding: "12px 16px",
+            borderRadius: "0 4px 4px 0",
+          }}
+        >
+          {children}
+        </blockquote>
+      );
     },
   };
 
@@ -185,6 +228,9 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
               fontFamily: "Roboto Serif",
               fontSize: pSize ? pSize : mobile ? 16 : 18,
               backgroundColor: backgroundColor,
+              lineHeight: 1.6,
+              marginBottom: 16,
+              color: "#333",
             }}
           >
             {children}
@@ -204,32 +250,43 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
               paddingBottom: 25,
             }}
           >
-            <p
-              style={{
-                fontFamily: "Roboto Serif",
-                color: style.colors.MEDIUM_LIGHT_GRAY,
-                textEmphasis: "italic",
-              }}
-            >
-              {alt}
-            </p>
             <img
               src={src}
               alt={alt}
+              loading="lazy"
               style={{
                 width: "100%",
                 objectFit: "contain",
+                borderRadius: 8,
+                boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
               }}
             />
+            {alt && (
+              <p
+                style={{
+                  fontFamily: "Roboto Serif",
+                  color: style.colors.MEDIUM_LIGHT_GRAY,
+                  textEmphasis: "italic",
+                  fontSize: mobile ? 14 : 16,
+                  marginTop: 12,
+                  textAlign: "center",
+                }}
+              >
+                {alt}
+              </p>
+            )}
           </div>
         ),
         ul: ({ children }) => (
           <ul
             style={{
               paddingLeft: 20,
-              marginBottom: 20,
+              marginBottom: 24,
+              marginTop: 12,
               fontFamily: "Roboto Serif",
               fontSize: pSize ? pSize : mobile ? 16 : 18,
+              lineHeight: 1.6,
+              color: "#333",
             }}
           >
             {children}
@@ -239,9 +296,12 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
           <ol
             style={{
               paddingLeft: 20,
-              marginBottom: 20,
+              marginBottom: 24,
+              marginTop: 12,
               fontFamily: "Roboto Serif",
               fontSize: pSize ? pSize : mobile ? 16 : 18,
+              lineHeight: 1.6,
+              color: "#333",
             }}
           >
             {children}
@@ -263,7 +323,14 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             // Do nothing
           }
           return (
-            <li style={{ marginLeft: 10 }} value={validValue ? value : null}>
+            <li
+              style={{
+                marginLeft: 10,
+                marginBottom: 8,
+                lineHeight: 1.5,
+              }}
+              value={validValue ? value : null}
+            >
               {children}
             </li>
           );
@@ -291,7 +358,9 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             />
           </div>
         ),
-        strong: ({ children }) => <b>{children}</b>,
+        strong: ({ children }) => (
+          <span style={{ fontWeight: 600, color: "#222" }}>{children}</span>
+        ),
         a: ({ href, children }) => {
           let id;
           let footnoteNumber = null;
@@ -313,7 +382,23 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
                 href.startsWith("#") ? "" : "_blank"
               }
               rel="noopener noreferrer"
-              className="highlighted-link"
+              style={{
+                color: style.colors.BLUE,
+                textDecoration: "none",
+                borderBottom: `1px solid ${style.colors.BLUE}`,
+                fontWeight: href.startsWith("#") ? "normal" : 500,
+                padding: "0 2px",
+                transition: "background-color 0.2s ease, color 0.2s ease",
+                borderRadius: 2,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = style.colors.BLUE;
+                e.currentTarget.style.color = "white";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = style.colors.BLUE;
+              }}
             >
               <nobr>{footnoteNumber || children}</nobr>
             </a>
@@ -326,9 +411,39 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             .replace(/\s+/g, "-");
 
           return (
-            <h1 id={slug} style={{ marginBottom: 20 }}>
-              {headerText}
-            </h1>
+            <div style={{ position: "relative" }}>
+              <h1
+                id={slug}
+                style={{
+                  marginBottom: 24,
+                  marginTop: 32,
+                  fontWeight: 700,
+                  color: "#222",
+                  borderBottom: `1px solid ${style.colors.LIGHT_GRAY}`,
+                  paddingBottom: 8,
+                  fontSize: mobile ? 24 : 30,
+                  scrollMarginTop: "70px",
+                }}
+              >
+                {headerText}
+                <a
+                  href={`#${slug}`}
+                  aria-label="Direct link to heading"
+                  style={{
+                    position: "absolute",
+                    marginLeft: "10px",
+                    opacity: 0,
+                    fontSize: "0.6em",
+                    transition: "opacity 0.2s",
+                    color: style.colors.MEDIUM_LIGHT_GRAY,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = 0)}
+                >
+                  #
+                </a>
+              </h1>
+            </div>
           );
         },
         section: ({ children, className }) => {
@@ -339,11 +454,15 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             return (
               <div
                 style={{
-                  borderTop: "1px solid black",
-                  borderBottom: "1px solid black",
-                  paddingTop: 20,
+                  borderTop: "1px solid #ddd",
+                  paddingTop: 24,
+                  marginTop: 32,
                   marginBottom: 20,
-                  backgroundColor: style.colors.LIGHT_GRAY,
+                  backgroundColor: "#f9f9f9",
+                  borderRadius: 8,
+                  padding: "20px 16px",
+                  fontSize: mobile ? 14 : 16,
+                  color: "#555",
                 }}
               >
                 {children}
@@ -365,9 +484,39 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             .replace(/\s+/g, "-");
 
           return (
-            <h2 id={slug} style={{ marginBottom: 20 }}>
-              {headerText}
-            </h2>
+            <div style={{ position: "relative" }}>
+              <h2
+                id={slug}
+                style={{
+                  marginBottom: 20,
+                  marginTop: 28,
+                  fontWeight: 600,
+                  color: "#333",
+                  fontSize: mobile ? 20 : 24,
+                  borderBottom: `1px solid #f0f0f0`,
+                  paddingBottom: 6,
+                  scrollMarginTop: "70px",
+                }}
+              >
+                {headerText}
+                <a
+                  href={`#${slug}`}
+                  aria-label="Direct link to heading"
+                  style={{
+                    position: "absolute",
+                    marginLeft: "8px",
+                    opacity: 0,
+                    fontSize: "0.8em",
+                    transition: "opacity 0.2s",
+                    color: style.colors.MEDIUM_LIGHT_GRAY,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = 0)}
+                >
+                  #
+                </a>
+              </h2>
+            </div>
           );
         },
         h3: ({ children: headerText }) => {
@@ -376,7 +525,39 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             .replace(/[/,]/g, "")
             .replace(/\s+/g, "-");
 
-          return <h3 id={slug}>{headerText}</h3>;
+          return (
+            <div style={{ position: "relative" }}>
+              <h3
+                id={slug}
+                style={{
+                  marginBottom: 16,
+                  marginTop: 24,
+                  fontWeight: 600,
+                  color: "#444",
+                  fontSize: mobile ? 18 : 20,
+                  scrollMarginTop: "70px",
+                }}
+              >
+                {headerText}
+                <a
+                  href={`#${slug}`}
+                  aria-label="Direct link to heading"
+                  style={{
+                    position: "absolute",
+                    marginLeft: "6px",
+                    opacity: 0,
+                    fontSize: "0.7em",
+                    transition: "opacity 0.2s",
+                    color: style.colors.MEDIUM_LIGHT_GRAY,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = 0)}
+                >
+                  #
+                </a>
+              </h3>
+            </div>
+          );
         },
         h4: ({ children: headerText }) => {
           const slug = headerText
@@ -384,7 +565,39 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
             .replace(/[/,]/g, "")
             .replace(/\s+/g, "-");
 
-          return <h4 id={slug}>{headerText}</h4>;
+          return (
+            <div style={{ position: "relative" }}>
+              <h4
+                id={slug}
+                style={{
+                  marginBottom: 14,
+                  marginTop: 20,
+                  fontWeight: 600,
+                  color: "#555",
+                  fontSize: mobile ? 16 : 18,
+                  scrollMarginTop: "70px",
+                }}
+              >
+                {headerText}
+                <a
+                  href={`#${slug}`}
+                  aria-label="Direct link to heading"
+                  style={{
+                    position: "absolute",
+                    marginLeft: "5px",
+                    opacity: 0,
+                    fontSize: "0.7em",
+                    transition: "opacity 0.2s",
+                    color: style.colors.MEDIUM_LIGHT_GRAY,
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = 0)}
+                >
+                  #
+                </a>
+              </h4>
+            </div>
+          );
         },
         table: ({ children }) => (
           <table
@@ -393,6 +606,10 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
               marginBottom: 30,
               display: "table",
               width: "100%",
+              borderCollapse: "separate",
+              borderSpacing: 0,
+              overflow: "hidden",
+              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
             }}
           >
             {children}
@@ -404,9 +621,10 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
         th: ({ children }) => (
           <th
             style={{
-              padding: 5,
+              padding: 10,
               fontFamily: "Roboto Serif",
-              fontSize: mobile ? 16 : 18,
+              fontWeight: 600,
+              fontSize: mobile ? 14 : 16,
               borderBottom: "1px solid black",
               backgroundColor: style.colors.BLUE,
               textAlign: "center",
@@ -425,10 +643,73 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
           } else if (className === "language-plotly") {
             return <PlotlyChartCode data={children} />;
           } else {
-            return <code>{children}</code>;
+            // Extract language if available
+            const language = className
+              ? className.replace("language-", "")
+              : "";
+
+            return (
+              <code
+                style={{
+                  fontFamily: "Roboto Mono, monospace",
+                  padding: "2px 6px",
+                  borderRadius: 0,
+                  backgroundColor: "#f5f5f5",
+                  fontSize: mobile ? 14 : 16,
+                  boxShadow: "0 1px 2px rgba(0,0,0,0.05)",
+                  position: "relative",
+                }}
+              >
+                {children}
+              </code>
+            );
           }
         },
-        pre: ({ children }) => children,
+        pre: ({ children }) => {
+          // Get the language from the code child if it exists
+          const codeChild = React.Children.toArray(children).find((child) =>
+            child.props?.className?.includes("language-"),
+          );
+          const language = codeChild?.props?.className?.replace(
+            "language-",
+            "",
+          );
+
+          return (
+            <div
+              style={{
+                margin: "24px 0",
+                overflow: "hidden",
+                backgroundColor: "#f5f5f5",
+                border: "1px solid #eee",
+                boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                position: "relative",
+              }}
+            >
+              {language &&
+                language !== "highlighted-block" &&
+                language !== "plotly" && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      right: 0,
+                      fontSize: "12px",
+                      color: "#666",
+                      padding: "2px 8px",
+                      backgroundColor: "#f0f0f0",
+                      borderRadius: "0",
+                      borderLeft: "1px solid #ddd",
+                      borderBottom: "1px solid #ddd",
+                    }}
+                  >
+                    {language}
+                  </div>
+                )}
+              <div style={{ padding: "16px" }}>{children}</div>
+            </div>
+          );
+        },
         abbr: (props) => {
           const { title } = props;
           if (Object.keys(dict).includes(title)) {
