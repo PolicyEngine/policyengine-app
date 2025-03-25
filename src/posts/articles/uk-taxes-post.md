@@ -108,6 +108,10 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ![](/images/posts/uk-taxes-post/capital-gain-tax.png)
 
+### Council tax/domestic rates
+Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
+Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
+
 ## Indirect taxes
 Indirect taxes are collected by intermediaries and passed to the government. They form part of the price of goods and services that consumers pay.
 
@@ -217,15 +221,9 @@ Business rates are a tax on non-domestic properties like shops, offices and fact
   
 - **Regional variation (England, Scotland, Wales, Northern Ireland)**: Each nation sets its own multipliers and relief schemes, creating regional differences, defined in region-specific sections within [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
 
-### Council tax/domestic rates
-Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
-Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
+PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) that abolishing business rates would raise government revenue by £31.7 billion in 2025. The following figure shows the distributional impact of this reform.
 
-- **Local authority property tax**: The primary revenue source for local authorities, funding services like waste collection, defined by domestic rates parameters in [`rates.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/local_authorities/domestic_rates/rates.yaml).
-  
-- **Based on property values**: Properties are assigned to bands based on their value from a fixed valuation date, defined by property band parameters in [`rates.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/local_authorities/domestic_rates/rates.yaml).
-  
-- **Regional variation by local authority**: Each council sets its own rates within central government constraints, creating geographic variation, defined by local authority specific rates in [`rates.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/local_authorities/domestic_rates/rates.yaml).
+![](/images/posts/uk-taxes-post/br.png)
 
 ## Contributed/proposed taxes
 Beyond modeling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications.
