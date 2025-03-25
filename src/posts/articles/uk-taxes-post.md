@@ -62,7 +62,93 @@ HMRC administers this tax using a band system with different rates for certain i
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79847) that abolishing income tax would raise government revenue by £307.5 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/income-tax.png)
+```plotly
+{
+"data": [ 
+    { 
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+      "y": [-2.4, -5.1, -5.4, -8.1, -8.2, -12.3, -12.5, -16.6, -18.3, -28.2], 
+      "type": "bar", 
+      "marker": { 
+        "color": "#616161" 
+      },
+      "name": "Change in household income (%)", 
+      "text": ["-2.4%", "-5.1%", "-5.4%", "-8.1%", "-8.2%", "-12.3%", "-12.5%", "-16.6%", "-18.3%", "-28.2%"], 
+      "textposition": "inside", 
+      "insidetextfont": { 
+        "family": "Roboto Serif", 
+        "color": "white", 
+        "size": 10 
+      } 
+    } 
+  ], 
+  "layout": { 
+    "title": { 
+      "font": { 
+        "family": "Roboto Serif", 
+        "size": 16 
+      }, 
+      "x": 0, 
+      "xanchor": "left" 
+    }, 
+    "yaxis": { 
+      "title": "Relative change in household income", 
+      "titlefont": { 
+        "family": "Roboto Serif" 
+      }, 
+      "tickfont": { 
+        "family": "Roboto Serif" 
+      }, 
+      "tickformat": ",.1%", 
+      "automargin": true 
+    }, 
+    "xaxis": { 
+      "title": "Income decile", 
+      "titlefont": { 
+        "family": "Roboto Serif" 
+      } 
+    }, 
+    "height": 500, 
+    "margin": { 
+      "l": 50, 
+      "r": 50, 
+      "b": 100, 
+      "t": 100, 
+      "pad": 4 
+    }, 
+    "annotations": [ 
+      { 
+        "x": 1, 
+        "y": -0.25, 
+        "xref": "paper", 
+        "yref": "paper", 
+        "text": "Source: POLICY ENGINE", 
+        "showarrow": false, 
+        "font": { 
+          "family": "Roboto Serif", 
+          "size": 10, 
+          "color": "#616161" 
+        } 
+      } 
+    ], 
+    "images": [ 
+      { 
+        "source": "/logo512.png", 
+        "x": 1, 
+        "y": -0.18, 
+        "xref": "paper", 
+        "yref": "paper", 
+        "sizex": 0.1, 
+        "sizey": 0.1, 
+        "xanchor": "right", 
+        "yanchor": "bottom" 
+      } 
+    ], 
+    "plot_bgcolor": "white", 
+    "paper_bgcolor": "white" 
+  }
+}
+```
 
 ### National Insurance
 National Insurance operates alongside income tax and funds state benefits and the NHS.
@@ -92,7 +178,93 @@ National Insurance consists of contributions paid by employees, employers and th
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79825) that abolishing National Insurance would raise government revenue by £130.1 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/national-insurance.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-0.5, -0.8, -2.0, -4.5, -5.0, -8.6, -9.2, -10.9, -12.1, -9.3], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-0.5%", "-0.8%", "-2.0%", "-4.5%", "-5.0%", "-8.6%", "-9.2%", "-10.9%", "-12.1%", "-9.3%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.1%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ### Capital gains tax
 Capital gains tax applies to profits from asset sales, unlike income tax and National Insurance which apply to earnings.
@@ -106,7 +278,93 @@ Capital gains tax is charged on the profit when selling or disposing of an asset
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) that abolishing capital gains tax would raise government revenue by £17.3 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/capital-gain-tax.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-0.0, -0.0, -0.0, -0.0, -0.0, -0.1, -0.1, -0.1, -0.2, -4.2], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-0.0%", "-0.0%", "-0.0%", "-0.0%", "-0.0%", "-0.1%", "-0.1%", "-0.1%", "-0.2%", "-4.2%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.1%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ### Council tax/domestic rates
 Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
@@ -125,7 +383,93 @@ VAT is a consumption tax placed on products and services at each stage where val
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) that abolishing value added tax (VAT) would raise government revenue by £198.6 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/vat.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-11.4, -10.1, -10.8, -12.3, -9.2, -9.9, -9.3, -12.2, -11.0, -13.1], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-11.4%", "-10.1%", "-10.8%", "-12.3%", "-9.2%", "-9.9%", "-9.3%", "-12.2%", "-11.0%", "-13.1%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.1%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ### Fuel duty
 The UK applies excise duties to specific products, including fuels.
@@ -135,7 +479,93 @@ Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuel
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) that abolishing fuel duty would raise government revenue by £28.3 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/fuel-duty.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-11.4, -10.3, -10.6, -12.0, -9.5, -9.6, -9.2, -12.3, -10.7, -13.0], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-11.4%", "-10.3%", "-10.6%", "-12.0%", "-9.5%", "-9.6%", "-9.2%", "-12.3%", "-10.7%", "-13.0%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.1%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ## Property and land taxes
 The UK tax system includes taxes on property ownership, occupation and transactions. These taxes vary by nation and property type.
@@ -161,7 +591,93 @@ SDLT is a tax paid when purchasing property over certain price thresholds in Eng
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) that abolishing stamp duty would raise government revenue by £11.4 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/stamp-duty.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-3.3, -0.5, -0.7, -0.6, -0.4, -0.5, -0.4, -0.8, -0.4, -0.7], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-3.3%", "-0.5%", "-0.7%", "-0.6%", "-0.4%", "-0.5%", "-0.4%", "-0.8%", "-0.4%", "-0.7%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.1%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
   
 ### Land and buildings transaction tax (LBTT) - Scotland
 Scotland uses a different property transaction tax than England and Northern Ireland.
@@ -187,7 +703,93 @@ LBTT is Scotland's equivalent to SDLT, applying to property and land transaction
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) that abolishing land and buildings transaction tax would raise government revenue by £669.0 million in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/lbtt.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-0.07, -0.03, -0.06, -0.04, -0.02, -0.03, -0.10, -0.04, -0.05, -0.02], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-0.07%", "-0.03%", "-0.06%", "-0.04%", "-0.02%", "-0.03%", "-0.10%", "-0.04%", "-0.05%", "-0.02%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.3%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ### Land transaction tax (LTT) - Wales
 Wales has its own property transaction tax system.
@@ -211,7 +813,93 @@ LTT is Wales' equivalent to SDLT, applying to property and land transactions in 
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) that abolishing land transaction tax would raise government revenue by £388.3 million in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/ltt.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-0.10, -0.03, -0.02, -0.02, -0.02, -0.02, -0.02, -0.03, -0.02, -0.02], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-0.10%", "-0.03%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.03%", "-0.02%", "-0.02%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.3%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ### Business rates
 The UK imposes annual taxes on property occupation, including business rates for non-domestic properties.
@@ -223,7 +911,93 @@ Business rates are a tax on non-domestic properties like shops, offices and fact
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) that abolishing business rates would raise government revenue by £31.7 billion in 2025. The following figure shows the distributional impact of this reform.
 
-![](/images/posts/uk-taxes-post/br.png)
+```plotly
+{
+ "data": [ 
+   { 
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+     "y": [-3.8, -3.9, -2.3, -2.7, -1.2, -1.8, -1.4, -2.8, -1.3, -1.2], 
+     "type": "bar", 
+     "marker": { 
+       "color": "#616161" 
+     },
+     "name": "Change in household income (%)", 
+     "text": ["-3.8%", "-3.9%", "-2.3%", "-2.7%", "-1.2%", "-1.8%", "-1.4%", "-2.8%", "-1.3%", "-1.2%"], 
+     "textposition": "inside", 
+     "insidetextfont": { 
+       "family": "Roboto Serif", 
+       "color": "white", 
+       "size": 10 
+     } 
+   } 
+ ], 
+ "layout": { 
+   "title": { 
+     "font": { 
+       "family": "Roboto Serif", 
+       "size": 16 
+     }, 
+     "x": 0, 
+     "xanchor": "left" 
+   }, 
+   "yaxis": { 
+     "title": "Relative change in household income", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickfont": { 
+       "family": "Roboto Serif" 
+     }, 
+     "tickformat": ",.1%", 
+     "automargin": true 
+   }, 
+   "xaxis": { 
+     "title": "Income decile", 
+     "titlefont": { 
+       "family": "Roboto Serif" 
+     } 
+   }, 
+   "height": 500, 
+   "margin": { 
+     "l": 50, 
+     "r": 50, 
+     "b": 100, 
+     "t": 100, 
+     "pad": 4 
+   }, 
+   "annotations": [ 
+     { 
+       "x": 1, 
+       "y": -0.25, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "text": "Source: POLICY ENGINE", 
+       "showarrow": false, 
+       "font": { 
+         "family": "Roboto Serif", 
+         "size": 10, 
+         "color": "#616161" 
+       } 
+     } 
+   ], 
+   "images": [ 
+     { 
+       "source": "/logo512.png", 
+       "x": 1, 
+       "y": -0.18, 
+       "xref": "paper", 
+       "yref": "paper", 
+       "sizex": 0.1, 
+       "sizey": 0.1, 
+       "xanchor": "right", 
+       "yanchor": "bottom" 
+     } 
+   ], 
+   "plot_bgcolor": "white", 
+   "paper_bgcolor": "white" 
+ }
+}
+```
 
 ## Contributed/proposed taxes
 Beyond modeling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications.
