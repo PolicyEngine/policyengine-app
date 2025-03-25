@@ -603,7 +603,7 @@ The UK tax system includes taxes on property ownership, occupation and transacti
 
 ### Stamp duty land tax (SDLT) - England & Northern Ireland
 
-SDLT is a tax paid when purchasing property over certain price thresholds in England and Northern Ireland, calculated as [`stamp_duty_land_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/stamp_duty_land_tax.py).
+SDLT is a tax paid when purchasing property over certain price thresholds in England and Northern Ireland, calculated as [`stamp_duty_land_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/stamp_duty_land_tax.py). The expected revenue is calculated by applying a 4.5% annual property turnover rate to the whole property stock, which represents the estimated percentage of total residential property value that changes hands each year.
 
 - **Residential property**
   These rates apply to homes and residential properties with different structures for different buyer types, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
