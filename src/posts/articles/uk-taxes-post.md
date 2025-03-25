@@ -64,7 +64,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ```plotly
 {
-"data": [ 
+  "data": [ 
     { 
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
       "y": [-2.4, -5.1, -5.4, -8.1, -8.2, -12.3, -12.5, -16.6, -18.3, -28.2], 
@@ -84,6 +84,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
   ], 
   "layout": { 
     "title": { 
+      "text": "Distributional impact of abolishing income tax by income decile",
       "font": { 
         "family": "Roboto Serif", 
         "size": 16 
@@ -100,13 +101,22 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
         "family": "Roboto Serif" 
       }, 
       "tickformat": ",.1%", 
-      "automargin": true 
+      "automargin": true,
+      "range": [-30, 0],
+      "dtick": 5,
+      "tickvals": [0, -5, -10, -15, -20, -25, -30],
+      "ticktext": ["0.0%", "-5.0%", "-10.0%", "-15.0%", "-20.0%", "-25.0%", "-30.0%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
     }, 
     "xaxis": { 
       "title": "Income decile", 
       "titlefont": { 
         "family": "Roboto Serif" 
-      } 
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
     }, 
     "height": 500, 
     "margin": { 
@@ -200,6 +210,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
  ], 
  "layout": { 
    "title": { 
+     "text": "Distributional impact of abolishing National Insurance by income decile",
      "font": { 
        "family": "Roboto Serif", 
        "size": 16 
@@ -215,14 +226,22 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
      "tickfont": { 
        "family": "Roboto Serif" 
      }, 
-     "tickformat": ",.1%", 
-     "automargin": true 
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [-14, 0],
+     "tickvals": [0, -2, -4, -6, -8, -10, -12, -14],
+     "ticktext": ["0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%", "-12.0%", "-14.0%"],
+     "gridwidth": 1,
+     "gridcolor": "#e0e0e0"
    }, 
    "xaxis": { 
      "title": "Income decile", 
      "titlefont": { 
        "family": "Roboto Serif" 
-     } 
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
    }, 
    "height": 500, 
    "margin": { 
@@ -300,6 +319,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
  ], 
  "layout": { 
    "title": { 
+     "text": "Distributional impact of abolishing capital gains tax by income decile",
      "font": { 
        "family": "Roboto Serif", 
        "size": 16 
@@ -316,13 +336,21 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
        "family": "Roboto Serif" 
      }, 
      "tickformat": ",.1%", 
-     "automargin": true 
+     "automargin": true,
+     "range": [-4.5, 0],
+     "tickvals": [0, -0.5, -1.0, -1.5, -2.0, -2.5, -3.0, -3.5, -4.0, -4.5],
+     "ticktext": ["0.0%", "-0.5%", "-1.0%", "-1.5%", "-2.0%", "-2.5%", "-3.0%", "-3.5%", "-4.0%", "-4.5%"],
+     "gridwidth": 1,
+     "gridcolor": "#e0e0e0"
    }, 
    "xaxis": { 
      "title": "Income decile", 
      "titlefont": { 
        "family": "Roboto Serif" 
-     } 
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
    }, 
    "height": 500, 
    "margin": { 
@@ -405,6 +433,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
  ], 
  "layout": { 
    "title": { 
+     "text": "Distributional impact of abolishing VAT by income decile",
      "font": { 
        "family": "Roboto Serif", 
        "size": 16 
@@ -421,13 +450,21 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
        "family": "Roboto Serif" 
      }, 
      "tickformat": ",.1%", 
-     "automargin": true 
+     "automargin": true,
+     "range": [-14, 0],
+     "tickvals": [0, -2, -4, -6, -8, -10, -12, -14],
+     "ticktext": ["0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%", "-12.0%", "-14.0%"],
+     "gridwidth": 1,
+     "gridcolor": "#e0e0e0"
    }, 
    "xaxis": { 
      "title": "Income decile", 
      "titlefont": { 
        "family": "Roboto Serif" 
-     } 
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
    }, 
    "height": 500, 
    "margin": { 
@@ -481,89 +518,98 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ```plotly
 {
- "data": [ 
-   { 
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
-     "y": [-11.4, -10.3, -10.6, -12.0, -9.5, -9.6, -9.2, -12.3, -10.7, -13.0], 
-     "type": "bar", 
-     "marker": { 
-       "color": "#616161" 
-     },
-     "name": "Change in household income (%)", 
-     "text": ["-11.4%", "-10.3%", "-10.6%", "-12.0%", "-9.5%", "-9.6%", "-9.2%", "-12.3%", "-10.7%", "-13.0%"], 
-     "textposition": "inside", 
-     "insidetextfont": { 
-       "family": "Roboto Serif", 
-       "color": "white", 
-       "size": 10 
-     } 
-   } 
- ], 
- "layout": { 
-   "title": { 
-     "font": { 
-       "family": "Roboto Serif", 
-       "size": 16 
-     }, 
-     "x": 0, 
-     "xanchor": "left" 
-   }, 
-   "yaxis": { 
-     "title": "Relative change in household income", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickfont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickformat": ",.1%", 
-     "automargin": true 
-   }, 
-   "xaxis": { 
-     "title": "Income decile", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     } 
-   }, 
-   "height": 500, 
-   "margin": { 
-     "l": 50, 
-     "r": 50, 
-     "b": 100, 
-     "t": 100, 
-     "pad": 4 
-   }, 
-   "annotations": [ 
-     { 
-       "x": 1, 
-       "y": -0.25, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "text": "Source: POLICY ENGINE", 
-       "showarrow": false, 
-       "font": { 
-         "family": "Roboto Serif", 
-         "size": 10, 
-         "color": "#616161" 
-       } 
-     } 
-   ], 
-   "images": [ 
-     { 
-       "source": "/logo512.png", 
-       "x": 1, 
-       "y": -0.18, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "sizex": 0.1, 
-       "sizey": 0.1, 
-       "xanchor": "right", 
-       "yanchor": "bottom" 
-     } 
-   ], 
-   "plot_bgcolor": "white", 
-   "paper_bgcolor": "white" 
- }
+"data": [ 
+  { 
+    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+    "y": [-11.4, -10.3, -10.6, -12.0, -9.5, -9.6, -9.2, -12.3, -10.7, -13.0], 
+    "type": "bar", 
+    "marker": { 
+      "color": "#616161" 
+    },
+    "name": "Change in household income (%)", 
+    "text": ["-11.4%", "-10.3%", "-10.6%", "-12.0%", "-9.5%", "-9.6%", "-9.2%", "-12.3%", "-10.7%", "-13.0%"], 
+    "textposition": "inside", 
+    "insidetextfont": { 
+      "family": "Roboto Serif", 
+      "color": "white", 
+      "size": 10 
+    } 
+  } 
+], 
+"layout": { 
+  "title": { 
+    "text": "Distributional impact of abolishing fuel duty by income decile",
+    "font": { 
+      "family": "Roboto Serif", 
+      "size": 16 
+    }, 
+    "x": 0, 
+    "xanchor": "left" 
+  }, 
+  "yaxis": { 
+    "title": "Relative change in household income", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickfont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickformat": ",.1%", 
+    "automargin": true,
+    "range": [-14, 0],
+    "tickvals": [0, -2, -4, -6, -8, -10, -12, -14],
+    "ticktext": ["0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%", "-12.0%", "-14.0%"],
+    "gridwidth": 1,
+    "gridcolor": "#e0e0e0"
+  }, 
+  "xaxis": { 
+    "title": "Income decile", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    },
+    "tickmode": "array",
+    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  }, 
+  "height": 500, 
+  "margin": { 
+    "l": 50, 
+    "r": 50, 
+    "b": 100, 
+    "t": 100, 
+    "pad": 4 
+  }, 
+  "annotations": [ 
+    { 
+      "x": 1, 
+      "y": -0.25, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "text": "Source: POLICY ENGINE", 
+      "showarrow": false, 
+      "font": { 
+        "family": "Roboto Serif", 
+        "size": 10, 
+        "color": "#616161" 
+      } 
+    } 
+  ], 
+  "images": [ 
+    { 
+      "source": "/logo512.png", 
+      "x": 1, 
+      "y": -0.18, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "sizex": 0.1, 
+      "sizey": 0.1, 
+      "xanchor": "right", 
+      "yanchor": "bottom" 
+    } 
+  ], 
+  "plot_bgcolor": "white", 
+  "paper_bgcolor": "white" 
+}
 }
 ```
 
@@ -593,89 +639,98 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ```plotly
 {
- "data": [ 
-   { 
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
-     "y": [-3.3, -0.5, -0.7, -0.6, -0.4, -0.5, -0.4, -0.8, -0.4, -0.7], 
-     "type": "bar", 
-     "marker": { 
-       "color": "#616161" 
-     },
-     "name": "Change in household income (%)", 
-     "text": ["-3.3%", "-0.5%", "-0.7%", "-0.6%", "-0.4%", "-0.5%", "-0.4%", "-0.8%", "-0.4%", "-0.7%"], 
-     "textposition": "inside", 
-     "insidetextfont": { 
-       "family": "Roboto Serif", 
-       "color": "white", 
-       "size": 10 
-     } 
-   } 
- ], 
- "layout": { 
-   "title": { 
-     "font": { 
-       "family": "Roboto Serif", 
-       "size": 16 
-     }, 
-     "x": 0, 
-     "xanchor": "left" 
-   }, 
-   "yaxis": { 
-     "title": "Relative change in household income", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickfont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickformat": ",.1%", 
-     "automargin": true 
-   }, 
-   "xaxis": { 
-     "title": "Income decile", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     } 
-   }, 
-   "height": 500, 
-   "margin": { 
-     "l": 50, 
-     "r": 50, 
-     "b": 100, 
-     "t": 100, 
-     "pad": 4 
-   }, 
-   "annotations": [ 
-     { 
-       "x": 1, 
-       "y": -0.25, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "text": "Source: POLICY ENGINE", 
-       "showarrow": false, 
-       "font": { 
-         "family": "Roboto Serif", 
-         "size": 10, 
-         "color": "#616161" 
-       } 
-     } 
-   ], 
-   "images": [ 
-     { 
-       "source": "/logo512.png", 
-       "x": 1, 
-       "y": -0.18, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "sizex": 0.1, 
-       "sizey": 0.1, 
-       "xanchor": "right", 
-       "yanchor": "bottom" 
-     } 
-   ], 
-   "plot_bgcolor": "white", 
-   "paper_bgcolor": "white" 
- }
+"data": [ 
+  { 
+    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+    "y": [-3.3, -0.5, -0.7, -0.6, -0.4, -0.5, -0.4, -0.8, -0.4, -0.7], 
+    "type": "bar", 
+    "marker": { 
+      "color": "#616161" 
+    },
+    "name": "Change in household income (%)", 
+    "text": ["-3.3%", "-0.5%", "-0.7%", "-0.6%", "-0.4%", "-0.5%", "-0.4%", "-0.8%", "-0.4%", "-0.7%"], 
+    "textposition": "inside", 
+    "insidetextfont": { 
+      "family": "Roboto Serif", 
+      "color": "white", 
+      "size": 10 
+    } 
+  } 
+], 
+"layout": { 
+  "title": { 
+    "text": "Distributional impact of abolishing stamp duty by income decile",
+    "font": { 
+      "family": "Roboto Serif", 
+      "size": 16 
+    }, 
+    "x": 0, 
+    "xanchor": "left" 
+  }, 
+  "yaxis": { 
+    "title": "Relative change in household income", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickfont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickformat": ",.1%", 
+    "automargin": true,
+    "range": [-3.5, 0],
+    "tickvals": [0, -0.5, -1.0, -1.5, -2.0, -2.5, -3.0, -3.5],
+    "ticktext": ["0.0%", "-0.5%", "-1.0%", "-1.5%", "-2.0%", "-2.5%", "-3.0%", "-3.5%"],
+    "gridwidth": 1,
+    "gridcolor": "#e0e0e0"
+  }, 
+  "xaxis": { 
+    "title": "Income decile", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    },
+    "tickmode": "array",
+    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  }, 
+  "height": 500, 
+  "margin": { 
+    "l": 50, 
+    "r": 50, 
+    "b": 100, 
+    "t": 100, 
+    "pad": 4 
+  }, 
+  "annotations": [ 
+    { 
+      "x": 1, 
+      "y": -0.25, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "text": "Source: POLICY ENGINE", 
+      "showarrow": false, 
+      "font": { 
+        "family": "Roboto Serif", 
+        "size": 10, 
+        "color": "#616161" 
+      } 
+    } 
+  ], 
+  "images": [ 
+    { 
+      "source": "/logo512.png", 
+      "x": 1, 
+      "y": -0.18, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "sizex": 0.1, 
+      "sizey": 0.1, 
+      "xanchor": "right", 
+      "yanchor": "bottom" 
+    } 
+  ], 
+  "plot_bgcolor": "white", 
+  "paper_bgcolor": "white" 
+}
 }
 ```
   
@@ -705,89 +760,98 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ```plotly
 {
- "data": [ 
-   { 
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
-     "y": [-0.07, -0.03, -0.06, -0.04, -0.02, -0.03, -0.10, -0.04, -0.05, -0.02], 
-     "type": "bar", 
-     "marker": { 
-       "color": "#616161" 
-     },
-     "name": "Change in household income (%)", 
-     "text": ["-0.07%", "-0.03%", "-0.06%", "-0.04%", "-0.02%", "-0.03%", "-0.10%", "-0.04%", "-0.05%", "-0.02%"], 
-     "textposition": "inside", 
-     "insidetextfont": { 
-       "family": "Roboto Serif", 
-       "color": "white", 
-       "size": 10 
-     } 
-   } 
- ], 
- "layout": { 
-   "title": { 
-     "font": { 
-       "family": "Roboto Serif", 
-       "size": 16 
-     }, 
-     "x": 0, 
-     "xanchor": "left" 
-   }, 
-   "yaxis": { 
-     "title": "Relative change in household income", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickfont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickformat": ",.3%", 
-     "automargin": true 
-   }, 
-   "xaxis": { 
-     "title": "Income decile", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     } 
-   }, 
-   "height": 500, 
-   "margin": { 
-     "l": 50, 
-     "r": 50, 
-     "b": 100, 
-     "t": 100, 
-     "pad": 4 
-   }, 
-   "annotations": [ 
-     { 
-       "x": 1, 
-       "y": -0.25, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "text": "Source: POLICY ENGINE", 
-       "showarrow": false, 
-       "font": { 
-         "family": "Roboto Serif", 
-         "size": 10, 
-         "color": "#616161" 
-       } 
-     } 
-   ], 
-   "images": [ 
-     { 
-       "source": "/logo512.png", 
-       "x": 1, 
-       "y": -0.18, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "sizex": 0.1, 
-       "sizey": 0.1, 
-       "xanchor": "right", 
-       "yanchor": "bottom" 
-     } 
-   ], 
-   "plot_bgcolor": "white", 
-   "paper_bgcolor": "white" 
- }
+"data": [ 
+  { 
+    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+    "y": [-0.07, -0.03, -0.06, -0.04, -0.02, -0.03, -0.10, -0.04, -0.05, -0.02], 
+    "type": "bar", 
+    "marker": { 
+      "color": "#616161" 
+    },
+    "name": "Change in household income (%)", 
+    "text": ["-0.07%", "-0.03%", "-0.06%", "-0.04%", "-0.02%", "-0.03%", "-0.10%", "-0.04%", "-0.05%", "-0.02%"], 
+    "textposition": "inside", 
+    "insidetextfont": { 
+      "family": "Roboto Serif", 
+      "color": "white", 
+      "size": 10 
+    } 
+  } 
+], 
+"layout": { 
+  "title": { 
+    "text": "Distributional impact of abolishing land and buildings transaction tax by income decile",
+    "font": { 
+      "family": "Roboto Serif", 
+      "size": 16 
+    }, 
+    "x": 0, 
+    "xanchor": "left" 
+  }, 
+  "yaxis": { 
+    "title": "Relative change in household income", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickfont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickformat": ",.2%", 
+    "automargin": true,
+    "range": [-0.12, 0],
+    "tickvals": [0, -0.02, -0.04, -0.06, -0.08, -0.10, -0.12],
+    "ticktext": ["0.00%", "-0.02%", "-0.04%", "-0.06%", "-0.08%", "-0.10%", "-0.12%"],
+    "gridwidth": 1,
+    "gridcolor": "#e0e0e0"
+  }, 
+  "xaxis": { 
+    "title": "Income decile", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    },
+    "tickmode": "array",
+    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  }, 
+  "height": 500, 
+  "margin": { 
+    "l": 50, 
+    "r": 50, 
+    "b": 100, 
+    "t": 100, 
+    "pad": 4 
+  }, 
+  "annotations": [ 
+    { 
+      "x": 1, 
+      "y": -0.25, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "text": "Source: POLICY ENGINE", 
+      "showarrow": false, 
+      "font": { 
+        "family": "Roboto Serif", 
+        "size": 10, 
+        "color": "#616161" 
+      } 
+    } 
+  ], 
+  "images": [ 
+    { 
+      "source": "/logo512.png", 
+      "x": 1, 
+      "y": -0.18, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "sizex": 0.1, 
+      "sizey": 0.1, 
+      "xanchor": "right", 
+      "yanchor": "bottom" 
+    } 
+  ], 
+  "plot_bgcolor": "white", 
+  "paper_bgcolor": "white" 
+}
 }
 ```
 
@@ -815,89 +879,98 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=polic
 
 ```plotly
 {
- "data": [ 
-   { 
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
-     "y": [-0.10, -0.03, -0.02, -0.02, -0.02, -0.02, -0.02, -0.03, -0.02, -0.02], 
-     "type": "bar", 
-     "marker": { 
-       "color": "#616161" 
-     },
-     "name": "Change in household income (%)", 
-     "text": ["-0.10%", "-0.03%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.03%", "-0.02%", "-0.02%"], 
-     "textposition": "inside", 
-     "insidetextfont": { 
-       "family": "Roboto Serif", 
-       "color": "white", 
-       "size": 10 
-     } 
-   } 
- ], 
- "layout": { 
-   "title": { 
-     "font": { 
-       "family": "Roboto Serif", 
-       "size": 16 
-     }, 
-     "x": 0, 
-     "xanchor": "left" 
-   }, 
-   "yaxis": { 
-     "title": "Relative change in household income", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickfont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickformat": ",.3%", 
-     "automargin": true 
-   }, 
-   "xaxis": { 
-     "title": "Income decile", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     } 
-   }, 
-   "height": 500, 
-   "margin": { 
-     "l": 50, 
-     "r": 50, 
-     "b": 100, 
-     "t": 100, 
-     "pad": 4 
-   }, 
-   "annotations": [ 
-     { 
-       "x": 1, 
-       "y": -0.25, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "text": "Source: POLICY ENGINE", 
-       "showarrow": false, 
-       "font": { 
-         "family": "Roboto Serif", 
-         "size": 10, 
-         "color": "#616161" 
-       } 
-     } 
-   ], 
-   "images": [ 
-     { 
-       "source": "/logo512.png", 
-       "x": 1, 
-       "y": -0.18, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "sizex": 0.1, 
-       "sizey": 0.1, 
-       "xanchor": "right", 
-       "yanchor": "bottom" 
-     } 
-   ], 
-   "plot_bgcolor": "white", 
-   "paper_bgcolor": "white" 
- }
+"data": [ 
+  { 
+    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+    "y": [-0.10, -0.03, -0.02, -0.02, -0.02, -0.02, -0.02, -0.03, -0.02, -0.02], 
+    "type": "bar", 
+    "marker": { 
+      "color": "#616161" 
+    },
+    "name": "Change in household income (%)", 
+    "text": ["-0.10%", "-0.03%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.03%", "-0.02%", "-0.02%"], 
+    "textposition": "inside", 
+    "insidetextfont": { 
+      "family": "Roboto Serif", 
+      "color": "white", 
+      "size": 10 
+    } 
+  } 
+], 
+"layout": { 
+  "title": { 
+    "text": "Distributional impact of abolishing land transaction tax by income decile",
+    "font": { 
+      "family": "Roboto Serif", 
+      "size": 16 
+    }, 
+    "x": 0, 
+    "xanchor": "left" 
+  }, 
+  "yaxis": { 
+    "title": "Relative change in household income", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickfont": { 
+      "family": "Roboto Serif" 
+    }, 
+    "tickformat": ",.2%", 
+    "automargin": true,
+    "range": [-0.12, 0],
+    "tickvals": [0, -0.02, -0.04, -0.06, -0.08, -0.10, -0.12],
+    "ticktext": ["0.00%", "-0.02%", "-0.04%", "-0.06%", "-0.08%", "-0.10%", "-0.12%"],
+    "gridwidth": 1,
+    "gridcolor": "#e0e0e0"
+  }, 
+  "xaxis": { 
+    "title": "Income decile", 
+    "titlefont": { 
+      "family": "Roboto Serif" 
+    },
+    "tickmode": "array",
+    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+  }, 
+  "height": 500, 
+  "margin": { 
+    "l": 50, 
+    "r": 50, 
+    "b": 100, 
+    "t": 100, 
+    "pad": 4 
+  }, 
+  "annotations": [ 
+    { 
+      "x": 1, 
+      "y": -0.25, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "text": "Source: POLICY ENGINE", 
+      "showarrow": false, 
+      "font": { 
+        "family": "Roboto Serif", 
+        "size": 10, 
+        "color": "#616161" 
+      } 
+    } 
+  ], 
+  "images": [ 
+    { 
+      "source": "/logo512.png", 
+      "x": 1, 
+      "y": -0.18, 
+      "xref": "paper", 
+      "yref": "paper", 
+      "sizex": 0.1, 
+      "sizey": 0.1, 
+      "xanchor": "right", 
+      "yanchor": "bottom" 
+    } 
+  ], 
+  "plot_bgcolor": "white", 
+  "paper_bgcolor": "white" 
+}
 }
 ```
 
@@ -913,89 +986,95 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=polic
 
 ```plotly
 {
- "data": [ 
-   { 
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
-     "y": [-3.8, -3.9, -2.3, -2.7, -1.2, -1.8, -1.4, -2.8, -1.3, -1.2], 
-     "type": "bar", 
-     "marker": { 
-       "color": "#616161" 
-     },
-     "name": "Change in household income (%)", 
-     "text": ["-3.8%", "-3.9%", "-2.3%", "-2.7%", "-1.2%", "-1.8%", "-1.4%", "-2.8%", "-1.3%", "-1.2%"], 
-     "textposition": "inside", 
-     "insidetextfont": { 
-       "family": "Roboto Serif", 
-       "color": "white", 
-       "size": 10 
-     } 
-   } 
- ], 
- "layout": { 
-   "title": { 
-     "font": { 
-       "family": "Roboto Serif", 
-       "size": 16 
-     }, 
-     "x": 0, 
-     "xanchor": "left" 
-   }, 
-   "yaxis": { 
-     "title": "Relative change in household income", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickfont": { 
-       "family": "Roboto Serif" 
-     }, 
-     "tickformat": ",.1%", 
-     "automargin": true 
-   }, 
-   "xaxis": { 
-     "title": "Income decile", 
-     "titlefont": { 
-       "family": "Roboto Serif" 
-     } 
-   }, 
-   "height": 500, 
-   "margin": { 
-     "l": 50, 
-     "r": 50, 
-     "b": 100, 
-     "t": 100, 
-     "pad": 4 
-   }, 
-   "annotations": [ 
-     { 
-       "x": 1, 
-       "y": -0.25, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "text": "Source: POLICY ENGINE", 
-       "showarrow": false, 
-       "font": { 
-         "family": "Roboto Serif", 
-         "size": 10, 
-         "color": "#616161" 
-       } 
-     } 
-   ], 
-   "images": [ 
-     { 
-       "source": "/logo512.png", 
-       "x": 1, 
-       "y": -0.18, 
-       "xref": "paper", 
-       "yref": "paper", 
-       "sizex": 0.1, 
-       "sizey": 0.1, 
-       "xanchor": "right", 
-       "yanchor": "bottom" 
-     } 
-   ], 
-   "plot_bgcolor": "white", 
-   "paper_bgcolor": "white" 
- }
+  "data": [ 
+    { 
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"], 
+      "y": [-0.038, -0.039, -0.023, -0.027, -0.012, -0.018, -0.014, -0.028, -0.013, -0.012], 
+      "type": "bar", 
+      "marker": { 
+        "color": "#616161" 
+      },
+      "name": "Change in household income (%)", 
+      "text": ["-3.8%", "-3.9%", "-2.3%", "-2.7%", "-1.2%", "-1.8%", "-1.4%", "-2.8%", "-1.3%", "-1.2%"], 
+      "textposition": "inside", 
+      "insidetextfont": { 
+        "family": "Roboto Serif", 
+        "color": "white", 
+        "size": 10 
+      } 
+    } 
+  ], 
+  "layout": { 
+    "title": { 
+      "text": "Distributional impact of abolishing business rates by income decile",
+      "font": { 
+        "family": "Roboto Serif", 
+        "size": 16 
+      }, 
+      "x": 0, 
+      "xanchor": "left" 
+    }, 
+    "yaxis": { 
+      "title": "Relative change in household income", 
+      "titlefont": { 
+        "family": "Roboto Serif" 
+      }, 
+      "tickfont": { 
+        "family": "Roboto Serif" 
+      }, 
+      "tickformat": ",.1%", 
+      "automargin": true,
+      "range": [-0.04, 0],
+      "dtick": 0.005
+    }, 
+    "xaxis": { 
+      "title": "Income decile", 
+      "titlefont": { 
+        "family": "Roboto Serif" 
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    }, 
+    "height": 500, 
+    "margin": { 
+      "l": 50, 
+      "r": 50, 
+      "b": 100, 
+      "t": 100, 
+      "pad": 4 
+    }, 
+    "annotations": [ 
+      { 
+        "x": 1, 
+        "y": -0.25, 
+        "xref": "paper", 
+        "yref": "paper", 
+        "text": "Source: POLICY ENGINE", 
+        "showarrow": false, 
+        "font": { 
+          "family": "Roboto Serif", 
+          "size": 10, 
+          "color": "#616161" 
+        } 
+      } 
+    ], 
+    "images": [ 
+      { 
+        "source": "/logo512.png", 
+        "x": 1, 
+        "y": -0.18, 
+        "xref": "paper", 
+        "yref": "paper", 
+        "sizex": 0.1, 
+        "sizey": 0.1, 
+        "xanchor": "right", 
+        "yanchor": "bottom" 
+      } 
+    ], 
+    "plot_bgcolor": "white", 
+    "paper_bgcolor": "white" 
+  }
 }
 ```
 
