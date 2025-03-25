@@ -1,5 +1,14 @@
 [
   {
+    "title": "HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation",
+    "description": "The UK government's finance ministry explores PolicyEngine as a potential supplement to existing models.",
+    "date": "2025-03-24",
+    "tags": ["uk", "impact", "featured"],
+    "filename": "hmt-policyengine-pilot.md",
+    "image": "analysis-of-the-spring-budget-2023.jpeg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
     "title": "Extending the Income Tax threshold freeze to 2030",
     "description": "PolicyEngine estimates extending the personal allowance and higher rate threshold freeze would raise £12.2 billion over two years.",
     "date": "2025-03-25",
