@@ -1,4 +1,3 @@
-
 The UK's HM Treasury has explored using PolicyEngine UK as a potential supplement to their existing tax-benefit models, marking a significant milestone in the recognition of PolicyEngine's accuracy and utility at the highest levels of government.
 
 According to a [recently published Algorithmic Transparency Record](https://www.gov.uk/algorithmic-transparency-records/hmt-modelling-policy-engine) from December 17, 2024, HM Treasury's Personal Tax, Welfare and Pensions team conducted a beta/pilot evaluation of PolicyEngine UK to assess its capabilities in microsimulating tax and benefit policy changes.
@@ -12,7 +11,7 @@ The Treasury's review of PolicyEngine highlighted several features, including:
 
 - Combining multiple years of Family Resources Survey data for increased robustness
 - Using Survey of Personal Incomes (SPI) imputation with random forest models to address income measurement errors
-- Employing gradient descent reweighting to minimize loss between survey aggregates and target statistics
+- Employing gradient descent reweighting to minimise loss between survey aggregates and target statistics
 - Imputing additional variables using multiple data sources including the Wealth and Assets Survey and Living Costs and Food Survey
 - Using microsimulation to uprate policies to target years
 
@@ -25,4 +24,4 @@ This comes not long after the [December 2024 announcement](/uk/research/posts/uk
 
 The Treasury's assessment included risk considerations as part of their evaluation process. As noted in their transparency record, potential risks like "Erroneous Operation of the Code" would be mitigated through "thorough review and testing" involving both technical and policy teams - a common approach for any model implementation in government settings.
 
-These developments represent significant recognition of PolicyEngine's open-source approach to tax-benefit microsimulation and our mission to democratize economic policy analysis tools.
+These developments represent significant recognition of PolicyEngine's open-source approach to tax-benefit microsimulation and our mission to democratise economic policy analysis tools.
