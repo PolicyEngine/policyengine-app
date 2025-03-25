@@ -720,7 +720,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ### Land and buildings transaction tax (LBTT) - Scotland
 
 Scotland uses a different property transaction tax than England and Northern Ireland.
-LBTT is Scotland's equivalent to SDLT, applying to property and land transactions in Scotland, calculated as [`lbtt`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/revenue_scotland/lbtt.py).
+LBTT is Scotland's equivalent to SDLT, applying to property and land transactions in Scotland, calculated as [`lbtt`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/revenue_scotland/lbtt.py). The expected revenue is calculated by applying a 4.5% annual property turnover rate to the whole property stock, which represents the estimated percentage of total residential property value that changes hands each year.
 
 - **Residential property**
   Scotland's residential property transaction tax applies to home purchases with specific rates, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/).
@@ -838,7 +838,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ### Land transaction tax (LTT) - Wales
 
 Wales has its own property transaction tax system.
-LTT is Wales' equivalent to SDLT, applying to property and land transactions in Wales, calculated as [`land_transaction_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/wra/land_transaction_tax.py).
+LTT is Wales' equivalent to SDLT, applying to property and land transactions in Wales, calculated as [`land_transaction_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/wra/land_transaction_tax.py). The expected revenue is calculated by applying a 4.5% annual property turnover rate to the whole property stock, which represents the estimated percentage of total residential property value that changes hands each year.
 
 - **Residential property**
   Wales' residential property transaction tax applies to home purchases with its own rate structure, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/).
