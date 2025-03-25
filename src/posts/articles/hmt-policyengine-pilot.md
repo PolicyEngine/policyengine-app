@@ -1,4 +1,3 @@
-HM Treasury pilots PolicyEngine UK for tax-benefit microsimulation
 
 The UK's HM Treasury has explored using PolicyEngine UK as a potential supplement to their existing tax-benefit models, marking a significant milestone in the recognition of PolicyEngine's accuracy and utility at the highest levels of government.
 
