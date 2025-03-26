@@ -645,7 +645,6 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
           } else if (className === "language-plotly") {
             return <PlotlyChartCode data={children} />;
           } else {
-
             return (
               <code
                 style={{
