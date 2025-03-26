@@ -1,6 +1,6 @@
-This post provides an overview of how taxes are modeled in PolicyEngine UK. It details both existing taxes in the UK tax system and proposed/contributed taxes that are simulated within our platform. Each tax component is linked to its specific implementation in the codebase, making this document a technical reference for understanding how tax calculations are performed in the PolicyEngine UK microsimulation model.
+This post provides an overview of how taxes are modelled in PolicyEngine UK. It details both existing taxes in the UK tax system and proposed/contributed taxes that are simulated within our platform. Each tax component is linked to its specific implementation in the codebase, making this document a technical reference for understanding how tax calculations are performed in the PolicyEngine UK microsimulation model.
 
-The post is organized into three main sections. First, we explain direct taxes (income tax, national insurance, and capital gains tax), which are collected directly from individuals and businesses. Next, we cover indirect taxes (VAT and fuel duty) which are embedded in the prices of goods and services. Finally, we explore both existing property and land taxes (including stamp duty variations across UK nations, business rates, and council tax) and contributed/proposed taxes (such as carbon tax, wealth tax, land value tax, and others) that are modeled in PolicyEngine but not currently implemented in the UK.
+The post is organised into three main sections. First, we explain direct taxes (income tax, national insurance, and capital gains tax), which are collected directly from individuals and businesses. Next, we cover indirect taxes (VAT and fuel duty) which are embedded in the prices of goods and services. Finally, we explore both existing property and land taxes (including stamp duty variations across UK nations, business rates, and council tax) and contributed/proposed taxes (such as carbon tax, wealth tax, land value tax, and others) that are modelled in PolicyEngine but not currently implemented in the UK.
 
 ## Direct taxes
 
@@ -13,9 +13,9 @@ HMRC administers this tax using a band system with different rates for certain i
 - **Standard income tax components**
   These are the main rate bands that determine tax payments on different portions of income. The UK uses a system where portions of income are taxed at different rates.
 
-  - **Basic rate**: Applied to taxable income between the personal allowance and higher rate threshold, calculated in PolicyEngine as [`basic_rate_earned_income`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/bracketized_liability/basic_rate_earned_income_tax.py).
-  - **Higher rate**: Applied to taxable income between the higher rate threshold and additional rate threshold, calculated in PolicyEngine as [`higher_rate_earned_income`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/bracketized_liability/higher_rate_earned_income_tax.py).
-  - **Additional rate**: Applied to taxable income over the additional rate threshold, calculated in PolicyEngine as [`add_rate_earned_income`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/bracketized_liability/add_rate_earned_income_tax.py).
+  - **Basic rate**: Applied to taxable income between the personal allowance and higher rate threshold at a rate of 20%, calculated in PolicyEngine as [`basic_rate_earned_income`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/bracketized_liability/basic_rate_earned_income_tax.py).
+  - **Higher rate**: Applied to taxable income between the higher rate threshold (£37,700 above personal allowance in 2025) and additional rate threshold at a rate of 40%, calculated in PolicyEngine as [`higher_rate_earned_income`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/bracketized_liability/higher_rate_earned_income_tax.py).
+  - **Additional rate**: Applied to taxable income over the additional rate threshold (£125,140 in 2025) at a rate of 45%, calculated in PolicyEngine as [`add_rate_earned_income`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/bracketized_liability/add_rate_earned_income_tax.py).
 
 - **Income tax bases**
   These represent the different sources of income subject to income tax in the UK. Each type has specific rules about deductions, allowances and sometimes different tax rates.
@@ -32,7 +32,7 @@ HMRC administers this tax using a band system with different rates for certain i
 - **Allowances and reliefs**
   These are amounts that can be earned tax-free or deductions that reduce taxable income, defined by various parameters and calculated as part of [`allowances`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/hmrc/income_tax/allowances).
 
-  - **Personal allowance**: The amount of income that can be earned before paying income tax. This is reduced when income exceeds a threshold, disappearing completely at a higher threshold, set in [`allowances`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/hmrc/income_tax/allowances) and used in calculating each person's overall [`allowances`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/allowances/allowances.py).
+  - **Personal allowance**: The amount of income that can be earned before paying income tax, set at £12,570 in 2025. This is reduced when income exceeds a threshold, disappearing completely at higher incomes, set in [`allowances`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/hmrc/income_tax/allowances) and used in calculating each person's overall [`allowances`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/allowances/allowances.py).
   - **Marriage allowance**: Allows a spouse or civil partner to transfer a percentage of their personal allowance. Only available when the higher earner is a basic rate taxpayer and the lower earner has unused allowance, calculated as [`marriage_allowance`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/allowances/marriage_allowance.py).
   - **Dividend allowance**: Tax-free allowance for dividend income set annually by the government through the `dividend_allowance` parameter in [`dividend_allowance.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/income_tax/allowances/dividend_allowance.yaml).
   - **Trading allowance**: A tax-free allowance for self-employed individuals with small amounts of trading income. Claiming this prevents deduction of business expenses from income, set through the `trading_allowance` parameter in [`trading_allowance.yaml`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/income_tax/allowances).
@@ -154,7 +154,7 @@ National Insurance consists of contributions paid by employees, employers and th
 - **Class 1** (Employees and employers)
   These are contributions paid on employee earnings above the primary threshold. Employers also pay secondary contributions, meaning employment has a dual tax, implemented in [`class_1`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1).
 
-  - **Primary contributions (employees)**: Paid by employees at set rates on earnings between thresholds, with a lower rate above the upper limit. This is deducted via the PAYE system alongside income tax, calculated as [`ni_class_1_employee_primary`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employee_primary.py).
+  - **Primary contributions (employees)**: Paid by employees at 8% on earnings between the primary threshold (£241.73 per week in 2025) and upper earnings limit, with a lower rate above the upper limit. This is deducted via the PAYE system alongside income tax, calculated as [`ni_class_1_employee_primary`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employee_primary.py).
   - **Secondary contributions (employers)**: Paid by employers at a flat rate on employee earnings above the secondary threshold. This represents a cost for employers and affects employment costs, calculated as [`ni_class_1_employer`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employer.py).
   - **Additional rate contributions**: A rate of National Insurance applied to high earners. This ensures contributions continue on higher incomes, calculated as [`ni_class_1_employee_additional`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employee_additional.py).
 
@@ -274,7 +274,7 @@ Capital gains tax is charged on the profit when selling or disposing of an asset
 
 - **Basic rate (10%)**: Applied to gains for basic rate taxpayers on most assets, or a higher rate for residential property. The applicable rate depends on the taxpayer's income tax band and the asset type, defined by the [`basic_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/basic_rate.yaml) parameter.
 - **Higher rate (20%)**: Applied to gains for higher and additional rate taxpayers, or a higher rate for residential property, defined by the [`higher_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/higher_rate.yaml) parameter.
-- **Annual exempt amount**: A tax-free allowance for capital gains set by the government each tax year, defined by the [`annual_exempt_amount`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/annual_exempt_amount.yaml) parameter.
+- **Annual exempt amount**: A tax-free allowance for capital gains set at £3,000 in 2025, defined by the [`annual_exempt_amount`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/annual_exempt_amount.yaml) parameter.
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) that abolishing capital gains tax would raise government revenue by £17.3 billion in 2025. The following figure shows the distributional impact of this reform.
 
@@ -496,7 +496,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 The UK applies excise duties to specific products, including fuels.
 Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuels for vehicles or heating, calculated as [`fuel_duty`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/fuel_duty/fuel_duty.py).
 
-- **Petrol and diesel rates**: Set at a rate per litre for both petrol and diesel, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
+- **Petrol and diesel rates**: Set at £0.5795 per litre for both petrol and diesel in 2025, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
 
 PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) that abolishing fuel duty would raise government revenue by £28.3 billion in 2025. The following figure shows the distributional impact of this reform.
 
@@ -1058,7 +1058,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=polic
 
 ## Contributed/proposed taxes
 
-Beyond modeling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications.
+Beyond modelling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications.
 
 ### Carbon tax
 
