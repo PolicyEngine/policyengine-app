@@ -153,7 +153,7 @@ National Insurance consists of contributions paid by employees, employers and th
 
 - **Class 1** (Employees and employers)
   These are contributions paid on employee earnings above the primary threshold.
-  
+
   - **Primary contributions (employees)**: Paid by employees at 8% on earnings between the primary threshold (£241.73 per week in 2025) and upper earnings limit, with a lower rate above the upper limit. This is deducted via the PAYE system alongside income tax, calculated as [`ni_class_1_employee_primary`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employee_primary.py).
   - **Secondary contributions (employers)**: Paid by employers at a flat rate on employee earnings above the secondary threshold. This represents a cost for employers and affects employment costs, calculated as [`ni_class_1_employer`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employer.py).
   - **Additional rate contributions**: A rate of National Insurance applied to high earners. This ensures contributions continue on higher incomes, calculated as [`ni_class_1_employee_additional`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_1/ni_class_1_employee_additional.py).
@@ -378,7 +378,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 ### Council tax/domestic rates
 
 Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
-Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
+Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. In PolicyEngine, we apply the reported amounts from the Family Resources Survey data. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
 
 ## Indirect taxes
 
@@ -386,7 +386,7 @@ Indirect taxes are collected by intermediaries and passed to the government. The
 
 ### Value added tax (VAT)
 
-VAT generates substantial revenue for the UK government.
+VAT generates revenue for the UK government.
 VAT is a consumption tax placed on products and services at each stage where value is added, calculated in PolicyEngine as [`vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/vat.py).
 
 - **Standard rate (20%)**: Applied to most goods and services in the UK in 2025, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
