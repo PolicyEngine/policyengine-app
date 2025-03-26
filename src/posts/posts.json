@@ -1,10 +1,10 @@
 [
   {
-    "title": "Analysis of the Spring 2025 OBR Economic Forecast",
-    "description": "PolicyEngine will integrate the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
+    "title": "Analysis of the Spring 2025 OBR forecast",
+    "description": "PolicyEngine integrates the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
     "date": "2025-03-26",
     "tags": ["uk", "impact", "featured"],
-    "filename": "obr-forecast-2025.md",
+    "filename": "obr-forecast-2025.ipynb",
     "image": "jeremy-hunt.jpg",
     "authors": ["nikhil-woodruff"]
   },
