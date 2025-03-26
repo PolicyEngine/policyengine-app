@@ -1097,8 +1097,7 @@ Land value tax is a levy on the unimproved value of land, disregarding buildings
 
 ### Private school VAT
 
-One proposal is to apply VAT to private education.
-This would apply VAT to private school fees, ending the current exemption for private education, calculated as [`private_school_vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py).
+The UK government has introduced [VAT on private school fees](https://commonslibrary.parliament.uk/research-briefings/cbp-10125/) from January 1, 2025, ending the previous exemption for private education, calculated in [`private_school_vat.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) in PolicyEngine. This policy change applies the standard 20% VAT rate to private school fees that were historically exempt from VAT as part of the general exemption for educational services. 
 
 - **VAT applied to private school fees**: The standard VAT rate would apply to fees currently exempt as educational services, defined by private school VAT rate parameters in [`private_school_vat.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/labour/private_school_vat.yaml).
 - **Modelling by household income**: PolicyEngine models which household income groups would bear the burden of this tax in the [`private_school_vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) implementation.
