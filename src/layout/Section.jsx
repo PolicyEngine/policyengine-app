@@ -10,6 +10,7 @@ export default function Section({
   centeredTitle,
   titleStyle,
   id,
+  style: customStyle,
 }) {
   const displayCategory = useDisplayCategory();
   const sideMargin = {
@@ -37,6 +38,7 @@ export default function Section({
         justifyContent: "center",
         borderBottom: `1px solid ${style.colors.BLACK}`,
         color: color || titleColor,
+        ...customStyle, // Apply any custom styles passed to the component
       }}
     >
       <div
