@@ -4,7 +4,7 @@ The post is organised into three main sections. First, we explain direct taxes (
 
 ## Direct taxes
 
-Direct taxes are collected from individuals and businesses based on income, profits or gains. The three main direct taxes in the UK system—income tax, National Insurance, and capital gains tax—work together to tax different forms of income and wealth accrual.
+Direct taxes are collected from individuals and businesses based on income, profits or gains. The three main direct taxes in the UK system—income tax, National Insurance, and capital gains tax—work together to tax different forms of income and wealth accrual. Our projections in this section are underpinned by data from the UK's Family Resources Survey (FRS) and the Survey of Personal Incomes (SPI), with validation against official HMRC statistics. In this post, all estimates provided are static estimates. PolicyEngine models behavioral responses to policy changes as well.
 
 ### Income tax
 
@@ -382,7 +382,7 @@ Council tax is a local tax on domestic properties in England, Scotland and Wales
 
 ## Indirect taxes
 
-Indirect taxes are collected by intermediaries and passed to the government. They form part of the price of goods and services that consumers pay.
+Indirect taxes are collected by intermediaries and passed to the government. They form part of the price of goods and services that consumers pay. Our indirect tax simulations rely on consumption data imputed to the Family Resources Survey dataset, calibrated to match aggregate statistics from HMRC and other government sources. In this post, all estimates provided are static estimates.
 
 ### Value added tax (VAT)
 
@@ -599,7 +599,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?focus=policyOutput.p
 
 ## Property and land taxes
 
-The UK tax system includes taxes on property ownership, occupation and transactions. These taxes vary by nation and property type.
+The UK tax system includes taxes on property ownership, occupation and transactions. These taxes vary by nation and property type. Our property tax simulations use property values from the Family Resources Survey enhanced with housing market data and transaction patterns. Property transaction taxes (SDLT, LBTT, LTT) are modeled assuming a 4.5% annual property turnover rate. All estimates in this section are static estimates that do not reflect potential changes in property ownership or transaction behavior due to tax changes.
 
 ### Stamp duty land tax (SDLT) - England & Northern Ireland
 
@@ -1058,7 +1058,7 @@ PolicyEngine [estimates](https://policyengine.org/uk/policy?reform=1&focus=polic
 
 ## Contributed/proposed taxes
 
-Beyond modelling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications.
+Beyond modelling the existing UK tax system, PolicyEngine also includes several proposed taxes that are not currently implemented. These allow users to explore potential policy reforms and understand their distributional and revenue implications. Our simulations of proposed taxes use a combination of existing Family Resources Survey data enhanced with wealth, consumption, and carbon emissions data from sources including the Wealth and Assets Survey and national environmental accounts. In this post, all estimates for these proposed taxes are static estimates.
 
 ### Carbon tax
 
