@@ -1077,6 +1077,14 @@ A wealth tax would apply to the total value of an individual's assets, calculate
 - **Annual tax on total household wealth**: A percentage tax applied to a household's total net wealth above a threshold, defined by wealth tax rate parameters in [`wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/ubi_center/wealth_tax.yaml).
 - **Progressive rate structure based on wealth brackets**: Higher tax rates would apply to larger wealth holdings, similar to income tax bands, defined by wealth tax bracket parameters in [`wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/ubi_center/wealth_tax.yaml).
 
+#### Non-primary residence wealth tax
+
+Some wealth tax proposals exempt the main residence from taxation.
+This is a targeted wealth tax that would exempt one's main residence but tax other assets, calculated as [`non_primary_residence_wealth_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/cec/non_primary_residence_wealth_tax.py).
+
+- **Wealth tax that exempts main residence**: Applies only to assets beyond a household's primary home, defined by wealth tax exemption parameters in [`non_primary_residence_wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/cec/non_primary_residence_wealth_tax.yaml).
+- **Applied to all other wealth including secondary properties, financial assets, etc.**: Would capture investment properties, shares, bonds, business assets and other wealth forms through the non-primary wealth components in [`non_primary_residence_wealth_tax.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/cec/non_primary_residence_wealth_tax.py).
+
 ### Land value tax (LVT)
 
 Land value tax focuses on the value of land itself, not the buildings or improvements on it.
@@ -1096,11 +1104,3 @@ This would apply VAT to private school fees, ending the current exemption for pr
 - **VAT applied to private school fees**: The standard VAT rate would apply to fees currently exempt as educational services, defined by private school VAT rate parameters in [`private_school_vat.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/labour/private_school_vat.yaml).
 - **Progressive modelling based on household income**: PolicyEngine models which household income groups would bear the burden of this tax in the [`private_school_vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) implementation.
 - **Adjusts for actual private school attendance rates**: The model accounts for varying private school attendance rates across income groups using the [`private_school_attendance_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) parameter.
-
-### Non-primary residence wealth tax
-
-Some wealth tax proposals exempt the main residence from taxation.
-This is a targeted wealth tax that would exempt one's main residence but tax other assets, calculated as [`non_primary_residence_wealth_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/cec/non_primary_residence_wealth_tax.py).
-
-- **Wealth tax that exempts main residence**: Applies only to assets beyond a household's primary home, defined by wealth tax exemption parameters in [`non_primary_residence_wealth_tax.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/contrib/cec/non_primary_residence_wealth_tax.yaml).
-- **Applied to all other wealth including secondary properties, financial assets, etc.**: Would capture investment properties, shares, bonds, business assets and other wealth forms through the non-primary wealth components in [`non_primary_residence_wealth_tax.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/cec/non_primary_residence_wealth_tax.py).
