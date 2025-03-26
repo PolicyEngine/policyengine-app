@@ -196,7 +196,7 @@ function NotebookOutputPlain({ data }) {
       processedData = data[0];
     }
     content = parseJSONSafe(processedData);
-    return <p>{content}</p>
+    return <p>{content}</p>;
   } catch (e) {
     console.error(e, data);
     content = data;
@@ -213,7 +213,7 @@ function NotebookOutputMarkdown({ data }) {
 }
 
 function NotebookOutputPlotly({ data }) {
-  console.log(data)
+  console.log(data);
   const title = data.layout?.title?.text;
   const displayCategory = useDisplayCategory();
 
