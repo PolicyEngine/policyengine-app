@@ -12,13 +12,13 @@ Universal Credit represents the most significant welfare reform in recent decade
 
 - **Standard allowance**
   This forms the basic element of Universal Credit that all eligible claimants receive, varying by age and household composition.
-  
+
   - **Single claimant**: Amount for single adults, with higher rates for those 25 and over, calculated as part of [`uc_standard_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/standard_allowance/uc_standard_allowance.py).
   - **Joint claimants**: Amount for couples, with higher rates for couples where either is 25 or over, also calculated in [`uc_standard_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/standard_allowance/uc_standard_allowance.py).
 
 - **Additional elements**
   Beyond the standard allowance, Universal Credit provides extra amounts based on household circumstances, recognising additional needs for certain groups.
-  
+
   - **Child element**: Additional amount for children, with higher rates for first/only child born before April 2017, and limitations based on the two-child limit policy, calculated in [`uc_child_element.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/child_element/uc_child_element.py).
   - **Disabled child addition**: Extra amount for children with disabilities, with standard and enhanced rates, included in [`uc_disability_elements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/disability_element/uc_disability_elements.py).
   - **Limited capability for work element**: For adults with health conditions affecting ability to work, calculated as part of [`uc_disability_elements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/disability_element/uc_disability_elements.py).
@@ -27,19 +27,19 @@ Universal Credit represents the most significant welfare reform in recent decade
 
 - **Housing costs element**
   Housing support is a crucial component of Universal Credit, with amounts varying by tenure type and location to reflect diverse housing markets across the UK.
-  
+
   - **Rented accommodation**: Covers eligible rent up to Local Housing Allowance rates for private renters or actual rent for social housing tenants, with deductions for non-dependants, calculated in [`uc_housing_costs_element.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/uc_housing_costs_element.py).
   - **Mortgage interest**: Support for homeowners in the form of loans rather than payments, also calculated in [`uc_housing_costs_element.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/uc_housing_costs_element.py).
 
 - **Work allowances and taper rate**
   A key feature of Universal Credit is its design to improve work incentives through work allowances and a single taper rate.
-  
+
   - **Work allowances**: Amounts that can be earned before Universal Credit starts to be reduced, with higher allowances for those with children or limited capability for work, calculated in [`uc_work_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/work_allowance/uc_work_allowance.py).
   - **Taper rate**: Percentage reduction in Universal Credit for each pound earned above work allowances, implemented in [`uc_income_reduction.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/income/uc_income_reduction.py).
 
 - **Benefit cap**
   As a fiscal control measure, Universal Credit is subject to the benefit cap, which limits the total benefits a household can receive.
-  
+
   - The cap has higher limits in London and exemptions for working households or those with disabilities, applied in [`universal_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/universal_credit.py).
 
 ### Legacy benefits
@@ -51,6 +51,7 @@ While Universal Credit continues its rollout, many households still receive "leg
 For those not receiving Universal Credit, Housing Benefit provides essential support with rental costs, calculated in [`housing_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py).
 
 The amount is determined through a complex calculation involving:
+
 - **Eligible rent**: Maximum rent considered, limited by Local Housing Allowance for private renters
 - **Applicable amount**: Amount deemed necessary for basic living costs based on household circumstances
 - **Income assessment**: Benefit reduced by a percentage of income above the applicable amount
@@ -64,14 +65,14 @@ Tax Credits have been a major component of in-work support and assistance for fa
 
 - **Child Tax Credit (CTC)**
   A crucial source of support for families with children regardless of employment status.
-  
+
   - **Family element**: Basic amount for families with at least one child
   - **Child element**: Amount for each child, subject to the two-child limit for children born after April 2017
   - **Disability elements**: Additional amounts for disabled children
 
 - **Working Tax Credit (WTC)**
   Targeted support for those in low-paid work, with various elements reflecting different needs.
-  
+
   - **Basic element**: Amount for any eligible working household
   - **Couple/lone parent element**: Additional amount based on family structure
   - **30-hour element**: Extra for those working at least 30 hours weekly
@@ -86,6 +87,7 @@ Both CTC and WTC employ a unique tapering system where WTC is reduced first as i
 Income-based JSA provides financial support for unemployed people actively seeking work, calculated in [`JSA_income.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/JSA_income.py).
 
 The benefit incorporates:
+
 - **Personal allowances**: Basic amounts based on age and whether claiming as single person or couple
 - **Premiums**: Additional amounts for specific circumstances (family, disability, etc.)
 - **Income assessment**: Benefit reduced based on income and savings
@@ -97,6 +99,7 @@ Unlike Universal Credit, JSA maintains a stronger conditionality regime with cla
 For those unable to work due to illness or disability, income-related ESA offers financial support, calculated in [`ESA_income.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/ESA_income.py).
 
 The benefit structure includes:
+
 - **Personal allowances**: Basic amounts similar to JSA
 - **Components**: Additional payments depending on whether in work-related activity group or support group
 - **Premiums**: Extra amounts for specific circumstances
@@ -108,6 +111,7 @@ The Work Capability Assessment determines which group claimants are placed in, w
 As one of the oldest means-tested benefits, Income Support provides a general safety net for those not expected to seek work, calculated in [`income_support.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/income_support.py).
 
 Key features include:
+
 - **Personal allowances**: Basic amounts based on age and circumstances
 - **Premiums**: Additional amounts for specific circumstances
 - **Income assessment**: Benefit reduced based on income and savings
@@ -124,14 +128,14 @@ Pension Credit ensures a minimum income level for pensioners, addressing poverty
 
 - **Guarantee Credit**
   The primary component that tops up weekly income to a guaranteed minimum level.
-  
+
   - **Standard minimum guarantee**: Basic amount for singles or couples
   - **Additional amounts**: Extra for severe disability, caring responsibilities, and housing costs
   - **Income assessment**: Benefit equals the difference between the applicable guarantee and assessed income
 
 - **Savings Credit**
   An additional element rewarding those who have saved for retirement, only available to those who reached State Pension age before April 2016.
-  
+
   - **Maximum amount**: Cap on potential Savings Credit
   - **Threshold**: Minimum qualifying income
   - **Calculation**: Percentage of income between threshold and a higher limit, less a reduction based on income above the guarantee level
@@ -152,13 +156,13 @@ Introduced to replace Disability Living Allowance for working-age people, PIP pr
 
 - **Daily living component**
   Financial assistance for everyday tasks, awarded at two rates:
-  
+
   - **Standard rate**: For those needing some help with daily activities
   - **Enhanced rate**: For those needing more substantial help
 
 - **Mobility component**
   Support for mobility needs, also awarded at two rates:
-  
+
   - **Standard rate**: For those who have some mobility issues
   - **Enhanced rate**: For those with more severe mobility problems
 
@@ -170,14 +174,14 @@ While PIP has replaced DLA for most working-age claimants, DLA continues for chi
 
 - **Care component**
   Help with personal care needs, awarded at three rates:
-  
+
   - **Lowest rate**: For those needing some help part of the day
   - **Middle rate**: For those needing frequent help during the day or supervision at night
   - **Highest rate**: For those needing help throughout both day and night
 
 - **Mobility component**
   Help with getting around, awarded at two rates:
-  
+
   - **Lower rate**: For those who can walk but need guidance or supervision
   - **Higher rate**: For those who cannot walk or have severe difficulty walking
 
@@ -234,13 +238,13 @@ As the foundational retirement benefit, State Pension provides regular payments 
 
 - **New State Pension**
   For those reaching State Pension age on or after April 6, 2016, using a simplified flat-rate approach.
-  
+
   - **Full rate**: Amount for those with 35 qualifying years of National Insurance
   - **Reduced rate**: Proportionally reduced for those with fewer than 35 qualifying years (minimum 10 years required)
 
 - **Basic State Pension**
   For those who reached State Pension age before April 6, 2016, using the older multi-component system.
-  
+
   - **Full rate**: Amount for those with sufficient qualifying years
   - **Additional State Pension**: Extra amount based on earnings-related contributions
   - **Graduated Retirement Benefit**: For contributions between 1961 and 1975
