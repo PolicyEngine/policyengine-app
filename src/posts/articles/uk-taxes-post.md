@@ -1,6 +1,22 @@
+## Introduction
+
 This post provides an overview of how taxes are modelled in PolicyEngine UK. It details both existing taxes in the UK tax system and proposed/contributed taxes that are simulated within our platform. Each tax component is linked to its specific implementation in the codebase, making this document a technical reference for understanding how tax calculations are performed in the PolicyEngine UK microsimulation model.
 
 The post is organised into three main sections. First, we explain direct taxes (income tax, national insurance, and capital gains tax), which are collected directly from individuals and businesses. Next, we cover indirect taxes (VAT and fuel duty) which are embedded in the prices of goods and services. Finally, we explore both existing property and land taxes (including stamp duty variations across UK nations, business rates, and council tax) and contributed/proposed taxes (such as carbon tax, wealth tax, land value tax, and others) that are modelled in PolicyEngine but not currently implemented in the UK.
+
+The table below summarises key metrics for each tax in the UK system, comparing PolicyEngine's revenue estimates with official OBR forecasts, and showing the percentage of the population affected by each tax. In the following sections, we dive deeper into each of these taxes, examining their structure, implementation, and distributional impact across income groups.
+
+| Program | PolicyEngine revenue estimate £billion (2025) | OBR revenue estimate (2025-26) | PolicyEngine affected population estimate % (2025)
+|--------|-------------------------------------|-------------------------------|-------------------------------|
+| Income tax | [307.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79847) | [328.7](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/) | 80.2 |
+| National Insurance | [148.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=70645&region=uk&timePeriod=2025&baseline=79825) | [198.8](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/) | 67.5 |
+| Capital gains tax | [17.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852)  | [16.2](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/capital-gains-tax/) | 3.5 |
+| VAT | [198.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853)  | [182.1](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/) | 99.5 |
+| Fuel duty | [28.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) | [27.3](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/fuel-duties/)  | 36.1 |
+| Stamp duty land tax | [11.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870)  | [15.1](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/property-transaction-taxes/) (all property transaction taxes) | 38.8 |
+| Land and buildings transaction tax | [0.7](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) | Included in above | 3.3 |
+| Land transaction tax | [0.4](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) | Included in above | 2.4 |
+| Business rates | [31.7](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) | [27.8](https://www.gov.uk/government/statistics/national-non-domestic-rates-collected-by-councils-in-england-forecast-2025-to-2026/national-non-domestic-rates-collected-by-councils-in-england-forecast-for-2025-to-2026#:~:text=Local%20authorities%20estimate%20the%20non,scheme%20are%20taken%20into%20consideration.) (England only) | 55.9 |
 
 ## Direct taxes
 
@@ -118,7 +134,7 @@ PolicyEngine estimates that abolishing income tax would raise government revenue
         "y": -0.25,
         "xref": "paper",
         "yref": "paper",
-        "text": "Source: POLICY ENGINE",
+        "text": "Source: PolicyEngine",
         "showarrow": false,
         "font": {
           "family": "Roboto Serif",
@@ -168,7 +184,7 @@ National Insurance consists of contributions paid by employees, employers and th
   - **Main rate**: Paid on self-employed profits between the lower profits limit and upper profits limit, calculated as [`ni_class_4_main`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_main.py).
   - **Additional rate**: Paid on self-employed profits above the upper profits limit, calculated as [`ni_class_4_maximum`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_maximum.py).
 
-PolicyEngine estimates that abolishing National Insurance would raise government revenue by [£130.1 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79825) in 2025. The Office for Budget Responsibility (OBR) estimates that National Insurance contributions for 2025-26 are [£198.8 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/). The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that abolishing National Insurance would raise government revenue by [£148.1 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79825) in 2025. The Office for Budget Responsibility (OBR) estimates that National Insurance contributions for 2025-26 are [£198.8 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/). The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -392,7 +408,7 @@ VAT is a consumption tax placed on products and services at each stage where val
 - **Standard rate (20%)**: Applied to most goods and services in the UK in 2025, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
 - **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats in 2025, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
 
-PolicyEngine estimates that abolishing value added tax (VAT) would raise government revenue by [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in 2025. The Office for Budget Responsibility (OBR) estimates that VAT revenue for 2024-25 is [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that abolishing value added tax (VAT) would raise government revenue by [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in 2025. The Office for Budget Responsibility (OBR) estimates that VAT revenue for 2025-26 is [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -1027,7 +1043,7 @@ PolicyEngine estimates that abolishing business rates would raise government rev
         "y": -0.25,
         "xref": "paper",
         "yref": "paper",
-        "text": "Source: POLICY ENGINE",
+        "text": "Source: PolicyEngine",
         "showarrow": false,
         "font": {
           "family": "Roboto Serif",
