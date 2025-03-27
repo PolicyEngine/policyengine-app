@@ -1162,5 +1162,14 @@
     "description": "We simulate potential realisations of the Government's new £5 billion reform.",
     "filename": "uk-pip-reforms.md",
     "image": "uk-pip-reforms.jpg"
+  },
+  {
+    "title": "PolicyEngine UK benefits guide",
+    "date": "2025-03-28",
+    "authors": ["vahid-ahmadi"],
+    "tags": ["uk", "policy", "featured", "benefit"],
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested benefits, non-means-tested support, childcare programmes, and cost of living measures.",
+    "filename": "uk-benefits-post.md",
+    "image": "uk-pip-reforms.jpg"
   }
 ]
