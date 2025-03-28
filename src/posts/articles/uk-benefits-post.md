@@ -288,6 +288,106 @@ Our methodology for Tax Credits:
 
 Tax Credits are reduced at a rate of 41% when income exceeds the threshold (£7,455 for WTC+CTC claims and £18,725 for CTC-only claims in 2025). This means that for every £1 of income above the threshold, Tax Credits are reduced by 41p.
 
+PolicyEngine estimates that abolishing tax credit would raise government revenue by [£63.5 million](https://policyengine.org/uk/policy?reform=80677&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-0.0045, -0.0042, -0.0105, -0.0120, -0.0062, -0.0047, -0.0041, -0.0042, -0.0008, -0.0001],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-0.005%", "-0.004%", "-0.011%", "-0.012%", "-0.006%", "-0.005%", "-0.004%", "-0.004%", "-0.001%", "-0.000%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing tax credit by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.4%",
+      "automargin": true,
+      "range": [-0.0130, 0],
+      "dtick": 0.002,
+      "tickvals": [0, -0.0020, -0.0040, -0.0060, -0.0080, -0.0100, -0.0120, -0.0140],
+      "ticktext": ["0.000%", "-0.002%", "-0.004%", "-0.006%", "-0.008%", "-0.010%", "-0.012%", "-0.014%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 60,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
 ### Pension-age benefits
 
 #### Pension Credit
@@ -316,6 +416,106 @@ Our methodology for Pension Credit:
   4. Awards Savings Credit at 60% of income above the threshold, up to the maximum
   5. Reduces the award by 40% of income above the minimum guarantee
 
+PolicyEngine estimates that abolishing pension credit would raise government revenue by [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80685&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-1.8, -1.3, -0.9, -1.5, -0.6, -0.3, -0.1, -0.1, -0.2, -0.0],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-1.8%", "-1.3%", "-0.9%", "-1.5%", "-0.6%", "-0.3%", "-0.1%", "-0.1%", "-0.2%", "-0.0%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing pension credit by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-2.0, 0],
+      "dtick": 0.2,
+      "tickvals": [0, -0.2, -0.4, -0.6, -0.8, -1.0, -1.2, -1.4, -1.6, -1.8, -2.0],
+      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%", "-1.8%", "-2.0%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
 ## Non-means-tested benefits
 
 Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases, making them particularly important for those with additional costs related to disability, childcare, or other circumstances. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources.
@@ -337,6 +537,106 @@ Our PIP methodology:
 
 The daily living component is calculated in [`daily_living.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/daily_living.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/mobility.py). For 2025, the daily living component is £108.55 per week at the enhanced rate and £72.65 per week at the standard rate. The mobility component is £75.75 per week at the enhanced rate and £28.70 per week at the standard rate. The annual amount is calculated by multiplying the weekly rates by 52.
 
+PolicyEngine estimates that abolishing PIP would raise government revenue by [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80686&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-4.0, -3.8, -5.8, -4.9, -4.6, -1.8, -0.8, -0.7, -0.4, -0.1],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-4.0%", "-3.8%", "-5.8%", "-4.9%", "-4.6%", "-1.8%", "-0.8%", "-0.7%", "-0.4%", "-0.1%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing personal independence payment by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-6.0, 0],
+      "dtick": 1,
+      "tickvals": [0, -1.0, -2.0, -3.0, -4.0, -5.0, -6.0],
+      "ticktext": ["0.0%", "-1.0%", "-2.0%", "-3.0%", "-4.0%", "-5.0%", "-6.0%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
 #### Disability Living Allowance (DLA)
 
 DLA continues for children and some protected adults, calculated in the [`dla.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/dla.py) file. Similar to PIP, it has two components: self-care (equivalent to PIP's daily living) and mobility. DLA for children remains in place, while most working-age adults have been migrated to PIP. Some adults who received DLA before PIP was introduced remain on the benefit under transitional protection.
@@ -349,6 +649,106 @@ Our DLA methodology:
 4. Combines the components to determine the total DLA award
 
 The self-care component is calculated in [`self_care.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/self_care.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/mobility.py). For 2025, the self-care component has three possible rates: higher (£108.55 per week), middle (£72.65 per week), and lower (£28.70 per week). The mobility component has two rates: higher (£75.75 per week) and lower (£28.70 per week). The annual amount is calculated by multiplying the weekly rates by 52.
+
+PolicyEngine estimates that abolishing DLA would raise government revenue by [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80689&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-1.5, -1.2, -1.1, -1.2, -1.9, -0.4, -0.6, -0.1, -0.2, -0.0],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-1.5%", "-1.2%", "-1.1%", "-1.2%", "-1.9%", "-0.4%", "-0.6%", "-0.1%", "-0.2%", "-0.0%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing Disability Living Allowance by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-2.0, 0],
+      "dtick": 0.2,
+      "tickvals": [0, -0.2, -0.4, -0.6, -0.8, -1.0, -1.2, -1.4, -1.6, -1.8, -2.0],
+      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%", "-1.8%", "-2.0%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
 
 #### Attendance Allowance
 
@@ -363,6 +763,106 @@ Our Attendance Allowance methodology:
 For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are terminally ill. The lower rate applies to those needing care either during the day or at night. The annual amount is calculated by multiplying the weekly rate by 52.
 
 All three disability benefits are uprated annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
+
+PolicyEngine estimates that abolishing Attendance Allowance would raise government revenue by [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80692&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-1.7, -1.9, -3.2, -1.5, -0.8, -0.2, -0.1, -0.2, -0.0, -0.0],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-1.7%", "-1.9%", "-3.2%", "-1.5%", "-0.8%", "-0.2%", "-0.1%", "-0.2%", "-0.0%", "-0.0%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing Attendance Allowance by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-3.5, 0],
+      "dtick": 0.5,
+      "tickvals": [0, -0.5, -1.0, -1.5, -2.0, -2.5, -3.0, -3.5],
+      "ticktext": ["0.0%", "-0.5%", "-1.0%", "-1.5%", "-2.0%", "-2.5%", "-3.0%", "-3.5%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
 
 ### Child benefits
 
@@ -381,6 +881,106 @@ Our Child Benefit methodology:
 For 2025, the rate is £26.04 per week for the first child and £17.24 per week for each additional child. These weekly rates are multiplied by 52 to produce annual amounts.
 
 The High Income Child Benefit Charge (HITC) effectively withdraws this benefit when individual income exceeds £50,000, with complete withdrawal at £60,000. This charge is calculated as part of the income tax system in [`child_benefit_hitc.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py) and increases proportionally with income within this range. For each £100 of income above £50,000, 1% of the Child Benefit is reclaimed through the tax system.
+
+PolicyEngine estimates that abolishing child benefit would raise government revenue by [£12.3 billion](https://policyengine.org/uk/policy?reform=80696&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-1.3, -0.7, -0.9, -1.0, -1.4, -1.1, -0.8, -0.9, -0.8, -0.2],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-1.3%", "-0.7%", "-0.9%", "-1.0%", "-1.4%", "-1.1%", "-0.8%", "-0.9%", "-0.8%", "-0.2%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing Child Benefit by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-1.5, 0],
+      "dtick": 0.2,
+      "tickvals": [0, -0.2, -0.4, -0.6, -0.8, -1.0, -1.2, -1.4, -1.6],
+      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
 
 ### Retirement benefits
 
@@ -418,6 +1018,106 @@ Our Winter Fuel Payment methodology:
 For 2025, households with someone aged 66-79 receive £200, while households with someone aged 80 or over receive £300. In multi-pensioner households, the payment is allocated to ensure no household gets more than the maximum entitlement.
 
 In Scotland, this has been replaced by the Pension Age Winter Heating Payment (PAWHP), calculated in the [`pawhp.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/social_security_scotland/pawhp.py) file, with similar rate structure. This reflects the devolution of certain benefits to the Scottish government, which has implemented its own version of the payment with similar eligibility criteria and rates.
+
+PolicyEngine estimates that abolishing Winter Fuel Payment would raise government revenue by [£281.4 million](https://policyengine.org/uk/policy?reform=80702&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-0.11, -0.04, -0.04, -0.05, -0.02, -0.01, -0.00, -0.00, -0.00, -0.00],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-0.11%", "-0.04%", "-0.04%", "-0.05%", "-0.02%", "-0.01%", "-0.00%", "-0.00%", "-0.00%", "-0.00%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing Winter Fuel Payment by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.2%",
+      "automargin": true,
+      "range": [-0.12, 0],
+      "dtick": 0.02,
+      "tickvals": [0, -0.02, -0.04, -0.06, -0.08, -0.10, -0.12],
+      "ticktext": ["0.00%", "-0.02%", "-0.04%", "-0.06%", "-0.08%", "-0.10%", "-0.12%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 60,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
 
 ### Childcare support
 
