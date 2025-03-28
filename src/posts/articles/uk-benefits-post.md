@@ -346,6 +346,106 @@ For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours pe
 
 Eligibility is determined in [`universal_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py), which identifies children in the qualifying age range.
 
+PolicyEngine estimates that abolishing universal childcare entitlement would raise government revenue by [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80615&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-1.20, -0.30, -0.80, -0.30, -0.30, -0.30, -0.30, -0.30, -0.30, -0.30],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-1.2%", "-0.3%", "-0.8%", "-0.3%", "-0.3%", "-0.3%", "-0.3%", "-0.3%", "-0.3%", "-0.3%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing universal childcare entitlement by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-1.30, 0],
+      "dtick": 0.2,
+      "tickvals": [0, -0.20, -0.40, -0.60, -0.80, -1.00, -1.20, -1.40],
+      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
 #### Extended Childcare Entitlement
 
 The Extended Childcare Entitlement provides additional hours for working parents, calculated in the [`extended_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py) file. This extends the universal offer for working parents, providing an additional 15 hours per week for 3-4 year olds and, from 2024, beginning to extend provision to younger children.
@@ -365,6 +465,106 @@ The entitlement varies by child age in 2025:
 
 The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs for caring for younger children. Eligibility includes income and work conditions similar to Tax-Free Childcare, implemented in [`extended_childcare_entitlement_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions/extended_childcare_entitlement_meets_income_requirements.py) and [`extended_childcare_entitlement_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions/extended_childcare_entitlement_work_condition.py).
 
+PolicyEngine estimates that abolishing extended childcare entitlement would raise government revenue by [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80613&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-0.00, -0.00, -0.00, -0.10, -0.10, -0.40, -0.50, -1.10, -0.70, -0.30],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-0.0%", "-0.0%", "-0.0%", "-0.1%", "-0.1%", "-0.4%", "-0.5%", "-1.1%", "-0.7%", "-0.3%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing extended childcare entitlement by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-1.20, 0],
+      "dtick": 0.2,
+      "tickvals": [0, -0.20, -0.40, -0.60, -0.80, -1.00, -1.20],
+      "ticktext": ["0.00%", "-0.20%", "-0.40%", "-0.60%", "-0.80%", "-1.00%", "-1.20%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
 #### Targeted Childcare Entitlement
 
 The Targeted Childcare Entitlement provides free childcare for 2-year-olds in lower income families, calculated in the [`targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) file. This extends provision to younger children in households with lower incomes, supporting child development and parental employment opportunities.
@@ -379,6 +579,221 @@ Our Targeted Childcare Entitlement methodology:
 For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded at a rate of £8.28 per hour. This produces an annual value of £4,719.60 per eligible child.
 
 Eligibility includes receiving qualifying benefits or meeting income criteria: income below £16,190 per year for Tax Credit recipients (implemented in [`meets_tax_credit_criteria_for_targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/meets_tax_credit_criteria_for_targeted_childcare_entitlement.py)) or earned income below £15,400 per year for Universal Credit recipients (implemented in [`meets_universal_credit_criteria_for_targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/meets_universal_credit_criteria_for_targeted_childcare_entitlement.py)).
+
+PolicyEngine estimates that abolishing targeted childcare entitlement would raise government revenue by [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80617&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-0.40, -0.10, -0.20, -0.10, -0.10, -0.10, -0.00, -0.00, -0.00, -0.00],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-0.4%", "-0.1%", "-0.2%", "-0.1%", "-0.1%", "-0.1%", "-0.0%", "-0.0%", "-0.0%", "-0.0%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing targeted childcare entitlement by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-0.45, 0],
+      "dtick": 0.05,
+      "tickvals": [0, -0.05, -0.10, -0.15, -0.20, -0.25, -0.30, -0.35, -0.40, -0.45],
+      "ticktext": ["0.0%", "-0.05%", "-0.10%", "-0.15%", "-0.20%", "-0.25%", "-0.30%", "-0.35%", "-0.40%", "-0.45%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
+#### Study Childcare Entitlement
+
+The Study Childcare Entitlement, also known as Care to Learn, provides financial support for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file. This scheme enables young parents to continue their education by removing childcare cost barriers.
+
+Our Study Childcare Entitlement methodology:
+
+1. Identifies eligible young parents (under 20 years old)
+2. Verifies they are in non-tertiary education (not university or higher education)
+3. Checks if they live in England and are not apprentices
+4. Calculates the monetary value based on regional rates (London vs outside London)
+
+For 2025, the scheme provides weekly support of up to £195 per week for those living in London and £180 per week for those living outside London. This weekly amount is multiplied by the number of weeks in a year to determine the annual value, making it worth up to £10,140 per year for London residents and £9,360 per year for those outside London.
+
+Eligibility is determined in [`study_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py), which verifies that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
+
+PolicyEngine estimates that abolishing study childcare entitlement would raise government revenue by [£8.7 billion](https://policyengine.org/uk/policy?reform=80608&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-0.20, -0.10, -0.10, -0.10, -0.10, -0.50, -0.90, -1.00, -1.40, -0.30],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-0.2%", "-0.1%", "-0.1%", "-0.1%", "-0.1%", "-0.5%", "-0.9%", "-1.0%", "-1.4%", "-0.3%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing study childcare entitlement by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-1.50, 0],
+      "dtick": 0.2,
+      "tickvals": [0, -0.20, -0.40, -0.60, -0.80, -1.00, -1.20, -1.40, -1.60],
+      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
 
 ### Cost of living support
 
