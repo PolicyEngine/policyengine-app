@@ -231,6 +231,107 @@ For 2025, the government contributes 20% of childcare costs, effectively adding 
 
 Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions (quarterly income above minimum wage × 16 hours/week × 13 weeks but below £100,000 per year adjusted net income), and work requirements (both parents must generally be working, with exceptions for disability). These conditions are implemented in [`tax_free_childcare_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_meets_income_requirements.py) and [`tax_free_childcare_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py).
 
+PolicyEngine estimates that abolishing tax-free childcare would raise government revenue by [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80603&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-0.0004, -0.0005, -0.01, -0.01, -0.01, -0.03, -0.06, -0.27, -0.16, -0.08],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Change in household income (%)",
+      "text": ["-0.00%", "-0.00%", "-0.01%", "-0.01%", "-0.01%", "-0.03%", "-0.06%", "-0.27%", "-0.16%", "-0.08%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing tax-free childcare by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-0.30, 0],
+      "dtick": 0.05,
+      "tickvals": [0, -0.05, -0.10, -0.15, -0.20, -0.25, -0.30],
+      "ticktext": ["0.00%", "-0.05%", "-0.10%", "-0.15%", "-0.20%", "-0.25%", "-0.30%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
+
 #### Universal Childcare Entitlement
 
 The Universal Childcare Entitlement offers free childcare hours for all children aged 3-4 years old, calculated in the [`universal_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py) file. This is available to all children regardless of parental income or work status.
