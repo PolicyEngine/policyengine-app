@@ -145,7 +145,6 @@ PolicyEngine estimates that abolishing universal credit would raise government r
 }
 ```
 
-
 ### Legacy benefits
 
 While Universal Credit continues its rollout, many households still receive "legacy benefits" that Universal Credit is replacing. These remain in place due to transitional protection and ongoing migration. Legacy benefits are a set of six different benefits that served specific needs before Universal Credit was introduced. Our model accounts for the phased transition between these systems, allowing users to analyse scenarios under different implementation timelines.
