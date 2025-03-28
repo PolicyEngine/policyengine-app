@@ -1155,6 +1155,15 @@
     "image": "pip_and_freeze.jpg"
   },
   {
+    "title": "Analysis of Michigan HB 4170",
+    "date": "2025-03-26",
+    "authors": ["pavel-makarchuk"],
+    "tags": ["us", "policy", "featured"],
+    "description": "We project the bill, which would reduce Michigan’s tax rate from 4.25% to 4.05%, would cost $644 million in 2025.",
+    "filename": "michigan-bill-hb4170.ipynb",
+    "image": "michigan-bill-hb4170.jpg"
+  },
+  {
     "title": "Restricting eligibility for the Personal Independence Payment Daily Living part",
     "date": "2025-03-18",
     "authors": ["nikhil-woodruff", "max-ghenis"],
@@ -1171,5 +1180,14 @@
     "description": "PolicyEngine models different benefit components in the UK, including means-tested benefits, non-means-tested support, childcare programmes, and cost of living measures.",
     "filename": "uk-benefits-post.md",
     "image": "uk-benefit-post.jpg"
+  },
+  {
+    "title": "Taxes in PolicyEngine",
+    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
+    "date": "2025-03-25 00:00:00",
+    "tags": ["uk", "policy", "featured", "tax"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-taxes-post.md",
+    "image": "uk-tax-post.jpg"
   }
 ]
