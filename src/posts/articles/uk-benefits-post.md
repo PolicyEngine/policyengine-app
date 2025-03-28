@@ -42,6 +42,110 @@ Our calculation methodology first determines a household's maximum entitlement b
 - **Benefit cap**
   A maximum limit on total benefit income is applied to Universal Credit, with higher rates for London residents and exemptions for households with significant earnings or disability benefits. The benefit cap methodology checks whether the household is exempt (based on earnings or qualifying benefits) and, if not, applies the appropriate cap based on household composition and location.
 
+PolicyEngine estimates that abolishing universal credit would raise government revenue by [£27.8 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80636&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-4.7, -6.0, -8.4, -4.0, -6.6, -1.7, -0.0, 1.0, 1.1, 0.5],
+      "type": "bar",
+      "marker": {
+        "color": ["#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#2E5984", "#2E5984", "#2E5984"]
+      },
+      "name": "Change in household income (%)",
+      "text": ["-4.7%", "-6.0%", "-8.4%", "-4.0%", "-6.6%", "-1.7%", "-0.0%", "+1.0%", "+1.1%", "+0.5%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing Universal Credit by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-9, 2],
+      "dtick": 2,
+      "tickvals": [2, 0, -2, -4, -6, -8, -10],
+      "ticktext": ["+2.0%", "0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0",
+      "zeroline": true,
+      "zerolinecolor": "#e0e0e0",
+      "zerolinewidth": 2
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
+
+
 ### Legacy benefits
 
 While Universal Credit continues its rollout, many households still receive "legacy benefits" that Universal Credit is replacing. These remain in place due to transitional protection and ongoing migration. Legacy benefits are a set of six different benefits that served specific needs before Universal Credit was introduced. Our model accounts for the phased transition between these systems, allowing users to analyse scenarios under different implementation timelines.
@@ -61,6 +165,109 @@ Our methodology calculates Housing Benefit by:
 The applicable income is calculated in [`housing_benefit_applicable_income.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/applicable_income/housing_benefit_applicable_income.py), with disregards for certain income types. These disregards include partial earnings disregards (higher for lone parents), full disregards for specific benefits like Personal Independence Payment, and partial disregards for pension contributions and childcare costs.
 
 Non-dependent deductions are calculated in [`housing_benefit_non_dep_deductions.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/non_dep_deduction/housing_benefit_non_dep_deductions.py). A non-dependent is an adult who lives with the claimant (such as an adult child or parent) and is expected to contribute to housing costs. The deduction amount varies based on the non-dependent's income and circumstances.
+
+PolicyEngine estimates that abolishing housing benefits would raise government revenue by [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80663&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [-4.6, -2.6, -1.0, -0.9, -0.0, -0.0, -0.0, -0.0, 0.0, -0.0],
+      "type": "bar",
+      "marker": {
+        "color": ["#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#2E5984", "#616161"]
+      },
+      "name": "Change in household income (%)",
+      "text": ["-4.6%", "-2.6%", "-1.0%", "-0.9%", "-0.0%", "-0.0%", "-0.0%", "-0.0%", "+0.0%", "-0.0%"],
+      "textposition": "inside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "white",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Distributional impact of abolishing housing benefit by income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Relative change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",.1%",
+      "automargin": true,
+      "range": [-5.0, 0.5],
+      "dtick": 1,
+      "tickvals": [0.5, 0, -1, -2, -3, -4, -5],
+      "ticktext": ["+0.5%", "0.0%", "-1.0%", "-2.0%", "-3.0%", "-4.0%", "-5.0%"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0",
+      "zeroline": true,
+      "zerolinecolor": "#e0e0e0",
+      "zerolinewidth": 2
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "white",
+    "paper_bgcolor": "white"
+  }
+}
+```
 
 #### Tax Credits
 
