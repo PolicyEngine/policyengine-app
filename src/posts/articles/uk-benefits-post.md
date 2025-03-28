@@ -331,7 +331,6 @@ PolicyEngine estimates that abolishing tax-free childcare would raise government
 }
 ```
 
-
 #### Universal Childcare Entitlement
 
 The Universal Childcare Entitlement offers free childcare hours for all children aged 3-4 years old, calculated in the [`universal_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py) file. This is available to all children regardless of parental income or work status.
