@@ -1173,18 +1173,18 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
-    "title": "PolicyEngine UK benefits guide",
-    "date": "2025-03-28",
+    "title": "Benefits in PolicyEngine",
+    "date": "2025-03-31 00:00:00",
     "authors": ["vahid-ahmadi"],
     "tags": ["uk", "policy", "featured", "benefit"],
-    "description": "PolicyEngine models different benefit components in the UK, including means-tested benefits, non-means-tested support, childcare programmes, and cost of living measures.",
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested benefits and non-means-tested support.",
     "filename": "uk-benefits-post.md",
     "image": "uk-benefit-post.jpg"
   },
   {
     "title": "Taxes in PolicyEngine",
     "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-25 00:00:00",
+    "date": "2025-03-27 00:00:00",
     "tags": ["uk", "policy", "featured", "tax"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-taxes-post.md",
