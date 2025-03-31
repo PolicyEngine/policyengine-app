@@ -42,20 +42,20 @@ Our calculation methodology first determines a household's maximum entitlement b
 - **Benefit cap**
   A maximum limit on total benefit income is applied to Universal Credit, with higher rates for London residents and exemptions for households with significant earnings or disability benefits. The benefit cap methodology checks whether the household is exempt (based on earnings or qualifying benefits) and, if not, applies the appropriate cap based on household composition and location.
 
-PolicyEngine estimates that abolishing universal credit would raise government revenue by [£27.8 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80636&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Universal Credit to government revenue is [£54.9 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=81101) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-4.7, -6.0, -8.4, -4.0, -6.6, -1.7, -0.0, 1.0, 1.1, 0.5],
+      "y": [39.6, 12.6, 12.6, 8.2, 1.9, 1.3, 0.7, 0.7, 0.3, 0.1],
       "type": "bar",
       "marker": {
-        "color": ["#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#2E5984", "#2E5984", "#2E5984"]
+        "color": "#2E5984"
       },
       "name": "Change in household income (%)",
-      "text": ["-4.7%", "-6.0%", "-8.4%", "-4.0%", "-6.6%", "-1.7%", "-0.0%", "+1.0%", "+1.1%", "+0.5%"],
+      "text": ["+39.6%", "+12.6%", "+12.6%", "+8.2%", "+1.9%", "+1.3%", "+0.7%", "+0.7%", "+0.3%", "+0.1%"],
       "textposition": "inside",
       "insidetextfont": {
         "family": "Roboto Serif",
@@ -66,7 +66,7 @@ PolicyEngine estimates that abolishing universal credit would raise government r
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of abolishing Universal Credit by income decile",
+      "text": "Distributional impact of Universal Credit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -82,17 +82,12 @@ PolicyEngine estimates that abolishing universal credit would raise government r
       "tickfont": {
         "family": "Roboto Serif"
       },
-      "tickformat": ",.1%",
+      "tickformat": ",.0%",
       "automargin": true,
-      "range": [-9, 2],
-      "dtick": 2,
-      "tickvals": [2, 0, -2, -4, -6, -8, -10],
-      "ticktext": ["+2.0%", "0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0",
-      "zeroline": true,
-      "zerolinecolor": "#e0e0e0",
-      "zerolinewidth": 2
+      "range": [0, 42],
+      "dtick": 5,
+      "tickvals": [0, 5, 10, 15, 20, 25, 30, 35, 40],
+      "ticktext": ["+0%", "+5%", "+10%", "+15%", "+20%", "+25%", "+30%", "+35%", "+40%"]
     },
     "xaxis": {
       "title": "Income decile",
