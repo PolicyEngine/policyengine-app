@@ -1119,4 +1119,6 @@ The UK government has introduced [VAT on private school fees](https://commonslib
 - **Modelling by household income**: PolicyEngine models which household income groups would bear the burden of this tax in the [`private_school_vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) implementation.
 - **Adjusts for actual private school attendance rates**: The model accounts for varying private school attendance rates across income groups using the [`private_school_attendance_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/contrib/labour/private_school_vat.py) parameter.
 
+## Conclusion
+
 PolicyEngine models the current UK tax system and potential reforms, with tax impacts presented by income decile. Users can analyse how changes to taxes affect government revenue and household incomes.
