@@ -1,5 +1,14 @@
 [
   {
+    "title": "Tax reforms in effect in April 2025",
+    "description": "Using PolicyEngine UK, we analyse four tax reforms taking effect in April 2025 that will increase taxes by an average of £1,112 per household.",
+    "date": "2025-03-29",
+    "tags": ["uk", "tax", "policy", "featured"],
+    "filename": "impact-of-tax-changes-2025-2026.md",
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
     "title": "Analysis of the Spring 2025 OBR forecast",
     "description": "PolicyEngine integrates the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
     "date": "2025-03-26",
