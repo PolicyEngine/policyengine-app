@@ -301,7 +301,6 @@ Our methodology for Pension Credit:
   4. Awards Savings Credit at 60% of income above the threshold, up to the maximum
   5. Reduces the award by 40% of income above the minimum guarantee
 
-
 PolicyEngine estimates that the cost of pension credit to government revenue is [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
@@ -889,7 +888,6 @@ In Scotland, this has been replaced by the Pension Age Winter Heating Payment (P
 
 PolicyEngine estimates that Winter Fuel Payment costs the government less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) in 2025.
 
-
 ### Tax-Free Childcare
 
 Tax-Free Childcare provides a government top-up for childcare spending, calculated in the [`tax_free_childcare.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/tax_free_childcare.py) file. This scheme operates through an online account where parents pay in money for childcare, and the government adds a top-up.
@@ -1247,103 +1245,101 @@ For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded
 
 Eligibility includes receiving qualifying benefits or meeting income criteria: income below £16,190 per year for Tax Credit recipients (implemented in [`meets_tax_credit_criteria_for_targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/meets_tax_credit_criteria_for_targeted_childcare_entitlement.py)) or earned income below £15,400 per year for Universal Credit recipients (implemented in [`meets_universal_credit_criteria_for_targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/meets_universal_credit_criteria_for_targeted_childcare_entitlement.py)).
 
-PolicyEngine estimates that abolishing targeted childcare entitlement would raise government revenue by [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80617&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of targeted childcare entitlement to government revenue is [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.40, -0.10, -0.20, -0.10, -0.10, -0.10, -0.00, -0.00, -0.00, -0.00],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-0.4%", "-0.1%", "-0.2%", "-0.1%", "-0.1%", "-0.1%", "-0.0%", "-0.0%", "-0.0%", "-0.0%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing targeted childcare entitlement by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-0.45, 0],
-      "dtick": 0.05,
-      "tickvals": [0, -0.05, -0.10, -0.15, -0.20, -0.25, -0.30, -0.35, -0.40, -0.45],
-      "ticktext": ["0.0%", "-0.05%", "-0.10%", "-0.15%", "-0.20%", "-0.25%", "-0.30%", "-0.35%", "-0.40%", "-0.45%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [0.4, 0.2, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+0.4%", "+0.2%", "+0.1%", "+0.1%", "+0.1%", "+0.1%", "+0.0%", "+0.0%", "+0.0%", "+0.0%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of targeted childcare entitlement by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.2%",
+     "automargin": true,
+     "range": [0, 0.45],
+     "dtick": 0.05,
+     "tickvals": [0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40],
+     "ticktext": ["+0.00%", "+0.05%", "+0.10%", "+0.15%", "+0.20%", "+0.25%", "+0.30%", "+0.35%", "+0.40%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -1362,103 +1358,101 @@ For 2025, the scheme provides weekly support of up to £195 per week for those l
 
 Eligibility is determined in [`study_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py), which verifies that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
 
-PolicyEngine estimates that abolishing study childcare entitlement would raise government revenue by [£8.7 billion](https://policyengine.org/uk/policy?reform=80608&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of study childcare entitlement to government revenue is [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.20, -0.10, -0.10, -0.10, -0.10, -0.50, -0.90, -1.00, -1.40, -0.30],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-0.2%", "-0.1%", "-0.1%", "-0.1%", "-0.1%", "-0.5%", "-0.9%", "-1.0%", "-1.4%", "-0.3%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing study childcare entitlement by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-1.50, 0],
-      "dtick": 0.2,
-      "tickvals": [0, -0.20, -0.40, -0.60, -0.80, -1.00, -1.20, -1.40, -1.60],
-      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [0.4, 0.1, 0.1, 0.3, 0.8, 0.8, 0.9, 0.8, 1.1, 0.2],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+0.4%", "+0.1%", "+0.1%", "+0.3%", "+0.8%", "+0.8%", "+0.9%", "+0.8%", "+1.1%", "+0.2%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of study childcare entitlement by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 1.2],
+     "dtick": 0.2,
+     "tickvals": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+     "ticktext": ["+0.0%", "+0.2%", "+0.4%", "+0.6%", "+0.8%", "+1.0%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
