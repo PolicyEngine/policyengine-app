@@ -145,11 +145,7 @@ PolicyEngine estimates that abolishing universal credit would raise government r
 }
 ```
 
-### Legacy benefits
-
-While Universal Credit continues its rollout, many households still receive "legacy benefits" that Universal Credit is replacing. These remain in place due to transitional protection and ongoing migration. Legacy benefits are a set of six different benefits that served specific needs before Universal Credit was introduced. Our model accounts for the phased transition between these systems, allowing users to analyse scenarios under different implementation timelines.
-
-#### Housing Benefit
+### Housing Benefit
 
 Housing Benefit supports rental costs for those not receiving Universal Credit, calculated in the [`housing_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) file. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the "applicable amount" (the amount deemed necessary for basic living costs). Further reductions apply for non-dependent adults living in the household. Different parameters apply for working-age versus pension-age claimants.
 
@@ -268,7 +264,7 @@ PolicyEngine estimates that abolishing housing benefits would raise government r
 }
 ```
 
-#### Tax Credits
+### Tax Credits
 
 Tax Credits provide support to families with children and working people on low incomes, calculated in the [`tax_credits.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) file. The system consists of two elements: Child Tax Credit and Working Tax Credit, which can be claimed separately or together depending on circumstances.
 
@@ -387,9 +383,7 @@ PolicyEngine estimates that abolishing tax credit would raise government revenue
 }
 ```
 
-### Pension-age benefits
-
-#### Pension Credit
+### Pension Credit
 
 Pension Credit ensures a minimum income level for pensioners, calculated in the [`pension_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/pension_credit.py) file. The benefit consists of two parts: Guarantee Credit and Savings Credit. A takeup probability of 70% is applied to model the fact that not all eligible pensioners claim the benefit. Takeup rates represent the proportion of eligible individuals who actually claim a benefit, and our model incorporates this real-world factor to produce more accurate aggregate estimates.
 
@@ -519,11 +513,7 @@ PolicyEngine estimates that abolishing pension credit would raise government rev
 
 Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases, making them particularly important for those with additional costs related to disability, childcare, or other circumstances. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources.
 
-### Disability and health benefits
-
-Disability and health benefits provide support for the additional costs associated with disability or long-term health conditions. These benefits recognise that disabled people often face higher living costs for specialised equipment, care, and travel. Our model identifies eligibility based on reported disability status and severity from survey data, alongside information about care needs and mobility restrictions.
-
-#### Personal Independence Payment (PIP)
+### Personal Independence Payment (PIP)
 
 PIP supports those with long-term health conditions or disabilities, calculated in the [`pip.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) file. The benefit has two components: daily living and mobility. Each component can be paid at a standard or enhanced rate depending on needs assessment. PIP replaced Disability Living Allowance for working-age adults and uses a points-based assessment system to determine eligibility and rate.
 
@@ -636,7 +626,7 @@ PolicyEngine estimates that abolishing PIP would raise government revenue by [£
 }
 ```
 
-#### Disability Living Allowance (DLA)
+### Disability Living Allowance (DLA)
 
 DLA continues for children and some protected adults, calculated in the [`dla.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/dla.py) file. Similar to PIP, it has two components: self-care (equivalent to PIP's daily living) and mobility. DLA for children remains in place, while most working-age adults have been migrated to PIP. Some adults who received DLA before PIP was introduced remain on the benefit under transitional protection.
 
@@ -749,7 +739,7 @@ PolicyEngine estimates that abolishing DLA would raise government revenue by [£
 }
 ```
 
-#### Attendance Allowance
+### Attendance Allowance
 
 Attendance Allowance supports older people with care needs, calculated in the [`attendance_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) file. It's paid at two rates depending on the level of care needed. Attendance Allowance is available to those who became disabled after reaching State Pension age, as they cannot claim PIP or DLA for the first time after this age.
 
@@ -863,9 +853,7 @@ PolicyEngine estimates that abolishing Attendance Allowance would raise governme
 }
 ```
 
-### Child benefits
-
-#### Child Benefit
+### Child Benefit
 
 Child Benefit provides regular payments for families with children, calculated in the [`child_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/child_benefit.py) file. It is paid for children under 16, or under 20 if they remain in approved education or training. Unlike means-tested benefits, Child Benefit is paid at a flat rate regardless of income, though high earners may have part or all of it reclaimed through the tax system.
 
@@ -981,9 +969,7 @@ PolicyEngine estimates that abolishing child benefit would raise government reve
 }
 ```
 
-### Retirement benefits
-
-#### State Pension
+### State Pension
 
 State Pension provides regular payments based on National Insurance contributions, calculated in the [`state_pension.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/state_pension.py) file. Unlike means-tested benefits for pensioners like Pension Credit, State Pension is based on National Insurance contribution history rather than current financial circumstances.
 
@@ -1004,7 +990,7 @@ There are two systems depending on when the person reached State Pension age:
 
 Both systems use the "triple lock" for annual increases, defined in [`triple_lock`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/triple_lock/), raising pensions by the highest of inflation, earnings growth, or the fixed rate of 2.5%. Our model implements this by comparing the three potential uprating mechanisms and applying the highest increase each year.
 
-#### Winter Fuel Payment
+### Winter Fuel Payment
 
 Winter Fuel Payment provides annual support for older people with heating costs, calculated in the [`WFA.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) file. It is an annual tax-free payment made to eligible pensioners to help with winter heating costs.
 
@@ -1118,11 +1104,7 @@ PolicyEngine estimates that abolishing Winter Fuel Payment would raise governmen
 }
 ```
 
-### Childcare support
-
-The UK offers multiple childcare support programmes, each targeting different age groups and family circumstances. These initiatives aim to make childcare more affordable and support parental employment. Our methodology models the interaction between these various support mechanisms, accounting for different eligibility criteria and payment structures.
-
-#### Tax-Free Childcare
+### Tax-Free Childcare
 
 Tax-Free Childcare provides a government top-up for childcare spending, calculated in the [`tax_free_childcare.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/tax_free_childcare.py) file. This scheme operates through an online account where parents pay in money for childcare, and the government adds a top-up.
 
@@ -1237,7 +1219,7 @@ PolicyEngine estimates that abolishing tax-free childcare would raise government
 }
 ```
 
-#### Universal Childcare Entitlement
+### Universal Childcare Entitlement
 
 The Universal Childcare Entitlement offers free childcare hours for all children aged 3-4 years old, calculated in the [`universal_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py) file. This is available to all children regardless of parental income or work status.
 
@@ -1351,7 +1333,7 @@ PolicyEngine estimates that abolishing universal childcare entitlement would rai
 }
 ```
 
-#### Extended Childcare Entitlement
+### Extended Childcare Entitlement
 
 The Extended Childcare Entitlement provides additional hours for working parents, calculated in the [`extended_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py) file. This extends the universal offer for working parents, providing an additional 15 hours per week for 3-4 year olds and, from 2024, beginning to extend provision to younger children.
 
@@ -1470,7 +1452,7 @@ PolicyEngine estimates that abolishing extended childcare entitlement would rais
 }
 ```
 
-#### Targeted Childcare Entitlement
+### Targeted Childcare Entitlement
 
 The Targeted Childcare Entitlement provides free childcare for 2-year-olds in lower income families, calculated in the [`targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) file. This extends provision to younger children in households with lower incomes, supporting child development and parental employment opportunities.
 
@@ -1585,7 +1567,7 @@ PolicyEngine estimates that abolishing targeted childcare entitlement would rais
 }
 ```
 
-#### Study Childcare Entitlement
+### Study Childcare Entitlement
 
 The Study Childcare Entitlement, also known as Care to Learn, provides financial support for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file. This scheme enables young parents to continue their education by removing childcare cost barriers.
 
@@ -1700,11 +1682,7 @@ PolicyEngine estimates that abolishing study childcare entitlement would raise g
 }
 ```
 
-### Cost of living support
-
-In response to rising inflation and energy costs, the UK government introduced several temporary measures to support households. These one-off or time-limited measures were targeted at different groups, with particular focus on those on lower incomes and vulnerable households. Our model includes these temporary interventions, allowing analysis of their distributional impact during the period they were active.
-
-#### Energy Bills Support
+### Energy Bills Support
 
 Several programmes have been introduced to help households with energy costs:
 
@@ -1714,7 +1692,7 @@ Several programmes have been introduced to help households with energy costs:
 
 - **Energy Price Guarantee**: Limited average household energy bills to £2,500 per year for a typical household (later adjusted), implemented in the [`energy_price_cap_subsidy.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/price_cap_subsidy/energy_price_cap_subsidy.py) file. This intervention directly limited unit prices for gas and electricity, with the government subsidising energy suppliers for the difference between the guaranteed price and market rates.
 
-#### Cost of Living Support Payment
+### Cost of Living Support Payment
 
 One-off payments for vulnerable groups, calculated in the [`cost_of_living_support_payment.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/cost_of_living_support/cost_of_living_support_payment.py) file. For 2022-23, this included:
 
@@ -1723,5 +1701,7 @@ One-off payments for vulnerable groups, calculated in the [`cost_of_living_suppo
 - £300 for those eligible for Winter Fuel Payment
 
 These payments were made automatically to eligible recipients without requiring an application, targeting support to those on lower incomes and with additional needs who were likely to be more vulnerable to rising living costs.
+
+## Conclusion
 
 PolicyEngine models the current UK benefits system and potential reforms, enabling users to analyse how changes to benefits affect government expenditure and household incomes across different demographic groups. The detailed implementation of each benefit component allows for precise modelling of existing policies and exploration of hypothetical reforms, supporting evidence-based policy development and evaluation.
