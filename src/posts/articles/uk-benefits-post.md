@@ -156,20 +156,20 @@ The applicable income is calculated in [`housing_benefit_applicable_income.py`](
 
 Non-dependent deductions are calculated in [`housing_benefit_non_dep_deductions.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/non_dep_deduction/housing_benefit_non_dep_deductions.py). A non-dependent is an adult who lives with the claimant (such as an adult child or parent) and is expected to contribute to housing costs. The deduction amount varies based on the non-dependent's income and circumstances.
 
-PolicyEngine estimates that abolishing housing benefits would raise government revenue by [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80663&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of housing benefits to government revenue is [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80663&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-4.6, -2.6, -1.0, -0.9, -0.0, -0.0, -0.0, -0.0, 0.0, -0.0],
+      "y": [8.5, 1.4, 1.0, 0.2, 0.0, 0.0, 0.0, 0.0, -0.0, 0.0],
       "type": "bar",
       "marker": {
-        "color": ["#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#616161", "#2E5984", "#616161"]
+        "color": "#2E5984"
       },
       "name": "Change in household income (%)",
-      "text": ["-4.6%", "-2.6%", "-1.0%", "-0.9%", "-0.0%", "-0.0%", "-0.0%", "-0.0%", "+0.0%", "-0.0%"],
+      "text": ["+8.5%", "+1.4%", "+1.0%", "+0.2%", "+0.0%", "+0.0%", "+0.0%", "+0.0%", "-0.0%", "+0.0%"],
       "textposition": "inside",
       "insidetextfont": {
         "family": "Roboto Serif",
@@ -180,7 +180,7 @@ PolicyEngine estimates that abolishing housing benefits would raise government r
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of abolishing housing benefit by income decile",
+      "text": "Distributional impact of housing benefit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -198,15 +198,10 @@ PolicyEngine estimates that abolishing housing benefits would raise government r
       },
       "tickformat": ",.1%",
       "automargin": true,
-      "range": [-5.0, 0.5],
+      "range": [0, 9],
       "dtick": 1,
-      "tickvals": [0.5, 0, -1, -2, -3, -4, -5],
-      "ticktext": ["+0.5%", "0.0%", "-1.0%", "-2.0%", "-3.0%", "-4.0%", "-5.0%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0",
-      "zeroline": true,
-      "zerolinecolor": "#e0e0e0",
-      "zerolinewidth": 2
+      "tickvals": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+      "ticktext": ["+0.0%", "+1.0%", "+2.0%", "+3.0%", "+4.0%", "+5.0%", "+6.0%", "+7.0%", "+8.0%"]
     },
     "xaxis": {
       "title": "Income decile",
@@ -278,105 +273,7 @@ Our methodology for Tax Credits:
 
 Tax Credits are reduced at a rate of 41% when income exceeds the threshold (£7,455 for WTC+CTC claims and £18,725 for CTC-only claims in 2025). This means that for every £1 of income above the threshold, Tax Credits are reduced by 41p.
 
-PolicyEngine estimates that abolishing tax credit would raise government revenue by [£63.5 million](https://policyengine.org/uk/policy?reform=80677&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
-
-```plotly
-{
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.0045, -0.0042, -0.0105, -0.0120, -0.0062, -0.0047, -0.0041, -0.0042, -0.0008, -0.0001],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-0.005%", "-0.004%", "-0.011%", "-0.012%", "-0.006%", "-0.005%", "-0.004%", "-0.004%", "-0.001%", "-0.000%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing tax credit by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.4%",
-      "automargin": true,
-      "range": [-0.0130, 0],
-      "dtick": 0.002,
-      "tickvals": [0, -0.0020, -0.0040, -0.0060, -0.0080, -0.0100, -0.0120, -0.0140],
-      "ticktext": ["0.000%", "-0.002%", "-0.004%", "-0.006%", "-0.008%", "-0.010%", "-0.012%", "-0.014%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 60,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
-}
-```
+PolicyEngine estimates that Tax Credit costs the government less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) in 2025.
 
 ### Pension Credit
 
@@ -404,103 +301,102 @@ Our methodology for Pension Credit:
   4. Awards Savings Credit at 60% of income above the threshold, up to the maximum
   5. Reduces the award by 40% of income above the minimum guarantee
 
-PolicyEngine estimates that abolishing pension credit would raise government revenue by [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80685&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+
+PolicyEngine estimates that the cost of pension credit to government revenue is [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-1.8, -1.3, -0.9, -1.5, -0.6, -0.3, -0.1, -0.1, -0.2, -0.0],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-1.8%", "-1.3%", "-0.9%", "-1.5%", "-0.6%", "-0.3%", "-0.1%", "-0.1%", "-0.2%", "-0.0%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing pension credit by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-2.0, 0],
-      "dtick": 0.2,
-      "tickvals": [0, -0.2, -0.4, -0.6, -0.8, -1.0, -1.2, -1.4, -1.6, -1.8, -2.0],
-      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%", "-1.8%", "-2.0%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [3.3, 1.2, 1.6, 1.0, 0.2, 0.1, 0.0, 0.2, 0.0, 0.0],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+3.3%", "+1.2%", "+1.6%", "+1.0%", "+0.2%", "+0.1%", "+0.0%", "+0.2%", "+0.0%", "+0.0%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of pension credit by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 3.5],
+     "dtick": 0.5,
+     "tickvals": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0],
+     "ticktext": ["+0.0%", "+0.5%", "+1.0%", "+1.5%", "+2.0%", "+2.5%", "+3.0%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -521,103 +417,101 @@ Our PIP methodology:
 
 The daily living component is calculated in [`daily_living.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/daily_living.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/mobility.py). For 2025, the daily living component is £108.55 per week at the enhanced rate and £72.65 per week at the standard rate. The mobility component is £75.75 per week at the enhanced rate and £28.70 per week at the standard rate. The annual amount is calculated by multiplying the weekly rates by 52.
 
-PolicyEngine estimates that abolishing PIP would raise government revenue by [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80686&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of PIP to government revenue is [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-4.0, -3.8, -5.8, -4.9, -4.6, -1.8, -0.8, -0.7, -0.4, -0.1],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-4.0%", "-3.8%", "-5.8%", "-4.9%", "-4.6%", "-1.8%", "-0.8%", "-0.7%", "-0.4%", "-0.1%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing personal independence payment by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-6.0, 0],
-      "dtick": 1,
-      "tickvals": [0, -1.0, -2.0, -3.0, -4.0, -5.0, -6.0],
-      "ticktext": ["0.0%", "-1.0%", "-2.0%", "-3.0%", "-4.0%", "-5.0%", "-6.0%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [16.7, 3.1, 4.8, 6.0, 1.7, 0.7, 0.5, 0.2, 0.3, 0.1],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+16.7%", "+3.1%", "+4.8%", "+6.0%", "+1.7%", "+0.7%", "+0.5%", "+0.2%", "+0.3%", "+0.1%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of personal independence payment by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 17.5],
+     "dtick": 2,
+     "tickvals": [0, 2, 4, 6, 8, 10, 12, 14, 16],
+     "ticktext": ["+0.0%", "+2.0%", "+4.0%", "+6.0%", "+8.0%", "+10.0%", "+12.0%", "+14.0%", "+16.0%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -634,103 +528,101 @@ Our DLA methodology:
 
 The self-care component is calculated in [`self_care.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/self_care.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/mobility.py). For 2025, the self-care component has three possible rates: higher (£108.55 per week), middle (£72.65 per week), and lower (£28.70 per week). The mobility component has two rates: higher (£75.75 per week) and lower (£28.70 per week). The annual amount is calculated by multiplying the weekly rates by 52.
 
-PolicyEngine estimates that abolishing DLA would raise government revenue by [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80689&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of DLA to government revenue is [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-1.5, -1.2, -1.1, -1.2, -1.9, -0.4, -0.6, -0.1, -0.2, -0.0],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-1.5%", "-1.2%", "-1.1%", "-1.2%", "-1.9%", "-0.4%", "-0.6%", "-0.1%", "-0.2%", "-0.0%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing Disability Living Allowance by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-2.0, 0],
-      "dtick": 0.2,
-      "tickvals": [0, -0.2, -0.4, -0.6, -0.8, -1.0, -1.2, -1.4, -1.6, -1.8, -2.0],
-      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%", "-1.8%", "-2.0%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [3.8, 1.4, 2.0, 1.3, 0.9, 0.3, 0.1, 0.1, 0.1, 0.0],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+3.8%", "+1.4%", "+2.0%", "+1.3%", "+0.9%", "+0.3%", "+0.1%", "+0.1%", "+0.1%", "+0.0%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of Disability Living Allowance by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 4.0],
+     "dtick": 0.5,
+     "tickvals": [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5],
+     "ticktext": ["+0.0%", "+0.5%", "+1.0%", "+1.5%", "+2.0%", "+2.5%", "+3.0%", "+3.5%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -748,103 +640,101 @@ For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per
 
 All three disability benefits are uprated annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
 
-PolicyEngine estimates that abolishing Attendance Allowance would raise government revenue by [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80692&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Attendance Allowance to government revenue is [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-1.7, -1.9, -3.2, -1.5, -0.8, -0.2, -0.1, -0.2, -0.0, -0.0],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-1.7%", "-1.9%", "-3.2%", "-1.5%", "-0.8%", "-0.2%", "-0.1%", "-0.2%", "-0.0%", "-0.0%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing Attendance Allowance by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-3.5, 0],
-      "dtick": 0.5,
-      "tickvals": [0, -0.5, -1.0, -1.5, -2.0, -2.5, -3.0, -3.5],
-      "ticktext": ["0.0%", "-0.5%", "-1.0%", "-1.5%", "-2.0%", "-2.5%", "-3.0%", "-3.5%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [5.6, 2.9, 1.7, 1.1, 0.1, 0.1, 0.2, 0.0, 0.0, 0.0],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+5.6%", "+2.9%", "+1.7%", "+1.1%", "+0.1%", "+0.1%", "+0.2%", "+0.0%", "+0.0%", "+0.0%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of Attendance Allowance by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 6.0],
+     "dtick": 1,
+     "tickvals": [0.0, 1.0, 2.0, 3.0, 4.0, 5.0],
+     "ticktext": ["+0.0%", "+1.0%", "+2.0%", "+3.0%", "+4.0%", "+5.0%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -864,103 +754,101 @@ For 2025, the rate is £26.04 per week for the first child and £17.24 per week 
 
 The High Income Child Benefit Charge (HITC) effectively withdraws this benefit when individual income exceeds £50,000, with complete withdrawal at £60,000. This charge is calculated as part of the income tax system in [`child_benefit_hitc.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py) and increases proportionally with income within this range. For each £100 of income above £50,000, 1% of the Child Benefit is reclaimed through the tax system.
 
-PolicyEngine estimates that abolishing child benefit would raise government revenue by [£12.3 billion](https://policyengine.org/uk/policy?reform=80696&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of child benefit to government revenue is [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-1.3, -0.7, -0.9, -1.0, -1.4, -1.1, -0.8, -0.9, -0.8, -0.2],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-1.3%", "-0.7%", "-0.9%", "-1.0%", "-1.4%", "-1.1%", "-0.8%", "-0.9%", "-0.8%", "-0.2%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing Child Benefit by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-1.5, 0],
-      "dtick": 0.2,
-      "tickvals": [0, -0.2, -0.4, -0.6, -0.8, -1.0, -1.2, -1.4, -1.6],
-      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%", "-1.6%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [1.5, 0.8, 0.9, 1.1, 1.3, 1.2, 0.8, 0.8, 0.7, 0.2],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+1.5%", "+0.8%", "+0.9%", "+1.1%", "+1.3%", "+1.2%", "+0.8%", "+0.8%", "+0.7%", "+0.2%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of Child Benefit by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 1.6],
+     "dtick": 0.2,
+     "tickvals": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4],
+     "ticktext": ["+0.0%", "+0.2%", "+0.4%", "+0.6%", "+0.8%", "+1.0%", "+1.2%", "+1.4%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -999,105 +887,8 @@ For 2025, households with someone aged 66-79 receive £200, while households wit
 
 In Scotland, this has been replaced by the Pension Age Winter Heating Payment (PAWHP), calculated in the [`pawhp.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/social_security_scotland/pawhp.py) file, with similar rate structure. This reflects the devolution of certain benefits to the Scottish government, which has implemented its own version of the payment with similar eligibility criteria and rates.
 
-PolicyEngine estimates that abolishing Winter Fuel Payment would raise government revenue by [£281.4 million](https://policyengine.org/uk/policy?reform=80702&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that Winter Fuel Payment costs the government less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) in 2025.
 
-```plotly
-{
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.11, -0.04, -0.04, -0.05, -0.02, -0.01, -0.00, -0.00, -0.00, -0.00],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-0.11%", "-0.04%", "-0.04%", "-0.05%", "-0.02%", "-0.01%", "-0.00%", "-0.00%", "-0.00%", "-0.00%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing Winter Fuel Payment by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.2%",
-      "automargin": true,
-      "range": [-0.12, 0],
-      "dtick": 0.02,
-      "tickvals": [0, -0.02, -0.04, -0.06, -0.08, -0.10, -0.12],
-      "ticktext": ["0.00%", "-0.02%", "-0.04%", "-0.06%", "-0.08%", "-0.10%", "-0.12%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 60,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
-}
-```
 
 ### Tax-Free Childcare
 
@@ -1114,103 +905,101 @@ For 2025, the government contributes 20% of childcare costs, effectively adding 
 
 Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions (quarterly income above minimum wage × 16 hours/week × 13 weeks but below £100,000 per year adjusted net income), and work requirements (both parents must generally be working, with exceptions for disability). These conditions are implemented in [`tax_free_childcare_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_meets_income_requirements.py) and [`tax_free_childcare_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py).
 
-PolicyEngine estimates that abolishing tax-free childcare would raise government revenue by [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80603&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of tax-free childcare to government revenue is [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.0004, -0.0005, -0.01, -0.01, -0.01, -0.03, -0.06, -0.27, -0.16, -0.08],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-0.00%", "-0.00%", "-0.01%", "-0.01%", "-0.01%", "-0.03%", "-0.06%", "-0.27%", "-0.16%", "-0.08%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing tax-free childcare by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-0.30, 0],
-      "dtick": 0.05,
-      "tickvals": [0, -0.05, -0.10, -0.15, -0.20, -0.25, -0.30],
-      "ticktext": ["0.00%", "-0.05%", "-0.10%", "-0.15%", "-0.20%", "-0.25%", "-0.30%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [0.00, 0.00, 0.01, 0.01, 0.01, 0.03, 0.06, 0.28, 0.20, 0.05],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+0.00%", "+0.00%", "+0.01%", "+0.01%", "+0.01%", "+0.03%", "+0.06%", "+0.28%", "+0.20%", "+0.05%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of tax-free childcare by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.3%",
+     "automargin": true,
+     "range": [0, 0.30],
+     "dtick": 0.05,
+     "tickvals": [0, 0.05, 0.10, 0.15, 0.20, 0.25],
+     "ticktext": ["+0.000%", "+0.050%", "+0.100%", "+0.150%", "+0.200%", "+0.250%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -1228,103 +1017,101 @@ For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours pe
 
 Eligibility is determined in [`universal_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py), which identifies children in the qualifying age range.
 
-PolicyEngine estimates that abolishing universal childcare entitlement would raise government revenue by [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80615&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of universal childcare entitlement to government revenue is [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-1.20, -0.30, -0.80, -0.30, -0.30, -0.30, -0.30, -0.30, -0.30, -0.30],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-1.2%", "-0.3%", "-0.8%", "-0.3%", "-0.3%", "-0.3%", "-0.3%", "-0.3%", "-0.3%", "-0.3%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing universal childcare entitlement by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-1.30, 0],
-      "dtick": 0.2,
-      "tickvals": [0, -0.20, -0.40, -0.60, -0.80, -1.00, -1.20, -1.40],
-      "ticktext": ["0.0%", "-0.2%", "-0.4%", "-0.6%", "-0.8%", "-1.0%", "-1.2%", "-1.4%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [1.5, 0.4, 0.7, 0.4, 0.2, 0.4, 0.3, 0.2, 0.2, 0.2],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+1.5%", "+0.4%", "+0.7%", "+0.4%", "+0.2%", "+0.4%", "+0.3%", "+0.2%", "+0.2%", "+0.2%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of universal childcare entitlement by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 1.6],
+     "dtick": 0.2,
+     "tickvals": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4],
+     "ticktext": ["+0.0%", "+0.2%", "+0.4%", "+0.6%", "+0.8%", "+1.0%", "+1.2%", "+1.4%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
@@ -1347,103 +1134,101 @@ The entitlement varies by child age in 2025:
 
 The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs for caring for younger children. Eligibility includes income and work conditions similar to Tax-Free Childcare, implemented in [`extended_childcare_entitlement_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions/extended_childcare_entitlement_meets_income_requirements.py) and [`extended_childcare_entitlement_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions/extended_childcare_entitlement_work_condition.py).
 
-PolicyEngine estimates that abolishing extended childcare entitlement would raise government revenue by [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80613&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of extended childcare entitlement to government revenue is [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.00, -0.00, -0.00, -0.10, -0.10, -0.40, -0.50, -1.10, -0.70, -0.30],
-      "type": "bar",
-      "marker": {
-        "color": "#616161"
-      },
-      "name": "Change in household income (%)",
-      "text": ["-0.0%", "-0.0%", "-0.0%", "-0.1%", "-0.1%", "-0.4%", "-0.5%", "-1.1%", "-0.7%", "-0.3%"],
-      "textposition": "inside",
-      "insidetextfont": {
-        "family": "Roboto Serif",
-        "color": "white",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Distributional impact of abolishing extended childcare entitlement by income decile",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Relative change in household income",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",.1%",
-      "automargin": true,
-      "range": [-1.20, 0],
-      "dtick": 0.2,
-      "tickvals": [0, -0.20, -0.40, -0.60, -0.80, -1.00, -1.20],
-      "ticktext": ["0.00%", "-0.20%", "-0.40%", "-0.60%", "-0.80%", "-1.00%", "-1.20%"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
-  }
+ "data": [
+   {
+     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "y": [0.0, 0.0, 0.1, 0.2, 0.3, 0.6, 0.4, 1.1, 0.6, 0.2],
+     "type": "bar",
+     "marker": {
+       "color": "#2E5984"
+     },
+     "name": "Change in household income (%)",
+     "text": ["+0.0%", "+0.0%", "+0.1%", "+0.2%", "+0.3%", "+0.6%", "+0.4%", "+1.1%", "+0.6%", "+0.2%"],
+     "textposition": "inside",
+     "insidetextfont": {
+       "family": "Roboto Serif",
+       "color": "white",
+       "size": 10
+     }
+   }
+ ],
+ "layout": {
+   "title": {
+     "text": "Distributional impact of extended childcare entitlement by income decile",
+     "font": {
+       "family": "Roboto Serif",
+       "size": 16
+     },
+     "x": 0,
+     "xanchor": "left"
+   },
+   "yaxis": {
+     "title": "Relative change in household income",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickfont": {
+       "family": "Roboto Serif"
+     },
+     "tickformat": ",.1%",
+     "automargin": true,
+     "range": [0, 1.2],
+     "dtick": 0.2,
+     "tickvals": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
+     "ticktext": ["+0.0%", "+0.2%", "+0.4%", "+0.6%", "+0.8%", "+1.0%"]
+   },
+   "xaxis": {
+     "title": "Income decile",
+     "titlefont": {
+       "family": "Roboto Serif"
+     },
+     "tickmode": "array",
+     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+   },
+   "height": 500,
+   "margin": {
+     "l": 50,
+     "r": 50,
+     "b": 100,
+     "t": 100,
+     "pad": 4
+   },
+   "annotations": [
+     {
+       "x": 1,
+       "y": -0.25,
+       "xref": "paper",
+       "yref": "paper",
+       "text": "Source: PolicyEngine",
+       "showarrow": false,
+       "font": {
+         "family": "Roboto Serif",
+         "size": 10,
+         "color": "#616161"
+       }
+     }
+   ],
+   "images": [
+     {
+       "source": "/logo512.png",
+       "x": 1,
+       "y": -0.18,
+       "xref": "paper",
+       "yref": "paper",
+       "sizex": 0.1,
+       "sizey": 0.1,
+       "xanchor": "right",
+       "yanchor": "bottom"
+     }
+   ],
+   "plot_bgcolor": "white",
+   "paper_bgcolor": "white"
+ }
 }
 ```
 
