@@ -23,9 +23,9 @@ Means-tested benefits provide targeted support to those on low incomes. These be
 
 ### Universal Credit
 
-Universal Credit is a means-tested benefit introduced to replace six legacy benefits for working-age people, implemented in the [`universal_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/universal_credit.py) file. This consolidated approach aims to simplify the benefits system and improve work incentives by providing a single payment that adjusts as income changes.
+Universal Credit is a means-tested benefit introduced to replace six legacy benefits for working-age people, implemented in the [`universal_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/universal_credit.py) file.
 
-Our calculation methodology first determines a household's maximum entitlement by adding together various elements based on household circumstances, then reduces this amount based on income (applying the taper rate) and finally applies a benefit cap if necessary. This progressive reduction, known as the "taper," is designed to ensure that claimants are always financially better off when increasing their earnings.
+Our calculation methodology first determines a household's maximum entitlement by adding together various elements based on household circumstances, then reduces this amount based on income (applying the taper rate) and finally applies a benefit cap if necessary.
 
 - **Standard allowance**
   This forms the basic element of Universal Credit that all eligible claimants receive, calculated in the [`uc_standard_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/standard_allowance/uc_standard_allowance.py) file. The amount varies by age and whether claiming as an individual or couple. For 2025, a single person under 25 receives £311.68 per month, while a single person over 25 receives £393.45 per month. Couples where both members are under 25 receive £489.23 per month, while couples with at least one member over 25 receive £617.60 per month. The methodology identifies the claimant type (single or couple, age categories) and assigns the appropriate monthly rate, which is then annualised for our calculations.
@@ -511,7 +511,7 @@ PolicyEngine estimates that abolishing pension credit would raise government rev
 
 ## Non-means-tested benefits
 
-Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases, making them particularly important for those with additional costs related to disability, childcare, or other circumstances. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources.
+Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources.
 
 ### Personal Independence Payment (PIP)
 
@@ -1454,7 +1454,7 @@ PolicyEngine estimates that abolishing extended childcare entitlement would rais
 
 ### Targeted Childcare Entitlement
 
-The Targeted Childcare Entitlement provides free childcare for 2-year-olds in lower income families, calculated in the [`targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) file. This extends provision to younger children in households with lower incomes, supporting child development and parental employment opportunities.
+The Targeted Childcare Entitlement provides free childcare for 2-year-olds in lower income families, calculated in the [`targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) file.
 
 Our Targeted Childcare Entitlement methodology:
 
@@ -1569,7 +1569,7 @@ PolicyEngine estimates that abolishing targeted childcare entitlement would rais
 
 ### Study Childcare Entitlement
 
-The Study Childcare Entitlement, also known as Care to Learn, provides financial support for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file. This scheme enables young parents to continue their education by removing childcare cost barriers.
+The Study Childcare Entitlement, also known as Care to Learn, provides financial support for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file.
 
 Our Study Childcare Entitlement methodology:
 
@@ -1688,7 +1688,7 @@ Several programmes have been introduced to help households with energy costs:
 
 - **Energy Bills Credit**: Provided £400 per household as monthly reductions on electricity bills from October 2022 to March 2023, calculated in the [`energy_bills_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/energy_bills_credit.py) file. This universal support was applied automatically to all domestic electricity accounts, spread across six monthly instalments.
 
-- **Council Tax Rebate**: Provided £150 per household in Council Tax bands A-D in England (with equivalent schemes in devolved nations), calculated in the [`council_tax_rebate.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/council_tax_rebate.py) file. This targeted support to properties in lower-value bands, as these households were deemed more likely to be affected by rising energy costs.
+- **Council Tax Rebate**: Provided £150 per household in Council Tax bands A-D in England (with equivalent schemes in devolved nations), calculated in the [`council_tax_rebate.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/council_tax_rebate.py) file.
 
 - **Energy Price Guarantee**: Limited average household energy bills to £2,500 per year for a typical household (later adjusted), implemented in the [`energy_price_cap_subsidy.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/price_cap_subsidy/energy_price_cap_subsidy.py) file. This intervention directly limited unit prices for gas and electricity, with the government subsidising energy suppliers for the difference between the guaranteed price and market rates.
 
@@ -1700,8 +1700,6 @@ One-off payments for vulnerable groups, calculated in the [`cost_of_living_suppo
 - £150 for recipients of disability benefits
 - £300 for those eligible for Winter Fuel Payment
 
-These payments were made automatically to eligible recipients without requiring an application, targeting support to those on lower incomes and with additional needs who were likely to be more vulnerable to rising living costs.
-
 ## Conclusion
 
-PolicyEngine models the current UK benefits system and potential reforms, enabling users to analyse how changes to benefits affect government expenditure and household incomes across different demographic groups. The detailed implementation of each benefit component allows for precise modelling of existing policies and exploration of hypothetical reforms, supporting evidence-based policy development and evaluation.
+PolicyEngine models the current UK benefits system and potential reforms, enabling users to analyse how changes to benefits affect government expenditure and household incomes across different demographic groups. The detailed implementation of each benefit component allows for precise modelling of existing policies and exploration of hypothetical reforms.
