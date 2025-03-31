@@ -6,23 +6,23 @@ This analysis, requested and [published](https://insider.iea.org.uk/p/new-analys
 
 The April 2025 tax reforms introduce several changes to the UK tax system:
 
-* Stamp Duty Land Tax nil-rate thresholds will be set at £300,000 (from £425,000) for first-time buyers and £125,000 (from £250,000) for subsequent purchases. These thresholds determine the property value at which SDLT begins to apply. First-time buyers maintain a higher threshold than subsequent purchasers under this reform.
-* Employer's National Insurance rate will change to 15% with the secondary threshold set to £96.14 (from £175) per week. We assume that the employer NI changes will be passed on to employees at 40% in 2025, 50% in 2026, 60% in 2027, and 70% in 2028-2029, with the remainder split between business owners and prices.
-* Capital Gains Tax rates will change to 18% (from 10%) for basic rate taxpayers and 24% (from 20%) for both higher and additional rate taxpayers. CGT applies to profits from the sale of assets that have increased in value, with various exemptions including primary residences.
-* Council Tax will increase by 5% on average from 2024.
+- Stamp Duty Land Tax nil-rate thresholds will be set at £300,000 (from £425,000) for first-time buyers and £125,000 (from £250,000) for subsequent purchases. These thresholds determine the property value at which SDLT begins to apply. First-time buyers maintain a higher threshold than subsequent purchasers under this reform.
+- Employer's National Insurance rate will change to 15% with the secondary threshold set to £96.14 (from £175) per week. We assume that the employer NI changes will be passed on to employees at 40% in 2025, 50% in 2026, 60% in 2027, and 70% in 2028-2029, with the remainder split between business owners and prices.
+- Capital Gains Tax rates will change to 18% (from 10%) for basic rate taxpayers and 24% (from 20%) for both higher and additional rate taxpayers. CGT applies to profits from the sale of assets that have increased in value, with various exemptions including primary residences.
+- Council Tax will increase by 5% on average from 2024.
 
 ## Economic impacts
 
 We estimate the following revenue impacts for these reforms in 2025/26 (Table 1). For each tax, we include its static revenue impact. This assumes that individuals do not adjust their behaviour in response, representing simply the impact of the change in policy on existing households.
 
-| Reform | 2025 static revenue (£ million) | Average per household (£) |
-| --- | --- | --- |
-| Stamp duty: lower first home nil-rate threshold from 425,000 to 300,000 | 150 | 5 |
-| Stamp duty: lower primary residence nil-rate threshold from 250,000 to 125,000 | 1,200 | 43 |
-| Capital Gains Tax: raise rates to 18% and 24% | 4,200 | 150 |
-| Council tax: raise by 5% | 2,700 | 96 |
-| Employer National Insurance: raise rate from 13.8% to 15% and lower threshold | 22,900 | 818 |
-| Total | 31,150 | 1,112 |
+| Reform                                                                         | 2025 static revenue (£ million) | Average per household (£) |
+| ------------------------------------------------------------------------------ | ------------------------------- | ------------------------- |
+| Stamp duty: lower first home nil-rate threshold from 425,000 to 300,000        | 150                             | 5                         |
+| Stamp duty: lower primary residence nil-rate threshold from 250,000 to 125,000 | 1,200                           | 43                        |
+| Capital Gains Tax: raise rates to 18% and 24%                                  | 4,200                           | 150                       |
+| Council tax: raise by 5%                                                       | 2,700                           | 96                        |
+| Employer National Insurance: raise rate from 13.8% to 15% and lower threshold  | 22,900                          | 818                       |
+| Total                                                                          | 31,150                          | 1,112                     |
 
 Figure 1 shows the impact of these reforms on average in each household income decile. The highest decile net income falls by £2,729, and the lowest decile £796.
 
@@ -91,7 +91,7 @@ Figure 1 shows the impact of these reforms on average in each household income d
         "y0": 1112,
         "y1": 1112,
         "line": {
-          "color": "#616161", 
+          "color": "#616161",
           "width": 3,
           "dash": "dash"
         }
