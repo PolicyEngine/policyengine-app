@@ -14,7 +14,6 @@ South Carolina incentivizes licensed meat processors to partner with nonprofit o
 
 Recognizing the ecological importance of oyster shell recycling, Maryland offers a credit for recycling oyster shells. Residents may claim $5 for each bushel of oyster shells recycled during the tax year, up to $1,500 per taxpayer.
 
-
 ![](/images/posts/april-1st-2025/deeroysterchart1.webp)
 
 ![](/images/posts/april-1st-2025/deeroysterchart2.webp)
@@ -27,4 +26,4 @@ We invite our supporters to explore how leveraging state-specific tax credits ca
 
 Thank you for your continued support of PolicyEngine’s mission to advance evidence-based policymaking.
 
-**\*Note:** This is an April Fools’ Day analysis. While these tax credits are real, PolicyEngine is not currently accepting wildlife donations. We do welcome your conventional financial support at [policyengine.org/us/donate](/us/donate).\*
+_**Note:** This is an April Fools’ Day analysis. While these tax credits are real, PolicyEngine is not currently accepting wildlife donations. We do welcome your conventional financial support at [policyengine.org/us/donate](/us/donate)._
