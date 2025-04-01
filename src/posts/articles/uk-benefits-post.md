@@ -2,11 +2,11 @@
 
 This post provides an overview of how benefits are modelled in PolicyEngine UK. It details both existing benefits in the UK welfare system and their specific implementation within our microsimulation platform. Each benefit component is linked to its specific implementation in the codebase, making this post a technical reference for understanding how benefits calculations are performed in the PolicyEngine UK microsimulation model.
 
-The post is organised into two main sections. First, we examine means-tested benefits (Universal Credit, legacy benefits, and pension-age benefits), which provide support based on household income and savings. Second, we explore non-means-tested benefits (disability benefits, child benefits, and retirement benefits) that are provided based on specific circumstances regardless of income. The table below summarises key metrics for each benefit in the UK system, showing PolicyEngine's revenue estimates.
+The post is organised into two main sections. First, we examine means-tested benefits (Universal Credit, legacy benefits, and pension-age benefits), which provide payments based on household income and savings. Second, we explore non-means-tested benefits (disability benefits, child benefits, and retirement benefits) that are provided based on specific circumstances regardless of income. The table below summarises key metrics for each benefit in the UK system, showing PolicyEngine's revenue estimates.
 
 | Program                           | PolicyEngine revenue estimate £billion (2025)                                                                                   | OBR revenue estimate (2025-26)                                                                                                                                         | PolicyEngine affected population estimate % (2025) |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Universal Credit                  | [54.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=81101) | [77.4](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 21.8                                               |
+| Universal Credit                  | 79.4 | [77.4](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 21.8                                               |
 | Housing Benefit                   | [7.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663)  | [11.6](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.9                                                |
 | Tax Credits                       | [<1.0](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) | [<1.0](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 0.1                                                |
 | Pension Credit                    | [7.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685)  | [6.0](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/)                                                                | 3.6                                                |
@@ -50,7 +50,7 @@ Our calculation methodology for Universal Credit works by first determining a ho
 - **Benefit cap**
   A maximum limit on total benefit income is applied to Universal Credit, with higher rates for London residents and exemptions for households with significant earnings or disability benefits. The benefit cap methodology checks whether the household is exempt (based on earnings or qualifying benefits) and, if not, applies the appropriate cap based on household composition and location.
 
-PolicyEngine estimates that the cost of Universal Credit to government revenue is [£54.9 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=81101) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Universal Credit to government revenue is 79.4 in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -150,7 +150,7 @@ PolicyEngine estimates that the cost of Universal Credit to government revenue i
 
 ### Housing Benefit
 
-Housing Benefit supports rental costs for those not receiving Universal Credit, calculated in the [`housing_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) file. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the "applicable amount". Further reductions apply for non-dependent adults living in the household. Different parameters apply for working-age versus pension-age claimants.
+Housing Benefit provides assistance for rental costs for those not receiving Universal Credit, calculated in the [`housing_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) file. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the "applicable amount". Further reductions apply for non-dependent adults living in the household. Different parameters apply for working-age versus pension-age claimants.
 
 We calculate Housing Benefit using the following methodology:
 
@@ -164,7 +164,7 @@ The applicable income is calculated in [`housing_benefit_applicable_income.py`](
 
 Non-dependent deductions are calculated in [`housing_benefit_non_dep_deductions.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/non_dep_deduction/housing_benefit_non_dep_deductions.py). A non-dependent is an adult who lives with the claimant (such as an adult child or parent) and is expected to contribute to housing costs. The deduction amount varies based on the non-dependent's income and circumstances.
 
-PolicyEngine estimates that the cost of housing benefits to government revenue is [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Housing Benefit to government revenue is [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -188,7 +188,7 @@ PolicyEngine estimates that the cost of housing benefits to government revenue i
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of housing benefit by income decile",
+      "text": "Distributional impact of Housing Benefit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -264,7 +264,7 @@ PolicyEngine estimates that the cost of housing benefits to government revenue i
 
 ### Tax Credits
 
-Tax Credits provide support to families with children and working people on low incomes, calculated in the [`tax_credits.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) file. The system consists of two elements: Child Tax Credit and Working Tax Credit, which can be claimed separately or together depending on circumstances.
+Tax Credits offer payments to families with children and working people on low incomes, calculated in the [`tax_credits.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) file. The system consists of two elements: Child Tax Credit and Working Tax Credit, which can be claimed separately or together depending on circumstances.
 
 We calculate Tax Credits using the following methodology:
 
@@ -276,10 +276,10 @@ We calculate Tax Credits using the following methodology:
 The Tax Credits system consists of two main components, which we explain in detail below:
 
 - **Child Tax Credit (CTC)**
-  Support for families with children regardless of employment status. In 2025, components include a family element (£570 per year) and a child element (£3,455 per year per child), subject to the two-child limit. Additional amounts are paid for disabled children. The family element is a flat rate paid to families with at least one qualifying child, while the child element is paid for each eligible child (subject to the two-child limit for children born after April 2017).
+  Payments for families with children regardless of employment status. In 2025, components include a family element (£570 per year) and a child element (£3,455 per year per child), subject to the two-child limit. Additional amounts are paid for disabled children. The family element is a flat rate paid to families with at least one qualifying child, while the child element is paid for each eligible child (subject to the two-child limit for children born after April 2017).
 
 - **Working Tax Credit (WTC)**
-  Support for those in low-paid work. For 2025, components include a basic element (£2,435 per year), additional elements for couples or lone parents, a 30-hour element for those working at least 30 hours weekly, and a childcare element covering up to 70% of eligible costs. The basic element is paid to everyone who qualifies for Working Tax Credit, with additional amounts based on household composition and working hours. The childcare element supports working parents with childcare costs up to a maximum of £175 per week for one child or £300 per week for two or more children.
+  Assistance for those in low-paid work. For 2025, components include a basic element (£2,435 per year), additional elements for couples or lone parents, a 30-hour element for those working at least 30 hours weekly, and a childcare element covering up to 70% of eligible costs. The basic element is paid to everyone who qualifies for Working Tax Credit, with additional amounts based on household composition and working hours. The childcare element provides money to working parents for childcare costs up to a maximum of £175 per week for one child or £300 per week for two or more children.
 
 Tax Credits are reduced at a rate of 41% when income exceeds the threshold (£7,455 for WTC+CTC claims and £18,725 for CTC-only claims in 2025). This means that for every £1 of income above the threshold, Tax Credits are reduced by 41p.
 
@@ -303,7 +303,7 @@ Pension Credit consists of two main components, which we explain in detail below
   Tops up weekly income to a guaranteed minimum level, calculated in [`guarantee_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/guarantee_credit/guarantee_credit.py). For 2025, the standard minimum guarantee is £218.15 per week for singles and £332.95 per week for couples. Additional amounts are added for severe disability, caring responsibilities, and dependent children. The methodology calculates the difference between the applicable minimum guarantee (including any additional amounts) and the claimant's assessed income, paying the shortfall as Guarantee Credit.
 
 - **Savings Credit**
-  Provides extra support for those with modest savings or income above the basic State Pension level, calculated in [`savings_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py). It's only available to those who reached State Pension age before April 2016. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level.
+  Provides additional payments for those with modest savings or income above the basic State Pension level, calculated in [`savings_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py). It's only available to those who reached State Pension age before April 2016. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level.
 
   We calculate Savings Credit using the following methodology:
 
@@ -417,7 +417,7 @@ Non-means-tested benefits address specific needs or circumstances regardless of 
 
 ### Personal Independence Payment (PIP)
 
-PIP supports those with long-term health conditions or disabilities, calculated in the [`pip.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) file. The benefit has two components: daily living and mobility. Each component can be paid at a standard or enhanced rate depending on needs assessment. PIP replaced Disability Living Allowance for working-age adults and uses a points-based assessment system to determine eligibility and rate.
+PIP provides financial assistance to those with long-term health conditions or disabilities, calculated in the [`pip.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) file. The benefit has two components: daily living and mobility. Each component can be paid at a standard or enhanced rate depending on needs assessment. PIP replaced Disability Living Allowance for working-age adults and uses a points-based assessment system to determine eligibility and rate.
 
 We calculate PIP using the following methodology:
 
@@ -639,7 +639,7 @@ PolicyEngine estimates that the cost of DLA to government revenue is [£9.3 bill
 
 ### Attendance Allowance
 
-Attendance Allowance supports older people with care needs, calculated in the [`attendance_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) file. It's paid at two rates depending on the level of care needed. Attendance Allowance is available to those who became disabled after reaching State Pension age, as they cannot claim PIP or DLA for the first time after this age.
+Attendance Allowance provides financial assistance to older people with care needs, calculated in the [`attendance_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) file. It's paid at two rates depending on the level of care needed. Attendance Allowance is available to those who became disabled after reaching State Pension age, as they cannot claim PIP or DLA for the first time after this age.
 
 We calculate Attendance Allowance using the following methodology:
 
@@ -882,7 +882,7 @@ Both systems use the "triple lock" for annual increases, defined in [`triple_loc
 
 ### Winter Fuel Payment
 
-Winter Fuel Payment provides annual support for older people with heating costs, calculated in the [`WFA.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) file. It is an annual tax-free payment made to eligible pensioners to help with winter heating costs.
+Winter Fuel Payment provides annual financial assistance for older people with heating costs, calculated in the [`WFA.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) file. It is an annual tax-free payment made to eligible pensioners to help with winter heating costs.
 
 We calculate Winter Fuel Payment using the following methodology:
 
@@ -1353,7 +1353,7 @@ PolicyEngine estimates that the cost of targeted childcare entitlement to govern
 
 ### Study Childcare Entitlement
 
-The Study Childcare Entitlement, also known as Care to Learn, provides financial support for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file.
+The Study Childcare Entitlement, also known as Care to Learn, provides financial assistance for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file.
 
 We calculate Study Childcare Entitlement using the following methodology:
 
@@ -1362,7 +1362,7 @@ We calculate Study Childcare Entitlement using the following methodology:
 3. Checking if they live in England and are not apprentices
 4. Calculating the monetary value based on regional rates (London vs outside London)
 
-For 2025, the scheme provides weekly support of up to £195 per week for those living in London and £180 per week for those living outside London. This weekly amount is multiplied by the number of weeks in a year to determine the annual value, making it worth up to £10,140 per year for London residents and £9,360 per year for those outside London.
+For 2025, the scheme provides weekly payments of up to £195 per week for those living in London and £180 per week for those living outside London. This weekly amount is multiplied by the number of weeks in a year to determine the annual value, making it worth up to £10,140 per year for London residents and £9,360 per year for those outside London.
 
 Eligibility is determined in [`study_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py), which verifies that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
 
