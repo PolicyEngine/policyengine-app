@@ -37,7 +37,8 @@ export default function County(props) {
     props;
 
   const dC = useDisplayCategory();
-  const [_, setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_searchParams, setSearchParams] = useSearchParams();
 
   function handleSubmit(value) {
     let newHousehold = JSON.parse(JSON.stringify(householdInput));
