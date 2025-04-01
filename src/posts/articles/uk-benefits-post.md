@@ -4,40 +4,46 @@ This post provides an overview of how benefits are modelled in PolicyEngine UK. 
 
 The post is organised into two main sections. First, we examine means-tested benefits (Universal Credit, legacy benefits, and pension-age benefits), which provide support based on household income and savings. Second, we explore non-means-tested benefits (disability benefits, child benefits, and retirement benefits) that are provided based on specific circumstances regardless of income.
 
-The table below summarises key metrics for each benefit in the UK system, showing PolicyEngine's implementation and the specific values for 2025.
+The table below summarises key metrics for each benefit in the UK system, showing PolicyEngine's revenue estimates. In the following sections, we dive deeper into each of these benefits, examining their structure, implementation, and distributional impact across income groups.
 
-| Programme                       | PolicyEngine implementation                                                           | Key rates (2025)                                                                                                                                                                                                                                                      |
-| ------------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Universal Credit                | Calculated using maximum entitlement minus income reduction, with benefit cap applied | Standard allowance: £311.68/month (single under 25), £393.45/month (single over 25), £489.23/month (couple both under 25), £617.60/month (couple with at least one over 25); Work allowance: £404/month (with housing), £673/month (without housing); Taper rate: 55% |
-| Pension Credit                  | Sum of Guarantee Credit and Savings Credit, with 70% takeup rate                      | Minimum guarantee: £218.15/week (singles), £332.95/week (couples); Savings Credit threshold: £189.80/week (singles), £301.22/week (couples)                                                                                                                           |
-| Personal Independence Payment   | Sum of daily living and mobility components                                           | Daily living component: £108.55/week (enhanced), £72.65/week (standard); Mobility component: £75.75/week (enhanced), £28.70/week (standard)                                                                                                                           |
-| Disability Living Allowance     | Sum of self-care and mobility components                                              | Self-care component: £108.55/week (higher), £72.65/week (middle), £28.70/week (lower); Mobility component: £75.75/week (higher), £28.70/week (lower)                                                                                                                  |
-| Attendance Allowance            | Weekly rate multiplied by weeks in year                                               | Higher rate: £108.55/week, Lower rate: £72.65/week                                                                                                                                                                                                                    |
-| Tax-Free Childcare              | 20% contribution of childcare costs                                                   | Maximum contribution: £2,000/year per standard child, £4,000/year per disabled child                                                                                                                                                                                  |
-| Universal Childcare Entitlement | Free childcare hours × funding rate                                                   | 570 hours per year for 3-4 year olds; Funding rate (3+): £5.88/hour                                                                                                                                                                                                   |
-| Extended Childcare Entitlement  | Weekly hours × funding rate × weeks                                                   | Hours: 15-30 hours/week depending on age; Funding rates: £11.22/hour (under 2), £8.28/hour (age 2), £5.88/hour (age 3+)                                                                                                                                               |
+| Program                       | PolicyEngine revenue estimate £billion (2025)                                                                            | OBR revenue estimate (2025-26) | PolicyEngine affected population estimate % (2025) |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------- | ---------------- |
+| Universal Credit                | [54.9](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=81101) | [95.3](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-universal-credit/) (Universal credit and legacy benefits) | 21.8 |
+| Housing Benefit                 | [7.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663)   |  | 2.9 |
+| Tax Credits                     | [<1.0](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677)                                                                                                                      |  | 0.1 |
+| Pension Credit                  | [7.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685)  |  | 3.6 |
+| Personal Independence Payment   | [30.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) |  | 10.3 |
+| Disability Living Allowance     | [9.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689)  |  | 4.5 |
+| Attendance Allowance            | [10.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) |  | 3.9 |
+| Child Benefit                   | [12.3](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) |  | 31.3 |
+| Winter Fuel Payment             | [<1.0](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702)                                                                                                                      |  | 2.7 |
+| Tax-Free Childcare              | [1.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603)  |  | 4.6 |
+| Universal Childcare Entitlement | [5.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615)  |  | 7.9 |
+| Extended Childcare Entitlement  | [6.2](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613)  |  | 4.4 |
+| Targeted Childcare Entitlement  | [1.0](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617)  |  | 1.1 |
+| Study Childcare Entitlement     | [8.7](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608)  |  | 4.9 |
 
 ## Means-tested benefits
 
-Means-tested benefits provide targeted support to those on low incomes. These benefits are awarded based on household income, savings, and circumstances, with payments reducing as income increases. The term "means-testing" refers to the assessment of a claimant's financial resources to determine eligibility and payment amount. Our implementation of means-tested benefits accounts for the interaction between different income sources, capital limits, and household composition.
+Means-tested benefits are awarded based on household income, savings, and circumstances, with payments reducing as income increases. The term "means-testing" refers to the assessment of a claimant's financial resources to determine eligibility and payment amount. Our implementation of means-tested benefits accounts for the interaction between different income sources, capital limits, and household composition.
 
 ### Universal Credit
 
 Universal Credit is a means-tested benefit introduced to replace six legacy benefits for working-age people, implemented in the [`universal_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/universal_credit.py) file.
 
-Our calculation methodology first determines a household's maximum entitlement by adding together various elements based on household circumstances, then reduces this amount based on income (applying the taper rate) and finally applies a benefit cap if necessary.
+Our calculation methodology for Universal Credit works by first determining a household's maximum entitlement by adding together various elements based on household circumstances, then reducing this amount based on income (applying the taper rate) and finally applying a benefit cap if necessary.
 
 - **Standard allowance**
-  This forms the basic element of Universal Credit that all eligible claimants receive, calculated in the [`uc_standard_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/standard_allowance/uc_standard_allowance.py) file. The amount varies by age and whether claiming as an individual or couple. For 2025, a single person under 25 receives £311.68 per month, while a single person over 25 receives £393.45 per month. Couples where both members are under 25 receive £489.23 per month, while couples with at least one member over 25 receive £617.60 per month. The methodology identifies the claimant type (single or couple, age categories) and assigns the appropriate monthly rate, which is then annualised for our calculations.
+  This forms the basic element of Universal Credit that all eligible claimants receive, calculated in the [`uc_standard_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/standard_allowance/uc_standard_allowance.py) file. The amount varies by age and whether claiming as an individual or couple. For 2025, a single person under 25 receives £311.68 per month, while a single person over 25 receives £393.45 per month. Couples where both members are under 25 receive £489.23 per month, while couples with at least one member over 25 receive £617.60 per month. The methodology identifies the claimant type (single or couple, age categories) and assigns the monthly rate, which is then annualised for our calculations.
 
 - **Child element**
   Additional amounts for children are calculated in the [`uc_child_element.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/child_element/uc_child_element.py) file. For 2025, the first child born before April 2017 receives a higher amount of £333.33 per month, while other children receive £287.92 per month. The two-child limit, introduced in April 2017, restricts support to the first two children in most cases, unless exemptions apply (such as multiple births or non-consensual conception). Our methodology identifies each eligible child in the household, determines whether the higher rate applies, applies the two-child limit where relevant, and sums the resulting entitlements.
 
 - **Housing costs element**
-  Housing support is calculated in the [`uc_housing_costs_element.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/uc_housing_costs_element.py) file. For social housing tenants, the eligible housing costs typically match the full rent. For private rentals, the amount is capped by Local Housing Allowance (LHA) rates for the area, which vary based on location and property size requirements. The final amount is reduced by any non-dependent deductions for other adults in the household. Our calculation applies the appropriate caps based on household composition and geographical location, simulating the real-world application of LHA rates and non-dependent deductions.
+  Housing support is calculated in the [`uc_housing_costs_element.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/housing_costs_element/uc_housing_costs_element.py) file. For social housing tenants, the eligible housing costs match the full rent. For private rentals, the amount is capped by Local Housing Allowance (LHA) rates for the area, which vary based on location and property size requirements. The final amount is reduced by any non-dependent deductions for other adults in the household. Our calculation applies the appropriate caps based on household composition and geographical location, simulating the real-world application of LHA rates and non-dependent deductions.
 
 - **Work allowances and taper rate**
-  These determine how Universal Credit is reduced as earnings increase. Work allowances are calculated in the [`uc_work_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/work_allowance/uc_work_allowance.py) file. For 2025, the work allowance is £404 per month for those with housing support and £673 per month for those without housing support included in their Universal Credit. The taper rate (implemented in [`uc_income_reduction.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/income/uc_income_reduction.py)) is set at 55%, meaning Universal Credit is reduced by 55 pence for each pound earned above any applicable work allowance. Our methodology first determines if the household qualifies for a work allowance (based on having children or limited capability for work), applies the appropriate allowance, and then calculates the reduction using the taper rate applied to net income after the work allowance.
+  These determine how Universal Credit is reduced as earnings increase. Work allowances are calculated in the [`uc_work_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/work_allowance/uc_work_allowance.py) file. For 2025, the work allowance is £404 per month for those with housing support and £673 per month for those without housing support included in their Universal Credit. The taper rate (implemented in [`uc_income_reduction.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/income/uc_income_reduction.py)) is set at 55%, meaning Universal Credit is reduced by 55 pence for each pound earned above any applicable work allowance. Our methodology first determines if the household qualifies for a work allowance (based on having children or limited capability for work) and then calculates the reduction using the taper rate applied to net income after the work allowance.
 
 - **Benefit cap**
   A maximum limit on total benefit income is applied to Universal Credit, with higher rates for London residents and exemptions for households with significant earnings or disability benefits. The benefit cap methodology checks whether the household is exempt (based on earnings or qualifying benefits) and, if not, applies the appropriate cap based on household composition and location.
@@ -142,9 +148,9 @@ PolicyEngine estimates that the cost of Universal Credit to government revenue i
 
 ### Housing Benefit
 
-Housing Benefit supports rental costs for those not receiving Universal Credit, calculated in the [`housing_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) file. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the "applicable amount" (the amount deemed necessary for basic living costs). Further reductions apply for non-dependent adults living in the household. Different parameters apply for working-age versus pension-age claimants.
+Housing Benefit supports rental costs for those not receiving Universal Credit, calculated in the [`housing_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) file. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the "applicable amount". Further reductions apply for non-dependent adults living in the household. Different parameters apply for working-age versus pension-age claimants.
 
-Our methodology calculates Housing Benefit by:
+We calculate Housing Benefit using the following methodology:
 
 1. Determining the eligible rent (applying the LHA cap for private rentals)
 2. Calculating the applicable amount (the minimum income level for basic needs)
@@ -156,7 +162,7 @@ The applicable income is calculated in [`housing_benefit_applicable_income.py`](
 
 Non-dependent deductions are calculated in [`housing_benefit_non_dep_deductions.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/non_dep_deduction/housing_benefit_non_dep_deductions.py). A non-dependent is an adult who lives with the claimant (such as an adult child or parent) and is expected to contribute to housing costs. The deduction amount varies based on the non-dependent's income and circumstances.
 
-PolicyEngine estimates that the cost of housing benefits to government revenue is [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=80663&region=uk&timePeriod=2025&baseline=1) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of housing benefits to government revenue is [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -258,12 +264,14 @@ PolicyEngine estimates that the cost of housing benefits to government revenue i
 
 Tax Credits provide support to families with children and working people on low incomes, calculated in the [`tax_credits.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) file. The system consists of two elements: Child Tax Credit and Working Tax Credit, which can be claimed separately or together depending on circumstances.
 
-Our methodology for Tax Credits:
+We calculate Tax Credits using the following methodology:
 
-1. Calculates the maximum entitlement for both Child Tax Credit and Working Tax Credit
-2. Determines the relevant income threshold (different for those claiming both credits versus Child Tax Credit only)
-3. Reduces the entitlement by 41% of income above the threshold, withdrawing Working Tax Credit first, then Child Tax Credit
-4. Applies a minimum payment threshold (awards below this amount are not paid)
+1. Calculating the maximum entitlement for both Child Tax Credit and Working Tax Credit
+2. Determining the relevant income threshold (different for those claiming both credits versus Child Tax Credit only)
+3. Reducing the entitlement by 41% of income above the threshold, withdrawing Working Tax Credit first, then Child Tax Credit
+4. Applying a minimum payment threshold (awards below this amount are not paid)
+
+The Tax Credits system consists of two main components, which we explain in detail below:
 
 - **Child Tax Credit (CTC)**
   Support for families with children regardless of employment status. In 2025, components include a family element (£570 per year) and a child element (£3,455 per year per child), subject to the two-child limit. Additional amounts are paid for disabled children. The family element is a flat rate paid to families with at least one qualifying child, while the child element is paid for each eligible child (subject to the two-child limit for children born after April 2017).
@@ -279,27 +287,29 @@ PolicyEngine estimates that Tax Credit costs the government less than [£1 billi
 
 Pension Credit ensures a minimum income level for pensioners, calculated in the [`pension_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/pension_credit.py) file. The benefit consists of two parts: Guarantee Credit and Savings Credit. A takeup probability of 70% is applied to model the fact that not all eligible pensioners claim the benefit. Takeup rates represent the proportion of eligible individuals who actually claim a benefit, and our model incorporates this real-world factor to produce more accurate aggregate estimates.
 
-Our methodology for Pension Credit:
+We calculate Pension Credit using the following methodology:
 
-1. Determines if the household contains at least one person of State Pension age
-2. Calculates Guarantee Credit entitlement
-3. Calculates Savings Credit entitlement (if applicable)
-4. Combines the two components
-5. Applies the takeup probability to model real-world claiming behaviour
+1. Determining if the household contains at least one person of State Pension age
+2. Calculating Guarantee Credit entitlement
+3. Calculating Savings Credit entitlement (if applicable)
+4. Combining the two components
+5. Applying the takeup probability to model real-world claiming behaviour
+
+Pension Credit consists of two main components, which we explain in detail below:
 
 - **Guarantee Credit**
   Tops up weekly income to a guaranteed minimum level, calculated in [`guarantee_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/guarantee_credit/guarantee_credit.py). For 2025, the standard minimum guarantee is £218.15 per week for singles and £332.95 per week for couples. Additional amounts are added for severe disability, caring responsibilities, and dependent children. The methodology calculates the difference between the applicable minimum guarantee (including any additional amounts) and the claimant's assessed income, paying the shortfall as Guarantee Credit.
 
 - **Savings Credit**
-  Provides extra support for those with modest savings or income above the basic State Pension level, calculated in [`savings_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py). It's only available to those who reached State Pension age before April 2016, reflecting a policy change that restricted this component for newer pensioners. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level.
+  Provides extra support for those with modest savings or income above the basic State Pension level, calculated in [`savings_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py). It's only available to those who reached State Pension age before April 2016. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level.
 
-  The calculation methodology:
+  We calculate Savings Credit using the following methodology:
 
-  1. Checks if the claimant reached State Pension age before April 2016
-  2. Determines the relevant income for Savings Credit calculation (excluding certain income types)
-  3. Calculates the maximum possible Savings Credit as 60% of the difference between the minimum guarantee and the threshold
-  4. Awards Savings Credit at 60% of income above the threshold, up to the maximum
-  5. Reduces the award by 40% of income above the minimum guarantee
+  1. Checking if the claimant reached State Pension age before April 2016
+  2. Determining the relevant income for Savings Credit calculation (excluding certain income types)
+  3. Calculating the maximum possible Savings Credit as 60% of the difference between the minimum guarantee and the threshold
+  4. Awarding Savings Credit at 60% of income above the threshold, up to the maximum
+  5. Reducing the award by 40% of income above the minimum guarantee
 
 PolicyEngine estimates that the cost of pension credit to government revenue is [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025. The following figure shows the distributional impact of this reform.
 
@@ -401,20 +411,20 @@ PolicyEngine estimates that the cost of pension credit to government revenue is 
 
 ## Non-means-tested benefits
 
-Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources.
+Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources. In the following parts, we explain the different non-means-tested programmes and how we model each of them in detail.
 
 ### Personal Independence Payment (PIP)
 
 PIP supports those with long-term health conditions or disabilities, calculated in the [`pip.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) file. The benefit has two components: daily living and mobility. Each component can be paid at a standard or enhanced rate depending on needs assessment. PIP replaced Disability Living Allowance for working-age adults and uses a points-based assessment system to determine eligibility and rate.
 
-Our PIP methodology:
+We calculate PIP using the following methodology:
 
-1. Identifies individuals with disabilities in the dataset
-2. Assigns daily living and mobility components based on reported needs
-3. Applies the appropriate rate for each component
-4. Combines the components to determine the total PIP award
+1. Identifying individuals with disabilities in the dataset
+2. Assigning daily living and mobility components based on reported needs
+3. Applying the appropriate rate for each component
+4. Combining the components to determine the total PIP award
 
-The daily living component is calculated in [`daily_living.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/daily_living.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/mobility.py). For 2025, the daily living component is £108.55 per week at the enhanced rate and £72.65 per week at the standard rate. The mobility component is £75.75 per week at the enhanced rate and £28.70 per week at the standard rate. The annual amount is calculated by multiplying the weekly rates by 52.
+The daily living component is calculated in [`daily_living.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/daily_living.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/mobility.py). For 2025, the daily living component is £108.55 per week at the enhanced rate and £72.65 per week at the standard rate. The mobility component is £75.75 per week at the enhanced rate and £28.70 per week at the standard rate.
 
 PolicyEngine estimates that the cost of PIP to government revenue is [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025. The following figure shows the distributional impact of this reform.
 
@@ -518,12 +528,12 @@ PolicyEngine estimates that the cost of PIP to government revenue is [£30.6 bil
 
 DLA continues for children and some protected adults, calculated in the [`dla.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/dla.py) file. Similar to PIP, it has two components: self-care (equivalent to PIP's daily living) and mobility. DLA for children remains in place, while most working-age adults have been migrated to PIP. Some adults who received DLA before PIP was introduced remain on the benefit under transitional protection.
 
-Our DLA methodology:
+We calculate DLA using the following methodology:
 
-1. Identifies eligible children and protected adults in the dataset
-2. Assigns self-care component based on care needs (with three possible rates)
-3. Assigns mobility component based on mobility needs (with two possible rates)
-4. Combines the components to determine the total DLA award
+1. Identifying eligible children and protected adults in the dataset
+2. Assigning self-care component based on care needs (with three possible rates)
+3. Assigning mobility component based on mobility needs (with two possible rates)
+4. Combining the components to determine the total DLA award
 
 The self-care component is calculated in [`self_care.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/self_care.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/mobility.py). For 2025, the self-care component has three possible rates: higher (£108.55 per week), middle (£72.65 per week), and lower (£28.70 per week). The mobility component has two rates: higher (£75.75 per week) and lower (£28.70 per week). The annual amount is calculated by multiplying the weekly rates by 52.
 
@@ -629,15 +639,13 @@ PolicyEngine estimates that the cost of DLA to government revenue is [£9.3 bill
 
 Attendance Allowance supports older people with care needs, calculated in the [`attendance_allowance.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) file. It's paid at two rates depending on the level of care needed. Attendance Allowance is available to those who became disabled after reaching State Pension age, as they cannot claim PIP or DLA for the first time after this age.
 
-Our Attendance Allowance methodology:
+We calculate Attendance Allowance using the following methodology:
 
-1. Identifies individuals over State Pension age with care needs
-2. Determines the appropriate rate based on daytime and/or night-time care requirements
-3. Assigns the weekly rate and annualises the amount
+1. Identifying individuals over State Pension age with care needs
+2. Determining the appropriate rate based on daytime and/or night-time care requirements
+3. Assigning the weekly rate and annualising the amount
 
-For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are terminally ill. The lower rate applies to those needing care either during the day or at night. The annual amount is calculated by multiplying the weekly rate by 52.
-
-All three disability benefits are uprated annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
+For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are ill. The lower rate applies to those needing care either during the day or at night. The annual amount is calculated by multiplying the weekly rate by 52. All three disability benefits are uprated annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
 
 PolicyEngine estimates that the cost of Attendance Allowance to government revenue is [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025. The following figure shows the distributional impact of this reform.
 
@@ -739,17 +747,15 @@ PolicyEngine estimates that the cost of Attendance Allowance to government reven
 
 ### Child Benefit
 
-Child Benefit provides regular payments for families with children, calculated in the [`child_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/child_benefit.py) file. It is paid for children under 16, or under 20 if they remain in approved education or training. Unlike means-tested benefits, Child Benefit is paid at a flat rate regardless of income, though high earners may have part or all of it reclaimed through the tax system.
+Child Benefit provides regular payments for families with children, calculated in the [`child_benefit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/child_benefit.py) file. It is paid for children under 16, or under 20 if they remain in approved education or training. Unlike means-tested benefits, Child Benefit is paid at a flat rate regardless of income. For 2025, the rate is £26.04 per week for the first child and £17.24 per week for each additional child.
 
-Our Child Benefit methodology:
+We calculate Child Benefit using the following methodology:
 
-1. Identifies eligible children in each household
-2. Applies the higher rate for the eldest (or only) eligible child
-3. Applies the standard rate for additional eligible children
-4. Calculates the High Income Child Benefit Charge (HITC) if applicable
-5. Determines the net Child Benefit after the HITC
-
-For 2025, the rate is £26.04 per week for the first child and £17.24 per week for each additional child. These weekly rates are multiplied by 52 to produce annual amounts.
+1. Identifying eligible children in each household
+2. Applying the higher rate for the eldest (or only) eligible child
+3. Applying the standard rate for additional eligible children
+4. Calculating the High Income Child Benefit Charge (HITC) if applicable
+5. Determining the net Child Benefit after the HITC
 
 The High Income Child Benefit Charge (HITC) effectively withdraws this benefit when individual income exceeds £50,000, with complete withdrawal at £60,000. This charge is calculated as part of the income tax system in [`child_benefit_hitc.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py) and increases proportionally with income within this range. For each £100 of income above £50,000, 1% of the Child Benefit is reclaimed through the tax system.
 
@@ -855,32 +861,32 @@ PolicyEngine estimates that the cost of child benefit to government revenue is [
 
 State Pension provides regular payments based on National Insurance contributions, calculated in the [`state_pension.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/state_pension.py) file. Unlike means-tested benefits for pensioners like Pension Credit, State Pension is based on National Insurance contribution history rather than current financial circumstances.
 
-Our State Pension methodology:
+We calculate State Pension using the following methodology:
 
-1. Determines if the individual has reached State Pension age
-2. Identifies which State Pension system applies (pre or post April 2016)
-3. Calculates entitlement based on National Insurance contributions
-4. Applies the appropriate rates based on the system
+1. Determining if the individual has reached State Pension age
+2. Identifying which State Pension system applies (pre or post April 2016)
+3. Calculating entitlement based on National Insurance contributions
+4. Applying the appropriate rates based on the system
 
 There are two systems depending on when the person reached State Pension age:
 
 - **New State Pension**
-  For those reaching State Pension age on or after April 6, 2016, implemented in the [`new_state_pension`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/new_state_pension/) parameters. For 2025, the full rate is £221.20 per week, reduced proportionally for those with fewer than 35 qualifying years of National Insurance contributions (minimum 10 years required). Our calculation multiplies the full rate by the fraction of qualifying years divided by 35, with a minimum threshold of 10 qualifying years.
+  For those reaching State Pension age on or after April 6, 2016, implemented in the [`new_state_pension`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/new_state_pension/) parameters. For 2025, the full rate is £221.20 per week, reduced proportionally for those with fewer than 35 qualifying years of National Insurance contributions (minimum 10 years required). The calculation multiplies the full rate by the fraction of qualifying years divided by 35, with a minimum threshold of 10 qualifying years.
 
 - **Basic State Pension**
   For those who reached State Pension age before April 6, 2016, implemented in the [`basic_state_pension`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/basic_state_pension/) parameters. For 2025, the full rate is £169.50 per week, plus Additional State Pension based on earnings-related contributions. The Basic State Pension requires 30 qualifying years for a full pension, with a proportional reduction for those with fewer years.
 
-Both systems use the "triple lock" for annual increases, defined in [`triple_lock`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/triple_lock/), raising pensions by the highest of inflation, earnings growth, or the fixed rate of 2.5%. Our model implements this by comparing the three potential uprating mechanisms and applying the highest increase each year.
+Both systems use the "triple lock" for annual increases, defined in [`triple_lock`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/triple_lock/), raising pensions by the highest of inflation, earnings growth, or the fixed rate of 2.5%. The model implements this by comparing the three potential uprating mechanisms and applying the highest increase each year.
 
 ### Winter Fuel Payment
 
 Winter Fuel Payment provides annual support for older people with heating costs, calculated in the [`WFA.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) file. It is an annual tax-free payment made to eligible pensioners to help with winter heating costs.
 
-Our Winter Fuel Payment methodology:
+We calculate Winter Fuel Payment using the following methodology:
 
-1. Identifies households with members of eligible age
-2. Determines the appropriate payment rate based on age and household composition
-3. Assigns the annual payment amount
+1. Identifying households with members of eligible age
+2. Determining the appropriate payment rate based on age and household composition
+3. Assigning the annual payment amount
 
 For 2025, households with someone aged 66-79 receive £200, while households with someone aged 80 or over receive £300. In multi-pensioner households, the payment is allocated to ensure no household gets more than the maximum entitlement.
 
@@ -892,12 +898,12 @@ PolicyEngine estimates that Winter Fuel Payment costs the government less than [
 
 Tax-Free Childcare provides a government top-up for childcare spending, calculated in the [`tax_free_childcare.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/tax_free_childcare.py) file. This scheme operates through an online account where parents pay in money for childcare, and the government adds a top-up.
 
-Our Tax-Free Childcare methodology:
+We calculate Tax-Free Childcare using the following methodology:
 
-1. Identifies households with eligible children
-2. Checks income conditions and work requirements for parents
-3. Calculates childcare expenses and the corresponding government contribution
-4. Applies the maximum contribution cap per child
+1. Identifying households with eligible children
+2. Checking income conditions and work requirements for parents
+3. Calculating childcare expenses and the corresponding government contribution
+4. Applying the maximum contribution cap per child
 
 For 2025, the government contributes 20% of childcare costs, effectively adding £2 for every £8 spent by parents. The maximum annual contribution is £2,000 per standard child and £4,000 per disabled child. This 20% rate effectively provides relief equivalent to the basic rate of income tax.
 
@@ -1005,11 +1011,11 @@ PolicyEngine estimates that the cost of tax-free childcare to government revenue
 
 The Universal Childcare Entitlement offers free childcare hours for all children aged 3-4 years old, calculated in the [`universal_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py) file. This is available to all children regardless of parental income or work status.
 
-Our Universal Childcare Entitlement methodology:
+We calculate Universal Childcare Entitlement using the following methodology:
 
-1. Identifies children aged 3-4 years old
-2. Applies the standard entitlement of 570 hours per year
-3. Calculates the monetary value using the applicable funding rate
+1. Identifying children aged 3-4 years old
+2. Applying the standard entitlement of 570 hours per year
+3. Calculating the monetary value using the applicable funding rate
 
 For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours per week over 38 weeks), funded at a rate of £5.88 per hour for children aged 3 and over. This produces an annual value of £3,351.60 per eligible child, which is counted as income-in-kind rather than cash support.
 
@@ -1117,12 +1123,12 @@ PolicyEngine estimates that the cost of universal childcare entitlement to gover
 
 The Extended Childcare Entitlement provides additional hours for working parents, calculated in the [`extended_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py) file. This extends the universal offer for working parents, providing an additional 15 hours per week for 3-4 year olds and, from 2024, beginning to extend provision to younger children.
 
-Our Extended Childcare Entitlement methodology:
+We calculate Extended Childcare Entitlement using the following methodology:
 
-1. Identifies children in eligible age ranges
-2. Checks parental work and income conditions
-3. Applies the appropriate hourly entitlement based on child age
-4. Calculates the monetary value using age-specific funding rates
+1. Identifying children in eligible age ranges
+2. Checking parental work and income conditions
+3. Applying the appropriate hourly entitlement based on child age
+4. Calculating the monetary value using age-specific funding rates
 
 The entitlement varies by child age in 2025:
 
@@ -1234,12 +1240,12 @@ PolicyEngine estimates that the cost of extended childcare entitlement to govern
 
 The Targeted Childcare Entitlement provides free childcare for 2-year-olds in lower income families, calculated in the [`targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) file.
 
-Our Targeted Childcare Entitlement methodology:
+We calculate Targeted Childcare Entitlement using the following methodology:
 
-1. Identifies children aged 2 years old
-2. Checks if the family receives qualifying benefits or meets income criteria
-3. Applies the standard entitlement of 570 hours per year
-4. Calculates the monetary value using the 2-year-old funding rate
+1. Identifying children aged 2 years old
+2. Checking if the family receives qualifying benefits or meets income criteria
+3. Applying the standard entitlement of 570 hours per year
+4. Calculating the monetary value using the 2-year-old funding rate
 
 For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded at a rate of £8.28 per hour. This produces an annual value of £4,719.60 per eligible child.
 
@@ -1347,12 +1353,12 @@ PolicyEngine estimates that the cost of targeted childcare entitlement to govern
 
 The Study Childcare Entitlement, also known as Care to Learn, provides financial support for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file.
 
-Our Study Childcare Entitlement methodology:
+We calculate Study Childcare Entitlement using the following methodology:
 
-1. Identifies eligible young parents (under 20 years old)
-2. Verifies they are in non-tertiary education (not university or higher education)
-3. Checks if they live in England and are not apprentices
-4. Calculates the monetary value based on regional rates (London vs outside London)
+1. Identifying eligible young parents (under 20 years old)
+2. Verifying they are in non-tertiary education (not university or higher education)
+3. Checking if they live in England and are not apprentices
+4. Calculating the monetary value based on regional rates (London vs outside London)
 
 For 2025, the scheme provides weekly support of up to £195 per week for those living in London and £180 per week for those living outside London. This weekly amount is multiplied by the number of weeks in a year to determine the annual value, making it worth up to £10,140 per year for London residents and £9,360 per year for those outside London.
 
