@@ -1182,15 +1182,6 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
-    "title": "Taxes in PolicyEngine",
-    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-27 00:00:00",
-    "tags": ["uk", "policy", "featured", "tax"],
-    "authors": ["vahid-ahmadi"],
-    "filename": "uk-taxes-post.md",
-    "image": "uk-tax-post.jpg"
-  },
-  {
     "title": "Idaho’s New Individual Income Tax Changes",
     "date": "2025-04-01",
     "authors": ["david-trimmer"],
