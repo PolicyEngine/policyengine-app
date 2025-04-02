@@ -8,8 +8,8 @@ The table below summarises key metrics for each tax in the UK system, comparing 
 
 | Program                            | PolicyEngine revenue estimate £billion (2025)                                                                                        | OBR revenue estimate (2025-26)                                                                                                                                                                                                                                                                                                            | PolicyEngine affected population estimate % (2025) |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| Income tax                         | [307.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79847)     | [328.7](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/)                                                                                                                                                                                                                                                          | 80.2                                               |
-| National Insurance                 | [148.1](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=70645&region=uk&timePeriod=2025&baseline=79825) | [198.8](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/)                                                                                                                                                                                                                               | 67.5                                               |
+| Income tax                         | 322.2     | [328.7](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/)                                                                                                                                                                                                                                                          | 80.2                                               |
+| National Insurance                 | 179.8 | [198.8](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/)                                                                                                                                                                                                                               | 67.5                                               |
 | Capital gains tax                  | [17.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852)      | [16.2](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/capital-gains-tax/)                                                                                                                                                                                                                                                    | 3.5                                                |
 | VAT                                | [198.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853)     | [182.1](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/)                                                                                                                                                                                                                                                                 | 99.5                                               |
 | Fuel duty                          | [28.3](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854)      | [27.3](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/fuel-duties/)                                                                                                                                                                                                                                                          | 36.1                                               |
@@ -62,31 +62,31 @@ HMRC administers this tax using a band system with different rates for certain i
 
   - **Child benefit high income tax charge (HITC)**: A tax charge on high earners who or whose partner receives child benefit. Child benefit rates in 2025 are £26.04 per week for the eldest child and £17.24 per week for each additional child. The HITC withdraws this benefit when income exceeds a threshold, with full withdrawal at a higher threshold, calculated as [`child_benefit_hitc`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py).
 
-PolicyEngine estimates that income tax raises government revenue by [£307.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79847) in 2025. The Office for Budget Responsibility (OBR) estimates that income tax revenue for 2025-26 is [£328.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/). The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that income tax raises government revenue by £322.2 billion in 2025. The Office for Budget Responsibility (OBR) estimates that income tax revenue for 2025-26 is [£328.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-2.4, -5.1, -5.4, -8.1, -8.2, -12.3, -12.5, -16.6, -18.3, -28.2],
+      "y": [435, 1216, 1859, 3516, 4415, 7188, 10877, 13777, 19544, 63929],
       "type": "bar",
       "marker": {
         "color": "#616161"
       },
-      "name": "Change in household income (%)",
-      "text": ["-2.4%", "-5.1%", "-5.4%", "-8.1%", "-8.2%", "-12.3%", "-12.5%", "-16.6%", "-18.3%", "-28.2%"],
-      "textposition": "inside",
+      "name": "Average Income Tax (£)",
+      "text": ["435", "1,216", "1,859", "3,516", "4,415", "7,188", "10,877", "13,777", "19,544", "63,929"],
+      "textposition": "outside",
       "insidetextfont": {
         "family": "Roboto Serif",
-        "color": "white",
+        "color": "black",
         "size": 10
       }
     }
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of income tax by income decile",
+      "text": "Average income tax by household income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -95,19 +95,19 @@ PolicyEngine estimates that income tax raises government revenue by [£307.5 bil
       "xanchor": "left"
     },
     "yaxis": {
-      "title": "Relative change in household income",
+      "title": "Average income tax (£)",
       "titlefont": {
         "family": "Roboto Serif"
       },
       "tickfont": {
         "family": "Roboto Serif"
       },
-      "tickformat": ",.1%",
+      "tickformat": ",",
       "automargin": true,
-      "range": [-30, 0],
-      "dtick": 5,
-      "tickvals": [0, -5, -10, -15, -20, -25, -30],
-      "ticktext": ["0.0%", "-5.0%", "-10.0%", "-15.0%", "-20.0%", "-25.0%", "-30.0%"],
+      "range": [0, 70000],
+      "dtick": 10000,
+      "tickvals": [0, 10000, 20000, 30000, 40000, 50000, 60000],
+      "ticktext": ["0", "10k", "20k", "30k", "40k", "50k", "60k"],
       "gridwidth": 1,
       "gridcolor": "#e0e0e0"
     },
@@ -156,8 +156,8 @@ PolicyEngine estimates that income tax raises government revenue by [£307.5 bil
         "yanchor": "bottom"
       }
     ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
   }
 }
 ```
@@ -184,102 +184,103 @@ National Insurance consists of contributions paid by employees, employers and th
   - **Main rate**: Paid on self-employed profits between the lower profits limit and upper profits limit, calculated as [`ni_class_4_main`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_main.py).
   - **Additional rate**: Paid on self-employed profits above the upper profits limit, calculated as [`ni_class_4_maximum`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_maximum.py).
 
-PolicyEngine estimates that National Insurance raises government revenue by [£148.1 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79825) in 2025. The Office for Budget Responsibility (OBR) estimates that National Insurance contributions for 2025-26 are [£198.8 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/). The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that National Insurance raises government revenue by £179.8 billion in 2025. The Office for Budget Responsibility (OBR) estimates that National Insurance contributions for 2025-26 are [£198.8 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
- "data": [
-   {
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [-0.5, -0.8, -2.0, -4.5, -5.0, -8.6, -9.2, -10.9, -12.1, -9.3],
-     "type": "bar",
-     "marker": {
-       "color": "#616161"
-     },
-     "name": "Change in household income (%)",
-     "text": ["-0.5%", "-0.8%", "-2.0%", "-4.5%", "-5.0%", "-8.6%", "-9.2%", "-10.9%", "-12.1%", "-9.3%"],
-     "textposition": "inside",
-     "insidetextfont": {
-       "family": "Roboto Serif",
-       "color": "white",
-       "size": 10
-     }
-   }
- ],
- "layout": {
-   "title": {
-     "text": "Distributional impact of National Insurance by income decile",
-     "font": {
-       "family": "Roboto Serif",
-       "size": 16
-     },
-     "x": 0,
-     "xanchor": "left"
-   },
-   "yaxis": {
-     "title": "Relative change in household income",
-     "titlefont": {
-       "family": "Roboto Serif"
-     },
-     "tickfont": {
-       "family": "Roboto Serif"
-     },
-     "tickformat": ",.1%",
-     "automargin": true,
-     "range": [-14, 0],
-     "tickvals": [0, -2, -4, -6, -8, -10, -12, -14],
-     "ticktext": ["0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%", "-12.0%", "-14.0%"],
-     "gridwidth": 1,
-     "gridcolor": "#e0e0e0"
-   },
-   "xaxis": {
-     "title": "Income decile",
-     "titlefont": {
-       "family": "Roboto Serif"
-     },
-     "tickmode": "array",
-     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-   },
-   "height": 500,
-   "margin": {
-     "l": 50,
-     "r": 50,
-     "b": 100,
-     "t": 100,
-     "pad": 4
-   },
-   "annotations": [
-     {
-       "x": 1,
-       "y": -0.25,
-       "xref": "paper",
-       "yref": "paper",
-       "text": "Source: POLICY ENGINE",
-       "showarrow": false,
-       "font": {
-         "family": "Roboto Serif",
-         "size": 10,
-         "color": "#616161"
-       }
-     }
-   ],
-   "images": [
-     {
-       "source": "/logo512.png",
-       "x": 1,
-       "y": -0.18,
-       "xref": "paper",
-       "yref": "paper",
-       "sizex": 0.1,
-       "sizey": 0.1,
-       "xanchor": "right",
-       "yanchor": "bottom"
-     }
-   ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
- }
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [103, 261, 922, 2275, 4056, 4928, 8100, 9482, 14331, 24590],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average National Insurance (£)",
+      "text": ["103", "261", "922", "2,275", "4,056", "4,928", "8,100", "9,482", "14,331", "24,590"],
+      "textposition": "outside",
+      "insidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average National Insurance by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average National Insurance (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 26000],
+      "dtick": 5000,
+      "tickvals": [0, 5000, 10000, 15000, 20000, 25000],
+      "ticktext": ["0", "5k", "10k", "15k", "20k", "25k"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
 }
 ```
 
