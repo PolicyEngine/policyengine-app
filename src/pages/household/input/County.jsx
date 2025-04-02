@@ -1,28 +1,3 @@
-/*
-
-* DONE: Mock up basic component
-* DONE: Figure out how to integrate as non-default input
-* DONE: Generate and display list of counties
-* DONE: Add state abbreviation onto end when displaying
-* DONE: Filter said list by input state
-* DONE: Modify HouseholdPage to properly display as variable within search
-* DONE: Set default county based on state
-* DONE: Replace fips-county-codes with bug-free package
-* DONE: Consider replacing county generation with some means of reading from fips package
-* DONE: Map input county to FIPS code in counties dataset
-* DONE: Add code to update householdInput with FIPS
-* DONE: Fix bug to show entire county name
-* Ensure component only displays for US
-* Test properly showing county as searched variable
-* Test?
-  * Test that counties with same name, diff. state, return the right value
-  * Test that counties with FIPS beginning in 0 return correct value
-  * Test that counties that don't exist don't return anything
-  * Test that PR municipios fail
-  * Test that DC works
-  * Test that VA independent cities work
-
-*/
 
 import { Select } from "antd";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
