@@ -77,7 +77,7 @@ PolicyEngine estimates that income tax raises government revenue by £322.2 bill
       "name": "Average Income Tax (£)",
       "text": ["435", "1,216", "1,859", "3,516", "4,415", "7,188", "10,877", "13,777", "19,544", "63,929"],
       "textposition": "outside",
-      "insidetextfont": {
+      "outsidetextfont": {
         "family": "Roboto Serif",
         "color": "black",
         "size": 10
@@ -86,7 +86,7 @@ PolicyEngine estimates that income tax raises government revenue by £322.2 bill
   ],
   "layout": {
     "title": {
-      "text": "Average income tax by household income decile",
+      "text": "Average Income Tax by household income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -95,7 +95,7 @@ PolicyEngine estimates that income tax raises government revenue by £322.2 bill
       "xanchor": "left"
     },
     "yaxis": {
-      "title": "Average income tax (£)",
+      "title": "Average Income Tax (£)",
       "titlefont": {
         "family": "Roboto Serif"
       },
@@ -199,7 +199,7 @@ PolicyEngine estimates that National Insurance raises government revenue by £17
       "name": "Average National Insurance (£)",
       "text": ["103", "261", "922", "2,275", "4,056", "4,928", "8,100", "9,482", "14,331", "24,590"],
       "textposition": "outside",
-      "insidetextfont": {
+      "outsidetextfont": {
         "family": "Roboto Serif",
         "color": "black",
         "size": 10
@@ -293,714 +293,31 @@ Capital gains tax is charged on the profit when selling or disposing of an asset
 - **Higher rate (20%)**: Applied to gains for higher and additional rate taxpayers (28% on residential property for 2025), defined by the [`higher_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/higher_rate.yaml) parameter.
 - **Annual exempt amount**: A tax-free allowance for capital gains set at £3,000 in 2025, defined by the [`annual_exempt_amount`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/annual_exempt_amount.yaml) parameter.
 
-PolicyEngine estimates that capital gains tax raises government revenue by [£17.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) in 2025. The Office for Budget Responsibility (OBR) estimates that capital gains tax revenue for 2025-26 is [£16.2 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/capital-gains-tax/). The following figure shows the distributional impact of this reform.
-
-```plotly
-{
- "data": [
-   {
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [-0.0, -0.0, -0.0, -0.0, -0.0, -0.1, -0.1, -0.1, -0.2, -4.2],
-     "type": "bar",
-     "marker": {
-       "color": "#616161"
-     },
-     "name": "Change in household income (%)",
-     "text": ["-0.0%", "-0.0%", "-0.0%", "-0.0%", "-0.0%", "-0.1%", "-0.1%", "-0.1%", "-0.2%", "-4.2%"],
-     "textposition": "inside",
-     "insidetextfont": {
-       "family": "Roboto Serif",
-       "color": "white",
-       "size": 10
-     }
-   }
- ],
- "layout": {
-   "title": {
-     "text": "Distributional impact of capital gains tax by income decile",
-     "font": {
-       "family": "Roboto Serif",
-       "size": 16
-     },
-     "x": 0,
-     "xanchor": "left"
-   },
-   "yaxis": {
-     "title": "Relative change in household income",
-     "titlefont": {
-       "family": "Roboto Serif"
-     },
-     "tickfont": {
-       "family": "Roboto Serif"
-     },
-     "tickformat": ",.1%",
-     "automargin": true,
-     "range": [-4.5, 0],
-     "tickvals": [0, -0.5, -1.0, -1.5, -2.0, -2.5, -3.0, -3.5, -4.0, -4.5],
-     "ticktext": ["0.0%", "-0.5%", "-1.0%", "-1.5%", "-2.0%", "-2.5%", "-3.0%", "-3.5%", "-4.0%", "-4.5%"],
-     "gridwidth": 1,
-     "gridcolor": "#e0e0e0"
-   },
-   "xaxis": {
-     "title": "Income decile",
-     "titlefont": {
-       "family": "Roboto Serif"
-     },
-     "tickmode": "array",
-     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-   },
-   "height": 500,
-   "margin": {
-     "l": 50,
-     "r": 50,
-     "b": 100,
-     "t": 100,
-     "pad": 4
-   },
-   "annotations": [
-     {
-       "x": 1,
-       "y": -0.25,
-       "xref": "paper",
-       "yref": "paper",
-       "text": "Source: POLICY ENGINE",
-       "showarrow": false,
-       "font": {
-         "family": "Roboto Serif",
-         "size": 10,
-         "color": "#616161"
-       }
-     }
-   ],
-   "images": [
-     {
-       "source": "/logo512.png",
-       "x": 1,
-       "y": -0.18,
-       "xref": "paper",
-       "yref": "paper",
-       "sizex": 0.1,
-       "sizey": 0.1,
-       "xanchor": "right",
-       "yanchor": "bottom"
-     }
-   ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
- }
-}
-```
-
-### Council tax/domestic rates
-
-Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
-Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. In PolicyEngine, we apply the reported amounts from the Family Resources Survey data. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
-
-## Indirect taxes
-
-Indirect taxes are collected by intermediaries and passed to the government. They form part of the price of goods and services that consumers pay. Our indirect tax simulations rely on consumption data imputed to the Family Resources Survey dataset, calibrated to match aggregate statistics from HMRC and other government sources. In this post, all estimates provided are static estimates.
-
-### Value added tax (VAT)
-
-VAT generates revenue for the UK government.
-VAT is a consumption tax placed on products and services at each stage where value is added, calculated in PolicyEngine as [`vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/vat.py).
-
-- **Standard rate (20%)**: Applied to most goods and services in the UK in 2025, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
-- **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats in 2025, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
-
-PolicyEngine estimates that value added tax (VAT) raises government revenue by [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in 2025. The Office for Budget Responsibility (OBR) estimates that VAT revenue for 2025-26 is [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this reform.
-
-```plotly
-{
- "data": [
-   {
-     "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [-11.4, -10.1, -10.8, -12.3, -9.2, -9.9, -9.3, -12.2, -11.0, -13.1],
-     "type": "bar",
-     "marker": {
-       "color": "#616161"
-     },
-     "name": "Change in household income (%)",
-     "text": ["-11.4%", "-10.1%", "-10.8%", "-12.3%", "-9.2%", "-9.9%", "-9.3%", "-12.2%", "-11.0%", "-13.1%"],
-     "textposition": "inside",
-     "insidetextfont": {
-       "family": "Roboto Serif",
-       "color": "white",
-       "size": 10
-     }
-   }
- ],
- "layout": {
-   "title": {
-     "text": "Distributional impact of VAT by income decile",
-     "font": {
-       "family": "Roboto Serif",
-       "size": 16
-     },
-     "x": 0,
-     "xanchor": "left"
-   },
-   "yaxis": {
-     "title": "Relative change in household income",
-     "titlefont": {
-       "family": "Roboto Serif"
-     },
-     "tickfont": {
-       "family": "Roboto Serif"
-     },
-     "tickformat": ",.1%",
-     "automargin": true,
-     "range": [-14, 0],
-     "tickvals": [0, -2, -4, -6, -8, -10, -12, -14],
-     "ticktext": ["0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%", "-12.0%", "-14.0%"],
-     "gridwidth": 1,
-     "gridcolor": "#e0e0e0"
-   },
-   "xaxis": {
-     "title": "Income decile",
-     "titlefont": {
-       "family": "Roboto Serif"
-     },
-     "tickmode": "array",
-     "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-   },
-   "height": 500,
-   "margin": {
-     "l": 50,
-     "r": 50,
-     "b": 100,
-     "t": 100,
-     "pad": 4
-   },
-   "annotations": [
-     {
-       "x": 1,
-       "y": -0.25,
-       "xref": "paper",
-       "yref": "paper",
-       "text": "Source: POLICY ENGINE",
-       "showarrow": false,
-       "font": {
-         "family": "Roboto Serif",
-         "size": 10,
-         "color": "#616161"
-       }
-     }
-   ],
-   "images": [
-     {
-       "source": "/logo512.png",
-       "x": 1,
-       "y": -0.18,
-       "xref": "paper",
-       "yref": "paper",
-       "sizex": 0.1,
-       "sizey": 0.1,
-       "xanchor": "right",
-       "yanchor": "bottom"
-     }
-   ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
- }
-}
-```
-
-### Fuel duty
-
-The UK applies excise duties to specific products, including fuels.
-Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuels for vehicles or heating, calculated as [`fuel_duty`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/fuel_duty/fuel_duty.py).
-
-- **Petrol and diesel rates**: Set at £0.5795 per litre for both petrol and diesel in 2025, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
-
-PolicyEngine estimates that fuel duty raises government revenue by [£28.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) in 2025. The Office for Budget Responsibility (OBR) estimates that fuel duty revenue for 2025-26 is [£27.3 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/fuel-duties/). The following figure shows the distributional impact of this reform.
-
-```plotly
-{
-"data": [
-  {
-    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "y": [-11.4, -10.3, -10.6, -12.0, -9.5, -9.6, -9.2, -12.3, -10.7, -13.0],
-    "type": "bar",
-    "marker": {
-      "color": "#616161"
-    },
-    "name": "Change in household income (%)",
-    "text": ["-11.4%", "-10.3%", "-10.6%", "-12.0%", "-9.5%", "-9.6%", "-9.2%", "-12.3%", "-10.7%", "-13.0%"],
-    "textposition": "inside",
-    "insidetextfont": {
-      "family": "Roboto Serif",
-      "color": "white",
-      "size": 10
-    }
-  }
-],
-"layout": {
-  "title": {
-    "text": "Distributional impact of fuel duty by income decile",
-    "font": {
-      "family": "Roboto Serif",
-      "size": 16
-    },
-    "x": 0,
-    "xanchor": "left"
-  },
-  "yaxis": {
-    "title": "Relative change in household income",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickfont": {
-      "family": "Roboto Serif"
-    },
-    "tickformat": ",.1%",
-    "automargin": true,
-    "range": [-14, 0],
-    "tickvals": [0, -2, -4, -6, -8, -10, -12, -14],
-    "ticktext": ["0.0%", "-2.0%", "-4.0%", "-6.0%", "-8.0%", "-10.0%", "-12.0%", "-14.0%"],
-    "gridwidth": 1,
-    "gridcolor": "#e0e0e0"
-  },
-  "xaxis": {
-    "title": "Income decile",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickmode": "array",
-    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-  },
-  "height": 500,
-  "margin": {
-    "l": 50,
-    "r": 50,
-    "b": 100,
-    "t": 100,
-    "pad": 4
-  },
-  "annotations": [
-    {
-      "x": 1,
-      "y": -0.25,
-      "xref": "paper",
-      "yref": "paper",
-      "text": "Source: POLICY ENGINE",
-      "showarrow": false,
-      "font": {
-        "family": "Roboto Serif",
-        "size": 10,
-        "color": "#616161"
-      }
-    }
-  ],
-  "images": [
-    {
-      "source": "/logo512.png",
-      "x": 1,
-      "y": -0.18,
-      "xref": "paper",
-      "yref": "paper",
-      "sizex": 0.1,
-      "sizey": 0.1,
-      "xanchor": "right",
-      "yanchor": "bottom"
-    }
-  ],
-  "plot_bgcolor": "white",
-  "paper_bgcolor": "white"
-}
-}
-```
-
-## Property and land taxes
-
-The UK tax system includes taxes on property ownership, occupation and transactions. These taxes vary by nation and property type. Our property tax simulations use property values from the Family Resources Survey enhanced with housing market data and transaction patterns. Property transaction taxes (SDLT, LBTT, LTT) are modeled assuming a 4.5% annual property turnover rate. All estimates in this section are static estimates that do not reflect potential changes in property ownership or transaction behavior due to tax changes.
-
-The Office for Budget Responsibility (OBR) estimates that revenue from property transaction taxes, including Stamp Duty Land Tax (SDLT), Land and Buildings Transaction Tax (LBTT), and Land Transaction Tax (LTT), for 2025-26 is [£15.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/property-transaction-taxes/).
-
-### Stamp duty land tax (SDLT) - England & Northern Ireland
-
-SDLT is a tax paid when purchasing property over certain price thresholds in England and Northern Ireland, calculated as [`stamp_duty_land_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/stamp_duty_land_tax.py). In PolicyEgine, the calculation splits into residential and non-residential components for both purchases and rentals. For residential properties, tax rates vary based on purchase type (first-time vs. subsequent, main vs. additional residence), with bracket taxation applying higher rates only to portions above each threshold. Additional properties face surcharges when exceeding minimum thresholds. Rental agreements are taxed on the net present value of rent. Corporate transactions distribute tax burden to households based on shareholding percentages and statistical revenue values. Expected revenue is calculated using a 4.5% annual property turnover rate, representing the estimated percentage of property value changing hands yearly.
-
-- **Residential property**
-  These rates apply to homes and residential properties with different structures for different buyer types, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
-
-  - **Main residence rates (including first-time buyer relief)**: Standard rates apply in bands from the nil-rate band (£0) to portions over the highest threshold. For 2025, thresholds are £0, £125,000, £250,000, £925,000, and £1,500,000, with corresponding rates of 0%, 2%, 5%, 10%, and 12%. First-time buyers receive relief with higher nil-rate thresholds and reduced rates up to a maximum property value, defined in property-specific rate files within [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
-  - **Additional property surcharge**: An extra percentage of SDLT is charged on additional residential properties over a threshold, defined in the surcharge parameters within [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
-  - **Rental agreements**: SDLT applies to the net present value of rent over the lease term when exceeding a threshold, defined by residential rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/rent.yaml).
-
-- **Non-residential property**
-  These apply to commercial property purchases like shops, offices and agricultural land, defined in [`non_residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/).
-
-  - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by non-residential purchase parameters in [`purchase.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/purchase.yaml).
-  - **Rental agreements**: SDLT applies to the net present value of commercial lease rent above a threshold, defined by non-residential rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/rent.yaml).
-
-PolicyEngine estimates that stamp duty raises government revenue by [£11.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) in 2025. The following figure shows the distributional impact of this reform.
-
-```plotly
-{
-"data": [
-  {
-    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "y": [-3.3, -0.5, -0.7, -0.6, -0.4, -0.5, -0.4, -0.8, -0.4, -0.7],
-    "type": "bar",
-    "marker": {
-      "color": "#616161"
-    },
-    "name": "Change in household income (%)",
-    "text": ["-3.3%", "-0.5%", "-0.7%", "-0.6%", "-0.4%", "-0.5%", "-0.4%", "-0.8%", "-0.4%", "-0.7%"],
-    "textposition": "inside",
-    "insidetextfont": {
-      "family": "Roboto Serif",
-      "color": "white",
-      "size": 10
-    }
-  }
-],
-"layout": {
-  "title": {
-    "text": "Distributional impact of stamp duty by income decile",
-    "font": {
-      "family": "Roboto Serif",
-      "size": 16
-    },
-    "x": 0,
-    "xanchor": "left"
-  },
-  "yaxis": {
-    "title": "Relative change in household income",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickfont": {
-      "family": "Roboto Serif"
-    },
-    "tickformat": ",.1%",
-    "automargin": true,
-    "range": [-3.5, 0],
-    "tickvals": [0, -0.5, -1.0, -1.5, -2.0, -2.5, -3.0, -3.5],
-    "ticktext": ["0.0%", "-0.5%", "-1.0%", "-1.5%", "-2.0%", "-2.5%", "-3.0%", "-3.5%"],
-    "gridwidth": 1,
-    "gridcolor": "#e0e0e0"
-  },
-  "xaxis": {
-    "title": "Income decile",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickmode": "array",
-    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-  },
-  "height": 500,
-  "margin": {
-    "l": 50,
-    "r": 50,
-    "b": 100,
-    "t": 100,
-    "pad": 4
-  },
-  "annotations": [
-    {
-      "x": 1,
-      "y": -0.25,
-      "xref": "paper",
-      "yref": "paper",
-      "text": "Source: POLICY ENGINE",
-      "showarrow": false,
-      "font": {
-        "family": "Roboto Serif",
-        "size": 10,
-        "color": "#616161"
-      }
-    }
-  ],
-  "images": [
-    {
-      "source": "/logo512.png",
-      "x": 1,
-      "y": -0.18,
-      "xref": "paper",
-      "yref": "paper",
-      "sizex": 0.1,
-      "sizey": 0.1,
-      "xanchor": "right",
-      "yanchor": "bottom"
-    }
-  ],
-  "plot_bgcolor": "white",
-  "paper_bgcolor": "white"
-}
-}
-```
-
-### Land and buildings transaction tax (LBTT) - Scotland
-
-Scotland uses a different property transaction tax than England and Northern Ireland. Land and Buildings Transaction Tax (LBTT) is Scotland's equivalent to SDLT, applying to property and land transactions in Scotland, calculated as [`lbtt`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/revenue_scotland/lbtt.py). PolicyEngine implements Scotland-specific rate schedules with brackets, differentiating between first-time buyers and standard purchases. Additional property transactions incur both standard tax plus a percentage-based surcharge on the entire property value, creating a higher effective rate on second homes. Rental agreements use net present value calculation, taxing only the difference between previous and current cumulative rent. The tax applies exclusively to Scottish residents through a country code filter. Expected revenue is calculated using a 4.5% annual property turnover rate, representing the estimated percentage of total residential property value changing hands yearly. Non-residential transactions use separate rate schedules for both purchases and rental agreements.
-
-- **Residential property**
-  Scotland's residential property transaction tax applies to home purchases with specific rates, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/).
-
-  - **Standard rates**: Rates apply in bands with thresholds at £0, £145,000, £250,000, £325,000, and £750,000 for 2025, with corresponding rates of 0%, 2%, 5%, 10%, and 12%, defined by the [`rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/rate.yaml) parameter.
-  - **First-time buyer relief**: First-time buyers pay no LBTT up to a higher threshold than standard purchases, defined by the [`first_time_buyer_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/first_time_buyer_rate.yaml) parameter.
-  - **Additional dwelling supplement**: A surcharge applies to additional residential properties over a threshold, defined by the [`additional_residence_surcharge`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/additional_residence_surcharge.yaml) parameter.
-  - **Rental agreements**: LBTT applies to the net present value of residential lease rent above a threshold, defined by the rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
-
-- **Non-residential property**
-  These apply to commercial property transactions in Scotland with distinct rates, defined in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/non_residential.yaml).
-
-  - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/non_residential.yaml).
-  - **Rental agreements**: LBTT applies to the net present value of commercial lease rent above a threshold, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
-
-PolicyEngine estimates that land and buildings transaction tax raises government revenue by [£669.0 million](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) in 2025. The following figure shows the distributional impact of this reform.
-
-```plotly
-{
-"data": [
-  {
-    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "y": [-0.07, -0.03, -0.06, -0.04, -0.02, -0.03, -0.10, -0.04, -0.05, -0.02],
-    "type": "bar",
-    "marker": {
-      "color": "#616161"
-    },
-    "name": "Change in household income (%)",
-    "text": ["-0.07%", "-0.03%", "-0.06%", "-0.04%", "-0.02%", "-0.03%", "-0.10%", "-0.04%", "-0.05%", "-0.02%"],
-    "textposition": "inside",
-    "insidetextfont": {
-      "family": "Roboto Serif",
-      "color": "white",
-      "size": 10
-    }
-  }
-],
-"layout": {
-  "title": {
-    "text": "Distributional impact of land and buildings transaction tax by income decile",
-    "font": {
-      "family": "Roboto Serif",
-      "size": 16
-    },
-    "x": 0,
-    "xanchor": "left"
-  },
-  "yaxis": {
-    "title": "Relative change in household income",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickfont": {
-      "family": "Roboto Serif"
-    },
-    "tickformat": ",.2%",
-    "automargin": true,
-    "range": [-0.12, 0],
-    "tickvals": [0, -0.02, -0.04, -0.06, -0.08, -0.10, -0.12],
-    "ticktext": ["0.00%", "-0.02%", "-0.04%", "-0.06%", "-0.08%", "-0.10%", "-0.12%"],
-    "gridwidth": 1,
-    "gridcolor": "#e0e0e0"
-  },
-  "xaxis": {
-    "title": "Income decile",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickmode": "array",
-    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-  },
-  "height": 500,
-  "margin": {
-    "l": 50,
-    "r": 50,
-    "b": 100,
-    "t": 100,
-    "pad": 4
-  },
-  "annotations": [
-    {
-      "x": 1,
-      "y": -0.25,
-      "xref": "paper",
-      "yref": "paper",
-      "text": "Source: POLICY ENGINE",
-      "showarrow": false,
-      "font": {
-        "family": "Roboto Serif",
-        "size": 10,
-        "color": "#616161"
-      }
-    }
-  ],
-  "images": [
-    {
-      "source": "/logo512.png",
-      "x": 1,
-      "y": -0.18,
-      "xref": "paper",
-      "yref": "paper",
-      "sizex": 0.1,
-      "sizey": 0.1,
-      "xanchor": "right",
-      "yanchor": "bottom"
-    }
-  ],
-  "plot_bgcolor": "white",
-  "paper_bgcolor": "white"
-}
-}
-```
-
-### Land transaction tax (LTT) - Wales
-
-Wales has its own property transaction tax system. Land Transaction Tax (LTT) is Wales' equivalent to SDLT, applying to property and land transactions in Wales, calculated as [`land_transaction_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/wra/land_transaction_tax.py). LTT implements separate calculation pathways for primary residences and higher-rate properties, each with distinct progressive bracket structures. Unlike SDLT and LBTT implementations, no specific first-time buyer relief appears in the LTT coding structure. The tax applies to both property purchases and rental agreements, with rental calculations using an incremental approach on net present values. Geographic restriction ensures only Welsh households face LTT liability through country code comparison. Non-residential transactions use separate rate schedules for both purchases and rentals. Expected revenue is calculated by applying a 4.5% annual property turnover rate to the whole property stock, representing the estimated percentage of total residential property value changing hands yearly.
-
-- **Residential property**
-  Wales' residential property transaction tax applies to home purchases with its own rate structure, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/).
-
-  - **Primary residence rates**: Rates apply in bands with thresholds at £0, £180,000, £250,000, £400,000, £750,000, and £1,500,000 for 2025, with corresponding rates of 0%, 3.5%, 5%, 7.5%, 10%, and 12%, defined by the [`primary`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/primary.yaml) parameter.
-  - **Higher rates for additional properties**: A surcharge applies to purchases of additional residential properties, defined by the [`higher_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/higher_rate.yaml) parameter.
-  - **Rental agreements**: LTT applies to the net present value of residential lease rent above thresholds, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
-
-- **Non-residential property**
-  These apply to commercial property purchases and leases in Wales with specific rates, defined in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/non_residential.yaml).
-
-  - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/non_residential.yaml).
-  - **Rental agreements**: LTT applies to the net present value of commercial lease rent with threshold and rate structures, defined by specific rental parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
-
-PolicyEngine estimates that land transaction tax raises government revenue by [£388.3 million](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) in 2025. The following figure shows the distributional impact of this reform.
-
-```plotly
-{
-"data": [
-  {
-    "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "y": [-0.10, -0.03, -0.02, -0.02, -0.02, -0.02, -0.02, -0.03, -0.02, -0.02],
-    "type": "bar",
-    "marker": {
-      "color": "#616161"
-    },
-    "name": "Change in household income (%)",
-    "text": ["-0.10%", "-0.03%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.02%", "-0.03%", "-0.02%", "-0.02%"],
-    "textposition": "inside",
-    "insidetextfont": {
-      "family": "Roboto Serif",
-      "color": "white",
-      "size": 10
-    }
-  }
-],
-"layout": {
-  "title": {
-    "text": "Distributional impact of land transaction tax by income decile",
-    "font": {
-      "family": "Roboto Serif",
-      "size": 16
-    },
-    "x": 0,
-    "xanchor": "left"
-  },
-  "yaxis": {
-    "title": "Relative change in household income",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickfont": {
-      "family": "Roboto Serif"
-    },
-    "tickformat": ",.2%",
-    "automargin": true,
-    "range": [-0.12, 0],
-    "tickvals": [0, -0.02, -0.04, -0.06, -0.08, -0.10, -0.12],
-    "ticktext": ["0.00%", "-0.02%", "-0.04%", "-0.06%", "-0.08%", "-0.10%", "-0.12%"],
-    "gridwidth": 1,
-    "gridcolor": "#e0e0e0"
-  },
-  "xaxis": {
-    "title": "Income decile",
-    "titlefont": {
-      "family": "Roboto Serif"
-    },
-    "tickmode": "array",
-    "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-    "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-  },
-  "height": 500,
-  "margin": {
-    "l": 50,
-    "r": 50,
-    "b": 100,
-    "t": 100,
-    "pad": 4
-  },
-  "annotations": [
-    {
-      "x": 1,
-      "y": -0.25,
-      "xref": "paper",
-      "yref": "paper",
-      "text": "Source: POLICY ENGINE",
-      "showarrow": false,
-      "font": {
-        "family": "Roboto Serif",
-        "size": 10,
-        "color": "#616161"
-      }
-    }
-  ],
-  "images": [
-    {
-      "source": "/logo512.png",
-      "x": 1,
-      "y": -0.18,
-      "xref": "paper",
-      "yref": "paper",
-      "sizex": 0.1,
-      "sizey": 0.1,
-      "xanchor": "right",
-      "yanchor": "bottom"
-    }
-  ],
-  "plot_bgcolor": "white",
-  "paper_bgcolor": "white"
-}
-}
-```
-
-### Business rates
-
-The UK imposes annual taxes on property occupation, including business rates for non-domestic properties like shops, offices, and factories. At PolicyEngine, business rates are modeled as a corporate tax with incidence distributed to households based on their shareholding in the corporate sector. The model allocates the total business rates revenue from each UK nation (England, Scotland, Wales, and Northern Ireland) to households in proportion to their corporate wealth holdings through the [business_rates](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/business_rates.py) variable. Business rates are set by central government but collected by local authorities. The economic incidence of business rates is represented by distributing the total revenue burden based on households' corporate wealth holdings, reflecting the assumption that business rates are ultimately paid by shareholders through reduced returns on investments.
-
-- **Corporate tax on non-domestic properties**: Calculated as a percentage (the multiplier) of a property's assessed rateable value, defined in business rates statistics parameters in [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
-- **Regional variation (England, Scotland, Wales, Northern Ireland)**: Each nation sets its own multipliers and relief schemes, creating regional differences, defined in region-specific sections within [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
-
-PolicyEngine estimates that business rates raise government revenue by [£31.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) in 2025. The UK government estimates that local authorities in England collect [£27.8 billion](https://www.gov.uk/government/statistics/national-non-domestic-rates-collected-by-councils-in-england-forecast-2025-to-2026/national-non-domestic-rates-collected-by-councils-in-england-forecast-for-2025-to-2026#:~:text=Local%20authorities%20estimate%20the%20non,scheme%20are%20taken%20into%20consideration.) in business rates revenue for the financial year 2025-2026. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that capital gains tax raises government revenue by [£17.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) in 2025. The Office for Budget Responsibility (OBR) estimates that capital gains tax revenue for 2025-26 is [£16.2 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/capital-gains-tax/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [-0.038, -0.039, -0.023, -0.027, -0.012, -0.018, -0.014, -0.028, -0.013, -0.012],
+      "y": [1, 1, 4, 16, 17, 40, 46, 88, 213, 7636],
       "type": "bar",
       "marker": {
         "color": "#616161"
       },
-      "name": "Change in household income (%)",
-      "text": ["-3.8%", "-3.9%", "-2.3%", "-2.7%", "-1.2%", "-1.8%", "-1.4%", "-2.8%", "-1.3%", "-1.2%"],
-      "textposition": "inside",
-      "insidetextfont": {
+      "name": "Average Capital Gains Tax (£)",
+      "text": ["1", "1", "4", "16", "17", "40", "46", "88", "213", "7,636"],
+      "textposition": "outside",
+      "outsidetextfont": {
         "family": "Roboto Serif",
-        "color": "white",
+        "color": "black",
         "size": 10
       }
     }
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of business rates by income decile",
+      "text": "Average Capital Gains Tax by household income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -1009,17 +326,21 @@ PolicyEngine estimates that business rates raise government revenue by [£31.7 b
       "xanchor": "left"
     },
     "yaxis": {
-      "title": "Relative change in household income",
+      "title": "Average Capital Gains Tax (£)",
       "titlefont": {
         "family": "Roboto Serif"
       },
       "tickfont": {
         "family": "Roboto Serif"
       },
-      "tickformat": ",.1%",
+      "tickformat": ",",
       "automargin": true,
-      "range": [-0.04, 0],
-      "dtick": 0.005
+      "range": [0, 8000],
+      "dtick": 2000,
+      "tickvals": [0, 2000, 4000, 6000, 8000],
+      "ticktext": ["0", "2k", "4k", "6k", "8k"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
     },
     "xaxis": {
       "title": "Income decile",
@@ -1066,8 +387,697 @@ PolicyEngine estimates that business rates raise government revenue by [£31.7 b
         "yanchor": "bottom"
       }
     ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+### Council tax/domestic rates
+
+Residential properties are subject to council tax, except in Northern Ireland which uses domestic rates.
+Council tax is a local tax on domestic properties in England, Scotland and Wales, funding local services. In PolicyEngine, we apply the reported amounts from the Family Resources Survey data. Northern Ireland uses a rates system based on rental values rather than the banded approach of council tax, calculated as [`domestic_rates`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/local_authorities/domestic_rates.py).
+
+## Indirect taxes
+
+Indirect taxes are collected by intermediaries and passed to the government. They form part of the price of goods and services that consumers pay. Our indirect tax simulations rely on consumption data imputed to the Family Resources Survey dataset, calibrated to match aggregate statistics from HMRC and other government sources. In this post, all estimates provided are static estimates.
+
+### Value added tax (VAT)
+
+VAT generates revenue for the UK government.
+VAT is a consumption tax placed on products and services at each stage where value is added, calculated in PolicyEngine as [`vat`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/vat.py).
+
+- **Standard rate (20%)**: Applied to most goods and services in the UK in 2025, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
+- **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats in 2025, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
+
+PolicyEngine estimates that value added tax (VAT) raises government revenue by [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in 2025. The Office for Budget Responsibility (OBR) estimates that VAT revenue for 2025-26 is [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this program.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [5119, 2716, 4095, 5506, 4721, 5969, 8779, 7300, 7763, 12546],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average VAT (£)",
+      "text": ["5,119", "2,716", "4,095", "5,506", "4,721", "5,969", "8,779", "7,300", "7,763", "12,546"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average VAT by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average VAT (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 13000],
+      "dtick": 2000,
+      "tickvals": [0, 2000, 4000, 6000, 8000, 10000, 12000],
+      "ticktext": ["0", "2k", "4k", "6k", "8k", "10k", "12k"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+### Fuel duty
+
+The UK applies excise duties to specific products, including fuels.
+Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuels for vehicles or heating, calculated as [`fuel_duty`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/fuel_duty/fuel_duty.py).
+
+- **Petrol and diesel rates**: Set at £0.5795 per litre for both petrol and diesel in 2025, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
+
+PolicyEngine estimates that fuel duty raises government revenue by [£28.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) in 2025. The Office for Budget Responsibility (OBR) estimates that fuel duty revenue for 2025-26 is [£27.3 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/fuel-duties/). The following figure shows the distributional impact of this program.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [746, 277, 625, 883, 619, 912, 1192, 865, 876, 2040],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average Fuel Duty (£)",
+      "text": ["746", "277", "625", "883", "619", "912", "1,192", "865", "876", "2,040"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average Fuel Duty by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average Fuel Duty (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 2200],
+      "dtick": 500,
+      "tickvals": [0, 500, 1000, 1500, 2000],
+      "ticktext": ["0", "500", "1,000", "1,500", "2,000"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+## Property and land taxes
+
+The UK tax system includes taxes on property ownership, occupation and transactions. These taxes vary by nation and property type. Our property tax simulations use property values from the Family Resources Survey enhanced with housing market data and transaction patterns. Property transaction taxes (SDLT, LBTT, LTT) are modeled assuming a 4.5% annual property turnover rate. All estimates in this section are static estimates that do not reflect potential changes in property ownership or transaction behavior due to tax changes.
+
+The Office for Budget Responsibility (OBR) estimates that revenue from property transaction taxes, including Stamp Duty Land Tax (SDLT), Land and Buildings Transaction Tax (LBTT), and Land Transaction Tax (LTT), for 2025-26 is [£15.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/property-transaction-taxes/).
+
+### Stamp duty land tax (SDLT) - England & Northern Ireland
+
+SDLT is a tax paid when purchasing property over certain price thresholds in England and Northern Ireland, calculated as [`stamp_duty_land_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/stamp_duty_land_tax.py). In PolicyEgine, the calculation splits into residential and non-residential components for both purchases and rentals. For residential properties, tax rates vary based on purchase type (first-time vs. subsequent, main vs. additional residence), with bracket taxation applying higher rates only to portions above each threshold. Additional properties face surcharges when exceeding minimum thresholds. Rental agreements are taxed on the net present value of rent. Corporate transactions distribute tax burden to households based on shareholding percentages and statistical revenue values. Expected revenue is calculated using a 4.5% annual property turnover rate, representing the estimated percentage of property value changing hands yearly.
+
+- **Residential property**
+  These rates apply to homes and residential properties with different structures for different buyer types, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
+
+  - **Main residence rates (including first-time buyer relief)**: Standard rates apply in bands from the nil-rate band (£0) to portions over the highest threshold. For 2025, thresholds are £0, £125,000, £250,000, £925,000, and £1,500,000, with corresponding rates of 0%, 2%, 5%, 10%, and 12%. First-time buyers receive relief with higher nil-rate thresholds and reduced rates up to a maximum property value, defined in property-specific rate files within [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
+  - **Additional property surcharge**: An extra percentage of SDLT is charged on additional residential properties over a threshold, defined in the surcharge parameters within [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/).
+  - **Rental agreements**: SDLT applies to the net present value of rent over the lease term when exceeding a threshold, defined by residential rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/residential/rent.yaml).
+
+- **Non-residential property**
+  These apply to commercial property purchases like shops, offices and agricultural land, defined in [`non_residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/).
+
+  - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by non-residential purchase parameters in [`purchase.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/purchase.yaml).
+  - **Rental agreements**: SDLT applies to the net present value of commercial lease rent above a threshold, defined by non-residential rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/rent.yaml).
+
+PolicyEngine estimates that stamp duty raises government revenue by [£11.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) in 2025. The following figure shows the distributional impact of this program.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [9273, 2177, 3052, 5442, 3420, 4723, 10421, 7448, 6446, 25270],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average Stamp Duty Land Tax (£)",
+      "text": ["9,273", "2,177", "3,052", "5,442", "3,420", "4,723", "10,421", "7,448", "6,446", "25,270"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average Stamp Duty Land Tax by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average Stamp Duty Land Tax (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 26000],
+      "dtick": 5000,
+      "tickvals": [0, 5000, 10000, 15000, 20000, 25000],
+      "ticktext": ["0", "5k", "10k", "15k", "20k", "25k"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+### Land and buildings transaction tax (LBTT) - Scotland
+
+Scotland uses a different property transaction tax than England and Northern Ireland. Land and Buildings Transaction Tax (LBTT) is Scotland's equivalent to SDLT, applying to property and land transactions in Scotland, calculated as [`lbtt`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/revenue_scotland/lbtt.py). PolicyEngine implements Scotland-specific rate schedules with brackets, differentiating between first-time buyers and standard purchases. Additional property transactions incur both standard tax plus a percentage-based surcharge on the entire property value, creating a higher effective rate on second homes. Rental agreements use net present value calculation, taxing only the difference between previous and current cumulative rent. The tax applies exclusively to Scottish residents through a country code filter. Expected revenue is calculated using a 4.5% annual property turnover rate, representing the estimated percentage of total residential property value changing hands yearly. Non-residential transactions use separate rate schedules for both purchases and rental agreements.
+
+- **Residential property**
+  Scotland's residential property transaction tax applies to home purchases with specific rates, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/).
+
+  - **Standard rates**: Rates apply in bands with thresholds at £0, £145,000, £250,000, £325,000, and £750,000 for 2025, with corresponding rates of 0%, 2%, 5%, 10%, and 12%, defined by the [`rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/rate.yaml) parameter.
+  - **First-time buyer relief**: First-time buyers pay no LBTT up to a higher threshold than standard purchases, defined by the [`first_time_buyer_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/first_time_buyer_rate.yaml) parameter.
+  - **Additional dwelling supplement**: A surcharge applies to additional residential properties over a threshold, defined by the [`additional_residence_surcharge`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/residential/additional_residence_surcharge.yaml) parameter.
+  - **Rental agreements**: LBTT applies to the net present value of residential lease rent above a threshold, defined by the rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
+
+- **Non-residential property**
+  These apply to commercial property transactions in Scotland with distinct rates, defined in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/non_residential.yaml).
+
+  - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/non_residential.yaml).
+  - **Rental agreements**: LBTT applies to the net present value of commercial lease rent above a threshold, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
+
+PolicyEngine estimates that land and buildings transaction tax raises government revenue by [£669.0 million](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) in 2025. The following figure shows the distributional impact of this program.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [253, 111, 287, 337, 319, 301, 1191, 492, 857, 619],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average Land and Buildings Transaction Tax (£)",
+      "text": ["253", "111", "287", "337", "319", "301", "1,191", "492", "857", "619"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average Land and Buildings Transaction Tax by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average Land and Buildings Transaction Tax (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 1300],
+      "dtick": 200,
+      "tickvals": [0, 200, 400, 600, 800, 1000, 1200],
+      "ticktext": ["0", "200", "400", "600", "800", "1,000", "1,200"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+### Land transaction tax (LTT) - Wales
+
+Wales has its own property transaction tax system. Land Transaction Tax (LTT) is Wales' equivalent to SDLT, applying to property and land transactions in Wales, calculated as [`land_transaction_tax`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/wra/land_transaction_tax.py). LTT implements separate calculation pathways for primary residences and higher-rate properties, each with distinct progressive bracket structures. Unlike SDLT and LBTT implementations, no specific first-time buyer relief appears in the LTT coding structure. The tax applies to both property purchases and rental agreements, with rental calculations using an incremental approach on net present values. Geographic restriction ensures only Welsh households face LTT liability through country code comparison. Non-residential transactions use separate rate schedules for both purchases and rentals. Expected revenue is calculated by applying a 4.5% annual property turnover rate to the whole property stock, representing the estimated percentage of total residential property value changing hands yearly.
+
+- **Residential property**
+  Wales' residential property transaction tax applies to home purchases with its own rate structure, defined in [`residential`](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/).
+
+  - **Primary residence rates**: Rates apply in bands with thresholds at £0, £180,000, £250,000, £400,000, £750,000, and £1,500,000 for 2025, with corresponding rates of 0%, 3.5%, 5%, 7.5%, 10%, and 12%, defined by the [`primary`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/primary.yaml) parameter.
+  - **Higher rates for additional properties**: A surcharge applies to purchases of additional residential properties, defined by the [`higher_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/residential/higher_rate.yaml) parameter.
+  - **Rental agreements**: LTT applies to the net present value of residential lease rent above thresholds, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
+
+- **Non-residential property**
+  These apply to commercial property purchases and leases in Wales with specific rates, defined in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/non_residential.yaml).
+
+  - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/non_residential.yaml).
+  - **Rental agreements**: LTT applies to the net present value of commercial lease rent with threshold and rate structures, defined by specific rental parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
+
+PolicyEngine estimates that land transaction tax raises government revenue by [£388.3 million](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) in 2025. The following figure shows the distributional impact of this program.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [316, 72, 112, 200, 177, 211, 283, 488, 286, 595],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average Land Transaction Tax (£)",
+      "text": ["316", "72", "112", "200", "177", "211", "283", "488", "286", "595"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average Land Transaction Tax by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average Land Transaction Tax (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 650],
+      "dtick": 100,
+      "tickvals": [0, 100, 200, 300, 400, 500, 600],
+      "ticktext": ["0", "100", "200", "300", "400", "500", "600"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+### Business rates
+
+The UK imposes annual taxes on property occupation, including business rates for non-domestic properties like shops, offices, and factories. At PolicyEngine, business rates are modeled as a corporate tax with incidence distributed to households based on their shareholding in the corporate sector. The model allocates the total business rates revenue from each UK nation (England, Scotland, Wales, and Northern Ireland) to households in proportion to their corporate wealth holdings through the [business_rates](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/business_rates.py) variable. Business rates are set by central government but collected by local authorities. The economic incidence of business rates is represented by distributing the total revenue burden based on households' corporate wealth holdings, reflecting the assumption that business rates are ultimately paid by shareholders through reduced returns on investments.
+
+- **Corporate tax on non-domestic properties**: Calculated as a percentage (the multiplier) of a property's assessed rateable value, defined in business rates statistics parameters in [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
+- **Regional variation (England, Scotland, Wales, Northern Ireland)**: Each nation sets its own multipliers and relief schemes, creating regional differences, defined in region-specific sections within [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
+
+PolicyEngine estimates that business rates raise government revenue by [£31.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) in 2025. The UK government estimates that local authorities in England collect [£27.8 billion](https://www.gov.uk/government/statistics/national-non-domestic-rates-collected-by-councils-in-england-forecast-2025-to-2026/national-non-domestic-rates-collected-by-councils-in-england-forecast-for-2025-to-2026#:~:text=Local%20authorities%20estimate%20the%20non,scheme%20are%20taken%20into%20consideration.) in business rates revenue for the financial year 2025-2026. The following figure shows the distributional impact of this program.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [559, 443, 669, 911, 470, 807, 1491, 1119, 905, 1843],
+      "type": "bar",
+      "marker": {
+        "color": "#616161"
+      },
+      "name": "Average Business Rates (£)",
+      "text": ["559", "443", "669", "911", "470", "807", "1,491", "1,119", "905", "1,843"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average Business Rates by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average Business Rates (£)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 2000],
+      "dtick": 500,
+      "tickvals": [0, 500, 1000, 1500, 2000],
+      "ticktext": ["0", "500", "1,000", "1,500", "2,000"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
   }
 }
 ```
