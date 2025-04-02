@@ -4,27 +4,29 @@ This analysis, requested and [published](https://insider.iea.org.uk/p/new-analys
 
 ## Policy changes
 
-The April 2025 tax reforms introduce several changes to the UK tax system:
+From a combination of temporary reforms expiring and new tax reforms taking effect
 
-- Stamp Duty Land Tax nil-rate thresholds will be set at £300,000 (from £425,000) for first-time buyers and £125,000 (from £250,000) for subsequent purchases. These thresholds determine the property value at which SDLT begins to apply. First-time buyers maintain a higher threshold than subsequent purchasers under this reform.
-- Employer's National Insurance rate will change to 15% with the secondary threshold set to £96.14 (from £175) per week. We assume that the employer NI changes will be passed on to employees at 40% in 2025, 50% in 2026, 60% in 2027, and 70% in 2028-2029, with the remainder split between business owners and prices.
-- Capital Gains Tax rates will change to 18% (from 10%) for basic rate taxpayers and 24% (from 20%) for both higher and additional rate taxpayers. CGT applies to profits from the sale of assets that have increased in value, with various exemptions including primary residences.
-- Council Tax will increase by 5% on average from 2024.
+- The Government will [set](https://www.legislation.gov.uk/ukpga/2023/2/section/1) **Stamp Duty Land Tax** nil-rate thresholds at £300,000 (from £425,000) for first-time buyers and £125,000 (from £250,000) for subsequent purchases. These thresholds determine the property value at which SDLT begins to apply. First-time buyers maintain a higher threshold than subsequent purchasers under this reform.
+- The Government will [set](https://bills.parliament.uk/bills/3888) **Employer's National Insurance** rate will [change](https://policyengine.org/uk/research/autumn-budget-24-employer-ni) to 15% with the secondary threshold set to £96.14 (from £175) per week. We assume that the employer NI changes will be passed on to employees at 40% in 2025, 50% in 2026, 60% in 2027, and 70% in 2028-2029, with the remainder split between business owners and prices.
+- The Government will [set](https://www.legislation.gov.uk/ukpga/2025/8/section/7/enacted) **Capital Gains Tax** rates to [change](https://policyengine.org/uk/research/cgt-autumn-budget) to 18% (from 10%) for basic rate taxpayers and 24% (from 20%) for both higher and additional rate taxpayers. CGT applies to profits from the sale of assets that have increased in value, with various exemptions including primary residences. This reform was in effect from the time of the Autumn Budget, but 2025/26 is the first full tax year of its implementation.
+- Local authorities will [increase](https://www.gov.uk/government/statistics/council-tax-levels-set-by-local-authorities-in-england-2025-to-2026/council-tax-levels-set-by-local-authorities-in-england-2025-to-2026#average-council-tax-per-dwelling) **Council Tax** by 5% on average from 2024\. This is set by local authorities.
 
 ## Economic impacts
 
-We estimate the following revenue impacts for these reforms in 2025/26 (Table 1). For each tax, we include its static revenue impact. This assumes that individuals do not adjust their behaviour in response, representing simply the impact of the change in policy on existing households.
+We estimate the following revenue impacts for these reforms in 2025/26 (Table 1). For each tax, we include its _static_ revenue impact. This assumes that individuals do not adjust their behaviour in response, representing simply the impact of the change in policy on existing households.
 
-| Reform                                                                         | 2025 static revenue (£ million) | Average per household (£) |
-| ------------------------------------------------------------------------------ | ------------------------------- | ------------------------- |
-| Stamp duty: lower first home nil-rate threshold from 425,000 to 300,000        | 150                             | 5                         |
-| Stamp duty: lower primary residence nil-rate threshold from 250,000 to 125,000 | 1,200                           | 43                        |
-| Capital Gains Tax: raise rates to 18% and 24%                                  | 4,200                           | 150                       |
-| Council tax: raise by 5%                                                       | 2,700                           | 96                        |
-| Employer National Insurance: raise rate from 13.8% to 15% and lower threshold  | 22,900                          | 818                       |
-| Total                                                                          | 31,150                          | 1,112                     |
+| Reform                                                                         | 2025 static revenue (£ million)                                                                                                                            | Average per household (£) |
+| :----------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------ |
+| Stamp duty: lower first home nil-rate threshold from 425,000 to 300,000        | [150](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&baseline=80444&timePeriod=2025&region=uk)                             | 5                         |
+| Stamp duty: lower primary residence nil-rate threshold from 250,000 to 125,000 | [1,200](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&baseline=80446&timePeriod=2025&region=uk)                           | 43                        |
+| Capital Gains Tax: raise rates to 18% and 24%                                  | [4,200](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=69732&region=uk&timePeriod=2025&baseline=1)                           | 150                       |
+| Council tax: raise by 5%                                                       | 2,700                                                                                                                                                      | 96                        |
+| National Insurance: raise employer rate from 13.8% to 15% and lower threshold  | [22,900](https://policyengine.org/uk/policy?reform=69728&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=1&uk_local_areas_beta=true) | 818                       |
+| Total                                                                          | 31,150                                                                                                                                                     | 1,112                     |
 
-Figure 1 shows the impact of these reforms on average in each household income decile. The highest decile net income falls by £2,729, and the lowest decile £796.
+Table 1
+
+Figure 1 shows the impact of these reforms on average in each household income decile. The highest decile’s household net income falls by £2,729, and the lowest decile £796.
 
 ```plotly
 {
@@ -237,13 +239,3 @@ Figure 2 shows the median tax rise by region.
   }
 }
 ```
-
-## Conclusion
-
-These reforms represent a significant change to the UK tax system, with projected revenue of over £31 billion in 2025/26. The distributional analysis shows that while all income groups face increased tax burdens, the monetary impact is strongly progressive, with the highest income households facing the largest increases.
-
-The regional analysis highlights geographical variations, with London facing the highest median tax rise (£718), followed by the West Midlands (£637) and the East of England (£597). The East Midlands faces the lowest increase (£422), followed by Yorkshire (£488) and the North West (£501).
-
-The change to employer National Insurance contributes most significantly to the overall tax increase, accounting for approximately 73% of the total revenue raised. This suggests that labor market impacts may be an important consideration when evaluating these reforms.
-
-These results provide estimates of the static impacts without considering potential behavioral responses, which could somewhat reduce the overall revenue raised. Further analysis incorporating dynamic effects would provide additional insight into the longer-term impacts of these tax changes.
