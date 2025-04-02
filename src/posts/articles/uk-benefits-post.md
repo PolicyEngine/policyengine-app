@@ -313,7 +313,7 @@ Pension Credit consists of two main components, which we explain in detail below
   4. Awarding Savings Credit at 60% of income above the threshold, up to the maximum
   5. Reducing the award by 40% of income above the minimum guarantee
 
-PolicyEngine estimates that the cost of pension credit to government revenue is [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Pension Credit to government revenue is [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -337,7 +337,7 @@ PolicyEngine estimates that the cost of pension credit to government revenue is 
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of pension credit by income decile",
+     "text": "Distributional impact of Pension Credit by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -452,7 +452,7 @@ PolicyEngine estimates that the cost of PIP to government revenue is [£30.6 bil
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of personal independence payment by income decile",
+     "text": "Distributional impact of PIP by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -563,7 +563,7 @@ PolicyEngine estimates that the cost of DLA to government revenue is [£9.3 bill
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Disability Living Allowance by income decile",
+     "text": "Distributional impact of DLA by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -761,7 +761,7 @@ We calculate Child Benefit using the following methodology:
 
 The High Income Child Benefit Charge (HITC) effectively withdraws this benefit when individual income exceeds £50,000, with complete withdrawal at £60,000. This charge is calculated as part of the income tax system in [`child_benefit_hitc.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py) and increases proportionally with income within this range. For each £100 of income above £50,000, 1% of the Child Benefit is reclaimed through the tax system.
 
-PolicyEngine estimates that the cost of child benefit to government revenue is [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Child Benefit to government revenue is [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -911,7 +911,7 @@ For 2025, the government contributes 20% of childcare costs, effectively adding 
 
 Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions (quarterly income above minimum wage × 16 hours/week × 13 weeks but below £100,000 per year adjusted net income), and work requirements (both parents must generally be working, with exceptions for disability). These conditions are implemented in [`tax_free_childcare_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_meets_income_requirements.py) and [`tax_free_childcare_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py).
 
-PolicyEngine estimates that the cost of tax-free childcare to government revenue is [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of TFC to government revenue is [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -935,7 +935,7 @@ PolicyEngine estimates that the cost of tax-free childcare to government revenue
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of tax-free childcare by income decile",
+     "text": "Distributional impact of TFC by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1023,7 +1023,7 @@ For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours pe
 
 Eligibility is determined in [`universal_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py), which identifies children in the qualifying age range.
 
-PolicyEngine estimates that the cost of universal childcare entitlement to government revenue is [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Universal Childcare Entitlement to government revenue is [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -1047,7 +1047,7 @@ PolicyEngine estimates that the cost of universal childcare entitlement to gover
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of universal childcare entitlement by income decile",
+     "text": "Distributional impact of Universal Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1140,7 +1140,7 @@ The entitlement varies by child age in 2025:
 
 The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs for caring for younger children. Eligibility includes income and work conditions similar to Tax-Free Childcare, implemented in [`extended_childcare_entitlement_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions/extended_childcare_entitlement_meets_income_requirements.py) and [`extended_childcare_entitlement_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions/extended_childcare_entitlement_work_condition.py).
 
-PolicyEngine estimates that the cost of extended childcare entitlement to government revenue is [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Extended Childcare Entitlement to government revenue is [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -1164,7 +1164,7 @@ PolicyEngine estimates that the cost of extended childcare entitlement to govern
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of extended childcare entitlement by income decile",
+     "text": "Distributional impact of Extended Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1253,7 +1253,7 @@ For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded
 
 Eligibility includes receiving qualifying benefits or meeting income criteria: income below £16,190 per year for Tax Credit recipients (implemented in [`meets_tax_credit_criteria_for_targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/meets_tax_credit_criteria_for_targeted_childcare_entitlement.py)) or earned income below £15,400 per year for Universal Credit recipients (implemented in [`meets_universal_credit_criteria_for_targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/meets_universal_credit_criteria_for_targeted_childcare_entitlement.py)).
 
-PolicyEngine estimates that the cost of targeted childcare entitlement to government revenue is [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Targeted Childcare Entitlement to government revenue is [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -1277,7 +1277,7 @@ PolicyEngine estimates that the cost of targeted childcare entitlement to govern
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of targeted childcare entitlement by income decile",
+     "text": "Distributional impact of Targeted Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1366,7 +1366,7 @@ For 2025, the scheme offers weekly payments of up to £195 per week for those li
 
 Eligibility is determined in [`study_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py), which verifies that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
 
-PolicyEngine estimates that the cost of study childcare entitlement to government revenue is [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
+PolicyEngine estimates that the cost of Study Childcare Entitlement to government revenue is [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this reform.
 
 ```plotly
 {
@@ -1390,7 +1390,7 @@ PolicyEngine estimates that the cost of study childcare entitlement to governmen
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of study childcare entitlement by income decile",
+     "text": "Distributional impact of Study Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
