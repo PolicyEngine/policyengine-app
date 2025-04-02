@@ -533,8 +533,8 @@ DLA continues for children and some protected adults, calculated in the [`dla.py
 We calculate DLA using the following methodology:
 
 1. Identifying eligible children and protected adults in the dataset
-2. Assigning self-care component based on care needs (with three possible rates)
-3. Assigning mobility component based on mobility needs (with two possible rates)
+2. Assigning self-care component by using a three-tier system (higher, middle, or lower rate) depending on the level of care required
+3. Assigning mobility component by using a two-tier system (higher or lower rate) depending on the severity of mobility limitations, then matching to the applicable bracket and applying the rate for that bracket
 4. Combining the components to determine the total DLA award
 
 The self-care component is calculated in [`self_care.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/self_care.py) and the mobility component in [`mobility.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/mobility.py). For 2025, the self-care component has three possible rates: higher (£108.55 per week), middle (£72.65 per week), and lower (£28.70 per week). The mobility component has two rates: higher (£75.75 per week) and lower (£28.70 per week). The annual amount is calculated by multiplying the weekly rates by 52.
@@ -882,7 +882,7 @@ Both systems use the "triple lock" for annual increases, defined in [`triple_loc
 
 ### Winter Fuel Payment
 
-Winter Fuel Payment provides annual financial assistance for older people with heating costs, calculated in the [`WFA.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) file. It is an annual tax-free payment made to eligible pensioners to help with winter heating costs.
+Winter Fuel Payment provides annual financial payment for older people with heating costs, calculated in the [`WFA.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) file.
 
 We calculate Winter Fuel Payment using the following methodology:
 
@@ -1353,7 +1353,7 @@ PolicyEngine estimates that the cost of targeted childcare entitlement to govern
 
 ### Study Childcare Entitlement
 
-The Study Childcare Entitlement, also known as Care to Learn, offers funding for young parents in education to help with childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file.
+The Study Childcare Entitlement, also known as Care to Learn, offers funding for young parents in education for childcare costs, calculated in the [`study_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) file.
 
 We calculate Study Childcare Entitlement using the following methodology:
 
@@ -1466,7 +1466,7 @@ PolicyEngine estimates that the cost of study childcare entitlement to governmen
 
 ### Energy Bills Support
 
-Several programmes have been introduced to help households with energy costs:
+Several programmes have been introduced to for households' energy costs:
 
 - **Energy Bills Credit**: Provided £400 per household as monthly reductions on electricity bills from October 2022 to March 2023, calculated in the [`energy_bills_credit.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/energy_bills_credit.py) file. This universal support was applied automatically to all domestic electricity accounts, spread across six monthly instalments.
 
