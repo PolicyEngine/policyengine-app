@@ -69,11 +69,10 @@ export class County {
   getFipsCode() {
     if (this.fips === undefined) {
       console.error("Unable to get FIPS code for county", this.fullName);
-    } 
+    }
 
     return this.fips;
   }
-
 }
 
 const arrStates = [
@@ -140,13 +139,7 @@ export function getAllCounties() {
   for (const state of arrStates) {
     const allCounties = getCountiesByState(state);
     for (const county of allCounties) {
-      allStates.push(
-        new County(
-          state,
-          county.county,
-          county.fullname,
-        ),
-      );
+      allStates.push(new County(state, county.county, county.fullname));
     }
   }
 

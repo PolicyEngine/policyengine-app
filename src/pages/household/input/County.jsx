@@ -1,4 +1,3 @@
-
 import { Select } from "antd";
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
@@ -53,10 +52,7 @@ export default function County(props) {
   const nextVariable = "input.income.employment_income_before_lsr";
 
   return (
-    <CenteredMiddleColumn
-      title="Which county do you live in?"
-      marginTop="15%"
-    >
+    <CenteredMiddleColumn title="Which county do you live in?" marginTop="15%">
       <Select
         showSearch
         optionFilterProp="label"
