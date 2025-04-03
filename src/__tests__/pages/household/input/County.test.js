@@ -48,7 +48,7 @@ describe("Given County component with default app state...", () => {
     render(CountyWithoutState);
 
     // Then correct component renders successfully
-    const componentHeader = "Which county do you reside in?";
+    const componentHeader = "Which county do you live in?";
     const description = screen.getByRole("heading", {
       name: new RegExp(componentHeader, "i"),
     });
