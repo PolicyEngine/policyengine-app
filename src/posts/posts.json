@@ -1,5 +1,14 @@
 [
   {
+    "title": "New Ways to Give to PolicyEngine",
+    "description": "Exploring state tax credits for charitable giving.",
+    "date": "2025-04-01",
+    "tags": ["us", "april-fools", "featured"],
+    "filename": "april-1st-2025.md",
+    "image": "april-1st-2025.png",
+    "authors": ["daphne-hansell"]
+  },
+  {
     "title": "Analysis of the Spring 2025 OBR forecast",
     "description": "PolicyEngine integrates the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
     "date": "2025-03-26",
@@ -1184,7 +1193,7 @@
   {
     "title": "Taxes in PolicyEngine",
     "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-27 00:00:00",
+    "date": "2025-03-25 00:00:00",
     "tags": ["uk", "policy", "featured", "tax"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-taxes-post.md",
