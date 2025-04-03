@@ -54,7 +54,7 @@ export default function County(props) {
 
   return (
     <CenteredMiddleColumn
-      title="Which county do you reside in?"
+      title="Which county do you live in?"
       marginTop="15%"
     >
       <Select
