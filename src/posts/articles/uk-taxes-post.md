@@ -62,7 +62,7 @@ HMRC administers this tax using a band system with different rates for certain i
 
   - **Child benefit high income tax charge (HITC)**: A tax charge on high earners who or whose partner receives child benefit. Child benefit rates in 2025 are £26.04 per week for the eldest child and £17.24 per week for each additional child. The HITC withdraws this benefit when income exceeds a threshold, with full withdrawal at a higher threshold, calculated as [`child_benefit_hitc`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py).
 
-PolicyEngine estimates that income tax raises government revenue by [£322.2 billion](https://gist.github.com/vahid-ahmadi/505f1a571d3e71e594a4565b75380c56) in 2025. The Office for Budget Responsibility (OBR) estimates that income tax revenue for 2025-26 is [£328.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/). The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£322.2 billion](https://gist.github.com/vahid-ahmadi/505f1a571d3e71e594a4565b75380c56) in income tax revenue in 2025, 2.0% less than the OBR's forecast of [£328.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/income-tax/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -184,7 +184,7 @@ National Insurance consists of contributions paid by employees, employers and th
   - **Main rate**: Paid on self-employed profits between the lower profits limit and upper profits limit, calculated as [`ni_class_4_main`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_main.py).
   - **Additional rate**: Paid on self-employed profits above the upper profits limit, calculated as [`ni_class_4_maximum`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/national_insurance/class_4/ni_class_4_maximum.py).
 
-PolicyEngine estimates that National Insurance raises government revenue by [£179.7 billion](https://gist.github.com/vahid-ahmadi/699656a3705a44c817473d06c7f5d8f6) in 2025. The Office for Budget Responsibility (OBR) estimates that National Insurance contributions for 2025-26 are [£198.8 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/). The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£179.7 billion](https://gist.github.com/vahid-ahmadi/699656a3705a44c817473d06c7f5d8f6) in National Insurance revenue in 2025, 9.6% less than the OBR's forecast of [£198.8 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/national-insurance-contributions-nics/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -293,7 +293,7 @@ Capital gains tax is charged on the profit when selling or disposing of an asset
 - **Higher rate (20%)**: Applied to gains for higher and additional rate taxpayers (28% on residential property for 2025), defined by the [`higher_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/higher_rate.yaml) parameter.
 - **Annual exempt amount**: A tax-free allowance for capital gains set at £3,000 in 2025, defined by the [`annual_exempt_amount`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/cgt/annual_exempt_amount.yaml) parameter.
 
-PolicyEngine estimates that capital gains tax raises government revenue by [£17.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) in 2025. The Office for Budget Responsibility (OBR) estimates that capital gains tax revenue for 2025-26 is [£16.2 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/capital-gains-tax/). The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£17.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79852) in capital gains tax revenue in 2025, 6.8% more than the OBR's forecast of [£16.2 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/capital-gains-tax/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -410,7 +410,7 @@ VAT is a consumption tax placed on products and services at each stage where val
 - **Standard rate (20%)**: Applied to most goods and services in the UK in 2025, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
 - **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats in 2025, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
 
-PolicyEngine estimates that value added tax (VAT) raises government revenue by [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in 2025. The Office for Budget Responsibility (OBR) estimates that VAT revenue for 2025-26 is [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in value added tax (VAT) revenue in 2025, 9.1% more than the OBR's forecast of [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -517,7 +517,7 @@ Fuel duty is an excise tax charged on purchases of petrol, diesel and other fuel
 
 - **Petrol and diesel rates**: Set at £0.5795 per litre for both petrol and diesel in 2025, defined by the [`petrol_and_diesel`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/fuel_duty/petrol_and_diesel.yaml) parameter.
 
-PolicyEngine estimates that fuel duty raises government revenue by [£28.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) in 2025. The Office for Budget Responsibility (OBR) estimates that fuel duty revenue for 2025-26 is [£27.3 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/fuel-duties/). The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£28.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79854) in fuel duty revenue in 2025, 3.7% more than the OBR's forecast of [£27.3 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/fuel-duties/). The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -640,7 +640,7 @@ SDLT is a tax paid when purchasing property over certain price thresholds in Eng
   - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by non-residential purchase parameters in [`purchase.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/purchase.yaml).
   - **Rental agreements**: SDLT applies to the net present value of commercial lease rent above a threshold, defined by non-residential rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/stamp_duty/non_residential/rent.yaml).
 
-PolicyEngine estimates that stamp duty raises government revenue by [£11.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) in 2025. The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£11.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79870) in stamp duty revenue in 2025, 24.5% less than the OBR's forecast of £15.1 billion for all property transaction taxes. The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -758,7 +758,7 @@ Scotland uses a different property transaction tax than England and Northern Ire
   - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/non_residential.yaml).
   - **Rental agreements**: LBTT applies to the net present value of commercial lease rent above a threshold, defined by specific rent parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/revenue_scotland/lbtt/rent.yaml).
 
-PolicyEngine estimates that land and buildings transaction tax raises government revenue by [£669.0 million](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) in 2025. The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£669.0 million](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80006) in land and buildings transaction tax revenue in 2025. The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -875,7 +875,7 @@ Wales has its own property transaction tax system. Land Transaction Tax (LTT) is
   - **Purchase rates**: Rates apply in bands from the nil-rate band to portions over higher thresholds, defined by specific band parameters in [`non_residential.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/non_residential.yaml).
   - **Rental agreements**: LTT applies to the net present value of commercial lease rent with threshold and rate structures, defined by specific rental parameters in [`rent.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/wra/land_transaction_tax/rent.yaml).
 
-PolicyEngine estimates that land transaction tax raises government revenue by [£388.3 million](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) in 2025. The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£388.3 million](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80023) in land transaction tax revenue in 2025. The following figure shows the distributional impact of this program.
 
 ```plotly
 {
@@ -982,7 +982,7 @@ The UK imposes annual taxes on property occupation, including business rates for
 - **Corporate tax on non-domestic properties**: Calculated as a percentage (the multiplier) of a property's assessed rateable value, defined in business rates statistics parameters in [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
 - **Regional variation (England, Scotland, Wales, Northern Ireland)**: Each nation sets its own multipliers and relief schemes, creating regional differences, defined in region-specific sections within [`statistics.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/business_rates/statistics.yaml).
 
-PolicyEngine estimates that business rates raise government revenue by [£31.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) in 2025. The UK government estimates that local authorities in England collect [£27.8 billion](https://www.gov.uk/government/statistics/national-non-domestic-rates-collected-by-councils-in-england-forecast-2025-to-2026/national-non-domestic-rates-collected-by-councils-in-england-forecast-for-2025-to-2026#:~:text=Local%20authorities%20estimate%20the%20non,scheme%20are%20taken%20into%20consideration.) in business rates revenue for the financial year 2025-2026. The following figure shows the distributional impact of this program.
+PolicyEngine projects that the UK will collect [£31.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80029) in business rates revenue in 2025, 14.0% more than the UK government's estimate of [£27.8 billion](https://www.gov.uk/government/statistics/national-non-domestic-rates-collected-by-councils-in-england-forecast-2025-to-2026/national-non-domestic-rates-collected-by-councils-in-england-forecast-for-2025-to-2026#:~:text=Local%20authorities%20estimate%20the%20non,scheme%20are%20taken%20into%20consideration.) for England alone in 2025-2026. The following figure shows the distributional impact of this program.
 
 ```plotly
 {
