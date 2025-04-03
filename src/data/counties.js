@@ -4,11 +4,33 @@ import {
 } from "@aciesai/fips-county-codes";
 
 export class County {
-  constructor(stateCode, name, fullName, fips) {
+  constructor(stateCode, name, fullName) {
     this.stateCode = stateCode;
     this.name = name;
     this.fullName = fullName;
-    this.fips = fips;
+    this.fips = this._lookupFipsCode(this.stateCode, this.fullName);
+  }
+
+  /**
+   *
+   * @returns {string | undefined} A given county's five-digit FIPS code as a string,
+   * or undefined if unable to find county FIPS
+   */
+  _lookupFipsCode(stateCode, fullName) {
+    // This needs to be in a try-catch because the fips-county-codes package
+    // throws an error if it cannot find the county
+    try {
+      const dataObj = getByCountyAndState(this.stateCode, this.fullName);
+      return dataObj?.fips;
+    } catch (err) {
+      console.error(
+        "Unable to lookup FIPS code for county",
+        this.fullName,
+        "in state",
+        this.stateCode,
+      );
+      return undefined;
+    }
   }
 
   /**
@@ -41,24 +63,17 @@ export class County {
 
   /**
    *
-   * @returns {string | undefined} A given county's five-digit FIPS code as a string
+   * @returns {string | undefined} A given county's five-digit FIPS code as a string,
+   * or undefined if unable to find county FIPS
    */
   getFipsCode() {
-    // This needs to be in a try-catch because the fips-county-codes package
-    // throws an error if it cannot find the county
-    try {
-      const dataObj = getByCountyAndState(this.stateCode, this.fullName);
-      return dataObj?.fips;
-    } catch (err) {
-      console.error(
-        "Unable to get FIPS code for county",
-        this.fullName,
-        "in state",
-        this.stateCode,
-      );
-      return undefined;
-    }
+    if (this.fips === undefined) {
+      console.error("Unable to get FIPS code for county", this.fullName);
+    } 
+
+    return this.fips;
   }
+
 }
 
 const arrStates = [
@@ -130,7 +145,6 @@ export function getAllCounties() {
           state,
           county.county,
           county.fullname,
-          `${county.statefp}${county.countyfp}`,
         ),
       );
     }

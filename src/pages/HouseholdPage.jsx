@@ -466,7 +466,6 @@ export function addCustomInputs(displayTree, countryId) {
     return displayTree;
   }
 
-  console.log("Adding custom inputs to display tree");
   // Add county name input to US display tree
   const newNode = {
     label: "County",
