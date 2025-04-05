@@ -19,20 +19,20 @@ const topicTags = uniqueTags
   .sort();
 
 const topicLabels = {
-  "featured": "Featured",
-  "impact": "Impact",
-  "policy": "Policy analysis",
-  "technical": "Technical report",
-  "api": "API",
-  "benefit-access": "Benefit access"
+  featured: "Featured",
+  impact: "Impact",
+  policy: "Policy analysis",
+  technical: "Technical report",
+  api: "API",
+  "benefit-access": "Benefit access",
 };
 
 const locationLabels = {
-  "ca": "Canada",
-  "us": "United States",
-  "uk": "United Kingdom",
-  "global": "Global",
-  "ng": "Nigeria",
+  ca: "Canada",
+  us: "United States",
+  uk: "United Kingdom",
+  global: "Global",
+  ng: "Nigeria",
   "us-dc": "District of Columbia, U.S.",
   "us-ak": "Alaska, U.S.",
   "us-al": "Alabama, U.S.",
