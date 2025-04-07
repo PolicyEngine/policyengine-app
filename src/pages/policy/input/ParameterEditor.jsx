@@ -13,7 +13,14 @@ import {
   Tooltip,
 } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+} from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
@@ -28,6 +35,7 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import { EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
 import style from "../../../style";
+import ResetButton from "./ResetParameter"; // Import the ResetButton component
 import { defaultYear } from "../../../data/constants";
 const { RangePicker } = DatePicker;
 
@@ -52,15 +60,52 @@ export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
   const parameter = metadata.parameters[parameterName];
   const parameterValues = Object.entries(parameter.values);
+  const [searchParams, setSearchParams] = useSearchParams();
   const reformData = policy?.reform?.data?.[parameterName];
-  const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
-  const reformMap = baseMap.copy();
-  if (reformData) {
-    for (const [timePeriod, value] of Object.entries(reformData)) {
-      const [startDate, endDate] = timePeriod.split(".");
-      reformMap.set(startDate, nextDay(endDate), value);
+
+  const baseMap = useMemo(() => {
+    return new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
+  }, [parameterValues]);
+
+  const [reformMap, setReformMap] = useState(() => {
+    const initialMap = baseMap.copy();
+    if (reformData) {
+      for (const [timePeriod, value] of Object.entries(reformData)) {
+        const [startDate, endDate] = timePeriod.split(".");
+        initialMap.set(startDate, nextDay(endDate), value);
+      }
     }
-  }
+    return initialMap;
+  });
+
+  const [resetSignal, setResetSignal] = useState(0);
+  const [currentParameterName, setCurrentParameterName] =
+    useState(parameterName);
+
+  // Add this effect to detect parameter changes
+  useEffect(() => {
+    if (parameterName !== currentParameterName) {
+      // Reset state when parameter changes
+      setCurrentParameterName(parameterName);
+
+      // Reset reformMap to match base values for the new parameter
+      const newReformMap = baseMap.copy();
+      if (reformData) {
+        for (const [timePeriod, value] of Object.entries(reformData)) {
+          const [startDate, endDate] = timePeriod.split(".");
+          newReformMap.set(startDate, nextDay(endDate), value);
+        }
+      }
+      setReformMap(newReformMap);
+
+      // Reset dates
+      setStartDate(defaultStartDate);
+      setEndDate(defaultEndDate);
+
+      // Force child components to reset by incrementing resetSignal
+      setResetSignal((prev) => prev + 1);
+    }
+  }, [parameterName, currentParameterName, reformData, baseMap]);
 
   const chartContainerRef = useRef(null);
 
@@ -149,42 +194,92 @@ export default function ParameterEditor(props) {
           >
             Current value
           </p>
-          <div
-            style={{
-              width:
-                parameter.unit === "bool" || parameter.unit === "abolition"
-                  ? "50%"
-                  : "100%",
-              display: "grid",
-              gridTemplateColumns: gridColumns,
-              gap: "10px",
-              padding: "0px 50px 0px 12px",
-            }}
-          >
-            <PeriodSetter
-              metadata={metadata}
-              startDate={startDate}
-              endDate={endDate}
-              setStartDate={setStartDate}
-              setEndDate={setEndDate}
-              inputMode={dateInputMode}
-              parameterName={parameterName}
-              baseMap={baseMap}
-              reformMap={reformMap}
-              policy={policy}
-            />
-            {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
-              <ValueSetter
+          <div>
+            <div
+              style={{
+                width:
+                  parameter.unit === "bool" || parameter.unit === "abolition"
+                    ? "50%"
+                    : "100%",
+                display: "grid",
+                gridTemplateColumns: gridColumns,
+                gap: "10px",
+                padding: "0px 50px 0px 12px",
+              }}
+            >
+              <PeriodSetter
+                metadata={metadata}
                 startDate={startDate}
                 endDate={endDate}
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
+                inputMode={dateInputMode}
                 parameterName={parameterName}
-                policy={policy}
-                metadata={metadata}
-                reformMap={reformMap}
                 baseMap={baseMap}
+                reformMap={reformMap}
+                policy={policy}
+                resetSignal={resetSignal}
               />
-            )}
-            <SettingsPanel setDateInputMode={setDateInputMode} />
+              {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
+                <ValueSetter
+                  startDate={startDate}
+                  endDate={endDate}
+                  parameterName={parameterName}
+                  policy={policy}
+                  metadata={metadata}
+                  reformMap={reformMap}
+                  baseMap={baseMap}
+                />
+              )}
+              <SettingsPanel setDateInputMode={setDateInputMode} />
+            </div>
+            <div
+              style={{
+                marginTop: "10px",
+                marginLeft: "12px",
+                display: "flex",
+                justifyContent: "flex-start",
+              }}
+            >
+              <ResetButton
+                onReset={() => {
+                  // 1. Remove this parameter’s reform data
+                  const newReforms = { ...policy.reform.data };
+                  delete newReforms[parameterName];
+
+                  // 2. Replace reformMap contents by making a new copy
+                  const newReformMap = baseMap.copy();
+
+                  // 3. Reset to default start and end dates
+                  setStartDate(defaultStartDate);
+                  setEndDate(defaultEndDate);
+
+                  // 4. For MULTI_YEAR input mode, also reset value map
+                  setResetSignal((prev) => prev + 1);
+
+                  // 5. Call API to update policy reform state
+                  getNewPolicyId(metadata.countryId, newReforms).then(
+                    (result) => {
+                      if (result.status === "ok") {
+                        const newSearch = copySearchParams(searchParams);
+                        if (Object.keys(newReforms).length === 0) {
+                          newSearch.delete("reform");
+                        } else {
+                          newSearch.set("reform", result.policy_id);
+                        }
+                        setSearchParams(newSearch);
+                      }
+                    },
+                  );
+
+                  // ⚠️ If reformMap is used from state somewhere, you may need a setter:
+                  setReformMap(newReformMap);
+                }}
+                tooltipText="Reset parameter to default"
+                showText={true}
+                buttonStyle={{ borderRadius: "2px" }}
+              />
+            </div>
           </div>
         </div>
         {!parameter.economy && (
@@ -246,6 +341,7 @@ function PeriodSetter(props) {
     baseMap,
     reformMap,
     policy,
+    resetSignal,
   } = props;
 
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
@@ -286,7 +382,13 @@ function PeriodSetter(props) {
     case DATE_INPUT_MODES.DATE:
       return <DatePeriodSetter {...sharedProps} />;
     case DATE_INPUT_MODES.MULTI_YEAR:
-      return <MultiYearPeriodSetter {...sharedProps} {...tenYearProps} />;
+      return (
+        <MultiYearPeriodSetter
+          {...sharedProps}
+          {...tenYearProps}
+          resetSignal={resetSignal}
+        />
+      );
     default:
       return <DefaultPeriodSetter {...sharedProps} />;
   }
@@ -413,45 +515,54 @@ function DatePeriodSetter(props) {
 }
 
 function MultiYearPeriodSetter(props) {
-  const { possibleYears, parameterName, baseMap, reformMap, metadata, policy } =
-    props;
+  const {
+    possibleYears,
+    parameterName,
+    baseMap,
+    reformMap,
+    metadata,
+    policy,
+    resetSignal,
+  } = props;
 
   // Populate map before rendering anything
   // function populateValueMap() {
+  const NUMBER_OF_YEARS = 10;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Create the populateValueMap function
   const populateValueMap = useCallback(() => {
     const valueMap = new Map();
     possibleYears.forEach((year) => {
       if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
         const startDate = String(year).concat("-01-01");
-        const startValue = reformMap.get(startDate);
-        valueMap.set(year, startValue);
+        // Get value from reformMap first, fall back to baseMap if not found
+        let value = reformMap.get(startDate);
+        if (value === undefined) {
+          value = baseMap.get(startDate);
+        }
+        valueMap.set(year, value);
       }
     });
     return valueMap;
-  }, [possibleYears, reformMap]);
+  }, [possibleYears, reformMap, baseMap]);
 
-  const NUMBER_OF_YEARS = 10;
-  const [valueMap, setValueMap] = useState(populateValueMap());
-  const [searchParams, setSearchParams] = useSearchParams();
+  // Initialize valueMap state with values from populateValueMap
+  const [valueMap, setValueMap] = useState(() => populateValueMap());
+
+  // Use a ref to track the current parameter name
   const paramRef = useRef(parameterName);
 
-  // This is necessary because technically, MultiYearPeriodSetter does not
-  // unmount when we change between parameters, leading to the possibility
-  // for a stale "value" state in this controlled component
-
-  // We're using a ref here because each time the changeHandler is called,
-  // it updates reformMap. This then re-renders the callback above, causing
-  // valueMap to be re-populated with stale data, creating a visual bug.
-  // All of this wouldn't be necessary if we either 1. didn't add populateValueMap
-  // as an effect hook dep (but then we'd be overriding linting) or 2. fully
-  // unmounted the component when we changed pages (but that'd require far
-  // more work)
+  // Reset valueMap whenever parameter changes or resetSignal changes
   useEffect(() => {
+    // Always repopulate the valueMap on resetSignal change
+    setValueMap(populateValueMap());
+
+    // Update the parameter ref
     if (paramRef.current !== parameterName) {
-      setValueMap(populateValueMap());
       paramRef.current = parameterName;
     }
-  }, [parameterName, populateValueMap]);
+  }, [resetSignal, parameterName, populateValueMap]);
 
   // Handler that iterates over each entry, validates that
   // all values are valid, then updates each value one by one
