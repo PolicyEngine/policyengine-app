@@ -249,6 +249,7 @@ export default function ParameterEditor(props) {
 
                   // 2. Replace reformMap contents by making a new copy
                   const newReformMap = baseMap.copy();
+                  setReformMap(newReformMap);
 
                   // 3. Reset to default start and end dates
                   setStartDate(defaultStartDate);
