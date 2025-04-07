@@ -1,5 +1,23 @@
 [
   {
+    "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
+    "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
+    "date": "2025-04-05",
+    "tags": ["us", "us-nc", "featured", "api", "benefit-access"],
+    "filename": "myfriendben-nc.md",
+    "image": "myfriendben-nc.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "New Ways to Give to PolicyEngine",
+    "description": "Exploring state tax credits for charitable giving.",
+    "date": "2025-04-01",
+    "tags": ["us", "april-fools", "featured"],
+    "filename": "april-1st-2025.md",
+    "image": "april-1st-2025.png",
+    "authors": ["daphne-hansell"]
+  },
+  {
     "title": "Analysis of the Spring 2025 OBR forecast",
     "description": "PolicyEngine integrates the new OBR forecasts to provide updated predictions on household income, poverty, and inequality.",
     "date": "2025-03-26",
@@ -1173,12 +1191,12 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
-    "title": "Taxes in PolicyEngine",
-    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-25 00:00:00",
-    "tags": ["uk", "policy", "featured", "tax"],
-    "authors": ["vahid-ahmadi"],
-    "filename": "uk-taxes-post.md",
-    "image": "uk-tax-post.jpg"
+    "title": "Idaho’s New Individual Income Tax Changes",
+    "date": "2025-04-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-id", "featured", "policy"],
+    "description": "The lower top marginal rate and larger grocery tax credit will cost the state $225 million in 2025.",
+    "filename": "idaho-2025-tax-change.ipynb",
+    "image": "idaho-2025-tax-change.jpg"
   }
 ]
