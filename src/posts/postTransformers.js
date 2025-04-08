@@ -23,6 +23,8 @@ const topicLabels = {
   impact: "Impact",
   policy: "Policy analysis",
   technical: "Technical report",
+  api: "API",
+  "benefit-access": "Benefit access",
 };
 
 const locationLabels = {
