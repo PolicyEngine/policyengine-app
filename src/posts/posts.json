@@ -1,5 +1,14 @@
 [
   {
+    "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
+    "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
+    "date": "2025-04-05",
+    "tags": ["us", "us-nc", "featured", "api", "benefit-access"],
+    "filename": "myfriendben-nc.md",
+    "image": "myfriendben-nc.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "New Ways to Give to PolicyEngine",
     "description": "Exploring state tax credits for charitable giving.",
     "date": "2025-04-01",
@@ -1180,15 +1189,6 @@
     "description": "We simulate potential realisations of the Government's new £5 billion reform.",
     "filename": "uk-pip-reforms.md",
     "image": "uk-pip-reforms.jpg"
-  },
-  {
-    "title": "Taxes in PolicyEngine",
-    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-27 00:00:00",
-    "tags": ["uk", "policy", "featured", "tax"],
-    "authors": ["vahid-ahmadi"],
-    "filename": "uk-taxes-post.md",
-    "image": "uk-tax-post.jpg"
   },
   {
     "title": "Idaho’s New Individual Income Tax Changes",
