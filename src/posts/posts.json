@@ -1,14 +1,5 @@
 [
   {
-    "title": "UK Tax System Reference",
-    "description": "A comprehensive guide to how taxes are modelled in PolicyEngine UK.",
-    "date": "2025-04-07",
-    "tags": ["uk", "technical", "featured", "tax"],
-    "filename": "uk-taxes-post.md",
-    "image": "uk_taxes_post.jpg",
-    "authors": ["nikhil-woodruff", "vahid-ahmadi"]
-  },
-  {
     "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
     "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
     "date": "2025-04-05",
@@ -1207,5 +1198,14 @@
     "description": "The lower top marginal rate and larger grocery tax credit will cost the state $225 million in 2025.",
     "filename": "idaho-2025-tax-change.ipynb",
     "image": "idaho-2025-tax-change.jpg"
+  },
+  {
+    "title": "Taxes in PolicyEngine",
+    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
+    "date": "2025-04-08 00:00:00",
+    "tags": ["uk", "policy", "featured", "tax"],
+    "authors": ["vahid-ahmadi", "nikhil-woodruff"],
+    "filename": "uk-taxes-post.md",
+    "image": "uk-tax-post.jpg"
   }
 ]
