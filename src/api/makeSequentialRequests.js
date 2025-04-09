@@ -55,27 +55,14 @@ export async function makeSequentialRequests(requests, onComplete = null) {
           requestSetup.fetchMethod,
         );
 
-        console.log(`Request ${i + 1} succeeded:`, response);
-
         const validResult = SequentialResult.cast({
           status: "success",
           requestIndex: i,
           requestSetup: requestSetup,
           response: response,
         });
-        console.log("Valid result:", validResult);
 
         results.push(validResult);
-
-        /*
-        // Store successful result
-        results.push(SequentialResult.cast({
-          status: "success",
-          requestIndex: i,
-          requestSetup: requestSetup,
-          response: response,
-        }))
-          */
 
         successCount++;
       } catch (error) {
