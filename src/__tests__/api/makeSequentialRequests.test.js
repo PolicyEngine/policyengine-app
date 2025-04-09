@@ -70,18 +70,21 @@ describe("makeSequentialRequests", () => {
             requestIndex: 0,
             requestSetup: requests[0],
             response: mockResponses[0],
+            error: null,
           },
           {
             status: "success",
             requestIndex: 1,
             requestSetup: requests[1],
             response: mockResponses[1],
+            error: null,
           },
           {
             status: "success",
             requestIndex: 2,
             requestSetup: requests[2],
             response: mockResponses[2],
+            error: null,
           },
         ],
         summary: {

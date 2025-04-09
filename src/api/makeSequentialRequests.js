@@ -1,4 +1,29 @@
 import { countryApiCall } from "./call.js";
+import * as yup from "yup";
+
+export const RequestSetup = yup.object({
+  countryId: yup.string().required(),
+  path: yup.string().required(),
+  body: yup.object().notRequired(),
+  method: yup.string().notRequired(),
+  secondAttempt: yup.boolean().notRequired(),
+  fetchMethod: yup.mixed().notRequired(), // Note: yup has no function validator
+});
+
+export const SequentialResult = yup.object({
+  status: yup.string().required(),
+  requestIndex: yup.number().required(),
+  requestSetup: RequestSetup.required(),
+  response: yup.object().notRequired(),
+  error: yup
+    .object({
+      message: yup.string().notRequired(),
+      status: yup.number().notRequired(),
+      data: yup.mixed().notRequired(),
+    })
+    .notRequired()
+    .default(null),
+});
 
 /**
  * Make sequential API requests, waiting for each to complete before starting the next
@@ -14,16 +39,9 @@ import { countryApiCall } from "./call.js";
  * @returns {Promise<Object>} - Promise resolving to a formatted object containing the results of each request
  * and a summary of the request process
  * The return Object contains the following keys:
- * - results {Array<Object>}: Array of objects with the following keys:
- *  - status {String}: "success" or "error"
- *  - requestIndex {Number}: The index of the request in the original requests array
- *  - requestSetup {Object}: The original request object
- *  - response {Response}: The response object from the API call (if successful)
- * - error {Object}: The error object (if an error occurred), which contains:
- *  - message {String}: The error message
- *  - status {Number | undefined}: The HTTP status code (if available)
- *  - data {Any}: The response data (if available)
+ * - results {Array<SequentialResult>}: Array of SequentialResult instances
  */
+
 export async function makeSequentialRequests(requests, onComplete = null) {
   const results = [];
   let successCount = 0;
@@ -44,28 +62,44 @@ export async function makeSequentialRequests(requests, onComplete = null) {
           requestSetup.fetchMethod,
         );
 
-        // Store successful result
-        results.push({
+        console.log(`Request ${i + 1} succeeded:`, response);
+
+        const validResult = SequentialResult.cast({
           status: "success",
           requestIndex: i,
           requestSetup: requestSetup,
           response: response,
         });
+        console.log("Valid result:", validResult);
+
+        results.push(validResult);
+
+        /*
+        // Store successful result
+        results.push(SequentialResult.cast({
+          status: "success",
+          requestIndex: i,
+          requestSetup: requestSetup,
+          response: response,
+        }))
+          */
 
         successCount++;
       } catch (error) {
         console.error(`Request ${i + 1} failed:`, error.message);
 
-        results.push({
-          status: "error",
-          requestIndex: i,
-          error: {
-            message: error.message,
-            status: error.response?.status,
-            data: error.response?.data,
-          },
-          requestSetup: requestSetup,
-        });
+        results.push(
+          SequentialResult.cast({
+            status: "error",
+            requestIndex: i,
+            error: {
+              message: error.message,
+              status: error.response?.status,
+              data: error.response?.data,
+            },
+            requestSetup: requestSetup,
+          }),
+        );
 
         errorCount++;
       } finally {
