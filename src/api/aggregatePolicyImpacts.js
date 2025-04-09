@@ -1,7 +1,6 @@
 import { SequentialResult } from "./makeSequentialRequests";
 import { SocietyWideImpact } from "./societyWideImpact";
 import { aggregators } from "./aggregationFunctions";
-import { testObjects } from "./testObjects";
 
 /**
  * Aggregate a series of SocietyWideImpact items and return the aggregated result
