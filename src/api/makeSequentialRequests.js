@@ -18,7 +18,7 @@ import { countryApiCall } from "./call.js";
  *  - status {String}: "success" or "error"
  *  - requestIndex {Number}: The index of the request in the original requests array
  *  - requestSetup {Object}: The original request object
- *  - response {Flask.Response}: The response object from the API call (if successful)
+ *  - response {Response}: The response object from the API call (if successful)
  * - error {Object}: The error object (if an error occurred), which contains:
  *  - message {String}: The error message
  *  - status {Number | undefined}: The HTTP status code (if available)
