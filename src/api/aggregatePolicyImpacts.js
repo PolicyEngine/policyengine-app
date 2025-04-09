@@ -26,10 +26,8 @@ export async function aggregateSocietyWideImpacts(impacts) {
     decile: aggregateDecileData(impacts.map(impact => impact.decile)),
     // detailed_budget: null, // Placeholder for detailed budget aggregation
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
-    /*
     intra_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_decile)),
-    intra_wealth_decile: null, // Placeholder for intra wealth decile aggregation
-    */
+    // intra_wealth_decile: null, // Placeholder for intra wealth decile aggregation
     labor_supply_response: aggregateLaborSupplyData(impacts.map(impact => impact.labor_supply_response)),
     poverty: aggregatePovertyData(impacts.map(impact => impact.poverty)),
     poverty_by_gender: aggregatePovertyByGenderData(impacts.map(impact => impact.poverty_by_gender)),
@@ -104,6 +102,85 @@ function aggregateDecileComparison(decileData, strategy = "sum") {
   });
   
   return result;
+}
+
+function aggregateWinnersLosersBreakdownSimple(breakdowns, strategy = "sum") {
+  const categories = [
+    "Gain less than 5%",
+    "Gain more than 5%",
+    "Lose less than 5%",
+    "Lose more than 5%",
+    "No change"
+  ];
+  
+  const result = {};
+  
+  categories.forEach(category => {
+    // If breakdowns is an array, aggregate deciles
+    if (Array.isArray(breakdowns)) {
+      result[category] = aggregateDecileComparison(breakdowns.map(b => b?.[category]), strategy);
+
+      return result;
+    }
+    
+    result[category] = aggregateValues(
+      breakdowns.map(b => b?.[category]),
+      strategy
+    );
+  });
+  
+  return result;
+}
+
+function aggregateWinnersLosersBreakdownDeciles(breakdowns, strategy = "sum") {
+  const categories = [
+    "Gain less than 5%",
+    "Gain more than 5%",
+    "Lose less than 5%",
+    "Lose more than 5%",
+    "No change"
+  ];
+  
+  const result = {};
+  
+  categories.forEach(category => {
+    // Initialize with an empty array if no valid data is found
+    if (!breakdowns.some(b => Array.isArray(b?.[category]))) {
+      result[category] = [];
+      return;
+    }
+    
+    // Get the first non-null array to determine length
+    const firstValidArray = breakdowns.find(b => Array.isArray(b?.[category]))?.[category];
+    if (!firstValidArray) {
+      result[category] = [];
+      return;
+    }
+    
+    // Create an array of the same length with aggregated values at each position
+    result[category] = Array(firstValidArray.length).fill(0).map((_, index) => {
+      const valuesAtIndex = breakdowns
+        .filter(b => Array.isArray(b?.[category]) && b[category].length > index)
+        .map(b => b[category][index]);
+      
+      return aggregateValues(valuesAtIndex, strategy);
+    });
+  });
+  
+  return result;
+}
+
+function aggregateIntraDecileData(intraDecileData) {
+  return {
+    all: aggregateWinnersLosersBreakdownSimple(
+      intraDecileData.map(d => d?.all),
+      "mean",
+    ),
+    deciles: aggregateWinnersLosersBreakdownDeciles(
+      intraDecileData.map(d => d?.deciles),
+      "mean",
+    )
+  };
 }
 
 function aggregatePovertyData(povertyData) {
