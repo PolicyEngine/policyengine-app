@@ -22,9 +22,9 @@ export async function aggregateSocietyWideImpacts(impacts) {
 
   const unvalidatedReturn = {
     budget: aggregateBudgetData(impacts.map((impact) => impact.budget)),
-    /*
-    constituency_impact: null, // Placeholder for constituency impact aggregation
+    // constituency_impact: null, // Placeholder for constituency impact aggregation
     decile: aggregateDecileData(impacts.map(impact => impact.decile)),
+    /*
     detailed_budget: null, // Placeholder for detailed budget aggregation
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
     intra_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_decile)),
@@ -75,6 +75,34 @@ export function aggregateBudgetData(budgets) {
     tax_revenue_impact: aggregateValues(
       budgets.map((b) => b?.tax_revenue_impact),
     ),
+  };
+}
+
+function aggregateDecileComparison(decileData, strategy = "sum") {
+  const deciles = [-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const result = {};
+  
+  deciles.forEach(decile => {
+    // Convert to string for property access
+    const decileKey = String(decile);
+    const values = decileData.map(d => d?.[decileKey]).filter(v => v !== undefined);
+    
+    if (values.length > 0) {
+      result[decileKey] = aggregateValues(values, strategy);
+    }
+  });
+  
+  return result;
+}
+
+function aggregateDecileData(deciles) {
+  return {
+    average: {
+      ...aggregateDecileComparison(deciles.map(d => d?.average)),
+    },
+    relative: {
+      ...aggregateDecileComparison(deciles.map(d => d?.relative), "mean"),
+    },
   };
 }
 
