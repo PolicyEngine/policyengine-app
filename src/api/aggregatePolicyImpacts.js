@@ -33,10 +33,8 @@ export async function aggregateSocietyWideImpacts(impacts) {
     */
     poverty: aggregatePovertyData(impacts.map(impact => impact.poverty)),
     poverty_by_gender: aggregatePovertyByGenderData(impacts.map(impact => impact.poverty_by_gender)),
-    /*
     poverty_by_race: aggregatePovertyByRaceData(impacts.map(impact => impact.poverty_by_race)),
-    wealth_decile: null, // Placeholder for wealth decile aggregation
-    */
+    // wealth_decile: null, // Placeholder for wealth decile aggregation
   };
 
   return SocietyWideImpact.cast(unvalidatedReturn);
@@ -136,6 +134,21 @@ function aggregatePovertyByGenderBreakdown(genderBreakdowns) {
     male: aggregateBaselineReformComparison(genderBreakdowns.map(b => b?.male), 'mean', 'mean'),
     female: aggregateBaselineReformComparison(genderBreakdowns.map(b => b?.female), 'mean', 'mean'),
   };
+}
+
+function aggregatePovertyByRaceData(povertyByRaceData) {
+  return {
+    poverty: aggregatePovertyByRaceBreakdown(povertyByRaceData.map(p => p?.poverty)),
+  }
+}
+
+function aggregatePovertyByRaceBreakdown(raceBreakdowns) {
+  return {
+    black: aggregateBaselineReformComparison(raceBreakdowns.map(b => b?.black), 'mean', 'mean'),
+    hispanic: aggregateBaselineReformComparison(raceBreakdowns.map(b => b?.hispanic), 'mean', 'mean'),
+    white: aggregateBaselineReformComparison(raceBreakdowns.map(b => b?.white), 'mean', 'mean'),
+    other: aggregateBaselineReformComparison(raceBreakdowns.map(b => b?.other), 'mean', 'mean'),
+  }
 }
 
 /**
