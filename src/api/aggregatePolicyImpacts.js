@@ -6,7 +6,18 @@ import { SocietyWideImpact } from "./societyWideImpact";
  * @param {Array<SocietyWideImpact>} impacts An array of policy impact objects
  * @returns {SocietyWideImpact} An object with the following properties:
  */
-export function aggregatePolicyImpacts(impacts) {
+export async function aggregateSocietyWideImpacts(impacts) {
+
+  try {
+    for (const impact of impacts) {
+      // Validate the impact object
+      await SocietyWideImpact.validate(impact);
+    }
+  } catch (error) {
+    console.error("Error validating impacts:", error);
+    throw error;
+  }
+
   return;
 }
 
