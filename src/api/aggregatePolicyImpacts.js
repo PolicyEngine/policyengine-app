@@ -30,7 +30,9 @@ export async function aggregateSocietyWideImpacts(impacts) {
     intra_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_decile)),
     intra_wealth_decile: null, // Placeholder for intra wealth decile aggregation
     labor_supply_response: aggregateLaborSupplyResponseData(impacts.map(impact => impact.labor_supply_response)),
+    */
     poverty: aggregatePovertyData(impacts.map(impact => impact.poverty)),
+    /*
     poverty_by_gender: aggregatePovertyByGenderData(impacts.map(impact => impact.poverty_by_gender)),
     poverty_by_race: aggregatePovertyByRaceData(impacts.map(impact => impact.poverty_by_race)),
     wealth_decile: null, // Placeholder for wealth decile aggregation
@@ -104,6 +106,22 @@ function aggregateDecileComparison(decileData, strategy = "sum") {
   });
   
   return result;
+}
+
+function aggregatePovertyData(povertyData) {
+  return {
+    deep_poverty: aggregatePovertyByAgeBreakdown(povertyData.map(p => p?.deep_poverty)),
+    poverty: aggregatePovertyByAgeBreakdown(povertyData.map(p => p?.poverty)),
+  };
+}
+
+function aggregatePovertyByAgeBreakdown(ageBreakdowns) {
+  return {
+    adult: aggregateBaselineReformComparison(ageBreakdowns.map(b => b?.adult), 'mean', 'mean'),
+    all: aggregateBaselineReformComparison(ageBreakdowns.map(b => b?.all), 'mean', 'mean'),
+    child: aggregateBaselineReformComparison(ageBreakdowns.map(b => b?.child), 'mean', 'mean'),
+    senior: aggregateBaselineReformComparison(ageBreakdowns.map(b => b?.senior), 'mean', 'mean'),
+  };
 }
 
 /**
