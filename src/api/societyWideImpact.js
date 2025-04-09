@@ -99,10 +99,12 @@ export const SocietyWideImpact = yup.object({
     substitution_lsr: yup.number().default(0),
     total_change: yup.number().default(0),
   }),
+  */
   poverty: yup.object({
     deep_poverty: PovertyByAgeBreakdown,
     poverty: PovertyByAgeBreakdown,
   }),
+  /*
   poverty_by_gender: yup.object({
     deep_poverty: PovertyByGenderBreakdown,
     poverty: PovertyByGenderBreakdown,
