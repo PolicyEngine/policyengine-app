@@ -11,7 +11,18 @@ import { countryApiCall } from "./call.js";
  * time if it fails the first time
  * @param {Function} [requests[].fetchMethod = fetch] - Specify a custom fetch method.
  * @param {Function} [onComplete = null] - Optional callback for when an individual request completes
- * @returns {Promise<Array>} - Promise resolving to array of all responses
+ * @returns {Promise<Object>} - Promise resolving to a formatted object containing the results of each request
+ * and a summary of the request process
+ * The return Object contains the following keys:
+ * - results {Array<Object>}: Array of objects with the following keys:
+ *  - status {String}: "success" or "error"
+ *  - requestIndex {Number}: The index of the request in the original requests array
+ *  - requestSetup {Object}: The original request object
+ *  - response {Flask.Response}: The response object from the API call (if successful)
+ * - error {Object}: The error object (if an error occurred), which contains:
+ *  - message {String}: The error message
+ *  - status {Number | undefined}: The HTTP status code (if available)
+ *  - data {Any}: The response data (if available)
  */
 export async function makeSequentialRequests(requests, onComplete = null) {
   const results = [];
