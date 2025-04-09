@@ -55,6 +55,7 @@ export const SocietyWideImpact = yup.object({
     state_tax_revenue_impact: yup.number(),
     tax_revenue_impact: yup.number(),
   }),
+  /*
   constituency_impact: yup.object().nullable(),
   decile: yup.object({
     average: DecileComparison,
@@ -113,4 +114,5 @@ export const SocietyWideImpact = yup.object({
     .notRequired()
     .default(null),
   wealth_decile: yup.object().notRequired(),
+  */
 });
