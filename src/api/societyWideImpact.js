@@ -55,18 +55,18 @@ export const SocietyWideImpact = yup.object({
     state_tax_revenue_impact: yup.number(),
     tax_revenue_impact: yup.number(),
   }),
-  /*
-  constituency_impact: yup.object().nullable(),
+  // constituency_impact: yup.object().nullable(),
   decile: yup.object({
     average: DecileComparison,
     relative: DecileComparison,
   }),
-  detailed_budget: yup.object().notRequired(),
+  // detailed_budget: yup.object().notRequired(),
   inequality: yup.object({
     gini: BaselineReformComparison,
     top_10_pct_share: BaselineReformComparison,
     top_1_pct_share: BaselineReformComparison,
   }),
+  /*
   intra_decile: yup.object({
     all: WinnersLosersBreakdown,
     deciles: WinnersLosersBreakdown,
