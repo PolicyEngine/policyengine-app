@@ -72,6 +72,7 @@ export const SocietyWideImpact = yup.object({
     deciles: WinnersLosersBreakdown,
   }),
   intra_wealth_decile: yup.object().notRequired(),
+  */
   labor_supply_response: yup.object({
     decile: yup.object({
       average: yup.object({
@@ -83,23 +84,22 @@ export const SocietyWideImpact = yup.object({
         substitution: DecileComparison,
       }),
     }),
-    hours: {
+    hours: yup.object({
       baseline: yup.number().default(0),
       change: yup.number().default(0),
       income_effect: yup.number().default(0),
       reform: yup.number().default(0),
       substitution_effect: yup.number().default(0),
-    },
+    }),
     income_lsr: yup.number().default(0),
-    relative_lsr: {
+    relative_lsr: yup.object({
       income: yup.number().default(0),
       substitution: yup.number().default(0),
-    },
+    }),
     revenue_change: yup.number().default(0),
     substitution_lsr: yup.number().default(0),
     total_change: yup.number().default(0),
   }),
-  */
   poverty: yup.object({
     deep_poverty: PovertyByAgeBreakdown,
     poverty: PovertyByAgeBreakdown,
