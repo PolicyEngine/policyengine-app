@@ -1,6 +1,7 @@
 import { SequentialResult } from "./makeSequentialRequests";
 import { SocietyWideImpact } from "./societyWideImpact";
 import { aggregators } from "./aggregationFunctions";
+import { testObjects } from "./testObjects";
 
 /**
  * Aggregate a series of SocietyWideImpact items and return the aggregated result
@@ -8,14 +9,16 @@ import { aggregators } from "./aggregationFunctions";
  * @returns {SocietyWideImpact} An object with the following properties:
  */
 export async function aggregateSocietyWideImpacts(impacts) {
+
   try {
     for (const impact of impacts) {
-      // Validate the impact object
-      await SocietyWideImpact.validate(impact);
+      console.log("Impact inside validator:", impact);
+      await SocietyWideImpact.validate(impact, {abortEarly: false});
+      console.log("Impact validated:", impact);
     }
-  } catch (error) {
-    console.error("Error validating impacts:", error);
-    throw error;
+  } catch (err) {
+    console.error("Error validating impacts:", err);
+    throw err;
   }
 
   const unvalidatedReturn = {
