@@ -27,14 +27,7 @@ export const SequentialResult = yup.object({
 
 /**
  * Make sequential API requests, waiting for each to complete before starting the next
- * @param {Array<Object>} requests - Array of request objects; keys and values correspond with apiCall args
- * @param {String} requests[].path - API URL, beginning with a slash
- * @param {Object} requests[].body - The body of the request for a non-GET request
- * @param {String} requests[].method - The HTTP method; defaults to GET if no body is passed,
- * or to POST if a body is passed
- * @param {boolean} [requests[].secondAttempt = false] - Whether or not to attempt the request a second
- * time if it fails the first time
- * @param {Function} [requests[].fetchMethod = fetch] - Specify a custom fetch method.
+ * @param {Array<RequestSetup>} requests - Array of RequestSetup objects; keys and values correspond with apiCall args
  * @param {Function} [onComplete = null] - Optional callback for when an individual request completes
  * @returns {Promise<Object>} - Promise resolving to a formatted object containing the results of each request
  * and a summary of the request process
