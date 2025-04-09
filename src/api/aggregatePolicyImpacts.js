@@ -24,9 +24,9 @@ export async function aggregateSocietyWideImpacts(impacts) {
     budget: aggregateBudgetData(impacts.map((impact) => impact.budget)),
     // constituency_impact: null, // Placeholder for constituency impact aggregation
     decile: aggregateDecileData(impacts.map(impact => impact.decile)),
-    /*
-    detailed_budget: null, // Placeholder for detailed budget aggregation
+    // detailed_budget: null, // Placeholder for detailed budget aggregation
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
+    /*
     intra_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_decile)),
     intra_wealth_decile: null, // Placeholder for intra wealth decile aggregation
     labor_supply_response: aggregateLaborSupplyResponseData(impacts.map(impact => impact.labor_supply_response)),
@@ -40,24 +40,7 @@ export async function aggregateSocietyWideImpacts(impacts) {
   return SocietyWideImpact.cast(unvalidatedReturn);
 }
 
-/**
- * Aggregates numeric values using either sum or average based on specified strategy
- * @param {Array<number>} values - Array of numbers to aggregate
- * @param {'sum' | 'mean'} strategy - Aggregation strategy, either 'sum' or 'mean';
- * add a custom strategy by modifying the aggregators object in aggregationFunctions.js
- * and updating JSDoc literal comment
- * @returns {number} The aggregated value
- */
-export function aggregateValues(values, strategy = "sum") {
-  const validValues = values.filter((val) => val !== undefined && val !== null);
 
-  if (validValues.length === 0) {
-    console.error("Error aggregating values within array:", values);
-    return null;
-  }
-
-  return aggregators[strategy](validValues);
-}
 
 export function aggregateBudgetData(budgets) {
   return {
@@ -78,6 +61,34 @@ export function aggregateBudgetData(budgets) {
   };
 }
 
+
+function aggregateDecileData(deciles) {
+  return {
+    average: {
+      ...aggregateDecileComparison(deciles.map(d => d?.average)),
+    },
+    relative: {
+      ...aggregateDecileComparison(deciles.map(d => d?.relative), "mean"),
+    },
+  };
+}
+
+function aggregateInequalityData(inequalityData) {
+  // Average approach for inequality metrics
+  return {
+    gini: aggregateBaselineReformComparison(inequalityData.map(i => i?.gini), 'mean', 'mean'),
+    top_10_pct_share: aggregateBaselineReformComparison(inequalityData.map(i => i?.top_10_pct_share), 'mean', 'mean'),
+    top_1_pct_share: aggregateBaselineReformComparison(inequalityData.map(i => i?.top_1_pct_share), 'mean', 'mean'),
+  };
+}
+
+function aggregateBaselineReformComparison(comparisons, baselineStrategy = 'sum', reformStrategy = 'sum') {
+  return {
+    baseline: aggregateValues(comparisons.map(c => c?.baseline), baselineStrategy),
+    reform: aggregateValues(comparisons.map(c => c?.reform), reformStrategy),
+  };
+}
+
 function aggregateDecileComparison(decileData, strategy = "sum") {
   const deciles = [-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const result = {};
@@ -95,15 +106,27 @@ function aggregateDecileComparison(decileData, strategy = "sum") {
   return result;
 }
 
-function aggregateDecileData(deciles) {
-  return {
-    average: {
-      ...aggregateDecileComparison(deciles.map(d => d?.average)),
-    },
-    relative: {
-      ...aggregateDecileComparison(deciles.map(d => d?.relative), "mean"),
-    },
-  };
+/**
+ * Aggregates numeric values using either sum or average based on specified strategy
+ * @param {Array<number>} values - Array of numbers to aggregate
+ * @param {'sum' | 'mean'} strategy - Aggregation strategy, either 'sum' or 'mean';
+ * add a custom strategy by modifying the aggregators object in aggregationFunctions.js
+ * and updating JSDoc literal comment
+ * @returns {number} The aggregated value
+ */
+export function aggregateValues(values, strategy = "sum") {
+  if (!Object.keys(aggregators).includes(strategy)) {
+    throw new Error(`Invalid aggregation strategy: ${strategy}`);
+  }
+
+  const validValues = values.filter((val) => val !== undefined && val !== null);
+
+  if (validValues.length === 0) {
+    console.error("Error aggregating values within array:", values);
+    return null;
+  }
+
+  return aggregators[strategy](validValues);
 }
 
 /**
