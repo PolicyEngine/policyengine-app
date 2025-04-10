@@ -1,5 +1,15 @@
 import * as yup from "yup";
-import { BudgetaryImpactModule, DecileModule, InequalityModule, IntraDecileModule, PovertyByAgeModule, PovertyByGenderModule, PovertyByRaceModule, UKConstituencyModule, UKDetailedPrograms } from "./societyWideModules";
+import {
+  BudgetaryImpactModule,
+  DecileModule,
+  InequalityModule,
+  IntraDecileModule,
+  PovertyByAgeModule,
+  PovertyByGenderModule,
+  PovertyByRaceModule,
+  UKConstituencyModule,
+  UKDetailedPrograms,
+} from "./societyWideModules";
 import { LSRModule } from "./societyWideLSR";
 
 export const SocietyWideImpactUS = yup.object({
