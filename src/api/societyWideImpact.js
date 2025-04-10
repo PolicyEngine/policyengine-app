@@ -103,7 +103,7 @@ export const SocietyWideImpact = yup.object({
     tax_revenue_impact: yup.number(),
   }),
   constituency_impact: yup.object({
-    by_constituency: yup.object(), // This contains all 650 constituencies as keys and is impractical to profile
+    by_constituency: yup.object().nullable().notRequired(), // This contains all 650 constituencies as keys and is impractical to profile
     outcomes_by_region: yup.object({
       england: WinnersLosersBreakdown,
       northern_ireland: WinnersLosersBreakdown,
@@ -111,7 +111,7 @@ export const SocietyWideImpact = yup.object({
       wales: WinnersLosersBreakdown,
       uk: WinnersLosersBreakdown,
     })
-  }).notRequired(),
+  }).nullable().notRequired(),
   decile: yup.object({
     average: DecileComparison,
     relative: DecileComparison,
