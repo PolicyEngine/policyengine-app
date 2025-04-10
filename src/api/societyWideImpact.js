@@ -51,6 +51,14 @@ export const WinnersLosersBreakdown = yup.object({
   "No change": yup.number(),
 });
 
+export const WinnersLosersDeciles = yup.object({
+  "Gain less than 5%": yup.array().of(yup.number()),
+  "Gain more than 5%": yup.array().of(yup.number()),
+  "Lose less than 5%": yup.array().of(yup.number()),
+  "Lose more than 5%": yup.array().of(yup.number()),
+  "No change": yup.array().of(yup.number()),
+});
+
 export const SocietyWideImpact = yup.object({
   budget: yup.object({
     baseline_net_income: yup.number(),
@@ -80,13 +88,11 @@ export const SocietyWideImpact = yup.object({
     top_10_pct_share: BaselineReformComparison,
     top_1_pct_share: BaselineReformComparison,
   }),
-  /*
   intra_decile: yup.object({
     all: WinnersLosersBreakdown,
-    deciles: WinnersLosersBreakdown,
+    deciles: WinnersLosersDeciles,
   }),
-  intra_wealth_decile: yup.object().notRequired(),
-  */
+  // intra_wealth_decile: yup.object().notRequired(),
   labor_supply_response: yup.object({
     decile: yup.object({
       average: yup.object({

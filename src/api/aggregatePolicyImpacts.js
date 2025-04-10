@@ -117,12 +117,6 @@ function aggregateWinnersLosersBreakdownSimple(breakdowns, strategy = "sum") {
   const result = {};
   
   categories.forEach(category => {
-    // If breakdowns is an array, aggregate deciles
-    if (Array.isArray(breakdowns)) {
-      result[category] = aggregateDecileComparison(breakdowns.map(b => b?.[category]), strategy);
-
-      return result;
-    }
     
     result[category] = aggregateValues(
       breakdowns.map(b => b?.[category]),
