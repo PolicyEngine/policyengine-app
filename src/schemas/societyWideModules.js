@@ -1,5 +1,14 @@
-import * as yup from 'yup';
-import { BaselineReformComparison, BaselineReformDifference, DecileComparison, PovertyByAgeBreakdown, PovertyByGenderBreakdown, PovertyByRaceBreakdown, WinnersLosersBreakdown, WinnersLosersDeciles } from './societyWideUtils';
+import * as yup from "yup";
+import {
+  BaselineReformComparison,
+  BaselineReformDifference,
+  DecileComparison,
+  PovertyByAgeBreakdown,
+  PovertyByGenderBreakdown,
+  PovertyByRaceBreakdown,
+  WinnersLosersBreakdown,
+  WinnersLosersDeciles,
+} from "./societyWideUtils";
 
 export const BudgetaryImpactModule = yup.object({
   baseline_net_income: yup.number(),
@@ -16,14 +25,14 @@ export const DecileModule = yup.object({
 });
 
 export const InequalityModule = yup.object({
-    gini: BaselineReformComparison,
-    top_10_pct_share: BaselineReformComparison,
-    top_1_pct_share: BaselineReformComparison,
-  }); 
+  gini: BaselineReformComparison,
+  top_10_pct_share: BaselineReformComparison,
+  top_1_pct_share: BaselineReformComparison,
+});
 
 export const IntraDecileModule = yup.object({
-    all: WinnersLosersBreakdown,
-    deciles: WinnersLosersDeciles,
+  all: WinnersLosersBreakdown,
+  deciles: WinnersLosersDeciles,
 });
 
 export const PovertyByAgeModule = yup.object({
@@ -55,12 +64,12 @@ export const UKDetailedPrograms = yup.object({
 });
 
 export const UKConstituencyModule = yup.object({
-    by_constituency: yup.object().nullable().notRequired(), // This contains all 650 constituencies as keys and is impractical to profile
-    outcomes_by_region: yup.object({
-      england: WinnersLosersBreakdown,
-      northern_ireland: WinnersLosersBreakdown,
-      scotland: WinnersLosersBreakdown,
-      wales: WinnersLosersBreakdown,
-      uk: WinnersLosersBreakdown,
-    })
-  });
+  by_constituency: yup.object(), // This contains all 650 constituencies as keys and is impractical to profile
+  outcomes_by_region: yup.object({
+    england: WinnersLosersBreakdown,
+    northern_ireland: WinnersLosersBreakdown,
+    scotland: WinnersLosersBreakdown,
+    wales: WinnersLosersBreakdown,
+    uk: WinnersLosersBreakdown,
+  }),
+});
