@@ -23,7 +23,7 @@ export async function aggregateSocietyWideImpacts(impacts) {
 
   const unvalidatedReturn = {
     budget: aggregateBudgetData(impacts.map((impact) => impact.budget)),
-    constituency_impact: aggregateConstituencyData(impacts.map((impact) => impact.constituency_impact)),
+    constituency_impact: aggregateConstituencyImpactData(impacts.map((impact) => impact.constituency_impact)),
     decile: aggregateDecileData(impacts.map(impact => impact.decile)),
     detailed_budget: aggregateDetailedBudgetData(impacts.map(impact => impact.detailed_budget)),
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
@@ -283,7 +283,7 @@ function aggregateConstituencyImpactData(impacts) {
 
 function aggregateConstituencyData(impacts) {
   if (!impacts || !impacts.length) {
-    throw new Error('Cannot aggregate empty or undefined impacts');
+    return null;
   }
 
   const validConstituencyImpacts = impacts
