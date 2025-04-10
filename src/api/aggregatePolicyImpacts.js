@@ -33,7 +33,7 @@ export async function aggregateSocietyWideImpacts(impacts) {
     poverty: aggregatePovertyData(impacts.map(impact => impact.poverty)),
     poverty_by_gender: aggregatePovertyByGenderData(impacts.map(impact => impact.poverty_by_gender)),
     poverty_by_race: aggregatePovertyByRaceData(impacts.map(impact => impact.poverty_by_race)),
-    // wealth_decile: null, // Placeholder for wealth decile aggregation
+    wealth_decile: aggregateDecileData(impacts.map(impact => impact.wealth_decile)),
   };
 
   return SocietyWideImpact.cast(unvalidatedReturn);
@@ -62,6 +62,10 @@ export function aggregateBudgetData(budgets) {
 
 
 function aggregateDecileData(deciles) {
+  if (!deciles || !deciles.length) {
+    return null;
+  }
+
   return {
     average: {
       ...aggregateDecileComparison(deciles.map(d => d?.average)),
@@ -426,10 +430,8 @@ export async function parseSocietyWideResultsFromSequentialRequests(
       const responseJson = await response.json();
       const resultData = responseJson.result;
 
-      // Validate the response
       const validImpact = SocietyWideImpact.cast(resultData);
 
-      // Push the valid impact to the array
       impacts.push(validImpact);
     }
   } catch (error) {

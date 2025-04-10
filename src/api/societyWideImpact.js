@@ -24,6 +24,20 @@ export const DecileComparison = yup.object({
   10: yup.number().required(),
 });
 
+export const DecileComparisonNullable = yup.object({
+  "-1": yup.number().nullable(),
+  1: yup.number().nullable(),
+  2: yup.number().nullable(),
+  3: yup.number().nullable(),
+  4: yup.number().nullable(),
+  5: yup.number().nullable(),
+  6: yup.number().nullable(),
+  7: yup.number().nullable(),
+  8: yup.number().nullable(),
+  9: yup.number().nullable(),
+  10: yup.number().nullable(),
+});
+
 export const PovertyByAgeBreakdown = yup.object({
   adult: BaselineReformComparison,
   all: BaselineReformComparison,
@@ -156,6 +170,9 @@ export const SocietyWideImpact = yup.object({
       poverty: PovertyByRaceBreakdown.nullable(),
     })
     .nullable()
-    .notRequired()
-  // wealth_decile: yup.object().notRequired(),
+    .notRequired(),
+  wealth_decile: yup.object({
+    average: DecileComparisonNullable.nullable(),
+    relative: DecileComparisonNullable.nullable(),
+  }).nullable().notRequired(),
 });
