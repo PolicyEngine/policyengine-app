@@ -44,19 +44,19 @@ export const PovertyByRaceBreakdown = yup.object({
 });
 
 export const WinnersLosersBreakdown = yup.object({
-  "Gain less than 5%": yup.number(),
-  "Gain more than 5%": yup.number(),
-  "Lose less than 5%": yup.number(),
-  "Lose more than 5%": yup.number(),
-  "No change": yup.number(),
+  "Gain less than 5%": yup.number().nullable(),
+  "Gain more than 5%": yup.number().nullable(),
+  "Lose less than 5%": yup.number().nullable(),
+  "Lose more than 5%": yup.number().nullable(),
+  "No change": yup.number().nullable(),
 });
 
 export const WinnersLosersDeciles = yup.object({
-  "Gain less than 5%": yup.array().of(yup.number()),
-  "Gain more than 5%": yup.array().of(yup.number()),
-  "Lose less than 5%": yup.array().of(yup.number()),
-  "Lose more than 5%": yup.array().of(yup.number()),
-  "No change": yup.array().of(yup.number()),
+  "Gain less than 5%": yup.array().of(yup.number()).nullable(),
+  "Gain more than 5%": yup.array().of(yup.number()).nullable(),
+  "Lose less than 5%": yup.array().of(yup.number()).nullable(),
+  "Lose more than 5%": yup.array().of(yup.number()).nullable(),
+  "No change": yup.array().of(yup.number()).nullable(),
 });
 
 export const BaselineReformDifferenceNullable = yup.object({
@@ -112,7 +112,10 @@ export const SocietyWideImpact = yup.object({
     all: WinnersLosersBreakdown,
     deciles: WinnersLosersDeciles,
   }),
-  // intra_wealth_decile: yup.object().notRequired(),
+  intra_wealth_decile: yup.object({
+    all: WinnersLosersBreakdown.nullable(),
+    deciles: WinnersLosersDeciles.nullable(),
+  }).notRequired().nullable(),
   labor_supply_response: yup.object({
     decile: yup.object({
       average: yup.object({
