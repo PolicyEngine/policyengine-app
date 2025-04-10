@@ -17,12 +17,13 @@ export async function aggregateSocietyWideImpacts(impacts) {
     }
   } catch (err) {
     console.error("Error validating impacts:", err);
+    console.error(err?.errors);
     throw err;
   }
 
   const unvalidatedReturn = {
     budget: aggregateBudgetData(impacts.map((impact) => impact.budget)),
-    // constituency_impact: null, // Placeholder for constituency impact aggregation
+    constituency_impact: aggregateConstituencyData(impacts.map((impact) => impact.constituency_impact)),
     decile: aggregateDecileData(impacts.map(impact => impact.decile)),
     // detailed_budget: null, // Placeholder for detailed budget aggregation
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
@@ -214,6 +215,9 @@ function aggregatePovertyByGenderBreakdown(genderBreakdowns) {
 }
 
 function aggregatePovertyByRaceData(povertyByRaceData) {
+  if (!povertyByRaceData || !povertyByRaceData.length) {
+    return null;
+  }
   return {
     poverty: aggregatePovertyByRaceBreakdown(povertyByRaceData.map(p => p?.poverty)),
   }
@@ -256,6 +260,79 @@ function aggregateLaborSupplyData(laborSupplyData) {
       substitution: aggregateValues(laborSupplyData.map(l => l?.relative_lsr?.substitution), 'mean'),
     },
   };
+}
+
+function aggregateConstituencyImpactData(impacts) {
+  if (!impacts || !impacts.length) {
+    throw new Error('Cannot aggregate empty or undefined impacts');
+  }
+
+  return {
+    by_constituency: aggregateConstituencyData(impacts.by_constituency),
+    outcomes_by_region: {
+      england: aggregateWinnersLosersBreakdownSimple(impacts.map(i => i?.outcomes_by_region?.england), "mean"),
+      northern_ireland: aggregateWinnersLosersBreakdownSimple(impacts.map(i => i?.outcomes_by_region?.northern_ireland), "mean"),
+      scotland: aggregateWinnersLosersBreakdownSimple(impacts.map(i => i?.outcomes_by_region?.scotland), "mean"),
+      wales: aggregateWinnersLosersBreakdownSimple(impacts.map(i => i?.outcomes_by_region?.wales), "mean"),
+      uk: aggregateWinnersLosersBreakdownSimple(impacts.map(i => i?.outcomes_by_region?.uk), "mean"),
+    }
+  }
+}
+
+function aggregateConstituencyData(impacts) {
+  if (!impacts || !impacts.length) {
+    throw new Error('Cannot aggregate empty or undefined impacts');
+  }
+
+  const validConstituencyImpacts = impacts
+    .map(impact => impact.constituency_impact)
+    .filter(impact => impact !== null && impact !== undefined);
+
+  if (validConstituencyImpacts.length === 0) {
+    return null; 
+  }
+
+  const constituencyMap = new Map();
+
+  validConstituencyImpacts.forEach(constituencyImpact => {
+    Object.keys(constituencyImpact).forEach(constituencyName => {
+      const constituencyData = constituencyImpact[constituencyName];
+      
+      if (!constituencyMap.has(constituencyName)) {
+        // Initialize constituency data if it doesn't exist yet
+        constituencyMap.set(constituencyName, {
+          // Using snake_case to reflect original data schema
+          average_household_income_changes: [],
+          relative_household_income_changes: [],
+          x: constituencyData.x,
+          y: constituencyData.y
+        });
+      }
+      
+      const mapEntry = constituencyMap.get(constituencyName);
+      mapEntry.averageHouseholdIncomeChanges.push(constituencyData.average_household_income_change);
+      mapEntry.relativeHouseholdIncomeChanges.push(constituencyData.relative_household_income_change);
+    });
+  });
+
+  const aggregatedConstituencies = {};
+  
+  constituencyMap.forEach((data, constituencyName) => {
+    aggregatedConstituencies[constituencyName] = {
+      average_household_income_change: aggregateValues(
+        data.average_household_income_changes,
+        'mean'
+      ),
+      relative_household_income_change: aggregateValues(
+        data.relative_household_income_changes,
+        'mean'
+      ),
+      x: data.x,
+      y: data.y
+    };
+  });
+
+  return aggregatedConstituencies;
 }
 
 /**
