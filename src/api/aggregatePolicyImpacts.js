@@ -25,7 +25,7 @@ export async function aggregateSocietyWideImpacts(impacts) {
     budget: aggregateBudgetData(impacts.map((impact) => impact.budget)),
     constituency_impact: aggregateConstituencyData(impacts.map((impact) => impact.constituency_impact)),
     decile: aggregateDecileData(impacts.map(impact => impact.decile)),
-    // detailed_budget: null, // Placeholder for detailed budget aggregation
+    detailed_budget: aggregateDetailedBudgetData(impacts.map(impact => impact.detailed_budget)),
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
     intra_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_decile)),
     // intra_wealth_decile: null, // Placeholder for intra wealth decile aggregation
@@ -327,6 +327,48 @@ function aggregateConstituencyData(impacts) {
   });
 
   return aggregatedConstituencies;
+}
+
+function aggregateDetailedBudgetData(detailedBudgets) {
+  if (!detailedBudgets || !detailedBudgets.length) {
+    return null;
+  }
+
+  const validBudgets = detailedBudgets.filter(budget => 
+    budget !== null && budget !== undefined
+  );
+  
+  if (validBudgets.length === 0) {
+    return {};
+  }
+  
+  // Identify all unique budget line items across all impact objects
+  const allLineItems = new Set();
+  validBudgets.forEach(budget => {
+    Object.keys(budget).forEach(lineItem => {
+      allLineItems.add(lineItem);
+    });
+  });
+  
+  const aggregatedBudget = {};
+  
+  allLineItems.forEach(lineItem => {
+    // Extract values for this line item from all budgets
+    const lineItemData = validBudgets.map(budget => budget[lineItem] || null)
+      .filter(data => data !== null);
+      
+    if (lineItemData.length === 0) {
+      return;
+    }
+    
+    aggregatedBudget[lineItem] = {
+      baseline: aggregateValues(lineItemData.map(data => data.baseline)),
+      difference: aggregateValues(lineItemData.map(data => data.difference)),
+      reform: aggregateValues(lineItemData.map(data => data.reform))
+    };
+  });
+  
+  return aggregatedBudget;
 }
 
 /**
