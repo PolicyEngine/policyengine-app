@@ -59,6 +59,26 @@ export const WinnersLosersDeciles = yup.object({
   "No change": yup.array().of(yup.number()),
 });
 
+export const BaselineReformDifferenceNullable = yup.object({
+  baseline: yup.number().nullable(),
+  reform: yup.number().nullable(),
+  difference: yup.number().nullable(),
+});
+
+export const UKDetailedPrograms = yup.object({
+  child_benefit: BaselineReformDifferenceNullable.nullable(),
+  council_tax: BaselineReformDifferenceNullable.nullable(),
+  fuel_duty: BaselineReformDifferenceNullable.nullable(),
+  income_tax: BaselineReformDifferenceNullable.nullable(),
+  national_insurance: BaselineReformDifferenceNullable.nullable(),
+  ni_employer: BaselineReformDifferenceNullable.nullable(),
+  pension_credit: BaselineReformDifferenceNullable.nullable(),
+  state_pension: BaselineReformDifferenceNullable.nullable(),
+  tax_credits: BaselineReformDifferenceNullable.nullable(),
+  universal_credit: BaselineReformDifferenceNullable.nullable(),
+  vat: BaselineReformDifferenceNullable.nullable(),
+}).nullable();
+
 export const SocietyWideImpact = yup.object({
   budget: yup.object({
     baseline_net_income: yup.number(),
@@ -82,7 +102,7 @@ export const SocietyWideImpact = yup.object({
     average: DecileComparison,
     relative: DecileComparison,
   }),
-  // detailed_budget: yup.object().notRequired(),
+  detailed_budget: UKDetailedPrograms.nullable(),
   inequality: yup.object({
     gini: BaselineReformComparison,
     top_10_pct_share: BaselineReformComparison,
