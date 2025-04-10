@@ -1191,6 +1191,15 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
+    "title": "The Tax Cuts for Workers Act",
+    "date": "2025-04-10",
+    "authors": ["pavel-makarchuk", "max-ghenis"],
+    "tags": ["us", "policy", "featured"],
+    "description": "Over the 2026 - 2035 budget window, the reform would cost the federal government $65.4 billion.",
+    "filename": "tax-cuts-for-workers-act.ipynb",
+    "image": "tax-cuts-for-workers-act.jpg"
+  },
+  {
     "title": "Idaho’s New Individual Income Tax Changes",
     "date": "2025-04-01",
     "authors": ["david-trimmer"],
