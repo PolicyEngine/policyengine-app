@@ -5,6 +5,11 @@ export const BaselineReformComparison = yup.object({
   reform: yup.number(),
 });
 
+export const BaselineReformComparisonNullable = yup.object({
+  baseline: yup.number().nullable(),
+  reform: yup.number().nullable(),
+})
+
 export const DecileComparison = yup.object({
   "-1": yup.number().notRequired().default(undefined),
   1: yup.number().required(),
@@ -32,10 +37,10 @@ export const PovertyByGenderBreakdown = yup.object({
 });
 
 export const PovertyByRaceBreakdown = yup.object({
-  black: BaselineReformComparison,
-  hispanic: BaselineReformComparison,
-  white: BaselineReformComparison,
-  other: BaselineReformComparison,
+  black: BaselineReformComparisonNullable.nullable(),
+  hispanic: BaselineReformComparisonNullable.nullable(),
+  white: BaselineReformComparisonNullable.nullable(),
+  other: BaselineReformComparisonNullable.nullable(),
 });
 
 export const WinnersLosersBreakdown = yup.object({
@@ -55,7 +60,16 @@ export const SocietyWideImpact = yup.object({
     state_tax_revenue_impact: yup.number(),
     tax_revenue_impact: yup.number(),
   }),
-  // constituency_impact: yup.object().nullable(),
+  constituency_impact: yup.object({
+    by_constituency: yup.object(), // This contains all 650 constituencies as keys and is impractical to profile
+    outcomes_by_region: yup.object({
+      england: WinnersLosersBreakdown,
+      northern_ireland: WinnersLosersBreakdown,
+      scotland: WinnersLosersBreakdown,
+      wales: WinnersLosersBreakdown,
+      uk: WinnersLosersBreakdown,
+    })
+  }).notRequired(),
   decile: yup.object({
     average: DecileComparison,
     relative: DecileComparison,
@@ -110,9 +124,9 @@ export const SocietyWideImpact = yup.object({
   }),
   poverty_by_race: yup
     .object({
-      poverty: PovertyByRaceBreakdown,
+      poverty: PovertyByRaceBreakdown.nullable(),
     })
+    .nullable()
     .notRequired()
-    .default(null),
   // wealth_decile: yup.object().notRequired(),
 });
