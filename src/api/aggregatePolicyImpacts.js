@@ -28,7 +28,7 @@ export async function aggregateSocietyWideImpacts(impacts) {
     detailed_budget: aggregateDetailedBudgetData(impacts.map(impact => impact.detailed_budget)),
     inequality: aggregateInequalityData(impacts.map(impact => impact.inequality)),
     intra_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_decile)),
-    // intra_wealth_decile: null, // Placeholder for intra wealth decile aggregation
+    intra_wealth_decile: aggregateIntraDecileData(impacts.map(impact => impact.intra_wealth_decile)),
     labor_supply_response: aggregateLaborSupplyData(impacts.map(impact => impact.labor_supply_response)),
     poverty: aggregatePovertyData(impacts.map(impact => impact.poverty)),
     poverty_by_gender: aggregatePovertyByGenderData(impacts.map(impact => impact.poverty_by_gender)),
@@ -166,6 +166,10 @@ function aggregateWinnersLosersBreakdownDeciles(breakdowns, strategy = "sum") {
 }
 
 function aggregateIntraDecileData(intraDecileData) {
+  if (!intraDecileData || !intraDecileData.length) {
+    return null;
+  }
+
   return {
     all: aggregateWinnersLosersBreakdownSimple(
       intraDecileData.map(d => d?.all),
