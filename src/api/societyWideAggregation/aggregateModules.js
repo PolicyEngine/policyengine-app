@@ -44,7 +44,6 @@ export function aggregateDecileModule(deciles) {
 }
 
 export function aggregateInequalityModule(inequalityData) {
-  // Average approach for inequality metrics
   return {
     gini: aggregateBaselineReformComparison(
       inequalityData.map((i) => i?.gini),
@@ -65,13 +64,6 @@ export function aggregateInequalityModule(inequalityData) {
 }
 
 export function aggregateIntraDecileModule(intraDecileData) {
-  console.log("Aggregating intra decile data");
-  console.log(intraDecileData);
-
-  if (!intraDecileData || !intraDecileData.length) {
-    return null;
-  }
-
   return {
     all: aggregateWinnersLosersBreakdownSimple(
       intraDecileData.map((d) => d?.all),
@@ -113,12 +105,16 @@ export function aggregatePovertyByRaceModule(povertyByRaceData) {
 }
 
 export function aggregateConstituencyModule(impacts) {
+  // Still unsure if these are always returned, and this is a beta feature,
+  // so duck-type checking for data presence
   if (!impacts || !impacts.length) {
     throw new Error("Cannot aggregate empty or undefined impacts");
   }
 
   return {
-    by_constituency: aggregateConstituencyData(impacts.by_constituency),
+    by_constituency: aggregateConstituencyData(
+      impacts.map((i) => i?.by_constituency),
+    ),
     outcomes_by_region: {
       england: aggregateWinnersLosersBreakdownSimple(
         impacts.map((i) => i?.outcomes_by_region?.england),
@@ -145,17 +141,9 @@ export function aggregateConstituencyModule(impacts) {
 }
 
 export function aggregateDetailedBudgetModule(detailedBudgets) {
-  const validBudgets = detailedBudgets.filter(
-    (budget) => budget !== null && budget !== undefined,
-  );
-
-  if (validBudgets.length === 0) {
-    return {};
-  }
-
   // Identify all unique budget line items across all impact objects
   const allLineItems = new Set();
-  validBudgets.forEach((budget) => {
+  detailedBudgets.forEach((budget) => {
     Object.keys(budget).forEach((lineItem) => {
       allLineItems.add(lineItem);
     });
@@ -165,7 +153,7 @@ export function aggregateDetailedBudgetModule(detailedBudgets) {
 
   allLineItems.forEach((lineItem) => {
     // Extract values for this line item from all budgets
-    const lineItemData = validBudgets
+    const lineItemData = detailedBudgets
       .map((budget) => budget[lineItem] || null)
       .filter((data) => data !== null);
 

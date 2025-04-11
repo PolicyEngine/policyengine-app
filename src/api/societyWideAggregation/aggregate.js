@@ -16,7 +16,9 @@ import {
 } from "./aggregateModules";
 
 export function aggregateSocietyWideImpacts(countryId, impacts) {
-  validateImpacts(countryId, impacts);
+  for (const impact of impacts) {
+    validateImpacts(countryId, impact);
+  }
 
   if (countryId === "uk") {
     return aggregateSocietyWideImpactsUK(impacts);
@@ -26,11 +28,10 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
     return aggregateSocietyWideImpactsUS(impacts);
   }
 
-  console.error(
-    "Invalid countryId provided to aggregateSocietyWideImpacts:",
+  throw new Error(
+    "Invalid countryId provided to aggregateSocietyWideImpacts: ",
     countryId,
   );
-  throw new Error("Invalid countryId provided to aggregateSocietyWideImpacts");
 }
 
 export function aggregateSocietyWideImpactsUS(impacts) {
@@ -123,7 +124,7 @@ export function validateImpacts(countryId, impacts) {
  * 1. each item is a succesful response and 2. that each response
  * is a valid SocietyWideImpact object, then return all in an array
  * @param {Array<SequentialResult>} sequentialResults An array of SequentialResult objects
- * @returns {Array<SocietyWideImpact>} An array of SocietyWideImpact objects
+ * @returns {Array<SocietyWideImpactUK | SocietyWideImpactUS>} An array of SocietyWideImpact objects
  * @throws {Error} If any of the SequentialResult objects are error responses or
  * if any of the responses are not valid SocietyWideImpact objects
  */

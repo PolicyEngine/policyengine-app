@@ -177,17 +177,9 @@ export function aggregateConstituencyData(impacts) {
     return null;
   }
 
-  const validConstituencyImpacts = impacts
-    .map((impact) => impact.constituency_impact)
-    .filter((impact) => impact !== null && impact !== undefined);
-
-  if (validConstituencyImpacts.length === 0) {
-    return null;
-  }
-
   const constituencyMap = new Map();
 
-  validConstituencyImpacts.forEach((constituencyImpact) => {
+  impacts.forEach((constituencyImpact) => {
     Object.keys(constituencyImpact).forEach((constituencyName) => {
       const constituencyData = constituencyImpact[constituencyName];
 
@@ -203,10 +195,10 @@ export function aggregateConstituencyData(impacts) {
       }
 
       const mapEntry = constituencyMap.get(constituencyName);
-      mapEntry.averageHouseholdIncomeChanges.push(
+      mapEntry.average_household_income_changes.push(
         constituencyData.average_household_income_change,
       );
-      mapEntry.relativeHouseholdIncomeChanges.push(
+      mapEntry.relative_household_income_changes.push(
         constituencyData.relative_household_income_change,
       );
     });
