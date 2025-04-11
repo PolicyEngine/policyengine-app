@@ -115,3 +115,22 @@ describe("validateImpacts", () => {
     });
   });
 });
+
+describe("aggregateSocietyWideImpactsUS", () => {
+  describe("Given a valid US request", () => {
+    test("it should return a SocietyWideImpactUS object", () => {
+      const impacts = testObjectsUS;
+
+      expect(
+        SocietyWideImpactUS.isValidSync(aggregateSocietyWideImpactsUS(impacts)),
+      ).toBe(true);
+    });
+  });
+  describe("Given an invalid US request", () => {
+    test("it should throw an error", () => {
+      const impacts = [];
+
+      expect(() => aggregateSocietyWideImpactsUS(impacts)).toThrow(TypeError);
+    });
+  });
+});
