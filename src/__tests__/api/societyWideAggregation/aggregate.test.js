@@ -157,3 +157,46 @@ describe("aggregateSocietyWideImpactsUK", () => {
     });
   });
 });
+
+describe("validateImpacts", () => {
+  describe("Given a valid US impact and US country ID", () => {
+    test("it should return true", () => {
+      const impact = testObjectsUS[0];
+      const countryId = "us";
+
+      expect(validateImpacts(countryId, impact)).toBe(true);
+    });
+  });
+  describe("Given a valid UK impact and UK country ID", () => {
+    test("it should return true", () => {
+      const impact = testObjectsUK[0];
+      const countryId = "uk";
+
+      expect(validateImpacts(countryId, impact)).toBe(true);
+    });
+  });
+  describe("Given a valid US impact and UK country ID", () => {
+    test("it should return false", () => {
+      const impact = testObjectsUS[0];
+      const countryId = "uk";
+
+      expect(validateImpacts(countryId, impact)).toBe(false);
+    });
+  });
+  describe("Given an invalid country ID and US impact", () => {
+    test("it should return false", () => {
+      const impact = testObjectsUS[0];
+      const countryId = "invalid_country";
+
+      expect(validateImpacts(countryId, impact)).toBe(false);
+    });
+  });
+  describe("Given a valid country ID and invalid impact", () => {
+    test("it should return false", () => {
+      const impact = {};
+      const countryId = "uk";
+
+      expect(validateImpacts(countryId, impact)).toBe(false);
+    });
+  });
+});
