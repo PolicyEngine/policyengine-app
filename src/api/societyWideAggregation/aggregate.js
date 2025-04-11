@@ -35,6 +35,10 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
 }
 
 export function aggregateSocietyWideImpactsUS(impacts) {
+  if (!impacts || !impacts.length) {
+    throw new Error("Cannot aggregate empty or undefined impacts");
+  }
+
   const unvalidatedReturn = {
     budget: aggregateBudgetModule(impacts.map((impact) => impact.budget)),
     decile: aggregateDecileModule(impacts.map((impact) => impact.decile)),
@@ -62,6 +66,10 @@ export function aggregateSocietyWideImpactsUS(impacts) {
 }
 
 export function aggregateSocietyWideImpactsUK(impacts) {
+  if (!impacts || !impacts.length) {
+    throw new Error("Cannot aggregate empty or undefined impacts");
+  }
+
   const unvalidatedReturn = {
     budget: aggregateBudgetModule(impacts.map((impact) => impact.budget)),
     constituency_impact: aggregateConstituencyModule(
