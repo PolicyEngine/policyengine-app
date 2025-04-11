@@ -130,7 +130,30 @@ describe("aggregateSocietyWideImpactsUS", () => {
     test("it should throw an error", () => {
       const impacts = [];
 
-      expect(() => aggregateSocietyWideImpactsUS(impacts)).toThrow(TypeError);
+      expect(() => aggregateSocietyWideImpactsUS(impacts)).toThrow(
+        "Cannot aggregate empty or undefined impacts",
+      );
+    });
+  });
+});
+
+describe("aggregateSocietyWideImpactsUK", () => {
+  describe("Given a valid UK request", () => {
+    test("it should return a SocietyWideImpactUS object", () => {
+      const impacts = testObjectsUK;
+
+      expect(
+        SocietyWideImpactUS.isValidSync(aggregateSocietyWideImpactsUK(impacts)),
+      ).toBe(true);
+    });
+  });
+  describe("Given an invalid UK request", () => {
+    test("it should throw an error", () => {
+      const impacts = [];
+
+      expect(() => aggregateSocietyWideImpactsUK(impacts)).toThrow(
+        "Cannot aggregate empty or undefined impacts",
+      );
     });
   });
 });
