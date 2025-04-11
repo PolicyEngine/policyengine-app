@@ -1,12 +1,15 @@
 import {
   aggregateBudgetModule,
   aggregateDecileModule,
+  aggregateInequalityModule,
 } from "../../../api/societyWideAggregation/aggregateModules";
 import {
   validBudgetModuleData,
   expectedBudgetModuleData,
   validDecileModuleData,
   expectedDecileModuleData,
+  validInequalityModuleData,
+  expectedInequalityModuleData,
 } from "../../__setup__/sampleSocietyWideModules";
 
 describe("aggregateBudgetModule", () => {
@@ -67,9 +70,44 @@ describe("aggregateDecileModule", () => {
     });
   });
 });
+describe("aggregateInequalityModule", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    console.error = jest.fn(); // Prevent console error output during tests
+  });
 
+  describe("Given valid inequality data", () => {
+    test("it should return a valid inequality object", () => {
+      expect(aggregateInequalityModule(validInequalityModuleData)).toEqual(
+        expectedInequalityModuleData,
+      );
+    });
+  });
+  describe("Given no inequality data", () => {
+    test("it should return an object containing nulled sub-objects", () => {
+      const emptyInequalityModuleData = [];
+      const expectedEmptyInequalityModuleData = {
+        gini: {
+          baseline: null,
+          reform: null,
+        },
+        top_10_pct_share: {
+          baseline: null,
+          reform: null,
+        },
+        top_1_pct_share: {
+          baseline: null,
+          reform: null,
+        },
+      };
+
+      expect(aggregateInequalityModule(emptyInequalityModuleData)).toEqual(
+        expectedEmptyInequalityModuleData,
+      );
+    });
+  });
+});
 /*
-describe("aggregateInequalityModule");
 describe("aggregateIntraDecileModule");
 describe("aggregatePovertyByAgeModule");
 describe("aggregatePovertyByGenderModule");

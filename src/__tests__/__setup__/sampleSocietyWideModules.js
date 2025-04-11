@@ -141,3 +141,63 @@ export const expectedDecileModuleData = {
     10: 6,
   },
 };
+
+// Test using integers to avoid floating point precision issues
+export const validInequalityModuleData = [
+  {
+    gini: {
+      baseline: 4,
+      reform: 4,
+    },
+    top_10_pct_share: {
+      baseline: 4,
+      reform: 4,
+    },
+    top_1_pct_share: {
+      baseline: 4,
+      reform: 4,
+    },
+  },
+  {
+    gini: {
+      baseline: 5,
+      reform: 5,
+    },
+    top_10_pct_share: {
+      baseline: 5,
+      reform: 5,
+    },
+    top_1_pct_share: {
+      baseline: 5,
+      reform: 5,
+    },
+  },
+  {
+    gini: {
+      baseline: 9,
+      reform: 9,
+    },
+    top_10_pct_share: {
+      baseline: 9,
+      reform: 9,
+    },
+    top_1_pct_share: {
+      baseline: 9,
+      reform: 9,
+    },
+  },
+];
+export const expectedInequalityModuleData = {
+  gini: {
+    baseline: 6,
+    reform: 6,
+  },
+  top_10_pct_share: {
+    baseline: 6,
+    reform: 6,
+  },
+  top_1_pct_share: {
+    baseline: 6,
+    reform: 6,
+  },
+};
