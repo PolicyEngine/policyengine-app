@@ -3,6 +3,7 @@ import {
   aggregateSocietyWideImpactsUK,
   aggregateSocietyWideImpactsUS,
 } from "../../../api/societyWideAggregation/aggregate";
+import { SocietyWideImpactUS } from "../../../schemas/societyWideImpact";
 import {
   testObjectsUK,
   testObjectsUS,
@@ -38,6 +39,25 @@ describe("aggregateSocietyWideImpacts", () => {
         "Invalid countryId provided to aggregateSocietyWideImpacts: ",
         countryId,
       );
+    });
+  });
+});
+
+describe("aggregateSocietyWideImpactsUS", () => {
+  describe("Given a valid US request", () => {
+    test("it should return a SocietyWideImpactUS object", () => {
+      const impacts = testObjectsUS;
+
+      expect(
+        SocietyWideImpactUS.isValidSync(aggregateSocietyWideImpactsUS(impacts)),
+      ).toBe(true);
+    });
+  });
+  describe("Given an invalid US request", () => {
+    test("it should throw an error", () => {
+      const impacts = [];
+
+      expect(() => aggregateSocietyWideImpactsUS(impacts)).toThrow(TypeError);
     });
   });
 });
