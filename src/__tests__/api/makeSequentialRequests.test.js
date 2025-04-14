@@ -149,7 +149,7 @@ describe("makeSequentialRequests", () => {
       expect(result.results[1].status).toBe("error");
       expect(result.results[1].error).toEqual({
         message: "API Error",
-        status: 404,
+        statusCode: 404,
         data: "Not Found",
       });
       expect(result.results[2].status).toBe("success");
