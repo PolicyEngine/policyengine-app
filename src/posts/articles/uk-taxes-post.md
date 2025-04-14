@@ -414,6 +414,11 @@ VAT is a consumption tax placed on products and services at each stage where val
 - **Standard rate (20%)**: Applied to most goods and services in the UK in 2025, defined by the [`standard_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/standard_rate.yaml) parameter.
 - **Reduced rate (5%)**: Applied to certain goods and services including domestic fuel and children's car seats in 2025, defined by the [`reduced_rate`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate.yaml) parameter.
 
+The VAT calculation sums the tax from standard-rated items (consumption × 20%) and reduced-rated items (consumption × 5%), then applies the scaling factor to account for under-reporting. This approach ensures that modeled VAT revenue aligns with official government statistics while accurately representing the distributional impact across households.
+
+**Data imputation**:
+The consumption data for VAT calculations comes from the Living Costs and Food Survey (LCFS), which follows the Classification of Individual Consumption by Purpose (COICOP) system. Due to under-reporting in survey data, a scaling factor of 0.38 is applied to match official HMRC VAT receipts. The model assumes that approximately 50% of consumption is subject to the standard VAT rate, while about 3% is subject to the reduced rate (primarily domestic fuel), as specified by the [`reduced_rate_share`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/hmrc/vat/reduced_rate_share.yaml) parameter. The remaining consumption is either zero-rated or exempt. Consumption data is uprated using the OBR's Consumer Price Index forecast.
+
 PolicyEngine projects that the UK will collect [£198.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=79853) in value added tax (VAT) revenue in 2025, 9.1% more than the OBR's forecast of [£182.1 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/vat/). The following figure shows the distributional impact of this program.
 
 ```plotly
