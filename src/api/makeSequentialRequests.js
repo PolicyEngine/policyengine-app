@@ -18,7 +18,7 @@ export const SequentialResult = yup.object({
   error: yup
     .object({
       message: yup.string().notRequired(),
-      status: yup.number().notRequired(),
+      statusCode: yup.number().notRequired(),
       data: yup.mixed().notRequired(),
     })
     .notRequired()
@@ -74,7 +74,7 @@ export async function makeSequentialRequests(requests, onComplete = null) {
             requestIndex: i,
             error: {
               message: error.message,
-              status: error.response?.status,
+              statusCode: error.response?.status,
               data: error.response?.data,
             },
             requestSetup: requestSetup,
