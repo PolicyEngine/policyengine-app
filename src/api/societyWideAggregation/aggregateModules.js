@@ -1,10 +1,5 @@
 import {
-  aggregateBaselineReformComparison,
-  aggregateConstituencyData,
-  aggregateDecileComparison,
   aggregatePovertyByAgeBreakdown,
-  aggregatePovertyByGenderBreakdown,
-  aggregatePovertyByRaceBreakdown,
   aggregateValues,
   aggregateWinnersLosersBreakdownDeciles,
   aggregateWinnersLosersBreakdownSimple,
@@ -29,40 +24,6 @@ export function aggregateBudgetModule(budgets) {
   };
 }
 
-export function aggregateDecileModule(deciles) {
-  return {
-    average: {
-      ...aggregateDecileComparison(deciles.map((d) => d?.average)),
-    },
-    relative: {
-      ...aggregateDecileComparison(
-        deciles.map((d) => d?.relative),
-        "mean",
-      ),
-    },
-  };
-}
-
-export function aggregateInequalityModule(inequalityData) {
-  return {
-    gini: aggregateBaselineReformComparison(
-      inequalityData.map((i) => i?.gini),
-      "mean",
-      "mean",
-    ),
-    top_10_pct_share: aggregateBaselineReformComparison(
-      inequalityData.map((i) => i?.top_10_pct_share),
-      "mean",
-      "mean",
-    ),
-    top_1_pct_share: aggregateBaselineReformComparison(
-      inequalityData.map((i) => i?.top_1_pct_share),
-      "mean",
-      "mean",
-    ),
-  };
-}
-
 export function aggregateIntraDecileModule(intraDecileData) {
   return {
     all: aggregateWinnersLosersBreakdownSimple(
@@ -83,90 +44,4 @@ export function aggregatePovertyByAgeModule(povertyData) {
     ),
     poverty: aggregatePovertyByAgeBreakdown(povertyData.map((p) => p?.poverty)),
   };
-}
-
-export function aggregatePovertyByGenderModule(povertyByGenderData) {
-  return {
-    deep_poverty: aggregatePovertyByGenderBreakdown(
-      povertyByGenderData.map((p) => p?.deep_poverty),
-    ),
-    poverty: aggregatePovertyByGenderBreakdown(
-      povertyByGenderData.map((p) => p?.poverty),
-    ),
-  };
-}
-
-export function aggregatePovertyByRaceModule(povertyByRaceData) {
-  return {
-    poverty: aggregatePovertyByRaceBreakdown(
-      povertyByRaceData.map((p) => p?.poverty),
-    ),
-  };
-}
-
-export function aggregateConstituencyModule(impacts) {
-  // Still unsure if these are always returned, and this is a beta feature,
-  // so duck-type checking for data presence
-  if (!impacts || !impacts.length) {
-    throw new Error("Cannot aggregate empty or undefined impacts");
-  }
-
-  return {
-    by_constituency: aggregateConstituencyData(
-      impacts.map((i) => i?.by_constituency),
-    ),
-    outcomes_by_region: {
-      england: aggregateWinnersLosersBreakdownSimple(
-        impacts.map((i) => i?.outcomes_by_region?.england),
-        "mean",
-      ),
-      northern_ireland: aggregateWinnersLosersBreakdownSimple(
-        impacts.map((i) => i?.outcomes_by_region?.northern_ireland),
-        "mean",
-      ),
-      scotland: aggregateWinnersLosersBreakdownSimple(
-        impacts.map((i) => i?.outcomes_by_region?.scotland),
-        "mean",
-      ),
-      wales: aggregateWinnersLosersBreakdownSimple(
-        impacts.map((i) => i?.outcomes_by_region?.wales),
-        "mean",
-      ),
-      uk: aggregateWinnersLosersBreakdownSimple(
-        impacts.map((i) => i?.outcomes_by_region?.uk),
-        "mean",
-      ),
-    },
-  };
-}
-
-export function aggregateDetailedBudgetModule(detailedBudgets) {
-  // Identify all unique budget line items across all impact objects
-  const allLineItems = new Set();
-  detailedBudgets.forEach((budget) => {
-    Object.keys(budget).forEach((lineItem) => {
-      allLineItems.add(lineItem);
-    });
-  });
-
-  const aggregatedBudget = {};
-
-  allLineItems.forEach((lineItem) => {
-    // Extract values for this line item from all budgets
-    const lineItemData = detailedBudgets
-      .map((budget) => budget[lineItem] || null)
-      .filter((data) => data !== null);
-
-    if (lineItemData.length === 0) {
-      return;
-    }
-
-    aggregatedBudget[lineItem] = {
-      baseline: aggregateValues(lineItemData.map((data) => data.baseline)),
-      difference: aggregateValues(lineItemData.map((data) => data.difference)),
-      reform: aggregateValues(lineItemData.map((data) => data.reform)),
-    };
-  });
-
-  return aggregatedBudget;
 }
