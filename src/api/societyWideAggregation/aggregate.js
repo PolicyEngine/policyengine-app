@@ -1,3 +1,4 @@
+import { AggregatedSocietyWideImpact } from "../../schemas/aggregatedSocietyWideImpact";
 import {
   SocietyWideImpactUK,
   SocietyWideImpactUS,
