@@ -1,3 +1,4 @@
+import { AggregatedSocietyWideImpact } from "../../schemas/aggregatedSocietyWideImpact";
 import {
   SocietyWideImpactUK,
   SocietyWideImpactUS,
@@ -20,18 +21,22 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
     validateImpacts(countryId, impact);
   }
 
-  if (countryId === "uk") {
-    return aggregateSocietyWideImpactsUK(impacts);
-  }
+  try {
+    const unvalidatedReturn = {
+      budget: aggregateBudgetModule(impacts.map((impact) => impact.budget)),
+      poverty: aggregatePovertyByAgeModule(
+        impacts.map((impact) => impact.poverty),
+      ),
+      intra_decile: aggregateIntraDecileModule(
+        impacts.map((impact) => impact.intra_decile),
+      ),
+    };
 
-  if (countryId === "us") {
-    return aggregateSocietyWideImpactsUS(impacts);
+    return AggregatedSocietyWideImpact.cast(unvalidatedReturn);
+  } catch (error) {
+    console.error("Error validating impacts:", error);
+    throw error;
   }
-
-  throw new Error(
-    "Invalid countryId provided to aggregateSocietyWideImpacts: ",
-    countryId,
-  );
 }
 
 export function aggregateSocietyWideImpactsUS(impacts) {

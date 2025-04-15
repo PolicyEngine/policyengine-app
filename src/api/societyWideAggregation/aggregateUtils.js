@@ -1,24 +1,5 @@
 import { aggregators } from "./simpleAggregators";
 
-export function aggregateDecileComparison(decileData, strategy = "sum") {
-  const deciles = [-1, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const result = {};
-
-  deciles.forEach((decile) => {
-    // Convert to string for property access
-    const decileKey = String(decile);
-    const values = decileData
-      .map((d) => d?.[decileKey])
-      .filter((v) => v !== undefined);
-
-    if (values.length > 0) {
-      result[decileKey] = aggregateValues(values, strategy);
-    }
-  });
-
-  return result;
-}
-
 export function aggregateBaselineReformComparison(
   comparisons,
   baselineStrategy = "sum",
@@ -130,98 +111,6 @@ export function aggregatePovertyByAgeBreakdown(ageBreakdowns) {
       "mean",
     ),
   };
-}
-
-export function aggregatePovertyByGenderBreakdown(genderBreakdowns) {
-  return {
-    male: aggregateBaselineReformComparison(
-      genderBreakdowns.map((b) => b?.male),
-      "mean",
-      "mean",
-    ),
-    female: aggregateBaselineReformComparison(
-      genderBreakdowns.map((b) => b?.female),
-      "mean",
-      "mean",
-    ),
-  };
-}
-
-export function aggregatePovertyByRaceBreakdown(raceBreakdowns) {
-  return {
-    black: aggregateBaselineReformComparison(
-      raceBreakdowns.map((b) => b?.black),
-      "mean",
-      "mean",
-    ),
-    hispanic: aggregateBaselineReformComparison(
-      raceBreakdowns.map((b) => b?.hispanic),
-      "mean",
-      "mean",
-    ),
-    white: aggregateBaselineReformComparison(
-      raceBreakdowns.map((b) => b?.white),
-      "mean",
-      "mean",
-    ),
-    other: aggregateBaselineReformComparison(
-      raceBreakdowns.map((b) => b?.other),
-      "mean",
-      "mean",
-    ),
-  };
-}
-
-export function aggregateConstituencyData(impacts) {
-  if (!impacts || !impacts.length) {
-    return null;
-  }
-
-  const constituencyMap = new Map();
-
-  impacts.forEach((constituencyImpact) => {
-    Object.keys(constituencyImpact).forEach((constituencyName) => {
-      const constituencyData = constituencyImpact[constituencyName];
-
-      if (!constituencyMap.has(constituencyName)) {
-        // Initialize constituency data if it doesn't exist yet
-        constituencyMap.set(constituencyName, {
-          // Using snake_case to reflect original data schema
-          average_household_income_changes: [],
-          relative_household_income_changes: [],
-          x: constituencyData.x,
-          y: constituencyData.y,
-        });
-      }
-
-      const mapEntry = constituencyMap.get(constituencyName);
-      mapEntry.average_household_income_changes.push(
-        constituencyData.average_household_income_change,
-      );
-      mapEntry.relative_household_income_changes.push(
-        constituencyData.relative_household_income_change,
-      );
-    });
-  });
-
-  const aggregatedConstituencies = {};
-
-  constituencyMap.forEach((data, constituencyName) => {
-    aggregatedConstituencies[constituencyName] = {
-      average_household_income_change: aggregateValues(
-        data.average_household_income_changes,
-        "mean",
-      ),
-      relative_household_income_change: aggregateValues(
-        data.relative_household_income_changes,
-        "mean",
-      ),
-      x: data.x,
-      y: data.y,
-    };
-  });
-
-  return aggregatedConstituencies;
 }
 
 /**
