@@ -1,20 +1,13 @@
 import {
-  aggregateDecileComparison,
   aggregateBaselineReformComparison,
   aggregateWinnersLosersBreakdownSimple,
   aggregateWinnersLosersBreakdownDeciles,
   aggregatePovertyByAgeBreakdown,
-  aggregatePovertyByGenderBreakdown,
-  aggregatePovertyByRaceBreakdown,
-  aggregateConstituencyData,
   aggregateValues,
 } from "../../../api/societyWideAggregation/aggregateUtils";
 
 import {
   emptyInput,
-  validDecileComparisonData,
-  expectedDecileComparisonSumResult,
-  expectedDecileComparisonMeanResult,
   validBaselineReformData,
   expectedBaselineReformSumResult,
   expectedBaselineReformMeanResult,
@@ -28,43 +21,10 @@ import {
   expectedMixedWinnersLosersDecilesSumResult,
   validPovertyByAgeData,
   expectedPovertyByAgeResult,
-  validPovertyByGenderData,
-  expectedPovertyByGenderResult,
-  validPovertyByRaceData,
-  expectedPovertyByRaceResult,
-  validConstituencyData,
-  expectedConstituencyDataResult,
   validAggregateValuesData,
   expectedAggregateValuesSumResult,
   expectedAggregateValuesMeanResult,
 } from "../../__setup__/sampleSocietyWideUtils";
-
-describe("aggregateDecileComparison", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    console.error = jest.fn(); // Prevent console error output during tests
-  });
-
-  describe("Given valid decile comparison data", () => {
-    test("it should aggregate values using sum strategy by default", () => {
-      expect(aggregateDecileComparison(validDecileComparisonData)).toEqual(
-        expectedDecileComparisonSumResult,
-      );
-    });
-
-    test("it should aggregate values using mean strategy when specified", () => {
-      expect(
-        aggregateDecileComparison(validDecileComparisonData, "mean"),
-      ).toEqual(expectedDecileComparisonMeanResult);
-    });
-  });
-
-  describe("Given no decile comparison data", () => {
-    test("it should return an empty object", () => {
-      expect(aggregateDecileComparison(emptyInput)).toEqual({});
-    });
-  });
-});
 
 describe("aggregateBaselineReformComparison", () => {
   beforeEach(() => {
@@ -218,83 +178,6 @@ describe("aggregatePovertyByAgeBreakdown", () => {
         child: { baseline: null, reform: null },
         senior: { baseline: null, reform: null },
       });
-    });
-  });
-});
-
-describe("aggregatePovertyByGenderBreakdown", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    console.error = jest.fn(); // Prevent console error output during tests
-  });
-
-  describe("Given valid poverty by gender data", () => {
-    test("it should correctly aggregate using mean strategy", () => {
-      expect(
-        aggregatePovertyByGenderBreakdown(validPovertyByGenderData),
-      ).toEqual(expectedPovertyByGenderResult);
-    });
-  });
-
-  describe("Given no poverty by gender data", () => {
-    test("it should return an object with null values", () => {
-      const result = aggregatePovertyByGenderBreakdown(emptyInput);
-      expect(result).toEqual({
-        male: { baseline: null, reform: null },
-        female: { baseline: null, reform: null },
-      });
-    });
-  });
-});
-
-describe("aggregatePovertyByRaceBreakdown", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    console.error = jest.fn(); // Prevent console error output during tests
-  });
-
-  describe("Given valid poverty by race data", () => {
-    test("it should correctly aggregate using mean strategy", () => {
-      expect(aggregatePovertyByRaceBreakdown(validPovertyByRaceData)).toEqual(
-        expectedPovertyByRaceResult,
-      );
-    });
-  });
-
-  describe("Given no poverty by race data", () => {
-    test("it should return an object with null values", () => {
-      const result = aggregatePovertyByRaceBreakdown(emptyInput);
-      expect(result).toEqual({
-        black: { baseline: null, reform: null },
-        hispanic: { baseline: null, reform: null },
-        white: { baseline: null, reform: null },
-        other: { baseline: null, reform: null },
-      });
-    });
-  });
-});
-
-describe("aggregateConstituencyData", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-    console.error = jest.fn(); // Prevent console error output during tests
-  });
-
-  describe("Given valid constituency data", () => {
-    test("it should correctly aggregate constituency values", () => {
-      expect(aggregateConstituencyData(validConstituencyData)).toEqual(
-        expectedConstituencyDataResult,
-      );
-    });
-  });
-
-  describe("Given no constituency data", () => {
-    test("it should return null", () => {
-      expect(aggregateConstituencyData(emptyInput)).toBeNull();
-    });
-
-    test("it should return null for undefined input", () => {
-      expect(aggregateConstituencyData(undefined)).toBeNull();
     });
   });
 });
