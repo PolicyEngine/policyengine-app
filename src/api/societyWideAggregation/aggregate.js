@@ -3,17 +3,10 @@ import {
   SocietyWideImpactUK,
   SocietyWideImpactUS,
 } from "../../schemas/societyWideImpact";
-import { aggregateLaborSupplyModule } from "./aggregateLaborSupplyModule";
 import {
   aggregateBudgetModule,
-  aggregateConstituencyModule,
-  aggregateDecileModule,
-  aggregateDetailedBudgetModule,
-  aggregateInequalityModule,
   aggregateIntraDecileModule,
   aggregatePovertyByAgeModule,
-  aggregatePovertyByGenderModule,
-  aggregatePovertyByRaceModule,
 } from "./aggregateModules";
 
 export function aggregateSocietyWideImpacts(countryId, impacts) {
@@ -37,77 +30,6 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
     console.error("Error validating impacts:", error);
     throw error;
   }
-}
-
-export function aggregateSocietyWideImpactsUS(impacts) {
-  if (!impacts || !impacts.length) {
-    throw new Error("Cannot aggregate empty or undefined impacts");
-  }
-
-  const unvalidatedReturn = {
-    budget: aggregateBudgetModule(impacts.map((impact) => impact.budget)),
-    decile: aggregateDecileModule(impacts.map((impact) => impact.decile)),
-    inequality: aggregateInequalityModule(
-      impacts.map((impact) => impact.inequality),
-    ),
-    intra_decile: aggregateIntraDecileModule(
-      impacts.map((impact) => impact.intra_decile),
-    ),
-    labor_supply_response: aggregateLaborSupplyModule(
-      impacts.map((impact) => impact.labor_supply_response),
-    ),
-    poverty: aggregatePovertyByAgeModule(
-      impacts.map((impact) => impact.poverty),
-    ),
-    poverty_by_gender: aggregatePovertyByGenderModule(
-      impacts.map((impact) => impact.poverty_by_gender),
-    ),
-    poverty_by_race: aggregatePovertyByRaceModule(
-      impacts.map((impact) => impact.poverty_by_race),
-    ),
-  };
-
-  return SocietyWideImpactUS.cast(unvalidatedReturn);
-}
-
-export function aggregateSocietyWideImpactsUK(impacts) {
-  if (!impacts || !impacts.length) {
-    throw new Error("Cannot aggregate empty or undefined impacts");
-  }
-
-  const unvalidatedReturn = {
-    budget: aggregateBudgetModule(impacts.map((impact) => impact.budget)),
-    constituency_impact: aggregateConstituencyModule(
-      impacts.map((impact) => impact.constituency_impact),
-    ),
-    decile: aggregateDecileModule(impacts.map((impact) => impact.decile)),
-    detailed_budget: aggregateDetailedBudgetModule(
-      impacts.map((impact) => impact.detailed_budget),
-    ),
-    inequality: aggregateInequalityModule(
-      impacts.map((impact) => impact.inequality),
-    ),
-    intra_decile: aggregateIntraDecileModule(
-      impacts.map((impact) => impact.intra_decile),
-    ),
-    intra_wealth_decile: aggregateIntraDecileModule(
-      impacts.map((impact) => impact.intra_wealth_decile),
-    ),
-    labor_supply_response: aggregateLaborSupplyModule(
-      impacts.map((impact) => impact.labor_supply_response),
-    ),
-    poverty: aggregatePovertyByAgeModule(
-      impacts.map((impact) => impact.poverty),
-    ),
-    poverty_by_gender: aggregatePovertyByGenderModule(
-      impacts.map((impact) => impact.poverty_by_gender),
-    ),
-    wealth_decile: aggregateDecileModule(
-      impacts.map((impact) => impact.wealth_decile),
-    ),
-  };
-
-  return SocietyWideImpactUK.cast(unvalidatedReturn);
 }
 
 /**
