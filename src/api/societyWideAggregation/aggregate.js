@@ -10,8 +10,19 @@ import {
 } from "./aggregateModules";
 
 export function aggregateSocietyWideImpacts(countryId, impacts) {
-  for (const impact of impacts) {
-    validateImpacts(countryId, impact);
+  if (!impacts || impacts.length === 0) {
+    const error = "Error in aggregateSocietyWideImpacts: No impacts provided";
+    console.log(error);
+    throw new Error(error);
+  }
+
+  try {
+    for (const impact of impacts) {
+      validateImpacts(countryId, impact);
+    }
+  } catch (err) {
+    console.log("Error validating impacts");
+    throw err;
   }
 
   try {
@@ -36,7 +47,8 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
  * Validate the impacts against the schema for the specified countryId
  * @param {String} countryId
  * @param {Object} impacts
- * @returns {Boolean} True if the impacts are valid, false otherwise
+ * @returns {Boolean} True if the impacts are valid
+ * @throws {Error} If the countryId is invalid or if the impacts are not valid
  */
 export function validateImpacts(countryId, impacts) {
   const SCHEMAS = {
@@ -45,8 +57,9 @@ export function validateImpacts(countryId, impacts) {
   };
 
   if (!SCHEMAS[countryId]) {
-    console.error(`Invalid countryId: ${countryId}`);
-    return false;
+    const error = `Invalid country ID: ${countryId}`;
+    console.error(error);
+    throw new Error(error);
   }
 
   try {
@@ -54,7 +67,7 @@ export function validateImpacts(countryId, impacts) {
     return true;
   } catch (error) {
     console.error("Validation error:", error);
-    return false;
+    throw error;
   }
 }
 
