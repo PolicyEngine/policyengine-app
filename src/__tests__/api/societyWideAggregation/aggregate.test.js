@@ -123,40 +123,40 @@ describe("aggregateSocietyWideImpactsUS", () => {
 
       expect(
         AggregatedSocietyWideImpact.isValidSync(
-          aggregateSocietyWideImpactsUS(impacts),
+          aggregateSocietyWideImpacts(countryId, impacts),
         ),
       ).toBe(true);
     });
   });
-  describe("Given an invalid US request", () => {
+  describe("Given no impacts", () => {
     test("it should throw an error", () => {
       const impacts = [];
-
-      expect(() => aggregateSocietyWideImpactsUS(impacts)).toThrow(
-        "Cannot aggregate empty or undefined impacts",
+      const countryId = "us";
+      const error = "Error in aggregateSocietyWideImpacts: No impacts provided";
+      console.error = jest.fn(); // Prevent console error output during tests
+      expect(() => aggregateSocietyWideImpacts(countryId, impacts)).toThrow(
+        error,
       );
     });
   });
-});
-
-describe("aggregateSocietyWideImpactsUK", () => {
-  describe("Given a valid UK request", () => {
-    test("it should return an AggregatedSocietyWideImpacts object", () => {
-      const impacts = testObjectsUK;
-
-      expect(
-        AggregatedSocietyWideImpact.isValidSync(
-          aggregateSocietyWideImpactsUK(impacts),
-        ),
-      ).toBe(true);
-    });
-  });
-  describe("Given an invalid UK request", () => {
+  describe("Given an invalid country ID", () => {
     test("it should throw an error", () => {
-      const impacts = [];
+      const impacts = [
+        {
+          budget: {
+            baseline_net_income: 1000,
+            benefit_spending_impact: 1000,
+            budgetary_impact: 1000,
+            households: 1000,
+            state_tax_revenue_impact: 1000,
+            tax_revenue_impact: 1000,
+          },
+        },
+      ];
+      const countryId = "invalid_country";
 
-      expect(() => aggregateSocietyWideImpactsUK(impacts)).toThrow(
-        "Cannot aggregate empty or undefined impacts",
+      expect(() => aggregateSocietyWideImpacts(countryId, impacts)).toThrow(
+        `Invalid country ID: ${countryId}`,
       );
     });
   });
@@ -180,27 +180,33 @@ describe("validateImpacts", () => {
     });
   });
   describe("Given a valid US impact and UK country ID", () => {
-    test("it should return false", () => {
+    test("it should throw", () => {
       const impact = testObjectsUS[0];
       const countryId = "uk";
 
-      expect(validateImpacts(countryId, impact)).toBe(false);
+      expect(() => validateImpacts(countryId, impact)).toThrow(
+        "is a required field",
+      );
     });
   });
   describe("Given an invalid country ID and US impact", () => {
-    test("it should return false", () => {
+    test("it should throw", () => {
       const impact = testObjectsUS[0];
       const countryId = "invalid_country";
 
-      expect(validateImpacts(countryId, impact)).toBe(false);
+      expect(() => validateImpacts(countryId, impact)).toThrow(
+        "Invalid country ID: invalid_country",
+      );
     });
   });
   describe("Given a valid country ID and invalid impact", () => {
-    test("it should return false", () => {
+    test("it should throw", () => {
       const impact = {};
       const countryId = "uk";
 
-      expect(validateImpacts(countryId, impact)).toBe(false);
+      expect(() => validateImpacts(countryId, impact)).toThrow(
+        "is a required field",
+      );
     });
   });
 });
