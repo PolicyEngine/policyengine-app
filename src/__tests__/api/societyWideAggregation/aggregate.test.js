@@ -4,7 +4,7 @@ import {
   aggregateSocietyWideImpactsUS,
   validateImpacts,
 } from "../../../api/societyWideAggregation/aggregate";
-import { SocietyWideImpactUS } from "../../../schemas/societyWideImpact";
+import { AggregatedSocietyWideImpact } from "../../../schemas/aggregatedSocietyWideImpact";
 import {
   testObjectsUK,
   testObjectsUS,
@@ -37,7 +37,7 @@ describe("aggregateSocietyWideImpacts", () => {
       const countryId = "invalid_country";
 
       expect(() => aggregateSocietyWideImpacts(countryId, impacts)).toThrow(
-        "Invalid countryId provided to aggregateSocietyWideImpacts: ",
+        "Invalid countryId : ",
         countryId,
       );
     });
@@ -46,11 +46,13 @@ describe("aggregateSocietyWideImpacts", () => {
 
 describe("aggregateSocietyWideImpactsUS", () => {
   describe("Given a valid US request", () => {
-    test("it should return a SocietyWideImpactUS object", () => {
+    test("it should return an AggregatedSocietyWideImpact object", () => {
       const impacts = testObjectsUS;
 
       expect(
-        SocietyWideImpactUS.isValidSync(aggregateSocietyWideImpactsUS(impacts)),
+        AggregatedSocietyWideImpact.isValidSync(
+          aggregateSocietyWideImpactsUS(impacts),
+        ),
       ).toBe(true);
     });
   });
@@ -67,11 +69,13 @@ describe("aggregateSocietyWideImpactsUS", () => {
 
 describe("aggregateSocietyWideImpactsUK", () => {
   describe("Given a valid UK request", () => {
-    test("it should return a SocietyWideImpactUS object", () => {
+    test("it should return an AggregatedSocietyWideImpacts object", () => {
       const impacts = testObjectsUK;
 
       expect(
-        SocietyWideImpactUS.isValidSync(aggregateSocietyWideImpactsUK(impacts)),
+        AggregatedSocietyWideImpact.isValidSync(
+          aggregateSocietyWideImpactsUK(impacts),
+        ),
       ).toBe(true);
     });
   });

@@ -122,6 +122,11 @@ export function validateImpacts(countryId, impacts) {
     us: SocietyWideImpactUS,
   };
 
+  if (!SCHEMAS[countryId]) {
+    console.error(`Invalid countryId: ${countryId}`);
+    return false;
+  }
+
   try {
     SCHEMAS[countryId].validateSync(impacts);
     return true;
