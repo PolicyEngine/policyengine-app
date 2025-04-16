@@ -34,6 +34,7 @@ export function FetchAndDisplayImpact(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const maxHouseholds = searchParams.get("mode") === "lite" ? 10_000 : null;
   const renamed = searchParams.get("renamed");
+  const simYears = searchParams.get("simYears"); // Number of years to run for multi-year simulations
 
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
