@@ -1,7 +1,7 @@
 import {
   CaretDownFilled,
   CaretUpFilled,
-  PlusCircleOutlined,
+  CaretRightOutlined,
   InfoCircleOutlined,
 } from "@ant-design/icons";
 import { Tooltip, Button } from "antd";
@@ -125,8 +125,7 @@ function VariableArithmetic(props) {
           </span>
         </>
       ) : (
-        `Your ${variable.label} ${
-          variable.label.endsWith("s") ? "don't" : "doesn't"
+        `Your ${variable.label} ${variable.label.endsWith("s") ? "don't" : "doesn't"
         } change`
       );
     shouldShowVariable = (variableName) => {
@@ -153,9 +152,8 @@ function VariableArithmetic(props) {
   } else {
     valueStr = (
       <>
-        {`Your ${variable.label} ${
-          variable.label.endsWith("s") ? "are" : "is"
-        }`}
+        {`Your ${variable.label} ${variable.label.endsWith("s") ? "are" : "is"
+          }`}
         &nbsp;
         {nodeArrow(nodeSign)}&nbsp;
         <span
@@ -300,12 +298,12 @@ function VariableArithmetic(props) {
           </Tooltip>
 
           {expandable && (
-            <PlusCircleOutlined
+            <CaretRightOutlined
               style={{
                 fontSize: 14,
                 marginLeft: 10,
                 color: style.colors.DARK_GRAY,
-                transform: expanded ? "rotate(45deg)" : "rotate(0deg)",
+                transform: expanded ? "rotate(90deg)" : "rotate(0deg)",
                 transition: "transform 0.2s",
               }}
             />
