@@ -28,7 +28,7 @@
     "markdown-to-jsx": "^7.7.4",
     "moment": "^2.30.1",
     "openai": "^4.91.0",
-    "plotly.js": "^2.35.3",
+    "plotly.js": "^3.0.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.9",
     "react-detect-print": "^0.1.2",
