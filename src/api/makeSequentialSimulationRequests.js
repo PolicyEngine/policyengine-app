@@ -27,11 +27,22 @@ export const SequentialSimulationResult = yup.object({
     .default(null),
 });
 
+export const SequentialSimulationResultCollection = yup.object({
+  results: yup.array(SequentialSimulationResult).required(),
+  summary: yup
+    .object({
+      total: yup.number().required(),
+      successes: yup.number().required(),
+      errors: yup.number().required(),
+    })
+    .required(),
+});
+
 /**
  * Make sequential requests to the simulation worker and API, waiting for each to complete before starting the next
  * @param {Array<SimulationRequestSetup>} requests - Array of SimulationRequestSetup objects; keys and values correspond with apiCall args
  * @param {Function} [onComplete = null] - Optional callback for when an individual request completes
- * @returns {Promise<Object>} - Promise resolving to a formatted object containing the results of each request
+ * @returns {Promise<SequentialSimulationResultCollection>} - Promise resolving to a formatted object containing the results of each request
  * and a summary of the request process
  * The return Object contains the following keys:
  * - results {Array<SequentialResult>}: Array of SequentialResult instances
