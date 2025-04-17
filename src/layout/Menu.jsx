@@ -173,7 +173,6 @@ export default function Menu(props) {
 
   let menuItems = [];
   for (const item of tree) {
-    console.log(item);
     if (item.children) {
       menuItems.push(
         <MenuItemGroup
