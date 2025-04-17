@@ -8,6 +8,10 @@ import { updateUserPolicy } from "../../../api/userPolicies";
 import useCountryId from "../../../hooks/useCountryId";
 import { wrappedResponseJson } from "../../../data/wrappedJson";
 import LoadingCentered from "layout/LoadingCentered";
+import {
+  makeSequentialSimulationRequests,
+  SimulationRequestSetup,
+} from "../../../api/makeSequentialSimulationRequests";
 
 /**
  *
@@ -60,6 +64,88 @@ export function FetchAndDisplayImpact(props) {
   }
 
   useEffect(() => {
+    /**
+     * Setup multi-year request objects required by makeSequentialRequests
+     * @param {String} countryId
+     * @param {Number} reformPolicyId
+     * @param {Number} baselinePolicyId
+     * @param {String} region
+     * @param {String | Number} timePeriod
+     * @param {String} version
+     * @param {String | Number} maxHouseholds
+     * @param {String} dataset
+     * @param {String | Number} simYears
+     * @returns {Array<SimulationRequestSetup>} Array of RequestSetup objects
+     */
+    function setupMultiYearRequests(
+      countryId,
+      reformPolicyId,
+      baselinePolicyId,
+      region,
+      timePeriod,
+      version,
+      maxHouseholds,
+      dataset,
+      simYears,
+    ) {
+      const INTERVAL = 1_000; // Chosen to match single-sim run interval lengths
+      let requests = [];
+
+      const datasetInput = dataset ? `&dataset=${dataset}` : "";
+      const maxHouseholdInput = maxHouseholds
+        ? `&max_households=${maxHouseholds}`
+        : "";
+
+      for (let i = 0; i < simYears; i++) {
+        const yearOfSim = Number(timePeriod) + i;
+        const url =
+          `/${countryId}/economy/${reformPolicyId}/over/` +
+          `${baselinePolicyId}?region=${region}&time_period=${yearOfSim}` +
+          `&version=${version}${maxHouseholdInput}${datasetInput}`;
+
+        requests.push(
+          SimulationRequestSetup.cast({
+            path: url,
+            interval: INTERVAL,
+            firstInterval: INTERVAL,
+          }),
+        );
+      }
+
+      return requests;
+    }
+
+    async function runMultiYearRequests(
+      countryId,
+      reformPolicyId,
+      baselinePolicyId,
+      region,
+      timePeriod,
+      version,
+      maxHouseholds,
+      dataset,
+      simYears,
+    ) {
+      // Set up requests array
+      const requests = setupMultiYearRequests(
+        countryId,
+        reformPolicyId,
+        baselinePolicyId,
+        region,
+        timePeriod,
+        version,
+        maxHouseholds,
+        dataset,
+        simYears,
+      );
+
+      // Make sequential requests
+      const results = await makeSequentialSimulationRequests(requests);
+
+      // TODO: Finally, aggregate outputs and return
+      return results;
+    }
+
     if (
       areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
       areObjectsSame(
@@ -83,6 +169,31 @@ export function FetchAndDisplayImpact(props) {
         `&version=${selectedVersion}${maxHouseholdString}${datasetString}`;
       setImpact(null);
       setError(null);
+      // If user requests valid multi-year value, make sequential requests
+      if (
+        simYears &&
+        simYears !== "null" &&
+        simYears !== "undefined" &&
+        simYears > 1
+      ) {
+        runMultiYearRequests(
+          metadata.countryId,
+          reformPolicyId,
+          baselinePolicyId,
+          region,
+          timePeriod,
+          selectedVersion,
+          maxHouseholds,
+          dataset,
+          simYears,
+        ).then((data) => {
+          console.log(data);
+        });
+
+        // TODO: Aggregate and display data
+
+        return;
+      }
       // start counting (but stop when the API call finishes)
       const interval = setInterval(() => {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);

@@ -1,20 +1,22 @@
-import { countryApiCall } from "./call.js";
+import {
+  SocietyWideImpactUK,
+  SocietyWideImpactUS,
+} from "../schemas/societyWideImpact.js";
+import { asyncApiCall } from "./call.js";
 import * as yup from "yup";
 
-export const RequestSetup = yup.object({
-  countryId: yup.string().required(),
+export const SimulationRequestSetup = yup.object({
   path: yup.string().required(),
-  body: yup.object().notRequired(),
-  method: yup.string().notRequired(),
-  secondAttempt: yup.boolean().notRequired(),
-  fetchMethod: yup.mixed().notRequired(), // Note: yup has no function validator
+  body: yup.object().notRequired().default(null),
+  interval: yup.number().default(1000),
+  firstInterval: yup.number().default(200),
 });
 
-export const SequentialResult = yup.object({
+export const SequentialSimulationResult = yup.object({
   status: yup.string().required(),
   requestIndex: yup.number().required(),
-  requestSetup: RequestSetup.required(),
-  response: yup.object().notRequired(),
+  simulationRequestSetup: SimulationRequestSetup.required(),
+  result: yup.mixed().oneOf([SocietyWideImpactUK, SocietyWideImpactUS]),
   error: yup
     .object({
       message: yup.string().notRequired(),
@@ -26,8 +28,8 @@ export const SequentialResult = yup.object({
 });
 
 /**
- * Make sequential API requests, waiting for each to complete before starting the next
- * @param {Array<RequestSetup>} requests - Array of RequestSetup objects; keys and values correspond with apiCall args
+ * Make sequential requests to the simulation worker and API, waiting for each to complete before starting the next
+ * @param {Array<SimulationRequestSetup>} requests - Array of SimulationRequestSetup objects; keys and values correspond with apiCall args
  * @param {Function} [onComplete = null] - Optional callback for when an individual request completes
  * @returns {Promise<Object>} - Promise resolving to a formatted object containing the results of each request
  * and a summary of the request process
@@ -35,7 +37,10 @@ export const SequentialResult = yup.object({
  * - results {Array<SequentialResult>}: Array of SequentialResult instances
  */
 
-export async function makeSequentialRequests(requests, onComplete = null) {
+export async function makeSequentialSimulationRequests(
+  requests,
+  onComplete = null,
+) {
   const results = [];
   let successCount = 0;
   let errorCount = 0;
@@ -43,33 +48,33 @@ export async function makeSequentialRequests(requests, onComplete = null) {
   try {
     for (let i = 0; i < requests.length; i++) {
       const requestSetup = requests[i];
+      console.log("requestSetup at beginning");
+      console.log(requestSetup);
 
       try {
         // Make the request and wait for it to complete
-        const response = await countryApiCall(
-          requestSetup.countryId,
+        const response = await asyncApiCall(
           requestSetup.path,
           requestSetup.body,
-          requestSetup.method,
-          requestSetup.secondAttempt,
-          requestSetup.fetchMethod,
+          requestSetup.interval,
+          requestSetup.firstInterval,
         );
 
-        const validResult = SequentialResult.cast({
-          status: "success",
-          requestIndex: i,
-          requestSetup: requestSetup,
-          response: response,
-        });
-
-        results.push(validResult);
+        results.push(
+          SequentialSimulationResult.cast({
+            status: "success",
+            requestIndex: i,
+            simulationRequestSetup: requestSetup,
+            result: response.result,
+          }),
+        );
 
         successCount++;
       } catch (error) {
         console.error(`Request ${i + 1} failed:`, error.message);
 
         results.push(
-          SequentialResult.cast({
+          SequentialSimulationResult.cast({
             status: "error",
             requestIndex: i,
             error: {
