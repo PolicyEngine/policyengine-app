@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Tag } from "antd";
 
 function MenuItem(props) {
-  const { name, label, selected, onSelect } = props;
+  const { name, label, selected, onSelect, disabled } = props;
 
   const betaBadge = <Tag color={style.colors.TEAL_ACCENT}>BETA</Tag>;
   const isBeta = label.includes(" (experimental)");
@@ -14,7 +14,7 @@ function MenuItem(props) {
   return (
     <motion.div
       style={{
-        cursor: "pointer",
+        cursor: disabled ? "not-allowed" : "pointer",
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 10,
@@ -23,20 +23,29 @@ function MenuItem(props) {
         borderRadius: 8,
       }}
       initial={{ backgroundColor: "transparent" }}
-      animate={{
-        backgroundColor: selected === name ? "white" : "transparent",
-      }}
-      onClick={() => onSelect(name)}
-      whileHover={{ backgroundColor: "white" }}
+      animate={
+        !disabled && {
+          backgroundColor: selected === name ? "white" : "transparent",
+        }
+      }
+      onClick={disabled ? () => undefined : () => onSelect(name)}
+      whileHover={!disabled && { backgroundColor: "white" }}
       transition={{ duration: 0.001 }}
     >
-      <p style={{ fontSize: 16, fontFamily: "Roboto Serif", margin: 5 }}>
+      <p
+        style={{
+          fontSize: 16,
+          color: disabled && style.colors.DARK_GRAY,
+          fontFamily: "Roboto Serif",
+          margin: 5,
+        }}
+      >
         {selected === name && (
           <span
             style={{
               marginRight: 10,
               fontFamily: "Roboto Serif",
-              color: "#000",
+              color: disabled ? style.colors.DARK_GRAY : style.colors.BLACK,
               textShadow: "0 0 .2px #000",
               paddingBottom: 2,
               fontWeight: 500,
@@ -53,7 +62,7 @@ function MenuItem(props) {
 }
 
 function MenuItemGroup(props) {
-  const { name, label, selected, children, onSelect } = props;
+  const { name, label, selected, children, onSelect, disabled } = props;
   const betaBadge = <Tag color={style.colors.TEAL_ACCENT}>BETA</Tag>;
   const isBeta = label.includes(" (experimental)");
   const adjustedLabel = isBeta ? label.slice(0, -14) : label;
@@ -84,6 +93,7 @@ function MenuItemGroup(props) {
       if (child.children) {
         expandedChildren.push(
           <MenuItemGroup
+            disabled={disabled}
             key={child.name}
             name={child.name}
             label={capitalize(child.label)}
@@ -96,6 +106,7 @@ function MenuItemGroup(props) {
       } else {
         expandedChildren.push(
           <MenuItem
+            disabled={disabled}
             key={child.name}
             name={child.name}
             label={capitalize(child.label)}
@@ -121,26 +132,26 @@ function MenuItemGroup(props) {
   return (
     <div>
       <motion.div
-        onClick={toggleExpanded}
+        onClick={disabled ? () => undefined : toggleExpanded}
         style={{
-          color: style.colors.BLACK,
+          color: disabled ? style.colors.DARK_GRAY : style.colors.BLACK,
           paddingTop: 5,
           paddingBottom: 5,
-          cursor: "pointer",
+          cursor: disabled ? "not-allowed" : "pointer",
           paddingLeft: 10,
           borderRadius: 8,
           display: "flex",
           alignItems: "center",
           flexDirection: "row",
         }}
-        whileHover={{ backgroundColor: "white" }}
+        whileHover={!disabled && { backgroundColor: "white" }}
       >
         <p style={{ fontSize: 16, fontFamily: "Roboto Serif", margin: 5 }}>
           {selected === name && (
             <span
               style={{
                 marginRight: 10,
-                color: "#000",
+                color: disabled ? style.colors.DARK_GRAY : style.colors.BLACK,
                 fontFamily: "Roboto Serif",
                 textShadow: "0 0 .2px #000",
               }}
@@ -158,13 +169,15 @@ function MenuItemGroup(props) {
 }
 
 export default function Menu(props) {
-  const { tree, selected, onSelect } = props;
+  const { tree, selected, onSelect, isMultiYear } = props;
 
   let menuItems = [];
   for (const item of tree) {
+    console.log(item);
     if (item.children) {
       menuItems.push(
         <MenuItemGroup
+          disabled={isMultiYear && item.name !== "policyOutput.policyBreakdown"}
           key={item.name}
           name={item.name}
           label={capitalize(item.label)}
@@ -177,6 +190,7 @@ export default function Menu(props) {
     } else {
       menuItems.push(
         <MenuItem
+          disabled={isMultiYear && item.name !== "policyOutput.policyBreakdown"}
           key={item.name}
           name={item.name}
           label={item.label}
