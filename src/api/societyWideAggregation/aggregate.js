@@ -17,7 +17,7 @@ export function aggregateMultiYearBudgets(countryId, impacts) {
       validateImpacts(countryId, impact);
     }
   } catch (err) {
-    console.log("Error validating impacts");
+    console.error("Error validating impacts");
     throw err;
   }
 
