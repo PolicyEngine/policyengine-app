@@ -59,8 +59,6 @@ export async function makeSequentialSimulationRequests(
   try {
     for (let i = 0; i < requests.length; i++) {
       const requestSetup = requests[i];
-      console.log("requestSetup at beginning");
-      console.log(requestSetup);
 
       try {
         // Make the request and wait for it to complete
