@@ -9,6 +9,12 @@ import {
   aggregatePovertyByAgeModule,
 } from "./aggregateModules";
 
+/**
+ * Aggregate the society-wide impacts for a given country
+ * @param {String} countryId
+ * @param {Array<SocietyWideImpactUK | SocietyWideImpactUS>} impacts
+ * @returns {AggregatedSocietyWideImpact}
+ */
 export function aggregateSocietyWideImpacts(countryId, impacts) {
   if (!impacts || impacts.length === 0) {
     const error = "Error in aggregateSocietyWideImpacts: No impacts provided";

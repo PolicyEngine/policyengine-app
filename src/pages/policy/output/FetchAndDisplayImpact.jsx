@@ -12,6 +12,7 @@ import {
   makeSequentialSimulationRequests,
   SimulationRequestSetup,
 } from "../../../api/makeSequentialSimulationRequests";
+import { aggregateSocietyWideImpacts } from "../../../api/societyWideAggregation/aggregate";
 
 /**
  *
@@ -140,10 +141,15 @@ export function FetchAndDisplayImpact(props) {
       );
 
       // Make sequential requests
-      const results = await makeSequentialSimulationRequests(requests);
+      const collection = await makeSequentialSimulationRequests(requests);
 
-      // TODO: Finally, aggregate outputs and return
-      return results;
+      // Finally, aggregate outputs and return
+      const aggregatedResult = aggregateSocietyWideImpacts(
+        countryId,
+        collection.results.map((item) => item.result),
+      );
+
+      return aggregatedResult;
     }
 
     if (
@@ -186,11 +192,13 @@ export function FetchAndDisplayImpact(props) {
           maxHouseholds,
           dataset,
           simYears,
-        ).then((data) => {
-          console.log(data);
-        });
-
-        // TODO: Aggregate and display data
+        )
+          .then((aggregatedData) => {
+            setImpact(aggregatedData);
+          })
+          .catch((err) => {
+            setError(err);
+          });
 
         return;
       }
