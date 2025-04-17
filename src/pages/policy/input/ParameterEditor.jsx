@@ -1,5 +1,6 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
+import ResizeObserver from "resize-observer-polyfill";
 import {
   Alert,
   Button,
@@ -35,7 +36,7 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import { EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
 import style from "../../../style";
-import ResetButton from "./ResetParameter"; // Import the ResetButton component
+import ResetButton from "./ResetButton"; // Import the ResetButton component
 import { defaultYear } from "../../../data/constants";
 const { RangePicker } = DatePicker;
 
@@ -63,6 +64,17 @@ export default function ParameterEditor(props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const reformData = policy?.reform?.data?.[parameterName];
 
+  const [resetSignal, setResetSignal] = useState(0);
+  const [currentParameterName, setCurrentParameterName] =
+    useState(parameterName);
+
+  const chartContainerRef = useRef(null);
+
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(defaultEndDate);
+  const [paramChartWidth, setParamChartWidth] = useState(0);
+  const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.DEFAULT);
+
   const baseMap = useMemo(() => {
     return new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
   }, [parameterValues]);
@@ -78,9 +90,37 @@ export default function ParameterEditor(props) {
     return initialMap;
   });
 
-  const [resetSignal, setResetSignal] = useState(0);
-  const [currentParameterName, setCurrentParameterName] =
-    useState(parameterName);
+  const resetParameterState = useCallback(
+    (includeReformData = true) => {
+      // Reset reformMap to match base values
+      const newReformMap = baseMap.copy();
+
+      // Only include reform data if requested
+      if (includeReformData && reformData) {
+        for (const [timePeriod, value] of Object.entries(reformData)) {
+          const [startDate, endDate] = timePeriod.split(".");
+          newReformMap.set(startDate, nextDay(endDate), value);
+        }
+      }
+
+      setReformMap(newReformMap);
+
+      // Reset dates
+      setStartDate(defaultStartDate);
+      setEndDate(defaultEndDate);
+
+      // Force child components to reset
+      setResetSignal((prev) => prev + 1);
+    },
+    [
+      baseMap,
+      reformData,
+      setReformMap,
+      setStartDate,
+      setEndDate,
+      setResetSignal,
+    ],
+  );
 
   // Add this effect to detect parameter changes
   useEffect(() => {
@@ -88,31 +128,55 @@ export default function ParameterEditor(props) {
       // Reset state when parameter changes
       setCurrentParameterName(parameterName);
 
-      // Reset reformMap to match base values for the new parameter
-      const newReformMap = baseMap.copy();
-      if (reformData) {
-        for (const [timePeriod, value] of Object.entries(reformData)) {
-          const [startDate, endDate] = timePeriod.split(".");
-          newReformMap.set(startDate, nextDay(endDate), value);
-        }
-      }
-      setReformMap(newReformMap);
-
-      // Reset dates
-      setStartDate(defaultStartDate);
-      setEndDate(defaultEndDate);
-
-      // Force child components to reset by incrementing resetSignal
-      setResetSignal((prev) => prev + 1);
+      // Use the helper function to reset state
+      resetParameterState(true);
     }
-  }, [parameterName, currentParameterName, reformData, baseMap]);
+  }, [
+    parameterName,
+    currentParameterName,
+    reformData,
+    baseMap,
+    resetParameterState,
+  ]);
 
-  const chartContainerRef = useRef(null);
+  const resetParameter = () => {
+    // 1. Remove this parameter's reform data
+    const newReforms = { ...policy.reform.data };
+    delete newReforms[parameterName];
 
-  const [startDate, setStartDate] = useState(defaultStartDate);
-  const [endDate, setEndDate] = useState(defaultEndDate);
-  const [paramChartWidth, setParamChartWidth] = useState(0);
-  const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.DEFAULT);
+    // 2. Reset state using the helper function without including reform data
+    resetParameterState(false);
+
+    // 3. Call API to update policy reform state
+    return getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+      if (result.status === "ok") {
+        const newSearch = copySearchParams(searchParams);
+        if (Object.keys(newReforms).length === 0) {
+          newSearch.delete("reform");
+        } else {
+          newSearch.set("reform", result.policy_id);
+        }
+        setSearchParams(newSearch);
+      }
+    });
+  };
+
+  // Add this effect to detect parameter changes
+  useEffect(() => {
+    if (parameterName !== currentParameterName) {
+      // Reset state when parameter changes
+      setCurrentParameterName(parameterName);
+
+      // Use the helper function to reset state
+      resetParameterState(true);
+    }
+  }, [
+    parameterName,
+    currentParameterName,
+    reformData,
+    baseMap,
+    resetParameterState,
+  ]);
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -154,11 +218,6 @@ export default function ParameterEditor(props) {
     description = "";
   }
 
-  const gridColumns =
-    dateInputMode === DATE_INPUT_MODES.MULTI_YEAR
-      ? "auto min-content"
-      : "auto auto min-content";
-
   return (
     <CenteredMiddleColumn
       marginTop="5%"
@@ -194,93 +253,49 @@ export default function ParameterEditor(props) {
           >
             Current value
           </p>
-          <div>
-            <div
-              style={{
-                width:
-                  parameter.unit === "bool" || parameter.unit === "abolition"
-                    ? "50%"
-                    : "100%",
-                display: "grid",
-                gridTemplateColumns: gridColumns,
-                gap: "10px",
-                padding: "0px 50px 0px 12px",
-              }}
-            >
-              <PeriodSetter
-                metadata={metadata}
+          <div
+            style={{
+              width:
+                parameter.unit === "bool" || parameter.unit === "abolition"
+                  ? "50%"
+                  : "100%",
+              display: "grid",
+              gridTemplateColumns: "auto auto auto 1fr",
+              gap: "10px",
+              padding: "0px 50px 0px 12px",
+            }}
+          >
+            <PeriodSetter
+              metadata={metadata}
+              startDate={startDate}
+              endDate={endDate}
+              setStartDate={setStartDate}
+              setEndDate={setEndDate}
+              inputMode={dateInputMode}
+              parameterName={parameterName}
+              baseMap={baseMap}
+              reformMap={reformMap}
+              policy={policy}
+              resetSignal={resetSignal}
+            />
+            {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
+              <ValueSetter
                 startDate={startDate}
                 endDate={endDate}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
-                inputMode={dateInputMode}
                 parameterName={parameterName}
-                baseMap={baseMap}
-                reformMap={reformMap}
                 policy={policy}
-                resetSignal={resetSignal}
+                metadata={metadata}
+                reformMap={reformMap}
+                baseMap={baseMap}
               />
-              {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
-                <ValueSetter
-                  startDate={startDate}
-                  endDate={endDate}
-                  parameterName={parameterName}
-                  policy={policy}
-                  metadata={metadata}
-                  reformMap={reformMap}
-                  baseMap={baseMap}
-                />
-              )}
-              <SettingsPanel setDateInputMode={setDateInputMode} />
-            </div>
-            <div
-              style={{
-                marginTop: "10px",
-                marginLeft: "12px",
-                display: "flex",
-                justifyContent: "flex-start",
-              }}
-            >
-              <ResetButton
-                onReset={() => {
-                  // 1. Remove this parameter’s reform data
-                  const newReforms = { ...policy.reform.data };
-                  delete newReforms[parameterName];
-
-                  // 2. Replace reformMap contents by making a new copy
-                  const newReformMap = baseMap.copy();
-                  setReformMap(newReformMap);
-
-                  // 3. Reset to default start and end dates
-                  setStartDate(defaultStartDate);
-                  setEndDate(defaultEndDate);
-
-                  // 4. For MULTI_YEAR input mode, also reset value map
-                  setResetSignal((prev) => prev + 1);
-
-                  // 5. Call API to update policy reform state
-                  getNewPolicyId(metadata.countryId, newReforms).then(
-                    (result) => {
-                      if (result.status === "ok") {
-                        const newSearch = copySearchParams(searchParams);
-                        if (Object.keys(newReforms).length === 0) {
-                          newSearch.delete("reform");
-                        } else {
-                          newSearch.set("reform", result.policy_id);
-                        }
-                        setSearchParams(newSearch);
-                      }
-                    },
-                  );
-
-                  // ⚠️ If reformMap is used from state somewhere, you may need a setter:
-                  setReformMap(newReformMap);
-                }}
-                tooltipText="Reset parameter to default"
-                showText={true}
-                buttonStyle={{ borderRadius: "2px" }}
-              />
-            </div>
+            )}
+            <SettingsPanel setDateInputMode={setDateInputMode} />
+            <ResetButton
+              onReset={resetParameter}
+              tooltipText="Reset parameter to default"
+              showText={true}
+              buttonStyle={{ borderRadius: "2px" }}
+            />
           </div>
         </div>
         {!parameter.economy && (
