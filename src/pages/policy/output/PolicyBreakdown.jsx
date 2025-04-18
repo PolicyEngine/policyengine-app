@@ -8,7 +8,7 @@ export default function PolicyBreakdown(props) {
 
   const simYears = searchParams.get("simYears");
 
-  let displayPeriod = null;
+  let displayPeriod = timePeriod;
   if (simYears && simYears > 1) {
     displayPeriod = formatDisplayPeriod(timePeriod, simYears);
   }
