@@ -6,6 +6,13 @@ export default function PolicyBreakdown(props) {
   const { policyLabel, metadata, impact, timePeriod, region } = props;
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const simYears = searchParams.get("simYears");
+
+  let displayPeriod = null;
+  if (simYears && simYears > 1) {
+    displayPeriod = formatDisplayPeriod(timePeriod, simYears);
+  }
+
   const regionObj = metadata.economy_options.region.find(
     (elem) => elem.name === region,
   );
@@ -24,7 +31,7 @@ export default function PolicyBreakdown(props) {
     regionLabel = "undefined region";
   }
 
-  const title = `${policyLabel} in ${regionLabel}, ${timePeriod}`;
+  const title = `${policyLabel} in ${regionLabel}, ${displayPeriod}`;
   const bottomText =
     "Click on an option on the left panel to view more details.";
 
@@ -492,4 +499,17 @@ function formatPowers(value) {
     }
   }
   return [Number(displayValue), label];
+}
+
+/**
+ * For multi-year simulations, format display period to show start year hyphen end year
+ * (e.g. 2020-2025)
+ * @param {Number | String} startYear
+ * @param {Number | String} simYears
+ * @returns {String}
+ */
+export function formatDisplayPeriod(startYear, simYears) {
+  // simYears is 1-indexed, so we need to subtract 1
+  const endYear = Number(startYear) + Number(simYears) - 1;
+  return `${startYear}-${endYear}`;
 }
