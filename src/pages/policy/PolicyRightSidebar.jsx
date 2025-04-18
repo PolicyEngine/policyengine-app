@@ -26,7 +26,7 @@ import { defaultForeverYear, defaultStartDate } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 import useCountryId from "../../hooks/useCountryId";
-
+import MultiYearSelector from "./rightSidebar/MultiYearSelector";
 function RegionSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -1140,6 +1140,7 @@ export default function PolicyRightSidebar(props) {
                     timePeriod={timePeriod}
                   />
                 )}
+                <MultiYearSelector metadata={metadata} />
                 <FullLiteToggle metadata={metadata} />
                 <BehavioralResponseToggle metadata={metadata} policy={policy} />
                 {metadata.countryId === "uk" && (
