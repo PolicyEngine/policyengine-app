@@ -8,6 +8,11 @@ import { updateUserPolicy } from "../../../api/userPolicies";
 import useCountryId from "../../../hooks/useCountryId";
 import { wrappedResponseJson } from "../../../data/wrappedJson";
 import LoadingCentered from "layout/LoadingCentered";
+import {
+  makeSequentialSimulationRequests,
+  SimulationRequestSetup,
+} from "../../../api/makeSequentialSimulationRequests";
+import { aggregateSocietyWideImpacts } from "../../../api/societyWideAggregation/aggregate";
 
 /**
  *
@@ -34,6 +39,7 @@ export function FetchAndDisplayImpact(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const maxHouseholds = searchParams.get("mode") === "lite" ? 10_000 : null;
   const renamed = searchParams.get("renamed");
+  const simYears = searchParams.get("simYears"); // Number of years to run for multi-year simulations
 
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
@@ -59,6 +65,93 @@ export function FetchAndDisplayImpact(props) {
   }
 
   useEffect(() => {
+    /**
+     * Setup multi-year request objects required by makeSequentialRequests
+     * @param {String} countryId
+     * @param {Number} reformPolicyId
+     * @param {Number} baselinePolicyId
+     * @param {String} region
+     * @param {String | Number} timePeriod
+     * @param {String} version
+     * @param {String | Number} maxHouseholds
+     * @param {String} dataset
+     * @param {String | Number} simYears
+     * @returns {Array<SimulationRequestSetup>} Array of RequestSetup objects
+     */
+    function setupMultiYearRequests(
+      countryId,
+      reformPolicyId,
+      baselinePolicyId,
+      region,
+      timePeriod,
+      version,
+      maxHouseholds,
+      dataset,
+      simYears,
+    ) {
+      const INTERVAL = 1_000; // Chosen to match single-sim run interval lengths
+      let requests = [];
+
+      const datasetInput = dataset ? `&dataset=${dataset}` : "";
+      const maxHouseholdInput = maxHouseholds
+        ? `&max_households=${maxHouseholds}`
+        : "";
+
+      for (let i = 0; i < simYears; i++) {
+        const yearOfSim = Number(timePeriod) + i;
+        const url =
+          `/${countryId}/economy/${reformPolicyId}/over/` +
+          `${baselinePolicyId}?region=${region}&time_period=${yearOfSim}` +
+          `&version=${version}${maxHouseholdInput}${datasetInput}`;
+
+        requests.push(
+          SimulationRequestSetup.cast({
+            path: url,
+            interval: INTERVAL,
+            firstInterval: INTERVAL,
+          }),
+        );
+      }
+
+      return requests;
+    }
+
+    async function runMultiYearRequests(
+      countryId,
+      reformPolicyId,
+      baselinePolicyId,
+      region,
+      timePeriod,
+      version,
+      maxHouseholds,
+      dataset,
+      simYears,
+    ) {
+      // Set up requests array
+      const requests = setupMultiYearRequests(
+        countryId,
+        reformPolicyId,
+        baselinePolicyId,
+        region,
+        timePeriod,
+        version,
+        maxHouseholds,
+        dataset,
+        simYears,
+      );
+
+      // Make sequential requests
+      const collection = await makeSequentialSimulationRequests(requests);
+
+      // Finally, aggregate outputs and return
+      const aggregatedResult = aggregateSocietyWideImpacts(
+        countryId,
+        collection.results.map((item) => item.result),
+      );
+
+      return aggregatedResult;
+    }
+
     if (
       areObjectsSame(policy?.reform?.data, policyRef.current?.reform?.data) &&
       areObjectsSame(
@@ -82,6 +175,33 @@ export function FetchAndDisplayImpact(props) {
         `&version=${selectedVersion}${maxHouseholdString}${datasetString}`;
       setImpact(null);
       setError(null);
+      // If user requests valid multi-year value, make sequential requests
+      if (
+        simYears &&
+        simYears !== "null" &&
+        simYears !== "undefined" &&
+        simYears > 1
+      ) {
+        runMultiYearRequests(
+          metadata.countryId,
+          reformPolicyId,
+          baselinePolicyId,
+          region,
+          timePeriod,
+          selectedVersion,
+          maxHouseholds,
+          dataset,
+          simYears,
+        )
+          .then((aggregatedData) => {
+            setImpact(aggregatedData);
+          })
+          .catch((err) => {
+            setError(err);
+          });
+
+        return;
+      }
       // start counting (but stop when the API call finishes)
       const interval = setInterval(() => {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
@@ -163,6 +283,7 @@ export function FetchAndDisplayImpact(props) {
     reformPolicyId,
     baselinePolicyId,
     maxHouseholds,
+    simYears,
   ]);
 
   useEffect(() => {
