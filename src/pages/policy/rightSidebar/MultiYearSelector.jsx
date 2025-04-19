@@ -47,7 +47,7 @@ export default function MultiYearSelector(props) {
     if (checked) {
       setSearchParams((prev) => {
         const newSearch = new URLSearchParams(prev);
-        newSearch.set("simYears", inboundSimYears);
+        newSearch.set("simYears", simLength);
         return newSearch;
       });
     } else {

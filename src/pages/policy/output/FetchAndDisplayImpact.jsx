@@ -283,6 +283,7 @@ export function FetchAndDisplayImpact(props) {
     reformPolicyId,
     baselinePolicyId,
     maxHouseholds,
+    simYears,
   ]);
 
   useEffect(() => {
