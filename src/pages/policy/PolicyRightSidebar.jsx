@@ -1140,7 +1140,7 @@ export default function PolicyRightSidebar(props) {
                     timePeriod={timePeriod}
                   />
                 )}
-                <MultiYearSelector metadata={metadata} />
+                <MultiYearSelector metadata={metadata} startYear={timePeriod} />
                 <FullLiteToggle metadata={metadata} />
                 <BehavioralResponseToggle metadata={metadata} policy={policy} />
                 {metadata.countryId === "uk" && (

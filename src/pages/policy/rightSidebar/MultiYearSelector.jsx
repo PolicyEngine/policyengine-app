@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
-import { Dropdown, Switch } from "antd";
+import { useEffect, useState } from "react";
+import { Select, Switch } from "antd";
 import { useDisplayCategory } from "../../../layout/Responsive";
 
 const DEFAULT_SIM_LENGTH = {
@@ -12,31 +12,59 @@ const DEFAULT_SIM_LENGTH = {
 export default function MultiYearSelector(props) {
   const { metadata, startYear } = props;
 
-  const countryId = metadata.countryId;
-
   const defaultSimLength = calculateDefaultSimLength(metadata, startYear);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [simYears, setSimYears] = useState(
-    searchParams.get("simYears") || defaultSimLength,
+  const inboundSimYears = searchParams.get("simYears");
+  const isInboundSimYearsValid = validateSimYears(
+    inboundSimYears,
+    metadata,
+    startYear,
+  );
+  const [simLength, setSimLength] = useState(
+    isInboundSimYearsValid ? inboundSimYears : defaultSimLength,
   );
   const [isMultiYearActive, setIsMultiYearActive] = useState(
     !!searchParams.get("simYears"),
   );
   const dC = useDisplayCategory();
 
+  const simYearsMenuItems = generateSimYearsMenuItems(metadata, startYear);
+
+  useEffect(() => {
+    setSimLength(isInboundSimYearsValid ? inboundSimYears : defaultSimLength);
+    setIsMultiYearActive(!!searchParams.get("simYears"));
+  }, [
+    startYear,
+    searchParams,
+    isInboundSimYearsValid,
+    inboundSimYears,
+    defaultSimLength,
+  ]);
+
   function handleSwitchChange(checked) {
     setIsMultiYearActive(checked);
     if (checked) {
       setSearchParams((prev) => {
         const newSearch = new URLSearchParams(prev);
-        newSearch.set("simYears", simYears);
+        newSearch.set("simYears", inboundSimYears);
         return newSearch;
       });
     } else {
       setSearchParams((prev) => {
         const newSearch = new URLSearchParams(prev);
         newSearch.delete("simYears");
+        return newSearch;
+      });
+    }
+  }
+
+  function handleSimYearsChange(value) {
+    setSimLength(value);
+    if (isMultiYearActive) {
+      setSearchParams((prev) => {
+        const newSearch = new URLSearchParams(prev);
+        newSearch.set("simYears", value);
         return newSearch;
       });
     }
@@ -63,15 +91,36 @@ export default function MultiYearSelector(props) {
           fontSize: dC !== "mobile" && "0.95em",
         }}
       >
-        Extend impacts over&nbsp;
+        Extend impacts over
       </p>
-      <Dropdown
-        menu={{
-          items: [],
-        }}
+      <Select
+        options={simYearsMenuItems}
+        value={simLength}
+        onChange={handleSimYearsChange}
+        style={{ height: "1.4rem" }}
       />
+      <p
+        style={{
+          margin: 0,
+          fontSize: dC !== "mobile" && "0.95em",
+        }}
+      >
+        years
+      </p>
     </div>
   );
+}
+
+export function generateSimYearsMenuItems(metadata, startYear) {
+  const lastSimYear = findLastSimYearFromMetadata(metadata);
+  const maxSimLength = lastSimYear - startYear + 1;
+
+  const simLengths = [];
+  for (let simLength = 1; simLength <= maxSimLength; simLength++) {
+    simLengths.push({ label: simLength, value: simLength });
+  }
+
+  return simLengths;
 }
 
 export function findLastSimYearFromMetadata(metadata) {
@@ -89,4 +138,12 @@ export function calculateDefaultSimLength(metadata, startYear) {
   const defaultSimLength =
     DEFAULT_SIM_LENGTH[metadata.countryId] || DEFAULT_SIM_LENGTH["default"];
   return Math.min(maxSimLength, defaultSimLength);
+}
+
+export function validateSimYears(simYearParam, metadata, startYear) {
+  if (simYearParam === null || simYearParam === undefined) {
+    return false;
+  }
+  const maxSimLength = findLastSimYearFromMetadata(metadata) - startYear + 1;
+  return simYearParam >= 1 && simYearParam <= maxSimLength;
 }
