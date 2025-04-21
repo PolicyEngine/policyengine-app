@@ -57,10 +57,24 @@ function copyLink() {
   message.info("Link copied to clipboard");
 }
 
+/**
+ * Determines if a given policy output is multi-year based on search params
+ * @param {Object} searchParams - The search params object
+ * @returns {boolean} - True if the policy output is multi-year, false otherwise
+ */
+function determineIfMultiYear(searchParams) {
+  return (
+    searchParams.get("simYears") &&
+    !Number.isNaN(searchParams.get("simYears")) &&
+    searchParams.get("simYears") > 1
+  );
+}
+
 export {
   avgChangeDirection,
   plotLayoutFont,
   downloadPng,
   downloadCsv,
   copyLink,
+  determineIfMultiYear,
 };

@@ -19,6 +19,7 @@ import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
 import { Link } from "react-router-dom";
+import MultiYearBudgetaryImpact from "./budget/MultiYearBudgetaryImpact";
 
 /**
  *
@@ -175,6 +176,8 @@ export function DisplayImpact(props) {
         policyLabel={policyLabel}
       />
     );
+  } else if (impactType === "budgetaryImpact") {
+    pane = <MultiYearBudgetaryImpact />;
   } else if (impactType === "policyBreakdown") {
     pane = (
       <PolicyBreakdown

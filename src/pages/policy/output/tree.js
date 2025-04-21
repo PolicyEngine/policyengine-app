@@ -1,6 +1,9 @@
+import { determineIfMultiYear } from "./utils";
+
 export const policyOutputs = {
   policyBreakdown: "Overview",
   netIncome: "Budgetary impact",
+  budgetaryImpact: "Budgetary impact",
   detailedBudgetaryImpact: "Budgetary impact by program",
   decileAverageImpact: "Absolute impact by income decile",
   wealthDecileAverageImpact: "Absolute impact by wealth decile",
@@ -51,12 +54,7 @@ export function getPolicyOutputTree(countryId, searchParams = {}) {
       ? searchParams.get("uk_local_areas_beta") === "true"
       : false;
 
-  const isMultiYear =
-    searchParams && typeof searchParams.get === "function"
-      ? searchParams.get("simYears") &&
-        !Number.isNaN(searchParams.get("simYears")) &&
-        searchParams.get("simYears") > 1
-      : false;
+  const isMultiYear = determineIfMultiYear(searchParams);
 
   const tree = [
     {
