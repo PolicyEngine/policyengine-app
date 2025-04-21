@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet";
 import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
 
-export default function SaltAMTCalculator() {
+export default function SALTernative() {
   const windowHeight = useWindowHeight();
 
   return (
     <>
       <Helmet>
-        <title>SALT-AMT Calculator | PolicyEngine</title>
+        <title>What&aposs the SALTernative? | PolicyEngine</title>
       </Helmet>
       <Header />
       <div
@@ -22,7 +22,7 @@ export default function SaltAMTCalculator() {
       >
         <iframe
           src="https://salt-amt-calculator-578039519715.us-central1.run.app/?embedded=true"
-          title="SALT-AMT Policy Reform Calculator"
+          title="What's the SALTernative?"
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
           width="100%"
           style={{ overflow: "hidden" }}

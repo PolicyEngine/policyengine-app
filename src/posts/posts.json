@@ -1,5 +1,14 @@
 [
   {
+    "title": "What's the SALTernative?",
+    "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
+    "date": "2025-04-21",
+    "tags": ["us", "featured"],
+    "filename": "introducing-salternative.md",
+    "image": "introducing-salternative.png",
+    "authors": ["pavel-makarchuk", "max-ghenis"]
+  },
+  {
     "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
     "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
     "date": "2025-04-05",
