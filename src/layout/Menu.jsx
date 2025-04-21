@@ -169,14 +169,14 @@ function MenuItemGroup(props) {
 }
 
 export default function Menu(props) {
-  const { tree, selected, onSelect, isMultiYear } = props;
+  const { tree, selected, onSelect } = props;
 
   let menuItems = [];
   for (const item of tree) {
     if (item.children) {
       menuItems.push(
         <MenuItemGroup
-          disabled={isMultiYear && item.name !== "policyOutput.policyBreakdown"}
+          disabled={item.disabled}
           key={item.name}
           name={item.name}
           label={capitalize(item.label)}
@@ -189,7 +189,7 @@ export default function Menu(props) {
     } else {
       menuItems.push(
         <MenuItem
-          disabled={isMultiYear && item.name !== "policyOutput.policyBreakdown"}
+          disabled={item.disabled}
           key={item.name}
           name={item.name}
           label={item.label}
