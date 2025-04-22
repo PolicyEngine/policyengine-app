@@ -27,6 +27,7 @@ import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 import useCountryId from "../../hooks/useCountryId";
 import MultiYearSelector from "./rightSidebar/MultiYearSelector";
+import { determineIfMultiYear } from "./output/utils";
 function RegionSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -838,6 +839,8 @@ export default function PolicyRightSidebar(props) {
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
 
+  const isMultiYear = determineIfMultiYear(searchParams);
+
   let dataset = searchParams.get("dataset");
 
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
@@ -909,7 +912,11 @@ export default function PolicyRightSidebar(props) {
       });
     } else {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", "policyOutput.policyBreakdown");
+      if (isMultiYear) {
+        newSearch.set("focus", "policyOutput.budgetaryImpact");
+      } else {
+        newSearch.set("focus", "policyOutput.policyBreakdown");
+      }
       setSearchParams(newSearch, { replace: true });
     }
   };
