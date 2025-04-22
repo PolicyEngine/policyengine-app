@@ -23,11 +23,9 @@ function MenuItem(props) {
         borderRadius: 8,
       }}
       initial={{ backgroundColor: "transparent" }}
-      animate={
-        !disabled && {
-          backgroundColor: selected === name ? "white" : "transparent",
-        }
-      }
+      animate={{
+        backgroundColor: selected === name ? "white" : "transparent",
+      }}
       onClick={disabled ? () => undefined : () => onSelect(name)}
       whileHover={!disabled && { backgroundColor: "white" }}
       transition={{ duration: 0.001 }}
