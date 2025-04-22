@@ -182,8 +182,12 @@ export function DisplayImpact(props) {
   } else if (isMultiYear && impactType === "budgetaryImpact") {
     pane = (
       <MultiYearBudgetaryImpact
+        metadata={metadata}
         impact={impact}
         singleYearResults={singleYearResults}
+        policyLabel={policyLabel}
+        region={region}
+        timePeriod={timePeriod}
       />
     );
   } else if (impactType === "policyBreakdown") {
