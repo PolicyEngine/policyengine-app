@@ -62,7 +62,7 @@ export default function MultiYearBudgetaryImpact(props) {
   );
 }
 
-function getYearlyImpacts(singleYearResults, budgetKey) {
+export function getYearlyImpacts(singleYearResults, budgetKey) {
   const yearlyImpacts = {};
   singleYearResults.forEach((item) => {
     const year = item.simulationRequestSetup.year;
@@ -73,13 +73,13 @@ function getYearlyImpacts(singleYearResults, budgetKey) {
   return yearlyImpacts;
 }
 
-function getYearRangeFromArray(years) {
+export function getYearRangeFromArray(years) {
   const startYear = years[0];
   const endYearLastTwoDigits = years[years.length - 1].toString().slice(-2);
 
   return `${startYear}-${endYearLastTwoDigits}`;
 }
 
-function roundToBillions(number, decimals = 1) {
+export function roundToBillions(number, decimals = 1) {
   return (number / 1e9).toFixed(decimals);
 }
