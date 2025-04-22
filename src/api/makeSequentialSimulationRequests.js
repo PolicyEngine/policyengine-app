@@ -6,6 +6,7 @@ import { asyncApiCall } from "./call.js";
 import * as yup from "yup";
 
 export const SimulationRequestSetup = yup.object({
+  year: yup.number().required(),
   path: yup.string().required(),
   body: yup.object().notRequired().default(null),
   interval: yup.number().default(1000),

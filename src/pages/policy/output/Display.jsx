@@ -12,7 +12,7 @@ import PolicyReproducibility from "./PolicyReproducibility";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/ErrorPage";
 import ResultActions from "layout/ResultActions";
-import { downloadCsv } from "./utils";
+import { determineIfMultiYear, downloadCsv } from "./utils";
 import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
@@ -153,7 +153,8 @@ function getPolicyLabel(policy) {
  * performing actions such as downloading data and sharing results
  */
 export function DisplayImpact(props) {
-  const { impact, policy, metadata, showPolicyImpactPopup } = props;
+  const { impact, singleYearResults, policy, metadata, showPolicyImpactPopup } =
+    props;
   const countryId = useCountryId();
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
@@ -164,6 +165,8 @@ export function DisplayImpact(props) {
   const mobile = useMobile();
   const filename = impactType + `${policyLabel}`;
   let pane, downloadCsvFn;
+
+  const isMultiYear = determineIfMultiYear(urlParams);
 
   if (impactType === "analysis") {
     pane = (
@@ -176,8 +179,13 @@ export function DisplayImpact(props) {
         policyLabel={policyLabel}
       />
     );
-  } else if (impactType === "budgetaryImpact") {
-    pane = <MultiYearBudgetaryImpact />;
+  } else if (isMultiYear && impactType === "budgetaryImpact") {
+    pane = (
+      <MultiYearBudgetaryImpact
+        impact={impact}
+        singleYearResults={singleYearResults}
+      />
+    );
   } else if (impactType === "policyBreakdown") {
     pane = (
       <PolicyBreakdown

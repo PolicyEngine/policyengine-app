@@ -13,6 +13,7 @@ import {
   SimulationRequestSetup,
 } from "../../../api/makeSequentialSimulationRequests";
 import { aggregateSocietyWideImpacts } from "../../../api/societyWideAggregation/aggregate";
+import { determineIfMultiYear } from "./utils";
 
 /**
  *
@@ -40,8 +41,10 @@ export function FetchAndDisplayImpact(props) {
   const maxHouseholds = searchParams.get("mode") === "lite" ? 10_000 : null;
   const renamed = searchParams.get("renamed");
   const simYears = searchParams.get("simYears"); // Number of years to run for multi-year simulations
+  const isMultiYear = determineIfMultiYear(searchParams);
 
   const [impact, setImpact] = useState(null);
+  const [singleYearResults, setSingleYearResults] = useState(null); // Only used for multi-year simulations
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
@@ -106,6 +109,7 @@ export function FetchAndDisplayImpact(props) {
 
         requests.push(
           SimulationRequestSetup.cast({
+            year: yearOfSim,
             path: url,
             interval: INTERVAL,
             firstInterval: INTERVAL,
@@ -116,6 +120,19 @@ export function FetchAndDisplayImpact(props) {
       return requests;
     }
 
+    /**
+     * Runs multi-year requests
+     * @param {String} countryId
+     * @param {Number} reformPolicyId
+     * @param {Number} baselinePolicyId
+     * @param {String} region
+     * @param {String | Number} timePeriod
+     * @param {String} version
+     * @param {String | Number} maxHouseholds
+     * @param {String} dataset
+     * @param {Number} simYears
+     * @returns {Object<Array<SequentialSimulationResult>, SocietyWideImpact>} Object containing singleYearResults and aggregatedResult
+     */
     async function runMultiYearRequests(
       countryId,
       reformPolicyId,
@@ -143,13 +160,19 @@ export function FetchAndDisplayImpact(props) {
       // Make sequential requests
       const collection = await makeSequentialSimulationRequests(requests);
 
+      const singleYearResults = collection.results.map((item) => item);
+      const singleYearImpacts = singleYearResults.map((item) => item.result);
+
       // Finally, aggregate outputs and return
       const aggregatedResult = aggregateSocietyWideImpacts(
         countryId,
-        collection.results.map((item) => item.result),
+        singleYearImpacts,
       );
 
-      return aggregatedResult;
+      return {
+        singleYearResults: singleYearResults,
+        aggregatedResult: aggregatedResult,
+      };
     }
 
     if (
@@ -176,12 +199,7 @@ export function FetchAndDisplayImpact(props) {
       setImpact(null);
       setError(null);
       // If user requests valid multi-year value, make sequential requests
-      if (
-        simYears &&
-        simYears !== "null" &&
-        simYears !== "undefined" &&
-        simYears > 1
-      ) {
+      if (isMultiYear) {
         runMultiYearRequests(
           metadata.countryId,
           reformPolicyId,
@@ -194,7 +212,8 @@ export function FetchAndDisplayImpact(props) {
           simYears,
         )
           .then((aggregatedData) => {
-            setImpact(aggregatedData);
+            setImpact(aggregatedData.aggregatedResult);
+            setSingleYearResults(aggregatedData.singleYearResults);
           })
           .catch((err) => {
             setError(err);
@@ -318,6 +337,7 @@ export function FetchAndDisplayImpact(props) {
   return (
     <DisplayImpact
       impact={impact}
+      singleYearResults={singleYearResults}
       policy={policy}
       metadata={metadata}
       showPolicyImpactPopup={showPolicyImpactPopup}
