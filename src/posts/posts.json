@@ -1,5 +1,14 @@
 [
   {
+    "title": "Analyzing Energy Policy with PolicyEngine",
+    "description": "We provide an Earth Day recap of our capabilities in the US and UK.",
+    "date": "2025-04-22",
+    "tags": ["us", "uk", "featured"],
+    "filename": "earth-day-2025.md",
+    "image": "earth-day-2025.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "What's the SALTernative?",
     "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
     "date": "2025-04-21",
