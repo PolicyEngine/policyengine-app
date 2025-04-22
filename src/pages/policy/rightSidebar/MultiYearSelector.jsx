@@ -43,20 +43,31 @@ export default function MultiYearSelector(props) {
   ]);
 
   function handleSwitchChange(checked) {
+    const isOnOutput = searchParams.get("focus").includes("policyOutput");
+
     setIsMultiYearActive(checked);
+
     if (checked) {
       setSearchParams((prev) => {
         const newSearch = new URLSearchParams(prev);
         newSearch.set("simYears", simLength);
+        if (isOnOutput) {
+          newSearch.set("focus", "policyOutput.budgetaryImpact");
+        }
         return newSearch;
       });
-    } else {
-      setSearchParams((prev) => {
-        const newSearch = new URLSearchParams(prev);
-        newSearch.delete("simYears");
-        return newSearch;
-      });
+      return;
     }
+
+    setSearchParams((prev) => {
+      const newSearch = new URLSearchParams(prev);
+      newSearch.delete("simYears");
+      if (isOnOutput) {
+        newSearch.set("focus", "policyOutput.policyBreakdown");
+      }
+      return newSearch;
+    });
+    return;
   }
 
   function handleSimYearsChange(value) {
