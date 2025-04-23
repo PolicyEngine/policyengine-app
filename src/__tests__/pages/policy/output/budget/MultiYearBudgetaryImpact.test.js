@@ -6,7 +6,7 @@ import MultiYearBudgetaryImpact, {
   roundToBillions,
 } from "pages/policy/output/budget/MultiYearBudgetaryImpact";
 import "@testing-library/jest-dom";
-import data from "../../../__setup__/data.json";
+import data from "../../../../__setup__/data.json";
 
 window.matchMedia =
   window.matchMedia ||
@@ -21,12 +21,12 @@ window.matchMedia =
 describe("MultiYearBudgetaryImpact", () => {
   const mockSingleYearResults = [
     {
-      simulationRequestSetup: { 
+      simulationRequestSetup: {
         year: 2020,
         path: "/api/simulation",
         body: null,
         interval: 1000,
-        firstInterval: 200
+        firstInterval: 200,
       },
       result: {
         budget: {
@@ -38,12 +38,12 @@ describe("MultiYearBudgetaryImpact", () => {
       },
     },
     {
-      simulationRequestSetup: { 
+      simulationRequestSetup: {
         year: 2021,
         path: "/api/simulation",
         body: null,
         interval: 1000,
-        firstInterval: 200
+        firstInterval: 200,
       },
       result: {
         budget: {
@@ -115,14 +115,16 @@ describe("MultiYearBudgetaryImpact", () => {
         singleYearResults: mockSingleYearResults,
         metadata: mockMetadata,
         policyLabel: "Test Policy",
-        region: "us"
+        region: "us",
       };
 
       // When
       render(<MultiYearBudgetaryImpact {...props} />);
 
       // Then
-      expect(screen.getByText("Test Policy in the US, 2020-21")).toBeInTheDocument();
+      expect(
+        screen.getByText("Test Policy in the US, 2020-21"),
+      ).toBeInTheDocument();
     });
 
     test("should render table with correct columns", () => {
@@ -132,14 +134,16 @@ describe("MultiYearBudgetaryImpact", () => {
         singleYearResults: mockSingleYearResults,
         metadata: mockMetadata,
         policyLabel: "Test Policy",
-        region: "us"
+        region: "us",
       };
 
       // When
       render(<MultiYearBudgetaryImpact {...props} />);
 
       // Then
-      expect(screen.getByText("Net revenue impact (billions currency)")).toBeInTheDocument();
+      expect(
+        screen.getByText("Net revenue impact (billions currency)"),
+      ).toBeInTheDocument();
       expect(screen.getByText("2020")).toBeInTheDocument();
       expect(screen.getByText("2021")).toBeInTheDocument();
       expect(screen.getByText("2020-21")).toBeInTheDocument();
@@ -152,7 +156,7 @@ describe("MultiYearBudgetaryImpact", () => {
         singleYearResults: mockSingleYearResults,
         metadata: mockMetadata,
         policyLabel: "Test Policy",
-        region: "us"
+        region: "us",
       };
 
       // When

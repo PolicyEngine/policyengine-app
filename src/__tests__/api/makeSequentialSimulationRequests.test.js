@@ -15,26 +15,26 @@ describe("makeSequentialSimulationRequests", () => {
   describe("Given a list of successful requests", () => {
     test("it should process all requests sequentially and return successful results", async () => {
       const requests = [
-        { 
+        {
           year: 2020,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
-        { 
+        {
           year: 2021,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
-        { 
+        {
           year: 2022,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
       ];
 
@@ -109,19 +109,19 @@ describe("makeSequentialSimulationRequests", () => {
 
     test("it should call onComplete callback after each request", async () => {
       const requests = [
-        { 
+        {
           year: 2020,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
-        { 
+        {
           year: 2021,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
       ];
 
@@ -152,26 +152,26 @@ describe("makeSequentialSimulationRequests", () => {
   describe("Given a list with mixed successful and failed requests", () => {
     test("it should continue processing after failures and track error counts", async () => {
       const requests = [
-        { 
+        {
           year: 2020,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
-        { 
+        {
           year: 2021,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
-        { 
+        {
           year: 2022,
           path: "/api/simulation",
           body: { policy: "test" },
           interval: 1000,
-          firstInterval: 200
+          firstInterval: 200,
         },
       ];
 
@@ -235,7 +235,9 @@ describe("makeSequentialSimulationRequests", () => {
       // Force an error in the main function by setting requests to null
       const requests = null;
 
-      await expect(makeSequentialSimulationRequests(requests)).rejects.toThrow();
+      await expect(
+        makeSequentialSimulationRequests(requests),
+      ).rejects.toThrow();
       expect(console.error).toHaveBeenCalledWith(
         "Sequential requests failed:",
         expect.any(Error),
