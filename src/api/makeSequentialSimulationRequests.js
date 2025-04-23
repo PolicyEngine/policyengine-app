@@ -74,7 +74,7 @@ export async function makeSequentialSimulationRequests(
           SequentialSimulationResult.cast({
             status: "success",
             requestIndex: i,
-            simulationRequestSetup: requestSetup,
+            simulationRequestSetup: SimulationRequestSetup.cast(requestSetup),
             result: response.result,
           }),
         );
@@ -92,7 +92,7 @@ export async function makeSequentialSimulationRequests(
               statusCode: error.response?.status,
               data: error.response?.data,
             },
-            requestSetup: requestSetup,
+            simulationRequestSetup: SimulationRequestSetup.cast(requestSetup),
           }),
         );
 
