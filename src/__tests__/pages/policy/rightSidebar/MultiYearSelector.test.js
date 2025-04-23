@@ -128,7 +128,10 @@ describe("MultiYearSelector", () => {
     test("should update URL when switch is toggled on", () => {
       // Given
       const setSearchParams = jest.fn();
-      useSearchParams.mockReturnValue([new URLSearchParams(), setSearchParams]);
+      useSearchParams.mockReturnValue([
+        new URLSearchParams({ focus: "policyOutput.policyBreakdown" }),
+        setSearchParams,
+      ]);
 
       // When
       render(
