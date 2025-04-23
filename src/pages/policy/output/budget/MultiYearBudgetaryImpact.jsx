@@ -28,7 +28,7 @@ export default function MultiYearBudgetaryImpact(props) {
 
   const columns = [
     {
-      title: "Net revenue impact (billions currency)",
+      title: `Net revenue impact (${metadata.currency}bn)`,
       dataIndex: "netRevenueImpact",
       key: "netRevenueImpact",
     },
