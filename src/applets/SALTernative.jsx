@@ -9,7 +9,7 @@ export default function SALTernative() {
   return (
     <>
       <Helmet>
-        <title>What&aposs the SALTernative? | PolicyEngine</title>
+        <title>The SALTernative | PolicyEngine</title>
       </Helmet>
       <Header />
       <div
