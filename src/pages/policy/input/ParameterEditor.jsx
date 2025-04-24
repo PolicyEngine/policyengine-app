@@ -161,23 +161,6 @@ export default function ParameterEditor(props) {
     });
   };
 
-  // Add this effect to detect parameter changes
-  useEffect(() => {
-    if (parameterName !== currentParameterName) {
-      // Reset state when parameter changes
-      setCurrentParameterName(parameterName);
-
-      // Use the helper function to reset state
-      resetParameterState(true);
-    }
-  }, [
-    parameterName,
-    currentParameterName,
-    reformData,
-    baseMap,
-    resetParameterState,
-  ]);
-
   useEffect(() => {
     if (chartContainerRef.current) {
       // This piece of code may be unstable if items above Display are edited;
@@ -289,13 +272,37 @@ export default function ParameterEditor(props) {
                 baseMap={baseMap}
               />
             )}
-            <SettingsPanel setDateInputMode={setDateInputMode} />
-            <ResetButton
-              onReset={resetParameter}
-              tooltipText="Reset parameter to default"
-              showText={true}
-              buttonStyle={{ borderRadius: "2px" }}
-            />
+            <div
+              style={{
+                display: "flex",
+                flexDirection:
+                  dateInputMode === DATE_INPUT_MODES.MULTI_YEAR
+                    ? "column"
+                    : "row",
+                gap: "10px",
+              }}
+            >
+              <SettingsPanel
+                setDateInputMode={setDateInputMode}
+                title="Input mode settings"
+              />
+              {dateInputMode === DATE_INPUT_MODES.MULTI_YEAR && (
+                <ResetButton
+                  onReset={resetParameter}
+                  tooltipText="Reset parameter to default"
+                  showText={true}
+                  buttonStyle={{ borderRadius: "2px" }}
+                />
+              )}
+            </div>
+            {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
+              <ResetButton
+                onReset={resetParameter}
+                tooltipText="Reset parameter to default"
+                showText={true}
+                buttonStyle={{ borderRadius: "2px" }}
+              />
+            )}
           </div>
         </div>
         {!parameter.economy && (
@@ -989,7 +996,7 @@ function AdvancedValueSetter(props) {
 }
 
 function SettingsPanel(props) {
-  const { setDateInputMode } = props;
+  const { setDateInputMode, title } = props;
 
   const handleModeChange = (e) => {
     setDateInputMode(e.target.value);
@@ -1046,14 +1053,17 @@ function SettingsPanel(props) {
 
   return (
     <Popover content={popoverContent} placement="bottomRight" trigger="click">
-      <Button
-        style={{
-          aspectRatio: 1,
-          width: "100%",
-        }}
-      >
-        <SettingOutlined />
-      </Button>
+      <Tooltip title={title}>
+        <Button
+          style={{
+            aspectRatio: 1,
+            width: 32,
+            height: 32,
+          }}
+        >
+          <SettingOutlined />
+        </Button>
+      </Tooltip>
     </Popover>
   );
 }
