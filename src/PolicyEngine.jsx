@@ -51,7 +51,7 @@ import CTCCalculator from "./applets/CTCCalculator";
 import GiveCalc from "./applets/GiveCalc";
 import { wrappedResponseJson } from "./data/wrappedJson";
 import US2024ElectionCalculator from "./applets/US2024ElectionCalculator";
-import SaltAMTCalculator from "./applets/SaltAMTCalculator";
+import SALTernative from "./applets/SALTernative";
 import AIPage from "./pages/learn/AI";
 import MicrosimPage from "./pages/learn/MicrosimPage";
 import EducationPage from "./pages/learn/EducationPage";
@@ -395,7 +395,7 @@ export default function PolicyEngine() {
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}
         />
-        <Route path="/us/salt-amt-calculator" element={<SaltAMTCalculator />} />
+        <Route path="/us/salternative" element={<SALTernative />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
