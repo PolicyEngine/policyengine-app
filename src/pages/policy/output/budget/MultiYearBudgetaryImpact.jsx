@@ -12,10 +12,16 @@ const usDataSources = [
   {
     header: "Federal budget",
     budgetKey: "tax_revenue_impact",
+    style: {
+      fontWeight: "bold",
+    },
   },
   {
     header: "State tax",
     budgetKey: "state_tax_revenue_impact",
+    style: {
+      fontStyle: "italic",
+    },
   },
 ];
 
@@ -31,6 +37,9 @@ const ukDataSources = [
   {
     header: "Total",
     budgetKey: "tax_revenue_impact",
+    style: {
+      fontWeight: "bold",
+    },
   },
 ];
 
@@ -114,6 +123,25 @@ export default function MultiYearBudgetaryImpact(props) {
     regionLabel = regionObj.label;
   }
 
+  const recordStylingOverrides = (record, index) => {
+    let styles = {};
+
+    if (
+      record.netRevenueImpact === "Federal budget" ||
+      record.netRevenueImpact === "Total"
+    ) {
+      styles.fontWeight = "bold";
+    }
+
+    if (record.netRevenueImpact === "State tax") {
+      styles.fontStyle = "italic";
+    }
+
+    return {
+      style: styles,
+    };
+  };
+
   const title = `${policyLabel} in ${regionLabel}, ${displayPeriod}`;
 
   return (
@@ -125,7 +153,11 @@ export default function MultiYearBudgetaryImpact(props) {
       >
         {title}
       </h2>
-      <Table columns={columns} dataSource={dataSources} />
+      <Table
+        columns={columns}
+        dataSource={dataSources}
+        onRow={recordStylingOverrides}
+      />
     </div>
   );
 }
@@ -158,6 +190,6 @@ export function getYearRangeFromArray(years, country) {
   return `${startYear}-${endYearLastTwoDigits}`;
 }
 
-export function roundToBillions(number, decimals = 1) {
+export function roundToBillions(number, decimals = 0) {
   return (number / 1e9).toFixed(decimals);
 }
