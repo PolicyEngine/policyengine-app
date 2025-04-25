@@ -1,6 +1,6 @@
 import { Table } from "antd";
 
-const dataSourceHeadersAndPaths = [
+const usDataSources = [
   {
     header: "Federal tax",
     budgetKey: "budgetary_impact",
@@ -19,6 +19,54 @@ const dataSourceHeadersAndPaths = [
   },
 ];
 
+const ukDataSources = [
+  {
+    header: "Tax",
+    budgetKey: "budgetary_impact",
+  },
+  {
+    header: "Benefits",
+    budgetKey: "benefit_spending_impact",
+  },
+  {
+    header: "Total",
+    budgetKey: "tax_revenue_impact",
+  },
+];
+
+const dataSourcesByCountry = {
+  us: usDataSources,
+  uk: ukDataSources,
+};
+
+const financialYearTypeByCountry = {
+  us: "calendar",
+  uk: "mixed",
+  default: "calendar",
+};
+
+/**
+ * Maps a year to an Ant Design column title Object
+ * @param {number} year - The year to map
+ * @param {string} country - The country to map the year for
+ * @returns {Object} - The Ant Design column title Object
+ */
+export function mapFinancialYearToColumn(year, country) {
+  const yearType =
+    financialYearTypeByCountry[country] || financialYearTypeByCountry.default;
+
+  let displayYear = year;
+  if (yearType === "mixed") {
+    displayYear = `${year}-${(year % 100) + 1}`;
+  }
+
+  return {
+    title: displayYear,
+    dataIndex: year,
+    key: year,
+  };
+}
+
 export default function MultiYearBudgetaryImpact(props) {
   const { metadata, impact, singleYearResults, policyLabel, region } = props;
 
@@ -28,25 +76,21 @@ export default function MultiYearBudgetaryImpact(props) {
 
   const columns = [
     {
-      title: `Net revenue impact (${metadata.currency}bn)`,
+      title: `Net revenue impact (billions)`,
       dataIndex: "netRevenueImpact",
       key: "netRevenueImpact",
     },
-    ...years.map((year) => {
-      return {
-        title: year,
-        dataIndex: year,
-        key: year,
-      };
-    }),
+    ...years.map((year) => mapFinancialYearToColumn(year, metadata.countryId)),
     {
-      title: getYearRangeFromArray(years),
+      title: getYearRangeFromArray(years, metadata.countryId),
       dataIndex: "yearRange",
       key: "yearRange",
     },
   ];
 
-  const dataSources = dataSourceHeadersAndPaths.map((item) => {
+  const countryDataSource = dataSourcesByCountry[region];
+
+  const dataSources = countryDataSource.map((item) => {
     return {
       netRevenueImpact: item.header,
       ...getYearlyImpacts(singleYearResults, item.budgetKey),
@@ -54,7 +98,7 @@ export default function MultiYearBudgetaryImpact(props) {
     };
   });
 
-  const displayPeriod = getYearRangeFromArray(years);
+  const displayPeriod = getYearRangeFromArray(years, metadata.countryId);
 
   const regionObj = metadata.economy_options.region.find(
     (elem) => elem.name === region,
@@ -97,9 +141,19 @@ export function getYearlyImpacts(singleYearResults, budgetKey) {
   return yearlyImpacts;
 }
 
-export function getYearRangeFromArray(years) {
+export function getYearRangeFromArray(years, country) {
+  const financialYearType =
+    financialYearTypeByCountry[country] || financialYearTypeByCountry.default;
+
   const startYear = years[0];
-  const endYearLastTwoDigits = years[years.length - 1].toString().slice(-2);
+  let endYear = years[years.length - 1];
+
+  // If the financial year type is mixed, we need to add one to the end year
+  if (financialYearType === "mixed") {
+    endYear++;
+  }
+
+  const endYearLastTwoDigits = endYear.toString().slice(-2);
 
   return `${startYear}-${endYearLastTwoDigits}`;
 }
