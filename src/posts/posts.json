@@ -1,4 +1,12 @@
 [
+  { "title": "Tax changes in effect in April 2025",
+  "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of £1,133 per household.",
+  "date": "2025-04-25",
+  "tags": ["uk", "tax", "policy", "featured"],
+  "filename": "impact-of-tax-changes-2025-2026.md",
+  "image": "uk_budget_box_hunt.jpg",
+  "authors": ["nikhil-woodruff"]
+  },
   {
     "title": "Analyzing Energy Policy with PolicyEngine",
     "description": "We provide an Earth Day recap of our capabilities in the US and UK.",
