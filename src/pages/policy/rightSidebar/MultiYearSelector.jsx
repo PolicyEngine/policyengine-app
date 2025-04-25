@@ -9,6 +9,8 @@ const DEFAULT_SIM_LENGTH = {
   default: 5,
 };
 
+export const MULTI_YEAR_SELECTOR_PERMITTED_COUNTRIES = ["us", "uk"];
+
 export default function MultiYearSelector(props) {
   const { metadata, startYear } = props;
 

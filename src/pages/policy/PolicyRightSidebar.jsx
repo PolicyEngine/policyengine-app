@@ -26,8 +26,11 @@ import { defaultForeverYear, defaultStartDate } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 import useCountryId from "../../hooks/useCountryId";
-import MultiYearSelector from "./rightSidebar/MultiYearSelector";
+import MultiYearSelector, {
+  MULTI_YEAR_SELECTOR_PERMITTED_COUNTRIES,
+} from "./rightSidebar/MultiYearSelector";
 import { determineIfMultiYear } from "./output/utils";
+
 function RegionSelector(props) {
   const { metadata } = props;
   const [searchParams, setSearchParams] = useSearchParams();
@@ -1147,7 +1150,14 @@ export default function PolicyRightSidebar(props) {
                     timePeriod={timePeriod}
                   />
                 )}
-                <MultiYearSelector metadata={metadata} startYear={timePeriod} />
+                {MULTI_YEAR_SELECTOR_PERMITTED_COUNTRIES.includes(
+                  metadata.countryId,
+                ) && (
+                  <MultiYearSelector
+                    metadata={metadata}
+                    startYear={timePeriod}
+                  />
+                )}
                 <FullLiteToggle metadata={metadata} />
                 <BehavioralResponseToggle metadata={metadata} policy={policy} />
                 {metadata.countryId === "uk" && (
