@@ -9,10 +9,16 @@ import {
   aggregatePovertyByAgeModule,
 } from "./aggregateModules";
 
+/**
+ * Aggregate the society-wide impacts for a given country
+ * @param {String} countryId
+ * @param {Array<SocietyWideImpactUK | SocietyWideImpactUS>} impacts
+ * @returns {AggregatedSocietyWideImpact}
+ */
 export function aggregateSocietyWideImpacts(countryId, impacts) {
   if (!impacts || impacts.length === 0) {
     const error = "Error in aggregateSocietyWideImpacts: No impacts provided";
-    console.log(error);
+    console.error(error);
     throw new Error(error);
   }
 
@@ -21,7 +27,7 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
       validateImpacts(countryId, impact);
     }
   } catch (err) {
-    console.log("Error validating impacts");
+    console.error("Error validating impacts");
     throw err;
   }
 

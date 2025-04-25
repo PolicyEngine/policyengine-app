@@ -13,6 +13,11 @@ import { impactKeys } from "../../../../pages/policy/output/ImpactTypes.jsx";
 
 jest.mock("react-plotly.js", () => jest.fn());
 
+// Mock the utils module
+jest.mock("../../../../pages/policy/output/utils", () => ({
+  determineIfMultiYear: jest.fn().mockReturnValue(false),
+}));
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useSearchParams: jest.fn(),
