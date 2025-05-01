@@ -1234,5 +1234,14 @@
     "authors": ["vahid-ahmadi", "nikhil-woodruff"],
     "filename": "uk-taxes-post.md",
     "image": "uk-tax-post.jpg"
+  },
+  {
+    "title": "Utah Cuts Income Tax Rate and Expands Credits",
+    "date": "2025-05-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ut", "featured", "policy"],
+    "description": "Utah’s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
+    "filename": "utah-income-tax-changes.ipynb",
+    "image": "utah-income-tax-changes.jpg"
   }
 ]
