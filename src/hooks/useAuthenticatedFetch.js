@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback } from "react";
+import { API_AUDIENCE } from "../config";
 
 /**
  * Get an 'authenticatedFetch' function which, if the user is logged in,
@@ -18,7 +19,7 @@ export function useAuthenticatedFetch() {
         try {
           //as per https://auth0.com/docs/quickstart/spa/react/02-calling-an-api
           const accessToken = await getAccessTokenSilently({
-            audience: "https://api.policyengine.org/",
+            audience: API_AUDIENCE,
           });
           headers["Authorization"] = `Bearer ${accessToken}`;
         } catch (error) {

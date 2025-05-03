@@ -1,10 +1,9 @@
 import { useCallback } from "react";
-import { buildParameterTree } from "./parameters";
-import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
+import { API_URL } from "../config";
 import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
 import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch";
-
-const POLICYENGINE_API = "https://api.policyengine.org";
+import { buildParameterTree } from "./parameters";
+import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 
 /**
  * returns an api call function that can be used to make requests
@@ -47,7 +46,7 @@ export function apiCall(
   secondAttempt = false,
   fetchMethod = fetch,
 ) {
-  return fetchMethod(POLICYENGINE_API + path, {
+  return fetchMethod(API_URL + path, {
     method: method || (body ? "POST" : "GET"),
     headers: {
       "Content-Type": "application/json",

@@ -11,6 +11,30 @@ We recommend that you use the latest Node version 19. To easily manage your node
 nvm install 19 && nvm use 19
 ```
 
+# Environment Variables
+
+The application uses environment variables to configure API endpoints and other settings. These are defined in the following files:
+
+- `.env.development` - Used during local development
+- `.env.production` - Used in production builds
+
+You can customize your local development setup by modifying `.env.development` or creating a `.env.local` file which will override other environment files.
+
+Available environment variables:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| REACT_APP_API_URL | Base URL for API requests | https://api.policyengine.org |
+| REACT_APP_API_AUDIENCE | Auth0 audience for API | https://api.policyengine.org/ |
+| REACT_APP_DEBUG | Enable debug mode | true (dev) / false (prod) |
+
+For local development with a backend running on your machine, you might want to use:
+```
+REACT_APP_API_URL=http://localhost:5000
+REACT_APP_API_AUDIENCE=http://localhost:5000/
+REACT_APP_DEBUG=true
+```
+
 # Contributing
 
 ## Choosing an Issue
