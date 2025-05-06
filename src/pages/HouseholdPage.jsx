@@ -28,6 +28,7 @@ import RecreateHouseholdPopup from "./household/output/RecreateHouseholdPopup.js
 import TaxYear from "./household/input/TaxYear";
 import { Helmet } from "react-helmet";
 import { wrappedResponseJson } from "../data/wrappedJson.js";
+import County from "./household/input/County.jsx";
 
 export default function HouseholdPage(props) {
   const {
@@ -229,6 +230,49 @@ export default function HouseholdPage(props) {
 
   if (!householdInput || !metadata) {
     middle = <LoadingCentered />;
+  } else if (focus === "input.geography.countyName" && countryId === "us") {
+    middle = (
+      <County
+        metadata={metadata}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+        year={year}
+        autoCompute={autoCompute}
+      />
+    );
+  } else if (focus === "input.household.maritalStatus") {
+    middle = (
+      <MaritalStatus
+        metadata={metadata}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+        autoCompute={autoCompute}
+        year={year}
+      />
+    );
+  } else if (focus === "intro") {
+    middle = <HouseholdIntro />;
+  } else if (focus === "input.household.children") {
+    middle = (
+      <CountChildren
+        metadata={metadata}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+        autoCompute={autoCompute}
+        year={year}
+      />
+    );
+  } else if (focus === "input.household.taxYear") {
+    middle = (
+      <TaxYear
+        metadata={metadata}
+        year={year}
+        setYear={setYear}
+        householdId={householdId}
+        householdInput={householdInput}
+        setHouseholdInput={setHouseholdInput}
+      />
+    );
   } else if (
     Object.keys(metadata.variables).includes(
       focus.split(".")[focus.split(".").length - 1],
@@ -269,39 +313,6 @@ export default function HouseholdPage(props) {
       >
         {node.children}
       </FolderPage>
-    );
-  } else if (focus === "input.household.maritalStatus") {
-    middle = (
-      <MaritalStatus
-        metadata={metadata}
-        householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
-        autoCompute={autoCompute}
-        year={year}
-      />
-    );
-  } else if (focus === "intro") {
-    middle = <HouseholdIntro />;
-  } else if (focus === "input.household.children") {
-    middle = (
-      <CountChildren
-        metadata={metadata}
-        householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
-        autoCompute={autoCompute}
-        year={year}
-      />
-    );
-  } else if (focus === "input.household.taxYear") {
-    middle = (
-      <TaxYear
-        metadata={metadata}
-        year={year}
-        setYear={setYear}
-        householdId={householdId}
-        householdInput={householdInput}
-        setHouseholdInput={setHouseholdInput}
-      />
     );
   } else if (focus && focus.startsWith("householdOutput.")) {
     if (!autoCompute) {
@@ -422,6 +433,11 @@ function HouseholdLeftSidebar(props) {
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
 
+  metadata.variableTree.children = addCustomInputs(
+    metadata.variableTree.children,
+    metadata.countryId,
+  );
+
   return (
     <div>
       {!isOnOutput && (
@@ -437,6 +453,41 @@ function HouseholdLeftSidebar(props) {
       />
     </div>
   );
+}
+
+/**
+ * Add custom non-default input values to the display tree
+ * @param {Array<Object>} displayTree An array of items with keys name and label
+ * @param {String} countryId The country ID
+ * @returns {Array<Object>} The updated display tree
+ */
+export function addCustomInputs(displayTree, countryId) {
+  if (countryId !== "us") {
+    return displayTree;
+  }
+
+  // Add county name input to US display tree
+  const newNode = {
+    label: "County",
+    name: "input.geography.countyName",
+  };
+
+  const geographyTree = displayTree.find(
+    (node) => node.name === "input.geography",
+  );
+
+  const nodeExists = geographyTree?.children.some(
+    (node) => node.name === newNode.name,
+  );
+
+  if (geographyTree && !nodeExists) {
+    geographyTree.children.push({
+      label: "County name",
+      name: "input.geography.countyName",
+    });
+  }
+
+  return displayTree;
 }
 
 /**

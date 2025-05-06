@@ -1,5 +1,41 @@
 [
   {
+    "title": "Tax changes in effect in April 2025",
+    "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of £1,133 per household.",
+    "date": "2025-04-25",
+    "tags": ["uk", "tax", "policy", "featured"],
+    "filename": "impact-of-tax-changes-2025-2026.md",
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Analyzing Energy Policy with PolicyEngine",
+    "description": "We provide an Earth Day recap of our capabilities in the US and UK.",
+    "date": "2025-04-22",
+    "tags": ["us", "uk", "featured"],
+    "filename": "earth-day-2025.md",
+    "image": "earth-day-2025.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "What's the SALTernative?",
+    "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
+    "date": "2025-04-21",
+    "tags": ["us", "featured"],
+    "filename": "introducing-salternative.md",
+    "image": "introducing-salternative.png",
+    "authors": ["pavel-makarchuk", "max-ghenis"]
+  },
+  {
+    "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
+    "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
+    "date": "2025-04-05",
+    "tags": ["us", "us-nc", "featured", "api", "benefit-access"],
+    "filename": "myfriendben-nc.md",
+    "image": "myfriendben-nc.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "New Ways to Give to PolicyEngine",
     "description": "Exploring state tax credits for charitable giving.",
     "date": "2025-04-01",
@@ -1182,21 +1218,30 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
-    "title": "Benefits in PolicyEngine",
-    "date": "2025-04-01 00:00:00",
-    "authors": ["vahid-ahmadi"],
-    "tags": ["uk", "policy", "featured", "benefit"],
-    "description": "PolicyEngine models different benefit components in the UK, including means-tested benefits and non-means-tested support.",
-    "filename": "uk-benefits-post.md",
-    "image": "uk-benefit-post.jpg"
+    "title": "Idaho’s New Individual Income Tax Changes",
+    "date": "2025-04-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-id", "featured", "policy"],
+    "description": "The lower top marginal rate and larger grocery tax credit will cost the state $225 million in 2025.",
+    "filename": "idaho-2025-tax-change.ipynb",
+    "image": "idaho-2025-tax-change.jpg"
   },
   {
     "title": "Taxes in PolicyEngine",
     "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
-    "date": "2025-03-25 00:00:00",
+    "date": "2025-04-08 00:00:00",
     "tags": ["uk", "policy", "featured", "tax"],
-    "authors": ["vahid-ahmadi"],
+    "authors": ["vahid-ahmadi", "nikhil-woodruff"],
     "filename": "uk-taxes-post.md",
     "image": "uk-tax-post.jpg"
+  },
+  {
+    "title": "Utah Cuts Income Tax Rate and Expands Credits",
+    "date": "2025-05-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ut", "featured", "policy"],
+    "description": "Utah’s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
+    "filename": "utah-income-tax-changes.ipynb",
+    "image": "utah-income-tax-changes.jpg"
   }
 ]
