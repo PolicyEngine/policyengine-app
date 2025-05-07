@@ -1,4 +1,8 @@
-# Childcare programmes in PolicyEngine UK
+## Introduction
+
+This report provides an analysis of childcare support programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare support calculations are performed within the PolicyEngine UK microsimulation model.
+
+The report is organised to explore the landscape of UK childcare support. We begin by examining the major programmes: Tax-Free Childcare, the Extended Childcare Entitlement, Universal Childcare Entitlement, and Targeted Childcare Entitlement (the 2-year-old offer). For each programme, we provide details on eligibility criteria, implementation, and calculation methods. We also cover additional support schemes like Care to Learn for young parents. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
 ## Tax-free childcare
 
