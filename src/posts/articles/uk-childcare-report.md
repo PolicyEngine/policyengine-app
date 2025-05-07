@@ -6,7 +6,7 @@ The report is organised to explore the landscape of UK childcare support. We beg
 
 ## Tax-free childcare
 
-Tax-free childcare helps working families with childcare costs. For every £8 paid into a childcare account, the government adds £2. The programme provides financial support up to £2,000 per year for each eligible child. For disabled children, this support increases to £4,000 per year.
+[Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) helps working families with childcare costs. For every £8 paid into a childcare account, the government adds £2. The programme provides financial support up to £2,000 per year for each eligible child. For disabled children, this support increases to £4,000 per year.
 
 ### Eligibility requirements
 
@@ -142,7 +142,7 @@ The following table shows examples of how the government contribution is calcula
 
 ## Extended childcare entitlement
 
-The programme provides free childcare hours based on the child's age:
+[The programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) provides free childcare hours based on the child's age:
 
 - Children aged 9 months to 2 years receive 15 hours of free childcare per week.
 - Children aged 3 to 4 years receive 30 hours of free childcare per week.
@@ -240,7 +240,7 @@ The following table shows examples of entitlement calculation based on age and f
 
 ## Universal childcare entitlement
 
-A universal programme providing free childcare for all 3-4 year olds in England. Each eligible child receives 570 hours of free childcare annually, typically delivered as 15 hours per week across 38 weeks of the year. The free childcare must be delivered through an approved childcare provider. This programme applies to England only. Scotland, Wales, and Northern Ireland operate their distinct childcare support schemes.
+[The universal programme](https://www.gov.uk/help-with-childcare-costs/free-childcare-and-education-for-3-to-4-year-olds?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b) providing free childcare for all 3-4 year olds in England. Each eligible child receives 570 hours of free childcare annually, typically delivered as 15 hours per week across 38 weeks of the year. The free childcare must be delivered through an approved childcare provider. This programme applies to England only. Scotland, Wales, and Northern Ireland operate their distinct childcare support schemes.
 
 ### Implementation
 
@@ -275,7 +275,7 @@ The following table shows examples of eligibility determination based on age cri
 
 ## Targeted childcare entitlement
 
-The targeted childcare entitlement (also known as the 2-year-old offer) provides 15 hours of free childcare per week for eligible 2-year-old children. The entitlement totals 570 hours annually and is delivered across 38 weeks.
+[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b) provides 15 hours of free childcare per week for eligible 2-year-old children. The entitlement totals 570 hours annually and is delivered across 38 weeks.
 
 ### Age criteria
 
@@ -366,7 +366,7 @@ The following table shows how the annual entitlement is calculated based on elig
 
 ## Care to learn
 
-The Care to Learn scheme provides financial support for young parents under 20 who wish to continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement provides:
+[The Care to Learn](https://www.gov.uk/care-to-learn) scheme provides financial support for young parents under 20 who wish to continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement provides:
 
 - £180 per week for childcare costs outside London.
 - £195 per week for childcare costs in London.
