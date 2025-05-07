@@ -2,11 +2,9 @@
 
 This report provides an analysis of childcare support programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare support calculations are performed within the PolicyEngine UK microsimulation model.
 
-The report is organised to explore the landscape of UK childcare support. We begin by examining the major programmes: Tax-Free Childcare, the Extended Childcare Entitlement, Universal Childcare Entitlement, and Targeted Childcare Entitlement (the 2-year-old offer). For each programme, we provide details on eligibility criteria, implementation, and calculation methods. We also cover additional support schemes like Care to Learn for young parents. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
+The report is organised to explore the landscape of UK childcare support. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
 ## Tax-free childcare
-
-### Overview
 
 Tax-free childcare helps working families with childcare costs. For every £8 paid into a childcare account, the government adds £2. The programme provides financial support up to £2,000 per year for each eligible child. For disabled children, this support increases to £4,000 per year.
 
@@ -144,8 +142,6 @@ The following table shows examples of how the government contribution is calcula
 
 ## Extended childcare entitlement
 
-### Overview
-
 The programme provides free childcare hours based on the child's age:
 
 - Children aged 9 months to 2 years receive 15 hours of free childcare per week.
@@ -244,8 +240,6 @@ The following table shows examples of entitlement calculation based on age and f
 
 ## Universal childcare entitlement
 
-### Overview
-
 A universal programme providing free childcare for all 3-4 year olds in England. Each eligible child receives 570 hours of free childcare annually, typically delivered as 15 hours per week across 38 weeks of the year. The free childcare must be delivered through an approved childcare provider. This programme applies to England only. Scotland, Wales, and Northern Ireland operate their distinct childcare support schemes.
 
 ### Implementation
@@ -280,8 +274,6 @@ The following table shows examples of eligibility determination based on age cri
 | 5         | False                          | True              | False           |
 
 ## Targeted childcare entitlement
-
-### Overview
 
 The targeted childcare entitlement (also known as the 2-year-old offer) provides 15 hours of free childcare per week for eligible 2-year-old children. The entitlement totals 570 hours annually and is delivered across 38 weeks.
 
@@ -372,9 +364,7 @@ The following table shows how the annual entitlement is calculated based on elig
 | 2         | Yes      | 570               | £8.28       | £4,719.60          |
 | 3         | No       | 0                 | £5.88       | £0                 |
 
-## Care to Learn
-
-### Overview
+## Care to learn
 
 The Care to Learn scheme provides financial support for young parents under 20 who wish to continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement provides:
 
@@ -443,13 +433,11 @@ The following table shows the annual entitlement based on location:
 | London         | £195        | £10,140                       |
 | Outside London | £180        | £9,360                        |
 
-## Calibration of Childcare Programmes
-
-### Overview
+## Calibration of childcare programmes
 
 The UK government offers several childcare support programmes with different eligibility criteria, benefit levels, and take-up rates. To ensure our model accurately reflects real-world participation and expenditure, we calibrate take-up rates to match official spending and caseload statistics.
 
-### Target Data
+### Target data
 
 Our calibration targets both aggregate spending and caseload figures for each programme:
 
@@ -465,7 +453,7 @@ These targets are derived from official government data sources:
 - The UK Government provides Tax-Free Childcare statistics through [Tax-Free Childcare Statistics (September 2024)](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024).
 - The Department for Education publishes funding allocations for other childcare programmes in the [DfE National Funding Allocations (2024-2025)](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025).
 
-### Optimisation Process
+### Optimisation process
 
 The calibration uses an optimisation process to find take-up rates that match our targets:
 
@@ -490,7 +478,7 @@ The `takeup_rate.py` script in the childcare directory:
 
 The objective function calculates a loss value based on the ratio between simulated and target values. This function is minimized during the optimization process to find the best take-up rates.
 
-### Integration into the UK Model
+### Integration into the UK model
 
 The optimised take-up rates are integrated into the Enhanced FRS dataset class in `enhanced_frs.py`. The current values used in the model are:
 
