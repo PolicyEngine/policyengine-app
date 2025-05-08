@@ -12,11 +12,11 @@ The report is organised to explore the landscape of UK childcare programmes. We 
 
 #### Age criteria
 
-Standard childcare funding extends until 1 September following the child's 11th birthday. For disabled children who receive disability benefits or are certified as blind/severely sight-impaired, funding continues until 1 September following their 16th birthday.
+Standard childcare funding extends until 1 September following [the child's 11th birthday](https://www.legislation.gov.uk/ukpga/2014/28/notes/division/6/4/1). For disabled children who receive disability benefits or are certified as blind/severely sight-impaired, funding continues until 1 September following their [16th birthday](https://www.legislation.gov.uk/ukpga/2014/28/notes/division/6/4/1).
 
 #### Income requirements
 
-The programme considers employment and self-employment income. The maximum adjusted net income allowed is £100,000 per year for each partner. Minimum earnings requirements (per 3 months) vary by age:
+The programme considers employment and self-employment income. The maximum adjusted net income allowed is [£100,000](https://www.legislation.gov.uk/uksi/2015/448/regulation/15#commentary-key-e27c923eee152accd495af8425536e29) per year for each partner. Minimum earnings requirements (per 3 months) vary by age:
 
 | Age group            | Minimum earnings |
 | :------------------- | :--------------- |
@@ -30,7 +30,7 @@ Eligible individuals must be either employed, self-employed, or on qualifying le
 
 #### Programme interactions
 
-Tax-free childcare is compatible with the 15/30 hours free childcare programme, but cannot be combined with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
+Tax-free childcare is compatible with the 15/30 hours free childcare programme, but cannot be [combined](https://www.legislation.gov.uk/ukdsi/2015/9780111127063) with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
 
 ### Implementation
 
@@ -94,7 +94,7 @@ For eligible households, we calculate the government contribution amount in [`ta
 
 #### Work status
 
-Eligible individuals must be either employed or about to start employment. Non-working partners may qualify if they receive: incapacity benefit, severe disablement allowance, carer's allowance, limited capability for work benefit, or contribution-based employment and support allowance.
+Eligible individuals must be either employed or about to start employment. Non-working partners may [qualify](https://www.legislation.gov.uk/uksi/2022/1134/regulation/11A) if they receive: incapacity benefit, severe disablement allowance, carer's allowance, limited capability for work benefit, or contribution-based employment and support allowance.
 
 #### Income requirements
 
@@ -106,7 +106,7 @@ Minimum earnings thresholds (per 3 months) vary by age:
 | 18-20                | £1,788           |
 | Under 18/Apprentices | £1,331           |
 
-These thresholds are based on national minimum wage calculations for 16 hours per week. The adjusted net income must not exceed £100,000 per year.
+These thresholds are based on national minimum wage calculations for 16 hours per week. The adjusted net income must not exceed [£100,000](https://www.legislation.gov.uk/uksi/2015/448/regulation/15#commentary-key-e27c923eee152accd495af8425536e29) per year.
 
 ### Implementation
 
