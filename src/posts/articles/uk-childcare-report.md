@@ -307,6 +307,8 @@ The entitlement calculation is handled by `care_to_learn.py`. The calculation us
 | London         | £195        | £10,140                       |
 | Outside London | £180        | £9,360                        |
 
+Due to the absence of relevant cases in the Family Resources Survey, we are unable to estimate the economic impact of this programme. Nevertheless, the programme is implemented and can be used to calculate benefits in the household section of PolicyEngine UK.
+
 ## Data calibration
 
 To align our model with real-world participation and expenditure patterns, we calibrate our enhanced FRS (Family Resources Survey) dataset by adding take-up rates to match official spending and caseload statistics for childcare programmes.
@@ -343,3 +345,7 @@ The optimised take-up rates are integrated into the Enhanced FRS dataset class i
 | Universal childcare | 0.45         |
 
 These rates determine which benefit units claim each childcare programme, producing representative aggregate statistics.
+
+## Conclusion
+
+This report outlines how UK childcare programmes are modelled in PolicyEngine and linked to the codebase. Each programme’s rules are implemented through defined eligibility and entitlement conditions. We also present the economic impacts on income distribution, inequality, and household finances. We invite you to explore the economic impacts of these childcare programmes using the PolicyEngine interface.
