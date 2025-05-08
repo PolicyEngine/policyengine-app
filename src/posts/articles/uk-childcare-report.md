@@ -106,6 +106,10 @@ We estimate that TFC will benefit primarily upper-middle income households in 20
 
 ![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
 
+#### Inequality impact
+
+We estimate that TFC increases inequality, raising the Gini index by 0.1% while reducing the top 10% share by 0.3% and the top 1% share by 0.1%. This mixed impact occurs because TFC benefits are concentrated among upper-middle income households due to the work requirement and income limit.
+
 #### Local area analysis
 
 We estimate that TFC will raise net income (by more than 0.1%) on average in 62 Parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
@@ -171,6 +175,22 @@ The final calculations are performed in [`extended_childcare_entitlement.py`](ht
 | 2         | 15           | £8.28        | £4,719.6           |
 | 3         | 30           | £5.88        | £6,703.2           |
 
+### Economic analysis
+
+#### Budgetary and distributional impacts
+
+PolicyEngine projects that the UK government will spend £212.4 billion on extended childcare entitlement in 2025, compared to a government-reported estimate of £198.5 billion.
+
+Extended childcare entitlement increases income for households in deciles 3 to 7, with over 60% of the population receiving an income gain. The figure below shows the distribution of these changes across income groups.
+
+#### Inequality impact
+
+The Gini index decreases by 0.4%, the top 10% income share decreases by 0.6%, and the top 1% share decreases by 0.2%. Changes are largest in the middle of the distribution.
+
+#### Local area analysis
+
+Extended childcare entitlement increases net income (by more than 0.1%) in 202 parliamentary constituencies in 2025. The map below shows the distribution of these changes. Darker blue areas represent income gains of up to £95 per household.
+
 ## Universal childcare entitlement
 
 [The universal childcare programme](https://www.gov.uk/help-with-childcare-costs/free-childcare-and-education-for-3-to-4-year-olds?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides free childcare for all 3-4 year olds in England. Each eligible child receives 570 hours of free childcare annually, typically delivered as 15 hours per week across 38 weeks of the year. The free childcare must be delivered through an approved childcare provider. This programme applies to England only.
@@ -188,6 +208,22 @@ Eligibility determination is implemented in [`universal_childcare_entitlement_el
 | 3         | True                           | True              | True            |
 | 4         | True                           | True              | True            |
 | 5         | False                          | True              | False           |
+
+### Economic analysis
+
+#### Budgetary and distributional impacts
+
+PolicyEngine projects that the UK government will spend £212.4 billion on universal childcare entitlement in 2025, compared to a government-reported estimate of £198.5 billion.
+
+Universal childcare entitlement increases income for households in deciles 3 to 7, with over 60% of the population receiving an income gain. The figure below shows the distribution of these changes across income groups.
+
+#### Inequality impact
+
+The Gini index decreases by 0.4%, the top 10% income share decreases by 0.6%, and the top 1% share decreases by 0.2%. Changes are largest in the middle of the distribution.
+
+#### Local area analysis
+
+Universal childcare entitlement increases net income (by more than 0.1%) in 202 parliamentary constituencies in 2025. The map below shows the distribution of these changes. Darker blue areas represent income gains of up to £95 per household.
 
 ## Targeted childcare entitlement
 
@@ -225,6 +261,22 @@ The entitlement calculation is performed in [`targeted_childcare_entitlement.py`
 | 1         | No       | 0                 | £11.22      | £0                 |
 | 2         | Yes      | 570               | £8.28       | £4,719.60          |
 | 3         | No       | 0                 | £5.88       | £0                 |
+
+### Economic analysis
+
+#### Budgetary and distributional impacts
+
+PolicyEngine projects that the UK government will spend £212.4 billion on targeted childcare entitlement in 2025, compared to a government-reported estimate of £198.5 billion.
+
+Targeted childcare entitlement increases income for households in deciles 3 to 7, with over 60% of the population receiving an income gain. The figure below shows the distribution of these changes across income groups.
+
+#### Inequality impact
+
+The Gini index decreases by 0.4%, the top 10% income share decreases by 0.6%, and the top 1% share decreases by 0.2%. Changes are largest in the middle of the distribution.
+
+#### Local area analysis
+
+Targeted childcare entitlement increases net income (by more than 0.1%) in 202 parliamentary constituencies in 2025. The map below shows the distribution of these changes. Darker blue areas represent income gains of up to £95 per household.
 
 ## Care to learn
 
