@@ -2,7 +2,7 @@
 
 This report provides an analysis of childcare programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare calculations are performed within the PolicyEngine UK microsimulation model.
 
-The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
+The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: tax-free childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
 ## Tax-free childcare
 
@@ -31,7 +31,7 @@ Eligible individuals must be either employed, self-employed, or on qualifying le
 #### Programme interactions
 
 Tax-free childcare is compatible with the 15/30 hours free childcare programme, but cannot be combined with working tax credit, child tax credit, universal credit, and childcare vouchers.  
-In the following sections, we explain how PolicyEngine models the Tax-Free Childcare programme through parameter definitions and calculations.
+In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
 
 ### Implementation
 
@@ -39,7 +39,7 @@ The tax-free childcare programme is modelled through several interconnected comp
 
 #### Age determination
 
-We determine which children in the household are age-eligible for the programme, as Tax-Free Childcare is only available until specific age thresholds which is calculated by `tax_free_childcare_child_age_eligible.py`. The following table shows examples of age determination for the programme:
+We determine which children in the household are age-eligible for the programme, as Tax-free childcare is only available until specific age thresholds which is calculated by `tax_free_childcare_child_age_eligible.py`. The following table shows examples of age determination for the programme:
 
 | Child age | Is disabled | Is age eligible |
 | :-------- | :---------- | :-------------- |
@@ -59,7 +59,7 @@ After identifying eligible children, we evaluate if the parents meet the income 
 
 #### Programme compatibility
 
-We check if the household receives any benefits that would make them ineligible for Tax-Free Childcare. In the file `tax_free_childcare_program_eligible.py`, the system checks the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
+We check if the household receives any benefits that would make them ineligible for Tax-free childcare. In the file `tax_free_childcare_program_eligible.py`, the system checks the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
 
 | Receives working tax credit | Receives child tax credit | Receives universal credit | Is eligible for the programme |
 | :-------------------------- | :------------------------ | :------------------------ | :---------------------------- |
@@ -203,7 +203,7 @@ The entitlement calculation is performed in `targeted_childcare_entitlement.py`.
 
 ## Care to learn
 
-[The Care to Learn](https://www.gov.uk/care-to-learn) scheme provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts to:
+[The care to learn](https://www.gov.uk/care-to-learn) scheme provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts to:
 
 - £180 per week for childcare costs outside London.
 - £195 per week for childcare costs in London.
@@ -216,7 +216,7 @@ The care to learn programme is modelled through several interconnected component
 
 Eligibility determination is implemented in `care_to_learn_eligible.py`. This component conducts a comprehensive assessment of several eligibility factors. For parental status, it verifies that the person is a parent with children using the `is_parent` variable, as the programme is specifically for young parents. The age requirements check ensures that the applicant's age is below the maximum threshold (under 20 years), referencing the age parameter defined in the `care_to_learn` parameters.
 
-For educational status, it ensures the person is not in higher education and confirms the person is not an apprentice. Finally, it verifies geographic eligibility by checking residence in England. The following table shows examples of eligibility determination for Care to Learn:
+For educational status, it ensures the person is not in higher education and confirms the person is not an apprentice. Finally, it verifies geographic eligibility by checking residence in England. The following table shows examples of eligibility determination for care to learn:
 
 | Person age | Has children | Education type    | In England | Is eligible |
 | ---------- | ------------ | ----------------- | ---------- | ----------- |
@@ -243,15 +243,15 @@ Our calibration targets both aggregate spending and caseload figures for each pr
 
 | Programme           | Spending target (£ billions) | Caseload target (thousands) |
 | :------------------ | :--------------------------- | :-------------------------- |
-| Tax-Free Childcare  | 0.60                         | 660                         |
-| Extended Childcare  | 2.50                         | 740                         |
-| Targeted Childcare  | 0.60                         | 130                         |
-| Universal Childcare | 1.70                         | 490                         |
+| Tax-free childcare  | 0.60                         | 660                         |
+| Extended childcare  | 2.50                         | 740                         |
+| Targeted childcare  | 0.60                         | 130                         |
+| Universal childcare | 1.70                         | 490                         |
 
 These targets are derived from official government data sources:
 
-- The UK Government provides Tax-Free Childcare statistics through [Tax-Free Childcare Statistics (September 2024)](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024).
-- The Department for Education publishes funding allocations for other childcare programmes in the [DfE National Funding Allocations (2024-2025)](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025).
+- The UK Government provides Tax-free childcare statistics through [Tax-free childcare statistics (September 2024)](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024).
+- The Department for Education publishes funding allocations for other childcare programmes in the [DfE national funding allocations (2024-2025)](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025).
 
 ### Optimisation process
 
@@ -263,9 +263,9 @@ The optimised take-up rates are integrated into the Enhanced FRS dataset class i
 
 | Programme           | Take-up Rate |
 | :------------------ | :----------- |
-| Tax-Free Childcare  | 0.60         |
-| Extended Childcare  | 0.53         |
-| Targeted Childcare  | 0.63         |
-| Universal Childcare | 0.45         |
+| Tax-free childcare  | 0.60         |
+| Extended childcare  | 0.53         |
+| Targeted childcare  | 0.63         |
+| Universal childcare | 0.45         |
 
 These rates determine which benefit units claim each childcare programme, producing representative aggregate statistics.
