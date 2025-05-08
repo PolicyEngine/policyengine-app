@@ -47,7 +47,7 @@ The tax-free childcare programme is modelled through several interconnected comp
 
 #### Age determination
 
-We determine which children in the household are age-eligible for the programme, as Tax-free childcare is only available until specific age thresholds which is calculated by [`tax_free_childcare_child_age_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py). The following table shows examples of age determination for the programme:
+We determine which children in the household are age-eligible for the programme, as Tax-free childcare is only available until specific age thresholds which is [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) by `tax_free_childcare_child_age_eligible.py`. The following table shows examples of age determination for the programme:
 
 | Child age | Is disabled | Is age eligible |
 | :-------- | :---------- | :-------------- |
@@ -57,7 +57,7 @@ We determine which children in the household are age-eligible for the programme,
 
 #### Income assessment
 
-After identifying eligible children, we evaluate if the parents meet the income criteria, examining both minimum and maximum thresholds. The file [`tax_free_childcare_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_meets_income_requirements.py) calculates annual eligible income from countable sources, minimum threshold based on minimum wage and required hours, and compliance with income limits using adjusted net income. The following table shows examples of income assessment for the programme:
+After identifying eligible children, we evaluate if the parents meet the income criteria, examining both minimum and maximum thresholds. The file `tax_free_childcare_meets_income_requirements.py` [calculates](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_meets_income_requirements.py) annual eligible income from countable sources, minimum threshold based on minimum wage and required hours, and compliance with income limits using adjusted net income. The following table shows examples of income assessment for the programme:
 
 | Adult age | Quarterly earnings | Is over £100k | Is income eligible |
 | :-------- | :----------------- | :------------ | :----------------- |
@@ -67,7 +67,7 @@ After identifying eligible children, we evaluate if the parents meet the income 
 
 #### Programme compatibility
 
-We check if the household receives any benefits that would make them ineligible for Tax-free childcare. In the file [`tax_free_childcare_program_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_program_eligible.py), the system checks the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
+We check if the household receives any benefits that would make them ineligible for Tax-free childcare. The file `tax_free_childcare_program_eligible.py` [checks](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_program_eligible.py) the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
 
 | Receives working tax credit | Receives child tax credit | Receives universal credit | Is eligible for the programme |
 | :-------------------------- | :------------------------ | :------------------------ | :---------------------------- |
@@ -77,7 +77,7 @@ We check if the household receives any benefits that would make them ineligible 
 
 #### Work status
 
-The programme requires parents to be working, with special provisions for couples where one partner has a disability which is calculated by [`tax_free_childcare_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py). The following table shows examples of work status requirements:
+The programme requires parents to be working, with special provisions for couples where one partner has a disability which is [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py) by `tax_free_childcare_work_condition.py`. The following table shows examples of work status requirements:
 
 | Family composition | Is partner 1 working | Is partner 2 working | Is partner 2 disabled | Meets work condition |
 | :----------------- | :------------------- | :------------------- | :-------------------- | :------------------- |
@@ -87,7 +87,7 @@ The programme requires parents to be working, with special provisions for couple
 
 #### Contribution calculation
 
-For eligible households, we calculate the government contribution amount in [`tax_free_childcare.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare). The following table shows examples of how the government contribution is calculated:
+For eligible households, we [calculate](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare) the government contribution amount in `tax_free_childcare.py`. The following table shows examples of how the government contribution is calculated:
 
 | Is eligible | Is child disabled | Annual childcare expense | Annual government contribution |
 | :---------- | :---------------- | :----------------------- | :----------------------------- |
@@ -149,7 +149,7 @@ The extended childcare entitlement programme is modelled through several interco
 
 #### Income assessment
 
-We calculate total eligible income from specified sources and apply minimum wage thresholds based on work hours in [`extended_childcare_entitlement_meets_income_requirements.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions). The following table shows examples of how hours entitlement varies by child age:
+We [calculate](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions) total eligible income from specified sources and apply minimum wage thresholds based on work hours. The following table shows examples of how hours entitlement varies by child age:
 
 | Child age | Is compulsory school age | Weekly hours entitlement |
 | :-------- | :----------------------- | :----------------------- |
@@ -159,7 +159,7 @@ We calculate total eligible income from specified sources and apply minimum wage
 
 #### Work condition verification
 
-The work condition is handled by [`extended_childcare_entitlement_work_condition.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions). This component verifies employment status for all applicants and manages various family situations. For single parents, the system requires them to be working to qualify. For couples, either both partners must be working, or one must be working while the partner qualifies for disability benefits. The following table shows examples of how income eligibility is assessed:
+This component verifies employment status for all applicants and manages various family situations. For single parents, the system requires them to be working to qualify. For couples, either both partners must be working, or one must be working while the partner qualifies for disability benefits. The following table shows examples of how income eligibility is assessed:
 
 | Adult age | Quarterly earnings | Is over £100k | Meets minimum earnings | Is income eligible |
 | :-------- | :----------------- | :------------ | :--------------------- | :----------------- |
@@ -169,7 +169,7 @@ The work condition is handled by [`extended_childcare_entitlement_work_condition
 
 #### Entitlement calculation
 
-The final calculations are performed in [`extended_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement). This component determines the weekly hours based on the child's age and applies the appropriate funding rates to calculate the total annual entitlement value. The following table shows examples of entitlement calculation based on age and funding rates:
+The final calculations are [performed](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement) in `extended_childcare_entitlement.py`. This component determines the weekly hours based on the child's age and applies the appropriate funding rates to calculate the total annual entitlement value. The following table shows examples of entitlement calculation based on age and funding rates:
 
 | Child age | Weekly hours | Funding rate | Annual entitlement |
 | :-------- | :----------- | :----------- | :----------------- |
@@ -202,7 +202,7 @@ The universal childcare entitlement programme is implemented through several int
 
 #### Eligibility determination
 
-Eligibility determination is implemented in [`universal_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement). This component performs a series of checks to determine if a child qualifies for the universal childcare entitlement. It first verifies residence in England. It then checks that the child meets the minimum age requirement of [3 years](https://www.legislation.gov.uk/uksi/2016/1257/part/4/made). Finally, it ensures the child is below [compulsory school age](https://www.legislation.gov.uk/ukpga/2006/21/section/19). The following table shows examples of eligibility determination based on age criteria:
+Eligibility determination is [implemented](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement) in `universal_childcare_entitlement_eligible.py`. This component performs a series of checks to determine if a child qualifies for the universal childcare entitlement. It first verifies residence in England. It then checks that the child meets the minimum age requirement of [3 years](https://www.legislation.gov.uk/uksi/2016/1257/part/4/made). Finally, it ensures the child is below [compulsory school age](https://www.legislation.gov.uk/ukpga/2006/21/section/19). The following table shows examples of eligibility determination based on age criteria:
 
 | Child age | Is under compulsory school age | Meets minimum age | Is age eligible |
 | :-------- | :----------------------------- | :---------------- | :-------------- |
@@ -236,7 +236,7 @@ The targeted childcare entitlement programme is implemented through several inte
 
 #### Benefit-based eligibility assessment
 
-The benefit-based eligibility assessment is managed in [`targeted_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py). This component performs two critical checks: first, it confirms that the family resides in England, as the programme is only available to English residents; second, it verifies that the family receives at least one of the qualifying benefits defined in the [`qualifying_benefits.yaml`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dfe/targeted_childcare_entitlement/qualifying_benefits.yaml) parameter file, which includes Income Support, Income-based JSA, Income-related ESA, and Pension Credit (Guarantee Credit).
+The benefit-based eligibility assessment is [managed](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py) in `targeted_childcare_entitlement_eligible.py`. This component performs two critical checks: first, it confirms that the family resides in England, as the programme is only available to English residents; second, it verifies that the family receives at least one of the qualifying benefits [defined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dfe/targeted_childcare_entitlement/qualifying_benefits.yaml) in the `qualifying_benefits.yaml` file, which includes Income Support, Income-based JSA, Income-related ESA, and Pension Credit (Guarantee Credit).
 
 #### Benefit eligibility
 
@@ -255,7 +255,7 @@ The Tax Credits criteria evaluates eligibility for families receiving tax credit
 
 #### Entitlement calculation
 
-The entitlement calculation is performed in [`targeted_childcare_entitlement.py`](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py). This component first checks if the child's age is 2 years. For eligible children, it then applies the entitlement hours (570 annually, delivered as 15 hours per week for 38 weeks) defined in the parameters. Finally, it multiplies these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
+The entitlement calculation is [performed](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) in `targeted_childcare_entitlement.py`. This component first checks if the child's age is 2 years. For eligible children, it then applies the entitlement hours (570 annually, delivered as 15 hours per week for 38 weeks) defined in the parameters. Finally, it multiplies these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
 
 | Child age | Eligible | Hours entitlement | Hourly rate | Annual entitlement |
 | :-------- | :------- | :---------------- | :---------- | :----------------- |
