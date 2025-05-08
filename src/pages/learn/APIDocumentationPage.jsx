@@ -8,6 +8,11 @@ import APIGeneralContent from "./APIGeneralContent";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
+import CodeBlock from "../../layout/CodeBlock";
+import Section from "../../layout/Section";
+import { useEffect, useState } from "react";  
+import {wrappedResponseJson}  from "../../data/wrappedJson";
+import Meta from "antd/es/card/Meta";
 
 export const exampleInputs = {
   us: {
@@ -141,7 +146,9 @@ function APIParameterCard(props) {
       <p>{metadata.description}</p>
       <p>Period: {metadata.period || "None"}</p>
       <p>Unit: {metadata.unit || "N/A"}</p>
-      <p>Python name: {metadata.parameter}</p>
+      <p style={{ wordBreak: "break-all" }}>
+        Python name: {metadata.parameter}
+      </p>
     </>
   );
 }
@@ -160,71 +167,106 @@ function APIVariableCard(props) {
       <p>{metadata.description}</p>
       <p>Entity: {metadata.entity}</p>
       <p>Period: {metadata.definitionPeriod || "none"}</p>
-      <p>Python name: {metadata.name}</p>
+      <p style={{ wordBreak: "break-all" }}>
+        Python name: {metadata.name}
+      </p>
       <p>Unit: {metadata.unit}</p>
     </>
   );
 }
 
 // This component is not currently used but kept for future reference
-/*
 function VariableParameterExplorer(props) {
-  const { metadata, id } = props;
+  const { metadata } = props;
   const [query, setQuery] = useState("");
   const [selectedCardData, setSelectedCardData] = useState(null);
+  const [page, setPage] = useState(0);
 
-  if (!metadata) {
-    return <></>;
-  }
+  const MAX_ROWS = 3;
+  const MAX_COLS = 3;
+  const CARDS_PER_PAGE = MAX_ROWS * MAX_COLS;
 
-  const parameterCards = Object.values(metadata.parameters)
-    .filter((parameter) => parameter.type === "parameter")
-    .filter((parameter) => {
-      if (query === "") {
-        return true;
-      }
-      return (parameter.label || "")
-        .replaceAll(" ", "")
-        .toLowerCase()
-        .includes(query.replaceAll(" ", "").toLowerCase());
-    })
-    .slice(0, 50)
-    .map((parameter) => {
-      return (
-        <APIResultCard
-          key={parameter.name}
-          metadata={parameter}
-          type="parameter"
-          setSelectedCard={setSelectedCardData}
-        />
-      );
-    });
+  if (!metadata) return <></>;
 
-  const variableCards = Object.values(metadata.variables)
-    .filter((variable) => {
-      if (query === "") {
-        return true;
-      }
-      return (variable.label || "")
-        .replaceAll(" ", "")
-        .toLowerCase()
-        .includes(query.replaceAll(" ", "").toLowerCase());
-    })
-    .slice(0, 50)
-    .map((variable) => {
-      return (
-        <APIResultCard
-          key={variable.name}
-          metadata={variable}
-          type="variable"
-          setSelectedCard={setSelectedCardData}
-        />
-      );
-    });
-*/
+  const filterByQuery = (item) => {
+    if (!query) return true;
+    return (item.label || "")
+      .replaceAll(" ", "")
+      .toLowerCase()
+      .includes(query.replaceAll(" ", "").toLowerCase());
+  };
+
+  const parameterCards = Object.values(metadata.parameters || {})
+    .filter((p) => p.type === "parameter")
+    .filter(filterByQuery)
+    .map((p) => ({ ...p, type: "parameter" }));
+
+  const variableCards = Object.values(metadata.variables || {})
+    .filter(filterByQuery)
+    .map((v) => ({ ...v, type: "variable" }));
+
+  const allCards = [...parameterCards, ...variableCards].sort((a, b) => {
+    const labelA = (a.label || a.name || "").toLowerCase();
+    const labelB = (b.label || b.name || "").toLowerCase();
+    return labelA.localeCompare(labelB);
+  });
+  const totalPages = Math.ceil(allCards.length / CARDS_PER_PAGE);
+  const currentCards = allCards.slice(
+    page * CARDS_PER_PAGE,
+    (page + 1) * CARDS_PER_PAGE
+  );
+
+  return (
+    <div>
+      <input
+        placeholder="Search parameters or variables"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setPage(0); // reset to first page on new search
+        }}
+        style={{ marginBottom: 20 }}
+      />
+
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {currentCards.map((item) => (
+          <APIResultCard
+            key={item.name}
+            metadata={item}
+            type={item.type}
+            setSelectedCard={setSelectedCardData}
+          />
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <div style={{ marginTop: 20, textAlign: "center" }}>
+          <button
+            onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+            disabled={page === 0}
+            style={{ marginRight: 10 }}
+          >
+            ← Previous
+          </button>
+          <span>
+            Page {page + 1} of {totalPages}
+          </span>
+          <button
+            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+            disabled={page === totalPages - 1}
+            style={{ marginLeft: 10 }}
+          >
+            Next →
+          </button>
+        </div>
+      )}
+
+      <CardDrawer metadata={selectedCardData} />
+    </div>
+  );
+}
 
 // This component is not currently used but kept for future reference
-/*
 function CardDrawer(props) {
   const { metadata } = props;
 
@@ -242,7 +284,7 @@ function CardDrawer(props) {
     </>
   );
 }
-*/
+
 
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
@@ -259,13 +301,14 @@ export default function APIDocumentationPage({ metadata }) {
         isUK={isUK}
         metadata={metadata}
       />
+      <VariableParameterExplorer metadata={metadata}/>
       <Footer />
     </>
   );
 }
 
 // These components are not currently used but kept for future reference
-/*
+
 function APIEndpoint({
   pattern,
   method,
@@ -390,4 +433,3 @@ function APIEndpointStatic({
     </Section>
   );
 }
-*/
