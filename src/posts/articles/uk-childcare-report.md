@@ -6,13 +6,12 @@ The report is organised to explore the landscape of UK childcare programmes. We 
 
 The table below summarises the key impacts of the four main childcare programmes, comparing PolicyEngine estimates with government reports and highlighting inequality and poverty effects.
 
-| Programme | PolicyEngine spending estimate (£m) | Government spending (£m) | Difference (%) | Inequality impact (Gini)
-| Poverty impact | PolicyEngine children estimate (thousands) | Government children report (thousands) |
-|:----------|:----------------------------|:--------------------------|:---------------|:-------------------------|:---------------|:------------------------------------------|:---------------------------------------|
-| Tax-free childcare | £179.7 | £198.8 | -9.6% | +0.1% | No significant change | 660 | 700 |
-| Extended childcare | £212.4 | £198.5 | +7.0% | -0.4% | Reduction | 740 | 710 |
-| Universal childcare | £212.4 | £198.5 | +7.0% | -0.4% | Reduction | 490 | 510 |
-| Targeted childcare | £212.4 | £198.5 | +7.0% | -0.4% | Reduction | 130 | 140 |
+| Programme           | PolicyEngine spending estimate (£m) | Government spending (£m) | Difference (%) | Inequality impact (Gini) | Poverty impact        | PolicyEngine children estimate (thousands) | Government children report (thousands) |
+| :------------------ | :---------------------------------- | :----------------------- | :------------- | :----------------------- | :-------------------- | :----------------------------------------- | :------------------------------------- |
+| Tax-free childcare  | £179.7                              | £198.8                   | -9.6%          | +0.1%                    | No significant change | 660                                        | 700                                    |
+| Extended childcare  | £212.4                              | £198.5                   | +7.0%          | -0.4%                    | Reduction             | 740                                        | 710                                    |
+| Universal childcare | £212.4                              | £198.5                   | +7.0%          | -0.4%                    | Reduction             | 490                                        | 510                                    |
+| Targeted childcare  | £212.4                              | £198.5                   | +7.0%          | -0.4%                    | Reduction             | 130                                        | 140                                    |
 
 ## Tax-free childcare
 
