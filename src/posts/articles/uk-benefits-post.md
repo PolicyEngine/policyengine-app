@@ -2,7 +2,15 @@
 
 This post provides an overview of how benefits are modelled in PolicyEngine UK. It details both existing benefits in the UK welfare system and their specific implementation within our microsimulation platform. Each benefit component is linked to its specific implementation in the codebase, making this post a technical reference for understanding how benefits calculations are performed in the PolicyEngine UK microsimulation model.
 
-The post is organised into two main sections. First, we examine means-tested benefits (Universal Credit, legacy benefits, and pension-age benefits), which provide support based on household income and savings. Second, we explore non-means-tested benefits (disability benefits, child benefits, and retirement benefits) that are provided based on specific circumstances regardless of income. The table below summarises key metrics for each benefit in the UK system, showing PolicyEngine's revenue estimates.
+The UK benefits system is complex, with different programs targeting various needs from income support and housing assistance to disability support and childcare. Understanding how these benefits interact and who receives them is crucial for effective policy analysis. This post serves as both a reference guide for researchers and a transparent documentation of how PolicyEngine models the UK welfare system.
+
+The post is organised into two main sections. First, we examine means-tested benefits (Universal Credit, legacy benefits, and pension-age benefits), which provide support based on household income and savings. Second, we explore non-means-tested benefits (disability benefits, child benefits, and retirement benefits) that are provided based on specific circumstances regardless of income. For each benefit, we explain the eligibility criteria, calculation methodology, and distributional impact across income groups.
+
+## Executive Summary
+
+The UK benefits system provides approximately £180 billion in annual support through various programs. Universal Credit, which is gradually replacing legacy benefits, represents the largest single program at £79.4 billion (2025 projection), primarily supporting lower-income households. Disability benefits, including Personal Independence Payment (£30.6 billion), Disability Living Allowance (£9.3 billion), and Attendance Allowance (£10.2 billion), provide non-means-tested support across income groups but with a progressive distribution. Child-related benefits and childcare support programs deliver approximately £35 billion in combined support, while pension-age benefits provide additional support for older citizens. Our analysis shows that most benefits have a progressive distribution, with greater relative impact on lower-income households, though certain programs like childcare support show different patterns based on employment status and income level.
+
+**Table 1: Summary of UK benefit revenue estimates for 2025 (£ billions)**
 
 | Program                           | PolicyEngine revenue estimate £billion (2025)                                                                                   | OBR revenue estimate (2025-26)                                                                                                                                         | PolicyEngine affected population estimate % (2025) |
 | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
@@ -74,7 +82,7 @@ PolicyEngine estimates that the cost of Universal Credit to government revenue i
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of Universal Credit by income decile",
+      "text": "Figure 1: Distributional impact of Universal Credit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -142,8 +150,8 @@ PolicyEngine estimates that the cost of Universal Credit to government revenue i
         "yanchor": "bottom"
       }
     ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
   }
 }
 ```
@@ -188,7 +196,7 @@ PolicyEngine estimates that the cost of Housing Benefit to government revenue is
   ],
   "layout": {
     "title": {
-      "text": "Distributional impact of Housing Benefit by income decile",
+      "text": "Figure 2: Distributional impact of Housing Benefit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -256,8 +264,8 @@ PolicyEngine estimates that the cost of Housing Benefit to government revenue is
         "yanchor": "bottom"
       }
     ],
-    "plot_bgcolor": "white",
-    "paper_bgcolor": "white"
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
   }
 }
 ```
@@ -337,7 +345,7 @@ PolicyEngine estimates that the cost of Pension Credit to government revenue is 
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Pension Credit by income decile",
+     "text": "Figure 3: Distributional impact of Pension Credit by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -405,8 +413,8 @@ PolicyEngine estimates that the cost of Pension Credit to government revenue is 
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -452,7 +460,7 @@ PolicyEngine estimates that the cost of PIP to government revenue is [£30.6 bil
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of PIP by income decile",
+     "text": "Figure 4: Distributional impact of PIP by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -520,8 +528,8 @@ PolicyEngine estimates that the cost of PIP to government revenue is [£30.6 bil
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -563,7 +571,7 @@ PolicyEngine estimates that the cost of DLA to government revenue is [£9.3 bill
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of DLA by income decile",
+     "text": "Figure 5: Distributional impact of DLA by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -631,8 +639,8 @@ PolicyEngine estimates that the cost of DLA to government revenue is [£9.3 bill
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -673,7 +681,7 @@ PolicyEngine estimates that the cost of Attendance Allowance to government reven
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Attendance Allowance by income decile",
+     "text": "Figure 6: Distributional impact of Attendance Allowance by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -741,8 +749,8 @@ PolicyEngine estimates that the cost of Attendance Allowance to government reven
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -785,7 +793,7 @@ PolicyEngine estimates that the cost of Child Benefit to government revenue is [
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Child Benefit by income decile",
+     "text": "Figure 7: Distributional impact of Child Benefit by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -853,8 +861,8 @@ PolicyEngine estimates that the cost of Child Benefit to government revenue is [
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -935,7 +943,7 @@ PolicyEngine estimates that the cost of TFC to government revenue is [£1.3 bill
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of TFC by income decile",
+     "text": "Figure 8: Distributional impact of TFC by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1003,8 +1011,8 @@ PolicyEngine estimates that the cost of TFC to government revenue is [£1.3 bill
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -1047,7 +1055,7 @@ PolicyEngine estimates that the cost of Universal Childcare Entitlement to gover
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Universal Childcare Entitlement by income decile",
+     "text": "Figure 9: Distributional impact of Universal Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1115,8 +1123,8 @@ PolicyEngine estimates that the cost of Universal Childcare Entitlement to gover
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -1164,7 +1172,7 @@ PolicyEngine estimates that the cost of Extended Childcare Entitlement to govern
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Extended Childcare Entitlement by income decile",
+     "text": "Figure 10: Distributional impact of Extended Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1232,8 +1240,8 @@ PolicyEngine estimates that the cost of Extended Childcare Entitlement to govern
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -1277,7 +1285,7 @@ PolicyEngine estimates that the cost of Targeted Childcare Entitlement to govern
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Targeted Childcare Entitlement by income decile",
+     "text": "Figure 11: Distributional impact of Targeted Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1345,8 +1353,8 @@ PolicyEngine estimates that the cost of Targeted Childcare Entitlement to govern
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -1390,7 +1398,7 @@ PolicyEngine estimates that the cost of Study Childcare Entitlement to governmen
  ],
  "layout": {
    "title": {
-     "text": "Distributional impact of Study Childcare Entitlement by income decile",
+     "text": "Figure 12: Distributional impact of Study Childcare Entitlement by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1458,8 +1466,8 @@ PolicyEngine estimates that the cost of Study Childcare Entitlement to governmen
        "yanchor": "bottom"
      }
    ],
-   "plot_bgcolor": "white",
-   "paper_bgcolor": "white"
+   "plot_bgcolor": "#ebf2fa",
+   "paper_bgcolor": "#ebf2fa"
  }
 }
 ```
@@ -1482,6 +1490,44 @@ One-off payments for vulnerable groups, calculated in the [`cost_of_living_suppo
 - £150 for recipients of disability benefits
 - £300 for those eligible for Winter Fuel Payment
 
+## Behavioral Responses
+
+The UK benefits system's design can affect how individuals and households respond in terms of labor supply, saving behavior, and other economic decisions. When analyzing the impact of benefits, it's important to consider these potential behavioral responses alongside the direct financial effects.
+
+### Labor Supply Effects
+
+Benefits can influence labor market participation and hours worked in several ways:
+
+- **Income and substitution effects**: Means-tested benefits like Universal Credit can create both income effects (higher benefits may reduce the need to work) and substitution effects (benefit withdrawal as earnings increase effectively creates higher marginal tax rates, potentially discouraging additional work).
+  
+- **Work incentives**: The design of Universal Credit's work allowances and taper rate aims to balance providing support while maintaining work incentives. The current taper rate of 55% means that benefit recipients keep 45p of each additional pound earned above any applicable work allowance, creating better work incentives than the previous 63% taper rate.
+
+- **Participation tax rates**: For some households, particularly those with childcare needs or disability-related costs, the combined effect of benefit withdrawal, income tax, and National Insurance can create high participation tax rates (the effective tax rate when moving from unemployment to employment).
+
+### Other Behavioral Responses
+
+- **Savings behavior**: Means-tested benefits with capital limits (like Universal Credit's £16,000 upper threshold) may discourage some households from saving above these thresholds, potentially affecting long-term financial resilience.
+
+- **Family formation decisions**: Benefits that vary based on household composition, like the two-child limit in Universal Credit and Child Tax Credit, may influence family planning decisions for some households.
+
+- **Childcare utilization**: The expansion of childcare entitlements aims to increase labor market participation among parents, particularly mothers. Evidence suggests that childcare support can increase employment rates, though the magnitude varies based on program design and targeting.
+
+- **Disability benefit claims**: The assessment process for disability benefits like PIP can influence claiming behavior, with changes to assessment criteria potentially affecting application rates and outcomes.
+
+### Evidence and Policy Implications
+
+Empirical evidence on behavioral responses to UK benefits suggests that while these effects exist, their magnitude varies significantly across different population groups and benefit types. PolicyEngine's microsimulation model can incorporate labor supply responses to provide a more comprehensive picture of reform impacts, accounting for how households might adjust their work patterns in response to benefit changes.
+
+Understanding these behavioral responses is crucial for effective benefit design, as policymakers must balance providing adequate support with maintaining appropriate incentives for work, saving, and other economically beneficial behaviors.
+
 ## Conclusion
 
-PolicyEngine models the current UK benefits system and potential reforms, enabling users to analyse how changes to benefits affect government expenditure and household incomes across different demographic groups. The detailed implementation of each benefit component allows for precise modelling of existing policies and exploration of hypothetical reforms.
+The UK benefits system represents a significant component of government expenditure, with approximately £180 billion disbursed annually through various programs. Our analysis demonstrates that the current system is predominantly progressive, with most benefits providing greater relative support to lower-income households. Universal Credit, as the cornerstone of working-age support at £79.4 billion, delivers its largest relative impact to the bottom decile, increasing their household income by 39.6%.
+
+Disability benefits, while not means-tested, also show a progressive distribution pattern, with PIP, DLA, and Attendance Allowance all providing substantial support to lower-income households. These benefits acknowledge the additional costs faced by disabled individuals regardless of income level, while their progressive distribution reflects the correlation between disability and lower income levels in the UK population.
+
+Childcare support programs present a more varied distributional pattern, with Universal Childcare Entitlement having a progressive impact, while Extended Childcare Entitlement and Tax-Free Childcare provide greater relative benefit to middle and higher-income working households. This reflects their different design principles – universal provision versus support targeted at working parents.
+
+Through the detailed implementation of these benefits in PolicyEngine, users can not only understand the current system but also explore potential reforms and their implications across the income distribution. The transparency of our modeling approach, with each benefit component linked to its implementation in the codebase, provides researchers and policymakers with a powerful tool for evidence-based policy development.
+
+The UK benefits system continues to evolve, with ongoing reforms and policy debates about its structure, adequacy, and targeting. PolicyEngine's microsimulation capabilities offer valuable insights for these discussions, enabling a more informed understanding of how benefits affect different demographic groups and how potential reforms might reshape this impact.
