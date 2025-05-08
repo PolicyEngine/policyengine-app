@@ -4,6 +4,16 @@ This report provides an analysis of childcare programmes in the UK, examining ho
 
 The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: tax-free childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
+The table below summarises the key impacts of the four main childcare programmes, comparing PolicyEngine estimates with government reports and highlighting inequality and poverty effects.
+
+| Programme | PolicyEngine spending estimate (£m) | Government spending (£m) | Difference (%) | Inequality impact (Gini)
+| Poverty impact | PolicyEngine children estimate (thousands) | Government children report (thousands) |
+|:----------|:----------------------------|:--------------------------|:---------------|:-------------------------|:---------------|:------------------------------------------|:---------------------------------------|
+| Tax-free childcare | £179.7 | £198.8 | -9.6% | +0.1% | No significant change | 660 | 700 |
+| Extended childcare | £212.4 | £198.5 | +7.0% | -0.4% | Reduction | 740 | 710 |
+| Universal childcare | £212.4 | £198.5 | +7.0% | -0.4% | Reduction | 490 | 510 |
+| Targeted childcare | £212.4 | £198.5 | +7.0% | -0.4% | Reduction | 130 | 140 |
+
 ## Tax-free childcare
 
 [Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) is a government scheme administered by HM Revenue and Customs (HMRC) that provides funding for working families with childcare expenses. For every £8 paid into a childcare account, the government adds £2. The programme allocates up to £2,000 per year for each eligible child. For disabled children, this allocation increases to £4,000 per year.
@@ -98,13 +108,9 @@ This decline at £100,000 creates an earnings dead zone, which is the width of t
 
 #### Budgetary and distributional impacts
 
-PolicyEngine projects that the UK government will spend £179.7 billion on Tax-free childcare in 2025, 9.6% less than the government's report of £198.8 billion. The figure below shows the distributional impact of this programme.
-
-![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+PolicyEngine projects that the UK government will spend £179.7 billion on Tax-free childcare in 2025, 9.6% less than the government's report of £198.8 billion. Figure below shows the distributional impact of this programme.
 
 We estimate that TFC will benefit primarily upper-middle income households in 2025. The figure below shows gains are concentrated in deciles 8 and 9, while 95% of the population experiences no change in income.
-
-![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
 
 #### Inequality impact
 
@@ -112,13 +118,9 @@ We estimate that TFC increases inequality, raising the Gini index by 0.1% while 
 
 #### Local area analysis
 
-We estimate that TFC will raise net income (by more than 0.1%) on average in 62 parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
+We estimate that TFC will raise net income (by more than 0.1%) on average in 62 Parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
 
-![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
-
-The impact varies by nation, with 36 constituencies in England, 10 in Wales, and 16 in Northern Ireland seeing income gains, where we consider no change if the relative change is less than 0.1%.
-
-![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+We estimate that TFC will raise net income on average in 62 parliamentary constituencies in 2025. The impact varies by nation, with 36 constituencies in England, 10 in Wales, and 16 in Northern Ireland seeing income gains, where we consider no change if the relative change is less than 0.1%.
 
 ## Extended childcare entitlement
 
