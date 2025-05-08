@@ -6,7 +6,7 @@ The report is organised to explore the landscape of UK childcare programmes. We 
 
 ## Tax-free childcare
 
-[Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) provides funding for working families with childcare expenses. For every £8 paid into a childcare account, the government adds £2. The programme allocates up to £2,000 per year for each eligible child. For disabled children, this allocation increases to £4,000 per year.
+[Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) is a government scheme administered by HM Revenue and Customs (HMRC) that provides funding for working families with childcare expenses. For every £8 paid into a childcare account, the government adds £2. The programme allocates up to £2,000 per year for each eligible child. For disabled children, this allocation increases to £4,000 per year.
 
 ### Eligibility requirements
 
@@ -88,7 +88,7 @@ For eligible households, we calculate the government contribution amount in [`ta
 
 ## Extended childcare entitlement
 
-[The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) allocates different levels of hours based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
+[The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9), administered by the Department for Education (DfE), allocates different levels of hours based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
 
 ### Eligibility requirements
 
@@ -143,7 +143,7 @@ The final calculations are performed in [`extended_childcare_entitlement.py`](ht
 
 ## Universal childcare entitlement
 
-[The universal childcare programme](https://www.gov.uk/help-with-childcare-costs/free-childcare-and-education-for-3-to-4-year-olds?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b) provides free childcare for all 3-4 year olds in England. Each eligible child receives 570 hours of free childcare annually, typically delivered as 15 hours per week across 38 weeks of the year. The free childcare must be delivered through an approved childcare provider. This programme applies to England only.
+[The universal childcare programme](https://www.gov.uk/help-with-childcare-costs/free-childcare-and-education-for-3-to-4-year-olds?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides free childcare for all 3-4 year olds in England. Each eligible child receives 570 hours of free childcare annually, typically delivered as 15 hours per week across 38 weeks of the year. The free childcare must be delivered through an approved childcare provider. This programme applies to England only.
 
 ### Implementation
 
@@ -161,7 +161,7 @@ Eligibility determination is implemented in [`universal_childcare_entitlement_el
 
 ## Targeted childcare entitlement
 
-[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b) provides 15 hours of free childcare per week for eligible 2-year-old children. The entitlement totals 570 hours annually and is delivered across 38 weeks.
+[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides 15 hours of free childcare per week for eligible 2-year-old children. The entitlement totals 570 hours annually and is delivered across 38 weeks.
 
 ### Implementation
 
@@ -198,7 +198,7 @@ The entitlement calculation is performed in [`targeted_childcare_entitlement.py`
 
 ## Care to learn
 
-[The care to learn](https://www.gov.uk/care-to-learn) scheme provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts is £180 per week for childcare costs outside London and £195 per week for childcare costs in London.
+[The care to learn](https://www.gov.uk/care-to-learn) scheme, administered by the Department for Education (DfE), provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts is £180 per week for childcare costs outside London and £195 per week for childcare costs in London.
 
 ### Implementation
 
