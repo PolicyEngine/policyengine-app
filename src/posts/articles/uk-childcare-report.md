@@ -111,10 +111,6 @@ PolicyEngine projects that the UK government will spend £179.7 billion on Tax-f
 
 We estimate that TFC will benefit primarily upper-middle income households in 2025. The figure below shows gains are concentrated in deciles 8 and 9, while 95% of the population experiences no change in income.
 
-#### Inequality impact
-
-We estimate that TFC increases inequality, raising the Gini index by 0.1% while reducing the top 10% share by 0.3% and the top 1% share by 0.1%. This mixed impact occurs because TFC benefits are concentrated among upper-middle income households due to the work requirement and income limit.
-
 #### Local area analysis
 
 We estimate that TFC will raise net income (by more than 0.1%) on average in 62 Parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
@@ -184,10 +180,6 @@ PolicyEngine projects that the UK government will spend £212.4 billion on exten
 
 Extended childcare entitlement increases income for households in deciles 3 to 7, with over 60% of the population receiving an income gain. The figure below shows the distribution of these changes across income groups.
 
-#### Inequality impact
-
-The Gini index decreases by 0.4%, the top 10% income share decreases by 0.6%, and the top 1% share decreases by 0.2%. Changes are largest in the middle of the distribution.
-
 #### Local area analysis
 
 Extended childcare entitlement increases net income (by more than 0.1%) in 202 parliamentary constituencies in 2025. The map below shows the distribution of these changes. Darker blue areas represent income gains of up to £95 per household.
@@ -214,17 +206,111 @@ Eligibility determination is [implemented](https://github.com/PolicyEngine/polic
 
 #### Budgetary and distributional impacts
 
-PolicyEngine projects that the UK government will spend £212.4 billion on universal childcare entitlement in 2025, compared to a government-reported estimate of £198.5 billion.
+PolicyEngine projects that the UK government spent [£1.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=82832&reform=1) on universal childcare entitlement in 2024, 5.9% less than the DfE reports of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025). The figure below shows the distribution of these changes across income groups.
 
-Universal childcare entitlement increases income for households in deciles 3 to 7, with over 60% of the population receiving an income gain. The figure below shows the distribution of these changes across income groups.
-
-#### Inequality impact
-
-The Gini index decreases by 0.4%, the top 10% income share decreases by 0.6%, and the top 1% share decreases by 0.2%. Changes are largest in the middle of the distribution.
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [53, 27, 61, 50, 58, 60, 51, 25, 52, 123],
+      "type": "bar",
+      "marker": {
+        "color": "#3f6897"
+      },
+      "name": "Average change in household income (£)",
+      "text": ["£53", "£27", "£61", "£50", "£58", "£60", "£51", "£25", "£52", "£123"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Average universal childcare entitlement by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 140],
+      "dtick": 20,
+      "tickvals": [0, 20, 40, 60, 80, 100, 120],
+      "ticktext": ["£0", "£20", "£40", "£60", "£80", "£100", "£120"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
 
 #### Local area analysis
 
-Universal childcare entitlement increases net income (by more than 0.1%) in 202 parliamentary constituencies in 2025. The map below shows the distribution of these changes. Darker blue areas represent income gains of up to £95 per household.
+Universal childcare entitlement increased net income in 2024 parliamentary constituencies in 2024. The map below shows the distribution of these changes. This programme applies to England only.
+
+![](/images/posts/uk_childcare_report/constituency_universal1.png)
 
 ## Targeted childcare entitlement
 
@@ -270,10 +356,6 @@ The entitlement calculation is [performed](https://github.com/PolicyEngine/polic
 PolicyEngine projects that the UK government will spend £212.4 billion on targeted childcare entitlement in 2025, compared to a government-reported estimate of £198.5 billion.
 
 Targeted childcare entitlement increases income for households in deciles 3 to 7, with over 60% of the population receiving an income gain. The figure below shows the distribution of these changes across income groups.
-
-#### Inequality impact
-
-The Gini index decreases by 0.4%, the top 10% income share decreases by 0.6%, and the top 1% share decreases by 0.2%. Changes are largest in the middle of the distribution.
 
 #### Local area analysis
 
