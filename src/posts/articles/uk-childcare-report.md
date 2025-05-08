@@ -86,6 +86,36 @@ For eligible households, we calculate the government contribution amount in [`ta
 | True        | True              | £8,000                   | £4,000                         |
 | False       | False             | £8,000                   | 0                              |
 
+### Economic analysis
+
+#### Gross salary vs take-home pay at the household level
+
+To show the impact of TFC on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for TFC when earning at least [£9,516 annually](https://www.gov.uk/tax-free-childcare) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving TFC at higher income levels, as shown in the figure below.
+
+![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+
+This decline at £100,000 creates an earnings dead zone, which is the width of the difference area in the chart where the sudden loss of TFC benefits affects household finances. At this threshold, families experience a cliff effect as they transition from receiving childcare support to losing it entirely.
+
+#### Budgetary and distributional impacts
+
+PolicyEngine projects that the UK government will spend £179.7 billion on Tax-free childcare in 2025, 9.6% less than the government's report of £198.8 billion. Figure below shows the distributional impact of this programme.
+
+![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+
+We estimate that TFC will benefit primarily upper-middle income households in 2025. The figure below shows gains are concentrated in deciles 8 and 9, while 95% of the population experiences no change in income.
+
+![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+
+#### Local area analysis
+
+We estimate that TFC will raise net income (by more than 0.1%) on average in 62 Parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
+
+![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+
+We estimate that TFC will raise net income on average in 62 parliamentary constituencies in 2025. The impact varies by nation, with 36 constituencies in England, 10 in Wales, and 16 in Northern Ireland seeing income gains, where we consider no change if the relative change is less than 0.1%.
+
+![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
+
 ## Extended childcare entitlement
 
 [The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9), administered by the Department for Education (DfE), allocates different levels of hours based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
