@@ -30,8 +30,7 @@ Eligible individuals must be either employed, self-employed, or on qualifying le
 
 #### Programme interactions
 
-Tax-free childcare is compatible with the 15/30 hours free childcare programme, but cannot be combined with working tax credit, child tax credit, universal credit, and childcare vouchers.  
-In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
+Tax-free childcare is compatible with the 15/30 hours free childcare programme, but cannot be combined with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
 
 ### Implementation
 
@@ -89,9 +88,7 @@ For eligible households, we calculate the government contribution amount in [`ta
 
 ## Extended childcare entitlement
 
-[The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) provides free childcare hours based on the child's age:
-
-The programme allocates different levels of hours based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
+[The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) allocates different levels of hours based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
 
 ### Eligibility requirements
 
@@ -201,10 +198,7 @@ The entitlement calculation is performed in [`targeted_childcare_entitlement.py`
 
 ## Care to learn
 
-[The care to learn](https://www.gov.uk/care-to-learn) scheme provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts to:
-
-- £180 per week for childcare costs outside London.
-- £195 per week for childcare costs in London.
+[The care to learn](https://www.gov.uk/care-to-learn) scheme provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts is £180 per week for childcare costs outside London and £195 per week for childcare costs in London.
 
 ### Implementation
 
