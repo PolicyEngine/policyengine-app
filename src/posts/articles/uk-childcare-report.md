@@ -35,16 +35,11 @@ In the following sections, we explain how PolicyEngine models the Tax-Free Child
 
 ### Implementation
 
+The tax-free childcare programme is modelled through several interconnected components:
+
 #### Age determination
 
-First, we determine which children in the household are age-eligible for the programme, as Tax-Free Childcare is only available until specific age thresholds.
-
-- The files `standard.yaml` and `disability.yaml` define age thresholds.
-- The file `tax_free_childcare_child_age_eligible.py` calculates eligibility by:
-  - Checking a person's age and determining disability/blind status.
-  - Applying the appropriate age limit.
-
-The following table shows examples of age determination for the programme:
+We determine which children in the household are age-eligible for the programme, as Tax-Free Childcare is only available until specific age thresholds which is calculated by `tax_free_childcare_child_age_eligible.py`. The following table shows examples of age determination for the programme:
 
 | Child age | Is disabled | Is age eligible |
 | :-------- | :---------- | :-------------- |
@@ -54,17 +49,7 @@ The following table shows examples of age determination for the programme:
 
 #### Income assessment
 
-After identifying eligible children, we evaluate if the parents meet the income criteria, examining both minimum and maximum thresholds.
-
-- The file `countable_sources.yaml` specifies eligible income types.
-- The file `income_limit.yaml` sets the maximum income threshold.
-- The file `minimum_weekly_hours.yaml` defines weekly work requirements.
-- The file `tax_free_childcare_meets_income_requirements.py` calculates:
-  - Annual eligible income from countable sources.
-  - Minimum threshold based on minimum wage and required hours.
-  - Compliance with income limits using adjusted net income.
-
-The following table shows examples of income assessment for the programme:
+After identifying eligible children, we evaluate if the parents meet the income criteria, examining both minimum and maximum thresholds. The file `tax_free_childcare_meets_income_requirements.py` calculates annual eligible income from countable sources, minimum threshold based on minimum wage and required hours, and ompliance with income limits using adjusted net income. The following table shows examples of income assessment for the programme:
 
 | Adult age | Quarterly earnings | Is over £100k | Is income eligible |
 | :-------- | :----------------- | :------------ | :----------------- |
@@ -74,12 +59,7 @@ The following table shows examples of income assessment for the programme:
 
 #### Programme compatibility
 
-We check if the household receives any benefits that would make them ineligible for Tax-Free Childcare.
-
-- The file `disqualifying_benefits.yaml` lists incompatible benefits.
-- In the file `tax_free_childcare_program_eligible.py`, the system checks the person's benefit unit for disqualifying benefits.
-
-The following table shows examples of programme compatibility:
+We check if the household receives any benefits that would make them ineligible for Tax-Free Childcare. In the file `tax_free_childcare_program_eligible.py`, the system checks the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
 
 | Receives working tax credit | Receives child tax credit | Receives universal credit | Is eligible for the programme |
 | :-------------------------- | :------------------------ | :------------------------ | :---------------------------- |
@@ -89,14 +69,7 @@ The following table shows examples of programme compatibility:
 
 #### Work status
 
-The programme requires parents to be working, with special provisions for couples where one partner has a disability.
-
-- The file `tax_free_childcare_work_condition.py` evaluates:
-  - Single adults must be working.
-  - For couples, either both must be working or one working with a partner having disability.
-  - Disability status is determined based on relevant benefit receipt or incapacity benefit.
-
-The following table shows examples of work status requirements:
+The programme requires parents to be working, with special provisions for couples where one partner has a disability which calculated by `tax_free_childcare_work_condition.py`. The following table shows examples of work status requirements:
 
 | Family composition | Is partner 1 working | Is partner 2 working | Is partner 2 disabled | Meets work condition |
 | :----------------- | :------------------- | :------------------- | :-------------------- | :------------------- |
@@ -104,35 +77,9 @@ The following table shows examples of work status requirements:
 | Single             | False                | N/A                  | N/A                   | False                |
 | Couple             | True                 | True                 | False                 | True                 |
 
-#### Final eligibility
-
-We combine all previous eligibility checks to determine overall household qualification.
-
-- The file `tax_free_childcare_eligible.py` checks:
-  - At least one child meets age requirements.
-  - All adults meet income requirements (except children).
-  - No disqualifying benefits are received.
-  - Work conditions are satisfied.
-
-The following table shows examples of how final eligibility is determined:
-
-| Is age eligible | Is income eligible | Is programme eligible | Meets work condition | Is eligible overall |
-| :-------------- | :----------------- | :-------------------- | :------------------- | :------------------ |
-| True            | True               | True                  | True                 | True                |
-| False           | True               | True                  | True                 | False               |
-| True            | False              | True                  | True                 | False               |
-
 #### Contribution calculation
 
-For eligible households, we calculate the government contribution amount.
-
-- The file `tax_free_childcare.py`:
-  - Identifies disabled/blind status for each child.
-  - Applies appropriate rate (standard or higher) based on disability status.
-  - Caps contribution based on actual childcare expenses.
-  - Sums the total contribution across all eligible children in the benefit unit.
-
-The following table shows examples of how the government contribution is calculated:
+For eligible households, we calculate the government contribution amount in `tax_free_childcare.py`. The following table shows examples of how the government contribution is calculated:
 
 | Is eligible | Is child disabled | Annual childcare expense | Annual government contribution |
 | :---------- | :---------------- | :----------------------- | :----------------------------- |
@@ -142,7 +89,7 @@ The following table shows examples of how the government contribution is calcula
 
 ## Extended childcare entitlement
 
-[The programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) provides free childcare hours based on the child's age:
+[The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) provides free childcare hours based on the child's age:
 
 - Children aged 9 months to 2 years receive 15 hours of free childcare per week.
 - Children aged 3 to 4 years receive 30 hours of free childcare per week.
@@ -169,29 +116,9 @@ These thresholds are based on national minimum wage calculations for 16 hours pe
 
 The extended childcare entitlement programme is modelled through several interconnected components:
 
-#### Parameter definition
-
-Located in `parameters/gov/dfe/extended_childcare_entitlement/`, key parameters include:
-
-- Income requirements:
-  - The file `countable_sources.yaml` defines eligible income sources.
-  - The file `limit.yaml` sets the £100,000 maximum income threshold.
-  - The file `minimum_weekly_hours.yaml` specifies required working hours.
-- Programme specifics:
-  - The file `hours.yaml` defines entitlement hours by age group.
-  - The file `expense_rate.yaml` sets childcare funding rates.
-  - The file `weeks_per_year.yaml` specifies annual coverage.
-  - The file `disability_criteria.yaml` lists qualifying disability conditions.
-
 #### Income assessment
 
-Implemented in `extended_childcare_entitlement_meets_income_requirements.py`:
-
-- It calculates total eligible income from specified sources.
-- It applies minimum wage thresholds based on work hours.
-- It checks against maximum income limit.
-
-The following table shows examples of how hours entitlement varies by child age:
+We calculate total eligible income from specified sources and apply minimum wage thresholds based on work hours in `extended_childcare_entitlement_meets_income_requirements.py`. The following table shows examples of how hours entitlement varies by child age:
 
 | Child age | Is compulsory school age | Weekly hours entitlement |
 | :-------- | :----------------------- | :----------------------- |
@@ -385,6 +312,8 @@ The following table shows how the annual entitlement is calculated based on elig
 - Other requirements: Must be the main carer for the child or children and students can apply before their course starts.
 
 ### Implementation
+
+The care to learn programme is modelled through several interconnected components:
 
 #### Parameter definition
 
