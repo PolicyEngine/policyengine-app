@@ -151,7 +151,7 @@ The universal childcare entitlement programme is implemented through several int
 
 #### Eligibility determination
 
-Eligibility determination is implemented in [`universal_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement). This component performs a series of checks to determine if a child qualifies for the universal childcare entitlement. It first verifies residence in England. It then checks that the child meets the minimum age requirement of 3 years. Finally, it ensures the child is below compulsory school age. The following table shows examples of eligibility determination based on age criteria:
+Eligibility determination is implemented in [`universal_childcare_entitlement_eligible.py`](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement). This component performs a series of checks to determine if a child qualifies for the universal childcare entitlement. It first verifies residence in England. It then checks that the child meets the minimum age requirement of [3 years](https://www.legislation.gov.uk/uksi/2016/1257/part/4/made). Finally, it ensures the child is below [compulsory school age](https://www.legislation.gov.uk/ukpga/2006/21/section/19). The following table shows examples of eligibility determination based on age criteria:
 
 | Child age | Is under compulsory school age | Meets minimum age | Is age eligible |
 | :-------- | :----------------------------- | :---------------- | :-------------- |
@@ -161,7 +161,7 @@ Eligibility determination is implemented in [`universal_childcare_entitlement_el
 
 ## Targeted childcare entitlement
 
-[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides 15 hours of free childcare per week for eligible 2-year-old children. The entitlement totals 570 hours annually and is delivered across 38 weeks.
+[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides 15 hours of free childcare per week for eligible [2-year-old](https://www.legislation.gov.uk/uksi/2014/2147/regulation/3/made) children. The entitlement totals [570 hours](https://www.legislation.gov.uk/uksi/2014/2147/regulation/4/made) annually and is delivered across 38 weeks.
 
 ### Implementation
 
@@ -173,11 +173,11 @@ The benefit-based eligibility assessment is managed in [`targeted_childcare_enti
 
 #### Benefit eligibility
 
-Benefit eligibility is implemented in separate files for different benefit programmes. This component performs two essential checks: it first verifies Universal Credit receipt by confirming that the benefit amount is greater than zero, and then it compares the family's earned income against the £15,400 annual threshold to determine if they qualify based on their income level.
+Benefit eligibility is implemented in separate files for different benefit programmes. This component performs two essential checks: it first [verifies](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) Universal Credit receipt by confirming that the benefit amount is greater than zero, and then it compares the family's earned income against the £15,400 annual threshold to determine if they qualify based on their income level.
 
 #### Tax Credits criteria
 
-The Tax Credits criteria evaluates eligibility for families receiving tax credits in two steps. First, it checks whether the family is receiving either Child Tax Credit or Working Tax Credit (or both), as either type of tax credit can potentially qualify them for the targeted childcare entitlement. Second, it compares the family's applicable income against the £16,190 annual threshold to determine if they meet the income requirements for this support. The following table demonstrates how tax credit criteria are assessed for targeted childcare entitlement:
+The Tax Credits criteria evaluates eligibility for families receiving tax credits in two steps. First, it [checks](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) whether the family is receiving either Child Tax Credit or Working Tax Credit (or both), as either type of tax credit can potentially qualify them for the targeted childcare entitlement. Second, it compares the family's applicable income against the £16,190 annual threshold to determine if they meet the income requirements for this support. The following table demonstrates how tax credit criteria are assessed for targeted childcare entitlement:
 
 | Tax Credit type    | Credit amount | Applicable income | Below £16,190 threshold | Meets TC criteria |
 | :----------------- | :------------ | :---------------- | :---------------------- | :---------------- |
@@ -198,7 +198,7 @@ The entitlement calculation is performed in [`targeted_childcare_entitlement.py`
 
 ## Care to learn
 
-[The care to learn](https://www.gov.uk/care-to-learn) scheme, administered by the Department for Education (DfE), provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts is £180 per week for childcare costs outside London and £195 per week for childcare costs in London.
+[The care to learn](https://www.gov.uk/care-to-learn) scheme, administered by the Department for Education (DfE), provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts is [£180](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week for childcare costs outside London and [£195](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week for childcare costs in London.
 
 ### Implementation
 
@@ -206,7 +206,7 @@ The care to learn programme is modelled through several interconnected component
 
 #### Eligibility determination
 
-Eligibility determination is implemented in `care_to_learn_eligible.py`. This component conducts a comprehensive assessment of several eligibility factors. The age requirements check ensures that the applicant's age is below the maximum threshold (under 20 years).
+Eligibility determination is implemented in `care_to_learn_eligible.py`. This component conducts a comprehensive assessment of several eligibility factors. The age requirements check ensures that the applicant's age is below the maximum threshold ([under 20 years](https://publications.parliament.uk/pa/cm200809/cmbills/055/en/09055x-c.htm#:~:text=160,childcare%20when%20securing%20these%20grants)).
 
 For educational status, it ensures the person is not in higher education and confirms the person is not an apprentice. Finally, it verifies geographic eligibility by checking residence in England. The following table shows examples of eligibility determination for care to learn:
 
