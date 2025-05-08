@@ -98,7 +98,7 @@ This decline at £100,000 creates an earnings dead zone, which is the width of t
 
 #### Budgetary and distributional impacts
 
-PolicyEngine projects that the UK government will spend £179.7 billion on Tax-free childcare in 2025, 9.6% less than the government's report of £198.8 billion. Figure below shows the distributional impact of this programme.
+PolicyEngine projects that the UK government will spend £179.7 billion on Tax-free childcare in 2025, 9.6% less than the government's report of £198.8 billion. The figure below shows the distributional impact of this programme.
 
 ![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
 
@@ -112,11 +112,11 @@ We estimate that TFC increases inequality, raising the Gini index by 0.1% while 
 
 #### Local area analysis
 
-We estimate that TFC will raise net income (by more than 0.1%) on average in 62 Parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
+We estimate that TFC will raise net income (by more than 0.1%) on average in 62 parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
 
 ![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
 
-We estimate that TFC will raise net income on average in 62 parliamentary constituencies in 2025. The impact varies by nation, with 36 constituencies in England, 10 in Wales, and 16 in Northern Ireland seeing income gains, where we consider no change if the relative change is less than 0.1%.
+The impact varies by nation, with 36 constituencies in England, 10 in Wales, and 16 in Northern Ireland seeing income gains, where we consider no change if the relative change is less than 0.1%.
 
 ![](/images/posts/uk_childcare_report/gross_salary_tfc.png)
 
