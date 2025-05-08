@@ -1499,7 +1499,6 @@ The UK benefits system's design can affect how individuals and households respon
 Benefits can influence labor market participation and hours worked in several ways:
 
 - **Income and substitution effects**: Means-tested benefits like Universal Credit can create both income effects (higher benefits may reduce the need to work) and substitution effects (benefit withdrawal as earnings increase effectively creates higher marginal tax rates, potentially discouraging additional work).
-  
 - **Work incentives**: The design of Universal Credit's work allowances and taper rate aims to balance providing support while maintaining work incentives. The current taper rate of 55% means that benefit recipients keep 45p of each additional pound earned above any applicable work allowance, creating better work incentives than the previous 63% taper rate.
 
 - **Participation tax rates**: For some households, particularly those with childcare needs or disability-related costs, the combined effect of benefit withdrawal, income tax, and National Insurance can create high participation tax rates (the effective tax rate when moving from unemployment to employment).
