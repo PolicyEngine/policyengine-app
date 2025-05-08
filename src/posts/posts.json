@@ -1,9 +1,9 @@
 [
   {
     "title": "Childcare programmes in PolicyEngine UK",
-    "description": "This technical reference explains how PolicyEngine models childcare support in the UK.",
-    "date": "2025-05-07",
-    "tags": ["uk", "benefit", "childcare", "featured"],
+    "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
+    "date": "2025-05-08",
+    "tags": ["uk", "benefit", "featured"],
     "filename": "uk-childcare-report.md",
     "image": "uk-benefit-post.jpg",
     "authors": ["vahid-ahmadi"]

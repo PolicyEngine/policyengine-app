@@ -1,18 +1,18 @@
 ## Introduction
 
-This report provides an analysis of childcare support programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare support calculations are performed within the PolicyEngine UK microsimulation model.
+This report provides an analysis of childcare programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare calculations are performed within the PolicyEngine UK microsimulation model.
 
-The report is organised to explore the landscape of UK childcare support. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
+The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
 ## Tax-free childcare
 
-[Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) helps working families with childcare costs. For every £8 paid into a childcare account, the government adds £2. The programme provides financial support up to £2,000 per year for each eligible child. For disabled children, this support increases to £4,000 per year.
+[Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) provides funding for working families with childcare expenses. For every £8 paid into a childcare account, the government adds £2. The programme allocates up to £2,000 per year for each eligible child. For disabled children, this allocation increases to £4,000 per year.
 
 ### Eligibility requirements
 
 #### Age criteria
 
-Standard childcare support extends until 1 September following the child's 11th birthday. For disabled children who receive disability benefits or are certified as blind/severely sight-impaired, support continues until 1 September following their 16th birthday.
+Standard childcare funding extends until 1 September following the child's 11th birthday. For disabled children who receive disability benefits or are certified as blind/severely sight-impaired, funding continues until 1 September following their 16th birthday.
 
 #### Income requirements
 
@@ -91,7 +91,7 @@ For eligible households, we calculate the government contribution amount in `tax
 
 [The extended childcare programme](https://www.gov.uk/check-eligible-free-childcare-if-youre-working?step-by-step-nav=f517cd57-3c18-4bb9-aa8b-1b907e279bf9) provides free childcare hours based on the child's age:
 
-The programme offers different levels of support based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
+The programme allocates different levels of hours based on the child's age. Children aged 9 months to 2 years receive 15 hours of free childcare per week, while children aged 3 to 4 years receive 30 hours of free childcare per week.
 
 ### Eligibility requirements
 
@@ -193,7 +193,7 @@ The following table demonstrates how tax credit criteria are assessed for target
 
 #### Entitlement calculation
 
-The entitlement calculation is performed in `targeted_childcare_entitlement.py`. This component first checks if the child's age is exactly 2 years using the `age_eligibility` parameter, as this is the precise age requirement for the targeted entitlement. For eligible children, it then applies the entitlement hours (570 annually, typically delivered as 15 hours per week for 38 weeks) defined in the parameters. Finally, it multiplies these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
+The entitlement calculation is performed in `targeted_childcare_entitlement.py`. This component first checks if the child's age is 2 years. For eligible children, it then applies the entitlement hours (570 annually, delivered as 15 hours per week for 38 weeks) defined in the parameters. Finally, it multiplies these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
 
 | Child age | Eligible | Hours entitlement | Hourly rate | Annual entitlement |
 | :-------- | :------- | :---------------- | :---------- | :----------------- |
@@ -203,7 +203,7 @@ The entitlement calculation is performed in `targeted_childcare_entitlement.py`.
 
 ## Care to learn
 
-[The Care to Learn](https://www.gov.uk/care-to-learn) scheme provides financial support for young parents under 20 who wish to continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement provides:
+[The Care to Learn](https://www.gov.uk/care-to-learn) scheme provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts to:
 
 - £180 per week for childcare costs outside London.
 - £195 per week for childcare costs in London.
@@ -214,13 +214,12 @@ The care to learn programme is modelled through several interconnected component
 
 #### Eligibility determination
 
-Eligibility determination is implemented in `care_to_learn_eligible.py`. This component conducts a comprehensive assessment of several eligibility factors. For parental status, it verifies that the person is a parent with children using the `is_parent` variable, as the programme is specifically designed to support young parents. The age requirements check ensures that the applicant's age is below the maximum threshold (under 20 years), referencing the age parameter defined in the `care_to_learn` parameters.
+Eligibility determination is implemented in `care_to_learn_eligible.py`. This component conducts a comprehensive assessment of several eligibility factors. For parental status, it verifies that the person is a parent with children using the `is_parent` variable, as the programme is specifically for young parents. The age requirements check ensures that the applicant's age is below the maximum threshold (under 20 years), referencing the age parameter defined in the `care_to_learn` parameters.
 
 For educational status, it ensures the person is not in higher education and confirms the person is not an apprentice. Finally, it verifies geographic eligibility by checking residence in England. The following table shows examples of eligibility determination for Care to Learn:
 
 | Person age | Has children | Education type    | In England | Is eligible |
 | ---------- | ------------ | ----------------- | ---------- | ----------- |
-| 19         | Yes          | Further education | Yes        | Yes         |
 | 18         | No           | Further education | Yes        | No          |
 | 18         | Yes          | Higher education  | Yes        | No          |
 | 19         | Yes          | Apprenticeship    | Yes        | No          |
@@ -234,15 +233,15 @@ The entitlement calculation is handled by `care_to_learn.py`. The calculation us
 | London         | £195        | £10,140                       |
 | Outside London | £180        | £9,360                        |
 
-## Calibration of childcare programmes
+## Data calibration
 
-To ensure our model accurately reflects real-world participation and expenditure, we calibrate our enhanced FRS (Family Resources Survey) dataset by adding take-up rates to match official spending and caseload statistics for childcare programmes.
+To align our model with real-world participation and expenditure patterns, we calibrate our enhanced FRS (Family Resources Survey) dataset by adding take-up rates to match official spending and caseload statistics for childcare programmes.
 
 ### Target data
 
 Our calibration targets both aggregate spending and caseload figures for each programme for 2024:
 
-| Programme           | Spending Target (£ billions) | Caseload Target (thousands) |
+| Programme           | Spending target (£ billions) | Caseload target (thousands) |
 | :------------------ | :--------------------------- | :-------------------------- |
 | Tax-Free Childcare  | 0.60                         | 660                         |
 | Extended Childcare  | 2.50                         | 740                         |
