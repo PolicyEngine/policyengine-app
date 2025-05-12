@@ -41,7 +41,22 @@ def get_title(path: str, query_params: dict):
 
 def get_image(path: str, query_params: dict, social_cards: dict = {}):
     print(f"Getting image for {path}")
-    # Replace all /, ? and = from the path and query string combined with -
+  if "reform" in query_params:
+        main_text += f"Reform #{query_params['reform']} | Policy | "
+    else:
+        main_text += "Policy | "
+
+    try:
+        path_element = path.split("/")[2]
+        if CUSTOM_TITLES.get(path_element) is not None:
+            page_name = CUSTOM_TITLES.get(path_element)
+        else:
+            page_name = path_element.capitalize()
+    except IndexError:
+        page_name = "Home"
+    
+    main_text += f"PolicyEngine {country}"
+    return main_text
 
     country = path.split("/")[1].upper()
     if len(query_params) > 0:
