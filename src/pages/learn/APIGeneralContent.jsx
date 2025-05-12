@@ -326,7 +326,6 @@ print(response.json())`;
   );
 };
 
-
 export function APIResultCard(props) {
   const { metadata, type, setSelectedCard } = props;
 
@@ -341,11 +340,11 @@ export function APIResultCard(props) {
       <Card
         bordered={true}
         style={{
-          width: '100%',
+          width: "100%",
           backgroundColor: "white",
           overflow: "hidden",
-          cursor: 'pointer',
-          transition: 'transform 0.2s',
+          cursor: "pointer",
+          transition: "transform 0.2s",
         }}
         onClick={() => setSelectedCard({ ...metadata, type: type })}
       >
@@ -395,9 +394,7 @@ function APIVariableCard(props) {
       <p>{metadata.description}</p>
       <p>Entity: {metadata.entity}</p>
       <p>Period: {metadata.definitionPeriod || "none"}</p>
-      <p style={{ wordBreak: "break-all" }}>
-        Python name: {metadata.name}
-      </p>
+      <p style={{ wordBreak: "break-all" }}>Python name: {metadata.name}</p>
       <p>Unit: {metadata.unit}</p>
     </>
   );
@@ -418,12 +415,13 @@ export function VariableParameterExplorer(props) {
 
   const filterByQuery = (item) => {
     if (!query) return true;
-  
+
     // Skip items with numeric or empty labels
     const label = item.label || "";
     if (!label.trim() || /^\d+$/.test(label)) return false;
-    
-    return label.replaceAll(" ", "")
+
+    return label
+      .replaceAll(" ", "")
       .toLowerCase()
       .includes(query.replaceAll(" ", "").toLowerCase());
   };
@@ -447,7 +445,7 @@ export function VariableParameterExplorer(props) {
   const totalPages = Math.ceil(allCards.length / CARDS_PER_PAGE);
   const currentCards = allCards.slice(
     page * CARDS_PER_PAGE,
-    (page + 1) * CARDS_PER_PAGE
+    (page + 1) * CARDS_PER_PAGE,
   );
 
   return (
@@ -459,25 +457,30 @@ export function VariableParameterExplorer(props) {
           setQuery(e.target.value);
           setPage(0); // reset to first page on new search
         }}
-        style={{ marginBottom: 20, width: '100%', maxWidth: '500px', padding: '8px'  }}
+        style={{
+          marginBottom: 20,
+          width: "100%",
+          maxWidth: "500px",
+          padding: "8px",
+        }}
       />
 
-      <div 
-        style={{ 
+      <div
+        style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
           gap: "20px",
-          width: "100%" 
+          width: "100%",
         }}
       >
-          {currentCards.map((item) => (
-            <APIResultCard
-              key={item.name}
-              metadata={item}
-              type={item.type}
-              setSelectedCard={setSelectedCardData}
-            />
-          ))}
+        {currentCards.map((item) => (
+          <APIResultCard
+            key={item.name}
+            metadata={item}
+            type={item.type}
+            setSelectedCard={setSelectedCardData}
+          />
+        ))}
       </div>
 
       {totalPages > 1 && (
@@ -493,7 +496,9 @@ export function VariableParameterExplorer(props) {
             Page {page + 1} of {totalPages}
           </span>
           <button
-            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+            onClick={() =>
+              setPage((prev) => Math.min(prev + 1, totalPages - 1))
+            }
             disabled={page === totalPages - 1}
             style={{ marginLeft: 10 }}
           >

@@ -10,7 +10,7 @@ import APIGeneralContent from "./APIGeneralContent";
 // to use design system layout components and improved best practices.
 // import CodeBlock from "../../layout/CodeBlock";
 // import Section from "../../layout/Section";
-// import { useEffect, useState } from "react";  
+// import { useEffect, useState } from "react";
 // import {wrappedResponseJson}  from "../../data/wrappedJson";
 
 export const exampleInputs = {
@@ -98,7 +98,6 @@ export const exampleInputs = {
 };
 
 // Note: These constants are kept for reference but not currently used
-
 
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
