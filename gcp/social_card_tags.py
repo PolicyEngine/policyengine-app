@@ -41,7 +41,7 @@ def get_title(path: str, query_params: dict):
 
 def get_image(path: str, query_params: dict, social_cards: dict = {}):
     print(f"Getting image for {path}")
-    # Replace all /, ? and = from the path and query string combined with -
+ -
 
     country = path.split("/")[1].upper()
     if len(query_params) > 0:
