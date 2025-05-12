@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import GeneralContent from "./GeneralContent";
 import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
+import { Card, Tag } from "antd";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -228,6 +229,7 @@ print(response.json())`;
               <li>Benefit amounts</li>
               <li>Eligibility thresholds</li>
             </ul>
+            <VariableParameterExplorer metadata={metadata} />
           </div>
         ),
       },
@@ -323,5 +325,205 @@ print(response.json())`;
     </>
   );
 };
+
+
+export function APIResultCard(props) {
+  const { metadata, type, setSelectedCard } = props;
+
+  // type can be: parameter, variable
+  // parameters look like this: "gov.dcms.bbc.tv_licence.discount.aged.discount":{"description":"Percentage discount for qualifying aged households.","economy":true,"household":true,"label":"Aged TV Licence discount","parameter":"gov.dcms.bbc.tv_licence.discount.aged.discount","period":null,"type":"parameter","unit":"/1","values":{"2003-01-01":1}}
+  // variables look like this: "income_tax":{"adds":["earned_income_tax","savings_income_tax","dividend_income_tax","CB_HITC"],"category":"tax","defaultValue":0,"definitionPeriod":"year","documentation":"Total Income Tax liability","entity":"person","hidden_input":false,"indexInModule":22,"isInputVariable":false,"label":"Income Tax","moduleName":"gov.hmrc.income_tax.liability","name":"income_tax","subtracts":["capped_mcad"],"unit":"currency-GBP","valueType":"float"}
+  // use antd card component
+  // rounded edges, display all metadata and distinguish between parameters and variables
+
+  return (
+    <>
+      <Card
+        bordered={true}
+        style={{
+          width: '100%',
+          backgroundColor: "white",
+          overflow: "hidden",
+          cursor: 'pointer',
+          transition: 'transform 0.2s',
+        }}
+        onClick={() => setSelectedCard({ ...metadata, type: type })}
+      >
+        {type === "parameter" ? (
+          <APIParameterCard metadata={metadata} />
+        ) : (
+          <APIVariableCard metadata={metadata} />
+        )}
+      </Card>
+    </>
+  );
+}
+
+function APIParameterCard(props) {
+  const { metadata } = props;
+  // use antd card component
+  // rounded edges, display all metadata and distinguish between parameters and variables
+  // "gov.dcms.bbc.tv_licence.discount.aged.discount":{"description":"Percentage discount for qualifying aged households.","economy":true,"household":true,"label":"Aged TV Licence discount","parameter":"gov.dcms.bbc.tv_licence.discount.aged.discount","period":null,"type":"parameter","unit":"/1","values":{"2003-01-01":1}}
+
+  return (
+    <>
+      <Tag style={{ marginBottom: 10 }} color="green">
+        Parameter
+      </Tag>
+      <h3>{metadata.label || metadata.name || "Unnamed Item"}</h3>
+      <p>{metadata.description}</p>
+      <p>Period: {metadata.period || "None"}</p>
+      <p>Unit: {metadata.unit || "N/A"}</p>
+      <p style={{ wordBreak: "break-all" }}>
+        Python name: {metadata.parameter}
+      </p>
+    </>
+  );
+}
+
+function APIVariableCard(props) {
+  const { metadata } = props;
+  // use antd card component
+  // rounded edges, display all metadata and distinguish between parameters and variables
+
+  return (
+    <>
+      <Tag style={{ marginBottom: 10 }} color="red">
+        Variable
+      </Tag>
+      <h3>{metadata.label || metadata.name || "Unnamed Item"}</h3>
+      <p>{metadata.description}</p>
+      <p>Entity: {metadata.entity}</p>
+      <p>Period: {metadata.definitionPeriod || "none"}</p>
+      <p style={{ wordBreak: "break-all" }}>
+        Python name: {metadata.name}
+      </p>
+      <p>Unit: {metadata.unit}</p>
+    </>
+  );
+}
+
+// This component is not currently used but kept for future reference
+export function VariableParameterExplorer(props) {
+  const { metadata } = props;
+  const [query, setQuery] = useState("");
+  const [selectedCardData, setSelectedCardData] = useState(null);
+  const [page, setPage] = useState(0);
+
+  const MAX_ROWS = 3;
+  const MAX_COLS = 4;
+  const CARDS_PER_PAGE = MAX_ROWS * MAX_COLS;
+
+  if (!metadata) return <></>;
+
+  const filterByQuery = (item) => {
+    if (!query) return true;
+  
+    // Skip items with numeric or empty labels
+    const label = item.label || "";
+    if (!label.trim() || /^\d+$/.test(label)) return false;
+    
+    return label.replaceAll(" ", "")
+      .toLowerCase()
+      .includes(query.replaceAll(" ", "").toLowerCase());
+  };
+
+  const parameterCards = Object.values(metadata.parameters || {})
+    .filter((p) => p.type === "parameter")
+    .filter((p) => p.label && !/^\d+$/.test(p.label)) // Add this filter
+    .filter(filterByQuery)
+    .map((p) => ({ ...p, type: "parameter" }));
+
+  const variableCards = Object.values(metadata.variables || {})
+    .filter((v) => v.label && !/^\d+$/.test(v.label)) // Add this filter
+    .filter(filterByQuery)
+    .map((v) => ({ ...v, type: "variable" }));
+
+  const allCards = [...parameterCards, ...variableCards].sort((a, b) => {
+    const labelA = (a.label || a.name || "").toLowerCase();
+    const labelB = (b.label || b.name || "").toLowerCase();
+    return labelA.localeCompare(labelB);
+  });
+  const totalPages = Math.ceil(allCards.length / CARDS_PER_PAGE);
+  const currentCards = allCards.slice(
+    page * CARDS_PER_PAGE,
+    (page + 1) * CARDS_PER_PAGE
+  );
+
+  return (
+    <div>
+      <input
+        placeholder="Search parameters or variables"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setPage(0); // reset to first page on new search
+        }}
+        style={{ marginBottom: 20, width: '100%', maxWidth: '500px', padding: '8px'  }}
+      />
+
+      <div 
+        style={{ 
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "20px",
+          width: "100%" 
+        }}
+      >
+          {currentCards.map((item) => (
+            <APIResultCard
+              key={item.name}
+              metadata={item}
+              type={item.type}
+              setSelectedCard={setSelectedCardData}
+            />
+          ))}
+      </div>
+
+      {totalPages > 1 && (
+        <div style={{ marginTop: 20, textAlign: "center" }}>
+          <button
+            onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+            disabled={page === 0}
+            style={{ marginRight: 10 }}
+          >
+            ← Previous
+          </button>
+          <span>
+            Page {page + 1} of {totalPages}
+          </span>
+          <button
+            onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+            disabled={page === totalPages - 1}
+            style={{ marginLeft: 10 }}
+          >
+            Next →
+          </button>
+        </div>
+      )}
+
+      <CardDrawer metadata={selectedCardData} />
+    </div>
+  );
+}
+
+// This component is not currently used but kept for future reference
+function CardDrawer(props) {
+  const { metadata } = props;
+
+  if (!metadata) {
+    return <></>;
+  }
+  const type = metadata.type;
+  return (
+    <>
+      {type === "parameter" ? (
+        <APIParameterCard metadata={metadata} />
+      ) : (
+        <APIVariableCard metadata={metadata} />
+      )}
+    </>
+  );
+}
 
 export default APIGeneralContent;
