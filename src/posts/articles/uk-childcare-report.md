@@ -135,7 +135,7 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policy
   ],
   "layout": {
     "title": {
-      "text": "Average universal childcare entitlement by household income decile",
+      "text": "Average TFC by household income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -211,7 +211,7 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policy
 }
 ```
 
-Figure below shows the number of children in each household income decile receiving tax-free childcare in 2025.
+Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) in each household income decile receiving tax-free childcare in 2025.
 
 ```plotly
 {
@@ -501,122 +501,22 @@ Eligibility determination is [implemented](https://github.com/PolicyEngine/polic
 
 ### Economic analysis
 
-```plotly
-{
-  "data": [
-    {
-      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [51.0, 25.9, 57.8, 40.3, 48.7, 56.7, 44.6, 24.3, 27.1, 84.7],
-      "type": "bar",
-      "marker": {
-        "color": "#3f6897"
-      },
-      "name": "Number of children (thousands)",
-      "text": ["51.0", "25.9", "57.8", "40.3", "48.7", "56.7", "44.6", "24.3", "27.1", "84.7"],
-      "textposition": "outside",
-      "outsidetextfont": {
-        "family": "Roboto Serif",
-        "color": "black",
-        "size": 10
-      }
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Number of children in each income decile receiving universal childcare (total: 461.0k)",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "yaxis": {
-      "title": "Number of children (thousands)",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "tickformat": ",",
-      "automargin": true,
-      "range": [0, 90],
-      "dtick": 20,
-      "tickvals": [0, 20, 40, 60, 80],
-      "ticktext": ["0", "20", "40", "60", "80"],
-      "gridwidth": 1,
-      "gridcolor": "#e0e0e0"
-    },
-    "xaxis": {
-      "title": "Household income decile",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickmode": "array",
-      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-    },
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "#ebf2fa",
-    "paper_bgcolor": "#ebf2fa"
-  }
-}
-```
-
 #### Budgetary and distributional impacts
 
-PolicyEngine projects that the UK government spent [£1.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=82832&reform=1) on universal childcare entitlement in 2024, 5.9% less than the DfE reports of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025). The figure below shows the distribution of these changes across income groups.
-
-PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £701.7 million on tax-free childcare in 2025. Figure below shows the distributional impact of this programme.???
+PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975) that the UK government will spend £1.8 billion on universal childcare entitlement in 2025. Figure below shows the distributional impact of this programme.
 
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [53, 27, 61, 50, 58, 60, 51, 25, 52, 123],
+      "y": [37, 87, 67, 35, 58, 77, 34, 12, 25, 88],
       "type": "bar",
       "marker": {
         "color": "#3f6897"
       },
-      "name": "Average change in household income (£)",
-      "text": ["£53", "£27", "£61", "£50", "£58", "£60", "£51", "£25", "£52", "£123"],
+      "name": "Average universal childcare entitlement by household income decile",
+      "text": ["£37", "£87", "£67", "£35", "£58", "£77", "£34", "£12", "£25", "£88"],
       "textposition": "outside",
       "outsidetextfont": {
         "family": "Roboto Serif",
@@ -645,10 +545,10 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policy
       },
       "tickformat": ",",
       "automargin": true,
-      "range": [0, 140],
-      "dtick": 20,
-      "tickvals": [0, 20, 40, 60, 80, 100, 120],
-      "ticktext": ["£0", "£20", "£40", "£60", "£80", "£100", "£120"],
+      "range": [0, 90],
+      "dtick": 10,
+      "tickvals": [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
+      "ticktext": ["£0", "£10", "£20", "£30", "£40", "£50", "£60", "£70", "£80", "£90"],
       "gridwidth": 1,
       "gridcolor": "#e0e0e0"
     },
@@ -703,65 +603,21 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policy
 }
 ```
 
-#### Local area analysis
+Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/ce71205cbd3a84db282cc452aa746e4d) in each household income decile receiving universal childcare entitlement in 2025.
 
-Universal childcare entitlement increased net income in 2024 parliamentary constituencies in 2024. The map below shows the distribution of these changes. This programme applies to England only.
-
-![](/images/posts/uk_childcare_report/constituency_universal1.png)
-
-## Targeted childcare entitlement
-
-[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides 15 hours of free childcare per week for eligible [2-year-old](https://www.legislation.gov.uk/uksi/2014/2147/regulation/3/made) children. The entitlement totals [570 hours](https://www.legislation.gov.uk/uksi/2014/2147/regulation/4/made) annually and is delivered across 38 weeks.
-
-### Implementation
-
-The targeted childcare entitlement programme is implemented through several interconnected components:
-
-#### Benefit-based eligibility assessment
-
-The benefit-based eligibility assessment is [managed](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py) in `targeted_childcare_entitlement_eligible.py`. This component performs two critical checks: first, it confirms that the family resides in England, as the programme is only available to English residents; second, it verifies that the family receives at least one of the qualifying benefits [defined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dfe/targeted_childcare_entitlement/qualifying_benefits.yaml) in the `qualifying_benefits.yaml` file, which includes Income Support, Income-based JSA, Income-related ESA, and Pension Credit (Guarantee Credit).
-
-#### Benefit eligibility
-
-Benefit eligibility is implemented in separate files for different benefit programmes. This component performs two essential checks: it first [verifies](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) Universal Credit receipt by confirming that the benefit amount is greater than zero, and then it compares the family's earned income against the £15,400 annual threshold to determine if they qualify based on their income level.
-
-#### Tax Credits criteria
-
-The Tax Credits criteria evaluates eligibility for families receiving tax credits in two steps. First, it [checks](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) whether the family is receiving either Child Tax Credit or Working Tax Credit (or both), as either type of tax credit can potentially qualify them for the targeted childcare entitlement. Second, it compares the family's applicable income against the £16,190 annual threshold to determine if they meet the income requirements for this support. The following table demonstrates how tax credit criteria are assessed for targeted childcare entitlement:
-
-| Tax Credit type    | Credit amount | Applicable income | Below £16,190 threshold | Meets TC criteria |
-| :----------------- | :------------ | :---------------- | :---------------------- | :---------------- |
-| Child Tax Credit   | £2,000        | £15,000           | Yes                     | Yes               |
-| Working Tax Credit | £1,000        | £16,500           | No                      | No                |
-| Both               | £3,000        | £14,000           | Yes                     | Yes               |
-| None               | £0            | £10,000           | Yes                     | No                |
-
-#### Entitlement calculation
-
-The entitlement calculation is [performed](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) in `targeted_childcare_entitlement.py`. This component first checks if the child's age is 2 years. For eligible children, it then applies the entitlement hours (570 annually, delivered as 15 hours per week for 38 weeks) defined in the parameters. Finally, it multiplies these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
-
-| Child age | Eligible | Hours entitlement | Hourly rate | Annual entitlement |
-| :-------- | :------- | :---------------- | :---------- | :----------------- |
-| 1         | No       | 0                 | £11.22      | £0                 |
-| 2         | Yes      | 570               | £8.28       | £4,719.60          |
-| 3         | No       | 0                 | £5.88       | £0                 |
-
-### Economic analysis
-
-#### Budgetary and distributional impacts
 
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [35.3, 13.7, 19.8, 15.8, 15.0, 8.3, 1.6, 0.2, 0.5, 3.9],
+      "y": [44.6, 16.0, 181.9, 28.2, 44.4, 58.4, 38.7, 32.1, 11.4, 66.4],
       "type": "bar",
       "marker": {
         "color": "#3f6897"
       },
       "name": "Number of children (thousands)",
-      "text": ["35.3", "13.7", "19.8", "15.8", "15.0", "8.3", "1.6", "0.2", "0.5", "3.9"],
+      "text": ["44.6", "16.0", "181.9", "28.2", "44.4", "58.4", "38.7", "32.1", "11.4", "66.4"],
       "textposition": "outside",
       "outsidetextfont": {
         "family": "Roboto Serif",
@@ -772,7 +628,7 @@ The entitlement calculation is [performed](https://github.com/PolicyEngine/polic
   ],
   "layout": {
     "title": {
-      "text": "Number of children in each income decile receiving targeted childcare (total: 114.3k)",
+      "text": "Number of children in each income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -790,10 +646,10 @@ The entitlement calculation is [performed](https://github.com/PolicyEngine/polic
       },
       "tickformat": ",",
       "automargin": true,
-      "range": [0, 40],
-      "dtick": 10,
-      "tickvals": [0, 10, 20, 30, 40],
-      "ticktext": ["0", "10", "20", "30", "40"],
+      "range": [0, 200],
+      "dtick": 50,
+      "tickvals": [0, 50, 100, 150, 200],
+      "ticktext": ["0", "50", "100", "150", "200"],
       "gridwidth": 1,
       "gridcolor": "#e0e0e0"
     },
@@ -847,6 +703,53 @@ The entitlement calculation is [performed](https://github.com/PolicyEngine/polic
   }
 }
 ```
+
+#### Local area analysis
+
+Universal childcare entitlement increased net income in 2024 parliamentary constituencies in 2024. The map below shows the distribution of these changes. This programme applies to England only.
+
+<!-- ![](/images/posts/uk_childcare_report/constituency_universal1.png) -->
+
+## Targeted childcare entitlement
+
+[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides 15 hours of free childcare per week for eligible [2-year-old](https://www.legislation.gov.uk/uksi/2014/2147/regulation/3/made) children. The entitlement totals [570 hours](https://www.legislation.gov.uk/uksi/2014/2147/regulation/4/made) annually and is delivered across 38 weeks.
+
+### Implementation
+
+The targeted childcare entitlement programme is implemented through several interconnected components:
+
+#### Benefit-based eligibility assessment
+
+The benefit-based eligibility assessment is [managed](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py) in `targeted_childcare_entitlement_eligible.py`. This component performs two critical checks: first, it confirms that the family resides in England, as the programme is only available to English residents; second, it verifies that the family receives at least one of the qualifying benefits [defined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dfe/targeted_childcare_entitlement/qualifying_benefits.yaml) in the `qualifying_benefits.yaml` file, which includes Income Support, Income-based JSA, Income-related ESA, and Pension Credit (Guarantee Credit).
+
+#### Benefit eligibility
+
+Benefit eligibility is implemented in separate files for different benefit programmes. This component performs two essential checks: it first [verifies](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) Universal Credit receipt by confirming that the benefit amount is greater than zero, and then it compares the family's earned income against the £15,400 annual threshold to determine if they qualify based on their income level.
+
+#### Tax Credits criteria
+
+The Tax Credits criteria evaluates eligibility for families receiving tax credits in two steps. First, it [checks](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) whether the family is receiving either Child Tax Credit or Working Tax Credit (or both), as either type of tax credit can potentially qualify them for the targeted childcare entitlement. Second, it compares the family's applicable income against the £16,190 annual threshold to determine if they meet the income requirements for this support. The following table demonstrates how tax credit criteria are assessed for targeted childcare entitlement:
+
+| Tax Credit type    | Credit amount | Applicable income | Below £16,190 threshold | Meets TC criteria |
+| :----------------- | :------------ | :---------------- | :---------------------- | :---------------- |
+| Child Tax Credit   | £2,000        | £15,000           | Yes                     | Yes               |
+| Working Tax Credit | £1,000        | £16,500           | No                      | No                |
+| Both               | £3,000        | £14,000           | Yes                     | Yes               |
+| None               | £0            | £10,000           | Yes                     | No                |
+
+#### Entitlement calculation
+
+The entitlement calculation is [performed](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) in `targeted_childcare_entitlement.py`. This component first checks if the child's age is 2 years. For eligible children, it then applies the entitlement hours (570 annually, delivered as 15 hours per week for 38 weeks) defined in the parameters. Finally, it multiplies these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
+
+| Child age | Eligible | Hours entitlement | Hourly rate | Annual entitlement |
+| :-------- | :------- | :---------------- | :---------- | :----------------- |
+| 1         | No       | 0                 | £11.22      | £0                 |
+| 2         | Yes      | 570               | £8.28       | £4,719.60          |
+| 3         | No       | 0                 | £5.88       | £0                 |
+
+### Economic analysis
+
+#### Budgetary and distributional impacts
 
 PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974) that the UK government will spend £445.4 million on targeted childcare entitlement in 2025. Figure below shows the distributional impact of this programme.
 
@@ -948,6 +851,106 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.po
 }
 ```
 
+Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/184b2cda84c0f87d68498317696a434f) in each household income decile receiving targeted childcare entitlement in 2025.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [29.8, 18.8, 14.0, 15.5, 10.2, 2.0, 11.6, 0.2, 0.2, 1.3],
+      "type": "bar",
+      "marker": {
+        "color": "#3f6897"
+      },
+      "name": "Number of children (thousands)",
+      "text": ["29.8", "18.8", "14.0", "15.5", "10.2", "2.0", "11.6", "0.2", "0.2", "1.3"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Number of children in each income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Number of children (thousands)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 35],
+      "dtick": 5,
+      "tickvals": [0, 5, 10, 15, 20, 25, 30],
+      "ticktext": ["0", "5", "10", "15", "20", "25", "30"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Household income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
 #### Local area analysis
 
 Targeted childcare entitlement increases net income (by more than 0.1%) in 202 parliamentary constituencies in 2025. The map below shows the distribution of these changes. Darker blue areas represent income gains of up to £95 per household.
@@ -985,7 +988,7 @@ Due to the absence of relevant cases in the Family Resources Survey, we are unab
 
 ## Data calibration
 
-To align our model with real-world participation and expenditure patterns, we calibrate our enhanced FRS (Family Resources Survey) dataset by adding take-up rates to match official spending and caseload statistics for childcare programmes.
+To align our model with real-world participation and expenditure patterns, we calibrate our enhanced [FRS (Family Resources Survey)](https://www.gov.uk/government/collections/family-resources-survey--2) dataset by adding take-up rates to match official spending and caseload statistics for childcare programmes.
 
 ### Target data
 
