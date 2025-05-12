@@ -47,7 +47,7 @@ The tax-free childcare programme is modelled through several interconnected comp
 
 #### Age determination
 
-We determine which children in the household are age-eligible for the programme, as Tax-free childcare is only available until specific age thresholds which is [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) by `tax_free_childcare_child_age_eligible.py`. The following table shows examples of age determination for the programme:
+We determine which children in the household are age-eligible for the programme, as Tax-free childcare is only available until specific age thresholds which are [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) by `tax_free_childcare_child_age_eligible.py`. The following table shows examples of age determination for the programme:
 
 | Child age | Is disabled | Is age eligible |
 | :-------- | :---------- | :-------------- |
@@ -67,7 +67,7 @@ After identifying eligible children, we evaluate if the parents meet the income 
 
 #### Programme compatibility
 
-We check if the household receives any benefits that would make them ineligible for Tax-free childcare. The file `tax_free_childcare_program_eligible.py` [checks](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_program_eligible.py) the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
+We check if the household receives any benefits that would make them ineligible for Tax-free childcare. The file `tax_free_childcare_programme_eligible.py` [checks](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_program_eligible.py) the person's benefit unit for disqualifying benefits. The following table shows examples of programme compatibility:
 
 | Receives working tax credit | Receives child tax credit | Receives universal credit | Is eligible for the programme |
 | :-------------------------- | :------------------------ | :------------------------ | :---------------------------- |
@@ -77,7 +77,7 @@ We check if the household receives any benefits that would make them ineligible 
 
 #### Work status
 
-The programme requires parents to be working, with special provisions for couples where one partner has a disability which is [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py) by `tax_free_childcare_work_condition.py`. The following table shows examples of work status requirements:
+The programme requires parents to be working, with special provisions for couples where one partner has a disability which are [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_work_condition.py) by `tax_free_childcare_work_condition.py`. The following table shows examples of work status requirements:
 
 | Family composition | Is partner 1 working | Is partner 2 working | Is partner 2 disabled | Meets work condition |
 | :----------------- | :------------------- | :------------------- | :-------------------- | :------------------- |
@@ -311,7 +311,6 @@ Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi
 }
 ```
 
-
 #### Local area analysis
 
 We estimate that TFC will raise net income (by more than 0.1%) on average in 62 Parliamentary constituencies in 2025. The map shows positive impacts distributed across the UK, with income gains of up to £60 per household shown in darker blue.
@@ -377,18 +376,20 @@ The final calculations are [performed](https://github.com/PolicyEngine/policyeng
 
 #### Budgetary and distributional impacts
 
+PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) that the UK government will spend £4.4 billion on extended childcare entitlement in 2025. Figure below shows the distributional impact of this programme.
+
 ```plotly
 {
   "data": [
     {
       "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      "y": [1.2, 12.9, 18.8, 37.1, 72.6, 133.4, 115.2, 124.5, 150.3, 41.5],
+      "y": [4, 9, 24, 54, 95, 174, 126, 605, 401, 105],
       "type": "bar",
       "marker": {
         "color": "#3f6897"
       },
-      "name": "Number of children (thousands)",
-      "text": ["1.2", "12.9", "18.8", "37.1", "72.6", "133.4", "115.2", "124.5", "150.3", "41.5"],
+      "name": "Average change in household income (£)",
+      "text": ["£4", "£9", "£24", "£54", "£95", "£174", "£126", "£605", "£401", "£105"],
       "textposition": "outside",
       "outsidetextfont": {
         "family": "Roboto Serif",
@@ -399,7 +400,107 @@ The final calculations are [performed](https://github.com/PolicyEngine/policyeng
   ],
   "layout": {
     "title": {
-      "text": "Number of children in each income decile receiving extended childcare (total: 707.6k)",
+      "text": "Average extended childcare entitlement by household income decile",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "yaxis": {
+      "title": "Average change in household income",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickformat": ",",
+      "automargin": true,
+      "range": [0, 610],
+      "dtick": 100,
+      "tickvals": [0, 100, 200, 300, 400, 500, 600],
+      "ticktext": ["£0", "£100", "£200", "£300", "£400", "£500", "£600"],
+      "gridwidth": 1,
+      "gridcolor": "#e0e0e0"
+    },
+    "xaxis": {
+      "title": "Income decile",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickmode": "array",
+      "tickvals": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "ticktext": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
+    },
+    "height": 500,
+    "margin": {
+      "l": 50,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: PolicyEngine",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/bf773434c3539f9ab0bf178ddbbe503d) in each household income decile receiving extended childcare entitlement in 2025.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+      "y": [2.2, 5.4, 9.4, 31.8, 35.5, 112.6, 126.0, 274.2, 283.6, 88.9],
+      "type": "bar",
+      "marker": {
+        "color": "#3f6897"
+      },
+      "name": "Number of children (thousands)",
+      "text": ["2.2", "5.4", "9.4", "31.8", "35.5", "112.6", "126.0", "274.2", "283.6", "88.9"],
+      "textposition": "outside",
+      "outsidetextfont": {
+        "family": "Roboto Serif",
+        "color": "black",
+        "size": 10
+      }
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Number of children in each income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -417,10 +518,10 @@ The final calculations are [performed](https://github.com/PolicyEngine/policyeng
       },
       "tickformat": ",",
       "automargin": true,
-      "range": [0, 170],
+      "range": [0, 300],
       "dtick": 50,
-      "tickvals": [0, 50, 100, 150],
-      "ticktext": ["0", "50", "100", "150"],
+      "tickvals": [0, 50, 100, 150, 200, 250, 300],
+      "ticktext": ["0", "50", "100", "150", "200", "250", "300"],
       "gridwidth": 1,
       "gridcolor": "#e0e0e0"
     },
@@ -474,8 +575,6 @@ The final calculations are [performed](https://github.com/PolicyEngine/policyeng
   }
 }
 ```
-
-PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £701.7 million on extended childcare entitlement in 2025. Figure below shows the distributional impact of this programme.
 
 #### Local area analysis
 
@@ -604,7 +703,6 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policy
 ```
 
 Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/ce71205cbd3a84db282cc452aa746e4d) in each household income decile receiving universal childcare entitlement in 2025.
-
 
 ```plotly
 {
@@ -775,7 +873,7 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.po
   ],
   "layout": {
     "title": {
-      "text": "Average change in household income by decile",
+      "text": "Average targeted childcare entitlement by household income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
