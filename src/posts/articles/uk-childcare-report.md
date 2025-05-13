@@ -112,7 +112,7 @@ This decline at £100,000 creates an earnings dead zone, which is the width of t
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £701.7 million on tax-free childcare in 2025. Figure below shows the distributional impact of this programme.
+PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £0.7 billion on tax-free childcare in 2025. Figure below shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -599,6 +599,10 @@ Eligibility determination is [implemented](https://github.com/PolicyEngine/polic
 | 4         | True                           | True              | True            |
 | 5         | False                          | True              | False           |
 
+#### Entitlement calculation
+
+The final calculations are performed in ```universal_childcare_entitlement.py```. This component determines the weekly hours based on the child's age and applies the appropriate funding rates to calculate the total annual entitlement value.
+
 ### Economic analysis
 
 #### Budgetary and distributional impacts
@@ -850,7 +854,7 @@ The entitlement calculation is [performed](https://github.com/PolicyEngine/polic
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974) that the UK government will spend £445.4 million on targeted childcare entitlement in 2025. Figure below shows the distributional impact of this programme.
+PolicyEngine [projects](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974) that the UK government will spend £0.5 billion on targeted childcare entitlement in 2025. Figure below shows the distributional impact of this programme.
 
 ```plotly
 {
