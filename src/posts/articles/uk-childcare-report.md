@@ -4,7 +4,7 @@ This report provides an analysis of childcare programmes in the UK, examining ho
 
 The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: tax-free childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
-The table below summarises the key impacts of the four main childcare programmes, comparing PolicyEngine estimates with government reports and highlighting inequality and poverty effects.
+The following table compares PolicyEngine’s estimates of the budgetary impact of the main childcare programmes with government-reported figures.
 
 | Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                        | PolicyEngine estimate 2024 (£bn)                                                                                                                        | Government report 2024 (£bn)                                                                                  | Relative error in estimate 2024 (%) |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -12,6 +12,8 @@ The table below summarises the key impacts of the four main childcare programmes
 | Extended childcare  | [4.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613&uk_local_areas_beta=true) | [2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 4                                   |
 | Universal childcare | [1.8](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975)                          | [1.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887)                          | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -6                                  |
 | Targeted childcare  | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974)                          | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888)                          | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -7                                  |
+
+The following table compares PolicyEngine’s estimates of programme caseloads for the main childcare programmes with those reported by the government.
 
 | Programme           | PolicyEngine estimate 2025 (thousands)                                       | PolicyEngine estimate 2024 (thousands)                                       | Government report 2024 (thousands)                                                                            | Relative error in estimate 2024 (%) |
 | ------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -92,15 +94,7 @@ The programme requires parents to be working, with special provisions for couple
 | Single             | False                | N/A                  | N/A                   | False                |
 | Couple             | True                 | True                 | False                 | True                 |
 
-#### Contribution calculation
-
-For eligible households, we [calculate](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare) the government contribution amount in `tax_free_childcare.py`. The following table shows examples of how the government contribution is calculated:
-
-| Is eligible | Is child disabled | Annual childcare expense | Annual government contribution |
-| :---------- | :---------------- | :----------------------- | :----------------------------- |
-| True        | False             | £8,000                   | £2,000                         |
-| True        | True              | £8,000                   | £4,000                         |
-| False       | False             | £8,000                   | 0                              |
+Finally, for eligible households, we [calculate](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare) the government contribution amount in `tax_free_childcare.py`.
 
 ### Economic analysis
 
