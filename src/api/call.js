@@ -132,7 +132,11 @@ export async function updateMetadata(countryId) {
     data.parameters = Object.fromEntries(
       Object.entries(data.parameters).filter(
         // eslint-disable-next-line no-unused-vars
-        ([key, value]) => !value.parameter.includes("taxsim"), // &&
+        ([key, value]) => (
+          !value.parameter.includes("taxsim") &&
+          !value.parameter.includes("gov.abolitions")
+        )
+         // &&
         // first value in parameter.values is not a list.
         //(!value.values ||
         //  !(Object.values(value.values)[0] instanceof Array)),
