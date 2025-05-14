@@ -14,7 +14,7 @@ Key results (static):
 
 _Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps)._
 
-# Summary of SALT Provisions
+## Summary of SALT Provisions
 
 The SALT deduction is set to become uncapped starting in 2026 after being limited to $10,000 under the TCJA. Under the Ways and Means bill, the SALT deduction would be capped at $30,000 ($15,000 for separate filers). As Figure 1 shows, once adjusted gross income reaches $400,000 ($200,000 for separate filers), the limitation phases down at a 20% rate until reaching $10,000 ($5,000 for separate filers). This results in filers with AGI above $500,000 ($250,000 separate) facing the SALT cap floor.[^1]
 
@@ -24,7 +24,7 @@ The SALT deduction is set to become uncapped starting in 2026 after being limite
 
 ![](https://cdn-images-1.medium.com/max/3180/0*IUqgwWeJcKNFL00U)
 
-# Household Impacts
+## Household Impacts
 
 As we are only comparing how the SALT deduction would affect households as a part of the full bill, only households that itemize their deductions and have state and local tax expenses would be affected. For example, a single adult in New York making $500,000 and $45,000 in property taxes would see a [reduction in their net income of $21,053](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps&household=53326) in 2026.[^2] Figure 2 displays how the single adult’s net income would change as their household earnings vary. While rising at certain points, net income generally falls as household income increases.
 
@@ -46,7 +46,7 @@ As a result of the SALT cap phase-out, the total marginal tax rate reaches 51.2%
 
 ![](https://cdn-images-1.medium.com/max/3160/0*U-tBlaGYbWVROR9k)
 
-# Microsimulation Results
+## Microsimulation Results
 
 Using PolicyEngine’s static microsimulation model, we project that the $30,000 SALT cap would increase federal revenues by $937 billion over the next ten years (2026–2035).[^3] For comparison, the Joint Committee on Taxation [projected](https://www.jct.gov/publications/2025/jcx-22-25r/) that it would raise $916 billion from 2025–2034.
 
@@ -88,7 +88,7 @@ When it comes to poverty and inequality, the SALT cap would, in 2026:
 
 - Reduce the Gini index of inequality [by 0.4%](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84006&region=us&timePeriod=2026&baseline=84008&dataset=enhanced_cps), and the top 1%’s share of net income by 1.0%
 
-# Conclusion
+## Conclusion
 
 Conditional on other provisions in the Ways and Means Committee’s bill, we find that its SALT cap raises federal revenues by $937 billion over ten years, assuming no behavioral responses. Our projection exceeds JCT’s by 2.2%, though we score from 2026–2035 rather than 2025–2034. The limitation would reduce the after-tax incomes of 5% of the population in 2026, with households in the top income decile experiencing the greatest losses on an [absolute basis](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=84044&region=us&timePeriod=2026&baseline=84050&dataset=enhanced_cps). The $30,000 cap is projected to increase poverty by 0.02%, while lowering the Gini index by 0.4%.
 
@@ -96,7 +96,7 @@ As policymakers evaluate reforms such as these, analytical tools like PolicyEngi
 
 We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
 
-# Appendix A: Baseline Details
+## Appendix A: Baseline Details
 
 Our baseline includes most individual provisions in the Ways and Means bill, as shown in Table 2\.
 
