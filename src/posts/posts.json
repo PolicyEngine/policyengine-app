@@ -1,5 +1,14 @@
 [
   {
+    "title": "Ways and Means Committee's SALT Cap",
+    "description": "We project that limiting state and local tax deductions to $30,000, phasing down to $10,000 at high incomes, would raise $937 billion over the budget window.",
+    "date": "2025-05-14",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "ways-and-means-salt-cap.md",
+    "image": "ways-and-means-salt-cap.webp",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"]
+  },
+  {
     "title": "Tax changes in effect in April 2025",
     "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of £1,133 per household.",
     "date": "2025-04-25",
