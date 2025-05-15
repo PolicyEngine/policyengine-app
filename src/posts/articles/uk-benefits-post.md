@@ -4,9 +4,9 @@ This post provides an overview of how benefits are modelled in PolicyEngine UK. 
 
 Table 1 below summarises metrics for each benefit in the UK system, comparing PolicyEngine's 2025-26 fiscal year expenditure projections with those from the government (such as the Office for Budget Responsibility) and showing the percentage difference between them. While PolicyEngine models interactions from instituting or repealing tax and benefit programmes, this chart shows only the direct expenditure for each benefit for consistency with government reports.
 
-**Table 1: Summary of UK benefit revenue estimates for 2025 (£ billions)**
+**Table 1: Summary of UK benefit expenditure estimates for 2025 (£ billions)**
 
-| Programme                         | PolicyEngine revenue estimate £billion (2025)                                                                                   | OBR revenue estimate (2025-26)                                                                                                                                         | PolicyEngine affected population estimate % (2025) |
+| Programme                         | PolicyEngine expenditure estimate £billion (2025)                                                                                   | OBR expenditure estimate (2025-26)                                                                                                                                         | PolicyEngine affected population estimate % (2025) |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
 | Universal Credit                | 79.4                                                                                                                            | [77.4](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 21.8                                               |
 | Housing Benefit                 | [7.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663)  | [11.6](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.9                                                |
@@ -20,7 +20,7 @@ Table 1 below summarises metrics for each benefit in the UK system, comparing Po
 
 Below, Table 2 presents a comparison of UK childcare programme costs, showing PolicyEngine's expenditure estimates for 2025 alongside both previous year estimates and official government projections.
 
-**Table 2: Summary of UK childcare Programmes revenue estimates (£ billions)**
+**Table 2: Summary of UK childcare Programmes expenditure estimates (£ billions)**
 
 | Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                        | PolicyEngine estimate 2024 (£bn)                                                                                                                        | Government report 2024 (£bn)                                                                                  | PolicyEngine affected population estimate % (2025) |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -906,7 +906,7 @@ For 2025, the government contributes 20% of childcare costs, effectively adding 
 
 Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions (quarterly income above minimum wage × 16 hours/week × 13 weeks but below £100,000 per year adjusted net income), and work requirements (both parents must generally be working, with exceptions for disability).
 
-PolicyEngine projects that Tax-Free Childcare will cost [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025, over 30% more than the UK government's estimate of less than £1.0 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Tax-Free Childcare will cost [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025, over 30% more than the UK government's estimate of less than £1.0 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical cost impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1018,7 +1018,7 @@ For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours pe
 
 Eligibility is [determined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py) in `universal_childcare_entitlement_eligible.py`, which identifies children in the qualifying age range.
 
-PolicyEngine projects that Universal Childcare Entitlement will cost [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025, 111.5% more than the UK government's estimate of £2.6 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Universal Childcare Entitlement will cost [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025, 111.5% more than the UK government's estimate of £2.6 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical cost impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1135,7 +1135,7 @@ The entitlement varies by child age in 2025:
 
 The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs of caring for younger children.
 
-PolicyEngine projects that Extended Childcare Entitlement will cost [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025, 463.6% more than the UK government's estimate of £1.1 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Extended Childcare Entitlement will cost [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025, 463.6% more than the UK government's estimate of £1.1 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical cost impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1248,7 +1248,7 @@ For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded
 
 Eligibility includes receiving qualifying benefits or meeting income criteria: income below £16,190 per year for Tax Credit recipients or earned income below £15,400 per year for Universal Credit recipients.
 
-PolicyEngine projects that Targeted Childcare Entitlement will cost [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. Comparable government estimates for this specific programme are not available. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Targeted Childcare Entitlement will cost [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. Comparable government estimates for this specific programme are not available. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical cost impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1361,7 +1361,7 @@ For 2025, the scheme offers weekly payments of up to £195 per week for those li
 
 Eligibility is [determined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py) in `study_childcare_entitlement_eligible.py`, which verifies that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
 
-PolicyEngine projects that Study Childcare Entitlement will cost [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. Comparable government estimates for this specific programme are not available. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Study Childcare Entitlement will cost [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. Comparable government estimates for this specific programme are not available. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical cost impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1479,4 +1479,4 @@ One-off payments for vulnerable groups, [calculated](https://github.com/PolicyEn
 
 ## Conclusion
 
-PolicyEngine models the current UK benefits system and potential reforms, presenting distributional impacts by income decile. Users can analyse how benefit changes affect household incomes, government revenue, and behavioural responses such as labour supply. The model accounts for how benefit design influences household decisions and economic outcomes. We invite you to explore these policy effects on the PolicyEngine interface.
+PolicyEngine models the current UK benefits system and potential reforms, presenting distributional impacts by income decile. Users can analyse how benefit changes affect household incomes, government budgets, and behavioural responses such as labour supply. The model accounts for how benefit design influences household decisions and economic outcomes. We invite you to explore these policy effects on the PolicyEngine interface.
