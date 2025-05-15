@@ -149,7 +149,7 @@ PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.
 
 ### Housing Benefit
 
-[Housing Benefit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) provides payments for rental costs for those not receiving Universal Credit. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the applicable amount. Further reductions apply for non-dependent adults living in the household. The system applies different parameters for working-age versus pension-age claimants.
+[Housing Benefit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/housing_benefit.py) provides payments for rental costs for those not receiving Universal Credit. The amount is based on eligible rent (capped by Local Housing Allowance for private rentals), reduced by 65% of income above the applicable amount. Further reductions apply for non-dependent adults living in the household. The system applies different parameters for working-age versus pension-age claimants. The Department for Work and Pensions aims to move all working-age Housing Benefit claimants to Universal Credit by [March 2026](<(https://www.gov.uk/guidance/move-to-universal-credit-if-you-get-a-migration-notice-letter)>).
 
 The applicable income [disregards](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/applicable_income/housing_benefit_applicable_income.py) for certain income types. These disregards include partial earnings disregards (higher for lone parents), full disregards for specific benefits like Personal Independence Payment, and partial disregards for pension contributions and childcare costs.
 
@@ -255,7 +255,7 @@ PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://pol
 
 ### Tax Credits
 
-[Tax Credits](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) offer financial assistance to families with children and working people on low incomes. The system consists of two elements: Child Tax Credit and Working Tax Credit, which can be claimed separately or together depending on circumstances. We calculate Tax Credits using the following methodology:
+[Tax Credits](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) offer financial assistance to families with children and working people on low incomes. The system consists of two elements: Child Tax Credit and Working Tax Credit, which can be claimed separately or together depending on circumstances. HMRC ended all tax credit payments in [April 2025](https://www.gov.uk/tax-credits-have-ended) and instructed claimants to apply for Universal Credit or Pension Credit to continue receiving support. We calculate Tax Credits using the following methodology:
 
 1. Calculating the maximum entitlement for both Child Tax Credit and Working Tax Credit
 2. Determining the relevant income threshold (different for those claiming both credits versus Child Tax Credit only)
@@ -1323,11 +1323,11 @@ For 2025, the scheme offers weekly payments of up to £195 per week for those li
 
 The government has introduced several programmes to support households' energy costs:
 
-- **[Energy Bills Credit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/energy_bills_credit.py)**: Provided £400 per household as monthly reductions on electricity bills from October 2022 to March 2023. This universal support was applied automatically to all domestic electricity accounts, spread across six monthly instalments.
+- **[Energy Bills Credit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/energy_bills_credit.py)**: Provided £400 per household as monthly reductions on electricity bills from October 2022 to March 2023. This universal support was applied automatically to all domestic electricity accounts, spread across six monthly instalments.The government concluded the scheme in [March 2024](https://www.gov.uk/guidance/energy-bills-discount-scheme) and did not extend it beyond the winter period.
 
-- **[Council Tax Rebate](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/council_tax_rebate.py)**: Provided £150 per household in Council Tax bands A-D in England (with equivalent schemes in devolved nations).
+- **[Council Tax Rebate](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/energy_bills_rebate/council_tax_rebate.py)**: Provided £150 per household in Council Tax bands A-D in England (with equivalent schemes in devolved nations). Local authorities delivered the payments between April and September 2022, and the scheme officially closed in [November 2022](https://www.gov.uk/guidance/council-tax-rebate-factsheet).
 
-- **[Energy Price Guarantee](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/price_cap_subsidy/energy_price_cap_subsidy.py)**: Limited average household energy bills to £2,500 per year for a typical household. This intervention directly limited unit prices for gas and electricity, with the government subsidising energy suppliers for the difference between the guaranteed price and market rates.
+- **[Energy Price Guarantee](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/price_cap_subsidy/energy_price_cap_subsidy.py)**: Limited average household energy bills to £2,500 per year for a typical household. This intervention directly limited unit prices for gas and electricity, with the government subsidising energy suppliers for the difference between the guaranteed price and market rates. The government ended the scheme in [June 2023](https://www.gov.uk/government/publications/energy-bills-support/energy-price-guarantee-up-until-30-june-2023).
 
 ### Cost of Living Support Payment
 
