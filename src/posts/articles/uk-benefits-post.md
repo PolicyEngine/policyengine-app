@@ -1,8 +1,8 @@
 ## Introduction
 
-This post provides an overview of how benefits are modelled in PolicyEngine UK. It details both existing benefits in the UK welfare system and their implementation within PolicyEngine microsimulation platform. Each benefit component is linked to its specific implementation in the codebase, making this post a technical reference for understanding how benefits calculations are performed in the PolicyEngine UK microsimulation model.
+This post provides an overview of how benefits are modelled in PolicyEngine UK. It details both existing benefits in the UK welfare system and their implementation within the PolicyEngine microsimulation platform. Each benefit component is linked to its specific implementation in the codebase, making this post a technical reference for understanding how benefits calculations are performed in the PolicyEngine UK microsimulation model.
 
-Table 1 below summarises metrics for each benefit in the UK system, comparing PolicyEngine's 2025-26 fiscal year expenditure projections with those from the government (such as the Office for Budget Responsibility) and showing the percentage difference between them. While PolicyEngine models interactions from instituting or repealing tax and benefit programmes, this chart shows only the direct expenditure for each benefit, for consistency with government reports.
+Table 1 below summarises metrics for each benefit in the UK system, comparing PolicyEngine's 2025-26 fiscal year expenditure projections with those from the government (such as the Office for Budget Responsibility) and showing the percentage difference between them. While PolicyEngine models interactions from instituting or repealing tax and benefit programmes, this chart shows only the direct expenditure for each benefit for consistency with government reports.
 
 **Table 1: Summary of UK benefit revenue estimates for 2025 (£ billions)**
 
@@ -26,13 +26,13 @@ The post is organised into two main sections. First, we examine means-tested ben
 
 ## Means-tested benefits
 
-Means-tested benefits are awarded based on household income, savings, and circumstances, with payments reducing as income increases. The term "means-testing" refers to the assessment of a claimant's financial resources to determine eligibility and payment amount. Our implementation of means-tested benefits accounts for the interaction between different income sources, capital limits, and household composition.
+Means-tested benefits are awarded based on household income, savings, and circumstances, with payments reducing as income increases. The term 'means-testing' refers to the assessment of a claimant's financial resources to determine eligibility and payment amount. Our implementation of means-tested benefits accounts for the interaction between different income sources, capital limits, and household composition.
 
 ### Universal Credit
 
 Universal Credit is a means-tested benefit introduced to replace six legacy benefits for working-age people, [implemented](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/universal_credit.py) in the `universal_credit.py` file.
 
-Our calculation methodology for Universal Credit works by first determining a household's maximum entitlement by adding together various elements based on household circumstances, then reducing this amount based on income (applying the taper rate) and finally applying a benefit cap if necessary.
+Our calculation methodology for Universal Credit works by first determining a household's maximum entitlement by adding together various elements based on household circumstances, then reducing this amount based on income (applying the taper rate), and finally applying a benefit cap if necessary.
 
 - **Standard allowance**
   This forms the basic element of Universal Credit that all eligible claimants receive, [calculated](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/universal_credit/standard_allowance/uc_standard_allowance.py) in the `uc_standard_allowance.py` file. The amount varies by age and whether claiming as an individual or couple. For 2025, a single person under 25 receives £311.68 per month, while a single person over 25 receives £393.45 per month. Couples where both members are under 25 receive £489.23 per month, while couples with at least one member over 25 receive £617.60 per month.
@@ -278,7 +278,7 @@ The Tax Credits system consists of two main components, which we explain in deta
   Payments for families with children regardless of employment status. In 2025, components include a family element (£570 per year) and a child element (£3,455 per year per child), subject to the two-child limit. Additional amounts are paid for disabled children. The family element is a flat rate paid to families with at least one qualifying child, while the child element is paid for each eligible child (subject to the two-child limit for children born after April 2017).
 
 - **Working Tax Credit (WTC)**
-  Financial assistance for those in low-paid work. For 2025, components include a basic element (£2,435 per year), additional elements for couples or lone parents, a 30-hour element for those working at least 30 hours weekly, and a childcare element covering up to 70% of eligible costs. The basic element is paid to everyone who qualifies for Working Tax Credit, with additional amounts based on household composition and working hours. The childcare element provides funding for working parents with childcare costs up to a maximum of £175 per week for one child or £300 per week for two or more children.
+  Financial assistance for those in low-paid work. For 2025, components include a basic element (£2,435 per year), additional elements for couples or lone parents, a 30-hour element for those working at least 30 hours weekly, and a childcare element covering up to 70% of eligible costs. The basic element is paid to everyone who qualifies for Working Tax Credit, with additional amounts based on household composition and working hours. The childcare element provides funding for working parents with childcare costs up to a maximum of £175 per week for one child, or £300 per week for two or more children.
 
 Tax Credits are reduced at a rate of 41% when income exceeds the threshold (£7,455 for WTC+CTC claims and £18,725 for CTC-only claims in 2025). This means that for every £1 of income above the threshold, Tax Credits are reduced by 41p.
 
@@ -412,7 +412,7 @@ PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://poli
 
 ## Non-means-tested benefits
 
-Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources. In the following parts, we explain the different non-means-tested programmes and how we model each of them in detail.
+Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources. In the following sections, we explain the different non-means-tested programmes and how we model each of them in detail.
 
 ### Personal Independence Payment (PIP)
 
@@ -910,7 +910,7 @@ For 2025, the government contributes 20% of childcare costs, effectively adding 
 
 Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions (quarterly income above minimum wage × 16 hours/week × 13 weeks but below £100,000 per year adjusted net income), and work requirements (both parents must generally be working, with exceptions for disability).
 
-PolicyEngine projects that Tax-Free Childcare will cost [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025, over 30% more than the UK government's estimate of less than £1.0 billion for 2025-2026. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Tax-Free Childcare will cost [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025, over 30% more than the UK government's estimate of less than £1.0 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1022,7 +1022,7 @@ For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours pe
 
 Eligibility is [determined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py) in `universal_childcare_entitlement_eligible.py`, which identifies children in the qualifying age range.
 
-PolicyEngine projects that Universal Childcare Entitlement will cost [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025, 111.5% more than the UK government's estimate of £2.6 billion for 2025-2026. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Universal Childcare Entitlement will cost [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025, 111.5% more than the UK government's estimate of £2.6 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1137,9 +1137,9 @@ The entitlement varies by child age in 2025:
 - 2 years: 15 hours/week (increasing to 30 hours in 2026)
 - 3-4 years: 30 hours/week (which includes the universal 15 hours plus an additional 15 hours)
 
-The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs for caring for younger children.
+The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs of caring for younger children.
 
-PolicyEngine projects that Extended Childcare Entitlement will cost [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025, 463.6% more than the UK government's estimate of £1.1 billion for 2025-2026. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Extended Childcare Entitlement will cost [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025, 463.6% more than the UK government's estimate of £1.1 billion for 2025-2026. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1252,7 +1252,7 @@ For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded
 
 Eligibility includes receiving qualifying benefits or meeting income criteria: income below £16,190 per year for Tax Credit recipients or earned income below £15,400 per year for Universal Credit recipients.
 
-PolicyEngine projects that Targeted Childcare Entitlement will cost [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. Comparable government estimates for this specific program are not available. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Targeted Childcare Entitlement will cost [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. Comparable government estimates for this specific programme are not available. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -1365,7 +1365,7 @@ For 2025, the scheme offers weekly payments of up to £195 per week for those li
 
 Eligibility is [determined](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py) in `study_childcare_entitlement_eligible.py`, which verifies that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
 
-PolicyEngine projects that Study Childcare Entitlement will cost [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. Comparable government estimates for this specific program are not available. This estimation assumes that all eligible families for this program apply, and as the childcare programs have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Study Childcare Entitlement will cost [£8.7 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80608) in 2025. Comparable government estimates for this specific programme are not available. This estimation assumes that all eligible families for this programme apply, and as the childcare programmes have interactions with each other, the practical revenue impact is likely lower than this estimation. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
