@@ -1,10 +1,3 @@
-
-# The SALT Caucus’s Proposed Cap
-
-We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.
-
-![](https://cdn-images-1.medium.com/max/2048/0*mCr8hmBw5W0YOc6_)
-
 [In our previous report](https://policyengine.org/us/research/ways-and-means-salt-cap), we simulated the SALT cap set in “The One, Big, Beautiful Bill,” which phases down a $30,000 cap to $10,000 for filers with income above $400,000. While the Ways and Means Committee approved the bill yesterday, [The Hill reports](https://thehill.com/business/5295825-salt-deduction-cap-increase-debate/) that SALT Caucus members have pushed to raise the cap to $62,000 ($124,000 for married filers), adjusted for inflation, unlike the bill.
 
 Utilizing our baseline of the tax reforms in the Ways and Means bill (see Appendix A), we analyze how the SALT Caucus’s proposal would affect American households and the U.S. economy.
@@ -23,9 +16,13 @@ Key results (static):
 
 ## Comparison of SALT Caps
 
-Under current law, the state and local tax deduction is set to become uncapped starting in 2026 after being limited to $10,000 under the Tax Cuts and Jobs Act. Under the BBB, the SALT deduction would be capped at $30,000, and once adjusted gross income reaches $400,000, the limitation phases down at a 20% rate until reaching $10,000 (the maximum, floor, and phase-out threshold are all halved for married filing separately filers).
+Under current law, the state and local tax deduction is set to become uncapped starting in 2026 after being limited to $10,000 under the Tax Cuts and Jobs Act. Under the BBB, the SALT deduction would be capped at $30,000, and once adjusted gross income reaches $400,000, the limitation phases down at a 20% rate until reaching $10,000 (the maximum, floor, and phase-out threshold are all halved for married filing separately filers).[^1]
 
-Under the SALT Caucus’s preferred limit, single filers could claim up to $62,000 in SALT, while the limit for married couples would be $124,000. Unlike the Ways and Means bill, the SALT Caucus’s cap would be implemented in 2025 rather than 2026, would not phase down for higher-income households, and the limits would be adjusted for inflation. Figure 1 displays the different SALT limits for single filers under both SALT caps.
+[^1]: The Ways and Means bill also includes provisions that are meant to limit workarounds that states have implemented to avoid the SALT cap. We did not model these provisions in this analysis. 
+
+Under the SALT Caucus’s preferred limit, single filers could claim up to $62,000 in SALT, while the limit for married couples would be $124,000. Unlike the Ways and Means bill, the SALT Caucus’s cap would be implemented in 2025 rather than 2026, would not phase down for higher-income households, and the limits would be adjusted for inflation.[^2] Figure 1 displays the different SALT limits for single filers under both SALT caps.
+
+[^2]: As there is no reported details regarding the inflation adjustments, we rounded to the nearest dollar for all thresholds following tax year 2025. In 2026, the SALT Caucus caps would be uprated to $62,948 for single filers and $125,896 for married couples.
 
 **Figure 1: W&M SALT Cap (Baseline) vs. SALT Caucus Proposal (Reform) (2026)**
 
@@ -53,11 +50,25 @@ Due to the removal of the SALT cap phase-out, the total marginal tax rate falls 
 
 ## Microsimulation Results
 
-Using PolicyEngine’s static microsimulation model, we project that replacing the $30,000 SALT cap with the SALT Caucus proposal would [increase the cost of the tax package by $496.8 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) over the next ten years (2026–2035). Additionally, because the SALT Caucus proposal goes into effect in 2025, it would [lower federal revenues by $43.3 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2025&baseline=84050&dataset=enhanced_cps) that year since it raises the current $10,000 cap.
+Using PolicyEngine’s static microsimulation model, we project that replacing the $30,000 SALT cap with the SALT Caucus proposal would [increase the cost of the tax package by $496.8 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the SALT Caucus proposal goes into effect in 2025, it would [lower federal revenues by $43.3 billion](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2025&baseline=84050&dataset=enhanced_cps) that year since it raises the current $10,000 cap.
+
+[^3]: We project that state tax revenues would decrease by $2.9 billion over the budget window (2026-2035).
 
 **Table 1: Annual Federal Revenue Impact of Replacing the BBB SALT Cap with the SALT Caucus Proposal**
 
-![](https://cdn-images-1.medium.com/max/2000/1*e7Pvqma2aqXSfujJDgOxUg.png)
+| Year | Federal Revenue Impact in billions of $ (Static) |
+|------|--------------------------------------------------|
+| 2026 | -37.2 |
+| 2027 | -38.8 |
+| 2028 | -40.9 |
+| 2029 | -44.9 |
+| 2030 | -47.3 |
+| 2031 | -50.1 |
+| 2032 | -53.7 |
+| 2033 | -57.3 |
+| 2034 | -61.4 |
+| 2035 | -65.2 |
+| **2026-2035** | **-496.8** |
 
 The SALT cap would [increase the net income of 3.7% of US residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) in 2026, including 26% of residents in the top decile and 1.2% of those in the bottom nine deciles.
 
@@ -86,3 +97,46 @@ Conditional on other provisions in the BBB, we find that implementing the SALT C
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
 We invite you to explore our [additional analyses](https://policyengine.org/us/research) and use [PolicyEngine](https://policyengine.org/us) to calculate your own tax benefits or design custom policy reforms.
+
+## Appendix A: Baseline Details
+
+Our baseline includes most individual provisions in the Ways and Means bill, as shown in Table 2\.
+
+**Table 2: Individual Tax Provisions Current Law vs. W\&M Bill**
+
+|                 Individual Provisions                 | Current Law (2026)                                             | W\&M Bill (2026)                                     | In PolicyEngine Simulation |
+| :---------------------------------------------------: | -------------------------------------------------------------- | ---------------------------------------------------- | -------------------------- |
+|                       Tax Rates                       | 10%, 15%, 25%, 28%, 33%, 35%, and 39.6%                        | 10%, 12%, 22%, 24%, 32%, 35%, and 37%                | ✅                         |
+|                     Tax Brackets                      | Revert to 2017 Thresholds (Indexed for Inflation Since 2017)\* | 2025 Thresholds (Indexed for Inflation for 2026)[^4] | ✅                         |
+|           Personal and Dependent Exemption            | $5,300\*                                                       | $0                                                   | ✅                         |
+|                    CTC Base Amount                    | $1,000                                                         | $2,000[^5]                                           | ✅                         |
+|            CTC Temporary Boost (2025-2028)            | Inactive                                                       | $500                                                 | ✅                         |
+|             CTC Maximum Refundable Amount             | $1,000                                                         | $1,700\*                                             | ✅                         |
+|                  CTC Phase-in Start                   | $3,000                                                         | $2,500                                               | ✅                         |
+|                  CTC Phase-out Start                  | $75,000/$110,000                                               | $200,000/$400,000                                    | ✅                         |
+|                Adult Dependent Credit                 | $0                                                             | $500                                                 | ✅                         |
+|               Standard Deduction Amount               | $8,300/$16,600\*                                               | $16,150/$32,300\*                                    | ✅                         |
+|                 Estate Tax Exemption                  | \~$6,790,000                                                   | $15,000,000                                          | ✖️                         |
+|            Mortgage Interest Deduction Cap            | $1,000,000                                                     | $750,000                                             | ✖️                         |
+|              Casualty Expense Deduction               | Active                                                         | Inactive                                             | ✖️                         |
+|                         Pease                         | Active                                                         | Inactive                                             | ✅                         |
+|       Overall Limitation on Itemized Deduction        | Inactive                                                       | Active                                               | ✅                         |
+|                 AMT Exemption Amount                  | $70,500/$109,700\*                                             | $89,400/$139,050\*                                   | ✅                         |
+|                  AMT Phase-out Start                  | $156,700/$209,000\*                                            | $635,900/$1,271,850\*                                | ✅                         |
+|                       QBID Rate                       | Inactive                                                       | 23%                                                  | ✅                         |
+|      Alternative QBID Rate on Business Property       | Inactive                                                       | 2.5%                                                 | ✅                         |
+|                QBID Rate on W-2 Wages                 | Inactive                                                       | 50%                                                  | ✅                         |
+|          Alternative QBID Rate on W-2 Wages           | Inactive                                                       | 25%                                                  | ✅                         |
+|            QBID Limitation Phase-in Amount            | Inactive                                                       | 75%                                                  | ✅                         |
+|                 QBID Phase-out Start                  | Inactive                                                       | $200,300/$400,500\*                                  | ✅                         |
+|           Tip income exemption (2025-2028)            | Inactive                                                       | Active                                               | ✅                         |
+|         Overtime income exemption (2025-2028)         | Inactive                                                       | Active                                               | ✖️                         |
+|       Auto loan interest deduction (2025-2028)        | Inactive                                                       | Active                                               | ✖️                         |
+| Additional Standard Deduction for Seniors (2025-2028) | Inactive                                                       | Active                                               | ✅                         |
+|  Charitable Deduction for Non-Itemizers (2025-2028)   | Inactive                                                       | Active                                               | ✅                         |
+
+\*Indexed for Inflation
+
+[^4]: The Ways and Means tax bill adjusts the year at which the 35% tax bracket is uprated changing it from 2017 to 2016, thereby raising the bracket threshold higher than previously.
+
+[^5]: In 2029, the maximum value of the CTC would drop as the temporary $500 boost expires. However, since the CTC is adjusted for inflation afterwards using 2024 as the base year, the credit’s value would fall to $2,200 rather than $2,000. Additionally, we do not include the SSN changes to the CTC in this analysis, but plan to include the provision in future reports.
