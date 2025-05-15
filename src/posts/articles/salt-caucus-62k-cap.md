@@ -4,21 +4,21 @@ Utilizing our baseline of the tax reforms in the Ways and Means bill (see Append
 
 Key results (static):
 
-* Increases the cost of the tax bill by $497 billion from 2026 to 2035
+- Increases the cost of the tax bill by $497 billion from 2026 to 2035
 
-* Raises net income for 3.7% of Americans in 2026
+- Raises net income for 3.7% of Americans in 2026
 
-* Lowers the Supplemental Poverty Measure by less than 0.001%
+- Lowers the Supplemental Poverty Measure by less than 0.001%
 
-* Increases the Gini index of income inequality by 0.2%
+- Increases the Gini index of income inequality by 0.2%
 
-*Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps).*
+_Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps)._
 
 ## Comparison of SALT Caps
 
 Under current law, the state and local tax deduction is set to become uncapped starting in 2026 after being limited to $10,000 under the Tax Cuts and Jobs Act. Under the BBB, the SALT deduction would be capped at $30,000, and once adjusted gross income reaches $400,000, the limitation phases down at a 20% rate until reaching $10,000 (the maximum, floor, and phase-out threshold are all halved for married filing separately filers).[^1]
 
-[^1]: The Ways and Means bill also includes provisions that are meant to limit workarounds that states have implemented to avoid the SALT cap. We did not model these provisions in this analysis. 
+[^1]: The Ways and Means bill also includes provisions that are meant to limit workarounds that states have implemented to avoid the SALT cap. We did not model these provisions in this analysis.
 
 Under the SALT Caucus’s preferred limit, single filers could claim up to $62,000 in SALT, while the limit for married couples would be $124,000. Unlike the Ways and Means bill, the SALT Caucus’s cap would be implemented in 2025 rather than 2026, would not phase down for higher-income households, and the limits would be adjusted for inflation.[^2] Figure 1 displays the different SALT limits for single filers under both SALT caps.
 
@@ -56,19 +56,19 @@ Using PolicyEngine’s static microsimulation model, we project that replacing t
 
 **Table 1: Annual Federal Revenue Impact of Replacing the BBB SALT Cap with the SALT Caucus Proposal**
 
-| Year | Federal Revenue Impact in billions of $ (Static) |
-|------|--------------------------------------------------|
-| 2026 | -37.2 |
-| 2027 | -38.8 |
-| 2028 | -40.9 |
-| 2029 | -44.9 |
-| 2030 | -47.3 |
-| 2031 | -50.1 |
-| 2032 | -53.7 |
-| 2033 | -57.3 |
-| 2034 | -61.4 |
-| 2035 | -65.2 |
-| **2026-2035** | **-496.8** |
+| Year          | Federal Revenue Impact in billions of $ (Static) |
+| ------------- | ------------------------------------------------ |
+| 2026          | -37.2                                            |
+| 2027          | -38.8                                            |
+| 2028          | -40.9                                            |
+| 2029          | -44.9                                            |
+| 2030          | -47.3                                            |
+| 2031          | -50.1                                            |
+| 2032          | -53.7                                            |
+| 2033          | -57.3                                            |
+| 2034          | -61.4                                            |
+| 2035          | -65.2                                            |
+| **2026-2035** | **-496.8**                                       |
 
 The SALT cap would [increase the net income of 3.7% of US residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) in 2026, including 26% of residents in the top decile and 1.2% of those in the bottom nine deciles.
 
@@ -84,11 +84,11 @@ Households in the top decile see their tax liability fall by [$2,621 on average]
 
 When it comes to poverty and inequality, the SALT Caucus proposal would, in 2026:
 
-* [Lower poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) (as defined by the Supplemental Poverty Measure) by 0.00006%,
+- [Lower poverty](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.regular.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) (as defined by the Supplemental Poverty Measure) by 0.00006%,
 
-* Reduce deep poverty [by 0.0002%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps),
+- Reduce deep poverty [by 0.0002%](https://policyengine.org/us/policy?focus=policyOutput.povertyImpact.deep.byAge&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps),
 
-* [Raise the Gini index of inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) by 0.2%, and the top 1%’s share of net income by 3.0%
+- [Raise the Gini index of inequality](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=84172&region=us&timePeriod=2026&baseline=84044&dataset=enhanced_cps) by 0.2%, and the top 1%’s share of net income by 3.0%
 
 ## Conclusion
 
