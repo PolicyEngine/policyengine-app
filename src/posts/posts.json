@@ -1252,5 +1252,14 @@
     "description": "Utah’s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
     "filename": "utah-income-tax-changes.ipynb",
     "image": "utah-income-tax-changes.jpg"
+  },
+  {
+    "title": "Expansion of free childcare hours.",
+    "description": "PolicyEngine estimates the impacts of the 2023 expansion to the extended childcare entitlement.",
+    "date": "2025-05-17 00:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "childcare_expansion.ipynb",
+    "image": "uk-tax-post.jpg"
   }
 ]
