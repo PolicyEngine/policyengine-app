@@ -49,7 +49,7 @@ The government awards means-tested benefits based on household income, savings, 
 
 - **Benefit cap**: A maximum limit on total benefit income is applied to Universal Credit, with higher rates for London residents and exemptions for households with significant earnings or disability benefits. The benefit cap methodology checks whether the household is exempt (based on earnings or qualifying benefits) and, if not, applies the appropriate cap based on household composition and location.
 
-PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.6% more than the UK government's estimate of £77.4 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.6% more than the UK government's estimate of [£77.4 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -155,7 +155,7 @@ The applicable income [disregards](https://github.com/PolicyEngine/policyengine-
 
 The non-dependent deductions amount [varies](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/housing_benefit/non_dep_deduction/housing_benefit_non_dep_deductions.py) based on the non-dependent's income and circumstances. A non-dependent is an adult who lives with the claimant (such as an adult child or parent) who should contribute to housing costs.
 
-PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025, 34.5% less than the UK government's estimate of £11.6 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025, 34.5% less than the UK government's estimate of [£11.6 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -270,7 +270,7 @@ The Tax Credits system consists of two main components, which we explain in deta
 
 Tax Credits are reduced at a rate of 41% when income exceeds the threshold (£7,455 for WTC+CTC claims and £18,725 for CTC-only claims in 2025). This means that for every £1 of income above the threshold, Tax Credits are reduced by 41p.
 
-PolicyEngine projects that Tax Credits will cost less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) in 2025, similar to the UK government's estimate of less than £1 billion for 2025-2026.
+PolicyEngine projects that Tax Credits will cost less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80677) in 2025, in line with the UK government's estimate of less than £1 billion for 2025-2026.
 
 ### Pension Credit
 
@@ -294,7 +294,7 @@ Pension Credit consists of two main components, which we explain in detail below
   4. Awarding Savings Credit at 60% of income above the threshold, up to the maximum
   5. Reducing the award by 40% of income above the minimum guarantee
 
-PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025, 23.3% more than the UK government's estimate of £6.0 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025, 23.3% more than the UK government's estimate of [£6.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -407,7 +407,7 @@ PIP [provides](https://github.com/PolicyEngine/policyengine-uk/blob/master/polic
 
 For 2025, the [daily living](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/daily_living.py) component is £108.55 per week at the enhanced rate and £72.65 per week at the standard rate. The [mobility](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/mobility.py) component is £75.75 per week at the enhanced rate and £28.70 per week at the standard rate.
 
-PolicyEngine projects that Personal Independence Payment will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025, 6.6% more than the UK government's estimate of £28.7 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Personal Independence Payment will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -516,7 +516,7 @@ Similar to PIP, [DLA](https://github.com/PolicyEngine/policyengine-uk/blob/maste
 
 For 2025, the [self-care](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/self_care.py) component has three possible rates: higher (£108.55 per week), middle (£72.65 per week), and lower (£28.70 per week). The [mobility](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/mobility.py) component has two rates: higher (£75.75 per week) and lower (£28.70 per week). We calculate the annual amount by multiplying the weekly rates by 52.
 
-PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025, 24.0% more than the UK government's estimate of £7.5 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025, 24.0% more than the UK government's estimate of [£7.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -624,7 +624,7 @@ PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion]
 
 For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are ill. The lower rate applies to those needing care either during the day or at night. We calculate the annual amount by multiplying the weekly rate by 52. The government uprates all three disability benefits annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
 
-PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025, 27.5% more than the UK government's estimate of £8.0 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025, 27.5% more than the UK government's estimate of [£8.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -734,7 +734,7 @@ The government pays [Child Benefit](https://github.com/PolicyEngine/policyengine
 
 The [High Income Child Benefit Charge (HITC)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py) effectively withdraws this benefit when individual income exceeds £50,000, with complete withdrawal at £60,000. It increases proportionally with income within this range. For each £100 of income above £50,000, 1% of the Child Benefit is reclaimed through the tax system.
 
-PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025, 1.6% less than the UK government's estimate of £12.5 billion for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025, 1.6% less than the UK government's estimate of [£12.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) for 2025-2026. The following figure shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -861,7 +861,7 @@ For 2025, households with someone aged 66-79 receive £200, while households wit
 
 In Scotland, the Pension Age Winter Heating Payment (PAWHP) has [replaced](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/social_security_scotland/pawhp.py) this benefit, with similar rate structure. This reflects the devolution of certain benefits to the Scottish government, which has implemented its own version of the payment with similar eligibility criteria and rates.
 
-PolicyEngine projects that Winter Fuel Payment will cost less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) in 2025, similar to the UK government's estimate of less than £1 billion for 2025-2026.
+PolicyEngine projects that Winter Fuel Payment will cost less than [£1 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) in 2025, in line with the UK government's estimate of less than £1 billion for 2025-2026.
 
 ### Tax-free childcare
 
@@ -876,7 +876,7 @@ For 2025, the government contributes 20% of childcare costs, effectively adding 
 
 Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions (quarterly income above minimum wage × 16 hours/week × 13 weeks but below £100,000 per year adjusted net income), and work requirements (both parents must generally be working, with exceptions for disability).
 
-PolicyEngine projects that tax-free childcare will cost [£1.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80603) in 2025, over 30% more than the UK government's estimate of less than £1.0 billion for 2025-2026.
+PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892) in 2024, in line with the UK government's estimate of [£0.6 billion](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024) for 2024.
 
 ```plotly
 {
@@ -984,7 +984,7 @@ The universal childcare entitlement [offers](https://github.com/PolicyEngine/pol
 
 For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours per week over 38 weeks), with funding at a rate of £5.88 per hour for children aged 3 and over. This produces an annual value of £3,351.60 per eligible child, which counts as income-in-kind rather than cash payment.
 
-PolicyEngine projects that universal childcare entitlement will cost [£5.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80615) in 2025, 111.5% more than the UK government's estimate of £2.6 billion for 2025-2026.
+PolicyEngine projects that universal childcare entitlement will cost [£1.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887) in 2024, 5.9% less than the UK government's estimate of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024.
 
 ```plotly
 {
@@ -1099,7 +1099,7 @@ The entitlement varies by child age in 2025:
 
 The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs of caring for younger children.
 
-PolicyEngine projects that extended childcare entitlement will cost [£6.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613) in 2025, 463.6% more than the UK government's estimate of £1.1 billion for 2025-2026.
+PolicyEngine projects that extended childcare entitlement will cost [£2.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) in 2024, 4.0% more than the UK government's estimate of [£2.5 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024.
 
 ```plotly
 {
@@ -1208,7 +1208,7 @@ The targeted childcare entitlement [provides](https://github.com/PolicyEngine/po
 
 For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded at a rate of £8.28 per hour. This produces an annual value of £4,719.60 per eligible child. Eligibility includes receiving qualifying benefits or meeting income criteria: income below £16,190 per year for Tax Credit recipients or earned income below £15,400 per year for Universal Credit recipients.
 
-PolicyEngine projects that targeted childcare entitlement will cost [£1.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80617) in 2025. Comparable government estimates for this specific programme are not available.
+PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888) in 2024, in line with the UK government's estimate of [£0.6 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024.
 
 ```plotly
 {
