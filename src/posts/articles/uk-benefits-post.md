@@ -1306,9 +1306,9 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
 }
 ```
 
-### Study Childcare Entitlement
+### Care to Learn
 
-The Study Childcare Entitlement, also known as [Care to Learn](<(https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py)>), offers funding for young parents in education for childcare costs. We calculate Study Childcare Entitlement using the following methodology:
+The [Care to Learn](<(https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py)>), offers funding for young parents in education for childcare costs. We calculate Care to Learn using the following methodology:
 
 1. Identifying eligible young parents (under 20 years old)
 2. Verifying they are in non-tertiary education (not university or higher education)
@@ -1317,7 +1317,7 @@ The Study Childcare Entitlement, also known as [Care to Learn](<(https://github.
 
 For 2025, the scheme offers weekly payments of up to £195 per week for those living in London and £180 per week for those living outside London. The scheme multiplies this weekly amount by the number of weeks in a year to determine the annual value, making it worth up to £10,140 per year for London residents and £9,360 per year for those outside London.
 
-[Eligibility](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement_eligible.py) is that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
+[Eligibility](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/dfe/care_to_learn) is that the claimant is a parent under 20 years old, living in England, has children, is in eligible education (not higher education), and is not an apprentice.
 
 ### Energy Bills Support
 
