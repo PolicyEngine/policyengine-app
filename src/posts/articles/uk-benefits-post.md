@@ -883,13 +883,13 @@ PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://
  "data": [
    {
      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [0.00, 0.00, 0.01, 0.01, 0.01, 0.03, 0.06, 0.28, 0.20, 0.05],
+     "y": [0.000, 0.010, 0.010, 0.020, 0.030, 0.040, 0.060, 0.090, 0.100, 0.020],
      "type": "bar",
      "marker": {
        "color": "#2E5984"
      },
      "name": "Change in household income (%)",
-     "text": ["+0.00%", "+0.00%", "+0.01%", "+0.01%", "+0.01%", "+0.03%", "+0.06%", "+0.28%", "+0.20%", "+0.05%"],
+     "text": ["+0.00%", "+0.01%", "+0.01%", "+0.02%", "+0.03%", "+0.04%", "+0.06%", "+0.09%", "+0.10%", "+0.02%"],
      "textposition": "inside",
      "insidetextfont": {
        "family": "Roboto Serif",
@@ -918,10 +918,10 @@ PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://
      },
      "tickformat": ",.3%",
      "automargin": true,
-     "range": [0, 0.30],
-     "dtick": 0.05,
-     "tickvals": [0, 0.05, 0.10, 0.15, 0.20, 0.25],
-     "ticktext": ["+0.000%", "+0.050%", "+0.100%", "+0.150%", "+0.200%", "+0.250%"]
+     "range": [0, 0.12],
+     "dtick": 0.02,
+     "tickvals": [0, 0.02, 0.04, 0.06, 0.08, 0.10],
+     "ticktext": ["+0.000%", "+0.020%", "+0.040%", "+0.060%", "+0.080%", "+0.100%"]
    },
    "xaxis": {
      "title": "Income decile",
@@ -991,13 +991,13 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
  "data": [
    {
      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [1.5, 0.4, 0.7, 0.4, 0.2, 0.4, 0.3, 0.2, 0.2, 0.2],
+     "y": [0.5, 0.2, 0.2, 0.2, 0.1, 0.1, 0.1, 0.0, 0.1, 0.1],
      "type": "bar",
      "marker": {
        "color": "#2E5984"
      },
      "name": "Change in household income (%)",
-     "text": ["+1.5%", "+0.4%", "+0.7%", "+0.4%", "+0.2%", "+0.4%", "+0.3%", "+0.2%", "+0.2%", "+0.2%"],
+     "text": ["+0.5%", "+0.2%", "+0.2%", "+0.2%", "+0.1%", "+0.1%", "+0.1%", "+0.0%", "+0.1%", "+0.1%"],
      "textposition": "inside",
      "insidetextfont": {
        "family": "Roboto Serif",
@@ -1008,7 +1008,7 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
  ],
  "layout": {
    "title": {
-     "text": "Figure 9: Distributional impact of universal childcare entitlement by income decile",
+     "text": "Distributional impact of universal childcare by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1024,12 +1024,12 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
      "tickfont": {
        "family": "Roboto Serif"
      },
-     "tickformat": ",.1%",
+     "tickformat": ",.2%",
      "automargin": true,
-     "range": [0, 1.6],
-     "dtick": 0.2,
-     "tickvals": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4],
-     "ticktext": ["+0.0%", "+0.2%", "+0.4%", "+0.6%", "+0.8%", "+1.0%", "+1.2%", "+1.4%"]
+     "range": [0, 0.55],
+     "dtick": 0.1,
+     "tickvals": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5],
+     "ticktext": ["+0.00%", "+0.10%", "+0.20%", "+0.30%", "+0.40%", "+0.50%"]
    },
    "xaxis": {
      "title": "Income decile",
@@ -1054,7 +1054,7 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
        "y": -0.25,
        "xref": "paper",
        "yref": "paper",
-       "text": "Source: PolicyEngine",
+       "text": "Source: POLICY ENGINE",
        "showarrow": false,
        "font": {
          "family": "Roboto Serif",
@@ -1106,13 +1106,13 @@ PolicyEngine projects that extended childcare entitlement will cost [£2.6 billi
  "data": [
    {
      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [0.0, 0.0, 0.1, 0.2, 0.3, 0.6, 0.4, 1.1, 0.6, 0.2],
+     "y": [0.1, 0.1, 0.1, 0.3, 0.3, 0.4, 0.2, 0.3, 0.2, 0.0],
      "type": "bar",
      "marker": {
        "color": "#2E5984"
      },
      "name": "Change in household income (%)",
-     "text": ["+0.0%", "+0.0%", "+0.1%", "+0.2%", "+0.3%", "+0.6%", "+0.4%", "+1.1%", "+0.6%", "+0.2%"],
+     "text": ["+0.1%", "+0.1%", "+0.1%", "+0.3%", "+0.3%", "+0.4%", "+0.2%", "+0.3%", "+0.2%", "+0.0%"],
      "textposition": "inside",
      "insidetextfont": {
        "family": "Roboto Serif",
@@ -1123,7 +1123,7 @@ PolicyEngine projects that extended childcare entitlement will cost [£2.6 billi
  ],
  "layout": {
    "title": {
-     "text": "Figure 10: Distributional impact of extended childcare entitlement by income decile",
+     "text": "Figure: Distributional impact of extended childcare by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1141,10 +1141,10 @@ PolicyEngine projects that extended childcare entitlement will cost [£2.6 billi
      },
      "tickformat": ",.1%",
      "automargin": true,
-     "range": [0, 1.2],
-     "dtick": 0.2,
-     "tickvals": [0.0, 0.2, 0.4, 0.6, 0.8, 1.0],
-     "ticktext": ["+0.0%", "+0.2%", "+0.4%", "+0.6%", "+0.8%", "+1.0%"]
+     "range": [0, 0.5],
+     "dtick": 0.1,
+     "tickvals": [0.0, 0.1, 0.2, 0.3, 0.4],
+     "ticktext": ["+0.0%", "+0.1%", "+0.2%", "+0.3%", "+0.4%"]
    },
    "xaxis": {
      "title": "Income decile",
@@ -1215,13 +1215,13 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
  "data": [
    {
      "x": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-     "y": [0.4, 0.2, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0],
+     "y": [0.5, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0],
      "type": "bar",
      "marker": {
        "color": "#2E5984"
      },
      "name": "Change in household income (%)",
-     "text": ["+0.4%", "+0.2%", "+0.1%", "+0.1%", "+0.1%", "+0.1%", "+0.0%", "+0.0%", "+0.0%", "+0.0%"],
+     "text": ["+0.5%", "+0.1%", "+0.1%", "+0.1%", "+0.1%", "+0.0%", "+0.0%", "+0.0%", "+0.0%", "+0.0%"],
      "textposition": "inside",
      "insidetextfont": {
        "family": "Roboto Serif",
@@ -1232,7 +1232,7 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
  ],
  "layout": {
    "title": {
-     "text": "Figure 11: Distributional impact of targeted childcare entitlement by income decile",
+     "text": "Figure: Distributional impact of targeted chidlcare by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1248,12 +1248,12 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
      "tickfont": {
        "family": "Roboto Serif"
      },
-     "tickformat": ",.2%",
+     "tickformat": ",.1%",
      "automargin": true,
-     "range": [0, 0.45],
-     "dtick": 0.05,
-     "tickvals": [0.0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40],
-     "ticktext": ["+0.00%", "+0.05%", "+0.10%", "+0.15%", "+0.20%", "+0.25%", "+0.30%", "+0.35%", "+0.40%"]
+     "range": [0, 0.6],
+     "dtick": 0.1,
+     "tickvals": [0.0, 0.1, 0.2, 0.3, 0.4, 0.5],
+     "ticktext": ["+0.0%", "+0.1%", "+0.2%", "+0.3%", "+0.4%", "+0.5%"]
    },
    "xaxis": {
      "title": "Income decile",
