@@ -1,0 +1,42 @@
+[
+  {
+    "id": "nuffield",
+    "name": "The Nuffield Foundation",
+    "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzrpstsQHVxI0TDCGBj9S7MnVIXwveu9VKgQ&s",
+    "websiteUrl": "https://www.nuffieldfoundation.org/",
+    "description": "an independent charitable trust with a mission to advance social well-being."
+  },
+  {
+    "id": "arnold",
+    "name": "Arnold Ventures",
+    "logoUrl": "https://www.arnoldventures.org//static/img/logo-on-light.svg",
+    "websiteUrl": "https://arnoldventures.org/",
+    "description": "a philanthropy dedicated to tackling some of the most pressing problems in the United States."
+  },
+  {
+    "id": "neo",
+    "name": "Neo Philanthropy",
+    "logoUrl": "https://neophilanthropy.org/wp-content/uploads/2017/08/NEO-Philanthropy-Logo.png",
+    "websiteUrl": "https://www.neophilanthropy.org/",
+    "description": "a funder intermediary with more than 40 years of experience strengthening social justice movements."
+  },
+  {
+    "id": "myfriendben",
+    "name": "MyFriendBen",
+    "logoUrl": "https://www.myfriendben.org/wp-content/uploads/2024/05/MFB-Horizontal-color-nobk.webp",
+    "websiteUrl": "https://www.myfriendben.org/",
+    "description": "a benefit eligibility screener that provides households with a comprehensive understanding of the programs available to them."
+  },
+  {
+    "id": "huff-fund-for-humanity",
+    "name": "Gerald Huff Fund for Humanity",
+    "logoUrl": "https://fundforhumanity.org/wp-content/uploads/2020/05/FFH-LOGO.png",
+    "websiteUrl": "https://www.fundforhumanity.org/",
+    "description": "a non-profit organization that was created in 2019 to promulgate the message of Gerald Huff, ardent proponent of Universal Basic Income as a transitional solution to the existential threat of technological unemployment."
+  },
+  {
+    "id": "corvus-oaks",
+    "name": "Corvus Oaks Foundation",
+    "description": "a new private foundation currently exploring several issues for future engagement and collaboration."
+  }
+]

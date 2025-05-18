@@ -1,0 +1,65 @@
+[
+  {
+    "funder": "nuffield",
+    "title": "Enhancing, localising and democratising tax-benefit policy analysis",
+    "projectUrl": "https://www.nuffieldfoundation.org/project/enhancing-localising-and-democratising-tax-benefit-policy-analysis",
+    "amount": "£251,296",
+    "awardDate": "September 2024",
+    "description": "Supporting the development of expanded program coverage and geographic detail in PolicyEngine UK, as well as a redesigned interface."
+  },
+  {
+    "funder": "arnold",
+    "title": "Labor supply responses",
+    "projectUrl": "https://policyengine.org/us/research/us-behavioral-responses",
+    "amount": "$85,200",
+    "awardDate": "December 2023",
+    "description": "Supporting the development of labor supply responses in PolicyEngine US."
+  },
+  {
+    "funder": "arnold",
+    "title": "SALT and AMT policy calculator",
+    "projectUrl": "https://policyengine.org/us/research/introducing-salternative",
+    "amount": "$94,800",
+    "awardDate": "July 2023",
+    "description": "Supporting the development of specialized policy calculators for State and Local Tax (SALT) deductions and Alternative Minimum Tax (AMT) policies."
+  },
+  {
+    "funder": "arnold",
+    "title": "State & congressional district policy breakdowns",
+    "projectUrl": "https://arnoldventures.org/",
+    "amount": "$248,525",
+    "awardDate": "May 2025",
+    "description": "Supporting the development of detailed policy impact analysis at the state and congressional district levels."
+  },
+  {
+    "funder": "neo",
+    "title": "PolicyEngine US",
+    "projectUrl": "https://policyengine.org/us/research/neo-philanthropy",
+    "amount": "$200,000",
+    "awardDate": "October 2024",
+    "description": "General operating support."
+  }
+  {
+    "funder": "myfriendben",
+    "title": "MyFriendBen",
+    "projectUrl": "https://www.myfriendben.org/",
+    "amount": "$300,000",
+    "awardDate": "October 2024",
+    "description": "Supporting the development and maintenance of the PolicyEngine rules engine and API, powering state and federal programs in MyFriendBen."
+  },
+  {
+    "funder": "huff-fund-for-humanity",
+    "title": "Gerald Huff Fund for Humanity",
+    "projectUrl": "https://fundforhumanity.org/",
+    "amount": "$50,000",
+    "awardDate": "January 2024",
+    "description": "General operating support."
+  },
+  {
+    "funder": "corvus-oaks",
+    "title": "Corvus Oaks Foundation",
+    "amount": "$25,000",
+    "awardDate": "September 2024",
+    "description": "Supporting travel expenses."
+  }
+]
