@@ -7,11 +7,12 @@ import { founders, staff, advisors } from "../data/staff.js";
 import useDisplayCategory from "../hooks/useDisplayCategory.js";
 import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import useCountryId from "../hooks/useCountryId.js";
 
 export default function About() {
   const location = useLocation();
   const pathParts = location.pathname.split("/");
-  const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
+  const countryId = useCountryId()
 
   Object.keys(founders).map((founder) => {
     return founder;
