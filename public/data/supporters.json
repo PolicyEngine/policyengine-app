@@ -1,7 +1,7 @@
 [
   {
     "id": "nuffield",
-    "name": "The Nuffield Foundation",
+    "name": "Nuffield Foundation",
     "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzrpstsQHVxI0TDCGBj9S7MnVIXwveu9VKgQ&s",
     "websiteUrl": "https://www.nuffieldfoundation.org/",
     "description": "an independent charitable trust with a mission to advance educational opportunity and social well-being."
@@ -48,7 +48,7 @@
   },
   {
     "id": "crfb",
-    "name": "The Committee for a Responsible Federal Budget",
+    "name": "Committee for a Responsible Federal Budget",
     "logoUrl": "https://www.guidestar.org/ViewEdoc.aspx?eDocId=10734069&approved=True",
     "websiteUrl": "https://www.crfb.org/",
     "description": "a nonpartisan, non-profit organization committed to educating the public on issues with significant fiscal policy impact."

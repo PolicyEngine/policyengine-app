@@ -26,7 +26,6 @@
   {
     "supporter": "arnold",
     "title": "State & congressional district policy breakdowns",
-    "projectUrl": "https://arnoldventures.org/",
     "amount": "$248,525",
     "awardDate": "May 2025",
     "description": "Supporting the development of detailed policy impact analysis at the state and congressional district levels."
@@ -42,7 +41,6 @@
   {
     "supporter": "myfriendben",
     "title": "Benefit eligibility API",
-    "projectUrl": "https://www.myfriendben.org/",
     "amount": "$300,000",
     "awardDate": "October 2024",
     "description": "Supporting the development and maintenance of the PolicyEngine rules engine and API, powering state and federal programs in MyFriendBen."
@@ -50,7 +48,6 @@
   {
     "supporter": "myfriendben",
     "title": "Premium tax credit modeling",
-    "projectUrl": "https://www.myfriendben.org/",
     "amount": "$25,000",
     "awardDate": "January 2025",
     "description": "Supporting the addition of Affordable Care Act premium tax credit rules to the PolicyEngine API."
@@ -100,7 +97,7 @@
   },
   {
     "supporter": "dylan-hirsch-shell",
-    "title": "Enhanced Current Population Survey",
+    "title": "General operating support",
     "projectUrl": "https://policyengine.org/us/research/enhanced-cps-beta",
     "amount": "$30,000",
     "awardDate": "December 2022",

@@ -14,7 +14,48 @@ import style from "../style";
 
 /* ---------- helpers ---------- */
 
-const parseDate = (d) => new Date(d); // 'September 2024' → Date
+// Parse date string (e.g., "September 2024") into a Date object
+const parseDate = (dateStr) => {
+  if (!dateStr) return new Date(0);
+  try {
+    // Handle Month Year format (e.g., "September 2024")
+    const parts = dateStr.split(" ");
+    if (parts.length === 2) {
+      const monthNames = [
+        "january",
+        "february",
+        "march",
+        "april",
+        "may",
+        "june",
+        "july",
+        "august",
+        "september",
+        "october",
+        "november",
+        "december",
+      ];
+      const month = monthNames.indexOf(parts[0].toLowerCase());
+
+      if (month !== -1) {
+        return new Date(parseInt(parts[1]), month);
+      }
+    }
+    // If not in Month Year format, try standard Date parsing
+    return new Date(dateStr);
+  } catch (e) {
+    console.error("Error parsing date:", e);
+    return new Date(0);
+  }
+};
+
+// Parse amount string to a numeric value
+const parseAmount = (amountStr) => {
+  if (!amountStr) return 0;
+  // Extract numeric value, removing currency symbols and commas
+  const numericValue = amountStr.replace(/[£$,]/g, "");
+  return parseFloat(numericValue) || 0;
+};
 
 /* ---------- sub-components ---------- */
 
@@ -127,7 +168,7 @@ export default function Supporters() {
 
     Promise.all([
       fetchJSON("/data/supporters.json"),
-      fetchJSON("/data/supportedProjects.json"),
+      fetchJSON("/data/supported-projects.json"),
     ])
       .then(([s, p]) => {
         setSupporters(s);
@@ -178,14 +219,20 @@ export default function Supporters() {
     return o;
   }, {});
 
+  // Calculate total funding by supporter
+  const calculateTotalFunding = (supporterId) => {
+    const supporterProjects = projectsBySupporter[supporterId] || [];
+    return supporterProjects.reduce(
+      (sum, project) => sum + parseAmount(project.amount),
+      0,
+    );
+  };
+
+  // Sort supporters by total funding amount (descending)
   const sortedSupporters = [...supporters].sort((a, b) => {
-    const latestA = projectsBySupporter[a.id][0]
-      ? parseDate(projectsBySupporter[a.id][0].awardDate)
-      : new Date(0);
-    const latestB = projectsBySupporter[b.id][0]
-      ? parseDate(projectsBySupporter[b.id][0].awardDate)
-      : new Date(0);
-    return latestB - latestA;
+    const totalA = calculateTotalFunding(a.id);
+    const totalB = calculateTotalFunding(b.id);
+    return totalB - totalA;
   });
 
   return (
