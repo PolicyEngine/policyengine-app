@@ -82,7 +82,7 @@ export default function Jobs() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/data/jobOpenings.json")
+    fetch("/data/job-openings.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch job openings");
