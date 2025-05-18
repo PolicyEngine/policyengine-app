@@ -33,15 +33,15 @@
   },
   {
     "funder": "neo",
-    "title": "PolicyEngine US",
+    "title": "General operating support (Economic Mobility & Opportunity Fund)",
     "projectUrl": "https://policyengine.org/us/research/neo-philanthropy",
     "amount": "$200,000",
     "awardDate": "October 2024",
     "description": "General operating support."
-  }
+  },
   {
     "funder": "myfriendben",
-    "title": "MyFriendBen",
+    "title": "Benefit eligibility API",
     "projectUrl": "https://www.myfriendben.org/",
     "amount": "$300,000",
     "awardDate": "October 2024",
@@ -49,7 +49,7 @@
   },
   {
     "funder": "huff-fund-for-humanity",
-    "title": "Gerald Huff Fund for Humanity",
+    "title": "General operating support",
     "projectUrl": "https://fundforhumanity.org/",
     "amount": "$50,000",
     "awardDate": "January 2024",

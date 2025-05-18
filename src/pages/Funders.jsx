@@ -68,35 +68,56 @@ function FunderCard({ funder, projects }) {
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}
       >
-        {funder.logoUrl && (
-          <a
-            href={funder.websiteUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginRight: "20px" }}
-          >
-            <img
-              src={funder.logoUrl}
-              alt={`${funder.name} logo`}
-              style={{
-                width: "200px",
-                height: "80px",
-                objectFit: "contain",
-                objectPosition: "left center",
-              }}
-            />
-          </a>
-        )}
-        <div>
-          <p style={{ margin: 0 }}>
+        {funder.logoUrl ? (
+          funder.websiteUrl ? (
             <a
               href={funder.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: style.colors.BLUE, fontWeight: "bold" }}
+              style={{ marginRight: "20px" }}
             >
-              {funder.name}
+              <img
+                src={funder.logoUrl}
+                alt={`${funder.name} logo`}
+                style={{
+                  width: "200px",
+                  height: "80px",
+                  objectFit: "contain",
+                  objectPosition: "left center",
+                }}
+              />
             </a>
+          ) : (
+            <div style={{ marginRight: "20px" }}>
+              <img
+                src={funder.logoUrl}
+                alt={`${funder.name} logo`}
+                style={{
+                  width: "200px",
+                  height: "80px",
+                  objectFit: "contain",
+                  objectPosition: "left center",
+                }}
+              />
+            </div>
+          )
+        ) : (
+          <div style={{ width: "200px", marginRight: "20px" }}></div>
+        )}
+        <div>
+          <p style={{ margin: 0 }}>
+            {funder.websiteUrl ? (
+              <a
+                href={funder.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: style.colors.BLUE, fontWeight: "bold" }}
+              >
+                {funder.name}
+              </a>
+            ) : (
+              <span style={{ fontWeight: "bold" }}>{funder.name}</span>
+            )}
             {" is "}
             {funder.description}
           </p>
