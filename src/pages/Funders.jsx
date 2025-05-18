@@ -124,7 +124,7 @@ function FunderCard({ funder, projects }) {
         </div>
       </div>
 
-      <h3>Funded Projects</h3>
+      <h3>Funded projects</h3>
       {projects.map((project, index) => (
         <FundedProject key={index} project={project} funder={funder} />
       ))}
@@ -241,7 +241,7 @@ export default function Funders() {
       <div>
         <Header />
         <PageHeader
-          title="Our Funders"
+          title="Our funders"
           backgroundColor={style.colors.BLUE_98}
         />
         <Section backgroundColor={style.colors.WHITE}>
@@ -257,7 +257,7 @@ export default function Funders() {
       <div>
         <Header />
         <PageHeader
-          title="Our Funders"
+          title="Our funders"
           backgroundColor={style.colors.BLUE_98}
         />
         <Section backgroundColor={style.colors.WHITE}>
@@ -271,7 +271,7 @@ export default function Funders() {
   return (
     <div>
       <Header />
-      <PageHeader title="Our Funders" backgroundColor={style.colors.BLUE_98}>
+      <PageHeader title="Our funders" backgroundColor={style.colors.BLUE_98}>
         <p style={{ margin: 0 }}>
           PolicyEngine gratefully acknowledges the support of these funders who
           make our work possible.
