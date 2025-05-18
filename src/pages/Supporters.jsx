@@ -144,7 +144,6 @@ const SupporterCard = ({ supporter, projects }) => (
     </div>
 
     {/* Projects */}
-    {projects.length > 0 && <h3>Supported projects</h3>}
     {projects.map((p, i) => (
       <SupportedProject project={p} key={i} />
     ))}
