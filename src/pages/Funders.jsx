@@ -163,9 +163,77 @@ export default function Funders() {
     fetchData();
   }, []);
 
-  // Group projects by funder
+  // Parse amount string to a numeric value (for sorting)
+  const parseAmount = (amountStr) => {
+    if (!amountStr) return 0;
+    // Extract numeric value, removing currency symbols and commas
+    const numericValue = amountStr.replace(/[£$,]/g, "");
+    return parseFloat(numericValue) || 0;
+  };
+
+  // Calculate total funding by funder
+  const calculateTotalFunding = (funderId) => {
+    const projects = fundedProjects.filter(
+      (project) => project.funder === funderId,
+    );
+    return projects.reduce(
+      (sum, project) => sum + parseAmount(project.amount),
+      0,
+    );
+  };
+
+  // Parse date string to a Date object (for sorting)
+  const parseDate = (dateStr) => {
+    if (!dateStr) return new Date(0);
+    // Handle different date formats
+    try {
+      // Month Year format (e.g., "September 2024")
+      const parts = dateStr.split(" ");
+      if (parts.length === 2) {
+        const month = [
+          "january",
+          "february",
+          "march",
+          "april",
+          "may",
+          "june",
+          "july",
+          "august",
+          "september",
+          "october",
+          "november",
+          "december",
+        ].indexOf(parts[0].toLowerCase());
+
+        if (month !== -1) {
+          return new Date(parseInt(parts[1]), month);
+        }
+      }
+      // If not in Month Year format, try standard Date parsing
+      return new Date(dateStr);
+    } catch (e) {
+      return new Date(0);
+    }
+  };
+
+  // Sort funders by total funding amount (descending)
+  const sortedFunders = [...funders].sort((a, b) => {
+    const totalA = calculateTotalFunding(a.id);
+    const totalB = calculateTotalFunding(b.id);
+    return totalB - totalA;
+  });
+
+  // Group projects by funder and sort by date (most recent first)
   const getProjectsByFunder = (funderId) => {
-    return fundedProjects.filter((project) => project.funder === funderId);
+    const projects = fundedProjects.filter(
+      (project) => project.funder === funderId,
+    );
+
+    return projects.sort((a, b) => {
+      const dateA = parseDate(a.awardDate);
+      const dateB = parseDate(b.awardDate);
+      return dateB - dateA; // Sort in descending order (most recent first)
+    });
   };
 
   if (isLoading) {
@@ -217,7 +285,7 @@ export default function Funders() {
           and evidence-based policy analysis.
         </p>
 
-        {funders.map((funder) => (
+        {sortedFunders.map((funder) => (
           <FunderCard
             key={funder.id}
             funder={funder}
