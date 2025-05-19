@@ -75,12 +75,22 @@ const parseDate = (dateStr) => {
   }
 };
 
-// Parse amount string to a numeric value
+// Parse amount string to a numeric value in USD
 const parseAmount = (amountStr) => {
   if (!amountStr) return 0;
+  
+  // Conversion rate (GBP to USD)
+  const GBP_TO_USD = 1.27; // Exchange rate as of May 2025
+  
+  // Check if amount is in GBP
+  const isGBP = amountStr.includes('£');
+  
   // Extract numeric value, removing currency symbols and commas
   const numericValue = amountStr.replace(/[£$,]/g, "");
-  return parseFloat(numericValue) || 0;
+  const parsedValue = parseFloat(numericValue) || 0;
+  
+  // Convert to USD if amount is in GBP
+  return isGBP ? parsedValue * GBP_TO_USD : parsedValue;
 };
 
 /* ---------- sub-components ---------- */
