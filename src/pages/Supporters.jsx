@@ -18,22 +18,22 @@ import Plot from "react-plotly.js";
 // Calculate total funding by year
 const calculateFundingByYear = (projects) => {
   const fundingByYear = {};
-  
+
   projects.forEach((project) => {
     // Extract year from award date
     const awardDate = parseDate(project.awardDate);
     const year = awardDate.getFullYear();
-    
+
     // Parse amount
     const amount = parseAmount(project.amount);
-    
+
     // Add to year total
     if (!fundingByYear[year]) {
       fundingByYear[year] = 0;
     }
     fundingByYear[year] += amount;
   });
-  
+
   // Convert to sorted array of {year, amount} objects
   return Object.entries(fundingByYear)
     .map(([year, amount]) => ({ year: parseInt(year), amount }))
@@ -78,80 +78,90 @@ const parseDate = (dateStr) => {
 // Parse amount string to a numeric value in USD
 const parseAmount = (amountStr) => {
   if (!amountStr) return 0;
-  
+
   // Conversion rate (GBP to USD)
   const GBP_TO_USD = 1.27; // Exchange rate as of May 2025
-  
+
   // Check if amount is in GBP
-  const isGBP = amountStr.includes('£');
-  
+  const isGBP = amountStr.includes("£");
+
   // Extract numeric value, removing currency symbols and commas
   const numericValue = amountStr.replace(/[£$,]/g, "");
   const parsedValue = parseFloat(numericValue) || 0;
-  
+
   // Convert to USD if amount is in GBP
   return isGBP ? parsedValue * GBP_TO_USD : parsedValue;
 };
 
 /* ---------- sub-components ---------- */
-
+// eslint-disable-next-line
 const FundingByYearChart = ({ projects }) => {
   const fundingData = calculateFundingByYear(projects);
-  
+
   // Skip rendering if no data
   if (fundingData.length === 0) return null;
-  
+
   // Prepare data for Plotly
-  const years = fundingData.map(item => item.year.toString());
-  const amounts = fundingData.map(item => item.amount);
-  
+  const years = fundingData.map((item) => item.year.toString());
+  const amounts = fundingData.map((item) => item.amount);
+
   // Create colors array - 2025 is shaded to indicate partial year
   const currentYear = new Date().getFullYear();
-  const colors = years.map(year => parseInt(year) === currentYear ? 
-    style.colors.GRAY : style.colors.BLUE);
-  
+  const colors = years.map((year) =>
+    parseInt(year) === currentYear ? style.colors.GRAY : style.colors.BLUE,
+  );
+
   // Format hover text with currency
   const formatCurrency = (value) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
     }).format(value);
   };
-  
+
   // Calculate total funding
   const totalFunding = amounts.reduce((sum, amount) => sum + amount, 0);
-  
+
   // Format text labels to display on the bars
-  const textLabels = amounts.map(amount => formatCurrency(amount));
-  
+  const textLabels = amounts.map((amount) => formatCurrency(amount));
+
   return (
-    <div style={{ width: '100%', marginBottom: 40 }}>
-      <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-        <div style={{ flex: '1 1 300px' }}>
+    <div style={{ width: "100%", marginBottom: 40 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "20px",
+        }}
+      >
+        <div style={{ flex: "1 1 300px" }}>
           <h2 style={{ margin: 0 }}>At a glance</h2>
-          <p style={{ margin: '12px 0 0 0' }}>
-            PolicyEngine has received {formatCurrency(totalFunding)} in funding across {years.length} years.
-            {years.includes(currentYear.toString()) && " 2025 indicates funding received so far this year."}
+          <p style={{ margin: "12px 0 0 0" }}>
+            PolicyEngine has received {formatCurrency(totalFunding)} in funding
+            across {years.length} years.
+            {years.includes(currentYear.toString()) &&
+              " 2025 indicates funding received so far this year."}
           </p>
         </div>
-        <div style={{ flex: '2 1 600px' }}>
+        <div style={{ flex: "2 1 600px" }}>
           <Plot
             data={[
               {
-                type: 'bar',
+                type: "bar",
                 x: years,
                 y: amounts,
                 marker: {
                   color: colors,
                 },
                 text: textLabels,
-                textposition: 'auto',
+                textposition: "auto",
                 textfont: {
                   size: 12,
-                  color: 'white',
+                  color: "white",
                 },
-                hoverinfo: 'text',
+                hoverinfo: "text",
                 hovertext: textLabels,
               },
             ]}
@@ -159,18 +169,18 @@ const FundingByYearChart = ({ projects }) => {
               height: 400,
               margin: { t: 10, b: 50, l: 60, r: 10 },
               xaxis: {
-                title: '',
+                title: "",
                 tickvals: years,
                 ticktext: years,
               },
               yaxis: {
-                title: '',
-                tickformat: '$,.0f',
+                title: "",
+                tickformat: "$,.0f",
               },
               bargap: 0.3,
               autosize: true,
             }}
-            style={{ width: '100%' }}
+            style={{ width: "100%" }}
             config={{ responsive: true, displayModeBar: false }}
           />
         </div>
@@ -368,8 +378,9 @@ export default function Supporters() {
 
       <Section backgroundColor={style.colors.WHITE}>
         {/* Funding by Year Chart, hidden for now */}
+        {/* eslint-disable-next-line */}
         {/*<FundingByYearChart projects={projects} />*/}
-        
+
         {sortedSupporters.map((s) => (
           <SupporterCard
             supporter={s}
