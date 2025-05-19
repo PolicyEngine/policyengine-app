@@ -290,11 +290,11 @@ We [estimate](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.con
 
 #### Work status
 
-Eligible individuals must be either employed or about to start employment. Non-working partners may [qualify](https://www.legislation.gov.uk/uksi/2022/1134/regulation/11A) if they receive: incapacity benefit, severe disablement allowance, carer's allowance, limited capability for work benefit, or contribution-based employment and support allowance.
+[To be eligible](https://www.legislation.gov.uk/uksi/2022/1134/regulation/11A), single parents must be working. For couples, both partners must be in employment—unless one partner receives a qualifying disability benefit, such as incapacity benefit, severe disablement allowance, carer’s allowance, limited capability for work benefit, or contribution-based employment and support allowance (source).
 
 #### Income requirements
 
-Minimum earnings thresholds (per 3 months) vary by age:
+The UK restricts eligibility to households where each partner earns, through employment or self-employment, at least a minimum amount over a 3-month period, depending on their age:
 
 | Age group            | Minimum earnings |
 | :------------------- | :--------------- |
@@ -302,40 +302,16 @@ Minimum earnings thresholds (per 3 months) vary by age:
 | 18-20                | £1,788           |
 | Under 18/Apprentices | £1,331           |
 
-These thresholds are based on national minimum wage calculations for 16 hours per week. The adjusted net income must not exceed [£100,000](https://www.legislation.gov.uk/uksi/2015/448/regulation/15#commentary-key-e27c923eee152accd495af8425536e29) per year.
-
-### Implementation
-
-The extended childcare entitlement programme is modelled through several interconnected components:
-
-#### Income assessment
-
-We [calculate](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions) total eligible income from specified sources and apply minimum wage thresholds based on work hours. The following table shows examples of how hours entitlement varies by child age:
-
-| Child age | Is compulsory school age | Weekly hours entitlement |
-| :-------- | :----------------------- | :----------------------- |
-| 1         | False                    | 15                       |
-| 4         | False                    | 30                       |
-| 5         | True                     | 0                        |
-
-#### Work condition verification
-
-This component verifies employment status for all applicants and manages various family situations. For single parents, the system requires them to be working to qualify. For couples, either both partners must be working, or one must be working while the partner qualifies for disability benefits. The following table shows examples of how income eligibility is assessed:
-
-| Adult age | Quarterly earnings | Is over £100k | Meets minimum earnings | Is income eligible |
-| :-------- | :----------------- | :------------ | :--------------------- | :----------------- |
-| 22        | £2,500             | False         | True                   | True               |
-| 19        | £1,500             | False         | False                  | False              |
-| 35        | £10,000            | True          | True                   | False              |
+These thresholds are based on working 16 hours per week at the applicable national minimum wage. Adjusted net income must also not exceed [£100,000](https://www.legislation.gov.uk/uksi/2015/448/regulation/15#commentary-key-e27c923eee152accd495af8425536e29) per year. In PolicyEngine’s childcare model, we [calculate](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/conditions) eligible income from specified sources and apply these minimum earnings thresholds accordingly.
 
 #### Entitlement calculation
 
-We [determine](<(https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement)>) the weekly hours based on the child's age and applies the appropriate funding rates to calculate the total annual entitlement value. The following table shows examples of entitlement calculation based on age and funding rates:
+We [determine](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement) the weekly hours based on the child's age and applies the appropriate funding rates to calculate the total annual entitlement value. The following table shows examples of entitlement calculation based on age and funding rates:
 
-| Child age | Weekly hours | Funding rate | Annual entitlement |
-| :-------- | :----------- | :----------- | :----------------- |
-| 2         | 15           | £8.28        | £4,719.6           |
-| 3         | 30           | £5.88        | £6,703.2           |
+| Child age | Weekly hours | Funding rate (2025) | Annual entitlement (2025) |
+| :-------- | :----------- | :------------------ | :------------------------ |
+| 2         | 15           | £8.3                | £4,719.6                  |
+| 3         | 30           | £5.9                | £6,703.2                  |
 
 ### Economic analysis
 
