@@ -2,13 +2,13 @@
 
 This report provides an analysis of childcare programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare calculations are performed within the PolicyEngine UK microsimulation model.
 
-The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: tax-free childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
+The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
 The following table compares PolicyEngine’s estimates of the budgetary impact of the main childcare programmes with government-reported figureswhich are reported by fiscal year.
 
 | Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                        | PolicyEngine estimate 2024 (£bn)                                                                                                                        | Government report 2024 (£bn)                                                                                  | Relative error in estimate 2024 (%) |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| Tax-free childcare  | [0.7](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972)                          | [0.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892)                          | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | -0.7                                |
+| Tax-Free Childcare  | [0.7](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972)                          | [0.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892)                          | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | -0.7                                |
 | Extended childcare  | [4.4](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80613&uk_local_areas_beta=true) | [2.6](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | 3.8                                 |
 | Universal childcare | [1.8](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82975)                          | [1.6](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887)                          | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -5.9                                |
 | Targeted childcare  | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=82974)                          | [0.5](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888)                          | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -10.0                               |
@@ -17,14 +17,14 @@ The following table compares PolicyEngine’s estimates of programme caseloads f
 
 | Programme           | PolicyEngine estimate 2025 (thousands)                                       | PolicyEngine estimate 2024 (thousands)                                       | Government report 2024 (thousands)                                                                            | Relative error in estimate 2024 (%) |
 | ------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| Tax-free childcare  | [740](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) | [715](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) | [660](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | 8.3                                 |
+| Tax-Free Childcare  | [740](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) | [715](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) | [660](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | 8.3                                 |
 | Extended childcare  | [970](https://gist.github.com/vahid-ahmadi/bf773434c3539f9ab0bf178ddbbe503d) | [710](https://gist.github.com/vahid-ahmadi/bf773434c3539f9ab0bf178ddbbe503d) | [740](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -4.1                                |
 | Universal childcare | [520](https://gist.github.com/vahid-ahmadi/ce71205cbd3a84db282cc452aa746e4d) | [460](https://gist.github.com/vahid-ahmadi/ce71205cbd3a84db282cc452aa746e4d) | [490](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -6.1                                |
 | Targeted childcare  | [100](https://gist.github.com/vahid-ahmadi/184b2cda84c0f87d68498317696a434f) | [115](https://gist.github.com/vahid-ahmadi/184b2cda84c0f87d68498317696a434f) | [130](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | -11.5                               |
 
-## Tax-free childcare
+## Tax-Free Childcare
 
-[Tax-free childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) is a government scheme administered by HM Revenue and Customs (HMRC) that provides funding for working families with childcare expenses. For every £8 paid into a childcare account, the government adds £2. The programme allocates up to £2,000 per year for each eligible child. For disabled children, this allocation increases to £4,000 per year.
+[Tax-Free Childcare](https://www.gov.uk/tax-free-childcare?step-by-step-nav=d78aeaf6-1747-4d72-9619-f16efb4dd89d) is a government scheme administered by HM Revenue and Customs (HMRC) that provides funding for working families with childcare expenses. For every £8 paid into a childcare account, the government adds £2. The programme allocates up to £2,000 per year for each eligible child. For disabled children, this allocation increases to £4,000 per year.
 
 ### Eligibility requirements
 
@@ -50,15 +50,15 @@ Eligible individuals must be either employed, self-employed, or on qualifying le
 
 #### Programme interactions
 
-Tax-Free Childcare is compatible with the extended childcare entitlements and universal childcare entitlements, but cannot be [combined](https://www.legislation.gov.uk/ukdsi/2015/9780111127063) with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
+Tax-Free Childcare is compatible with the extended childcare entitlements and universal childcare entitlements, but cannot be [combined](https://www.legislation.gov.uk/ukdsi/2015/9780111127063) with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-Free Childcare programme through parameter definitions and calculations.
 
 ### Implementation
 
-The tax-free childcare programme is modelled through several interconnected components:
+The Tax-Free Childcare programme is modelled through several interconnected components:
 
 #### Age determination
 
-The UK limits tax-free childcare to children below age 11, or 16 if they are disabled. We [determine](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) eligibility by checking each child’s age and disability status within the household.
+The UK limits Tax-Free Childcare to children below age 11, or 16 if they are disabled. We [determine](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) eligibility by checking each child’s age and disability status within the household.
 
 #### Income assessment
 
@@ -72,7 +72,7 @@ After identifying eligible children, we evaluate if the parents meet the income 
 
 #### Programme compatibility
 
-We [check](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_program_eligible.py) if the household receives any benefits that would make them ineligible for Tax-free childcare. The following table shows examples of programme compatibility:
+We [check](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_program_eligible.py) if the household receives any benefits that would make them ineligible for Tax-Free Childcare. The following table shows examples of programme compatibility:
 
 | Receives working tax credit | Receives child tax credit | Receives universal credit | Is eligible for the programme |
 | :-------------------------- | :------------------------ | :------------------------ | :---------------------------- |
@@ -106,7 +106,7 @@ This decline at £100,000 creates an earnings dead zone, which is the width of t
 
 #### Budgetary and distributional impacts
 
-PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £0.7 billion on tax-free childcare in 2025. Figure below shows the distributional impact of this programme.
+PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=82972) that the UK government will spend £0.7 billion on Tax-Free Childcare in 2025. Figure below shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -206,7 +206,7 @@ PolicyEngine [projects](https://policyengine.org/uk/policy?reform=1&focus=policy
 }
 ```
 
-Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) in each household income decile receiving tax-free childcare in 2025.
+Figure below shows [the number of children](https://gist.github.com/vahid-ahmadi/02e479aaf8cd151036915597097a81b7) in each household income decile receiving Tax-Free Childcare in 2025.
 
 ```plotly
 {
@@ -1129,7 +1129,7 @@ Our calibration targets both aggregate spending and caseload figures for each pr
 
 | Programme           | Spending target (£ billions)                                                                                  | Caseload target (thousands)                                                                                   |
 | :------------------ | :------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------ |
-| Tax-free childcare  | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | [660](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  |
+| Tax-Free Childcare  | [0.6](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  | [660](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024)                  |
 | Extended childcare  | [2.5](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | [740](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) |
 | Targeted childcare  | [0.6](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | [130](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) |
 | Universal childcare | [1.7](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) | [490](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) |
@@ -1144,7 +1144,7 @@ The optimised take-up rates are [integrated](https://github.com/PolicyEngine/pol
 
 | Programme           | Take-up Rate |
 | :------------------ | :----------- |
-| Tax-free childcare  | 0.58         |
+| Tax-Free Childcare  | 0.58         |
 | Extended childcare  | 0.81         |
 | Targeted childcare  | 0.60         |
 | Universal childcare | 0.56         |
