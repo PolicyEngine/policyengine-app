@@ -2,7 +2,7 @@
 
 This report provides an analysis of childcare programmes in the UK, examining how they are modelled in PolicyEngine UK and their distributional impacts across different household types and income groups. Each programme component is linked to its implementation in the codebase, making this report a technical reference for understanding how childcare calculations are performed within the PolicyEngine UK microsimulation model.
 
-The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
+The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: Tax-Free Childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. For a complete assessment of eligibility criteria, please refer to the official government sources linked for each programme throughout this report. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
 The following table compares PolicyEngine’s estimates of the budgetary impact of the main childcare programmes with government-reported figureswhich are reported by fiscal year.
 
@@ -759,40 +759,21 @@ We [estimate](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.pol
 
 ## Targeted childcare entitlement
 
-[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), provides 15 hours of free childcare per week for eligible [2-year-old](https://www.legislation.gov.uk/uksi/2014/2147/regulation/3/made) children. The entitlement totals up to [570 hours](https://www.legislation.gov.uk/uksi/2014/2147/regulation/4/made) annually and is delivered across 38 weeks.
+[The targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), administered by the Department for Education (DfE), offers 15 hours of free childcare per week for eligible [2-year-old](https://www.legislation.gov.uk/uksi/2014/2147/regulation/3/made) children in England. The entitlement provides up to [570 hours](https://www.legislation.gov.uk/uksi/2014/2147/regulation/4/made) hours per year, delivered over 38 weeks.
 
-### Implementation
+#### Eligibility assessment
 
-The targeted childcare entitlement programme is implemented through several interconnected components:
-
-#### Benefit-based eligibility assessment
-
-Firstly, we [check](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py) that that the family resides in England. Secondly, we verify that the family receives at least one of the qualifying benefits including Income Support, Income-based JSA, Income-related ESA, and Pension Credit (Guarantee Credit).
-
-#### Benefit eligibility
-
-Benefit eligibility is implemented in separate files for different benefit programmes. This component performs two essential checks: it first [verifies](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) Universal Credit receipt by confirming that the benefit amount is greater than zero, and then it compares the family's earned income against the £15,400 annual threshold to determine if they qualify based on their income level.
-
-#### Tax Credits criteria
-
-The Tax Credits criteria evaluates eligibility for families receiving tax credits in two steps. First, it [checks](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) whether the family is receiving either Child Tax Credit or Working Tax Credit (or both), as either type of tax credit can potentially qualify them for the targeted childcare entitlement. Second, it compares the family's applicable income against the £16,190 annual threshold to determine if they meet the income requirements for this support. The following table demonstrates how tax credit criteria are assessed for targeted childcare entitlement:
-
-| Tax Credit type    | Credit amount | Applicable income | Below £16,190 threshold | Meets TC criteria |
-| :----------------- | :------------ | :---------------- | :---------------------- | :---------------- |
-| Child Tax Credit   | £2,000        | £15,000           | Yes                     | Yes               |
-| Working Tax Credit | £1,000        | £16,500           | No                      | No                |
-| Both               | £3,000        | £14,000           | Yes                     | Yes               |
-| None               | £0            | £10,000           | Yes                     | No                |
+[Eligibility](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py) for the targeted childcare entitlement is based on receipt of one or more qualifying benefits. These include Income Support, income-based Jobseeker’s Allowance (JSA), income-related Employment and Support Allowance (ESA), and the guaranteed element of Pension Credit. Households may also [qualify](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) if they receive Universal Credit and have earned income not exceeding £15,400 a year after tax (excluding benefit payments), or if they receive Child Tax Credit (but not Working Tax Credit) with a gross annual income not exceeding £16,190.
 
 #### Entitlement calculation
 
-For eligible children, we [apply](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) the entitlement hours which is up to 570 annually, delivered as 15 hours per week for 38 weeks. Then, we multiply these hours by the appropriate funding rate based on the child's age, which is £8.28 per hour for 2-year-olds in 2024, to calculate the total monetary value of the entitlement. The following table shows how the annual entitlement is calculated based on eligibility, age, and rates:
+For eligible children, the entitlement [provides](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) up to 570 hours of free childcare per year, delivered as 15 hours per week over 38 weeks. The table below shows examples of how this annual entitlement is calculated based on eligibility, age, and funding rates.
 
-| Child age | Eligible | Hours entitlement | Hourly rate | Annual entitlement |
-| :-------- | :------- | :---------------- | :---------- | :----------------- |
-| 1         | No       | 0                 | £11.22      | £0                 |
-| 2         | Yes      | 570               | £8.28       | £4,719.60          |
-| 3         | No       | 0                 | £5.88       | £0                 |
+| Child age | Eligible | Hours entitlement | Hourly rate (2025) | Annual entitlement (2025) |
+| :-------- | :------- | :---------------- | :----------------- | :------------------------ |
+| 1         | No       | 0                 | £11.2              | £0                        |
+| 2         | Yes      | 570               | £8.3               | £4,719.6                  |
+| 3         | No       | 0                 | £5.9               | £0                        |
 
 ### Economic analysis
 
@@ -1016,34 +997,22 @@ We [estimate](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.pol
 
 ## Care to learn
 
-[The care to learn](https://www.gov.uk/care-to-learn) scheme, administered by the Department for Education (DfE), provides funding for young parents under 20 who continue their education while caring for children. This programme covers childcare costs while the parent is in education or training. The entitlement amounts is [£180](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week for childcare costs outside London and [£195](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week for childcare costs in London.
-
-### Implementation
-
-The care to learn programme is modelled through several interconnected components:
+[The care to learn](https://www.gov.uk/care-to-learn) scheme, administered by the Department for Education (DfE), provides funding in England for young parents under the age of 20 who continue their education while caring for children. The programme covers childcare costs while the parent is in education or training, offering up to [£180](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week outside London and up to [£195](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week in London.
 
 #### Eligibility determination
 
-This component [conducts](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/care_to_learn/care_to_learn.py) an assessment of several eligibility factors. The age requirements check ensures that the applicant's age is below the maximum threshold ([under 20 years](https://publications.parliament.uk/pa/cm200809/cmbills/055/en/09055x-c.htm#:~:text=160,childcare%20when%20securing%20these%20grants)).
-
-For educational status, it ensures the person is not in higher education and confirms the person is not an apprentice. Finally, it verifies geographic eligibility by checking residence in England. The following table shows examples of eligibility determination for care to learn:
-
-| Person age | Has children | Education type    | In England | Is eligible |
-| ---------- | ------------ | ----------------- | ---------- | ----------- |
-| 18         | No           | Further education | Yes        | No          |
-| 18         | Yes          | Higher education  | Yes        | No          |
-| 19         | Yes          | Apprenticeship    | Yes        | No          |
+The Care to Learn programme [provides](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/care_to_learn/care_to_learn.py) support to applicants who meet specific eligibility criteria. It supports young parents who are under [20 years](https://publications.parliament.uk/pa/cm200809/cmbills/055/en/09055x-c.htm#:~:text=160,childcare%20when%20securing%20these%20grants) old, are not in higher education, are not enrolled as apprentices, and reside in England.
 
 #### Entitlement calculation
 
-The calculation [uses](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/care_to_learn/care_to_learn.py) parameters to determine if the person lives in London and then applies the appropriate weekly rate based on their location. The following table shows the annual entitlement based on location:
+We [determine](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/care_to_learn/care_to_learn.py) whether the applicant lives in London and applies the weekly rate based on their location. The table below shows the annual entitlement in 2025 by location.
 
 | Location       | Weekly rate | Annual entitlement (52 weeks) |
 | -------------- | ----------- | ----------------------------- |
 | London         | £195        | £10,140                       |
 | Outside London | £180        | £9,360                        |
 
-Due to the absence of relevant cases in the Family Resources Survey, we are unable to estimate the economic impact of this programme. Nevertheless, the programme is implemented and can be used to calculate benefits in the household section of PolicyEngine UK.
+Due to the absence of relevant cases in the Family Resources Survey, we are unable to estimate the economic impact of this programme. Nevertheless, the programme is implemented and can be used to calculate benefits in the household section of PolicyEngine.
 
 ## Data calibration
 
@@ -1062,11 +1031,11 @@ Our calibration targets both aggregate spending and caseload figures for each pr
 
 ### Optimisation process
 
-The calibration [uses](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/childcare/takeup_rate.py) an optimisation process to find take-up rates that match our targets. We define an objective function that measures the distance between simulated and target values for both spending and caseload metrics. Then we find the take-up rates that minimise this distance function, calibrating our model to match official statistics.
+We [calibrate](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/childcare/takeup_rate.py) the model using an optimisation process to identify take-up rates that align with our targets. We define an objective function that quantifies the difference between simulated and target values for both spending and caseload. We then minimise this function to find the optimal take-up rates, ensuring the model reflects official statistics.
 
 ### Integration into the UK model
 
-The optimised take-up rates are [integrated](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/enhanced_frs.py) into the Enhanced FRS dataset class. The current values used in the model are:
+We [integrate](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/enhanced_frs.py) the optimised take-up rates into the Enhanced FRS dataset class. The model currently uses the following values:
 
 | Programme           | Take-up Rate |
 | :------------------ | :----------- |
@@ -1075,10 +1044,10 @@ The optimised take-up rates are [integrated](https://github.com/PolicyEngine/pol
 | Targeted childcare  | 0.60         |
 | Universal childcare | 0.56         |
 
-These rates determine which benefit units claim each childcare programme, producing representative aggregate statistics. Based on the 2023 Childcare and Early Years [Survey](https://explore-education-statistics.service.gov.uk/find-statistics/childcare-and-early-years-survey-of-parents/2023) of Parents, the government reports that around 63% of children aged 0 to 4 used formal childcare.
+We use these rates to randomly assign benefit units to each childcare programme, generating representative aggregate statistics. Based on the 2023 Childcare and Early Years [Survey](https://explore-education-statistics.service.gov.uk/find-statistics/childcare-and-early-years-survey-of-parents/2023) of Parents, the government reports that around 63% of children aged 0 to 4 used formal childcare.
 
-To reach the target metrics for extended childcare, we [apply](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/enhanced_frs.py) an hourly-based take-up rate. This approach reflects the fact that the take-up rate for this programme is higher than for other childcare types. The distribution of claimed hours for extended childcare follows a normal distribution with a mean of 15.0 and a standard deviation of 5.0.
+To reach the target metrics for extended childcare, we [apply](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/enhanced_frs.py) a take-up rate based on hours claimed. This approach captures the higher participation rate of extended childcare compared to other programmes. We model the distribution of claimed hours using a normal distribution with a mean of 15.0 and a standard deviation of 5.0.
 
 ## Conclusion
 
-This report outlines how UK childcare programmes are modelled in PolicyEngine and linked to the codebase. Each programme’s rules are implemented through defined eligibility and entitlement conditions. We also present the economic impacts on income distribution, inequality, and household finances. We invite you to explore the economic impacts of these childcare programmes using the PolicyEngine interface.
+This report explains how UK childcare programmes are modelled in PolicyEngine and linked to the codebase. Each programme’s rules are implemented through defined eligibility and entitlement conditions. We also present the impacts on household finances and income distribution. We invite you to explore the economic impacts of these childcare programmes using the PolicyEngine interface.
