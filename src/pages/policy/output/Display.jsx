@@ -318,7 +318,7 @@ export function LowLevelDisplay(props) {
   if (metadata.countryId === "us") {
     bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
 
-    if (region === "enhanced_us" || dataset === "enhanced_cps") {
+    if (dataset === "enhanced_cps") {
       bottomText = bottomText.concat(
         "These calculations utilize enhanced CPS data, a beta feature. ",
       );

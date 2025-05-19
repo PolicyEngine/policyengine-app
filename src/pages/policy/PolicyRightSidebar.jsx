@@ -34,13 +34,10 @@ function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
 
-  // The below allows backward compatibility with a past design where enhanced_cps
-  // was also a region value
+  // The enhanced_us region is deprecated and should be removed from the API by June 1, 2025;
+  // remove this filter after removing API code
   options = options.filter((option) => option.value !== "enhanced_us");
   let inputRegion = searchParams.get("region");
-  if (inputRegion === "enhanced_us") {
-    inputRegion = "us";
-  }
   if (!(searchParams.get("uk_local_areas_beta") === "true")) {
     options = options.filter(
       (option) => !option.value.includes("constituency/"),
@@ -504,11 +501,6 @@ function DatasetSelector(props) {
     // Set params accordingly
     if (isChecked) {
       newSearch.delete("dataset");
-      // Allows for backwards compatibility with a past design
-      // where enhanced_cps was also a region value
-      if (searchParams.get("region") === "enhanced_us") {
-        newSearch.set("region", "us");
-      }
       setIsChecked(false);
     } else {
       newSearch.set("dataset", "enhanced_cps");
@@ -847,11 +839,6 @@ export default function PolicyRightSidebar(props) {
   const hasHousehold = searchParams.get("household") !== null;
 
   let dataset = searchParams.get("dataset");
-  // This allows backward compatibility with a past
-  // design where enhanced_cps was also a region value
-  if (region === "enhanced_us" && !dataset) {
-    dataset = "enhanced_cps";
-  }
 
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };

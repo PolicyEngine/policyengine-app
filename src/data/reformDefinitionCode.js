@@ -177,22 +177,15 @@ export function getImplementationCode(
   // Check if the region has a dataset specified
   const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset);
 
-  const COUNTRY_LEVEL_US_REGIONS = ["us", "enhanced_us"];
-
-  const isState =
-    countryId === "us" && !COUNTRY_LEVEL_US_REGIONS.includes(region);
+  const isState = countryId === "us" && region != "us";
 
   let datasetText = "";
 
-  // enhanced_us is legacy implemntation
-  // whereby enhanced_us region correlated with enhanced_cps dataset
   if (hasDatasetSpecified) {
     datasetText = DEFAULT_DATASETS[dataset];
   } else if (isState) {
     datasetText =
       "hf://policyengine/policyengine-us-data/pooled_3_year_cps_2023.h5";
-  } else if (region === "enhanced_us") {
-    datasetText = "hf://policyengine/policyengine-us-data/enhanced_cps_2024.h5";
   }
 
   const datasetSpecifier = datasetText ? `dataset="${datasetText}"` : "";

@@ -28,7 +28,7 @@ export default function SimulationsPage() {
       "reform_impact_id": 1,
       "reform_impact_json": "{json object}",
       "reform_policy_id": 6, 
-      "region": "enhanced_us", 
+      "region": "us", 
       "start_time": "2024-09-25 09:58:14.133369", 
       "end_time": "2024-09-25 09:58:14.133369",
       "status": "ok", 
