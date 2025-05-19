@@ -7,6 +7,22 @@
     "filename": "uk-childcare-report.md",
     "image": "uk_childcare_report.jpg",
     "authors": ["vahid-ahmadi"]
+    "title": "The SALT Caucus's Proposed Cap",
+    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
+    "date": "2025-05-15",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "salt-caucus-62k-cap.md",
+    "image": "salt-caucus-62k-cap.png",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Ways and Means Committee's SALT Cap",
+    "description": "We project that limiting state and local tax deductions to $30,000, phasing down to $10,000 at high incomes, would raise $937 billion over the budget window.",
+    "date": "2025-05-14",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "ways-and-means-salt-cap.md",
+    "image": "ways-and-means-salt-cap.webp",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"]
   },
   {
     "title": "Tax changes in effect in April 2025",
