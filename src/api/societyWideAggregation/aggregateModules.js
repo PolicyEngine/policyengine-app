@@ -1,9 +1,4 @@
-import {
-  aggregatePovertyByAgeBreakdown,
-  aggregateValues,
-  aggregateWinnersLosersBreakdownDeciles,
-  aggregateWinnersLosersBreakdownSimple,
-} from "./aggregateUtils";
+import { aggregateValues } from "./aggregateUtils";
 
 export function aggregateBudgetModule(budgets) {
   return {
@@ -21,27 +16,5 @@ export function aggregateBudgetModule(budgets) {
     tax_revenue_impact: aggregateValues(
       budgets.map((b) => b?.tax_revenue_impact),
     ),
-  };
-}
-
-export function aggregateIntraDecileModule(intraDecileData) {
-  return {
-    all: aggregateWinnersLosersBreakdownSimple(
-      intraDecileData.map((d) => d?.all),
-      "mean",
-    ),
-    deciles: aggregateWinnersLosersBreakdownDeciles(
-      intraDecileData.map((d) => d?.deciles),
-      "mean",
-    ),
-  };
-}
-
-export function aggregatePovertyByAgeModule(povertyData) {
-  return {
-    deep_poverty: aggregatePovertyByAgeBreakdown(
-      povertyData.map((p) => p?.deep_poverty),
-    ),
-    poverty: aggregatePovertyByAgeBreakdown(povertyData.map((p) => p?.poverty)),
   };
 }

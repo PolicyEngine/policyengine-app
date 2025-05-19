@@ -1,17 +1,12 @@
-import { AggregatedSocietyWideImpact } from "../../schemas/aggregatedSocietyWideImpact";
 import {
   SocietyWideImpactUK,
   SocietyWideImpactUS,
 } from "../../schemas/societyWideImpact";
-import {
-  aggregateBudgetModule,
-  aggregateIntraDecileModule,
-  aggregatePovertyByAgeModule,
-} from "./aggregateModules";
+import { aggregateBudgetModule } from "./aggregateModules";
 
-export function aggregateSocietyWideImpacts(countryId, impacts) {
+export function aggregateMultiYearBudgets(countryId, impacts) {
   if (!impacts || impacts.length === 0) {
-    const error = "Error in aggregateSocietyWideImpacts: No impacts provided";
+    const error = "Error in aggregateMultiYearBudgets: No impacts provided";
     console.log(error);
     throw new Error(error);
   }
@@ -26,17 +21,7 @@ export function aggregateSocietyWideImpacts(countryId, impacts) {
   }
 
   try {
-    const unvalidatedReturn = {
-      budget: aggregateBudgetModule(impacts.map((impact) => impact.budget)),
-      poverty: aggregatePovertyByAgeModule(
-        impacts.map((impact) => impact.poverty),
-      ),
-      intra_decile: aggregateIntraDecileModule(
-        impacts.map((impact) => impact.intra_decile),
-      ),
-    };
-
-    return AggregatedSocietyWideImpact.cast(unvalidatedReturn);
+    return aggregateBudgetModule(impacts.map((impact) => impact.budget));
   } catch (error) {
     console.error("Error validating impacts:", error);
     throw error;

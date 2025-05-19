@@ -1,34 +1,34 @@
 import {
-  aggregateSocietyWideImpacts,
+  aggregateMultiYearBudgets,
   validateImpacts,
 } from "../../../api/societyWideAggregation/aggregate";
-import { AggregatedSocietyWideImpact } from "../../../schemas/aggregatedSocietyWideImpact";
+import { BudgetaryImpactModule } from "../../../schemas/societyWideModules";
 import {
   testObjectsUK,
   testObjectsUS,
 } from "../../__setup__/sampleSocietyWideImpacts";
 
-describe("aggregateSocietyWideImpacts", () => {
+describe("aggregateMultiYearBudgets", () => {
   describe("Given a valid US request", () => {
     test("it should properly call aggregate", () => {
       const impacts = testObjectsUS;
       const countryId = "us";
 
       expect(
-        AggregatedSocietyWideImpact.isValidSync(
-          aggregateSocietyWideImpacts(countryId, impacts),
+        BudgetaryImpactModule.isValidSync(
+          aggregateMultiYearBudgets(countryId, impacts),
         ),
       ).toBe(true);
     });
   });
   describe("Given a valid UK request", () => {
-    test("it should properly call aggregateSocietyWideImpactsUK", () => {
+    test("it should properly call aggregateMultiYearBudgetsUK", () => {
       const impacts = testObjectsUK;
       const countryId = "uk";
 
       expect(
-        AggregatedSocietyWideImpact.isValidSync(
-          aggregateSocietyWideImpacts(countryId, impacts),
+        BudgetaryImpactModule.isValidSync(
+          aggregateMultiYearBudgets(countryId, impacts),
         ),
       ).toBe(true);
     });
@@ -37,9 +37,9 @@ describe("aggregateSocietyWideImpacts", () => {
     test("it should throw an error", () => {
       const impacts = [];
       const countryId = "us";
-      const error = "Error in aggregateSocietyWideImpacts: No impacts provided";
+      const error = "Error in aggregateMultiYearBudgets: No impacts provided";
       console.error = jest.fn(); // Prevent console error output during tests
-      expect(() => aggregateSocietyWideImpacts(countryId, impacts)).toThrow(
+      expect(() => aggregateMultiYearBudgets(countryId, impacts)).toThrow(
         error,
       );
     });
@@ -60,7 +60,7 @@ describe("aggregateSocietyWideImpacts", () => {
       ];
       const countryId = "invalid_country";
 
-      expect(() => aggregateSocietyWideImpacts(countryId, impacts)).toThrow(
+      expect(() => aggregateMultiYearBudgets(countryId, impacts)).toThrow(
         `Invalid country ID: ${countryId}`,
       );
     });
