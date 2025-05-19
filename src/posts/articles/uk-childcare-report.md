@@ -4,7 +4,7 @@ This report provides an analysis of childcare programmes in the UK, examining ho
 
 The report is organised to explore the landscape of UK childcare programmes. We begin by examining the following programmes: tax-free childcare, the extended childcare entitlement, universal childcare entitlement, targeted childcare entitlement, and care to learn. For each programme, we provide details on eligibility criteria, implementation, and calculation methods. Finally, we explain our calibration methodology to ensure the model accurately reflects real-world participation and expenditure patterns.
 
-The following table compares PolicyEngine’s estimates of the budgetary impact of the main childcare programmes with government-reported figures.
+The following table compares PolicyEngine’s estimates of the budgetary impact of the main childcare programmes with government-reported figureswhich are reported by fiscal year.
 
 | Programme           | PolicyEngine estimate 2025 (£bn)                                                                                                                        | PolicyEngine estimate 2024 (£bn)                                                                                                                        | Government report 2024 (£bn)                                                                                  | Relative error in estimate 2024 (%) |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
@@ -34,7 +34,7 @@ Standard childcare funding extends until 1 September following [the child's 11th
 
 #### Income requirements
 
-The programme considers employment and self-employment income. The maximum adjusted net income allowed is [£100,000](https://www.legislation.gov.uk/uksi/2015/448/regulation/15#commentary-key-e27c923eee152accd495af8425536e29) per year for each partner. Minimum earnings requirements (per 3 months) vary by age:
+The UK limits the programme to households where each partner earns—between employment and self-employment income—at least these amounts over a 3-month period, depending on their age:
 
 | Age group            | Minimum earnings |
 | :------------------- | :--------------- |
@@ -42,13 +42,15 @@ The programme considers employment and self-employment income. The maximum adjus
 | 18-20                | £1,788           |
 | Under 18/Apprentices | £1,331           |
 
+In addition to the earnings requirement, the maximum adjusted net income allowed is [£100,000](https://www.legislation.gov.uk/uksi/2015/448/regulation/15#commentary-key-e27c923eee152accd495af8425536e29) per year for each partner.
+
 #### Work status
 
 Eligible individuals must be either employed, self-employed, or on qualifying leave (sick, annual, or shared parental leave). Non-working partners may still qualify if they receive any of these benefits: incapacity benefit, severe disablement allowance, carer's allowance, or contribution-based employment and support allowance.
 
 #### Programme interactions
 
-Tax-free childcare is compatible with the 15/30 hours free childcare programme, but cannot be [combined](https://www.legislation.gov.uk/ukdsi/2015/9780111127063) with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
+Tax-Free Childcare is compatible with the extended childcare entitlements and universal childcare entitlements, but cannot be [combined](https://www.legislation.gov.uk/ukdsi/2015/9780111127063) with working tax credit, child tax credit, universal credit, and childcare vouchers. In the following sections, we explain how PolicyEngine models the Tax-free childcare programme through parameter definitions and calculations.
 
 ### Implementation
 
@@ -56,13 +58,7 @@ The tax-free childcare programme is modelled through several interconnected comp
 
 #### Age determination
 
-We [determine](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) which children in the household are age-eligible for the programme, as Tax-free childcare is only available until specific age thresholds. The following table shows examples of age determination for the programme:
-
-| Child age | Is disabled | Is age eligible |
-| :-------- | :---------- | :-------------- |
-| 10        | False       | True            |
-| 12        | False       | False           |
-| 15        | True        | True            |
+The UK limits tax-free childcare to children below age 11, or 16 if they are disabled. We [determine](https://github.com/PolicyEngine/policyengine-uk/blob/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/hmrc/tax_free_childcare/conditions/tax_free_childcare_child_age_eligible.py) eligibility by checking each child’s age and disability status within the household.
 
 #### Income assessment
 
