@@ -177,7 +177,7 @@ export function getImplementationCode(
   // Check if the region has a dataset specified
   const hasDatasetSpecified = Object.keys(DEFAULT_DATASETS).includes(dataset);
 
-  const isState = countryId === "us" && region != "us";
+  const isState = countryId === "us" && region !== "us";
 
   let datasetText = "";
 

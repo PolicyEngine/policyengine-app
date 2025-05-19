@@ -15,7 +15,7 @@ export const DeprecatedSearchParam = yup.object({
     .required(),
 });
 
-export const deprecatedSearchParams = [
+export const DEPRECATED_SEARCH_PARAMS = [
   DeprecatedSearchParam.validateSync({
     oldKey: "region",
     oldValue: "enhanced_us",
@@ -26,10 +26,6 @@ export const deprecatedSearchParams = [
   }),
 ];
 
-export const deprecatedSearchParamKeys = deprecatedSearchParams.map(
-  (param) => param.oldKey,
-);
-
 /**
  * Given a URLSearchParams object, return null if no updates are needed,
  * otherwise return new URLSearchParams object, replacing deprecated params
@@ -38,7 +34,7 @@ export const deprecatedSearchParamKeys = deprecatedSearchParams.map(
  */
 export function updateDeprecatedSearchParams(searchParams) {
   // Check if any deprecated params are present
-  const hasDeprecatedParams = deprecatedSearchParams.some(
+  const hasDeprecatedParams = DEPRECATED_SEARCH_PARAMS.some(
     (param) =>
       searchParams.has(param.oldKey) &&
       searchParams.get(param.oldKey) === param.oldValue,
@@ -48,7 +44,7 @@ export function updateDeprecatedSearchParams(searchParams) {
   }
 
   let newSearchParams = copySearchParams(searchParams);
-  deprecatedSearchParams.forEach((param) => {
+  DEPRECATED_SEARCH_PARAMS.forEach((param) => {
     if (searchParams.get(param.oldKey) === param.oldValue) {
       newSearchParams.delete(param.oldKey);
       param.newKeysAndValues.forEach((newParam) => {
