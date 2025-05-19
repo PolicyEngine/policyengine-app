@@ -1,0 +1,70 @@
+[
+  {
+    "id": "nuffield",
+    "name": "Nuffield Foundation",
+    "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzrpstsQHVxI0TDCGBj9S7MnVIXwveu9VKgQ&s",
+    "websiteUrl": "https://www.nuffieldfoundation.org/",
+    "description": "an independent charitable trust with a mission to advance educational opportunity and social well-being."
+  },
+  {
+    "id": "arnold",
+    "name": "Arnold Ventures",
+    "logoUrl": "https://www.arnoldventures.org//static/img/logo-on-light.svg",
+    "websiteUrl": "https://arnoldventures.org/",
+    "description": "a philanthropy dedicated to improving the lives of all Americans through evidence-based policy solutions that maximize opportunity and minimize injustice."
+  },
+  {
+    "id": "neo",
+    "name": "NEO Philanthropy",
+    "logoUrl": "https://neophilanthropy.org/wp-content/uploads/2017/08/NEO-Philanthropy-Logo.png",
+    "websiteUrl": "https://www.neophilanthropy.org/",
+    "description": "a funder intermediary with more than 40 years of experience strengthening social justice movements."
+  },
+  {
+    "id": "myfriendben",
+    "name": "MyFriendBen",
+    "logoUrl": "https://www.myfriendben.org/wp-content/uploads/2024/05/MFB-Horizontal-color-nobk.webp",
+    "websiteUrl": "https://www.myfriendben.org/",
+    "description": "a benefit eligibility screener that provides households with a comprehensive understanding of the programs available to them."
+  },
+  {
+    "id": "huff-fund-for-humanity",
+    "name": "Gerald Huff Fund for Humanity",
+    "logoUrl": "https://fundforhumanity.org/wp-content/uploads/2020/05/FFH-LOGO.png",
+    "websiteUrl": "https://www.fundforhumanity.org/",
+    "description": "a non-profit organization that was created in 2019 to promulgate the message of Gerald Huff, ardent proponent of Universal Basic Income as a transitional solution to the existential threat of technological unemployment."
+  },
+  {
+    "id": "corvus-oaks",
+    "name": "Corvus Oaks Foundation",
+    "description": "a new private foundation currently exploring several issues for future engagement and collaboration."
+  },
+  {
+    "id": "the-institute",
+    "name": "The Institute",
+    "logoUrl": "https://cdn.prod.website-files.com/60a87b9152279b01a9a63d20/60aafefb02355b0025642c9c_institute-turtle.svg",
+    "websiteUrl": "https://theinstitute.com",
+    "description": "a public benefit corporation with a philanthropic mission committed to contributing positively to humanity."
+  },
+  {
+    "id": "crfb",
+    "name": "Committee for a Responsible Federal Budget",
+    "logoUrl": "https://www.guidestar.org/ViewEdoc.aspx?eDocId=10734069&approved=True",
+    "websiteUrl": "https://www.crfb.org/",
+    "description": "a nonpartisan, non-profit organization committed to educating the public on issues with significant fiscal policy impact."
+  },
+  {
+    "id": "imagine-la",
+    "name": "Imagine LA",
+    "logoUrl": "https://images.squarespace-cdn.com/content/v1/5f6287b7ba52c722644c43c2/1602725711571-OTQGIW6NQQTBJ6QV7MTX/imagineLA_RGB_400.png",
+    "websiteUrl": "https://www.imaginela.org/",
+    "description": "a nonprofit dedicated to ending the cycle of family poverty and homelessness."
+  },
+  {
+    "id": "dylan-hirsch-shell",
+    "name": "Dylan Hirsch-Shell",
+    "logoUrl": "https://assets.nationbuilder.com/forwardparty/profile_images/de6f48e5b46f503bcdb1c95684507c4831871db6.jpg?1728658971",
+    "websiteUrl": "https://www.linkedin.com/in/dylan-hirsch-shell-4b28b42/",
+    "description": "a scientist, engineer, and community advocate."
+  }
+]

@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
 import Jobs from "./pages/Jobs";
+import Supporters from "./pages/Supporters";
 import {
   Navigate,
   Outlet,
@@ -313,6 +314,7 @@ export default function PolicyEngine() {
           <Route index={true} element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="jobs" element={<Jobs />} />
+          <Route path="supporters" element={<Supporters />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />
