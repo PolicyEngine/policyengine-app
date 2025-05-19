@@ -537,7 +537,7 @@ We [estimate](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.pol
 
 The UK government, through the Department for Education (DfE), provides free childcare for all 3- to 4-year-olds in England under the [universal childcare programme](https://www.gov.uk/help-with-childcare-costs/free-childcare-and-education-for-3-to-4-year-olds?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b). Each eligible child receives up to 570 hours per year, delivered as 15 hours per week over 38 weeks through an approved childcare provider. This programme applies to England only.
 
-#### Eligibility determination
+### Eligibility requirements
 
 The UK government [grants](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3307b3e2bc4a0986ec606ab7fead9/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement) universal childcare entitlement to children who meet residence and age conditions. The child must live in England, be at least [3 years](https://www.legislation.gov.uk/uksi/2016/1257/part/4/made) old, and not yet reach compulsory [school age](https://www.legislation.gov.uk/ukpga/2006/21/section/19).
 
@@ -767,11 +767,11 @@ We [estimate](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.pol
 
 The UK government, through the Department for Education (DfE), provides the [targeted childcare entitlement](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds-claim-benefits?step-by-step-nav=f237ec8e-e82c-4ffa-8fba-2a88a739783b), offering 15 hours of free childcare per week for eligible [2-year-old](https://www.legislation.gov.uk/uksi/2014/2147/regulation/3/made) children in England. This entitlement totals up to [570](https://www.legislation.gov.uk/uksi/2014/2147/regulation/4/made) hours per year, delivered across 38 weeks.
 
-#### Eligibility assessment
+### Eligibility requirements
 
 The UK government [grants](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement_eligible.py) targeted childcare entitlement to households that receive one or more qualifying benefits. These include Income Support, income-based Jobseeker’s Allowance (JSA), income-related Employment and Support Allowance (ESA), and the guaranteed element of Pension Credit. Households may also [qualify](https://www.gov.uk/help-with-childcare-costs/free-childcare-2-year-olds) if they receive Universal Credit and have earned income below £15,400 a year after tax (excluding benefit payments), or if they receive Child Tax Credit (but not Working Tax Credit) with gross annual income below £16,190.
 
-#### Entitlement calculation
+### Entitlement calculation
 
 The UK government [provides](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py) up to 570 hours of free childcare per year for eligible children, delivered as 15 hours per week over 38 weeks. The table below shows how the annual entitlement varies based on eligibility, age, and funding rates.
 
@@ -1005,11 +1005,11 @@ We [estimate](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.pol
 
 The UK government, through the Department for Education (DfE), runs the [Care to Learn](https://www.gov.uk/care-to-learn) scheme in England to support young parents under the age of 20 who continue their education while caring for children. The programme covers childcare costs during education or training, offering up to [£180](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week outside London and up to [£195](https://researchbriefings.files.parliament.uk/documents/CBP-8054/CBP-8054.pdf#page=43) per week in London.
 
-#### Eligibility determination
+### Eligibility requirements
 
 The UK government [provides](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/care_to_learn/care_to_learn.py) Care to Learn support to young parents who meet specific eligibility criteria. To qualify, applicants must be under [20 years](https://publications.parliament.uk/pa/cm200809/cmbills/055/en/09055x-c.htm#:~:text=160,childcare%20when%20securing%20these%20grants) old, not enrolled in higher education or an apprenticeship, and living in England.
 
-#### Entitlement calculation
+### Entitlement calculation
 
 We [determine](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/care_to_learn/care_to_learn.py) whether the applicant lives in London and applies the weekly rate based on their location. The table below shows the annual entitlement in 2025 by location.
 
