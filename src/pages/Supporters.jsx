@@ -122,7 +122,7 @@ const FundingByYearChart = ({ projects }) => {
           <h2 style={{ margin: 0 }}>At a glance</h2>
           <p style={{ margin: '12px 0 0 0' }}>
             PolicyEngine has received {formatCurrency(totalFunding)} in funding across {years.length} years.
-            {years.includes(currentYear.toString()) && " 2025 is shown with lower opacity to indicate funding received so far this year."}
+            {years.includes(currentYear.toString()) && " 2025 indicates funding received so far this year."}
           </p>
         </div>
         <div style={{ flex: '2 1 600px' }}>
