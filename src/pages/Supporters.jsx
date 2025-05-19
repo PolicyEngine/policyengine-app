@@ -367,8 +367,8 @@ export default function Supporters() {
       </PageHeader>
 
       <Section backgroundColor={style.colors.WHITE}>
-        {/* Funding by Year Chart */}
-        <FundingByYearChart projects={projects} />
+        {/* Funding by Year Chart, hidden for now */}
+        {/*<FundingByYearChart projects={projects} />*/}
         
         {sortedSupporters.map((s) => (
           <SupporterCard
