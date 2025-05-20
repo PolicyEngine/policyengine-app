@@ -12,8 +12,8 @@ import {
   makeSequentialSimulationRequests,
   SimulationRequestSetup,
 } from "../../../api/makeSequentialSimulationRequests";
-import { aggregateSocietyWideImpacts } from "../../../api/societyWideAggregation/aggregate";
 import { determineIfMultiYear } from "./utils";
+import { aggregateMultiYearBudgets } from "../../../api/societyWideAggregation/aggregate";
 
 /**
  *
@@ -163,11 +163,10 @@ export function FetchAndDisplayImpact(props) {
       const singleYearResults = collection.results.map((item) => item);
       const singleYearImpacts = singleYearResults.map((item) => item.result);
 
-      // Finally, aggregate outputs and return
-      const aggregatedResult = aggregateSocietyWideImpacts(
-        countryId,
-        singleYearImpacts,
-      );
+      // Aggregate budgetary impacts and place into Impact-like object with budget key
+      const aggregatedResult = {
+        budget: aggregateMultiYearBudgets(countryId, singleYearImpacts),
+      }
 
       return {
         singleYearResults: singleYearResults,
