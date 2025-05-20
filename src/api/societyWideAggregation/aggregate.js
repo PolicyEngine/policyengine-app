@@ -1,4 +1,3 @@
-import { AggregatedSocietyWideImpact } from "../../schemas/aggregatedSocietyWideImpact";
 import {
   SocietyWideImpactUK,
   SocietyWideImpactUS,
@@ -17,7 +16,7 @@ export function aggregateMultiYearBudgets(countryId, impacts) {
       validateImpacts(countryId, impact);
     }
   } catch (err) {
-    console.error("Error validating impacts");
+    console.log("Error validating impacts");
     throw err;
   }
 
