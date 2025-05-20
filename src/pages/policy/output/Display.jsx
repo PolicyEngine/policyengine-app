@@ -295,7 +295,6 @@ export function LowLevelDisplay(props) {
   const focus = urlParams.get("focus");
   const dataset = urlParams.get("dataset");
   const selectedVersion = urlParams.get("version") || metadata.version;
-  const region = urlParams.get("region");
   const policyOutputTree = getPolicyOutputTree(metadata.countryId, urlParams);
   const url = encodeURIComponent(window.location.href);
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
@@ -318,7 +317,7 @@ export function LowLevelDisplay(props) {
   if (metadata.countryId === "us") {
     bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
 
-    if (region === "enhanced_us" || dataset === "enhanced_cps") {
+    if (dataset === "enhanced_cps") {
       bottomText = bottomText.concat(
         "These calculations utilize enhanced CPS data, a beta feature. ",
       );

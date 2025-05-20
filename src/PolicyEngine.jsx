@@ -58,6 +58,7 @@ import MicrosimPage from "./pages/learn/MicrosimPage";
 import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
+import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -78,6 +79,13 @@ export default function PolicyEngine() {
   const countryId = extractCountryId();
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const updatedSearchParams = updateDeprecatedSearchParams(searchParams);
+  if (updatedSearchParams) {
+    // If we have updated search params, set them
+    setSearchParams(updatedSearchParams);
+  }
+
   const householdId = searchParams.get("household");
 
   let defaultBaselinePolicy = 1;
