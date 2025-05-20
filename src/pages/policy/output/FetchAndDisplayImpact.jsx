@@ -45,6 +45,7 @@ export function FetchAndDisplayImpact(props) {
 
   const [impact, setImpact] = useState(null);
   const [singleYearResults, setSingleYearResults] = useState(null); // Only used for multi-year simulations
+  const [multiYearImpact, setMultiYearImpact] = useState(null); // Only used for multi-year simulations
   const [error, setError] = useState(null);
   const [averageImpactTime, setAverageImpactTime] = useState(20);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
@@ -196,6 +197,8 @@ export function FetchAndDisplayImpact(props) {
         `${baselinePolicyId}?region=${region}&time_period=${timePeriod}` +
         `&version=${selectedVersion}${maxHouseholdString}${datasetString}`;
       setImpact(null);
+      setMultiYearImpact(null);
+      setSingleYearResults(null);
       setError(null);
       // If user requests valid multi-year value, make sequential requests
       if (isMultiYear) {
@@ -211,7 +214,7 @@ export function FetchAndDisplayImpact(props) {
           simYears,
         )
           .then((aggregatedData) => {
-            setImpact(aggregatedData.aggregatedResult);
+            setMultiYearImpact(aggregatedData.aggregatedResult);
             setSingleYearResults(aggregatedData.singleYearResults);
           })
           .catch((err) => {
@@ -220,6 +223,7 @@ export function FetchAndDisplayImpact(props) {
 
         return;
       }
+
       // start counting (but stop when the API call finishes)
       const interval = setInterval(() => {
         setSecondsElapsed((secondsElapsed) => secondsElapsed + 1);
@@ -323,7 +327,10 @@ export function FetchAndDisplayImpact(props) {
     return <DisplayError />;
   }
 
-  if (!impact) {
+  if (
+    (!isMultiYear && !impact) ||
+    (isMultiYear && !multiYearImpact && !singleYearResults)
+  ) {
     return (
       <DisplayWait
         averageImpactTime={averageImpactTime}
@@ -336,6 +343,7 @@ export function FetchAndDisplayImpact(props) {
   return (
     <DisplayImpact
       impact={impact}
+      multiYearImpact={multiYearImpact}
       singleYearResults={singleYearResults}
       policy={policy}
       metadata={metadata}

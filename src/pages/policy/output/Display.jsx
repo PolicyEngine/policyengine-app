@@ -153,8 +153,14 @@ function getPolicyLabel(policy) {
  * performing actions such as downloading data and sharing results
  */
 export function DisplayImpact(props) {
-  const { impact, singleYearResults, policy, metadata, showPolicyImpactPopup } =
-    props;
+  const {
+    impact,
+    multiYearImpact,
+    singleYearResults,
+    policy,
+    metadata,
+    showPolicyImpactPopup,
+  } = props;
   const countryId = useCountryId();
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
@@ -183,7 +189,7 @@ export function DisplayImpact(props) {
     pane = (
       <MultiYearBudgetaryImpact
         metadata={metadata}
-        impact={impact}
+        impact={multiYearImpact}
         singleYearResults={singleYearResults}
         policyLabel={policyLabel}
         region={region}
