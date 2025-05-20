@@ -599,7 +599,7 @@ const MobileStandardLink = ({ link, countryId, isOpen, index }) => {
       <HoverBox
         hoverStart="left"
         size="100vw"
-        hoverBackgroundColor={style.colors.WHITE}
+        hoverBackgroundColor={style.colors.BLUE_PRESSED}
         style={{
           margin: 30,
         }}
@@ -667,7 +667,7 @@ const MobileDropdownHeader = ({
     <HoverBox
       hoverStart="left"
       size="100vw"
-      hoverBackgroundColor={style.colors.WHITE}
+      hoverBackgroundColor={style.colors.BLUE_PRESSED}
       style={{
         margin: 30,
       }}
@@ -730,7 +730,7 @@ const MobileDropdownItem = ({ item, countryId, index }) => {
       <HoverBox
         hoverStart="left"
         size="100vw"
-        hoverBackgroundColor={style.colors.WHITE}
+        hoverBackgroundColor={style.colors.BLUE_PRESSED}
         style={{
           margin: "15px 30px",
         }}
