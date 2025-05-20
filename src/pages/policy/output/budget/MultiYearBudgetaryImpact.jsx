@@ -114,12 +114,7 @@ export default function MultiYearBudgetaryImpact(props) {
   );
 
   let regionLabel = "undefined region";
-  // This is a workaround for enhanced_us that should be changed
-  // if and when it is treated as something other than a "region"
-  // by the back end
-  if (regionObj?.name === "enhanced_us") {
-    regionLabel = "the US";
-  } else if (regionObj) {
+  if (regionObj) {
     regionLabel = regionObj.label;
   }
 
