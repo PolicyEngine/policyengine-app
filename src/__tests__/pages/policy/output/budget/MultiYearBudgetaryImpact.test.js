@@ -30,10 +30,10 @@ describe("MultiYearBudgetaryImpact", () => {
       },
       result: {
         budget: {
-          budgetary_impact: 1.5e9,
-          benefit_spending_impact: 2.3e9,
-          tax_revenue_impact: 3.1e9,
-          state_tax_revenue_impact: 0.8e9,
+          budgetary_impact: 5e9,
+          benefit_spending_impact: 6e9,
+          tax_revenue_impact: 7e9,
+          state_tax_revenue_impact: 8e9,
         },
       },
     },
@@ -47,10 +47,10 @@ describe("MultiYearBudgetaryImpact", () => {
       },
       result: {
         budget: {
-          budgetary_impact: 9.7e9,
-          benefit_spending_impact: 2.5e9,
-          tax_revenue_impact: 3.3e9,
-          state_tax_revenue_impact: 0.9e9,
+          budgetary_impact: 9e9,
+          benefit_spending_impact: 10e9,
+          tax_revenue_impact: 11e9,
+          state_tax_revenue_impact: 12e9,
         },
       },
     },
@@ -58,10 +58,10 @@ describe("MultiYearBudgetaryImpact", () => {
 
   const mockImpact = {
     budget: {
-      budgetary_impact: 3.2e9,
-      benefit_spending_impact: 4.8e9,
-      tax_revenue_impact: 6.4e9,
-      state_tax_revenue_impact: 1.7e9,
+      budgetary_impact: 13e9,
+      benefit_spending_impact: 14e9,
+      tax_revenue_impact: 15e9,
+      state_tax_revenue_impact: 16e9,
     },
   };
 
@@ -76,20 +76,21 @@ describe("MultiYearBudgetaryImpact", () => {
 
       // Then
       expect(result).toEqual({
-        2020: "1.5",
-        2021: "9.7",
+        2020: String(mockSingleYearResults[0].result.budget[budgetKey] / 1e9),
+        2021: String(mockSingleYearResults[1].result.budget[budgetKey] / 1e9),
       });
     });
 
     test("getYearRangeFromArray should format year range correctly", () => {
       // Given
       const years = [2020, 2021, 2022, 2023, 2024];
+      const yearsMerged = "2020-24";
 
       // When
       const result = getYearRangeFromArray(years);
 
       // Then
-      expect(result).toBe("2020-24");
+      expect(result).toBe(yearsMerged);
     });
 
     test("roundToBillions should round numbers correctly", () => {
@@ -142,7 +143,7 @@ describe("MultiYearBudgetaryImpact", () => {
 
       // Then
       expect(
-        screen.getByText("Net revenue impact (billions currency)"),
+        screen.getByText("Net revenue impact (billions)"),
       ).toBeInTheDocument();
       expect(screen.getByText("2020")).toBeInTheDocument();
       expect(screen.getByText("2021")).toBeInTheDocument();
@@ -159,17 +160,38 @@ describe("MultiYearBudgetaryImpact", () => {
         region: "us",
       };
 
+      const expectedHeaders = [
+        "Federal tax",
+        "Benefits",
+        "Federal budget",
+        "State tax",
+      ];
+
       // When
       render(<MultiYearBudgetaryImpact {...props} />);
 
-      // Then
-      expect(screen.getByText("Federal tax")).toBeInTheDocument();
-      expect(screen.getByText("Benefits")).toBeInTheDocument();
-      expect(screen.getByText("Federal budget")).toBeInTheDocument();
-      expect(screen.getByText("State tax")).toBeInTheDocument();
-      expect(screen.getByText("1.5")).toBeInTheDocument();
-      expect(screen.getByText("9.7")).toBeInTheDocument();
-      expect(screen.getByText("3.2")).toBeInTheDocument();
+      // Make sure all headers render
+      expectedHeaders.forEach((header) => {
+        expect(screen.getByText(header)).toBeInTheDocument();
+      });
+
+      // Check for expected values from mock impacts
+      expect(
+        screen.getByText(mockImpact.budget.budgetary_impact / 1e9),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(mockImpact.budget.benefit_spending_impact / 1e9),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          mockSingleYearResults[0].result.budget.budgetary_impact / 1e9,
+        ),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          mockSingleYearResults[1].result.budget.budgetary_impact / 1e9,
+        ),
+      ).toBeInTheDocument();
     });
   });
 });

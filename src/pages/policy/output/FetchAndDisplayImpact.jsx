@@ -166,7 +166,7 @@ export function FetchAndDisplayImpact(props) {
       // Aggregate budgetary impacts and place into Impact-like object with budget key
       const aggregatedResult = {
         budget: aggregateMultiYearBudgets(countryId, singleYearImpacts),
-      }
+      };
 
       return {
         singleYearResults: singleYearResults,
