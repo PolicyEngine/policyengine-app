@@ -34,9 +34,6 @@ function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
 
-  // The enhanced_us region is deprecated and should be removed from the API by June 1, 2025;
-  // remove this filter after removing API code
-  options = options.filter((option) => option.value !== "enhanced_us");
   let inputRegion = searchParams.get("region");
   if (!(searchParams.get("uk_local_areas_beta") === "true")) {
     options = options.filter(
