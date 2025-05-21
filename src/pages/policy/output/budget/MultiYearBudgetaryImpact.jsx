@@ -54,6 +54,12 @@ const financialYearTypeByCountry = {
   default: "calendar",
 };
 
+const roundingPrecisionByCountry = {
+  us: 0,
+  uk: 1,
+  default: 0,
+};
+
 /**
  * Maps a year to an Ant Design column title Object
  * @param {number} year - The year to map
@@ -102,8 +108,16 @@ export default function MultiYearBudgetaryImpact(props) {
   const dataSources = countryDataSource.map((item) => {
     return {
       netRevenueImpact: item.header,
-      ...getYearlyImpacts(singleYearResults, item.budgetKey),
-      yearRange: roundToBillions(impact.budget[item.budgetKey]),
+      ...getYearlyImpacts(
+        singleYearResults,
+        item.budgetKey,
+        metadata.countryId,
+      ),
+      yearRange: roundToBillions(
+        impact.budget[item.budgetKey],
+        roundingPrecisionByCountry[metadata.countryId] ||
+          roundingPrecisionByCountry.default,
+      ),
     };
   });
 
@@ -157,11 +171,15 @@ export default function MultiYearBudgetaryImpact(props) {
   );
 }
 
-export function getYearlyImpacts(singleYearResults, budgetKey) {
+export function getYearlyImpacts(singleYearResults, budgetKey, countryId) {
   const yearlyImpacts = {};
   singleYearResults.forEach((item) => {
     const year = item.simulationRequestSetup.year;
-    const impact = roundToBillions(item.result.budget[budgetKey]);
+    const impact = roundToBillions(
+      item.result.budget[budgetKey],
+      roundingPrecisionByCountry[countryId] ||
+        roundingPrecisionByCountry.default,
+    );
 
     yearlyImpacts[year] = impact;
   });
