@@ -2,7 +2,7 @@
 
 This post provides an overview of how PolicyEngine UK models benefits. It details benefits in the UK welfare system and their implementation within the PolicyEngine microsimulation. Each benefit component links to its specific implementation in the codebase, making this post a technical reference for understanding how the PolicyEngine UK microsimulation model performs benefits calculations.
 
-Table 1 below summarises metrics for each benefit in the UK system, comparing PolicyEngine's 2025-26 fiscal year expenditure projections with those from the government (such as the Office for Budget Responsibility) and showing the percentage difference between them. While PolicyEngine models interactions from instituting or repealing tax and benefit programmes, this chart shows only the direct expenditure for each benefit for consistency with government reports.
+Table 1 summarises metrics for each benefit in the UK system, comparing PolicyEngine's 2025-26 fiscal year expenditure projections with those from the government (such as the Office for Budget Responsibility) and showing the percentage difference between them. While PolicyEngine models interactions from instituting or repealing tax and benefit programmes, this chart shows only the direct expenditure for each benefit for consistency with government reports.
 
 **Table 1: Summary of UK benefit expenditure estimates for 2025 (£ billions)**
 
@@ -18,7 +18,7 @@ Table 1 below summarises metrics for each benefit in the UK system, comparing Po
 | Child Benefit                 | [12.3](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) | [12.5](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) | 31.3                                               |
 | Winter Fuel Payment           | [<1.0](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80702) | [<1.0](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024)                                                                        | 2.7                                                |
 
-Below, Table 2 presents a comparison of UK childcare programme costs, showing PolicyEngine's expenditure estimates for 2025 alongside both previous year estimates and official government projections.
+Table 2 presents a comparison of UK childcare programme costs, showing PolicyEngine's expenditure estimates for 2025 alongside both previous year estimates and official government projections.
 
 **Table 2: Summary of UK childcare Programmes expenditure estimates (£ billions)**
 
@@ -51,7 +51,7 @@ The Department for Work and Pensions (DWP) provides [Universal Credit](https://g
 
 #### Economic analysis
 
-PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.6% more than the UK government's estimate of [£77.4 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.6% more than the UK government's estimate of [£77.4 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026.Figure 1 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -75,7 +75,7 @@ PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.
   ],
   "layout": {
     "title": {
-      "text": "Figure 1: Distributional impact of Universal Credit by income decile",
+      "text": "Figure 1. Distributional impact of Universal Credit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -151,7 +151,7 @@ PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Universal Credit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=84661&region=uk&timePeriod=2025&baseline=1&household=50678) with two 10 year-old children. Abolishing this benefit would reduce the household's net income in the low-income range, as shown in the figure below.
+To show the impact of Universal Credit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=84661&region=uk&timePeriod=2025&baseline=1&household=50678) with two 10 year-old children. Abolishing this benefit would reduce the household's net income in the low-income range, as shown in Figure 2.
 
 **Figure 2. Household net income with and without Universal Credit**
 
@@ -169,7 +169,7 @@ The non-dependent deductions amount [varies](https://github.com/PolicyEngine/pol
 
 #### Economic analysis
 
-PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025, 34.5% less than the UK government's estimate of [£11.6 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80663) in 2025, 34.5% less than the UK government's estimate of [£11.6 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026. Figure 3 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -193,7 +193,7 @@ PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://pol
   ],
   "layout": {
     "title": {
-      "text": "Figure 3: Distributional impact of Housing Benefit by income decile",
+      "text": "Figure 3. Distributional impact of Housing Benefit by income decile",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -269,7 +269,7 @@ PolicyEngine projects that Housing Benefit will cost [£7.6 billion](https://pol
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Housing Benefit on household finances, we start with an example of a [single-earner household](https://gist.github.com/vahid-ahmadi/73f7361aedf338796c5ecdf64d3822f1). For this person, we assume that the reported Housing Benefit is £10,000 per year. Abolishing this benefit would reduce the household's net income in the low-income range, as shown in the figure below.
+To show the impact of Housing Benefit on household finances, we start with an example of a [single-earner household](https://gist.github.com/vahid-ahmadi/73f7361aedf338796c5ecdf64d3822f1). For this person, we assume that the reported Housing Benefit is £10,000 per year. Abolishing this benefit would reduce the household's net income in the low-income range, as shown in Figure 4.
 
 **Figure 4. Household net income with and without Housing Benefit**
 
@@ -322,7 +322,7 @@ Pension Credit consists of two main components, which we explain in detail below
 
 #### Economic analysis
 
-PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025, 23.3% more than the UK government's estimate of [£6.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80685) in 2025, 23.3% more than the UK government's estimate of [£6.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-pensioner-benefits/) for 2025-2026. Figure 5 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -346,7 +346,7 @@ PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://poli
  ],
  "layout": {
    "title": {
-     "text": "Figure 5: Distributional impact of Pension Credit by income decile",
+     "text": "Figure 5. Distributional impact of Pension Credit by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -422,7 +422,7 @@ PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://poli
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Pension Credit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=80685&household=53633) with age 70. Abolishing this benefit would reduce the household's net income in the low-income range, as shown in the figure below.
+To show the impact of Pension Credit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=80685&household=53633) with age 70. Abolishing this benefit would reduce the household's net income in the low-income range, as shown in Figure 6.
 
 **Figure 6. Household net income with and without Pension Credit**
 
@@ -447,7 +447,7 @@ For 2025, the [daily living](https://github.com/PolicyEngine/policyengine-uk/blo
 
 #### Economic analysis
 
-PolicyEngine projects that Personal Independence Payment will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Personal Independence Payment will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. Figure 7 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -471,7 +471,7 @@ PolicyEngine projects that Personal Independence Payment will cost [£30.6 billi
  ],
  "layout": {
    "title": {
-     "text": "Figure 7: Distributional impact of PIP by income decile",
+     "text": "Figure 7. Distributional impact of PIP by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -547,7 +547,7 @@ PolicyEngine projects that Personal Independence Payment will cost [£30.6 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of PIP on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When she receives the mobility component of Personal Independence Payment (PIP), she receives the disability component of Universal Credit as well, leading to higher take-home income compared to the scenario without PIP. At lower income levels, this additional support boosts the household’s income. As earnings increase and the household no longer receives Universal Credit, the difference in take-home income between the two scenarios flattens out. The figure below shows take-home income under both scenarios:
+To show the impact of PIP on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When she receives the mobility component of Personal Independence Payment (PIP), she receives the disability component of Universal Credit as well, leading to higher take-home income compared to the scenario without PIP. At lower income levels, this additional support boosts the household’s income. As earnings increase and the household no longer receives Universal Credit, the difference in take-home income between the two scenarios flattens out. Figure 8 shows take-home income under both scenarios:
 
 **Figure 8. Household net income with and without PIP**
 
@@ -568,7 +568,7 @@ For 2025, the [self-care](https://github.com/PolicyEngine/policyengine-uk/blob/m
 
 #### Economic analysis
 
-PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025, 24.0% more than the UK government's estimate of [£7.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80689) in 2025, 24.0% more than the UK government's estimate of [£7.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. Figure 9 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -592,7 +592,7 @@ PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion]
  ],
  "layout": {
    "title": {
-     "text": "Figure 9: Distributional impact of DLA by income decile",
+     "text": "Figure 9. Distributional impact of DLA by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -668,7 +668,7 @@ PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion]
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of DLA on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When she receives the mobility component of DLA, she also qualifies for the disability component of Universal Credit, leading to a higher take-home income compared to the scenario without DLA. At lower income levels, this additional support increases overall income. As earnings rise and the household no longer qualifies for Universal Credit, the difference in take-home income between the two scenarios flattens out. The figure below shows take-home income under both scenarios:
+To show the impact of DLA on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When she receives the mobility component of DLA, she also qualifies for the disability component of Universal Credit, leading to a higher take-home income compared to the scenario without DLA. At lower income levels, this additional support increases overall income. As earnings rise and the household no longer qualifies for Universal Credit, the difference in take-home income between the two scenarios flattens out. Figure 10 shows take-home income under both scenarios.
 
 **Figure 10. Household net income with and without DLA**
 
@@ -688,7 +688,7 @@ For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per
 
 #### Economic analysis
 
-PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025, 27.5% more than the UK government's estimate of [£8.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80692) in 2025, 27.5% more than the UK government's estimate of [£8.0 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-2026. Figure 11 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -712,7 +712,7 @@ PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https
  ],
  "layout": {
    "title": {
-     "text": "Figure 11: Distributional impact of Attendance Allowance by income decile",
+     "text": "Figure 11. Distributional impact of Attendance Allowance by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -788,7 +788,7 @@ PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Attendance Allowance on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80692&household=53560). For this person, we assume that the reported Attendance Allowance is £5,000 per year. Abolishing this benefit would reduce the household's net income, as shown in the figure below.
+To show the impact of Attendance Allowance on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80692&household=53560). For this person, we assume that the reported Attendance Allowance is £5,000 per year. Abolishing this benefit would reduce the household's net income, as shown in Figure 12.
 
 **Figure 12. Household net income with and without Attendance Allowance**
 
@@ -810,7 +810,7 @@ The [High Income Child Benefit Charge (HITC)](https://github.com/PolicyEngine/po
 
 #### Economic analysis
 
-PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025, 1.6% less than the UK government's estimate of [£12.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) for 2025-2026. The following figure shows the distributional impact of this programme.
+PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2025&baseline=80696) in 2025, 1.6% less than the UK government's estimate of [£12.5 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-child-benefit/#:~:text=Child%20benefit%20is%20a%20cash,the%20UK%20in%202023%2D24.) for 2025-2026. Figure 13 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -834,7 +834,7 @@ PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://poli
  ],
  "layout": {
    "title": {
-     "text": "Figure 13: Distributional impact of Child Benefit by income decile",
+     "text": "Figure 13. Distributional impact of Child Benefit by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -910,7 +910,7 @@ PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://poli
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Child Benefit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=80696&household=53314). For this person, we assume that the reported childcare expenses are £10,000 per year. Abolishing this benefit would reduce the household's net income, as shown in the figure below.
+To show the impact of Child Benefit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=80696&household=53314). For this person, we assume that the reported childcare expenses are £10,000 per year. Abolishing this benefit would reduce the household's net income, as shown in Figure 14.
 
 **Figure 14. Household net income with and without Child Benefit**
 
@@ -966,7 +966,7 @@ Eligibility criteria include age requirements (children under 12, or under 17 if
 
 #### Economic analysis
 
-PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892) in 2024, in line with the UK government's estimate of [£0.6 billion](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024) for 2024.
+PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83892) in 2024, in line with the UK government's estimate of [£0.6 billion](https://www.gov.uk/government/statistics/tax-free-childcare-statistics-september-2024) for 2024. Figure 15 shows the distributional effect of this benefit.
 
 ```plotly
 {
@@ -990,7 +990,7 @@ PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://
  ],
  "layout": {
    "title": {
-     "text": "Figure 15: Distributional impact of TFC by income decile",
+     "text": "Figure 15. Distributional impact of TFC by income decile",
      "font": {
        "family": "Roboto Serif",
        "size": 16
@@ -1066,7 +1066,7 @@ PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of TFC on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for TFC when earning at least [£9,516 annually](https://www.gov.uk/tax-free-childcare) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving TFC at higher income levels, as shown in the figure below.
+To show the impact of TFC on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for TFC when earning at least [£9,516 annually](https://www.gov.uk/tax-free-childcare) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a divergence between those receiving and not receiving TFC at higher income levels, as shown in Figure 16.
 
 **Figure 16. Household net income with and without TFC**
 
@@ -1088,7 +1088,7 @@ For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours pe
 
 #### Economic analysis
 
-PolicyEngine projects that universal childcare entitlement will cost [£1.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887) in 2024, 5.9% less than the UK government's estimate of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024.
+PolicyEngine projects that universal childcare entitlement will cost [£1.6 billion](https://policyengine.org/uk/policy?reform=1&focus=policyOutput.policyBreakdown&region=uk&timePeriod=2024&baseline=83887) in 2024, 5.9% less than the UK government's estimate of [£1.7 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024. Figure 17 shows the distributional impact of this benefit.
 
 ```plotly
 {
@@ -1188,7 +1188,7 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of universal childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. TFC and universal childcare cannot be combined at the same time. Figure below shows household net income based on head employment income.
+To show the impact of universal childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. TFC and universal childcare cannot be combined at the same time. Figure 18 shows household net income based on head employment income.
 
 **Figure 18. Household net income with and without universal childcare entitlement**
 
@@ -1215,7 +1215,7 @@ The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per
 
 #### Economic analysis
 
-PolicyEngine projects that extended childcare entitlement will cost [£2.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) in 2024, 4.0% more than the UK government's estimate of [£2.5 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024.
+PolicyEngine projects that extended childcare entitlement will cost [£2.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83897&uk_local_areas_beta=true) in 2024, 4.0% more than the UK government's estimate of [£2.5 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024. Figure 19 shows the distributional effect of this benefit.
 
 ```plotly
 {
@@ -1315,7 +1315,7 @@ PolicyEngine projects that extended childcare entitlement will cost [£2.6 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of extended childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80613&household=53312) with one child aged 3. These households become eligible for extended childcare when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. Households above the £100,000 threshold lose eligibility entirely, which creates a sharp divergence in take-home income between otherwise similar families.
+To show the impact of extended childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80613&household=53312) with one child aged 3. These households become eligible for extended childcare when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. Households above the £100,000 threshold lose eligibility entirely, which creates a sharp divergence in take-home income between otherwise similar families, as shown in Figure 20.
 
 **Figure 20. Household net income with and without extended childcare entitlement**
 
@@ -1336,7 +1336,7 @@ For 2025, it offers 570 hours per year (15 hours per week over 38 weeks), funded
 
 #### Economic analysis
 
-PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888) in 2024, in line with the UK government's estimate of [£0.6 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024.
+PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2024&baseline=83888) in 2024, in line with the UK government's estimate of [£0.6 billion](https://skillsfunding.service.gov.uk/view-latest-funding/national-funding-allocations/DSG/2024-to-2025) for 2024. Figure 21 shows the distributional effect of this benefit.
 
 ```plotly
 {
@@ -1436,7 +1436,7 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of targeted childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure below shows household net income based on head employment income.
+To show the impact of targeted childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 22 shows household net income based on head employment income.
 
 **Figure 22. Household net income with and without targeted childcare entitlement**
 
