@@ -51,7 +51,7 @@ The Department for Work and Pensions (DWP) provides [Universal Credit](https://g
 
 #### Economic analysis
 
-PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.6% more than the UK government's estimate of [£77.4 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026.Figure 1 shows the distributional impact of this programme.
+PolicyEngine projects that Universal Credit will cost £79.4 billion in 2025, 2.6% more than the UK government's estimate of [£77.4 billion](https://www.gov.uk/government/publications/benefit-expenditure-and-caseload-tables-2024) for 2025-2026. Figure 1 shows the distributional impact of this programme.
 
 ```plotly
 {
