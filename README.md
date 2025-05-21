@@ -5,10 +5,10 @@ This is the official front-end app of PolicyEngine, a non-profit with the missio
 
 # Prerequisites
 
-We recommend that you use the latest Node version 19. To easily manage your node versions, get the Node Version Manager [nvm](https://github.com/nvm-sh/nvm) and then do
+We recommend that you use the latest Node version 22. To easily manage your node versions, get the Node Version Manager [nvm](https://github.com/nvm-sh/nvm) and then do
 
 ```
-nvm install 19 && nvm use 19
+nvm install 22 && nvm use 22
 ```
 
 # Contributing
