@@ -1,6 +1,6 @@
 Wednesday night, the House of Representatives voted 215–214 to approve [H.R.1 — One Big Beautiful Bill Act](https://www.congress.gov/bill/119th-congress/house-bill/1) (OBBBA). The bill extends and enhances several provisions of the Tax Cuts and Jobs Act of 2017 (TCJA), while adding new individual income tax provisions such as exemptions for tip and overtime income and a deduction for auto loan interest.
 
-Included in the passed bill by the Rules Committee is a [“Manager's Amendment,”](https://punchbowl.news/wp-content/uploads/managers-amendment.pdf) which revises three tax provisions in the [Budget Committee's version](https://budget.house.gov/imo/media/doc/one_big_beautiful_bill_act_-_full_bill_text.pdf) of the OBBBA.
+Included in the passed bill by the Rules Committee is a ["Manager's Amendment,"](https://punchbowl.news/wp-content/uploads/managers-amendment.pdf) which revises three tax provisions in the [Budget Committee's version](https://budget.house.gov/imo/media/doc/one_big_beautiful_bill_act_-_full_bill_text.pdf) of the OBBBA.
 
 These reforms include:
 
