@@ -4,6 +4,7 @@ import ResizeObserver from "resize-observer-polyfill";
 import {
   Alert,
   Button,
+  ConfigProvider,
   DatePicker,
   InputNumber,
   Popover,
@@ -263,6 +264,7 @@ export default function ParameterEditor(props) {
             />
             {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
               <ValueSetter
+                key={parameterName}
                 startDate={startDate}
                 endDate={endDate}
                 parameterName={parameterName}
@@ -726,7 +728,7 @@ function OneYearValueSetter(props) {
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
   const maximumFractionDigits = isCurrency ? 2 : 16;
 
-  function changeHandler(value) {
+  function handleSubmit(value) {
     setValueMap((prev) => {
       const scaledValue = +value.toFixed(maximumFractionDigits) / scale;
       const newMap = new Map(prev);
@@ -741,7 +743,7 @@ function OneYearValueSetter(props) {
         <Switch
           key={"input for" + parameter.parameter + year}
           defaultChecked={startValue}
-          onChange={(value) => changeHandler(!!value)}
+          onChange={(value) => handleSubmit(!!value)}
         />
       </div>
     );
@@ -773,11 +775,11 @@ function OneYearValueSetter(props) {
           }}
           defaultValue={Number(startValue) * scale}
           value={valueMap.get(year) * scale}
-          onChange={(value) => changeHandler(Number(value))}
+          onChange={(value) => handleSubmit(Number(value))}
         />
         {!isPercent && (
           <AdvancedValueSetter
-            changeHandler={changeHandler}
+            handleSubmit={handleSubmit}
             setValue={(value) => setValueMap((prev) => prev.set(year, value))}
           />
         )}
@@ -802,7 +804,7 @@ function ValueSetter(props) {
   const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
-  function changeHandler(value) {
+  function handleSubmit(value) {
     reformMap.set(startDate, nextDay(endDate), value);
     let data = {};
     reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
@@ -834,6 +836,13 @@ function ValueSetter(props) {
     }
   }
 
+  // Booleans must handle change and submit simultaneously onChange,
+  // as toggling a switch is also a submission
+  function handleSwitchChange(value) {
+    setValue(value);
+    handleSubmit(value);
+  }
+
   const isPercent = parameter.unit === "/1";
   const scale = isPercent ? 100 : 1;
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
@@ -843,17 +852,27 @@ function ValueSetter(props) {
   // unmount when we change between parameters, leading to the possibility
   // for a stale "value" state in this controlled component
   useEffect(() => {
+    if (parameter.unit === "bool" || parameter.unit === "abolition") {
+      setValue(startValue);
+      return;
+    }
     setValue(Number(startValue) * scale);
-  }, [parameterName, startValue, scale]);
+  }, [parameterName, startValue, scale, parameter]);
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 3 }}>
-        <Switch
-          key={"input for" + parameter.parameter}
-          defaultChecked={startValue}
-          onChange={(value) => changeHandler(!!value)}
-        />
+        <ConfigProvider theme={{ token: { motion: false } }}>
+          <Switch
+            key={"input for" + parameterName}
+            defaultValue={startValue}
+            value={value}
+            onChange={(value) => handleSwitchChange(value)}
+            style={{
+              transition: "none !important",
+            }}
+          />
+        </ConfigProvider>
       </div>
     );
   } else {
@@ -863,7 +882,7 @@ function ValueSetter(props) {
           style={{
             width: "100%",
           }}
-          key={"input for" + parameter.parameter}
+          key={"input for" + parameterName}
           {...(isCurrency
             ? {
                 addonBefore: currencyMap[parameter.unit],
@@ -886,12 +905,12 @@ function ValueSetter(props) {
           value={value}
           onChange={(value) => setValue(value)}
           onPressEnter={() => {
-            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
+            handleSubmit(+value.toFixed(maximumFractionDigits) / scale);
           }}
         />
         {!isPercent && (
           <AdvancedValueSetter
-            changeHandler={changeHandler}
+            handleSubmit={handleSubmit}
             setValue={setValue}
           />
         )}
@@ -901,11 +920,11 @@ function ValueSetter(props) {
 }
 
 function AdvancedValueSetter(props) {
-  const { changeHandler, setValue } = props;
+  const { handleSubmit, setValue } = props;
 
   function handleValueInput(value) {
     setValue(value);
-    changeHandler(value);
+    handleSubmit(value);
   }
 
   const popoverContent = (
