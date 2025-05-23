@@ -49,7 +49,12 @@ export default function SimulationsPage() {
           const uniqueSimulations = new Map();
 
           data.result.forEach((simulation) => {
+            // Creates unique key for each simulation object
             const key = `${simulation.reform_policy_id}-${simulation.baseline_policy_id}-${simulation.region}-${simulation.time_period}-${simulation.options_json}`;
+            
+            // Store it on the simulation object 
+            simulation.rowKey = key;
+            
             if (!uniqueSimulations.has(key)) {
               uniqueSimulations.set(key, simulation);
             } else {
@@ -119,7 +124,7 @@ export default function SimulationsPage() {
         </p>
       </PageHeader>
       <Section>
-        <Table dataSource={data} columns={columns} rowKey="start_time" />
+        <Table dataSource={data} columns={columns} rowKey="rowKey" />
       </Section>
       <Footer />
     </>
