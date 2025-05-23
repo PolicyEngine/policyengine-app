@@ -1,5 +1,14 @@
 [
   {
+    "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
+    "date": "2025-05-23",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
+    "tags": ["us", "policy", "featured"],
+    "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
+    "filename": "managers-amendment-to-hr1.md",
+    "image": "managers-amendment-to-hr1.png"
+  },
+  {
     "title": "Drafting Error in the One Big Beautiful Bill Act’s Auto Loan Interest Deduction",
     "description": "The bill creates a circular dependency between the deduction amount and AGI phaseout that prevents tax calculation.",
     "date": "2025-05-23",
