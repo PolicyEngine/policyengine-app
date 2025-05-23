@@ -1,6 +1,6 @@
 Wednesday night, the House of Representatives voted 215–214 to approve [H.R.1 — One Big Beautiful Bill Act](https://www.congress.gov/bill/119th-congress/house-bill/1) (OBBBA). The bill extends and enhances several provisions of the Tax Cuts and Jobs Act of 2017 (TCJA), while adding new individual income tax provisions such as exemptions for tip and overtime income and a deduction for auto loan interest.
 
-Included in the passed bill by the Rules Committee is a [“Manager’s Amendment,”](https://punchbowl.news/wp-content/uploads/managers-amendment.pdf) which revises three tax provisions in the [Budget Committee’s version](https://budget.house.gov/imo/media/doc/one_big_beautiful_bill_act_-_full_bill_text.pdf) of the OBBBA.
+Included in the passed bill by the Rules Committee is a [“Manager's Amendment,”](https://punchbowl.news/wp-content/uploads/managers-amendment.pdf) which revises three tax provisions in the [Budget Committee's version](https://budget.house.gov/imo/media/doc/one_big_beautiful_bill_act_-_full_bill_text.pdf) of the OBBBA.
 
 These reforms include:
 
@@ -10,7 +10,7 @@ These reforms include:
 
 1. Further limiting itemized deductions for high-income filers
 
-In this report, we demonstrate the impact of the manager’s amendment through hypothetical households and simulate its net effects on the U.S. against a baseline of the Budget Committee’s OBBBA. We find that the changes will:
+In this report, we demonstrate the impact of the manager's amendment through hypothetical households and simulate its net effects on the U.S. against a baseline of the Budget Committee's OBBBA. We find that the changes will:
 
 - Decrease revenues by $22.0 billion from 2026 to 2035
 
@@ -18,15 +18,15 @@ In this report, we demonstrate the impact of the manager’s amendment through h
 
 - Lower the Gini index of income inequality by 0.15%
 
-_View the impact of the Manager’s Amendment on [the economy](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) and [your household](https://policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps)._
+_View the impact of the Manager's Amendment on [the economy](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) and [your household](https://policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps)._
 
-## Manager’s Amendment Provisions
+## Manager's Amendment Provisions
 
 The Ways and Means Committee introduced the [initial OBBBA tax provisions](https://waysandmeans.house.gov/wp-content/uploads/2025/05/SMITMO_017_xml.pdf) on May 12th. That bill extended TCJA provisions like lower rates, a higher standard deduction, and an expanded Child Tax Credit (except for a new Social Security Number requirement), while introducing new provisions such as exemptions for tip and overtime income. It also revised three TCJA policies: the SALT cap, the AMT, and the limitation on itemized deductions.
 
-The manager’s amendment further revised these policies, while also revising other policies such as Medicaid work requirements and Inflation Reduction Act tax credits. Table 1 shows each of those policies in 2026 under current law (TCJA expiration), TCJA, the Ways and Means OBBBA, and the House-approved OBBBA (post-manager’s amendment).
+The manager's amendment further revised these policies, while also revising other policies such as Medicaid work requirements and Inflation Reduction Act tax credits. Table 1 shows each of those policies in 2026 under current law (TCJA expiration), TCJA, the Ways and Means OBBBA, and the House-approved OBBBA (post-manager's amendment).
 
-**Table 1: Features of Individual Income Tax Provisions Revised in the Manager’s Amendment (2026)**
+**Table 1: Features of Individual Income Tax Provisions Revised in the Manager's Amendment (2026)**
 
 | Policy                         | Feature             | Current law                                                                                                                          | TCJA                        | Ways & Means OBBBA                                                                                   | House OBBBA                                                                                                                                                                                                                                        |
 | ------------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,9 +38,9 @@ The manager’s amendment further revised these policies, while also revising ot
 | AMT                            | Exemption phase-out | $156,900 ($209,200 joint)                                                                                                            | $635,900 ($1,271,900 joint) | $635,900 ($1,271,900 joint)                                                                          | $500,000 ($1,000,000 joint)                                                                                                                                                                                                                        |
 | Itemized deductions limitation |                     | "Pease limitation": The smaller of:<br>a) 3% of AGI exceeding $261,500 ($313,800 joint)<br>or<br>b) 80% of total itemized deductions | N/A                         | 2/37 of the lesser of itemized deduction or taxable income excess over the top tax bracket threshold | The sum of<br>a) 5/37 of the lesser of the SALT deduction and taxable income excess over the top tax bracket threshold<br>and<br>b) 2/37 of the lesser of itemized deduction less SALT or taxable income excess over the top tax bracket threshold |
 
-In sum, the manager’s amendment:
+In sum, the manager's amendment:
 
-1. **Expanded the SALT deduction** between the [Ways and Means SALT cap](https://policyengine.org/us/research/ways-and-means-salt-cap) and the [SALT Caucus’s proposed SALT cap](https://policyengine.org/us/research/salt-caucus-62k-cap)
+1. **Expanded the SALT deduction** between the [Ways and Means SALT cap](https://policyengine.org/us/research/ways-and-means-salt-cap) and the [SALT Caucus's proposed SALT cap](https://policyengine.org/us/research/salt-caucus-62k-cap)
 
 1. **Reduced the AMT exemption amount and exemption phase-out start** by changing the base year from 2017 to 2025 for inflation indexing
 
@@ -54,41 +54,41 @@ Under current law, the state and local tax deduction is set to become uncapped s
 
 Under the new compromise, households could claim up to $40,000 in SALT ($20,000 for separate filers) in 2025. Unlike the Ways and Means bill, the new SALT increase would start in 2025 rather than 2026, thus increasing the current cap of $10,000 this year. The deduction phases out at a 30% rate for filers with adjusted gross income above $500,000. The SALT cap and phase-out threshold grow by 1% each year until 2033, at which point the values would remain constant. Figure 1 displays the different SALT caps for single filers under the initial bill and the amended version.
 
-**Figure 1: Maximum SALT Deduction under the Initial W&M SALT Cap and the Manager’s Amendment for a Single Filer in 2026**
+**Figure 1: Maximum SALT Deduction under the Initial W&M SALT Cap and the Manager's Amendment for a Single Filer in 2026**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*WWW4GvxooQQxEr1-)
 
-In addition to these changes, the manager’s amendment increased the overall limitation on itemized deductions to 5/37 of the lesser of a household’s total SALT deduction or the difference between their taxable income and the top income bracket’s threshold. The 2/37 limitation remains for all other itemized deductions. Furthermore, the manager’s amendment sets 2025 as the base year for alternative minimum tax inflation adjustments, lowering the AMT exemption amount and phase-out start. Each change will affect a household’s eligible SALT deduction and [effective SALT cap](https://policyengine.org/us/research/introducing-salternative).
+In addition to these changes, the manager's amendment increased the overall limitation on itemized deductions to 5/37 of the lesser of a household's total SALT deduction or the difference between their taxable income and the top income bracket's threshold. The 2/37 limitation remains for all other itemized deductions. Furthermore, the manager's amendment sets 2025 as the base year for alternative minimum tax inflation adjustments, lowering the AMT exemption amount and phase-out start. Each change will affect a household's eligible SALT deduction and [effective SALT cap](https://policyengine.org/us/research/introducing-salternative).
 
 ## Household Impacts
 
-The changes to the SALT deduction, overall limitation on itemized deductions, and AMT would affect households that itemize their deductions and have state and local tax expenses greater than the initial limit in the Ways and Means bill. To understand this, let’s examine a single adult in Texas making $500,000, with $40,000 in property taxes[^2] and $50,000 in other itemized deductions (e.g., charitable contributions or mortgage interest). Under the manager’s amendment, they would see an [increase in their net income of $10,640](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps&household=53694) in 2026, compared to the Ways and Means OBBBA. Figure 2 displays how this filer’s net income would change as their household earnings vary.
+The changes to the SALT deduction, overall limitation on itemized deductions, and AMT would affect households that itemize their deductions and have state and local tax expenses greater than the initial limit in the Ways and Means bill. To understand this, let's examine a single adult in Texas making $500,000, with $40,000 in property taxes[^2] and $50,000 in other itemized deductions (e.g., charitable contributions or mortgage interest). Under the manager's amendment, they would see an [increase in their net income of $10,640](https://policyengine.org/us/household?focus=householdOutput.netIncome&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps&household=53694) in 2026, compared to the Ways and Means OBBBA. Figure 2 displays how this filer's net income would change as their household earnings vary.
 
-[^2]: While Texas lacks a state income tax, filers can also deduct their sales tax, either reported or estimated from IRS tables. PolicyEngine calculates state sales tax from these tables, which adds between $634 and $2,677 to this filer’s SALT. Combined with the $40,000 property taxes, they will exceed the $40,400 SALT cap for 2026 at all income levels.
+[^2]: While Texas lacks a state income tax, filers can also deduct their sales tax, either reported or estimated from IRS tables. PolicyEngine calculates state sales tax from these tables, which adds between $634 and $2,677 to this filer's SALT. Combined with the $40,000 property taxes, they will exceed the $40,400 SALT cap for 2026 at all income levels.
 
-**Figure 2: Effect of OBBBA Manager’s Amendment on Net Income for a Single Filer with $40k in Property Taxes and $50k in Other Deductions (2026)**
+**Figure 2: Effect of OBBBA Manager's Amendment on Net Income for a Single Filer with $40k in Property Taxes and $50k in Other Deductions (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*WSC2Y1Dt0V6CV9by)
 
-Let’s dissect this segment by segment, starting at $90,000 earnings where the amendment begins to increase their net income (lower their taxes). As shown in Figure 3, this results from a $10,400 larger SALT deduction.
+Let's dissect this segment by segment, starting at $90,000 earnings where the amendment begins to increase their net income (lower their taxes). As shown in Figure 3, this results from a $10,400 larger SALT deduction.
 
-**Figure 3: Effect of OBBBA Manager’s Amendment on SALT Deduction for a Single Filer with $40k in Property Taxes and $50k in Other Deductions (2026)**
+**Figure 3: Effect of OBBBA Manager's Amendment on SALT Deduction for a Single Filer with $40k in Property Taxes and $50k in Other Deductions (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2728/1*eMqhfEzfaTXNCgsN8fF02w.png)
 
 At $155,000 earnings, their net income begins to decrease, and then after the change reaches its lowest point at $277,500 earnings, it begins rising again. Figure 4 shows that these result from being subjected to AMT due to the smaller AMT exemption, and then the AMT effect phasing out.
 
-**Figure 4: Effect of OBBBA Manager’s Amendment on AMT for a Single Filer with $40k in Property Taxes and $50k in other deductions (2026)**
+**Figure 4: Effect of OBBBA Manager's Amendment on AMT for a Single Filer with $40k in Property Taxes and $50k in other deductions (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2632/1*dcAgTGnGsc6GmoTyuUCANg.png)
 
-At $400,000 earnings, the filer’s SALT deduction rises as the previous version began phasing out at that threshold, while the manager amendment pushed the phaseout to $505,000 in 2026. Once the household’s SALT deduction begins to phase out, net income falls until reaching $0 at $606,000 of earnings. At $645,000, change in net income falls below zero due to the overall limitation on itemized deductions. Figure 5 shows these in the context of total itemized deductions.
+At $400,000 earnings, the filer's SALT deduction rises as the previous version began phasing out at that threshold, while the manager amendment pushed the phaseout to $505,000 in 2026. Once the household's SALT deduction begins to phase out, net income falls until reaching $0 at $606,000 of earnings. At $645,000, change in net income falls below zero due to the overall limitation on itemized deductions. Figure 5 shows these in the context of total itemized deductions.
 
-**Figure 5: Effect of OBBBA Manager’s Amendment on Itemized Deductions for a Single Filer with $50k in Other Deductions (2026)**
+**Figure 5: Effect of OBBBA Manager's Amendment on Itemized Deductions for a Single Filer with $50k in Other Deductions (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2680/1*5sTi9ZNwmXQ_D-1oSNajdQ.png)
 
-The amendment would affect the single adult’s marginal tax rates (MTRs) at various earnings levels, as shown in Figure 3. Because the SALT cap no longer phases out at the $400,000 income level, the filer’s MTR falls by 7 percentage points between $400,000 and $497,500. It then rises by 10.5 percentage points for earnings between $505,000 and $605,000. Finally, the SALT limitation increases MTRs by 4.7 percentage points and then lowers it at income levels where the previous would have taken effect.
+The amendment would affect the single adult's marginal tax rates (MTRs) at various earnings levels, as shown in Figure 3. Because the SALT cap no longer phases out at the $400,000 income level, the filer's MTR falls by 7 percentage points between $400,000 and $497,500. It then rises by 10.5 percentage points for earnings between $505,000 and $605,000. Finally, the SALT limitation increases MTRs by 4.7 percentage points and then lowers it at income levels where the previous would have taken effect.
 
 **Figure 6: Change in Marginal Tax Rates Based on Household Earnings for a Single Filer with $40,000+ in SALT and $50,000 in Other Deductions (2026)**
 
@@ -96,19 +96,19 @@ The amendment would affect the single adult’s marginal tax rates (MTRs) at var
 
 Due to the increase of the later SALT cap phase-out threshold, the total MTR increases to 47.9% for earnings between $562,000 to $605,000, its highest level above benefit phase-out income ranges.
 
-**Figure 7: Marginal Tax Rates for Single Filer Under the pre- and post-manager’s Amendment OBBBA (2026)**
+**Figure 7: Marginal Tax Rates for Single Filer Under the pre- and post-manager's Amendment OBBBA (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3180/0*PYEnclmxwDy_LScu)
 
 In jurisdictions with state and local income taxes, the SALT cap phase-out results in higher MTRs. For example, Figure 8 shows that this same filer would face a 59.8% MTR in California when earning between $522,500 and $605,000.
 
-**Figure 8: Marginal Tax Rates of a Single Filer in California Under the pre- and post-manager’s Amendment OBBBA (2026)**
+**Figure 8: Marginal Tax Rates of a Single Filer in California Under the pre- and post-manager's Amendment OBBBA (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*kife4O3RHxgdiExI)
 
 The highest MTR we identified as a result of the amendment occurs in New York City, where the filer would face a 63.1% rate on earnings between $505,000 and $522,500 (see Figure 9).
 
-**Figure 9: Marginal Tax Rates of a Single Filer in New York City Under the pre- and post-manager’s amendment OBBBA (2026)**
+**Figure 9: Marginal Tax Rates of a Single Filer in New York City Under the pre- and post-manager's amendment OBBBA (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3168/0*OgQ-9k_9F2XKwgWF)
 
@@ -129,11 +129,11 @@ Filers in other situations, such as with high capital gains, could face larger i
 
 ## Microsimulation Results
 
-Using PolicyEngine’s static microsimulation model, we project that the manager’s amendment to the One Big Beautiful Big Act would [increase the cost of the tax package by $22.0 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the proposed changes go into effect in 2025, it would [increase federal revenues by $3.0 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2025&baseline=85188&dataset=enhanced_cps) this year.
+Using PolicyEngine's static microsimulation model, we project that the manager's amendment to the One Big Beautiful Big Act would [increase the cost of the tax package by $22.0 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) over the next ten years (2026–2035).[^3] Additionally, because the proposed changes go into effect in 2025, it would [increase federal revenues by $3.0 billion](https://policyengine.org/us/policy?focus=policyOutput.budgetaryImpact.overall&reform=85113&region=us&timePeriod=2025&baseline=85188&dataset=enhanced_cps) this year.
 
 [^3]: We project that state tax revenues would increase by $0.2bn over the budget window (2026-2035).
 
-**Table 3: Annual Federal Revenue Impact of Individual Provisions of the Manager’s Amendment to the One Big Beautiful Bill Act**
+**Table 3: Annual Federal Revenue Impact of Individual Provisions of the Manager's Amendment to the One Big Beautiful Bill Act**
 
 | Year          | Federal Revenue Impact in billions of $ (Static) |
 | ------------- | ------------------------------------------------ |
@@ -151,21 +151,21 @@ Using PolicyEngine’s static microsimulation model, we project that the manager
 
 The SALT cap would [increase the net income of 3.1% of US residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) in 2026 and decrease it for 3.3% of the population. Of individuals in the top income decile, 30% would experience a reduction in net income and 9% would experience a gain.
 
-**Figure 10: Winners and Losers of the Manager’s Amendment to the One Big Beautiful Big Act (2026)**
+**Figure 10: Winners and Losers of the Manager's Amendment to the One Big Beautiful Big Act (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*_U1Fx1HUtpJEQ5D8)
 
 Households in the top decile see their tax liability fall by [$347 on average](https://policyengine.org/us/policy?focus=policyOutput.distributionalImpact.incomeDecile.average&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps). The second income decile would see an average gain of $218 in 2026, potentially due to some high income filers in households with low- or negative-income filers.
 
-**Figure 11: Average Impact of the Manager’s Amendment to the One Big Beautiful Big Act (2026)**
+**Figure 11: Average Impact of the Manager's Amendment to the One Big Beautiful Big Act (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3200/0*53N1NUVv92mC7TXB)
 
-When it comes to inequality, the SALT Caucus proposal would, in 2026, [lower the Gini index](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) by 0.15%, and lower the top 1%’s share of net income by 0.03%
+When it comes to inequality, the SALT Caucus proposal would, in 2026, [lower the Gini index](https://policyengine.org/us/policy?focus=policyOutput.inequalityImpact&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) by 0.15%, and lower the top 1%'s share of net income by 0.03%
 
 ## Conclusion
 
-The Manager’s Amendment to H.R.1 — The One Big Beautiful Bill Act modifies three tax provisions originally outlined in the Budget Committee’s version:
+The Manager's Amendment to H.R.1 — The One Big Beautiful Bill Act modifies three tax provisions originally outlined in the Budget Committee's version:
 
 1. Expands the SALT cap from $30,000 to $40,400 in 2026
 
@@ -173,7 +173,7 @@ The Manager’s Amendment to H.R.1 — The One Big Beautiful Bill Act modifies t
 
 1. Implements a higher limitation on the SALT deductions than other itemized expenses for high-income filers.
 
-These changes would reduce federal revenues by $22.0 billion over the ten-year window when utilizing static modeling. In 2026, 3.1% of Americans would experience an increased net income and while 3.3% see their after-tax income reduce. Additionally, the Gini index of income inequality would fall by 0.15% and while the top 1%’s share of net income decreases by 0.03%.
+These changes would reduce federal revenues by $22.0 billion over the ten-year window when utilizing static modeling. In 2026, 3.1% of Americans would experience an increased net income and while 3.3% see their after-tax income reduce. Additionally, the Gini index of income inequality would fall by 0.15% and while the top 1%'s share of net income decreases by 0.03%.
 
 As policymakers evaluate reforms such as these, analytical tools like PolicyEngine offer critical insights into the impacts on diverse household compositions and the broader economy.
 
