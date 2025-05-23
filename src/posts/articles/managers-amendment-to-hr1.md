@@ -12,17 +12,13 @@ These reforms include:
 
 In this report, we demonstrate the impact of the manager’s amendment through hypothetical households and simulate its net effects on the U.S. against a baseline of the Budget Committee’s OBBBA. We find that the changes will:
 
-* Decrease revenues by $22.0 billion from 2026 to 2035
+- Decrease revenues by $22.0 billion from 2026 to 2035
 
-* Raise net income for 3.1% of Americans in 2026, while reducing net income for 3.3%
+- Raise net income for 3.1% of Americans in 2026, while reducing net income for 3.3%
 
-* Lower the Gini index of income inequality by 0.15%
+- Lower the Gini index of income inequality by 0.15%
 
-*Use PolicyEngine to [view the full results](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) or calculate the [effect on your household](https://policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps).*
-
-*PolicyEngine calculates SALT, including state sales tax from estimated tables as allowed by the IRS.*
-
-*View the impact of the Manager’s Amendment on [the economy](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) and [your household](https://policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps).*
+_View the impact of the Manager’s Amendment on [the economy](https://policyengine.org/us/policy?focus=policyOutput.policyBreakdown&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) and [your household](https://policyengine.org/us/household?focus=intro&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps)._
 
 ## Manager’s Amendment Provisions
 
@@ -32,16 +28,15 @@ The manager’s amendment further revised these policies, while also revising ot
 
 **Table 1: Features of Individual Income Tax Provisions Revised in the Manager’s Amendment (2026)**
 
-| Policy | Feature | Current law | TCJA | Ways & Means OBBBA | House OBBBA |
-|--------|---------|-------------|------|-------------------|-------------|
-| SALT cap | Maximum amount | Uncapped | $10,000 | $30,000 | $40,400, rising 1% per year |
-| SALT cap | Phase-out threshold | N/A | N/A | $400,000 | $505,000, rising 1% per year |
-| SALT cap | Phase-out rate | N/A | N/A | 20% | 30% |
-| SALT cap | Floor | N/A | $10,000 | $10,000 | $10,000 |
-| AMT | Exemption amount | $70,600 ($109,800 joint) | $89,400 ($139,000 joint) | $89,400 ($139,000 joint) | $70,300 ($109,400 joint) |
-| AMT | Exemption phase-out | $156,900 ($209,200 joint) | $635,900 ($1,271,900 joint) | $635,900 ($1,271,900 joint) | $500,000 ($1,000,000 joint) |
-| Itemized deductions limitation | | "Pease limitation": The smaller of:<br>a) 3% of AGI exceeding $261,500 ($313,800 joint)<br>or<br>b) 80% of total itemized deductions | N/A | 2/37 of the lesser of itemized deduction or taxable income excess over the top tax bracket threshold | The sum of<br>a) 5/37 of the lesser of the SALT deduction and taxable income excess over the top tax bracket threshold<br>and<br>b) 2/37 of the lesser of itemized deduction less SALT or taxable income excess over the top tax bracket threshold |
-
+| Policy                         | Feature             | Current law                                                                                                                          | TCJA                        | Ways & Means OBBBA                                                                                   | House OBBBA                                                                                                                                                                                                                                        |
+| ------------------------------ | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SALT cap                       | Maximum amount      | Uncapped                                                                                                                             | $10,000                     | $30,000                                                                                              | $40,400, rising 1% per year                                                                                                                                                                                                                        |
+| SALT cap                       | Phase-out threshold | N/A                                                                                                                                  | N/A                         | $400,000                                                                                             | $505,000, rising 1% per year                                                                                                                                                                                                                       |
+| SALT cap                       | Phase-out rate      | N/A                                                                                                                                  | N/A                         | 20%                                                                                                  | 30%                                                                                                                                                                                                                                                |
+| SALT cap                       | Floor               | N/A                                                                                                                                  | $10,000                     | $10,000                                                                                              | $10,000                                                                                                                                                                                                                                            |
+| AMT                            | Exemption amount    | $70,600 ($109,800 joint)                                                                                                             | $89,400 ($139,000 joint)    | $89,400 ($139,000 joint)                                                                             | $70,300 ($109,400 joint)                                                                                                                                                                                                                           |
+| AMT                            | Exemption phase-out | $156,900 ($209,200 joint)                                                                                                            | $635,900 ($1,271,900 joint) | $635,900 ($1,271,900 joint)                                                                          | $500,000 ($1,000,000 joint)                                                                                                                                                                                                                        |
+| Itemized deductions limitation |                     | "Pease limitation": The smaller of:<br>a) 3% of AGI exceeding $261,500 ($313,800 joint)<br>or<br>b) 80% of total itemized deductions | N/A                         | 2/37 of the lesser of itemized deduction or taxable income excess over the top tax bracket threshold | The sum of<br>a) 5/37 of the lesser of the SALT deduction and taxable income excess over the top tax bracket threshold<br>and<br>b) 2/37 of the lesser of itemized deduction less SALT or taxable income excess over the top tax bracket threshold |
 
 In sum, the manager’s amendment:
 
@@ -55,7 +50,7 @@ In sum, the manager’s amendment:
 
 Under current law, the state and local tax deduction is set to become uncapped starting in 2026 after being limited to $10,000 under the Tax Cuts and Jobs Act. The initial draft of the OBBBA capped the SALT deduction at $30,000, and once adjusted gross income reaches $400,000, the limitation phases down at a 20% rate until reaching $10,000 (the maximum, floor, and phase-out threshold are all halved for married couples filing separately).[^1]
 
-[^1]: The Ways and Means bill also includes provisions that are meant to limit workarounds that states have implemented to avoid the SALT cap. We did not model these provisions in this analysis. 
+[^1]: The Ways and Means bill also includes provisions that are meant to limit workarounds that states have implemented to avoid the SALT cap. We did not model these provisions in this analysis.
 
 Under the new compromise, households could claim up to $40,000 in SALT ($20,000 for separate filers) in 2025. Unlike the Ways and Means bill, the new SALT increase would start in 2025 rather than 2026, thus increasing the current cap of $10,000 this year. The deduction phases out at a 30% rate for filers with adjusted gross income above $500,000. The SALT cap and phase-out threshold grow by 1% each year until 2033, at which point the values would remain constant. Figure 1 displays the different SALT caps for single filers under the initial bill and the amended version.
 
@@ -113,7 +108,7 @@ In jurisdictions with state and local income taxes, the SALT cap phase-out resul
 
 The highest MTR we identified as a result of the amendment occurs in New York City, where the filer would face a 63.1% rate on earnings between $505,000 and $522,500 (see Figure 9).
 
-**Figure 9: Marginal Tax Rates of a Single Filer in New York City Under the pre- and post-manager’s amendment OBBBA(2026)**
+**Figure 9: Marginal Tax Rates of a Single Filer in New York City Under the pre- and post-manager’s amendment OBBBA (2026)**
 
 ![](https://cdn-images-1.medium.com/max/3168/0*OgQ-9k_9F2XKwgWF)
 
@@ -121,14 +116,14 @@ Filers with different income levels and amounts of itemized deductions would exp
 
 **Table 2: Change in Net Income for Various Single Adults in Texas Based on Itemized Deductions and Household Earnings**
 
-| Property tax | Other itemized deductions | $100k | $250k | $500k | $1M |
-|--------------|---------------------------|--------|--------|---------|------|
-| $0 | $0 | $0 | $0 | $0 | $0 |
-| $20k | $0 | $0 | $0 | $2,472 | $0 |
-| $40k | $0 | $2,288 | $503 | $8,488 | $0 |
-| $0 | $50k | $0 | $0 | $0 | -$96 |
-| $20k | $50k | $0 | $0 | $4,624 | -$300 |
-| $40k | $50k | $1,197 | -$193 | $10,640 | -$300 |
+| Property tax | Other itemized deductions | $100k  | $250k | $500k   | $1M   |
+| ------------ | ------------------------- | ------ | ----- | ------- | ----- |
+| $0           | $0                        | $0     | $0    | $0      | $0    |
+| $20k         | $0                        | $0     | $0    | $2,472  | $0    |
+| $40k         | $0                        | $2,288 | $503  | $8,488  | $0    |
+| $0           | $50k                      | $0     | $0    | $0      | -$96  |
+| $20k         | $50k                      | $0     | $0    | $4,624  | -$300 |
+| $40k         | $50k                      | $1,197 | -$193 | $10,640 | -$300 |
 
 Filers in other situations, such as with high capital gains, could face larger impacts from the amendment due to the alternative minimum tax. We do not illustrate hypothetical households with these characteristics, but include them in our microsimulation analysis.
 
@@ -138,21 +133,21 @@ Using PolicyEngine’s static microsimulation model, we project that the manager
 
 [^3]: We project that state tax revenues would increase by $0.2bn over the budget window (2026-2035).
 
-**Table 3: Annual Federal Revenue Impact of Individual Provisions of the Manager’s Amendment to the One Big Beautiful Big Act**
+**Table 3: Annual Federal Revenue Impact of Individual Provisions of the Manager’s Amendment to the One Big Beautiful Bill Act**
 
-| **Year** | **Federal Revenue Impact in billions of $ (Static)** |
-|----------|------------------------------------------------------|
-| 2026 | -1.8 |
-| 2027 | -3.3 |
-| 2028 | -2.5 |
-| 2029 | -5.0 |
-| 2030 | -4.8 |
-| 2031 | -2.9 |
-| 2032 | -2.2 |
-| 2033 | -1.1 |
-| 2034 | -0.5 |
-| 2035 | 1.0 |
-| **2026-2035** | **-22.0** |
+| Year          | Federal Revenue Impact in billions of $ (Static) |
+| ------------- | ------------------------------------------------ |
+| 2026          | -1.8                                             |
+| 2027          | -3.3                                             |
+| 2028          | -2.5                                             |
+| 2029          | -5.0                                             |
+| 2030          | -4.8                                             |
+| 2031          | -2.9                                             |
+| 2032          | -2.2                                             |
+| 2033          | -1.1                                             |
+| 2034          | -0.5                                             |
+| 2035          | 1.0                                              |
+| **2026-2035** | **-22.0**                                        |
 
 The SALT cap would [increase the net income of 3.1% of US residents](https://policyengine.org/us/policy?focus=policyOutput.winnersAndLosers.incomeDecile&reform=85113&region=us&timePeriod=2026&baseline=85188&dataset=enhanced_cps) in 2026 and decrease it for 3.3% of the population. Of individuals in the top income decile, 30% would experience a reduction in net income and 9% would experience a gain.
 
@@ -190,35 +185,35 @@ Our baseline includes most individual provisions in the Ways and Means bill, as 
 
 **Table 4: Individual Tax Provisions Current Law vs. W&M Bill**
 
-| **Individual Provisions** | **Current Law (2026)** | **W&M Bill (2026)** | **In PolicyEngine Simulation** |
-|--------------------------|------------------------|---------------------|--------------------------------|
-| Tax Rates | 10%, 15%, 25%, 28%, 33%, 35%, and 39.6% | 10%, 12%, 22%, 24%, 32%, 35%, and 37% | ✅ |
-| Tax Brackets | Revert to 2017 Thresholds (Indexed for Inflation Since 2017)* | 2025 Thresholds (Indexed for Inflation for 2026) | ✅ |
-| Personal and Dependent Exemption | $5,300* | $0 | ✅ |
-| CTC Base Amount | $1,000 | $2,000 | ✅ |
-| CTC Temporary Boost (2025-2028) | Inactive | $500 | ✅ |
-| CTC Maximum Refundable Amount | $1,000 | $1,700* | ✅ |
-| CTC Phase-in Start | $3,000 | $2,500 | ✅ |
-| CTC Phase-out Start | $75,000/$110,000 | $200,000/$400,000 | ✅ |
-| Adult Dependent Credit | $0 | $500 | ✅ |
-| Standard Deduction Amount | $8,300/$16,600* | $16,150/$32,300* | ✅ |
-| Estate Tax Exemption | ~$6,790,000 | $15,000,000 | ✖️ |
-| Mortgage Interest Deduction Cap | $1,000,000 | $750,000 | ✖️ |
-| Casualty Expense Deduction | Active | Inactive | ✖️ |
-| Pease | Active | Inactive | ✅ |
-| Overall Limitation on Itemized Deduction | Inactive | Active | ✅ |
-| AMT Exemption Amount | $70,500/$109,700* | $89,400/$139,050* | ✅ |
-| AMT Phase-out Start | $156,700/$209,000* | $635,900/$1,271,850* | ✅ |
-| QBID Rate | Inactive | 23% | ✅ |
-| Alternative QBID Rate on Business Property | Inactive | 2.5% | ✅ |
-| QBID Rate on W-2 Wages | Inactive | 50% | ✅ |
-| Alternative QBID Rate on W-2 Wages | Inactive | 25% | ✅ |
-| QBID Limitation Phase-in Amount | Inactive | 75% | ✅ |
-| QBID Phase-out Start | Inactive | $200,300/$400,500* | ✅ |
-| Tip income exemption (2025-2028) | Inactive | Active | ✅ |
-| Overtime income exemption (2025-2028) | Inactive | Active | ✅ |
-| Auto loan interest deduction (2025-2028) | Inactive | Active | ✅ |
-| Additional Standard Deduction for Seniors (2025-2028) | Inactive | Active | ✅ |
-| Charitable Deduction for Non-Itemizers (2025-2028) | Inactive | Active | ✅ |
+| Individual Provisions                                 | Current Law (2026)                                             | W&M Bill (2026)                                  | In PolicyEngine Simulation |
+| ----------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------ | -------------------------- |
+| Tax Rates                                             | 10%, 15%, 25%, 28%, 33%, 35%, and 39.6%                        | 10%, 12%, 22%, 24%, 32%, 35%, and 37%            | ✅                         |
+| Tax Brackets                                          | Revert to 2017 Thresholds (Indexed for Inflation Since 2017)\* | 2025 Thresholds (Indexed for Inflation for 2026) | ✅                         |
+| Personal and Dependent Exemption                      | $5,300\*                                                       | $0                                               | ✅                         |
+| CTC Base Amount                                       | $1,000                                                         | $2,000                                           | ✅                         |
+| CTC Temporary Boost (2025-2028)                       | Inactive                                                       | $500                                             | ✅                         |
+| CTC Maximum Refundable Amount                         | $1,000                                                         | $1,700\*                                         | ✅                         |
+| CTC Phase-in Start                                    | $3,000                                                         | $2,500                                           | ✅                         |
+| CTC Phase-out Start                                   | $75,000/$110,000                                               | $200,000/$400,000                                | ✅                         |
+| Adult Dependent Credit                                | $0                                                             | $500                                             | ✅                         |
+| Standard Deduction Amount                             | $8,300/$16,600\*                                               | $16,150/$32,300\*                                | ✅                         |
+| Estate Tax Exemption                                  | ~$6,790,000                                                    | $15,000,000                                      | ✖️                         |
+| Mortgage Interest Deduction Cap                       | $1,000,000                                                     | $750,000                                         | ✖️                         |
+| Casualty Expense Deduction                            | Active                                                         | Inactive                                         | ✖️                         |
+| Pease                                                 | Active                                                         | Inactive                                         | ✅                         |
+| Overall Limitation on Itemized Deduction              | Inactive                                                       | Active                                           | ✅                         |
+| AMT Exemption Amount                                  | $70,500/$109,700\*                                             | $89,400/$139,050\*                               | ✅                         |
+| AMT Phase-out Start                                   | $156,700/$209,000\*                                            | $635,900/$1,271,850\*                            | ✅                         |
+| QBID Rate                                             | Inactive                                                       | 23%                                              | ✅                         |
+| Alternative QBID Rate on Business Property            | Inactive                                                       | 2.5%                                             | ✅                         |
+| QBID Rate on W-2 Wages                                | Inactive                                                       | 50%                                              | ✅                         |
+| Alternative QBID Rate on W-2 Wages                    | Inactive                                                       | 25%                                              | ✅                         |
+| QBID Limitation Phase-in Amount                       | Inactive                                                       | 75%                                              | ✅                         |
+| QBID Phase-out Start                                  | Inactive                                                       | $200,300/$400,500\*                              | ✅                         |
+| Tip income exemption (2025-2028)                      | Inactive                                                       | Active                                           | ✅                         |
+| Overtime income exemption (2025-2028)                 | Inactive                                                       | Active                                           | ✅                         |
+| Auto loan interest deduction (2025-2028)              | Inactive                                                       | Active                                           | ✅                         |
+| Additional Standard Deduction for Seniors (2025-2028) | Inactive                                                       | Active                                           | ✅                         |
+| Charitable Deduction for Non-Itemizers (2025-2028)    | Inactive                                                       | Active                                           | ✅                         |
 
-*Indexed for Inflation
+\*Indexed for Inflation

@@ -1,5 +1,14 @@
 [
   {
+    "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
+    "date": "2025-05-23",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
+    "tags": ["us", "policy", "featured"],
+    "description": "We project that individual provisions in the manager’s amendment will cost $22 billion over the budget window.",
+    "filename": "managers-amendment-to-hr1.md",
+    "image": "managers-amendment-to-hr1.png"
+  },
+  {
     "title": "Drafting Error in the One Big Beautiful Bill Act’s Auto Loan Interest Deduction",
     "description": "The bill creates a circular dependency between the deduction amount and AGI phaseout that prevents tax calculation.",
     "date": "2025-05-23",
@@ -1243,15 +1252,6 @@
     "description": "We project the bill, which would reduce Michigan’s tax rate from 4.25% to 4.05%, would cost $644 million in 2025.",
     "filename": "michigan-bill-hb4170.ipynb",
     "image": "michigan-bill-hb4170.jpg"
-  },
-  {
-    "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
-    "date": "2025-05-23",
-    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
-    "tags": ["us", "policy", "featured"],
-    "description": "We project that individual provisions in the manager’s amendment will cost $22 billion over the budget window.",
-    "filename": "managers-amendment-to-hr1.md",
-    "image": "managers-amendment-to-hr1.png"
   },
   {
     "title": "Restricting eligibility for the Personal Independence Payment Daily Living part",
