@@ -1,5 +1,14 @@
 [
   {
+    "title": "Drafting Error in the One Big Beautiful Bill Act’s Auto Loan Interest Deduction",
+    "description": "The bill creates a circular dependency between the deduction amount and AGI phaseout that prevents tax calculation.",
+    "date": "2025-05-23",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "auto-loan-drafting-error.md",
+    "image": "auto-loan-drafting-error.png",
+    "authors": ["david-trimmer"]
+  },
+  {
     "title": "The SALT Caucus's Proposed Cap",
     "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
     "date": "2025-05-15",
