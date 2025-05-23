@@ -1,5 +1,14 @@
 [
   {
+    "title": "Drafting Error in the One Big Beautiful Bill Act’s Auto Loan Interest Deduction",
+    "description": "The bill creates a circular dependency between the deduction amount and AGI phaseout that prevents tax calculation.",
+    "date": "2025-05-23",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "auto-loan-drafting-error.md",
+    "image": "auto-loan-drafting-error.png",
+    "authors": ["david-trimmer"]
+  },
+  {
     "title": "Montana Reduces Top Income Tax Rate and Expands EITC",
     "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in 2027.",
     "date": "2025-05-22",
