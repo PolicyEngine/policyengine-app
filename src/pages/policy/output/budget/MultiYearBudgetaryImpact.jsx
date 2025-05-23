@@ -3,7 +3,7 @@ import { Table } from "antd";
 const usDataSources = [
   {
     header: "Federal tax",
-    budgetKey: "budgetary_impact",
+    budgetKey: "tax_revenue_impact",
   },
   {
     header: "Benefits",
@@ -11,7 +11,7 @@ const usDataSources = [
   },
   {
     header: "Federal budget",
-    budgetKey: "tax_revenue_impact",
+    budgetKey: "budgetary_impact",
     style: {
       fontWeight: "bold",
     },
@@ -28,7 +28,7 @@ const usDataSources = [
 const ukDataSources = [
   {
     header: "Tax",
-    budgetKey: "budgetary_impact",
+    budgetKey: "tax_revenue_impact",
   },
   {
     header: "Benefits",
@@ -36,7 +36,7 @@ const ukDataSources = [
   },
   {
     header: "Total",
-    budgetKey: "tax_revenue_impact",
+    budgetKey: "budgetary_impact",
     style: {
       fontWeight: "bold",
     },
