@@ -20,6 +20,7 @@ import SearchParamNavButton from "../controls/SearchParamNavButton";
 import style from "../style";
 import DeprecationModal from "../modals/DeprecationModal";
 import { impactKeys } from "../pages/policy/output/ImpactTypes.jsx";
+import { determineIfMultiYear } from "./policy/output/utils.js";
 
 export function ParameterSearch(props) {
   const { metadata, callback } = props;
@@ -110,6 +111,7 @@ export default function PolicyPage(props) {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const focus = searchParams.get("focus") || "";
+  const isMultiYear = determineIfMultiYear(searchParams);
 
   const isOutput = focus.includes("policyOutput");
   // Evaluate if policy is deprecated or not
@@ -188,6 +190,7 @@ export default function PolicyPage(props) {
     // Check if the current focus is within validFocusValues
     if (
       focus === "policyOutput.policyBreakdown" ||
+      (isMultiYear && focus === "policyOutput.budgetaryImpact") ||
       focus === "policyOutput.codeReproducibility" ||
       validFocusValues.includes(stripped_focus)
     ) {
