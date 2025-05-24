@@ -788,7 +788,7 @@ function OneYearValueSetter(props) {
   }
 }
 
-function ValueSetter(props) {
+export function ValueSetter(props) {
   const {
     startDate,
     endDate,
