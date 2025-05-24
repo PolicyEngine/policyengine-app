@@ -85,8 +85,6 @@ export function mapFinancialYearToColumn(year, country) {
 export default function MultiYearBudgetaryImpact(props) {
   const { metadata, impact, singleYearResults, policyLabel, region } = props;
 
-  console.log(singleYearResults);
-
   const years = singleYearResults.map((item) => {
     return item.simulationRequestSetup.year;
   });
@@ -196,13 +194,9 @@ export function getYearlyImpacts(
     let impact = null;
     if (formula) {
       impact = formula(item.result.budget);
-      console.log("Formula impact", impact);
     } else {
       impact = item.result.budget[budgetKey];
-      console.log("Budget impact", impact);
     }
-
-    console.log("impact", impact);
 
     yearlyImpacts[year] = roundToBillions(
       impact,
