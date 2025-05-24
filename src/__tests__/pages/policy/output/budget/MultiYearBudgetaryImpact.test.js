@@ -4,6 +4,7 @@ import MultiYearBudgetaryImpact, {
   getYearlyImpacts,
   getYearRangeFromArray,
   roundToBillions,
+  getFederalBudgetImpact,
 } from "pages/policy/output/budget/MultiYearBudgetaryImpact";
 import "@testing-library/jest-dom";
 import data from "../../../../__setup__/data.json";
@@ -70,15 +71,40 @@ describe("MultiYearBudgetaryImpact", () => {
       // Given
       const singleYearResults = mockSingleYearResults;
       const budgetKey = "budgetary_impact";
+      const countryId = "us";
 
       // When
-      const result = getYearlyImpacts(singleYearResults, budgetKey);
+      const result = getYearlyImpacts(singleYearResults, countryId, budgetKey);
 
       // Then
       expect(result).toEqual({
         2020: String(mockSingleYearResults[0].result.budget[budgetKey] / 1e9),
         2021: String(mockSingleYearResults[1].result.budget[budgetKey] / 1e9),
       });
+    });
+    test("getYearlyImpacts should correctly format yearly impacts with formula", () => {
+      // Given
+      const singleYearResults = mockSingleYearResults;
+      const formula = (budget) =>
+        budget.tax_revenue_impact - budget.state_tax_revenue_impact;
+      const countryId = "us";
+      const budgetKey = null;
+      const expectedImpact = singleYearResults.map((item) =>
+        formula(item.result.budget),
+      );
+      const expectedResult = {
+        2020: String(expectedImpact[0] / 1e9),
+        2021: String(expectedImpact[1] / 1e9),
+      };
+      // When
+      const result = getYearlyImpacts(
+        singleYearResults,
+        countryId,
+        budgetKey,
+        formula,
+      );
+      // Then
+      expect(result).toEqual(expectedResult);
     });
 
     test("getYearRangeFromArray should format year range correctly", () => {
@@ -192,6 +218,23 @@ describe("MultiYearBudgetaryImpact", () => {
           mockSingleYearResults[1].result.budget.budgetary_impact / 1e9,
         ),
       ).toBeInTheDocument();
+    });
+  });
+  describe("Formula functions", () => {
+    test("getFederalBudgetImpact should return correct value", () => {
+      // Given
+      const budget = {
+        budgetary_impact: 5e9,
+        benefit_spending_impact: 6e9,
+        tax_revenue_impact: 7e9,
+        state_tax_revenue_impact: 4e9,
+      };
+
+      // When
+      const result = getFederalBudgetImpact(budget);
+
+      // Then
+      expect(result).toBe(3e9);
     });
   });
 });

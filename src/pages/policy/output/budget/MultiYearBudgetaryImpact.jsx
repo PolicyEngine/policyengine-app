@@ -3,7 +3,7 @@ import { Table } from "antd";
 const usDataSources = [
   {
     header: "Federal tax",
-    budgetKey: "tax_revenue_impact",
+    formula: getFederalBudgetImpact,
   },
   {
     header: "Benefits",
@@ -85,6 +85,8 @@ export function mapFinancialYearToColumn(year, country) {
 export default function MultiYearBudgetaryImpact(props) {
   const { metadata, impact, singleYearResults, policyLabel, region } = props;
 
+  console.log(singleYearResults);
+
   const years = singleYearResults.map((item) => {
     return item.simulationRequestSetup.year;
   });
@@ -110,11 +112,14 @@ export default function MultiYearBudgetaryImpact(props) {
       netRevenueImpact: item.header,
       ...getYearlyImpacts(
         singleYearResults,
-        item.budgetKey,
         metadata.countryId,
+        item.budgetKey ? item.budgetKey : null,
+        item.formula ? item.formula : null,
       ),
       yearRange: roundToBillions(
-        impact.budget[item.budgetKey],
+        item.budgetKey
+          ? impact.budget[item.budgetKey]
+          : item.formula(impact.budget),
         roundingPrecisionByCountry[metadata.countryId] ||
           roundingPrecisionByCountry.default,
       ),
@@ -171,17 +176,39 @@ export default function MultiYearBudgetaryImpact(props) {
   );
 }
 
-export function getYearlyImpacts(singleYearResults, budgetKey, countryId) {
+/**
+ * Create yearly impacts structured data for chart component
+ * @param {SequentialSimulationResult} singleYearResults
+ * @param {String} countryId
+ * @param {String | null} budgetKey The specific budgetary impact key for a table row to use, unless formula is provided
+ * @param {Callable | null} formula If necessary, a more complex formula drawn from the budgetary impact object to use instead of the budgetKey
+ * @returns {Object} The yearly impacts object expected by Ant Design Table component
+ */
+export function getYearlyImpacts(
+  singleYearResults,
+  countryId,
+  budgetKey = null,
+  formula = null,
+) {
   const yearlyImpacts = {};
   singleYearResults.forEach((item) => {
     const year = item.simulationRequestSetup.year;
-    const impact = roundToBillions(
-      item.result.budget[budgetKey],
+    let impact = null;
+    if (formula) {
+      impact = formula(item.result.budget);
+      console.log("Formula impact", impact);
+    } else {
+      impact = item.result.budget[budgetKey];
+      console.log("Budget impact", impact);
+    }
+
+    console.log("impact", impact);
+
+    yearlyImpacts[year] = roundToBillions(
+      impact,
       roundingPrecisionByCountry[countryId] ||
         roundingPrecisionByCountry.default,
     );
-
-    yearlyImpacts[year] = impact;
   });
   return yearlyImpacts;
 }
@@ -205,4 +232,8 @@ export function getYearRangeFromArray(years, country) {
 
 export function roundToBillions(number, decimals = 0) {
   return (number / 1e9).toFixed(decimals);
+}
+
+export function getFederalBudgetImpact(budget) {
+  return budget.tax_revenue_impact - budget.state_tax_revenue_impact;
 }
