@@ -857,7 +857,7 @@ export function ValueSetter(props) {
       return;
     }
     setValue(Number(startValue) * scale);
-  }, [parameterName, startValue, scale, parameter]);
+  }, [parameterName, startValue, scale, parameter.unit]);
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
@@ -865,9 +865,9 @@ export function ValueSetter(props) {
         <ConfigProvider theme={{ token: { motion: false } }}>
           <Switch
             key={"input for" + parameterName}
-            defaultValue={startValue}
-            value={value}
-            onChange={(value) => handleSwitchChange(value)}
+            defaultChecked={startValue}
+            checked={value}
+            onChange={(checked) => handleSwitchChange(checked)}
             style={{
               transition: "none !important",
             }}
