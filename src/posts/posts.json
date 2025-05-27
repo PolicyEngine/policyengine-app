@@ -1228,10 +1228,10 @@
   },
   {
     "title": "Benefits in PolicyEngine",
-    "date": "2025-05-17 00:00:00",
+    "date": "2025-05-28 00:00:00",
     "authors": ["vahid-ahmadi"],
     "tags": ["uk", "policy", "featured", "benefit"],
-    "description": "PolicyEngine models different benefit components in the UK, including means-tested benefits and non-means-tested support.",
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
     "filename": "uk-benefits-post.md",
     "image": "uk-benefit-post.png"
   },
