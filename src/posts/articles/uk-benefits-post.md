@@ -313,11 +313,11 @@ Pension Credit includes two main components, which we describe in detail below:
 
 - **Savings Credit**: DWP [pays](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py) Savings Credit to pensioners with modest savings or income above the basic State Pension level. It's only available to those who reached State Pension age before April 2016. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level. PolicyEngine calculates Savings Credit using the following methodology:
 
-  1. Checking if the claimant reached State Pension age before April 2016
-  2. Determining relevant income for calculating Savings Credit
-  3. Calculating the maximum possible Savings Credit as 60% of the difference between the minimum guarantee and the threshold
-  4. Awarding Savings Credit at 60% of income above the threshold, up to the maximum
-  5. Reducing the award by 40% of income above the minimum guarantee
+- Check if the claimant reached State Pension age before April 2016.
+- Determine relevant income for calculating Savings Credit.
+- Calculate the maximum possible Savings Credit as 60% of the difference between the minimum guarantee and the threshold.
+- Award Savings Credit at 60% of income above the threshold, up to the maximum.
+- Reduce the award by 40% of income above the minimum guarantee.
 
 #### Economic analysis
 
