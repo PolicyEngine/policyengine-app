@@ -277,20 +277,21 @@ We plot net income for a [single-earner household](https://gist.github.com/vahid
 
 ### Tax Credits
 
-HMRC provided [Tax Credits](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) to increase the income of families with children and working individuals on low earnings. The benefit included two components: Child Tax Credit and Working Tax Credit, which claimants could receive separately or together. In [April 2025](https://www.gov.uk/tax-credits-have-ended), HMRC ended all tax credit payments and instructed claimants to apply for Universal Credit or Pension Credit to continue receiving payments. We calculate Tax Credits using the following methodology:
+HMRC provided [Tax Credits](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/tax_credits.py) to increase the incomes of families with children and individuals in low-paid work. The system included two components—Child Tax Credit and Working Tax Credit—which claimants could receive separately or together. In [April 2025](https://www.gov.uk/tax-credits-have-ended), HMRC ended all Tax Credit payments and instructed claimants to apply for Universal Credit or Pension Credit to continue receiving support.
 
-1. Calculating the maximum entitlement for both Child Tax Credit and Working Tax Credit
-2. Determining the relevant income threshold (different for those claiming both credits versus Child Tax Credit only)
-3. Reducing the entitlement by 41% of income above the threshold, withdrawing Working Tax Credit first, then Child Tax Credit
-4. Applying a minimum payment threshold (awards below this amount are not paid)
+- PolicyEngine calculates Tax Credits using the following steps:
+- Calculate the maximum entitlement for both Child Tax Credit and Working Tax Credit.
+- Determine the relevant income threshold, which differs for claimants receiving both credits versus Child Tax Credit only.
+- Reduce the entitlement by 41% of income above the threshold, withdrawing Working Tax Credit first, followed by Child Tax Credit.
+- Exclude payments below the minimum threshold.
 
-The Tax Credits include two main components, which we explain in detail below:
+Tax Credits include two main components, which PolicyEngine models as follows:
 
-- **Child Tax Credit (CTC)**: In 2025, HMRC pays Child Tax Credit to families with children, regardless of employment status. The credit included a £570 annual family element for households with at least one qualifying child, and a £3,455 annual child element for each eligible child. HMRC also paid additional amounts for children with disabilities. The two-child limit applied to children born after April 2017.
+- **Child Tax Credit (CTC)**: In 2025, HMRC paid Child Tax Credit to families with children, regardless of employment status. The credit included a £570 annual family element for households with at least one qualifying child, and a £3,455 annual child element for each eligible child. HMRC also paid additional amounts for children with disabilities. The two-child limit applied to children born after April 2017.
 
-- **Working Tax Credit (WTC)**: In 2025, HMRC pays Working Tax Credit to individuals in low-paid work. It provided a basic element of £2,435 per year to all eligible claimants and added further amounts for couples, lone parents, and those working at least 30 hours per week. HMRC also covered up to 70% of eligible childcare costs—capped at £175 per week for one child or £300 for two or more children—through a dedicated childcare element.
+- **Working Tax Credit (WTC)**: In 2025, HMRC paid Working Tax Credit to individuals in low-paid work. It provided a basic element of £2,435 per year to all eligible claimants and added further amounts for couples, lone parents, and those working at least 30 hours per week. HMRC also covered up to 70% of eligible childcare costs—capped at £175 per week for one child or £300 for two or more children—through a dedicated childcare element.
 
-HMRC reduces Tax Credits at a rate of 41% when income exceeds the threshold (£7,455 for WTC+CTC claims and £18,725 for CTC-only claims in 2025). For every £1 of income above the threshold, it withdraws 41p in Tax Credits.
+HMRC reduces Tax Credits by 41% of income above the relevant threshold: £7,455 for households receiving both WTC and CTC, and £18,725 for those receiving CTC only. For every £1 above the threshold, HMRC withdraws 41p in Tax Credits.
 
 #### Economic analysis
 
@@ -298,15 +299,15 @@ PolicyEngine projects that Tax Credits will cost less than [£1 billion](https:/
 
 ### Pension Credit
 
-DWP provides [Pension Credit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/pension_credit.py) to raise the incomes of pensioners who fall below a specified threshold. DWP divides Pension Credit into two parts: Guarantee Credit and Savings Credit. We apply a 70% take-up probability to reflect the fact that not all eligible pensioners claim it. Take-up rates represent the proportion of eligible individuals who receive payments, and our model incorporates this behavioural assumption to generate more accurate aggregate estimates. We calculate Pension Credit using the following methodology:
+DWP provides [Pension Credit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/pension_credit.py) to pensioners whose income falls below a specified threshold. DWP divides Pension Credit into two parts: Guarantee Credit and Savings Credit. PolicyEngine applies a 70% take-up rate to reflect that not all eligible pensioners claim the benefit. This rate represents the proportion of eligible individuals who receive payments. We incorporate this behavioural assumption to produce more accurate aggregate estimates. PolicyEngine calculates Pension Credit using the following steps:
 
-1. Determining if the household contains at least one person of State Pension age
-2. Calculating Guarantee Credit entitlement
-3. Calculating Savings Credit entitlement (if applicable)
-4. Combining the two components
-5. Applying the takeup probability to model real-world claiming behaviour
+- Check whether the household includes at least one person of State Pension age.
+- Calculate Guarantee Credit entitlement.
+- Calculate Savings Credit entitlement, if applicable.
+- Combine the two components.
+- Apply the take-up rate to simulate real-world claiming behaviour.
 
-Pension Credit consists of two main components, which we explain in detail below:
+Pension Credit includes two main components, which we describe in detail below:
 
 - **Guarantee Credit**: DWP [tops up](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/guarantee_credit/guarantee_credit.py) weekly income to a guaranteed minimum level. In 2025, it sets the minimum at £218.15 per week for singles and £332.95 for couples. DWP adds further amounts for severe disability, caring responsibilities, and dependent children. PolicyEngine calculates the shortfall between the applicable minimum (including any additions) and the claimant’s assessed income, and pays that amount as Guarantee Credit.
 
@@ -420,7 +421,7 @@ PolicyEngine projects that Pension Credit will cost [£7.4 billion](https://poli
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Pension Credit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=80685&household=53633) with age 70. Abolishing this benefit would reduce the household's net income in the low-income range. Figure 6 shows this effect on household net income.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.pythonReproducibility&reform=1&region=uk&timePeriod=2025&baseline=80685&household=53633) with a 70-year-old adult. Removing Pension Credit reduces the household’s net income in the low-income range. Figure 6 shows this effect on household net income.
 
 **Figure 6. Household net income with and without Pension Credit**
 
@@ -430,22 +431,22 @@ To show the impact of Pension Credit on household finances, we start with an exa
 
 ## Non-means-tested benefits
 
-Non-means-tested benefits address specific needs or circumstances regardless of household income. Unlike means-tested benefits, these payments do not reduce as income increases. Our methodology for non-means-tested benefits focuses on identifying eligibility based on specific characteristics or needs rather than financial resources. In the following sections, we explain the different non-means-tested programmes and how we model each of them in detail.
+Non-means-tested benefits address specific needs or circumstances, regardless of household income. Unlike means-tested benefits, these payments remain fixed as income increases. PolicyEngine identifies eligibility based on defined characteristics or conditions rather than financial resources. In the following sections, we describe each non-means-tested programme and explain how we model them.
 
 ### Personal Independence Payment (PIP)
 
-DWP provides [Personal Independence Payment (PIP)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) to individuals with long-term health conditions or disabilities. The benefit includes two components: daily living and mobility. DWP pays each component at either a standard or enhanced rate, based on an assessment of the claimant’s needs. PIP replaced Disability Living Allowance for working-age adults and uses a points-based scheme to determine both eligibility and payment level. PolicyEngine calculates PIP using the following methodology:
+DWP provides [Personal Independence Payment (PIP)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) to individuals with long-term health conditions or disabilities. The benefit includes two components: daily living and mobility. DWP pays each component at either a standard or enhanced rate, depending on an assessment of the claimant’s needs. PIP replaced Disability Living Allowance for working-age adults and uses a points-based system to determine eligibility and payment levels. PolicyEngine calculates PIP using the following steps:
 
-1. Identifying individuals with disabilities in the dataset
-2. Assigning daily living and mobility components based on reported needs
-3. Applying the rate for each component
-4. Combining the components to determine the total PIP
+- Identify individuals with disabilities in the dataset.
+- Assign daily living and mobility components based on reported needs.
+- Apply the rate for each component.
+- Combine both components to determine the total PIP.
 
 For 2025, the [daily living](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/daily_living.py) component is £108.55 per week at the enhanced rate and £72.65 per week at the standard rate. The [mobility](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/mobility.py) component is £75.75 per week at the enhanced rate and £28.70 per week at the standard rate.
 
 #### Economic analysis
 
-PolicyEngine projects that Personal Independence Payment will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025-26, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 7 shows the distributional impact of this programme.
+PolicyEngine projects that PIP will cost [£30.6 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=1&region=uk&timePeriod=2025&baseline=80686) in 2025-26, 6.6% more than the UK government's estimate of [£28.7 billion](https://obr.uk/forecasts-in-depth/tax-by-tax-spend-by-spend/welfare-spending-disability-benefits/) for 2025-26. Figure 7 shows the distributional impact of this programme.
 
 ```plotly
 {
@@ -545,7 +546,7 @@ PolicyEngine projects that Personal Independence Payment will cost [£30.6 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of PIP on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When the individual, receives the mobility component of PIP, they also receive the disability component of Universal Credit, resulting in higher take-home income compared to the scenario without PIP. At lower income levels, this additional benefit increases household income. As earnings rise and the household becomes ineligible for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 8 shows take-home income under both scenarios.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When the individual receives the mobility component of PIP, they also receive the disability component of Universal Credit, which raises take-home income compared to the scenario without PIP. At lower income levels, this additional benefit increases household income. As earnings rise and the household loses eligibility for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 8 shows take-home income under both scenarios.
 
 **Figure 8. Household net income with and without PIP**
 
@@ -555,12 +556,12 @@ To show the impact of PIP on household finances, we use an example of a [single-
 
 ### Disability Living Allowance (DLA)
 
-DWP provides [Disability Living Allowance (DLA)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/dla.py), which includes two components: self-care (equivalent to PIP’s daily living) and mobility. DWP continues to provide DLA for children, while most working-age adults have transitioned to PIP. Some adults who received DLA before PIP was introduced remain on the benefit under transitional protection. We calculate DLA using the following methodology:
+DWP provides [Disability Living Allowance (DLA)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/dla.py), which includes two components: self-care (equivalent to PIP’s daily living component) and mobility. DWP continues to pay DLA for children, while most working-age adults have transitioned to PIP. Some adults who received DLA before PIP was introduced remain on the benefit under transitional protection. PolicyEngine calculates DLA using the following steps:
 
-1. Identifying eligible children and protected adults in the dataset
-2. Assigning self-care component by using a three-tier scheme (higher, middle, or lower rate) depending on the level of care required
-3. Assigning mobility component by using a two-tier scheme (higher or lower rate) depending on the severity of mobility limitations, then matching to the applicable bracket and applying the rate for that bracket
-4. Combining the components to determine the total DLA
+- Identify eligible children and protected adults in the dataset.
+- Assign the self-care component using a three-tier scheme (higher, middle, or lower rate) based on care needs.
+- Assign the mobility component using a two-tier scheme (higher or lower rate) based on the severity of mobility limitations, then apply the appropriate rate.
+- Combine both components to calculate the total DLA.
 
 For 2025, the [self-care](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/self_care.py) component has three possible rates: higher (£108.55 per week), middle (£72.65 per week), and lower (£28.70 per week). The [mobility](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/dla/mobility.py) component has two rates: higher (£75.75 per week) and lower (£28.70 per week). We calculate the annual amount by multiplying the weekly rates by 52.
 
@@ -666,7 +667,7 @@ PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion]
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of DLA on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When the individual, receives the mobility component of DLA, they also qualify for the disability component of Universal Credit, leading to higher take-home income compared to the scenario without DLA. At lower income levels, this additional benefit increases household income. As earnings increase and the household no longer qualifies for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 10 shows take-home income under both scenarios.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When the individual receives the mobility component of Disability Living Allowance (DLA), they also qualify for the disability component of Universal Credit, which increases take-home income compared to the scenario without DLA. At lower income levels, this additional benefit raises household income. As earnings increase and the household loses eligibility for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 10 shows take-home income under both scenarios.
 
 **Figure 10. Household net income with and without DLA**
 
@@ -676,11 +677,11 @@ To show the impact of DLA on household finances, we use an example of a [single-
 
 ### Attendance Allowance
 
-DWP provides [Attendance Allowance](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) at two rates, depending on the level of care required. DWP offers this benefit to individuals who became disabled after reaching State Pension age, as they are not eligible to claim PIP or DLA for the first time after this age. PolicyEngine calculates Attendance Allowance using the following methodology:
+DWP provides [Attendance Allowance](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) at two rates, based on the level of care required. DWP pays this benefit to individuals who became disabled after reaching State Pension age, since they cannot claim PIP or DLA for the first time after this point. PolicyEngine calculates Attendance Allowance using the following steps:
 
-1. Identifying individuals over State Pension age with care needs
-2. Determining the rate based on daytime and/or night-time care requirements
-3. Assigning the weekly rate and annualising the amount
+- Identify individuals over State Pension age with care needs.
+- Determine the rate based on whether care is needed during the day, night, or both.
+- Assign the weekly rate and calculate the annual amount.
 
 For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are ill. The lower rate applies to those needing care either during the day or at night. PolicyEngine calculates the annual amount by multiplying the weekly rate by 52. DWP uprates all three disability benefits annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
 
@@ -786,7 +787,7 @@ PolicyEngine projects that Attendance Allowance will cost [£10.2 billion](https
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Attendance Allowance on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80692&household=53560). For this person, we assume that the reported Attendance Allowance is £5,000 per year. Abolishing this benefit would reduce the household's net income. This effect is in Figure 12.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80692&household=53560) receiving £5,000 per year in Attendance Allowance. Removing this benefit reduces the household’s net income. Figure 12 shows this effect on household finances.
 
 **Figure 12. Household net income with and without Attendance Allowance**
 
@@ -796,13 +797,13 @@ To show the impact of Attendance Allowance on household finances, we start with 
 
 ### Child Benefit
 
-HMRC pays [Child Benefit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/child_benefit.py) for children under 16, or under 20 if they remain in approved education or training. Unlike means-tested benefits, HMRC pays Child Benefit at a flat rate regardless of household income. For 2025, the rate is £26.04 per week for the first child and £17.24 per week for each additional child. We calculate Child Benefit using the following methodology:
+HMRC pays [Child Benefit](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/child_benefit.py) for children under 16, or under 20 if they remain in approved education or training. Unlike means-tested benefits, HMRC pays Child Benefit at a flat rate, regardless of household income. In 2025, the rate is £26.04 per week for the first child and £17.24 per week for each additional child. PolicyEngine calculates Child Benefit using the following steps:
 
-1. Identifying eligible children in each household
-2. Applying the higher rate for the eldest (or only) eligible child
-3. Applying the standard rate for additional eligible children
-4. Calculating the High Income Child Benefit Charge (HITC) if applicable
-5. Determining the net Child Benefit after the HITC
+- Identify eligible children in each household.
+- Apply the higher rate to the eldest (or only) eligible child.
+- Apply the standard rate to additional eligible children.
+- Calculate the High Income Child Benefit Charge (HITC), if applicable.
+- Determine the net Child Benefit after applying the HITC.
 
 The [High Income Child Benefit Charge (HITC)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/income_tax/charges/child_benefit_hitc.py) effectively withdraws this benefit when individual income exceeds £50,000, with complete withdrawal at £60,000. HMRC increases the charge proportionally with income within this range. For each £100 of income above £50,000, it reclaims 1% of the Child Benefit through the tax system.
 
@@ -908,7 +909,7 @@ PolicyEngine projects that Child Benefit will cost [£12.3 billion](https://poli
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of Child Benefit on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=80696&household=53314). For this person, we assume that the reported childcare expenses are £10,000 per year. Abolishing this benefit would reduce the household's net income. Figure 14 shows this effect on household net income.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=80696&household=53314) with £10,000 in annual childcare expenses. Removing Child Benefit reduces the household’s net income. Figure 14 shows this effect on household net income.
 
 **Figure 14. Household net income with and without Child Benefit**
 
@@ -918,13 +919,13 @@ To show the impact of Child Benefit on household finances, we start with an exam
 
 ### State Pension
 
-DWP provides the [State Pension](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/state_pension.py) based on an individual’s National Insurance contribution history, rather than their current financial circumstances. PolicyEngine calculates State Pension using the following methodology:
+DWP provides the [State Pension](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/state_pension.py) based on an individual’s National Insurance contribution history rather than their current financial circumstances. PolicyEngine calculates State Pension using the following steps:
 
-1. Determining if the individual has reached State Pension age
-2. Identifying which State Pension scheme applies (pre or post April 2016)
-3. Calculating entitlement based on National Insurance contributions and applying the rate
+- Check whether the individual has reached State Pension age.
+- Identify which State Pension scheme applies (pre- or post-April 2016).
+- Calculate entitlement based on National Insurance contributions and apply the corresponding rate.
 
-There are two schemes depending on when the person reached State Pension age:
+Two schemes apply, depending on when the individual reached State Pension age:
 
 - **[New State Pension](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/parameters/gov/dwp/state_pension/new_state_pension/)**: For those reaching State Pension age on or after April 6, 2016. For 2025, the full rate is £221.20 per week, reduced proportionally for those with fewer than 35 qualifying years of National Insurance contributions (minimum 10 years required). The calculation multiplies the full rate by the fraction of qualifying years divided by 35, with a minimum threshold of 10 qualifying years.
 
@@ -934,13 +935,13 @@ Both schemes apply the [triple lock](https://github.com/PolicyEngine/policyengin
 
 ### Winter Fuel Payment
 
-DWP pays the [Winter Fuel Payment](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) as an annual payment to older individuals to cover heating expenses during the winter. We calculate Winter Fuel Payment using the following methodology:
+DWP pays the [Winter Fuel Payment](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/WFA.py) as an annual payment to older individuals to cover winter heating costs. PolicyEngine calculates Winter Fuel Payment using the following steps:
 
-1. Identifying households with members of eligible age
-2. Determining the payment rate based on age and household composition
-3. Assigning the annual payment amount
+- Identify households with members of eligible age.
+- Determine the payment rate based on age and household composition.
+- Assign the annual payment amount.
 
-In 2025, DWP pays £200 to households with someone aged 66–79 and £300 to those with someone aged 80 or over. In multi-pensioner households, DWP allocates the payment to ensure no household receives more than the maximum entitlement.
+In 2025, DWP pays £200 to households with someone aged 66 to 79 and £300 to those with someone aged 80 or over. In households with multiple pensioners, DWP allocates the payment to ensure no household receives more than the maximum amount.
 
 In Scotland, the Pension Age Winter Heating Payment (PAWHP) has [replaced](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/social_security_scotland/pawhp.py) this benefit, with similar rate structure. This reflects the devolution of certain benefits to the Scottish government, which has implemented its own version of the payment with similar eligibility criteria and rates.
 
@@ -950,16 +951,14 @@ PolicyEngine projects that Winter Fuel Payment will cost less than [£1 billion]
 
 ### Tax-free childcare
 
-HMRC operates the [Tax-Free Childcare](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/tax_free_childcare.py) scheme, which adds a government top-up to parental childcare payments made through an online account. Parents pay into the account, and HMRC contributes an additional amount based on the total deposited. We calculate Tax-Free Childcare using the following methodology:
+HMRC operates the [Tax-Free Childcare](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/hmrc/tax_free_childcare/tax_free_childcare.py) scheme, which adds a government top-up to parental childcare payments made through an online account. Parents deposit funds into the account, and HMRC adds a contribution based on the total amount paid. PolicyEngine calculates Tax-Free Childcare using the following steps:
 
-1. Identifying households with eligible children
-2. Checking income conditions and work requirements for parents
-3. Calculating childcare expenses and the corresponding government contribution
-4. Applying the maximum contribution cap per child
+- Identify households with eligible children.
+- Check income conditions and work requirements for parents.
+- Calculate childcare expenses and the corresponding government contribution.
+- Apply the maximum contribution cap per child.
 
-For 2025, the government contributes 20% of childcare costs, effectively adding £2 for every £8 parents spend. The maximum annual contribution is £2,000 per standard child and £4,000 per disabled child. This 20% rate effectively provides relief equivalent to the basic rate of income tax.
-
-Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions, and work requirements (both parents must generally be working, with exceptions for disability).
+In 2025, the government contributes 20% of childcare costs, effectively adding £2 for every £8 parents spend. The annual top-up is capped at £2,000 per standard child and £4,000 per disabled child. This 20% rate mirrors the value of basic rate income tax relief. Eligibility criteria include age requirements (children under 12, or under 17 if disabled), income conditions, and work requirements (both parents must generally be working, with exceptions for disability).
 
 #### Economic analysis
 
@@ -1063,7 +1062,7 @@ PolicyEngine projects that tax-free childcare will cost [£0.6 billion](https://
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of TFC on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for TFC when earning at least [£9,516 annually](https://www.gov.uk/tax-free-childcare) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. This creates a gap between those receiving and not receiving TFC at higher income levels. Figure 16 shows this effect on household net income.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=73038&region=uk&timePeriod=2025&baseline=76821&household=51616) with one child aged 3. These households become eligible for Tax-Free Childcare (TFC) when the earner makes at least [£9,516](https://www.gov.uk/tax-free-childcare) per year at age 21 or older. The benefit ends at £100,000, creating a drop in take-home income. This threshold creates a gap between households just above and just below the eligibility cutoff. Figure 16 shows this effect on household net income.
 
 **Figure 16. Household net income with and without TFC**
 
@@ -1075,13 +1074,13 @@ Households with income just above £100,000 lose eligibility, resulting in a sha
 
 ### Universal childcare entitlement
 
-The Department for Education (DfE) provides the [universal childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py), which grants free childcare hours to all children aged 3–4 years old, regardless of parental income or work status. PolicyEngine calculates universal childcare entitlement using the following methodology:
+The Department for Education (DfE) provides the [universal childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py), which grants free childcare hours to all children aged 3 to 4, regardless of parental income or work status. PolicyEngine calculates universal childcare entitlement using the following steps:
 
-1. Identifying children aged [3-4 years old](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py)
-2. Applying the standard entitlement of 570 hours per year
-3. Calculating the monetary value using the applicable funding rate
+- Identify children aged [3 to 4 years old](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py).
+- Apply the standard entitlement of 570 hours per year.
+- Calculate the funding amount using the applicable funding rate.
 
-For 2025, the entitlement provides 570 hours per year (equivalent to 15 hours per week over 38 weeks), with funding at a rate of £5.88 per hour for children aged 3 and over. The DfE funds 570 hours at £5.88 per hour, resulting in an annual in-kind value of £3,351.60 per eligible child.
+In 2025, the entitlement provides 570 hours per year—equivalent to 15 hours per week over 38 weeks—funded at £5.88 per hour. This results in an annual in-kind value of £3,351.60 per eligible child.
 
 #### Economic analysis
 
@@ -1185,7 +1184,7 @@ PolicyEngine projects that universal childcare entitlement will cost [£1.6 bill
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of universal childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. TFC and universal childcare cannot be combined at the same time. Figure 18 shows household net income based on head employment income.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?reform=1&focus=householdOutput.earnings&region=uk&timePeriod=2025&baseline=82975&household=53312) with one child aged 3. Households cannot receive Tax-Free Childcare (TFC) and universal childcare at the same time. Figure 18 shows household net income based on the head's employment income.
 
 **Figure 18. Household net income with and without universal childcare entitlement**
 
@@ -1195,18 +1194,14 @@ To show the impact of universal childcare entitlement on household finances, we 
 
 ### Extended childcare entitlement
 
-The Department for Education (DfE) provides the [extended childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py), which offers additional hours of free childcare to working parents. This extends the universal entitlement by providing an extra 15 hours per week for children aged 3–4, and from 2024, begins to cover younger children as well. PolicyEngine calculates extended childcare entitlement using the following methodology:
+DfE provides the [extended childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py), which offers additional free childcare hours to working parents. This extends the universal entitlement by adding 15 hours per week for children aged 3 to 4, and from 2024, it begins to cover younger children as well. PolicyEngine calculates extended childcare entitlement using the following steps:
 
-1. Identifying children in eligible age ranges
-2. Checking parental work and income conditions
-3. Applying the hourly entitlement based on child age
-4. Calculating the monetary value using age-specific funding rates
+- Identify children in eligible age ranges.
+- Check parental work and income conditions.
+- Apply the hourly entitlement based on the child's age.
+- Calculate the funding amount using age-specific rates.
 
-The entitlement varies by child age in 2025:
-
-- 9-23 months: 15 hours/week (increasing to 30 hours in 2026)
-- 2 years: 15 hours/week (increasing to 30 hours in 2026)
-- 3-4 years: 30 hours/week (which includes the universal 15 hours plus an additional 15 hours)
+In 2025, the entitlement varies by child age: children aged 9 to 23 months and 2 years receive 15 hours per week, increasing to 30 hours per week in 2026, while children aged 3 to 4 years receive 30 hours per week, which combines the universal 15 hours with an additional 15 hours.
 
 The funding rates vary by age: £11.22 per hour for children under 2, £8.28 per hour for 2-year-olds, and £5.88 per hour for children aged 3 and over. These different rates reflect the higher staffing requirements and costs of caring for younger children.
 
@@ -1312,7 +1307,7 @@ PolicyEngine projects that extended childcare entitlement will cost [£2.6 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of extended childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80613&household=53312) with one child aged 3. These households become eligible for extended childcare when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for those aged 21 or over. The benefit continues until £100,000, where eligibility ends, creating a decline in take-home pay. Households above the £100,000 threshold lose eligibility entirely, which creates a gap in take-home income between otherwise similar families. Figure 20 shows this effect on household net income.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80613&household=53312) with one child aged 3. Households become eligible for extended childcare entitlement when earning at least [£9,516 annually](https://www.gov.uk/free-childcare-if-working/check-youre-eligible) for adults aged 21 or over. The benefit ends at £100,000, causing a drop in take-home pay. Households earning above this threshold lose eligibility entirely. Figure 20 shows this effect on household net income.
 
 **Figure 20. Household net income with and without extended childcare entitlement**
 
@@ -1322,14 +1317,14 @@ To show the impact of extended childcare entitlement on household finances, we s
 
 ### Targeted childcare entitlement
 
-The Department for Education (DfE) provides the [targeted childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py), which offers free childcare for 2-year-olds in lower-income families. We calculate targeted childcare entitlement using the following methodology:
+DfE provides the [targeted childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/targeted_childcare_entitlement/targeted_childcare_entitlement.py), which offers free childcare to 2-year-olds in lower-income families. PolicyEngine calculates targeted childcare entitlement using the following steps:
 
-1. Identifying children aged 2 years old
-2. Checking if the family receives qualifying benefits or meets income criteria
-3. Applying the standard entitlement of 570 hours per year
-4. Calculating the monetary value using the 2-year-old funding rate
+- Identify children aged 2 years old.
+- Check if the family receives qualifying benefits or meets income criteria.
+- Apply the standard entitlement of 570 hours per year.
+- Calculate the funding amount using the 2-year-old rate.
 
-In 2025, the programme provides 570 hours of childcare per year (15 hours per week over 38 weeks), funded at £8.28 per hour. This results in an annual value of £4,719.60 per eligible child. The Department for Education grants eligibility to families receiving qualifying benefits or meeting income thresholds: under £16,190 per year for Tax Credit recipients, or earned income below £15,400 per year for those on Universal Credit.
+In 2025, the programme provides 570 hours per year (15 hours per week over 38 weeks), funded at £8.28 per hour. This results in an annual value of £4,719.60 per eligible child. The Department for Education grants eligibility to families receiving qualifying benefits or meeting income thresholds: under £16,190 per year for Tax Credit recipients, or earned income below £15,400 per year for those on Universal Credit.
 
 #### Economic analysis
 
@@ -1433,7 +1428,7 @@ PolicyEngine projects that targeted childcare entitlement will cost [£0.5 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of targeted childcare entitlement on household finances, we start with an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 22 shows household net income based on head employment income.
+We plot net income for a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=82974&household=53310) with one child aged 2. Figure 22 shows household net income based on the head’s employment income.
 
 **Figure 22. Household net income with and without targeted childcare entitlement**
 
@@ -1443,18 +1438,16 @@ To show the impact of targeted childcare entitlement on household finances, we s
 
 ### Care to Learn
 
-The Department for Education (DfE) provides the [Care to Learn](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) programme, which covers childcare costs for young parents who are in education. We calculate Care to Learn using the following methodology:
+DfE provides the [Care to Learn](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/study_childcare_entitlement/study_childcare_entitlement.py) programme, which covers childcare costs for young parents in education. PolicyEngine calculates Care to Learn using the following steps:
 
-1. Identifying eligible young parents (under 20 years old)
-2. Verifying they are in non-tertiary education (not university or higher education)
-3. Checking if they live in England and are not apprentices
-4. Calculating the monetary value based on regional rates (London vs outside London)
+- Identify eligible young parents under 20 years old.
+- Verify they are in non-tertiary education (not university or higher education).
+- Check if they live in England and are not apprentices.
+- Calculate the funding amount based on regional rates (London versus outside London).
 
-For 2025, the scheme offers weekly payments of up to £195 per week for those living in London and £180 per week for those living outside London. The scheme multiplies this weekly amount by the number of weeks in a year to determine the annual value, making it worth up to £10,140 per year for London residents and £9,360 per year for those outside London.
+In 2025, the scheme provides weekly payments up to £195 for those living in London and £180 for those outside London. PolicyEngine multiplies this weekly amount by the number of weeks in a year, resulting in annual values up to £10,140 for London residents and £9,360 for those outside London.
 
-To [qualify](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/dfe/care_to_learn), a claimant must be under 20 years old, live in England, be in eligible education, and not be an apprentice.
-
-The Family Resources Survey does not include relevant cases, so PolicyEngine cannot estimate the economic impact of this programme. Nevertheless, PolicyEngine implements the programme and uses it to calculate benefits in the household section.
+To [qualify](https://github.com/PolicyEngine/policyengine-uk/tree/master/policyengine_uk/variables/gov/dfe/care_to_learn), claimants must be under 20, live in England, be in eligible education, and not be apprentices. The Family Resources Survey does not include relevant cases, so PolicyEngine cannot estimate the economic impact of this programme. However, PolicyEngine implements the programme and includes it in household benefit calculations.
 
 ### Energy Bills Support
 
@@ -1470,10 +1463,10 @@ The UK government introduced several temporary programmes to reduce household en
 
 HMRC and DWP provided the [Cost of Living Support Payment](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/treasury/cost_of_living_support/cost_of_living_support_payment.py) as a one-off payment to households facing higher living costs. For the 2022–23 period, the payments included:
 
-- £650 for recipients of means-tested benefits (paid in two instalments)
-- £150 for recipients of disability benefits
-- £300 for pensioners eligible for the Winter Fuel Payment
+- £650 for recipients of means-tested benefits, paid in two instalments.
+- £150 for recipients of disability benefits.
+- £300 for pensioners eligible for the Winter Fuel Payment.
 
 ## Conclusion
 
-PolicyEngine models the current UK benefits system and potential reforms, presenting distributional impacts by income decile. Users can analyse how benefit changes affect household incomes, government budgets, and behavioural responses such as labour supply. The model accounts for how benefit design influences household decisions and economic outcomes. We invite you to explore these policy effects on the PolicyEngine interface.
+PolicyEngine models the current UK benefits system and potential reforms, showing distributional impacts by income decile. Users analyse how benefit changes affect household incomes, government budgets, and behavioural responses such as labour supply. The model captures how benefit design influences household decisions and economic outcomes. We invite you to explore these policy effects on the PolicyEngine interface.
