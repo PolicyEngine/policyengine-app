@@ -1,6 +1,6 @@
 ## Introduction
 
-This post provides an overview of how PolicyEngine UK models benefits. It details benefits in the UK welfare system and their implementation within the PolicyEngine microsimulation. Each benefit component links to its specific implementation in the codebase, making this post a technical reference for understanding how the PolicyEngine UK microsimulation model performs benefits calculations.
+This article outlines how PolicyEngine UK models the UK benefit system. It details benefits in the UK welfare system and their implementation within the PolicyEngine microsimulation. Each benefit component links to its specific implementation in the codebase, serving as a technical reference for understanding how the PolicyEngine UK microsimulation model performs benefit calculations.
 
 Table 1 summarises metrics for each benefit in the UK system, comparing PolicyEngine's 2025-26 fiscal year expenditure projections with those from the government (such as the Office for Budget Responsibility) and showing the percentage difference between them. While PolicyEngine models interactions from instituting or repealing tax and benefit programmes, this chart shows only the direct expenditure for each benefit for consistency with government reports.
 
@@ -286,7 +286,7 @@ HM Revenue and Customs (HMRC) provided [Tax Credits](https://github.com/PolicyEn
 3. Reducing the entitlement by 41% of income above the threshold, withdrawing Working Tax Credit first, then Child Tax Credit
 4. Applying a minimum payment threshold (awards below this amount are not paid)
 
-The Tax Credits consists of two main components, which we explain in detail below:
+The Tax Credits include two main components, which we explain in detail below:
 
 - **Child Tax Credit (CTC)**: In 2025, HMRC pays Child Tax Credit to families with children, regardless of employment status. The credit included a £570 annual family element for households with at least one qualifying child, and a £3,455 annual child element for each eligible child. HMRC also paid additional amounts for children with disabilities. The two-child limit applied to children born after April 2017.
 
@@ -312,10 +312,10 @@ Pension Credit consists of two main components, which we explain in detail below
 
 - **Guarantee Credit**: DWP [tops up](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/guarantee_credit/guarantee_credit.py) weekly income to a guaranteed minimum level. In 2025, it sets the minimum at £218.15 per week for singles and £332.95 for couples. DWP adds further amounts for severe disability, caring responsibilities, and dependent children. PolicyEngine calculates the shortfall between the applicable minimum (including any additions) and the claimant’s assessed income, and pays that amount as Guarantee Credit.
 
-- **Savings Credit**: DWP [pays](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py) Savings Credit to pensioners with modest savings or income above the basic State Pension level. It's only available to those who reached State Pension age before April 2016. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level. We calculate Savings Credit using the following methodology:
+- **Savings Credit**: DWP [pays](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pension_credit/savings_credit/savings_credit.py) Savings Credit to pensioners with modest savings or income above the basic State Pension level. It's only available to those who reached State Pension age before April 2016. For 2025, the income threshold is £189.80 per week for singles and £301.22 per week for couples. The amount increases at a rate of 60% of income above the threshold, then decreases at 40% of income above the minimum guarantee level. PolicyEngine calculates Savings Credit using the following methodology:
 
   1. Checking if the claimant reached State Pension age before April 2016
-  2. Determining the relevant income for Savings Credit calculation (excluding certain income types)
+  2. Determining relevant income for calculating Savings Credit
   3. Calculating the maximum possible Savings Credit as 60% of the difference between the minimum guarantee and the threshold
   4. Awarding Savings Credit at 60% of income above the threshold, up to the maximum
   5. Reducing the award by 40% of income above the minimum guarantee
@@ -436,7 +436,7 @@ Non-means-tested benefits address specific needs or circumstances regardless of 
 
 ### Personal Independence Payment (PIP)
 
-The Department for Work and Pensions (DWP) provides [Personal Independence Payment (PIP)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) to individuals with long-term health conditions or disabilities. The benefit includes two components: daily living and mobility. DWP pays each component at either a standard or enhanced rate, based on an assessment of the claimant’s needs. PIP replaced Disability Living Allowance for working-age adults and uses a points-based scheme to determine both eligibility and payment level. We calculate PIP using the following methodology:
+The Department for Work and Pensions (DWP) provides [Personal Independence Payment (PIP)](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/pip/pip.py) to individuals with long-term health conditions or disabilities. The benefit includes two components: daily living and mobility. DWP pays each component at either a standard or enhanced rate, based on an assessment of the claimant’s needs. PIP replaced Disability Living Allowance for working-age adults and uses a points-based scheme to determine both eligibility and payment level. PolicyEngine calculates PIP using the following methodology:
 
 1. Identifying individuals with disabilities in the dataset
 2. Assigning daily living and mobility components based on reported needs
@@ -547,7 +547,7 @@ PolicyEngine projects that Personal Independence Payment will cost [£30.6 billi
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of PIP on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When she receives the mobility component of Personal Independence Payment (PIP), she receives the disability component of Universal Credit as well, leading to higher take-home income compared to the scenario without PIP. At lower income levels, this additional benefit raises the household’s income. As earnings increase and the household no longer receives Universal Credit, the difference in take-home income between the two scenarios flattens out. Figure 8 shows take-home income under both scenarios:
+To show the impact of PIP on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=1&region=uk&timePeriod=2025&baseline=80686&household=53477). When the individual, receives the mobility component of PIP, they also receive the disability component of Universal Credit, resulting in higher take-home income compared to the scenario without PIP. At lower income levels, this additional benefit increases household income. As earnings rise and the household becomes ineligible for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 8 shows take-home income under both scenarios.
 
 **Figure 8. Household net income with and without PIP**
 
@@ -668,7 +668,7 @@ PolicyEngine projects that Disability Living Allowance will cost [£9.3 billion]
 
 #### Gross salary vs take-home pay at the household level
 
-To show the impact of DLA on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When she receives the mobility component of DLA, she also qualifies for the disability component of Universal Credit, leading to a higher take-home income compared to the scenario without DLA. At lower income levels, this additional benefit increases overall income. As earnings rise and the household no longer qualifies for Universal Credit, the difference in take-home income between the two scenarios flattens out. Figure 10 shows take-home income under both scenarios.
+To show the impact of DLA on household finances, we use an example of a [single-earner household](https://policyengine.org/uk/household?focus=householdOutput.netIncome&reform=1&region=uk&timePeriod=2025&baseline=80689&household=53482). When the individual, receives the mobility component of DLA, they also qualify for the disability component of Universal Credit, leading to higher take-home income compared to the scenario without DLA. At lower income levels, this additional benefit increases household income. As earnings increase and the household no longer qualifies for Universal Credit, the difference in take-home income between the two scenarios levels off. Figure 10 shows take-home income under both scenarios.
 
 **Figure 10. Household net income with and without DLA**
 
@@ -678,13 +678,13 @@ To show the impact of DLA on household finances, we use an example of a [single-
 
 ### Attendance Allowance
 
-The Department for Work and Pensions (DWP) provides [Attendance Allowance](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) at two rates, depending on the level of care required. DWP offers this benefit to individuals who became disabled after reaching State Pension age, as they are not eligible to claim PIP or DLA for the first time after this age. We calculate Attendance Allowance using the following methodology:
+The Department for Work and Pensions (DWP) provides [Attendance Allowance](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/attendance_allowance.py) at two rates, depending on the level of care required. DWP offers this benefit to individuals who became disabled after reaching State Pension age, as they are not eligible to claim PIP or DLA for the first time after this age. PolicyEngine calculates Attendance Allowance using the following methodology:
 
 1. Identifying individuals over State Pension age with care needs
 2. Determining the rate based on daytime and/or night-time care requirements
 3. Assigning the weekly rate and annualising the amount
 
-For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are ill. The lower rate applies to those needing care either during the day or at night. We calculate the annual amount by multiplying the weekly rate by 52. DWP uprates all three disability benefits annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
+For 2025, the higher rate is £108.55 per week and the lower rate is £72.65 per week. The higher rate applies to those needing care both day and night, or those who are ill. The lower rate applies to those needing care either during the day or at night. PolicyEngine calculates the annual amount by multiplying the weekly rate by 52. DWP uprates all three disability benefits annually using the Consumer Price Index (CPI). This ensures that benefit rates maintain their real value against inflation, protecting the purchasing power of disabled recipients.
 
 #### Economic analysis
 
@@ -920,7 +920,7 @@ To show the impact of Child Benefit on household finances, we start with an exam
 
 ### State Pension
 
-The Department for Work and Pensions (DWP) provides the [State Pension](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/state_pension.py) based on an individual’s National Insurance contribution history, rather than their current financial circumstances. We calculate State Pension using the following methodology:
+The Department for Work and Pensions (DWP) provides the [State Pension](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dwp/state_pension.py) based on an individual’s National Insurance contribution history, rather than their current financial circumstances. PolicyEngine calculates State Pension using the following methodology:
 
 1. Determining if the individual has reached State Pension age
 2. Identifying which State Pension scheme applies (pre or post April 2016)
@@ -1077,7 +1077,7 @@ Households with income just above £100,000 lose eligibility, resulting in a sha
 
 ### Universal childcare entitlement
 
-The Department for Education (DfE) provides the [universal childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py), which grants free childcare hours to all children aged 3–4 years old, regardless of parental income or work status. We calculate universal childcare entitlement using the following methodology:
+The Department for Education (DfE) provides the [universal childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement.py), which grants free childcare hours to all children aged 3–4 years old, regardless of parental income or work status. PolicyEngine calculates universal childcare entitlement using the following methodology:
 
 1. Identifying children aged [3-4 years old](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/universal_childcare_entitlement/universal_childcare_entitlement_eligible.py)
 2. Applying the standard entitlement of 570 hours per year
@@ -1197,7 +1197,7 @@ To show the impact of universal childcare entitlement on household finances, we 
 
 ### Extended childcare entitlement
 
-The Department for Education (DfE) provides the [extended childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py), which offers additional hours of free childcare to working parents. This extends the universal entitlement by providing an extra 15 hours per week for children aged 3–4, and from 2024, begins to cover younger children as well. We calculate extended childcare entitlement using the following methodology:
+The Department for Education (DfE) provides the [extended childcare entitlement](https://github.com/PolicyEngine/policyengine-uk/blob/master/policyengine_uk/variables/gov/dfe/extended_childcare_entitlement/extended_childcare_entitlement.py), which offers additional hours of free childcare to working parents. This extends the universal entitlement by providing an extra 15 hours per week for children aged 3–4, and from 2024, begins to cover younger children as well. PolicyEngine calculates extended childcare entitlement using the following methodology:
 
 1. Identifying children in eligible age ranges
 2. Checking parental work and income conditions
