@@ -399,6 +399,8 @@ export function VariableParameterExplorer(props) {
   const { metadata } = props;
   const [query, setQuery] = useState("");
   const [selectedCardData, setSelectedCardData] = useState(null);
+  const [filterByAbolition, setFilterByAbolition] = useState(false);
+
   const [page, setPage] = useState(0);
 
   const MAX_ROWS = 3;
@@ -408,16 +410,32 @@ export function VariableParameterExplorer(props) {
   if (!metadata) return null;
 
   const filterByQuery = (item) => {
-    if (!query) return true;
+    if (!query && !filterByAbolition) return true;
 
-    // Skip items with numeric or empty labels
     const label = item.label || "";
     if (!label.trim() || /^\d+$/.test(label)) return false;
 
-    return label
-      .replaceAll(" ", "")
-      .toLowerCase()
-      .includes(query.replaceAll(" ", "").toLowerCase());
+    const pythonName = item.type === "parameter" ? item.parameter : item.name;
+
+    if (filterByAbolition) {
+      // When toggle ON, exclude items starting with "gov.abolitions"
+      if (pythonName?.startsWith("gov.abolitions")) return false;
+    } else {
+      // When toggle OFF, include everything (no exclusion)
+    }
+
+    // Filter based on the query string
+    if (query) {
+      return (
+        label
+          .replaceAll(" ", "")
+          .toLowerCase()
+          .includes(query.replaceAll(" ", "").toLowerCase()) ||
+        pythonName?.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    return true;
   };
 
   const parameterCards = Object.values(metadata.parameters || {})
@@ -458,7 +476,20 @@ export function VariableParameterExplorer(props) {
           padding: "8px",
         }}
       />
-
+      <div style={{ marginBottom: 10 }}>
+        <label style={{ fontSize: "14px" }}>
+          <input
+            type="checkbox"
+            checked={filterByAbolition}
+            onChange={() => {
+              setFilterByAbolition((prev) => !prev);
+              setPage(0); // reset to first page
+            }}
+            style={{ marginRight: 8 }}
+          />
+          Filter abolitions
+        </label>
+      </div>
       <div
         style={{
           display: "grid",
