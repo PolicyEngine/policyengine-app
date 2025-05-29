@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import GeneralContent from "./GeneralContent";
 import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
@@ -360,9 +360,6 @@ export function APIResultCard(props) {
 
 function APIParameterCard(props) {
   const { metadata } = props;
-  // use antd card component
-  // rounded edges, display all metadata and distinguish between parameters and variables
-  // "gov.dcms.bbc.tv_licence.discount.aged.discount":{"description":"Percentage discount for qualifying aged households.","economy":true,"household":true,"label":"Aged TV Licence discount","parameter":"gov.dcms.bbc.tv_licence.discount.aged.discount","period":null,"type":"parameter","unit":"/1","values":{"2003-01-01":1}}
 
   return (
     <>
@@ -382,8 +379,6 @@ function APIParameterCard(props) {
 
 function APIVariableCard(props) {
   const { metadata } = props;
-  // use antd card component
-  // rounded edges, display all metadata and distinguish between parameters and variables
 
   return (
     <>
@@ -400,7 +395,6 @@ function APIVariableCard(props) {
   );
 }
 
-// This component is not currently used but kept for future reference
 export function VariableParameterExplorer(props) {
   const { metadata } = props;
   const [query, setQuery] = useState("");
@@ -411,7 +405,7 @@ export function VariableParameterExplorer(props) {
   const MAX_COLS = 4;
   const CARDS_PER_PAGE = MAX_ROWS * MAX_COLS;
 
-  if (!metadata) return <></>;
+  if (!metadata) return null;
 
   const filterByQuery = (item) => {
     if (!query) return true;
@@ -485,28 +479,157 @@ export function VariableParameterExplorer(props) {
 
       {totalPages > 1 && (
         <div style={{ marginTop: 20, textAlign: "center" }}>
-          <button
-            onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-            disabled={page === 0}
-            style={{ marginRight: 10 }}
+          <div
+            style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
-            ← Previous
-          </button>
-          <span>
-            Page {page + 1} of {totalPages}
-          </span>
-          <button
-            onClick={() =>
-              setPage((prev) => Math.min(prev + 1, totalPages - 1))
-            }
-            disabled={page === totalPages - 1}
-            style={{ marginLeft: 10 }}
-          >
-            Next →
-          </button>
+            <button
+              onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+              disabled={page === 0}
+              style={{
+                border: "1px solid #d9d9d9",
+                borderRadius: "0",
+                backgroundColor: page === 0 ? "#f5f5f5" : "#ffffff",
+                color: page === 0 ? "#00000040" : "#000000d9",
+                cursor: page === 0 ? "not-allowed" : "pointer",
+                padding: "4px 15px",
+                fontSize: "14px",
+                fontFamily: "inherit",
+                lineHeight: "1.5715",
+                transition: "all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)",
+                userSelect: "none",
+                touchAction: "manipulation",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "32px",
+                minWidth: "32px",
+                outline: "none",
+              }}
+              onMouseEnter={(e) => {
+                if (page !== 0) {
+                  e.target.style.borderColor = "#40a9ff";
+                  e.target.style.color = "#40a9ff";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (page !== 0) {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.color = "#000000d9";
+                }
+              }}
+            >
+              ← Previous
+            </button>
+
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              <span style={{ fontSize: "14px", color: "#000000d9" }}>Page</span>
+              <input
+                type="number"
+                min="1"
+                max={totalPages}
+                value={page + 1}
+                onChange={(e) => {
+                  const newPage = parseInt(e.target.value) - 1;
+                  if (newPage >= 0 && newPage < totalPages) {
+                    setPage(newPage);
+                  }
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    const newPage = parseInt(e.target.value) - 1;
+                    if (newPage >= 0 && newPage < totalPages) {
+                      setPage(newPage);
+                    }
+                  }
+                }}
+                style={{
+                  border: "1px solid #d9d9d9",
+                  borderRadius: "0",
+                  backgroundColor: "#ffffff",
+                  padding: "4px 8px",
+                  fontSize: "14px",
+                  fontFamily: "inherit",
+                  lineHeight: "1.5715",
+                  height: "32px",
+                  width: "50px",
+                  textAlign: "center",
+                  outline: "none",
+                  transition: "all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)",
+                  // Remove arrow controls
+                  MozAppearance: "textfield",
+                  WebkitAppearance: "none",
+                  appearance: "none",
+                  // Additional styles to ensure arrows are hidden in all browsers
+                  "::-webkit-inner-spin-button, ::-webkit-outer-spin-button": {
+                    WebkitAppearance: "none",
+                    margin: 0,
+                  },
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#40a9ff";
+                  e.target.style.boxShadow =
+                    "0 0 0 2px rgba(24, 144, 255, 0.2)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.boxShadow = "none";
+                }}
+              />
+              <span style={{ fontSize: "14px", color: "#000000d9" }}>
+                of {totalPages}
+              </span>
+            </div>
+
+            <button
+              onClick={() =>
+                setPage((prev) => Math.min(prev + 1, totalPages - 1))
+              }
+              disabled={page === totalPages - 1}
+              style={{
+                border: "1px solid #d9d9d9",
+                borderRadius: "0",
+                backgroundColor:
+                  page === totalPages - 1 ? "#f5f5f5" : "#ffffff",
+                color: page === totalPages - 1 ? "#00000040" : "#000000d9",
+                cursor: page === totalPages - 1 ? "not-allowed" : "pointer",
+                padding: "4px 15px",
+                fontSize: "14px",
+                fontFamily: "inherit",
+                lineHeight: "1.5715",
+                transition: "all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)",
+                userSelect: "none",
+                touchAction: "manipulation",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "32px",
+                minWidth: "32px",
+                outline: "none",
+              }}
+              onMouseEnter={(e) => {
+                if (page !== totalPages - 1) {
+                  e.target.style.borderColor = "#40a9ff";
+                  e.target.style.color = "#40a9ff";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (page !== totalPages - 1) {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.color = "#000000d9";
+                }
+              }}
+            >
+              Next →
+            </button>
+          </div>
         </div>
       )}
-
       <CardDrawer metadata={selectedCardData} />
     </div>
   );
@@ -516,9 +639,7 @@ export function VariableParameterExplorer(props) {
 function CardDrawer(props) {
   const { metadata } = props;
 
-  if (!metadata) {
-    return <></>;
-  }
+  if (!metadata) return null;
   const type = metadata.type;
   return (
     <>

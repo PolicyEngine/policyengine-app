@@ -8,10 +8,6 @@ import APIGeneralContent from "./APIGeneralContent";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
-// import CodeBlock from "../../layout/CodeBlock";
-// import Section from "../../layout/Section";
-// import { useEffect, useState } from "react";
-// import {wrappedResponseJson}  from "../../data/wrappedJson";
 
 export const exampleInputs = {
   us: {
