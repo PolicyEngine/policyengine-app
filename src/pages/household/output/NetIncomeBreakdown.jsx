@@ -320,13 +320,14 @@ function VariableArithmetic(props) {
               className="info-icon-wrapper"
             >
               <InfoCircleOutlined
+                onClick={showModal}
                 style={{
                   fontSize: 14,
                   marginLeft: 10,
                   color: style.colors.DARK_GRAY,
                   cursor: "pointer", // Pointer cursor to indicate it's interactable
-                }}
-              />
+                }}  
+              />  
               <Button
                 style={{
                   position: "absolute",
