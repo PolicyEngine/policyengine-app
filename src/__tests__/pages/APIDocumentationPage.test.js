@@ -1,7 +1,7 @@
 import APIDocumentationPage, {
   exampleInputs,
-  APIResultCard,
 } from "../../pages/learn/APIDocumentationPage";
+import { APIResultCard } from "../../pages/learn/APIGeneralContent";
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import * as countryIdFuncs from "hooks/useCountryId";
