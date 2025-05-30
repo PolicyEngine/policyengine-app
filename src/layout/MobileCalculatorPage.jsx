@@ -104,6 +104,7 @@ export default function MobileCalculatorPage(props) {
   } = props;
 
   const [searchParams] = useSearchParams();
+  const focus = searchParams.get("focus") || "";
   const [bottomPadding, setBottomPadding] = useState(0);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -124,7 +125,7 @@ export default function MobileCalculatorPage(props) {
   // Scroll to top every time a user opens a new page
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, [focus]); // Only scroll when focus changes
 
   const embed = searchParams.get("embed") !== null;
   if (type === "policy" && embed) {
@@ -135,7 +136,8 @@ export default function MobileCalculatorPage(props) {
     <>
       <div
         style={{
-          overflow: "scroll",
+          overflow: "auto",
+          WebkitOverflowScrolling: "touch", // Enable smooth scrolling on iOS
           width: "100%",
           padding: `20px 20px ${bottomPadding}px 20px`,
           minHeight: `calc(100vh - ${spacing.HEADER_HEIGHT}px)`,
@@ -290,7 +292,10 @@ function MobileTreeNavigationHolder(props) {
     }
   }
   if (type === "policy") {
-    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+      metadata.countryId,
+      searchParams,
+    );
     if (focus && focus.startsWith("policyOutput")) {
       currentNode = { children: POLICY_OUTPUT_TREE };
     } else {
@@ -384,6 +389,8 @@ function MobileTreeNavigationHolder(props) {
  * previous or next breadcrumb to determine if a back and/or forward arrow button should
  * be present. */
 export function MobileBottomNavButtons({ focus, type, metadata }) {
+  const [searchParams] = useSearchParams();
+
   if (
     type === "household" &&
     !(focus && focus.startsWith("householdOutput."))
@@ -399,7 +406,10 @@ export function MobileBottomNavButtons({ focus, type, metadata }) {
     options = flattenTree(HOUSEHOLD_OUTPUT_TREE[0].children);
   }
   if (type === "policy") {
-    const POLICY_OUTPUT_TREE = getPolicyOutputTree(metadata.countryId);
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+      metadata.countryId,
+      searchParams,
+    );
     options = flattenTree(POLICY_OUTPUT_TREE[0].children);
   }
 
@@ -541,7 +551,8 @@ function PolicyDrawerButton({ policy, metadata, buttonHeight }) {
         }}
         style={{
           maxHeight: "100vh",
-          overflow: "scroll",
+          overflow: "auto",
+          WebkitOverflowScrolling: "touch",
           height: "unset",
         }}
       >

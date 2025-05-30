@@ -146,91 +146,111 @@ export default function PolicyPage(props) {
 
   let middle = null;
 
-  if (!policy.reform.data) {
-    middle = <LoadingCentered />;
-  } else if (isPolicyDeprecated) {
-    middle = (
-      <>
-        <DeprecationModal
-          oldPolicy={policy}
-          countryVersion={countryVersion}
-          metadata={metadata}
-          deprecatedParams={deprecatedParams}
-        />
-        <ErrorComponent message="This policy is deprecated" />
-      </>
-    );
-  } else if (
-    Object.keys(metadata.parameters).includes(focus) &&
-    metadata.parameters[focus].type === "parameter"
-  ) {
-    middle = (
-      <ParameterEditor
-        parameterName={focus}
-        metadata={metadata}
-        policy={policy}
-        setPolicy={setPolicy}
-      />
-    );
-  } else if (Object.keys(metadata.parameters).includes(focus)) {
-    const node = findInTree({ children: [metadata.parameterTree] }, focus);
-    middle = (
-      <FolderPage label={node.label} metadata={metadata} inPolicySide>
-        {node.children}
-      </FolderPage>
-    );
-  } else if (isOutput) {
-    const POLICY_OUTPUT_TREE = getPolicyOutputTree(
-      metadata.countryId,
-      searchParams,
-    );
-    const validFocusValues = impactKeys;
-    const stripped_focus = focus.replace("policyOutput.", "");
-
-    // Check if the current focus is within validFocusValues
-    if (
-      focus === "policyOutput.policyBreakdown" ||
-      (isMultiYear && focus === "policyOutput.budgetaryImpact") ||
-      focus === "policyOutput.codeReproducibility" ||
-      validFocusValues.includes(stripped_focus)
+  try {
+    if (!policy.reform.data) {
+      middle = <LoadingCentered />;
+    } else if (isPolicyDeprecated) {
+      middle = (
+        <>
+          <DeprecationModal
+            oldPolicy={policy}
+            countryVersion={countryVersion}
+            metadata={metadata}
+            deprecatedParams={deprecatedParams}
+          />
+          <ErrorComponent message="This policy is deprecated" />
+        </>
+      );
+    } else if (
+      Object.keys(metadata.parameters).includes(focus) &&
+      metadata.parameters[focus].type === "parameter"
     ) {
       middle = (
-        <PolicyOutput
+        <ParameterEditor
+          parameterName={focus}
           metadata={metadata}
           policy={policy}
-          userProfile={userProfile}
+          setPolicy={setPolicy}
         />
       );
-    } else {
-      // Find the node in the tree where the name matches the focus
-      const findNodeByName = (node, name) => {
-        if (node.name === name) {
-          return node;
-        }
-        if (node.children) {
-          for (let child of node.children) {
-            const result = findNodeByName(child, name);
-            if (result) {
-              return result;
-            }
-          }
-        }
-        return null;
-      };
+    } else if (Object.keys(metadata.parameters).includes(focus)) {
+      const node = findInTree({ children: [metadata.parameterTree] }, focus);
+      middle = (
+        <FolderPage label={node.label} metadata={metadata} inPolicySide>
+          {node.children}
+        </FolderPage>
+      );
+    } else if (isOutput) {
+      const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+        metadata.countryId,
+        searchParams,
+      );
+      const validFocusValues = impactKeys;
+      const stripped_focus = focus.replace("policyOutput.", "");
 
-      const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
-
-      // Render FolderPage with its children if the node is found
-      if (node) {
+      // Check if the current focus is within validFocusValues
+      if (
+        focus === "policyOutput.policyBreakdown" ||
+        (isMultiYear && focus === "policyOutput.budgetaryImpact") ||
+        focus === "policyOutput.codeReproducibility" ||
+        validFocusValues.includes(stripped_focus)
+      ) {
         middle = (
-          <FolderPage label={node.label} metadata={metadata}>
-            {node.children}
-          </FolderPage>
+          <PolicyOutput
+            metadata={metadata}
+            policy={policy}
+            userProfile={userProfile}
+          />
         );
       } else {
-        middle = <div>Page cannot be found.</div>;
+        // Find the node in the tree where the name matches the focus
+        const findNodeByName = (node, name) => {
+          if (node.name === name) {
+            return node;
+          }
+          if (node.children) {
+            for (let child of node.children) {
+              const result = findNodeByName(child, name);
+              if (result) {
+                return result;
+              }
+            }
+          }
+          return null;
+        };
+
+        const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
+
+        // Render FolderPage with its children if the node is found
+        if (node) {
+          middle = (
+            <FolderPage label={node.label} metadata={metadata}>
+              {node.children}
+            </FolderPage>
+          );
+        } else {
+          middle = <div>Page cannot be found.</div>;
+        }
       }
     }
+  } catch (error) {
+    console.error("PolicyPage: Error rendering content", error, {
+      focus,
+      isOutput,
+    });
+    middle = (
+      <ErrorComponent message={`Error loading policy page: ${error.message}`} />
+    );
+  }
+
+  // Ensure middle is never null for mobile rendering
+  if (!middle) {
+    console.error("PolicyPage: middle content is null", {
+      focus,
+      isOutput,
+      policy: policy?.reform?.data ? "loaded" : "not loaded",
+    });
+    middle = <LoadingCentered />;
   }
 
   if (mobile) {
