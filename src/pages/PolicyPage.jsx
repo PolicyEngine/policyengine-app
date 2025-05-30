@@ -14,6 +14,7 @@ import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import ErrorComponent from "../layout/ErrorComponent";
+import ErrorBoundary from "../layout/ErrorBoundary";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
@@ -146,101 +147,91 @@ export default function PolicyPage(props) {
 
   let middle = null;
 
-  try {
-    if (!policy.reform.data) {
-      middle = <LoadingCentered />;
-    } else if (isPolicyDeprecated) {
-      middle = (
-        <>
-          <DeprecationModal
-            oldPolicy={policy}
-            countryVersion={countryVersion}
-            metadata={metadata}
-            deprecatedParams={deprecatedParams}
-          />
-          <ErrorComponent message="This policy is deprecated" />
-        </>
-      );
-    } else if (
-      Object.keys(metadata.parameters).includes(focus) &&
-      metadata.parameters[focus].type === "parameter"
+  if (!policy.reform.data) {
+    middle = <LoadingCentered />;
+  } else if (isPolicyDeprecated) {
+    middle = (
+      <>
+        <DeprecationModal
+          oldPolicy={policy}
+          countryVersion={countryVersion}
+          metadata={metadata}
+          deprecatedParams={deprecatedParams}
+        />
+        <ErrorComponent message="This policy is deprecated" />
+      </>
+    );
+  } else if (
+    Object.keys(metadata.parameters).includes(focus) &&
+    metadata.parameters[focus].type === "parameter"
+  ) {
+    middle = (
+      <ParameterEditor
+        parameterName={focus}
+        metadata={metadata}
+        policy={policy}
+        setPolicy={setPolicy}
+      />
+    );
+  } else if (Object.keys(metadata.parameters).includes(focus)) {
+    const node = findInTree({ children: [metadata.parameterTree] }, focus);
+    middle = (
+      <FolderPage label={node.label} metadata={metadata} inPolicySide>
+        {node.children}
+      </FolderPage>
+    );
+  } else if (isOutput) {
+    const POLICY_OUTPUT_TREE = getPolicyOutputTree(
+      metadata.countryId,
+      searchParams,
+    );
+    const validFocusValues = impactKeys;
+    const stripped_focus = focus.replace("policyOutput.", "");
+
+    // Check if the current focus is within validFocusValues
+    if (
+      focus === "policyOutput.policyBreakdown" ||
+      (isMultiYear && focus === "policyOutput.budgetaryImpact") ||
+      focus === "policyOutput.codeReproducibility" ||
+      validFocusValues.includes(stripped_focus)
     ) {
       middle = (
-        <ParameterEditor
-          parameterName={focus}
+        <PolicyOutput
           metadata={metadata}
           policy={policy}
-          setPolicy={setPolicy}
+          userProfile={userProfile}
         />
       );
-    } else if (Object.keys(metadata.parameters).includes(focus)) {
-      const node = findInTree({ children: [metadata.parameterTree] }, focus);
-      middle = (
-        <FolderPage label={node.label} metadata={metadata} inPolicySide>
-          {node.children}
-        </FolderPage>
-      );
-    } else if (isOutput) {
-      const POLICY_OUTPUT_TREE = getPolicyOutputTree(
-        metadata.countryId,
-        searchParams,
-      );
-      const validFocusValues = impactKeys;
-      const stripped_focus = focus.replace("policyOutput.", "");
-
-      // Check if the current focus is within validFocusValues
-      if (
-        focus === "policyOutput.policyBreakdown" ||
-        (isMultiYear && focus === "policyOutput.budgetaryImpact") ||
-        focus === "policyOutput.codeReproducibility" ||
-        validFocusValues.includes(stripped_focus)
-      ) {
-        middle = (
-          <PolicyOutput
-            metadata={metadata}
-            policy={policy}
-            userProfile={userProfile}
-          />
-        );
-      } else {
-        // Find the node in the tree where the name matches the focus
-        const findNodeByName = (node, name) => {
-          if (node.name === name) {
-            return node;
-          }
-          if (node.children) {
-            for (let child of node.children) {
-              const result = findNodeByName(child, name);
-              if (result) {
-                return result;
-              }
+    } else {
+      // Find the node in the tree where the name matches the focus
+      const findNodeByName = (node, name) => {
+        if (node.name === name) {
+          return node;
+        }
+        if (node.children) {
+          for (let child of node.children) {
+            const result = findNodeByName(child, name);
+            if (result) {
+              return result;
             }
           }
-          return null;
-        };
-
-        const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
-
-        // Render FolderPage with its children if the node is found
-        if (node) {
-          middle = (
-            <FolderPage label={node.label} metadata={metadata}>
-              {node.children}
-            </FolderPage>
-          );
-        } else {
-          middle = <div>Page cannot be found.</div>;
         }
+        return null;
+      };
+
+      const node = findNodeByName(POLICY_OUTPUT_TREE[0], focus);
+
+      // Render FolderPage with its children if the node is found
+      if (node) {
+        middle = (
+          <FolderPage label={node.label} metadata={metadata}>
+            {node.children}
+          </FolderPage>
+        );
+      } else {
+        middle = <div>Page cannot be found.</div>;
       }
     }
-  } catch (error) {
-    console.error("PolicyPage: Error rendering content", error, {
-      focus,
-      isOutput,
-    });
-    middle = (
-      <ErrorComponent message={`Error loading policy page: ${error.message}`} />
-    );
   }
 
   // Ensure middle is never null for mobile rendering
@@ -255,7 +246,10 @@ export default function PolicyPage(props) {
 
   if (mobile) {
     return (
-      <>
+      <ErrorBoundary
+        context={{ component: "PolicyPage Mobile", focus, isOutput }}
+        fallbackMessage="Error loading policy page. Please try refreshing."
+      >
         <Helmet>
           <title>Policy | PolicyEngine</title>
         </Helmet>
@@ -265,7 +259,7 @@ export default function PolicyPage(props) {
           policy={policy}
           type="policy"
         />
-      </>
+      </ErrorBoundary>
     );
   }
 
@@ -347,7 +341,10 @@ export default function PolicyPage(props) {
   );
 
   return (
-    <>
+    <ErrorBoundary
+      context={{ component: "PolicyPage Desktop", focus, isOutput }}
+      fallbackMessage="Error loading policy page. Please try refreshing."
+    >
       <Helmet>
         <title>Policy | PolicyEngine</title>
       </Helmet>
@@ -367,7 +364,7 @@ export default function PolicyPage(props) {
           />
         }
       />
-    </>
+    </ErrorBoundary>
   );
 }
 
