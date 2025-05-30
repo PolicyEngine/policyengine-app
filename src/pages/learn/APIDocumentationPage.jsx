@@ -93,8 +93,6 @@ export const exampleInputs = {
   },
 };
 
-// Note: These constants are kept for reference but not currently used
-
 export default function APIDocumentationPage({ metadata }) {
   const countryId = useCountryId();
   const isUK = countryId === "uk";
