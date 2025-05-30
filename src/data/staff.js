@@ -83,6 +83,15 @@ The Rochester Institute of Technology.`,
     Previously, she was a research intern at the University of Chicago.`,
     image: require("../images/authors/maria-juaristi.png"),
   },
+  ziming_hua: {
+    name: "Ziming Hua",
+    bio: `is a policy modeling fellow at PolicyEngine. He focuses on
+    implementing and analyzing tax and benefit systems. He develops simulation models
+    to evaluate the impacts of policy reforms. Ziming holds a bachelor's degree in
+    Mathematical Finance from the University of California, Irvine, and a master's degree
+    in Business Analytics from Boston University.`,
+    image: require("../images/authors/ziming-hua.jpg"),
+  },
 };
 
 export const advisors = {
