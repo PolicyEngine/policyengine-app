@@ -53,7 +53,7 @@ export default function SimulationsPage() {
             const key = `${simulation.reform_policy_id}-${simulation.baseline_policy_id}-${simulation.region}-${simulation.time_period}-${simulation.options_json}`;
             
             // Store it on the simulation object 
-            simulation.rowKey = key;
+            simulation.key = key;
             
             if (!uniqueSimulations.has(key)) {
               uniqueSimulations.set(key, simulation);
@@ -124,7 +124,7 @@ export default function SimulationsPage() {
         </p>
       </PageHeader>
       <Section>
-        <Table dataSource={data} columns={columns} rowKey="rowKey" />
+        <Table dataSource={data} columns={columns} />
       </Section>
       <Footer />
     </>
