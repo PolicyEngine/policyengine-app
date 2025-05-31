@@ -89,7 +89,7 @@ The Rochester Institute of Technology.`,
     implementing and analyzing tax and benefit systems. He develops simulation models
     to evaluate the impacts of policy reforms. Ziming holds a bachelor's degree in
     mathematical finance from the University of California, Irvine, and a master's degree
-    in Business Analytics from Boston University.`,
+    in business analytics from Boston University.`,
     image: require("../images/authors/ziming-hua.jpg"),
   },
 };
