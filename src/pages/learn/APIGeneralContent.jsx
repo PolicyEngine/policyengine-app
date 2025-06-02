@@ -509,7 +509,7 @@ export function VariableParameterExplorer(props) {
       </div>
 
       {totalPages > 1 && (
-        <div style={{ marginTop: 20, textAlign: "center" }}>
+        <div style={{ marginTop: 20, marginBottom: 20, textAlign: "center" }}>
           <div
             style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
           >
@@ -674,11 +674,22 @@ function CardDrawer(props) {
   const type = metadata.type;
   return (
     <>
-      {type === "parameter" ? (
-        <APIParameterCard metadata={metadata} />
-      ) : (
-        <APIVariableCard metadata={metadata} />
-      )}
+      <Card
+        bordered={true}
+        style={{
+          width: "100%",
+          backgroundColor: "white",
+          overflow: "hidden",
+          cursor: "pointer",
+          transition: "transform 0.2s",
+        }}
+      >
+        {type === "parameter" ? (
+          <APIParameterCard metadata={metadata} />
+        ) : (
+          <APIVariableCard metadata={metadata} />
+        )}
+      </Card>
     </>
   );
 }
