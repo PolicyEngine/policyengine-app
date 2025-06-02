@@ -327,13 +327,12 @@ export default function PolicyEngine() {
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />
           <Route path="developer-tools" element={<DeveloperLayout />}>
-            <Route index element={<DeveloperHome />} />
-            <Route path="simulations" element={<SimulationsPage />} />
-            <Route path="api_status" element={<StatusPage />} />
+          <Route index element={<DeveloperHome />} />
+          <Route path="simulations" element={<SimulationsPage />} />
+          <Route path="api_status" element={<StatusPage />} />
           </Route>
-          <Route path="research" element={<Outlet />}>
-            <Route index={true} element={<Research />} />
-            <Route path=":postName" element={<BlogPage />} />
+          <Route path="research" element={<Outlet />}> <Route index={true} element={<Research />} />
+          <Route path=":postName" element={<BlogPage />} />
           </Route>
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />

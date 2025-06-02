@@ -32,10 +32,10 @@ def create_social_card(
     )
 
     # Create a blank canvas
-    canvas = Image.new(
-        "RGB",
-        (800 * SIZE_MULTIPLIER, 418 * SIZE_MULTIPLIER),
-        color=(255, 255, 255),
+    canvas = Image.new( 
+        "RGB", # Image mode: RGB (3 color channels)
+        (800 * SIZE_MULTIPLIER, 418 * SIZE_MULTIPLIER), # Canvas size (width, height)
+        color=(255, 255, 255), # Canvas size (width, height)
     )
     # Paste the image
     canvas.paste(image, (0, 0))

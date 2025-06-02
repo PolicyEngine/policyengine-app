@@ -23,22 +23,22 @@ Currently, we don't assign contributors. If you see an open issue that no one's 
 
 ## Setting Up
 
-1. Fork the repo
+1. Fork the Repo
 
 ```
 https://github.com/PolicyEngine/policyengine-app/fork
 ```
 
-2. Install dependencies
+2. Install All Necessary dependencies
 
 ```
-make install
+npm i
 ```
 
 3. Start a server on localhost to see your changes
 
 ```
-make debug
+npm run start
 ```
 
 Now you're ready to start developing!
