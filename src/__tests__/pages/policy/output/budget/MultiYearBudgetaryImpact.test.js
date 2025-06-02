@@ -78,12 +78,8 @@ describe("MultiYearBudgetaryImpact", () => {
 
       // Then
       expect(result).toEqual({
-        2020: String(
-          mockSingleYearResults[0].result.budget[budgetKey] / 1e9,
-        ).toFixed(1),
-        2021: String(
-          mockSingleYearResults[1].result.budget[budgetKey] / 1e9,
-        ).toFixed(1),
+        2020: (mockSingleYearResults[0].result.budget[budgetKey] / 1e9).toFixed(1),
+        2021: (mockSingleYearResults[1].result.budget[budgetKey] / 1e9).toFixed(1),
       });
     });
     test("getYearlyImpacts should correctly format yearly impacts with formula", () => {
@@ -97,8 +93,8 @@ describe("MultiYearBudgetaryImpact", () => {
         formula(item.result.budget),
       );
       const expectedResult = {
-        2020: String(expectedImpact[0] / 1e9).toFixed(1),
-        2021: String(expectedImpact[1] / 1e9).toFixed(1),
+        2020: (expectedImpact[0] / 1e9).toFixed(1),
+        2021: (expectedImpact[1] / 1e9).toFixed(1),
       };
       // When
       const result = getYearlyImpacts(
