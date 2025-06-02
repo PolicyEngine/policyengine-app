@@ -57,7 +57,7 @@ const financialYearTypeByCountry = {
 const roundingPrecisionByCountry = {
   us: 1,
   uk: 1,
-  default: 0,
+  default: 1,
 };
 
 /**
