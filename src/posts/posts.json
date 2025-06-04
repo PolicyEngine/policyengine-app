@@ -1254,6 +1254,15 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
+    "title": "Benefits in PolicyEngine",
+    "date": "2025-05-28 00:00:00",
+    "authors": ["vahid-ahmadi"],
+    "tags": ["uk", "policy", "featured", "benefit"],
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
+    "filename": "uk-benefits-post.md",
+    "image": "uk-benefit-post.png"
+  },
+  {
     "title": "Idaho’s New Individual Income Tax Changes",
     "date": "2025-04-01",
     "authors": ["david-trimmer"],
