@@ -125,7 +125,6 @@ function NotebookCell({ data }) {
     outputCellComponent = null;
   } else {
     const outputType = Object.keys(outputCell)[0];
-    console.log(outputType);
     if (outputType === "text/plain") {
       outputCellComponent = (
         <NotebookOutputPlain data={outputCell[outputType]} />
@@ -213,7 +212,6 @@ function NotebookOutputMarkdown({ data }) {
 }
 
 function NotebookOutputPlotly({ data }) {
-  console.log(data);
   const title = data.layout?.title?.text;
   const displayCategory = useDisplayCategory();
 

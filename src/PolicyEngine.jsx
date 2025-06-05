@@ -2,6 +2,7 @@ import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
 import Jobs from "./pages/Jobs";
+import Supporters from "./pages/Supporters";
 import {
   Navigate,
   Outlet,
@@ -57,6 +58,7 @@ import MicrosimPage from "./pages/learn/MicrosimPage";
 import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
+import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -77,6 +79,13 @@ export default function PolicyEngine() {
   const countryId = extractCountryId();
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const updatedSearchParams = updateDeprecatedSearchParams(searchParams);
+  if (updatedSearchParams) {
+    // If we have updated search params, set them
+    setSearchParams(updatedSearchParams);
+  }
+
   const householdId = searchParams.get("household");
 
   let defaultBaselinePolicy = 1;
@@ -313,6 +322,7 @@ export default function PolicyEngine() {
           <Route index={true} element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="jobs" element={<Jobs />} />
+          <Route path="supporters" element={<Supporters />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
           <Route path="simulations" element={<SimulationsPage />} />

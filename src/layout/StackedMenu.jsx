@@ -6,6 +6,7 @@ export default function StackedMenu(props) {
   const isOnOutput =
     window.location.search.includes("focus=policyOutput") ||
     window.location.search.includes("focus=householdOutput");
+
   let result;
   if (isOnOutput) {
     result = <Menu tree={secondTree} selected={selected} onSelect={onSelect} />;

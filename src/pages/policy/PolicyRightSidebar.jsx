@@ -26,6 +26,10 @@ import { defaultForeverYear, defaultStartDate } from "../../data/constants";
 import Collapsible from "../../layout/Collapsible";
 import { formatFullDate } from "../../lang/format";
 import useCountryId from "../../hooks/useCountryId";
+import MultiYearSelector, {
+  MULTI_YEAR_SELECTOR_PERMITTED_COUNTRIES,
+} from "./rightSidebar/MultiYearSelector";
+import { determineIfMultiYear } from "./output/utils";
 
 function RegionSelector(props) {
   const { metadata } = props;
@@ -34,13 +38,7 @@ function RegionSelector(props) {
     return { value: region.name, label: region.label };
   });
 
-  // The below allows backward compatibility with a past design where enhanced_cps
-  // was also a region value
-  options = options.filter((option) => option.value !== "enhanced_us");
   let inputRegion = searchParams.get("region");
-  if (inputRegion === "enhanced_us") {
-    inputRegion = "us";
-  }
   if (!(searchParams.get("uk_local_areas_beta") === "true")) {
     options = options.filter(
       (option) => !option.value.includes("constituency/"),
@@ -113,9 +111,6 @@ function BehavioralResponseToggle(props) {
   const behavioralResponseReforms = useMemo(
     () => ({
       uk: {
-        "gov.simulation.capital_gains_responses.elasticity": {
-          [dateString]: -0.7,
-        },
         "gov.simulation.labor_supply_responses.income_elasticity": {
           [dateString]: -0.05,
         },
@@ -504,11 +499,6 @@ function DatasetSelector(props) {
     // Set params accordingly
     if (isChecked) {
       newSearch.delete("dataset");
-      // Allows for backwards compatibility with a past design
-      // where enhanced_cps was also a region value
-      if (searchParams.get("region") === "enhanced_us") {
-        newSearch.set("region", "us");
-      }
       setIsChecked(false);
     } else {
       newSearch.set("dataset", "enhanced_cps");
@@ -846,12 +836,9 @@ export default function PolicyRightSidebar(props) {
   const stateAbbreviation = focus.split(".")[2];
   const hasHousehold = searchParams.get("household") !== null;
 
+  const isMultiYear = determineIfMultiYear(searchParams);
+
   let dataset = searchParams.get("dataset");
-  // This allows backward compatibility with a past
-  // design where enhanced_cps was also a region value
-  if (region === "enhanced_us" && !dataset) {
-    dataset = "enhanced_cps";
-  }
 
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
@@ -922,7 +909,11 @@ export default function PolicyRightSidebar(props) {
       });
     } else {
       let newSearch = copySearchParams(searchParams);
-      newSearch.set("focus", "policyOutput.policyBreakdown");
+      if (isMultiYear) {
+        newSearch.set("focus", "policyOutput.budgetaryImpact");
+      } else {
+        newSearch.set("focus", "policyOutput.policyBreakdown");
+      }
       setSearchParams(newSearch, { replace: true });
     }
   };
@@ -1151,6 +1142,14 @@ export default function PolicyRightSidebar(props) {
                   <DatasetSelector
                     presentDataset={dataset}
                     timePeriod={timePeriod}
+                  />
+                )}
+                {MULTI_YEAR_SELECTOR_PERMITTED_COUNTRIES.includes(
+                  metadata.countryId,
+                ) && (
+                  <MultiYearSelector
+                    metadata={metadata}
+                    startYear={timePeriod}
                   />
                 )}
                 <FullLiteToggle metadata={metadata} />

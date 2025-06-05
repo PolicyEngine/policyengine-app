@@ -1,0 +1,106 @@
+[
+  {
+    "supporter": "nuffield",
+    "title": "Enhancing, localising and democratising tax-benefit policy analysis",
+    "projectUrl": "https://www.nuffieldfoundation.org/project/enhancing-localising-and-democratising-tax-benefit-policy-analysis",
+    "amount": "£251,296",
+    "awardDate": "September 2024",
+    "description": "Supporting the development of expanded program coverage and geographic detail in PolicyEngine UK, as well as a redesigned interface."
+  },
+  {
+    "supporter": "arnold",
+    "title": "Labor supply responses",
+    "projectUrl": "https://policyengine.org/us/research/us-behavioral-responses",
+    "amount": "$85,200",
+    "awardDate": "December 2023",
+    "description": "Supporting the development of labor supply responses in PolicyEngine US."
+  },
+  {
+    "supporter": "arnold",
+    "title": "SALT and AMT policy calculator",
+    "projectUrl": "https://policyengine.org/us/research/introducing-salternative",
+    "amount": "$94,800",
+    "awardDate": "July 2024",
+    "description": "Supporting the development of specialized policy calculators for State and Local Tax (SALT) deductions and Alternative Minimum Tax (AMT) policies."
+  },
+  {
+    "supporter": "arnold",
+    "title": "State & congressional district policy breakdowns",
+    "amount": "$248,525",
+    "awardDate": "May 2025",
+    "description": "Supporting the development of detailed policy impact analysis at the state and congressional district levels."
+  },
+  {
+    "supporter": "neo",
+    "title": "General operating support (Economic Mobility & Opportunity Fund)",
+    "projectUrl": "https://policyengine.org/us/research/neo-philanthropy",
+    "amount": "$200,000",
+    "awardDate": "October 2024",
+    "description": "General operating support."
+  },
+  {
+    "supporter": "myfriendben",
+    "title": "Benefit eligibility API",
+    "amount": "$300,000",
+    "awardDate": "October 2024",
+    "description": "Supporting the development and maintenance of the PolicyEngine rules engine and API, powering state and federal programs in MyFriendBen."
+  },
+  {
+    "supporter": "myfriendben",
+    "title": "Premium tax credit modeling",
+    "amount": "$25,000",
+    "awardDate": "January 2025",
+    "description": "Supporting the addition of Affordable Care Act premium tax credit rules to the PolicyEngine API."
+  },
+  {
+    "supporter": "huff-fund-for-humanity",
+    "title": "General operating support",
+    "amount": "$50,000",
+    "awardDate": "August 2024",
+    "description": "Supporting our ability to grow technological capacity, integrate AI more fully, build organizational strength, and increase sustainability."
+  },
+  {
+    "supporter": "huff-fund-for-humanity",
+    "title": "General operating support",
+    "amount": "$50,000",
+    "awardDate": "August 2023",
+    "description": "Supporting the improvement and marketing of the software as we pursue longer-term funding strategies."
+  },
+  {
+    "supporter": "corvus-oaks",
+    "title": "Travel support",
+    "amount": "$25,000",
+    "awardDate": "September 2024",
+    "description": "Supporting our ability to connect with the benefit access community through travel and events."
+  },
+  {
+    "supporter": "the-institute",
+    "title": "Universal basic income simulation",
+    "amount": "$35,000",
+    "awardDate": "July 2023",
+    "description": "Supporting the development of a report simulating options for budget-neutral tax-benefit reforms creating a universal basic income in the US."
+  },
+  {
+    "supporter": "crfb",
+    "title": "Analysis of reforms to the taxation of Social Security benefits",
+    "amount": "$35,000",
+    "awardDate": "January 2025",
+    "description": "Supporting a microsimulation analysis of various reforms to federal taxation of Social Security benefits."
+  },
+  {
+    "supporter": "imagine-la",
+    "title": "API support for Benefit Navigator",
+    "projectUrl": "https://www.imaginela.org/benefit-navigator",
+    "amount": "$97,000",
+    "awardDate": "July 2023",
+    "description": "Supporting the development of new policy rules and benefit eligibility API service for Benefit Navigator."
+  },
+  {
+    "supporter": "dylan-hirsch-shell",
+    "title": "General operating support",
+    "projectUrl": "https://policyengine.org/us/research/enhanced-cps-beta",
+    "amount": "$30,000",
+    "awardDate": "December 2022",
+    "description": "Supporting the development of a calibrated dataset for accurate tax-benefit microsimulation."
+  }
+]
