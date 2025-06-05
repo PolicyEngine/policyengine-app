@@ -1,5 +1,14 @@
 [
   {
+    "title": "Childcare programmes in PolicyEngine UK",
+    "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
+    "date": "2025-06-06",
+    "tags": ["uk", "benefit", "featured"],
+    "filename": "uk-childcare-report.md",
+    "image": "uk_childcare_report.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
     "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
     "date": "2025-05-23",
     "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
