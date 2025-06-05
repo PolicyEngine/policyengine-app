@@ -312,10 +312,10 @@ We [determine](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3
 
 **Table 5. Examples of annual childcare entitlement by child age**
 
-| Child age | Weekly hours | [Funding rate (2025)](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/) | Annual entitlement (2025) |
+| Child age | Weekly hours | Funding rate (2025) | Annual entitlement (2025) |
 | :-------- | :----------- | :--------------------------------------------------------------------------------------- | :------------------------ |
-| 2         | 15           | £83                                                                                      | £4,719.6                  |
-| 3         | 30           | £5.9                                                                                     | £6,703.2                  |
+| 2         | 15           | [£8.3](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/)                                                                                      | £4,719.6                  |
+| 3         | 30           | [£5.9](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/)                                                                                     | £6,703.2                  |
 
 ### Economic analysis
 
@@ -1046,7 +1046,7 @@ We [integrate](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28
 
 We use these rates to randomly assign benefit units to each childcare programme, generating representative aggregate statistics. Based on the 2023 Childcare and Early Years [Survey](https://explore-education-statistics.service.gov.uk/find-statistics/childcare-and-early-years-survey-of-parents/2023) of Parents, the government reports that around 63% of children aged 0 to 4 used formal childcare.
 
-To reach the target metrics for extended childcare, we [apply](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/enhanced_frs.py) a take-up rate based on hours claimed. This approach captures the higher participation rate of extended childcare compared to other programmes. We model the distribution of claimed hours using a normal distribution with a mean of 15.0 and a standard deviation of 5.0.
+To reach the target metrics for extended childcare, we [impute](https://github.com/PolicyEngine/policyengine-uk-data/blob/1334f28bca35c78efc342423ca64b53774e92dc1/policyengine_uk_data/datasets/frs/enhanced_frs.py) hours claimed among households simulated to take up the program. We model the distribution of claimed hours using a normal distribution with a mean of 15.0 and a standard deviation of 5.0, bounded from 0 (exclusive) to 40 (inclusive).
 
 ## Conclusion
 
