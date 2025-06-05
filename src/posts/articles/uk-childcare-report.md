@@ -312,10 +312,10 @@ We [determine](https://github.com/PolicyEngine/policyengine-uk/tree/20ed1a9d77a3
 
 **Table 5. Examples of annual childcare entitlement by child age**
 
-| Child age | Weekly hours | Funding rate (2025) | Annual entitlement (2025) |
-| :-------- | :----------- | :--------------------------------------------------------------------------------------- | :------------------------ |
-| 2         | 15           | [£8.3](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/)                                                                                      | £4,719.6                  |
-| 3         | 30           | [£5.9](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/)                                                                                     | £6,703.2                  |
+| Child age | Weekly hours | Funding rate (2025)                                                       | Annual entitlement (2025) |
+| :-------- | :----------- | :------------------------------------------------------------------------ | :------------------------ |
+| 2         | 15           | [£8.3](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/) | £4,719.6                  |
+| 3         | 30           | [£5.9](https://commonslibrary.parliament.uk/research-briefings/cbp-8052/) | £6,703.2                  |
 
 ### Economic analysis
 
