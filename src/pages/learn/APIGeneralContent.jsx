@@ -2,7 +2,8 @@ import { useState } from "react";
 import GeneralContent from "./GeneralContent";
 import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
-import { Card, Tag } from "antd";
+import { Card, Tag, Tooltip } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -399,7 +400,7 @@ export function VariableParameterExplorer(props) {
   const { metadata } = props;
   const [query, setQuery] = useState("");
   const [selectedCardData, setSelectedCardData] = useState(null);
-  const [filterByAbolition, setFilterByAbolition] = useState(false);
+  const [showAboltions, setShowAbolitions] = useState(false);
 
   const [page, setPage] = useState(0);
 
@@ -410,18 +411,15 @@ export function VariableParameterExplorer(props) {
   if (!metadata) return null;
 
   const filterByQuery = (item) => {
-    if (!query && !filterByAbolition) return true;
+    if (!query && showAboltions) return true;
 
     const label = item.label || "";
     if (!label.trim() || /^\d+$/.test(label)) return false;
 
     const pythonName = item.type === "parameter" ? item.parameter : item.name;
 
-    if (filterByAbolition) {
-      // When toggle ON, exclude items starting with "gov.abolitions"
+    if (!showAboltions) {
       if (pythonName?.startsWith("gov.abolitions")) return false;
-    } else {
-      // When toggle OFF, include everything (no exclusion)
     }
 
     // Filter based on the query string
@@ -440,12 +438,12 @@ export function VariableParameterExplorer(props) {
 
   const parameterCards = Object.values(metadata.parameters || {})
     .filter((p) => p.type === "parameter")
-    .filter((p) => p.label && !/^\d+$/.test(p.label)) // Add this filter
+    .filter((p) => p.label && !/^\d+$/.test(p.label))
     .filter(filterByQuery)
     .map((p) => ({ ...p, type: "parameter" }));
 
   const variableCards = Object.values(metadata.variables || {})
-    .filter((v) => v.label && !/^\d+$/.test(v.label)) // Add this filter
+    .filter((v) => v.label && !/^\d+$/.test(v.label))
     .filter(filterByQuery)
     .map((v) => ({ ...v, type: "variable" }));
 
@@ -477,17 +475,27 @@ export function VariableParameterExplorer(props) {
         }}
       />
       <div style={{ marginBottom: 10 }}>
-        <label style={{ fontSize: "14px" }}>
+        <label style={{ fontSize: "14px", cursor: "pointer" }}>
           <input
             type="checkbox"
-            checked={filterByAbolition}
+            checked={showAboltions}
             onChange={() => {
-              setFilterByAbolition((prev) => !prev);
+              setShowAbolitions((prev) => !prev);
               setPage(0); // reset to first page
             }}
             style={{ marginRight: 8 }}
           />
-          Filter abolitions
+          Show abolition parameters
+          <Tooltip title="Abolition parameters are used to remove all impacts from a standard parameter, usually by setting its value to 0">
+            <QuestionCircleOutlined
+              style={{
+                marginLeft: 6,
+                fontSize: "14px",
+                cursor: "pointer",
+                color: style.colors.DARK_GRAY,
+              }}
+            />
+          </Tooltip>
         </label>
       </div>
       <div
