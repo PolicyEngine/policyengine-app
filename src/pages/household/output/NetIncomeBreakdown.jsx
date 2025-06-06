@@ -320,6 +320,7 @@ function VariableArithmetic(props) {
               className="info-icon-wrapper"
             >
               <InfoCircleOutlined
+                onClick={showModal}
                 style={{
                   fontSize: 14,
                   marginLeft: 10,
