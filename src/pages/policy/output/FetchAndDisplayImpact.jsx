@@ -40,6 +40,7 @@ export function FetchAndDisplayImpact(props) {
   const baselinePolicyId = searchParams.get("baseline");
   const maxHouseholds = searchParams.get("mode") === "lite" ? 10_000 : null;
   const renamed = searchParams.get("renamed");
+  const run_api_v1 = searchParams.get("run_api_v1") === "true";
   const simYears = searchParams.get("simYears"); // Number of years to run for multi-year simulations
   const isMultiYear = determineIfMultiYear(searchParams);
 
@@ -101,12 +102,14 @@ export function FetchAndDisplayImpact(props) {
         ? `&max_households=${maxHouseholds}`
         : "";
 
+      const runApiV1Input = run_api_v1 ? `&run_api_v1=${run_api_v1}` : "";
+
       for (let i = 0; i < simYears; i++) {
         const yearOfSim = Number(timePeriod) + i;
         const url =
           `/${countryId}/economy/${reformPolicyId}/over/` +
           `${baselinePolicyId}?region=${region}&time_period=${yearOfSim}` +
-          `&version=${version}${maxHouseholdInput}${datasetInput}`;
+          `&version=${version}${maxHouseholdInput}${datasetInput}${runApiV1Input}`;
 
         requests.push(
           SimulationRequestSetup.cast({
@@ -192,10 +195,12 @@ export function FetchAndDisplayImpact(props) {
         ? `&max_households=${maxHouseholds}`
         : "";
       const datasetString = dataset ? `&dataset=${dataset}` : "";
+      const runApiV1String = run_api_v1 ? `&run_api_v1=${run_api_v1}` : "";
       const url =
         `/${metadata.countryId}/economy/${reformPolicyId}/over/` +
         `${baselinePolicyId}?region=${region}&time_period=${timePeriod}` +
-        `&version=${selectedVersion}${maxHouseholdString}${datasetString}`;
+        `&version=${selectedVersion}${maxHouseholdString}${datasetString}` +
+        `${runApiV1String}`;
       setImpact(null);
       setMultiYearImpact(null);
       setSingleYearResults(null);
@@ -372,13 +377,18 @@ export function FetchAndDisplayCliffImpact(props) {
   const reformPolicyId = searchParams.get("reform");
   const baselinePolicyId = searchParams.get("baseline");
   const dataset = searchParams.get("dataset");
+  const run_api_v1 = searchParams.get("run_api_v1") === "true";
 
   const [impact, setImpact] = useState(null);
   const [error, setError] = useState(null);
   const { metadata, policy } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff&dataset=${dataset}`;
+      const runApiV1String = run_api_v1 ? `&run_api_v1=${run_api_v1}` : "";
+
+      const url =
+        `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}` +
+        `?region=${region}&time_period=${timePeriod}&target=cliff&dataset=${dataset}${runApiV1String}`;
       setImpact(null);
       setError(null);
       asyncApiCall(url, null, 5_000)
