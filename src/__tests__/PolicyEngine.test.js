@@ -24,23 +24,25 @@ afterEach(() => {
 });
 
 describe("PolicyEngine.jsx", () => {
-  test("Renders for US if proper data passed", () => {
+  test("Renders for US if proper data passed", async () => {
     useSearchParams.mockImplementation(() => [
       new URLSearchParams(),
       jest.fn(),
     ]);
 
-    const { getByText } = render(
+    const { findByText } = render(
       <BrowserRouter>
         <PolicyEngine />
       </BrowserRouter>,
     );
 
     expect(
-      getByText("Computing Public Policy for Everyone"),
+      await findByText("Computing Public Policy for Everyone"),
     ).toBeInTheDocument();
-    expect(getByText("Trusted across the US")).toBeInTheDocument();
+
+    expect(await findByText("Trusted across the US")).toBeInTheDocument();
   });
+
   test("Converts deprecated 'region=enhanced_us' URL search param to 'region=us' and 'dataset=enhanced_cps'", () => {
     const deprecatedEnhancedUsParams = new URLSearchParams({
       region: "enhanced_us",
