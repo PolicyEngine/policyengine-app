@@ -1,31 +1,24 @@
+import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-
-export default function RedirectToCountry() {
-  // Find country ID
-  const countryId = findCountryId();
-
-  return <Navigate to={`/${countryId}`} replace />;
-}
+import { getCountryId } from "../utils/ipinfoCountry.js";
 
 /**
- * Based on the URL and user's browser, determine country ID;
- * if not possible, return "us" as country ID
- * @returns {String}
+ * Redirects the user to their country-specific route based on their IP address.
  */
-export function findCountryId() {
-  const COUNTRY_CODES = {
-    "en-US": "us",
-    "en-GB": "uk",
-    "en-CA": "ca",
-    "en-NG": "ng",
-    "en-IL": "il",
-  };
+export default function RedirectToCountry() {
+  const [countryId, setCountryId] = useState(null);
 
-  const browserLanguage = navigator.language;
+  useEffect(() => {
+    let cancelled = false;
+    getCountryId().then((id) => {
+      if (!cancelled) setCountryId(id);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
-  if (Object.keys(COUNTRY_CODES).includes(browserLanguage)) {
-    return COUNTRY_CODES[browserLanguage];
-  } else {
-    return "us";
-  }
+  if (countryId === null) return null;
+
+  return <Navigate to={`/${countryId}`} replace />;
 }
