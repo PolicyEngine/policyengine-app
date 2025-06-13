@@ -1306,5 +1306,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "farage-speech-may-2025.ipynb",
     "image": "farage-speech-may-2025.jpg"
+  },
+  {
+    "title": "Extending the Winter Fuel Allowance",
+    "description": "The government has reversed its Winter Fuel Allowance means testing, expanding eligibility to 9 million pensioners through a £35,000 income threshold.",
+    "date": "2025-06-11 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "wfa-means-test.ipynb",
+    "image": "wfa-repeal.jpeg"
   }
 ]
