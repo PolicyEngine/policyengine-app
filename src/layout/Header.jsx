@@ -22,6 +22,9 @@ import {
   GithubOutlined,
   DownOutlined,
   DeploymentUnitOutlined,
+  TeamOutlined,
+  UserAddOutlined,
+  BankOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
@@ -62,6 +65,24 @@ export const LEARN_DROPDOWN_LINKS = [
   },
 ];
 
+export const ABOUT_DROPDOWN_LINKS = [
+  {
+    title: "Team",
+    link: "about",
+    icon: <TeamOutlined />,
+  },
+  {
+    title: "Careers",
+    link: "jobs",
+    icon: <UserAddOutlined />,
+  },
+  {
+    title: "Supporters",
+    link: "supporters",
+    icon: <BankOutlined />,
+  },
+];
+
 const LINKS = [
   {
     title: "Research",
@@ -69,7 +90,8 @@ const LINKS = [
   },
   {
     title: "About",
-    link: "about",
+    isDropdown: true,
+    items: ABOUT_DROPDOWN_LINKS,
   },
   {
     title: "Donate",

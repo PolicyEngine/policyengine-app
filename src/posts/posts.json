@@ -1,5 +1,86 @@
 [
   {
+    "title": "The 2025 American Family Act",
+    "description": "The Child Tax Credit expansion would cost the federal government $2.5 trillion over ten years and lower child poverty by 25%.",
+    "date": "2025-06-16",
+    "tags": ["us", "policy", "featured", "child-tax-credit"],
+    "filename": "american-family-act-2025.md",
+    "image": "american-family-act-2025.webp",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Childcare programmes in PolicyEngine UK",
+    "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
+    "date": "2025-06-06",
+    "tags": ["uk", "benefit", "featured"],
+    "filename": "uk-childcare-report.md",
+    "image": "uk_childcare_report.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
+    "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
+    "date": "2025-05-23",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
+    "tags": ["us", "policy", "featured"],
+    "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
+    "filename": "managers-amendment-to-hr1.md",
+    "image": "managers-amendment-to-hr1.png"
+  },
+  {
+    "title": "Montana Reduces Top Income Tax Rate and Expands EITC",
+    "description": "Montana's latest individual income tax changes will lower state revenues by $245 million and raise net income for an estimated 77% of residents in 2027.",
+    "date": "2025-05-22",
+    "tags": ["us", "featured", "us-mt"],
+    "filename": "montana-tax-cuts-2026.md",
+    "image": "montana-tax-cuts-2026.jpg",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "The SALT Caucus's Proposed Cap",
+    "description": "We project that replacing the SALT cap approved by the Ways and Means Committee with the SALT Caucus proposal would cost $497 billion over the budget window.",
+    "date": "2025-05-15",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "salt-caucus-62k-cap.md",
+    "image": "salt-caucus-62k-cap.png",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Ways and Means Committee's SALT Cap",
+    "description": "We project that limiting state and local tax deductions to $30,000, phasing down to $10,000 at high incomes, would raise $937 billion over the budget window.",
+    "date": "2025-05-14",
+    "tags": ["us", "featured", "reconciliation"],
+    "filename": "ways-and-means-salt-cap.md",
+    "image": "ways-and-means-salt-cap.webp",
+    "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"]
+  },
+  {
+    "title": "Tax changes in effect in April 2025",
+    "description": "Using PolicyEngine UK, we analyse four tax changes taking effect in April 2025 that will increase taxes by an average of £1,133 per household.",
+    "date": "2025-04-25",
+    "tags": ["uk", "tax", "policy", "featured"],
+    "filename": "impact-of-tax-changes-2025-2026.md",
+    "image": "uk_budget_box_hunt.jpg",
+    "authors": ["nikhil-woodruff"]
+  },
+  {
+    "title": "Analyzing Energy Policy with PolicyEngine",
+    "description": "We provide an Earth Day recap of our capabilities in the US and UK.",
+    "date": "2025-04-22",
+    "tags": ["us", "uk", "featured"],
+    "filename": "earth-day-2025.md",
+    "image": "earth-day-2025.png",
+    "authors": ["max-ghenis"]
+  },
+  {
+    "title": "What's the SALTernative?",
+    "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
+    "date": "2025-04-21",
+    "tags": ["us", "featured"],
+    "filename": "introducing-salternative.md",
+    "image": "introducing-salternative.png",
+    "authors": ["pavel-makarchuk", "max-ghenis"]
+  },
+  {
     "title": "MyFriendBen Launches in North Carolina, Using PolicyEngine API",
     "description": "Our rules engine powers the open-source multi-benefit screener and its expansion beyond Colorado.",
     "date": "2025-04-05",
@@ -1200,6 +1281,15 @@
     "image": "tax-cuts-for-workers-act.png"
   },
   {
+    "title": "Benefits in PolicyEngine",
+    "date": "2025-05-28 00:00:00",
+    "authors": ["vahid-ahmadi"],
+    "tags": ["uk", "policy", "featured", "benefit"],
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
+    "filename": "uk-benefits-post.md",
+    "image": "uk-benefit-post.png"
+  },
+  {
     "title": "Idaho’s New Individual Income Tax Changes",
     "date": "2025-04-01",
     "authors": ["david-trimmer"],
@@ -1207,5 +1297,41 @@
     "description": "The lower top marginal rate and larger grocery tax credit will cost the state $225 million in 2025.",
     "filename": "idaho-2025-tax-change.ipynb",
     "image": "idaho-2025-tax-change.jpg"
+  },
+  {
+    "title": "Taxes in PolicyEngine",
+    "description": "PolicyEngine models different tax components in the UK, including direct taxes, indirect taxes, and proposed taxes.",
+    "date": "2025-04-08 00:00:00",
+    "tags": ["uk", "policy", "featured", "tax"],
+    "authors": ["vahid-ahmadi", "nikhil-woodruff"],
+    "filename": "uk-taxes-post.md",
+    "image": "uk-tax-post.jpg"
+  },
+  {
+    "title": "Utah Cuts Income Tax Rate and Expands Credits",
+    "date": "2025-05-01",
+    "authors": ["david-trimmer"],
+    "tags": ["us", "us-ut", "featured", "policy"],
+    "description": "Utah’s latest individual income tax changes will lower state revenues by $96 million and raise net income for 62% of residents in 2025.",
+    "filename": "utah-income-tax-changes.ipynb",
+    "image": "utah-income-tax-changes.jpg"
+  },
+  {
+    "title": "Reform UK's tax-benefit reform proposals",
+    "description": "Nigel Farage has confirmed that Reform UK's manifesto will include four tax-benefit reforms that PolicyEngine estimates would cost £75 billion in 2025-26.",
+    "date": "2025-05-27 19:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "farage-speech-may-2025.ipynb",
+    "image": "farage-speech-may-2025.jpg"
+  },
+  {
+    "title": "Extending the Winter Fuel Allowance",
+    "description": "The government has reversed its Winter Fuel Allowance means testing, expanding eligibility to 9 million pensioners through a £35,000 income threshold.",
+    "date": "2025-06-11 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "wfa-means-test.ipynb",
+    "image": "wfa-repeal.jpeg"
   }
 ]

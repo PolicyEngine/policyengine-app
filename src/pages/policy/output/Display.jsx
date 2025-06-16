@@ -12,13 +12,14 @@ import PolicyReproducibility from "./PolicyReproducibility";
 import useMobile from "layout/Responsive";
 import ErrorPage from "layout/ErrorPage";
 import ResultActions from "layout/ResultActions";
-import { downloadCsv } from "./utils";
+import { determineIfMultiYear, downloadCsv } from "./utils";
 import { useReactToPrint } from "react-to-print";
 import PolicyBreakdown from "./PolicyBreakdown";
 import { Helmet } from "react-helmet";
 import useCountryId from "../../../hooks/useCountryId";
 import BottomImpactDescription from "../../../layout/BottomImpactDescription";
 import { Link } from "react-router-dom";
+import MultiYearBudgetaryImpact from "./budget/MultiYearBudgetaryImpact";
 
 /**
  *
@@ -152,7 +153,14 @@ function getPolicyLabel(policy) {
  * performing actions such as downloading data and sharing results
  */
 export function DisplayImpact(props) {
-  const { impact, policy, metadata, showPolicyImpactPopup } = props;
+  const {
+    impact,
+    multiYearImpact,
+    singleYearResults,
+    policy,
+    metadata,
+    showPolicyImpactPopup,
+  } = props;
   const countryId = useCountryId();
   const urlParams = new URLSearchParams(window.location.search);
   const focus = urlParams.get("focus");
@@ -164,6 +172,8 @@ export function DisplayImpact(props) {
   const filename = impactType + `${policyLabel}`;
   let pane, downloadCsvFn;
 
+  const isMultiYear = determineIfMultiYear(urlParams);
+
   if (impactType === "analysis") {
     pane = (
       <Analysis
@@ -173,6 +183,17 @@ export function DisplayImpact(props) {
         region={region}
         timePeriod={timePeriod}
         policyLabel={policyLabel}
+      />
+    );
+  } else if (isMultiYear && impactType === "budgetaryImpact") {
+    pane = (
+      <MultiYearBudgetaryImpact
+        metadata={metadata}
+        impact={multiYearImpact}
+        singleYearResults={singleYearResults}
+        policyLabel={policyLabel}
+        region={region}
+        timePeriod={timePeriod}
       />
     );
   } else if (impactType === "policyBreakdown") {
@@ -295,7 +316,6 @@ export function LowLevelDisplay(props) {
   const focus = urlParams.get("focus");
   const dataset = urlParams.get("dataset");
   const selectedVersion = urlParams.get("version") || metadata.version;
-  const region = urlParams.get("region");
   const policyOutputTree = getPolicyOutputTree(metadata.countryId, urlParams);
   const url = encodeURIComponent(window.location.href);
   const encodedPolicyLabel = encodeURIComponent(getPolicyLabel(policy));
@@ -318,7 +338,7 @@ export function LowLevelDisplay(props) {
   if (metadata.countryId === "us") {
     bottomText = `PolicyEngine US v${selectedVersion} estimates reform impacts using microsimulation. `;
 
-    if (region === "enhanced_us" || dataset === "enhanced_cps") {
+    if (dataset === "enhanced_cps") {
       bottomText = bottomText.concat(
         "These calculations utilize enhanced CPS data, a beta feature. ",
       );

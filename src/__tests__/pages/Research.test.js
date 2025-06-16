@@ -177,8 +177,6 @@ describe("MediumBlogPreview Component", () => {
         </BrowserRouter>,
       );
 
-      screen.debug();
-
       const titleElement = screen.getByRole("heading", {
         name: mockPost.title,
       });

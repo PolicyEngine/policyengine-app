@@ -1,7 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import GeneralContent from "./GeneralContent";
 import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
+import { Card, Tag } from "antd";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -228,6 +229,7 @@ print(response.json())`;
               <li>Benefit amounts</li>
               <li>Eligibility thresholds</li>
             </ul>
+            <VariableParameterExplorer metadata={metadata} />
           </div>
         ),
       },
@@ -323,5 +325,331 @@ print(response.json())`;
     </>
   );
 };
+
+export function APIResultCard(props) {
+  const { metadata, type, setSelectedCard } = props;
+
+  // type can be: parameter, variable
+  // parameters look like this: "gov.dcms.bbc.tv_licence.discount.aged.discount":{"description":"Percentage discount for qualifying aged households.","economy":true,"household":true,"label":"Aged TV Licence discount","parameter":"gov.dcms.bbc.tv_licence.discount.aged.discount","period":null,"type":"parameter","unit":"/1","values":{"2003-01-01":1}}
+  // variables look like this: "income_tax":{"adds":["earned_income_tax","savings_income_tax","dividend_income_tax","CB_HITC"],"category":"tax","defaultValue":0,"definitionPeriod":"year","documentation":"Total Income Tax liability","entity":"person","hidden_input":false,"indexInModule":22,"isInputVariable":false,"label":"Income Tax","moduleName":"gov.hmrc.income_tax.liability","name":"income_tax","subtracts":["capped_mcad"],"unit":"currency-GBP","valueType":"float"}
+  // use antd card component
+  // rounded edges, display all metadata and distinguish between parameters and variables
+
+  return (
+    <>
+      <Card
+        bordered={true}
+        style={{
+          width: "100%",
+          backgroundColor: "white",
+          overflow: "hidden",
+          cursor: "pointer",
+          transition: "transform 0.2s",
+        }}
+        onClick={() => setSelectedCard({ ...metadata, type: type })}
+      >
+        {type === "parameter" ? (
+          <APIParameterCard metadata={metadata} />
+        ) : (
+          <APIVariableCard metadata={metadata} />
+        )}
+      </Card>
+    </>
+  );
+}
+
+function APIParameterCard(props) {
+  const { metadata } = props;
+
+  return (
+    <>
+      <Tag style={{ marginBottom: 10 }} color="green">
+        Parameter
+      </Tag>
+      <h3>{metadata.label || metadata.name || "Unnamed Item"}</h3>
+      <p>{metadata.description}</p>
+      <p>Period: {metadata.period || "None"}</p>
+      <p>Unit: {metadata.unit || "N/A"}</p>
+      <p style={{ wordBreak: "break-all" }}>
+        Python name: {metadata.parameter}
+      </p>
+    </>
+  );
+}
+
+function APIVariableCard(props) {
+  const { metadata } = props;
+
+  return (
+    <>
+      <Tag style={{ marginBottom: 10 }} color="red">
+        Variable
+      </Tag>
+      <h3>{metadata.label || metadata.name || "Unnamed Item"}</h3>
+      <p>{metadata.description}</p>
+      <p>Entity: {metadata.entity}</p>
+      <p>Period: {metadata.definitionPeriod || "none"}</p>
+      <p style={{ wordBreak: "break-all" }}>Python name: {metadata.name}</p>
+      <p>Unit: {metadata.unit}</p>
+    </>
+  );
+}
+
+export function VariableParameterExplorer(props) {
+  const { metadata } = props;
+  const [query, setQuery] = useState("");
+  const [selectedCardData, setSelectedCardData] = useState(null);
+  const [page, setPage] = useState(0);
+
+  const MAX_ROWS = 3;
+  const MAX_COLS = 4;
+  const CARDS_PER_PAGE = MAX_ROWS * MAX_COLS;
+
+  if (!metadata) return null;
+
+  const filterByQuery = (item) => {
+    if (!query) return true;
+
+    // Skip items with numeric or empty labels
+    const label = item.label || "";
+    if (!label.trim() || /^\d+$/.test(label)) return false;
+
+    return label
+      .replaceAll(" ", "")
+      .toLowerCase()
+      .includes(query.replaceAll(" ", "").toLowerCase());
+  };
+
+  const parameterCards = Object.values(metadata.parameters || {})
+    .filter((p) => p.type === "parameter")
+    .filter((p) => p.label && !/^\d+$/.test(p.label)) // Add this filter
+    .filter(filterByQuery)
+    .map((p) => ({ ...p, type: "parameter" }));
+
+  const variableCards = Object.values(metadata.variables || {})
+    .filter((v) => v.label && !/^\d+$/.test(v.label)) // Add this filter
+    .filter(filterByQuery)
+    .map((v) => ({ ...v, type: "variable" }));
+
+  const allCards = [...parameterCards, ...variableCards].sort((a, b) => {
+    const labelA = (a.label || a.name || "").toLowerCase();
+    const labelB = (b.label || b.name || "").toLowerCase();
+    return labelA.localeCompare(labelB);
+  });
+  const totalPages = Math.ceil(allCards.length / CARDS_PER_PAGE);
+  const currentCards = allCards.slice(
+    page * CARDS_PER_PAGE,
+    (page + 1) * CARDS_PER_PAGE,
+  );
+
+  return (
+    <div>
+      <input
+        placeholder="Search parameters or variables"
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setPage(0); // reset to first page on new search
+        }}
+        style={{
+          marginBottom: 20,
+          width: "100%",
+          maxWidth: "500px",
+          padding: "8px",
+        }}
+      />
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "20px",
+          width: "100%",
+        }}
+      >
+        {currentCards.map((item) => (
+          <APIResultCard
+            key={item.name}
+            metadata={item}
+            type={item.type}
+            setSelectedCard={setSelectedCardData}
+          />
+        ))}
+      </div>
+
+      {totalPages > 1 && (
+        <div style={{ marginTop: 20, textAlign: "center" }}>
+          <div
+            style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}
+          >
+            <button
+              onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+              disabled={page === 0}
+              style={{
+                border: "1px solid #d9d9d9",
+                borderRadius: "0",
+                backgroundColor: page === 0 ? "#f5f5f5" : "#ffffff",
+                color: page === 0 ? "#00000040" : "#000000d9",
+                cursor: page === 0 ? "not-allowed" : "pointer",
+                padding: "4px 15px",
+                fontSize: "14px",
+                fontFamily: "inherit",
+                lineHeight: "1.5715",
+                transition: "all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)",
+                userSelect: "none",
+                touchAction: "manipulation",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "32px",
+                minWidth: "32px",
+                outline: "none",
+              }}
+              onMouseEnter={(e) => {
+                if (page !== 0) {
+                  e.target.style.borderColor = "#40a9ff";
+                  e.target.style.color = "#40a9ff";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (page !== 0) {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.color = "#000000d9";
+                }
+              }}
+            >
+              ← Previous
+            </button>
+
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              <span style={{ fontSize: "14px", color: "#000000d9" }}>Page</span>
+              <input
+                type="number"
+                min="1"
+                max={totalPages}
+                value={page + 1}
+                onChange={(e) => {
+                  const newPage = parseInt(e.target.value) - 1;
+                  if (newPage >= 0 && newPage < totalPages) {
+                    setPage(newPage);
+                  }
+                }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    const newPage = parseInt(e.target.value) - 1;
+                    if (newPage >= 0 && newPage < totalPages) {
+                      setPage(newPage);
+                    }
+                  }
+                }}
+                style={{
+                  border: "1px solid #d9d9d9",
+                  borderRadius: "0",
+                  backgroundColor: "#ffffff",
+                  padding: "4px 8px",
+                  fontSize: "14px",
+                  fontFamily: "inherit",
+                  lineHeight: "1.5715",
+                  height: "32px",
+                  width: "50px",
+                  textAlign: "center",
+                  outline: "none",
+                  transition: "all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)",
+                  // Remove arrow controls
+                  MozAppearance: "textfield",
+                  WebkitAppearance: "none",
+                  appearance: "none",
+                  // Additional styles to ensure arrows are hidden in all browsers
+                  "::-webkit-inner-spin-button, ::-webkit-outer-spin-button": {
+                    WebkitAppearance: "none",
+                    margin: 0,
+                  },
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = "#40a9ff";
+                  e.target.style.boxShadow =
+                    "0 0 0 2px rgba(24, 144, 255, 0.2)";
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.boxShadow = "none";
+                }}
+              />
+              <span style={{ fontSize: "14px", color: "#000000d9" }}>
+                of {totalPages}
+              </span>
+            </div>
+
+            <button
+              onClick={() =>
+                setPage((prev) => Math.min(prev + 1, totalPages - 1))
+              }
+              disabled={page === totalPages - 1}
+              style={{
+                border: "1px solid #d9d9d9",
+                borderRadius: "0",
+                backgroundColor:
+                  page === totalPages - 1 ? "#f5f5f5" : "#ffffff",
+                color: page === totalPages - 1 ? "#00000040" : "#000000d9",
+                cursor: page === totalPages - 1 ? "not-allowed" : "pointer",
+                padding: "4px 15px",
+                fontSize: "14px",
+                fontFamily: "inherit",
+                lineHeight: "1.5715",
+                transition: "all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)",
+                userSelect: "none",
+                touchAction: "manipulation",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "32px",
+                minWidth: "32px",
+                outline: "none",
+              }}
+              onMouseEnter={(e) => {
+                if (page !== totalPages - 1) {
+                  e.target.style.borderColor = "#40a9ff";
+                  e.target.style.color = "#40a9ff";
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (page !== totalPages - 1) {
+                  e.target.style.borderColor = "#d9d9d9";
+                  e.target.style.color = "#000000d9";
+                }
+              }}
+            >
+              Next →
+            </button>
+          </div>
+        </div>
+      )}
+      <CardDrawer metadata={selectedCardData} />
+    </div>
+  );
+}
+
+// This component is not currently used but kept for future reference
+function CardDrawer(props) {
+  const { metadata } = props;
+
+  if (!metadata) return null;
+  const type = metadata.type;
+  return (
+    <>
+      {type === "parameter" ? (
+        <APIParameterCard metadata={metadata} />
+      ) : (
+        <APIVariableCard metadata={metadata} />
+      )}
+    </>
+  );
+}
 
 export default APIGeneralContent;

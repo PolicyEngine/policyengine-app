@@ -1,8 +1,10 @@
 import CenteredMiddleColumn from "../../../layout/CenteredMiddleColumn";
 import ParameterOverTime from "./ParameterOverTime";
+import ResizeObserver from "resize-observer-polyfill";
 import {
   Alert,
   Button,
+  ConfigProvider,
   DatePicker,
   InputNumber,
   Popover,
@@ -13,7 +15,14 @@ import {
   Tooltip,
 } from "antd";
 import { getNewPolicyId } from "../../../api/parameters";
-import { createContext, useCallback, useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+} from "react";
 import { useSearchParams } from "react-router-dom";
 import { copySearchParams } from "../../../api/call";
 import { capitalize, localeCode } from "../../../lang/format";
@@ -28,6 +37,7 @@ import { cmpDates, nextDay, prevDay } from "lang/stringDates";
 import moment from "dayjs";
 import { EllipsisOutlined, SettingOutlined } from "@ant-design/icons";
 import style from "../../../style";
+import ResetButton from "./ResetButton"; // Import the ResetButton component
 import { defaultYear } from "../../../data/constants";
 const { RangePicker } = DatePicker;
 
@@ -52,15 +62,12 @@ export default function ParameterEditor(props) {
   const { metadata, policy, parameterName } = props;
   const parameter = metadata.parameters[parameterName];
   const parameterValues = Object.entries(parameter.values);
+  const [searchParams, setSearchParams] = useSearchParams();
   const reformData = policy?.reform?.data?.[parameterName];
-  const baseMap = new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
-  const reformMap = baseMap.copy();
-  if (reformData) {
-    for (const [timePeriod, value] of Object.entries(reformData)) {
-      const [startDate, endDate] = timePeriod.split(".");
-      reformMap.set(startDate, nextDay(endDate), value);
-    }
-  }
+
+  const [resetSignal, setResetSignal] = useState(0);
+  const [currentParameterName, setCurrentParameterName] =
+    useState(parameterName);
 
   const chartContainerRef = useRef(null);
 
@@ -68,6 +75,92 @@ export default function ParameterEditor(props) {
   const [endDate, setEndDate] = useState(defaultEndDate);
   const [paramChartWidth, setParamChartWidth] = useState(0);
   const [dateInputMode, setDateInputMode] = useState(DATE_INPUT_MODES.DEFAULT);
+
+  const baseMap = useMemo(() => {
+    return new IntervalMap(parameterValues, cmpDates, (x, y) => x === y);
+  }, [parameterValues]);
+
+  const [reformMap, setReformMap] = useState(() => {
+    const initialMap = baseMap.copy();
+    if (reformData) {
+      for (const [timePeriod, value] of Object.entries(reformData)) {
+        const [startDate, endDate] = timePeriod.split(".");
+        initialMap.set(startDate, nextDay(endDate), value);
+      }
+    }
+    return initialMap;
+  });
+
+  const resetParameterState = useCallback(
+    (includeReformData = true) => {
+      // Reset reformMap to match base values
+      const newReformMap = baseMap.copy();
+
+      // Only include reform data if requested
+      if (includeReformData && reformData) {
+        for (const [timePeriod, value] of Object.entries(reformData)) {
+          const [startDate, endDate] = timePeriod.split(".");
+          newReformMap.set(startDate, nextDay(endDate), value);
+        }
+      }
+
+      setReformMap(newReformMap);
+
+      // Reset dates
+      setStartDate(defaultStartDate);
+      setEndDate(defaultEndDate);
+
+      // Force child components to reset
+      setResetSignal((prev) => prev + 1);
+    },
+    [
+      baseMap,
+      reformData,
+      setReformMap,
+      setStartDate,
+      setEndDate,
+      setResetSignal,
+    ],
+  );
+
+  // Add this effect to detect parameter changes
+  useEffect(() => {
+    if (parameterName !== currentParameterName) {
+      // Reset state when parameter changes
+      setCurrentParameterName(parameterName);
+
+      // Use the helper function to reset state
+      resetParameterState(true);
+    }
+  }, [
+    parameterName,
+    currentParameterName,
+    reformData,
+    baseMap,
+    resetParameterState,
+  ]);
+
+  const resetParameter = () => {
+    // 1. Remove this parameter's reform data
+    const newReforms = { ...policy.reform.data };
+    delete newReforms[parameterName];
+
+    // 2. Reset state using the helper function without including reform data
+    resetParameterState(false);
+
+    // 3. Call API to update policy reform state
+    return getNewPolicyId(metadata.countryId, newReforms).then((result) => {
+      if (result.status === "ok") {
+        const newSearch = copySearchParams(searchParams);
+        if (Object.keys(newReforms).length === 0) {
+          newSearch.delete("reform");
+        } else {
+          newSearch.set("reform", result.policy_id);
+        }
+        setSearchParams(newSearch);
+      }
+    });
+  };
 
   useEffect(() => {
     if (chartContainerRef.current) {
@@ -108,11 +201,6 @@ export default function ParameterEditor(props) {
   if (!description) {
     description = "";
   }
-
-  const gridColumns =
-    dateInputMode === DATE_INPUT_MODES.MULTI_YEAR
-      ? "auto min-content"
-      : "auto auto min-content";
 
   return (
     <CenteredMiddleColumn
@@ -156,7 +244,7 @@ export default function ParameterEditor(props) {
                   ? "50%"
                   : "100%",
               display: "grid",
-              gridTemplateColumns: gridColumns,
+              gridTemplateColumns: "auto auto auto 1fr",
               gap: "10px",
               padding: "0px 50px 0px 12px",
             }}
@@ -172,9 +260,11 @@ export default function ParameterEditor(props) {
               baseMap={baseMap}
               reformMap={reformMap}
               policy={policy}
+              resetSignal={resetSignal}
             />
             {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
               <ValueSetter
+                key={parameterName}
                 startDate={startDate}
                 endDate={endDate}
                 parameterName={parameterName}
@@ -184,7 +274,37 @@ export default function ParameterEditor(props) {
                 baseMap={baseMap}
               />
             )}
-            <SettingsPanel setDateInputMode={setDateInputMode} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection:
+                  dateInputMode === DATE_INPUT_MODES.MULTI_YEAR
+                    ? "column"
+                    : "row",
+                gap: "10px",
+              }}
+            >
+              <SettingsPanel
+                setDateInputMode={setDateInputMode}
+                title="Input mode settings"
+              />
+              {dateInputMode === DATE_INPUT_MODES.MULTI_YEAR && (
+                <ResetButton
+                  onReset={resetParameter}
+                  tooltipText="Reset parameter to default"
+                  showText={true}
+                  buttonStyle={{ borderRadius: "2px" }}
+                />
+              )}
+            </div>
+            {dateInputMode !== DATE_INPUT_MODES.MULTI_YEAR && (
+              <ResetButton
+                onReset={resetParameter}
+                tooltipText="Reset parameter to default"
+                showText={true}
+                buttonStyle={{ borderRadius: "2px" }}
+              />
+            )}
           </div>
         </div>
         {!parameter.economy && (
@@ -246,6 +366,7 @@ function PeriodSetter(props) {
     baseMap,
     reformMap,
     policy,
+    resetSignal,
   } = props;
 
   const FOREVER_DATE = String(defaultForeverYear).concat("-12-31");
@@ -286,7 +407,13 @@ function PeriodSetter(props) {
     case DATE_INPUT_MODES.DATE:
       return <DatePeriodSetter {...sharedProps} />;
     case DATE_INPUT_MODES.MULTI_YEAR:
-      return <MultiYearPeriodSetter {...sharedProps} {...tenYearProps} />;
+      return (
+        <MultiYearPeriodSetter
+          {...sharedProps}
+          {...tenYearProps}
+          resetSignal={resetSignal}
+        />
+      );
     default:
       return <DefaultPeriodSetter {...sharedProps} />;
   }
@@ -413,45 +540,54 @@ function DatePeriodSetter(props) {
 }
 
 function MultiYearPeriodSetter(props) {
-  const { possibleYears, parameterName, baseMap, reformMap, metadata, policy } =
-    props;
+  const {
+    possibleYears,
+    parameterName,
+    baseMap,
+    reformMap,
+    metadata,
+    policy,
+    resetSignal,
+  } = props;
 
   // Populate map before rendering anything
   // function populateValueMap() {
+  const NUMBER_OF_YEARS = 10;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // Create the populateValueMap function
   const populateValueMap = useCallback(() => {
     const valueMap = new Map();
     possibleYears.forEach((year) => {
       if (year >= defaultYear && year < defaultYear + NUMBER_OF_YEARS) {
         const startDate = String(year).concat("-01-01");
-        const startValue = reformMap.get(startDate);
-        valueMap.set(year, startValue);
+        // Get value from reformMap first, fall back to baseMap if not found
+        let value = reformMap.get(startDate);
+        if (value === undefined) {
+          value = baseMap.get(startDate);
+        }
+        valueMap.set(year, value);
       }
     });
     return valueMap;
-  }, [possibleYears, reformMap]);
+  }, [possibleYears, reformMap, baseMap]);
 
-  const NUMBER_OF_YEARS = 10;
-  const [valueMap, setValueMap] = useState(populateValueMap());
-  const [searchParams, setSearchParams] = useSearchParams();
+  // Initialize valueMap state with values from populateValueMap
+  const [valueMap, setValueMap] = useState(() => populateValueMap());
+
+  // Use a ref to track the current parameter name
   const paramRef = useRef(parameterName);
 
-  // This is necessary because technically, MultiYearPeriodSetter does not
-  // unmount when we change between parameters, leading to the possibility
-  // for a stale "value" state in this controlled component
-
-  // We're using a ref here because each time the changeHandler is called,
-  // it updates reformMap. This then re-renders the callback above, causing
-  // valueMap to be re-populated with stale data, creating a visual bug.
-  // All of this wouldn't be necessary if we either 1. didn't add populateValueMap
-  // as an effect hook dep (but then we'd be overriding linting) or 2. fully
-  // unmounted the component when we changed pages (but that'd require far
-  // more work)
+  // Reset valueMap whenever parameter changes or resetSignal changes
   useEffect(() => {
+    // Always repopulate the valueMap on resetSignal change
+    setValueMap(populateValueMap());
+
+    // Update the parameter ref
     if (paramRef.current !== parameterName) {
-      setValueMap(populateValueMap());
       paramRef.current = parameterName;
     }
-  }, [parameterName, populateValueMap]);
+  }, [resetSignal, parameterName, populateValueMap]);
 
   // Handler that iterates over each entry, validates that
   // all values are valid, then updates each value one by one
@@ -592,7 +728,7 @@ function OneYearValueSetter(props) {
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
   const maximumFractionDigits = isCurrency ? 2 : 16;
 
-  function changeHandler(value) {
+  function handleSubmit(value) {
     setValueMap((prev) => {
       const scaledValue = +value.toFixed(maximumFractionDigits) / scale;
       const newMap = new Map(prev);
@@ -607,7 +743,7 @@ function OneYearValueSetter(props) {
         <Switch
           key={"input for" + parameter.parameter + year}
           defaultChecked={startValue}
-          onChange={(value) => changeHandler(!!value)}
+          onChange={(value) => handleSubmit(!!value)}
         />
       </div>
     );
@@ -639,11 +775,11 @@ function OneYearValueSetter(props) {
           }}
           defaultValue={Number(startValue) * scale}
           value={valueMap.get(year) * scale}
-          onChange={(value) => changeHandler(Number(value))}
+          onChange={(value) => handleSubmit(Number(value))}
         />
         {!isPercent && (
           <AdvancedValueSetter
-            changeHandler={changeHandler}
+            handleSubmit={handleSubmit}
             setValue={(value) => setValueMap((prev) => prev.set(year, value))}
           />
         )}
@@ -652,7 +788,7 @@ function OneYearValueSetter(props) {
   }
 }
 
-function ValueSetter(props) {
+export function ValueSetter(props) {
   const {
     startDate,
     endDate,
@@ -668,7 +804,7 @@ function ValueSetter(props) {
   const [value, setValue] = useState(startValue);
   const parameter = metadata.parameters[parameterName];
 
-  function changeHandler(value) {
+  function handleSubmit(value) {
     reformMap.set(startDate, nextDay(endDate), value);
     let data = {};
     reformMap.minus(baseMap).forEach(([k1, k2, v]) => {
@@ -700,6 +836,13 @@ function ValueSetter(props) {
     }
   }
 
+  // Booleans must handle change and submit simultaneously onChange,
+  // as toggling a switch is also a submission
+  function handleSwitchChange(value) {
+    setValue(value);
+    handleSubmit(value);
+  }
+
   const isPercent = parameter.unit === "/1";
   const scale = isPercent ? 100 : 1;
   const isCurrency = Object.keys(currencyMap).includes(parameter.unit);
@@ -709,17 +852,27 @@ function ValueSetter(props) {
   // unmount when we change between parameters, leading to the possibility
   // for a stale "value" state in this controlled component
   useEffect(() => {
+    if (parameter.unit === "bool" || parameter.unit === "abolition") {
+      setValue(startValue);
+      return;
+    }
     setValue(Number(startValue) * scale);
-  }, [parameterName, startValue, scale]);
+  }, [parameterName, startValue, scale, parameter.unit]);
 
   if (parameter.unit === "bool" || parameter.unit === "abolition") {
     return (
       <div style={{ padding: 3 }}>
-        <Switch
-          key={"input for" + parameter.parameter}
-          defaultChecked={startValue}
-          onChange={(value) => changeHandler(!!value)}
-        />
+        <ConfigProvider theme={{ token: { motion: false } }}>
+          <Switch
+            key={"input for" + parameterName}
+            defaultChecked={startValue}
+            checked={value}
+            onChange={(checked) => handleSwitchChange(checked)}
+            style={{
+              transition: "none !important",
+            }}
+          />
+        </ConfigProvider>
       </div>
     );
   } else {
@@ -729,7 +882,7 @@ function ValueSetter(props) {
           style={{
             width: "100%",
           }}
-          key={"input for" + parameter.parameter}
+          key={"input for" + parameterName}
           {...(isCurrency
             ? {
                 addonBefore: currencyMap[parameter.unit],
@@ -752,12 +905,12 @@ function ValueSetter(props) {
           value={value}
           onChange={(value) => setValue(value)}
           onPressEnter={() => {
-            changeHandler(+value.toFixed(maximumFractionDigits) / scale);
+            handleSubmit(+value.toFixed(maximumFractionDigits) / scale);
           }}
         />
         {!isPercent && (
           <AdvancedValueSetter
-            changeHandler={changeHandler}
+            handleSubmit={handleSubmit}
             setValue={setValue}
           />
         )}
@@ -767,11 +920,11 @@ function ValueSetter(props) {
 }
 
 function AdvancedValueSetter(props) {
-  const { changeHandler, setValue } = props;
+  const { handleSubmit, setValue } = props;
 
   function handleValueInput(value) {
     setValue(value);
-    changeHandler(value);
+    handleSubmit(value);
   }
 
   const popoverContent = (
@@ -862,7 +1015,7 @@ function AdvancedValueSetter(props) {
 }
 
 function SettingsPanel(props) {
-  const { setDateInputMode } = props;
+  const { setDateInputMode, title } = props;
 
   const handleModeChange = (e) => {
     setDateInputMode(e.target.value);
@@ -919,14 +1072,17 @@ function SettingsPanel(props) {
 
   return (
     <Popover content={popoverContent} placement="bottomRight" trigger="click">
-      <Button
-        style={{
-          aspectRatio: 1,
-          width: "100%",
-        }}
-      >
-        <SettingOutlined />
-      </Button>
+      <Tooltip title={title}>
+        <Button
+          style={{
+            aspectRatio: 1,
+            width: 32,
+            height: 32,
+          }}
+        >
+          <SettingOutlined />
+        </Button>
+      </Tooltip>
     </Popover>
   );
 }

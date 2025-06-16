@@ -17,7 +17,7 @@ import authors from "../posts/authors.json";
 import { MediumBlogPreview } from "./home/HomeBlogPreview";
 import Fuse from "fuse.js";
 import { useSearchParams } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import FontIcon from "../layout/FontIcon";
 import { Helmet } from "react-helmet";
@@ -102,14 +102,28 @@ function ResearchExplorer() {
     />
   );
 
+  const resultsRef = useRef(null);
   const postResults = (
-    <>
+    <div ref={resultsRef}>
       <h2 style={{ marginBottom: 30 }}>
         {filteredPosts.length} result{filteredPosts.length === 1 ? "" : "s"}
       </h2>
       <BlogPostResults posts={filteredPosts} />
-    </>
+    </div>
   );
+
+  useEffect(() => {
+    if (resultsRef.current) {
+      const rect = resultsRef.current.getBoundingClientRect();
+      const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+      if (!isFullyVisible) {
+        resultsRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+        });
+      }
+    }
+  }, [filteredPosts]);
 
   function onSearch(search) {
     setSearchParams(search ? { search } : {});
