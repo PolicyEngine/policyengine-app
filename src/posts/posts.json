@@ -1,5 +1,14 @@
 [
   {
+    "title": "The 2025 American Family Act",
+    "description": "The Child Tax Credit expansion would cost the federal government $2.5 trillion over ten years and lower child poverty by 25%.",
+    "date": "2025-06-16",
+    "tags": ["us", "policy", "featured", "child-tax-credit"],
+    "filename": "american-family-act-2025.md",
+    "image": "american-family-act-2025.webp",
+    "authors": ["david-trimmer"]
+  },
+  {
     "title": "Childcare programmes in PolicyEngine UK",
     "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
     "date": "2025-06-06",
