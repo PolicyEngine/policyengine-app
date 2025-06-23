@@ -39,10 +39,12 @@ function ImpactPlot(props) {
   const hoverMessage = (x) => {
     const baseline =
       x === "Cliff rate"
-        ? impact.baseline.cliff_share
-        : impact.baseline.cliff_gap;
+        ? impact.cliff_impact.baseline.cliff_share
+        : impact.cliff_impact.baseline.cliff_gap;
     const reform =
-      x === "Cliff rate" ? impact.reform.cliff_share : impact.reform.cliff_gap;
+      x === "Cliff rate"
+        ? impact.cliff_impact.reform.cliff_share
+        : impact.cliff_impact.reform.cliff_gap;
     const change = reform / baseline - 1;
     const formatter = x === "Cliff rate" ? formatPer : formatCur;
     const tolerance = 0.0001;
@@ -181,11 +183,17 @@ export default function cliffImpact(props) {
   // and one for the relative change in the cliff gap.
   const cliffShareChange =
     Math.round(
-      (impact.reform.cliff_share / impact.baseline.cliff_share - 1) * 10000,
+      (impact.cliff_impact.reform.cliff_share /
+        impact.cliff_impact.baseline.cliff_share -
+        1) *
+        10000,
     ) / 10000;
   const cliffGapChange =
     Math.round(
-      (impact.reform.cliff_gap / impact.baseline.cliff_gap - 1) * 1000,
+      (impact.cliff_impact.reform.cliff_gap /
+        impact.cliff_impact.baseline.cliff_gap -
+        1) *
+        1000,
     ) / 1000;
   const chart = (
     <ImpactChart
@@ -212,14 +220,14 @@ export default function cliffImpact(props) {
       ...[
         {
           Metric: "Cliff rate",
-          Baseline: impact.baseline.cliff_share,
-          Reform: impact.reform.cliff_share,
+          Baseline: impact.cliff_impact.baseline.cliff_share,
+          Reform: impact.cliff_impact.reform.cliff_share,
           Change: cliffShareChange,
         },
         {
           Metric: "Cliff gap",
-          Baseline: impact.baseline.cliff_gap,
-          Reform: impact.reform.cliff_gap,
+          Baseline: impact.cliff_impact.baseline.cliff_gap,
+          Reform: impact.cliff_impact.reform.cliff_gap,
           Change: cliffGapChange,
         },
       ].map((row) => [row.Metric, row.Baseline, row.Reform, row.Change]),
