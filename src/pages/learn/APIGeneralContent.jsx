@@ -414,7 +414,6 @@ export function VariableParameterExplorer(props) {
     if (!query && showAboltions) return true;
 
     const label = item.label || "";
-    if (!label.trim() || /^\d+$/.test(label)) return false;
 
     const pythonName = item.type === "parameter" ? item.parameter : item.name;
 
@@ -438,12 +437,10 @@ export function VariableParameterExplorer(props) {
 
   const parameterCards = Object.values(metadata.parameters || {})
     .filter((p) => p.type === "parameter")
-    .filter((p) => p.label && !/^\d+$/.test(p.label))
     .filter(filterByQuery)
     .map((p) => ({ ...p, type: "parameter" }));
 
   const variableCards = Object.values(metadata.variables || {})
-    .filter((v) => v.label && !/^\d+$/.test(v.label))
     .filter(filterByQuery)
     .map((v) => ({ ...v, type: "variable" }));
 
