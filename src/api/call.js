@@ -4,7 +4,8 @@ import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
 import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch";
 
-const POLICYENGINE_API = "https://api.policyengine.org";
+const POLICYENGINE_API =
+  process.env.REACT_APP_API_URL || "https://api.policyengine.org";
 
 /**
  * returns an api call function that can be used to make requests
