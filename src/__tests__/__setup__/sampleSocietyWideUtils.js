@@ -24,12 +24,6 @@ export const expectedBaselineReformSumResult = {
   reform: 660,
 };
 
-export const expectedBaselineReformMeanResult = {
-  baseline: 200,
-  reform: 220,
-};
-
 // Using integers to avoid floating point precision issues
 export const validAggregateValuesData = [10, 20, 30, 40, 50];
 export const expectedAggregateValuesSumResult = 150;
-export const expectedAggregateValuesMeanResult = 30;
