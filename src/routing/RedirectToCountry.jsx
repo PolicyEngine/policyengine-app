@@ -9,13 +9,22 @@ export default function RedirectToCountry() {
   const [countryId, setCountryId] = useState(null);
 
   useEffect(() => {
-    let cancelled = false;
-    getCountryId().then((id) => {
-      if (!cancelled) setCountryId(id);
-    });
-    return () => {
-      cancelled = true;
+    const controller = new AbortController();
+    const { signal } = controller;
+
+    const fetchCountry = async () => {
+      try {
+        const id = await getCountryId(signal);
+        setCountryId(id);
+      } catch (err) {
+        if (signal.aborted) return;
+        console.error("IP⇢country lookup failed:", err);
+        setCountryId("us");
+      }
     };
+
+    fetchCountry();
+    return () => controller.abort();
   }, []);
 
   if (countryId === null) return null;
