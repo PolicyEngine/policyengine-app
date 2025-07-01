@@ -49,17 +49,17 @@ export const LEARN_DROPDOWN_LINKS = [
     icon: <BarChartOutlined />,
   },
   {
-    title: "Benefit Access",
+    title: "Benefit access",
     link: "benefits",
     icon: <QuestionCircleOutlined />,
   },
   {
-    title: "Educational Use",
+    title: "Educational use",
     link: "education",
     icon: <BookOutlined />,
   },
   {
-    title: "Open Source",
+    title: "Open source",
     link: "open-source",
     icon: <GithubOutlined />,
   },
@@ -435,7 +435,7 @@ function DesktopCalculatorButton() {
   return (
     <LinkButton
       link={`/${countryId}/calculator`}
-      text="Compute Policy Impact"
+      text="Compute policy impact"
       style={{ padding: "10px" }}
     />
   );

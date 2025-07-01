@@ -46,12 +46,12 @@ function LinkSection() {
   const linkData = [
     {
       link: "mailto:hello@policyengine.org",
-      label: "Email Us",
+      label: "Email us",
       isInternal: false,
     },
     {
       link: `/${countryId}/about`,
-      label: "About Us",
+      label: "About us",
       isInternal: true,
     },
     {
@@ -61,7 +61,7 @@ function LinkSection() {
     },
     {
       link: `/${countryId}/privacy`,
-      label: "Privacy Policy",
+      label: "Privacy policy",
       isInternal: true,
     },
     {
@@ -71,7 +71,7 @@ function LinkSection() {
     },
     {
       link: `/${countryId}/developer-tools`,
-      label: "Developer Tools",
+      label: "Developer tools",
       isInternal: true,
     },
   ];

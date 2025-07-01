@@ -22,17 +22,17 @@ const OpenSourcePage = () => {
   // Country identification logic
 
   useEffect(() => {
-    document.title = "Open Source | PolicyEngine";
+    document.title = "Open source | PolicyEngine";
     window.scrollTo(0, 0);
   }, [location]);
 
   return (
     <>
       <Helmet>
-        <title>Open Source | PolicyEngine</title>
+        <title>Open source | PolicyEngine</title>
       </Helmet>
       <Header />
-      <PageHeader title="Open Source" backgroundColor="#F7FAFD">
+      <PageHeader title="Open source" backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>
           PolicyEngine&apos;s commitment to open source software and transparent
           policy analysis
@@ -42,7 +42,7 @@ const OpenSourcePage = () => {
       <SecondaryNav countryId={countryId} pageType="open-source" />
       <Section>
         <div className="placeholder-content">
-          <h2>Coming Soon</h2>
+          <h2>Coming soon</h2>
           <p>
             We&apos;re currently developing comprehensive content about
             PolicyEngine&apos;s open source software and our commitment to

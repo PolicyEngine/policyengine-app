@@ -164,7 +164,7 @@ export default function Jobs() {
       )}
       {internshipPositions.length > 0 && (
         <Section backgroundColor={style.colors.LIGHT_GRAY}>
-          <h2>Internship Opportunities</h2>
+          <h2>Internship opportunities</h2>
           {internshipPositions.map((position, index) =>
             renderJobSection(position, index, false),
           )}
