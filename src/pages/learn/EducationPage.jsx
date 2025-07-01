@@ -21,17 +21,17 @@ const EducationPage = () => {
   // Country identification logic
 
   useEffect(() => {
-    document.title = "Educational Use | PolicyEngine";
+    document.title = "Educational use | PolicyEngine";
     window.scrollTo(0, 0);
   }, [location]);
 
   return (
     <>
       <Helmet>
-        <title>Educational Use | PolicyEngine</title>
+        <title>Educational use | PolicyEngine</title>
       </Helmet>
       <Header />
-      <PageHeader title="Educational Use" backgroundColor="#F7FAFD">
+      <PageHeader title="Educational use" backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>
           How PolicyEngine can be used in classrooms and educational settings
         </p>
@@ -40,7 +40,7 @@ const EducationPage = () => {
       <SecondaryNav countryId={countryId} pageType="education" />
       <Section>
         <div className="placeholder-content">
-          <h2>Coming Soon</h2>
+          <h2>Coming soon</h2>
           <p>
             We&apos;re currently developing comprehensive content about how
             PolicyEngine can be used in educational settings. This page will

@@ -35,7 +35,7 @@ const GeneralContent = ({
 
   // Default content that can be overridden
   const defaultContent = {
-    title: "General Information",
+    title: "General information",
     subtitle: "Information about PolicyEngine",
     heroTitle: "PolicyEngine",
     heroSubtitle: "Making policy analysis accessible",

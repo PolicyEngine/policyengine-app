@@ -171,7 +171,7 @@ export default function povertyImpact(props) {
     </ImpactChart>
   );
   const csv = () => {
-    const header = ["Age Group", "Baseline", "Reform", "Change"];
+    const header = ["Age group", "Baseline", "Reform", "Change"];
     const data = [
       header,
       ...povertyLabels.map((label) => {

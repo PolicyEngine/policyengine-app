@@ -41,7 +41,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
           <>
             <div className="feature-card">
               <div className="feature-icon">✨</div>
-              <h3>Instant Analysis</h3>
+              <h3>Instant analysis</h3>
               <p>
                 Generate comprehensive policy analysis with natural language,
                 tailored to different knowledge levels
@@ -49,7 +49,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
             </div>
             <div className="feature-card">
               <div className="feature-icon">🧠</div>
-              <h3>Plain Language Explanations</h3>
+              <h3>Plain language explanations</h3>
               <p>
                 Understand complex tax and benefit calculations through clear,
                 accessible explanations of your household&apos;s finances
@@ -57,7 +57,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
             </div>
             <div className="feature-card">
               <div className="feature-icon">📊</div>
-              <h3>Data-Driven Insights</h3>
+              <h3>Data-driven insights</h3>
               <p>
                 Combine computational precision with narrative insights to tell
                 the complete story of policy impacts
@@ -72,7 +72,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
         className: "journey-container",
         content: (
           <div className="journey-text">
-            <h3>Machine Learning Foundations: 2021-2022</h3>
+            <h3>Machine learning foundations: 2021-2022</h3>
             <p>
               PolicyEngine has leveraged artificial intelligence since our
               inception. In 2021, we pioneered the use of machine learning to
@@ -87,7 +87,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
               providing reliable policy analysis.
             </p>
 
-            <h3>Data Science Innovation: 2023</h3>
+            <h3>Data science innovation: 2023</h3>
             <p>
               We expanded our AI capabilities in 2023 with our Enhanced Current
               Population Survey (ECPS) for the US model, using quantile
@@ -114,7 +114,7 @@ const AIGeneralContent = ({ countryId, isUK = false }) => {
         ),
       },
       {
-        title: "How It Works",
+        title: "How it works",
         id: "how-it-works",
         className: "how-it-works",
         content: (
