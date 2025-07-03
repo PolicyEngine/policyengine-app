@@ -25,6 +25,7 @@ const topicLabels = {
   technical: "Technical report",
   api: "API",
   "benefit-access": "Benefit access",
+  reconciliation: "Reconciliation",
 };
 
 const locationLabels = {
