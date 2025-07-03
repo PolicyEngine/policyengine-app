@@ -402,7 +402,10 @@ export default function PolicyEngine() {
           element={<CTCCalculator />}
         />
         <Route path="/us/givecalc" element={<GiveCalc />} />
-        <Route path="/us/obbba-household-explorer" element={<OBBBAHouseholdExplorer />} />
+        <Route
+          path="/us/obbba-household-explorer"
+          element={<OBBBAHouseholdExplorer />}
+        />
         <Route
           path="/us/2024-election-calculator"
           element={<US2024ElectionCalculator />}
