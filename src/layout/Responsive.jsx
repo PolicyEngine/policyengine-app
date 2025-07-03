@@ -17,10 +17,17 @@ const determineDisplayCategory = (width) => {
 
 const useDisplayCategory = () => {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
-    determineDisplayCategory(window.innerWidth),
+    typeof window !== "undefined"
+      ? determineDisplayCategory(window.innerWidth)
+      : "desktop", // Default to desktop during SSR
   );
 
   useEffect(() => {
+    // Set the correct display category on mount
+    if (typeof window !== "undefined") {
+      setcurrentDisplayCategory(determineDisplayCategory(window.innerWidth));
+    }
+
     const handler = () =>
       setcurrentDisplayCategory(determineDisplayCategory(window.innerWidth));
     window.addEventListener("resize", handler);
@@ -32,10 +39,19 @@ const useDisplayCategory = () => {
 
 const useMobile = () => {
   const [currentDisplayCategory, setcurrentDisplayCategory] = useState(
-    determineDisplayCategory(window.innerWidth) === "mobile",
+    typeof window !== "undefined"
+      ? determineDisplayCategory(window.innerWidth) === "mobile"
+      : false, // Default to false (non-mobile) during SSR
   );
 
   useEffect(() => {
+    // Set the correct mobile state on mount
+    if (typeof window !== "undefined") {
+      setcurrentDisplayCategory(
+        determineDisplayCategory(window.innerWidth) === "mobile",
+      );
+    }
+
     const handler = () =>
       setcurrentDisplayCategory(
         determineDisplayCategory(window.innerWidth) === "mobile",

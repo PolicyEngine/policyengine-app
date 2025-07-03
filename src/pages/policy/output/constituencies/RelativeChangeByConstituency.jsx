@@ -111,7 +111,7 @@ export default function RelativeChangeByConstituency(props) {
     </ImpactChart>
   );
   const csv = () => {
-    const header = ["Constituency", "Relative Change"];
+    const header = ["Constituency", "Relative change"];
     const constituencyData = impact?.constituency_impact?.by_constituency || {};
     const data = [
       header,

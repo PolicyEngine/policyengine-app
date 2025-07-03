@@ -10,7 +10,7 @@ export const devTools = [
     image: apiImage,
   },
   {
-    title: "Policy Simulations",
+    title: "Policy simulations",
     desc: "View simulations that are currently running or have run in the past for the current version of the API. The table below updates every 15 seconds, providing you with real-time insights into your policy testing.",
     path: "simulations",
     image: simImage,

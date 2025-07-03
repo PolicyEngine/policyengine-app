@@ -378,7 +378,9 @@ export function FetchAndDisplayCliffImpact(props) {
   const { metadata, policy } = props;
   useEffect(() => {
     if (!!region && !!timePeriod && !!reformPolicyId && !!baselinePolicyId) {
-      const url = `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}?region=${region}&time_period=${timePeriod}&target=cliff&dataset=${dataset}`;
+      const url =
+        `/${metadata.countryId}/economy/${reformPolicyId}/over/${baselinePolicyId}` +
+        `?region=${region}&time_period=${timePeriod}&target=cliff&dataset=${dataset}`;
       setImpact(null);
       setError(null);
       asyncApiCall(url, null, 5_000)

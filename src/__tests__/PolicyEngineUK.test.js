@@ -119,7 +119,7 @@ describe("PolicyEngine UK Routes", () => {
       </BrowserRouter>,
     );
 
-    expect(getByText("The Difference Your Support Makes")).toBeInTheDocument();
+    expect(getByText("The difference your support makes")).toBeInTheDocument();
   });
 
   test("Routes to privacy page for UK", () => {

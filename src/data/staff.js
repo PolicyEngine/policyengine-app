@@ -67,21 +67,21 @@ MPA from The George Washington University and a B.S. in Political Science from
 The Rochester Institute of Technology.`,
     image: require("../images/authors/david-trimmer.jpeg"),
   },
-  john_wong: {
-    name: "John Wong",
-    bio: `is a policy modeling fellow at PolicyEngine. He is also working towards 
-    a master's degree in economics at George Mason University and a MA Fellow at 
-    Mercatus Center. Previously, he was a fiscal policy fellow at Progressive 
-    Policy Institute and a Peterson Foundation fiscal intern. John holds a 
-    bachelor's degree in economics and finance from the University of Hong Kong.`,
-    image: require("../images/authors/john-wong.jpg"),
-  },
   maria_juaristi: {
     name: "María Juaristi",
     bio: `is a policy modeling intern at PolicyEngine.  She is also pursuing an 
     undergraduate degree in political science and data science at Minerva University. 
     Previously, she was a research intern at the University of Chicago.`,
     image: require("../images/authors/maria-juaristi.png"),
+  },
+  ziming_hua: {
+    name: "Ziming Hua",
+    bio: `is a policy modeling fellow at PolicyEngine. He focuses on
+    implementing and analyzing tax and benefit systems. He develops simulation models
+    to evaluate the impacts of policy reforms. Ziming holds a bachelor's degree in
+    mathematical finance from the University of California, Irvine, and a master's degree
+    in business analytics from Boston University.`,
+    image: require("../images/authors/ziming-hua.jpg"),
   },
 };
 

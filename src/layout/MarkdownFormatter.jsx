@@ -143,13 +143,13 @@ export function PlotlyChartCode({ data, backgroundColor }) {
 
   // Use the margins defined in the plotly data, falling back to reasonable defaults
   // Don't override what's in the data, but ensure we have at least some bottom margin
-  const defaultMargins = { l: 50, r: 50, t: 50, b: 50 };
+  const defaultMargins = { l: 20, r: 20, t: 20, b: 20 };
   const margins = { ...defaultMargins, ...(plotlyData.layout?.margin || {}) };
 
   return (
     <div
       style={{
-        paddingLeft: 20,
+        paddingLeft: 0,
         width: "100%",
         display: "flex",
         justifyContent: "center",

@@ -14,6 +14,7 @@ import ParameterEditor from "./policy/input/ParameterEditor";
 import PolicyOutput from "./policy/output/PolicyOutput";
 import PolicyRightSidebar from "./policy/PolicyRightSidebar";
 import ErrorComponent from "../layout/ErrorComponent";
+import ErrorBoundary from "../layout/ErrorBoundary";
 import { getPolicyOutputTree } from "./policy/output/tree";
 import { Helmet } from "react-helmet";
 import SearchParamNavButton from "../controls/SearchParamNavButton";
@@ -233,9 +234,22 @@ export default function PolicyPage(props) {
     }
   }
 
+  // Ensure middle is never null for mobile rendering
+  if (!middle) {
+    console.error("PolicyPage: middle content is null", {
+      focus,
+      isOutput,
+      policy: policy?.reform?.data ? "loaded" : "not loaded",
+    });
+    middle = <LoadingCentered />;
+  }
+
   if (mobile) {
     return (
-      <>
+      <ErrorBoundary
+        context={{ component: "PolicyPage Mobile", focus, isOutput }}
+        fallbackMessage="Error loading policy page. Please try refreshing."
+      >
         <Helmet>
           <title>Policy | PolicyEngine</title>
         </Helmet>
@@ -245,7 +259,7 @@ export default function PolicyPage(props) {
           policy={policy}
           type="policy"
         />
-      </>
+      </ErrorBoundary>
     );
   }
 
@@ -327,7 +341,10 @@ export default function PolicyPage(props) {
   );
 
   return (
-    <>
+    <ErrorBoundary
+      context={{ component: "PolicyPage Desktop", focus, isOutput }}
+      fallbackMessage="Error loading policy page. Please try refreshing."
+    >
       <Helmet>
         <title>Policy | PolicyEngine</title>
       </Helmet>
@@ -347,7 +364,7 @@ export default function PolicyPage(props) {
           />
         }
       />
-    </>
+    </ErrorBoundary>
   );
 }
 

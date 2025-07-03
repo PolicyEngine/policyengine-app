@@ -32,7 +32,7 @@ export default function Donate() {
 
         <Section
           backgroundColor={style.colors.LIGHT_GRAY}
-          title="The Difference Your Support Makes"
+          title="The difference your support makes"
         >
           <div
             style={{

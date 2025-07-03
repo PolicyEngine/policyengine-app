@@ -109,7 +109,7 @@ export default function AverageChangeByConstituency(props) {
     </ImpactChart>
   );
   const csv = () => {
-    const header = ["Constituency", "Average Change"];
+    const header = ["Constituency", "Average change"];
     const constituencyData = impact?.constituency_impact?.by_constituency || {};
     const data = [
       header,

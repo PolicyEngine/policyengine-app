@@ -21,7 +21,7 @@ const BenefitAccessPage = () => {
   // Country identification logic
 
   useEffect(() => {
-    document.title = "Benefit Access | PolicyEngine";
+    document.title = "Benefit access | PolicyEngine";
     window.scrollTo(0, 0);
   }, [location]);
 
@@ -65,10 +65,10 @@ const BenefitAccessPage = () => {
   return (
     <>
       <Helmet>
-        <title>Benefit Access | PolicyEngine</title>
+        <title>Benefit access | PolicyEngine</title>
       </Helmet>
       <Header />
-      <PageHeader title="Benefit Access" backgroundColor="#F7FAFD">
+      <PageHeader title="Benefit access" backgroundColor="#F7FAFD">
         <p style={{ margin: 0 }}>
           Powering benefit eligibility screening tools through the PolicyEngine
           API
@@ -78,7 +78,7 @@ const BenefitAccessPage = () => {
       <SecondaryNav countryId={countryId} pageType="benefits" />
       <Section>
         <div className="benefits-intro">
-          <h2>Increasing Access to Public Benefits</h2>
+          <h2>Increasing access to public benefits</h2>
           <p>
             PolicyEngine&apos;s tax-benefit engine and API power a range of
             benefit eligibility screening tools, helping people discover and
@@ -95,7 +95,7 @@ const BenefitAccessPage = () => {
       </Section>
 
       <Section
-        title="Partner Organizations"
+        title="Partner organizations"
         style={{ backgroundColor: "#f8f9fa" }}
       >
         <div className="partner-organizations">
@@ -135,7 +135,7 @@ const BenefitAccessPage = () => {
         </div>
       </Section>
 
-      <Section title="Build Your Own Benefit Screening Tool">
+      <Section title="Build your own benefit screening tool">
         <div className="cta-section">
           <p>
             Are you interested in creating a benefit screening tool for your

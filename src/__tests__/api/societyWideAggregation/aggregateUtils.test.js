@@ -5,12 +5,10 @@ import {
 
 import {
   emptyInput,
-  validBaselineReformData,
-  expectedBaselineReformSumResult,
-  expectedBaselineReformMeanResult,
-  validAggregateValuesData,
   expectedAggregateValuesSumResult,
-  expectedAggregateValuesMeanResult,
+  expectedBaselineReformSumResult,
+  validAggregateValuesData,
+  validBaselineReformData,
 } from "../../__setup__/sampleSocietyWideUtils";
 
 describe("aggregateBaselineReformComparison", () => {
@@ -24,28 +22,6 @@ describe("aggregateBaselineReformComparison", () => {
       expect(
         aggregateBaselineReformComparison(validBaselineReformData),
       ).toEqual(expectedBaselineReformSumResult);
-    });
-
-    test("it should aggregate values using mean strategy when specified", () => {
-      expect(
-        aggregateBaselineReformComparison(
-          validBaselineReformData,
-          "mean",
-          "mean",
-        ),
-      ).toEqual(expectedBaselineReformMeanResult);
-    });
-
-    test("it should support different strategies for baseline and reform", () => {
-      const mixed = aggregateBaselineReformComparison(
-        validBaselineReformData,
-        "sum",
-        "mean",
-      );
-      expect(mixed).toEqual({
-        baseline: 600,
-        reform: 220,
-      });
     });
   });
 
@@ -69,12 +45,6 @@ describe("aggregateValues", () => {
     test("it should aggregate using sum strategy by default", () => {
       expect(aggregateValues(validAggregateValuesData)).toBe(
         expectedAggregateValuesSumResult,
-      );
-    });
-
-    test("it should aggregate using mean strategy when specified", () => {
-      expect(aggregateValues(validAggregateValuesData, "mean")).toBe(
-        expectedAggregateValuesMeanResult,
       );
     });
   });

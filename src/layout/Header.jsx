@@ -49,17 +49,17 @@ export const LEARN_DROPDOWN_LINKS = [
     icon: <BarChartOutlined />,
   },
   {
-    title: "Benefit Access",
+    title: "Benefit access",
     link: "benefits",
     icon: <QuestionCircleOutlined />,
   },
   {
-    title: "Educational Use",
+    title: "Educational use",
     link: "education",
     icon: <BookOutlined />,
   },
   {
-    title: "Open Source",
+    title: "Open source",
     link: "open-source",
     icon: <GithubOutlined />,
   },
@@ -435,7 +435,7 @@ function DesktopCalculatorButton() {
   return (
     <LinkButton
       link={`/${countryId}/calculator`}
-      text="Compute Policy Impact"
+      text="Compute policy impact"
       style={{ padding: "10px" }}
     />
   );
@@ -621,7 +621,7 @@ const MobileStandardLink = ({ link, countryId, isOpen, index }) => {
       <HoverBox
         hoverStart="left"
         size="100vw"
-        hoverBackgroundColor={style.colors.WHITE}
+        hoverBackgroundColor={style.colors.BLUE_PRESSED}
         style={{
           margin: 30,
         }}
@@ -689,7 +689,7 @@ const MobileDropdownHeader = ({
     <HoverBox
       hoverStart="left"
       size="100vw"
-      hoverBackgroundColor={style.colors.WHITE}
+      hoverBackgroundColor={style.colors.BLUE_PRESSED}
       style={{
         margin: 30,
       }}
@@ -752,7 +752,7 @@ const MobileDropdownItem = ({ item, countryId, index }) => {
       <HoverBox
         hoverStart="left"
         size="100vw"
-        hoverBackgroundColor={style.colors.WHITE}
+        hoverBackgroundColor={style.colors.BLUE_PRESSED}
         style={{
           margin: "15px 30px",
         }}

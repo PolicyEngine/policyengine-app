@@ -30,7 +30,7 @@ export default function RecreateHouseholdPopup(props) {
 
   const navigate = useNavigate();
 
-  const title = "Household Input Error";
+  const title = "Household input error";
   const content = `Unfortunately, this household contains data that 
   is out of date. Please return to the home screen and create a new 
   household.`;

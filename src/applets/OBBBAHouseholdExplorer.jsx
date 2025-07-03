@@ -3,13 +3,13 @@ import { Helmet } from "react-helmet";
 import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
 
-export default function CTCComparison() {
+export default function OBBBAHouseholdExplorer() {
   const windowHeight = useWindowHeight();
 
   return (
     <>
       <Helmet>
-        <title>Child tax credit calculator | PolicyEngine</title>
+        <title>OBBBA Household Explorer | PolicyEngine</title>
       </Helmet>
       <Header />
       <div
@@ -17,12 +17,15 @@ export default function CTCComparison() {
           display: "flex",
           justifyContent: "center",
           height: windowHeight - style.spacing.HEADER_HEIGHT,
-          width: "100vw",
+          width: "100%",
         }}
       >
         <iframe
-          src="https://vance-harris-ctc-comparison.streamlit.app?embedded=true"
-          title="Child tax credit calculator"
+          src={
+            process.env.REACT_APP_OBBBA_IFRAME_URL ||
+            "https://obbba-household-explorer.streamlit.app?embedded=true"
+          }
+          title="OBBBA Household Explorer"
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
           width="100%"
           style={{ overflow: "hidden" }}

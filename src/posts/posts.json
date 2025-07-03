@@ -1,9 +1,36 @@
 [
   {
+    "title": "Introducing the OBBBA Household Explorer",
+    "description": "New interactive tool reveals household-level impacts of the One Big Beautiful Bill Act.",
+    "date": "2025-07-03",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "introducing-obbba-household-explorer.md",
+    "image": "introducing-obbba-household-explorer.png",
+    "authors": ["max-ghenis", "pavel-makarchuk", "elena-cura"]
+  },
+  {
+    "title": "The 2025 American Family Act",
+    "description": "The Child Tax Credit expansion would cost the federal government $2.5 trillion over ten years and lower child poverty by 25%.",
+    "date": "2025-06-16",
+    "tags": ["us", "policy", "featured", "child-tax-credit"],
+    "filename": "american-family-act-2025.md",
+    "image": "american-family-act-2025.webp",
+    "authors": ["david-trimmer"]
+  },
+  {
+    "title": "Childcare programmes in PolicyEngine UK",
+    "description": "This report explains how PolicyEngine models childcare programmes in the UK.",
+    "date": "2025-06-06",
+    "tags": ["uk", "benefit", "featured"],
+    "filename": "uk-childcare-report.md",
+    "image": "uk_childcare_report.jpg",
+    "authors": ["vahid-ahmadi"]
+  },
+  {
     "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
     "date": "2025-05-23",
     "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
-    "tags": ["us", "policy", "featured"],
+    "tags": ["us", "policy", "featured", "reconciliation"],
     "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
     "filename": "managers-amendment-to-hr1.md",
     "image": "managers-amendment-to-hr1.png"
@@ -57,7 +84,7 @@
     "title": "What's the SALTernative?",
     "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
     "date": "2025-04-21",
-    "tags": ["us", "featured"],
+    "tags": ["us", "featured", "reconciliation"],
     "filename": "introducing-salternative.md",
     "image": "introducing-salternative.png",
     "authors": ["pavel-makarchuk", "max-ghenis"]
@@ -1254,6 +1281,24 @@
     "image": "uk-pip-reforms.jpg"
   },
   {
+    "title": "The Tax Cuts for Workers Act",
+    "date": "2025-06-16",
+    "authors": ["pavel-makarchuk", "max-ghenis"],
+    "tags": ["us", "policy", "featured"],
+    "description": "We simulate the new bill to restore the American Rescue Plan Act’s Earned Income Tax Credit expansion.",
+    "filename": "tax-cuts-for-workers-act.ipynb",
+    "image": "tax-cuts-for-workers-act.png"
+  },
+  {
+    "title": "Benefits in PolicyEngine",
+    "date": "2025-05-28 00:00:00",
+    "authors": ["vahid-ahmadi"],
+    "tags": ["uk", "policy", "featured", "benefit"],
+    "description": "PolicyEngine models different benefit components in the UK, including means-tested and non-means-tested benefits.",
+    "filename": "uk-benefits-post.md",
+    "image": "uk-benefit-post.png"
+  },
+  {
     "title": "Idaho’s New Individual Income Tax Changes",
     "date": "2025-04-01",
     "authors": ["david-trimmer"],
@@ -1288,5 +1333,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "farage-speech-may-2025.ipynb",
     "image": "farage-speech-may-2025.jpg"
+  },
+  {
+    "title": "Extending the Winter Fuel Allowance",
+    "description": "The government has reversed its Winter Fuel Allowance means testing, expanding eligibility to 9 million pensioners through a £35,000 income threshold.",
+    "date": "2025-06-11 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["nikhil-woodruff"],
+    "filename": "wfa-means-test.ipynb",
+    "image": "wfa-repeal.jpeg"
   }
 ]
