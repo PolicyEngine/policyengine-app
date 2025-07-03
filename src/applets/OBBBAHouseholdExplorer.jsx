@@ -21,7 +21,10 @@ export default function OBBBAHouseholdExplorer() {
         }}
       >
         <iframe
-          src={process.env.REACT_APP_OBBBA_IFRAME_URL || "https://obbba-household-explorer.streamlit.app?embedded=true"} 
+          src={
+            process.env.REACT_APP_OBBBA_IFRAME_URL ||
+            "https://obbba-household-explorer.streamlit.app?embedded=true"
+          }
           title="OBBBA Household Explorer"
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
           width="100%"
