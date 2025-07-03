@@ -30,7 +30,7 @@
     "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
     "date": "2025-05-23",
     "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
-    "tags": ["us", "policy", "featured"],
+    "tags": ["us", "policy", "featured", "reconciliation"],
     "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
     "filename": "managers-amendment-to-hr1.md",
     "image": "managers-amendment-to-hr1.png"
@@ -84,7 +84,7 @@
     "title": "What's the SALTernative?",
     "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
     "date": "2025-04-21",
-    "tags": ["us", "featured"],
+    "tags": ["us", "featured", "reconciliation"],
     "filename": "introducing-salternative.md",
     "image": "introducing-salternative.png",
     "authors": ["pavel-makarchuk", "max-ghenis"]
