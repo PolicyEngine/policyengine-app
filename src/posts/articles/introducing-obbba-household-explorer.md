@@ -26,37 +26,37 @@ To illustrate the tool’s capabilities, let’s explore two households. While b
 
 First consider household **#66994**, a couple in Montana, ages 53 and 61, with $214,850 income.
 
-![](https://cdn-images-1.medium.com/max/3200/0*femrvCx4TOJ3ea_3)
+![Screenshot of OBBBA Household Explorer interface showing household selection screen with filters set to Random Shuffle method and household #66994 selected](https://cdn-images-1.medium.com/max/3200/0*femrvCx4TOJ3ea_3)
 
 Comparing the Senate bill to current law, they would gain $13,577, paying $11,831 less in federal tax and $1,746 less in state tax.
 
-![](https://cdn-images-1.medium.com/max/3200/0*_xZhF7_TUE_RT5Eh)
+![Financial impact breakdown table showing: Market Income $214,850, Federal Taxes -$11,831 (-24.5%), State Taxes -$1,746 (-16.0%), Benefits $0 (0.0%), Net Income $13,577 (+4.8%)](https://cdn-images-1.medium.com/max/3200/0*_xZhF7_TUE_RT5Eh)
 
 That $13,577 gain results from reforms to the tax brackets, standard deduction, qualified business income deduction, and overtime income exemption, less a $2,332 loss from the repeal of exemptions.
 
-![](https://cdn-images-1.medium.com/max/3200/0*42RcvRHuC_8TJdD2)
+![Waterfall chart titled "Impact of Senate OBBBA Against Current Law by Provision on Net Income" showing baseline net income of $118,311, increases from tax rate reform ($4,754), standard deduction reform ($4,515), QBID reform ($3,125), overtime income exempt ($3,514), offset by exemption reform (-$2,332), resulting in final net income of $131,888](https://cdn-images-1.medium.com/max/3200/0*42RcvRHuC_8TJdD2)
 
-We can also select state taxes to explore the $1,746 gain, finding that it results from the standard deduction reform. Beginning in 2024, Montana adopted the federal standard deduction by statute. PolicyEngine’s [TAXSIM](http://taxsim.nber.org)-validated tax model captures these interactions between federal and state policy.
+We can also select state taxes to explore the $1,746 gain, finding that it results from the standard deduction reform. Beginning in 2024, Montana adopted the federal standard deduction by statute. PolicyEngine's [TAXSIM](http://taxsim.nber.org)-validated tax model captures these interactions between federal and state policy.
 
-![](https://cdn-images-1.medium.com/max/3200/0*PmdWaNAceYNyVgMW)
+![Waterfall chart titled "Impact of Senate OBBBA Against Current Law by Provision on State Taxes" showing baseline state taxes of $10,620, with a $1,746 reduction from standard deduction reform, resulting in final state taxes of $8,874](https://cdn-images-1.medium.com/max/3200/0*PmdWaNAceYNyVgMW)
 
 ### Couple in Georgia, House bill against current policy
 
-Next let’s consider household **#43826**, a Georgia couple with $71,820 income.
+Next let's consider household **#43826**, a Georgia couple with $71,820 income.
 
-![](https://cdn-images-1.medium.com/max/3200/0*0tcLOTIau2vDApZe)
+![Screenshot of OBBBA Household Explorer interface showing household attributes for Georgia couple, including state GA, household size 2, marital status married, and market income $71,820](https://cdn-images-1.medium.com/max/3200/0*0tcLOTIau2vDApZe)
 
 This household would pay $1,023 less in federal tax, while losing $1,971 in benefits, for a net loss of $947.
 
-![](https://cdn-images-1.medium.com/max/3200/0*038Eb7mHdWpDA3Kg)
+![Financial impact breakdown table showing: Baseline Value $71,820, Absolute Change -$947, % Change -1.4%, with details showing Market Income $71,820, Federal Taxes -$1,023 (-24.5%), State Taxes $0 (-10.0%), Benefits -$1,971 (-18.0%), Net Income -$947 (-1.4%)](https://cdn-images-1.medium.com/max/3200/0*038Eb7mHdWpDA3Kg)
 
 Like the Montana couple, this couple benefits from the standard deduction reform and overtime exemption.
 
-![](https://cdn-images-1.medium.com/max/3200/0*y8DvE7OXLVAZvd7R)
+![Waterfall chart titled "Impact of House OBBBA Against Current Policy by Provision on Federal Taxes" showing baseline federal taxes of $4,176, with reductions from standard deduction reform ($521) and overtime income exempt ($502), resulting in final federal taxes of $3,153](https://cdn-images-1.medium.com/max/3200/0*y8DvE7OXLVAZvd7R)
 
 However, they lose $1,971 in Affordable Care Act Premium Tax Credits, whose enhancements (which are part of current policy) expire at the end of 2025.
 
-![](https://cdn-images-1.medium.com/max/3200/0*QZQGbe-JhdRw7ifM)
+![Waterfall chart titled "Impact of House OBBBA Against Current Policy by Provision on Benefits" showing baseline benefits of $7,981, with a $1,971 reduction from ACA Enhanced Subsidies Reform, resulting in final benefits of $6,010](https://cdn-images-1.medium.com/max/3200/0*QZQGbe-JhdRw7ifM)
 
 PolicyEngine counts premium tax credits as benefits since they are subsidized premiums throughout the year. Our rules engine calculates these credits to the dollar. Additionally, our rules engine calculates the dollar impacts of households modeled to lose SNAP and Medicaid access, per projections from the Congressional Budget Office.
 
