@@ -62,7 +62,7 @@ PolicyEngine counts premium tax credits as benefits since they are subsidized pr
 
 ## Key features
 
-To go beyond these examples (and household **#139385 **for this report’s cover image), you can leverage the tool’s full set of features.
+To go beyond these examples (and household **#118944** for this report’s cover image), you can leverage the tool’s full set of features.
 
 ### 🎲 Quick exploration
 
