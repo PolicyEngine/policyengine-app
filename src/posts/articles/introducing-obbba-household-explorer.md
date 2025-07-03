@@ -146,7 +146,7 @@ Whether examining a restaurant worker benefiting from tip exemptions, a family a
 
 ## Get started
 
-The OBBBA Household Explorer is available now at [\*\*policyengine.org/us/obbba-household-explorer](http://policyengine.org/us/obbba-household-explorer).\*\*
+The OBBBA Household Explorer is available now at [**policyengine.org/us/obbba-household-explorer**](../obbba-household-explorer).
 
 Start exploring by:
 
