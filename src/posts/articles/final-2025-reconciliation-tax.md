@@ -90,12 +90,12 @@ Table 1 below summarizes each filer’s characteristics and their change in net 
 
 **Table 1: Change in Net Income Based on Household Composition**
 
-|   State    | Marital Status | 65+? | Number of Children | Wages and salaries | Additional income |                             Itemized Deductions                              | SSN Status | 2027 Net Income Change |
-| :--------: | :------------: | :--: | :----------------: | :----------------: | :---------------: | :--------------------------------------------------------------------------: | :--------: | :--------------------: |
-|   Texas    |    Married     | Yes  |         0          |        $80k        |       None        |                                     None                                     |   Valid    |        \+$2,835        |
-|  New York  |     Single     |  No  |         2          |        $40k        |       None        |                                     None                                     | Not Valid  |        \-$2,335        |
-|  Montana   |     Single     |  No  |         0          |        $46k        | $4k of tip income |                                     None                                     |   Valid    |        \+$1,903        |
-| California |    Married     |  No  |         2          |        $1m         |       None        | 10k charitable non-cash donations, 30k property taxes, 20k mortgage interest |   Valid    |        \-$9,627        |
+|   State    | Marital Status | 65+? | Number of Children | Wages and salaries |  Additional income   |                                  Itemized Deductions                                  | SSN Status | 2026 Net Income Change |
+| :--------: | :------------: | :--: | :----------------: | :----------------: | :------------------: | :-----------------------------------------------------------------------------------: | :--------: | :--------------------: |
+|   Texas    |    Married     | Yes  |         0          |      $80,000       |         None         |                                         None                                          |   Valid    |        \+$2,835        |
+|  New York  |     Single     |  No  |         2          |      $40,000       |         None         |                                         None                                          | Not Valid  |        \-$2,335        |
+|  Montana   |     Single     |  No  |         0          |      $46,000       | $4,000 of tip income |                                         None                                          |   Valid    |        \+$1,903        |
+| California |    Married     |  No  |         2          |     $1,000,000     |         None         | 10,000 charitable non-cash donations, 30,000 property taxes, 20,000 mortgage interest |   Valid    |        \-$9,627        |
 
 ## Microsimulation Results
 
