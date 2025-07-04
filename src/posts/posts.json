@@ -1,5 +1,14 @@
 [
   {
+    "title": "Analysis of individual income tax provisions in the final reconciliation bill",
+    "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
+    "date": "2025-07-04",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "final-2025-reconciliation-tax.md",
+    "image": "final-2025-reconciliation-tax.png",
+    "authors": ["david-trimmer", "pavel-makarchuk"]
+  },
+  {
     "title": "Introducing the OBBBA Household Explorer",
     "description": "New interactive tool reveals household-level impacts of the One Big Beautiful Bill Act.",
     "date": "2025-07-03",
