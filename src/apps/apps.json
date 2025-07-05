@@ -1,0 +1,9 @@
+[
+  {
+    "title": "OBBA household impact explorer",
+    "description": "Interactive tool to explore household-level impacts of the One Big Beautiful Bill Act",
+    "url": "http://localhost:5173",
+    "slug": "obba-household-explorer",
+    "tags": ["us", "featured", "interactive"]
+  }
+]
