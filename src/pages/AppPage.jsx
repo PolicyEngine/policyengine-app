@@ -29,7 +29,7 @@ export default function AppPage() {
         <meta name="description" content={app.description} />
       </Helmet>
       <Header />
-      <div style={{ height: "calc(100vh - 80px)" }}>
+      <div style={{ height: "var(--app-content-height)" }}>
         <iframe
           src={app.url}
           style={{

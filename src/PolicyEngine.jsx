@@ -337,7 +337,6 @@ export default function PolicyEngine() {
             <Route index={true} element={<Research />} />
             <Route path=":postName" element={<BlogPage />} />
           </Route>
-          <Route path=":appName" element={<AppPage />} />
           <Route path="donate" element={<Donate />} />
           <Route path="privacy" element={<PrivacyPage />} />
           <Route path="terms" element={<TACPage />} />
@@ -346,6 +345,7 @@ export default function PolicyEngine() {
           <Route path="benefits" element={<BenefitAccessPage />} />
           <Route path="education" element={<EducationPage />} />
           <Route path="open-source" element={<OpenSourcePage />} />
+          <Route path=":appName" element={<AppPage />} />
 
           <Route
             path="household/*"
