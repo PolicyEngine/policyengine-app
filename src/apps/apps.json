@@ -2,8 +2,8 @@
   {
     "title": "OBBA household impact explorer",
     "description": "Interactive tool to explore household-level impacts of the One Big Beautiful Bill Act",
-    "url": "http://localhost:5173",
+    "url": "https://policyengine.github.io/obbba-scatter",
     "slug": "obba-household-explorer",
-    "tags": ["us", "featured", "interactive"]
+    "tags": ["us", "featured", "policy"]
   }
 ]
