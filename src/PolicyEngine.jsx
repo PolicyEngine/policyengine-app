@@ -13,6 +13,7 @@ import {
 import Donate from "./pages/Donate";
 import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
+import AppPage from "./pages/AppPage";
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
 
 import { useEffect, useState, lazy, Suspense } from "react";
@@ -344,6 +345,7 @@ export default function PolicyEngine() {
           <Route path="benefits" element={<BenefitAccessPage />} />
           <Route path="education" element={<EducationPage />} />
           <Route path="open-source" element={<OpenSourcePage />} />
+          <Route path=":appName" element={<AppPage />} />
 
           <Route
             path="household/*"
