@@ -1,4 +1,4 @@
-Yesterday, the House of Representatives passed H.R. 1, also known as the “One Big Beautiful Bill Act” (OBBB), after the [Senate](https://www.congress.gov/amendment/119th-congress/senate-amendment/2360) amended and approved it on July 1st. The reconciliation package now heads to President Donald Trump’s desk who is expected to sign the legislation into law. [H.R.1](https://www.congress.gov/bill/119th-congress/house-bill/1) extends and expands several provisions of the Tax Cuts and Jobs Act of 2017 (TCJA), while adding new individual income tax provisions such as deductions for tips and overtime.
+Yesterday, the House of Representatives passed H.R. 1, also known as the “One Big Beautiful Bill Act” (OBBB), after the [Senate](https://www.congress.gov/amendment/119th-congress/senate-amendment/2360) amended and approved it on July 1st. The reconciliation package now heads to President Donald Trump’s desk who is expected to sign the legislation into law. [H.R. 1](https://www.congress.gov/bill/119th-congress/house-bill/1) extends and expands several provisions of the Tax Cuts and Jobs Act of 2017 (TCJA), while adding new individual income tax provisions such as deductions for tips and overtime.
 
 Applying the PolicyEngine microsimulation model to most of these provisions, we find that the bill’s individual income tax provisions — compared to current law in which Tax Cuts and Jobs Act provisions expire after 2025 — would:
 
@@ -12,7 +12,7 @@ Applying the PolicyEngine microsimulation model to most of these provisions, we 
 
 This report details these results and shows the effects on hypothetical households.
 
-## Senate Tax Provisions
+## Income Tax Provisions
 
 While similar to the tax provisions passed by the House of Representatives in May, the final version of the OBBB contains some key differences. In general, the latest bill text makes permanent more tax provisions compared to the bill in May, which implemented temporary boosts throughout the current presidential term. For example, in the bill text from May, the CTC is temporarily boosted to $2,500 before falling to a lower value in 2029. In the latest text, the Child Tax Credit (CTC) is increased to $2,200 and then indexed for inflation thereafter. This shift from temporarily enhancing provisions to permanent increases is also found in the standard deduction provision.
 
@@ -28,7 +28,7 @@ Compared to the House bill, the final bill also:
 
 - Resets only the inflation adjustment for the phaseout threshold of the alternative minimum tax (AMT) and increases the phase-out rate to 50%.
 
-- Limits all itemized deductions at the 35% bracket, rather than having a separate limitation at the 32% for the SALT deduction.
+- Limits all itemized deductions at the 35% bracket, rather than having a separate limitation at the 32% bracket for the SALT deduction.
 
 - Sets a qualified business income deduction rate of 20% and creates a minimum deduction of $400 for taxpayers with qualified business income of at least $1,000.
 
@@ -48,17 +48,17 @@ In 2026, when most provisions are active, households would experience a change i
 
 ### Elderly couple in Texas
 
-An elderly couple with $80,000 in employment income from Texas would see their [net income rise by $2,835](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54569). While they would benefit from the TCJA extension compared to current law, this couple would also qualify for the additional senior deduction of $12,000 ($6,000 for each elderly member). This paired with existing additional deduction for senior couples ($3,200) and the extension of the TCJA standard deduction ($32,600 in 2026) prevents this couple from paying any income on their first $47,800 of earnings compared to $30,400 under current law.
+An elderly couple with $80,000 in employment income from Texas would see their [net income rise by $2,835](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54569). While they would benefit from the TCJA extension compared to current law, this couple would also qualify for the additional senior deduction of $12,000 ($6,000 for each elderly member). This paired with the existing additional deduction for senior couples ($3,200) and the extension of the TCJA standard deduction ($32,600 in 2026) prevents this couple from paying any income tax on their first $47,800 of earnings compared to $30,400 under current law.
 
-Figure 1 shows this household’s change in net income over household earnings. Once earnings exceed $30,500, the household begins to see an increase in their net income before plateauing at $48,000. When annual income surpasses $54,500, net income begins to rise again.
+Figure 1 shows this household’s change in net income over household earnings. Once earnings exceed $30,400, the household begins to see an increase in their net income before plateauing at $47,800. When annual income surpasses $54,500, net income begins to rise again.
 
-**Figure 1: Change in Net Income for a Elderly Couple Between $0 and $200,000 of Earnings (2026)**
+**Figure 1: Change in Net Income for an Elderly Couple Between $0 and $200,000 of Earnings (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2000/0*4f25YJdN_Haep-Qk)
 
 ### Single undocumented parent in New York
 
-A single parent in New York with two children and $40,000 of earnings would be in line to benefit from the increased CTC compared to current law. However, due to the new SSN requirement for parents under the Senate bill, if they did not have valid SSN, their net income would [fall by $2,335](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54580) as they would become ineligible for the CTC valued at $1,000 per child under current law. The additional loss of $335 stems from their combined personal exemptions and standard deduction under current law exceeding OBBBA’s standard deduction by $3,550. As this makes them face the 10% income bracket, their tax liability increases by $355.
+A single parent in New York with two children and $40,000 of earnings would be in line to benefit from the increased CTC compared to current law. However, due to the new SSN requirement for parents under the Senate bill, if they did not have a valid SSN, their net income would [fall by $2,335](https://policyengine.org/us/household?reform=87626&focus=householdOutput.netIncome&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54580) as they would become ineligible for the CTC valued at $1,000 per child under current law. The additional loss of $335 stems from their combined personal exemptions and standard deduction under current law exceeding OBBB’s standard deduction by $3,550. As this makes them face the 10% income bracket, their tax liability increases by $355.
 
 Figure 2 shows that their net income falls at any earnings level between $3,000 and $100,000, and the maximum loss occurs at $45,500 earnings.
 
@@ -101,7 +101,7 @@ Table 1 below summarizes each filer’s characteristics and their change in net 
 
 ### Budgetary impact
 
-Using PolicyEngine’s static microsimulation model, we project that the Senate tax provisions of the One Big Beautiful Big Act would cost $3.8 trillion from 2026 to 2035. Additionally, because several proposed changes go into effect in 2025, it would [reduce federal revenues by $63.8 billion](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.budgetaryImpact.overall&region=us&timePeriod=2025&baseline=2&dataset=enhanced_cps&household=54592) this year.
+Using PolicyEngine’s static microsimulation model, we project that the Senate tax provisions of the One Big Beautiful Big Act would cost $3.8 trillion from 2026 to 2035. Additionally, because several proposed changes go into effect this tax year, it would [reduce federal revenues by $63.8 billion](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.budgetaryImpact.overall&region=us&timePeriod=2025&baseline=2&dataset=enhanced_cps&household=54592) in 2025.
 
 **Table 2: Annual Federal Revenue Impact of the Income Tax Provisions in the OBBB.**
 
@@ -123,7 +123,7 @@ Using PolicyEngine’s static microsimulation model, we project that the Senate 
 
 Our distributional analysis includes the OBBB’s effect on federal taxes, as well as state and local taxes resulting from statutory references to the federal code (e.g., Montana applying the federal standard deduction).
 
-The bill would increase the net income of [76% of US residents](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.winnersAndLosers.incomeDecile&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) in 2026. The percentage of U.S. residents would vary by income decile, as the highest income decile would have the highest percentage of residents benefiting at 93.5%, while the lowest would have 33.1% of residents see an increase in their net income. Additionally, 7.7% of the U.S. population would be worse off under the tax provisions in 2026. The reduction of net income for residents can be attributed to the SSN requirements for parents to claim the CTC (mostly affecting lower to middle-income households) and limitations on itemized deductions (mostly affecting higher-income tax units).
+The bill would increase the net income of [76% of U.S. residents](https://policyengine.org/us/policy?reform=87626&focus=policyOutput.winnersAndLosers.incomeDecile&region=us&timePeriod=2026&baseline=2&dataset=enhanced_cps&household=54592) in 2026. The percentage of U.S. residents would vary by income decile, as the highest income decile would have the highest percentage of residents benefiting at 93.5%, while the lowest would have 33.1% of residents see an increase in their net income. Additionally, 7.7% of the U.S. population would be worse off under the tax provisions in 2026. The reduction of net income for residents can be attributed to the SSN requirements for parents to claim the CTC (mostly affecting lower to middle-income households) and limitations on itemized deductions (mostly affecting higher-income tax units).
 
 **Figure 5: Winners and Losers of the Income Tax Provisions in the OBBB (2026)**
 
