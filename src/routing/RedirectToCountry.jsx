@@ -13,8 +13,8 @@ export default function RedirectToCountry() {
     const { signal } = controller;
 
     const fetchCountry = async () => {
-       const id = await getCountryId(signal);
-       setCountryId(id);
+      const id = await getCountryId(signal);
+      setCountryId(id);
     };
 
     fetchCountry();
