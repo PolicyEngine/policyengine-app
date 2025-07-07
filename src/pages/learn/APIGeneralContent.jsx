@@ -400,7 +400,7 @@ export function VariableParameterExplorer(props) {
   const { metadata } = props;
   const [query, setQuery] = useState("");
   const [selectedCardData, setSelectedCardData] = useState(null);
-  const [showAboltions, setShowAbolitions] = useState(false);
+  const [showAbolitions, setShowAbolitions] = useState(false);
 
   const [page, setPage] = useState(0);
 
@@ -411,13 +411,13 @@ export function VariableParameterExplorer(props) {
   if (!metadata) return null;
 
   const filterByQuery = (item) => {
-    if (!query && showAboltions) return true;
+    if (!query && showAbolitions) return true;
 
     const label = item.label || "";
 
     const pythonName = item.type === "parameter" ? item.parameter : item.name;
 
-    if (!showAboltions) {
+    if (!showAbolitions) {
       if (pythonName?.startsWith("gov.abolitions")) return false;
     }
 
@@ -475,7 +475,7 @@ export function VariableParameterExplorer(props) {
         <label style={{ fontSize: "14px", cursor: "pointer" }}>
           <input
             type="checkbox"
-            checked={showAboltions}
+            checked={showAbolitions}
             onChange={() => {
               setShowAbolitions((prev) => !prev);
               setPage(0); // reset to first page
