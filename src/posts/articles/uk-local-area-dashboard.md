@@ -1,0 +1,95 @@
+_Image credit: ons.gov.uk_
+
+National tax and benefit policies have varying impacts across different areas of the UK. A change to Universal Credit might affect 15% of households in one constituency but only 5% in another. Despite this variation, most policy analysis remains limited to national-level estimates due to data constraints.
+
+We’re launching new capabilities in PolicyEngine to disaggregate policy analyses down to the local level: Parliamentary constituencies and local authorities, as well as an interactive app that lets you explore our estimates for your local area.
+
+[_See new estimates for your local area here_](https://uk-local-areas-dashboard-578039519715.us-central1.run.app/)_._
+
+## A new approach to local area modelling
+
+PolicyEngine has developed a [methodology](https://policyengine.github.io/policyengine-uk-data/constituency_methodology.html) that adapts techniques from political polling to tax-benefit microsimulation. The approach reweights national survey data to match administrative statistics at the constituency level, similar to how multi-level regression and post-stratification (MRP) transformed election polling.
+
+The Family Resources Survey, while robust for national and regional analysis with around 20,000 households, typically includes only 30-40 households per constituency, insufficient for reliable local estimates. As a result, MPs, local authorities, and researchers have lacked the tools to understand local policy impacts systematically.
+
+We integrate data from HMRC statistics on income distributions and taxpayer counts, ONS demographic data including age distributions, Annual Survey of Hours and Earnings workplace-based earnings data, and House of Commons Library population statistics. Through optimization algorithms, we create household weights that enable the Family Resources Survey to represent each of the UK's 650 constituencies accurately while maintaining consistency with national totals.
+
+## Interactive dashboard for local area analysis
+
+The [new interactive dashboard](https://microcalibrate.vercel.app/?repo=policyengine%2Fpolicyengine-uk-data&branch=main&commit=5f8994e4740d566ec289adc1c2e7d611856e6ed1&artifact=calibration_log.csv) provides economic indicators for all UK parliamentary constituencies and local authorities. Users can view average market income, net income, taxes paid, and benefits received for any area, with the ability to compare areas directly to understand relative differences.
+
+![](/images/posts/uk-local-area-dashboard/dashboard.png)
+
+_Example of local authority (Brentwood) is shown in the app._
+
+## Area comparison example
+
+To demonstrate the capabilities of PolicyEngine’s new local modelling dashboard, we [compare](https://uk-local-areas-dashboard-578039519715.us-central1.run.app/) two local authorities: the Cities of London and Westminster and Cambridge. In this example, we highlight how national tax and benefit policies play out differently across local areas, influencing income distribution, consumption, and public finances.
+
+![](/images/posts/uk-local-area-dashboard/compare.png)
+
+### Income
+
+Households of the Cities of London and Westminster earn more than those in Cambridge, with an average market income of £106,782 compared to £77,677. Their average net income is also higher, £81,810 versus £63,759.
+
+![](/images/posts/uk-local-area-dashboard/compare2.png)
+
+A decile-level comparison shows that this income advantage is concentrated at the top. Households in the top decile in the Cities of London and Westminster take home an average net income of £364,536, more than double the £181,166 earned by their counterparts in Cambridge. Households in the lower-income deciles earn similar amounts in both the Cities of London and Westminster and Cambridge.
+
+### Consumption and wealth
+
+Households in Cambridge spend more on average, £30,584 compared to £28,706 in the Cities of London and Westminster. They allocate more to most spending categories, including housing, food, and recreation.
+
+![](/images/posts/uk-local-area-dashboard/compare3.png)
+
+Additionally, Cambridge households hold more wealth on average, with assets totalling £551,744 compared to £471,549 in the Cities of London and Westminster.
+
+### Taxes and benefits
+
+Households in the Cities of London and Westminster pay higher average taxes, with £34,590 compared to £22,591 in Cambridge. This difference is driven mainly by larger income tax payments, £9,410 versus £5,964, and higher employer National Insurance contributions.
+
+![](/images/posts/uk-local-area-dashboard/compare4.png)
+
+Households in the Cities of London and Westminster receive £9,617 in benefits on average, compared to £8,673 in Cambridge. Higher-income households pay more through income tax, while households in both areas contribute similar amounts to indirect taxes such as VAT and council tax.
+
+### Fiscal impact
+
+Households in the Cities of London and Westminster generate £3.0 billion in tax revenue and receive £0.7 billion in public spending, producing a fiscal surplus of £2.3 billion. Households in Cambridge generate £1.3 billion in tax revenue and receive £0.4 billion in public spending, resulting in a £0.9 billion surplus.
+
+![](/images/posts/uk-local-area-dashboard/compare5.png)
+
+## Local analysis of UK tax and benefit policy
+
+We provide a web interface that allows users to assess the local impact of any policy reform. Through the PolicyEngine UK platform, users can simulate tax and benefit changes and view results by parliamentary constituency or local authority.
+
+We [analyse](https://policyengine.org/uk/research/wfa-means-test) the expanded Winter Fuel Allowance policy to show how a national reform affects income across the UK. The reform extends eligibility to 9 million pensioners with taxable income under £35,000. We [estimate](https://policyengine.org/uk/policy?focus=policyOutput.constituencies.average&reform=85980&region=uk&timePeriod=2025&baseline=1&uk_local_areas_beta=true) the change in average net income by parliamentary constituency in 2025, as shown in the map below:
+
+![](/images/posts/uk-local-area-dashboard/impact.png)
+
+We also [calculate](https://policyengine.org/uk/policy?focus=policyOutput.constituencies.average&reform=85980&region=uk&timePeriod=2025&baseline=1&uk_local_areas_beta=true) the share of constituencies experiencing income gains in each UK nation, shown in the chart below:
+
+![](/images/posts/uk-local-area-dashboard/impact2.png)
+
+You can read the full analysis [here](https://policyengine.org/uk/research/wfa-means-test) or use [the calculator](https://policyengine.org/uk) to explore how any policy affects individual households and regions.
+
+## Technical methodology
+
+We align administrative statistics to a consistent geographic framework, since HMRC reports data using 2010 parliamentary constituencies while our analysis uses 2024 definitions. We build a many-to-many mapping matrix from ONS boundary lookups to translate income, jobs, and population data to the updated geography. We draw on data from NOMIS for job counts and earnings, HMRC for income distributions, and the House of Commons Library for population by age.
+
+We construct over 11,000 calibration targets covering income brackets, age bands, and employment patterns. We optimise household weights using gradient descent to align survey microdata with these administrative totals. Our loss function combines constituency-level and national-level accuracy, and we minimise it using the Adam optimiser over 512 iterations. Throughout the process, we ensure that improving local precision does not distort national estimates.
+
+You can read more about the technical details and the mathematical framework behind this methodology in [our documentation page](https://policyengine.github.io/policyengine-uk-data/constituency_methodology.html).
+
+## Strengths and limitations
+
+Users can use this dashboard to assess how proposed policies affect median earners and benefit recipients in specific constituencies. Local authorities use it to analyse income distributions and benefit receipt patterns to support service planning. Researchers investigate geographic variation in policy impacts, and policy organisations produce rapid, constituency-level analysis of Budget measures.
+
+Like any model, ours has limitations. It tends to underestimate very high incomes above £1 million by 30–50% due to survey constraints. It produces larger relative errors for programmes affecting fewer than 1,000 people nationally. In constituencies with unusual demographic profiles, the model may generate higher-than-average errors. We publish a live [dashboard](https://microcalibrate.vercel.app/?repo=policyengine%2Fpolicyengine-uk-data&branch=main&commit=5f8994e4740d566ec289adc1c2e7d611856e6ed1&artifact=calibration_log.csv) where users can track how well the model matches each of the 11,000 statistical targets we calibrate.
+
+## Open access and future development
+
+**All our microdata outputs are freely available to users with access to the UK Data Service**. The interactive dashboard provides public access to local area statistics, while calibration weights can be used in other microsimulation models including UKMOD and TAXBEN. This initial release focuses on current income distributions and tax-benefit systems.
+
+The local area modelling system represents a step forward in UK microsimulation capabilities, bringing constituency-level precision to national policy debates. By making these tools freely available, we aim to strengthen evidence-based policy discussion at all levels of government.
+
+If you or your team is interested in disaggregating national policy proposals at all or specific geographies, please get in touch at [hello@policyengine.org](mailto:hello@policyengine.org).
