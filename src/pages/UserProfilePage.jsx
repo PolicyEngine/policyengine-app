@@ -318,7 +318,9 @@ function UserProfileSection(props) {
   } else if (dispState === STATES.EMPTY) {
     dispUserSince = "Loading";
   } else {
-    dispUserSince = dateFormatter.format(accessedUserProfile.user_since);
+    dispUserSince = dateFormatter.format(
+      new Date(parseInt(accessedUserProfile.user_since) * 1000),
+    );
   }
 
   let dispCountry = "";
