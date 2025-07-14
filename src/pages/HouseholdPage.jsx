@@ -438,6 +438,11 @@ function HouseholdLeftSidebar(props) {
     metadata.countryId,
   );
 
+  const displayTree = filterTreeForDisplay(
+    metadata.variableTree.children,
+    metadata.countryId,
+  );
+
   return (
     <div>
       {!isOnOutput && (
@@ -446,7 +451,7 @@ function HouseholdLeftSidebar(props) {
         </div>
       )}
       <StackedMenu
-        firstTree={metadata.variableTree.children}
+        firstTree={displayTree}
         selected={selected}
         onSelect={onSelect}
         secondTree={HOUSEHOLD_OUTPUT_TREE[0].children}
@@ -488,6 +493,22 @@ export function addCustomInputs(displayTree, countryId) {
   }
 
   return displayTree;
+}
+
+export function filterTreeForDisplay(tree, countryId) {
+  // US household calculator will temporarily display input.geography
+  // until the county name input is made searchable, then it will be removed
+  const US_CATEGORIES_TO_DISPLAY = ["input.household", "input.geography"];
+
+  if (countryId === "us") {
+    return tree.filter((node) =>
+      US_CATEGORIES_TO_DISPLAY.some((category) =>
+        node.name.startsWith(category),
+      ),
+    );
+  }
+
+  return tree.filter((node) => node.name.startsWith("input.household"));
 }
 
 /**
