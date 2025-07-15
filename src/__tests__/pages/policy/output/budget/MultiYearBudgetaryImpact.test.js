@@ -212,9 +212,11 @@ describe("MultiYearBudgetaryImpact", () => {
       // expect(
       //   screen.getByText(mockImpact.budget.benefit_spending_impact / 1e9),
       // ).toBeInTheDocument();
-      const expectedBenefitImpact = -Math.abs(mockImpact.budget.benefit_spending_impact / 1e9);
+      const expectedBenefitImpact = -Math.abs(
+        mockImpact.budget.benefit_spending_impact / 1e9,
+      );
       expect(
-        screen.getByText(expectedBenefitImpact.toString())
+        screen.getByText(expectedBenefitImpact.toString()),
       ).toBeInTheDocument();
       expect(
         screen.getByText(
