@@ -1,3 +1,30 @@
+# Redis Installation (Required)
+
+Redis is required for both testing and society-wide simulation runs, and unlike other dependencies, it must be installed directly on the system.
+
+**Install Redis:**
+
+- **Linux (Debian/Ubuntu):**
+  ```sh
+  sudo apt update
+  sudo apt install redis-server
+  ```
+- **macOS (with Homebrew):**
+  ```sh
+  brew install redis
+  brew services start redis
+  ```
+- **Windows:**
+  Redis does not natively support Windows, but you can run it easily using Docker:
+  ```sh
+  docker run -d --name redis-stack -p 6379:6379 redis/redis-stack:latest
+  ```
+  Or use [WSL2](https://docs.microsoft.com/en-us/windows/wsl/) and follow the Linux instructions above.
+
+For more details, see the [official Redis installation guide](https://redis.io/docs/getting-started/installation/).
+
+---
+
 # Welcome :wave: !
 
 This is the official front-end app of PolicyEngine, a non-profit with the mission of computing the impact of public policy for the world. <br/><br/>
