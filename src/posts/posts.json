@@ -1351,5 +1351,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "wfa-means-test.ipynb",
     "image": "wfa-repeal.jpeg"
+  },
+  {
+    "title": "Analysing UK policy at the local level",
+    "description": "New microsimulation capabilities enable constituency-level and local authority-level analysis of tax and benefit policies, supported by the Nuffield Foundation.",
+    "date": "2025-07-08 11:00:00",
+    "tags": ["uk", "featured"],
+    "authors": ["nikhil-woodruff", "vahid-ahmadi"],
+    "filename": "uk-local-area-dashboard.md",
+    "image": "uk-local-area-dashboard.png"
   }
 ]

@@ -1,4 +1,4 @@
-- bump: minor
+- bump: patch
   changes:
     added:
-      - Add detailed childcare policy analysis report
+      - Add UK local area dashboard post
