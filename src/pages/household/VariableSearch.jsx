@@ -15,11 +15,12 @@ export default function VariableSearch(props) {
       label: variable.label,
     }))
     .filter((option) => !!option.label && !!option.value);
-  
+
   options.push({
-    value: countryId === "us"
-    ? "input.geography.countyName"
-    : "input.household.countyName",
+    value:
+      countryId === "us"
+        ? "input.geography.countyName"
+        : "input.household.countyName",
     label: "County name",
   });
   return (
