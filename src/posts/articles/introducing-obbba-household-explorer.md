@@ -1,4 +1,4 @@
-Following the Senate’s July 1st passage of the One Big Beautiful Bill Act (OBBBA), we’re launching the [**OBBBA Household Explorer**](../obbba-household-explorer) — an interactive dashboard that shows how this reconciliation bill would affect individual households across America.
+Following the Senate's July 1st passage of the One Big Beautiful Bill Act (OBBBA), we're launching the [**OBBBA Household Explorer**](../obbba-household-explorer) — an interactive dashboard that shows how this reconciliation bill would affect individual households across America.
 
 [**_Explore Households with our new tool here._**](../obbba-household-explorer)
 
