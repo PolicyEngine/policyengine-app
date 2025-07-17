@@ -4,6 +4,7 @@ import SearchOptions from "../../controls/SearchOptions";
 
 export default function VariableSearch(props) {
   const { metadata, callback } = props;
+  const countryId = window.location.pathname.split("/")[1];
   const [searchParams, setSearchParams] = useSearchParams();
   const showComputed = searchParams.get("showComputedVariables") === "true";
   const options = Object.values(metadata.variables)
@@ -14,8 +15,11 @@ export default function VariableSearch(props) {
       label: variable.label,
     }))
     .filter((option) => !!option.label && !!option.value);
+  
   options.push({
-    value: "input.household.countyName",
+    value: countryId === "us"
+    ? "input.geography.countyName"
+    : "input.household.countyName",
     label: "County name",
   });
   return (
