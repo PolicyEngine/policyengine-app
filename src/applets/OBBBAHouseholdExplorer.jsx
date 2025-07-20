@@ -56,6 +56,7 @@ export default function OBBBAHouseholdExplorer() {
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
           width="100%"
           style={{ overflow: "hidden" }}
+          allow="clipboard-write"
         />
       </div>
     </>
