@@ -72,11 +72,6 @@ export const ABOUT_DROPDOWN_LINKS = [
     icon: <TeamOutlined />,
   },
   {
-    title: "Careers",
-    link: "jobs",
-    icon: <UserAddOutlined />,
-  },
-  {
     title: "Supporters",
     link: "supporters",
     icon: <BankOutlined />,

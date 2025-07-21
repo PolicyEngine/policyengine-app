@@ -27,16 +27,7 @@ export default function About() {
         <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98}>
           <p style={{ margin: 0 }}>
             PolicyEngine&apos;s team leads a global movement of open-source
-            contributors.{" "}
-            <Link
-              to={`/${countryId}/jobs`}
-              style={{
-                color: style.colors.BLUE,
-                textDecoration: "underline",
-              }}
-            >
-              Learn about opportunities to join us.
-            </Link>
+            contributors.
           </p>
         </PageHeader>
         <Section>
