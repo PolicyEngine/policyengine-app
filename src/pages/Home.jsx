@@ -10,7 +10,13 @@ import Footer from "../layout/Footer";
 import HomeQuoteCarousel from "./home/HomeQuoteCarousel";
 import { Helmet } from "react-helmet";
 
+import UK2024AutumnBudgetBanner from "./home/banners/UK2024AutumnBudgetBanner";
+import US2024ElectionBanner from "./home/banners/US2024ElectionBanner.jsx";
+import OBBBAHouseholdBanner from "./home/banners/OBBBAHouseholdExplorerBanner.jsx";
+import useCountryId from "../hooks/useCountryId";
+
 export default function Home() {
+  const countryId = useCountryId();
   return (
     <>
       <Helmet>
@@ -18,6 +24,7 @@ export default function Home() {
       </Helmet>
       <div>
         <Header />
+        {countryId === "us" && <OBBBAHouseholdBanner />} 
         <HomeLanding />
         <HomeUsedBy />
         <HomeBlogPreview />
