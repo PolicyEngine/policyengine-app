@@ -2,12 +2,9 @@ import LinkButton from "../../../controls/LinkButton";
 import style from "../../../style";
 import finalReconciliationImg from "../../../images/posts/final-2025-reconciliation-tax.png";
 import useDisplayCategory from "../../../hooks/useDisplayCategory";
-import { useWindowWidth } from "../../../hooks/useWindow";
-
 
 export default function OBBBAHouseholdBanner() {
   const dC = useDisplayCategory();
-  const windowWidth = useWindowWidth();
 
   const title = "Explore PolicyEngine's coverage of OBBBA";
   const subtitle =
@@ -17,11 +14,11 @@ export default function OBBBAHouseholdBanner() {
   const ctaLink = "/us/obbba-household-explorer";
   const ariaLabel =
     "Illustration of the U.S. Capitol building, representing federal policy context for household impact analysis. ";
-    // "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
+  // "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
 
-  const shouldUseShortTitle =
-    (dC !== "mobile" && windowWidth < 1150 && windowWidth >= 950) ||
-    (dC === "mobile" && windowWidth < 600);
+  // const shouldUseShortTitle =
+  //   (dC !== "mobile" && windowWidth < 1150 && windowWidth >= 950) ||
+  //   (dC === "mobile" && windowWidth < 600);
 
   if (dC === "mobile") {
     return (
@@ -93,8 +90,7 @@ export default function OBBBAHouseholdBanner() {
             gap: "16px",
             height: "100%",
           }}
-        >
-        </div>
+        ></div>
       </div>
     );
   }
