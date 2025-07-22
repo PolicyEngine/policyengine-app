@@ -94,16 +94,6 @@ export default function OBBBAHouseholdBanner() {
             height: "100%",
           }}
         >
-          <h4 style={{ color: style.colors.BLACK }}>{articlesHeader}</h4>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gridTemplateRows: "repeat(5, 1fr)",
-              gap: "16px",
-            }}
-          >
-          </div>
         </div>
       </div>
     );
