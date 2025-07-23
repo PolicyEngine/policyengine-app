@@ -9,7 +9,7 @@ export default function OBBBAHouseholdBanner() {
   const title = "Explore PolicyEngine's coverage of OBBBA";
   const subtitle =
     "Use our new dashboard to estimate the " +
-    "household-level impacts of each party's policy proposals, suggestions, and ideas";
+    "household-level impacts of the One Big Beautiful Bill Act";
   const ctaText = "Explore OBBBA household impacts";
   const ctaLink = "/us/obbba-household-explorer";
   const ariaLabel =
@@ -43,6 +43,7 @@ export default function OBBBAHouseholdBanner() {
             width: "100%",
             display: "flex",
             backgroundImage: `url(${finalReconciliationImg})`,
+            backgroundBlendMode: "multiply",
             backgroundColor: style.colors.BLUE_LIGHT,
             backgroundSize: "cover",
             minHeight: "fit-content",
@@ -62,8 +63,10 @@ export default function OBBBAHouseholdBanner() {
               margin: "24px",
             }}
           >
-            <h3 style={{ color: style.colors.WHITE }}>{title}</h3>
-            <p style={{ color: style.colors.WHITE }}>{subtitle}</p>
+            <h3 style={{ color: style.colors.DARK_BLUE_HOVER }}>{title}</h3>
+            <p style={{ color: style.colors.DARK_BLUE_HOVER, fontWeight: 500 }}>
+              {subtitle}
+            </p>
             <LinkButton
               type="primary"
               text={ctaText}
@@ -126,6 +129,7 @@ export default function OBBBAHouseholdBanner() {
             position: "relative",
             marginBottom: "24px",
             backgroundImage: `url(${finalReconciliationImg})`,
+            backgroundBlendMode: "multiply",
             // Fallback
             backgroundColor: style.colors.BLUE_LIGHT,
             backgroundSize: "cover",
@@ -149,8 +153,10 @@ export default function OBBBAHouseholdBanner() {
               margin: "24px",
             }}
           >
-            <h3 style={{ color: style.colors.WHITE }}>{title}</h3>
-            <p style={{ color: style.colors.WHITE }}>{subtitle}</p>
+            <h3 style={{ color: style.colors.DARK_BLUE_HOVER }}>{title}</h3>
+            <p style={{ color: style.colors.DARK_BLUE_HOVER, fontWeight: 500 }}>
+              {subtitle}
+            </p>
             <LinkButton
               type="primary"
               text={ctaText}
