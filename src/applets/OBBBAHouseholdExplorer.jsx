@@ -2,7 +2,7 @@ import Header from "../layout/Header";
 import { Helmet } from "react-helmet";
 import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function OBBBAHouseholdExplorer() {
@@ -10,6 +10,9 @@ export default function OBBBAHouseholdExplorer() {
   const navigate = useNavigate();
   const location = useLocation();
   const iframeRef = useRef(null);
+  
+  // Capture initial URL parameters only on first render
+  const [initialUrlParams] = useState(() => new URLSearchParams(location.search));
 
   // Memoize baseUrl to prevent unnecessary re-renders
   // Hardcoding URL to bypass any build/environment issues
@@ -21,21 +24,12 @@ export default function OBBBAHouseholdExplorer() {
   // Memoize iframe origin for efficient message verification
   const iframeOrigin = useMemo(() => new URL(baseUrl).origin, [baseUrl]);
 
-  // Get current URL parameters to forward to iframe using location hook
-  const urlParams = new URLSearchParams(location.search);
-
-  // Construct iframe URL with forwarded parameters
-  const iframeUrl = urlParams.toString()
-    ? `${baseUrl}?${urlParams.toString()}`
-    : baseUrl;
-
-  // Debug logging
-  console.log("OBBBA Explorer Debug:", {
-    baseUrl,
-    locationSearch: location.search,
-    urlParams: urlParams.toString(),
-    finalIframeUrl: iframeUrl,
-  });
+  // Construct iframe URL with initial parameters only - never changes after initial load
+  const iframeUrl = useMemo(() => {
+    return initialUrlParams.toString()
+      ? `${baseUrl}?${initialUrlParams.toString()}`
+      : baseUrl;
+  }, [baseUrl, initialUrlParams]);
 
   useEffect(() => {
     // Listen for messages from the iframe
@@ -45,16 +39,14 @@ export default function OBBBAHouseholdExplorer() {
 
       // Handle URL update messages from the iframe
       if (event.data?.type === "urlUpdate" && event.data?.params) {
-        const newParams = new URLSearchParams(event.data.params);
-        navigate(`${location.pathname}?${newParams.toString()}`, {
-          replace: true,
-        });
+        // Ignore these messages to keep URL stable during shuffling
+        return;
       }
     };
 
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [navigate, location.pathname, iframeOrigin]);
+  }, [iframeOrigin]);
 
   return (
     <>
@@ -62,6 +54,7 @@ export default function OBBBAHouseholdExplorer() {
         <title>OBBBA Household Explorer | PolicyEngine</title>
       </Helmet>
       <Header />
+      
       <div
         style={{
           display: "flex",
@@ -74,7 +67,7 @@ export default function OBBBAHouseholdExplorer() {
           ref={iframeRef}
           src={iframeUrl}
           title="OBBBA Household Explorer"
-          height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
+          height={`calc(100vh - ${style.spacing.HEADER_HEIGHT}px)`}
           width="100%"
           style={{ overflow: "hidden" }}
           allow="clipboard-write"

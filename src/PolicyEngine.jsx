@@ -9,9 +9,9 @@ import {
   Route,
   Routes,
   useSearchParams,
+  useLocation,
 } from "react-router-dom";
 import Donate from "./pages/Donate";
-import { useLocation } from "react-router-dom";
 import BlogPage from "./pages/BlogPage";
 import AppPage from "./pages/AppPage";
 import { COUNTRY_BASELINE_POLICIES, COUNTRY_CODES } from "./data/countries";
@@ -60,6 +60,7 @@ import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
 import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
+import OBBBAHouseholdExplorer from "./applets/OBBBAHouseholdExplorer";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -78,6 +79,10 @@ export default function PolicyEngine() {
   // This will either return the country ID or null,
   // but the page is guaranteed to redirect to an ID
   const countryId = extractCountryId();
+  const location = useLocation();
+  
+  // Check if we're on the OBBBA route to skip metadata loading
+  const isOBBBARoute = location.pathname === "/us/obbba-household-explorer";
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -123,7 +128,13 @@ export default function PolicyEngine() {
 
   // Update the metadata state when something happens to
   // the countryId (e.g. the user changes the country).
+  // Skip metadata loading for OBBBA route
   useEffect(() => {
+    // Skip metadata loading for OBBBA route
+    if (isOBBBARoute) {
+      return;
+    }
+    
     // If we're accessing the page without a country ID,
     // our router will handle redirecting to a country ID;
     // this process is guaranteed, thus we will just not fetch
@@ -151,65 +162,70 @@ export default function PolicyEngine() {
 
     asyncUpdateMetadata();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId]);
+  }, [countryId, isOBBBARoute]);
 
   // Get the baseline policy data when the baseline policy ID changes.
+  // Skip for OBBBA route
   useEffect(() => {
-    if (metadata) {
-      countryApiCall(countryId, `/policy/${baselinePolicyId}`)
-        .then((res) => wrappedResponseJson(res))
-        .then((dataHolder) => {
-          if (dataHolder.result.label === "None") {
-            dataHolder.result.label = null;
-          }
-          setBaselinePolicy({
-            data: dataHolder.result.policy_json,
-            label: dataHolder.result.label,
-            id: baselinePolicyId,
-          });
+    if (isOBBBARoute || !metadata) return;
+    
+    countryApiCall(countryId, `/policy/${baselinePolicyId}`)
+      .then((res) => wrappedResponseJson(res))
+      .then((dataHolder) => {
+        if (dataHolder.result.label === "None") {
+          dataHolder.result.label = null;
+        }
+        setBaselinePolicy({
+          data: dataHolder.result.policy_json,
+          label: dataHolder.result.label,
+          id: baselinePolicyId,
         });
-    }
-  }, [baselinePolicyId, countryId, metadata]);
+      });
+  }, [baselinePolicyId, countryId, metadata, isOBBBARoute]);
 
   // Get the reform policy data when the reform policy ID changes.
+  // Skip for OBBBA route
   useEffect(() => {
-    if (metadata) {
-      countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => wrappedResponseJson(res))
-        .then((dataHolder) => {
-          if (dataHolder.result.label === "None") {
-            dataHolder.result.label = null;
-          }
-          setReformPolicy({
-            data: dataHolder.result.policy_json,
-            label: dataHolder.result.label,
-            id: reformPolicyId,
-          });
+    if (isOBBBARoute || !metadata) return;
+    
+    countryApiCall(countryId, `/policy/${reformPolicyId}`)
+      .then((res) => wrappedResponseJson(res))
+      .then((dataHolder) => {
+        if (dataHolder.result.label === "None") {
+          dataHolder.result.label = null;
+        }
+        setReformPolicy({
+          data: dataHolder.result.policy_json,
+          label: dataHolder.result.label,
+          id: reformPolicyId,
         });
-    }
-  }, [countryId, reformPolicyId, metadata]);
+      });
+  }, [countryId, reformPolicyId, metadata, isOBBBARoute]);
 
   useEffect(() => {
-    if (searchParams.get("renamed") && reformPolicyId) {
-      countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => wrappedResponseJson(res))
-        .then((dataHolder) => {
-          setReformPolicy({
-            data: dataHolder.result.policy_json,
-            label: dataHolder.result.label,
-            id: reformPolicyId,
-          });
-          let newSearch = copySearchParams(searchParams);
-          newSearch.delete("renamed");
-          setSearchParams(newSearch);
+    if (isOBBBARoute || !searchParams.get("renamed") || !reformPolicyId) return;
+    
+    countryApiCall(countryId, `/policy/${reformPolicyId}`)
+      .then((res) => wrappedResponseJson(res))
+      .then((dataHolder) => {
+        setReformPolicy({
+          data: dataHolder.result.policy_json,
+          label: dataHolder.result.label,
+          id: reformPolicyId,
         });
-    }
+        let newSearch = copySearchParams(searchParams);
+        newSearch.delete("renamed");
+        setSearchParams(newSearch);
+      });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, searchParams.get("renamed")]);
+  }, [countryId, searchParams.get("renamed"), isOBBBARoute]);
 
   // When metadata exists and a user is logged in, fetch user profile
+  // Skip for OBBBA route
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
+    if (isOBBBARoute) return;
+    
     async function fetchUserProfile() {
       const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
@@ -260,7 +276,7 @@ export default function PolicyEngine() {
     if (countryId && isAuthenticated && user?.sub) {
       fetchUserProfile().then((userProfile) => setUserProfile(userProfile));
     }
-  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall]);
+  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall, isOBBBARoute]);
 
   const loadingPage = (
     <>
@@ -408,6 +424,7 @@ export default function PolicyEngine() {
           element={<US2024ElectionCalculator />}
         />
         <Route path="/us/salternative" element={<SALTernative />} />
+        <Route path="/us/obbba-household-explorer" element={<OBBBAHouseholdExplorer />} />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
