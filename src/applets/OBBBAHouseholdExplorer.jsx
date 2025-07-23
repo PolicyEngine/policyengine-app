@@ -70,8 +70,12 @@ export default function OBBBAHouseholdExplorer() {
           title="OBBBA Household Explorer"
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT}px)`}
           width="100%"
-          style={{ overflow: "hidden" }}
+          style={{ 
+            border: "none",
+            overflow: "auto"
+          }}
           allow="clipboard-write"
+          scrolling="yes"
         />
       </div>
     </>
