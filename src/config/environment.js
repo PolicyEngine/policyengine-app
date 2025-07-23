@@ -10,15 +10,9 @@ function getOBBBAIframeUrl() {
   // GitHub Pages deployment uses base path /obbba-scatter
   const githubPagesUrl = "https://policyengine.github.io/obbba-scatter";
 
-  // In production, we need to account for the base path
-  // The actual app is served from /obbba-scatter/ subdirectory
-  if (process.env.NODE_ENV === "production") {
-    // Check if the base URL is accessible (this would be done at build time)
-    // For now, we use the correct URL with base path
-    return `${githubPagesUrl}/obbba-scatter`;
-  }
-
-  // In development, use the base URL
+  // Always use the base GitHub Pages URL
+  // GitHub Pages automatically serves the repository content from the /obbba-scatter base path.
+  // No additional path concatenation is needed.
   return githubPagesUrl;
 }
 
