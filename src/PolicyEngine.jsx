@@ -60,6 +60,7 @@ import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
 import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
+import OBBBAHouseholdExplorer from "./applets/OBBBAHouseholdExplorer";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -74,17 +75,46 @@ function ScrollToTop() {
   return null;
 }
 
+/**
+ * Wrapper for standalone embedded routes that don't need metadata or app context
+ * This prevents the main app's effects from running and causing errors
+ */
+function StandaloneRouteWrapper({ children }) {
+  return (
+    <ConfigProvider
+      theme={{
+        token: {
+          borderRadius: 0,
+          colorPrimary: style.colors.BLUE,
+          fontFamily: "Roboto Serif",
+        },
+      }}
+    >
+      <ScrollToTop />
+      {children}
+    </ConfigProvider>
+  );
+}
+
 export default function PolicyEngine() {
+  // Check if we're on a standalone route before doing anything else
+  const location = useLocation();
+  const standaloneRoutes = ['/us/obbba-household-explorer'];
+  const isStandaloneRoute = standaloneRoutes.some(route => location.pathname.startsWith(route));
+  
   // This will either return the country ID or null,
   // but the page is guaranteed to redirect to an ID
-  const countryId = extractCountryId();
+  const countryId = isStandaloneRoute ? null : extractCountryId();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const updatedSearchParams = updateDeprecatedSearchParams(searchParams);
-  if (updatedSearchParams) {
-    // If we have updated search params, set them
-    setSearchParams(updatedSearchParams);
+  // Skip parameter updates for standalone routes
+  if (!isStandaloneRoute) {
+    const updatedSearchParams = updateDeprecatedSearchParams(searchParams);
+    if (updatedSearchParams) {
+      // If we have updated search params, set them
+      setSearchParams(updatedSearchParams);
+    }
   }
 
   const householdId = searchParams.get("household");
@@ -124,6 +154,11 @@ export default function PolicyEngine() {
   // Update the metadata state when something happens to
   // the countryId (e.g. the user changes the country).
   useEffect(() => {
+    // Skip for standalone routes
+    if (isStandaloneRoute) {
+      return;
+    }
+    
     // If we're accessing the page without a country ID,
     // our router will handle redirecting to a country ID;
     // this process is guaranteed, thus we will just not fetch
@@ -151,45 +186,47 @@ export default function PolicyEngine() {
 
     asyncUpdateMetadata();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId]);
+  }, [countryId, isStandaloneRoute]);
 
   // Get the baseline policy data when the baseline policy ID changes.
   useEffect(() => {
-    if (metadata) {
-      countryApiCall(countryId, `/policy/${baselinePolicyId}`)
-        .then((res) => wrappedResponseJson(res))
-        .then((dataHolder) => {
-          if (dataHolder.result.label === "None") {
-            dataHolder.result.label = null;
-          }
-          setBaselinePolicy({
-            data: dataHolder.result.policy_json,
-            label: dataHolder.result.label,
-            id: baselinePolicyId,
-          });
+    if (isStandaloneRoute || !metadata) return;
+    
+    countryApiCall(countryId, `/policy/${baselinePolicyId}`)
+      .then((res) => wrappedResponseJson(res))
+      .then((dataHolder) => {
+        if (dataHolder.result.label === "None") {
+          dataHolder.result.label = null;
+        }
+        setBaselinePolicy({
+          data: dataHolder.result.policy_json,
+          label: dataHolder.result.label,
+          id: baselinePolicyId,
         });
-    }
-  }, [baselinePolicyId, countryId, metadata]);
+      });
+  }, [baselinePolicyId, countryId, metadata, isStandaloneRoute]);
 
   // Get the reform policy data when the reform policy ID changes.
   useEffect(() => {
-    if (metadata) {
-      countryApiCall(countryId, `/policy/${reformPolicyId}`)
-        .then((res) => wrappedResponseJson(res))
-        .then((dataHolder) => {
-          if (dataHolder.result.label === "None") {
-            dataHolder.result.label = null;
-          }
-          setReformPolicy({
-            data: dataHolder.result.policy_json,
-            label: dataHolder.result.label,
-            id: reformPolicyId,
-          });
+    if (isStandaloneRoute || !metadata) return;
+    
+    countryApiCall(countryId, `/policy/${reformPolicyId}`)
+      .then((res) => wrappedResponseJson(res))
+      .then((dataHolder) => {
+        if (dataHolder.result.label === "None") {
+          dataHolder.result.label = null;
+        }
+        setReformPolicy({
+          data: dataHolder.result.policy_json,
+          label: dataHolder.result.label,
+          id: reformPolicyId,
         });
-    }
-  }, [countryId, reformPolicyId, metadata]);
+      });
+  }, [countryId, reformPolicyId, metadata, isStandaloneRoute]);
 
   useEffect(() => {
+    if (isStandaloneRoute) return;
+    
     if (searchParams.get("renamed") && reformPolicyId) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
         .then((res) => wrappedResponseJson(res))
@@ -205,11 +242,13 @@ export default function PolicyEngine() {
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [countryId, searchParams.get("renamed")]);
+  }, [countryId, searchParams.get("renamed"), isStandaloneRoute]);
 
   // When metadata exists and a user is logged in, fetch user profile
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
+    if (isStandaloneRoute) return;
+    
     async function fetchUserProfile() {
       const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
@@ -260,7 +299,7 @@ export default function PolicyEngine() {
     if (countryId && isAuthenticated && user?.sub) {
       fetchUserProfile().then((userProfile) => setUserProfile(userProfile));
     }
-  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall]);
+  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall, isStandaloneRoute]);
 
   const loadingPage = (
     <>
@@ -408,6 +447,14 @@ export default function PolicyEngine() {
           element={<US2024ElectionCalculator />}
         />
         <Route path="/us/salternative" element={<SALTernative />} />
+        <Route
+          path="/us/obbba-household-explorer"
+          element={
+            <StandaloneRouteWrapper>
+              <OBBBAHouseholdExplorer />
+            </StandaloneRouteWrapper>
+          }
+        />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
