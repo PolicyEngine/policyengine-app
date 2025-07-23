@@ -3,11 +3,10 @@ import { Helmet } from "react-helmet";
 import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
 import { useEffect, useRef, useMemo, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import {useLocation } from "react-router-dom";
 
 export default function OBBBAHouseholdExplorer() {
   const windowHeight = useWindowHeight();
-  const navigate = useNavigate();
   const location = useLocation();
   const iframeRef = useRef(null);
 
