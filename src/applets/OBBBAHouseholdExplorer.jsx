@@ -23,7 +23,6 @@ export default function OBBBAHouseholdExplorer() {
   const iframeUrl = useMemo(() => {
     const params = new URLSearchParams(searchParams);
     const url = params.toString() ? `${baseUrl}?${params.toString()}` : baseUrl;
-    console.log('OBBBA iframe URL:', url);
     return url;
   }, [baseUrl, searchParams]);
 
@@ -36,8 +35,6 @@ export default function OBBBAHouseholdExplorer() {
   // Handle scroll to household with multiple retry attempts
   const scrollToHousehold = useCallback((householdId, attempt = 1) => {
     if (!iframeRef.current?.contentWindow || !householdId) return;
-    
-    console.log(`Scroll attempt ${attempt} for household:`, householdId);
     
     // Send scroll request to iframe
     iframeRef.current.contentWindow.postMessage({
@@ -69,8 +66,6 @@ export default function OBBBAHouseholdExplorer() {
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.origin !== iframeOrigin) return;
-
-      console.log('Received message:', event.data);
 
       switch (event.data?.type) {
         case 'requestUrlParams':
@@ -123,7 +118,6 @@ export default function OBBBAHouseholdExplorer() {
 
   // Handle iframe load
   const handleIframeLoad = () => {
-    console.log('Iframe loaded');
     // Give iframe time to initialize
     setTimeout(() => {
       // Send initial params in case iframe didn't request them
