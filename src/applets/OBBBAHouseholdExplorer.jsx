@@ -12,10 +12,10 @@ export default function OBBBAHouseholdExplorer() {
   const iframeRef = useRef(null);
   const [iframeReady, setIframeReady] = useState(false);
   const scrollTimeoutsRef = useRef([]);
-  
+
   // Get the household ID from URL params
-  const householdId = searchParams.get('household');
-  
+  const householdId = searchParams.get("household");
+
   const baseUrl = "https://policyengine.github.io/obbba-scatter";
   const iframeOrigin = new URL(baseUrl).origin;
 
@@ -28,55 +28,67 @@ export default function OBBBAHouseholdExplorer() {
 
   // Clear any pending scroll timeouts
   const clearScrollTimeouts = useCallback(() => {
-    scrollTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    scrollTimeoutsRef.current.forEach((timeout) => clearTimeout(timeout));
     scrollTimeoutsRef.current = [];
   }, []);
 
   // Handle scroll to household with multiple retry attempts
-  const scrollToHousehold = useCallback((householdId, attempt = 1) => {
-    if (!iframeRef.current?.contentWindow || !householdId) return;
-    
-    // Send scroll request to iframe
-    iframeRef.current.contentWindow.postMessage({
-      type: 'scrollToHousehold',
-      householdId: householdId
-    }, iframeOrigin);
+  const scrollToHousehold = useCallback(
+    (householdId, attempt = 1) => {
+      if (!iframeRef.current?.contentWindow || !householdId) return;
 
-    // Also try alternative scroll methods
-    if (attempt === 1) {
-      // Try scrolling to section after a delay
-      const timeout1 = setTimeout(() => {
-        iframeRef.current?.contentWindow?.postMessage({
-          type: 'scrollToSection',
-          section: 'lower-income'
-        }, iframeOrigin);
-      }, 500);
-      scrollTimeoutsRef.current.push(timeout1);
-    }
+      // Send scroll request to iframe
+      iframeRef.current.contentWindow.postMessage(
+        {
+          type: "scrollToHousehold",
+          householdId: householdId,
+        },
+        iframeOrigin,
+      );
 
-    // Schedule retry attempts
-    if (attempt < 3) {
-      const timeout2 = setTimeout(() => {
-        scrollToHousehold(householdId, attempt + 1);
-      }, attempt * 2000); // Exponential backoff: 2s, 4s
-      scrollTimeoutsRef.current.push(timeout2);
-    }
-  }, [iframeOrigin]);
+      // Also try alternative scroll methods
+      if (attempt === 1) {
+        // Try scrolling to section after a delay
+        const timeout1 = setTimeout(() => {
+          iframeRef.current?.contentWindow?.postMessage(
+            {
+              type: "scrollToSection",
+              section: "lower-income",
+            },
+            iframeOrigin,
+          );
+        }, 500);
+        scrollTimeoutsRef.current.push(timeout1);
+      }
+
+      // Schedule retry attempts
+      if (attempt < 3) {
+        const timeout2 = setTimeout(() => {
+          scrollToHousehold(householdId, attempt + 1);
+        }, attempt * 2000); // Exponential backoff: 2s, 4s
+        scrollTimeoutsRef.current.push(timeout2);
+      }
+    },
+    [iframeOrigin],
+  );
 
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.origin !== iframeOrigin) return;
 
       switch (event.data?.type) {
-        case 'requestUrlParams':
-        case 'iframeReady':
+        case "requestUrlParams":
+        case "iframeReady":
           setIframeReady(true);
           // Send params to iframe
-          iframeRef.current?.contentWindow?.postMessage({
-            type: 'urlParams',
-            params: Object.fromEntries(searchParams)
-          }, iframeOrigin);
-          
+          iframeRef.current?.contentWindow?.postMessage(
+            {
+              type: "urlParams",
+              params: Object.fromEntries(searchParams),
+            },
+            iframeOrigin,
+          );
+
           // Start scroll attempts if we have a household ID
           if (householdId) {
             clearScrollTimeouts();
@@ -87,8 +99,8 @@ export default function OBBBAHouseholdExplorer() {
             scrollTimeoutsRef.current.push(timeout);
           }
           break;
-          
-        case 'urlUpdate':
+
+        case "urlUpdate":
           // If iframe signals it has updated with params, try scrolling
           if (householdId && event.data?.params) {
             clearScrollTimeouts();
@@ -98,8 +110,8 @@ export default function OBBBAHouseholdExplorer() {
             scrollTimeoutsRef.current.push(timeout);
           }
           break;
-          
-        case 'dataLoaded':
+
+        case "dataLoaded":
           // Final scroll attempt when data is fully loaded
           if (householdId) {
             clearScrollTimeouts();
@@ -114,18 +126,27 @@ export default function OBBBAHouseholdExplorer() {
       window.removeEventListener("message", handleMessage);
       clearScrollTimeouts();
     };
-  }, [iframeOrigin, searchParams, householdId, scrollToHousehold, clearScrollTimeouts]);
+  }, [
+    iframeOrigin,
+    searchParams,
+    householdId,
+    scrollToHousehold,
+    clearScrollTimeouts,
+  ]);
 
   // Handle iframe load
   const handleIframeLoad = () => {
     // Give iframe time to initialize
     setTimeout(() => {
       // Send initial params in case iframe didn't request them
-      iframeRef.current?.contentWindow?.postMessage({
-        type: 'urlParams',
-        params: Object.fromEntries(searchParams)
-      }, iframeOrigin);
-      
+      iframeRef.current?.contentWindow?.postMessage(
+        {
+          type: "urlParams",
+          params: Object.fromEntries(searchParams),
+        },
+        iframeOrigin,
+      );
+
       // If we still haven't marked iframe as ready, try scrolling anyway
       if (!iframeReady && householdId) {
         const timeout = setTimeout(() => {

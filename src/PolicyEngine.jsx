@@ -99,9 +99,11 @@ function StandaloneRouteWrapper({ children }) {
 export default function PolicyEngine() {
   // Check if we're on a standalone route before doing anything else
   const location = useLocation();
-  const standaloneRoutes = ['/us/obbba-household-explorer'];
-  const isStandaloneRoute = standaloneRoutes.some(route => location.pathname.startsWith(route));
-  
+  const standaloneRoutes = ["/us/obbba-household-explorer"];
+  const isStandaloneRoute = standaloneRoutes.some((route) =>
+    location.pathname.startsWith(route),
+  );
+
   // This will either return the country ID or null,
   // but the page is guaranteed to redirect to an ID
   const countryId = isStandaloneRoute ? null : extractCountryId();
@@ -158,7 +160,7 @@ export default function PolicyEngine() {
     if (isStandaloneRoute) {
       return;
     }
-    
+
     // If we're accessing the page without a country ID,
     // our router will handle redirecting to a country ID;
     // this process is guaranteed, thus we will just not fetch
@@ -191,7 +193,7 @@ export default function PolicyEngine() {
   // Get the baseline policy data when the baseline policy ID changes.
   useEffect(() => {
     if (isStandaloneRoute || !metadata) return;
-    
+
     countryApiCall(countryId, `/policy/${baselinePolicyId}`)
       .then((res) => wrappedResponseJson(res))
       .then((dataHolder) => {
@@ -209,7 +211,7 @@ export default function PolicyEngine() {
   // Get the reform policy data when the reform policy ID changes.
   useEffect(() => {
     if (isStandaloneRoute || !metadata) return;
-    
+
     countryApiCall(countryId, `/policy/${reformPolicyId}`)
       .then((res) => wrappedResponseJson(res))
       .then((dataHolder) => {
@@ -226,7 +228,7 @@ export default function PolicyEngine() {
 
   useEffect(() => {
     if (isStandaloneRoute) return;
-    
+
     if (searchParams.get("renamed") && reformPolicyId) {
       countryApiCall(countryId, `/policy/${reformPolicyId}`)
         .then((res) => wrappedResponseJson(res))
@@ -248,7 +250,7 @@ export default function PolicyEngine() {
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
     if (isStandaloneRoute) return;
-    
+
     async function fetchUserProfile() {
       const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
@@ -299,7 +301,13 @@ export default function PolicyEngine() {
     if (countryId && isAuthenticated && user?.sub) {
       fetchUserProfile().then((userProfile) => setUserProfile(userProfile));
     }
-  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall, isStandaloneRoute]);
+  }, [
+    countryId,
+    user?.sub,
+    isAuthenticated,
+    authenticatedApiCall,
+    isStandaloneRoute,
+  ]);
 
   const loadingPage = (
     <>
