@@ -4,7 +4,6 @@ import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
 import { useEffect, useRef, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import config from "../config/environment";
 
 export default function OBBBAHouseholdExplorer() {
   const windowHeight = useWindowHeight();
@@ -13,7 +12,11 @@ export default function OBBBAHouseholdExplorer() {
   const iframeRef = useRef(null);
 
   // Memoize baseUrl to prevent unnecessary re-renders
-  const baseUrl = useMemo(() => config.OBBBA_IFRAME_URL, []);
+  // Hardcoding URL to bypass any build/environment issues
+  const baseUrl = useMemo(
+    () => "https://policyengine.github.io/obbba-scatter",
+    [],
+  );
 
   // Memoize iframe origin for efficient message verification
   const iframeOrigin = useMemo(() => new URL(baseUrl).origin, [baseUrl]);
@@ -25,6 +28,14 @@ export default function OBBBAHouseholdExplorer() {
   const iframeUrl = urlParams.toString()
     ? `${baseUrl}?${urlParams.toString()}`
     : baseUrl;
+
+  // Debug logging
+  console.log("OBBBA Explorer Debug:", {
+    baseUrl,
+    locationSearch: location.search,
+    urlParams: urlParams.toString(),
+    finalIframeUrl: iframeUrl,
+  });
 
   useEffect(() => {
     // Listen for messages from the iframe
