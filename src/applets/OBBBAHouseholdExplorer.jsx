@@ -10,9 +10,11 @@ export default function OBBBAHouseholdExplorer() {
   const navigate = useNavigate();
   const location = useLocation();
   const iframeRef = useRef(null);
-  
+
   // Capture initial URL parameters only on first render
-  const [initialUrlParams] = useState(() => new URLSearchParams(location.search));
+  const [initialUrlParams] = useState(
+    () => new URLSearchParams(location.search),
+  );
 
   // Memoize baseUrl to prevent unnecessary re-renders
   // Hardcoding URL to bypass any build/environment issues
@@ -54,7 +56,7 @@ export default function OBBBAHouseholdExplorer() {
         <title>OBBBA Household Explorer | PolicyEngine</title>
       </Helmet>
       <Header />
-      
+
       <div
         style={{
           display: "flex",

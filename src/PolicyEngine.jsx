@@ -80,7 +80,7 @@ export default function PolicyEngine() {
   // but the page is guaranteed to redirect to an ID
   const countryId = extractCountryId();
   const location = useLocation();
-  
+
   // Check if we're on the OBBBA route to skip metadata loading
   const isOBBBARoute = location.pathname === "/us/obbba-household-explorer";
 
@@ -134,7 +134,7 @@ export default function PolicyEngine() {
     if (isOBBBARoute) {
       return;
     }
-    
+
     // If we're accessing the page without a country ID,
     // our router will handle redirecting to a country ID;
     // this process is guaranteed, thus we will just not fetch
@@ -168,7 +168,7 @@ export default function PolicyEngine() {
   // Skip for OBBBA route
   useEffect(() => {
     if (isOBBBARoute || !metadata) return;
-    
+
     countryApiCall(countryId, `/policy/${baselinePolicyId}`)
       .then((res) => wrappedResponseJson(res))
       .then((dataHolder) => {
@@ -187,7 +187,7 @@ export default function PolicyEngine() {
   // Skip for OBBBA route
   useEffect(() => {
     if (isOBBBARoute || !metadata) return;
-    
+
     countryApiCall(countryId, `/policy/${reformPolicyId}`)
       .then((res) => wrappedResponseJson(res))
       .then((dataHolder) => {
@@ -204,7 +204,7 @@ export default function PolicyEngine() {
 
   useEffect(() => {
     if (isOBBBARoute || !searchParams.get("renamed") || !reformPolicyId) return;
-    
+
     countryApiCall(countryId, `/policy/${reformPolicyId}`)
       .then((res) => wrappedResponseJson(res))
       .then((dataHolder) => {
@@ -225,7 +225,7 @@ export default function PolicyEngine() {
   const { isAuthenticated, user } = useAuth0();
   useEffect(() => {
     if (isOBBBARoute) return;
-    
+
     async function fetchUserProfile() {
       const USER_PROFILE_PATH = `/${countryId}/user-profile`;
       // Determine if user already exists in user profile db
@@ -276,7 +276,13 @@ export default function PolicyEngine() {
     if (countryId && isAuthenticated && user?.sub) {
       fetchUserProfile().then((userProfile) => setUserProfile(userProfile));
     }
-  }, [countryId, user?.sub, isAuthenticated, authenticatedApiCall, isOBBBARoute]);
+  }, [
+    countryId,
+    user?.sub,
+    isAuthenticated,
+    authenticatedApiCall,
+    isOBBBARoute,
+  ]);
 
   const loadingPage = (
     <>
@@ -424,7 +430,10 @@ export default function PolicyEngine() {
           element={<US2024ElectionCalculator />}
         />
         <Route path="/us/salternative" element={<SALTernative />} />
-        <Route path="/us/obbba-household-explorer" element={<OBBBAHouseholdExplorer />} />
+        <Route
+          path="/us/obbba-household-explorer"
+          element={<OBBBAHouseholdExplorer />}
+        />
 
         {/* Redirect for unrecognized paths */}
         <Route path="*" element={<Navigate to={`/${countryId}`} />} />
