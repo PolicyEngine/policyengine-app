@@ -11,7 +11,8 @@ function getOBBBAIframeUrl() {
   const githubPagesUrl = "https://policyengine.github.io/obbba-scatter";
 
   // Always use the base GitHub Pages URL
-  // The obbba-scatter app is already served from the /obbba-scatter path
+  // GitHub Pages automatically serves the repository content from the /obbba-scatter base path.
+  // No additional path concatenation is needed.
   return githubPagesUrl;
 }
 
