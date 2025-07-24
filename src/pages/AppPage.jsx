@@ -3,28 +3,31 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import { apps } from "../apps/appTransformers";
 import { Helmet } from "react-helmet";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 
 export default function AppPage() {
   const { appName } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const iframeRef = useRef(null);
+  const [initialUrl, setInitialUrl] = useState(null);
 
   const app = apps.find((app) => app.slug === appName);
 
-  // Construct iframe URL with forwarded parameters
-  const iframeUrl = useMemo(() => {
-    if (!app) return null;
+  // Construct iframe URL only on initial load
+  useEffect(() => {
+    if (!app || initialUrl) return;
 
     const baseUrl = app.url;
     const separator = baseUrl.includes("?") ? "&" : "?";
     const urlParams = new URLSearchParams(location.search);
 
-    return urlParams.toString()
+    const url = urlParams.toString()
       ? `${baseUrl}${separator}${urlParams.toString()}`
       : baseUrl;
-  }, [app, location.search]);
+
+    setInitialUrl(url);
+  }, [app, location.search, initialUrl]);
 
   // Memoize iframe origin for message verification
   const iframeOrigin = useMemo(() => {
@@ -79,17 +82,19 @@ export default function AppPage() {
       </Helmet>
       <Header />
       <div style={{ height: "var(--app-content-height)" }}>
-        <iframe
-          ref={iframeRef}
-          src={iframeUrl}
-          style={{
-            width: "100%",
-            height: "100%",
-            border: "none",
-          }}
-          title={app.title}
-          aria-label={app.description}
-        />
+        {initialUrl && (
+          <iframe
+            ref={iframeRef}
+            src={initialUrl}
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+            title={app.title}
+            aria-label={app.description}
+          />
+        )}
       </div>
       <Footer />
     </>
