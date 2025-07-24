@@ -7,7 +7,7 @@ export default function OBBBAHouseholdBanner() {
   const dC = useDisplayCategory();
 
   const title =
-    "Explore PolicyEngine's coverage of " + "The One Big Beautiful Bill Act";
+    "Explore PolicyEngine's coverage of The One Big Beautiful Bill Act";
   const subtitle =
     "Use our new dashboard to explore the " +
     "household by household impacts of the One Big Beautiful Bill Act";
