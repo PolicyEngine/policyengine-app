@@ -23,7 +23,6 @@ import {
   DownOutlined,
   DeploymentUnitOutlined,
   TeamOutlined,
-  UserAddOutlined,
   BankOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
