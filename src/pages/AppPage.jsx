@@ -17,17 +17,7 @@ export default function AppPage() {
   const iframeUrl = useMemo(() => {
     if (!app) return null;
 
-    let baseUrl = app.url;
-
-    // For OBBBA app in development, use localhost
-    if (
-      process.env.NODE_ENV === "development" &&
-      app.slug === "obbba-household-by-household" &&
-      baseUrl.includes("policyengine.github.io/obbba-scatter")
-    ) {
-      baseUrl = "http://localhost:3001";
-    }
-
+    const baseUrl = app.url;
     const separator = baseUrl.includes("?") ? "&" : "?";
     const urlParams = new URLSearchParams(location.search);
 
@@ -40,16 +30,7 @@ export default function AppPage() {
   const iframeOrigin = useMemo(() => {
     if (!app) return null;
     try {
-      // Use the same logic as iframeUrl for consistency
-      let baseUrl = app.url;
-      if (
-        process.env.NODE_ENV === "development" &&
-        app.slug === "obbba-household-by-household" &&
-        baseUrl.includes("policyengine.github.io/obbba-scatter")
-      ) {
-        baseUrl = "http://localhost:3001";
-      }
-      return new URL(baseUrl).origin;
+      return new URL(app.url).origin;
     } catch (e) {
       console.error("Invalid iframe URL:", app.url);
       return null;
