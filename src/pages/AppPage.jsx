@@ -17,11 +17,11 @@ export default function AppPage() {
   const isOBBBAApp = app?.slug === "obbba-household-by-household";
   const [initialUrl, setInitialUrl] = useState(null);
 
-  // Construct iframe URL with parameters (for OBBBA app only on initial load)
+  // Construct initial iframe URL with parameters
   useEffect(() => {
-    if (!app) return;
+    if (!app || initialUrl) return;
 
-    if (isOBBBAApp && !initialUrl) {
+    if (isOBBBAApp) {
       const baseUrl = app.url;
       const separator = baseUrl.includes("?") ? "&" : "?";
       const urlParams = new URLSearchParams(location.search);
@@ -31,11 +31,11 @@ export default function AppPage() {
         : baseUrl;
 
       setInitialUrl(url);
-    } else if (!isOBBBAApp) {
+    } else {
       // For non-OBBBA apps, just use the app URL
       setInitialUrl(app.url);
     }
-  }, [app, location.search, initialUrl, isOBBBAApp]);
+  }, [app, location.search, isOBBBAApp, initialUrl]);
 
   // Listen for messages from OBBBA iframe
   useEffect(() => {
@@ -48,8 +48,15 @@ export default function AppPage() {
 
         // Handle URL update messages from the iframe
         if (event.data?.type === "urlUpdate" && event.data?.params) {
+          console.log("Received urlUpdate from iframe:", event.data.params);
           const newParams = new URLSearchParams(event.data.params);
-          navigate(`${location.pathname}?${newParams.toString()}`, {
+          const newParamsString = newParams.toString();
+          console.log(
+            "Navigating to:",
+            `${location.pathname}?${newParamsString}`,
+          );
+
+          navigate(`${location.pathname}?${newParamsString}`, {
             replace: true,
           });
         }
