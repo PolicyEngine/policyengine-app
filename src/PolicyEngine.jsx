@@ -44,7 +44,6 @@ import style from "./style";
 import RedirectToCountry from "./routing/RedirectToCountry";
 import CountryIdLayout from "./routing/CountryIdLayout";
 import RedirectBlogPost from "./routing/RedirectBlogPost";
-import RedirectOBBBAHouseholdExplorer from "./routing/RedirectOBBBAHouseholdExplorer";
 import { StatusPage } from "./pages/StatusPage";
 import ManifestosComparison from "./applets/ManifestosComparison";
 import DeveloperLayout from "./pages/DeveloperLayout";
@@ -387,11 +386,6 @@ export default function PolicyEngine() {
           />
           {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
           <Route path="blog/:postName" element={<RedirectBlogPost />} />
-          {/* redirect from old obbba-household-explorer to obbba-household-by-household */}
-          <Route
-            path="obbba-household-explorer"
-            element={<RedirectOBBBAHouseholdExplorer />}
-          />
         </Route>
         <Route path="/uk/cec" element={<CitizensEconomicCouncil />} />
         <Route path="/uk/2024-manifestos" element={<ManifestosComparison />} />
