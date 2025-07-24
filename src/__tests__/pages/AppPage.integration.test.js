@@ -30,9 +30,10 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
   useLocation: () => ({
     pathname: "/us/obbba-household-by-household",
-    search: navigationHistory.length > 0 
-      ? navigationHistory[navigationHistory.length - 1].split("?")[1] || ""
-      : "?household=initial",
+    search:
+      navigationHistory.length > 0
+        ? navigationHistory[navigationHistory.length - 1].split("?")[1] || ""
+        : "?household=initial",
   }),
 }));
 
@@ -57,11 +58,11 @@ describe("AppPage Integration - One Behind Issue", () => {
 
   it("demonstrates the 'one behind' issue when iframe sends old state", async () => {
     const consoleSpy = jest.spyOn(console, "log").mockImplementation();
-    
+
     render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Simulate the problematic sequence where iframe sends old state
@@ -86,7 +87,7 @@ describe("AppPage Integration - One Behind Issue", () => {
     for (const step of sequence) {
       console.log(`\n--- Iframe shows: ${step.iframeCurrentState} ---`);
       console.log(`Iframe sends: ${step.iframeSendsState}`);
-      
+
       // Simulate iframe sending the OLD state
       const messageEvent = new MessageEvent("message", {
         data: {
@@ -101,29 +102,33 @@ describe("AppPage Integration - One Behind Issue", () => {
       });
 
       await waitFor(() => {
-        const lastCall = mockNavigate.mock.calls[mockNavigate.mock.calls.length - 1];
-        if (lastCall) {
-          const urlParams = lastCall[0].split("?")[1];
-          console.log(`Parent URL updated to: ${urlParams}`);
-          expect(urlParams).toBe(step.expectedParentUrl);
-        }
+        const lastCall =
+          mockNavigate.mock.calls[mockNavigate.mock.calls.length - 1];
+        expect(lastCall).toBeTruthy();
+        const urlParams = lastCall[0].split("?")[1];
+        console.log(`Parent URL updated to: ${urlParams}`);
+        expect(urlParams).toBe(step.expectedParentUrl);
       });
     }
 
     console.log("\n--- Summary ---");
-    console.log("The parent URL is always one step behind what the iframe displays!");
-    console.log("This happens because the iframe sends its OLD state before updating internally.");
+    console.log(
+      "The parent URL is always one step behind what the iframe displays!",
+    );
+    console.log(
+      "This happens because the iframe sends its OLD state before updating internally.",
+    );
 
     consoleSpy.mockRestore();
   });
 
   it("shows correct behavior when iframe sends current state", async () => {
     const consoleSpy = jest.spyOn(console, "log").mockImplementation();
-    
+
     render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Simulate the CORRECT sequence where iframe sends current state
@@ -143,7 +148,7 @@ describe("AppPage Integration - One Behind Issue", () => {
     for (const step of sequence) {
       console.log(`\n--- Iframe shows: ${step.iframeCurrentState} ---`);
       console.log(`Iframe sends: ${step.iframeSendsState}`);
-      
+
       const messageEvent = new MessageEvent("message", {
         data: {
           type: "urlUpdate",
@@ -157,12 +162,12 @@ describe("AppPage Integration - One Behind Issue", () => {
       });
 
       await waitFor(() => {
-        const lastCall = mockNavigate.mock.calls[mockNavigate.mock.calls.length - 1];
-        if (lastCall) {
-          const urlParams = lastCall[0].split("?")[1];
-          console.log(`Parent URL updated to: ${urlParams}`);
-          expect(urlParams).toBe(step.expectedParentUrl);
-        }
+        const lastCall =
+          mockNavigate.mock.calls[mockNavigate.mock.calls.length - 1];
+        expect(lastCall).toBeTruthy();
+        const urlParams = lastCall[0].split("?")[1];
+        console.log(`Parent URL updated to: ${urlParams}`);
+        expect(urlParams).toBe(step.expectedParentUrl);
       });
     }
 
@@ -176,19 +181,20 @@ describe("AppPage Integration - One Behind Issue", () => {
     render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Simulate what might be happening in the iframe
     const simulateIframeClick = async (newHousehold) => {
       // 1. User clicks on household
       console.log(`User clicks household: ${newHousehold}`);
-      
+
       // 2. Iframe might send message BEFORE updating its own state
-      const oldState = navigationHistory.length > 0 
-        ? navigationHistory[navigationHistory.length - 1].split("=")[1]
-        : "initial";
-      
+      const oldState =
+        navigationHistory.length > 0
+          ? navigationHistory[navigationHistory.length - 1].split("=")[1]
+          : "initial";
+
       const messageEvent = new MessageEvent("message", {
         data: {
           type: "urlUpdate",
@@ -198,26 +204,30 @@ describe("AppPage Integration - One Behind Issue", () => {
       });
 
       window.dispatchEvent(messageEvent);
-      
+
       // 3. Then iframe updates its own display
-      console.log(`Iframe now displays: ${newHousehold} (but parent got: ${oldState})`);
+      console.log(
+        `Iframe now displays: ${newHousehold} (but parent got: ${oldState})`,
+      );
     };
 
     // Simulate user interactions
     await simulateIframeClick("12345");
     await waitFor(() => expect(mockNavigate).toHaveBeenCalledTimes(1));
-    
+
     await simulateIframeClick("67890");
     await waitFor(() => expect(mockNavigate).toHaveBeenCalledTimes(2));
-    
+
     // Verify the "one behind" pattern
-    expect(mockNavigate).toHaveBeenNthCalledWith(1, 
-      "/us/obbba-household-by-household?household=initial", 
-      { replace: true }
+    expect(mockNavigate).toHaveBeenNthCalledWith(
+      1,
+      "/us/obbba-household-by-household?household=initial",
+      { replace: true },
     );
-    expect(mockNavigate).toHaveBeenNthCalledWith(2, 
+    expect(mockNavigate).toHaveBeenNthCalledWith(
+      2,
       "/us/obbba-household-by-household?household=initial", // Still showing first value!
-      { replace: true }
+      { replace: true },
     );
   });
 });

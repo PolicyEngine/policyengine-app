@@ -1,7 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter, useLocation } from "react-router-dom";
+import { render, waitFor } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import AppPage from "../../pages/AppPage";
-import { apps } from "../../apps/appTransformers";
 
 // Mock the apps data
 jest.mock("../../apps/appTransformers", () => ({
@@ -59,17 +58,17 @@ describe("AppPage", () => {
 
   it("renders the OBBBA iframe with URL parameters on initial load", () => {
     mockLocation.search = "?household=12345&baseline=current";
-    
+
     const { container } = render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const iframe = container.querySelector("iframe");
     expect(iframe).toBeTruthy();
     expect(iframe.src).toBe(
-      "https://policyengine.github.io/obbba-scatter?household=12345&baseline=current"
+      "https://policyengine.github.io/obbba-scatter?household=12345&baseline=current",
     );
   });
 
@@ -85,7 +84,7 @@ describe("AppPage", () => {
     const { container } = render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     const iframe = container.querySelector("iframe");
@@ -97,7 +96,7 @@ describe("AppPage", () => {
     const { container } = render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Wait for iframe to be rendered
@@ -120,7 +119,7 @@ describe("AppPage", () => {
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalledWith(
         "/us/obbba-household-by-household?household=67890&baseline=reform",
-        { replace: true }
+        { replace: true },
       );
     });
   });
@@ -129,7 +128,7 @@ describe("AppPage", () => {
     render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Simulate postMessage from wrong origin
@@ -151,7 +150,7 @@ describe("AppPage", () => {
     const { container } = render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Get initial iframe
@@ -185,7 +184,7 @@ describe("AppPage", () => {
     render(
       <BrowserRouter>
         <AppPage />
-      </BrowserRouter>
+      </BrowserRouter>,
     );
 
     // Simulate postMessage from iframe
@@ -202,11 +201,11 @@ describe("AppPage", () => {
     await waitFor(() => {
       expect(consoleSpy).toHaveBeenCalledWith(
         "Received urlUpdate from iframe:",
-        "household=67890&baseline=reform"
+        "household=67890&baseline=reform",
       );
       expect(consoleSpy).toHaveBeenCalledWith(
         "Navigating to:",
-        "/us/obbba-household-by-household?household=67890&baseline=reform"
+        "/us/obbba-household-by-household?household=67890&baseline=reform",
       );
     });
 
@@ -218,7 +217,7 @@ describe("AppPage", () => {
       render(
         <BrowserRouter>
           <AppPage />
-        </BrowserRouter>
+        </BrowserRouter>,
       );
 
       // Simulate rapid sequential messages
@@ -238,9 +237,9 @@ describe("AppPage", () => {
         });
 
         window.dispatchEvent(messageEvent);
-        
+
         // Small delay to simulate real-world timing
-        await new Promise(resolve => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 10));
       }
 
       // Check that navigate was called for each update
@@ -248,7 +247,7 @@ describe("AppPage", () => {
         expect(mockNavigate).toHaveBeenCalledTimes(3);
         expect(mockNavigate).toHaveBeenLastCalledWith(
           "/us/obbba-household-by-household?household=33333&baseline=current",
-          { replace: true }
+          { replace: true },
         );
       });
     });

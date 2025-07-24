@@ -48,13 +48,8 @@ export default function AppPage() {
 
         // Handle URL update messages from the iframe
         if (event.data?.type === "urlUpdate" && event.data?.params) {
-          console.log("Received urlUpdate from iframe:", event.data.params);
           const newParams = new URLSearchParams(event.data.params);
           const newParamsString = newParams.toString();
-          console.log(
-            "Navigating to:",
-            `${location.pathname}?${newParamsString}`,
-          );
 
           navigate(`${location.pathname}?${newParamsString}`, {
             replace: true,
