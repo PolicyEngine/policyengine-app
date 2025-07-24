@@ -6,16 +6,15 @@ import useDisplayCategory from "../../../hooks/useDisplayCategory";
 export default function OBBBAHouseholdBanner() {
   const dC = useDisplayCategory();
 
-  const title = "Explore PolicyEngine's coverage of OBBBA";
+  const title = "Explore PolicyEngine's coverage of " +
+  "The One Big Beautiful Bill Act";
   const subtitle =
-    "Use our new dashboard to estimate the " +
-    "household-level impacts of the One Big Beautiful Bill Act";
+    "Use our new dashboard to explore the " +
+    "household by household impacts of the One Big Beautiful Bill Act";
   const ctaText = "Explore OBBBA household impacts";
-  const ctaLink = "/us/obbba-household-explorer";
-  // const ctaLink = "/us/obbba-household-by-household";
+  const ctaLink = "/us/obbba-household-by-household";
   const ariaLabel =
-    "Illustration of the U.S. Capitol building, representing federal policy context for household impact analysis. ";
-  // "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
+    "Illustration of the U.S. Capitol building, representing federal policy context for household impact analysis.";
 
   if (dC === "mobile") {
     return (
