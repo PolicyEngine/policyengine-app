@@ -2,8 +2,15 @@
   {
     "title": "OBBBA household impact explorer",
     "description": "Interactive tool to explore household-level impacts of the One Big Beautiful Bill Act",
-    "url": "https://obbba-household-explorer.streamlit.app/",
+    "url": "https://obbba-household-explorer.streamlit.app/?embed=true",
     "slug": "obbba-household-explorer",
+    "tags": ["us", "featured", "policy"]
+  },
+  {
+    "title": "OBBBA household-by-household analysis",
+    "description": "Detailed household-by-household impact analysis of the One Big Beautiful Bill Act",
+    "url": "https://policyengine.github.io/obbba-scatter",
+    "slug": "obbba-household-by-household",
     "tags": ["us", "featured", "policy"]
   }
 ]
