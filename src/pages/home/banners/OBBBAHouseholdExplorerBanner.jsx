@@ -12,13 +12,10 @@ export default function OBBBAHouseholdBanner() {
     "household-level impacts of the One Big Beautiful Bill Act";
   const ctaText = "Explore OBBBA household impacts";
   const ctaLink = "/us/obbba-household-explorer";
+  // const ctaLink = "/us/obbba-household-by-household";
   const ariaLabel =
     "Illustration of the U.S. Capitol building, representing federal policy context for household impact analysis. ";
   // "Courtesy of Tim Mossholder, https://www.pexels.com/photo/flag-of-the-usa-on-a-pole-1709929/";
-
-  // const shouldUseShortTitle =
-  //   (dC !== "mobile" && windowWidth < 1150 && windowWidth >= 950) ||
-  //   (dC === "mobile" && windowWidth < 600);
 
   if (dC === "mobile") {
     return (
@@ -45,7 +42,8 @@ export default function OBBBAHouseholdBanner() {
             backgroundImage: `url(${finalReconciliationImg})`,
             backgroundBlendMode: "multiply",
             backgroundColor: style.colors.BLUE_LIGHT,
-            backgroundSize: "cover",
+            backgroundSize: "auto",
+            backgroundPosition: "top left",
             minHeight: "fit-content",
           }}
           role="img"
@@ -63,10 +61,20 @@ export default function OBBBAHouseholdBanner() {
               margin: "24px",
             }}
           >
-            <h3 style={{ color: style.colors.DARK_BLUE_HOVER }}>{title}</h3>
-            <p style={{ color: style.colors.DARK_BLUE_HOVER, fontWeight: 500 }}>
-              {subtitle}
-            </p>
+            <div
+              id="blurred-card-container"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.3)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                borderRadius: "8px",
+                padding: "16px",
+                display: "inline-block",
+              }}
+            >
+              <h3 style={{ color: style.colors.DARK_BLUE_HOVER }}>{title}</h3>
+              <p style={{ color: style.colors.DARK_BLUE_HOVER }}>{subtitle}</p>
+            </div>
             <LinkButton
               type="primary"
               text={ctaText}
@@ -132,8 +140,8 @@ export default function OBBBAHouseholdBanner() {
             backgroundBlendMode: "multiply",
             // Fallback
             backgroundColor: style.colors.BLUE_LIGHT,
-            backgroundSize: "cover",
-            backgroundPosition: "right top",
+            backgroundSize: "auto",
+            backgroundPosition: "top left",
             height: "min-content",
           }}
           role="img"
@@ -153,10 +161,20 @@ export default function OBBBAHouseholdBanner() {
               margin: "24px",
             }}
           >
-            <h3 style={{ color: style.colors.DARK_BLUE_HOVER }}>{title}</h3>
-            <p style={{ color: style.colors.DARK_BLUE_HOVER, fontWeight: 500 }}>
-              {subtitle}
-            </p>
+            <div
+              id="blurred-card-container"
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.3)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                borderRadius: "8px",
+                padding: "16px",
+                display: "inline-block",
+              }}
+            >
+              <h3 style={{ color: style.colors.DARK_BLUE_HOVER }}>{title}</h3>
+              <p style={{ color: style.colors.DARK_BLUE_HOVER }}>{subtitle}</p>
+            </div>
             <LinkButton
               type="primary"
               text={ctaText}
