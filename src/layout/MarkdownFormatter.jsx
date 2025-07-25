@@ -319,7 +319,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
               .props.children.find(
                 (child) => child?.props?.node.tagName === "a",
               ).props.node.properties.href;
-            value = footnoteLinkBack?.split("-").pop();
+            value = footnoteLinkBack?.split("-").pop() || "";
             validValue = /^-?\d+$/.test(value);
           } catch (e) {
             // Do nothing
