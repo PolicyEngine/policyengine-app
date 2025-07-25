@@ -369,7 +369,7 @@ export function MarkdownFormatter({ markdown, backgroundColor, dict, pSize }) {
           // If href=#user-content-fn-1, id should be user-content-fnref-1 and vice versa
           if (href.startsWith("#user-content-fn-")) {
             id = href.replace("#user-content-fn-", "user-content-fnref-");
-            footnoteNumber = parseInt(id?.split("-").pop());
+            footnoteNumber = parseInt(id?.split("-").pop() || "0");
           } else if (href.startsWith("#user-content-fnref-")) {
             id = href.replace("#user-content-fnref-", "user-content-fn-");
           } else {
