@@ -1,7 +1,6 @@
 import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
-import Jobs from "./pages/Jobs";
 import Supporters from "./pages/Supporters";
 import {
   Navigate,
@@ -299,7 +298,6 @@ export default function PolicyEngine() {
   // If the path is /, redirect to /[countryId]
   // If the path is /[countryId], render the homepage
   // If the path is /[countryId]/about, render the about page
-  // If the path is /[countryId]/jobs, render the jobs page
   // If the path is /[countryId]/research, render the research page
   // If the path is not recognized, redirect to /[countryId]
 
@@ -322,7 +320,6 @@ export default function PolicyEngine() {
         <Route path="/:countryId" element={<CountryIdLayout />}>
           <Route index={true} element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="jobs" element={<Jobs />} />
           <Route path="supporters" element={<Supporters />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />

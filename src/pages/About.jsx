@@ -5,13 +5,9 @@ import style from "../style/index.js";
 import PageHeader from "../layout/PageHeader.jsx";
 import { founders, staff, advisors } from "../data/staff.js";
 import useDisplayCategory from "../hooks/useDisplayCategory.js";
-import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 export default function About() {
-  const location = useLocation();
-  const pathParts = location.pathname.split("/");
-  const countryId = pathParts[1]; // Assumes the countryId is always the second segment in the path
 
   Object.keys(founders).map((founder) => {
     return founder;
@@ -27,16 +23,7 @@ export default function About() {
         <PageHeader title="Our people" backgroundColor={style.colors.BLUE_98}>
           <p style={{ margin: 0 }}>
             PolicyEngine&apos;s team leads a global movement of open-source
-            contributors.{" "}
-            <Link
-              to={`/${countryId}/jobs`}
-              style={{
-                color: style.colors.BLUE,
-                textDecoration: "underline",
-              }}
-            >
-              Learn about opportunities to join us.
-            </Link>
+            contributors.
           </p>
         </PageHeader>
         <Section>
