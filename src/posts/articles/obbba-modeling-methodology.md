@@ -39,6 +39,7 @@ PolicyEngine uses the Enhanced CPS as our primary data source. This dataset buil
 ### Tax data integration
 
 While we use the IRS Public Use File for certain tax modeling components, we note that:
+
 - Mortgage interest deduction remains imputed from the PUF without modification
 - We do not model estate tax or corporate tax provisions
 - Capital gains and dividend income follow SOI-calibrated fractions
@@ -58,6 +59,7 @@ These calibrated rates ensure our microsimulation produces aggregate impacts con
 ### Revenue calibration
 
 Our model projects federal revenue changes that align with CBO estimates:
+
 - Individual income tax provisions: -$3.8 trillion over 10 years
 - Coverage-related savings: +$1.02 trillion from Medicaid/CHIP reductions
 - Net fiscal impact: Approximately $3.0-4.1 trillion added to the debt
