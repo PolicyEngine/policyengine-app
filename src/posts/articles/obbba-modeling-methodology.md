@@ -8,15 +8,27 @@ PolicyEngine's OBBBA modeling captures the major tax provisions and benefit prog
 
 ### Tax provisions
 
-PolicyEngine models all major individual income tax provisions of the OBBBA:
+PolicyEngine models the OBBBA's comprehensive individual income tax changes, which go beyond a simple TCJA extension:
 
-- **TCJA extension**: Permanent extension of the 2017 Tax Cuts and Jobs Act individual tax rates (12%, 22%, 24%, 32%, 37%), increased standard deduction, and elimination of personal exemptions
-- **Child Tax Credit changes**: $2,000 base amount with $1,800 refundability cap for 2026, with new SSN requirements that restrict eligibility
+**Core rate and deduction changes**:
+- **Tax rates**: Permanent extension of TCJA rates (12%, 22%, 24%, 32%, 37%)
+- **Standard deduction**: Increased to $32,600 for joint filers in 2026 (higher than TCJA's $30,300)
+- **Personal exemptions**: Remain eliminated
+- **Alternative Minimum Tax**: Higher exemption amounts ($139,000 for joint filers) with modified phase-out rates
+- **Itemized deduction limitation**: New limitations based on income levels, replacing the previous Pease limitation
+
+**Credit modifications**:
+- **Child Tax Credit**: $2,200 base amount with $1,700 refundability cap for 2026 (not $1,800 as in TCJA), rising to $1,800 in 2027-2028, with new SSN requirements
 - **Senior standard deduction**: Additional $6,000 deduction for taxpayers age 65 and over (2025-2028)
-- **Tips and overtime exemptions**: Exemption of up to $25,000 of tip income and overtime wages from income tax (2025-2028)
-- **Auto loan interest deduction**: Deduction of up to $10,000 of interest on qualifying vehicle loans (2025-2028)
-- **SALT deduction changes**: Increase in the state and local tax deduction cap to $40,000 for taxpayers earning under $500,000 (reverting to $10,000 after 5 years)
-- **Qualified Business Income Deduction**: Increased from 20% to 23% with modified phase-out thresholds
+- **Child and Dependent Care Credit**: Enhanced maximum credit and two-tier phase-down structure
+
+**New deductions and exemptions**:
+- **Tips and overtime**: Exemption of up to $25,000 of tip income and overtime wages from income tax (2025-2028), phasing out at higher incomes
+- **Auto loan interest**: Deduction of up to $10,000 of interest on qualifying vehicle loans (2025-2028)
+- **SALT deduction**: Increased cap to $40,000 for taxpayers earning under $500,000, reverting to $10,000 in 2030
+
+**Business provisions**:
+- **Qualified Business Income Deduction**: Maintained at 20% (not increased to 23%) with minimum $400 deduction for qualifying businesses
 
 ### Benefit program changes
 
