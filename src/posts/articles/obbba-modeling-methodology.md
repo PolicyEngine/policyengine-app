@@ -48,13 +48,15 @@ While we use the IRS Public Use File for certain tax modeling components, we not
 
 ### Program take-up rates
 
-PolicyEngine calibrates benefit program take-up rates to match CBO's coverage loss projections:
+PolicyEngine's approach to modeling OBBBA's coverage impacts involves adjusting program take-up rates from their baseline values:
 
-- **SNAP take-up**: 77.5% (2026-2028) to align with projected enrollment reductions
-- **Medicaid take-up**: 92.0% (2026-2028) to match CBO's 10.5 million coverage loss estimate
-- **ACA take-up**: 65.5% (2026-2028) reflecting marketplace enrollment changes
+| Program | Baseline Take-up | OBBBA Take-up (2026-2028) | Change |
+|---------|-----------------|---------------------------|---------|
+| SNAP | 82.0% | 77.5% | -4.5pp |
+| Medicaid | 93.0% | 92.0% | -1.0pp |
+| ACA | 67.2% | 65.5% | -1.7pp |
 
-These calibrated rates ensure our microsimulation produces aggregate impacts consistent with official estimates while maintaining household-level accuracy.
+These adjustments reflect CBO's projected coverage losses due to work requirements and administrative changes. However, the actual impact on enrollment is more complex than these raw percentages suggest. PolicyEngine first calibrates household weights to match baseline program enrollment, then applies the adjusted take-up rates. This two-stage process means the effective enrollment changes may differ from the simple percentage point differences shown above, but produces aggregate impacts consistent with CBO's estimates of 10.5 million Medicaid coverage losses and corresponding SNAP enrollment reductions.
 
 ### Alignment with projections
 
