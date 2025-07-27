@@ -58,7 +58,7 @@ These calibrated rates ensure our microsimulation produces aggregate impacts con
 
 ### Alignment with projections
 
-PolicyEngine's modeling focuses on the individual income tax provisions and their interactions with benefit programs. Our analysis of the reconciliation bill's tax provisions projects a $3.8 trillion reduction in federal revenues from 2026 to 2035 compared to current law.
+PolicyEngine's modeling focuses on the individual income tax provisions and their interactions with benefit programs. Our [analysis of the reconciliation bill's tax provisions](https://policyengine.org/us/research/final-2025-reconciliation-tax) projects a $3.8 trillion reduction in federal revenues from 2026 to 2035 compared to current law.
 
 While we model the eligibility changes for programs like Medicaid and SNAP through our calibrated take-up rates, we do not directly model the full fiscal impact of coverage losses. The Congressional Budget Office has separately estimated that the OBBBA will reduce federal spending on Medicaid and CHIP by approximately $1 trillion through coverage reductions.
 
