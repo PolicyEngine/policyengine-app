@@ -89,7 +89,7 @@ The OBBBA reforms are implemented across PolicyEngine's infrastructure:
 
 - **Parameter files**: Located in `policyengine_us/parameters/gov/contrib/reconciliation/`
 - **Reform definitions**: Consolidated in `obbba-scatter/data/reforms.py`
-- **Visualization**: Interactive household-by-household calculator at [policyengine.org/us/research/obbba-scatter](/us/research/obbba-scatter)
+- **Visualization**: Interactive [household-by-household calculator](/us/research/obbba-scatter)
 
 ## Conclusion
 
