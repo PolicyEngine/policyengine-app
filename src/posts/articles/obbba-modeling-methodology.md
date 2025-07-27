@@ -11,23 +11,27 @@ PolicyEngine's OBBBA modeling captures the major tax provisions and benefit prog
 PolicyEngine models the OBBBA's comprehensive individual income tax changes, which go beyond a simple TCJA extension:
 
 **Core rate and deduction changes**:
+
 - **Tax rates**: Permanent extension of TCJA rates (12%, 22%, 24%, 32%, 37%)
 - **Standard deduction**: Increased to $32,600 for joint filers in 2026 (higher than TCJA's $30,300)
 - **Personal exemptions**: Remain eliminated
 - **Alternative Minimum Tax**: Higher exemption amounts ($139,000 for joint filers) with modified phase-out rates
-- **Itemized deduction limitation**: New limitations based on income levels, replacing the previous Pease limitation
+- **Itemized deduction limitation**: New income-based limitations on itemized deductions (Pease limitation was repealed by TCJA)
 
 **Credit modifications**:
+
 - **Child Tax Credit**: $2,200 base amount with $1,700 refundability cap for 2026 (not $1,800 as in TCJA), rising to $1,800 in 2027-2028, with new SSN requirements
 - **Senior standard deduction**: Additional $6,000 deduction for taxpayers age 65 and over (2025-2028)
 - **Child and Dependent Care Credit**: Enhanced maximum credit and two-tier phase-down structure
 
 **New deductions and exemptions**:
+
 - **Tips and overtime**: Exemption of up to $25,000 of tip income and overtime wages from income tax (2025-2028), phasing out at higher incomes
 - **Auto loan interest**: Deduction of up to $10,000 of interest on qualifying vehicle loans (2025-2028)
 - **SALT deduction**: Increased cap to $40,000 for taxpayers earning under $500,000, reverting to $10,000 in 2030
 
 **Business provisions**:
+
 - **Qualified Business Income Deduction**: Maintained at 20% (not increased to 23%) with minimum $400 deduction for qualifying businesses
 
 ### Benefit program changes
@@ -37,6 +41,29 @@ The OBBBA implements significant changes to safety net programs:
 - **Medicaid work requirements**: Adults eligible through ACA expansion must meet work and reporting requirements
 - **SNAP work requirements**: Enhanced requirements for able-bodied adults without dependents
 - **ACA premium tax credit changes**: Non-extension of enhanced subsidies that were set to expire
+
+## Comprehensive modeling approach
+
+### State and local tax integration
+
+PolicyEngine maintains a complete model of state and local income taxes for all 50 states and DC. This enables:
+
+- **Accurate SALT deduction calculations**: Our state tax models calculate the exact state and local tax liabilities that feed into the federal SALT deduction
+- **Mechanical effects on state taxes**: Many states begin with federal adjusted gross income or taxable income as their starting point. The OBBBA's new deductions (tips, overtime, auto loan interest) automatically flow through to reduce state tax liabilities in these states
+- **Interaction effects**: Changes to federal itemized deductions affect state taxes in states that conform to federal itemization rules
+
+### Integrated benefit program modeling
+
+PolicyEngine models the complete rules for major benefit programs, not just their take-up rates:
+
+- **SNAP**: Full eligibility determination based on income, assets, household composition, and work requirements
+- **Medicaid/CHIP**: State-specific eligibility pathways including expansion status, income limits, and categorical eligibility
+- **ACA subsidies**: Premium tax credit calculations based on income, family size, and local benchmark premiums
+
+This integrated approach captures important interactions:
+- Federal tax changes affect modified adjusted gross income (MAGI) used for ACA and Medicaid eligibility
+- Work requirements interact with existing categorical eligibility rules
+- Benefit cliffs and phase-outs combine with tax provisions to create complex marginal rate effects
 
 ## Data sources
 
