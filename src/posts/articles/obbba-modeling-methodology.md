@@ -61,6 +61,7 @@ PolicyEngine models the complete rules for major benefit programs, not just thei
 - **ACA subsidies**: Premium tax credit calculations based on income, family size, and local benchmark premiums
 
 This integrated approach captures important interactions:
+
 - Federal tax changes affect modified adjusted gross income (MAGI) used for ACA and Medicaid eligibility
 - Work requirements interact with existing categorical eligibility rules
 - Benefit cliffs and phase-outs combine with tax provisions to create complex marginal rate effects
@@ -71,25 +72,29 @@ This integrated approach captures important interactions:
 
 PolicyEngine uses the Enhanced CPS as our primary data source. This dataset builds on the Census Bureau's Current Population Survey through several imputation models:
 
-**Tip income imputation**: We train a quantile random forest model on the Survey of Income and Program Participation (SIPP), which contains employer-reported tip income. The model uses:
+**Tip income imputation**: We train a quantile random forest model on the Survey of Income and Program Participation (SIPP), which contains employer-reported tip income.[^2] The model uses:
+
 - Employment income
 - Age
 - Number of children under 18
 - Number of children under 6
 
-**Overtime income**: We calculate overtime premiums using:
+**Overtime income**: We calculate overtime premiums using:[^3]
+
 - Hours worked per week from CPS
 - Occupation codes to determine Fair Labor Standards Act exemption status
 - Base employment income to derive hourly rates
 - Standard time-and-a-half (1.5x) premium for hours over 40
 
-**Auto loan interest**: We impute from the Survey of Consumer Finances using predictors:
+**Auto loan interest**: We impute from the Survey of Consumer Finances using predictors:[^4]
+
 - Age and state
 - Household size and number of children
 - Employment, interest/dividend, and Social Security/pension income
 - The model imputes net worth, auto loan balance, and auto loan interest simultaneously
 
-**Immigration status**: We implement the [ASEC Undocumented Algorithm (Ryan 2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4662801), which uses a process-of-elimination approach. The algorithm examines 14 conditions including:
+**Immigration status**: We implement the [ASEC Undocumented Algorithm (Ryan 2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4662801), which uses a process-of-elimination approach.[^5] The algorithm examines 14 conditions including:
+
 - Arrival year (pre-1982 for IRCA amnesty eligibility)
 - Receipt of federal programs (Medicare, Social Security, SSI)
 - Government employment or military service
@@ -111,8 +116,8 @@ While we use the IRS Public Use File for certain tax modeling components, we not
 
 PolicyEngine's approach to modeling OBBBA's coverage impacts involves adjusting program take-up rates from their baseline values:
 
-| Program | Baseline Take-up | OBBBA Take-up (2026-2028) | Change |
-|---------|-----------------|---------------------------|---------|
+| Program | Baseline Take-up[^6] | OBBBA Take-up (2026-2028)[^7] | Change |
+|---------|---------------------|-------------------------------|---------|
 | SNAP | 82.0% | 77.5% | -4.5pp |
 | Medicaid | 93.0% | 92.0% | -1.0pp |
 | ACA | 67.2% | 65.5% | -1.7pp |
@@ -123,7 +128,7 @@ These adjustments reflect CBO's projected coverage losses due to work requiremen
 
 PolicyEngine's modeling focuses on the individual income tax provisions and their interactions with benefit programs. Our [analysis of the reconciliation bill's tax provisions](/us/research/final-2025-reconciliation-tax) projects a $3.8 trillion reduction in federal revenues from 2026 to 2035 compared to current law.
 
-While we model the eligibility changes for programs like Medicaid and SNAP through our calibrated take-up rates, we do not directly model the full fiscal impact of coverage losses. The Congressional Budget Office has separately estimated that the OBBBA will reduce federal spending on Medicaid and CHIP by approximately $1 trillion through coverage reductions.
+While we model the eligibility changes for programs like Medicaid and SNAP through our calibrated take-up rates, we do not directly model the full fiscal impact of coverage losses. The Congressional Budget Office has separately estimated that the OBBBA will reduce federal spending on Medicaid and CHIP by $1.02 trillion through coverage reductions.[^1]
 
 ## Modeling limitations
 
@@ -148,8 +153,8 @@ We validate our modeling through several approaches:
 
 The OBBBA reforms are implemented across PolicyEngine's infrastructure:
 
-- **Parameter files**: Located in `policyengine_us/parameters/gov/contrib/reconciliation/`
-- **Reform definitions**: Consolidated in `obbba-scatter/data/reforms.py`
+- **Parameter files**: Located in [`policyengine_us/parameters/gov/contrib/reconciliation/`](https://github.com/PolicyEngine/policyengine-us/tree/master/policyengine_us/parameters/gov/contrib/reconciliation)
+- **Reform definitions**: Consolidated in [`obbba-scatter/data/reforms.py`](https://github.com/PolicyEngine/obbba-scatter/blob/main/data/reforms.py)
 - **Visualization**: Interactive [household-by-household calculator](/us/research/obbba-scatter)
 
 ## Conclusion
@@ -157,3 +162,19 @@ The OBBBA reforms are implemented across PolicyEngine's infrastructure:
 PolicyEngine's OBBBA modeling provides comprehensive analysis of the law's major provisions while acknowledging areas where data or scope limitations prevent full modeling. By calibrating to CBO projections while maintaining detailed household-level simulation, we offer both accuracy and transparency in understanding this landmark legislation's impacts.
 
 For researchers and policymakers seeking to understand specific provisions or household impacts, our open-source implementation allows full inspection of modeling choices and assumptions. We continue to refine our modeling as new data and analyses become available.
+
+---
+
+[^1]: Center for American Progress, ["The Truth About the One Big Beautiful Bill Act's Cuts to Medicaid and Medicare"](https://www.americanprogress.org/article/the-truth-about-the-one-big-beautiful-bill-acts-cuts-to-medicaid-and-medicare/), July 2025. See also KFF's [state-by-state allocation](https://www.kff.org/medicaid/issue-brief/allocating-cbos-estimates-of-federal-medicaid-spending-reductions-across-the-states-enacted-reconciliation-package/) of CBO's estimates.
+
+[^2]: Implementation in [`policyengine_us_data/datasets/sipp/sipp.py`](https://github.com/PolicyEngine/policyengine-us-data/blob/master/policyengine_us_data/datasets/sipp/sipp.py#L39-L71) and [`policyengine_us_data/datasets/cps/cps.py`](https://github.com/PolicyEngine/policyengine-us-data/blob/master/policyengine_us_data/datasets/cps/cps.py#L1219-L1233).
+
+[^3]: Overtime calculation in [`policyengine_us/variables/household/income/person/fsla_overtime_premium.py`](https://github.com/PolicyEngine/policyengine-us/blob/master/policyengine_us/variables/household/income/person/fsla_overtime_premium.py) and occupation mapping in [`policyengine_us_data/datasets/cps/cps.py`](https://github.com/PolicyEngine/policyengine-us-data/blob/master/policyengine_us_data/datasets/cps/cps.py#L1236-L1273).
+
+[^4]: Auto loan imputation in [`policyengine_us_data/datasets/cps/cps.py`](https://github.com/PolicyEngine/policyengine-us-data/blob/master/policyengine_us_data/datasets/cps/cps.py#L1275-L1356).
+
+[^5]: Full SSN status imputation implementation in [`policyengine_us_data/datasets/cps/cps.py`](https://github.com/PolicyEngine/policyengine-us-data/blob/master/policyengine_us_data/datasets/cps/cps.py#L1407-L1686) and detailed documentation in the [SSN statuses imputation notebook](https://github.com/PolicyEngine/policyengine-us-data/blob/master/docs/SSN_statuses_imputation.ipynb).
+
+[^6]: Baseline take-up rates from PolicyEngine parameters: [SNAP](https://github.com/PolicyEngine/policyengine-us/blob/master/policyengine_us/parameters/gov/usda/snap/takeup_rate.yaml), [Medicaid](https://github.com/PolicyEngine/policyengine-us/blob/master/policyengine_us/parameters/gov/hhs/medicaid/takeup_rate.yaml), [ACA](https://github.com/PolicyEngine/policyengine-us/blob/master/policyengine_us/parameters/gov/aca/takeup_rate.yaml).
+
+[^7]: OBBBA take-up adjustments in [`obbba-scatter/data/reforms.py`](https://github.com/PolicyEngine/obbba-scatter/blob/main/data/reforms.py#L535-L570).
