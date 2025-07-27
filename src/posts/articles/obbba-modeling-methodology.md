@@ -69,11 +69,33 @@ This integrated approach captures important interactions:
 
 ### Enhanced Current Population Survey
 
-PolicyEngine uses the Enhanced CPS as our primary data source. This dataset builds on the Census Bureau's Current Population Survey by:
+PolicyEngine uses the Enhanced CPS as our primary data source. This dataset builds on the Census Bureau's Current Population Survey through several imputation models:
 
-- **Income imputation**: We impute tip income using a quantile random forest model trained on the Survey of Income and Program Participation (SIPP), which contains detailed tip income data from employer reports
-- **Overtime income**: We calculate overtime premiums based on hours worked, occupation categories, and Fair Labor Standards Act eligibility
-- **Immigration status**: We implement the ASEC Undocumented Algorithm to impute SSN card types, critical for modeling CTC eligibility under the new SSN requirements
+**Tip income imputation**: We train a quantile random forest model on the Survey of Income and Program Participation (SIPP), which contains employer-reported tip income. The model uses:
+- Employment income
+- Age
+- Number of children under 18
+- Number of children under 6
+
+**Overtime income**: We calculate overtime premiums using:
+- Hours worked per week from CPS
+- Occupation codes to determine Fair Labor Standards Act exemption status
+- Base employment income to derive hourly rates
+- Standard time-and-a-half (1.5x) premium for hours over 40
+
+**Auto loan interest**: We impute from the Survey of Consumer Finances using predictors:
+- Age and state
+- Household size and number of children
+- Employment, interest/dividend, and Social Security/pension income
+- The model imputes net worth, auto loan balance, and auto loan interest simultaneously
+
+**Immigration status**: We implement the [ASEC Undocumented Algorithm (Ryan 2022)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4662801), which uses a process-of-elimination approach. The algorithm examines 14 conditions including:
+- Arrival year (pre-1982 for IRCA amnesty eligibility)
+- Receipt of federal programs (Medicare, Social Security, SSI)
+- Government employment or military service
+- Other legal status indicators
+
+Those not meeting any condition are assigned SSN card type "NONE" (likely undocumented), calibrated to match external estimates (13 million for 2024-2025)
 
 ### Tax data integration
 
