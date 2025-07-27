@@ -1,5 +1,14 @@
 [
   {
+    "title": "How PolicyEngine models the One Big Beautiful Bill Act",
+    "description": "A technical guide to our OBBBA modeling methodology, including policy rules, data sources, and calibration to CBO projections.",
+    "date": "2025-07-27",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "obbba-modeling-methodology.md",
+    "image": "obbba-modeling-methodology.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "Analysis of individual income tax provisions in the final reconciliation bill",
     "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
     "date": "2025-07-04",
