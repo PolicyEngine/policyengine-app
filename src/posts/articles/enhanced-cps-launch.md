@@ -23,6 +23,7 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 **Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that streamlines our quantile regression forest models for data integration. This package makes our imputation methodology more transparent and reusable.
 
 **Enhanced validation**: Our calibration now targets over 100 administrative totals, ensuring the Enhanced CPS accurately represents:
+
 - Income components by source
 - Benefit program enrollment
 - Demographic distributions
@@ -35,6 +36,7 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 With support from Arnold Ventures, we're extending the Enhanced CPS to provide accurate estimates for every state and congressional district. This follows our successful implementation of local-area microsimulation in the UK, funded by the Nuffield Foundation.
 
 Once complete, PolicyEngine users will be able to analyze the impacts of federal and state policy reforms on:
+
 - Poverty rates by state and congressional district
 - Income inequality measures for local areas
 - Winners and losers from reforms in specific districts
@@ -43,6 +45,7 @@ Once complete, PolicyEngine users will be able to analyze the impacts of federal
 ### Microcalibrate package
 
 We're developing [`microcalibrate`](https://github.com/PolicyEngine/microcalibrate), a next-generation reweighting package that will replace our current gradient descent approach. This package will offer:
+
 - Faster convergence to calibration targets
 - Better preservation of the original survey's covariance structure
 - More flexible loss functions for different use cases
@@ -51,6 +54,7 @@ We're developing [`microcalibrate`](https://github.com/PolicyEngine/microcalibra
 ### Additional data integration
 
 Future versions will incorporate:
+
 - **Survey of Consumer Finances**: Comprehensive asset data for modeling asset limits in SNAP, SSI, and other programs
 - **Consumer Expenditure Survey**: Consumption patterns for modeling sales taxes, carbon pricing, and other consumption-based policies
 - **American Community Survey**: Detailed housing costs for improved modeling of housing assistance and state rental credits
@@ -61,7 +65,8 @@ The Enhanced CPS is now the default dataset for all PolicyEngine US analyses. Yo
 
 **Web interface**: The Enhanced CPS powers all calculations at [policyengine.org/us](https://policyengine.org/us)
 
-**Python package**: 
+**Python package**:
+
 ```python
 from policyengine_us import Microsimulation
 sim = Microsimulation(dataset="enhanced_cps_2025")
@@ -72,6 +77,7 @@ sim = Microsimulation(dataset="enhanced_cps_2025")
 ## Technical details
 
 For researchers interested in our methodology:
+
 - **Data integration**: [Microimpute documentation](https://github.com/PolicyEngine/microimpute)
 - **Calibration approach**: [Technical paper on survey enhancement](https://github.com/PolicyEngine/survey-enhance/blob/main/docs/paper/project_paper.pdf)
 - **Validation dashboard**: [Interactive calibration results](https://policyengine-calibration.streamlit.app/)
