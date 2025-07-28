@@ -22,7 +22,7 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 
 **Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that automates our imputation methods using quantile regression forests for data integration. This package makes our imputation methodology more transparent and reusable.
 
-**Enhanced validation**: Our calibration now targets thousands of administrative totals across income sources, demographics, and geography, ensuring the Enhanced CPS accurately represents:
+**Enhanced validation**: Our calibration now targets 9,168 administrative totals across income sources, demographics, and geography, ensuring the Enhanced CPS accurately represents:
 
 - Income components by source
 - Benefit program enrollment
