@@ -20,9 +20,9 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 
 ### Technical infrastructure improvements
 
-**Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that streamlines our quantile regression forest models for data integration. This package makes our imputation methodology more transparent and reusable.
+**Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that automates our imputation methods using quantile regression forests for data integration. This package makes our imputation methodology more transparent and reusable.
 
-**Enhanced validation**: Our calibration now targets over 100 administrative totals, ensuring the Enhanced CPS accurately represents:
+**Enhanced validation**: Our calibration now targets thousands of administrative totals across income sources, demographics, and geography, ensuring the Enhanced CPS accurately represents:
 
 - Income components by source
 - Benefit program enrollment
@@ -33,7 +33,7 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 
 ### State and local calibration
 
-With support from Arnold Ventures, we're extending the Enhanced CPS to provide accurate estimates for every state and congressional district. This follows our successful implementation of local-area microsimulation in the UK, funded by the Nuffield Foundation.
+With support from [Arnold Ventures](https://www.arnoldventures.org/), we're extending the Enhanced CPS to provide accurate estimates for every state and congressional district. This follows our successful implementation of local-area microsimulation in the UK, funded by the [Nuffield Foundation](https://www.nuffieldfoundation.org/).
 
 Once complete, PolicyEngine users will be able to analyze the impacts of federal and state policy reforms on:
 
@@ -44,7 +44,7 @@ Once complete, PolicyEngine users will be able to analyze the impacts of federal
 
 ### Microcalibrate package
 
-We're developing [`microcalibrate`](https://github.com/PolicyEngine/microcalibrate), a next-generation reweighting package that will replace our current gradient descent approach. This package will offer:
+We're developing [`microcalibrate`](https://github.com/PolicyEngine/microcalibrate), a next-generation reweighting package that will enhance our current gradient descent approach. This package will offer:
 
 - Faster convergence to calibration targets
 - Better preservation of the original survey's covariance structure
@@ -72,7 +72,7 @@ from policyengine_us import Microsimulation
 sim = Microsimulation(dataset="enhanced_cps_2025")
 ```
 
-**Direct download**: Access the raw data files from our [GitHub releases](https://github.com/PolicyEngine/policyengine-us-data/releases)
+**Direct download**: For Python users, the data automatically downloads from our Hugging Face repository when you instantiate a simulation. The files are stored at [`hf://policyengine/policyengine-us-data`](https://huggingface.co/policyengine/policyengine-us-data)
 
 ## Technical details
 
@@ -80,7 +80,7 @@ For researchers interested in our methodology:
 
 - **Data integration**: [Microimpute documentation](https://github.com/PolicyEngine/microimpute)
 - **Calibration approach**: [Technical paper on survey enhancement](https://github.com/PolicyEngine/survey-enhance/blob/main/docs/paper/project_paper.pdf)
-- **Validation dashboard**: [Interactive calibration results](https://policyengine-calibration.streamlit.app/)
+- **Source code**: [Enhanced CPS implementation on GitHub](https://github.com/PolicyEngine/policyengine-us-data/tree/main/policyengine_us_data/datasets/cps)
 
 ## Conclusion
 

@@ -465,7 +465,8 @@ function DatasetSelector(props) {
   function confirmIsChecked(presentDataset) {
     // Define presentDataset value that activates check
     const checkValue = "enhanced_cps";
-    if (presentDataset === checkValue) {
+    // Default to Enhanced CPS if no dataset specified
+    if (!presentDataset || presentDataset === checkValue) {
       return true;
     }
     return false;
@@ -498,10 +499,12 @@ function DatasetSelector(props) {
 
     // Set params accordingly
     if (isChecked) {
-      newSearch.delete("dataset");
+      // When unchecking, explicitly set to non-enhanced dataset
+      newSearch.set("dataset", "cps");
       setIsChecked(false);
     } else {
-      newSearch.set("dataset", "enhanced_cps");
+      // When checking, delete dataset param (defaults to enhanced)
+      newSearch.delete("dataset");
       setIsChecked(true);
     }
     setSearchParams(newSearch);
@@ -522,7 +525,9 @@ function DatasetSelector(props) {
         size={displayCategory !== "mobile" && "small"}
         onChange={handleChange}
         disabled={!shouldEnableSlider(timePeriod)}
-        checked={presentDataset === "enhanced_cps" ? true : false}
+        checked={
+          !presentDataset || presentDataset === "enhanced_cps" ? true : false
+        }
       />
       <p
         style={{
@@ -532,7 +537,7 @@ function DatasetSelector(props) {
           cursor: !shouldEnableSlider(timePeriod) && "not-allowed",
         }}
       >
-        Use Enhanced CPS (beta)
+        Use Enhanced CPS
       </p>
       <Tooltip
         placement="topRight"
