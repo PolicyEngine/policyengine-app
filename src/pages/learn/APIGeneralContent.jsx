@@ -400,7 +400,10 @@ export function VariableParameterExplorer(props) {
   const { metadata } = props;
   const [query, setQuery] = useState("");
   const [selectedCardData, setSelectedCardData] = useState(null);
+
   const [showAbolitions, setShowAbolitions] = useState(false);
+  const [showParameters, setShowParameters] = useState(true);
+  const [showVariables, setShowVariables] = useState(true);
 
   const [page, setPage] = useState(0);
 
@@ -444,11 +447,17 @@ export function VariableParameterExplorer(props) {
     .filter(filterByQuery)
     .map((v) => ({ ...v, type: "variable" }));
 
-  const allCards = [...parameterCards, ...variableCards].sort((a, b) => {
+  const filteredCards = [
+    ...(showParameters ? parameterCards : []),
+    ...(showVariables ? variableCards : []),
+  ];
+
+  const allCards = filteredCards.sort((a, b) => {
     const labelA = (a.label || a.name || "").toLowerCase();
     const labelB = (b.label || b.name || "").toLowerCase();
     return labelA.localeCompare(labelB);
   });
+
   const totalPages = Math.ceil(allCards.length / CARDS_PER_PAGE);
   const currentCards = allCards.slice(
     page * CARDS_PER_PAGE,
@@ -471,7 +480,7 @@ export function VariableParameterExplorer(props) {
           padding: "8px",
         }}
       />
-      <div style={{ marginBottom: 10 }}>
+      <div style={{ marginBottom: 10, display: "flex", gap: "20px" }}>
         <label style={{ fontSize: "14px", cursor: "pointer" }}>
           <input
             type="checkbox"
@@ -493,6 +502,32 @@ export function VariableParameterExplorer(props) {
               }}
             />
           </Tooltip>
+        </label>
+
+        <label style={{ fontSize: "14px", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={showParameters}
+            onChange={() => {
+              setShowParameters((prev) => !prev);
+              setPage(0);
+            }}
+            style={{ marginRight: 8 }}
+          />
+          Show parameters
+        </label>
+
+        <label style={{ fontSize: "14px", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={showVariables}
+            onChange={() => {
+              setShowVariables((prev) => !prev);
+              setPage(0);
+            }}
+            style={{ marginRight: 8 }}
+          />
+          Show variables
         </label>
       </div>
       <div

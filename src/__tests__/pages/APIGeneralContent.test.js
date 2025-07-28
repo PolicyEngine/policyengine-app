@@ -198,12 +198,37 @@ describe("VariableParameterExplorer", () => {
   it("shows abolition parameters when checkbox is checked", async () => {
     render(<VariableParameterExplorer metadata={mockMetadata} />);
 
-    const checkbox = screen.getByRole("checkbox");
-    fireEvent.click(checkbox);
+    const abolitionCheckbox = screen.getByLabelText(
+      /Show abolition parameters/i,
+    );
+    fireEvent.click(abolitionCheckbox);
 
     await waitFor(() => {
       expect(screen.getByText("Parameter One")).toBeInTheDocument();
       expect(screen.getByText("Parameter Two")).toBeInTheDocument();
+    });
+  });
+
+  it("renders parameter and variable toggles without crashing", () => {
+    render(<VariableParameterExplorer metadata={mockMetadata} />);
+
+    expect(screen.getByLabelText("Show parameters")).toBeInTheDocument();
+    expect(screen.getByLabelText("Show variables")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByLabelText("Show parameters"));
+    fireEvent.click(screen.getByLabelText("Show variables"));
+  });
+
+  it("still filters by search after toggle", async () => {
+    render(<VariableParameterExplorer metadata={mockMetadata} />);
+
+    fireEvent.change(
+      screen.getByPlaceholderText("Search parameters or variables"),
+      { target: { value: "Variable One" } },
+    );
+
+    await waitFor(() => {
+      expect(screen.getByText("Variable One")).toBeInTheDocument();
     });
   });
 
