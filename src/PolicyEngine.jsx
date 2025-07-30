@@ -59,6 +59,7 @@ import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
 import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
+import Jobs from "./pages/Jobs";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -320,6 +321,7 @@ export default function PolicyEngine() {
         <Route path="/:countryId" element={<CountryIdLayout />}>
           <Route index={true} element={<Home />} />
           <Route path="about" element={<About />} />
+          <Route path="jobs" element={<Jobs />} />
           <Route path="supporters" element={<Supporters />} />
           <Route path="testimonials" element={<Testimonials />} />
           <Route path="calculator" element={<CalculatorInterstitial />} />
