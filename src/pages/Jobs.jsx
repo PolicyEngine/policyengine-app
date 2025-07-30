@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Header from "../layout/Header";
+import React, { useEffect, useState } from "react";
 import Footer from "../layout/Footer";
+import Header from "../layout/Header";
+import { HoverBox } from "../layout/HoverBox";
+import PageHeader from "../layout/PageHeader";
 import Section from "../layout/Section";
 import style from "../style";
-import PageHeader from "../layout/PageHeader";
-import { HoverBox } from "../layout/HoverBox";
 
 function ApplyButton() {
   return (
@@ -154,21 +154,33 @@ export default function Jobs() {
           budgets, economic growth, poverty, and inequality.
         </p>
       </Section>
-      {fullTimePositions.length > 0 && (
+      {jobOpenings.length === 0 ? (
         <Section backgroundColor={style.colors.WHITE}>
-          <h2>Full-Time Positions</h2>
-          {fullTimePositions.map((position, index) =>
-            renderJobSection(position, index, true),
-          )}
+          <h2>Current Openings</h2>
+          <p>
+            PolicyEngine does not currently have job openings. Please check back
+            later.
+          </p>
         </Section>
-      )}
-      {internshipPositions.length > 0 && (
-        <Section backgroundColor={style.colors.LIGHT_GRAY}>
-          <h2>Internship opportunities</h2>
-          {internshipPositions.map((position, index) =>
-            renderJobSection(position, index, false),
+      ) : (
+        <>
+          {fullTimePositions.length > 0 && (
+            <Section backgroundColor={style.colors.WHITE}>
+              <h2>Full-Time Positions</h2>
+              {fullTimePositions.map((position, index) =>
+                renderJobSection(position, index, true),
+              )}
+            </Section>
           )}
-        </Section>
+          {internshipPositions.length > 0 && (
+            <Section backgroundColor={style.colors.LIGHT_GRAY}>
+              <h2>Internship opportunities</h2>
+              {internshipPositions.map((position, index) =>
+                renderJobSection(position, index, false),
+              )}
+            </Section>
+          )}
+        </>
       )}
       <Section backgroundColor={style.colors.WHITE}>
         <h2>Take the next step</h2>
