@@ -4,6 +4,8 @@ import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
 import { Card, Tag, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import StreamlitWakeUp from "../../components/StreamlitWakeUp";
+
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -251,12 +253,26 @@ print(response.json())`;
             <h2 id="api-playground">API Playground</h2>
             <p>Try out the API in this interactive demo.</p>
             <div className="api-playground">
-              <iframe
-                src={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/?embed=true&embed_options=light_theme&embed_options=hide_footer&mode=${countryId}`}
+              <StreamlitWakeUp
+                streamlitUrl={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/?embed=true&embed_options=light_theme&embed_options=hide_footer&mode=${countryId}`}
                 title="PolicyEngine API demo"
-                height="600px"
-                width={"100%"}
-              />
+                wakeUpUrl={`https://policyengine-policyengine-api-demo-app-xy5rgn.streamlit.app/?mode=${countryId}`}
+                iframeProps={{
+                  height: "600px",
+                  width: "100%",
+                }}
+              >
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#666",
+                    marginTop: "0.5rem",
+                  }}
+                >
+                  If the API playground is sleeping, click &quot;Wake up app&quot;
+                  to open it in a new tab and wake it up.
+                </p>
+              </StreamlitWakeUp>
             </div>
           </div>
         </section>

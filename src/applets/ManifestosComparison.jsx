@@ -2,6 +2,7 @@ import Header from "../layout/Header";
 import { Helmet } from "react-helmet";
 import style from "../style";
 import { useWindowHeight } from "../hooks/useWindow";
+import StreamlitWakeUp from "../components/StreamlitWakeUp";
 
 export default function ManifestosComparison() {
   const windowHeight = useWindowHeight();
@@ -20,13 +21,20 @@ export default function ManifestosComparison() {
           width: "100vw",
         }}
       >
-        <iframe
-          src="https://manifestos.streamlit.app?embedded=true"
+        <StreamlitWakeUp
+          streamlitUrl="https://manifestos.streamlit.app?embedded=true"
           title="UK 2024 Manifestos Comparison"
-          height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
-          width="100%"
-          style={{ overflow: "hidden" }}
-        />
+          wakeUpUrl="https://manifestos.streamlit.app"
+          iframeProps={{
+            height: `calc(100vh - ${style.spacing.HEADER_HEIGHT})`,
+            width: "100%",
+          }}
+        >
+          <p style={{ fontSize: "14px", color: "#666", marginTop: "0.5rem" }}>
+            If the app is sleeping, click &quot;Wake up app&quot; to open it in
+            a new tab and wake it up.
+          </p>
+        </StreamlitWakeUp>
       </div>
     </>
   );
