@@ -5,10 +5,10 @@ import JEC from "../images/logos/users/jec.png";
 import NBER from "../images/logos/users/nber.png";
 import Georgetown from "../images/logos/users/georgetown.png";
 import UMichigan from "../images/logos/users/umich.png";
-import USC from "../images/logos/users/usc.png";
-import UHawaii from "../images/logos/users/hawaii.png";
+import USC from "../images/logos/users/usc.jpg";
+import UHawaii from "../images/logos/users/hawaii.jpg";
 import PN3Policy from "../images/logos/users/pn3policy.png";
-import NewYorkSenate from "../images/logos/users/ny-senate.png";
+import NewYorkSenate from "../images/logos/users/ny-senate.jpeg";
 import MarylandChildAlliance from "../images/logos/users/mca.jpg";
 
 // Import additional logos from funders/orgs
