@@ -66,6 +66,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "pretest": "node metadata_fetch.mjs",
     "test": "jest",
     "eject": "react-scripts eject",
     "fix": "eslint --fix --ext js,jsx . && prettier -w .",
