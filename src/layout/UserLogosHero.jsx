@@ -10,9 +10,9 @@ export default function UserLogosHero() {
 
   // Create multiple rows of logos for a collage effect
   const logoRows = [
-    users.slice(0, 4),
-    users.slice(4, 8),
-    users.slice(8, 10).concat(users.slice(0, 2)), // Repeat some logos to fill the row
+    users.slice(0, 5),
+    users.slice(5, 10),
+    users.slice(10, 14).concat(users.slice(0, 1)), // Add one repeated logo to balance the row
   ];
 
   const containerStyle = {
@@ -51,11 +51,11 @@ export default function UserLogosHero() {
   };
 
   const titleBackgroundStyle = {
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
     padding: isMobile ? "20px 15px" : "30px 40px",
     borderRadius: "8px",
-    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-    backdropFilter: "blur(10px)",
+    boxShadow: "0 4px 20px rgba(0, 0, 0, 0.08)",
+    backdropFilter: "blur(8px)",
   };
 
   const titleStyle = {
@@ -82,7 +82,7 @@ export default function UserLogosHero() {
     height: "33.33%",
     alignItems: "center",
     justifyContent: "center",
-    gap: isMobile ? "20px" : "40px",
+    gap: isMobile ? "15px" : "30px",
     opacity: 0.7,
     filter: "grayscale(20%)",
     transform: index % 2 === 0 ? "translateX(0)" : "translateX(-50px)",
