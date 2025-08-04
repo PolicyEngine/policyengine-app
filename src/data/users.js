@@ -236,6 +236,14 @@ export const users = [
     description: "Network researching universal basic income",
     category: "research",
   },
+  {
+    id: "policy-simulation-library",
+    name: "Policy Simulation Library",
+    logo: Georgetown,
+    website: "https://pslmodels.org/",
+    description: "Open source models for public policy analysis",
+    category: "research",
+  },
 
   // UK Political/Advocacy
   {
@@ -276,6 +284,22 @@ export const users = [
     logo: KCL,
     website: "https://www.kcl.ac.uk/",
     description: "World-renowned research university in London",
+    category: "academic",
+  },
+  {
+    id: "beeck-center-georgetown",
+    name: "Beeck Center for Social Impact + Innovation",
+    logo: Georgetown,
+    website: "https://beeckcenter.georgetown.edu/",
+    description: "Georgetown center for data, design, technology, and policy",
+    category: "academic",
+  },
+  {
+    id: "better-government-lab",
+    name: "Better Government Lab",
+    logo: Georgetown,
+    website: "https://www.bettergovernmentlab.org/",
+    description: "Georgetown-Michigan research lab for government effectiveness",
     category: "academic",
   },
   {
