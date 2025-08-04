@@ -9,10 +9,11 @@ export default function UserLogosHero() {
   const isTablet = displayCategory === "tablet";
 
   // Create multiple rows of logos for a collage effect
+  const logosPerRow = isMobile ? 5 : 8;
   const logoRows = [
-    users.slice(0, 5),
-    users.slice(5, 10),
-    users.slice(10, 14).concat(users.slice(0, 1)), // Add one repeated logo to balance the row
+    users.slice(0, logosPerRow),
+    users.slice(logosPerRow, logosPerRow * 2),
+    users.slice(logosPerRow * 2, users.length).concat(users.slice(0, logosPerRow - (users.length % logosPerRow))),
   ];
 
   const containerStyle = {
@@ -77,15 +78,13 @@ export default function UserLogosHero() {
     display: "flex",
     position: "absolute",
     left: 0,
-    right: 0,
+    width: "200%", // Double width for seamless loop
     top: `${index * 33.33}%`,
     height: "33.33%",
     alignItems: "center",
-    justifyContent: "center",
     gap: isMobile ? "15px" : "30px",
     opacity: 0.7,
     filter: "grayscale(20%)",
-    transform: index % 2 === 0 ? "translateX(0)" : "translateX(-50px)",
   });
 
   const logoStyle = {
@@ -104,16 +103,16 @@ export default function UserLogosHero() {
           key={rowIndex}
           style={rowStyle(rowIndex)}
           animate={{
-            x: rowIndex % 2 === 0 ? [0, 50, 0] : [0, -50, 0],
+            x: rowIndex % 2 === 0 ? ["0%", "-50%"] : ["-50%", "0%"],
           }}
           transition={{
-            duration: 20,
+            duration: rowIndex % 2 === 0 ? 40 : 35,
             repeat: Infinity,
             ease: "linear",
           }}
         >
-          {/* Duplicate the row for seamless scrolling */}
-          {[...row, ...row].map((user, index) => (
+          {/* Triple the row for seamless scrolling */}
+          {[...row, ...row, ...row].map((user, index) => (
             <img
               key={`${user.id}-${index}`}
               src={user.logo}
