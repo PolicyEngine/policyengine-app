@@ -44,17 +44,18 @@ export const users = [
     description: "A bipartisan committee of the U.S. Congress",
     category: "government",
   },
-  
+
   // US Think Tanks
   {
     id: "niskanen-center",
     name: "Niskanen Center",
     logo: NiskanenCenter,
     website: "https://www.niskanencenter.org/",
-    description: "A center-right think tank focused on pragmatic policy solutions",
+    description:
+      "A center-right think tank focused on pragmatic policy solutions",
     category: "think-tank",
   },
-  
+
   // US Research
   {
     id: "nber",
@@ -88,7 +89,7 @@ export const users = [
     description: "University research center focused on economic policy",
     category: "research",
   },
-  
+
   // US Academic
   {
     id: "georgetown",
@@ -106,7 +107,7 @@ export const users = [
     description: "Public research university with renowned economics programs",
     category: "academic",
   },
-  
+
   // US Advocacy
   {
     id: "maryland-child-alliance",
@@ -145,7 +146,8 @@ export const users = [
     name: "MyFriendBen",
     logo: MFB,
     website: "https://myfriendben.org/",
-    description: "Benefits eligibility screener helping families access programs",
+    description:
+      "Benefits eligibility screener helping families access programs",
     category: "advocacy",
   },
   {
@@ -153,7 +155,8 @@ export const users = [
     name: "Arnold Ventures",
     logo: ArnoldVentures,
     website: "https://www.arnoldventures.org/",
-    description: "Philanthropy tackling pressing problems with evidence and innovation",
+    description:
+      "Philanthropy tackling pressing problems with evidence and innovation",
     category: "advocacy",
   },
   {
@@ -164,7 +167,7 @@ export const users = [
     description: "Ending the cycle of family poverty and homelessness",
     category: "advocacy",
   },
-  
+
   // UK Think Tanks
   {
     id: "centre-think-tank",
@@ -206,7 +209,7 @@ export const users = [
     description: "UK's original free market think tank, founded in 1955",
     category: "think-tank",
   },
-  
+
   // UK Research
   {
     id: "uk-in-a-changing-europe",
@@ -221,7 +224,8 @@ export const users = [
     name: "National Institute of Economic and Social Research",
     logo: NIESR,
     website: "https://www.niesr.ac.uk/",
-    description: "Britain's longest established independent economic research institute",
+    description:
+      "Britain's longest established independent economic research institute",
     category: "research",
   },
   {
@@ -232,7 +236,7 @@ export const users = [
     description: "Network researching universal basic income",
     category: "research",
   },
-  
+
   // UK Political/Advocacy
   {
     id: "green-party-england-wales",

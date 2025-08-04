@@ -13,7 +13,9 @@ export default function UserLogosHero() {
   const logoRows = [
     users.slice(0, logosPerRow),
     users.slice(logosPerRow, logosPerRow * 2),
-    users.slice(logosPerRow * 2, users.length).concat(users.slice(0, logosPerRow - (users.length % logosPerRow))),
+    users
+      .slice(logosPerRow * 2, users.length)
+      .concat(users.slice(0, logosPerRow - (users.length % logosPerRow))),
   ];
 
   const containerStyle = {
