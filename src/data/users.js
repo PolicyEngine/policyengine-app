@@ -30,6 +30,8 @@ import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-networ
 import NIESR from "../images/logos/orgs/niesr.jpeg";
 import GaryCommunityVentures from "../images/logos/orgs/gary-community-ventures.png";
 import ColoradoFiscalInstitute from "../images/logos/users/colorado-fiscal-institute.webp";
+import Warwick from "../images/logos/users/warwick.png";
+import KCL from "../images/logos/users/kcl.png";
 
 export const users = [
   // US Government
@@ -246,6 +248,22 @@ export const users = [
     website: "https://citizensecon.org.uk/",
     description: "Promoting citizen engagement in economic policy",
     category: "advocacy",
+  },
+  {
+    id: "warwick-university",
+    name: "University of Warwick",
+    logo: Warwick,
+    website: "https://warwick.ac.uk/",
+    description: "Leading UK research university",
+    category: "academic",
+  },
+  {
+    id: "kings-college-london",
+    name: "King's College London",
+    logo: KCL,
+    website: "https://www.kcl.ac.uk/",
+    description: "World-renowned research university in London",
+    category: "academic",
   },
   {
     id: "gary-community-ventures",

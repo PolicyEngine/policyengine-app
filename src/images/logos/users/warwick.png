@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+    <head>
+        <base href="https://warwick.ac.uk/site-elements/media/logo_warwick_black.png">
+
+        <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>We're sorry, but the page you requested could not be found</title>
+
+<meta name="description" content="">
+<meta name="keywords" content="">
+
+
+
+
+
+    
+
+
+
+
+
+    
+
+
+    
+
+
+    
+
+
+<script>
+  var dataLayer = [];
+  var gtmData = {};
+
+  
+  gtmData.analyticsPageUrl = '/error/404?page=' + encodeURIComponent(document.location.pathname + document.location.search) + '&from=' + encodeURIComponent(document.referrer);
+  gtmData.userAudience = 'NotLoggedIn';
+  gtmData.userDepartment = 'Unknown';
+
+  dataLayer.push(gtmData);
+</script>
+
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document, 'script','dataLayer', 'GTM-55N43RF');</script>
+
+
+
+
+
+
+
+
+<link rel="search" type="application/opensearchdescription+xml" title="Warwick Search" href="//search.warwick.ac.uk/static/search/osd.xml">
+
+
+
+<!-- Google canonical URL - the main URL for this page -->
+
+    
+    
+        <link rel="canonical" href="https://warwick.ac.uk/site-elements/media/logo_warwick_black.png">
+    
+
+
+
+
+  
+
+
+
+    <meta name="robots" content="noindex,nofollow">
+
+
+
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-57x57.png.277090071273">
+<link rel="apple-touch-icon" sizes="60x60" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-60x60.png.970286183882">
+<link rel="apple-touch-icon" sizes="72x72" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-72x72.png.297134993357">
+<link rel="apple-touch-icon" sizes="76x76" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-76x76.png.153096085163">
+<link rel="apple-touch-icon" sizes="114x114" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-114x114.png.297143414944">
+<link rel="apple-touch-icon" sizes="120x120" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-120x120.png.253162444814">
+<link rel="apple-touch-icon" sizes="144x144" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-144x144.png.109656710229">
+<link rel="apple-touch-icon" sizes="152x152" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-152x152.png.335700673320">
+<link rel="apple-touch-icon" sizes="180x180" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-180x180.png.165120660824">
+
+<!-- Light mode favicons -->
+<link rel="icon" type="image/png" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon-32x32.png.316569982511" media="(prefers-color-scheme: light)" sizes="32x32">
+<link rel="icon" type="image/png" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon-96x96.png.315251778329" media="(prefers-color-scheme: light)" sizes="96x96">
+
+
+<!-- Dark mode favicons -->
+<link rel="icon" type="image/png" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon-dark-mode-32x32.png.252829598456" media="(prefers-color-scheme: dark)" sizes="32x32">
+<link rel="icon" type="image/png" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon-dark-mode-96x96.png.250204755045" media="(prefers-color-scheme: dark)" sizes="96x96">
+
+
+<!-- Fallback favicon -->
+<link rel="shortcut icon" type="image/png" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/apple-touch-icon-57x57.png.277090071273" sizes="16x16">
+
+<link rel="manifest" href="https://d36jn9qou1tztq.cloudfront.net/static_war/manifest.json.944374684100" />
+
+
+
+
+
+    
+        <meta name="theme-color" content="#3C1053">
+    
+    
+
+
+
+
+<!-- Pre-load FontAwesome Pro font files. Browsers supporting link[rel="preload"] all support woff2 -->
+<link rel="preload" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/fonts/fa-light-300.woff2.149420877782" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/fonts/fa-regular-400.woff2.125978268307" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/fonts/fa-solid-900.woff2.254471731011" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/fonts/fa-brands-400.woff2.242713519285" as="font" crossorigin="anonymous">
+<link rel="preload" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/fonts/fa-duotone-900.woff2.211389069736" as="font" crossorigin="anonymous">
+
+
+    
+    
+        <link rel="stylesheet" href="https://use.typekit.net/iog2qgq.css" integrity="sha384-+x2FJzFv9tjoA+oOkn7vinOu4+0RukcFD+DmbGYztER64c2XBUQs25LT+7wXccdt" crossorigin="anonymous">
+
+        
+        
+        
+        <link rel="stylesheet" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/css/pack7-2025.css.272936560537" type="text/css">
+        
+        
+    
+    
+
+
+
+<!-- Pre-load the statuspage CSS, then after the page finishes loading, parse it -->
+<link rel="preload" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/statuspage-widget/main.css.160527713577" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+    
+    
+    
+        <link rel="shortcut icon" type="image/x-icon" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon.ico.818956143149">
+        <link rel="shortcut icon" type="image/x-icon" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon.ico.818956143149" media="(prefers-color-scheme: light)">
+        <link rel="shortcut icon" type="image/x-icon" href="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/favicon-dark-mode.ico.293128118921" media="(prefers-color-scheme: dark)">
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://d36jn9qou1tztq.cloudfront.net/static_site/site.css.155635332252" type="text/css">
+
+
+
+
+
+    <script type="text/javascript" src="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/js/id7-bundle-render.js.250388667749"></script>
+
+    <script type="text/javascript" src="https://d36jn9qou1tztq.cloudfront.net/static_war/sitebuilder.js.152090116510"></script>
+
+
+
+
+
+    <script type="text/javascript" src="https://d36jn9qou1tztq.cloudfront.net/static_site/site.js.295215132793"></script>
+
+
+
+
+    
+
+
+<script type="text/javascript">
+    SitebuilderInfo.url = '/';
+    SitebuilderInfo.lastUpdated = 14029374589184;
+    SitebuilderInfo.lastContentUpdated = 14029374589184;
+    SitebuilderInfo.buildTimestamp = '1753270618692';
+</script>
+
+
+
+<script src="https://d36jn9qou1tztq.cloudfront.net/static_war/render/scripts/global-permission.js.327690442748"></script>
+
+
+
+
+<!-- main parsed links -->
+
+
+
+
+<link rel="alternate"
+      type="application/rss+xml"
+      title="Changes in / (RSS 2.0)"
+      href="https://warwick.ac.uk/sitebuilder2/api/rss/siteChanges.rss?page=/">
+
+<!-- main parsed styles -->
+
+
+<!-- rhs parsed styles -->
+
+
+<!-- main parsed scripts -->
+
+
+<!-- rhs parsed scripts -->
+
+
+
+    
+
+    
+        
+            
+            
+            
+            
+        
+    
+
+
+    </head>
+
+    
+    
+    
+    
+        
+    
+
+    
+    
+
+    <body class="in-site-elements in-media in-logo_warwick_black.png id7-point-1">
+        
+
+
+  
+  
+  
+
+
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-55N43RF&advertisingPermission=&functionalPermission=&performancePermission="
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+
+
+
+
+        <div class="id7-left-border"></div>
+        <div class="id7-fixed-width-container">
+
+            <header class="id7-page-header">
+                <a class="sr-only sr-only-focusable" href="#main">Skip to main content</a>
+                <a class="sr-only sr-only-focusable" href="#primary-nav" accesskey="N">Skip to navigation</a>
+
+                <div class="id7-utility-masthead">
+    <nav class="id7-utility-bar" aria-label="Utility bar">
+    <ul>
+        
+
+        
+            
+            
+                
+                
+                
+                    
+                    
+                        
+<li id="sign-in-link"><a  href="https://websignon.warwick.ac.uk/origin/slogin?shire=https%3A%2F%2Fwarwick.ac.uk%2Fsitebuilder2%2Fshire-read&amp;providerId=urn%3Awarwick.ac.uk%3Asitebuilder2%3Aread%3Aservice&amp;target=https%3A%2F%2Fwarwick.ac.uk%2Fsite-elements%2Fmedia%2Flogo_warwick_black.png" rel="nofollow" class="ut" >Sign in</a> </li>
+
+                    
+                
+            
+            
+        
+    </ul>
+</nav>
+
+    <div class="id7-masthead">
+    <div class="id7-masthead-contents">
+        <div class="clearfix">
+            <div class="id7-logo-column">
+                
+                    <div class="id7-logo-row">
+                        <div class="id7-logo">
+                            <a href="https://warwick.ac.uk/" title="University of Warwick homepage">
+                                
+                                
+                                <img src="https://d36jn9qou1tztq.cloudfront.net/static_war/render/id7/images/wordmark.svg.309728233304" alt="University of Warwick homepage">
+                                
+                                
+                                
+                            </a>
+                        </div>
+
+                        
+                            
+                            
+                            
+                            
+                            
+                            
+                                <nav class="id7-site-links"  aria-label="Site links">
+                                    <ul>
+                                        <li><a href="https://warwick.ac.uk/study">Study</a></li>
+                                        <li><a href="https://warwick.ac.uk/research">Research</a></li>
+                                        <li><a href="https://warwick.ac.uk/business">Business</a></li>
+                                        <li><a href="https://warwick.ac.uk/alumni">Alumni</a></li>
+                                        <li><a href="https://warwick.ac.uk/news">News</a></li>
+                                        <li><a href="https://warwick.ac.uk/engagement">Engagement</a></li>
+                                        
+                                    </ul>
+                                </nav>
+                            
+                        
+                    </div>
+                
+            </div>
+            <div class="id7-search-column">
+                
+                    <div class="id7-search">
+                        
+                            
+                                <form action="//search.warwick.ac.uk/website" role="search">
+                                    <input type="hidden" name="source" value="https://warwick.ac.uk/site-elements/media/logo_warwick_black.png">
+                                    <div class="form-group">
+                                        <div class="id7-search-box-container floating-label">
+                                            <input type="search" class="form-control input-lg" id="id7-search-box" name="q" placeholder="Search Warwick" data-suggest="go" aria-label="Search Warwick">
+                                            <label for="id7-search-box">Search Warwick</label>
+                                            <button type="submit" class="search-button"><span class="sr-only">Search</span><i class="fas fa-search fa-2x" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+                            
+                            
+                        
+                    </div>
+                
+            </div>
+        </div>
+
+        
+            <div class="id7-header-text clearfix">
+                <h2 class="h1">
+                    
+
+                    
+                    
+
+                    <span class="id7-current-site-link" data-short-title="Warwick">
+                        <a accesskey="1" title="University of Warwick home page [1]" href="https://warwick.ac.uk/">The University of Warwick</a>
+                    </span>
+                </h2>
+            </div>
+        
+    </div>
+</div>
+
+</div>
+
+                
+                    <div class="id7-navigation" id="primary-nav">
+                        <nav class="navbar navbar-primary hidden-xs" role="navigation" aria-label="Primary navigation"> <ul class="nav navbar-nav"><li class="first dropdown" data-lastmodified="1751535807287"> <a href="https://warwick.ac.uk/study/" data-page-url="/study/">Study</a> <ul class="dropdown-menu" role="menu"><li data-lastmodified="1751702225667"> <a href="https://warwick.ac.uk/study/undergraduate/" data-page-url="/study/undergraduate/">Undergraduate</a> </li><li data-lastmodified="1753438000013"> <a href="https://warwick.ac.uk/study/postgraduate/" data-page-url="/study/postgraduate/">Postgraduate</a> </li><li data-lastmodified="1747052548853"> <a href="https://warwick.ac.uk/study/international/" data-page-url="/study/international/">International</a> </li><li data-lastmodified="1751535807287"> <a href="https://warwick.ac.uk/study/scholarships-and-bursaries/" data-page-url="/study/scholarships-and-bursaries/">Scholarships</a> </li><li data-lastmodified="1751989628359"> <a href="https://warwick.ac.uk/study/cll/" data-page-url="/study/cll/">Lifelong Learning</a> </li><li data-lastmodified="1753092067727"> <a href="https://warwick.ac.uk/study/outreach/" data-page-url="/study/outreach/">Widening Participation</a> </li><li data-lastmodified="1747052548853"> <a href="https://warwick.ac.uk/study/degree-apprenticeships/" data-page-url="/study/degree-apprenticeships/">Degree Apprenticeships </a> </li><li data-lastmodified="1751535807287"> <a href="https://warwick.ac.uk/study/events/" data-page-url="/study/events/">Events </a> </li></ul> </li><li class="second dropdown recently-updated" data-lastmodified="1753782560690"> <a href="https://warwick.ac.uk/research/" data-page-url="/research/">Research</a> <ul class="dropdown-menu" role="menu"><li class="recently-updated" data-lastmodified="1753889595659"> <a href="https://warwick.ac.uk/research/spotlights/" data-page-url="/research/spotlights/">Warwick's Interdisciplinary Research Spotlights</a> </li><li data-lastmodified="1750868084405"> <a href="https://warwick.ac.uk/research/impact/" data-page-url="/research/impact/">Research Impact</a> </li><li class="recently-updated" data-lastmodified="1753713473619"> <a href="https://warwick.ac.uk/research/recognition/" data-page-url="/research/recognition/">Research Recognition</a> </li><li data-lastmodified="1750867889520"> <a href="https://warwick.ac.uk/research/partnerships/" data-page-url="/research/partnerships/">Research Partnerships</a> </li><li data-lastmodified="1752222437136"> <a href="https://warwick.ac.uk/research/supporting-talent/" data-page-url="/research/supporting-talent/">Support for Researchers</a> </li><li data-lastmodified="1750867889520"> <a href="https://warwick.ac.uk/research/research-infrastructure/" data-page-url="/research/research-infrastructure/">Research Facilities</a> </li><li data-lastmodified="1753131390381"> <a href="https://warwick.ac.uk/research/research-culture-at-warwick/" data-page-url="/research/research-culture-at-warwick/">Research Culture</a> </li></ul> </li><li class="dropdown" data-lastmodified="1751379630027"> <a href="https://warwick.ac.uk/business/" data-page-url="/business/">Business</a> <ul class="dropdown-menu" role="menu"><li data-lastmodified="1731550929255"> <a href="https://warwick.ac.uk/business/research-engagement/" data-page-url="/business/research-engagement/">Research and Engagement</a> </li><li data-lastmodified="1739359157762"> <a href="https://warwick.ac.uk/business/find-new-talent/" data-page-url="/business/find-new-talent/">Find New Talent</a> </li><li data-lastmodified="1729681049367"> <a href="https://warwick.ac.uk/business/develop-talent/" data-page-url="/business/develop-talent/">Develop Talent</a> </li><li data-lastmodified="1729681049367"> <a href="https://warwick.ac.uk/business/facilities-services/" data-page-url="/business/facilities-services/">Facilities and Services</a> </li><li data-lastmodified="1739359788303"> <a href="https://warwick.ac.uk/business/innovation-commercialisation/" data-page-url="/business/innovation-commercialisation/">Innovation and Commercialisation</a> </li><li data-lastmodified="1750665568379"> <a href="https://warwick.ac.uk/business/about/" data-page-url="/business/about/">About Us</a> </li><li data-lastmodified="1745839721647"> <a href="https://warwick.ac.uk/business/case-studies/" data-page-url="/business/case-studies/">Case Studies</a> </li></ul> </li><li class="dropdown" data-lastmodified="1752061723644"> <a href="https://warwick.ac.uk/alumni/" data-page-url="/alumni/">Alumni</a> <ul class="dropdown-menu" role="menu"><li data-lastmodified="1753185622694"> <a href="https://warwick.ac.uk/alumni/60th/" data-page-url="/alumni/60th/">60th Anniversary</a> </li><li data-lastmodified="1753270902678"> <a href="https://warwick.ac.uk/alumni/benefits/" data-page-url="/alumni/benefits/">Your Benefits</a> </li><li data-lastmodified="1753185631680"> <a href="https://warwick.ac.uk/alumni/getinvolved/" data-page-url="/alumni/getinvolved/">Get Involved</a> </li><li data-lastmodified="1753185688151"> <a href="https://warwick.ac.uk/alumni/alumni-news/" data-page-url="/alumni/alumni-news/">Your News</a> </li><li data-lastmodified="1753185622575"> <a href="https://warwick.ac.uk/alumni/events/" data-page-url="/alumni/events/">Your Events</a> </li><li data-lastmodified="1753185631665"> <a href="https://warwick.ac.uk/alumni/joinus/" data-page-url="/alumni/joinus/">Recruitment in Development and Alumni Engagement</a> </li><li data-lastmodified="1753185622736"> <a href="https://warwick.ac.uk/alumni/contacts/" data-page-url="/alumni/contacts/">Get in touch</a> </li></ul> </li><li class="dropdown" data-lastmodified="1752226243808"> <a href="https://warwick.ac.uk/sustainability/" data-page-url="/sustainability/">Environmental Sustainability at Warwick</a> <ul class="dropdown-menu" role="menu"><li data-lastmodified="1752226243808"> <a href="https://warwick.ac.uk/sustainability/education/" data-page-url="/sustainability/education/">Education</a> </li><li data-lastmodified="1752226243808"> <a href="https://warwick.ac.uk/sustainability/research-/" data-page-url="/sustainability/research-/">Research</a> </li><li class="recently-updated" data-lastmodified="1753969980852"> <a href="https://warwick.ac.uk/sustainability/partnerships/" data-page-url="/sustainability/partnerships/">Partnerships</a> </li><li data-lastmodified="1752678908708"> <a href="https://warwick.ac.uk/sustainability/what-we-are-doing/" data-page-url="/sustainability/what-we-are-doing/">Campus Operations</a> </li><li data-lastmodified="1752226243808"> <a href="https://warwick.ac.uk/sustainability/governance/" data-page-url="/sustainability/governance/">Governance</a> </li><li data-lastmodified="1752226243808"> <a href="https://warwick.ac.uk/sustainability/environment/" data-page-url="/sustainability/environment/">Get Involved</a> </li><li data-lastmodified="1752226243808"> <a href="https://warwick.ac.uk/sustainability/case-studies/" data-page-url="/sustainability/case-studies/">Sustainability Case Studies</a> </li></ul> </li><li class="dropdown recently-updated" data-lastmodified="1753973124118"> <a href="https://warwick.ac.uk/news/" data-page-url="/news/">News</a> <ul class="dropdown-menu" role="menu"><li class="recently-updated" data-lastmodified="1754056287185"> <a href="https://warwick.ac.uk/news/pressreleases/" data-page-url="/news/pressreleases/">Press Releases</a> </li><li class="recently-updated" data-lastmodified="1753978499515"> <a href="https://warwick.ac.uk/news/expertcomment/" data-page-url="/news/expertcomment/">Expert Comment</a> </li><li data-lastmodified="1751537546056"> <a href="https://warwick.ac.uk/news/team/" data-page-url="/news/team/">Press Team</a> </li><li data-lastmodified="1751537546056"> <a href="https://warwick.ac.uk/news/faqs/" data-page-url="/news/faqs/">Press Office FAQs</a> </li></ul> </li></ul></nav>
+                    </div>
+                
+            </header>
+
+            
+            <main id="main" class="id7-main-content-area">
+                <header>
+                    <div class="id7-horizontal-divider">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" version="1.1" width="1130" height="41" viewBox="0, 0, 1130, 41">
+                            <path d="m 0,0.5 1030.48, 0 22.8,40 16.96,-31.4 16.96,31.4 22.8,-40 20,0" class="divider" stroke="#383838" fill="none" />
+                        </svg>
+                    </div>
+
+                    
+                    <div class="id7-page-title
+                        
+                        
+                        ">
+                        <h1>
+                            
+                            
+                                We're sorry, but the page you requested could not be found
+
+                            
+                        </h1>
+                    </div>
+                </header>
+
+                
+
+                
+                <div class="id7-main-content">
+                    
+
+                    <div class="layout layout-100">
+                        <div class="column-1"><div class="column-1-content">
+                            
+                                
+                                    
+
+	<div class="infobox">
+		<h2><span>What can I do next?</span></h2>
+		
+		<p>If you typed the address, make sure the spelling is correct.</p>
+		<p>If you clicked on a link, there may be a problem with that link which the owner of the page or
+			site needs to fix. You might want to let them know.</p>
+		<p>To find the page you're looking for, you can try the search box at the top right corner of this page.
+		Or you may find one of the following links helpful.</p>
+		
+<ul>
+	<li><a href="https://www2.warwick.ac.uk/departments/academic/">List of academic departments</a></li>
+	<li><a href="https://www2.warwick.ac.uk/departments/research/">List of research centres</a></li>
+	<li><a href="https://www2.warwick.ac.uk/departments/services/">List of campus services</a></li>
+	<li><a href="https://go.warwick.ac.uk/search/">Search the Warwick web site</a></li>
+	<li><a href="https://go.warwick.ac.uk/atoz/">A to Z index</a></li>
+	<li><a href="https://go.warwick.ac.uk/contact/">Contact us</a></li>
+	<li><a href="https://go.warwick.ac.uk/emailsearch/">Email/phonebook search</a></li>
+</ul>		</div>
+		
+		<div class="infobox">
+		<h2><span>Getting help</span></h2>
+<p>If you can't find what you're looking for using the links above, or you think it's important to tell us
+		about this problem, then please contact the <a href="https://www2.warwick.ac.uk/services/its/servicessupport/howtofindus">IT Services Helpdesk</a>.
+		Please include in your message the address of the page you are trying to access (It can be found in the <em>Location:</em> 
+		or <em>Address:</em> field at the top of your browser) and, if you clicked a link on another page, the address 
+		of the page that the link was on.</p>		</div>
+
+                                
+                                
+                            
+                        </div></div>
+                        
+                    </div>
+                    
+                </div>
+
+                
+            </main>
+
+            
+
+            
+
+    
+    
+
+
+<footer class="id7-page-footer id7-footer-coloured">
+    <div class="id7-site-footer">
+        <div class="id7-site-footer-content">
+
+            
+
+            
+            
+
+            
+
+            
+                
+                
+                    
+                
+            
+
+            <div class="row">
+<div class="col-lg-12">
+<div class="row" itemtype="http://schema.org/PostalAddress" itemscope="itemscope">
+<div class="col-sm-4 col-md-3">
+<h3>Connect with us</h3>
+<p class="social-media-icons"><a href="https://www.facebook.com/warwickuniversity"><span class="fa-stack fa-fw"> <i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-facebook fa-stack-1x fa-inverse"></i> </span><span class="sr-only">Facebook</span></a> <a href="https://twitter.com/uniofwarwick"><span class="fa-stack fa-fw"> <i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-twitter fa-stack-1x fa-inverse"></i> </span><span class="sr-only">Twitter</span></a> <a href="https://www.instagram.com/uniofwarwick/"><span class="fa-stack fa-fw"> <i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-instagram fa-stack-1x fa-inverse"></i> </span><span class="sr-only">Instagram</span></a> <a href="https://www.linkedin.com/school/uniofwarwick/"><span class="fa-stack fa-fw"> <i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i> </span><span class="sr-only">LinkedIn</span></a> <a href="https://www.youtube.com/user/uniwarwick"><span class="fa-stack fa-fw"> <i class="fas fa-square fa-stack-2x"></i> <i class="fab fa-youtube fa-stack-1x fa-inverse"></i> </span><span class="sr-only">YouTube</span></a></p>
+</div>
+<div class="col-sm-4 col-md-3">
+<h3>Talk to us</h3>
+<p class="telephone"><i class="fas fa-phone" aria-hidden="true"><span class="sr-only">Tel:</span></i> <a href="tel:+442476523523" itemprop="telephone">+44 (0)24 7652 3523</a></p>
+</div>
+<div class="col-sm-4 col-md-3">
+<h3>Find us</h3>
+<p class="media map-location"><span class="media-left"><i class="fad fa-map-marker-alt fa-swap-opacity" aria-hidden="true"></i></span> <span class="media-body"><a href="https://warwick.ac.uk/about/visiting"><span class="name" itemprop="name">University of Warwick</span><br /><span class="address"> <span itemprop="addressLocality">Coventry</span>, <span itemprop="postalCode">CV4 7AL</span>, UK </span> </a> </span></p>
+</div>
+<div class="col-md-3 map-column"><a href="https://warwick.ac.uk/about/visiting/"> <picture> <source type="image/webp" srcset="/static_site/uk-map.webp.565528514479" /> <img class="img-responsive" src="/static_site/uk-map.png.152599882481" alt="The University of Warwick is located in the heart of England, 3 miles (5 kilometres) from the centre of Coventry, on the border with Warwickshire." border="0" /> </picture> <i class="fad fa-map-marker-alt" aria-hidden="true"></i> </a></div>
+</div>
+</div>
+</div>
+        </div>
+    </div>
+    <div class="id7-app-footer">
+        <div class="id7-app-footer-content crest-right">
+            
+
+            <div class="id7-footer-utility">
+                <ul>
+                    <li id="powered-by-link">
+                        Powered by <a href="https://warwick.ac.uk/sitebuilder" title="More information about SiteBuilder">Sitebuilder</a>
+                    </li>
+
+                    
+                        
+                        
+                            
+                            
+                            
+                            
+                            
+                        
+                    
+
+                    <li id="accessibility-link"><a href="https://warwick.ac.uk/accessibility" title="Accessibility information [0]" accesskey="0">Accessibility</a></li>
+
+                    <li id="cookies-link"><a href="https://warwick.ac.uk/cookies" title="Information about cookies">Cookies</a></li>
+
+                    <li id="copyright-link"><a href="https://warwick.ac.uk/copyright" title="Copyright Statement">&copy; MMXXV</a></li>
+
+                    
+                        <li id="modern-slavery-link"><a href="https://warwick.ac.uk/modernslavery">Modern Slavery Statement</a></li>
+                        <li id="global-conduct-link"><a href="https://warwick.ac.uk/conduct">Student Harassment and Sexual Misconduct</a></li>
+                    
+
+                    
+
+                    <li id="privacy-link"><a href="https://warwick.ac.uk/privacy" title="Privacy notice">Privacy</a></li>
+
+                    
+                        <li id="terms-link"><a href="https://warwick.ac.uk/terms/general" title="Terms of use">Terms</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Hide vacancies link on custom domains and nonbranded sites -->
+            
+            <div id="university-vacancies-link">
+                <a class="btn btn-info" href="https://warwick.ac.uk/vacancies">Work with us</a>
+            </div>
+            
+        </div>
+
+    </div>
+</footer>
+
+
+        </div>
+        <div class="id7-right-border"></div>
+
+        
+
+	
+	
+		
+	
+
+	
+
+
+
+        
+
+
+
+  
+
+  <div class="cookie-preference-modal-container"></div>
+
+
+
+        <aside class="statuspage-embed-container"
+            aria-label="Service Status"
+            data-api-base="https://status.warwick.ac.uk/api"
+            data-components='["j9ksmwrhqs9v", "fzcttzffk1j0", "lyljzmdxg3yg", "qkfm31zsq8c5"]'
+        ></aside>
+        <script async type="module" src="https://d36jn9qou1tztq.cloudfront.net/static_war/render/statuspage-widget/main.js.258593508940"></script>
+    </body>
+</html>
