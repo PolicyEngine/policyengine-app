@@ -6,6 +6,7 @@ import PageHeader from "../layout/PageHeader.jsx";
 import { users, userCategories } from "../data/users.js";
 import useDisplayCategory from "../hooks/useDisplayCategory.js";
 import { Helmet } from "react-helmet";
+import UserLogosHero from "../layout/UserLogosHero.jsx";
 
 export default function Users() {
   // Group users by category
@@ -36,30 +37,9 @@ export default function Users() {
           </p>
         </PageHeader>
 
-        {/* Hero section with blended logos - placeholder for now */}
+        {/* Hero section with blended logos */}
         <Section backgroundColor={style.colors.WHITE}>
-          <div
-            style={{
-              textAlign: "center",
-              padding: "40px 0",
-              backgroundColor: style.colors.LIGHT_GRAY_98,
-              marginBottom: "40px",
-              borderRadius: "8px",
-            }}
-          >
-            <div
-              style={{
-                height: "200px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "18px",
-                color: style.colors.DARK_GRAY,
-              }}
-            >
-              [Blended user logos will be displayed here]
-            </div>
-          </div>
+          <UserLogosHero />
         </Section>
 
         {/* User categories */}
