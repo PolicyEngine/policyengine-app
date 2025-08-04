@@ -33,6 +33,9 @@ import ColoradoFiscalInstitute from "../images/logos/users/colorado-fiscal-insti
 import Warwick from "../images/logos/users/warwick.png";
 import KCL from "../images/logos/users/kcl.png";
 import IEA from "../images/logos/users/iea.png";
+import PSL from "../images/logos/users/psl.svg";
+import BeeckCenter from "../images/logos/users/beeck-center.png";
+import BetterGovernmentLab from "../images/logos/users/better-government-lab.png";
 
 export const users = [
   // US Government
@@ -239,7 +242,7 @@ export const users = [
   {
     id: "policy-simulation-library",
     name: "Policy Simulation Library",
-    logo: Georgetown,
+    logo: PSL,
     website: "https://pslmodels.org/",
     description: "Open source models for public policy analysis",
     category: "research",
@@ -289,7 +292,7 @@ export const users = [
   {
     id: "beeck-center-georgetown",
     name: "Beeck Center for Social Impact + Innovation",
-    logo: Georgetown,
+    logo: BeeckCenter,
     website: "https://beeckcenter.georgetown.edu/",
     description: "Georgetown center for data, design, technology, and policy",
     category: "academic",
@@ -297,9 +300,10 @@ export const users = [
   {
     id: "better-government-lab",
     name: "Better Government Lab",
-    logo: Georgetown,
+    logo: BetterGovernmentLab,
     website: "https://www.bettergovernmentlab.org/",
-    description: "Georgetown-Michigan research lab for government effectiveness",
+    description:
+      "Georgetown-Michigan research lab for government effectiveness",
     category: "academic",
   },
   {
