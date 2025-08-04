@@ -11,6 +11,12 @@ import PN3Policy from "../images/logos/users/pn3policy.png";
 import NewYorkSenate from "../images/logos/users/ny-senate.png";
 import MarylandChildAlliance from "../images/logos/users/mca.jpg";
 
+// Import additional logos from funders/orgs
+import UBICenter from "../images/logos/orgs/ubicenter.png";
+import CGO from "../images/logos/orgs/cgo.jpg";
+import F4GI from "../images/logos/orgs/f4gi.jpg";
+import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
+
 export const users = [
   {
     id: "niskanen-center",
@@ -91,6 +97,38 @@ export const users = [
     logo: MarylandChildAlliance,
     website: "https://www.marylandchildalliance.org/",
     description: "Advocacy organization for children and families in Maryland",
+    category: "advocacy",
+  },
+  {
+    id: "ubi-center",
+    name: "UBI Center",
+    logo: UBICenter,
+    website: "https://ubicenter.org/",
+    description: "Research hub for universal basic income analysis",
+    category: "research",
+  },
+  {
+    id: "center-growth-opportunity",
+    name: "Center for Growth and Opportunity",
+    logo: CGO,
+    website: "https://www.thecgo.org/",
+    description: "University research center focused on economic policy",
+    category: "research",
+  },
+  {
+    id: "fund-guaranteed-income",
+    name: "Fund for Guaranteed Income",
+    logo: F4GI,
+    website: "https://f4gi.org/",
+    description: "Organization advancing guaranteed income initiatives",
+    category: "advocacy",
+  },
+  {
+    id: "mothers-outreach-network",
+    name: "Mothers Outreach Network",
+    logo: MothersOutreachNetwork,
+    website: "https://mothersoutreachnetwork.org/",
+    description: "Supporting mothers and families through policy advocacy",
     category: "advocacy",
   },
 ];
