@@ -32,6 +32,7 @@ import GaryCommunityVentures from "../images/logos/orgs/gary-community-ventures.
 import ColoradoFiscalInstitute from "../images/logos/users/colorado-fiscal-institute.webp";
 import Warwick from "../images/logos/users/warwick.png";
 import KCL from "../images/logos/users/kcl.png";
+import IEA from "../images/logos/users/iea.png";
 
 export const users = [
   // US Government
@@ -195,6 +196,14 @@ export const users = [
     logo: ASI,
     website: "https://www.adamsmith.org/",
     description: "Libertarian think tank advocating free market policies",
+    category: "think-tank",
+  },
+  {
+    id: "institute-economic-affairs",
+    name: "Institute of Economic Affairs",
+    logo: IEA,
+    website: "https://iea.org.uk/",
+    description: "UK's original free market think tank, founded in 1955",
     category: "think-tank",
   },
   
