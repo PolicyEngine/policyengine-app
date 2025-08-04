@@ -106,7 +106,7 @@ export default function UserLogosHero() {
             x: rowIndex % 2 === 0 ? ["0%", "-50%"] : ["-50%", "0%"],
           }}
           transition={{
-            duration: rowIndex % 2 === 0 ? 40 : 35,
+            duration: 40,
             repeat: Infinity,
             ease: "linear",
           }}

@@ -28,6 +28,7 @@ import MFB from "../images/logos/orgs/myfriendben.png";
 import UBICenter from "../images/logos/orgs/ubicenter.png";
 import MothersOutreachNetwork from "../images/logos/orgs/mothers-outreach-network.png";
 import NIESR from "../images/logos/orgs/niesr.jpeg";
+import GaryCommunityVentures from "../images/logos/orgs/gary-community-ventures.png";
 
 export const users = [
   // US Government
@@ -244,6 +245,22 @@ export const users = [
     website: "https://citizensecon.org.uk/",
     description: "Promoting citizen engagement in economic policy",
     category: "advocacy",
+  },
+  {
+    id: "gary-community-ventures",
+    name: "Gary Community Ventures",
+    logo: GaryCommunityVentures,
+    website: "https://garycommunity.org/",
+    description: "Colorado-based venture philanthropy organization",
+    category: "advocacy",
+  },
+  {
+    id: "colorado-fiscal-institute",
+    name: "Colorado Fiscal Institute",
+    logo: GaryCommunityVentures,
+    website: "https://coloradofiscal.org/",
+    description: "Advancing equitable fiscal and economic policies in Colorado",
+    category: "think-tank",
   },
 ];
 
