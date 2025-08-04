@@ -25,6 +25,7 @@ import {
   TeamOutlined,
   UserAddOutlined,
   BankOutlined,
+  UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
 import { Dropdown } from "antd";
@@ -70,6 +71,11 @@ export const ABOUT_DROPDOWN_LINKS = [
     title: "Team",
     link: "about",
     icon: <TeamOutlined />,
+  },
+  {
+    title: "Users",
+    link: "users",
+    icon: <UsergroupAddOutlined />,
   },
   {
     title: "Careers",
