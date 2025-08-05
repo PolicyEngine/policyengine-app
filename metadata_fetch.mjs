@@ -7,7 +7,9 @@ let metadataUK = null;
 let metadataCA = null;
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
 // Fix for Windows path issues
-const normalizedDirname = __dirname.startsWith('/') ? __dirname.slice(1) : __dirname;
+const normalizedDirname = __dirname.startsWith("/")
+  ? __dirname.slice(1)
+  : __dirname;
 const filePath = path.join(
   normalizedDirname,
   "src",
