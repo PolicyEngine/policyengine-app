@@ -1,6 +1,6 @@
 import style from "../../style";
 import Section from "../../layout/Section";
-import apiScreenshot from "../../images/home/api_screenshot.png";
+import CodeBlock from "../../components/CodeBlock";
 import githubScreenshot from "../../images/home/github_screenshot.png";
 import testingScreenshot from "../../images/home/testing_screenshot.png";
 import ShowcaseItem from "../../layout/ShowcaseItem";
@@ -20,23 +20,33 @@ export default function HomeTransparency() {
         borderColor={style.colors.BLACK}
       />
       <ShowcaseItem
-        title="Our models are tested extensively"
-        description="PolicyEngine's software undergoes thousands of automated tests every day to ensure our simulations produce accurate results."
-        linkTitle="Explore the documentation"
-        link={`https://policyengine.github.io/policyengine-${countryId}`}
-        image={testingScreenshot}
-        altText="Screenshot of PolicyEngine's test coverage"
-        borderColor={style.colors.BLACK}
-      />
-      <ShowcaseItem
         title="PolicyEngine's API computes policy impacts"
         description="Instantly compute taxes and benefits for any household under current or reformed policy rules, using the PolicyEngine REST API, reproducing any result in the web app."
         linkTitle="Explore the documentation"
         link={`/${countryId}/api`}
-        image={apiScreenshot}
-        altText="Screenshot of PolicyEngine's API documentation"
+        image={
+          <CodeBlock
+            code={`{
+          "income_tax": {
+            "2023": 3486
+          },
+          "income_tax_pre_charges": {
+            "2023": 3486
+          },
+          "is_CTC_child_limit_exempt": {
+            "2023": true
+          },
+          "is_QYP": {
+            "2023": false
+          }
+        }`}
+          />
+        }
+        altText="JSON response from API"
         borderColor={style.colors.BLACK}
       />
+
+
     </Section>
   );
 }
