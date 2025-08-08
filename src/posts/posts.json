@@ -1,5 +1,14 @@
 [
   {
+    "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
+    "description": "The Enhanced Current Population Survey now includes tip, overtime, and auto loan interest imputations, plus upcoming state and congressional district calibration.",
+    "date": "2025-08-08",
+    "tags": ["us", "data", "featured"],
+    "filename": "enhanced-cps-launch.md",
+    "image": "enhanced-cps-launch.png",
+    "authors": ["max-ghenis", "nikhil-woodruff"]
+  },
+  {
     "title": "Analysis of individual income tax provisions in the final reconciliation bill",
     "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
     "date": "2025-07-04",
