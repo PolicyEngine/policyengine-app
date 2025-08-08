@@ -1,5 +1,14 @@
 [
   {
+    "title": "Introducing the OBBBA Household by Household tool",
+    "description": "New interactive tool reveals household-level impacts of H.R.1 tax reform across different income levels, household types, and states.",
+    "date": "2025-08-08",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "obbba-household-by-household.md",
+    "image": "obbba-household-by-household.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
     "description": "The Enhanced Current Population Survey now includes tip, overtime, and auto loan interest imputations, plus upcoming state and congressional district calibration.",
     "date": "2025-08-08",
