@@ -92,6 +92,15 @@ export default function SimulationsPage() {
       key: "reform_policy_id",
     },
     { title: "Status", dataIndex: "status", key: "status" },
+    {
+      title: "Queue Position",
+      dataIndex: "queue_position",
+      key: "queue_position",
+      render: (pos) =>
+        pos === undefined || pos === null
+          ? <span style={{ color: '#888' }}>—</span>
+          : <Tag color={pos > 0 ? "orange" : "blue"}>{pos}</Tag>,
+    },
     { title: "Comment", dataIndex: "message", key: "message" },
     //{ title: 'Options Hash', dataIndex: 'options_hash', key: 'options_hash' },
     { title: "Options", dataIndex: "options_json", key: "options_json" },
@@ -158,17 +167,28 @@ function formatRow(row) {
       </Tag>
     </div>
   ));
-  row.status =
-    {
-      ok: <Tag color="green">OK</Tag>,
-      computing: (
-        <Tag color="blue">
-          <Spinner style={{ marginRight: 10 }} />
-          COMPUTING
-        </Tag>
-      ),
-      error: <Tag color="red">ERROR</Tag>,
-    }[row.status] || row.status;
+
+  // Show queue position if present and > 0
+  if (row.status === "computing" && row.queue_position > 0) {
+    row.status = (
+      <Tag color="orange">
+        POSITION IN QUEUE: {row.queue_position}
+      </Tag>
+    );
+  } else {
+    row.status =
+      {
+        ok: <Tag color="green">OK</Tag>,
+        computing: (
+          <Tag color="blue">
+            <Spinner style={{ marginRight: 10 }} />
+            CALCULATING
+          </Tag>
+        ),
+        error: <Tag color="red">ERROR</Tag>,
+      }[row.status] || row.status;
+  }
+
   const CODE_FIELDS = [
     "country_id",
     "baseline_policy_id",
