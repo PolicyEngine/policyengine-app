@@ -456,105 +456,6 @@ function FullLiteToggle() {
  * @param {Number|String} timePeriod The year the simulation should run over
  * @returns {import("react").ReactElement}
  */
-function DatasetSelector(props) {
-  const { presentDataset, timePeriod } = props;
-  const [isChecked, setIsChecked] = useState(confirmIsChecked(presentDataset));
-  const [searchParams, setSearchParams] = useSearchParams();
-  const displayCategory = useDisplayCategory();
-
-  function confirmIsChecked(presentDataset) {
-    // Define presentDataset value that activates check
-    const checkValue = "enhanced_cps";
-    // Default to Enhanced CPS if no dataset specified
-    if (!presentDataset || presentDataset === checkValue) {
-      return true;
-    }
-    return false;
-  }
-
-  // Determine whether slider should be enabled or disabled
-  function shouldEnableSlider(timePeriod) {
-    // Define earliest year slider should be shown for
-    const sliderStartYear = 2024;
-
-    // Return whether or not slider should be enabled
-    // Null timePeriod reflects no URL param setting yet -
-    // this is actually default behavior
-    if (!timePeriod || timePeriod >= sliderStartYear) {
-      return true;
-    }
-
-    return false;
-  }
-
-  function handleChange() {
-    // First, safety check - if the button isn't even
-    // supposed to be shown, do nothing
-    if (!shouldEnableSlider(timePeriod)) {
-      return;
-    }
-
-    // Duplicate the existing search params
-    let newSearch = copySearchParams(searchParams);
-
-    // Set params accordingly
-    if (isChecked) {
-      // When unchecking, explicitly set to non-enhanced dataset
-      newSearch.set("dataset", "cps");
-      setIsChecked(false);
-    } else {
-      // When checking, delete dataset param (defaults to enhanced)
-      newSearch.delete("dataset");
-      setIsChecked(true);
-    }
-    setSearchParams(newSearch);
-  }
-
-  return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        alignItems: "center",
-        gap: "10px",
-      }}
-    >
-      <Switch
-        data-testid="enhanced_cps_switch"
-        size={displayCategory !== "mobile" && "small"}
-        onChange={handleChange}
-        disabled={!shouldEnableSlider(timePeriod)}
-        checked={
-          !presentDataset || presentDataset === "enhanced_cps" ? true : false
-        }
-      />
-      <p
-        style={{
-          margin: 0,
-          fontSize: displayCategory !== "mobile" && "0.95em",
-          color: !shouldEnableSlider(timePeriod) && "rgba(0,0,0,0.5)",
-          cursor: !shouldEnableSlider(timePeriod) && "not-allowed",
-        }}
-      >
-        Use Enhanced CPS
-      </p>
-      <Tooltip
-        placement="topRight"
-        title="Currently available for US-wide simulations only."
-        trigger={displayCategory === "mobile" ? "click" : "hover"}
-      >
-        <QuestionCircleOutlined
-          style={{
-            color: "rgba(0, 0, 0, 0.85)",
-            opacity: 0.85,
-            cursor: "pointer",
-          }}
-        />
-      </Tooltip>
-    </div>
-  );
-}
 
 function PolicyNamer(props) {
   const { policy, metadata } = props;
@@ -842,8 +743,6 @@ export default function PolicyRightSidebar(props) {
   const hasHousehold = searchParams.get("household") !== null;
 
   const isMultiYear = determineIfMultiYear(searchParams);
-
-  let dataset = searchParams.get("dataset");
 
   const options = metadata.economy_options.region.map((stateAbbreviation) => {
     return { value: stateAbbreviation.name, label: stateAbbreviation.label };
@@ -1143,12 +1042,6 @@ export default function PolicyRightSidebar(props) {
                     }}
                   />
                 </div>
-                {metadata.countryId === "us" && (
-                  <DatasetSelector
-                    presentDataset={dataset}
-                    timePeriod={timePeriod}
-                  />
-                )}
                 {MULTI_YEAR_SELECTOR_PERMITTED_COUNTRIES.includes(
                   metadata.countryId,
                 ) && (
