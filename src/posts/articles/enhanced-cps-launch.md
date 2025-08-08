@@ -75,12 +75,7 @@ You can access the Enhanced CPS through:
 
 **Web interface**: The Enhanced CPS powers all nationwide calculations at [policyengine.org/us](https://policyengine.org/us)
 
-**Python package**:
-
-```python
-from policyengine_us import Microsimulation
-sim = Microsimulation(dataset="enhanced_cps_2025")
-```
+**Python package**: Works by default for our `Microsimulation` calls.
 
 **Direct download**: For Python users, the data automatically downloads from our Hugging Face repository when you instantiate a simulation. The files are stored at [`hf://policyengine/policyengine-us-data`](https://huggingface.co/policyengine/policyengine-us-data)
 
