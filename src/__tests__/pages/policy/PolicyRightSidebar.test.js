@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { BrowserRouter, useSearchParams } from "react-router-dom";
 import PolicyRightSidebar, {
   SinglePolicyChange,
