@@ -20,7 +20,9 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 
 ### Technical infrastructure improvements
 
-**Two-stage methodology**: Our approach combines sophisticated imputation with advanced reweighting techniques. First, we use Quantile Regression Forests (QRF) to impute missing variables from multiple data sources, preserving realistic variation and capturing conditional distribution tails. Second, we apply gradient-based optimization with PyTorch to reweight households, matching administrative targets while maintaining the survey's statistical properties. [View our detailed methodology flowchart](https://policyengine.github.io/policyengine-us-data/methodology).
+**Two-stage methodology**: Our approach combines sophisticated imputation with advanced reweighting techniques. First, we use Quantile Regression Forests (QRF) to impute missing variables from multiple data sources, preserving realistic variation and capturing conditional distribution tails. Second, we apply gradient-based optimization with PyTorch to reweight households, matching administrative targets while maintaining the survey's statistical properties.
+
+The process flow integrates five source datasets (CPS ASEC, IRS PUF, SIPP, SCF, ACS) that are aged to the target year. Through QRF imputation, we create two enhanced CPS variants: one with missing PUF variables filled in, and another with existing variables replaced by PUF values. These datasets then undergo reweighting optimization to produce the final Enhanced CPS dataset. [View our detailed methodology documentation](https://policyengine.github.io/policyengine-us-data/methodology).
 
 **Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that automates our QRF-based imputation methods. This package makes our imputation methodology more transparent and reusable.
 
