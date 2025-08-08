@@ -20,9 +20,13 @@ We've implemented the ASEC Undocumented Algorithm to impute Social Security Numb
 
 ### Technical infrastructure improvements
 
-**Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that automates our imputation methods using quantile regression forests for data integration. This package makes our imputation methodology more transparent and reusable.
+**Two-stage methodology**: Our approach combines sophisticated imputation with advanced reweighting techniques. First, we use Quantile Regression Forests (QRF) to impute missing variables from multiple data sources, preserving realistic variation and capturing conditional distribution tails. Second, we apply gradient-based optimization with PyTorch to reweight households, matching administrative targets while maintaining the survey's statistical properties. [View our detailed methodology flowchart](https://policyengine.github.io/policyengine-us-data/methodology).
 
-**Enhanced validation**: Our [calibration process](https://policyengine.github.io/policyengine-us-data/methodology#calibration) targets 9,168 administrative totals across income sources, demographics, and geography, ensuring the Enhanced CPS accurately represents:
+**Microimpute package**: We've developed and adopted [`microimpute`](https://github.com/PolicyEngine/microimpute), a new open-source Python package that automates our QRF-based imputation methods. This package makes our imputation methodology more transparent and reusable.
+
+**Advanced reweighting with L0 regularization**: Our reweighting process uses log-transformed weights with dropout regularization and incorporates an L0 penalty for sparsity. This ensures positive weights while preventing overfitting and maintaining interpretability. The optimization minimizes mean squared relative error using the Adam optimizer.
+
+**Enhanced validation**: Our [calibration process](https://policyengine.github.io/policyengine-us-data/methodology#calibration) targets 9,168 administrative totals from sources including IRS SOI, Census, CBO/Treasury, and JCT data, ensuring the Enhanced CPS accurately represents:
 
 - Income components by source
 - Benefit program enrollment
