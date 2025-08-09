@@ -23,7 +23,6 @@ import {
   DownOutlined,
   DeploymentUnitOutlined,
   TeamOutlined,
-  UserAddOutlined,
   BankOutlined,
 } from "@ant-design/icons";
 import { loginOptions, logoutOptions } from "../auth/authUtils";
@@ -72,9 +71,9 @@ export const ABOUT_DROPDOWN_LINKS = [
     icon: <TeamOutlined />,
   },
   {
-    title: "Careers",
+    title: "Jobs",
     link: "jobs",
-    icon: <UserAddOutlined />,
+    icon: <TeamOutlined />,
   },
   {
     title: "Supporters",
