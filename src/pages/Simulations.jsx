@@ -97,9 +97,11 @@ export default function SimulationsPage() {
       dataIndex: "queue_position",
       key: "queue_position",
       render: (pos) =>
-        pos === undefined || pos === null
-          ? <span style={{ color: '#888' }}>—</span>
-          : <Tag color={pos > 0 ? "orange" : "blue"}>{pos}</Tag>,
+        pos === undefined || pos === null ? (
+          <span style={{ color: "#888" }}>—</span>
+        ) : (
+          <Tag color={pos > 0 ? "orange" : "blue"}>{pos}</Tag>
+        ),
     },
     { title: "Comment", dataIndex: "message", key: "message" },
     //{ title: 'Options Hash', dataIndex: 'options_hash', key: 'options_hash' },
@@ -171,9 +173,7 @@ function formatRow(row) {
   // Show queue position if present and > 0
   if (row.status === "computing" && row.queue_position > 0) {
     row.status = (
-      <Tag color="orange">
-        POSITION IN QUEUE: {row.queue_position}
-      </Tag>
+      <Tag color="orange">POSITION IN QUEUE: {row.queue_position}</Tag>
     );
   } else {
     row.status =
