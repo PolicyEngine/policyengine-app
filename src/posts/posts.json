@@ -1,5 +1,32 @@
 [
   {
+    "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
+    "description": "The Enhanced Current Population Survey now includes tip, overtime, and auto loan interest imputations, plus upcoming state and congressional district calibration.",
+    "date": "2025-08-08",
+    "tags": ["us", "data", "featured"],
+    "filename": "enhanced-cps-launch.md",
+    "image": "enhanced-cps-launch.png",
+    "authors": ["max-ghenis", "nikhil-woodruff"]
+  },
+  {
+    "title": "Analysis of individual income tax provisions in the final reconciliation bill",
+    "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
+    "date": "2025-07-04",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "final-2025-reconciliation-tax.md",
+    "image": "final-2025-reconciliation-tax.png",
+    "authors": ["david-trimmer", "pavel-makarchuk"]
+  },
+  {
+    "title": "Introducing the OBBBA Household Explorer",
+    "description": "New interactive tool reveals household-level impacts of the One Big Beautiful Bill Act.",
+    "date": "2025-07-03",
+    "tags": ["us", "policy", "featured", "reconciliation"],
+    "filename": "introducing-obbba-household-explorer.md",
+    "image": "introducing-obbba-household-explorer.png",
+    "authors": ["max-ghenis", "pavel-makarchuk", "elena-cura"]
+  },
+  {
     "title": "The 2025 American Family Act",
     "description": "The Child Tax Credit expansion would cost the federal government $2.5 trillion over ten years and lower child poverty by 25%.",
     "date": "2025-06-16",
@@ -19,9 +46,9 @@
   },
   {
     "title": "Manager's Amendment to H.R.1 - The One Big Beautiful Bill Act",
-    "date": "2025-05-23",
+    "date": "2025-05-24",
     "authors": ["pavel-makarchuk", "david-trimmer", "max-ghenis"],
-    "tags": ["us", "policy", "featured"],
+    "tags": ["us", "policy", "featured", "reconciliation"],
     "description": "We project that individual provisions in the manager's amendment will cost $22 billion over the budget window.",
     "filename": "managers-amendment-to-hr1.md",
     "image": "managers-amendment-to-hr1.png"
@@ -75,7 +102,7 @@
     "title": "What's the SALTernative?",
     "description": "Introducing PolicyEngine’s free SALT‑AMT calculator — an open‑source web app to model next year’s SALT‑cap sunset, tweak AMT parameters, and see the budget, distributional, and household impacts in seconds.",
     "date": "2025-04-21",
-    "tags": ["us", "featured"],
+    "tags": ["us", "featured", "reconciliation"],
     "filename": "introducing-salternative.md",
     "image": "introducing-salternative.png",
     "authors": ["pavel-makarchuk", "max-ghenis"]

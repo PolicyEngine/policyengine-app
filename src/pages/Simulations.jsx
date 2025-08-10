@@ -107,7 +107,7 @@ export default function SimulationsPage() {
     //{ title: 'Options Hash', dataIndex: 'options_hash', key: 'options_hash' },
     { title: "Options", dataIndex: "options_json", key: "options_json" },
     {
-      title: "Reform Impact ID",
+      title: "Reform impact ID",
       dataIndex: "reform_impact_id",
       key: "reform_impact_id",
     },

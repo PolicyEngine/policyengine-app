@@ -141,5 +141,14 @@
     "linkedin": "https://www.linkedin.com/in/michaeldsmit/",
     "headshot": "michael-smit.jpeg",
     "title": "Volunteer Software Engineer for PolicyEngine"
+  },
+  "elena-cura": {
+    "name": "Elena Cura",
+    "email": "elena@policyengine.org",
+    "bio": "Elena is a data science intern at PolicyEngine.",
+    "linkedin": "https://www.linkedin.com/in/elena-cura",
+    "github": "https://github.com/eccuraa",
+    "headshot": "elena-cura.png",
+    "title": "Data Science Intern at PolicyEngine"
   }
 }

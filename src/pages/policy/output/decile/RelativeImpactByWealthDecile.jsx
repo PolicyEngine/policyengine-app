@@ -24,7 +24,7 @@ export default function relativeImpactByWealthDecile(props) {
     </ImpactChart>
   );
   const csv = () => {
-    const header = ["Wealth Decile", "Relative Change"];
+    const header = ["Wealth decile", "Relative change"];
     const data = [
       header,
       ...Object.entries(wealthDecileRelative).map(

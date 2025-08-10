@@ -18,11 +18,9 @@ export function aggregateBaselineReformComparison(
 }
 
 /**
- * Aggregates numeric values using either sum or average based on specified strategy
+ * Aggregates numeric values using the specified strategy
  * @param {Array<number>} values - Array of numbers to aggregate
- * @param {'sum' | 'mean'} strategy - Aggregation strategy, either 'sum' or 'mean';
- * add a custom strategy by modifying the aggregators object in aggregationFunctions.js
- * and updating JSDoc literal comment
+ * @param {'sum'} strategy - Aggregation strategy, currently only 'sum' is supported
  * @returns {number} The aggregated value
  */
 export function aggregateValues(values, strategy = "sum") {

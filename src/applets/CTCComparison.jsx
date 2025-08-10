@@ -9,7 +9,7 @@ export default function CTCComparison() {
   return (
     <>
       <Helmet>
-        <title>Child Tax Credit Calculator | PolicyEngine</title>
+        <title>Child tax credit calculator | PolicyEngine</title>
       </Helmet>
       <Header />
       <div
@@ -22,7 +22,7 @@ export default function CTCComparison() {
       >
         <iframe
           src="https://vance-harris-ctc-comparison.streamlit.app?embedded=true"
-          title="Child Tax Credit Calculator"
+          title="Child tax credit calculator"
           height={`calc(100vh - ${style.spacing.HEADER_HEIGHT})`}
           width="100%"
           style={{ overflow: "hidden" }}
