@@ -51,24 +51,33 @@ export default function BlogPage() {
   const countryId = useCountryId();
 
   const post = posts.find((post) => post.slug === postName);
-  const postDate = formatFullDate(moment(post.date), countryId);
-
-  const imageUrl = post.image ? handleImageLoad(post.image) : "";
-  const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
-  const isNotebook = post.filename.endsWith(".ipynb");
+  const isNotebook = post?.filename?.endsWith(".ipynb");
+  const postDate = post ? formatFullDate(moment(post.date), countryId) : "";
+  const imageUrl = post?.image ? handleImageLoad(post.image) : "";
+  const file = post?.filename
+    ? require(`../posts/articles/${post.filename}`)
+    : null;
+
   useEffect(() => {
-    fetch(file)
-      .then((response) => response.text())
-      .then((text) => {
-        if (isNotebook) {
-          setContent(JSON.parse(text));
-        } else {
-          setContent(text);
-        }
-      });
+    if (file) {
+      fetch(file)
+        .then((response) => response.text())
+        .then((text) => {
+          if (isNotebook) {
+            setContent(JSON.parse(text));
+          } else {
+            setContent(text);
+          }
+        });
+    }
   }, [file, isNotebook]);
+
+  // If the post has an external_url, redirect to it
+  if (post && post.external_url) {
+    return <Navigate to={post.external_url} replace />;
+  }
 
   // Some old links might point to a dated URL format
   const YYYYMMDDFormat = /^\d{4}-\d{2}-\d{2}-/;

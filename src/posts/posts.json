@@ -1,10 +1,10 @@
 [
   {
-    "title": "Introducing the OBBBA Household by Household tool",
-    "description": "New interactive tool reveals household-level impacts of H.R.1 tax reform across different income levels, household types, and states.",
+    "title": "OBBBA Household by Household Analysis",
+    "description": "Interactive tool showing how the One Big Beautiful Bill Act affects 20,000 representative households across income levels and states.",
     "date": "2025-08-08",
     "tags": ["us", "policy", "featured", "reconciliation"],
-    "filename": "obbba-household-by-household.md",
+    "external_url": "/us/obbba-household-by-household",
     "image": "obbba-household-by-household.png",
     "authors": ["max-ghenis"]
   },

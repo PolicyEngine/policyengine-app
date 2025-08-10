@@ -403,8 +403,10 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
 export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const countryId = useCountryId();
-  const slug = blog.filename.split(".")[0];
-  const link = `/${countryId}/research/${slug}`;
+  const slug = blog.filename
+    ? blog.filename.split(".")[0]
+    : blog.title.toLowerCase().replace(/\s+/g, "-");
+  const link = blog.external_url || `/${countryId}/research/${slug}`;
 
   const imageUrl = blog.image ? handleImageLoad(blog.image) : "";
 
