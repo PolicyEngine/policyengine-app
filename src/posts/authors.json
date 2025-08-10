@@ -150,5 +150,19 @@
     "github": "https://github.com/eccuraa",
     "headshot": "elena-cura.png",
     "title": "Data Science Intern at PolicyEngine"
+  },
+  "ben-ogorek": {
+    "name": "Ben Ogorek",
+    "email": "ben.ogorek@policyengine.org",
+    "bio": "Ben is a data scientist at PolicyEngine.",
+    "linkedin": "https://www.linkedin.com/in/ben-ogorek/",
+    "github": "https://github.com/ben-ogorek",
+    "title": "Data Scientist at PolicyEngine"
+  },
+  "maria-juaristi": {
+    "name": "Maria Juaristi",
+    "email": "maria@policyengine.org",
+    "bio": "Maria is a data scientist at PolicyEngine.",
+    "title": "Data Scientist at PolicyEngine"
   }
 }
