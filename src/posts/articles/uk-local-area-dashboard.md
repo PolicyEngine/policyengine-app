@@ -8,7 +8,7 @@ We’re launching new capabilities in PolicyEngine to disaggregate policy analys
 
 ## A new approach to local area modelling
 
-PolicyEngine has developed a [methodology](https://policyengine.github.io/policyengine-uk-data/constituency_methodology.html) that adapts techniques from political polling to tax-benefit microsimulation. The approach reweights national survey data to match administrative statistics at the constituency level, similar to how multi-level regression and post-stratification (MRP) [transformed](https://www.electoralcalculus.co.uk/blogs/ec_mrpinfo_20240604.html) election polling.
+PolicyEngine has developed a methodology that adapts techniques from political polling to tax-benefit microsimulation. The approach reweights national survey data to match administrative statistics at the constituency level, similar to how multi-level regression and post-stratification (MRP) [transformed](https://www.electoralcalculus.co.uk/blogs/ec_mrpinfo_20240604.html) election polling.
 
 The Family Resources Survey [(FRS)](https://www.gov.uk/government/collections/family-resources-survey--2), while robust for national and regional analysis with around 20,000 households, typically includes only 30-40 households per constituency, insufficient for reliable local estimates. As a result, MPs, local authorities, and researchers have lacked the tools to understand local policy impacts systematically.
 
@@ -30,27 +30,27 @@ To demonstrate the capabilities of PolicyEngine's local modelling dashboard, we 
 
 ### Income
 
-As the figure below shows, households of the Cities of London and Westminster earn more than those in Cambridge, with an average market income of £106,782 compared to £77,677. Their average net income is also higher, £81,810 versus £63,759.
+As the figure below shows, households of the Cities of London and Westminster earn more than those in Cambridge, with an average market income of just under £107,000 compared to nearly £78,000. Their average net income is also higher, approximately £82,000 versus just under £64,000.
 
 ![](/images/posts/uk-local-area-dashboard/compare2.png)
 
-A decile-level comparison shows that this income advantage is concentrated at the top. Households in the top decile in the Cities of London and Westminster take home an average net income of £364,536, more than double the £181,166 earned by their counterparts in Cambridge. Households in the lower-income deciles earn similar amounts in both the Cities of London and Westminster and Cambridge.
+A decile-level comparison shows that this income advantage is concentrated at the top. Households in the top decile in the Cities of London and Westminster take home an average net income of approximately £365,000, more than double the roughly £181,000 earned by their counterparts in Cambridge. Households in the lower-income deciles earn similar amounts in both the Cities of London and Westminster and Cambridge.
 
 ### Consumption and wealth
 
-As the figure below shows, households in Cambridge spend more on average, £30,584 compared to £28,706 in the Cities of London and Westminster. They allocate more to most spending categories, including housing, food, and recreation.
+As the figure below shows, households in Cambridge spend more on average, just over £30,500 compared to nearly £28,700 in the Cities of London and Westminster. They allocate more to most spending categories, including housing, food, and recreation.
 
 ![](/images/posts/uk-local-area-dashboard/compare3.png)
 
-Additionally, Cambridge households hold more wealth on average, with assets totalling £551,744 compared to £471,549 in the Cities of London and Westminster.
+Additionally, Cambridge households hold more wealth on average, with assets totalling just over £550,000 compared to slightly more than £470,000 in the Cities of London and Westminster.
 
 ### Taxes and benefits
 
-The chart below demonstrates that households in the Cities of London and Westminster pay higher average taxes, with £34,590 compared to £22,591 in Cambridge. This difference is driven mainly by larger income tax payments, £9,410 versus £5,964, and higher employer National Insurance contributions.
+The chart below demonstrates that households in the Cities of London and Westminster pay higher average taxes, with nearly £34,600 compared to approximately £22,600 in Cambridge. This difference is driven mainly by larger income tax payments, just over £9,400 versus nearly £6,000, and higher employer National Insurance contributions.
 
 ![](/images/posts/uk-local-area-dashboard/compare4.png)
 
-Households in the Cities of London and Westminster receive £9,617 in benefits on average, compared to £8,673 in Cambridge. Higher-income households pay more through income tax, while households in both areas contribute similar amounts to indirect taxes such as VAT and council tax.
+Households in the Cities of London and Westminster receive just under £9,620 in benefits on average, compared to slightly more than £8,670 in Cambridge. Higher-income households pay more through income tax, while households in both areas contribute similar amounts to indirect taxes such as VAT and council tax.
 
 ### Fiscal impact
 
@@ -77,8 +77,6 @@ You can read the full analysis [here](https://policyengine.org/uk/research/wfa-m
 We align administrative statistics to a consistent geographic framework, since HMRC reports data using 2010 parliamentary constituencies while our analysis uses 2024 definitions. We build a many-to-many mapping matrix from ONS boundary lookups to translate income, jobs, and population data to the updated geography. We draw on data from [NOMIS](https://www.nomisweb.co.uk/) for job counts and earnings, HMRC for income distributions, and the House of Commons Library for population by age.
 
 We construct over 11,000 calibration targets covering income brackets, age bands, and employment patterns. We optimise household weights using gradient descent to align survey microdata with these administrative totals. Our loss function combines constituency-level and national-level accuracy, and we minimise it using the Adam optimiser. Throughout the process, we ensure that improving local precision does not distort national estimates.
-
-You can read more about the technical details and the mathematical framework behind this methodology in [our documentation page](https://policyengine.github.io/policyengine-uk-data/constituency_methodology.html).
 
 ## Strengths and limitations
 
