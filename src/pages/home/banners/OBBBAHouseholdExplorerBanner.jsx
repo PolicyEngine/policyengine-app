@@ -6,8 +6,7 @@ import useDisplayCategory from "../../../hooks/useDisplayCategory";
 export default function OBBBAHouseholdBanner() {
   const dC = useDisplayCategory();
 
-  const title =
-    "The One Big Beautiful Bill Act, household by household";
+  const title = "The One Big Beautiful Bill Act, household by household";
   const subtitle =
     "See how the reconciliation bill affects 20,000 representative households " +
     "across income levels, states, and provisions";
