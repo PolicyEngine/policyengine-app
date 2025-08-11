@@ -13,10 +13,12 @@ describe("posts.json validation", () => {
   test("posts with external_url should still have filename for backend compatibility", () => {
     // This test ensures backend social_card_tags.py won't crash
     // The backend expects all posts to have a filename field
+    // Posts with external_url should have a dummy filename (e.g., "obbba-household-by-household-dummy.md")
+    // The actual file doesn't need to exist - it's just for backend compatibility
     const postsWithExternalUrl = posts.filter((post) => post.external_url);
 
     postsWithExternalUrl.forEach((post) => {
-      // This should fail for the OBBBA post which only has external_url
+      // Posts with external_url must have a filename field to prevent backend crash
       expect(post.filename).toBeDefined();
     });
   });
