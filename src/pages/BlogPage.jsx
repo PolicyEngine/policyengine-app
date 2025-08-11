@@ -49,37 +49,29 @@ export default function BlogPage() {
   // /uk/research/blog-slug-here
   const { postName } = useParams();
   const countryId = useCountryId();
+  const [content, setContent] = useState("");
 
   const post = posts.find((post) => post.slug === postName);
-  
-  // Handle external URL redirects
-  if (post && post.external_url) {
-    return <Navigate to={post.external_url} replace />;
-  }
-  
-  const postDate = formatFullDate(moment(post.date), countryId);
 
-  const imageUrl = post.image ? handleImageLoad(post.image) : "";
-  
-  // Handle missing post or filename
-  if (!post || !post.filename) {
-    return <Navigate to={`/${countryId}/research`} replace />;
-  }
-  
-  const file = require(`../posts/articles/${post.filename}`);
+  const isNotebook =
+    post && post.filename ? post.filename.endsWith(".ipynb") : false;
+  const file =
+    post && post.filename
+      ? require(`../posts/articles/${post.filename}`)
+      : null;
 
-  const [content, setContent] = useState("");
-  const isNotebook = post.filename.endsWith(".ipynb");
   useEffect(() => {
-    fetch(file)
-      .then((response) => response.text())
-      .then((text) => {
-        if (isNotebook) {
-          setContent(JSON.parse(text));
-        } else {
-          setContent(text);
-        }
-      });
+    if (file) {
+      fetch(file)
+        .then((response) => response.text())
+        .then((text) => {
+          if (isNotebook) {
+            setContent(JSON.parse(text));
+          } else {
+            setContent(text);
+          }
+        });
+    }
   }, [file, isNotebook]);
 
   // Some old links might point to a dated URL format
@@ -87,6 +79,19 @@ export default function BlogPage() {
   if (YYYYMMDDFormat.test(postName)) {
     return <Navigate to={`/${countryId}/blog/${postName.substring(11)}`} />;
   }
+
+  // Handle external URL redirects
+  if (post && post.external_url) {
+    return <Navigate to={post.external_url} replace />;
+  }
+
+  // Handle missing post or filename
+  if (!post || !post.filename) {
+    return <Navigate to={`/${countryId}/research`} replace />;
+  }
+
+  const postDate = formatFullDate(moment(post.date), countryId);
+  const imageUrl = post.image ? handleImageLoad(post.image) : "";
 
   let markdown;
 

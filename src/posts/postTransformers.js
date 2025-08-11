@@ -7,7 +7,10 @@ for (let post of postsSorted) {
     post.slug = post.filename.substring(0, post.filename.indexOf("."));
   } else if (post.external_url) {
     // For external URLs, generate a slug from the title
-    post.slug = post.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    post.slug = post.title
+      .toLowerCase()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9-]/g, "");
   }
 }
 
