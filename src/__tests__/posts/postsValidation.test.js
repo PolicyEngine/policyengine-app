@@ -5,7 +5,7 @@ describe("posts.json validation", () => {
     posts.forEach((post, index) => {
       const hasFilename = "filename" in post;
       const hasExternalUrl = "external_url" in post;
-      
+
       expect(hasFilename || hasExternalUrl).toBe(true);
     });
   });
@@ -13,8 +13,8 @@ describe("posts.json validation", () => {
   test("posts with external_url should still have filename for backend compatibility", () => {
     // This test ensures backend social_card_tags.py won't crash
     // The backend expects all posts to have a filename field
-    const postsWithExternalUrl = posts.filter(post => post.external_url);
-    
+    const postsWithExternalUrl = posts.filter((post) => post.external_url);
+
     postsWithExternalUrl.forEach((post) => {
       // This should fail for the OBBBA post which only has external_url
       expect(post.filename).toBeDefined();
@@ -23,9 +23,9 @@ describe("posts.json validation", () => {
 
   test("all posts should have required fields", () => {
     const requiredFields = ["title", "description", "date", "image", "authors"];
-    
+
     posts.forEach((post) => {
-      requiredFields.forEach(field => {
+      requiredFields.forEach((field) => {
         expect(post[field]).toBeDefined();
       });
     });

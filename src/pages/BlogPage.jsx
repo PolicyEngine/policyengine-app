@@ -656,7 +656,7 @@ function ShareLinks({ post }) {
   const displayCategory = useDisplayCategory();
   const desktop = displayCategory === "desktop";
   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-  
+
   return (
     <div
       style={{
