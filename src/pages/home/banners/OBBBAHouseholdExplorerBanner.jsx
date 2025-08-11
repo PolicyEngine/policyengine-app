@@ -7,11 +7,11 @@ export default function OBBBAHouseholdBanner() {
   const dC = useDisplayCategory();
 
   const title =
-    "Explore PolicyEngine's coverage of The One Big Beautiful Bill Act";
+    "The One Big Beautiful Bill Act, household by household";
   const subtitle =
-    "Use our new dashboard to explore the " +
-    "household by household impacts of the One Big Beautiful Bill Act";
-  const ctaText = "Explore OBBBA household impacts";
+    "See how the reconciliation bill affects 20,000 representative households " +
+    "across income levels, states, and provisions";
+  const ctaText = "Explore household impacts";
   const ctaLink = "/us/obbba-household-by-household";
   const ariaLabel =
     "Illustration of the U.S. Capitol building, representing federal policy context for household impact analysis.";
