@@ -9,6 +9,18 @@ import { formatFullDate } from "../../lang/format";
 import EmphasisedLink from "../../layout/EmphasisedLink";
 import { FileImageOutlined } from "@ant-design/icons";
 
+// Centralized function to get the link for a blog post
+export function getBlogPostLink(blog, countryId) {
+  // If the post has an external URL, use it directly
+  if (blog.external_url) {
+    return blog.external_url;
+  }
+
+  // Otherwise, create a research page link from the slug
+  const slug = blog.slug || (blog.filename ? blog.filename.split(".")[0] : "");
+  return `/${countryId}/research/${slug}`;
+}
+
 export default function HomeBlogPreview() {
   const countryId = useCountryId();
   const featuredPosts = posts
@@ -338,7 +350,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
   const countryId = useCountryId();
   const postDate = formatFullDate(moment(currentBlog.date), countryId);
 
-  const link = `/${countryId}/research/${currentBlog.slug}`;
+  const link = getBlogPostLink(currentBlog, countryId);
   return (
     <div
       style={{
@@ -403,8 +415,7 @@ export function FeaturedBlogPreview({ blogs, width, imageHeight }) {
 export function MediumBlogPreview({ blog, minHeight }) {
   const displayCategory = useDisplayCategory();
   const countryId = useCountryId();
-  const slug = blog.filename ? blog.filename.split(".")[0] : blog.slug;
-  const link = blog.external_url || `/${countryId}/research/${slug}`;
+  const link = getBlogPostLink(blog, countryId);
 
   const imageUrl = blog.image ? handleImageLoad(blog.image) : "";
 
@@ -529,9 +540,7 @@ export function SmallBlogPreview({ blog }) {
     left = <SideTags tags={blog.tags} />;
   }
 
-  const slug = blog.filename.split(".")[0];
-  const link = `/${countryId}/research/${slug}`;
-
+  const link = getBlogPostLink(blog, countryId);
   const postDate = formatFullDate(moment(blog.date), countryId);
 
   return (
