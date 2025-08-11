@@ -155,14 +155,16 @@
     "name": "Ben Ogorek",
     "email": "ben.ogorek@policyengine.org",
     "bio": "Ben is a data scientist at PolicyEngine.",
-    "linkedin": "https://www.linkedin.com/in/ben-ogorek/",
-    "github": "https://github.com/ben-ogorek",
+    "linkedin": "https://www.linkedin.com/in/benogorek/",
+    "github": "https://github.com/baogorek",
     "title": "Data Scientist at PolicyEngine"
   },
   "maria-juaristi": {
     "name": "Maria Juaristi",
     "email": "maria@policyengine.org",
     "bio": "Maria is a data scientist at PolicyEngine.",
+    "linkedin": "https://www.linkedin.com/in/mariajuaristi/",
+    "github": "https://github.com/juaristi22",
     "title": "Data Scientist at PolicyEngine"
   }
 }
