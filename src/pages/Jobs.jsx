@@ -130,20 +130,6 @@ export default function Jobs() {
           benefit access.
         </p>
       </PageHeader>
-      <Section backgroundColor={style.colors.WHITE}>
-        <h2>Ready to make an impact?</h2>
-        <p>
-          At PolicyEngine, we&apos;re revolutionizing public policy analysis and
-          benefit access with open-source software. Be part of a team
-          that&apos;s shaping the future of economic policy and making a real
-          difference in society.
-        </p>
-        <ApplyButton />
-        {/* Update this section depending on open positions */}
-        <p>
-          We&apos;re currently accepting applications for internship positions.
-        </p>
-      </Section>
       <Section backgroundColor={style.colors.LIGHT_GRAY}>
         <h2>About PolicyEngine</h2>
         <p>
@@ -182,15 +168,6 @@ export default function Jobs() {
           )}
         </>
       )}
-      <Section backgroundColor={style.colors.WHITE}>
-        <h2>Take the next step</h2>
-        <p>
-          If you&apos;re passionate about transforming public policy analysis
-          and want to contribute to meaningful change, we&apos;d love to hear
-          from you.
-        </p>
-        <ApplyButton />
-      </Section>
       <Footer />
     </div>
   );
