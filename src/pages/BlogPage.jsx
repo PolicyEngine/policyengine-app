@@ -623,9 +623,13 @@ function DesktopShareLink({ icon, url, action, text }) {
     <div
       style={{ display: "flex", alignItems: "center", cursor: "pointer" }}
       onClick={() => {
-        if (url) {
-          window.open(url, "_blank");
-        } else action();
+        if (typeof window !== "undefined") {
+          if (url) {
+            window.open(url, "_blank");
+          } else if (typeof action === "function") {
+            action();
+          }
+        }
       }}
     >
       {React.createElement(icon, {
@@ -653,6 +657,8 @@ function DesktopShareLink({ icon, url, action, text }) {
 function ShareLinks({ post }) {
   const displayCategory = useDisplayCategory();
   const desktop = displayCategory === "desktop";
+  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+
   return (
     <div
       style={{
@@ -665,27 +671,27 @@ function ShareLinks({ post }) {
       {desktop && <p className="spaced-sans-serif">Share</p>}
       <DesktopShareLink
         icon={TwitterOutlined}
-        url={`https://twitter.com/intent/tweet?text=${post.title}&url=${window.location.href}`}
+        url={`https://twitter.com/intent/tweet?text=${post.title}&url=${currentUrl}`}
         text={desktop && "Twitter"}
       />
       <DesktopShareLink
         icon={FacebookOutlined}
-        url={`https://www.facebook.com/sharer/sharer.php?u=${window.location.href}`}
+        url={`https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`}
         text={desktop && "Facebook"}
       />
       <DesktopShareLink
         icon={LinkedinOutlined}
-        url={`https://www.linkedin.com/shareArticle?mini=true&url=${window.location.href}&title=${post.title}&summary=${post.description}`}
+        url={`https://www.linkedin.com/shareArticle?mini=true&url=${currentUrl}&title=${post.title}&summary=${post.description}`}
         text={desktop && "LinkedIn"}
       />
       <DesktopShareLink
         icon={MailOutlined}
-        url={`mailto:?subject=${post.title}&body=${window.location.href}`}
+        url={`mailto:?subject=${post.title}&body=${currentUrl}`}
         text={desktop && "Email"}
       />
       <DesktopShareLink
         icon={PrinterOutlined}
-        action={window.print}
+        action={typeof window !== "undefined" ? window.print : () => {}}
         text={desktop && "Print"}
       />
     </div>
@@ -736,12 +742,17 @@ function LeftContents(props) {
             marginTop: 0,
           }}
           onClick={() => {
-            const element = document.getElementById(headerSlug);
-            if (element) {
-              window.scrollTo({
-                top: element.offsetTop - 200,
-                behavior: "smooth",
-              });
+            if (
+              typeof window !== "undefined" &&
+              typeof document !== "undefined"
+            ) {
+              const element = document.getElementById(headerSlug);
+              if (element) {
+                window.scrollTo({
+                  top: element.offsetTop - 200,
+                  behavior: "smooth",
+                });
+              }
             }
           }}
         >
