@@ -114,10 +114,13 @@ export default function MultiYearBudgetaryImpact(props) {
         item.budgetKey ? item.budgetKey : null,
         item.formula ? item.formula : null,
       ),
+
       yearRange: roundToBillions(
-        item.budgetKey
-          ? impact.budget[item.budgetKey]
-          : item.formula(impact.budget),
+        item.budgetKey === "benefit_spending_impact"
+          ? -Math.abs(impact.budget[item.budgetKey])
+          : item.budgetKey
+            ? impact.budget[item.budgetKey]
+            : item.formula(impact.budget),
         roundingPrecisionByCountry[metadata.countryId] ||
           roundingPrecisionByCountry.default,
       ),
@@ -196,6 +199,10 @@ export function getYearlyImpacts(
       impact = formula(item.result.budget);
     } else {
       impact = item.result.budget[budgetKey];
+    }
+
+    if (budgetKey === "benefit_spending_impact") {
+      impact = -Math.abs(impact);
     }
 
     yearlyImpacts[year] = roundToBillions(
