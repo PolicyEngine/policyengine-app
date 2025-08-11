@@ -626,7 +626,9 @@ function DesktopShareLink({ icon, url, action, text }) {
         if (typeof window !== "undefined") {
           if (url) {
             window.open(url, "_blank");
-          } else action();
+          } else if (typeof action === "function") {
+            action();
+          }
         }
       }}
     >
@@ -740,7 +742,10 @@ function LeftContents(props) {
             marginTop: 0,
           }}
           onClick={() => {
-            if (typeof window !== "undefined") {
+            if (
+              typeof window !== "undefined" &&
+              typeof document !== "undefined"
+            ) {
               const element = document.getElementById(headerSlug);
               if (element) {
                 window.scrollTo({
