@@ -51,9 +51,21 @@ export default function BlogPage() {
   const countryId = useCountryId();
 
   const post = posts.find((post) => post.slug === postName);
+  
+  // Handle external URL redirects
+  if (post && post.external_url) {
+    return <Navigate to={post.external_url} replace />;
+  }
+  
   const postDate = formatFullDate(moment(post.date), countryId);
 
   const imageUrl = post.image ? handleImageLoad(post.image) : "";
+  
+  // Handle missing post or filename
+  if (!post || !post.filename) {
+    return <Navigate to={`/${countryId}/research`} replace />;
+  }
+  
   const file = require(`../posts/articles/${post.filename}`);
 
   const [content, setContent] = useState("");
