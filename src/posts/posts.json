@@ -6,7 +6,12 @@
     "tags": ["us", "policy", "featured", "reconciliation", "interactives"],
     "external_url": "/us/obbba-household-by-household",
     "image": "obbba-household-by-household.png",
-    "authors": ["max-ghenis", "pavel-makarchuk", "ben-ogorek", "nikhil-woodruff"]
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk",
+      "ben-ogorek",
+      "nikhil-woodruff"
+    ]
   },
   {
     "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
