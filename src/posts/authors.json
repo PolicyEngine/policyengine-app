@@ -157,6 +157,7 @@
     "bio": "Ben is a data scientist at PolicyEngine.",
     "linkedin": "https://www.linkedin.com/in/benogorek/",
     "github": "https://github.com/baogorek",
+    "headshot": "ben-ogorek.jpeg",
     "title": "Data Scientist at PolicyEngine"
   },
   "maria-juaristi": {
@@ -165,6 +166,7 @@
     "bio": "Maria is a data scientist at PolicyEngine.",
     "linkedin": "https://www.linkedin.com/in/mariajuaristi/",
     "github": "https://github.com/juaristi22",
+    "headshot": "maria-juaristi.jpeg",
     "title": "Data Scientist at PolicyEngine"
   }
 }
