@@ -75,7 +75,14 @@ function PolicyLeftSidebar(props) {
   const sortTreeInPlace = (tree) => {
     if (!Array.isArray(tree)) return [];
 
-    tree.sort((a, b) => a.label.localeCompare(b.label));
+    // Check if all nodes are bracket nodes
+    const allBrackets = tree.every((item) => /^Bracket \d+$/.test(item.label));
+    // If all nodes are bracket nodes, sort numerically by index else sort alphabetically by label
+    if (allBrackets) {
+      tree.sort((a, b) => a.index - b.index);
+    } else {
+      tree.sort((a, b) => a.label.localeCompare(b.label));
+    }
 
     tree.forEach((item) => {
       if (Array.isArray(item.children)) {
