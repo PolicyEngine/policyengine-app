@@ -1,5 +1,14 @@
 [
   {
+    "title": "Analysis of the American Worker Rebate Act of 2025",
+    "description": "The bill would cost $141 billion and benefit 80% of American residents.",
+    "date": "2025-08-13",
+    "tags": ["us", "tariffs", "featured"],
+    "filename": "american-worker-rebate-act.md",
+    "image": "american-worker-rebate-act.jpg",
+    "authors": ["david-trimmer"]
+  },
+  {
     "title": "Enhanced CPS full launch: Comprehensive microdata for policy analysis",
     "description": "The Enhanced Current Population Survey now includes tip, overtime, and auto loan interest imputations, plus upcoming state and congressional district calibration.",
     "date": "2025-08-11",
