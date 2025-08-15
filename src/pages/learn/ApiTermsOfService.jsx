@@ -7,8 +7,10 @@ import { Link } from "react-router-dom";
 import useCountryId from "../../hooks/useCountryId";
 import { COUNTRY_NAMES } from "../../data/countries";
 import ReactMarkdown from "react-markdown";
-import apiTermsContent from "./api-terms.md";
 import { useState, useEffect } from "react";
+
+// Import the markdown content as a string
+import apiTermsContent from "./api-terms.md";
 
 export default function ApiTermsOfService() {
   const mobile = useMobile();
@@ -19,7 +21,6 @@ export default function ApiTermsOfService() {
 
   const getJurisdiction = (id) => {
     const country = COUNTRY_NAMES[id];
-
     if (country) {
       return country.phrasal || country.standard;
     }
