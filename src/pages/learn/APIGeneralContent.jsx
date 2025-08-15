@@ -4,6 +4,7 @@ import CodeBlock from "../../layout/CodeBlock";
 import style from "../../style";
 import { Card, Tag, Tooltip } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 // During front-end redesign, this page should be refactored
 // to use design system layout components and improved best practices.
@@ -112,7 +113,8 @@ print(response.json())`;
               <a href="mailto: hello@policyengine.org">
                 hello@policyengine.org
               </a>
-              .
+              . By using the API, you agree to our{" "}
+              <Link to={`/${countryId}/api/terms`}>Terms of Service</Link>.
             </p>
             <div className="api-documentation-links">
               <h4>On this page</h4>
