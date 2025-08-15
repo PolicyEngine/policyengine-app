@@ -11,7 +11,7 @@ export default function ApiTermsOfService() {
   const mobile = useMobile();
   const countryId = useCountryId();
 
-  const DEFAULT_JURISDICTION = "the District of Columbia";
+  const DEFAULT_JURISDICTION = "the United States";
 
   const getJurisdiction = (id) => {
     const country = COUNTRY_NAMES[id];
@@ -22,7 +22,18 @@ export default function ApiTermsOfService() {
     return DEFAULT_JURISDICTION;
   };
 
+  const getCourtLocation = (id) => {
+    switch (id) {
+      case "uk":
+        return "London";
+      case "us":
+      default:
+        return "Washington, DC";
+    }
+  };
+
   const jurisdiction = getJurisdiction(countryId);
+  const courtLocation = getCourtLocation(countryId);
 
   return (
     <>
@@ -303,9 +314,8 @@ export default function ApiTermsOfService() {
         <p>
           These Terms are governed by the laws of {jurisdiction}, excluding its
           conflict of law rules. The parties will resolve disputes exclusively
-          in the federal or state courts located in{" "}
-          {jurisdiction === "the United Kingdom" ? "London" : "Washington, DC"},
-          and consent to personal jurisdiction there.
+          in the federal or state courts located in {courtLocation}, and consent
+          to personal jurisdiction there.
         </p>
 
         <hr />
