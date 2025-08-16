@@ -30,6 +30,7 @@ import Testimonials from "./pages/Testimonials";
 import CalculatorInterstitial from "./pages/CalculatorInterstitial";
 import CitizensEconomicCouncil from "./applets/CitizensEconomicCouncil";
 import APIDocumentationPage from "./pages/learn/APIDocumentationPage";
+import ApiTermsOfService from "./pages/learn/ApiTermsOfService";
 import SimulationsPage from "./pages/Simulations";
 import CookieConsent from "./modals/CookieConsent";
 import TrafwaCalculator from "./applets/TrafwaCalculator";
@@ -380,10 +381,13 @@ export default function PolicyEngine() {
             }
           />
 
-          <Route
-            path="api"
-            element={<APIDocumentationPage metadata={metadata} />}
-          />
+          <Route path="api" element={<Outlet />}>
+            <Route
+              index
+              element={<APIDocumentationPage metadata={metadata} />}
+            />
+            <Route path="terms" element={<ApiTermsOfService />} />
+          </Route>
           {/* redirect from /countryId/blog/slug to /countryId/research/slug */}
           <Route path="blog/:postName" element={<RedirectBlogPost />} />
         </Route>
