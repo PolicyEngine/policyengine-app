@@ -52,4 +52,4 @@ The NSF POSE Phase I grant will help PolicyEngine strengthen its open-source eco
 
 ---
 
-*This material is based upon work supported by the National Science Foundation under Award No. 2518372. Any opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation.*
+_This material is based upon work supported by the National Science Foundation under Award No. 2518372. Any opinions, findings and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation._
