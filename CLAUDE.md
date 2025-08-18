@@ -86,6 +86,7 @@
 - Use factual, objective language throughout - avoid adjectives like "significantly," "slightly," or "progressively"
 - Present data without qualitative judgments - let numbers speak for themselves
 - Do not use title case for section headings or bullet points; use sentence case instead
+- Always use sentence case for headings (capitalize only the first word and proper nouns)
 - Avoid phrases like "small impact" or "large effect" - instead specify the exact percentage or numerical change
 - Don't round numbers unless necessary, and when rounding, indicate the level of precision
 - Ensure all chart titles could be quoted out of context and still provide full information
