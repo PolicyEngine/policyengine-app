@@ -2,4 +2,3 @@
   changes:
     fixed:
       - Fixed UK behavioral response calculations returning zero FTE impacts by updating parameter names to match UK API expectations
-
