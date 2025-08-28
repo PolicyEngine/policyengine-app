@@ -1,0 +1,44 @@
+name: Trigger Social Post Creation
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'src/posts/articles/*.md'
+      - 'src/posts/posts.json'
+
+jobs:
+  trigger-social:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need previous commit to detect new posts
+      
+      - name: Check for new blog posts
+        id: check
+        run: |
+          # Get changed files
+          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          
+          # Check if posts.json was modified
+          if echo "$CHANGED_FILES" | grep -q "src/posts/posts.json"; then
+            # Extract the most recent post (first in array)
+            SLUG=$(python3 -c "import json; posts = json.load(open('src/posts/posts.json')); print(posts[0]['filename'].replace('.md', ''))")
+            TITLE=$(python3 -c "import json; posts = json.load(open('src/posts/posts.json')); print(posts[0]['title'])")
+            
+            echo "new_post=true" >> $GITHUB_OUTPUT
+            echo "slug=$SLUG" >> $GITHUB_OUTPUT
+            echo "title=$TITLE" >> $GITHUB_OUTPUT
+          else
+            echo "new_post=false" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Trigger social post creation
+        if: steps.check.outputs.new_post == 'true'
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: PolicyEngine/policyengine-social
+          event-type: new_blog_post
+          client-payload: '{"slug": "${{ steps.check.outputs.slug }}", "title": "${{ steps.check.outputs.title }}"}'

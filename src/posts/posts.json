@@ -1,5 +1,14 @@
 [
   {
+    "title": "How we used Claude Code to apply for the Public Benefit Innovation Fund",
+    "description": "Treating writing as software development, we built an entire grant application with interactive demos, perfect consistency, and real-time stakeholder iteration—proving everything can be code.",
+    "date": "2025-08-28",
+    "tags": ["us", "org", "featured"],
+    "filename": "policyengine-atlas-pbif-grant.md",
+    "image": "policyengine-atlas-demo.png",
+    "authors": ["max-ghenis"]
+  },
+  {
     "title": "National Science Foundation awards PolicyEngine $300,000 grant",
     "description": "NSF's Pathways to Enable Open-Source Ecosystems program will support PolicyEngine's work to expand access to policy analysis tools.",
     "date": "2025-08-18",
