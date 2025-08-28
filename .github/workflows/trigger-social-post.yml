@@ -4,8 +4,8 @@ on:
   push:
     branches: [master]
     paths:
-      - 'src/posts/articles/*.md'
-      - 'src/posts/posts.json'
+      - "src/posts/articles/*.md"
+      - "src/posts/posts.json"
 
 jobs:
   trigger-social:
@@ -13,14 +13,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2  # Need previous commit to detect new posts
-      
+          fetch-depth: 2 # Need previous commit to detect new posts
+
       - name: Check for new blog posts
         id: check
         run: |
           # Get changed files
           CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-          
+
           # Check if posts.json was modified
           if echo "$CHANGED_FILES" | grep -q "src/posts/posts.json"; then
             # Extract the most recent post (first in array)
@@ -33,7 +33,7 @@ jobs:
           else
             echo "new_post=false" >> $GITHUB_OUTPUT
           fi
-      
+
       - name: Trigger social post creation
         if: steps.check.outputs.new_post == 'true'
         uses: peter-evans/repository-dispatch@v2

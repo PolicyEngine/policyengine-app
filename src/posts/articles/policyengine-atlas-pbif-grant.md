@@ -17,6 +17,7 @@ atlas/
 ```
 
 Every response lived in version-controlled markdown. When reviewers suggested changes, Claude Code would:
+
 - Update the specific response file
 - Regenerate the compiled application
 - Ensure word counts stayed within limits
@@ -28,6 +29,7 @@ Every response lived in version-controlled markdown. When reviewers suggested ch
 The most powerful moment came during a stakeholder call. As they asked questions like "How would a caseworker actually find documents?", I could say "Let me show you" and have Claude Code generate a working prototype in minutes. The live demo site evolved during the conversation, incorporating feedback immediately.
 
 When someone suggested emphasizing our North Carolina pilot with the Atlanta Fed, Claude Code instantly:
+
 - Found every mention across 50+ files
 - Updated the language consistently
 - Adjusted the demo site's examples
@@ -36,6 +38,7 @@ When someone suggested emphasizing our North Carolina pilot with the Atlanta Fed
 ## Managing complexity through AI memory
 
 The application grew to include:
+
 - 15 response documents (3,750 words exactly)
 - Partner letters from MyFriendBen, Benefit Navigator, Georgia Center for Opportunity
 - Budget breakdowns across multiple worksheets
