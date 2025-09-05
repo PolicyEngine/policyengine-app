@@ -26,6 +26,7 @@ We're developing the TAXSIM emulator as a fully open-source project on [GitHub](
 - Open-source codebase for transparency and community contributions
 - Built on PolicyEngine's validated state and federal tax models
 - Continued access to tax calculations from 1960 to present
+- A new dashboard for comparing results across thousands of tax scenarios
 
 Both organizations rigorously validate the emulator to ensure it matches TAXSIM's outputs exactly. Dr. Feenberg provides technical guidance throughout the development process, ensuring we capture every detail that makes TAXSIM so valuable to the research community.
 
@@ -35,7 +36,7 @@ Through this detailed validation process, we've already identified opportunities
 
 Our organizations designed a smooth transition plan. Initially, taxsim.nber.org will host the integrated tool, with TAXSIM continuing its current operations through at least the 2024 tax year. We'll ensure researchers experience no disruption in their work.
 
-We aim to launch the emulator later this year, providing researchers with an open-source alternative that maintains full compatibility with their existing TAXSIM-based workflows.
+We aim to launch the emulator later this year, along with a dashboard that will allow users to compare results across thousands of tax scenarios, providing researchers with an open-source alternative that maintains full compatibility with their existing TAXSIM-based workflows.
 
 ## What this means for the research community
 
