@@ -1,4 +1,5 @@
-*Image credit: Uniwide Formations*
+_Image credit: Uniwide Formations_
+
 ## Introduction
 
 Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) annual turnover, up from [£85,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) in 2024. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt.
@@ -17,7 +18,7 @@ The analysis constructs synthetic firm microdata calibrated to [ONS UK Business 
 
 **Data Sources and Integration:**
 
-[ONS data](https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation) provides the economic structure, using all SIC sectors with firm counts and turnover distributions to generate base firms with size patterns and employment relationships. [HMRC data](https://www.gov.uk/government/statistics/value-added-tax-vat-annual-statistics) provides calibration targets including sector totals for VAT-registered firms, turnover band targets across all bands, and adds firms with negative or zero turnover missing from ONS surveys. 
+[ONS data](https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation) provides the economic structure, using all SIC sectors with firm counts and turnover distributions to generate base firms with size patterns and employment relationships. [HMRC data](https://www.gov.uk/government/statistics/value-added-tax-vat-annual-statistics) provides calibration targets including sector totals for VAT-registered firms, turnover band targets across all bands, and adds firms with negative or zero turnover missing from ONS surveys.
 
 The integration uses a multi-objective optimisation process where ONS generates firm structure, then mathematical optimisation finds weights that simultaneously match HMRC targets while preserving distributions and relationships.
 
