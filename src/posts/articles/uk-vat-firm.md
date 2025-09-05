@@ -743,3 +743,5 @@ VAT threshold changes create measurable impacts on both business registration pa
 PolicyEngine's analysis shows that raising the threshold to £100,000 would remove approximately 42,900 firms from VAT registration in 2025-26, reducing revenue by approximately £270 million. Conversely, reducing it to £80,000 would add approximately 25,500 VAT-paying firms and generate approximately £900 million additional revenue.
 
 The revenue increase projected for 2028-29 reflects inflation indexing assumptions rather than economic growth effects. Once inflation-adjusted baselines exceed policy thresholds, fixed nominal thresholds become relatively restrictive, generating additional revenue through this technical mechanism.
+
+Use PolicyEngine's [VAT threshold analysis tool](https://uk-vatlab-app1j7s6o-policy-engine.vercel.app/) to explore custom threshold scenarios and conduct your own analysis of VAT policy impacts.
