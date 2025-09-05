@@ -294,7 +294,7 @@ Raising the VAT threshold would reduce the number of businesses required to regi
     },
     "annotations": [
       {
-        "x": 90,
+        "x": 95,
         "y": 35,
         "text": "Current £90k",
         "showarrow": false,
@@ -424,7 +424,7 @@ Figure 3 presents the same analysis for 2026-27, showing similar patterns with s
     },
     "annotations": [
       {
-        "x": 90,
+        "x": 95,
         "y": 30,
         "text": "Current £90k",
         "showarrow": false,
@@ -556,7 +556,7 @@ Figure 4 shows the revenue impact of different threshold levels in 2025-26.
     },
     "annotations": [
       {
-        "x": 90,
+        "x": 95,
         "y": 1000,
         "text": "Current £90k",
         "showarrow": false,
@@ -684,7 +684,7 @@ Figure 5 presents revenue impacts for 2026-27, following similar patterns with s
     },
     "annotations": [
       {
-        "x": 90,
+        "x": 95,
         "y": 800,
         "text": "Current £90k",
         "showarrow": false,
