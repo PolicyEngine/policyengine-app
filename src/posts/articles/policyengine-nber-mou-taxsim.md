@@ -18,16 +18,14 @@ Our partnership ensures that:
 
 ## What we're building
 
-We're developing the TAXSIM emulator as a fully open-source project on [GitHub](https://github.com/PolicyEngine/policyengine-taxsim). Our approach combines the best of both worlds:
+We're developing the TAXSIM emulator as a fully open-source project on [GitHub](https://github.com/PolicyEngine/policyengine-taxsim). The emulator leverages PolicyEngine's existing US federal and state tax calculator to replicate TAXSIM's functionality.
 
-**Preserving what works:** The emulator will maintain complete compatibility with existing TAXSIM functionality. Researchers can continue using their existing workflows and analyses without any disruption.
+**Key features of the emulator:**
 
-**Adding modern capabilities:** We're enhancing the tool with features researchers have long requested:
-
-- Open-source transparency for full auditability
-- Comprehensive documentation and examples
-- Integration with PolicyEngine's broader microsimulation infrastructure
-- A new dashboard for comparing results across thousands of tax scenarios
+- Full compatibility with TAXSIM's existing input and output formats
+- Open-source codebase for transparency and community contributions
+- Built on PolicyEngine's validated state and federal tax models
+- Continued access to tax calculations from 1960 to present
 
 Both organizations rigorously validate the emulator to ensure it matches TAXSIM's outputs exactly. Dr. Feenberg provides technical guidance throughout the development process, ensuring we capture every detail that makes TAXSIM so valuable to the research community.
 
@@ -37,7 +35,7 @@ Through this detailed validation process, we've already identified opportunities
 
 Our organizations designed a smooth transition plan. Initially, taxsim.nber.org will host the integrated tool, with TAXSIM continuing its current operations through at least the 2024 tax year. We'll ensure researchers experience no disruption in their work.
 
-We plan to launch the enhanced capabilities later this year, including our new comparison dashboard that will provide unprecedented insights into tax policy impacts across different household types and income levels.
+We aim to launch the emulator later this year, providing researchers with an open-source alternative that maintains full compatibility with their existing TAXSIM-based workflows.
 
 ## What this means for the research community
 
