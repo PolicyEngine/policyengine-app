@@ -1,5 +1,14 @@
 [
   {
+    "title": "PolicyEngine and NBER sign memorandum of understanding for TAXSIM emulator development",
+    "description": "Partnership ensures continuity of tax microsimulation capabilities for the research community through open-source development.",
+    "date": "2025-09-05",
+    "tags": ["us", "org", "featured"],
+    "filename": "policyengine-nber-mou-taxsim.md",
+    "image": "policyengine-nber-mou-taxsim.png",
+    "authors": ["max-ghenis", "pavel-makarchuk"]
+  },
+  {
     "title": "National Science Foundation awards PolicyEngine $300,000 grant",
     "description": "NSF's Pathways to Enable Open-Source Ecosystems program will support PolicyEngine's work to expand access to policy analysis tools.",
     "date": "2025-08-18",
