@@ -1393,5 +1393,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "wfa-means-test.ipynb",
     "image": "wfa-repeal.jpeg"
+  },
+  {
+    "title": "PolicyEngine launches VAT analysis tool",
+    "description": "New interactive tool models how different VAT policies affect government revenues across multiple fiscal years.",
+    "date": "2025-09-08 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-vat-firm.md",
+    "image": "uk-vat-firms.png"
   }
 ]
