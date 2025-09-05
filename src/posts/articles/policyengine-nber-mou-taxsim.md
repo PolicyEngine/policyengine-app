@@ -1,31 +1,48 @@
-PolicyEngine and the [National Bureau of Economic Research (NBER)](https://nber.org) have entered into a [memorandum of understanding](https://drive.google.com/file/d/1V5TJk7C01CLYP_FXUZTmHEdLk-WCV4WN/view?usp=sharing) to ensure the continuity of tax microsimulation capabilities for the research community. Under this agreement, we are developing an open-source emulator of [TAXSIM](https://taxsim.nber.org), NBER's widely used tax calculator that has served researchers and government agencies since the 1970s.
+We're excited to announce that PolicyEngine has partnered with the [National Bureau of Economic Research (NBER)](https://nber.org) to ensure researchers worldwide continue to have access to critical tax microsimulation tools. Through our [memorandum of understanding](https://drive.google.com/file/d/1V5TJk7C01CLYP_FXUZTmHEdLk-WCV4WN/view?usp=sharing), we're building an open-source emulator of [TAXSIM](https://taxsim.nber.org), NBER's tax calculator that has powered academic research and government policy analysis for nearly five decades.
 
-## Background on TAXSIM
+## Why TAXSIM matters
 
-TAXSIM was developed at the NBER in the 1970s and has been continuously upgraded and extended since then. Created and maintained primarily by Daniel Feenberg, NBER's IT Director, TAXSIM has become a cornerstone tool for tax policy analysis. The calculator, described in [Feenberg and Coutts (1993)](https://taxsim.nber.org/feenberg-coutts.pdf), has been cited in over 900 academic publications according to Google Scholar and is extensively used by government agencies including the Congressional Budget Office, the Joint Committee on Taxation, and state revenue departments. It provides researchers with reliable tax liability calculations across different years and policy scenarios.
+Since the 1970s, TAXSIM has set the gold standard for tax microsimulation. Daniel Feenberg, NBER's IT Director, created and maintains this tool that enables groundbreaking research on everything from tax reform impacts to income inequality. Researchers have cited [Feenberg and Coutts (1993)](https://taxsim.nber.org/feenberg-coutts.pdf) in over 900 academic publications according to Google Scholar. Government agencies including the Congressional Budget Office, the Joint Committee on Taxation, and state revenue departments rely on TAXSIM for policy analysis.
 
-## The collaboration framework
+TAXSIM calculates federal and state tax liabilities for households across different years and policy scenarios, helping researchers understand exactly how tax changes affect real families. This consistency and reliability make it a cornerstone of evidence-based policymaking.
 
-The memorandum of understanding establishes a framework for collaboration between our organizations. We are working with Daniel Feenberg (TAXSIM Developer and Architect) and James Poterba (President and CEO, NBER) to ensure a smooth transition and continued development of these critical tax microsimulation capabilities.
+## Our collaboration with NBER
 
-This collaboration builds on existing connections between the organizations. Dr. Feenberg is serving as an external mentor to PolicyEngine through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping guide our efforts to build a robust open-source ecosystem around tax microsimulation tools. His decades of experience developing TAXSIM provides invaluable insights as we work to ensure continuity and advancement of these critical research capabilities.
+We're working directly with Daniel Feenberg and James Poterba, President and CEO of NBER, to build the next generation of tax microsimulation tools. This isn't our first collaboration with Dr. Feenberg — he serves as an external mentor through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping us build a robust open-source ecosystem for policy analysis.
 
-### Development and validation
+Our partnership ensures that:
+- Researchers maintain uninterrupted access to tax microsimulation capabilities
+- The tool evolves with modern features while preserving backward compatibility
+- The codebase becomes open-source, enabling community contributions and transparency
 
-We are developing the TAXSIM emulator as an open-source project on GitHub. Both organizations will conduct ongoing validation of the emulator against TAXSIM outputs. Daniel Feenberg will provide necessary technical guidance and documentation to support validation, and we will work together to resolve any discrepancies identified during the validation process.
+## What we're building
 
-### Transition planning
+We're developing the TAXSIM emulator as a fully open-source project on [GitHub](https://github.com/PolicyEngine/policyengine-taxsim). Our approach combines the best of both worlds:
 
-The agreement outlines a comprehensive transition plan. We will integrate legacy TAXSIM with the emulator into a unified tool. Our organizations will collaborate on hosting this integrated tool, initially on taxsim.nber.org, with consideration for PolicyEngine to host it in the future. The implementation timeline will be determined by mutual agreement, with TAXSIM maintaining its current operations through at least the 2024 tax year.
+**Preserving what works:** The emulator will maintain complete compatibility with existing TAXSIM functionality. Researchers can continue using their existing workflows and analyses without any disruption.
 
-## Building the future of tax microsimulation
+**Adding modern capabilities:** We're enhancing the tool with features researchers have long requested:
+- Open-source transparency for full auditability
+- Comprehensive documentation and examples
+- Integration with PolicyEngine's broader microsimulation infrastructure
+- A new dashboard for comparing results across thousands of tax scenarios
 
-We are actively building the TAXSIM emulator and developing additional tools to enhance its capabilities. We are creating a dashboard that will allow users to compare results across thousands of tax filers, providing unprecedented insights into tax policy impacts. This work is being conducted at [github.com/PolicyEngine/policyengine-taxsim](https://github.com/PolicyEngine/policyengine-taxsim), and we plan to launch these enhanced capabilities later this year.
+Both organizations rigorously validate the emulator to ensure it matches TAXSIM's outputs exactly. Dr. Feenberg provides technical guidance throughout the development process, ensuring we capture every detail that makes TAXSIM so valuable to the research community.
 
-The emulator will maintain full compatibility with TAXSIM's existing functionality while adding modern features such as open-source transparency, enhanced documentation, and integration with PolicyEngine's broader microsimulation infrastructure. This ensures researchers can continue their work without disruption while gaining access to new analytical capabilities.
+## The path forward
 
-## Looking ahead
+Our organizations designed a smooth transition plan. Initially, taxsim.nber.org will host the integrated tool, with TAXSIM continuing its current operations through at least the 2024 tax year. We'll ensure researchers experience no disruption in their work.
 
-This collaboration between PolicyEngine and NBER represents an important step in ensuring the continuity and evolution of tax microsimulation tools for the research community. By combining NBER's decades of expertise in tax calculation with PolicyEngine's modern open-source infrastructure, we aim to provide researchers with powerful, accessible tools for tax policy analysis well into the future.
+We plan to launch the enhanced capabilities later this year, including our new comparison dashboard that will provide unprecedented insights into tax policy impacts across different household types and income levels.
 
-This partnership demonstrates both organizations' commitment to supporting rigorous, data-driven tax policy research for decades to come.
+## What this means for the research community
+
+This partnership goes beyond maintaining existing tools — we're expanding access to rigorous policy analysis. Making tax microsimulation open-source and adding modern features allows us to:
+- Enable more researchers to contribute to and validate the codebase
+- Help new researchers learn and use these tools more easily
+- Ensure these capabilities remain available for decades to come
+- Create opportunities for innovation in tax policy analysis
+
+We're honored to work with NBER to carry forward Dr. Feenberg's decades of work on TAXSIM. Together, we're ensuring that the next generation of researchers and policymakers have even better tools to understand how tax policies affect families across the income spectrum.
+
+Stay tuned for updates as we continue development. If you're interested in contributing or have questions about the project, visit our [GitHub repository](https://github.com/PolicyEngine/policyengine-taxsim) or reach out to us directly.
