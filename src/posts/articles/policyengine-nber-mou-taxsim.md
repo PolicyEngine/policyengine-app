@@ -2,7 +2,7 @@ We're excited to announce that PolicyEngine has partnered with the [National Bur
 
 ## Why TAXSIM matters
 
-Since the 1970s, TAXSIM has set the gold standard for tax microsimulation. Daniel Feenberg, NBER's IT Director, created and maintains this tool that enables groundbreaking research on everything from tax reform impacts to income inequality. Researchers have cited [Feenberg and Coutts (1993)](https://taxsim.nber.org/feenberg-coutts.pdf) in over 1,200 academic publications according to Google Scholar. Government agencies including the Congressional Budget Office, the Joint Committee on Taxation, and state revenue departments rely on TAXSIM for policy analysis.
+Since the 1970s, TAXSIM has set the gold standard for tax microsimulation. Daniel Feenberg, NBER's IT Director, created and maintains this tool that enables groundbreaking research on everything from tax reform impacts to income inequality. [Over 1,200 papers](https://scholar.google.com/scholar?cites=14430205938320153579&as_sdt=20000005&sciodt=0,21&hl=en) have applied TAXSIM, based on citations of the [Feenberg and Coutts (1993)](https://taxsim.nber.org/feenberg-coutts.pdf) paper that introduces the model. Government agencies including the Congressional Budget Office, the Joint Committee on Taxation, and state revenue departments rely on TAXSIM for policy analysis.
 
 TAXSIM calculates federal and state tax liabilities for households across different years and policy scenarios, helping researchers understand exactly how tax changes affect real families. This consistency and reliability make it a cornerstone of evidence-based policymaking.
 
