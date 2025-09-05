@@ -1,14 +1,14 @@
-PolicyEngine and the National Bureau of Economic Research (NBER) have entered into a memorandum of understanding to ensure the continuity of tax microsimulation capabilities for the research community. Under this agreement, PolicyEngine is developing an open-source emulator of TAXSIM, NBER's widely used tax calculator that has served researchers and government agencies since the 1970s.
+PolicyEngine and the [National Bureau of Economic Research (NBER)](https://nber.org) have entered into a [memorandum of understanding](https://drive.google.com/file/d/1V5TJk7C01CLYP_FXUZTmHEdLk-WCV4WN/view?usp=sharing) to ensure the continuity of tax microsimulation capabilities for the research community. Under this agreement, PolicyEngine is developing an open-source emulator of [TAXSIM](https://taxsim.nber.org), NBER's widely used tax calculator that has served researchers and government agencies since the 1970s.
 
 ## Background on TAXSIM
 
-TAXSIM was developed at the NBER in the 1970s and has been continuously upgraded and extended since then. Created and maintained primarily by Daniel Feenberg, an NBER employee, TAXSIM has become a cornerstone tool for tax policy analysis. The calculator is widely used in academic research and policy analysis, providing researchers with reliable tax liability calculations across different years and policy scenarios.
+TAXSIM was developed at the NBER in the 1970s and has been continuously upgraded and extended since then. Created and maintained primarily by Daniel Feenberg, NBER's IT Director, TAXSIM has become a cornerstone tool for tax policy analysis. The calculator, described in [Feenberg and Coutts (1993)](https://taxsim.nber.org/feenberg-coutts.pdf), has been cited in over 900 academic publications according to Google Scholar and is extensively used by government agencies including the Congressional Budget Office, the Joint Committee on Taxation, and state revenue departments. It provides researchers with reliable tax liability calculations across different years and policy scenarios.
 
 ## The collaboration framework
 
 The memorandum of understanding establishes a framework for collaboration between the two organizations. Key personnel include Daniel Feenberg (TAXSIM Developer and Architect) and James Poterba (President, NBER) representing NBER, along with Max Ghenis (CEO, Project Lead) and Pavel Makarchuk (Economist) from PolicyEngine.
 
-This collaboration builds on existing connections between the organizations. Dr. Feenberg is serving as an external mentor to PolicyEngine through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping guide our efforts to build a robust open-source ecosystem around tax microsimulation tools. His experience creating TAXSIM, which has been cited in over 1,100 academic publications, provides invaluable insights as we work to ensure continuity and advancement of these critical research capabilities.
+This collaboration builds on existing connections between the organizations. Dr. Feenberg is serving as an external mentor to PolicyEngine through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping guide our efforts to build a robust open-source ecosystem around tax microsimulation tools. His decades of experience developing TAXSIM provides invaluable insights as we work to ensure continuity and advancement of these critical research capabilities.
 
 ### Development and validation
 
@@ -24,12 +24,8 @@ PolicyEngine is actively building the TAXSIM emulator and developing additional 
 
 The emulator will maintain full compatibility with TAXSIM's existing functionality while adding modern features such as open-source transparency, enhanced documentation, and integration with PolicyEngine's broader microsimulation infrastructure. This ensures researchers can continue their work without disruption while gaining access to new analytical capabilities.
 
-## Communications and transparency
-
-Under the agreement, PolicyEngine reserves the right to make public communications about the emulator development, include information about the project in grant applications, and share progress updates about the development and validation process. All sensitive or confidential information will require prior approval from NBER before public disclosure. PolicyEngine will not post any TAXSIM program code in open-source repositories without explicit acknowledgement that the code was written by Daniel Feenberg and provided by NBER.
-
 ## Looking ahead
 
 This collaboration between PolicyEngine and NBER represents an important step in ensuring the continuity and evolution of tax microsimulation tools for the research community. By combining NBER's decades of expertise in tax calculation with PolicyEngine's modern open-source infrastructure, we aim to provide researchers with powerful, accessible tools for tax policy analysis well into the future.
 
-The memorandum of understanding became effective on April 17, 2025, and will continue until modified or terminated by mutual agreement. This partnership demonstrates both organizations' commitment to supporting rigorous, data-driven tax policy research.
+This partnership demonstrates both organizations' commitment to supporting rigorous, data-driven tax policy research for decades to come.
