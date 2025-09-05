@@ -51,4 +51,3 @@ This partnership goes beyond maintaining existing tools — we're expanding acce
 We're honored to work with NBER to carry forward Dr. Feenberg's decades of work on TAXSIM. Together, we're ensuring that the next generation of researchers and policymakers have even better tools to understand how tax policies affect families across the income spectrum.
 
 Stay tuned for updates as we continue development. If you're interested in contributing or have questions about the project, visit our [GitHub repository](https://github.com/PolicyEngine/policyengine-taxsim) or reach out to us directly.
-
