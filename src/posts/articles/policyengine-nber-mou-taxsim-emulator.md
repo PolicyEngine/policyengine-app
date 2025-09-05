@@ -8,6 +8,8 @@ TAXSIM was developed at the NBER in the 1970s and has been continuously upgraded
 
 The memorandum of understanding establishes a framework for collaboration between the two organizations. Key personnel include Daniel Feenberg (TAXSIM Developer and Architect) and James Poterba (President, NBER) representing NBER, along with Max Ghenis (CEO, Project Lead) and Pavel Makarchuk (Economist) from PolicyEngine.
 
+This collaboration builds on existing connections between the organizations. Dr. Feenberg is serving as an external mentor to PolicyEngine through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping guide our efforts to build a robust open-source ecosystem around tax microsimulation tools. His experience creating TAXSIM, which has been cited in over 1,100 academic publications, provides invaluable insights as we work to ensure continuity and advancement of these critical research capabilities.
+
 ### Development and validation
 
 PolicyEngine is developing the TAXSIM emulator as an open-source project on GitHub. Both organizations will conduct ongoing validation of the emulator against TAXSIM outputs. Daniel Feenberg will provide necessary technical guidance and documentation to support validation, and will work together with PolicyEngine staff to resolve any discrepancies identified during the validation process.
