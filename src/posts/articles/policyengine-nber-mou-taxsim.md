@@ -1,4 +1,4 @@
-PolicyEngine and the [National Bureau of Economic Research (NBER)](https://nber.org) have entered into a [memorandum of understanding](https://drive.google.com/file/d/1V5TJk7C01CLYP_FXUZTmHEdLk-WCV4WN/view?usp=sharing) to ensure the continuity of tax microsimulation capabilities for the research community. Under this agreement, PolicyEngine is developing an open-source emulator of [TAXSIM](https://taxsim.nber.org), NBER's widely used tax calculator that has served researchers and government agencies since the 1970s.
+PolicyEngine and the [National Bureau of Economic Research (NBER)](https://nber.org) have entered into a [memorandum of understanding](https://drive.google.com/file/d/1V5TJk7C01CLYP_FXUZTmHEdLk-WCV4WN/view?usp=sharing) to ensure the continuity of tax microsimulation capabilities for the research community. Under this agreement, we are developing an open-source emulator of [TAXSIM](https://taxsim.nber.org), NBER's widely used tax calculator that has served researchers and government agencies since the 1970s.
 
 ## Background on TAXSIM
 
@@ -6,21 +6,21 @@ TAXSIM was developed at the NBER in the 1970s and has been continuously upgraded
 
 ## The collaboration framework
 
-The memorandum of understanding establishes a framework for collaboration between the two organizations. Key personnel include Daniel Feenberg (TAXSIM Developer and Architect) and James Poterba (President, NBER) representing NBER, along with Max Ghenis (CEO, Project Lead) and Pavel Makarchuk (Economist) from PolicyEngine.
+The memorandum of understanding establishes a framework for collaboration between our organizations. We are working with Daniel Feenberg (TAXSIM Developer and Architect) and James Poterba (President and CEO, NBER) to ensure a smooth transition and continued development of these critical tax microsimulation capabilities.
 
 This collaboration builds on existing connections between the organizations. Dr. Feenberg is serving as an external mentor to PolicyEngine through our [NSF POSE Phase I grant](https://policyengine.org/us/research/nsf-pose-phase-1-grant), helping guide our efforts to build a robust open-source ecosystem around tax microsimulation tools. His decades of experience developing TAXSIM provides invaluable insights as we work to ensure continuity and advancement of these critical research capabilities.
 
 ### Development and validation
 
-PolicyEngine is developing the TAXSIM emulator as an open-source project on GitHub. Both organizations will conduct ongoing validation of the emulator against TAXSIM outputs. Daniel Feenberg will provide necessary technical guidance and documentation to support validation, and will work together with PolicyEngine staff to resolve any discrepancies identified during the validation process.
+We are developing the TAXSIM emulator as an open-source project on GitHub. Both organizations will conduct ongoing validation of the emulator against TAXSIM outputs. Daniel Feenberg will provide necessary technical guidance and documentation to support validation, and we will work together to resolve any discrepancies identified during the validation process.
 
 ### Transition planning
 
-The agreement outlines a comprehensive transition plan. PolicyEngine staff will integrate legacy TAXSIM with the emulator into a unified tool. The organizations will collaborate on hosting this integrated tool, initially on taxsim.nber.org, with consideration for PolicyEngine to host it in the future. The implementation timeline will be determined by mutual agreement, with TAXSIM maintaining its current operations through at least the 2024 tax year.
+The agreement outlines a comprehensive transition plan. We will integrate legacy TAXSIM with the emulator into a unified tool. Our organizations will collaborate on hosting this integrated tool, initially on taxsim.nber.org, with consideration for PolicyEngine to host it in the future. The implementation timeline will be determined by mutual agreement, with TAXSIM maintaining its current operations through at least the 2024 tax year.
 
 ## Building the future of tax microsimulation
 
-PolicyEngine is actively building the TAXSIM emulator and developing additional tools to enhance its capabilities. We are creating a dashboard that will allow users to compare results across thousands of tax filers, providing unprecedented insights into tax policy impacts. This work is being conducted at [github.com/PolicyEngine/policyengine-taxsim](https://github.com/PolicyEngine/policyengine-taxsim), and we plan to launch these enhanced capabilities later this year.
+We are actively building the TAXSIM emulator and developing additional tools to enhance its capabilities. We are creating a dashboard that will allow users to compare results across thousands of tax filers, providing unprecedented insights into tax policy impacts. This work is being conducted at [github.com/PolicyEngine/policyengine-taxsim](https://github.com/PolicyEngine/policyengine-taxsim), and we plan to launch these enhanced capabilities later this year.
 
 The emulator will maintain full compatibility with TAXSIM's existing functionality while adding modern features such as open-source transparency, enhanced documentation, and integration with PolicyEngine's broader microsimulation infrastructure. This ensures researchers can continue their work without disruption while gaining access to new analytical capabilities.
 
