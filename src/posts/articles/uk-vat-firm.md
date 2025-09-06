@@ -47,7 +47,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
       "xanchor": "left"
     },
     "xaxis": {
-      "title": "Annual Turnover (£k)",
+      "title": "Annual turnover (£k)",
       "titlefont": {
         "family": "Roboto Serif"
       },
@@ -62,7 +62,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
       "dtick": 25
     },
     "yaxis": {
-      "title": "Number of Firms (thousands)",
+      "title": "Number of firms (thousands)",
       "titlefont": {
         "family": "Roboto Serif"
       },
