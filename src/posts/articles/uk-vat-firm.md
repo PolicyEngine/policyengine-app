@@ -104,7 +104,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
       {
         "x": 92,
         "y": 10.5,
-        "text": "VAT Threshold<br>(£90k)",
+        "text": "VAT threshold<br>(£90k)",
         "showarrow": false,
         "font": {
           "family": "Roboto Serif",
