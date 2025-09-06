@@ -117,7 +117,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
       {
         "x": 152,
         "y": 10.5,
-        "text": "Flat Rate<br>Scheme (£150k)",
+        "text": "VAT Flat Rate<br>Scheme (£150k)",
         "showarrow": false,
         "font": {
           "family": "Roboto Serif",
