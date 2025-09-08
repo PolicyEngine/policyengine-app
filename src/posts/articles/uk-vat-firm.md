@@ -535,8 +535,6 @@ HMRC published revenue projections for raising the VAT threshold from [£85,000 
 
 Both models project revenue losses in the first four years, followed by revenue gains in 2028-29. HMRC estimates a [£185 million](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold#summary-of-impacts) loss in 2025-26, while PolicyEngine projects a £184 million loss. The 2028-29 revenue increase occurs because the baseline assumes inflation indexing would raise the threshold above £90,000 by that point, making the £90,000 policy threshold relatively restrictive.
 
-PolicyEngine's projections align closely with HMRC's official estimates, with the largest absolute difference of £33 million occurring in 2024-25. In 2025-26, the estimates are nearly identical, differing by less than £1 million.
-
 ## Revenue impacts
 
 We estimate that changes to the VAT threshold create corresponding effects on government revenue. Lower thresholds increase the number of VAT-paying businesses, raising revenue. Higher thresholds reduce registered businesses and decrease collections.
@@ -667,7 +665,7 @@ Figure 7 shows the revenue impact of different threshold levels in 2025-26.
 }
 ```
 
-We estimate that a threshold reduction to £70,000 would generate approximately £1.3 billion additional revenue in 2025-26. Conversely, raising the threshold to £120,000 would cost approximately £1.1 billion. The revenue effects show a steeper gradient than firm count changes, reflecting that businesses near the threshold generate substantial VAT payments relative to their number.
+We estimate that a threshold reduction to £70,000 would generate approximately £1.3 billion additional revenue in 2025-26. Conversely, raising the threshold to £120,000 would cost approximately £1.1 billion.
 
 Figure 8 presents revenue impacts for 2026-27, following similar patterns with slight variations.
 
@@ -795,7 +793,7 @@ Figure 8 presents revenue impacts for 2026-27, following similar patterns with s
 }
 ```
 
-We estimate that in 2026-27, a £70,000 threshold would generate approximately £1.0 billion additional revenue while a £120,000 threshold would result in approximately £1.3 billion revenue loss. These projections account for business growth patterns and economic changes over time.
+We estimate that in 2026-27, a £70,000 threshold would generate approximately £1.0 billion additional revenue while a £120,000 threshold would result in approximately £1.3 billion revenue loss.
 
 The following table summarises the revenue impact of different VAT threshold levels compared to the current £90,000 threshold:
 
@@ -942,8 +940,6 @@ We estimate that raising the VAT threshold would reduce the number of businesses
 ```
 
 At the current £90,000 threshold, no change occurs by definition. We estimate that lowering the threshold to £70,000 would bring approximately 44,000 additional firms into the VAT system, while raising it to £120,000 would remove approximately 120,500 firms from VAT registration requirements.
-
-The relationship shows progression, with threshold increases removing firms from VAT obligations. This pattern reflects the distribution of business turnover levels approximately the threshold.
 
 Figure 6 presents the same analysis for 2026-27, showing similar patterns with slight variations in magnitude.
 
