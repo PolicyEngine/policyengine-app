@@ -1,10 +1,10 @@
 ## Introduction
 
-Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) annual turnover, up from [£85,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) in 2024. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt. This threshold creates a cliff-edge effect where businesses crossing £90,000 turnover must begin charging VAT on all sales and remitting collections to HMRC.
+Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) annual turnover, up from [£85,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) in 2024-25. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt. This threshold creates a cliff-edge effect where businesses crossing £90,000 turnover must begin charging VAT on all sales and remitting collections to HMRC.
 
-The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold as part of broader economic growth measures. Treasury officials have discussed raising the threshold as a growth-stimulating policy. It also reported that the Resolution Foundation think tank has proposed reducing it to £30,000, arguing that the current threshold is expensive and discourages small firm growth.
+The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold, though did not specify an amount.
 
-In this blog post, we analyse how VAT threshold changes between £70,000 and £120,000 would affect the number of VAT-paying firms, examine revenue implications across fiscal years 2025-26 through 2029-30, and compare our projections with HMRC's official estimates.
+In this report, we analyse how VAT threshold changes between £70,000 and £120,000 would affect revenues and the number of VAT-paying firms for 2025-26 and 2026-27 fiscal years. We also compare our projections, which derive from new synthetic firm microdata we've constructed, with HMRC's official estimates.
 
 ## Methodology
 
@@ -30,7 +30,7 @@ Figure 1 shows the distribution of UK firms by turnover band in 2024 according t
   ],
   "layout": {
     "title": {
-      "text": "Figure 1: Distribution of UK firms by turnover band (ONS)",
+      "text": "Figure 1: Distribution of UK firms by turnover band, 2024 (ONS)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -109,7 +109,7 @@ Figure 1 shows the distribution of UK firms by turnover band in 2024 according t
 
 ONS data shows that 32.1% of UK firms have turnover between £100,000 and £249,000, with 14.3% below £50,000 and 19.7% in the £50,000-£99,000 range. The distribution indicates that most UK businesses operate with turnover below £250,000.
 
-Figure 2 presents the distribution of VAT-registered firms by turnover band in 2024 from HMRC statistics.
+Figure 2 presents the distribution of VAT-registered firms by turnover band in 2024-25 from HMRC statistics.
 
 ```plotly
 {
@@ -129,7 +129,7 @@ Figure 2 presents the distribution of VAT-registered firms by turnover band in 2
   ],
   "layout": {
     "title": {
-      "text": "Figure 2: Distribution of VAT-registered firms by turnover band (HMRC)",
+      "text": "Figure 2: Distribution of VAT-registered firms by turnover band, 2024-25 (HMRC)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
