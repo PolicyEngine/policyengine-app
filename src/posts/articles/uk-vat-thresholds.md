@@ -1,6 +1,8 @@
+_Photograph: House of Commons/Reuters_
+
 ## Introduction
 
-Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) annual turnover, up from [£85,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) in 2024-25. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt. This threshold creates a cliff-edge effect where businesses crossing £90,000 turnover must begin charging VAT on all sales and remitting collections to HMRC.
+Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.gov.uk/vat-registration-thresholds) annual turnover, up from [£85,000](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold) in 2024-25. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt. This threshold creates a cliff-edge effect where businesses crossing £90,000 turnover must begin charging VAT on all sales and remitting collections to HMRC.
 
 The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold, though did not specify an amount.
 
@@ -362,7 +364,7 @@ Figure 3 shows the resulting distribution of UK firms by annual turnover in 2024
 
 The distribution shows a drop in firm density around the £90,000 VAT threshold, with businesses clustering just below this level. The £150,000 threshold marks the limit for the [VAT Flat Rate Scheme](https://www.gov.uk/vat-flat-rate-scheme), which offers simplified VAT accounting for smaller businesses.
 
-The analysis calculates static effects for each scenario, including revenue changes and the number of firms affected by sector and size. Simulations cover fiscal years 2025-26 through 2029-30 by ageing the synthetic firm microdata in accordance with OBR and HMRC projections. The ageing process applies firm population growth factors to scale the number of businesses in line with expected enterprise growth, while turnover values are uprated annually to reflect projected nominal GDP growth incorporating both real economic expansion and inflation. All projections assume static conditions and do not incorporate any firm responses to threshold changes.
+The analysis calculates revenue changes and the number of firms affected by sector and size for each scenario. Simulations cover fiscal years 2025-26 through 2029-30 by ageing the synthetic firm microdata using projected growth factors. We age turnover values annually using [RPI-based growth assumptions](https://obr.uk/efo/economic-and-fiscal-outlook-march-2024/#annex-a) (ranging from 2.0% to 3.0%) and scale firm populations using cumulative growth factors that compound year-over-year based on [ONS enterprise population projections](https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation/datasets/ukbusinessactivitysizeandlocation). All projections maintain current behavioral patterns and do not incorporate firm responses to threshold changes.
 
 ## Comparison with HMRC projections
 
@@ -533,7 +535,7 @@ HMRC published revenue projections for raising the VAT threshold from [£85,000 
 }
 ```
 
-Both models project revenue losses in the first four years, followed by revenue gains in 2028-29. HMRC estimates a [£185 million](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold#summary-of-impacts) loss in 2025-26, while PolicyEngine projects a £184 million loss. The 2028-29 revenue increase occurs because the baseline assumes inflation indexing would raise the threshold above £90,000 by that point, making the £90,000 policy threshold relatively restrictive.
+Both models project revenue losses in the first four years, followed by revenue gains in 2028-29. HMRC estimates a [£185 million](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold#summary-of-impacts) loss in 2025-26, while PolicyEngine projects a £184 million loss. The 2028-29 revenue increase occurs because the baseline assumes inflation indexing would raise the threshold above £90,000 by that point, making the £90,000 policy threshold relatively restrictive. Across all five years, PolicyEngine's estimates have an average absolute relative deviation of 12.3% from HMRC's projections.
 
 ## Revenue impacts
 

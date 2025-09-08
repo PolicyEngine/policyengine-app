@@ -1396,11 +1396,11 @@
   },
   {
     "title": "Modelling VAT threshold changes in the UK",
-    "description": "We estimate that raising the VAT threshold to £100k would reduce revenue by £270m and remove 42,900 firms from VAT registration.",
+    "description": "We estimate that raising the VAT threshold from £90,000 to £100,000 would reduce revenue by £270 million in 2025-26.",
     "date": "2025-09-09 11:00:00",
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi"],
-    "filename": "uk-vat-firm.md",
-    "image": "uk-vat-firms.png"
+    "filename": "uk-vat-thresholds.md",
+    "image": "uk-vat-reeves.jpg"
   }
 ]
