@@ -1395,9 +1395,9 @@
     "image": "wfa-repeal.jpeg"
   },
   {
-    "title": "Modelling VAT threshold changes with PolicyEngine's new tool",
-    "description": "Using PolicyEngine's VAT analysis tool, we estimate that raising the threshold to £100k would reduce revenue by £270m and remove 42,900 firms from VAT registration.",
-    "date": "2025-09-08 11:00:00",
+    "title": "Modelling VAT threshold changes in the UK",
+    "description": "We estimate that raising the VAT threshold to £100k would reduce revenue by £270m and remove 42,900 firms from VAT registration.",
+    "date": "2025-09-09 11:00:00",
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-vat-firm.md",

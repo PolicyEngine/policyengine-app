@@ -2,23 +2,215 @@
 
 Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) annual turnover, up from [£85,000](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) in 2024. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt. This threshold creates a cliff-edge effect where businesses crossing £90,000 turnover must begin charging VAT on all sales and remitting collections to HMRC.
 
-The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold as part of broader economic growth measures. Treasury officials have discussed raising the threshold as a growth-stimulating policy, though this faces opposition from some ministers who favour reducing it to [£30,000](https://www.telegraph.co.uk/politics/2024/04/27/labour-tax-adviser-suggests-slashing-vat-threshold/).
+The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold as part of broader economic growth measures. Treasury officials have discussed raising the threshold as a growth-stimulating policy. It also reported that the Resolution Foundation think tank has proposed reducing it to £30,000, arguing that the current threshold is expensive and discourages small firm growth.
 
-In this blog post, we introduce PolicyEngine's [VAT threshold analysis dashboard](https://uk-vatlab-app1j7s6o-policy-engine.vercel.app/), a tool that models the impacts of different VAT registration thresholds on UK businesses and government revenues. We analyse how threshold changes between £70,000 and £120,000 would affect the number of VAT-paying firms, examine revenue implications across fiscal years 2025-26 through 2029-30, and compare our projections with HMRC's official estimates.
-
-## What the tool does
-
-The [VAT threshold analysis dashboard](https://uk-vatlab-app1j7s6o-policy-engine.vercel.app/) enables real-time exploration of different VAT registration threshold scenarios. The interface allows users to adjust threshold levels and observe immediate impacts on firm counts and revenue projections across multiple fiscal years.
-
-The tool incorporates business turnover distributions, growth projections, and administrative compliance costs to provide comprehensive impact assessments. Users can model scenarios from £70,000 to £120,000 thresholds and examine effects on both government revenues and business populations.
-
-This analysis capability supports evidence-based policy development by quantifying the impacts of different threshold levels. The tool's projections inform ongoing policy discussions about VAT threshold levels in the UK tax system.
+In this blog post, we analyse how VAT threshold changes between £70,000 and £120,000 would affect the number of VAT-paying firms, examine revenue implications across fiscal years 2025-26 through 2029-30, and compare our projections with HMRC's official estimates.
 
 ## Methodology
 
-The analysis constructs synthetic firm microdata calibrated to [ONS UK Business statistics](https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation) and [HMRC VAT statistics](https://www.gov.uk/government/statistics/value-added-tax-vat-annual-statistics). The data captures the distribution of firms by industry classification, turnover bands, employee counts, and VAT tax liability, using a multi-objective optimisation process to match both ONS firm structures and HMRC targets.
+The analysis uses synthetic firm microdata calibrated to official UK business statistics from two primary sources: [ONS UK Business statistics](https://www.ons.gov.uk/businessindustryandtrade/business/activitysizeandlocation) for overall firm distributions and [HMRC VAT statistics](https://www.gov.uk/government/statistics/value-added-tax-vat-annual-statistics) for VAT-registered businesses.
 
-Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustrating the concentration of businesses around key thresholds.
+Figure 1 shows the distribution of UK firms by turnover band in 2024 according to ONS business statistics.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["£0-49k", "£50-99k", "£100-249k", "£250-499k", "£500-999k", "£1-5m", "£5m+"],
+      "y": [777330, 1075080, 1749330, 769140, 469320, 452890, 156460],
+      "type": "bar",
+      "marker": {
+        "color": "#A0A0A0",
+        "line": {
+          "width": 0
+        }
+      },
+      "hovertemplate": "Turnover band: %{x}<br>Firms: %{y:,.0f}<extra></extra>"
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Figure 1: Distribution of UK firms by turnover band (ONS)",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "xaxis": {
+      "title": "Turnover band",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif",
+        "size": 10
+      },
+      "showgrid": true,
+      "gridcolor": "#e0e0e0",
+      "gridwidth": 1
+    },
+    "yaxis": {
+      "title": "Number of firms (thousands)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickvals": [0, 200000, 400000, 600000, 800000, 1000000, 1200000, 1400000, 1600000, 1800000],
+      "ticktext": ["0", "200", "400", "600", "800", "1,000", "1,200", "1,400", "1,600", "1,800"],
+      "showgrid": true,
+      "gridcolor": "#e0e0e0",
+      "gridwidth": 1
+    },
+    "height": 500,
+    "margin": {
+      "l": 80,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: ONS UK Business Statistics",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+ONS data shows that 32.1% of UK firms have turnover between £100,000 and £249,000, with 14.3% below £50,000 and 19.7% in the £50,000-£99,000 range. The distribution indicates that most UK businesses operate with turnover below £250,000.
+
+Figure 2 presents the distribution of VAT-registered firms by turnover band in 2024 from HMRC statistics.
+
+```plotly
+{
+  "data": [
+    {
+      "x": ["≤£0", "£1-90k", "£90-150k", "£150-300k", "£300-500k", "£500k-1m", "£1-10m", ">£10m"],
+      "y": [216500, 678350, 305320, 334470, 184080, 180500, 235060, 44680],
+      "type": "bar",
+      "marker": {
+        "color": "#A0A0A0",
+        "line": {
+          "width": 0
+        }
+      },
+      "hovertemplate": "Turnover band: %{x}<br>Firms: %{y:,.0f}<extra></extra>"
+    }
+  ],
+  "layout": {
+    "title": {
+      "text": "Figure 2: Distribution of VAT-registered firms by turnover band (HMRC)",
+      "font": {
+        "family": "Roboto Serif",
+        "size": 16
+      },
+      "x": 0,
+      "xanchor": "left"
+    },
+    "xaxis": {
+      "title": "Turnover band",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif",
+        "size": 10
+      },
+      "showgrid": true,
+      "gridcolor": "#e0e0e0",
+      "gridwidth": 1
+    },
+    "yaxis": {
+      "title": "Number of firms (thousands)",
+      "titlefont": {
+        "family": "Roboto Serif"
+      },
+      "tickfont": {
+        "family": "Roboto Serif"
+      },
+      "tickvals": [0, 100000, 200000, 300000, 400000, 500000, 600000, 700000],
+      "ticktext": ["0", "100", "200", "300", "400", "500", "600", "700"],
+      "showgrid": true,
+      "gridcolor": "#e0e0e0",
+      "gridwidth": 1
+    },
+    "height": 500,
+    "margin": {
+      "l": 100,
+      "r": 50,
+      "b": 100,
+      "t": 100,
+      "pad": 4
+    },
+    "annotations": [
+      {
+        "x": 1,
+        "y": -0.25,
+        "xref": "paper",
+        "yref": "paper",
+        "text": "Source: HMRC VAT Annual Statistics",
+        "showarrow": false,
+        "font": {
+          "family": "Roboto Serif",
+          "size": 10,
+          "color": "#616161"
+        }
+      }
+    ],
+    "images": [
+      {
+        "source": "/logo512.png",
+        "x": 1,
+        "y": -0.18,
+        "xref": "paper",
+        "yref": "paper",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      }
+    ],
+    "plot_bgcolor": "#ebf2fa",
+    "paper_bgcolor": "#ebf2fa"
+  }
+}
+```
+
+HMRC data reveals that 31.1% of VAT-registered firms have turnover between £1 and £90,000, just below the registration threshold. A further 14.0% fall in the £90,000-£150,000 band.
+
+Using these official data sources, we construct synthetic firm microdata through a multi-objective optimisation process that matches both ONS firm structures and HMRC targets. The data captures the distribution of firms by industry classification, turnover bands, employee counts, and VAT tax liability.
+
+Figure 3 shows the resulting distribution of UK firms by annual turnover in 2024, illustrating the concentration of businesses around key thresholds.
 
 ```plotly
 {
@@ -38,7 +230,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
   ],
   "layout": {
     "title": {
-      "text": "Figure 1: Distribution of UK firms by annual turnover",
+      "text": "Figure 3: Distribution of UK firms by annual turnover",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -55,7 +247,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
         "family": "Roboto Serif"
       },
       "showgrid": true,
-      "gridcolor": "#FFFFFF",
+      "gridcolor": "#e0e0e0",
       "gridwidth": 1,
       "range": [0, 300],
       "tick0": 0,
@@ -71,7 +263,7 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
       },
       "tickformat": ",.0f",
       "showgrid": true,
-      "gridcolor": "#FFFFFF",
+      "gridcolor": "#e0e0e0",
       "gridwidth": 1
     },
     "shapes": [
@@ -170,11 +362,11 @@ Figure 1 shows the distribution of UK firms by annual turnover in 2024, illustra
 
 The distribution shows a drop in firm density around the £90,000 VAT threshold, with businesses clustering just below this level. The £150,000 threshold marks the limit for the [VAT Flat Rate Scheme](https://www.gov.uk/vat-flat-rate-scheme), which offers simplified VAT accounting for smaller businesses.
 
-The analysis below and the dashboard calculate static effects for each scenario, including revenue changes and the number of firms affected by sector and size. Simulations cover fiscal years 2025-26 through 2029-30 by ageing the synthetic firm microdata in accordance with OBR and HMRC projections. All projections assume static conditions and do not incorporate any firm responses to threshold changes.
+The analysis calculates static effects for each scenario, including revenue changes and the number of firms affected by sector and size. Simulations cover fiscal years 2025-26 through 2029-30 by ageing the synthetic firm microdata in accordance with OBR and HMRC projections. The ageing process applies firm population growth factors to scale the number of businesses in line with expected enterprise growth, while turnover values are uprated annually to reflect projected nominal GDP growth incorporating both real economic expansion and inflation. All projections assume static conditions and do not incorporate any firm responses to threshold changes.
 
 ## Comparison with HMRC projections
 
-HMRC published revenue projections for raising the VAT threshold from [£85,000 to £90,000](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold#summary-of-impacts) across the 2024-29 period. Figure 2 compares PolicyEngine's estimates with HMRC's official projections for this specific policy change.
+HMRC published revenue projections for raising the VAT threshold from [£85,000 to £90,000](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold#summary-of-impacts) across the 2024-29 period. Figure 4 compares PolicyEngine's estimates with HMRC's official projections for this specific policy change.
 
 ```plotly
 {
@@ -194,7 +386,7 @@ HMRC published revenue projections for raising the VAT threshold from [£85,000 
       "y": [-183.012, -184.498, -114.333, -40.224, 72.293],
       "type": "bar",
       "marker": {
-        "color": "#616161"
+        "color": "#A0A0A0"
       },
       "name": "PolicyEngine",
       "hovertemplate": "Year: %{x}<br>PolicyEngine: £%{y:.3f}m<extra></extra>"
@@ -202,7 +394,7 @@ HMRC published revenue projections for raising the VAT threshold from [£85,000 
   ],
   "layout": {
     "title": {
-      "text": "Figure 2: Revenue impact of increasing the VAT registration threshold (2024-29)",
+      "text": "Figure 4: Revenue impact of increasing the VAT registration threshold (2024-29)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -349,7 +541,7 @@ PolicyEngine's projections align closely with HMRC's official estimates, with th
 
 We estimate that changes to the VAT threshold create corresponding effects on government revenue. Lower thresholds increase the number of VAT-paying businesses, raising revenue. Higher thresholds reduce registered businesses and decrease collections.
 
-Figure 5 shows the revenue impact of different threshold levels in 2025-26.
+Figure 7 shows the revenue impact of different threshold levels in 2025-26.
 
 ```plotly
 {
@@ -374,7 +566,7 @@ Figure 5 shows the revenue impact of different threshold levels in 2025-26.
   ],
   "layout": {
     "title": {
-      "text": "Figure 5: Impact of VAT threshold changes on tax revenue (2025-26)",
+      "text": "Figure 7: Impact of VAT threshold changes on tax revenue (2025-26)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -477,7 +669,7 @@ Figure 5 shows the revenue impact of different threshold levels in 2025-26.
 
 We estimate that a threshold reduction to £70,000 would generate approximately £1.3 billion additional revenue in 2025-26. Conversely, raising the threshold to £120,000 would cost approximately £1.1 billion. The revenue effects show a steeper gradient than firm count changes, reflecting that businesses near the threshold generate substantial VAT payments relative to their number.
 
-Figure 6 presents revenue impacts for 2026-27, following similar patterns with slight variations.
+Figure 8 presents revenue impacts for 2026-27, following similar patterns with slight variations.
 
 ```plotly
 {
@@ -502,7 +694,7 @@ Figure 6 presents revenue impacts for 2026-27, following similar patterns with s
   ],
   "layout": {
     "title": {
-      "text": "Figure 6: Impact of VAT threshold changes on tax revenue (2026-27)",
+      "text": "Figure 8: Impact of VAT threshold changes on tax revenue (2026-27)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -623,7 +815,7 @@ The following table summarises the revenue impact of different VAT threshold lev
 
 ## Impact on VAT-paying firms
 
-We estimate that raising the VAT threshold would reduce the number of businesses required to register for VAT. Figure 3 shows how different threshold levels would change the number of VAT-paying firms in 2025-26.
+We estimate that raising the VAT threshold would reduce the number of businesses required to register for VAT. Figure 5 shows how different threshold levels would change the number of VAT-paying firms in 2025-26.
 
 ```plotly
 {
@@ -648,7 +840,7 @@ We estimate that raising the VAT threshold would reduce the number of businesses
   ],
   "layout": {
     "title": {
-      "text": "Figure 3: Change in VAT-paying firms by threshold (2025-26)",
+      "text": "Figure 5: Change in VAT-paying firms by threshold (2025-26)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -753,7 +945,7 @@ At the current £90,000 threshold, no change occurs by definition. We estimate t
 
 The relationship shows progression, with threshold increases removing firms from VAT obligations. This pattern reflects the distribution of business turnover levels approximately the threshold.
 
-Figure 4 presents the same analysis for 2026-27, showing similar patterns with slight variations in magnitude.
+Figure 6 presents the same analysis for 2026-27, showing similar patterns with slight variations in magnitude.
 
 ```plotly
 {
@@ -778,7 +970,7 @@ Figure 4 presents the same analysis for 2026-27, showing similar patterns with s
   ],
   "layout": {
     "title": {
-      "text": "Figure 4: Change in VAT-paying firms by threshold (2026-27)",
+      "text": "Figure 6: Change in VAT-paying firms by threshold (2026-27)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -884,5 +1076,3 @@ We project that in 2026-27, approximately 40,700 additional firms would enter VA
 ## Conclusion
 
 VAT threshold changes create measurable impacts on government revenues. Higher thresholds reduce the number of VAT-registered businesses while decreasing tax collections. Lower thresholds increase the number of registered businesses and raise revenue. We estimate that raising the threshold to £100,000 would remove approximately 42,900 firms from VAT registration in 2025-26, reducing revenue by approximately £270 million.
-
-We invite you to use PolicyEngine's [VAT threshold analysis tool](https://uk-vatlab-app1j7s6o-policy-engine.vercel.app/) to explore custom threshold scenarios and conduct your own analysis of VAT policy impacts.
