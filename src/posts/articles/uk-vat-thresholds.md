@@ -4,9 +4,7 @@ _Photograph: House of Commons/Reuters_
 
 Value Added Tax (VAT) registration thresholds determine when businesses must register for VAT and begin charging customers 20% on their sales. The UK currently sets this threshold at [£90,000](https://www.gov.uk/vat-registration-thresholds) annual turnover, up from [£85,000](https://www.gov.uk/government/publications/vat-increasing-the-registration-and-deregistration-thresholds/increasing-the-vat-registration-threshold) in 2024-25. Businesses earning above this level must register for VAT and charge customers 20% on most goods and services, while those below remain exempt. This threshold creates a cliff-edge effect where businesses crossing £90,000 turnover must begin charging VAT on all sales and remitting collections to HMRC.
 
-The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold, though did not specify an amount.
-
-In this report, we analyse how VAT threshold changes between £70,000 and £120,000 would affect revenues and the number of VAT-paying firms for 2026-27 fiscal year. We also compare our projections, which derive from new synthetic firm microdata we've constructed, with HMRC's official estimates.
+The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold. In this report, we analyse how VAT threshold changes between £70,000 and £120,000 would affect revenues and the number of VAT-paying firms for 2026-27 fiscal year. We also compare our projections, which derive from new synthetic firm microdata we've constructed, with HMRC's official estimates.
 
 ## Methodology
 
