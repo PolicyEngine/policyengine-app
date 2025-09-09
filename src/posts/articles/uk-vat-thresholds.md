@@ -6,7 +6,7 @@ Value Added Tax (VAT) registration thresholds determine when businesses must reg
 
 The Telegraph [reported](https://www.telegraph.co.uk/business/2025/08/30/reeves-talks-to-raise-vat-threshold-battle-to-grow-economy/) that UK Chancellor Rachel Reeves is considering further increases to the VAT threshold, though did not specify an amount.
 
-In this report, we analyse how VAT threshold changes between £70,000 and £120,000 would affect revenues and the number of VAT-paying firms for 2025-26 and 2026-27 fiscal years. We also compare our projections, which derive from new synthetic firm microdata we've constructed, with HMRC's official estimates.
+In this report, we analyse how VAT threshold changes between £70,000 and £120,000 would affect revenues and the number of VAT-paying firms for 2026-27 fiscal year. We also compare our projections, which derive from new synthetic firm microdata we've constructed, with HMRC's official estimates.
 
 ## Methodology
 
@@ -364,7 +364,7 @@ Figure 3 shows the resulting distribution of UK firms by annual turnover in 2024
 
 The distribution shows a drop in firm density around the £90,000 VAT threshold, with businesses clustering just below this level. The £150,000 threshold marks the limit for the [VAT Flat Rate Scheme](https://www.gov.uk/vat-flat-rate-scheme), which offers simplified VAT accounting for smaller businesses.
 
-The analysis calculates revenue changes and the number of firms affected by sector and size for each scenario. Simulations cover fiscal years 2025-26 through 2029-30 by ageing the synthetic firm microdata using projected growth factors. We age turnover and VAT liability values using cumulative growth factors that compound year-over-year based on [RPI-based growth assumptions](https://obr.uk/efo/economic-and-fiscal-outlook-march-2024/#annex-a) (ranging from 2.0% to 3.0% annually). All projections maintain current behavioral patterns and do not incorporate firm responses to threshold changes.
+The analysis calculates revenue changes and the number of firms affected by sector and size for each scenario. Simulations cover fiscal years 2026-27 through 2029-30 by ageing the synthetic firm microdata using projected growth factors. We age turnover and VAT liability values using cumulative growth factors that compound year-over-year based on [RPI-based growth assumptions](https://obr.uk/efo/economic-and-fiscal-outlook-march-2024/#annex-a) (ranging from 2.0% to 3.0% annually). All projections maintain current behavioral patterns and do not incorporate firm responses to threshold changes.
 
 ## Comparison with HMRC projections
 
@@ -541,135 +541,7 @@ Both models project revenue losses in the first four years, followed by revenue 
 
 We estimate that changes to the VAT threshold create corresponding effects on government revenue. Lower thresholds increase the number of VAT-paying businesses, raising revenue. Higher thresholds reduce registered businesses and decrease collections.
 
-Figure 7 shows the revenue impact of different threshold levels in 2025-26.
-
-```plotly
-{
-  "data": [
-    {
-      "x": [70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
-      "y": [657.7, 519.0, 359.7, 184.5, 0, -193.1, -371.1, -561.8, -753.3, -957.0, -1156.0],
-      "type": "scatter",
-      "mode": "lines+markers",
-      "marker": {
-        "color": "#616161",
-        "size": 8
-      },
-      "line": {
-        "color": "#616161",
-        "width": 3
-      },
-      "name": "Revenue change (£m)",
-      "text": ["Threshold: £70k<br>Revenue change: +£657.7m", "Threshold: £75k<br>Revenue change: +£519.0m", "Threshold: £80k<br>Revenue change: +£359.7m", "Threshold: £85k<br>Revenue change: +£184.5m", "Threshold: £90k<br>Revenue change: £0.0m", "Threshold: £95k<br>Revenue change: -£193.1m", "Threshold: £100k<br>Revenue change: -£371.1m", "Threshold: £105k<br>Revenue change: -£561.8m", "Threshold: £110k<br>Revenue change: -£753.3m", "Threshold: £115k<br>Revenue change: -£957.0m", "Threshold: £120k<br>Revenue change: -£1,156.0m"],
-      "hovertemplate": "%{text}<extra></extra>"
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Figure 7: Impact of VAT threshold changes on tax revenue (2025-26)",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "xaxis": {
-      "title": "Registration threshold (£k)",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "showgrid": true,
-      "gridcolor": "#e0e0e0",
-      "gridwidth": 1
-    },
-    "yaxis": {
-      "title": "Revenue (£m)",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "showgrid": true,
-      "gridcolor": "#e0e0e0",
-      "gridwidth": 1,
-      "zeroline": true,
-      "zerolinecolor": "#000000",
-      "zerolinewidth": 1
-    },
-    "shapes": [
-      {
-        "type": "line",
-        "x0": 90,
-        "x1": 90,
-        "y0": -1200,
-        "y1": 1300,
-        "line": {
-          "color": "#666666",
-          "width": 2,
-          "dash": "dash"
-        }
-      }
-    ],
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 95,
-        "y": 1000,
-        "text": "Current £90k",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "color": "#666666"
-        }
-      },
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "#ebf2fa",
-    "paper_bgcolor": "#ebf2fa"
-  }
-}
-```
-
-We estimate that a threshold reduction to £70,000 would generate approximately £658 million additional revenue in 2025-26. Conversely, raising the threshold to £120,000 would cost approximately £1.2 billion.
-
-Figure 8 presents revenue impacts for 2026-27, following similar patterns with slight variations.
+Figure 7 presents revenue impacts for 2026-27.
 
 ```plotly
 {
@@ -694,7 +566,7 @@ Figure 8 presents revenue impacts for 2026-27, following similar patterns with s
   ],
   "layout": {
     "title": {
-      "text": "Figure 8: Impact of VAT threshold changes on tax revenue (2026-27)",
+      "text": "Figure 7: Impact of VAT threshold changes on tax revenue (2026-27)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -799,151 +671,23 @@ We estimate that in 2026-27, a £70,000 threshold would generate approximately �
 
 The following table summarises the revenue impact of different VAT threshold levels compared to the current £90,000 threshold:
 
-| VAT threshold (£k) | Revenue impact (£m) 2025-26 | Revenue impact (£m) 2026-27 |
-| ------------------ | --------------------------- | --------------------------- |
-| 70                 | 657.7                       | 642.0                       |
-| 75                 | 519.0                       | 504.9                       |
-| 80                 | 359.7                       | 352.9                       |
-| 85                 | 184.5                       | 188.2                       |
-| 90 (current)       | 0.0                         | 0.0                         |
-| 95                 | -193.1                      | -186.2                      |
-| 100                | -371.1                      | -370.5                      |
-| 105                | -561.8                      | -556.0                      |
-| 110                | -753.3                      | -747.9                      |
-| 115                | -957.0                      | -945.6                      |
-| 120                | -1,156.0                    | -1,142.2                    |
+| VAT threshold (£k) | Revenue impact (£m) 2026-27 |
+| ------------------ | --------------------------- |
+| 70                 | 642.0                       |
+| 75                 | 504.9                       |
+| 80                 | 352.9                       |
+| 85                 | 188.2                       |
+| 90 (current)       | 0.0                         |
+| 95                 | -186.2                      |
+| 100                | -370.5                      |
+| 105                | -556.0                      |
+| 110                | -747.9                      |
+| 115                | -945.6                      |
+| 120                | -1,142.2                    |
 
 ## Impact on VAT-paying firms
 
-We estimate that raising the VAT threshold would reduce the number of businesses required to register for VAT. Figure 5 shows how different threshold levels would change the number of VAT-paying firms in 2025-26.
-
-```plotly
-{
-  "data": [
-    {
-      "x": [70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120],
-      "y": [111.261, 83.04, 55.081, 27.356, 0, -25.906, -44.881, -63.386, -81.023, -97.92, -113.834],
-      "type": "scatter",
-      "mode": "lines+markers",
-      "marker": {
-        "color": "#616161",
-        "size": 8
-      },
-      "line": {
-        "color": "#616161",
-        "width": 3
-      },
-      "name": "Change in VAT-paying firms (thousands)",
-      "text": ["Threshold: £70k<br>Firms affected: 111,261", "Threshold: £75k<br>Firms affected: 83,040", "Threshold: £80k<br>Firms affected: 55,081", "Threshold: £85k<br>Firms affected: 27,356", "Threshold: £90k<br>Firms affected: 0", "Threshold: £95k<br>Firms affected: 25,906", "Threshold: £100k<br>Firms affected: 44,881", "Threshold: £105k<br>Firms affected: 63,386", "Threshold: £110k<br>Firms affected: 81,023", "Threshold: £115k<br>Firms affected: 97,920", "Threshold: £120k<br>Firms affected: 113,834"],
-      "hovertemplate": "%{text}<extra></extra>"
-    }
-  ],
-  "layout": {
-    "title": {
-      "text": "Figure 5: Change in VAT-paying firms by threshold (2025-26)",
-      "font": {
-        "family": "Roboto Serif",
-        "size": 16
-      },
-      "x": 0,
-      "xanchor": "left"
-    },
-    "xaxis": {
-      "title": "Registration threshold (£k)",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "showgrid": true,
-      "gridcolor": "#e0e0e0",
-      "gridwidth": 1
-    },
-    "yaxis": {
-      "title": "Change in number of firms (thousands)",
-      "titlefont": {
-        "family": "Roboto Serif"
-      },
-      "tickfont": {
-        "family": "Roboto Serif"
-      },
-      "showgrid": true,
-      "gridcolor": "#e0e0e0",
-      "gridwidth": 1,
-      "zeroline": true,
-      "zerolinecolor": "#000000",
-      "zerolinewidth": 1
-    },
-    "shapes": [
-      {
-        "type": "line",
-        "x0": 90,
-        "x1": 90,
-        "y0": -140,
-        "y1": 120,
-        "line": {
-          "color": "#666666",
-          "width": 2,
-          "dash": "dash"
-        }
-      }
-    ],
-    "height": 500,
-    "margin": {
-      "l": 50,
-      "r": 50,
-      "b": 100,
-      "t": 100,
-      "pad": 4
-    },
-    "annotations": [
-      {
-        "x": 95,
-        "y": 35,
-        "text": "Current £90k",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "color": "#666666"
-        }
-      },
-      {
-        "x": 1,
-        "y": -0.25,
-        "xref": "paper",
-        "yref": "paper",
-        "text": "Source: PolicyEngine",
-        "showarrow": false,
-        "font": {
-          "family": "Roboto Serif",
-          "size": 10,
-          "color": "#616161"
-        }
-      }
-    ],
-    "images": [
-      {
-        "source": "/logo512.png",
-        "x": 1,
-        "y": -0.18,
-        "xref": "paper",
-        "yref": "paper",
-        "sizex": 0.1,
-        "sizey": 0.1,
-        "xanchor": "right",
-        "yanchor": "bottom"
-      }
-    ],
-    "plot_bgcolor": "#ebf2fa",
-    "paper_bgcolor": "#ebf2fa"
-  }
-}
-```
-
-At the current £90,000 threshold, no change occurs by definition. We estimate that lowering the threshold to £70,000 would bring approximately 111,000 additional firms into the VAT system, while raising it to £120,000 would remove approximately 114,000 firms from VAT registration requirements.
-
-Figure 6 presents the same analysis for 2026-27, showing similar patterns with slight variations in magnitude.
+We estimate that raising the VAT threshold would reduce the number of businesses required to register for VAT. Figure 5 shows how different threshold levels would change the number of VAT-paying firms in 2026-27.
 
 ```plotly
 {
@@ -968,7 +712,7 @@ Figure 6 presents the same analysis for 2026-27, showing similar patterns with s
   ],
   "layout": {
     "title": {
-      "text": "Figure 6: Change in VAT-paying firms by threshold (2026-27)",
+      "text": "Figure 5: Change in VAT-paying firms by threshold (2026-27)",
       "font": {
         "family": "Roboto Serif",
         "size": 16
@@ -1073,4 +817,4 @@ We project that in 2026-27, approximately 109,000 additional firms would enter V
 
 ## Conclusion
 
-VAT threshold changes create measurable impacts on government revenues. Higher thresholds reduce the number of VAT-registered businesses while decreasing tax collections. Lower thresholds increase the number of registered businesses and raise revenue. We estimate that raising the threshold to £100,000 would remove approximately 45,000 firms from VAT registration in 2025-26, reducing revenue by approximately £371 million.
+VAT threshold changes create measurable impacts on government revenues. Higher thresholds reduce the number of VAT-registered businesses while decreasing tax collections. Lower thresholds increase the number of registered businesses and raise revenue. We estimate that raising the threshold to £100,000 would remove approximately 48,000 firms from VAT registration in 2026-27, reducing revenue by approximately £371 million.
