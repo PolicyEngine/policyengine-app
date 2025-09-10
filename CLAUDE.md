@@ -104,6 +104,7 @@
 Based on our UK VAT thresholds article improvements, apply these standards to all PolicyEngine articles:
 
 #### 1. Active Voice and Conciseness
+
 - **Use active voice** with clear subjects (e.g., "The UK requires..." not "Businesses are required...")
 - **Remove redundancy** - Don't repeat information in multiple sentences
 - **Eliminate wordiness** - "We estimate that" → just state the finding
@@ -111,29 +112,34 @@ Based on our UK VAT thresholds article improvements, apply these standards to al
 - **Combine related sentences** to reduce repetition
 
 #### 2. Data and Claims
+
 - **Only use adjectives/adverbs supported by data** - avoid "substantial," "significant," "slightly" unless quantified
 - **Be precise about data sources** - clearly attribute who constructed/analyzed what
 - **Remove obvious statements** - e.g., "Higher thresholds reduce revenue" when a chart shows this
 - **Avoid hedging without reason** - "approximately" only when rounding, not for exact model outputs
 
 #### 3. Structure and Flow
+
 - **Lead with findings** - put key results upfront, methodology details later
 - **Remove duplicate information** - don't present same data in both table and chart
 - **Keep introductions tight** - 1-2 paragraphs maximum
 - **Make transitions implicit** - avoid "In this section, we will..."
 
 #### 4. Technical Writing
+
 - **Spell out acronyms on first use** - "Retail Price Index (RPI)" then RPI thereafter
 - **Clarify baselines and assumptions** - be explicit about what's held constant
 - **Describe distributions accurately** - avoid "clustering" unless data shows clear bunching
 - **Use consistent terminology** - pick one term and stick with it
 
 #### 5. Conclusions
+
 - **Keep conclusions factual** - summarize findings without speculation
 - **Be specific about future work** - only mention planned analyses, not aspirations
 - **Avoid promotional language** - let the analysis speak for itself
 
 #### 6. Titles and Subtitles
+
 - **Make titles action-oriented** - "How X affects Y" rather than "Modelling X"
 - **Include key finding in subtitle** when possible
 - **Avoid redundant location markers** for country-specific sites (don't say "UK" on UK site)
