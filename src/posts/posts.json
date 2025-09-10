@@ -1402,5 +1402,14 @@
     "authors": ["nikhil-woodruff"],
     "filename": "wfa-means-test.ipynb",
     "image": "wfa-repeal.jpeg"
+  },
+  {
+    "title": "How changing the VAT threshold affects UK revenues",
+    "description": "PolicyEngine's new firm microsimulation model estimates revenue and business impacts of VAT thresholds from £70,000 to £120,000.",
+    "date": "2025-09-10 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-vat-thresholds.md",
+    "image": "uk-vat-reeves.jpg"
   }
 ]

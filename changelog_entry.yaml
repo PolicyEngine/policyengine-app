@@ -1,4 +1,4 @@
-- bump: patch
+- bump: minor
   changes:
-    fixed:
-      - Fixed UK behavioral response calculations returning zero FTE impacts by updating parameter names to match UK API expectations
+    added:
+      - A blog post for VAT threshold analysis tool for UK policy analysis
