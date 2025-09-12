@@ -2,7 +2,7 @@ Join us at Central Hall Westminster in London on Thursday, 25 September 2025, fr
 
 ## Event overview
 
-PolicyEngine is hosting a special event to demonstrate our cutting-edge research, tools, and features that are transforming how policymakers and researchers analyze tax and benefit reforms. This gathering brings together professionals at the forefront of computational policy modeling and evidence-based policymaking technology.
+PolicyEngine is hosting a special event to demonstrate our cutting-edge research, tools, and features that are transforming how policymakers and researchers analyse tax and benefit reforms. This gathering brings together professionals at the forefront of computational policy modelling and evidence-based policymaking technology.
 
 ## What to expect
 
@@ -18,8 +18,8 @@ Discover our breakthrough capability to estimate policy impacts at the parliamen
 
 Learn about our latest research innovations, including:
 
-- **VAT analysis with synthetic firm microdata**: Our UK Research Associate Vahid Ahmadi presents groundbreaking work on modeling VAT reforms using fully synthetic firm-level data, building on our recent [analysis of VAT threshold changes](/uk/blog/uk-vat-thresholds)
-- **US policy modeling expansion**: Insights from our federal and state-level policy analysis work across the Atlantic, powered by our [Enhanced Current Population Survey](/us/blog/enhanced-cps-launch) microdata
+- **VAT analysis with synthetic firm microdata**: Our UK Research Associate Vahid Ahmadi presents groundbreaking work on modelling VAT reforms using fully synthetic firm-level data, building on our recent [analysis of VAT threshold changes](/uk/blog/uk-vat-thresholds)
+- **US policy modelling expansion**: Insights from our federal and state-level policy analysis work across the Atlantic, powered by our [Enhanced Current Population Survey](/us/blog/enhanced-cps-launch) microdata
 - **AI-powered policy analysis**: How we're deploying large language models and agentic systems to transform policy research workflows, supported by our [NSF POSE grant](/us/blog/nsf-pose-phase-1-grant)
 
 ### Networking opportunities
@@ -32,17 +32,17 @@ Connect with policy researchers, government officials, think tank professionals,
 - **13:00-13:15** | Welcome & Vision - Max Ghenis, Co-founder & CEO
 - **13:15-13:30** | Technology for UK Policymaking - Nikhil Woodruff, Co-founder, CTO & UK Country Director
 - **13:30-14:00** | Live Demo: PolicyEngine v2 Platform - Anthony Volk, Software Engineer
-- **14:00-14:30** | Localizing Policy Impact - Nikhil Woodruff
+- **14:00-14:30** | Localising Policy Impact - Nikhil Woodruff
 - **14:30-15:00** | VAT Analysis with Synthetic Firm Microdata - Vahid Ahmadi, UK Research Associate
 - **15:00-15:30** | Tea Break & Networking
-- **15:30-16:00** | PolicyEngine US: Federal & State Policy Modeling - Max Ghenis
+- **15:30-16:00** | PolicyEngine US: Federal & State Policy Modelling - Max Ghenis
 - **16:00-16:30** | Panel Discussion: The Future of Evidence-Based Policymaking
 - **16:30-17:00** | Looking Ahead: AI-Powered Policy Analysis - Max Ghenis & Nikhil Woodruff
 - **17:00-18:00** | Reception & Networking
 
 ## Acknowledgments
 
-This event is made possible by the generous support of the Nuffield Foundation, whose commitment to evidence-based social policy aligns perfectly with PolicyEngine's mission to democratize policy analysis.
+This event is made possible by the generous support of the Nuffield Foundation, whose commitment to evidence-based social policy aligns perfectly with PolicyEngine's mission to democratise policy analysis.
 
 ## Event Details
 
@@ -57,4 +57,4 @@ Space is limited for this exclusive event. [Register now on Eventbrite](https://
 
 ## About PolicyEngine
 
-PolicyEngine is a non-profit organization building free, open-source software to compute the impact of public policy. Our platform enables anyone to design tax and benefit reforms and see their effects on society and individual households. Learn more at [policyengine.org](https://policyengine.org).
+PolicyEngine is a non-profit organisation building free, open-source software to compute the impact of public policy. Our platform enables anyone to design tax and benefit reforms and see their effects on society and individual households. Learn more at [policyengine.org](https://policyengine.org).
