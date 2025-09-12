@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { useAuthenticatedApiCall } from "../../api/call";
 import * as authenticatedFetch from "../../hooks/useAuthenticatedFetch";
+import { POLICYENGINE_API } from "../../constants";
 
 jest.mock("../../hooks/useAuthenticatedFetch");
 let mock_authenticated_fetch;
@@ -36,7 +37,7 @@ describe("useAuthenticatedApiCall", () => {
 
     expect(response).toEqual(DEFAULT_FETCH_RESULT);
     expect(mock_authenticated_fetch.mock.calls[0]).toEqual([
-      "https://api.policyengine.org/test/path",
+      POLICYENGINE_API + "/test/path",
       {
         body: JSON.stringify(SOME_REQUEST_BODY),
         headers: {
