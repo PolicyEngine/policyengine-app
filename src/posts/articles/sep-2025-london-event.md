@@ -12,15 +12,15 @@ Experience the unveiling of PolicyEngine v2, our next-generation policy analysis
 
 ### Hyperlocal policy analysis
 
-Discover our breakthrough capability to estimate policy impacts at the parliamentary constituency and local authority level. Our UK Country Director Nikhil Woodruff will demonstrate how our revolutionary microdata construction enables unprecedented granularity in understanding policy effects across the UK.
+Discover our breakthrough capability to estimate policy impacts at the parliamentary constituency and local authority level. Our UK Country Director Nikhil Woodruff will demonstrate how our revolutionary microdata construction enables unprecedented granularity in understanding policy effects across the UK, expanding on the methodologies described in our [Enhanced CPS launch](/us/blog/enhanced-cps-launch).
 
 ### Cutting-edge research presentations
 
 Learn about our latest research innovations, including:
 
-- **VAT analysis with synthetic firm microdata**: Our UK Research Associate Vahid Ahmadi presents groundbreaking work on modeling VAT reforms using fully synthetic firm-level data
-- **US policy modeling expansion**: Insights from our federal and state-level policy analysis work across the Atlantic
-- **AI-powered policy analysis**: How we're deploying large language models and agentic systems to transform policy research workflows
+- **VAT analysis with synthetic firm microdata**: Our UK Research Associate Vahid Ahmadi presents groundbreaking work on modeling VAT reforms using fully synthetic firm-level data, building on our recent [analysis of VAT threshold changes](/uk/blog/uk-vat-thresholds)
+- **US policy modeling expansion**: Insights from our federal and state-level policy analysis work across the Atlantic, powered by our [Enhanced Current Population Survey](/us/blog/enhanced-cps-launch) microdata
+- **AI-powered policy analysis**: How we're deploying large language models and agentic systems to transform policy research workflows, supported by our [NSF POSE grant](/us/blog/nsf-pose-phase-1-grant)
 
 ### Networking opportunities
 
