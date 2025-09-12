@@ -20,7 +20,7 @@ Learn about our latest research innovations, including:
 
 - **VAT analysis with synthetic firm microdata**: Our UK Research Associate Vahid Ahmadi presents groundbreaking work on modelling VAT reforms using fully synthetic firm-level data, building on our recent [analysis of VAT threshold changes](/uk/blog/uk-vat-thresholds)
 - **US policy modelling expansion**: Insights from our federal and state-level policy analysis work across the Atlantic, powered by our [Enhanced Current Population Survey](/us/blog/enhanced-cps-launch) microdata
-- **AI-powered policy analysis**: How we're deploying large language models and agentic systems to transform policy research workflows, supported by our [NSF POSE grant](/us/blog/nsf-pose-phase-1-grant)
+- **AI-powered policy analysis**: How we're deploying large language models and agentic systems to transform policy research workflows
 
 ### Networking opportunities
 
@@ -42,7 +42,7 @@ Connect with policy researchers, government officials, think tank professionals,
 
 ## Acknowledgments
 
-This event is made possible by the generous support of the Nuffield Foundation, whose commitment to evidence-based social policy aligns perfectly with PolicyEngine's mission to democratise policy analysis.
+This event is made possible by the generous support of the Nuffield Foundation, whose commitment to evidence-based social policy aligns perfectly with PolicyEngine's mission to democratise policy analysis. Our work building sustainable open-source ecosystems is also supported by the [National Science Foundation's POSE program](/us/blog/nsf-pose-phase-1-grant).
 
 ## Event Details
 
