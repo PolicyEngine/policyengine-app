@@ -70,7 +70,7 @@
   {
     "id": "nsf",
     "name": "National Science Foundation",
-    "logoUrl": "/images/posts/nsf-official-logo.png",
+    "logoUrl": "https://www.nsf.gov/themes/custom/nsf_theme/components/molecules/logo/logo-desktop.png",
     "websiteUrl": "https://www.nsf.gov/",
     "description": "an independent federal agency supporting science and engineering in all 50 states and U.S. territories through research and education."
   }
