@@ -102,5 +102,13 @@
     "amount": "$30,000",
     "awardDate": "December 2022",
     "description": "Supporting the development of a calibrated dataset for accurate tax-benefit microsimulation."
+  },
+  {
+    "supporter": "nsf",
+    "title": "Pathways to Enable Open-Source Ecosystems (POSE) Phase I",
+    "projectUrl": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=2518372",
+    "amount": "$300,000",
+    "awardDate": "August 2025",
+    "description": "Supporting the development of organizational infrastructure and community engagement to strengthen the open-source ecosystem around economic policy analysis tools."
   }
 ]

@@ -66,5 +66,12 @@
     "logoUrl": "https://assets.nationbuilder.com/forwardparty/profile_images/de6f48e5b46f503bcdb1c95684507c4831871db6.jpg?1728658971",
     "websiteUrl": "https://www.linkedin.com/in/dylan-hirsch-shell-4b28b42/",
     "description": "a scientist, engineer, and community advocate."
+  },
+  {
+    "id": "nsf",
+    "name": "National Science Foundation",
+    "logoUrl": "/images/posts/nsf-official-logo.png",
+    "websiteUrl": "https://www.nsf.gov/",
+    "description": "an independent federal agency supporting science and engineering in all 50 states and U.S. territories through research and education."
   }
 ]
