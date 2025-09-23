@@ -1,4 +1,4 @@
-Join us at Central Hall Westminster in London on Thursday, 25 September 2025, from 12:00-18:00 for an exclusive showcase of PolicyEngine 2.0 and our latest innovations in evidence-based policy analysis. Register now on [Eventbrite](https://www.eventbrite.co.uk/e/policyengine-20-and-the-future-of-public-policy-analysis-tickets-1673065246189).
+Join us at Central Hall Westminster in London on Monday, 3 November 2025, from 12:00-18:00 for an exclusive showcase of PolicyEngine 2.0 and our latest innovations in evidence-based policy analysis. Register now on [Eventbrite](https://www.eventbrite.co.uk/e/policyengine-20-and-the-future-of-public-policy-analysis-tickets-1673065246189).
 
 ## Event overview
 
@@ -46,7 +46,7 @@ This event is made possible by the generous support of the Nuffield Foundation, 
 
 ## Event Details
 
-**Date:** Thursday, 25 September 2025  
+**Date:** Monday, 3 November 2025  
 **Time:** 12:00-18:00 GMT  
 **Venue:** Central Hall Westminster  
 **Address:** Storey's Gate, London SW1H 9NH
