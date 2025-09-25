@@ -4,6 +4,17 @@ import style from "../style/index.js";
 import PageHeader from "../layout/PageHeader.jsx";
 import { Outlet, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export default function DeveloperLayout() {
   const { pathname } = useLocation();
@@ -18,6 +29,7 @@ export default function DeveloperLayout() {
 
   return (
     <main>
+      <ScrollToTop />
       <Helmet>
         <title>Developer tools | PolicyEngine</title>
       </Helmet>
