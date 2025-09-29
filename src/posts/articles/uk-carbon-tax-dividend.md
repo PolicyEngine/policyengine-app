@@ -805,6 +805,6 @@ The constituencies experiencing the largest gains include urban areas such as Bi
 
 Our analysis shows that carbon dividend policies would benefit approximately 71% of UK residents across both £100/tonne and £200/tonne scenarios in 2026-27. The £100/tonne rate would reduce poverty by 0.3% overall, while the £200/tonne rate would reduce poverty by 0.5% overall.
 
-Lower-income households in deciles 1-6 would see net income gains under both scenarios, while higher-income households in deciles 8-10 would experience net losses. The geographic distribution reveals 265 constituencies gaining at £100/tonne and 354 at £200/tonne in 2026-27.
+Lower-income households in deciles 1-6 would see net income gains under both scenarios, while higher-income households in deciles 8-10 would experience net losses. The geographic distribution reveals 265 constituencies gaining at £100/tonne and 294 at £200/tonne in 2026-27.
 
 We invite you to explore the [PolicyEngine webapp](https://policyengine.org/) to model your own customised carbon tax and dividend reforms.
