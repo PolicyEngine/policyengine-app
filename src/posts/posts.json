@@ -1420,5 +1420,14 @@
     "authors": ["vahid-ahmadi"],
     "filename": "uk-vat-thresholds.md",
     "image": "uk-vat-reeves.jpg"
+  },
+  {
+    "title": "How carbon tax and dividend policies affect UK households",
+    "description": "PolicyEngine analysis of £100/200 per tonne carbon taxes with full dividend redistribution shows approximately 71% of UK residents would gain under both scenarios.",
+    "date": "2025-09-30 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-carbon-tax-devidend.md",
+    "image": "uk-carbon-tax.png"
   }
 ]
