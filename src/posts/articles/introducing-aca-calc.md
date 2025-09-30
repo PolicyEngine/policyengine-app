@@ -1,4 +1,4 @@
-With the enhanced Affordable Care Act premium tax credits set to expire at the end of 2025, we're launching [**ACA-Calc**](https://policyengine.org/us/aca-calc) — an interactive calculator that shows how ACA subsidies affect individual households under both current and proposed policies.
+The enhanced Affordable Care Act premium tax credits are set to expire at the end of 2025. We're launching [**ACA-Calc**](https://policyengine.org/us/aca-calc) — an interactive calculator that estimates premium tax credits for individual households under different policy scenarios.
 
 [**_Calculate your household's premium tax credits here._**](https://policyengine.org/us/aca-calc)
 
@@ -6,13 +6,13 @@ With the enhanced Affordable Care Act premium tax credits set to expire at the e
 
 ACA-Calc allows users to estimate Affordable Care Act premium tax credits for any household configuration. The tool calculates subsidies under:
 
-- **Current enhanced schedule**: The improved subsidies enacted through the American Rescue Plan Act and extended through 2025
+- **Enhanced schedule**: The subsidies enacted through the American Rescue Plan Act and extended through 2025
 
-- **Original schedule**: The pre-2021 subsidy levels that would return if enhancements expire
+- **Original schedule**: The subsidy levels that would apply if enhancements expire
 
 - **Custom policies**: User-defined premium cap schedules
 
-By showing side-by-side comparisons, the tool reveals how different policy choices affect household premiums and subsidy eligibility.
+The tool shows side-by-side comparisons of how different policy scenarios affect household premiums and subsidy eligibility.
 
 ## Examples
 
@@ -22,19 +22,17 @@ To illustrate the tool's capabilities, let's explore two household scenarios.
 
 Consider a 35-year-old single adult living in Dallas, Texas, earning $45,000 annually.
 
-Under the enhanced schedule, this household would receive $3,024 in annual premium tax credits, capping their premium contribution at 4.5% of income. If the enhancements expire and the original schedule returns, their credit would drop to $1,848, increasing their premium cap to 6.52% of income — a difference of $1,176 per year.
+Under the enhanced schedule, this household would receive $3,024 in annual premium tax credits, with premium contributions capped at 4.5% of income. Under the original schedule, their credit would be $1,848, with premium contributions capped at 6.52% of income — a difference of $1,176 per year.
 
 ### Family of four in New York
 
 Now consider a married couple with two children in Syracuse, New York. The household head is 40 years old, and they earn $85,000 annually.
 
-This family would receive $8,640 in annual credits under the enhanced schedule (capping premiums at 6.5% of income). Under the original schedule, they would receive only $3,456 (with an 8.33% premium cap) — a difference of $5,184 per year.
-
-These examples demonstrate how the enhanced subsidies particularly benefit middle-income households that would face higher premium burdens under the original formula.
+This family would receive $8,640 in annual credits under the enhanced schedule (with premiums capped at 6.5% of income). Under the original schedule, they would receive $3,456 (with premiums capped at 8.33% of income) — a difference of $5,184 per year.
 
 ## Key features
 
-### 📊 Comprehensive household inputs
+### Comprehensive household inputs
 
 The calculator accepts detailed household information:
 
@@ -46,17 +44,17 @@ The calculator accepts detailed household information:
 
 - **Filing status**: Single, married filing jointly, or head of household
 
-### 💰 Multiple policy comparisons
+### Multiple policy comparisons
 
 Users can compare outcomes across three scenarios:
 
-- **Enhanced schedule**: Current law through 2025, with expanded subsidies for lower premiums
+- **Enhanced schedule**: Current law through 2025
 
 - **Original schedule**: Pre-2021 baseline if enhancements expire
 
-- **Custom schedule**: Define your own premium cap thresholds
+- **Custom schedule**: User-defined premium cap thresholds
 
-### 📈 Detailed results
+### Detailed results
 
 For each scenario, the tool displays:
 
@@ -68,9 +66,9 @@ For each scenario, the tool displays:
 
 - **Benchmark premium**: Second-lowest-cost Silver plan in your area
 
-- **Required contribution**: Amount you would pay toward premiums
+- **Required contribution**: Amount paid toward premiums
 
-### 🔍 Interactive analysis
+### Interactive analysis
 
 The tool provides instant recalculation as you adjust:
 
@@ -82,11 +80,9 @@ The tool provides instant recalculation as you adjust:
 
 - Geographic location
 
-This enables rapid exploration of how different circumstances affect subsidy eligibility and amounts.
+### Nationwide coverage
 
-### 🌍 Nationwide coverage
-
-ACA-Calc includes benchmark premium data for all counties across the United States, ensuring accurate subsidy calculations regardless of location.
+ACA-Calc includes benchmark premium data for all counties across the United States.
 
 ## How it works
 
@@ -104,32 +100,30 @@ The calculator implements the ACA premium tax credit formula using PolicyEngine'
 
 The tool applies the same calculation methods used in PolicyEngine's full microsimulation model, which has been validated against official sources including Internal Revenue Service data.
 
-## Why it matters
+## Policy context
 
-With Congress debating whether to extend the enhanced premium tax credits, ACA-Calc helps households understand what's at stake. For millions of Americans purchasing coverage through ACA marketplaces, the difference between the enhanced and original subsidy schedules can mean:
+The enhanced premium tax credits are set to expire at the end of 2025. The Congressional Budget Office estimates that if the enhancements expire, marketplace enrollment would decrease by approximately 3.4 million people.
 
-- Hundreds or thousands of dollars in annual savings
+For households purchasing coverage through ACA marketplaces, the difference between the enhanced and original subsidy schedules affects:
 
-- The difference between affordable and unaffordable coverage
+- Annual subsidy amounts
 
-- Access to lower-deductible, more comprehensive health plans
+- Premium contribution requirements as a percentage of income
 
-The Congressional Budget Office estimates that allowing the enhancements to expire would reduce marketplace enrollment by approximately 3.4 million people.
+- Subsidy eligibility thresholds
 
 ## Get started
 
-ACA-Calc is available now at [**policyengine.org/us/aca-calc**](https://policyengine.org/us/aca-calc).
+ACA-Calc is available at [**policyengine.org/us/aca-calc**](https://policyengine.org/us/aca-calc).
 
-Start exploring by:
+To use the calculator:
 
-1. Entering your household's basic information (state, county, income, size)
+1. Enter your household's basic information (state, county, income, size)
 
-2. Reviewing your premium tax credit under each schedule
+2. Review your premium tax credit under each schedule
 
-3. Comparing the enhanced versus original subsidy amounts
+3. Compare the enhanced versus original subsidy amounts
 
-4. Adjusting household parameters to see how credits change
+4. Adjust household parameters to see how credits change
 
-5. Creating custom policy scenarios to explore reform options
-
-As policymakers consider the future of ACA subsidies, ACA-Calc provides a clear window into how these decisions affect real households across America.
+5. Create custom policy scenarios
