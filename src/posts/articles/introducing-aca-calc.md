@@ -10,25 +10,17 @@ ACA-Calc allows users to estimate Affordable Care Act premium tax credits for an
 
 - **Original schedule**: The subsidy levels that would apply if enhancements expire
 
-- **Custom policies**: User-defined premium cap schedules
+The tool shows side-by-side comparisons of how the two policy scenarios affect household premiums and subsidy eligibility.
 
-The tool shows side-by-side comparisons of how different policy scenarios affect household premiums and subsidy eligibility.
+## Example
 
-## Examples
+Consider a married couple in West Virginia, ages 60 and 64, with no dependents and an annual household income of $63,450.
 
-To illustrate the tool's capabilities, let's explore two household scenarios.
+Their base Second Lowest Cost Silver Plan is $49,687 per year ($4,141 per month).
 
-### Single adult household in Texas
+Under the enhanced schedule (2026 with IRA), they would receive $45,880 in annual premium tax credits. Under the original schedule (2026 after expiration), they would receive $43,659 in annual premium tax credits.
 
-Consider a 35-year-old single adult living in Dallas, Texas, earning $45,000 annually.
-
-Under the enhanced schedule, this household would receive $3,024 in annual premium tax credits, with premium contributions capped at 4.5% of income. Under the original schedule, their credit would be $1,848, with premium contributions capped at 6.52% of income — a difference of $1,176 per year.
-
-### Family of four in New York
-
-Now consider a married couple with two children in Syracuse, New York. The household head is 40 years old, and they earn $85,000 annually.
-
-This family would receive $8,640 in annual credits under the enhanced schedule (with premiums capped at 6.5% of income). Under the original schedule, they would receive $3,456 (with premiums capped at 8.33% of income) — a difference of $5,184 per year.
+When the IRA enhancements expire, their premium tax credits would decrease by $2,221 per year ($185 per month).
 
 ## Key features
 
@@ -46,13 +38,11 @@ The calculator accepts detailed household information:
 
 ### Multiple policy comparisons
 
-Users can compare outcomes across three scenarios:
+Users can compare outcomes across two scenarios:
 
 - **Enhanced schedule**: Current law through 2025
 
 - **Original schedule**: Pre-2021 baseline if enhancements expire
-
-- **Custom schedule**: User-defined premium cap thresholds
 
 ### Detailed results
 
