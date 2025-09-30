@@ -2,9 +2,9 @@ _Image credit: UK Trade and Business Commission_
 
 ## Introduction
 
-This blog post examines how carbon tax and dividend policies would affect UK households under two scenarios: £100 and £200 per tonne of CO2. We analyse how carbon prices impact household incomes when all tax revenue is returned as equal dividends to every resident.
+This report examines how carbon tax and dividend policies would affect UK households under two scenarios: £100 and £200 per tonne of CO2. We analyse how carbon prices impact household incomes when all tax revenue is returned as equal dividends to every resident.
 
-The government applies carbon taxes at £100 and £200 per tonne of CO2 equivalent, generating revenue based on emissions and consumption patterns. We calculate average household net income under baseline conditions (no carbon tax) and reform conditions (with carbon tax). The government redistributes all tax revenue as equal per-person dividends to UK residents. We categorise household income changes by gain and loss thresholds and analyse distributional effects across income deciles.
+In this policy experiment, the government applies carbon taxes at £100 and £200 per tonne of CO2 equivalent, generating revenue based on emissions and consumption patterns. We calculate average household net income under baseline conditions (no carbon tax) and reform conditions (with carbon tax). The government redistributes all tax revenue as equal per-person dividends to UK residents. We categorise household income changes by gain and loss thresholds and analyse distributional effects across income deciles.
 
 ## Carbon tax revenue
 
@@ -501,7 +501,7 @@ As illustrated in Figures 3 and 4, the distribution indicates that lower income 
 
 ## Poverty impact analysis
 
-This section examines how carbon dividend policies affect poverty rates across different demographic groups. The following table shows the relative change in poverty rates by demographic group for each scenario in 2026-27:
+This section examines how carbon dividend policies affect poverty rates across different demographic groups. Poverty is measured as absolute before housing costs. The following table shows the relative change in poverty rates by demographic group for each scenario in 2026-27:
 
 | Demographic group  | £100/tonne                                                                                                                        | £200/tonne                                                                                                                        |
 | :----------------- | :-------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------- |
@@ -795,11 +795,11 @@ At the £200/tonne rate, 294 constituencies gain compared to 265 at the £100/to
 }
 ```
 
-The constituency analysis shown in Figures 5-8 reveals significant geographical variation in policy impacts. Wales consistently shows negative impacts, with all 32 constituencies experiencing losses in both scenarios. England shows the greatest number of benefiting constituencies, with 245 gaining at £100/tonne and 269 gaining at £200/tonne. Scotland shows mixed results with 13-18 constituencies gaining, while Northern Ireland has 7 constituencies gaining under both scenarios.
+The constituency analysis shown in Figures 5-8 reveals geographical variation in policy impacts. Wales consistently shows negative impacts, with all 32 constituencies experiencing losses in both scenarios. England shows the greatest number of benefiting constituencies, with 245 gaining at £100/tonne and 269 gaining at £200/tonne. Scotland shows mixed results with 13-18 constituencies gaining, while Northern Ireland has 7 constituencies gaining under both scenarios.
 
 ### Areas with largest gains and losses
 
-The constituencies experiencing the largest gains include urban areas such as Birmingham Ladywood, Bradford West, Bradford East, Nottingham East, and Leeds South. Conversely, constituencies in Wales and affluent areas face the largest losses, including Monmouthshire, Cardiff North, and Vale of Glamorgan. This geographical variation reflects differences in local income distributions and carbon consumption patterns across UK constituencies.
+The constituencies experiencing the largest gains (as a share of net income) include urban areas such as Birmingham Ladywood, Bradford West, Bradford East, Nottingham East, and Leeds South. Conversely, constituencies in Wales and affluent areas face the largest losses (as a share of net income), including Monmouthshire, Cardiff North, and Vale of Glamorgan. This geographical variation reflects differences in local income distributions and carbon consumption patterns across UK constituencies.
 
 ## Conclusion
 
