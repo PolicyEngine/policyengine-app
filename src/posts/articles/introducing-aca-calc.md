@@ -22,7 +22,7 @@ Under the enhanced schedule (2026 with IRA), they would receive $45,880 in annua
 
 When the IRA enhancements expire, their premium tax credits would decrease by $2,221 per year ($185 per month).
 
-![](https://raw.githubusercontent.com/PolicyEngine/policyengine-app/master/src/images/posts/aca-calc-chart.png)
+![](/images/posts/aca-calc-chart.png)
 
 _Healthcare Assistance by Household Income showing premium tax credits with and without IRA enhancements_
 
