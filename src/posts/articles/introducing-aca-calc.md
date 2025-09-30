@@ -4,13 +4,7 @@ The enhanced Affordable Care Act premium tax credits are set to expire at the en
 
 ## What the tool does
 
-ACA-Calc allows users to estimate Affordable Care Act premium tax credits for any household configuration. The tool calculates subsidies under:
-
-- **Enhanced schedule**: The subsidies enacted through the American Rescue Plan Act and extended through 2025
-
-- **Original schedule**: The subsidy levels that would apply if enhancements expire
-
-The tool shows side-by-side comparisons of how the two policy scenarios affect household premiums and subsidy eligibility.
+ACA-Calc allows users to estimate Affordable Care Act premium tax credits for any household configuration. The tool calculates subsidies under the enhanced schedule (the subsidies enacted through the American Rescue Plan Act and extended through 2025) and the original schedule (the subsidy levels that would apply if enhancements expire). The tool shows side-by-side comparisons of how the two policy scenarios affect household premiums and subsidy eligibility.
 
 ## Example
 
@@ -28,69 +22,17 @@ _Healthcare Assistance by Household Income showing premium tax credits with and 
 
 ## Key features
 
-### Comprehensive household inputs
+The calculator accepts detailed household information including location (state and county for accurate benchmark premium data), household Modified Adjusted Gross Income, family composition (number and ages of household members), and filing status (single, married filing jointly, or head of household).
 
-The calculator accepts detailed household information:
+Users can compare outcomes across two scenarios: the enhanced schedule (current law through 2025) and the original schedule (pre-2021 baseline if enhancements expire).
 
-- **Location**: State and county (for accurate benchmark premium data)
+For each scenario, the tool displays the annual premium tax credit (total subsidy amount), monthly premium tax credit (subsidy divided across 12 months), premium percentage cap (maximum premium as percentage of income), benchmark premium (second-lowest-cost Silver plan in your area), and required contribution (amount paid toward premiums).
 
-- **Income**: Household Modified Adjusted Gross Income
-
-- **Family composition**: Number and ages of household members
-
-- **Filing status**: Single, married filing jointly, or head of household
-
-### Multiple policy comparisons
-
-Users can compare outcomes across two scenarios:
-
-- **Enhanced schedule**: Current law through 2025
-
-- **Original schedule**: Pre-2021 baseline if enhancements expire
-
-### Detailed results
-
-For each scenario, the tool displays:
-
-- **Annual premium tax credit**: Total subsidy amount
-
-- **Monthly premium tax credit**: Subsidy divided across 12 months
-
-- **Premium percentage cap**: Maximum premium as percentage of income
-
-- **Benchmark premium**: Second-lowest-cost Silver plan in your area
-
-- **Required contribution**: Amount paid toward premiums
-
-### Interactive analysis
-
-The tool provides instant recalculation as you adjust:
-
-- Household income levels
-
-- Number of household members
-
-- Ages of family members
-
-- Geographic location
-
-### Nationwide coverage
-
-ACA-Calc includes benchmark premium data for all counties across the United States.
+The tool provides instant recalculation as you adjust household income levels, number of household members, ages of family members, and geographic location. ACA-Calc includes benchmark premium data for all counties across the United States.
 
 ## How it works
 
-The calculator implements the ACA premium tax credit formula using PolicyEngine's validated rules engine:
-
-1. **Determines household size and income** relative to the Federal Poverty Line
-
-2. **Looks up the benchmark premium** (second-lowest-cost Silver plan) for your county
-
-3. **Calculates the applicable percentage** from the premium cap schedule
-
-4. **Computes your required contribution** as that percentage of income
-
-5. **Subtracts your contribution from the benchmark premium** to determine the credit amount
+The calculator implements the ACA premium tax credit formula using PolicyEngine's validated rules engine. First, it determines household size and income relative to the Federal Poverty Line. Next, it looks up the benchmark premium (second-lowest-cost Silver plan) for your county. The calculator then calculates the applicable percentage from the premium cap schedule and computes your required contribution as that percentage of income. Finally, it subtracts your contribution from the benchmark premium to determine the credit amount.
 
 The tool applies the same calculation methods used in PolicyEngine's full microsimulation model, which has been validated against official sources including Internal Revenue Service data.
 
@@ -98,24 +40,8 @@ The tool applies the same calculation methods used in PolicyEngine's full micros
 
 The enhanced premium tax credits are set to expire at the end of 2025. The Congressional Budget Office estimates that if the enhancements expire, marketplace enrollment would decrease by approximately 3.4 million people.
 
-For households purchasing coverage through ACA marketplaces, the difference between the enhanced and original subsidy schedules affects:
-
-- Annual subsidy amounts
-
-- Premium contribution requirements as a percentage of income
-
-- Subsidy eligibility thresholds
+For households purchasing coverage through ACA marketplaces, the difference between the enhanced and original subsidy schedules affects annual subsidy amounts, premium contribution requirements as a percentage of income, and subsidy eligibility thresholds.
 
 ## Get started
 
-ACA-Calc is available at [**policyengine.org/us/aca-calc**](../aca-calc).
-
-To use the calculator:
-
-1. Enter your household's basic information (state, county, income, size)
-
-2. Review your premium tax credit under each schedule
-
-3. Compare the enhanced versus original subsidy amounts
-
-4. Adjust household parameters to see how credits change
+ACA-Calc is available at [**policyengine.org/us/aca-calc**](../aca-calc). To use the calculator, enter your household's basic information (state, county, income, size), review your premium tax credit under each schedule, compare the enhanced versus original subsidy amounts, and adjust household parameters to see how credits change.
