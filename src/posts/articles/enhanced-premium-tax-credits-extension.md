@@ -3,7 +3,7 @@ In March 2021, President Joe Biden signed into law the [American Rescue Plan Act
 
 In this report, we use the [PolicyEngine ACA microsimulation model](https://github.com/PolicyEngine/policyengine-us/blob/master/docs/gov/hhs/aca.md) to simulate extending the enhanced premium tax credits in 2026, showing their effects on archetypical households' net income and marginal tax rates.
 
-_See how this reform would affect your household with[ ACA-Calc](https://policyengine.org/us/household?focus=intro&region=us&timePeriod=2025&baseline=2&reform=83726), a new PolicyEngine tool_
+_See how this reform would affect your household [here](https://policyengine.org/us/household?focus=intro&region=us&timePeriod=2025&baseline=2&reform=83726), a new PolicyEngine tool_
 
 ## Background
 
