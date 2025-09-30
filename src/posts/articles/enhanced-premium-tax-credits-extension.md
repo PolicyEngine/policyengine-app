@@ -4,7 +4,7 @@ In March 2021, President Joe Biden signed into law the [American Rescue Plan Act
 
 In this report, we use the [PolicyEngine ACA microsimulation model](https://github.com/PolicyEngine/policyengine-us/blob/master/docs/gov/hhs/aca.md) to simulate extending the enhanced premium tax credits in 2026, showing their effects on archetypical households' net income and marginal tax rates.
 
-*See how this reform would affect your household with[ ACA-Calc](https://policyengine-aca-calc.streamlit.app/), a new PolicyEngine tool*
+_See how this reform would affect your household with[ ACA-Calc](https://policyengine-aca-calc.streamlit.app/), a new PolicyEngine tool_
 
 ## Background
 
@@ -17,14 +17,14 @@ The American Rescue Plan Act (ARPA), and then the Inflation Reduction Act (IRA),
 **Table 1: Applicable-percentage schedule used to calculate Marketplace premium tax credits**
 
 | Household Income (% FPL) | Premium Cap - Original Schedule | Premium Cap - Enhanced (2021-2025) |
-|--------------------------|--------------------------------|-----------------------------------|
-| Under 133% | 2.10% | 0% |
-| 133% to 150% | 3.14% to 4.19% | 0% to 2% |
-| 150% - <200% | 4.19% to 6.60% | 0% to 2% |
-| 200% - <250% | 6.60% to 8.44% | 2% to 4% |
-| 250% - <300% | 8.44% to 9.96% | 4% to 6% |
-| 300% - ≤400% | 9.96% | 6% to 8.5% |
-| >400% | Not eligible for PTC | 8.5% |
+| ------------------------ | ------------------------------- | ---------------------------------- |
+| Under 133%               | 2.10%                           | 0%                                 |
+| 133% to 150%             | 3.14% to 4.19%                  | 0% to 2%                           |
+| 150% - <200%             | 4.19% to 6.60%                  | 0% to 2%                           |
+| 200% - <250%             | 6.60% to 8.44%                  | 2% to 4%                           |
+| 250% - <300%             | 8.44% to 9.96%                  | 4% to 6%                           |
+| 300% - ≤400%             | 9.96%                           | 6% to 8.5%                         |
+| >400%                    | Not eligible for PTC            | 8.5%                               |
 
 ## Household Impacts
 
@@ -38,15 +38,15 @@ Because [Texas has not expanded Medicaid to the adult population](https://www.kf
 
 **Table 2: Net Income Change for Texas Household**
 
-| Percentage of the Federal Poverty Line | Income | ACA PTC under Expiration | ACA PTC under Extension | Difference In Premium Tax Credit | Notes |
-|----------------------------------------|---------|--------------------------|-------------------------|----------------------------------|-------|
-| 138% | $29,187 | $9,128 | $10,090 | $962 | Lowest eligible income |
-| 300% | $63,450 | $4,062 | $6,283 | $2,221 | Enhanced subsidies |
-| 400% | $84,600 | $0 | $2,899 | $2,899 | Ineligible under current law |
+| Percentage of the Federal Poverty Line | Income  | ACA PTC under Expiration | ACA PTC under Extension | Difference In Premium Tax Credit | Notes                        |
+| -------------------------------------- | ------- | ------------------------ | ----------------------- | -------------------------------- | ---------------------------- |
+| 138%                                   | $29,187 | $9,128                   | $10,090                 | $962                             | Lowest eligible income       |
+| 300%                                   | $63,450 | $4,062                   | $6,283                  | $2,221                           | Enhanced subsidies           |
+| 400%                                   | $84,600 | $0                       | $2,899                  | $2,899                           | Ineligible under current law |
 
 Figure 1 shows these PTC values in 2026 under current law and extension of enhanced subsidies for income levels through $200,000. They would be eligible for a nonzero PTC at income of $84,600 under current law, and $119,162 under extension.
 
-*Code for the Figures can be found [here](https://github.com/daphnehanse11/analysis-notebooks/blob/nyt-health/us/medicaid/aca_reform_households.ipynb)*
+_Code for the Figures can be found [here](https://github.com/daphnehanse11/analysis-notebooks/blob/nyt-health/us/medicaid/aca_reform_households.ipynb)_
 
 **Figure 1: Change in Healthcare Benefits Based on Household Earnings (2026) **
 
@@ -58,17 +58,13 @@ Figure 2 shows the additional PTC resulting from extension, peaking at $2,899 at
 
 ![](https://cdn-images-1.medium.com/max/2700/1*xm0-iuhMCvk5hFiicvFTtw.png)
 
-
-
 Finally, Figure 3 shows the marginal tax rate (MTR) under each scenario. Extending the enhanced subsidies would reduce MTRs in the current phase-out range, since it phases out more slowly, while increasing them in the income range where they are ineligible under current law but still phasing out under extension.
 
-*Note: The household faces a negative infinite MTR at 138% FPL, where they become eligible for the PTC in both scenarios, and a positive infinite MTR at 400% FPL under current law, where they become ineligible for the PTC.*
+_Note: The household faces a negative infinite MTR at 138% FPL, where they become eligible for the PTC in both scenarios, and a positive infinite MTR at 400% FPL under current law, where they become ineligible for the PTC._
 
 **Figure 3: Change in Marginal Tax Rates Including Healthcare Benefits Based on Household Earnings (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2700/1*xPYVAV4wuytKmLgqobh5Ww.png)
-
-
 
 ## Example 2: A family of 3 in New York with two 40 year old married parents and one 3 year old dependent
 
@@ -86,14 +82,12 @@ Table 3 below shows the households healthcare benefits at select levels of the p
 
 **Table 3: Net Income Change for New York Household**
 
-| Income | Percentage of the Federal Poverty Line | ACA PTC under Expiration | ACA PTC under Extension | Medicaid Expenditure | CHIP Expenditure per Capita | Difference In Premium Tax Credit | Notes |
-|---------|----------------------------------------|--------------------------|-------------------------|---------------------|---------------------------|----------------------------------|-------|
-| $41,100 | 154% | $0 | $0 | $16,480 | $0 | $0 | Entire Family on Medicaid |
-| $53,300 | 200% | $0 | $0 | $12,930 | $2,489 | $0 | Child in CHIP |
-| $79,950 | 300% | $13,847 | $16,645 | $0 | $2,489 | $2,798 | Parents in ACA, Child in CHIP |
-| $111,000 | 406% | $0 | $21,135 | $0 | $0 | $21,135 | Ineligible for any health benefits under current law |
-
-
+| Income   | Percentage of the Federal Poverty Line | ACA PTC under Expiration | ACA PTC under Extension | Medicaid Expenditure | CHIP Expenditure per Capita | Difference In Premium Tax Credit | Notes                                                |
+| -------- | -------------------------------------- | ------------------------ | ----------------------- | -------------------- | --------------------------- | -------------------------------- | ---------------------------------------------------- |
+| $41,100  | 154%                                   | $0                       | $0                      | $16,480              | $0                          | $0                               | Entire Family on Medicaid                            |
+| $53,300  | 200%                                   | $0                       | $0                      | $12,930              | $2,489                      | $0                               | Child in CHIP                                        |
+| $79,950  | 300%                                   | $13,847                  | $16,645                 | $0                   | $2,489                      | $2,798                           | Parents in ACA, Child in CHIP                        |
+| $111,000 | 406%                                   | $0                       | $21,135                 | $0                   | $0                          | $21,135                          | Ineligible for any health benefits under current law |
 
 Figure 4 shows these elements as a continuous function of earnings.
 
@@ -101,23 +95,17 @@ Figure 4 shows these elements as a continuous function of earnings.
 
 ![](https://cdn-images-1.medium.com/max/2700/1*jsNet9bhFayg7EjtUgFm9w.png)
 
-
-
 Figure 5 shows the additional PTC resulting from extension, and how it interacts with other healthcare benefits. The household's PTC peaks at 406% of the federal poverty level, when the child loses CHIP eligibility. They would be eligible for a nonzero PTC at income of $111,000 under current law and $359,000 under extension.
 
 **Figure 5: Change in Healthcare Benefits Based on Household Earnings (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2700/1*rG9ozTvBHduuihneLKwqEA.png)
 
-
-
 Figure 6 shows the marginal tax rate (MTR) under each scenario. Extending the enhanced subsidies would reduce MTRs in the current phase-out range, while increasing them in the income range where they are ineligible under current law but still phasing out under extension. The family faces two high marginal tax rates under the baseline, one at 400% of the federal poverty level when the parents lose ACA eligibility, and the other at 405% of the federal poverty level when the child loses CHIP eligibility.
 
 **Figure 6: Change in Marginal Tax Rates Including Healthcare Benefits Based on Household Earnings (2026)**
 
 ![](https://cdn-images-1.medium.com/max/2700/1*McWhTwfZGLE2H_7Gb0xxTQ.png)
-
-
 
 ## Conclusion
 
