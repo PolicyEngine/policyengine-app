@@ -1,6 +1,6 @@
-With the enhanced Affordable Care Act premium tax credits set to expire at the end of 2025, we're launching [**ACA-Calc**](https://policyengine-aca-calc.streamlit.app/) — an interactive calculator that shows how ACA subsidies affect individual households under both current and proposed policies.
+With the enhanced Affordable Care Act premium tax credits set to expire at the end of 2025, we're launching [**ACA-Calc**](https://policyengine.org/us/aca-calc) — an interactive calculator that shows how ACA subsidies affect individual households under both current and proposed policies.
 
-[**_Calculate your household's premium tax credits here._**](https://policyengine-aca-calc.streamlit.app/)
+[**_Calculate your household's premium tax credits here._**](https://policyengine.org/us/aca-calc)
 
 ## What the tool does
 
@@ -118,7 +118,7 @@ The Congressional Budget Office estimates that allowing the enhancements to expi
 
 ## Get started
 
-ACA-Calc is available now at [**policyengine-aca-calc.streamlit.app**](https://policyengine-aca-calc.streamlit.app/).
+ACA-Calc is available now at [**policyengine.org/us/aca-calc**](https://policyengine.org/us/aca-calc).
 
 Start exploring by:
 
