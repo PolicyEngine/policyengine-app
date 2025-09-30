@@ -119,5 +119,3 @@ To use the calculator:
 3. Compare the enhanced versus original subsidy amounts
 
 4. Adjust household parameters to see how credits change
-
-5. Create custom policy scenarios
