@@ -1,10 +1,9 @@
-_President Obama signs the Patient Protection and Affordable Care Act on March 23, 2010 (Pete Souza)._
 
 In March 2021, President Joe Biden signed into law the [American Rescue Plan Act ](https://www.congress.gov/bill/117th-congress/house-bill/1319), which temporarily enhanced premium tax credits for Affordable Care Act marketplace coverage. The [Inflation Reduction Act of 2022](https://www.congress.gov/bill/117th-congress/house-bill/5376/text) then extended these enhancements through December 31, 2025. On September 4, 14 representatives introduced H.R.5145, the [Bipartisan Premium Tax Credit Extension Act](https://www.congress.gov/bill/119th-congress/house-bill/5145), which would extend the enhanced subsidies through 2026. Additionally, Representative Rosa DeLauro (D-CT) introduced a [continuing resolution](https://www.congress.gov/bill/119th-congress/house-bill/5450) to extend current government funding levels through October 31, 2025, while permanently extending the enhanced subsidies.
 
 In this report, we use the [PolicyEngine ACA microsimulation model](https://github.com/PolicyEngine/policyengine-us/blob/master/docs/gov/hhs/aca.md) to simulate extending the enhanced premium tax credits in 2026, showing their effects on archetypical households' net income and marginal tax rates.
 
-_See how this reform would affect your household with[ ACA-Calc](https://policyengine-aca-calc.streamlit.app/), a new PolicyEngine tool_
+_See how this reform would affect your household with[ ACA-Calc](https://policyengine.org/us/household?focus=intro&region=us&timePeriod=2025&baseline=2&reform=83726), a new PolicyEngine tool_
 
 ## Background
 
