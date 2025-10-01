@@ -1438,5 +1438,14 @@
     "authors": ["vahid-ahmadi"],
     "filename": "uk-vat-thresholds.md",
     "image": "uk-vat-reeves.jpg"
+  },
+  {
+    "title": "Code 10x faster: Building your AI developer team",
+    "description": "How Claude Code and specialized AI sub-agents can automate policy analysis workflows, from data collection to report generation.",
+    "date": "2025-10-02 11:00:00",
+    "tags": ["uk", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "ai-agent-post.md",
+    "image": "uk-vat-reeves.jpg"
   }
 ]
