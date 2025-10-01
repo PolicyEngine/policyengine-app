@@ -1,4 +1,4 @@
-The enhanced Affordable Care Act premium tax credits are set to expire at the end of 2025. We're launching [**ACA-Calc**](../aca-calc) — an interactive calculator that estimates premium tax credits for individual households under different policy scenarios.
+The enhanced Affordable Care Act premium tax credits are set to expire at the end of 2025. We're launching [**ACA-Calc**](../aca-calc) — an interactive calculator that estimates premium tax credits for individual households.
 
 [**_Calculate your household's premium tax credits here._**](../aca-calc)
 
@@ -16,13 +16,13 @@ Under the enhanced schedule (2026 with IRA), they would receive $45,880 in annua
 
 When the IRA enhancements expire, their premium tax credits would decrease by $2,221 per year ($185 per month).
 
-![](/images/posts/aca-calc-chart.png)
+**Healthcare Assistance by Household Income showing premium tax credits with and without IRA enhancements**
 
-_Healthcare Assistance by Household Income showing premium tax credits with and without IRA enhancements_
+![](/images/posts/aca-calc-chart.png)
 
 ## Key features
 
-The calculator accepts detailed household information including location (state and county for accurate benchmark premium data), household Modified Adjusted Gross Income, family composition (number and ages of household members), and filing status (single, married filing jointly, or head of household).
+The calculator accepts detailed household information including location (state and county for accurate benchmark premium data), household Modified Adjusted Gross Income, family composition (number and ages of household members), and filing status (single or married).
 
 Users can compare outcomes across two scenarios: the enhanced schedule (current law through 2025) and the original schedule (pre-2021 baseline if enhancements expire).
 
