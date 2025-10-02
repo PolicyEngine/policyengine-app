@@ -1447,5 +1447,14 @@
     "authors": ["vahid-ahmadi"],
     "filename": "uk-vat-thresholds.md",
     "image": "uk-vat-reeves.jpg"
+  },
+  {
+    "title": "How PolicyEngine uses AI technologies",
+    "description": "PolicyEngine explores how Claude Code and AI sub-agents can facilitate policy research and software development workflows.",
+    "date": "2025-10-02 11:00:00",
+    "tags": ["uk", "featured", "technology", "ai"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "ai-agent-post.md",
+    "image": "ai-agent-post.png"
   }
 ]
