@@ -2,7 +2,7 @@
 
 Chancellor Rachel Reeves is [expected](https://www.theguardian.com/society/2025/sep/30/rachel-reeves-lift-two-child-benefit-cap-november-budget) to lift the two-child benefit cap in the November 2025 Budget. The cap, introduced in 2017, prevents parents from claiming Universal Credit or Child Tax Credit for more than two children born after April 2017. The policy affected [1.5 million](https://www.gov.uk/government/statistics/universal-credit-and-child-tax-credit-claimants-statistics-related-to-the-policy-to-provide-support-for-a-maximum-of-2-children-april-2023) children in the UK in April 2023. Treasury officials are exploring alternatives to a complete removal of the cap.
 
-In this analysis, we examine the impact of removing the two-child limit on government spending, poverty rates, and household incomes across the income distribution.
+In this analysis, we examine the impact of removing the two-child limit on household incomes, government spending, income distribution, poverty rates, income inequality, and geographic variation across parliamentary constituencies.
 
 ## Household impact
 
@@ -87,12 +87,12 @@ At lower income ranges, the reform delivers larger increases in household net in
 
 PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026, rising to £3.0 billion by 2029. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection.
 
-| Year                                                                                                                            | Cost         |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| [2026](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) | £2.7 billion |
-| [2027](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) | £2.9 billion |
-| [2028](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) | £3.0 billion |
-| [2029](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) | £3.0 billion |
+| Year | Cost                                                                                                                                 |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| 2026 | [£2.7 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2026&baseline=1) |
+| 2027 | [£2.9 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2027&baseline=1) |
+| 2028 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) |
+| 2029 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) |
 
 The Institute for Fiscal Studies estimates the cost at [£3.4 billion](https://www.dailyrecord.co.uk/news/politics/rachel-reeves-decision-axe-two-35993258), while the Institute for Public Policy Research estimates [£3.2 billion](https://www.independent.co.uk/news/uk/politics/two-child-benefit-cap-bridget-phillipson-labour-b2836482.html) in 2026.
 
@@ -320,22 +320,22 @@ Figure 3 shows that 4.6% of the population would see income gains from removing 
 
 By age group, removing the two-child limit would reduce poverty rates most for children across all years. The child poverty rate would fall by 16.2% in 2026 and by 16.4% in 2029, while the overall poverty rate would decline by 7.1% in 2026 and by 7.4% in 2029.
 
-| Year                                                                                                                          | Children | All   |
-| ----------------------------------------------------------------------------------------------------------------------------- | -------- | ----- |
-| [2026](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) | -16.2%   | -7.1% |
-| [2027](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) | -17.7%   | -7.9% |
-| [2028](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) | -16.9%   | -7.6% |
-| [2029](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) | -16.4%   | -7.4% |
+| Year | Children                                                                                                                       | All                                                                                                                            |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| 2026 | [-16.2%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) | [-7.1%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
+| 2027 | [-17.7%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) | [-7.9%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2027&baseline=1) |
+| 2028 | [-16.9%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) | [-7.6%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2028&baseline=1) |
+| 2029 | [-16.4%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) | [-7.4%](https://policyengine.org/uk/policy?focus=policyOutput.povertyImpact&reform=93219&region=uk&timePeriod=2029&baseline=1) |
 
 ## Inequality impact
 
 Removing the two-child limit in 2026 would reduce income inequality. The Gini index would fall by 0.6%, while the top 10% income share would decrease by 0.1% and the top 1% income share would decline by 0.1%.
 
-| Metric                                                                                                                                    | Change |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| [Gini index](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1)    | -0.6%  |
-| [Top 10% share](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) | -0.1%  |
-| [Top 1% share](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1)  | -0.1%  |
+| Metric         | Change                                                                                                                           |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Gini index     | [-0.6%](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
+| Top 10% share  | [-0.1%](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
+| Top 1% share   | [-0.1%](https://policyengine.org/uk/policy?focus=policyOutput.inequalityImpact&reform=93219&region=uk&timePeriod=2026&baseline=1) |
 
 ## Geographic impact
 
