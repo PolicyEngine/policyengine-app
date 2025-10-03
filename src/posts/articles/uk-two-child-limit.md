@@ -1,3 +1,5 @@
+_Photograph: House of Commons/Reuters_
+
 ## Introduction
 
 Chancellor Rachel Reeves is [expected](https://www.theguardian.com/society/2025/sep/30/rachel-reeves-lift-two-child-benefit-cap-november-budget) to lift the two-child benefit cap in the November 2025 Budget. The cap, introduced in 2017, prevents parents from claiming Universal Credit or Child Tax Credit for more than two children born after April 2017. The policy affected [1.5 million](https://www.gov.uk/government/statistics/universal-credit-and-child-tax-credit-claimants-statistics-related-to-the-policy-to-provide-support-for-a-maximum-of-2-children-april-2023) children in the UK in April 2023. Treasury officials are exploring alternatives to a complete removal of the cap.
