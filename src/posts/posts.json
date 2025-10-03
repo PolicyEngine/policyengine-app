@@ -1,5 +1,14 @@
 [
   {
+    "title": "How removing the two-child benefit limit would affect UK",
+    "description": "PolicyEngine estimates removing the two-child limit would cost £2.7 billion in 2026 and reduce child poverty by 16.2%",
+    "date": "2025-10-03 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-two-child-limit.md",
+    "image": "uk-reeves.jpg"
+  },
+  {
     "title": "Introducing ACA-Calc: Calculate your household's premium tax credits",
     "description": "New interactive calculator shows how Affordable Care Act subsidies affect households under current enhanced schedule and original schedule.",
     "date": "2025-09-30",
