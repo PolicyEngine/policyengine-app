@@ -10,7 +10,76 @@ The reform would increase Universal Credit or Child Tax Credit payments for affe
 
 **Figure 1: Household net income by employment income**
 
-![](/images/posts/two-child-limit/hh-impact.png)
+```plotly
+{
+  "data": [
+    {
+      "hovertemplate": "Employment income=%{x}<br>Net income=%{y}<extra></extra>",
+      "legendgroup": "Reform",
+      "line": {"color": "#2C6496", "dash": "dot"},
+      "mode": "lines",
+      "name": "Reform",
+      "orientation": "v",
+      "showlegend": true,
+      "x": [0.0, 2244.8979492188, 4489.7958984375, 6734.6943359375, 8979.591796875, 11224.490234375, 13469.3876953125, 15714.287109375, 17959.185546875, 20204.083984375, 22448.98046875, 24693.876953125, 26938.775390625, 29183.67578125, 31428.57421875, 33673.46875, 35918.3671875, 38163.26953125, 40408.16796875, 42653.06640625, 44897.9609375, 47142.859375, 49387.75390625, 51632.65234375, 53877.55078125, 56122.44921875, 58367.34375, 60612.2421875, 62857.140625, 65102.0390625, 67346.9375, 69591.8359375, 71836.734375, 74081.6328125, 76326.53125, 78571.4296875, 80816.328125, 83061.2265625, 85306.125, 87551.0234375, 89795.921875, 92040.8125, 94285.7109375, 96530.609375, 98775.5078125, 101020.40625, 103265.3046875, 105510.203125, 107755.1015625, 110000.0],
+      "y": [25215.0, 27460.0, 29705.0, 31950.0, 33914.0, 34924.0, 35902.0, 36662.0, 37389.0, 38117.0, 38844.0, 39571.0, 40299.0, 41026.0, 41753.0, 42481.0, 43208.0, 43935.0, 44663.0, 45390.0, 46117.0, 46845.0, 47572.0, 48100.0, 48686.0, 49737.0, 51039.0, 52241.0, 53179.0, 54116.0, 55054.0, 55991.0, 56928.0, 57866.0, 58803.0, 59741.0, 60811.0, 62113.0, 63415.0, 64717.0, 66019.0, 67321.0, 68623.0, 69925.0, 71227.0, 72325.0, 73178.0, 74031.0, 74884.0, 75737.0],
+      "type": "scatter"
+    },
+    {
+      "hovertemplate": "Employment income=%{x}<br>Net income=%{y}<extra></extra>",
+      "legendgroup": "Baseline",
+      "line": {"color": "#808080", "dash": "solid"},
+      "mode": "lines",
+      "name": "Baseline",
+      "orientation": "v",
+      "showlegend": true,
+      "x": [0.0, 2244.8979492188, 4489.7958984375, 6734.6943359375, 8979.591796875, 11224.490234375, 13469.3876953125, 15714.287109375, 17959.185546875, 20204.083984375, 22448.98046875, 24693.876953125, 26938.775390625, 29183.67578125, 31428.57421875, 33673.46875, 35918.3671875, 38163.26953125, 40408.16796875, 42653.06640625, 44897.9609375, 47142.859375, 49387.75390625, 51632.65234375, 53877.55078125, 56122.44921875, 58367.34375, 60612.2421875, 62857.140625, 65102.0390625, 67346.9375, 69591.8359375, 71836.734375, 74081.6328125, 76326.53125, 78571.4296875, 80816.328125, 83061.2265625, 85306.125, 87551.0234375, 89795.921875, 92040.8125, 94285.7109375, 96530.609375, 98775.5078125, 101020.40625, 103265.3046875, 105510.203125, 107755.1015625, 110000.0],
+      "y": [21590.0, 23835.0, 26080.0, 28325.0, 30289.0, 31299.0, 32277.0, 33036.0, 33764.0, 34491.0, 35219.0, 35946.0, 36673.0, 37401.0, 38128.0, 38855.0, 39583.0, 40310.0, 41037.0, 41765.0, 42727.0, 44343.0, 45959.0, 47133.0, 48435.0, 49737.0, 51039.0, 52241.0, 53179.0, 54116.0, 55054.0, 55991.0, 56928.0, 57866.0, 58803.0, 59741.0, 60811.0, 62113.0, 63415.0, 64717.0, 66019.0, 67321.0, 68623.0, 69925.0, 71227.0, 72325.0, 73178.0, 74031.0, 74884.0, 75737.0],
+      "type": "scatter"
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "title": {"text": "Household head employment income"},
+      "tickprefix": "£",
+      "tickformat": ",.0f",
+      "gridcolor": "#D3D3D3",
+      "griddash": "dash",
+      "showgrid": true,
+      "zerolinecolor": "#D3D3D3"
+    },
+    "yaxis": {
+      "title": {"text": "Household net income"},
+      "tickprefix": "£",
+      "tickformat": ",.0f",
+      "gridcolor": "#D3D3D3",
+      "griddash": "dash",
+      "showgrid": true,
+      "zerolinecolor": "#D3D3D3"
+    },
+    "legend": {"title": {"text": ""}, "tracegroupgap": 0, "orientation": "h", "x": 0.5, "xanchor": "center", "y": 1.15, "yanchor": "top"},
+    "margin": {"t": 120, "b": 120, "l": 120, "r": 120},
+    "font": {"family": "Roboto Serif", "color": "black"},
+    "height": 600,
+    "width": 800,
+    "plot_bgcolor": "#F4F4F4",
+    "paper_bgcolor": "#F4F4F4",
+    "images": [
+      {
+        "sizex": 0.15,
+        "sizey": 0.15,
+        "source": "https://raw.githubusercontent.com/PolicyEngine/policyengine-app/master/src/images/logos/policyengine/blue.png",
+        "x": 1.1,
+        "xanchor": "right",
+        "xref": "paper",
+        "y": -0.2,
+        "yanchor": "bottom",
+        "yref": "paper"
+      }
+    ]
+  }
+}
+```
 
 At lower income ranges, the reform delivers larger increases in household net income due to higher Universal Credit entitlements when the two-child limit is removed. As employment income rises, Universal Credit tapers off under both scenarios, reducing the relative benefit of the reform.
 
