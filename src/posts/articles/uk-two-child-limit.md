@@ -1,4 +1,4 @@
-_Photograph: House of Commons/Reuters_
+_Photograph: House of Commons_
 
 ## Introduction
 
