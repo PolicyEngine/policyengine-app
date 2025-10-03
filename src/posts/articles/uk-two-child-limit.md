@@ -6,7 +6,7 @@ In this analysis, we examine the impact of removing the two-child limit on house
 
 ## Household impact
 
-The reform would increase Universal Credit or Child Tax Credit payments for affected families by removing the restriction on child elements. For a sample household of two parents with three children aged 3, 5, and 7 in 2026, Figure 1 [shows](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=93219&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=true&household=56008) how household net income changes across different employment income levels.
+The reform would increase Universal Credit or Child Tax Credit payments for affected families by removing the restriction on child elements. For a sample household of two parents with three children aged 3, 5, and 7 in 2026-27, Figure 1 [shows](https://policyengine.org/uk/household?focus=householdOutput.earnings&reform=93219&region=uk&timePeriod=2026&baseline=1&uk_local_areas_beta=true&household=56008) how household net income changes across different employment income levels.
 
 **Figure 1: Household net income by employment income**
 
@@ -85,7 +85,7 @@ At lower income ranges, the reform delivers larger increases in household net in
 
 ## Budgetary impact
 
-PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026, rising to £3.0 billion by 2029. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection.
+PolicyEngine estimates that removing the two-child limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The cost increases over time as more children are born after April 2017, when the cap was introduced, making fewer families eligible for transitional protection.
 
 | Year | Cost                                                                                                                                    |
 | ---- | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -94,13 +94,13 @@ PolicyEngine estimates that removing the two-child limit would cost £2.7 billio
 | 2028 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2028&baseline=1) |
 | 2029 | [£3.0 billion](https://policyengine.org/uk/policy?focus=policyOutput.policyBreakdown&reform=93219&region=uk&timePeriod=2029&baseline=1) |
 
-The Institute for Fiscal Studies estimates the cost at [£3.4 billion](https://www.dailyrecord.co.uk/news/politics/rachel-reeves-decision-axe-two-35993258), while the Institute for Public Policy Research estimates [£3.2 billion](https://www.independent.co.uk/news/uk/politics/two-child-benefit-cap-bridget-phillipson-labour-b2836482.html) in 2026.
+The Institute for Fiscal Studies estimates the cost at [£3.4 billion](https://www.dailyrecord.co.uk/news/politics/rachel-reeves-decision-axe-two-35993258), while the Institute for Public Policy Research estimates [£3.2 billion](https://www.independent.co.uk/news/uk/politics/two-child-benefit-cap-bridget-phillipson-labour-b2836482.html) in 2026-27.
 
 ## Distributional impact
 
 By income decile, removing the two-child limit would provide the largest relative benefits to lower-income households, as shown in Figure 2. The lowest income decile would see household income rise by 1.4%, while the second decile would see a 1.3% increase.
 
-**Figure 2: Change in household income by income decile, 2026**
+**Figure 2: Change in household income by income decile, 2026-27**
 
 ```plotly
 {
@@ -180,7 +180,7 @@ By income decile, removing the two-child limit would provide the largest relativ
 
 Figure 3 shows that 4.6% of the population would see income gains from removing the two-child limit, with the largest share of winners concentrated in the lowest income deciles. The lowest income decile sees 11% of households gain income, with 10.5% gaining more than 5% and 0.6% gaining less than 5%. The second decile sees 14.8% gain, with 14.2% gaining more than 5%.
 
-**Figure 3: Population share by income change, 2026**
+**Figure 3: Population share by income change, 2026-27**
 
 ```plotly
 {
@@ -318,7 +318,7 @@ Figure 3 shows that 4.6% of the population would see income gains from removing 
 
 ## Poverty impact
 
-By age group, removing the two-child limit would reduce poverty rates most for children across all years. The child poverty rate would fall by 16.2% in 2026 and by 16.4% in 2029, while the overall poverty rate would decline by 7.1% in 2026 and by 7.4% in 2029.
+By age group, removing the two-child limit would reduce poverty rates most for children across all years. The child poverty rate would fall by 16.2% in 2026-27 and by 16.4% in 2029-30, while the overall poverty rate would decline by 7.1% in 2026-27 and by 7.4% in 2029-30.
 
 | Year | Children                                                                                                                        | All                                                                                                                            |
 | ---- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -329,7 +329,7 @@ By age group, removing the two-child limit would reduce poverty rates most for c
 
 ## Inequality impact
 
-Removing the two-child limit in 2026 would reduce income inequality. The Gini index would fall by 0.6%, while the top 10% income share would decrease by 0.1% and the top 1% income share would decline by 0.1%.
+Removing the two-child limit in 2026-27 would reduce income inequality. The Gini index would fall by 0.6%, while the top 10% income share would decrease by 0.1% and the top 1% income share would decline by 0.1%.
 
 | Metric        | Change                                                                                                                            |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
@@ -351,7 +351,7 @@ The constituencies experiencing the largest relative income gains include Bradfo
 
 As shown in Figure 5, 559 constituencies (86%) would see income gains of less than 5%, while 91 (14%) would see no change. By nation: 516 English constituencies gain (95%), 21 Scottish (37%), 19 Welsh (59%), and 3 Northern Irish (17%).
 
-**Figure 5: Constituency distribution by region, 2026**
+**Figure 5: Constituency distribution by region, 2026-27**
 
 ```plotly
 {
@@ -458,6 +458,6 @@ As shown in Figure 5, 559 constituencies (86%) would see income gains of less th
 
 ## Conclusion
 
-Removing the two-child benefit limit would cost £2.7 billion in 2026, rising to £3.0 billion by 2029. The reform would reduce child poverty by 16.2% and overall poverty by 7.1% in 2026. 559 parliamentary constituencies (86%) would see income gains of less than 5%.
+Removing the two-child benefit limit would cost £2.7 billion in 2026-27, rising to £3.0 billion by 2029-30. The reform would reduce child poverty by 16.2% and overall poverty by 7.1% in 2026-27. 559 parliamentary constituencies (86%) would see income gains of less than 5%.
 
 We invite you to explore the [PolicyEngine webapp](https://policyengine.org/) to model your own customised reforms.
