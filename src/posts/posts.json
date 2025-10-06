@@ -9,6 +9,15 @@
     "image": "uk-reeves.jpg"
   },
   {
+    "title": "How we used Claude Code to choose our DC office",
+    "description": "We used Claude Code to build an interactive comparison tool for choosing our DC office. The winner: Open Gov Hub. Join us Wednesday to celebrate!",
+    "date": "2025-10-05",
+    "tags": ["us", "org", "ai"],
+    "authors": ["max-ghenis", "daphne-hansell"],
+    "filename": "dc-office-ai-coding.md",
+    "image": "dc-office-ai-coding.png"
+  },
+  {
     "title": "Introducing ACA-Calc: Calculate your household's premium tax credits",
     "description": "New interactive calculator shows how Affordable Care Act subsidies affect households under current enhanced schedule and original schedule.",
     "date": "2025-09-30",
@@ -81,6 +90,7 @@
     "authors": ["max-ghenis", "nikhil-woodruff", "ben-ogorek", "maria-juaristi"]
   },
   {
+    "_comment": "This post uses external_url to link to an interactive app instead of a markdown article. The filename is 'dummy' because no markdown file exists - it redirects directly to the app.",
     "title": "The One Big Beautiful Bill Act, household by household",
     "description": "Our latest interactive shows how the reconciliation bill affects each of 20,000 representative households across income levels, states, and provisions.",
     "date": "2025-08-11",

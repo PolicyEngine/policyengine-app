@@ -35,6 +35,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install repository
         run: npm ci
+      - name: Validate blog posts
+        run: npm run validate-posts
       - name: Lint repository
         run: npm run lint
       - name: Build package
