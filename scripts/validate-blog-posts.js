@@ -81,6 +81,7 @@ function validate() {
     }
 
     // Check markdown file exists (unless it's an external_url post)
+    // Note: Posts with external_url redirect to apps/pages instead of rendering markdown
     if (!post.external_url) {
       const mdPath = path.join(
         __dirname,
