@@ -27,7 +27,7 @@ We moved into the [Open Gov Hub](https://www.opengovhub.org/). The [microsite](h
 
 This Wednesday, our DC team (Max, Daphne, Pavel, and David) is hosting an officewarming with bites and drinks. This one's just for fun.
 
-**When:** Wednesday, October 9, 5:30-7:30 PM
+**When:** Wednesday, October 8, 5:30-7:30 PM
 
 **Where:** Open Gov Hub, 1100 13th St NW, Washington, DC 20005
 
