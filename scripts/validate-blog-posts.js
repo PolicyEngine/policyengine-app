@@ -60,12 +60,15 @@ function validate() {
     }
 
     // Check image filename matches post slug (nice-to-have, not critical)
-    const postSlug = post.filename.replace(/\.(md|ipynb)$/, "");
-    const imageSlug = post.image.replace(/\.(png|jpg|jpeg|webp)$/, "");
-    if (postSlug !== imageSlug) {
-      warnings.push(
-        `${postNum}: Image filename '${post.image}' doesn't match post slug '${postSlug}' (optional pattern)`,
-      );
+    // Skip this check for external_url posts since they don't have real markdown files
+    if (!post.external_url) {
+      const postSlug = post.filename.replace(/\.(md|ipynb)$/, "");
+      const imageSlug = post.image.replace(/\.(png|jpg|jpeg|webp)$/, "");
+      if (postSlug !== imageSlug) {
+        warnings.push(
+          `${postNum}: Image filename '${post.image}' doesn't match post slug '${postSlug}' (optional pattern)`,
+        );
+      }
     }
 
     // Check cover image exists in src/images/posts/
