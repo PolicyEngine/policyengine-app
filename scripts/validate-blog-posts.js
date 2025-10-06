@@ -7,25 +7,33 @@
  * 4. Image filenames match post slugs
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-const POSTS_JSON = path.join(__dirname, '../src/posts/posts.json');
-const COVER_IMAGES_DIR = path.join(__dirname, '../src/images/posts');
+const POSTS_JSON = path.join(__dirname, "../src/posts/posts.json");
+const COVER_IMAGES_DIR = path.join(__dirname, "../src/images/posts");
 
 let errors = [];
 let warnings = [];
 
 function validate() {
   // Read posts.json
-  const posts = JSON.parse(fs.readFileSync(POSTS_JSON, 'utf8'));
+  const posts = JSON.parse(fs.readFileSync(POSTS_JSON, "utf8"));
 
   posts.forEach((post, index) => {
-    const postNum = `Post #${index + 1} (${post.filename || 'unnamed'})`;
+    const postNum = `Post #${index + 1} (${post.filename || "unnamed"})`;
 
     // Check required fields
-    const requiredFields = ['title', 'description', 'date', 'tags', 'authors', 'filename', 'image'];
-    requiredFields.forEach(field => {
+    const requiredFields = [
+      "title",
+      "description",
+      "date",
+      "tags",
+      "authors",
+      "filename",
+      "image",
+    ];
+    requiredFields.forEach((field) => {
       if (!post[field]) {
         errors.push(`${postNum}: Missing required field '${field}'`);
       }
@@ -35,19 +43,23 @@ function validate() {
 
     // Check description length
     if (post.description && post.description.length > 160) {
-      warnings.push(`${postNum}: Description is ${post.description.length} chars (should be < 160 for social previews)`);
+      warnings.push(
+        `${postNum}: Description is ${post.description.length} chars (should be < 160 for social previews)`,
+      );
     }
 
     // Check country tag
-    if (post.tags && !post.tags.includes('us') && !post.tags.includes('uk')) {
+    if (post.tags && !post.tags.includes("us") && !post.tags.includes("uk")) {
       warnings.push(`${postNum}: Missing country tag ('us' or 'uk')`);
     }
 
     // Check image filename matches post slug (nice-to-have, not critical)
-    const postSlug = post.filename.replace(/\.(md|ipynb)$/, '');
-    const imageSlug = post.image.replace(/\.(png|jpg|jpeg|webp)$/, '');
+    const postSlug = post.filename.replace(/\.(md|ipynb)$/, "");
+    const imageSlug = post.image.replace(/\.(png|jpg|jpeg|webp)$/, "");
     if (postSlug !== imageSlug) {
-      warnings.push(`${postNum}: Image filename '${post.image}' doesn't match post slug '${postSlug}' (optional pattern)`);
+      warnings.push(
+        `${postNum}: Image filename '${post.image}' doesn't match post slug '${postSlug}' (optional pattern)`,
+      );
     }
 
     // Check cover image exists in src/images/posts/
@@ -64,7 +76,11 @@ function validate() {
 
     // Check markdown file exists (unless it's an external_url post)
     if (!post.external_url) {
-      const mdPath = path.join(__dirname, '../src/posts/articles', post.filename);
+      const mdPath = path.join(
+        __dirname,
+        "../src/posts/articles",
+        post.filename,
+      );
       if (!fs.existsSync(mdPath)) {
         errors.push(`${postNum}: Markdown file not found at ${mdPath}`);
       }
@@ -72,27 +88,27 @@ function validate() {
   });
 
   // Print results
-  console.log('='.repeat(60));
-  console.log('Blog Posts Validation Results');
-  console.log('='.repeat(60));
+  console.log("=".repeat(60));
+  console.log("Blog Posts Validation Results");
+  console.log("=".repeat(60));
 
   if (errors.length === 0 && warnings.length === 0) {
-    console.log('✅ All validation checks passed!');
+    console.log("✅ All validation checks passed!");
     console.log(`   Validated ${posts.length} blog posts`);
     return 0;
   }
 
   if (errors.length > 0) {
     console.log(`\n❌ ${errors.length} ERROR(S) FOUND:\n`);
-    errors.forEach(err => console.log(`   ${err}`));
+    errors.forEach((err) => console.log(`   ${err}`));
   }
 
   if (warnings.length > 0) {
     console.log(`\n⚠️  ${warnings.length} WARNING(S):\n`);
-    warnings.forEach(warn => console.log(`   ${warn}`));
+    warnings.forEach((warn) => console.log(`   ${warn}`));
   }
 
-  console.log('\n' + '='.repeat(60));
+  console.log("\n" + "=".repeat(60));
 
   // Exit with error code if there are errors
   return errors.length > 0 ? 1 : 0;

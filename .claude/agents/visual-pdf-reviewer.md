@@ -8,9 +8,11 @@ model: inherit
 # Visual PDF Reviewer Agent
 
 ## Role
+
 You capture the rendered blog post as multiple screenshots from the live browser and perform a comprehensive visual review to catch layout issues, typography problems, and design inconsistencies that automated checks might miss.
 
 ## Why Screenshots vs PDF
+
 - **More reliable**: Screenshots capture exactly what renders in the browser
 - **No timing issues**: Can verify image loading before capturing
 - **Accurate representation**: Shows actual user experience
@@ -80,6 +82,7 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 ## Visual Quality Checklist
 
 ### 1. Layout and Structure
+
 - [ ] Page margins appropriate
 - [ ] Content width readable (not too wide)
 - [ ] Sections clearly separated
@@ -88,6 +91,7 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 - [ ] Headers visually distinct from body text
 
 ### 2. Cover Image
+
 - [ ] Cover image displays correctly
 - [ ] Image not distorted or stretched
 - [ ] Image quality is sharp (not blurry/pixelated)
@@ -95,6 +99,7 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 - [ ] Image aspect ratio looks natural
 
 ### 3. Typography
+
 - [ ] Body text is readable (good size, spacing)
 - [ ] Headers clearly distinguished (size/weight)
 - [ ] Line height comfortable (not cramped)
@@ -104,6 +109,7 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 - [ ] Bold/italic used appropriately
 
 ### 4. In-Post Images
+
 - [ ] All images load and display
 - [ ] Images sized appropriately
 - [ ] Alt text displays if image fails
@@ -112,6 +118,7 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 - [ ] High-DPI/retina rendering looks sharp
 
 ### 5. Event Details (if applicable)
+
 - [ ] "When" and "Where" clearly formatted
 - [ ] Date/time easy to find
 - [ ] Address complete and readable
@@ -119,30 +126,35 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 - [ ] Call-to-action clear
 
 ### 6. Lists and Bullets
+
 - [ ] Bullet points aligned properly
 - [ ] Numbered lists sequential
 - [ ] Indentation consistent
 - [ ] List items readable
 
 ### 7. Links and CTAs
+
 - [ ] Links underlined or clearly styled
 - [ ] RSVP button/link stands out
 - [ ] External link indicators (if any)
 - [ ] No broken link styling
 
 ### 8. Color and Contrast
+
 - [ ] Text readable against background
 - [ ] Link colors have sufficient contrast
 - [ ] No color-only information
 - [ ] PolicyEngine brand colors used appropriately
 
 ### 9. Mobile Considerations
+
 - [ ] Would this work on mobile? (check narrow viewport mentally)
 - [ ] Text size appropriate
 - [ ] Buttons/links tappable
 - [ ] Images scale well
 
 ### 10. Brand Consistency
+
 - [ ] Matches PolicyEngine design system
 - [ ] Professional appearance
 - [ ] Consistent with other blog posts
@@ -151,24 +163,28 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 ## Common Issues to Flag
 
 ### Layout Problems
+
 - **Text too wide**: Lines > 80 characters become hard to read
 - **Cramped spacing**: Insufficient padding/margins
 - **Misaligned elements**: Headers, images, lists not aligned
 - **Overflow**: Content cutting off at edges
 
 ### Image Issues
+
 - **Pixelation**: Low-resolution images look blurry
 - **Distortion**: Images stretched or squished
 - **Wrong size**: Images too large or too small
 - **Missing**: Broken image icons or blank spaces
 
 ### Typography Issues
+
 - **Unreadable text**: Too small, low contrast
 - **Inconsistent sizing**: Headers not hierarchical
 - **Poor line spacing**: Text cramped or too spread out
 - **Font problems**: Wrong font family, missing weights
 
 ### Event Details Issues
+
 - **Hard to scan**: When/Where buried in text
 - **Missing info**: Incomplete address or time
 - **CTA not prominent**: RSVP link hard to find
@@ -198,12 +214,14 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 
 ---
 
-### ⚠️  Issues Found
+### ⚠️ Issues Found
 
 #### Critical (Affects Readability/Function)
+
 - [ ] **[Issue description]**: [Where it appears] → [Impact] → [Suggested fix]
 
 #### Minor (Polish)
+
 - [ ] **[Issue description]**: [Where it appears] → [Suggested improvement]
 
 ---
@@ -211,20 +229,24 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 ### 📸 Visual Observations
 
 **Cover Image**:
+
 - Quality: [Sharp/Blurry/Pixelated]
 - Sizing: [Appropriate/Too large/Too small]
 - Cropping: [Good/Issues with X]
 
 **Body Text**:
+
 - Readability: [Excellent/Good/Hard to read]
 - Line length: [Comfortable/Too wide/Too narrow]
 - Spacing: [Good/Too tight/Too loose]
 
 **In-Post Images**:
+
 - [Image 1 name]: [Observations]
 - [Image 2 name]: [Observations]
 
 **Event Details** (if applicable):
+
 - Visibility: [Prominent/Could be clearer]
 - Formatting: [Clear/Confusing]
 - Scannability: [Easy to find time/location / Hard to parse]
@@ -234,6 +256,7 @@ echo "   - Bottom: ~/Downloads/${POST_SLUG}-bottom.png"
 ### 📱 Mobile Readiness Assessment
 
 Based on desktop rendering, potential mobile issues:
+
 - [ ] Text might be too small on mobile
 - [ ] Images might need responsive sizing
 - [ ] Event details might need better formatting
@@ -244,13 +267,16 @@ Based on desktop rendering, potential mobile issues:
 ### 🎯 Recommendations
 
 #### Must Fix
+
 1. [Critical issue and how to fix]
 
 #### Should Consider
+
 1. [Improvement suggestion]
 2. [Another suggestion]
 
 #### Nice to Have
+
 1. [Optional polish]
 
 ---
@@ -289,12 +315,14 @@ Based on desktop rendering, potential mobile issues:
 
 ---
 
-### ⚠️  Issues Found
+### ⚠️ Issues Found
 
 #### Critical
+
 None found - all elements render correctly
 
 #### Minor
+
 - **RSVP link styling**: Could be more prominent (consider button styling vs plain link)
 - **Team photo size**: Quite large in rendered view - could be slightly smaller for better page flow
 
@@ -303,19 +331,23 @@ None found - all elements render correctly
 ### 📸 Visual Observations
 
 **Cover Image (DC Office Comparison screenshot)**:
+
 - Quality: Sharp, text is crisp and readable
 - Sizing: Perfect - fills width without overwhelming
 - Cropping: Good - shows the comparison table clearly, no browser UI visible
 
 **Body Text**:
+
 - Readability: Excellent - good font size and line height
 - Line length: Comfortable reading width
 - Spacing: Well-balanced paragraphs with good breathing room
 
 **In-Post Images**:
+
 - Team photo at Open Gov Hub: High quality, well-lit, displays correctly. Could be 10-15% smaller.
 
 **Event Details**:
+
 - Visibility: Very prominent, impossible to miss
 - Formatting: Clean and clear with bold labels
 - Scannability: Easy to extract date/time/location at a glance
@@ -325,6 +357,7 @@ None found - all elements render correctly
 ### 📱 Mobile Readiness Assessment
 
 Based on desktop rendering, this should work well on mobile:
+
 - ✅ Text is large enough to scale down
 - ✅ Images should be responsive
 - ✅ Event details in simple format (will stack nicely)
@@ -335,9 +368,11 @@ Based on desktop rendering, this should work well on mobile:
 ### 🎯 Recommendations
 
 #### Should Consider
+
 1. **Make RSVP more prominent**: Consider styling the RSVP link as a button for better visibility
 
 #### Nice to Have
+
 1. **Reduce team photo size**: The image is quite large - consider 80-90% of current size
 2. **Add subtle separator**: Before "Join us" section to make the CTA pop more
 
@@ -365,6 +400,7 @@ echo "📄 PDF review complete - check ~/Downloads/${POST_SLUG}-review.pdf"
 ## Success Criteria
 
 Visual review is complete when:
+
 - ✅ PDF/screenshot captured successfully
 - ✅ All visual quality checklist items reviewed
 - ✅ Specific issues identified (with locations)

@@ -8,6 +8,7 @@ model: inherit
 # Visual QA Checker Agent
 
 ## Role
+
 You verify that PolicyEngine blog posts look good across devices, images are optimized, and social media previews render correctly.
 
 ## Checks Performed
@@ -29,12 +30,14 @@ fi
 ```
 
 **Standards**:
+
 - Cover images: < 500KB ideally
 - In-post images: < 300KB ideally
 - Recommended width: 1200-2400px (for retina)
 - Format: JPG for photos, PNG for screenshots/graphics
 
 **Optimization suggestions**:
+
 ```bash
 # For oversized images, suggest compression
 sips --resampleWidth 1600 public/images/posts/[image].jpg --out public/images/posts/[image]-optimized.jpg
@@ -53,6 +56,7 @@ sips -g pixelWidth -g pixelHeight public/images/posts/[cover-image]
 ```
 
 **Recommended**:
+
 - 1200x630 (Facebook/LinkedIn)
 - 1200x675 (16:9 general)
 - Minimum: 1200px wide
@@ -71,6 +75,7 @@ screencapture -w ~/Downloads/post-desktop-preview.png
 ```
 
 **Capture what shows**:
+
 - Cover image rendering
 - Header formatting
 - Body text readability
@@ -94,6 +99,7 @@ curl -s http://localhost:3000/us/research/[post-slug] | grep -o '<meta property=
 ```
 
 **Manual check**:
+
 1. Copy post URL
 2. Paste in Twitter/LinkedIn preview tool
 3. Verify card looks good
@@ -108,6 +114,7 @@ curl -s http://localhost:3000/us/research/[post-slug] | grep -o '<meta property=
 ```
 
 **Look for**:
+
 - Text readability on small screens
 - Images scale appropriately
 - Event details don't overflow
@@ -125,6 +132,7 @@ grep -o '!\[.*\](' src/posts/articles/[filename].md
 ```
 
 **Standards**:
+
 - ❌ `![](image.jpg)` - no alt text
 - ❌ `![image](image.jpg)` - generic
 - ✅ `![PolicyEngine team at the Open Gov Hub](image.jpg)` - descriptive
@@ -132,6 +140,7 @@ grep -o '!\[.*\](' src/posts/articles/[filename].md
 ### 7. Chart/Data Viz Quality
 
 **For posts with charts**:
+
 - Are axis labels readable?
 - Is legend clear?
 - Does it work in both light/dark mode?
@@ -140,6 +149,7 @@ grep -o '!\[.*\](' src/posts/articles/[filename].md
 ### 8. Typography Check
 
 **Review in rendered post**:
+
 - Headers clearly distinguished?
 - Body text readable (line length, spacing)?
 - Bold/italic used appropriately?
@@ -184,6 +194,7 @@ screencapture -w ~/Downloads/post-preview-desktop.png
 ### Step 3: Review Screenshots
 
 **Check**:
+
 - Cover image loads and looks good
 - Text is readable
 - Images display correctly
@@ -194,6 +205,7 @@ screencapture -w ~/Downloads/post-preview-desktop.png
 ### Step 4: Check Social Preview
 
 **Simulate**:
+
 ```bash
 # Get description
 DESC=$(jq -r '.[0].description' src/posts/posts.json)
@@ -206,6 +218,7 @@ ls public/images/posts/$COVER
 ```
 
 **Verify**:
+
 - Description fits in preview (< 160 chars) ✓
 - Cover image appropriate for social card
 - Title not too long
@@ -221,8 +234,10 @@ grep '!\[.\+\](' src/posts/articles/[filename].md && echo "✅ All images have a
 ## Common Issues
 
 ### Issue: Image Too Large
+
 **Problem**: Cover image is 3MB
 **Fix**:
+
 ```bash
 # Resize and compress
 sips --resampleWidth 1600 --setProperty formatOptions 70 \
@@ -234,8 +249,10 @@ mv public/images/posts/large-image-optimized.jpg public/images/posts/large-image
 ```
 
 ### Issue: Cover Image Wrong Aspect Ratio
+
 **Problem**: Cover is 1000x1000 (square)
 **Fix**: Crop to 1200x675 (16:9)
+
 ```bash
 # Crop from center
 python3 -c "
@@ -260,14 +277,17 @@ print(f'Cropped to {img_cropped.size}')
 ```
 
 ### Issue: Screenshot Shows Layout Problems
+
 **Problem**: Event details overflow on mobile
 **Fix**: Check CSS, add responsive breakpoints, or adjust formatting in markdown
 
 ### Issue: Missing Alt Text
+
 **Problem**: `![](/images/posts/chart.png)`
 **Fix**: Add descriptive alt text: `![Net income change by decile](/images/posts/chart.png)`
 
 ### Issue: Social Preview Truncated
+
 **Problem**: Description is 200 chars, gets cut off
 **Fix**: Edit posts.json description to < 160 chars
 
@@ -276,6 +296,7 @@ print(f'Cropped to {img_cropped.size}')
 ### For Cover Images
 
 **Recommended process**:
+
 ```bash
 # 1. Crop to 16:9 ratio (1200x675 or 1600x900)
 # 2. Optimize quality
@@ -288,6 +309,7 @@ ls -lh public/images/posts/cover.jpg
 ```
 
 **Target**:
+
 - Dimensions: 1600x900 or 1200x675
 - File size: < 500KB
 - Quality: 80-85%
@@ -302,6 +324,7 @@ sips --resampleWidth 1200 \
 ```
 
 **Target**:
+
 - Width: 1200px
 - File size: < 300KB
 - Quality: 75-80%
@@ -315,18 +338,20 @@ sips --resampleWidth 1600 \
 ```
 
 **Target**:
+
 - PNG format (for sharp text)
 - Width: 1600px max
 - File size: < 500KB
 
 ## Review Response Template
 
-```markdown
+````markdown
 ## Visual QA Review
 
 ### Image Analysis
 
 #### Cover Image: `dc-office-comparison.png`
+
 - **Dimensions**: 3420 x 1898 (1.8:1 ratio) ✅
 - **File Size**: 476 KB ✅
 - **Format**: PNG ✅
@@ -335,13 +360,14 @@ sips --resampleWidth 1600 \
 #### In-Post Images
 
 1. **`open-gov-hub-team.jpg`**
-   - Dimensions: 3024 x 4032 ⚠️  (very large)
+   - Dimensions: 3024 x 4032 ⚠️ (very large)
    - File Size: 1.9 MB ❌ (too large)
    - Recommendation: Resize to 1200px width
 
 ### Screenshot Review
 
 **Desktop Preview**:
+
 - ✅ Cover image displays correctly
 - ✅ Team photo renders well
 - ✅ Event details clearly formatted
@@ -370,9 +396,12 @@ sips --resampleWidth 1600 \
         --out public/images/posts/open-gov-hub-team-opt.jpg
    mv public/images/posts/open-gov-hub-team-opt.jpg public/images/posts/open-gov-hub-team.jpg
    ```
-   This will reduce file size from 1.9MB to ~200KB
+````
+
+This will reduce file size from 1.9MB to ~200KB
 
 2. **Overall**: Post looks great! Just optimize the team photo and it's ready to publish.
+
 ```
 
 ## Success Criteria
@@ -386,3 +415,4 @@ Visual QA passes when:
 - ✅ Social preview looks good
 - ✅ Event details clearly formatted
 - ✅ No missing images
+```

@@ -11,6 +11,7 @@ This command guides you through creating a new PolicyEngine blog post with all r
 Ask the user for the following if not already provided in $ARGUMENTS:
 
 **Required**:
+
 - **Title**: Post title
 - **Description**: Brief description (< 160 chars for social preview)
 - **Authors**: Author slugs (e.g., max-ghenis, daphne-hansell)
@@ -19,6 +20,7 @@ Ask the user for the following if not already provided in $ARGUMENTS:
 - **Cover image**: Path to cover image or location to find it
 
 **Optional**:
+
 - **Date**: Use today's date if not specified (format: YYYY-MM-DD)
 - **Event details**: If it's an event post (when, where, RSVP link)
 
@@ -36,12 +38,14 @@ echo "Description length: ${#DESC} characters"
 **File location**: `src/posts/articles/[filename].md`
 
 **Important**:
+
 - ❌ DO NOT include title (# Title) at top
 - ❌ DO NOT include description paragraph
 - ❌ DO NOT include cover image
 - ✅ Start directly with content
 
 **Template**:
+
 ```markdown
 [Opening paragraph introducing the topic]
 
@@ -59,6 +63,7 @@ echo "Description length: ${#DESC} characters"
 ```
 
 **For event posts, include**:
+
 ```markdown
 **When:** [Date and time]
 
@@ -70,6 +75,7 @@ echo "Description length: ${#DESC} characters"
 ## Step 4: Handle Images
 
 ### Cover Image
+
 ```bash
 # IMPORTANT: Cover image filename MUST match post slug
 # Example: dc-office-ai-coding.md → dc-office-ai-coding.png
@@ -82,6 +88,7 @@ ls -lh src/images/posts/[post-slug].png
 ```
 
 ### In-Post Images
+
 ```bash
 # In-post images go in public/images/posts/ (served at runtime)
 cp [source-path] public/images/posts/[image-name].jpg
@@ -91,6 +98,7 @@ cp [source-path] public/images/posts/[image-name].jpg
 ```
 
 **Image Location Summary**:
+
 - **Cover images**: `src/images/posts/` (webpack require())
 - **In-post images**: `public/images/posts/` (runtime URL serving)
 
@@ -119,6 +127,7 @@ mv src/posts/posts.json.tmp src/posts/posts.json
 ```
 
 **Required fields**:
+
 - `title`: String
 - `description`: String (< 160 chars)
 - `date`: YYYY-MM-DD or YYYY-MM-DD HH:MM:SS
@@ -134,6 +143,7 @@ mv src/posts/posts.json.tmp src/posts/posts.json
 ```
 
 **Agent will check**:
+
 - Description length
 - Image paths exist
 - No duplicate metadata in markdown
@@ -152,6 +162,7 @@ open http://localhost:3000/us/research/[filename]
 ```
 
 **Check**:
+
 - Cover image displays
 - In-post images display
 - Description appears correctly
@@ -171,6 +182,7 @@ npm run lint -- --max-warnings=0
 ## Example: Creating Event Post
 
 **User provides**:
+
 - Title: "PolicyEngine DC Officewarming"
 - Description: "Join us at the Open Gov Hub for happy hour Wednesday!"
 - Authors: ["max-ghenis", "daphne-hansell"]
@@ -181,6 +193,7 @@ npm run lint -- --max-warnings=0
 **You create**:
 
 1. `src/posts/articles/dc-officewarming-oct-2025.md`:
+
 ```markdown
 We're excited to invite you to celebrate our new DC office at the Open Gov Hub!
 
@@ -194,11 +207,13 @@ After using Claude Code to build an interactive comparison tool for choosing our
 ```
 
 2. Copy image:
+
 ```bash
 cp /Users/user/Downloads/office-photo.jpg public/images/posts/dc-officewarming.jpg
 ```
 
 3. Update posts.json (add to beginning):
+
 ```json
 {
   "title": "PolicyEngine DC Officewarming",
@@ -214,18 +229,21 @@ cp /Users/user/Downloads/office-photo.jpg public/images/posts/dc-officewarming.j
 ## Common Patterns
 
 ### Blog/Org Post
+
 - **Tags**: ["us", "org", "ai"]
 - **Tone**: Conversational, narrative
 - **Length**: Flexible, can be longer
 - **Images**: Team photos, screenshots
 
 ### Policy Report
+
 - **Tags**: ["us", "policy", "featured"]
 - **Tone**: Factual, objective
 - **Style**: Active voice, no unsupported adjectives
 - **Images**: Charts, graphs, data visualizations
 
 ### Event Announcement
+
 - **Tags**: ["us", "org", "event"]
 - **Must include**: When, Where, RSVP link
 - **Format**: Clear event details with blank lines
@@ -234,6 +252,7 @@ cp /Users/user/Downloads/office-photo.jpg public/images/posts/dc-officewarming.j
 ## Pre-Flight Checklist
 
 Before completing, verify:
+
 - [ ] Markdown file created in `src/posts/articles/`
 - [ ] No title/description/cover in markdown
 - [ ] Cover image copied to `public/images/posts/`
@@ -250,6 +269,7 @@ Before completing, verify:
 ## Success Criteria
 
 Post is ready when:
+
 - ✅ All images display correctly
 - ✅ Description fits in social preview
 - ✅ No duplicate metadata
