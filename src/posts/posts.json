@@ -81,6 +81,21 @@
     "authors": ["max-ghenis", "nikhil-woodruff", "ben-ogorek", "maria-juaristi"]
   },
   {
+    "title": "The One Big Beautiful Bill Act, household by household",
+    "description": "Our latest interactive shows how the reconciliation bill affects each of 20,000 representative households across income levels, states, and provisions.",
+    "date": "2025-08-11",
+    "tags": ["us", "policy", "featured", "reconciliation", "interactives"],
+    "filename": "obbba-household-by-household-dummy.md",
+    "external_url": "/us/obbba-household-by-household",
+    "image": "obbba-household-by-household.png",
+    "authors": [
+      "max-ghenis",
+      "pavel-makarchuk",
+      "ben-ogorek",
+      "nikhil-woodruff"
+    ]
+  },
+  {
     "title": "Analysis of individual income tax provisions in the final reconciliation bill",
     "description": "Our simulation projects a reduction in federal revenues of $3.8 trillion from 2026 to 2035 compared to current law.",
     "date": "2025-07-04",
