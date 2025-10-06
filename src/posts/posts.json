@@ -1,5 +1,14 @@
 [
   {
+    "title": "How removing the two-child benefit limit would affect the UK",
+    "description": "Removing the two-child limit would cost £2.7 billion in 2026-27 and reduce child poverty by 16.2%.",
+    "date": "2025-10-06 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-two-child-limit.md",
+    "image": "uk-reeves.jpg"
+  },
+  {
     "title": "How we used Claude Code to choose our DC office",
     "description": "We used Claude Code to build an interactive comparison tool for choosing our DC office. The winner: Open Gov Hub. Join us Wednesday to celebrate!",
     "date": "2025-10-05",
