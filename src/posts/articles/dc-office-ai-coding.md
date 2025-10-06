@@ -15,7 +15,7 @@ This continues a pattern we've observed: when you frame any problem as a softwar
 - Real commute time calculations for our team
 - A reusable tool for future office decisions
 
-One unexpected challenge: Claude Code (using Opus 4.1 at the time) developed a strong preference for Open Gov Hub. We had to explicitly request more objective analysis to get balanced comparisons. The newer Sonnet 3.5 model we now use shows less of this behavior.
+One unexpected challenge: Claude Code (using Opus 4.1 at the time) developed a strong preference for Open Gov Hub. We had to explicitly request more objective analysis to get balanced comparisons. The newer Sonnet 4.5 model we now use shows less of this behavior.
 
 ## The result
 
