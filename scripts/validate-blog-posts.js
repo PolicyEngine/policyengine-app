@@ -34,8 +34,14 @@ function validate() {
       "image",
     ];
     requiredFields.forEach((field) => {
-      if (!post[field]) {
-        errors.push(`${postNum}: Missing required field '${field}'`);
+      const value = post[field];
+      if (
+        value === undefined ||
+        value === null ||
+        (typeof value === "string" && value.trim() === "") ||
+        (Array.isArray(value) && value.length === 0)
+      ) {
+        errors.push(`${postNum}: Missing or empty required field '${field}'`);
       }
     });
 
