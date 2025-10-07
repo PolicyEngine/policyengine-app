@@ -1,4 +1,4 @@
-- bump: minor
+- bump: patch
   changes:
-    added:
-      - A blog post analyzing the impact of removing the UK two-child benefit limit
+    fixed:
+      - Updated UK labor supply elasticity parameter paths to match policyengine-uk v2.39.0
