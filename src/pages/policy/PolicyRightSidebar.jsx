@@ -111,10 +111,10 @@ function BehavioralResponseToggle(props) {
   const behavioralResponseReforms = useMemo(
     () => ({
       uk: {
-        "gov.behavioral_responses.labor_supply_income_elasticity": {
+        "gov.simulation.labor_supply_responses.income_elasticity": {
           [dateString]: -0.05,
         },
-        "gov.behavioral_responses.labor_supply_substitution_elasticity": {
+        "gov.simulation.labor_supply_responses.substitution_elasticity": {
           [dateString]: 0.25,
         },
       },
