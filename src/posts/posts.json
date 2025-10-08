@@ -1,5 +1,14 @@
 [
   {
+    "title": "Comparing PolicyEngine and official UK poverty rates",
+    "description": "We compare PolicyEngine poverty estimates with official HBAI statistics and explain the methodological factors behind the differences.",
+    "date": "2025-10-09 11:00:00",
+    "tags": ["uk", "policy", "featured"],
+    "authors": ["vahid-ahmadi"],
+    "filename": "uk-poverty-analysis.md",
+    "image": "uk-poverty-analysis.jpg"
+  },
+  {
     "title": "How removing the two-child benefit limit would affect the UK",
     "description": "Removing the two-child limit would cost £2.7 billion in 2026-27 and reduce child poverty by 16.2%.",
     "date": "2025-10-06 11:00:00",
