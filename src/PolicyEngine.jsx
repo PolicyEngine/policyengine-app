@@ -1,7 +1,6 @@
 import Home from "./pages/Home";
 import Research from "./pages/Research";
 import About from "./pages/About";
-import Jobs from "./pages/Jobs";
 import Supporters from "./pages/Supporters";
 import {
   Navigate,
@@ -62,6 +61,7 @@ import EducationPage from "./pages/learn/EducationPage";
 import OpenSourcePage from "./pages/learn/OpenSourcePage";
 import BenefitAccessPage from "./pages/learn/BenefitAccessPage";
 import { updateDeprecatedSearchParams } from "./routing/updateDeprecatedSearchParams";
+import Jobs from "./pages/Jobs";
 
 const PolicyPage = lazy(() => import("./pages/PolicyPage"));
 const HouseholdPage = lazy(() => import("./pages/HouseholdPage"));
@@ -301,10 +301,9 @@ export default function PolicyEngine() {
   // If the path is /, redirect to /[countryId]
   // If the path is /[countryId], render the homepage
   // If the path is /[countryId]/about, render the about page
-  // If the path is /[countryId]/jobs, render the jobs page
   // If the path is /[countryId]/research, render the research page
   // If the path is not recognized, redirect to /[countryId]
-
+  // If the path is /[countryId]/jobs, render the jobs page
   return (
     <ConfigProvider
       theme={{
