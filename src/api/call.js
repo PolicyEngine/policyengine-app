@@ -3,8 +3,7 @@ import { buildParameterTree } from "./parameters";
 import { buildVariableTree, getTreeLeavesInOrder } from "./variables";
 import { wrappedJsonStringify, wrappedResponseJson } from "../data/wrappedJson";
 import { useAuthenticatedFetch } from "../hooks/useAuthenticatedFetch";
-
-const POLICYENGINE_API = "https://api.policyengine.org";
+import { POLICYENGINE_API } from "../constants";
 
 /**
  * returns an api call function that can be used to make requests
