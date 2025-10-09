@@ -18,12 +18,12 @@ Both approaches calculate relative and absolute poverty thresholds using the sam
 
 The table below compares PolicyEngine's [estimates](https://gist.github.com/vahid-ahmadi/c8bb92c92a3b3a5f42eff36e26b7b7a9) with official [DWP figures](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2024) for 2023/24:
 
-| Measure                | DWP   | PE Standard FRS | PE Enhanced FRS | PE Standard FRS - Official | PE Enhanced FRS - Official |
-| ---------------------- | ----- | --------------- | --------------- | -------------------------- | -------------------------- |
-| Relative poverty (BHC) | 17.2% | 18.0%           | 16.6%           | +0.8pp                     | -0.6pp                     |
-| Relative poverty (AHC) | 21.1% | 22.9%           | 20.7%           | +1.8pp                     | -0.4pp                     |
-| Absolute poverty (BHC) | 15.0% | 17.2%           | 12.8%           | +2.2pp                     | -2.2pp                     |
-| Absolute poverty (AHC) | 18.3% | 20.5%           | 17.9%           | +2.2pp                     | -0.4pp                     |
+| Measure                | DWP   | PE Standard FRS   | PE Enhanced FRS   |
+| ---------------------- | ----- | ----------------- | ----------------- |
+| Relative poverty (BHC) | 17.2% | 18.0%<br>(+0.8pp) | 16.6%<br>(-0.6pp) |
+| Relative poverty (AHC) | 21.1% | 22.9%<br>(+1.8pp) | 20.7%<br>(-0.4pp) |
+| Absolute poverty (BHC) | 15.0% | 17.2%<br>(+2.2pp) | 12.8%<br>(-2.2pp) |
+| Absolute poverty (AHC) | 18.3% | 20.5%<br>(+2.2pp) | 17.9%<br>(-0.4pp) |
 
 _BHC = Before Housing Costs, AHC = After Housing Costs_
 
@@ -37,12 +37,12 @@ The tables below break down poverty rates by age group.
 
 The table below shows poverty rates for children:
 
-| Measure                | DWP   | PE Standard FRS | PE Enhanced FRS | PE Standard FRS - Official | PE Enhanced FRS - Official |
-| ---------------------- | ----- | --------------- | --------------- | -------------------------- | -------------------------- |
-| Relative poverty (BHC) | 23.2% | 24.6%           | 22.7%           | +1.4pp                     | -0.5pp                     |
-| Relative poverty (AHC) | 30.5% | 33.5%           | 29.5%           | +3.0pp                     | -1.0pp                     |
-| Absolute poverty (BHC) | 20.0% | 23.6%           | 17.9%           | +3.6pp                     | -2.1pp                     |
-| Absolute poverty (AHC) | 26.4% | 30.2%           | 25.4%           | +3.8pp                     | -1.0pp                     |
+| Measure                | DWP   | PE Standard FRS   | PE Enhanced FRS   |
+| ---------------------- | ----- | ----------------- | ----------------- |
+| Relative poverty (BHC) | 23.2% | 24.6%<br>(+1.4pp) | 22.7%<br>(-0.5pp) |
+| Relative poverty (AHC) | 30.5% | 33.5%<br>(+3.0pp) | 29.5%<br>(-1.0pp) |
+| Absolute poverty (BHC) | 20.0% | 23.6%<br>(+3.6pp) | 17.9%<br>(-2.1pp) |
+| Absolute poverty (AHC) | 26.4% | 30.2%<br>(+3.8pp) | 25.4%<br>(-1.0pp) |
 
 The children population is 14.6 million in the DWP figures, 14.4 million in the standard FRS, and 14.2 million in the Enhanced FRS. Children show the highest poverty rates and largest deviations, with the standard FRS estimates +1.4pp to +3.8pp higher than official figures. The Enhanced FRS reduces these deviations to -0.5pp to -2.1pp.
 
@@ -50,12 +50,12 @@ The children population is 14.6 million in the DWP figures, 14.4 million in the 
 
 The table below shows poverty rates for working-age adults:
 
-| Measure                | DWP   | PE Standard FRS | PE Enhanced FRS | PE Standard FRS - Official | PE Enhanced FRS - Official |
-| ---------------------- | ----- | --------------- | --------------- | -------------------------- | -------------------------- |
-| Relative poverty (BHC) | 14.7% | 15.7%           | 16.1%           | +1.0pp                     | +1.4pp                     |
-| Relative poverty (AHC) | 19.4% | 21.2%           | 21.0%           | +1.9pp                     | +1.6pp                     |
-| Absolute poverty (BHC) | 12.9% | 15.1%           | 12.2%           | +2.1pp                     | -0.8pp                     |
-| Absolute poverty (AHC) | 16.9% | 19.2%           | 18.6%           | +2.4pp                     | +1.7pp                     |
+| Measure                | DWP   | PE Standard FRS   | PE Enhanced FRS   |
+| ---------------------- | ----- | ----------------- | ----------------- |
+| Relative poverty (BHC) | 14.7% | 15.7%<br>(+1.0pp) | 16.1%<br>(+1.4pp) |
+| Relative poverty (AHC) | 19.4% | 21.2%<br>(+1.9pp) | 21.0%<br>(+1.6pp) |
+| Absolute poverty (BHC) | 12.9% | 15.1%<br>(+2.1pp) | 12.2%<br>(-0.8pp) |
+| Absolute poverty (AHC) | 16.9% | 19.2%<br>(+2.4pp) | 18.6%<br>(+1.7pp) |
 
 The working-age adult population is 40.9 million in the DWP figures, 41.8 million in the standard FRS, and 43.2 million in the Enhanced FRS. The standard FRS deviations range from +1.0pp to +2.4pp, with larger AHC gaps reflecting Housing Benefit under-reporting among renters. The Enhanced FRS deviations range from -0.8pp to +1.7pp.
 
@@ -63,12 +63,12 @@ The working-age adult population is 40.9 million in the DWP figures, 41.8 millio
 
 The table below shows poverty rates for pensioners:
 
-| Measure                | DWP   | PE Standard FRS | PE Enhanced FRS | PE Standard FRS - Official | PE Enhanced FRS - Official |
-| ---------------------- | ----- | --------------- | --------------- | -------------------------- | -------------------------- |
-| Relative poverty (BHC) | 18.6% | 19.1%           | 12.1%           | +0.5pp                     | -6.6pp                     |
-| Relative poverty (AHC) | 15.7% | 17.8%           | 10.5%           | +2.2pp                     | -5.2pp                     |
-| Absolute poverty (BHC) | 16.0% | 18.0%           | 9.4%            | +2.0pp                     | -6.6pp                     |
-| Absolute poverty (AHC) | 13.2% | 14.6%           | 7.4%            | +1.5pp                     | -5.8pp                     |
+| Measure                | DWP   | PE Standard FRS   | PE Enhanced FRS   |
+| ---------------------- | ----- | ----------------- | ----------------- |
+| Relative poverty (BHC) | 18.6% | 19.1%<br>(+0.5pp) | 12.1%<br>(-6.6pp) |
+| Relative poverty (AHC) | 15.7% | 17.8%<br>(+2.2pp) | 10.5%<br>(-5.2pp) |
+| Absolute poverty (BHC) | 16.0% | 18.0%<br>(+2.0pp) | 9.4%<br>(-6.6pp)  |
+| Absolute poverty (AHC) | 13.2% | 14.6%<br>(+1.5pp) | 7.4%<br>(-5.8pp)  |
 
 The pensioner population is 12.1 million in the DWP figures, 12.0 million in the standard FRS, and 10.8 million in the Enhanced FRS. The standard FRS deviations range from +0.5pp to +2.2pp. The Enhanced FRS deviations range from -6.6pp to -5.2pp, with all measures showing lower poverty rates than official statistics.
 
