@@ -6,7 +6,7 @@ This analysis compares PolicyEngine's poverty estimates against official figures
 
 ### Official methodology
 
-The Department for Work and Pensions (DWP) [produces](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2024) official poverty statistics through the Households Below Average Income (HBAI) series. The methodology uses the FRS with enhancements including replacing high earners' incomes with HMRC tax data, applying CALMAR calibration weighting to match Census totals, and adjusting benefit amounts using administrative records. Poverty is measured as relative (60% of median income) and absolute (2010/11 threshold uprated by inflation), both before and after housing costs.
+The Department for Work and Pensions (DWP) [produces](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2024) official poverty statistics through the Households Below Average Income (HBAI) series. The methodology uses the FRS with enhancements including replacing high earners' incomes with HMRC tax data, applying [CALMAR](https://www.gov.uk/government/publications/initial-review-of-the-family-resources-survey-weighting-scheme/initial-review-of-the-family-resources-survey-weighting-scheme) calibration weighting to match Census totals, and adjusting benefit amounts using administrative records. Poverty is measured as relative (60% of median income) and absolute (2010/11 threshold uprated by inflation), both before and after housing costs.
 
 ### PolicyEngine methodology
 
