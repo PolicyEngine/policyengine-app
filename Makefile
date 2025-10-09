@@ -14,7 +14,6 @@ debug:
 	REACT_APP_DEBUG=true npm start
 
 test:
-	node metadata_fetch.mjs
 	npm run test
 
 deploy-setup:
