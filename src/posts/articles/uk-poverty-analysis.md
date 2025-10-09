@@ -78,7 +78,7 @@ The DWP and PolicyEngine use the same FRS data, but process it differently. The 
 
 ### 1. Survey of Personal Incomes adjustment for high earners
 
-The DWP [replaces](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2023/households-below-average-income-series-quality-and-methodology-information-report-fye-2023) high earners' incomes with HMRC tax data through the Survey of Personal Incomes adjustment (above £361,200 for working-age adults or £107,800 for pensioners). This raises median household income and the poverty threshold, reducing the number classified as poor. PolicyEngine does not have access to HMRC data and uses survey-reported incomes for all households.
+The DWP [replaces](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2023/households-below-average-income-series-quality-and-methodology-information-report-fye-2023) high earners' incomes with HMRC tax data through the Survey of Personal Incomes (SPI) adjustment (above £361,200 for working-age adults or £107,800 for pensioners). PolicyEngine [incorporates](https://github.com/PolicyEngine/policyengine-us-data/tree/main/paper) SPI data differently: rather than directly replacing individual incomes, it augments the FRS with synthetic individuals trained on SPI data and reweights the combined dataset to match HMRC income distribution targets across multiple income bands and sources.
 
 ### 2. Survey weighting and grossing methodology
 
