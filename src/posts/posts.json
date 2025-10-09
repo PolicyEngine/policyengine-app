@@ -1,8 +1,8 @@
 [
   {
     "title": "Comparing PolicyEngine and official UK poverty rates",
-    "description": "We compare PolicyEngine poverty estimates with official HBAI statistics and explain the methodological factors behind the differences.",
-    "date": "2025-10-09 11:00:00",
+    "description": "We compare PolicyEngine poverty estimates with official DWP statistics and explain the methodological factors behind the differences.",
+    "date": "2025-10-10 11:00:00",
     "tags": ["uk", "policy", "featured"],
     "authors": ["vahid-ahmadi"],
     "filename": "uk-poverty-analysis.md",
