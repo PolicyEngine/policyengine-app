@@ -90,7 +90,7 @@ The DWP adjusts benefit amounts using administrative records, though the methodo
 
 ### 4. Housing costs and Housing Benefit measurement
 
-Both methods define housing costs identically but face Housing Benefit under-reporting in the FRS. The DWP [adjusts](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2023/households-below-average-income-series-quality-and-methodology-information-report-fye-2023) Housing Benefit using administrative records. PolicyEngine's standard FRS uses reported Housing Benefit without adjustment. Under-reporting means net housing costs appear higher in PolicyEngine, lowering income after housing costs and raising AHC poverty.
+Both methods define housing costs identically but face Housing Benefit under-reporting in the FRS. The DWP [adjusts](https://www.gov.uk/government/statistics/households-below-average-income-for-financial-years-ending-1995-to-2023/households-below-average-income-series-quality-and-methodology-information-report-fye-2023) Housing Benefit using administrative records. PolicyEngine's standard FRS uses reported Housing Benefit without adjustment, while the Enhanced FRS reweights to match official Housing Benefit expenditure and claimant count targets. Under-reporting in the standard FRS means net housing costs appear higher, lowering income after housing costs and raising AHC poverty.
 
 ### 5. Children-specific income components
 
