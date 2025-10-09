@@ -82,7 +82,7 @@ The DWP [replaces](https://www.gov.uk/government/statistics/households-below-ave
 
 ### 2. Survey weighting and grossing methodology
 
-The DWP uses [CALMAR](https://www.gov.uk/government/publications/initial-review-of-the-family-resources-survey-weighting-scheme/initial-review-of-the-family-resources-survey-weighting-scheme) calibration weighting to match Census population totals across age, sex, region, household type, and tenure. PolicyEngine's standard FRS uses original FRS weights without calibration, producing a population estimate of 67.5 million matching official figures. The Enhanced FRS reweights to match HMRC and DWP administrative data. Different weights alter which household types are weighted up or down.
+The DWP uses [CALMAR](https://www.gov.uk/government/publications/initial-review-of-the-family-resources-survey-weighting-scheme/initial-review-of-the-family-resources-survey-weighting-scheme) calibration weighting to match Census population totals across demographic dimensions including age-sex-region combinations, benefit unit composition, council tax bands, and tenure. PolicyEngine's standard FRS uses original FRS weights without calibration, producing a population estimate of 67.5 million matching official figures. The Enhanced FRS reweights to match hundreds of targets from multiple administrative data sources—including OBR tax and benefit aggregates, ONS demographic statistics, HMRC income distributions, DWP benefit caseloads, and VOA council tax records—at both national and constituency levels. Different weights alter which household types are weighted up or down.
 
 ### 3. Benefit measurement
 
@@ -98,7 +98,7 @@ The DWP [assigns](https://www.gov.uk/government/statistics/households-below-aver
 
 ### 6. Enhanced FRS pensioner poverty adjustments
 
-Administrative data adjustments may better capture pension income from multiple sources where survey self-reporting is less accurate. The Enhanced FRS pensioner population is 10.8 million versus 12.0 million in the standard FRS and 12.1 million official, indicating reweighting adjustments affect age distribution.
+Administrative data adjustments may better capture pension income from multiple sources where survey self-reporting is less accurate. The Enhanced FRS pensioner population is 10.8 million versus 12.0 million in the standard FRS and 12.1 million official. The Enhanced FRS targets older age bands (60-70, 70-80, 80-90) by region along with pension income and benefit aggregates, but the reweighting optimization produces this lower pensioner count as a trade-off to better match other targets.
 
 ## Conclusion
 
