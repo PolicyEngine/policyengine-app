@@ -1,4 +1,4 @@
 - bump: patch
   changes:
-    fixed:
-      - Updated UK labor supply elasticity parameter paths to match policyengine-uk v2.39.0
+    added:
+      - Added blog post comparing PolicyEngine and official UK poverty rates
