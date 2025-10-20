@@ -5,7 +5,7 @@ export default function US2024ElectionCalculator() {
     <StreamlitEmbed
       embedUrl="https://trump-harris-tax.streamlit.app/?embedded=true"
       directUrl="https://trump-harris-tax.streamlit.app"
-      title="2024 Election Houshold Calculator"
+      title="2024 Election Household Calculator"
       iframeTitle="2024 Election, Personal Household Impact Calculator"
     />
   );
