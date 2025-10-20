@@ -1,4 +1,5 @@
-- bump: patch
+- bump: minor
   changes:
     added:
-      - Add sleep state notice to all embedded Streamlit apps, instructing users to visit the direct link if the app is sleeping
+      - UK two-child limit policy comparison app as a featured tile
+      - Slug validation test to prevent conflicts between app slugs and post filenames
