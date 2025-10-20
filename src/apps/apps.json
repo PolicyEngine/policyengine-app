@@ -12,5 +12,12 @@
     "url": "https://policyengine.github.io/obbba-household-by-household",
     "slug": "obbba-household-by-household",
     "tags": ["us", "featured", "policy"]
+  },
+  {
+    "title": "UK two-child limit policy comparison",
+    "description": "Compare multiple policy scenarios for the UK two-child benefit limit and their impacts on household incomes, government spending, and child poverty",
+    "url": "https://uk-two-child-limit-app.vercel.app",
+    "slug": "uk-two-child-limit",
+    "tags": ["uk", "featured", "policy"]
   }
 ]
