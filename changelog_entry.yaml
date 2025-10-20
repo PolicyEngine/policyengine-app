@@ -1,4 +1,5 @@
-- bump: patch
+- bump: minor
   changes:
     added:
-      - Added blog post comparing PolicyEngine and official UK poverty rates
+      - UK two-child limit policy comparison app as a featured tile
+      - Slug validation test to prevent conflicts between app slugs and post filenames
